@@ -1,0 +1,51 @@
+# Trading concepts
+ ## Position management & margin
+  ### Initial margin calculation
+  ### Mark-to-market
+  ### Margin search and release 
+  ### Close-outs
+  ### Position resolution 
+ ## Pre-trade and trade
+  ### Order types
+  ### Continuous trading
+  ### Auctions
+  ### Fees
+  ### Positions and netting
+ ## Market protection
+  ### Price monitoring
+  ### Liquidity monitoring
+  ### Insurance pools
+ ## Market governance
+  ### New market proposal
+   #### Market
+   #### Tradable instrument
+   #### Instrument 
+  ### Market / instrument parameters
+  ### Risk models and parameters
+  ### Changing models
+  ### Thresholds and rules
+ ## Network governance
+  ### Parameters
+  ### Changing parameters
+  ### Threshold and rules 
+ ## Market data
+ ## Liquidity mining
+   ### Parameters
+   ### Liquidity providers
+   ### Commitments
+    #### Target stake
+   ### LP orders
+ ## Data sourcing framework
+  ### Signed messages
+  ### Filters 
+  ### Internal sources
+ ## Fees and rewards
+ ## Collateral
+  ### Assets on Vega
+  ### Accounts (general, margin, bond) and transfers, double entry accounting
+  ### Bridges
+   #### Ethereum
+ ## Market / product / trade lifecycle
+  ### Settlement when closing out
+  ### Settlement at expiry
+ 
