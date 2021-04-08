@@ -10,7 +10,7 @@
   ### Continuous trading
   ### Auctions
   ### Fees
-The Vega protocol does not charge gas fees, but rather uses an automated fee structure that rewards participants. 
+The Vega protocol does not charge gas fees, but rather has a fee structure that rewards participants who fill essential roles for a decentralised trading infrastructure. 
 
 Fees are incurred on every trade on a market in continuous trading, but it is the price taker who pays the fee. During a market's opening auction, no fees are collected.
 
@@ -20,14 +20,14 @@ An order may cross with more than one other order, creating multiple trades, whi
 
 Fees are calculated and collected in the settlement currency of the market, and collected from your collateral. The fee is divided between the maker, the infrastructure provider, and the liquidity provider(s) for each market. 
 
-    Infrastructure portion of the fee, which is paid to validators as a reward for running the infrastructure of the network, is transferred to the infrastructure fee pool for that asset. It is then periodically distributed to the validators.
-    Maker portion of the fee is transferred to the non-aggressive, or passive party in the trade (the maker, as opposed to the taker).
-    Liquidity portion of the fee is paid to market makers for providing liquidity, and is transferred to the market-maker fee pool for the market.
+   * Infrastructure portion of the fee, which is paid to validators as a reward for running the infrastructure of the network, is transferred to the infrastructure fee pool for that asset. It is then periodically distributed to the validators.
+   * Maker portion of the fee is transferred to the non-aggressive, or passive party in the trade (the maker, as opposed to the taker).
+   * Liquidity portion of the fee is paid to market makers for providing liquidity, and is transferred to the market-maker fee pool for the market.
 
 The trading fee is calculated using the following formulas:
 
-    Total fee = (infrastructure fee factor + maker fee factor + liquidity fee factor) x Trade value for fee purposes
-    Trade value for fee purposes = notional value of the trade = size of trade x price of trade (This is true for futures, but may be calculated differently for other products.)
+   * Total fee = (infrastructure fee factor + maker fee factor + liquidity fee factor) x Trade value for fee purposes
+   * Trade value for fee purposes = notional value of the trade = size of trade x price of trade (This is true for futures, but may be calculated differently for other products.)
 
 Example:
 
