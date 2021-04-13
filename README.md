@@ -1,5 +1,4 @@
-# documentation
-Documenting the Vega protocol
+# Documenting the Vega protocol
 
 This repo is a WIP for a new documentation format. For the live docs website, visit [docs.testnet.vega.xyz](https://docs.testnet.vega.xyz). 
 
