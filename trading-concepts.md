@@ -1,9 +1,51 @@
 # Trading concepts
  ## Position management & margin
+ Vega’s margining system implements automated cross margining. Cross margining, which means gains on one market can be released and used as margin on another, is supported between all markets.  More detailed explanation is available in [Section 6 of the protocol whitepaper](https://vega.xyz/papers/vega-protocol-whitepaper.pdf#page21). However the basic calculation is relatively straightforward. 
+
+Vega works with four margin levels: 
+* **Search level**: When the margin balance drops below the search level (but is still above the maintenance level) the network will try to allocate an additional amount (up to the current initial margin level) from your collateral, if possible, to be used for margin:     
+    * m<sup>search</sup> := α<sup>search</sup> * m<sup>maintenance</sup>, where α<sup>search</sup> is a constant and α<sup>search</sup> > 1.
+* **Initial level**: The amount that will be transferred from your collateral to be used as margin when an order is placed or trade executed. To avoid a margin search as soon as position is open, the initial margin level is set above the search level:
+    * m<sup>initial</sup> := α<sup>initial</sup> * m<sup>maintenance</sup>, where α<sup>initial</sup> is a constant and α<sup>initial</sup> > α<sup>search</sup>.
+* **Release level**: Once a trader's margin balance exceeds the margin release level, the position is considered overcollateralised and funds are released back to collateral so that the margin balance is equal to the current initial margin level:
+    * m<sup>release</sup> := α<sup>release</sup> * m<sup>maintenance</sup>, where α<sup>release</sup> is a constant and α<sup>release</sup> > α<sup>initial</sup>.
+* **Maintenance margin**: This is implied by the risk model and corresponds to the minimum amount required to cover adverse market moves with a given probability level. As soon as the margin balance drops below the maintenance margin level, the position close-out process gets initiated.
+
+**Margins on open orders** 
+Vega will charge margin on open orders, because if your order gets hit you will need the margin to keep it open. The protocol shouldn't allow you to enter a trade that will immediately need to be closed out. The liquidity you see on the order book should also be real, in that sense that it’s supported by collateral and thus available to trade. 
+
+**Calculating the margin on open orders** 
+Vega calculates the largest long / short position. If the long is the riskiest, the margin algorithm multiplies by a 'risk factor long' and by the 'mark price' (for futures). If it is the short, then the algorithm multiplies the position by the 'risk factor short' and by the 'mark price'. These capture the outcome of probabilistic distribution of future market moves, and are market specific.
+
+Example: (see explanation below screenshot)
+
+Image to be uploaded - <img alt="Calculating margin on open orders" src="/images/2-calculate-margin-open-orders.png" width="500" />
+
+There is an open sell order of size 1 on the book. The risk factor for short positions is 0.074347011. The current mark price is 0.02690. So minimum margin = 0.2690 x 0.074347011 = 0.00200 (rounded to 5 decimal places).  
+
+**Margin on open positions**
+Here the calculation is a little more complicated as it takes into account “slippage” as seen currently on the order book. 
+
+Example: (see explanation below screenshot)
+
+<img alt="Calculating margin on an open positions" src="/images/3-margin-open-positions.png" width="500" />
+
+The trader has an open short position of size 1 and no open orders. The risk factor for short positions is 0.074347011. The current mark price is 0.02672. The best offer price is 0.02676 and it has enough volume so that theoretically the position could be closed-out at that price. So maintenance margin = 0.02672 x 0.074347011 + max (0, 0.02676 - 0.02672) = 0.00203 (rounded to 5 decimal places), where the second term in the sum is the “slippage” component. Other margin levels are derived from the maintenance margin using the scaling factors that form part of the market configuration. 
+
   ### Initial margin calculation
   ### Mark-to-market
+  Settlement instructions are generated based on the change in market value of the open positions of a party.
+
+  When the mark price changes, the network calculates settlement cash flows for each party.
+
+  The process is repeated each time the mark price changes until the maturity date for the market is reached.
+  
   ### Margin search and release 
   ### Close-outs
+  In most cases, the allocated margin should cover market swings. If the swing is bigger than the margin is collateralised for, then money is pulled from the collateral to cover the requirement.  If a trader has no more collateral, and their allocated margin is below the maintenance margin, the trader gets closed out and any margin balance remaining after the close-out is transferred to the market’s insurance pool. In the unlikely event that the insurance pool balance is insufficient to cover the entire balance, loss socialisation will get applied.
+
+ Note that (link->) price monitoring should assure that large swings occur only due to genuine changes in market participants' view of the true average price of the traded instrument and not as a result of short-lived artefacts of market microstructure. 
+
   ### Position resolution 
  ## Pre-trade and trade
   ### Order types
@@ -46,6 +88,10 @@ The fee factors are set through the following network parameters: `market.fee.fa
   ### Price monitoring
   ### Liquidity monitoring
   ### Insurance pools
+  Each market has its own insurance pool set aside. However, there's also a general insurance pool per asset. It sits there until there are markets that use that asset. When a market expires, the insurance pool funds from that market go into the bigger insurance pool, which other markets that use the same collateral currency can pull from. Insurance pools grow in two scenarios: if a trader gets closed out, and if a liquidity provider pays a fine for failing to provide their committed liquidity. (link to liquidity provision) 
+
+  If a trader's deployed margin on the market is insufficient to cover a mark to market (MTM) settlement liability, Vega will search the trader's available balance of the settlement asset. If this search is unable to cover the full liability, the trader will be considered distressed and undergo position resolution, and the market's insurance pool (for that settlement asset) will be utilised to make up the difference required to cover the MTM loss amount. Should the funds in the insurance pool be insufficient for that, (link ->)loss socialisation will be applied.
+
  ## Market governance
   ### New market proposal
    #### Market
