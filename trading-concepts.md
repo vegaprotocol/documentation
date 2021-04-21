@@ -50,38 +50,48 @@ The trader has an open short position of size 1 and no open orders. The risk fac
  ## Pre-trade and trade
   ### Order types
   ### Continuous trading
+  
   ### Auctions
+  Auctions are a trading mode that collect orders during a set period, called an auction call period. The auction call period's ending is based on the condition that the auction aims to meet. Auctions that are based on market conditions are triggered automatically. 
+  
+ During the call period, no trades are created, but all orders are queued. At the conclusion of the call period, trades are produced in a single action known as an auction uncrossing. During the uncrossing, auctions always try to maximise the traded volume, subject to the requirements of the orders placed. 
+
+ The Vega protocol supports several types of auctions: 
+ * Opening auctions: Every continuous trading market opens with an auction. Their purpose is to calibrate a market and help with price discovery
+ * Price monitoring auctions: A market will go into a price monitoring auction if generating a trade would result in a price that is larger than the theoretical bounds implied by the risk model, and the market’s price monitoring settings. The trade is not generated, the orders that instigated that trade remain on the order book, and the market goes into an auction, the length of which is defined by price monitoring settings (chosen during the market proposal)
+ * Liquidity monitoring auctions: A market will go into a liquidity monitoring auction if the total commitment from liquidity providers (total stake) drops too low relative to the estimate of the market’s liquidity demand (target stake), or if the best bid and/or best ask price implied by limit orders from market participants are not available
+ * Frequent batch auctions: A trading mode set for a market in its inception, that has trading occur only through repeated auctions, as opposed to continuous trading (Not yet available) 
+
   ### Fees
-The Vega protocol does not charge gas fees, but rather has a fee structure that rewards participants who fill essential roles for a decentralised trading infrastructure. 
+  The Vega protocol does not charge gas fees, but rather has a fee structure that rewards participants who fill essential roles for a decentralised trading infrastructure. 
 
-Fees are incurred on every trade on a market in continuous trading, but it is the price taker who pays the fee. During a market's opening auction, no fees are collected.
+  Fees are incurred on every trade on a market in continuous trading, but it is the price taker who pays the fee. During a market's opening auction, no fees are collected.
 
-The price taker is the party that traded using a market order, or placed a limit order that traded immediately. The price maker (the party whose passive order was on the book prior to the trade) obtains part of the fee as a reward for providing liquidity.
+  The price taker is the party that traded using a market order, or placed a limit order that traded immediately. The price maker (the party whose passive order was on the book prior to the trade) obtains part of the fee as a reward for providing liquidity.
 
-An order may cross with more than one other order, creating multiple trades, which incur fees for each. Because of how the trade value for fee purposes is calculated (see below), the amount you'll pay for each order is the same, regardless of how many trades it takes to fill the order.
+  An order may cross with more than one other order, creating multiple trades, which incur fees for each. Because of how the trade value for fee purposes is calculated (see below), the amount you'll pay for each order is the same, regardless of how many trades it takes to fill the order.
 
-Fees are calculated and collected in the settlement currency of the market, and collected from your collateral. The fee is divided between the maker, the infrastructure provider, and the liquidity provider(s) for each market. 
+  Fees are calculated and collected in the settlement currency of the market, and collected from your collateral. The fee is divided between the maker, the infrastructure provider, and the liquidity provider(s) for each market. 
 
    * Infrastructure portion of the fee, which is paid to validators as a reward for running the infrastructure of the network, is transferred to the infrastructure fee pool for that asset. It is then periodically distributed to the validators.
    * Maker portion of the fee is transferred to the non-aggressive, or passive party in the trade (the maker, as opposed to the taker).
    * Liquidity portion of the fee is paid to market makers for providing liquidity, and is transferred to the market-maker fee pool for the market.
 
-The trading fee is calculated using the following formulas:
+  The trading fee is calculated using the following formulas:
 
    * Total fee = (infrastructure fee factor + maker fee factor + liquidity fee factor) x Trade value for fee purposes
    * Trade value for fee purposes = notional value of the trade = size of trade x price of trade (This is true for futures, but may be calculated differently for other products.)
 
-Example:
+  Example:
+  If you were to place an order for 100 futures at USDC50, the trade value for fee purposes is 100 x USDC50 = USDC5000.
 
-If you were to place an order for 100 futures at USDC50, the trade value for fee purposes is 100 x USDC50 = USDC5000.
+  In this example, each fee is 0.001, meaning total fee factor is 0.003.
 
-In this example, each fee is 0.001, meaning total fee factor is 0.003.
+  USDC5000 x 0.003 = USDC15
 
-USDC5000 x 0.003 = USDC15
+  The fee is the same irrespective of the number of transactions the order gets filled in, as long as they trade at the same price.
 
-The fee is the same irrespective of the number of transactions the order gets filled in, as long as they trade at the same price.
-
-The fee factors are set through the following network parameters: `market.fee.factors.infrastructureFee`, `market.fee.factors.makerFee`, `market.fee.factors.liquidityFee`.
+  The fee factors are set through the following network parameters: `market.fee.factors.infrastructureFee`, `market.fee.factors.makerFee`, `market.fee.factors.liquidityFee`.
 
   ### Positions and netting
  ## Market protection
