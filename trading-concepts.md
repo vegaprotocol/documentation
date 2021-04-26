@@ -33,6 +33,13 @@ Example: (see explanation below screenshot)
 The trader has an open short position of size 1 and no open orders. The risk factor for short positions is 0.074347011. The current mark price is 0.02672. The best offer price is 0.02676 and it has enough volume so that theoretically the position could be closed-out at that price. So maintenance margin = 0.02672 x 0.074347011 + max (0, 0.02676 - 0.02672) = 0.00203 (rounded to 5 decimal places), where the second term in the sum is the “slippage” component. Other margin levels are derived from the maintenance margin using the scaling factors that form part of the market configuration. 
 
   ### Initial margin calculation
+  The initial margin is the minimum amount of collateral required to enter a new trade, based on trades across the risk universe.
+  
+  A market parameter will specify α<sup>initial</sup> > α<sup>search</sup> and the minimum collateral amount required for a new trade to be entered into is the initial margin.
+  m<sup>initial</sup>:= (1 + α<sup>initial</sup>) m<sup>maintenance<sup> 
+ 
+ Having the initial margin level m<sup>initial</sup> higher than the margin search level (1 + α<sup>search</sup>) m<sup>maintenance<sup> ensures  that a small negative price move won’t lead to a situation where the network has to attempt to allocate more collateral to this risk universe immediately after a trade has been entered into.
+  
   ### Mark-to-market
   Settlement instructions are generated based on the change in market value of the open positions of a party.
 
