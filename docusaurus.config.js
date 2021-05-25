@@ -99,6 +99,7 @@ module.exports = {
   },
   plugins: [
     [
+      // GraphQL
       require.resolve("@edno/docusaurus2-graphql-doc-generator"),
       {
         // https://github.com/edno/graphql-markdown#options
@@ -106,7 +107,6 @@ module.exports = {
         rootPath: "docs",
         baseURL: "graphql",
         linkRoot: "/docs",
-        // homepage: "/docs/graphql/",
         diffMethod: "SCHEMA-DIFF",
       },
     ],
@@ -127,6 +127,7 @@ module.exports = {
       },
     ],
     [
+      // gRPC
       'docusaurus-protobuffet',
       {
         protobuffet: {
@@ -134,6 +135,15 @@ module.exports = {
           protoDocsPath: 'protodocs', // prodoDocsPath seems to be hard coded to "protodocs", so don't change this
           sidebarPath: './sidebarsProtodocs.js',
         }
+      }
+    ],
+    [
+      // REST
+      'redocusaurus',
+      {
+        specs: [{
+          specUrl: 'https://raw.githubusercontent.com/vegaprotocol/api/develop/rest/api/trading.swagger.json',
+        }],
       }
     ],
   ],
