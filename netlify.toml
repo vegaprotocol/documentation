@@ -1,5 +1,6 @@
 [build]
   command = "./scripts/build.sh"
+  publish = "public"
 
 [build.environment]
   PYTHON_VERSION = "3.7"
