@@ -40,4 +40,4 @@ rm -rf site/grpc
 
 deactivate
 
-(cd site && npm install && npm run generate)
+(cd site && yarn install && yarn run generate)
