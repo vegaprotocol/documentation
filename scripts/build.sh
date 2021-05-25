@@ -29,15 +29,17 @@ create_venv() {
 create_venv
 
 python3 scripts/github_get_file.py \
-	--outdir site \
+	--outdir . \
 	--token "$gh_token" \
 	--owner "$vega_owner" \
 	--repo "$vega_api_repo" \
 	--branch "$vega_api_branch" \
 	--file grpc/doc/doc.json
-mv site/grpc/doc/doc.json site/proto.json
-rm -rf site/grpc
+mv ./grpc/doc/doc.json ./proto.json
+rm -rf ./grpc
 
 deactivate
 
-(cd site && yarn install && yarn run generate)
+yarn install
+yarn run generate-grpc
+yarn run build
