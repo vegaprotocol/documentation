@@ -3,6 +3,6 @@
   publish = "public"
 
 [build.environment]
-  NETLIFY_USE_YARN = true
+  NETLIFY_USE_YARN = "true"
   PYTHON_VERSION = "3.7"
   YARN_VERSOIN = "1.22.10"
