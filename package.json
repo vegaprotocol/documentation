@@ -27,6 +27,7 @@
     "netlify-cli": "^3.30.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "redocusaurus": "^0.4.0",
     "url-loader": "^4.1.1"
   },
   "browserslist": {
