@@ -1,0 +1,33 @@
+---
+id: proposal-vote-side
+title: ProposalVoteSide
+---
+
+No description
+
+```graphql
+type ProposalVoteSide {
+  votes: [Vote!]
+  totalNumber: String!
+  totalWeight: String!
+  totalTokens: String!
+}
+```
+
+### Fields
+
+#### `votes` ([`[Vote!]`](/docs/graphql/objects/vote))
+
+All votes casted for this side
+
+#### `totalNumber` ([`String!`](/docs/graphql/scalars/string))
+
+Total number of votes casted for this side
+
+#### `totalWeight` ([`String!`](/docs/graphql/scalars/string))
+
+Total weight of governance token from the votes casted for this side
+
+#### `totalTokens` ([`String!`](/docs/graphql/scalars/string))
+
+Total tokens of governance token from the votes casted for this side

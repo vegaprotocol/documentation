@@ -1,0 +1,23 @@
+---
+id: discrete-trading-input
+title: DiscreteTradingInput
+---
+
+Frequent batch auctions trading mode
+
+```graphql
+type DiscreteTradingInput {
+  duration: Int!
+  tickSize: String
+}
+```
+
+### Fields
+
+#### `duration` ([`Int!`](/docs/graphql/scalars/int))
+
+Duration of the discrete trading batch in nanoseconds. Maximum 1 month.
+
+#### `tickSize` ([`String`](/docs/graphql/scalars/string))
+
+Size of an increment in price in terms of the quote currency. Note this field should not be used and will be ignored

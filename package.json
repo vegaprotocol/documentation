@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "generate-graphql": "mkdir -p graphql && docusaurus graphql-to-doc",
+    "generate-graphql": "mkdir -p docs/graphql && docusaurus graphql-to-doc --force",
     "generate-grpc": "mkdir -p protodocs && docusaurus generate-proto-docs",
     "start": "docusaurus start",
     "build": "docusaurus build",

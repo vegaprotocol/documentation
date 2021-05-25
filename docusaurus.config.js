@@ -1,37 +1,36 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
-  url: 'https://your-docusaurus-test-site.com',
+  title: 'Vega Protocol',
+  tagline: 'a protocol for creating and trading derivatives on a fully decentralised network',
+  url: 'https://docs.fairground.vega.xyz/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'vegaprotocol',
+  projectName: 'documentation',
   themeConfig: {
     navbar: {
-      title: 'My Site',
+      title: 'Vega Protocol documentation',
       logo: {
         alt: 'My Site Logo',
         src: 'img/logo.svg',
       },
       items: [
         {
-          type: 'doc',
-          docId: 'intro',
-          position: 'left',
-          label: 'Tutorial',
-        },
-        {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/vegaprotocol/documentation',
           label: 'GitHub',
           position: 'right',
         },
         {
-          to: 'protodocs/vega.proto',
+          to: '/protodocs/vega.proto',
           activeBasePath: 'protodocs',
-          label: 'gRPC',
+          label: 'API:gRPC',
+          position: 'left',
+        },
+        {
+          to: '/docs/graphql/schema',
+          label: 'API:GraphQL',
           position: 'left',
         },
       ],
@@ -40,42 +39,62 @@ module.exports = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Vega Protocol',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'Website',
+              to: 'http://vega.xyz/',
+            },
+            {
+              label: 'GitHub',
+              to: 'https://github.com/vegaprotocol',
+            },
+            {
+              label: 'Blog',
+              to: 'https://medium.com/vegaprotocol',
+            },
+            {
+              label: 'Twitch',
+              to: 'https://www.twitch.tv/vegacommunity',
+            },
+            {
+              label: 'YouTube',
+              to: 'https://www.youtube.com/channel/UC3xDuTW9fd1Y7jpCkOwOuHQ',
             },
           ],
         },
         {
-          title: 'Community',
+          title: 'Fairground Testnet',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'Console',
+              to: 'https://console.fairground.wtf/',
             },
+          ],
+        },
+        {
+          title: 'Social',
+          items: [
             {
               label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              to: 'https://discord.com/invite/ZNEMCYd',
+            },
+            {
+              label: 'Telegram',
+              to: 'https://t.me/vegacommunity',
             },
             {
               label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
+              to: 'https://twitter.com/vegaprotocol',
             },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
             {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              label: 'Forum',
+              to: 'https://community.vega.xyz/',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright ©2018-${new Date().getFullYear()} Globalsky Labs Limited, registered in Gibraltar`,
     },
   },
   plugins: [
@@ -83,12 +102,12 @@ module.exports = {
       require.resolve("@edno/docusaurus2-graphql-doc-generator"),
       {
         // https://github.com/edno/graphql-markdown#options
-        "schema": "https://raw.githubusercontent.com/vegaprotocol/api/develop/graphql/schema.graphql",
-        "rootPath": ".",
-        "baseURL": "graphql",
-        "linkRoot": "/",
-        "homepage": "gql.md",
-        "diffMethod": "SCHEMA-DIFF",
+        schema: "https://raw.githubusercontent.com/vegaprotocol/api/develop/graphql/schema.graphql",
+        rootPath: "docs",
+        baseURL: "graphql",
+        linkRoot: "/docs",
+        // homepage: "/docs/graphql/",
+        diffMethod: "SCHEMA-DIFF",
       },
     ],
   ],
@@ -96,17 +115,11 @@ module.exports = {
     [
       '@docusaurus/preset-classic',
       {
+        debug: undefined,
+        blog: false, // disabled
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
+          editUrl: 'https://github.com/vegaprotocol/documentation/edit/main/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -118,7 +131,7 @@ module.exports = {
       {
         protobuffet: {
           fileDescriptorsPath: './proto.json',
-          protoDocsPath: './protodocs',
+          protoDocsPath: 'protodocs', // prodoDocsPath seems to be hard coded to "protodocs", so don't change this
           sidebarPath: './sidebarsProtodocs.js',
         }
       }

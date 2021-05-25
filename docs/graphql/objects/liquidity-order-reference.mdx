@@ -1,0 +1,23 @@
+---
+id: liquidity-order-reference
+title: LiquidityOrderReference
+---
+
+No description
+
+```graphql
+type LiquidityOrderReference {
+  order: Order
+  liquidityOrder: LiquidityOrder!
+}
+```
+
+### Fields
+
+#### `order` ([`Order`](/docs/graphql/objects/order))
+
+The id of the pegged order generated to fulfill this commitment
+
+#### `liquidityOrder` ([`LiquidityOrder!`](/docs/graphql/objects/liquidity-order))
+
+The liquidity order

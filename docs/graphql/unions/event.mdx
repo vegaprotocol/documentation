@@ -1,0 +1,116 @@
+---
+id: event
+title: Event
+---
+
+union type for wrapped events in stream PROPOSAL is mapped to governance data, something to keep in mind
+
+```graphql
+union Event =
+    TimeUpdate
+  | MarketEvent
+  | TransferResponses
+  | PositionResolution
+  | Order
+  | Trade
+  | Account
+  | Party
+  | MarginLevels
+  | Proposal
+  | Vote
+  | MarketData
+  | NodeSignature
+  | LossSocialization
+  | SettlePosition
+  | Market
+  | Asset
+  | MarketTick
+  | SettleDistressed
+  | AuctionEvent
+  | RiskFactor
+  | Deposit
+  | Withdrawal
+  | OracleSpec
+  | LiquidityProvision
+```
+
+### Possible types
+
+#### [`TimeUpdate`](/docs/graphql/objects/time-update)
+
+#### [`MarketEvent`](/docs/graphql/objects/market-event)
+
+#### [`TransferResponses`](/docs/graphql/objects/transfer-responses)
+
+#### [`PositionResolution`](/docs/graphql/objects/position-resolution)
+
+#### [`Order`](/docs/graphql/objects/order)
+
+An order in Vega, if active it will be on the OrderBook for the market
+
+#### [`Trade`](/docs/graphql/objects/trade)
+
+A trade on Vega, the result of two orders being 'matched' in the market
+
+#### [`Account`](/docs/graphql/objects/account)
+
+An account record
+
+#### [`Party`](/docs/graphql/objects/party)
+
+Represents a party on Vega, could be an ethereum wallet address in the future
+
+#### [`MarginLevels`](/docs/graphql/objects/margin-levels)
+
+Margins for a given a trader
+
+#### [`Proposal`](/docs/graphql/objects/proposal)
+
+#### [`Vote`](/docs/graphql/objects/vote)
+
+#### [`MarketData`](/docs/graphql/objects/market-data)
+
+Live data of a Market
+
+#### [`NodeSignature`](/docs/graphql/objects/node-signature)
+
+Represents a signature for the approval of a resource from a validator
+
+#### [`LossSocialization`](/docs/graphql/objects/loss-socialization)
+
+#### [`SettlePosition`](/docs/graphql/objects/settle-position)
+
+#### [`Market`](/docs/graphql/objects/market)
+
+Represents a product & associated parameters that can be traded on Vega, has an associated OrderBook and Trade history
+
+#### [`Asset`](/docs/graphql/objects/asset)
+
+Represents an asset in vega
+
+#### [`MarketTick`](/docs/graphql/objects/market-tick)
+
+#### [`SettleDistressed`](/docs/graphql/objects/settle-distressed)
+
+#### [`AuctionEvent`](/docs/graphql/objects/auction-event)
+
+#### [`RiskFactor`](/docs/graphql/objects/risk-factor)
+
+A risk factor emitted by the risk model for a given market
+
+#### [`Deposit`](/docs/graphql/objects/deposit)
+
+The details of a deposit processed by vega
+
+#### [`Withdrawal`](/docs/graphql/objects/withdrawal)
+
+The details of a withdrawal processed by vega
+
+#### [`OracleSpec`](/docs/graphql/objects/oracle-spec)
+
+An oracle spec describe the oracle data that a product (or a risk model)
+wants to get from the oracle engine.
+
+#### [`LiquidityProvision`](/docs/graphql/objects/liquidity-provision)
+
+The command to be sent to the chain for a liquidity provision submission

@@ -1,0 +1,28 @@
+---
+id: tradable-instrument
+title: TradableInstrument
+---
+
+A tradable instrument is a combination of an instrument and a risk model
+
+```graphql
+type TradableInstrument {
+  instrument: Instrument!
+  riskModel: RiskModel!
+  marginCalculator: MarginCalculator
+}
+```
+
+### Fields
+
+#### `instrument` ([`Instrument!`](/docs/graphql/objects/instrument))
+
+An instance of or reference to a fully specified instrument.
+
+#### `riskModel` ([`RiskModel!`](/docs/graphql/unions/risk-model))
+
+A reference to a risk model that is valid for the instrument
+
+#### `marginCalculator` ([`MarginCalculator`](/docs/graphql/objects/margin-calculator))
+
+Margin calculation info, currently only the scaling factors (search, initial, release) for this tradable instrument

@@ -1,0 +1,125 @@
+---
+id: party
+title: Party
+---
+
+Represents a party on Vega, could be an ethereum wallet address in the future
+
+```graphql
+type Party {
+  id: ID!
+  orders(skip: Int = 0, first: Int = 0, last: Int = 0): [Order!]
+  trades(
+    marketId: ID = 0
+    skip: Int = 0
+    first: Int = 0
+    last: Int = 0
+  ): [Trade!]
+  accounts(marketId: ID = 0, asset: String, type: AccountType): [Account!]
+  positions: [Position!]
+  margins(marketId: ID = 0): [MarginLevels!]
+  proposals(inState: ProposalState): [Proposal]
+  votes: [ProposalVote]
+  withdrawals: [Withdrawal!]
+  deposits: [Deposit!]
+  liquidityProvisions(market: String, reference: String): [LiquidityProvision!]
+}
+```
+
+### Fields
+
+#### `id` ([`ID!`](/docs/graphql/scalars/id))
+
+Party identifier
+
+#### `orders` ([`[Order!]`](/docs/graphql/objects/order))
+
+Orders relating to a party
+
+- ##### `skip` ([`Int`](/docs/graphql/scalars/int))
+
+Pagination skip
+
+- ##### `first` ([`Int`](/docs/graphql/scalars/int))
+
+Pagination first element
+
+- ##### `last` ([`Int`](/docs/graphql/scalars/int))
+
+Pagination last element
+
+#### `trades` ([`[Trade!]`](/docs/graphql/objects/trade))
+
+Trades relating to a party (specifically where party is either buyer OR seller)
+
+- ##### `marketId` ([`ID`](/docs/graphql/scalars/id))
+
+ID of the market we want to get trades for
+
+- ##### `skip` ([`Int`](/docs/graphql/scalars/int))
+
+Pagination skip
+
+- ##### `first` ([`Int`](/docs/graphql/scalars/int))
+
+Pagination first element
+
+- ##### `last` ([`Int`](/docs/graphql/scalars/int))
+
+Pagination last element
+
+#### `accounts` ([`[Account!]`](/docs/graphql/objects/account))
+
+Collateral accounts relating to a party
+
+- ##### `marketId` ([`ID`](/docs/graphql/scalars/id))
+
+Market ID - specify what market accounts for the party to return
+
+- ##### `asset` ([`String`](/docs/graphql/scalars/string))
+
+Asset (USD, EUR etc)
+
+- ##### `type` ([`AccountType`](/docs/graphql/enums/account-type))
+
+Filter accounts by type (General account, margin account, etc...)
+
+#### `positions` ([`[Position!]`](/docs/graphql/objects/position))
+
+Trading positions relating to a party
+
+#### `margins` ([`[MarginLevels!]`](/docs/graphql/objects/margin-levels))
+
+marginLevels
+
+- ##### `marketId` ([`ID`](/docs/graphql/scalars/id))
+
+market id off the margin to get, nil if all markets
+
+#### `proposals` ([`[Proposal]`](/docs/graphql/objects/proposal))
+
+- ##### `inState` ([`ProposalState`](/docs/graphql/enums/proposal-state))
+
+Select only proposals in the specified state. Leave out to get all proposals
+
+#### `votes` ([`[ProposalVote]`](/docs/graphql/objects/proposal-vote))
+
+#### `withdrawals` ([`[Withdrawal!]`](/docs/graphql/objects/withdrawal))
+
+The list of all withdrawals initiated by the party
+
+#### `deposits` ([`[Deposit!]`](/docs/graphql/objects/deposit))
+
+The list of all deposits for a party by the party
+
+#### `liquidityProvisions` ([`[LiquidityProvision!]`](/docs/graphql/objects/liquidity-provision))
+
+The list of the liquidity provision commitment from this party
+
+- ##### `market` ([`String`](/docs/graphql/scalars/string))
+
+An optional market id
+
+- ##### `reference` ([`String`](/docs/graphql/scalars/string))
+
+An optional reference

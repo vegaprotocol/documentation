@@ -1,0 +1,25 @@
+---
+id: parties
+title: parties
+---
+
+One or more entities that are trading on the VEGA network
+
+```graphql
+parties(
+  id: ID = 0
+): [Party!]
+
+```
+
+### Arguments
+
+#### `id` ([`ID`](/docs/graphql/scalars/id))
+
+Optional ID of a party
+
+### Type
+
+#### [`Party`](/docs/graphql/objects/party)
+
+Represents a party on Vega, could be an ethereum wallet address in the future

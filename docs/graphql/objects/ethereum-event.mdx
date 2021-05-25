@@ -1,0 +1,23 @@
+---
+id: ethereum-event
+title: EthereumEvent
+---
+
+An Ethereum oracle
+
+```graphql
+type EthereumEvent {
+  contractId: String!
+  event: String!
+}
+```
+
+### Fields
+
+#### `contractId` ([`String!`](/docs/graphql/scalars/string))
+
+The ID of the ethereum contract to use (string)
+
+#### `event` ([`String!`](/docs/graphql/scalars/string))
+
+Name of the Ethereum event to listen to. (string)

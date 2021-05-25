@@ -1,0 +1,53 @@
+---
+id: proposal
+title: Proposal
+---
+
+No description
+
+```graphql
+type Proposal {
+  id: ID
+  reference: String!
+  party: Party!
+  state: ProposalState!
+  datetime: String!
+  terms: ProposalTerms!
+  votes: ProposalVotes!
+  rejectionReason: ProposalRejectionReason
+}
+```
+
+### Fields
+
+#### `id` ([`ID`](/docs/graphql/scalars/id))
+
+Proposal ID that is filled by VEGA once proposal reaches the network
+
+#### `reference` ([`String!`](/docs/graphql/scalars/string))
+
+A UUID reference to aid tracking proposals on VEGA
+
+#### `party` ([`Party!`](/docs/graphql/objects/party))
+
+Party that prepared the proposal
+
+#### `state` ([`ProposalState!`](/docs/graphql/enums/proposal-state))
+
+State of the proposal
+
+#### `datetime` ([`String!`](/docs/graphql/scalars/string))
+
+RFC3339Nano time and date when the proposal reached Vega network
+
+#### `terms` ([`ProposalTerms!`](/docs/graphql/objects/proposal-terms))
+
+Terms of the proposal
+
+#### `votes` ([`ProposalVotes!`](/docs/graphql/objects/proposal-votes))
+
+Votes cast for this proposal
+
+#### `rejectionReason` ([`ProposalRejectionReason`](/docs/graphql/enums/proposal-rejection-reason))
+
+Reason for the proposal to be rejected by the core

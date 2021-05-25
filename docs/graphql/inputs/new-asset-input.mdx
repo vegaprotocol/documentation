@@ -1,0 +1,23 @@
+---
+id: new-asset-input
+title: NewAssetInput
+---
+
+A new asset to be added into vega
+
+```graphql
+type NewAssetInput {
+  builtinAsset: BuiltinAssetInput
+  erc20: ERC20Input
+}
+```
+
+### Fields
+
+#### `builtinAsset` ([`BuiltinAssetInput`](/docs/graphql/inputs/builtin-asset-input))
+
+A new builtin assed to be created
+
+#### `erc20` ([`ERC20Input`](/docs/graphql/inputs/erc-20-input))
+
+A new ERC20 asset to be created

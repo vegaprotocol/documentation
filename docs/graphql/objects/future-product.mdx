@@ -1,0 +1,39 @@
+---
+id: future-product
+title: FutureProduct
+---
+
+No description
+
+```graphql
+type FutureProduct {
+  maturity: String!
+  settlementAsset: Asset!
+  quoteName: String!
+  oracleSpec: OracleSpecConfiguration!
+  oracleSpecBinding: OracleSpecToFutureBinding!
+}
+```
+
+### Fields
+
+#### `maturity` ([`String!`](/docs/graphql/scalars/string))
+
+RFC3339Nano time when the future products matures
+
+#### `settlementAsset` ([`Asset!`](/docs/graphql/objects/asset))
+
+Product asset ID
+
+#### `quoteName` ([`String!`](/docs/graphql/scalars/string))
+
+String representing the quote (e.g. BTCUSD -> USD is quote)
+
+#### `oracleSpec` ([`OracleSpecConfiguration!`](/docs/graphql/objects/oracle-spec-configuration))
+
+Describes the oracle data that an instrument wants to get from the oracle engine.
+
+#### `oracleSpecBinding` ([`OracleSpecToFutureBinding!`](/docs/graphql/objects/oracle-spec-to-future-binding))
+
+OracleSpecToFutureBinding tells on which property oracle data should be
+used as settlement price.

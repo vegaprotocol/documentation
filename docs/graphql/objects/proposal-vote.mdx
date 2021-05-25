@@ -1,0 +1,23 @@
+---
+id: proposal-vote
+title: ProposalVote
+---
+
+No description
+
+```graphql
+type ProposalVote {
+  vote: Vote!
+  proposalId: ID!
+}
+```
+
+### Fields
+
+#### `vote` ([`Vote!`](/docs/graphql/objects/vote))
+
+Cast vote
+
+#### `proposalId` ([`ID!`](/docs/graphql/scalars/id))
+
+Proposal casting the vote on
