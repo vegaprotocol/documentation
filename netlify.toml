@@ -4,3 +4,4 @@
 
 [build.environment]
   PYTHON_VERSION = "3.7"
+  YARN_VERSOIN = "1.22.10"
