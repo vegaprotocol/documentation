@@ -2,4 +2,4 @@
   command = "./script/build.sh"
 
 [build.environment]
-  PYTHON_VERSION = "3.6"
+  PYTHON_VERSION = "3.7"
