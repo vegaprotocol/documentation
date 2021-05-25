@@ -37,7 +37,11 @@ rm -rf ./grpc
 
 deactivate
 
+# This var is used in docusaurus.config.js.
+export VEGA_VERSION="$vega_api_branch"
+
 yarn install
 yarn run generate-graphql
 yarn run generate-grpc
 yarn run build
+yarn run prettier
