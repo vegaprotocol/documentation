@@ -1,0 +1,33 @@
+---
+id: market-trading-mode
+title: MarketTradingMode
+---
+
+What market trading mode are we in
+
+```graphql
+enum MarketTradingMode {
+  Continuous
+  OpeningAuction
+  BatchAuction
+  MonitoringAuction
+}
+```
+
+### Values
+
+#### `Continuous`
+
+Continuous trading where orders are processed and potentially matched on arrival
+
+#### `OpeningAuction`
+
+Auction trading where orders are uncrossed at the end of the opening auction period
+
+#### `BatchAuction`
+
+Auction as normal trading mode for the market, where orders are uncrossed periodically
+
+#### `MonitoringAuction`
+
+Auction triggered by price/liquidity monitoring

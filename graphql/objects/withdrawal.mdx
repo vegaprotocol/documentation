@@ -1,0 +1,68 @@
+---
+id: withdrawal
+title: Withdrawal
+---
+
+The details of a withdrawal processed by vega
+
+```graphql
+type Withdrawal {
+  id: ID!
+  party: Party!
+  amount: String!
+  asset: Asset!
+  status: WithdrawalStatus!
+  ref: String!
+  expiry: String!
+  createdTimestamp: String!
+  withdrawnTimestamp: String
+  txHash: String
+  details: WithdrawalDetails
+}
+```
+
+### Fields
+
+#### `id` ([`ID!`](/graphql/scalars/id))
+
+The Vega internal id of the withdrawal
+
+#### `party` ([`Party!`](/graphql/objects/party))
+
+The PartyID initiating the witndrawal
+
+#### `amount` ([`String!`](/graphql/scalars/string))
+
+The amount to be withdrawn
+
+#### `asset` ([`Asset!`](/graphql/objects/asset))
+
+The asset to be withdrawn
+
+#### `status` ([`WithdrawalStatus!`](/graphql/enums/withdrawal-status))
+
+The current status of the withdrawal
+
+#### `ref` ([`String!`](/graphql/scalars/string))
+
+A reference the foreign chain can use to refere to when processing the withdrawal
+
+#### `expiry` ([`String!`](/graphql/scalars/string))
+
+RFC3339Nano time until the withdrawal will be invalid
+
+#### `createdTimestamp` ([`String!`](/graphql/scalars/string))
+
+RFC3339Nano time at which the withdrawal was created
+
+#### `withdrawnTimestamp` ([`String`](/graphql/scalars/string))
+
+RFC3339Nano time at which the withdrawal was finalized
+
+#### `txHash` ([`String`](/graphql/scalars/string))
+
+Hash of the transaction on the foreign chain
+
+#### `details` ([`WithdrawalDetails`](/graphql/unions/withdrawal-details))
+
+Foreign chain specific details about the withdrawal

@@ -1,0 +1,33 @@
+---
+id: settle-position
+title: SettlePosition
+---
+
+No description
+
+```graphql
+type SettlePosition {
+  marketId: ID!
+  partyId: ID!
+  price: Int!
+  tradeSettlements: [TradeSettlement!]
+}
+```
+
+### Fields
+
+#### `marketId` ([`ID!`](/graphql/scalars/id))
+
+the market in which a position was settled
+
+#### `partyId` ([`ID!`](/graphql/scalars/id))
+
+the party who settled a position
+
+#### `price` ([`Int!`](/graphql/scalars/int))
+
+the settle price
+
+#### `tradeSettlements` ([`[TradeSettlement!]`](/graphql/objects/trade-settlement))
+
+the trades that were settled to close the overall position

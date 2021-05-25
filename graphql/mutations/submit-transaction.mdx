@@ -1,0 +1,34 @@
+---
+id: submit-transaction
+title: submitTransaction
+---
+
+Submit a new, signed, transaction to the VEGA network. This transaction will not be executed immediately.
+It validates the signature, and sends the transaction out for consensus
+
+```graphql
+submitTransaction(
+  data: String!
+  sig: SignatureInput!
+  type: SubmitTransactionType
+): TransactionSubmitted!
+
+```
+
+### Arguments
+
+#### `data` ([`String!`](/graphql/scalars/string))
+
+The signed transaction
+
+#### `sig` ([`SignatureInput!`](/graphql/inputs/signature-input))
+
+The signature
+
+#### `type` ([`SubmitTransactionType`](/graphql/enums/submit-transaction-type))
+
+The way to send the transaction
+
+### Type
+
+#### [`TransactionSubmitted`](/graphql/objects/transaction-submitted)

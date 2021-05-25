@@ -1,0 +1,28 @@
+---
+id: proposal
+title: proposal
+---
+
+A governance proposal located by either its id or reference. If both are set, id is used.
+
+```graphql
+proposal(
+  id: ID = 0
+  reference: String
+): Proposal!
+
+```
+
+### Arguments
+
+#### `id` ([`ID`](/graphql/scalars/id))
+
+Optionally, locate proposal by its id
+
+#### `reference` ([`String`](/graphql/scalars/string))
+
+Optionally, locate proposal by its reference. If id is set, this parameter is ignored.
+
+### Type
+
+#### [`Proposal`](/graphql/objects/proposal)

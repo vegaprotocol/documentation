@@ -9,21 +9,18 @@ vega_api_branch="develop" # or vX.Y.Z
 gh_token="${GITHUB_API_TOKEN:?}"
 
 create_venv() {
-	venv="$(mktemp -d)"
+	venv="$PWD/.venv"
 	# Find python binary in a way which works on Netlify and elsewhere
 	python="$(command -v python3.7 || command -v python3)"
 	if test -z "$python" ; then
 		echo "Failed to find Python"
 		exit 1
 	fi
-	virtualenv --quiet -p "$python" "$venv" 1>/dev/null
+	test -d "$venv" || virtualenv --quiet -p "$python" "$venv" 1>/dev/null
 	# shellcheck disable=SC1091
 	source "$venv/bin/activate"
-	pip install --quiet -r requirements.txt 1>/dev/null
-	cleanup() {
-		rm -rf "${venv:?}"
-	}
-	trap cleanup EXIT
+	gh="$(grep ^PyGithub== requirements.txt)"
+	pip freeze | grep -q '^'"$gh"'$' || pip install --quiet -r requirements.txt 1>/dev/null
 }
 
 create_venv
@@ -41,5 +38,6 @@ rm -rf ./grpc
 deactivate
 
 yarn install
+yarn run generate-graphql
 yarn run generate-grpc
 yarn run build

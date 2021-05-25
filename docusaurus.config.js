@@ -31,7 +31,7 @@ module.exports = {
         {
           to: 'protodocs/vega.proto',
           activeBasePath: 'protodocs',
-          label: 'Proto files',
+          label: 'gRPC',
           position: 'left',
         },
       ],
@@ -78,6 +78,20 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     },
   },
+  plugins: [
+    [
+      require.resolve("@edno/docusaurus2-graphql-doc-generator"),
+      {
+        // https://github.com/edno/graphql-markdown#options
+        "schema": "https://raw.githubusercontent.com/vegaprotocol/api/develop/graphql/schema.graphql",
+        "rootPath": ".",
+        "baseURL": "graphql",
+        "linkRoot": "/",
+        "homepage": "gql.md",
+        "diffMethod": "SCHEMA-DIFF",
+      },
+    ],
+  ],
   presets: [
     [
       '@docusaurus/preset-classic',

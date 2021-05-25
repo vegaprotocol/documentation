@@ -1,0 +1,23 @@
+---
+id: property-key-input
+title: PropertyKeyInput
+---
+
+PropertyKey describes the property key contained in an oracle data.
+
+```graphql
+type PropertyKeyInput {
+  name: String!
+  type: PropertyKeyType!
+}
+```
+
+### Fields
+
+#### `name` ([`String!`](/graphql/scalars/string))
+
+name is the name of the property.
+
+#### `type` ([`PropertyKeyType!`](/graphql/enums/property-key-type))
+
+type is the type of the property.

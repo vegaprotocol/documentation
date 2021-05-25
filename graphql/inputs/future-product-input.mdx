@@ -1,0 +1,38 @@
+---
+id: future-product-input
+title: FutureProductInput
+---
+
+Future product configuration
+
+```graphql
+type FutureProductInput {
+  maturity: String!
+  settlementAsset: String!
+  quoteName: String!
+  oracleSpec: OracleSpecConfigurationInput!
+  oracleSpecBinding: OracleSpecToFutureBindingInput!
+}
+```
+
+### Fields
+
+#### `maturity` ([`String!`](/graphql/scalars/string))
+
+Future product maturity (ISO8601/RFC3339 timestamp)
+
+#### `settlementAsset` ([`String!`](/graphql/scalars/string))
+
+Product asset name
+
+#### `quoteName` ([`String!`](/graphql/scalars/string))
+
+String representing the quote (e.g. BTCUSD -> USD is quote)
+
+#### `oracleSpec` ([`OracleSpecConfigurationInput!`](/graphql/inputs/oracle-spec-configuration-input))
+
+The oracle spec describing the oracle data of interest.
+
+#### `oracleSpecBinding` ([`OracleSpecToFutureBindingInput!`](/graphql/inputs/oracle-spec-to-future-binding-input))
+
+The binding between the oracle spec and the settlement price

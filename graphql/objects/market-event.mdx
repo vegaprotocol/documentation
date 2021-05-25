@@ -1,0 +1,23 @@
+---
+id: market-event
+title: MarketEvent
+---
+
+No description
+
+```graphql
+type MarketEvent {
+  marketId: ID!
+  payload: String!
+}
+```
+
+### Fields
+
+#### `marketId` ([`ID!`](/graphql/scalars/id))
+
+the market ID
+
+#### `payload` ([`String!`](/graphql/scalars/string))
+
+the message - market events are used for logging

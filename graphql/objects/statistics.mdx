@@ -1,0 +1,158 @@
+---
+id: statistics
+title: Statistics
+---
+
+Statistics about the node
+
+```graphql
+type Statistics {
+  blockHeight: Int!
+  backlogLength: Int!
+  totalPeers: Int!
+  genesisTime: String!
+  currentTime: String!
+  upTime: String!
+  vegaTime: String!
+  status: String!
+  txPerBlock: Int!
+  averageTxBytes: Int!
+  averageOrdersPerBlock: Int!
+  tradesPerSecond: Int!
+  ordersPerSecond: Int!
+  totalMarkets: Int!
+  totalAmendOrder: Int!
+  totalCancelOrder: Int!
+  totalCreateOrder: Int!
+  totalOrders: Int!
+  totalTrades: Int!
+  appVersionHash: String!
+  appVersion: String!
+  chainVersion: String!
+  blockDuration: Int!
+  orderSubscriptions: Int!
+  tradeSubscriptions: Int!
+  candleSubscriptions: Int!
+  marketDepthSubscriptions: Int!
+  marketDepthUpdateSubscriptions: Int!
+  positionsSubscriptions: Int!
+}
+```
+
+### Fields
+
+#### `blockHeight` ([`Int!`](/graphql/scalars/int))
+
+Current block number
+
+#### `backlogLength` ([`Int!`](/graphql/scalars/int))
+
+Number of items in the backlog
+
+#### `totalPeers` ([`Int!`](/graphql/scalars/int))
+
+Total number of peers on the vega network
+
+#### `genesisTime` ([`String!`](/graphql/scalars/string))
+
+RFC3339Nano genesis time of the chain
+
+#### `currentTime` ([`String!`](/graphql/scalars/string))
+
+RFC3339Nano current time (real)
+
+#### `upTime` ([`String!`](/graphql/scalars/string))
+
+RFC3339Nano uptime of the node
+
+#### `vegaTime` ([`String!`](/graphql/scalars/string))
+
+RFC3339Nano current time of the chain (decided through consensus)
+
+#### `status` ([`String!`](/graphql/scalars/string))
+
+Status of the vega application connection with the chain
+
+#### `txPerBlock` ([`Int!`](/graphql/scalars/int))
+
+Number of transaction processed per block
+
+#### `averageTxBytes` ([`Int!`](/graphql/scalars/int))
+
+Average size of the transactions
+
+#### `averageOrdersPerBlock` ([`Int!`](/graphql/scalars/int))
+
+Average number of orders added per blocks
+
+#### `tradesPerSecond` ([`Int!`](/graphql/scalars/int))
+
+Number of the trades per seconds
+
+#### `ordersPerSecond` ([`Int!`](/graphql/scalars/int))
+
+Number of orders per seconds
+
+#### `totalMarkets` ([`Int!`](/graphql/scalars/int))
+
+Total number of markets
+
+#### `totalAmendOrder` ([`Int!`](/graphql/scalars/int))
+
+Total number of amended orders
+
+#### `totalCancelOrder` ([`Int!`](/graphql/scalars/int))
+
+Total number of cancelled orders
+
+#### `totalCreateOrder` ([`Int!`](/graphql/scalars/int))
+
+Total number of orders created
+
+#### `totalOrders` ([`Int!`](/graphql/scalars/int))
+
+Total number of orders
+
+#### `totalTrades` ([`Int!`](/graphql/scalars/int))
+
+Total number of trades
+
+#### `appVersionHash` ([`String!`](/graphql/scalars/string))
+
+Version commit hash of the vega node
+
+#### `appVersion` ([`String!`](/graphql/scalars/string))
+
+Version of the vega node (semver)
+
+#### `chainVersion` ([`String!`](/graphql/scalars/string))
+
+Version of the chain (semver)
+
+#### `blockDuration` ([`Int!`](/graphql/scalars/int))
+
+Duration of the last block, in nanoseconds
+
+#### `orderSubscriptions` ([`Int!`](/graphql/scalars/int))
+
+Number of orders subscriptions
+
+#### `tradeSubscriptions` ([`Int!`](/graphql/scalars/int))
+
+Number of trades subscriptions
+
+#### `candleSubscriptions` ([`Int!`](/graphql/scalars/int))
+
+Number of candles subscriptions
+
+#### `marketDepthSubscriptions` ([`Int!`](/graphql/scalars/int))
+
+Number of market depth subscriptions
+
+#### `marketDepthUpdateSubscriptions` ([`Int!`](/graphql/scalars/int))
+
+Number of market depth update subscriptions
+
+#### `positionsSubscriptions` ([`Int!`](/graphql/scalars/int))
+
+Number of positions subscriptions

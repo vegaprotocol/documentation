@@ -1,0 +1,50 @@
+---
+id: prepare-liquidity-provision
+title: prepareLiquidityProvision
+---
+
+Prepare a Liquidity provision order so it can be signed and submitted
+
+```graphql
+prepareLiquidityProvision(
+  marketId: ID!
+  commitmentAmount: Int!
+  fee: String!
+  sells: [LiquidityOrderInput!]!
+  buys: [LiquidityOrderInput!]!
+  reference: String
+): PreparedLiquidityProvision!
+
+```
+
+### Arguments
+
+#### `marketId` ([`ID!`](/graphql/scalars/id))
+
+Market identifier for the order
+
+#### `commitmentAmount` ([`Int!`](/graphql/scalars/int))
+
+Specified as a unitless number that represents the amount of settlement asset of the market.
+
+#### `fee` ([`String!`](/graphql/scalars/string))
+
+nominated liquidity fee factor, which is an input to the calculation of taker fees on the market, as per setting fees and rewarding liquidity providers.
+
+#### `sells` ([`[LiquidityOrderInput!]!`](/graphql/inputs/liquidity-order-input))
+
+a set of liquidity sell orders to meet the liquidity provision obligation, see MM orders spec.
+
+#### `buys` ([`[LiquidityOrderInput!]!`](/graphql/inputs/liquidity-order-input))
+
+a set of liquidity buy orders to meet the liquidity provision obligation, see MM orders spec.
+
+#### `reference` ([`String`](/graphql/scalars/string))
+
+A reference for the order created from this liquidity provision
+
+### Type
+
+#### [`PreparedLiquidityProvision`](/graphql/objects/prepared-liquidity-provision)
+
+A prepared LiquidityProvision command

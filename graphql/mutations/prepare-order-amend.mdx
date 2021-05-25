@@ -1,0 +1,54 @@
+---
+id: prepare-order-amend
+title: prepareOrderAmend
+---
+
+Send an amend order request to be prepared. Returns a pending order + blob of the transaction to submit.
+The data is verified. The response can be signed and submitted through the submitTransaction mutation.
+
+```graphql
+prepareOrderAmend(
+  id: ID!
+  price: String!
+  sizeDelta: String!
+  expiration: String
+  timeInForce: OrderTimeInForce!
+  peggedReference: PeggedReference
+  peggedOffset: String
+): PreparedAmendOrder!
+
+```
+
+### Arguments
+
+#### `id` ([`ID!`](/graphql/scalars/id))
+
+ID of the order to amend
+
+#### `price` ([`String!`](/graphql/scalars/string))
+
+New price for this order
+
+#### `sizeDelta` ([`String!`](/graphql/scalars/string))
+
+New size for this order
+
+#### `expiration` ([`String`](/graphql/scalars/string))
+
+New expiration time
+
+#### `timeInForce` ([`OrderTimeInForce!`](/graphql/enums/order-time-in-force))
+
+Time in force
+
+#### `peggedReference` ([`PeggedReference`](/graphql/enums/pegged-reference))
+
+The reference point for pegged orders
+
+#### `peggedOffset` ([`String`](/graphql/scalars/string))
+
+The offset from the reference price for pegged orders
+
+### Type
+
+#### [`PreparedAmendOrder`](/graphql/objects/prepared-amend-order)

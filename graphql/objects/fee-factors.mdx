@@ -1,0 +1,28 @@
+---
+id: fee-factors
+title: FeeFactors
+---
+
+The factors applied to calculate the fees
+
+```graphql
+type FeeFactors {
+  makerFee: String!
+  infrastructureFee: String!
+  liquidityFee: String!
+}
+```
+
+### Fields
+
+#### `makerFee` ([`String!`](/graphql/scalars/string))
+
+The factor applied to calculate MakerFees, a non-negative float
+
+#### `infrastructureFee` ([`String!`](/graphql/scalars/string))
+
+The factor applied to calculate InfrastructureFees, a non-negative float
+
+#### `liquidityFee` ([`String!`](/graphql/scalars/string))
+
+The factor applied to calculate LiquidityFees, a non-negative float

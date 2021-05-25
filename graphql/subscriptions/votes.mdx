@@ -1,0 +1,28 @@
+---
+id: votes
+title: votes
+---
+
+Subscribe to votes, either by proposal id or pary id
+
+```graphql
+votes(
+  proposalId: ID = 0
+  partyId: ID = 0
+): ProposalVote!
+
+```
+
+### Arguments
+
+#### `proposalId` ([`ID`](/graphql/scalars/id))
+
+Optional proposal id which votes are to be streamed
+
+#### `partyId` ([`ID`](/graphql/scalars/id))
+
+Optional party id whose votes are to be streamed
+
+### Type
+
+#### [`ProposalVote`](/graphql/objects/proposal-vote)

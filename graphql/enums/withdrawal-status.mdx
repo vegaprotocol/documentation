@@ -1,0 +1,28 @@
+---
+id: withdrawal-status
+title: WithdrawalStatus
+---
+
+The status of a withdrawal
+
+```graphql
+enum WithdrawalStatus {
+  Open
+  Cancelled
+  Finalized
+}
+```
+
+### Values
+
+#### `Open`
+
+The withdrawal is open and being processed by the network
+
+#### `Cancelled`
+
+The withdrawal have been cancelled by the network, either because it expired, or something went wrong with the foreign chain
+
+#### `Finalized`
+
+The withdrawal was finalized, it was first valid, the foreign chain have executed it and the network updated all accounts

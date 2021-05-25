@@ -1,0 +1,28 @@
+---
+id: submit-transaction-type
+title: SubmitTransactionType
+---
+
+The way the transaction is sent to the blockchain
+
+```graphql
+enum SubmitTransactionType {
+  Async
+  Sync
+  Commit
+}
+```
+
+### Values
+
+#### `Async`
+
+The call will return as soon as submitted
+
+#### `Sync`
+
+The call will return once the mempool has run CheckTx on the transaction
+
+#### `Commit`
+
+The call will return once the transaction has been processed by the core

@@ -1,0 +1,28 @@
+---
+id: liquidity-order
+title: LiquidityOrder
+---
+
+A special order type for liquidity providers
+
+```graphql
+type LiquidityOrder {
+  reference: PeggedReference!
+  proportion: Int!
+  offset: Int!
+}
+```
+
+### Fields
+
+#### `reference` ([`PeggedReference!`](/graphql/enums/pegged-reference))
+
+The value to which this order is tied
+
+#### `proportion` ([`Int!`](/graphql/scalars/int))
+
+The proportion of the commitment allocted to this order
+
+#### `offset` ([`Int!`](/graphql/scalars/int))
+
+Offset from the pegged reference

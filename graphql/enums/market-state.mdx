@@ -1,0 +1,60 @@
+---
+id: market-state
+title: MarketState
+---
+
+The current state of a market
+
+```graphql
+enum MarketState {
+  Proposed
+  Rejected
+  Pending
+  Cancelled
+  Active
+  Suspended
+  Closed
+  TradingTerminated
+  Settled
+}
+```
+
+### Values
+
+#### `Proposed`
+
+The Governance proposal valid and accepted
+
+#### `Rejected`
+
+Outcome of governance votes is to reject the market
+
+#### `Pending`
+
+Governance vote passes/wins
+
+#### `Cancelled`
+
+Market triggers cancellation condition or governance
+votes to close before market becomes Active
+
+#### `Active`
+
+Enactment date reached and usual auction exit checks pass
+
+#### `Suspended`
+
+Price monitoring or liquidity monitoring trigger
+
+#### `Closed`
+
+Governance vote (to close)
+
+#### `TradingTerminated`
+
+Defined by the product (i.e. from a product parameter,
+specified in market definition, giving close date/time)
+
+#### `Settled`
+
+Settlement triggered and completed as defined by product

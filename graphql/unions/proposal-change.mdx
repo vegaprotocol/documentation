@@ -1,0 +1,31 @@
+---
+id: proposal-change
+title: ProposalChange
+---
+
+No description
+
+```graphql
+union ProposalChange =
+    NewMarket
+  | UpdateMarket
+  | UpdateNetworkParameter
+  | NewAsset
+```
+
+### Possible types
+
+#### [`NewMarket`](/graphql/objects/new-market)
+
+#### [`UpdateMarket`](/graphql/objects/update-market)
+
+Incomplete change definition for governance proposal terms
+TODO: complete the type
+
+#### [`UpdateNetworkParameter`](/graphql/objects/update-network-parameter)
+
+Allows submitting a proposal for changing network parameters
+
+#### [`NewAsset`](/graphql/objects/new-asset)
+
+A new asset proposal change

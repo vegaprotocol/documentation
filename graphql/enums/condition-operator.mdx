@@ -1,0 +1,40 @@
+---
+id: condition-operator
+title: ConditionOperator
+---
+
+Comparator describes the type of comparison.
+
+```graphql
+enum ConditionOperator {
+  OperatorEquals
+  OperatorGreaterThan
+  OperatorGreaterThanOrEqual
+  OperatorLessThan
+  OperatorLessThanOrEqual
+}
+```
+
+### Values
+
+#### `OperatorEquals`
+
+Verify if the property values are strictly equal or not.
+
+#### `OperatorGreaterThan`
+
+Verify if the oracle data value is greater than the Condition value.
+
+#### `OperatorGreaterThanOrEqual`
+
+Verify if the oracle data value is greater than or equal to the Condition
+value.
+
+#### `OperatorLessThan`
+
+Verify if the oracle data value is less than the Condition value.
+
+#### `OperatorLessThanOrEqual`
+
+Verify if the oracle data value is less or equal to than the Condition
+value.

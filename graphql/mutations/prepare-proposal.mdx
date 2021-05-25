@@ -1,0 +1,35 @@
+---
+id: prepare-proposal
+title: prepareProposal
+---
+
+Prepare a proposal so it can be sent into the network.
+Returns a pending proposal along with a transaction blob ready for submission.
+The data is verified. The response can be signed and submitted through the submitTransaction mutation.
+
+```graphql
+prepareProposal(
+  partyId: ID!
+  reference: String
+  proposalTerms: ProposalTermsInput!
+): PreparedProposal!
+
+```
+
+### Arguments
+
+#### `partyId` ([`ID!`](/graphql/scalars/id))
+
+ID of the party which created this proposal
+
+#### `reference` ([`String`](/graphql/scalars/string))
+
+A UUID reference for the caller to aid in tracking operations on VEGA
+
+#### `proposalTerms` ([`ProposalTermsInput!`](/graphql/inputs/proposal-terms-input))
+
+Terms of the proposal
+
+### Type
+
+#### [`PreparedProposal`](/graphql/objects/prepared-proposal)
