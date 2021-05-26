@@ -34,6 +34,11 @@ module.exports = {
           label: "API:GraphQL",
           position: "left",
         },
+        {
+          to: "/rest/",
+          label: "API:REST",
+          position: "left",
+        },
       ],
     },
     footer: {
@@ -151,6 +156,7 @@ module.exports = {
               "https://raw.githubusercontent.com/vegaprotocol/api/" +
               process.env.VEGA_VERSION +
               "/rest/api/trading.swagger.json",
+            routePath: "/rest/",
           },
         ],
       },
