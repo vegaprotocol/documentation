@@ -9,19 +9,9 @@
  Create as many sidebars as you want.
  */
 
-// let { schemaSidebar } = require("./graphql/sidebar-schema");
+let { schemaSidebar } = require("./docs/graphql/sidebar-schema");
 
 module.exports = {
   // GraphQL
-  // schemaSidebar: schemaSidebar,
-  // But you can create a sidebar manually
-  /*
-  tutorialSidebar: [
-    {
-      type: 'category',
-      label: 'Tutorial',
-      items: ['hello'],
-    },
-  ],
-   */
+  schemaSidebar: schemaSidebar,
 };
