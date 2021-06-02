@@ -1,4 +1,11 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
+
+let vega_version = process.env.VEGA_VERSION;
+if (vega_version === undefined || vega_version === "") {
+  console.log("Please specify env var VEGA_VERSION.");
+  process.exit(1);
+}
+
 module.exports = {
   title: "Vega Protocol",
   tagline:
@@ -111,7 +118,7 @@ module.exports = {
         // https://github.com/edno/graphql-markdown#options
         schema:
           "https://raw.githubusercontent.com/vegaprotocol/api/" +
-          process.env.VEGA_VERSION +
+          vega_version +
           "/graphql/schema.graphql",
         rootPath: "docs",
         baseURL: "graphql",
@@ -154,7 +161,7 @@ module.exports = {
           {
             specUrl:
               "https://raw.githubusercontent.com/vegaprotocol/api/" +
-              process.env.VEGA_VERSION +
+              vega_version +
               "/rest/api/trading.swagger.json",
             routePath: "/rest/",
           },
@@ -162,4 +169,5 @@ module.exports = {
       },
     ],
   ],
+  themes: [],
 };

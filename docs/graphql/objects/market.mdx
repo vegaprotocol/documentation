@@ -24,7 +24,7 @@ type Market {
   trades(skip: Int = 0, first: Int = 0, last: Int = 0): [Trade!]
   depth(maxDepth: Int = 0): MarketDepth!
   candles(since: String!, interval: Interval!): [Candle]
-  data: MarketData!
+  data: MarketData
   liquidityProvisions(party: String): [LiquidityProvision!]
   marketTimestamps: MarketTimestamps!
 }
@@ -154,7 +154,7 @@ RFC3339Nano encoded time from when to get candles
 
 Interval of the candles
 
-#### `data` ([`MarketData!`](/docs/graphql/objects/market-data))
+#### `data` ([`MarketData`](/docs/graphql/objects/market-data))
 
 marketData for the given market
 

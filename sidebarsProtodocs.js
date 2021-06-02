@@ -29,6 +29,7 @@ module.exports = {
             { type: "doc", id: "commands/v1/commands.proto" },
             { type: "doc", id: "commands/v1/validator_commands.proto" },
             { type: "doc", id: "commands/v1/oracles.proto" },
+            { type: "doc", id: "commands/v1/transaction.proto" },
           ],
         },
         {
