@@ -21,7 +21,7 @@ module.exports = {
     navbar: {
       title: "Vega Protocol documentation",
       logo: {
-        alt: "My Site Logo",
+        alt: "Vega Protocol Logo",
         src: "img/logo.svg",
       },
       items: [
@@ -107,7 +107,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright ©2018-${new Date().getFullYear()} Globalsky Labs Limited, registered in Gibraltar`,
+      copyright: `Copyright ©2018-${new Date().getFullYear()} Gobalsky Labs Limited, registered in Gibraltar`,
     },
   },
   plugins: [
