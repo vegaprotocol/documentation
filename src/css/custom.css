@@ -7,18 +7,18 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #DFFF0B;
-  --ifm-color-primary-dark: #d0ef00;
-  --ifm-color-primary-darker: #c4e200;
-  --ifm-color-primary-darkest: #a2ba00;
-  --ifm-color-primary-light: #e2ff26;
-  --ifm-color-primary-lighter: #e4ff33;
-  --ifm-color-primary-lightest: #e9ff5b;
+  --ifm-color-primary: #000;
+  --ifm-color-primary-dark: #000;
+  --ifm-color-primary-darker: #000;
+  --ifm-color-primary-darkest: #000;
+  --ifm-color-primary-light: #000;
+  --ifm-color-primary-lighter: #000;
+  --ifm-color-primary-lightest: #000;
   --ifm-code-font-size: 95%;
 
-  /* [EH] Trying out some https://github.com/vegaprotocol/brand/tree/main/1-Vega-Brand-Basics/1C-Colour-Palette 
+  /* [EH] Trying out some https://github.com/vegaprotocol/brand/tree/main/1-Vega-Brand-Basics/1C-Colour-Palette */
   --ifm-hero-text-color: rgb(0,0,0);
-  --ifm-hero-background-color: rgb(223,255,11); */
+  --ifm-hero-background-color: rgb(223,255,11);
 }
 
 .docusaurus-highlight-code-line {
