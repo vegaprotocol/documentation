@@ -5,7 +5,7 @@
   "scripts": {
     "prettier": "prettier --write '*.js' 'src/**/*.js'",
     "docusaurus": "docusaurus",
-    "generate-graphql": "mkdir -p docs/graphql && docusaurus graphql-to-doc --force",
+    "generate-graphql": "mkdir -p docs/graphql && docusaurus graphql-to-doc --force && sed --in-place -e '/Generated on/d' docs/graphql/generated.md",
     "generate-grpc": "mkdir -p protodocs && docusaurus generate-proto-docs",
     "start": "docusaurus start",
     "build": "docusaurus build",
