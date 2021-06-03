@@ -42,7 +42,7 @@ module.exports = {
           position: "left",
         },
         {
-          to: "/rest/",
+          to: "/docs/rest/",
           label: "API:REST",
           position: "left",
         },
@@ -163,7 +163,7 @@ module.exports = {
               "https://raw.githubusercontent.com/vegaprotocol/api/" +
               vega_version +
               "/rest/api/trading.swagger.json",
-            routePath: "/rest/",
+            routePath: "/docs/rest/",
           },
         ],
       },
