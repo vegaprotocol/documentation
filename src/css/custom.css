@@ -64,6 +64,9 @@ html[data-theme="dark"] .navbar__link--active {
 .hero--primary {
   --ifm-hero-background-color: #000;
 }
+html[data-theme="dark"] .hero--primary {
+  color: #fff; 
+}
 
 /* Footer */
 .footer {
