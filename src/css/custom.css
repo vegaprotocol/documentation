@@ -20,6 +20,13 @@
   --vega-yellow: #DFFF0B;
 }
 
+/* Code listings - links to other classes */
+html[data-theme="dark"] a code {
+  color: var(--vega-yellow);
+}
+html[data-theme="light"] a code {
+  background-color: var(--vega-yellow);
+}
 /* Side menu */
  
 .menu__link {
