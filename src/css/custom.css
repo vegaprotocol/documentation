@@ -7,22 +7,65 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #000;
-  --ifm-color-primary-dark: #000;
-  --ifm-color-primary-darker: #000;
-  --ifm-color-primary-darkest: #000;
-  --ifm-color-primary-light: #000;
-  --ifm-color-primary-lighter: #000;
-  --ifm-color-primary-lightest: #000;
+  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary-dark: rgb(33, 175, 144);
+  --ifm-color-primary-darker: rgb(31, 165, 136);
+  --ifm-color-primary-darkest: rgb(26, 136, 112);
+  --ifm-color-primary-light: rgb(70, 203, 174);
+  --ifm-color-primary-lighter: rgb(102, 212, 189);
+  --ifm-color-primary-lightest: rgb(146, 224, 208);
   --ifm-code-font-size: 95%;
 
-  --ifm-footer-color: #000;
-  --ifm-footer-title-color: var(--ifm-color-white);
-  --ifm-footer-link-color: var(--ifm-color-white);  
-  
-  /* [EH] Trying out some https://github.com/vegaprotocol/brand/tree/main/1-Vega-Brand-Basics/1C-Colour-Palette */
-  --ifm-hero-text-color: rgb(0,0,0);
-  --ifm-hero-background-color: rgb(223,255,11);
+  --ifm-link-color: #000;
+  --vega-yellow: #DFFF0B;
+}
+
+/* Side menu */
+ 
+.menu__link {
+  --ifm-menu-color-background-active: var(--vega-yellow);
+  --ifm-menu-color-text-active: #000;
+  --ifm-menu-color-active: #000;
+}
+html[data-theme="dark"] .menu__link--sublist.menu__link--active {
+  color: var(--vega-yellow);
+}
+
+.table-of-contents__link:hover, .table-of-contents__link:hover code, .table-of-contents__link--active, .table-of-contents__link--active code {
+  background: var(--vega-yellow); 
+  color: #000;
+} 
+/* Top nav */
+.navbar__link {
+  --ifm-navbar-link-hover-background: var(--vega-yellow);
+  --ifm-navbar-link-hover-color: #000;
+}
+html[data-theme="dark"] .navbar__link {
+  --ifm-navbar-link-hover-color: var(--vega-yellow);
+}
+html[data-theme="dark"] .navbar__link--active {
+  --ifm-navbar-link-hover-color: #000;
+}
+
+.navbar__link--active {
+  text-decoration: underline;
+  background-color: var(--vega-yellow);
+}
+
+
+/* Front page */
+.hero--primary {
+  --ifm-hero-background-color: #000;
+}
+
+/* Footer */
+.footer {
+  --ifm-footer-link-hover-color: #fff;
+  --ifm-footer-background-color: #000;
+}
+
+.footer--dark {
+  --ifm-footer-background-color: #000;
 }
 
 .docusaurus-highlight-code-line {
