@@ -10,7 +10,15 @@ This website is built using [Docusaurus 2](https://docusaurus.io/).
 
 ## Installation and local development
 
+Edit `scripts/build.sh` and update `vega_api_branch` to a new branch/tag as necessary.
+
 ```console
 cd /path/to/src/github.com/vegaprotocol/documentation
-./scripts/build.sh
+GITHUB_API_TOKEN=a1b2c3 ./scripts/build.sh
+```
+
+## Running locally
+
+```console
+yarn run serve
 ```

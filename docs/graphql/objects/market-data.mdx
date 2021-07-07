@@ -27,6 +27,7 @@ type MarketData {
   indicativeVolume: String!
   marketTradingMode: MarketTradingMode!
   trigger: AuctionTrigger!
+  extensionTrigger: AuctionTrigger!
   targetStake: String
   suppliedStake: String
   commitments: MarketDataCommitments!
@@ -117,6 +118,10 @@ what state the market is in (auction, continuous etc)
 #### `trigger` ([`AuctionTrigger!`](/docs/graphql/enums/auction-trigger))
 
 what triggered an auction (if an auction was started)
+
+#### `extensionTrigger` ([`AuctionTrigger!`](/docs/graphql/enums/auction-trigger))
+
+what extended the ongoing auction (if an auction was extended)
 
 #### `targetStake` ([`String`](/docs/graphql/scalars/string))
 

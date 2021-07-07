@@ -18,8 +18,8 @@ module.exports = {
           type: "category",
           label: "/oracles/v1",
           items: [
-            { type: "doc", id: "oracles/v1/oracle_spec.proto" },
-            { type: "doc", id: "oracles/v1/oracle_data.proto" },
+            { type: "doc", id: "oracles/v1/spec.proto" },
+            { type: "doc", id: "oracles/v1/data.proto" },
           ],
         },
         {
@@ -46,6 +46,11 @@ module.exports = {
           type: "category",
           label: "/tm",
           items: [{ type: "doc", id: "tm/replay.proto" }],
+        },
+        {
+          type: "category",
+          label: "/wallet/v1",
+          items: [{ type: "doc", id: "wallet/v1/wallet.proto" }],
         },
         { type: "doc", id: "markets.proto" },
         { type: "doc", id: "vega.proto" },

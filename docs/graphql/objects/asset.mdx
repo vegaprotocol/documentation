@@ -12,6 +12,7 @@ type Asset {
   symbol: String!
   totalSupply: String!
   decimals: Int!
+  minLpStake: String!
   source: AssetSource!
   infrastructureFeeAccount: Account!
 }
@@ -38,6 +39,10 @@ The total supply of the market
 #### `decimals` ([`Int!`](/docs/graphql/scalars/int))
 
 The precision of the asset
+
+#### `minLpStake` ([`String!`](/docs/graphql/scalars/string))
+
+The min stake to become an lp for any market using this asset for settlement
 
 #### `source` ([`AssetSource!`](/docs/graphql/unions/asset-source))
 

@@ -4,7 +4,7 @@ set -e
 
 vega_owner=vegaprotocol
 vega_api_repo=api
-vega_api_branch="develop" # or vX.Y.Z
+vega_api_branch="v0.39.0"
 
 gh_token="${GITHUB_API_TOKEN:?}"
 

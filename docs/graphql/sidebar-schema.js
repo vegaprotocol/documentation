@@ -10,6 +10,7 @@ module.exports = {
         "graphql/queries/deposit",
         "graphql/queries/erc-20-withdrawal-approval",
         "graphql/queries/estimate-order",
+        "graphql/queries/last-block-height",
         "graphql/queries/market",
         "graphql/queries/markets",
         "graphql/queries/network-parameters",

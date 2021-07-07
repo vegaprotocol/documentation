@@ -37,6 +37,9 @@ enum ProposalRejectionReason {
   InvalidFeeAmount
   InvalidShape
   InvalidRiskParameter
+  MajorityThresholdNotReached
+  ParticipationThresholdNotReached
+  InvalidAssetDetails
 }
 ```
 
@@ -161,3 +164,15 @@ Market proposal have one or more invalid shape
 #### `InvalidRiskParameter`
 
 Market proposal use an invalid risk parameter
+
+#### `MajorityThresholdNotReached`
+
+Proposal declined because the majority threshold was not reached
+
+#### `ParticipationThresholdNotReached`
+
+Proposal declined because the participation threshold was not reached
+
+#### `InvalidAssetDetails`
+
+Asset details are invalid
