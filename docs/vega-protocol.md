@@ -1,5 +1,6 @@
 # Vega Protocol 
- ## Transaction messages (to include protobufs of CORE txs (i.e. ones that actually appear in TM blocks)) 
+ ## Transaction messages 
+ (to include protobufs of CORE txs (i.e. ones that actually appear in TM blocks)) 
  ## Governance protocol
   ### Market creation
   ### Market updates
