@@ -215,7 +215,22 @@ Liquidity providers are not required to supply any orders that offer liquidity o
 ## Market / product / trade lifecycle
 
 ### Settlement
-
+  Vega executes settlement with a two step process:
+  1. Collection -  The protocol collects from the margin accounts of those who, according to the settlement formula, are liable to pay collateral. The collection instruction will aim to collect all the owed collateral, starting with the trader's margin account for the market. Whatever is not available from the margin account (if any) is collected from the general account, and if there is any remaining, it is collected from the market's insurance pool (link). If the full required amount cannot be collected from all three accounts then as much as possible is collected and loss socialisation is enacted. 
+ 
+  Collection will result in ledger entries being formulated. They adhere to double entry accounting and record the actual transfers that occurred on the ledger. The destination account is the *market settlement account* for the market, which will have a zero balance before the settlement process begins and after it completes.
+ 
+ 2. Distribution -  If all requested amounts are succesfully transferred to the market settlement account, then the amount collected will match the amount to be distributed and the settlement function will formulate instructions to distribute to the margin accounts of those whose moves have been positive according to the amount they are owed. 
+ 
+ These transfers will debit from the market's market settlement account and be credited to the margin accounts of traders who have are due to receive an asset flow as a result of the settlement.
+ 
+   #### Loss socialisation 
+   If some collection transfers are not able to supply the full amount to the market settlement account due to some traders having insufficient collateral to handle the price / position (mark to market) move, and if the insurance pool can't cover the shortfall, then not enough funds can be collected to distribute the full amount of the mark to market gains made by traders on the other side. In that case, the funds that have been collected must be fairly distributed. This is called loss socialisation. 
+ 
+  Loss socialisation is implemented by reducing the amount that is distributed to each trader with a mark to market gain, based on their relative position size. 
+```
+distribute_amount[trader] = mtm_gain[trader] * ( actual_collected_amount / target_collect_amount )
+```
 #### Settlement when closing out
 
 #### Settlement at expiry
