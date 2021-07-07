@@ -1,0 +1,23 @@
+---
+id: market-data-commitments
+title: MarketDataCommitments
+---
+
+The MM commitments for this market
+
+```graphql
+type MarketDataCommitments {
+  sells: [LiquidityOrderReference!]
+  buys: [LiquidityOrderReference!]
+}
+```
+
+### Fields
+
+#### `sells` ([`[LiquidityOrderReference!]`](/docs/graphql/objects/liquidity-order-reference))
+
+a set of liquidity sell orders to meet the liquidity provision obligation, see MM orders spec.
+
+#### `buys` ([`[LiquidityOrderReference!]`](/docs/graphql/objects/liquidity-order-reference))
+
+a set of liquidity buy orders to meet the liquidity provision obligation, see MM orders spec.

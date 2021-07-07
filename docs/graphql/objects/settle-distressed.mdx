@@ -1,0 +1,33 @@
+---
+id: settle-distressed
+title: SettleDistressed
+---
+
+No description
+
+```graphql
+type SettleDistressed {
+  marketId: ID!
+  partyId: ID!
+  margin: Int!
+  price: Int!
+}
+```
+
+### Fields
+
+#### `marketId` ([`ID!`](/docs/graphql/scalars/id))
+
+the market in which a position was closed out
+
+#### `partyId` ([`ID!`](/docs/graphql/scalars/id))
+
+the party who closed out
+
+#### `margin` ([`Int!`](/docs/graphql/scalars/int))
+
+the margin taken from distressed trader
+
+#### `price` ([`Int!`](/docs/graphql/scalars/int))
+
+the price at which position was closed out

@@ -1,0 +1,38 @@
+---
+id: auction-trigger
+title: AuctionTrigger
+---
+
+No description
+
+```graphql
+enum AuctionTrigger {
+  Unspecified
+  Batch
+  Opening
+  Price
+  Liquidity
+}
+```
+
+### Values
+
+#### `Unspecified`
+
+Invalid trigger (or no auction)
+
+#### `Batch`
+
+Auction because market is trading FBA
+
+#### `Opening`
+
+Opening auction
+
+#### `Price`
+
+Price monitoring
+
+#### `Liquidity`
+
+Liquidity monitoring

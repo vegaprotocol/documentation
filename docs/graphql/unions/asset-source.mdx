@@ -1,0 +1,20 @@
+---
+id: asset-source
+title: AssetSource
+---
+
+One of the possible asset sources
+
+```graphql
+union AssetSource = BuiltinAsset | ERC20
+```
+
+### Possible types
+
+#### [`BuiltinAsset`](/docs/graphql/objects/builtin-asset)
+
+A vega builtin asset, mostly for testing purpose
+
+#### [`ERC20`](/docs/graphql/objects/erc-20)
+
+An asset originated from an Ethereum ERC20 Token

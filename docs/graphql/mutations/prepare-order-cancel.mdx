@@ -1,0 +1,29 @@
+---
+id: prepare-order-cancel
+title: prepareOrderCancel
+---
+
+Send a cancel order request to be prepared. Returns a pending order + blob of the transaction to submit.
+The data is verified. The response can be signed and submitted through the submitTransaction mutation.
+
+```graphql
+prepareOrderCancel(
+  id: ID = 0
+  marketId: ID = 0
+): PreparedCancelOrder!
+
+```
+
+### Arguments
+
+#### `id` ([`ID`](/docs/graphql/scalars/id))
+
+ID of the order to cancel
+
+#### `marketId` ([`ID`](/docs/graphql/scalars/id))
+
+ID of the market where to find the order
+
+### Type
+
+#### [`PreparedCancelOrder`](/docs/graphql/objects/prepared-cancel-order)

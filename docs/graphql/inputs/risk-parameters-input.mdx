@@ -1,0 +1,23 @@
+---
+id: risk-parameters-input
+title: RiskParametersInput
+---
+
+No description
+
+```graphql
+type RiskParametersInput {
+  simple: SimpleRiskModelParamsInput
+  logNormal: LogNormalRiskModelInput
+}
+```
+
+### Fields
+
+#### `simple` ([`SimpleRiskModelParamsInput`](/docs/graphql/inputs/simple-risk-model-params-input))
+
+Simple risk model parameters. Set only if risk model is Simple
+
+#### `logNormal` ([`LogNormalRiskModelInput`](/docs/graphql/inputs/log-normal-risk-model-input))
+
+Log normal risk model parameters. Set only if risk model is LogNormal

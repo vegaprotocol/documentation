@@ -1,0 +1,33 @@
+---
+id: account
+title: Account
+---
+
+An account record
+
+```graphql
+type Account {
+  balance: String!
+  asset: Asset!
+  type: AccountType!
+  market: Market
+}
+```
+
+### Fields
+
+#### `balance` ([`String!`](/docs/graphql/scalars/string))
+
+Balance as string - current account balance (approx. as balances can be updated several times per second)
+
+#### `asset` ([`Asset!`](/docs/graphql/objects/asset))
+
+Asset, the 'currency'
+
+#### `type` ([`AccountType!`](/docs/graphql/enums/account-type))
+
+Account type (General, Margin, etc)
+
+#### `market` ([`Market`](/docs/graphql/objects/market))
+
+Market (only relevant to margin accounts)

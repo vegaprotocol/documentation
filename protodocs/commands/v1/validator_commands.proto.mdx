@@ -1,0 +1,45 @@
+---
+title: validator_commands.proto
+hide_title: true
+---
+
+import { ProtoMessage, ProtoServiceMethod, ProtoEnum } from '@theme/ProtoFile';
+
+## `validator_commands.proto`
+_**path** commands/v1/validator_commands.proto_
+
+_**package** vega.commands.v1_
+
+
+
+---
+
+## Messages
+
+
+### `ChainEvent`
+<ProtoMessage key={0} message={{"name":"ChainEvent","longName":"ChainEvent","fullName":"vega.commands.v1.ChainEvent","description":"An event forwarded to the Vega network to provide information on events happening on other networks","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"tx_id","description":"The identifier of the transaction in which the events happened, usually a hash","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"nonce","description":"Arbitrary one-time integer used to prevent replay attacks","label":"","type":"uint64","longType":"uint64","fullType":"uint64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"builtin","description":"Built-in asset event","label":"","type":"BuiltinAssetEvent","longType":"vega.BuiltinAssetEvent","fullType":"vega.BuiltinAssetEvent","ismap":false,"isoneof":true,"oneofdecl":"event","defaultValue":"","typeLink":"/protodocs/chain_events.proto#builtinassetevent"},{"name":"erc20","description":"Ethereum ERC20 event","label":"","type":"ERC20Event","longType":"vega.ERC20Event","fullType":"vega.ERC20Event","ismap":false,"isoneof":true,"oneofdecl":"event","defaultValue":"","typeLink":"/protodocs/chain_events.proto#erc20event"},{"name":"btc","description":"Bitcoin BTC event","label":"","type":"BTCEvent","longType":"vega.BTCEvent","fullType":"vega.BTCEvent","ismap":false,"isoneof":true,"oneofdecl":"event","defaultValue":"","typeLink":"/protodocs/chain_events.proto#btcevent"},{"name":"validator","description":"Validator event","label":"","type":"ValidatorEvent","longType":"vega.ValidatorEvent","fullType":"vega.ValidatorEvent","ismap":false,"isoneof":true,"oneofdecl":"event","defaultValue":"","typeLink":"/protodocs/chain_events.proto#validatorevent"}]}} />
+
+
+### `NodeRegistration`
+<ProtoMessage key={1} message={{"name":"NodeRegistration","longName":"NodeRegistration","fullName":"vega.commands.v1.NodeRegistration","description":"Used to Register a node as a validator during network start-up","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"pub_key","description":"Public key, required field","label":"","type":"bytes","longType":"bytes","fullType":"bytes","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","options":{"validator.field":[{"name":"string_not_empty","value":true}]}},{"name":"chain_pub_key","description":"Public key for the blockchain, required field","label":"","type":"bytes","longType":"bytes","fullType":"bytes","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","options":{"validator.field":[{"name":"string_not_empty","value":true}]}}]}} />
+
+
+### `NodeSignature`
+<ProtoMessage key={2} message={{"name":"NodeSignature","longName":"NodeSignature","fullName":"vega.commands.v1.NodeSignature","description":"Represents a signature from a validator, to be used by a foreign chain in order to recognise a decision taken by the Vega network","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"id","description":"The identifier of the resource being signed","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"sig","description":"The signature","label":"","type":"bytes","longType":"bytes","fullType":"bytes","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"kind","description":"The kind of resource being signed","label":"","type":"NodeSignatureKind","longType":"NodeSignatureKind","fullType":"vega.commands.v1.NodeSignatureKind","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/protodocs/commands/v1/validator_commands.proto#nodesignaturekind"}]}} />
+
+
+### `NodeVote`
+<ProtoMessage key={3} message={{"name":"NodeVote","longName":"NodeVote","fullName":"vega.commands.v1.NodeVote","description":"Used when a node votes for validating a given resource exists or is valid,\nfor example, an ERC20 deposit is valid and exists on ethereum","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"pub_key","description":"Public key, required field","label":"","type":"bytes","longType":"bytes","fullType":"bytes","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","options":{"validator.field":[{"name":"string_not_empty","value":true}]}},{"name":"reference","description":"Reference, required field","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","options":{"validator.field":[{"name":"string_not_empty","value":true}]}}]}} />
+
+---
+## Enums
+
+
+### `NodeSignatureKind`
+<ProtoEnum key={0} enumb={{"name":"NodeSignatureKind","longName":"NodeSignatureKind","fullName":"vega.commands.v1.NodeSignatureKind","description":"The kind of the signature created by a node, for example, allow-listing a new asset, withdrawal etc","values":[{"name":"NODE_SIGNATURE_KIND_UNSPECIFIED","number":"0","description":"Represents an unspecified or missing value from the input"},{"name":"NODE_SIGNATURE_KIND_ASSET_NEW","number":"1","description":"Represents a signature for a new asset allow-listing"},{"name":"NODE_SIGNATURE_KIND_ASSET_WITHDRAWAL","number":"2","description":"Represents a signature for an asset withdrawal"}]}} />
+
+---
+
+
+  

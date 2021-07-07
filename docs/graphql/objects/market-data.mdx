@@ -1,0 +1,148 @@
+---
+id: market-data
+title: MarketData
+---
+
+Live data of a Market
+
+```graphql
+type MarketData {
+  market: Market!
+  markPrice: String!
+  bestBidPrice: String!
+  bestBidVolume: String!
+  bestOfferPrice: String!
+  bestOfferVolume: String!
+  bestStaticBidPrice: String!
+  bestStaticBidVolume: String!
+  bestStaticOfferPrice: String!
+  bestStaticOfferVolume: String!
+  midPrice: String!
+  staticMidPrice: String!
+  timestamp: String!
+  openInterest: String!
+  auctionEnd: String
+  auctionStart: String
+  indicativePrice: String!
+  indicativeVolume: String!
+  marketTradingMode: MarketTradingMode!
+  trigger: AuctionTrigger!
+  extensionTrigger: AuctionTrigger!
+  targetStake: String
+  suppliedStake: String
+  commitments: MarketDataCommitments!
+  priceMonitoringBounds: [PriceMonitoringBounds!]
+  marketValueProxy: String!
+  liquidityProviderFeeShare: [LiquidityProviderFeeShare!]
+}
+```
+
+### Fields
+
+#### `market` ([`Market!`](/docs/graphql/objects/market))
+
+market id of the associated mark price
+
+#### `markPrice` ([`String!`](/docs/graphql/scalars/string))
+
+the mark price (actually an unsgined int)
+
+#### `bestBidPrice` ([`String!`](/docs/graphql/scalars/string))
+
+the highest price level on an order book for buy orders.
+
+#### `bestBidVolume` ([`String!`](/docs/graphql/scalars/string))
+
+the aggregated volume being bid at the best bid price.
+
+#### `bestOfferPrice` ([`String!`](/docs/graphql/scalars/string))
+
+the lowest price level on an order book for offer orders.
+
+#### `bestOfferVolume` ([`String!`](/docs/graphql/scalars/string))
+
+the aggregated volume being offered at the best offer price.
+
+#### `bestStaticBidPrice` ([`String!`](/docs/graphql/scalars/string))
+
+the highest price level on an order book for buy orders not including pegged orders.
+
+#### `bestStaticBidVolume` ([`String!`](/docs/graphql/scalars/string))
+
+the aggregated volume being offered at the best static bid price, excluding pegged orders
+
+#### `bestStaticOfferPrice` ([`String!`](/docs/graphql/scalars/string))
+
+the lowest price level on an order book for offer orders not including pegged orders.
+
+#### `bestStaticOfferVolume` ([`String!`](/docs/graphql/scalars/string))
+
+the aggregated volume being offered at the best static offer price, excluding pegged orders.
+
+#### `midPrice` ([`String!`](/docs/graphql/scalars/string))
+
+the arithmetic average of the best bid price and best offer price.
+
+#### `staticMidPrice` ([`String!`](/docs/graphql/scalars/string))
+
+the arithmetic average of the best static bid price and best static offer price
+
+#### `timestamp` ([`String!`](/docs/graphql/scalars/string))
+
+RFC3339Nano time at which this market price was releavant
+
+#### `openInterest` ([`String!`](/docs/graphql/scalars/string))
+
+the sum of the size of all positions greater than 0.
+
+#### `auctionEnd` ([`String`](/docs/graphql/scalars/string))
+
+RFC3339Nano time at which the auction will stop (null if not in auction mode)
+
+#### `auctionStart` ([`String`](/docs/graphql/scalars/string))
+
+RFC3339Nano time at which the next auction will start (null if none is scheduled)
+
+#### `indicativePrice` ([`String!`](/docs/graphql/scalars/string))
+
+indicative price if the auction ended now, 0 if not in auction mode
+
+#### `indicativeVolume` ([`String!`](/docs/graphql/scalars/string))
+
+indicative volume if the auction ended now, 0 if not in auction mode
+
+#### `marketTradingMode` ([`MarketTradingMode!`](/docs/graphql/enums/market-trading-mode))
+
+what state the market is in (auction, continuous etc)
+
+#### `trigger` ([`AuctionTrigger!`](/docs/graphql/enums/auction-trigger))
+
+what triggered an auction (if an auction was started)
+
+#### `extensionTrigger` ([`AuctionTrigger!`](/docs/graphql/enums/auction-trigger))
+
+what extended the ongoing auction (if an auction was extended)
+
+#### `targetStake` ([`String`](/docs/graphql/scalars/string))
+
+the amount of stake targeted for this market
+
+#### `suppliedStake` ([`String`](/docs/graphql/scalars/string))
+
+the supplied stake for the market
+
+#### `commitments` ([`MarketDataCommitments!`](/docs/graphql/objects/market-data-commitments))
+
+The liquidity commitments for a given market
+
+#### `priceMonitoringBounds` ([`[PriceMonitoringBounds!]`](/docs/graphql/objects/price-monitoring-bounds))
+
+A list of valid price ranges per associated trigger
+
+#### `marketValueProxy` ([`String!`](/docs/graphql/scalars/string))
+
+the market value proxy
+
+#### `liquidityProviderFeeShare` ([`[LiquidityProviderFeeShare!]`](/docs/graphql/objects/liquidity-provider-fee-share))
+
+the equity like share of liquidity fee for each liquidity provider

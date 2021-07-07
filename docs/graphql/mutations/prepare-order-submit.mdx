@@ -1,0 +1,64 @@
+---
+id: prepare-order-submit
+title: prepareOrderSubmit
+---
+
+Send a submit order request to be prepared, and returns a blob of the transaction to submit.
+The OrderSubmit data is validated. Price and expiration will be converted to uint64 internally.
+
+```graphql
+prepareOrderSubmit(
+  marketId: ID!
+  price: String
+  size: String!
+  side: Side!
+  timeInForce: OrderTimeInForce!
+  expiration: String
+  type: OrderType!
+  reference: String
+  peggedOrder: PeggedOrderInput
+): PreparedSubmitOrder!
+
+```
+
+### Arguments
+
+#### `marketId` ([`ID!`](/docs/graphql/scalars/id))
+
+ID of the market to place the order
+
+#### `price` ([`String`](/docs/graphql/scalars/string))
+
+Price of the asset
+
+#### `size` ([`String!`](/docs/graphql/scalars/string))
+
+Size of the order
+
+#### `side` ([`Side!`](/docs/graphql/enums/side))
+
+Side of the order (Buy or Sell)
+
+#### `timeInForce` ([`OrderTimeInForce!`](/docs/graphql/enums/order-time-in-force))
+
+TimeInForce of the order
+
+#### `expiration` ([`String`](/docs/graphql/scalars/string))
+
+expiration of the the order
+
+#### `type` ([`OrderType!`](/docs/graphql/enums/order-type))
+
+type of the order
+
+#### `reference` ([`String`](/docs/graphql/scalars/string))
+
+client reference for the order
+
+#### `peggedOrder` ([`PeggedOrderInput`](/docs/graphql/inputs/pegged-order-input))
+
+pegged order details
+
+### Type
+
+#### [`PreparedSubmitOrder`](/docs/graphql/objects/prepared-submit-order)

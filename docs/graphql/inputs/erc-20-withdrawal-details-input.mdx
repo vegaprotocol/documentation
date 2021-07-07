@@ -1,0 +1,18 @@
+---
+id: erc-20-withdrawal-details-input
+title: Erc20WithdrawalDetailsInput
+---
+
+ERC20 specific details to start a withdrawal
+
+```graphql
+type Erc20WithdrawalDetailsInput {
+  receiverAddress: String!
+}
+```
+
+### Fields
+
+#### `receiverAddress` ([`String!`](/docs/graphql/scalars/string))
+
+The ethereum address to which the withdrawn funds will be send to

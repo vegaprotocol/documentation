@@ -1,0 +1,35 @@
+---
+id: prepare-withdrawal
+title: prepareWithdrawal
+---
+
+Prepare a withdrawal so it can be signed and submitted.
+Returns a pending withdrawSubmission with a transaction blob for signing.
+
+```graphql
+prepareWithdrawal(
+  amount: String!
+  asset: String!
+  erc20Details: Erc20WithdrawalDetailsInput
+): PreparedWithdrawal!
+
+```
+
+### Arguments
+
+#### `amount` ([`String!`](/docs/graphql/scalars/string))
+
+The amount to be withdrawn
+
+#### `asset` ([`String!`](/docs/graphql/scalars/string))
+
+The asset from which we want to withdraw funds
+
+#### `erc20Details` ([`Erc20WithdrawalDetailsInput`](/docs/graphql/inputs/erc-20-withdrawal-details-input))
+
+ERC20 specific details to process the withdrawal
+nullable as not required by all kind of withdrawals
+
+### Type
+
+#### [`PreparedWithdrawal`](/docs/graphql/objects/prepared-withdrawal)

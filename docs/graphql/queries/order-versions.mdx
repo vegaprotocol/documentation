@@ -1,0 +1,40 @@
+---
+id: order-versions
+title: orderVersions
+---
+
+Order versions (created via amendments if any) found by orderID
+
+```graphql
+orderVersions(
+  orderId: ID!
+  skip: Int = 0
+  first: Int = 0
+  last: Int = 0
+): [Order!]
+
+```
+
+### Arguments
+
+#### `orderId` ([`ID!`](/docs/graphql/scalars/id))
+
+ID for an order
+
+#### `skip` ([`Int`](/docs/graphql/scalars/int))
+
+Pagination skip
+
+#### `first` ([`Int`](/docs/graphql/scalars/int))
+
+Pagination first element
+
+#### `last` ([`Int`](/docs/graphql/scalars/int))
+
+Pagination last element
+
+### Type
+
+#### [`Order`](/docs/graphql/objects/order)
+
+An order in Vega, if active it will be on the OrderBook for the market

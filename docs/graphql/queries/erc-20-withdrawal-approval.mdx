@@ -1,0 +1,25 @@
+---
+id: erc-20-withdrawal-approval
+title: erc20WithdrawalApproval
+---
+
+find an erc20 withdrawal approval using its withdrawal id
+
+```graphql
+erc20WithdrawalApproval(
+  withdrawalId: ID!
+): Erc20WithdrawalApproval
+
+```
+
+### Arguments
+
+#### `withdrawalId` ([`ID!`](/docs/graphql/scalars/id))
+
+id of the withdrawal
+
+### Type
+
+#### [`Erc20WithdrawalApproval`](/docs/graphql/objects/erc-20-withdrawal-approval)
+
+All the data related to the approval of a withdrawal from the network

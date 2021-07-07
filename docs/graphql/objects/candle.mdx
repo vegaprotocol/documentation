@@ -1,0 +1,53 @@
+---
+id: candle
+title: Candle
+---
+
+Candle stick representation of trading
+
+```graphql
+type Candle {
+  timestamp: String!
+  datetime: String!
+  high: String!
+  low: String!
+  open: String!
+  close: String!
+  volume: String!
+  interval: Interval!
+}
+```
+
+### Fields
+
+#### `timestamp` ([`String!`](/docs/graphql/scalars/string))
+
+Unix epoch+nanoseconds for when the candle occurred
+
+#### `datetime` ([`String!`](/docs/graphql/scalars/string))
+
+RFC3339Nano formatted date and time for the candle
+
+#### `high` ([`String!`](/docs/graphql/scalars/string))
+
+High price (uint64)
+
+#### `low` ([`String!`](/docs/graphql/scalars/string))
+
+Low price (uint64)
+
+#### `open` ([`String!`](/docs/graphql/scalars/string))
+
+Open price (uint64)
+
+#### `close` ([`String!`](/docs/graphql/scalars/string))
+
+Close price (uint64)
+
+#### `volume` ([`String!`](/docs/graphql/scalars/string))
+
+Volume price (uint64)
+
+#### `interval` ([`Interval!`](/docs/graphql/enums/interval))
+
+Interval price (string)

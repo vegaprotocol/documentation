@@ -1,0 +1,35 @@
+---
+id: prepare-vote
+title: prepareVote
+---
+
+Prepare a vote so it can be signed and submitted.
+Returns a pending vote with a transaction blob for signing.
+No validation other than the vote value being correct is done.
+
+```graphql
+prepareVote(
+  value: VoteValue!
+  partyId: ID!
+  proposalId: ID!
+): PreparedVote!
+
+```
+
+### Arguments
+
+#### `value` ([`VoteValue!`](/docs/graphql/enums/vote-value))
+
+vote value
+
+#### `partyId` ([`ID!`](/docs/graphql/scalars/id))
+
+the party casting the vote
+
+#### `proposalId` ([`ID!`](/docs/graphql/scalars/id))
+
+the proposal voted on
+
+### Type
+
+#### [`PreparedVote`](/docs/graphql/objects/prepared-vote)

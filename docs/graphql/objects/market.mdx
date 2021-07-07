@@ -1,0 +1,171 @@
+---
+id: market
+title: Market
+---
+
+Represents a product & associated parameters that can be traded on Vega, has an associated OrderBook and Trade history
+
+```graphql
+type Market {
+  id: ID!
+  name: String!
+  fees: Fees!
+  tradableInstrument: TradableInstrument!
+  tradingModeConfig: TradingMode!
+  decimalPlaces: Int!
+  openingAuction: AuctionDuration!
+  priceMonitoringSettings: PriceMonitoringSettings!
+  liquidityMonitoringParameters: LiquidityMonitoringParameters!
+  tradingMode: MarketTradingMode!
+  state: MarketState!
+  proposal: Proposal
+  orders(skip: Int = 0, first: Int = 0, last: Int = 0): [Order!]
+  accounts(partyId: ID = 0): [Account!]
+  trades(skip: Int = 0, first: Int = 0, last: Int = 0): [Trade!]
+  depth(maxDepth: Int = 0): MarketDepth!
+  candles(since: String!, interval: Interval!): [Candle]
+  data: MarketData
+  liquidityProvisions(party: String): [LiquidityProvision!]
+  marketTimestamps: MarketTimestamps!
+}
+```
+
+### Fields
+
+#### `id` ([`ID!`](/docs/graphql/scalars/id))
+
+Market ID
+
+#### `name` ([`String!`](/docs/graphql/scalars/string))
+
+Market full name
+
+#### `fees` ([`Fees!`](/docs/graphql/objects/fees))
+
+Fees related data
+
+#### `tradableInstrument` ([`TradableInstrument!`](/docs/graphql/objects/tradable-instrument))
+
+An instance of or reference to a tradable instrument.
+
+#### `tradingModeConfig` ([`TradingMode!`](/docs/graphql/unions/trading-mode))
+
+Definitions and required configuration for the trading mode
+
+#### `decimalPlaces` ([`Int!`](/docs/graphql/scalars/int))
+
+decimalPlaces indicates the number of decimal places that an integer must be shifted by in order to get a correct
+number denominated in the currency of the Market. (uint64)
+
+Examples:
+Currency Balance decimalPlaces Real Balance
+GBP 100 0 GBP 100
+GBP 100 2 GBP 1.00
+GBP 100 4 GBP 0.01
+GBP 1 4 GBP 0.0001 ( 0.01p )
+
+GBX (pence) 100 0 GBP 1.00 (100p )
+GBX (pence) 100 2 GBP 0.01 ( 1p )
+GBX (pence) 100 4 GBP 0.0001 ( 0.01p )
+GBX (pence) 1 4 GBP 0.000001 ( 0.0001p)
+
+#### `openingAuction` ([`AuctionDuration!`](/docs/graphql/objects/auction-duration))
+
+Auction duration specifies how long the opening auction will run (minimum
+duration and optionally a minimum traded volume).
+
+#### `priceMonitoringSettings` ([`PriceMonitoringSettings!`](/docs/graphql/objects/price-monitoring-settings))
+
+Price monitoring settings for the market
+
+#### `liquidityMonitoringParameters` ([`LiquidityMonitoringParameters!`](/docs/graphql/objects/liquidity-monitoring-parameters))
+
+Liquidity monitoring parameters for the market
+
+#### `tradingMode` ([`MarketTradingMode!`](/docs/graphql/enums/market-trading-mode))
+
+Current mode of execution of the market
+
+#### `state` ([`MarketState!`](/docs/graphql/enums/market-state))
+
+Current state of the market
+
+#### `proposal` ([`Proposal`](/docs/graphql/objects/proposal))
+
+The proposal which initiated this market
+
+#### `orders` ([`[Order!]`](/docs/graphql/objects/order))
+
+Orders on a market
+
+- ##### `skip` ([`Int`](/docs/graphql/scalars/int))
+
+Pagination skip
+
+- ##### `first` ([`Int`](/docs/graphql/scalars/int))
+
+Pagination first element
+
+- ##### `last` ([`Int`](/docs/graphql/scalars/int))
+
+Pagination last element
+
+#### `accounts` ([`[Account!]`](/docs/graphql/objects/account))
+
+Get account for a party or market
+
+- ##### `partyId` ([`ID`](/docs/graphql/scalars/id))
+
+Id of the party to get the margin account for
+
+#### `trades` ([`[Trade!]`](/docs/graphql/objects/trade))
+
+Trades on a market
+
+- ##### `skip` ([`Int`](/docs/graphql/scalars/int))
+
+Pagination skip
+
+- ##### `first` ([`Int`](/docs/graphql/scalars/int))
+
+Pagination first element
+
+- ##### `last` ([`Int`](/docs/graphql/scalars/int))
+
+Pagination last element
+
+#### `depth` ([`MarketDepth!`](/docs/graphql/objects/market-depth))
+
+Current depth on the orderbook for this market
+
+- ##### `maxDepth` ([`Int`](/docs/graphql/scalars/int))
+
+Maximum market order book depth (returns whole order book if omitted)
+
+#### `candles` ([`[Candle]`](/docs/graphql/objects/candle))
+
+Candles on a market, for the 'last' n candles, at 'interval' seconds as specified by params
+
+- ##### `since` ([`String!`](/docs/graphql/scalars/string))
+
+RFC3339Nano encoded time from when to get candles
+
+- ##### `interval` ([`Interval!`](/docs/graphql/enums/interval))
+
+Interval of the candles
+
+#### `data` ([`MarketData`](/docs/graphql/objects/market-data))
+
+marketData for the given market
+
+#### `liquidityProvisions` ([`[LiquidityProvision!]`](/docs/graphql/objects/liquidity-provision))
+
+The list of the liquidity provision commitment for this market
+
+- ##### `party` ([`String`](/docs/graphql/scalars/string))
+
+An optional party id
+
+#### `marketTimestamps` ([`MarketTimestamps!`](/docs/graphql/objects/market-timestamps))
+
+timestamps for state changes in the market

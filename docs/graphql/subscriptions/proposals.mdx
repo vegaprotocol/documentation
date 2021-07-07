@@ -1,0 +1,23 @@
+---
+id: proposals
+title: proposals
+---
+
+Subscribe to proposals. Leave out all arguments to receive all proposals
+
+```graphql
+proposals(
+  partyId: ID = 0
+): Proposal!
+
+```
+
+### Arguments
+
+#### `partyId` ([`ID`](/docs/graphql/scalars/id))
+
+Optional party id whose proposals are to be streamed
+
+### Type
+
+#### [`Proposal`](/docs/graphql/objects/proposal)

@@ -1,0 +1,28 @@
+---
+id: risk-factor
+title: RiskFactor
+---
+
+A risk factor emitted by the risk model for a given market
+
+```graphql
+type RiskFactor {
+  market: String!
+  short: Float!
+  long: Float!
+}
+```
+
+### Fields
+
+#### `market` ([`String!`](/docs/graphql/scalars/string))
+
+market the risk factor was emitted for
+
+#### `short` ([`Float!`](/docs/graphql/scalars/float))
+
+short factor
+
+#### `long` ([`Float!`](/docs/graphql/scalars/float))
+
+long factor
