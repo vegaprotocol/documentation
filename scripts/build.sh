@@ -6,7 +6,8 @@ vega_owner=vegaprotocol
 vega_api_repo=api
 vega_api_branch="v0.39.0"
 
-gh_token="${GITHUB_API_TOKEN:?}"
+# Use token, if possible. Without a token, rate limiting may kick in.
+gh_token="${GITHUB_API_TOKEN:-}"
 
 create_venv() {
 	venv="$PWD/.venv"
@@ -46,3 +47,11 @@ yarn run generate-graphql
 yarn run generate-grpc
 yarn run build
 yarn run prettier
+
+not_found='We could not find what you were looking for'
+not_found_count="$(find build -type f -print0 | xargs -0 grep "$not_found" |wc -l)"
+if test "$not_found_count" -gt 0 ; then
+	echo
+	echo "ERROR: Found $not_found_count files containing: $not_found"
+	exit 1
+fi
