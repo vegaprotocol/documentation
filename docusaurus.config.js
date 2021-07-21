@@ -31,7 +31,7 @@ module.exports = {
           position: "right",
         },
         {
-          to: "/protodocs/vega.proto",
+          to: "/docs/grpc/vega.proto",
           activeBasePath: "protodocs",
           label: "API:gRPC",
           position: "left",
@@ -148,8 +148,12 @@ module.exports = {
       {
         protobuffet: {
           fileDescriptorsPath: "./proto.json",
-          protoDocsPath: "protodocs", // prodoDocsPath seems to be hard coded to "protodocs", so don't change this
+          protoDocsPath: "./protodocs", // dir where doc files will be created
           sidebarPath: "./sidebarsProtodocs.js",
+        },
+        docs: {
+          sidebarPath: "./sidebarsProtodocs.js",
+          routeBasePath: "/docs/grpc",
         },
       },
     ],
