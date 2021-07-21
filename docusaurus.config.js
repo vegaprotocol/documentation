@@ -32,7 +32,7 @@ module.exports = {
         },
         {
           to: "/docs/grpc/vega.proto",
-          activeBasePath: "protodocs",
+          activeBasePath: "docs/grpc",
           label: "API:gRPC",
           position: "left",
         },
