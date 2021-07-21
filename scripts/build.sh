@@ -41,6 +41,7 @@ deactivate
 export VEGA_VERSION="$vega_api_branch"
 
 yarn install
+yarn run create-dirs
 yarn run generate-graphql
 yarn run generate-grpc
 yarn run build

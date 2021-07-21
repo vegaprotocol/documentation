@@ -5682,19 +5682,19 @@ docusaurus-plugin-redoc@^0.4.0:
     joi "^17.2.1"
     yaml "^1.10.0"
 
-docusaurus-protobuffet-plugin@^0.2.9:
-  version "0.2.9"
-  resolved "https://registry.yarnpkg.com/docusaurus-protobuffet-plugin/-/docusaurus-protobuffet-plugin-0.2.9.tgz#10fc248eb69c11119f3e687a10ff22f0cd161306"
-  integrity sha512-SzkLQYaijVhCKi7DGq2MX0Kpij214eOZNnanM9f9egZ8aMQ1YYfJBSBXKME5+4pIn6TvfRTp0wLhQMDcVTKqLg==
+docusaurus-protobuffet-plugin@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/docusaurus-protobuffet-plugin/-/docusaurus-protobuffet-plugin-0.3.0.tgz#c06879cded2ba38c0a69220041e6d84d74a5619c"
+  integrity sha512-tJw9rg7zRU6MJf2aQGxgXAGXNsX7Gr3hrVSRBG6PlFw/ky+6g9s9dK6ZV844w53beqHjK3lfdj6MKYaqjYMvDw==
   dependencies:
     "@docusaurus/utils" "^2.0.0-alpha.72"
 
-docusaurus-protobuffet@^0.2.10:
-  version "0.2.10"
-  resolved "https://registry.yarnpkg.com/docusaurus-protobuffet/-/docusaurus-protobuffet-0.2.10.tgz#0b1f875b1703ee5f1bdef42d761b9ed2094ab3e7"
-  integrity sha512-0KSNbGUhf17/yldv5LPmMg1YkVzMno0sL5omTKDOm9lgK6ZCQx/zYFmFuG9jPw3JA70FLy/fih0cyiPew6RJSA==
+docusaurus-protobuffet@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/docusaurus-protobuffet/-/docusaurus-protobuffet-0.3.0.tgz#6ec7a444c6acb1bf208b866d93dfbe5e771d806c"
+  integrity sha512-xyaZtC2p8TrFuatSCBsyyeOgWrJSa0n8VUkG8ifYLy3gMls2DQ+fXGmk+uGkVZk30bmOS/OqYx3fd7FvEk1YIg==
   dependencies:
-    docusaurus-protobuffet-plugin "^0.2.9"
+    docusaurus-protobuffet-plugin "^0.3.0"
 
 docusaurus-theme-redoc@^0.4.0:
   version "0.4.0"
