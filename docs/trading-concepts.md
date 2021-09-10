@@ -152,8 +152,8 @@ A network parameter is defined by:
 
 You can also refer to the [full list of testnet network parameters](https://lb.testnet.vega.xyz/network/parameters) without definitions.
 
-| Name                                                     | Type     | Specification | Description                                                       | Validation | Version added  |   
-|----------------------------------------------------------|:--------:|---------------|-------------------------------------------------------------------|:---|--------:|
+| Name                                                     | Type     | Description                                                       |   
+|----------------------------------------------------------|:--------:|---------------|-------------------------------------------------------------------|
 |`blockchains.ethereumConfig`                              | JSON     | Configuration for how this Vega network connects to Ethereum |  | - |
 |`governance.proposal.asset.maxEnact`                      | String (duration) | Each proposal contains proposal enactment time which has to be before `current time + maxEnact`. Possible value `2h`. |       | - |         |               |               | - |
 |`governance.proposal.asset.minVoterBalance`               | String (integer)  | Minimum governance token balance required to vote on a market update proposal including the correct padding instead of possible decimal places. | e.g. for 1 VEGA enter `1000000000000000000`      | - |
