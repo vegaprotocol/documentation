@@ -60,6 +60,88 @@ Functions:
 	* Requires that at least `amount` tokens are staked by the sender with the staking bridge (not the vesting or any other contract implementing IStake) to the specified Vega public key
 	* Emits the `Stake_Transferred` event
 
+
+
+#### Validator and Staking POS Rewards (WIP)
+This describes the Alpha Mainnet requirements for calculation and distribution of rewards to delegators and validators. For more information on the overall approach, please see the relevant research document.
+
+## Calculation  (WIP)
+
+At the end of an epoch, payments are calculated. This is done per active validator:
+
+* First, `score_val(stake_val)` calculates the relative weight of the validator given the stake it represents.
+* For each delegator that delegated to that validator, `score_del` is computed: `score_del(stake_del, stake_val)` where `stake_del` is the stake of that delegator, delegated to the validator, and `stake_val` is the stake that validator represents.
+* The fraction of the total available reward a validator gets is then `score_val(stake_val) / total_score` where `total_score` is the sum of all scores achieved by the validators. The fraction a delegator gets is calculated accordingly.
+* Finally, the total reward for a validator is computed, and their delegator fee subtracted and divided among the delegators
+
+
+Variables used:
+
+- `min_val`: minimum validators we need (for now, 5)
+- `compLevel`: competitition level we want between validators (1.1)
+- `num_val`: actual number of active validators
+- `a`: The scaling factor; which will be `max(min_val, num_val/compLevel)`. So with `min_val` being 5, if we have 6 validators, `a` will be `max(5, 5.4545...)` or `5.4545...`
+- `delegator_share`: propotion of the validator reward that goes to the delegators.
+
+Functions:
+
+- `score_val(stake_val)`: `sqrt(a*stake_val/3)-(sqrt(a*stake_val/3)^3)`. To avoid issues with floating point computation, the sqrt function is
+  computed to exactly four digits after the point. An example how this can be done using only integer calculations is in the example code.
+  Also, this function assumes that the stake is normalized, i.e., the sum of stake_val for all validators equals 1. If this is not the case, 
+  stake_val needs to be replaced by stake_val/total_stake, where total_stake is the sum of stake_val over all validators.
+- `score_del(stake_del, stake_val)`: for now, this will just return `stake_del`, but will be replaced with a more complex formula later on, which deserves independent testing.
+- The scoring function can give negative values if a validator has too much stake, which can upset subsequent computations. Thus, an additional
+  correction is required: if (score_val) < 0 then score_val = 0. This point should never be reached in a real run though, as validators should to be able to 
+  obtain enough delegation.
+- `delegator_reward(stake_val)`: `stake_val * delegator_share`. Long term, there will be bonuses in addition to the reward.
+
+
+
+## Distribution of Rewards (WIP)
+
+A component of the trading fees that are collected from price takers of a market are reserved for rewarding validators and stakers. These fees are denominated in the settlement currencies of the markets and are collected into an infrastructure fee account for that asset. These fees are "held" in this pool account for a length of time, determined by a network parameter (`infra-fee-hold-time`). 
+
+They are then distributed to the general accounts of eligible recipients; that is, the validators and delegators, in amounts as per above calculation.
+
+Once the reward for all delegators has been calculated, we end up with a slice of `Transfer`s, transferring an amount from the infrastructure fee account (see fees LINK) into the corresponding general balances for all of the delegators. For example:
+
+```go
+rewards := make([]*types.Transfer, 0, len(delegators))
+for _, d := range delegators {
+	rewards = append(rewards, &types.Transfer{
+		Owner: d.PartyID,
+		TransferType: types.TransferType_TRANSFER_TYPE_STAKE_REWARD,
+		Amount: &types.FinancialAmount{
+			Amount: reward,
+			Asset:  market.Asset,
+		},
+		MinAmount: reward,
+	})
+}
+
+```
+
+
+The transfer type informs the collateral engine that the `FromAccount` ought to be the infrastructure fee account, and the `ToAccount` is the general account for the party for the given asset. The delegator can then withdraw the amount much like they would any other asset/balance. Note, the transfers should only be made when the `infra-fee-hold-time` has elapsed. 
+
+
+## Network Parameters (WIP)
+
+`infra-fee-hold-time` - the length of time between when a price taker infrastructure fee is incurred and when it is paid out to validators.
+`delegator_share` - The proportion of the total validator reward that go to its delegators. Likely to be lower than 0.1.
+
+## Payment of rewards (WIP)
+- Infrastructure fees are collected into an infrastructure fee account for the asset
+- These fees are distributed to the general accounts of the validators and delegators after `infra-fee-hold-time` in amounts calculated according to the above calculation.
+- There may also be additional rewards for participating in stake delegation from the rewards function. These are accumulated and distributed separately.
+
+
+
+
+
+
+
+
 **ERC20 vesting contract**
 
 The ERC20 vesting contract supports staking the tokens it holds.
@@ -134,7 +216,7 @@ _Undelegate Now_
 The action can be announced at any time and is executed immediately following the block it is announced in.
 The user is marked to not receive any reward from the validator in that epoch. The reward should instead go into the `on-chain treasury account for that asset` (TODO: add link). The stake is marked as free for the delegator, but is not yet removed from the validator stake (this happens at the end of the epoch).
 
-### Auto [Un]delegation
+### Auto [Un]delegation (WIP)
 - A party become eligible to participate in auto delegation once they have manually delegated (nominated) 95%+ of the association.
 - Once entering auto delegation mode, any un-nominated associated tokens will be automatically distributed according to the current validator nomination of the party maintaining the same proportion.
 - Edge cases:
@@ -155,10 +237,9 @@ Using this approach means:
 - Locked (unvested) tokens can be staked. Both staking and unstaking are controlled entirely on the Ethereum side, and staked balances are recognised on the Vega network by listening for `Stake_*` events that can be emitted by any contract that's recognised by the network. This makes it possible to implement staking (nomination and denomination) functionality into the token vesting contract in addition to the ERC20 staking contract.
 - Any attacker who gains control of, or is able to exploit, the Vega network will be unable to steal staked VEGA tokens. Even if an attacker was able to take over the network, the tokenholders would remain unaffected and could fix the issue and relaunch the network by delegating to new validators.
 
-
 ## Validators
 ## Tendermint consensus
-### Transaction and sequencing
-### Transaction ordering
+ ### Transaction and sequencing
+ ### Transaction ordering
 ## Fast syncing
 ## Fairness (Wendy)
