@@ -46,11 +46,11 @@ event Stake_Deposited(address indexed user, uint256 amount, bytes32 vega_public_
 event Stake_Removed(address indexed user, uint256 amount)
 ```
 
-Staked assets will appear in a user's staking account once the Vega network sees the relevant `Stake_Deposited` event(s) with enough confirmations (defined by network parameter XXXXX). Vega will listen for `Stake_Deposited` events from the staking bridge and ERC20 vesting contracts (link) and increase the balance in the appropriate party's stake account by the amount deposited each time new stake is deposited.
+Staked assets will appear in a user's staking account once the Vega network sees the relevant `Stake_Deposited` event(s) with enough confirmations (defined by network parameter `blockchains.ethereumConfig`). Vega will listen for `Stake_Deposited` events from the staking bridge and ERC20 vesting contracts (link) and increase the balance in the appropriate party's stake account by the amount deposited each time new stake is deposited.
 
 The majority of the logic for staking VEGA tokens exists on the Ethereum network as Solidity contracts. They conform to specific interfaces, defined below, and emit certain events, This ensures staking for both normal ERC20 tokens and tokens locked in the vesting contract is possible.
 
-The staking bridge contracts live in [vegaprotocol/staking_bridge](https://github.com/vegaprotocol/Staking_Bridge) (WILL THIS GO OS)
+The staking bridge contracts live in [vegaprotocol/staking_bridge](https://github.com/vegaprotocol/Staking_Bridge)
 
 **Staking interface (IStake.sol)**
 
