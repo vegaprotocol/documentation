@@ -19,10 +19,10 @@ type Market {
   tradingMode: MarketTradingMode!
   state: MarketState!
   proposal: Proposal
-  orders(skip: Int = 0, first: Int = 0, last: Int = 0): [Order!]
-  accounts(partyId: ID = 0): [Account!]
-  trades(skip: Int = 0, first: Int = 0, last: Int = 0): [Trade!]
-  depth(maxDepth: Int = 0): MarketDepth!
+  orders(skip: Int, first: Int, last: Int): [Order!]
+  accounts(partyId: ID): [Account!]
+  trades(skip: Int, first: Int, last: Int): [Trade!]
+  depth(maxDepth: Int): MarketDepth!
   candles(since: String!, interval: Interval!): [Candle]
   data: MarketData
   liquidityProvisions(party: String): [LiquidityProvision!]

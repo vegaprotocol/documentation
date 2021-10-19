@@ -37,7 +37,7 @@ module.exports = {
           position: "left",
         },
         {
-          to: "/docs/graphql/schema",
+          to: "/docs/graphql/",
           label: "API:GraphQL",
           position: "left",
         },
@@ -116,6 +116,9 @@ module.exports = {
       require.resolve("@edno/docusaurus2-graphql-doc-generator"),
       {
         // https://github.com/edno/graphql-markdown#options
+        loaders: {
+          UrlLoader: "@graphql-tools/url-loader",
+        },
         schema:
           "https://raw.githubusercontent.com/vegaprotocol/api/" +
           vega_version +
