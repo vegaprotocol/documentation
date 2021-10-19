@@ -139,8 +139,102 @@ If a trader's deployed margin on the market is insufficient to cover a mark to m
 ## Network governance
 
 ### Parameters
+There are certain parameters within Vega that influence the behaviour of the system and can be changed by on-chain governance. 
+
+A network parameter is defined by:
+* Name
+* Type
+* Value
+* Constraints
+* Governance update policy 
+
+### Current network parameters
+
+You can also refer to the [full list of testnet network parameters](https://lb.testnet.vega.xyz/network/parameters) without definitions.
+
+| Name                                 | Type              | Description    | Example |  
+|--------------------------------------|-------------------|:--------------:|---------| 
+|`blockchains.ethereumConfig`          | JSON              | Configuration for how this Vega network connects to Ethereum |
+|`governance.proposal.asset.maxEnact`  | String (duration) | Each proposal contains proposal enactment time which has to be before `current time + maxEnact`. Possible value `2h`. |   |
+|`governance.proposal.asset.minVoterBalance` | String (integer)  | Minimum governance token balance required to vote on a market update proposal including the correct padding instead of possible decimal places. | e.g. for 1 VEGA enter `1000000000000000000`|
+|`governance.proposal.asset.requiredParticipation`  | String (float) |  Minimum Governance token balance required to create a market update proposal |  A fraction of total token holders that must participate in a vote. Minimum `0.0`, maximum `1.0`, sensible value e.g. `0.25`.             |
+|`governance.proposal.asset.minProposerBalance` | String (integer)  | Minimum Governance token balance required to submit the proposal including the correct padding instead of possible decimal places.  | e.g. for 100 VEGA enter `100000000000000000000`      |
+|`governance.proposal.market.minVoterBalance`  | String (integer)   | Minimum Governance token balance required to vote on a market update proposal including the correct padding instead of possible decimal places. | e.g. for 1 VEGA enter `1000000000000000000`      |
+|`governance.proposal.market.minProposerBalance`   | String (integer)   | Minimum Governance token balance required to submit the proposal including the correct padding instead of possible decimal places. | e.g. for 100 VEGA enter `100000000000000000000`|
+|`governance.proposal.market.requiredParticipation`  | String (float) | Minimum Governance token balance required to create a market update proposal |  A fraction of total token holders that must participate in a vote.  | Minimum `0.0`, maximum `1.0`, sensible value e.g. `0.25`.             |               | - |
+|`governance.proposal.market.maxEnact`              | String (duration) | Each proposal contains proposal enactment time which has to be before `current time + maxEnact`. |  Possible value `2h`. |
+|`governance.proposal.updateMarket.requiredMajority`       | String (integer)  | 'Yes' votes must outnumber 'No' votes on this proposal by this proportion on a market update proposal |  A fraction of total token holders that must participate in a vote. Minimum `0.0`, maximum `1.0`, sensible value e.g. `0.5`.  | - |
+|`governance.proposal.updateMarket.minVoterBalance`        | String (integer)   | Minimum Governance token balance required to vote on a market update proposal including the correct padding instead of possible decimal places. | e.g. for 1 VEGA enter `1000000000000000000` |
+|`governance.proposal.updateMarket.minProposerBalance`     | String (Integer)  | Minimum Governance token balance required to create a market update proposal including the correct padding instead of possible decimal places. | e.g. for 100 VEGA enter `100000000000000000000` |
+|`governance.proposal.updateMarket.requiredParticipation`  | String (float) |  Minimum Governance token balance required to create a market update proposal |  A fraction of total token holders that must participate in a vote. |  Minimum `0.0`, maximum `1.0`, sensible value e.g. `0.25`. |
+|`governance.proposal.updateMarket.minClose` | String (duration) | Each proposal contains vote closing time which has to be after `current time + minClose`.  | Possible value `1h`. |
+|`governance.proposal.updateMarket.maxClose`  | String (duration) | Each proposal contains vote closing time which has to be before `current time + maxClose`. Possible value `24h`. |
+|`governance.proposal.updateMarket.minEnact` | String (duration) | Each proposal contains proposal enactment time which has to be after `current time + minEnact`. Must be greater than or equal to the corresponding `minClose` as a proposal can't be enacted before voting on it closed.  | Possible value `2h`. |
+|`governance.proposal.updateMarket.maxEnact` | String (duration) | Each proposal contains proposal enactment time which has to be before `current time + maxEnact`. Possible value `2h`. |
+|`governance.proposal.updateNetParam.requiredParticipation`| String (float) | Minimum Governance token balance required to create a market update proposal.  A fraction of total token holders that must participate in a vote. | Minimum `0.0`, maximum `1.0`, sensible value e.g. `0.25`.             |
+|`governance.proposal.updateNetParam.minClose`   | String (duration) | Each proposal contains vote closing time which has to be after `current time + minClose`.  | Possible value `1h`. |
+|`governance.proposal.updateNetParam.maxEnact`  | String (duration) | Each proposal contains proposal enactment time which has to be before `current time + maxEnact`.  | Possible value `2h`. | 
+|`governance.proposal.updateNetParam.minEnact` | String (duration) | Each proposal contains proposal enactment time which has to be after `current time + minEnact`. | Must be greater than or equal to the corresponding `minClose` as a proposal can't be enacted before voting on it closed. | Possible value `2h`. |
+|`governance.proposal.updateNetParam.minVoterBalance` | String (integer)   | Minimum Governance token balance required to vote on a market update proposal including the correct padding instead of possible decimal places. | e.g. for 1 VEGA enter `1000000000000000000`   |
+|`governance.proposal.updateNetParam.minProposerBalance`   | String (Integer)  | Minimum Governance token balance required to for the relevant proposal including the correct padding instead of possible decimal places. | e.g. for 100 VEGA enter `100000000000000000000`  |
+|`governance.proposal.asset.maxClose`       | String (duration) | Each proposal contains vote closing time which has to be before `current time + maxClose`. | Possible value `24h`. | 
+|`governance.proposal.market.minClose`      | String (duration) | Each proposal contains vote closing time which has to be after `current time + minClose`.  | Possible value `1h`. |
+|`governance.proposal.market.requiredMajority`             | String (integer)  | 'Yes' votes must outnumber 'No' votes on this proposal by this proportion on a market update proposal. A fraction of total token holders that must participate in a vote.  | Minimum `0.0`, maximum `1.0`, sensible value: e.g. `0.5`.|
+|`governance.proposal.market.minEnact`                     | String (duration) | Each proposal contains proposal enactment time which has to be after `current time + minEnact`. Must be greater than or equal to the corresponding `minClose` as a proposal can't be enacted before voting on it closed. | Possible value `2h`. |
+|`governance.proposal.asset.requiredMajority`              | String (integer)  | 'Yes' votes must outnumber 'No' votes on this proposal by this proportion on a market update proposal A fraction of total token holders that must participate in a vote.  | Minimum `0.0`, maximum `1.0`, sensible value e.g. `0.5`. |
+|`governance.proposal.market.maxClose`                     | String (duration) | Each proposal contains vote closing time which has to be before `current time + maxClose`. |  Possible value `24h`. |
+|`governance.proposal.asset.minEnact`                      | String (duration) | Each proposal contains proposal enactment time which has to be after `current time + minEnact`. Must be greater than or equal to the corresponding `minClose` as a proposal can't be enacted before voting on it closed. | Possible value `2h`. |
+|`governance.proposal.asset.minClose`                      | String (duration) | Each proposal contains vote closing time which has to be after `current time + minClose`.  | Possible value `1h`.  |
+|`governance.proposal.updateNetParam.requiredMajority`     | String (integer)  | 'Yes' votes must outnumber 'No' votes on this proposal by this proportion on a market update proposal. A fraction of total token holders that must participate in a vote.  | Minimum `0.0`, maximum `1.0`, sensible value e.g. `0.5`.  |
+|`governance.proposal.updateNetParam.maxClose`             | String (duration) | Each proposal contains vote closing time which has to be before `current time + maxClose`.  | Possible value `24h`. |
+|`market.stake.target.timeWindow`                          | String (duration) |  Length of time window over which open interest is measured | - |
+|`market.stake.target.scalingFactor`                       | String (integer) | Scaling between liquidity demand estimate based on open interest and target stake | - | 
+|`market.margin.scalingFactors`                            | JSON         | Margin level scaling factors   |             | - |
+|`market.monitor.price.updateFrequency`                    | String (duration)  | Frequency of price monitoring scaling factors update| | - |
+|`market.monitor.price.defaultParameters`                  | JSON    | Configuration for price monitoring | | - |
+|`market.value.windowLength`                               | String (duration) | Length of time window over which market value is estimated | - |
+|`market.auction.maximumDuration`                          | String (duration)  | The longest duration an auction can be. Auctions that would be shorter (or proposals that require a shorter auction should not be started | - |
+|`market.auction.minimumDuration`                          | String (duration)  | The shortest duration an auction can be. Auctions that would be longer should not be started | - |
+|`market.fee.factors.infrastructureFee`                    | String (float) | Proportion of a trade's notional value to be taken as an infrastructure fee | - |
+|`market.fee.factors.makerFee`                             | String (float) | Proportion of a trade's notional value to be taken as a price maker fee | - |
+|`market.liquidityProvision.shapes.maxSize`                | String (integer)| The upper limit of orders in an LP commitment shape | - |
+|`market.liquidity.maximumLiquidityFeeFactorLevel`         | String (float) | The highest fee an LP can offer | - |
+|`market.liquidity.providers.fee.distributionTimeStep`     | String (duration) | How frequently liquidity rewards are distributed to LPs | - |
+|`market.liquidity.minimum.probabilityOfTrading.lpOrders`  | String (float) | Orders created from liquidity commitments that fall below this probaility will be repriced | - |
+|`market.liquidity.targetstake.triggering.ratio`           | String (float) | - | - |
+|`market.liquidity.probabilityOfTrading.tau.scaling`       |  String (integer) | - | - |
+|`market.liquidity.bondPenaltyParameter`                   |  String (float) | Scaling factor for LP penalties in case of shortfall | - |
+|`market.liquidity.stakeToCcySiskas`                       | String (float)   | Translates a Liquidity Commitment size to a volume obligation| | - |
+|`network.checkpoint.marketFreezeDate`                     | String (date) | The date before which all markets are expected to settle | - |
+|`network.checkpoint.networkEndOfLifeDate`                 | String (date) | The point at which the chain will be shut down | - |
+|`network.checkpoint.timeElapsedBetweenCheckpoints`        | String (duration) | The minimum time that should pass before another checkpoint is taken | - |
+|`validators.epoch.length`                                 | String (integer) | The length (in seconds) of an epoch | - |
+|`validators.delegation.minAmount`                         | String (float) | The smallest amount of the governance asset that can be delegated | - |
+|`validators.delegation.competitionLevel`                  | String (float) | The level of competition of the validators (factor how much stake would be needed for all validators to reach optimal revenue). | Default value `1.1`. Minimum value `1` (inclusive). No maximum.   |
+|`validators.delegation.delegatorShare`                    | String (float) | The fraction of staking rewards that goes to delegators who delegated to a validator. | Default value `0.883`. Valid range is between `0` and `1` inclusive. |
+|`validators.vote.required`      | String (float) |  The fraction of validators that need to "see" Ethereum events before the event being accepted as true. | Default value `0.67`. Valid range is between `0` and `1`. |
 
 ### Changing parameters
+
+Network parameters can be changed by governance, however some network parameters need to be more difficult to change than others. Therefore, the protocol needs to know for each network parameter what governance thresholds apply for ascertaining a proposal's ability to change the parameter's value. Specifically, those thresholds are:
+
+* `MinimumProposalPeriod`
+* `MinimumPreEnactmentPeriod`
+* `MinimumRequiredParticipation` 
+* `MinimumRequiredMajority`
+
+There are groups of network parameters that will use the same values for the thresholds. Importantly, these `Minimum` levels are themselves network parameters, and therefore subject to change. They should be self-referential in terms of ascertaining the success of changing them.
+
+For example, consider a network parameter that specifies the proportion of fees that goes to validators (`feeAmtValidators`), with change thresholds:
+
+* `MinimumProposalPeriod = 30 days`
+* `MinimumPreEnactmentPeriod = 10 days` 
+* `MinimumRequiredParticipation = 60%` 
+* `MinimumRequiredMajority = 80%`
+
+Thus, a proposal to change the `feeAmtValidators.MinimumProposalPeriod` would need to pass all of the thresholds listed above.
+
+Network parameters can only be added and removed with Vega core software releases.
 
 ### Threshold and rules
 
