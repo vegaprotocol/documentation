@@ -1,5 +1,23 @@
 # Vega Chain
+## Limited network life for restricted mainnet (WIP)
+Vega networks will at least initially and perhaps always run for a limited time only. 
 
+Networks will have a finite lifetime because:
+
+- It is efficient to upgrade the protocol by starting again as it avoids the need to deal with multiple versions of the code (upgrades to a running chain need to respect and be able to recalculate the pre-upgrade deterministic state for earlier blocks, so all versions of criticial code must remain in the system).
+This is especially important early on when rapid iteration is desirable, as the assumption that new chains can be started for new features simplifies things considerably.
+
+- Trading at 1000s of tx/sec generates a lot of data. Given that most instruments are non-perpetual (they expire), this gives the ability to create new markets on a new chain and naturally let the old one come to an end rather than dragging around its history forever.
+
+- Bugs, security breaches, or other issues during alpha could either take out the chain OR make it desirable to halt block production. It's important to consider what happens next if this occurs.
+
+There are four main features:
+1. Create checkpoints with relevant (but minimal) information at regular intervals, and on every deposit and every withdrawal request.
+2. Ability to specify a checkpoint hash as part of genesis.
+3. A new 'Restore' transaction that contains the full checkpoint file and triggers state restoration
+4. A new 'checkpoint hash' transaction is broadcast by all validators
+
+Point two requires that at load time, each node calculates the hash of the checkpoint file. It then sends this through consensus to make sure that all the nodes in the new network agree on the state. 
 ## Staking
 Vega runs on a delegated proof of stake blockchain. Participants who hold a balance of VEGA, the governance asset, can stake that asset on the network by nominating their tokens to one or more validators that they trust to help secure the network.
 
