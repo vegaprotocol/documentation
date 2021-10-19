@@ -37,7 +37,7 @@ module.exports = {
           position: "left",
         },
         {
-          to: "/docs/graphql/schema",
+          to: "/docs/graphql/",
           label: "API:GraphQL",
           position: "left",
         },
