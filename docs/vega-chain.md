@@ -1,27 +1,24 @@
 # Vega Chain
-## Limited network life for restricted mainnet (WIP)
-Vega networks will at least initially and perhaps always run for a limited time only. 
+## Network life (alpha mainnet)
+Vega networks will, at least initially, run for a limited time only. 
 
-Networks will have a finite lifetime because:
+There are several reasons for this decision for Vega, including: 
 
-- It is efficient to upgrade the protocol by starting again as it avoids the need to deal with multiple versions of the code (upgrades to a running chain need to respect and be able to recalculate the pre-upgrade deterministic state for earlier blocks, so all versions of criticial code must remain in the system).
-This is especially important early on when rapid iteration is desirable, as the assumption that new chains can be started for new features simplifies things considerably.
+- Limited network life makes it efficient to upgrade the protocol by starting again, as it avoids the need to deal with multiple versions of the code. Upgrades to a running chain need to respect and be able to recalculate the pre-upgrade deterministic state for earlier blocks, so all versions of criticial code must remain in the system. 
+- It allows for rapid iteration, as the ability to start new chains for new features is simpler.
+- Bugs, security breaches, or other issues during alpha could either take out the chain or make it desirable to halt block production.  
+- Once the network allows trading, the thousands of transactions per second will generate a lot of data. Given that most instruments expire, this allows for new markets to be created on a new chain, allowing an old market/chain to come to an end rather than keeping the history and data forever.
 
-- Trading at 1000s of tx/sec generates a lot of data. Given that most instruments are non-perpetual (they expire), this gives the ability to create new markets on a new chain and naturally let the old one come to an end rather than dragging around its history forever.
+### Network checkpoints 
+Networks have checkpoints at regular intervals and on every deposit and withdrawal request, that include a lean but relevant amount of information. 
+- Checkpoint hashes are specified as part of the network genesis. Each node calculates the hash of the checkpoint file and then sends this through consensus to ensure all the nodes in the new network agree on the state.
+- A `restore`  transaction contains the full checkpoint file and triggers state restoration. 
+- A `checkpoint hash` transaction is broadcast by all validators. 
 
-- Bugs, security breaches, or other issues during alpha could either take out the chain OR make it desirable to halt block production. It's important to consider what happens next if this occurs.
-
-There are four main features:
-1. Create checkpoints with relevant (but minimal) information at regular intervals, and on every deposit and every withdrawal request.
-2. Ability to specify a checkpoint hash as part of genesis.
-3. A new 'Restore' transaction that contains the full checkpoint file and triggers state restoration
-4. A new 'checkpoint hash' transaction is broadcast by all validators
-
-Point two requires that at load time, each node calculates the hash of the checkpoint file. It then sends this through consensus to make sure that all the nodes in the new network agree on the state. 
-## Staking
+## Delegated proof of stake
 Vega runs on a delegated proof of stake blockchain. Participants who hold a balance of VEGA, the governance asset, can stake that asset on the network by nominating their tokens to one or more validators that they trust to help secure the network.
 
-### Simple staking (restricted mainnet)
+### Simple staking (alpha mainnet)
 Validators and stakers both receive incentives from the network, depending on various factors, including how much stake is nominated.
 
 Staking requires the combined action of: associating VEGA tokens (or fractions of a token) to the Vega staking bridge contract; and using the token(s) to nominate one or more validators.
@@ -34,6 +31,9 @@ A VEGA token (or a fraction thereof) is either unassociated or associated to a v
 Both unassociated and associated tokens can be used to vote on governance actions.
 
 << tip: VEGA tokenholders can associate their tokens and then nominate validators to receive rewards, using token.vega.xyz, or CoinList, depending on how they acquired their tokens. All tokens, whether locked in the vesting contract or unlocked, can be used for staking. >>
+
+#### Staking rewards
+Read about rewards for staking on alpha mainnet under Validators, below. (link) 
 
 #### Smart contract & staking bridge interactions
 
@@ -50,7 +50,7 @@ Staked assets will appear in a user's staking account once the Vega network sees
 
 The majority of the logic for staking VEGA tokens exists on the Ethereum network as Solidity contracts. They conform to specific interfaces, defined below, and emit certain events, This ensures staking for both normal ERC20 tokens and tokens locked in the vesting contract is possible.
 
-The staking bridge contracts live in [vegaprotocol/staking_bridge](https://github.com/vegaprotocol/Staking_Bridge)
+The staking bridge contracts can be found on the [Staking Bridge repository] on GitHub. (https://github.com/vegaprotocol/Staking_Bridge).
 
 **Staking interface (IStake.sol)**
 
@@ -78,88 +78,6 @@ Functions:
 	* Requires that at least `amount` tokens are staked by the sender with the staking bridge (not the vesting or any other contract implementing IStake) to the specified Vega public key
 	* Emits the `Stake_Transferred` event
 
-
-
-#### Validator and Staking POS Rewards (WIP)
-This describes the Alpha Mainnet requirements for calculation and distribution of rewards to delegators and validators. For more information on the overall approach, please see the relevant research document.
-
-## Calculation  (WIP)
-
-At the end of an epoch, payments are calculated. This is done per active validator:
-
-* First, `score_val(stake_val)` calculates the relative weight of the validator given the stake it represents.
-* For each delegator that delegated to that validator, `score_del` is computed: `score_del(stake_del, stake_val)` where `stake_del` is the stake of that delegator, delegated to the validator, and `stake_val` is the stake that validator represents.
-* The fraction of the total available reward a validator gets is then `score_val(stake_val) / total_score` where `total_score` is the sum of all scores achieved by the validators. The fraction a delegator gets is calculated accordingly.
-* Finally, the total reward for a validator is computed, and their delegator fee subtracted and divided among the delegators
-
-
-Variables used:
-
-- `min_val`: minimum validators we need (for now, 5)
-- `compLevel`: competitition level we want between validators (1.1)
-- `num_val`: actual number of active validators
-- `a`: The scaling factor; which will be `max(min_val, num_val/compLevel)`. So with `min_val` being 5, if we have 6 validators, `a` will be `max(5, 5.4545...)` or `5.4545...`
-- `delegator_share`: propotion of the validator reward that goes to the delegators.
-
-Functions:
-
-- `score_val(stake_val)`: `sqrt(a*stake_val/3)-(sqrt(a*stake_val/3)^3)`. To avoid issues with floating point computation, the sqrt function is
-  computed to exactly four digits after the point. An example how this can be done using only integer calculations is in the example code.
-  Also, this function assumes that the stake is normalized, i.e., the sum of stake_val for all validators equals 1. If this is not the case, 
-  stake_val needs to be replaced by stake_val/total_stake, where total_stake is the sum of stake_val over all validators.
-- `score_del(stake_del, stake_val)`: for now, this will just return `stake_del`, but will be replaced with a more complex formula later on, which deserves independent testing.
-- The scoring function can give negative values if a validator has too much stake, which can upset subsequent computations. Thus, an additional
-  correction is required: if (score_val) < 0 then score_val = 0. This point should never be reached in a real run though, as validators should to be able to 
-  obtain enough delegation.
-- `delegator_reward(stake_val)`: `stake_val * delegator_share`. Long term, there will be bonuses in addition to the reward.
-
-
-
-## Distribution of Rewards (WIP)
-
-A component of the trading fees that are collected from price takers of a market are reserved for rewarding validators and stakers. These fees are denominated in the settlement currencies of the markets and are collected into an infrastructure fee account for that asset. These fees are "held" in this pool account for a length of time, determined by a network parameter (`infra-fee-hold-time`). 
-
-They are then distributed to the general accounts of eligible recipients; that is, the validators and delegators, in amounts as per above calculation.
-
-Once the reward for all delegators has been calculated, we end up with a slice of `Transfer`s, transferring an amount from the infrastructure fee account (see fees LINK) into the corresponding general balances for all of the delegators. For example:
-
-```go
-rewards := make([]*types.Transfer, 0, len(delegators))
-for _, d := range delegators {
-	rewards = append(rewards, &types.Transfer{
-		Owner: d.PartyID,
-		TransferType: types.TransferType_TRANSFER_TYPE_STAKE_REWARD,
-		Amount: &types.FinancialAmount{
-			Amount: reward,
-			Asset:  market.Asset,
-		},
-		MinAmount: reward,
-	})
-}
-
-```
-
-
-The transfer type informs the collateral engine that the `FromAccount` ought to be the infrastructure fee account, and the `ToAccount` is the general account for the party for the given asset. The delegator can then withdraw the amount much like they would any other asset/balance. Note, the transfers should only be made when the `infra-fee-hold-time` has elapsed. 
-
-
-## Network Parameters (WIP)
-
-`infra-fee-hold-time` - the length of time between when a price taker infrastructure fee is incurred and when it is paid out to validators.
-`delegator_share` - The proportion of the total validator reward that go to its delegators. Likely to be lower than 0.1.
-
-## Payment of rewards (WIP)
-- Infrastructure fees are collected into an infrastructure fee account for the asset
-- These fees are distributed to the general accounts of the validators and delegators after `infra-fee-hold-time` in amounts calculated according to the above calculation.
-- There may also be additional rewards for participating in stake delegation from the rewards function. These are accumulated and distributed separately.
-
-
-
-
-
-
-
-
 **ERC20 vesting contract**
 
 The ERC20 vesting contract supports staking the tokens it holds.
@@ -177,7 +95,7 @@ Functions:
 	* 	* Emits `Stake_Deposited` events
 	* Emits `Stake_Removed` events
 
-#### Delegating and undelegating  (WIP)
+### Delegating and undelegating (WIP)
 Any locked and undelegated stake can be delegated at any time by putting a delegation-message on the chain. However, the delegation only becomes valid towards the next epoch, though it can be undone through undelegate.
 
 Once Vega is aware of locked tokens, the users will have an account with the balance reflecting how many tokens were locked. At this point, the user can submit a transaction to use their tokens to nominate validators.
@@ -202,7 +120,6 @@ To delegate stake, a delegator simply puts a command "delegate x stake to y" on 
 
 Each validator will have a maximum amount of stake that they can accept as delegation (initially this will be the same for all validators, governed by a network parameter `maxStakePerValidator`). If a participant is delegating such that the size of their stake would cause this amount to be exceeded, then they are only staked up to this maximum amount. The remaining of their stake is therefore eligible to stake to another validator.
 
-### Undelegating (WIP)
 Users can remove stake by submitting an `undelegate` transaction. The tokens will then be restored back to their token balance.
 
 At the top level, `Stake_Deposited` simply adds `amount` of tokens to the account of the user associated with the `user`. Likewise, the `Stake_Removed` event subtracts the `amount` of tokens from their account.
@@ -234,7 +151,7 @@ _Undelegate Now_
 The action can be announced at any time and is executed immediately following the block it is announced in.
 The user is marked to not receive any reward from the validator in that epoch. The reward should instead go into the `on-chain treasury account for that asset` (TODO: add link). The stake is marked as free for the delegator, but is not yet removed from the validator stake (this happens at the end of the epoch).
 
-### Auto [Un]delegation (WIP)
+#### Auto [Un]delegation (WIP)
 - A party become eligible to participate in auto delegation once they have manually delegated (nominated) 95%+ of the association.
 - Once entering auto delegation mode, any un-nominated associated tokens will be automatically distributed according to the current validator nomination of the party maintaining the same proportion.
 - Edge cases:
@@ -256,6 +173,44 @@ Using this approach means:
 - Any attacker who gains control of, or is able to exploit, the Vega network will be unable to steal staked VEGA tokens. Even if an attacker was able to take over the network, the tokenholders would remain unaffected and could fix the issue and relaunch the network by delegating to new validators.
 
 ## Validators
+
+### Rewards for validators and stakers (alpha mainnet) 
+
+#### Reward calculations and payment (alpha mainnet) (WIP)
+
+At the end of an epoch, reward payments are calculated. This is done per active validator:
+
+* First, `score_val(stake_val)` calculates the relative weight of the validator given the stake it represents.
+* For each delegator that delegated to that validator, `score_del` is computed: `score_del(stake_del, stake_val)` where `stake_del` is the stake of that delegator, delegated to the validator, and `stake_val` is the stake that validator represents.
+* The fraction of the total available reward a validator gets is then `score_val(stake_val) / total_score` where `total_score` is the sum of all scores achieved by the validators. The fraction a delegator gets is calculated accordingly.
+* Finally, the total reward for a validator is computed, and their delegator fee subtracted and divided among the delegators
+
+
+Variables used:
+
+- `min_val`: minimum validators we need (for now, 5)
+- `compLevel`: competitition level we want between validators (1.1)
+- `num_val`: actual number of active validators
+- `a`: The scaling factor; which will be `max(min_val, num_val/compLevel)`. So with `min_val` being 5, if we have 6 validators, `a` will be `max(5, 5.4545...)` or `5.4545...`
+- `delegator_share`: propotion of the validator reward that goes to the delegators.
+
+Functions:
+
+- `score_val(stake_val)`: `sqrt(a*stake_val/3)-(sqrt(a*stake_val/3)^3)`. To avoid issues with floating point computation, the sqrt function is
+  computed to exactly four digits after the point. An example how this can be done using only integer calculations is in the example code.
+  Also, this function assumes that the stake is normalized, i.e., the sum of stake_val for all validators equals 1. If this is not the case, 
+  stake_val needs to be replaced by stake_val/total_stake, where total_stake is the sum of stake_val over all validators.
+- `score_del(stake_del, stake_val)`: for now, this will just return `stake_del`, but will be replaced with a more complex formula later on, which deserves independent testing.
+- The scoring function can give negative values if a validator has too much stake, which can upset subsequent computations. Thus, an additional
+  correction is required: if (score_val) < 0 then score_val = 0. This point should never be reached in a real run though, as validators should to be able to 
+  obtain enough delegation.
+- `delegator_reward(stake_val)`: `stake_val * delegator_share`. Long term, there will be bonuses in addition to the reward.
+
+#### Network Parameters (WIP)
+
+`delegator_share` - The proportion of the total validator reward that go to its delegators. Likely to be lower than 0.1.
+
+
 ## Tendermint consensus
  ### Transaction and sequencing
  ### Transaction ordering
