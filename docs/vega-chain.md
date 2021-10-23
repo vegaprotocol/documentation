@@ -4,16 +4,31 @@ Vega networks will, at least initially, run for a limited time only.
 
 There are several reasons for this decision for Vega, including: 
 
-- Limited network life makes it efficient to upgrade the protocol by starting again, as it avoids the need to deal with multiple versions of the code. Upgrades to a running chain need to respect and be able to recalculate the pre-upgrade deterministic state for earlier blocks, so all versions of criticial code must remain in the system. 
+- Limited network life makes it efficient to upgrade the protocol by starting again, as it avoids the need to deal with multiple versions of the code. Upgrades to a running chain need to respect and be able to recalculate the deterministic state for earlier blocks, so all versions of criticial code must remain in the system. 
 - It allows for rapid iteration, as the ability to start new chains for new features is simpler.
-- Bugs, security breaches, or other issues during alpha could either take out the chain or make it desirable to halt block production.  
-- Once the network allows trading, the thousands of transactions per second will generate a lot of data. Given that most instruments expire, this allows for new markets to be created on a new chain, allowing an old market/chain to come to an end rather than keeping the history and data forever.
+- Once there is a network with trading, the thousands of transactions per second will generate a lot of data. Given that most instruments expire, this allows for new markets to be created on a new chain, allowing an old market/chain to come to an end rather than keeping the history and data forever.
 
-### Network checkpoints 
-Networks have checkpoints at regular intervals and on every deposit and withdrawal request, that include a lean but relevant amount of information. 
-- Checkpoint hashes are specified as part of the network genesis. Each node calculates the hash of the checkpoint file and then sends this through consensus to ensure all the nodes in the new network agree on the state.
-- A `restore`  transaction contains the full checkpoint file and triggers state restoration. 
+### Network (blockchain) checkpoints 
+
+The blockchain periodically stores checkpoints of important state parameters, such as balances and governance proposals. This allows the chain to be restarted from a previously valid state in the event of a critical issue being discovered, or consensus failure. Those checkpoints happen at defined intervals and on every deposit and withdrawal request.
+
+Each checkpoint is identified by a hash, which is present in the name of the checkpoint file, and specified as part of the network genesis. Each node calculates the hash of the checkpoint file and then sends this through consensus to ensure all the nodes in the new network agree on the state. The network is restored when the `restore` transaction, which contains the full checkpoint file, is enacted. 
 - A `checkpoint hash` transaction is broadcast by all validators. 
+
+Checkpoints contain the following data about a given network:
+- Assets and insurance pool balances from markets (for networks with markets) summed up per asset and balance per asset, pending and active
+- Account balances (total balance per party/asset)
+- Withdrawal transactions (completed and in-progress)
+- All network parameters (key and value - including those specific to checkpoints LINK) 
+- Epoch at time of checkpoint
+- Delegation actions (active and pending)
+- Accepted governance proposals (network parameter, asset and market)
+- Event ID of the last processed deposit event for all bridged chains (such as Ethereum) 
+- All events on bridged chains that were confirmed by the time of the checkpoint
+- Hash of the previous block, block number and transaction ID of the block from which the checkpoint is derived 
+
+needs more clarity: 
+- On-chain treasury balances and on-chain reward functions / parameters (for alpha mainnet: only the network parameters that govern staking)
 
 ## Delegated proof of stake
 Vega runs on a delegated proof of stake blockchain. Participants who hold a balance of VEGA, the governance asset, can stake that asset on the network by nominating their tokens to one or more validators that they trust to help secure the network.
