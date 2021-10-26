@@ -23,7 +23,13 @@ Amendments that change price or increase size will be executed as an atomic canc
    #### Order types/Times in force
    ### Batch operations on orders
  ## Collateral protocol
-  ### Network treasury (RM) (WIP)
+ Intro. 
+ 
+ The collateral for alpha mainnet is exclusively VEGA, which is used for staking and rewards. 
+ 
+ << tip: You'll need a Vega Wallet for staking, and for receiving rewards. You'll be able to see your account balance on token.vega.xyz.>>
+ 
+  ### Network treasury (alpha mainnet) (WIP)
   The Network Treasury is a set of accounts (up to 1 per asset supported by the network via ther asset framework) that are funded by parties, deposits, or by direct transfers (e.g. a portion of fees, or from insurance pools at market closure). 
 The purpose of the Network Treasury is to allow funding to be allocated to rewards, grants, etc. by token holder governance.
 
@@ -84,7 +90,7 @@ For each on chain reward pool account (i.e. each combination of reward scheme an
 
 This parameter must be defaulted as empty for each reward scheme that's created, which ensures that periodic automated allocation will not happen for any reward scheme unless separately enabled through a separate governance process. That is, periodic allocation should not be able to be configured in the same proposal that creates the reward scheme itself.
 
-For each period of duration `period_length_seconds` a transfer is made from the on-chain treasury to the reward pool account in question as described in the governance initiated transfers spec (including network wide amount limits, etc.) (TODO: link), where the following are used for the transfer details:
+For each period of duration `period_length_seconds` a transfer is made from the on-chain treasury to a user's reward pool account. in question as described in the governance initiated transfers spec (including network wide amount limits, etc.) (TODO: link), where the following are used for the transfer details:
 - `source_type` =  network treasury
 - `source` = blank (only one per asset)
 - `type` =  "best effort"
@@ -98,5 +104,5 @@ The transfer occurs immediately per once every `period_length_seconds` and does 
 
   ### Depositing 
   ### Withdrawing
-  ### Adding assets (links to governance) 
+  ### Adding assets (link to governance) 
  ## Supplying data
