@@ -47,72 +47,35 @@ Validators will not lose stake or rewards if they have a temporary interruption 
 Validators and nominators both receive incentives from the network, depending on various factors including how much stake is nominated. Read about rewards for staking on alpha mainnet under Validators, below. (link) 
 
 ### Delegating and undelegating (WIP)
-Any locked and undelegated stake can be delegated at any time by putting a delegation-message on the chain. However, the delegation only becomes valid towards the next epoch, though it can be undone through undelegate.
+Any tokens that are not already nominated can be nominate a validator. However, the nomination only becomes valid at the start of the next epoch. Stake can be unnominated at any time. See more below about the options for unnominating a validator.  
 
-Once Vega is aware of locked tokens, the users will have an account with the balance reflecting how many tokens were locked. At this point, the user can submit a transaction to use their tokens to nominate validators.
+Once the Vega network is aware of associated tokens, there will be a balance available that reflects how many tokens are ready for nominating a validator.
 
-```proto
-message Delegate {
-	uint256   Amount = 1;
-	Validator Val = 2;
-}
+When a tokenholder nominates a validator with their stake, a command is sent onto the chain. It is verified at the start, when the command is issued and before it is put on the chain, that the tokenholder has sufficient unnominated stake, as well as at start of the next epoch, just before the command takes effect. The amount of a tokenholder's available stake is reduced immediately as soon as the command is put into a block.
 
-message Undelegate {
-	uint256   Amount = 1;
-	Validator Val = 2;
-}
-```
-
-Where `Delegate` adds the `Amount` to the delegation of validator `Val` at the beginning of the next epoch (if still available to them), and `Undelegate` subtracts the amount from the delegation of `Val` by the next epoch if available.
-
-To avoid fragmentation or spam, there is a system parameter `minimum delegateable stake` that defines the smallest unit (fractions of) tokens that can be used for delegation.
-
-To delegate stake, a delegator simply puts a command "delegate x stake to y" on the chain. It is verified at the beginning (when the command is issued and before it is put on the chain) that the delegator has sufficient unlocked stake, as well as in the beginning of the next epoch just before the command takes effect. The amount of delegatable stake is reduced right away once the command is put into a block.
-
-Each validator will have a maximum amount of stake that they can accept as delegation (initially this will be the same for all validators, governed by a network parameter `maxStakePerValidator`). If a participant is delegating such that the size of their stake would cause this amount to be exceeded, then they are only staked up to this maximum amount. The remaining of their stake is therefore eligible to stake to another validator.
+Each validator will have a maximum amount of stake that they can accept as delegation. For alpha mainnet, this will be the same for all validators, governed by a network parameter `maxStakePerValidator`. If a participant tries to nominate a validator with an amount that would mean the size of their stake would cause max stake per validator to be exceeded, then they are only staked up to this maximum amount. The remaining amount is eligible to nominate another validator.
 
 Users can remove stake by submitting an `undelegate` transaction. The tokens will then be restored back to their token balance.
 
-At the top level, `Stake_Deposited` simply adds `amount` of tokens to the account of the user associated with the `user`. Likewise, the `Stake_Removed` event subtracts the `amount` of tokens from their account.
+**Spam protection** 
 
-- If the `Stake_Removed` amount of tokens is higher than the balance of said user, something went seriously wrong somewhere. This is a good time to panic.
-- If the amount is higher than the amount of undelegated stake, the missing amount must be freed using the undelegate function (see section above about bridge contract interaction). There is currently no rule how to choose this;
+To avoid fragmentation or spam, there is minimum delegateable stake that defines the smallest unit (fractions of) tokens that can be used for delegation, defined by the network parameter `validators.delegation.minAmount`. 
 
-*Option-1*
-A first heuristic would be to take from the highest delegation first and then go down, e.g.
-	* If the delegation is 100, 90, 80, 70, and we need to free 30 stake, we first take from the richest ones until they are no longer the richest:
-	* Free 10, delegation is 90, 90, 80, 70
-	* Free 30, delegation is 80, 80, 80, 70
-This has the benefit of lowering the probability that a single withdrawal will leave any one validator with zero delegated stake.
+#### Types of undelegations (unnominations) (WIP)
 
-*Option-2*
-Another option would be to withdraw stake proportionally from the validators.
-	* If the delegation is 100, 90, 80, 70, and we need to free 30 stake, we split the withdrawal across all validators proportionately:
-	* Free from delegator-1 (to whom the participant has delegated 100) an amount equal to 30 * (100/(100+90+80+70)) etc. Not sure how to deal with rounding.
-
-
-#### Types of undelegations (WIP)
-
-_Undelegate towards the end of the epoch_
+_Undelegate towards the end of the epoch_ 
 - The action is announced in the next available block, but the delegator keeps the delegation alive till the last block of the epoch. The delegator can then re-delegate the stake, which then be valid once the next epoch starts. The delegator cannot move the tokens before the epoch ends, they remain locked.
 
-
-_Undelegate Now_
+_Undelegate Now_ (THIS IS NOT IN TOKEN.VEGA?)
 `UndelegateNow`
 The action can be announced at any time and is executed immediately following the block it is announced in.
-The user is marked to not receive any reward from the validator in that epoch. The reward should instead go into the `on-chain treasury account for that asset` (TODO: add link). The stake is marked as free for the delegator, but is not yet removed from the validator stake (this happens at the end of the epoch).
+The user is marked to not receive any reward from the validator in that epoch. The reward should instead go into the `on-chain treasury account for that asset`. The stake is marked as free for the delegator, but is not yet removed from the validator stake (this happens at the end of the epoch).
 
 #### Auto [Un]delegation (WIP)
-- A party become eligible to participate in auto delegation once they have manually delegated (nominated) 95%+ of the association.
+- A party becomes eligible to participate in auto delegation once they have manually nominated 95%+ of the association. (IS THIS DONE?)
 - Once entering auto delegation mode, any un-nominated associated tokens will be automatically distributed according to the current validator nomination of the party maintaining the same proportion.
-- Edge cases:
-  - If a party has entered auto delegation mode, and their association has increased it should be automatically distributed for the epoch following the increase of association. However, if during the same epoch the party requests to execute manual delegation, no automatic delegation will be done in that epoch. If there is still un-nominated association in the next epoch, it will be automatically distributed.
-  - If a party qualifies for auto delegation and has un-nominated association, however the party requests to undelegate (either during the epoch or at the end of the epoch) - they exit auto delegation mode. The rationale here is that they probably want to do some rearrangement of their nomination and we give them a chance to do so. Once the party reached more than x% of nomination again, they would enter auto delegation mode again and any future un-nominated association will be automatically distributed.
-  - When distributing the newly available association according to the current validators nomination of the party, if validator A should get X but can only accept X - e (due to max per validator constraint), Vega will not try to distribute e between the other validators and will try to distribute it again in the next round.
-- Auto undelegation - whenever the party dissociates tokens, their nomination must be updated such that their maximum nomination reflects the association.
 
 ### ERC20 governance and staking token (restricted mainnet)
-
 Vega uses an ERC20 token called VEGA for governance. This includes nominating validators, and creating and voting on governance proposals.
 
 << tip >> A party's VEGA tokens must first be recognised against a Vega public key before they can be used on the Vega network for governance and staking. << tip >>
@@ -124,11 +87,9 @@ Using this approach means:
 - Any attacker who gains control of, or is able to exploit, the Vega network will be unable to steal staked VEGA tokens. Even if an attacker was able to take over the network, the tokenholders would remain unaffected and could fix the issue and relaunch the network by delegating to new validators.
 
 ## Validators
-
 Validators are responsible for agreeing on the order of transactions and creating new blocks so that all nodes can agree on the state of the network. In alpha mainnet, all validators effectively have the same stake currently, so all are selected an equal number of times to validate a block. Thus rewards will be equal between them, assuming they all continue to function.  
 
 ### Rewards for validators and stakers (alpha mainnet) 
-
 At the end of an epoch, reward payments are calculated. This is done per active validator. A reward is calculated per validator, and for each validator the reward is divided between their nominators. 
 
 ### ***Further reading*** 
@@ -144,7 +105,6 @@ There are several reasons for this decision, including:
 - Once there is a network with trading, the thousands of transactions per second will generate a lot of data. Given that most instruments expire, this allows for new markets to be created on a new chain, allowing an old market/chain to come to an end rather than keeping the history and data forever.
 
 ### Network checkpoints 
-
 The network's validators periodically store checkpoints of all important state parameters such as balances and governance proposals. This allows the chain to be restarted from a previously valid state in the event of a critical issue being discovered, or consensus failure. Those checkpoints happen at defined intervals, and additionally on every deposit and withdrawal request. Each validator node calculates the hash of the checkpoint file and then sends this through consensus to ensure all the nodes in the network agree on the state. 
 
 Once a network is taken down, the checkpoint file's hash is added to the genesis block. At network start-up, a validator must submit a restore transaction with the checkpoint file. All other validators verify the checkpoint against their own, restore the state and then allow other transactions on the network. 
