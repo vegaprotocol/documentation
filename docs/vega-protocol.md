@@ -76,8 +76,7 @@ There are two network parameters that control transfers from the treasury:
 
 ##### Direct allocation by governance (WIP)
 
-A governance proposal may be submitted to transfer funds on enactment from the on-chain treasury to certain account types. Please see [the governance spec]() for a description of this.
-
+A governance proposal may be submitted to transfer funds on enactment from the on-chain treasury to certain account types. 
 
 ##### Periodic automated allocation to reward pool account (WIP)
 
