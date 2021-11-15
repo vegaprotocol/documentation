@@ -14,6 +14,21 @@ In a delegated proof of stake system, participants - validators and token-holder
 Link to spec for staking and validator rewards when publicly available. (valpol)
 -->
 
+### VEGA token
+Vega uses the VEGA ERC20 token for governance, which includes nominating validators, and creating and voting on governance proposals.
+
+A VEGA token (or fraction) can be either unassociated or associated with a Vega key:
+
+- Unassociated: The tokenholder is free to do what they want with the token, but cannot nominate a validator with it
+- Associated: The token is locked in the staking smart contract and can be used to nominate a validator. It must be unassociated to withdraw it
+
+All tokens, whether unlocked or locked in the vesting contract can be used for staking.
+All tokens, whether associated or unassociated, can be used to vote on governance actions. 
+
+:::info
+A user's VEGA tokens must first be associated with a Vega key before they can be used for governance and staking.
+:::
+
 ### Staking on Vega 
 Vega networks use the ERC20 token VEGA for staking. Staking requires the combined action of associating VEGA tokens (or fractions of a token) to the Vega staking bridge contract; and using those token(s) to nominate one or more validators. 
 
@@ -21,15 +36,20 @@ Vega networks use the ERC20 token VEGA for staking. Staking requires the combine
 
 An epoch is a time period during which staking changes can be announced and then implemented. Changes that are announced in one epoch will only be executed in the following epoch (excepting 'un-nominate now' - see below). The length of an epoch is set using the network parameter `validators.epoch.length`. 
 
-### Nominating validators (improve this title?) 
-INTRO
+### Nominating validators
+Using tokens to nominate validators keeps the decentralised network functioning. Tokenholders are given the opportunity to nominate validators to encourage a diverse set of reliable nodes running the network, and to give the community the opportunity to dis-incentivise/remove bad validators.
 
-- Repeat (in other words) how to associate tokens/why. Once the Vega network is aware of an amount of associated tokens, the participant can use those tokens to nominate a validator. When a user chooses a validator (or validators) to nominate with their tokens, the amount is immediately subtracted from their available balance, and is used at the start of the next epoch to actively nominate those validator(s). 
+When someone has VEGA associated to a Vega key, those tokens need to be nominated to a validator in order to be considered for staking rewards. When a tokenholder chooses a validator (or validators) to nominate with their tokens, the amount is immediately subtracted from their available balance, and is used at the start of the next epoch to actively nominate those validator(s). 
 
-Each validator has a maximum amount of stake that they can accept. During restricted mainnet, this will be the same amount for all validators, and is governed by a network parameter `maxStakePerValidator`. If a participant tries to nominate a validator with an amount that would mean the size of their stake would cause a validator's maximum stake to be exceeded, then the participant will only nominate the amount of tokens that gets the validator to that maximum amount. The remaining amount is eligible to nominate another validator.
+:::info
+VEGA tokenholders can use [token.vega.xyz](https://token.vega.xyz) to associate their tokens and nominate validators. A Vega Wallet and Ethereum wallet are both required. CoinList custodial users should confirm with CoinList how staking works for them.
+:::
+
+Each validator has a maximum amount of stake that they can accept. During restricted mainnet, this will be the same amount for all validators, and is governed by a network parameter `maxStakePerValidator`. 
+
+When a validator's token limit is reached, and more nomination would cause a validator's maximum stake to be exceeded, any additional nominated tokens will not be used. The remaining amount will be available to use to nominate another validator after the next epoch has begun.
 
 **Un-nominating validators** 
-
 Participants can remove their nomination at the end of an epoch, or immediately. The un-nominated tokens will be restored back to the participant's associated token balance.
 
 _Un-nominate towards the end of the epoch_ 
@@ -75,21 +95,6 @@ The staking bridge contracts can be found on the [Staking Bridge repository](htt
 
 #### Spam protection
 To avoid fragmentation or spam, there is minimum delegateable stake that defines the smallest unit (fractions of) tokens that can be used for delegation, defined by the network parameter `validators.delegation.minAmount`. 
-
-## VEGA token
-Vega uses the VEGA ERC20 token for governance, which includes nominating validators, and creating and voting on governance proposals.
-
-A VEGA token (or fraction) can be either unassociated or associated with a Vega key:
-
-- Unassociated: The tokenholder is free to do what they want with the token, but cannot nominate a validator with it
-- Associated: The token is locked in the staking smart contract and can be used to nominate a validator. It must be unassociated to withdraw it
-
-All tokens, whether unlocked or locked in the vesting contract can be used for staking.
-All tokens, whether associated or unassociated, can be used to vote on governance actions. 
-
-:::info
-A user's VEGA tokens must first be associated with a Vega key before they can be used for governance and staking.
-:::
 
 ## Validators
 The Vega network is operated by a number of independent validators. Validators are responsible for agreeing on the order of transactions and creating new blocks so that all nodes can agree on the state of the network. 
