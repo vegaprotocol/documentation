@@ -8,16 +8,11 @@ Represents a party on Vega, could be an ethereum wallet address in the future
 ```graphql
 type Party {
   id: ID!
-  orders(skip: Int = 0, first: Int = 0, last: Int = 0): [Order!]
-  trades(
-    marketId: ID = 0
-    skip: Int = 0
-    first: Int = 0
-    last: Int = 0
-  ): [Trade!]
-  accounts(marketId: ID = 0, asset: String, type: AccountType): [Account!]
+  orders(skip: Int, first: Int, last: Int): [Order!]
+  trades(marketId: ID, skip: Int, first: Int, last: Int): [Trade!]
+  accounts(marketId: ID, asset: String, type: AccountType): [Account!]
   positions: [Position!]
-  margins(marketId: ID = 0): [MarginLevels!]
+  margins(marketId: ID): [MarginLevels!]
   proposals(inState: ProposalState): [Proposal]
   votes: [ProposalVote]
   withdrawals: [Withdrawal!]

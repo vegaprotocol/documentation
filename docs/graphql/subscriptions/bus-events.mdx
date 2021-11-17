@@ -8,8 +8,8 @@ Subscribe to event data from the event bus
 ```graphql
 busEvents(
   types: [BusEventType!]!
-  marketId: ID = 0
-  partyId: ID = 0
+  marketId: ID
+  partyId: ID
   batchSize: Int!
 ): [BusEvent!]
 
