@@ -31,21 +31,21 @@ module.exports = {
           position: "right",
         },
         {
-          to: "/protodocs/vega.proto",
-          activeBasePath: "protodocs",
-          label: "API:gRPC",
-          position: "left",
+          to: "/docs/concepts/vega-chain",
+          label: "Concepts",
+          position: "left"
         },
         {
-          to: "/docs/graphql/",
-          label: "API:GraphQL",
-          position: "left",
+          to: "/docs/api/overview",
+          label: "API",
+          position: "left"
         },
         {
-          to: "/docs/rest/",
-          label: "API:REST",
-          position: "left",
-        },
+          to: "/docs/tools/vega-wallet",
+          label: "Tools",
+          position: "left"
+        }
+
       ],
     },
     footer: {
