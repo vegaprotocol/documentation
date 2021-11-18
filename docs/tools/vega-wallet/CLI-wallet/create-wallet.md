@@ -1,6 +1,13 @@
-# Create and use a Vega Wallet
+---
+sidebar_position: 1
+title: Create and use a Vega Wallet
+hide_title: false
+---
 
-To set up the self-hosted Vega Wallet, follow the step-by-step instructions below. Using the self-hosted Vega Wallet ensures your keys will be completely disassociated from your personal identity, and Vega will have no way to connect them with you, unless you share your public key for any reason. 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+To set up the Vega Wallet, follow the step-by-step instructions below. Using the Vega Wallet ensures your keys will be completely disassociated from your personal identity, and Vega will have no way to connect them with you, unless you share your public key for any reason. 
 
 This software a work-in-progress and is frequently updated, and does not yet have a user interface. 
 
@@ -14,7 +21,8 @@ For a full list of Vega Wallet commands, see (page to come).
 
 These instructions are written to be used in command line. Below, in the snippets, you'll see commands in `highlighted text`. Copy those instructions and paste them into your command line interface.
 
-#### Download file
+### Download file
+
 Download and save the zip file from [Releases](https://github.com/vegaprotocol/vegawallet/releases/), in the Vega Wallet GitHub repo. We suggest you keep track of where you've saved the file, because that's where the command line interface will look for it.
 
 **For MacOS:**
@@ -45,7 +53,8 @@ Click on the (More info) text, which will reveal a button to "Run anyway".
 
 Download `vegawallet-linux-amd64.zip`
 
-## 2. Generate or import existing wallet 
+## 2. Generate or import existing wallet
+
 The steps below will guide you through initialising the wallet, and creating new key pairs / importing an existing wallet. To import an existing wallet, you'll need the mnemonic (recovery phrase) to hand.
 
 :::info
@@ -56,52 +65,89 @@ The steps below will guide you through initialising the wallet, and creating new
 You can see a list of available commands by running  `./vegawallet -h` on MacOS and Linux, or `vegawallet -h` on Windows.
 :::
 
-#### Initialise the wallet
+### Initialise the wallet
 
 The `init` command (below) will initialise the wallet. This creates the folder, the configuration files, and default networks needed by the wallet to operate. 
 
-**MacOS & Linux**
+<Tabs groupId="operating-systems">
+<TabItem value="mac" label="MacOSX">
 
-```console
+```bash
 ./vegawallet init
 ```
-**Windows**
+</TabItem>
+<TabItem value="linux" label="Linux">
 
-```console
+```bash
+./vegawallet init
+```
+</TabItem>
+<TabItem value="windows" label="Windows">
+
+```bash
 vegawallet init
 ```
+</TabItem>
+</Tabs>
 
-#### Import existing wallet 
+### Import existing wallet
+
 Use your mnemonic (recovery phrase) to import a wallet you created in the past into a new version of the wallet software. If you were not provided with a mnemonic (recovery phrase) or have lost it, you will need to create a new wallet/keypair. Use the command below to import the plain-text file with your mnemonic in it.  
 
-**MacOS & Linux**
+<Tabs groupId="operating-systems">
+<TabItem value="mac" label="MacOSX">
 
-```console
-./vegawallet import --wallet "YOUR_USERNAME" --mnemonic-file "PATH_TO_YOUR_MNEMONIC"
+```bash
+./vegawallet import \
+    --wallet "YOUR_USERNAME" \
+    --mnemonic-file "PATH_TO_YOUR_MNEMONIC"
 ```
+</TabItem>
+<TabItem value="linux" label="Linux">
 
-**Windows**
-
-```console
-vegawallet import --wallet "YOUR_USERNAME" --mnemonic-file "PATH_TO_YOUR_MNEMONIC"
+```bash
+./vegawallet import \
+    --wallet "YOUR_USERNAME" \
+    --mnemonic-file "PATH_TO_YOUR_MNEMONIC"
 ```
+</TabItem>
+<TabItem value="windows" label="Windows">
 
-#### Create wallet credentials  
+```bash
+vegawallet import \
+    --wallet "YOUR_USERNAME" \
+    --mnemonic-file "PATH_TO_YOUR_MNEMONIC"
+```
+</TabItem>
+</Tabs>
+
+### Create wallet credentials
+
 Next, **create a user name and passphrase** for your Wallet, and **create a public and private key** and **mnemonic (recovery phrase) .
 
 Replace "YOUR_USERNAME" (below) with your chosen username:
 
-**MacOS & Linux**
+<Tabs groupId="operating-systems">
+<TabItem value="mac" label="MacOSX">
 
-```console
+```bash
 ./vegawallet key generate --wallet "YOUR_USERNAME"
 ```
+</TabItem>
+<TabItem value="linux" label="Linux">
 
-**Windows**
+```bash
+./vegawallet key generate --wallet "YOUR_USERNAME"
+```
+</TabItem>
+<TabItem value="windows" label="Windows">
 
-```console
+```bash
 vegawallet key generate --wallet "YOUR_USERNAME"
 ```
+</TabItem>
+</Tabs>
+
 
 It will then prompt you to **input a passphrase**, and then **confirm that passphrase**. You'll use this username and passphrase to login to Vega Console. (Instructions on connecting to Console are below.)
 
@@ -109,35 +155,69 @@ The key generate command in that instruction will generate public and private ke
 
 You’ll see a public and private key, as well as a mnemonic (recovery phrase). DO NOT SHARE YOUR PRIVATE KEY OR MNEMONIC. **Keep your mnemonic (recovery phrase) safe and secret. You will need your mnemonic to import your keys.** 
 
-#### Give each new key a nickname/alias
+### Give each new key a nickname/alias
 
 When creating a key, you can give an alias by adding a metadata item called `name`.
 
-**MacOS & Linux**
 
-```console
-./vegawallet key generate --wallet "YOUR_USERNAME" --meta "name:CHOOSE_ALIAS_FOR_KEY"`
+<Tabs groupId="operating-systems">
+<TabItem value="mac" label="MacOSX">
+
+```bash
+./vegawallet key generate \
+    --wallet "YOUR_USERNAME" \
+    --meta "name:CHOOSE_ALIAS_FOR_KEY"`
 ```
+</TabItem>
+<TabItem value="linux" label="Linux">
 
-**Windows**
-
-```console
-vegawallet key generate --wallet "YOUR_USERNAME" --meta "name:CHOOSE_ALIAS_FOR_KEY"
+```bash
+./vegawallet key generate \
+    --wallet "YOUR_USERNAME" \
+    --meta "name:CHOOSE_ALIAS_FOR_KEY"`
 ```
+</TabItem>
+<TabItem value="windows" label="Windows">
 
-#### Give an existing key a nickname/alias
-
-**MacOS & Linux**
-
-```console
-./vegawallet meta --meta="name:CHOOSE_ALIAS_FOR_KEY" --wallet="YOUR_USERNAME" --pubkey="REPLACE_THIS_WITH_YOUR_PUBLIC_KEY"
+```bash
+vegawallet key generate \
+    --wallet "YOUR_USERNAME" \
+    --meta "name:CHOOSE_ALIAS_FOR_KEY"
 ```
+</TabItem>
+</Tabs>
 
-**Windows**
+### Give an existing key a nickname/alias
 
-```console
-vegawallet meta --meta="name:CHOOSE_CUSTOM_ALIAS_FOR_KEY" --wallet="YOUR_USERNAME" --pubkey="REPLACE_THIS_WITH_YOUR_PUBLIC_KEY"
+<Tabs groupId="operating-systems">
+<TabItem value="mac" label="MacOSX">
+
+```bash
+./vegawallet meta \
+    --meta="name:CHOOSE_ALIAS_FOR_KEY" \
+    --wallet="YOUR_USERNAME" \
+    --pubkey="REPLACE_THIS_WITH_YOUR_PUBLIC_KEY"
 ```
+</TabItem>
+<TabItem value="linux" label="Linux">
+
+```bash
+./vegawallet meta \
+    --meta="name:CHOOSE_ALIAS_FOR_KEY" \
+    --wallet="YOUR_USERNAME" \
+    --pubkey="REPLACE_THIS_WITH_YOUR_PUBLIC_KEY"
+```
+</TabItem>
+<TabItem value="windows" label="Windows">
+
+```bash
+vegawallet meta \
+    --meta="name:CHOOSE_CUSTOM_ALIAS_FOR_KEY" \
+    --wallet="YOUR_USERNAME" \
+    --pubkey="REPLACE_THIS_WITH_YOUR_PUBLIC_KEY"
+```
+</TabItem>
+</Tabs>
 
 :::info
 You can also use the meta command to tag a key with other data you might want, using a property name and a value. This will be useful for developing with Vega Wallet in the future. Find out how to do this via the Vega Wallet commands.
@@ -152,31 +232,54 @@ To import the list of available mainnet networks provided by the validators, use
 
 Once you have the file, use the following command to import from the URL: 
 
-**MacOS & Linux**
 
-```console
-./vegawallet network import --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
+<Tabs groupId="operating-systems">
+<TabItem value="mac" label="MacOSX">
+
+```bash
+./vegawallet network import \
+    --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
 ```
+</TabItem>
+<TabItem value="linux" label="Linux">
 
-**Windows**
-
-```console
-vegawallet network import --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
+```bash
+./vegawallet network import \
+     --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
 ```
+</TabItem>
+<TabItem value="windows" label="Windows">
+
+```bash
+vegawallet network import \
+--from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
+```
+</TabItem>
+</Tabs>
+
 
 Alternatively you can download the file, Use the following command to import from file: 
 
-**MacOS & Linux**
+<Tabs groupId="operating-systems">
+<TabItem value="mac" label="MacOSX">
 
-```console
+```bash
 ./vegawallet network import --from-file "PATH_TO_FILE"
 ```
+</TabItem>
+<TabItem value="linux" label="Linux">
 
-**Windows**
+```bash
+./vegawallet network import --from-file "PATH_TO_FILE"
+```
+</TabItem>
+<TabItem value="windows" label="Windows">
 
-```console
+```bash
 vegawallet network import --from-file "PATH_TO_FILE"
 ```
+</TabItem>
+</Tabs>
 
 :::info
 You can override the imported network name using the `--with-name` flag.
@@ -186,32 +289,53 @@ You can override the imported network name using the `--with-name` flag.
 
 To view the list of available networks that you imported, plus those already available in the wallet configuration, run the following command: 
 
-**MacOS & Linux**
 
-```console
+<Tabs groupId="operating-systems">
+<TabItem value="mac" label="MacOSX">
+
+```bash
 ./vegawallet network list
 ```
+</TabItem>
+<TabItem value="linux" label="Linux">
 
-**Windows**
+```bash
+./vegawallet network list
+```
+</TabItem>
+<TabItem value="windows" label="Windows">
 
-```console
+```bash
 vegawallet network list
 ```
+</TabItem>
+</Tabs>
 
 ## 4. Run the wallet 
 
 To choose a network and run the wallet, use the following command: 
 
-**MacOS & Linux**
+<Tabs groupId="operating-systems">
+<TabItem value="mac" label="MacOSX">
 
-```console
+```bash
 ./vegawallet service run --network "NETWORK_NAME"
 ```
-**Windows**
 
-```console
+</TabItem>
+<TabItem value="linux" label="Linux">
+
+```bash
+./vegawallet service run --network "NETWORK_NAME"
+```
+</TabItem>
+<TabItem value="windows" label="Windows">
+
+```bash
 vegawallet service run --network "NETWORK_NAME"
 ```
+</TabItem>
+</Tabs>
 
 :::info
 If you want to use your wallet with Fairground, Vega's testnet, then connect your wallet to `Fairground`. 

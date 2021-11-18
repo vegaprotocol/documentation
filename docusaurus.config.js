@@ -41,7 +41,7 @@ module.exports = {
           position: "left"
         },
         {
-          to: "/docs/tools/vega-wallet",
+          to: "/docs/tools/overview",
           label: "Tools",
           position: "left"
         }
