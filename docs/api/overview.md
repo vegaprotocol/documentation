@@ -1,3 +1,5 @@
+
+
 # Overview
 
-The Vega Data node presents three APIs
+The Vega Data node presents three APIs.
