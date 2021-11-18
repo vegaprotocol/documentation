@@ -131,9 +131,9 @@ vegawallet import \
 
 ### Create wallet credentials
 
-Next, **create a user name and passphrase** for your Wallet, and **create a public and private key** and **mnemonic (recovery phrase) .
+Next, **create a name and passphrase** for your Wallet, and **create a public and private key** and **mnemonic (recovery phrase) .
 
-Replace "YOUR_USERNAME" (below) with your chosen username:
+Replace `YOUR_USERNAME` (below) with your chosen username:
 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
@@ -161,7 +161,12 @@ It will then prompt you to **input a passphrase**, and then **confirm that passp
 
 The key generate command in that instruction will generate public and private keys as well as a mnemonic for the wallet, at the same time as creating a user name.
 
-You’ll see a public and private key, as well as a mnemonic (recovery phrase). DO NOT SHARE YOUR PRIVATE KEY OR MNEMONIC. **Keep your mnemonic (recovery phrase) safe and secret. You will need your mnemonic to import your keys.** 
+You’ll see a public and private key, as well as a mnemonic (recovery phrase).
+:::warning
+Keep your mnemonic (recovery phrase) safe and secret. You will need your mnemonic to import your keys. 
+
+**Your mnemonic is only shown once, at key creation, and cannot be recovered. DO NOT SHARE YOUR PRIVATE KEY OR MNEMONIC.**
+:::
 
 ### Give each new key a nickname/alias
 
@@ -228,7 +233,7 @@ vegawallet meta \
 </Tabs>
 
 :::info
-You can also use the meta command to tag a key with other data you might want, using a property name and a value. This will be useful for developing with Vega Wallet in the future. Find out how to do this via the Vega Wallet commands.
+You can also use the key annotate command to tag a key with other data you might want, using a property name and a value. This will be useful for developing with Vega Wallet in the future. Find out how to do this via the Vega Wallet commands.
 :::
 
 ## 3. Choose a network
