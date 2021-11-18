@@ -12,7 +12,7 @@ To set up the Vega Wallet, follow the step-by-step instructions below. Using the
 This software a work-in-progress and is frequently updated, and does not yet have a user interface. 
 
 :::info
-For a full list of Vega Wallet commands, see (page to come).
+For a full list of Vega Wallet commands, see [CLI Commands](./command-list).
 :::
 
 ## 1. Install and run Vega Wallet version 0.9+ 
@@ -66,7 +66,7 @@ The steps below will guide you through initialising the wallet, and creating new
 
 :::info
  You'll need to run the commands from the directory you've saved the wallet file in. Use the command `pwd` to find out where your terminal is looking in the file system. Use the command `cd` and the path/to/wallet/directory to tell the command line where to find the file. 
- :::
+:::
 
 :::info
 You can see a list of available commands by running  `./vegawallet -h` on MacOS and Linux, or `vegawallet -h` on Windows.

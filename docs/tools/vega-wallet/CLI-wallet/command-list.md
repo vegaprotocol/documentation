@@ -14,7 +14,7 @@ By default, the wallet will be stored at a specific location. These can stay as-
 
 There are 3 ways to list the available commands
 
-```sh
+```bash
 vegawallet
 vegawallet -h
 vegawallet help
@@ -24,7 +24,7 @@ vegawallet help
 
 Before using the wallet, you need to initialise it with the following command:
 
-```sh
+```bash
 vegawallet init
 ```
 
@@ -35,7 +35,7 @@ wallet and its service to operate.
 
 To re-initialise the program without removing user data (for example, to import existing networks), use the following command:
 
-```sh
+```bash
 vegawallet init --force
 ```
 
@@ -44,7 +44,7 @@ vegawallet init --force
 To create a new wallet, generate your first key pair using the following
 command:
 
-```sh
+```bash
 vegawallet key generate --wallet "YOUR_USERNAME"
 ```
 
@@ -64,8 +64,9 @@ You’ll see an output with your public and private key, and your mnemonic. **Do
 
 If you want to restore your wallet, use the following command:
 
-```sh
-vegawallet import --wallet "YOUR_WALLET" --mnemonic-file "PATH_TO_YOUR_MNEMONIC"
+```bash
+vegawallet import --wallet "YOUR_WALLET" \
+    --mnemonic-file "PATH_TO_YOUR_MNEMONIC"
 ```
 
 The flag `--mnemonic-file` is used to locate the file that contains the
@@ -82,7 +83,7 @@ your key pairs.
 
 If you want to list all the registered wallets, use the following command:
 
-```sh
+```bash
 vegawallet list
 ```
 
@@ -90,7 +91,7 @@ vegawallet list
 
 To generate a key pair on the given wallet, use the following command:
 
-```sh
+```bash
 vegawallet key generate --wallet "YOUR_USERNAME"
 ```
 
@@ -112,8 +113,10 @@ You can attach metadata to your key with the `--meta` flag (more on this below).
 For better key management, you may want to add metadata to your key pairs. This
 is done with the following command:
 
-```sh
-vegawallet key annotate --wallet "YOUR_USERNAME" --meta "key1:value1;key2:value2" --pubkey "YOUR_HEX_PUBLIC_KEY"
+```bash
+vegawallet key annotate --wallet "YOUR_USERNAME" \
+    --meta "key1:value1;key2:value2" \
+    --pubkey "YOUR_HEX_PUBLIC_KEY"
 ```
 
 An item of metadata is represented as a key-value property.
@@ -122,8 +125,10 @@ An item of metadata is represented as a key-value property.
 
 You can give to each key pair a nickname/alias with a meta `name`. For example:
 
-```sh
-vegawallet key annotate --wallet "YOUR_USERNAME" --meta "name:my-alias" --pubkey "YOUR_HEX_PUBLIC_KEY"
+```bash
+vegawallet key annotate --wallet "YOUR_USERNAME" \
+    --meta "name:my-alias" \
+    --pubkey "YOUR_HEX_PUBLIC_KEY"
 ```
 
 **Important**
@@ -137,8 +142,9 @@ to your update.
 You can prevent the use of a key by "tainting" it with the following
 command:
 
-```sh
-vegawallet key taint --wallet "YOUR_NAME" --pubkey "YOUR_HEX_PUBIC_KEY"
+```bash
+vegawallet key taint --wallet "YOUR_NAME" \
+    --pubkey "YOUR_HEX_PUBIC_KEY"
 ```
 
 It will then prompt you to input a passphrase. You can also specify the
@@ -148,8 +154,9 @@ passphrase with the `--passphrase` flag.
 
 If you have tainted a key by mistake, you can untaint it using the command:
 
-```sh
-vegawallet key untaint --wallet "YOUR_WALLET" --pubkey "YOUR_HEX_PUBIC_KEY"
+```bash
+vegawallet key untaint --wallet "YOUR_WALLET" \
+    --pubkey "YOUR_HEX_PUBIC_KEY"
 ```
 
 It will then prompt you to input a passphrase. You can also specify the
@@ -163,7 +170,7 @@ If you tainted a key for security reasons, you should not untaint it.
 
 To list your key pairs, use the following command:
 
-```sh
+```bash
 vegawallet key list --wallet "YOUR_NAME"
 ```
 
@@ -180,9 +187,13 @@ contents to the outside world.**
 To sign and verify any kind of base-64 encoded messages, use the following
 commands:
 
-```sh
-vegawallet sign --wallet "YOUR_WALLET" --pubkey "YOUR_HEX_PUBIC_KEY" --message "c3BpY2Ugb2YgZHVuZQo="
-vegawallet verify --pubkey "YOUR_HEX_PUBIC_KEY" --message "c3BpY2Ugb2YgZHVuZQo=" --signature "76f978asd6fa8s76f"
+```bash
+vegawallet sign --wallet "YOUR_WALLET" \
+    --pubkey "YOUR_HEX_PUBIC_KEY" \
+    --message "c3BpY2Ugb2YgZHVuZQo="
+vegawallet verify --pubkey "YOUR_HEX_PUBIC_KEY" \
+     --message "c3BpY2Ugb2YgZHVuZQo=" \
+     --signature "76f978asd6fa8s76f"
 ```
 
 It will then prompt you to input a passphrase. You can also specify the
@@ -193,7 +204,7 @@ passphrase with the `--passphrase` flag.
 During wallet initialisation, a set of default test networks are installed. You can list them
 with the following command:
 
-```sh
+```bash
 vegawallet network list
 ```
 
@@ -203,13 +214,13 @@ You can also import a network configuration, for example, for a mainnet network,
 
 To import from a local file, use the following command:
 
-```sh
+```bash
 vegawallet network import --from-file "PATH_TO_FILE"
 ```
 
 To import from a URL, use the following command:
 
-```sh
+```bash
 vegawallet network import --from-url "URL_TO_FILE"
 ```
 
@@ -220,14 +231,14 @@ You can override the imported network name using the `--with-name` flag.
 Once a wallet and a network have been set up, you can run the wallet with the
 following command:
 
-```sh
+```bash
 vegawallet service run --network "NETWORK_NAME"
 ```
 
 To run the wallet and open up a local version of Vega Console, the trading UI,
 use the following command:
 
-```sh
+```bash
 vegawallet service run  --network "NETWORK_NAME" --console-proxy
 ```
 
@@ -246,8 +257,10 @@ refreshing.
 Instead of sending a command through the API, you can send it through the
 command line, use the following command:
 
-```sh
-vegawallet command --pubkey "YOUR_HEX_PUBIC_KEY" --wallet "YOUR_WALLET" --network "YOUR_NETWORK" '{"THE_COMMAND": {...}, "propagate": true}'
+```bash
+vegawallet command --pubkey "YOUR_HEX_PUBIC_KEY" \
+    --wallet "YOUR_WALLET" \
+    --network "YOUR_NETWORK" '{"THE_COMMAND": {...}, "propagate": true}'
 ```
 
 ## Isolate a key pair for HD wallet
@@ -256,6 +269,7 @@ On HD (hierarchical deterministic) wallets, the wallet node is used to generate 
 
 You can isolate a single key pair, without the wallet node, in an "isolated wallet" with the following command:
 
-```sh
-vegawallet key isolate --pubkey "YOUR_HEX_PUBIC_KEY" --wallet "YOUR_WALLET"
+```bash
+vegawallet key isolate --pubkey "YOUR_HEX_PUBIC_KEY" \
+    --wallet "YOUR_WALLET"
 ```
