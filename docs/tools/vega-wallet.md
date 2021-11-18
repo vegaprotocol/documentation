@@ -72,7 +72,7 @@ vegawallet init
 ```
 
 #### Import existing wallet 
-Use your mnemonic (recovery phrase) to import a wallet you created in the past into a new version of the wallet software. If you were not provided with a mnemonic (recovery phrase) or have lost it, you will need to create a new wallet/keypair. 
+Use your mnemonic (recovery phrase) to import a wallet you created in the past into a new version of the wallet software. If you were not provided with a mnemonic (recovery phrase) or have lost it, you will need to create a new wallet/keypair. Use the command below to import the plain-text file with your mnemonic in it.  
 
 **MacOS & Linux**
 
@@ -148,9 +148,23 @@ You can also use the meta command to tag a key with other data you might want, u
 To use Vega Wallet, you'll need to choose a network to connect to. 
 
 ### Import network list 
-To import the list of available networks provided by validators, download the file on Networks. (add more detail when file is available). Can people just import the URL? Is that better?
+To import the list of available mainnet networks provided by the validators, use the [`mainnet1.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml) file on the networks repository.
 
-Once you have the file, use the following command: 
+Once you have the file, use the following command to import from the URL: 
+
+**MacOS & Linux**
+
+```console
+./vegawallet network import --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
+```
+
+**Windows**
+
+```console
+vegawallet network import --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
+```
+
+Alternatively you can download the file, Use the following command to import from file: 
 
 **MacOS & Linux**
 
@@ -164,27 +178,13 @@ Once you have the file, use the following command:
 vegawallet network import --from-file "PATH_TO_FILE"
 ```
 
-Or, from a URL:
-
-**MacOS & Linux**
-
-```console
-./vegawallet network import --from-url "URL_TO_FILE"
-```
-
-**Windows**
-
-```console
-vegawallet network import --from-url "URL_TO_FILE"
-```
-
 :::info
 You can override the imported network name using the `--with-name` flag.
 :::
 
 ### View network list 
 
-To view the list of available networks that you imported, run the following command: 
+To view the list of available networks that you imported, plus those already available in the wallet configuration, run the following command: 
 
 **MacOS & Linux**
 
@@ -200,7 +200,8 @@ vegawallet network list
 
 ## 4. Run the wallet 
 
-To run the wallet, use the following command. 
+To choose a network and run the wallet, use the following command: 
+
 **MacOS & Linux**
 
 ```console
@@ -211,6 +212,10 @@ To run the wallet, use the following command.
 ```console
 vegawallet service run --network "NETWORK_NAME"
 ```
+
+:::info
+If you want to use your wallet with Fairground, Vega's testnet, then connect your wallet to `Fairground`. 
+:::
 
 :::info
 To terminate the process, such as if you want to run other commands in Wallet, use `ctrl+c`.
