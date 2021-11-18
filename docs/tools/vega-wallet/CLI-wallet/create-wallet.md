@@ -12,7 +12,7 @@ To set up the Vega Wallet, follow the step-by-step instructions below. Using the
 This software a work-in-progress and is frequently updated, and does not yet have a user interface. 
 
 :::info
-For a full list of Vega Wallet commands, see [CLI Commands](./command-list).
+For a full list of Vega Wallet commands, see [CLI Commands](../command-list).
 :::
 
 ## 1. Install and run Vega Wallet version 0.9+ 
