@@ -17,7 +17,7 @@ For a full list of Vega Wallet commands, see [CLI Commands](./command-list.md).
 
 ## 1. Install and run Vega Wallet version 0.9+ 
 
-**Important:** You will need to use Vega Wallet version 0.9.2 to connect to Vega Mainnet. 
+**Important:** You will need to use Vega Wallet version 0.9.2 or above to connect to Vega Mainnet. 
 
 These instructions are written to be used in command line. Below, in the snippets, you'll see commands in `highlighted text`. Copy those instructions and paste them into your command line interface.
 
@@ -270,8 +270,7 @@ vegawallet network import \
 </TabItem>
 </Tabs>
 
-
-Alternatively you can download the file, Use the following command to import from file: 
+Alternatively you can import a network list from a file. Use the following command to import from file: 
 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
@@ -300,8 +299,8 @@ You can override the imported network name using the `--with-name` flag.
 :::
 
 ### View network list 
-
-To view the list of available networks that you imported, plus those already available in the wallet configuration, run the following command: 
+ 
+If you want to view the list of available networks that you imported, plus those already available in the wallet configuration, run the following command: 
 
 
 <Tabs groupId="operating-systems">
@@ -326,9 +325,14 @@ vegawallet network list
 
 </Tabs>
 
+
+:::info 
+If you connect to the mainnet network, the validator you connect to is chosen by a round-robin schedule, as defined in your network configuration. 
+:::
+
 ## 4. Run the wallet 
 
-To use your wallet with Mainnet, choose a validator from the network list. To use your wallet with Fairground, Vega's testnet, connect your wallet to `Fairground`. 
+To use your wallet with the Vega mainnet, connect your wallet to the network `mainnet`, which you imported in step 3. To use your wallet with Fairground, Vega's testnet, connect your wallet to the network `fairground`. 
 
 To choose a network and run the wallet, use the following command: 
 
@@ -355,5 +359,5 @@ vegawallet service run --network "NETWORK_NAME"
 </Tabs>
 
 :::info
-To terminate the process, such as if you want to run other commands in Wallet, use `ctrl+c`.
+To terminate the process, if you want to run other commands in Vega Wallet for example, use `ctrl+c`.
 :::

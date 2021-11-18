@@ -1,4 +1,8 @@
-# Vega Chain
+---
+sidebar_position: 2
+title: Vega Chain
+hide_title: false
+---
 Vega uses Tendermint as a consensus layer to form a blockchain. The rest of the information here informs on how that blockchain and its relevant components is comprised. For more information on how Vega bridges to Ethereum, see (link). 
 
 ## Delegated proof of stake
