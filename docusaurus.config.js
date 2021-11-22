@@ -19,7 +19,7 @@ module.exports = {
   projectName: "documentation",
   themeConfig: {
     navbar: {
-      title: "Vega Protocol documentation",
+      title: "Vega documentation",
       logo: {
         alt: "Vega Protocol Logo",
         src: "img/logo.svg",
@@ -31,7 +31,7 @@ module.exports = {
           position: "right",
         },
         {
-          to: "/docs/concepts/vega-chain",
+          to: "/docs/concepts/new-to-vega",
           label: "Concepts",
           position: "left"
         },
@@ -64,7 +64,7 @@ module.exports = {
             },
             {
               label: "Blog",
-              to: "https://medium.com/vegaprotocol",
+              to: "https://blog.vega.xyz",
             },
             {
               label: "Twitch",
@@ -72,16 +72,7 @@ module.exports = {
             },
             {
               label: "YouTube",
-              to: "https://www.youtube.com/channel/UC3xDuTW9fd1Y7jpCkOwOuHQ",
-            },
-          ],
-        },
-        {
-          title: "Fairground Testnet",
-          items: [
-            {
-              label: "Console",
-              to: "https://console.fairground.wtf/",
+              to: "https://www.youtube.com/vegaprotocol",
             },
           ],
         },
@@ -90,7 +81,7 @@ module.exports = {
           items: [
             {
               label: "Discord",
-              to: "https://discord.com/invite/ZNEMCYd",
+              to: "https://vega.xyz/discord",
             },
             {
               label: "Telegram",
@@ -103,6 +94,23 @@ module.exports = {
             {
               label: "Forum",
               to: "https://community.vega.xyz/",
+            },
+          ],
+        },
+        {
+          title: "Fairground",
+          items: [
+            {
+              label: "Home",
+              to: "https://fairground.wtf/",
+            },
+            {
+              label: "Docs",
+              to: "https://docs.fairground.vega.xyz/",
+            },
+            {
+              label: "Vega Console",
+              to: "https://console.fairground.wtf/",
             },
           ],
         },

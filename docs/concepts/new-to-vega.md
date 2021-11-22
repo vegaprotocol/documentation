@@ -44,3 +44,8 @@ Although restricted mainnet is a live, decentralised network that allows tokenho
 * [Propose a market or asset](https://docs.fairground.vega.xyz/docs/trading-questions/#governance): Read documentation about proposals on the Fairground docs. 
 * [Share your proposal on Discord](https://vega.xyz/discord): If you propose a market, let everyone know on Discord so that people can vote on it. 
 
+## How can I contribute to Vega?
+
+* [Bugs and feature requests](https://vega-testnet.nolt.io): Raise any bugs you find, or feature requests you have, on the Vega Nolt board.
+* [Developer bounties](https://github.com/vegaprotocol/bounties/): See available bounties on the bounties repo. 
+* [Documentation translation](https://github.com/vegaprotocol/documentation/issues): Raise an issue on the documentation repo to express your interest in translating Vega documentation. 

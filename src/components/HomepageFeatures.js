@@ -4,12 +4,12 @@ import styles from "./HomepageFeatures.module.css";
 
 const FeatureList = [
   {
-    title: "Vega Protocol Concepts",
+    title: "Vega Protocol concepts",
     description: (
       <>
         Vega's restricted mainnet is a decentralised network run by a set of validators. Find out about the underlying framework under <a href="/docs/concepts/new-to-vega">concepts</a>. 
       </>
-    ),
+    ), 
   },
   {
     title: "APIs",
