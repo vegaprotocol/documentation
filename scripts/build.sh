@@ -2,9 +2,9 @@
 
 set -e
 
-vega_owner=vegaprotocol
-vega_api_repo=api
-vega_api_branch="v0.39.0"
+grpc_doc_owner=vegaprotocol
+grpc_doc_repo=sdk-docs
+grpc_doc_branch=v0.45.0
 
 gh_token="${GITHUB_API_TOKEN:?}"
 
@@ -28,10 +28,10 @@ create_venv
 python3 scripts/github_get_file.py \
 	--outdir . \
 	--token "$gh_token" \
-	--owner "$vega_owner" \
-	--repo "$vega_api_repo" \
-	--branch "$vega_api_branch" \
-	--file grpc/doc/doc.json
+	--owner "${grpc_doc_owner:?}" \
+	--repo "${grpc_doc_repo:?}" \
+	--branch "${grpc_doc_branch:?}" \
+	--file generated/doc.json
 mv ./grpc/doc/doc.json ./proto.json
 rm -rf ./grpc
 
