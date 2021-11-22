@@ -10,7 +10,7 @@ module.exports = {
   title: "Vega Protocol",
   tagline:
     "a protocol for creating and trading derivatives on a fully decentralised network",
-  url: "https://docs.fairground.vega.xyz/",
+  url: "https://docs.vega.xyz/",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -86,7 +86,7 @@ module.exports = {
           ],
         },
         {
-          title: "Social",
+          title: "Community",
           items: [
             {
               label: "Discord",
