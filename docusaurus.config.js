@@ -120,9 +120,9 @@ module.exports = {
           UrlLoader: "@graphql-tools/url-loader",
         },
         schema:
-          "https://raw.githubusercontent.com/vegaprotocol/api/" +
+          "https://raw.githubusercontent.com/vegaprotocol/sdk-docs/" +
           vega_version +
-          "/graphql/schema.graphql",
+          "/graphql/sources/data-node/schema.graphql",
         rootPath: "docs",
         baseURL: "graphql",
         linkRoot: "/docs",
