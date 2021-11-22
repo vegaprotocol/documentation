@@ -245,7 +245,7 @@ To use Vega Wallet, you'll need to choose a network to connect to.
 ### Import network list 
 To import the list of available mainnet networks provided by the validators, use the [`mainnet1.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml) file on the networks repository.
 
-Once you have the file, use the following command to import from the URL: 
+Use the following command to import from the URL: 
 
 
 <Tabs groupId="operating-systems">

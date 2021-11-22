@@ -54,6 +54,10 @@ Each validator has a maximum amount of stake that they can accept. During restri
 
 When a validator's token limit is reached, and more nomination would cause a validator's maximum stake to be exceeded, any additional nominated tokens will not be used. The remaining amount will be available to use to nominate another validator after the next epoch has begun.
 
+#### Automatic nomination
+
+Automatic nomination is triggered when an individual tokenholder has manually nominated 95%+ of their associated tokens. At that point, any newly associated tokens will automatically be nominated to the same validators, in the same proportion.
+
 **Un-nominating validators** 
 Participants can remove their nomination at the end of an epoch, or immediately. The un-nominated tokens will be restored back to the participant's associated token balance.
 
@@ -62,10 +66,6 @@ A participant can un-nominate towards the end of the current epoch, which means 
 
 _Un-nominate Now_ 
 A participant can choose to un-nominate at any time, and the action is executed immediately following the block it is announced in (within the same epoch). The participant will not receive any rewards from the validator in that epoch. The tokens are marked as available to the participant.
-
-#### Automatic delegation (WIP)
-- A party becomes eligible to participate in auto delegation once they have manually nominated 95%+ of the association.
-- Once entering auto delegation mode, any un-nominated associated tokens will be automatically distributed according to the current validator nomination of the party maintaining the same proportion.
 
 #### Rewards (restricted mainnet)
 Validators and nominators both receive incentives from the network, depending on factors including how much stake is nominated. 
@@ -104,7 +104,7 @@ To avoid fragmentation or spam, there is minimum delegateable stake that defines
 ## Validators
 The Vega network is operated by a number of independent validators. Validators are responsible for agreeing on the order of transactions and creating new blocks so that all nodes can agree on the state of the network. 
 
-In restricted mainnet, all validators effectively have the same stake, so all are selected an equal number of times to validate a block. Thus rewards will be equal between them, assuming they all continue to function. Restricted mainnet validators will not lose stake or rewards if they have a temporary interruption of service. <!-- (What happens if a validator really messes up?) -->
+In restricted mainnet, all validators effectively have the same stake, so all are selected an equal number of times to validate a block. Thus rewards will be equal between them, assuming they all continue to function. Restricted mainnet validators will not lose stake or rewards if they have a temporary interruption of service.
 
 ## Network life (restricted mainnet)
 Vega networks will, at least initially, run for a limited time only. 
