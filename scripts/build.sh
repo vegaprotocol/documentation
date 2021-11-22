@@ -38,7 +38,7 @@ rm -rf ./generated
 deactivate
 
 # This var is used in docusaurus.config.js.
-export VEGA_VERSION="$vega_api_branch"
+export VEGA_VERSION="$grpc_doc_branch"
 
 yarn install
 yarn run generate-graphql
