@@ -171,9 +171,9 @@ module.exports = {
         specs: [
           {
             specUrl:
-              "https://raw.githubusercontent.com/vegaprotocol/api/" +
+              "https://raw.githubusercontent.com/vegaprotocol/protos/" +
               vega_version +
-              "/rest/api/trading.swagger.json",
+              "/swagger/data-node/api/v1/trading_data.swagger.json",
             routePath: "/docs/rest/",
           },
         ],
