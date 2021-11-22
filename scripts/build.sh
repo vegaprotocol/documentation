@@ -32,8 +32,8 @@ python3 scripts/github_get_file.py \
 	--repo "${grpc_doc_repo:?}" \
 	--branch "${grpc_doc_branch:?}" \
 	--file generated/doc.json
-mv ./grpc/doc/doc.json ./proto.json
-rm -rf ./grpc
+mv ./generated/doc.json ./proto.json
+rm -rf ./generated
 
 deactivate
 
