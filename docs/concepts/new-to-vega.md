@@ -28,7 +28,9 @@ Restricted mainnet is the first decentralised version of the Vega network. The f
 * **Network governance is encouraged** - Tokenholders can take part in proposing and voting on changes to network configuration to define the optimal network configuration in preparation for the alpha release. <br/>
 * **Trading is disabled** - It will not be possible to create markets and trade on this version of mainnet. 
 
-Although restricted mainnet is a live, decentralised network that allows tokenholders to interact with it, it is also an **extended test phase**. Its functionality is limited and is riskier than networks that will follow it, and involves regularly scheduled software upgrades and downtime. There will probably some growing pains as the network is stress-tested and upgrades are rolled out.  
+Although restricted mainnet is a live, decentralised network that allows tokenholders to interact with it, it is also an **extended test phase**. 
+
+Its functionality is limited and is riskier than networks that will follow it, and involves regularly scheduled software upgrades and downtime. There will probably some growing pains as the network is stress-tested and upgrades are rolled out.  
 
 ## How can I use Vega?
 

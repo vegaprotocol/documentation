@@ -7,9 +7,9 @@ if (vega_version === undefined || vega_version === "") {
 }
 
 module.exports = {
-  title: "Vega Protocol",
+  title: "Vega",
   tagline:
-    "a protocol for creating and trading derivatives on a fully decentralised network",
+    "A protocol for creating and trading derivatives on a fully decentralised network",
   url: "https://docs.vega.xyz/",
   baseUrl: "/",
   onBrokenLinks: "throw",
