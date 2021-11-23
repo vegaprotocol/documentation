@@ -7,10 +7,10 @@ if (vega_version === undefined || vega_version === "") {
 }
 
 module.exports = {
-  title: "Vega Protocol",
+  title: "Vega",
   tagline:
-    "a protocol for creating and trading derivatives on a fully decentralised network",
-  url: "https://docs.fairground.vega.xyz/",
+    "A protocol for creating and trading derivatives on a fully decentralised network",
+  url: "https://docs.vega.xyz/",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -19,7 +19,7 @@ module.exports = {
   projectName: "documentation",
   themeConfig: {
     navbar: {
-      title: "Vega Protocol documentation",
+      title: "Vega documentation",
       logo: {
         alt: "Vega Protocol Logo",
         src: "img/logo.svg",
@@ -31,21 +31,21 @@ module.exports = {
           position: "right",
         },
         {
-          to: "/protodocs/vega.proto",
-          activeBasePath: "protodocs",
-          label: "API:gRPC",
-          position: "left",
+          to: "/docs/concepts/new-to-vega",
+          label: "Concepts",
+          position: "left"
         },
         {
-          to: "/docs/graphql/",
-          label: "API:GraphQL",
-          position: "left",
+          to: "/docs/api/overview",
+          label: "API",
+          position: "left"
         },
         {
-          to: "/docs/rest/",
-          label: "API:REST",
-          position: "left",
-        },
+          to: "/docs/tools/overview",
+          label: "Tools",
+          position: "left"
+        }
+
       ],
     },
     footer: {
@@ -64,7 +64,7 @@ module.exports = {
             },
             {
               label: "Blog",
-              to: "https://medium.com/vegaprotocol",
+              to: "https://blog.vega.xyz",
             },
             {
               label: "Twitch",
@@ -72,25 +72,16 @@ module.exports = {
             },
             {
               label: "YouTube",
-              to: "https://www.youtube.com/channel/UC3xDuTW9fd1Y7jpCkOwOuHQ",
+              to: "https://www.youtube.com/vegaprotocol",
             },
           ],
         },
         {
-          title: "Fairground Testnet",
-          items: [
-            {
-              label: "Console",
-              to: "https://console.fairground.wtf/",
-            },
-          ],
-        },
-        {
-          title: "Social",
+          title: "Community",
           items: [
             {
               label: "Discord",
-              to: "https://discord.com/invite/ZNEMCYd",
+              to: "https://vega.xyz/discord",
             },
             {
               label: "Telegram",
@@ -103,6 +94,23 @@ module.exports = {
             {
               label: "Forum",
               to: "https://community.vega.xyz/",
+            },
+          ],
+        },
+        {
+          title: "Fairground",
+          items: [
+            {
+              label: "Home",
+              to: "https://fairground.wtf/",
+            },
+            {
+              label: "Docs",
+              to: "https://docs.fairground.vega.xyz/",
+            },
+            {
+              label: "Vega Console",
+              to: "https://console.fairground.wtf/",
             },
           ],
         },
@@ -120,9 +128,9 @@ module.exports = {
           UrlLoader: "@graphql-tools/url-loader",
         },
         schema:
-          "https://raw.githubusercontent.com/vegaprotocol/api/" +
+          "https://raw.githubusercontent.com/vegaprotocol/sdk-docs/" +
           vega_version +
-          "/graphql/schema.graphql",
+          "/graphql/sources/data-node/schema.graphql",
         rootPath: "docs",
         baseURL: "graphql",
         linkRoot: "/docs",
@@ -163,9 +171,9 @@ module.exports = {
         specs: [
           {
             specUrl:
-              "https://raw.githubusercontent.com/vegaprotocol/api/" +
+              "https://raw.githubusercontent.com/vegaprotocol/protos/" +
               vega_version +
-              "/rest/api/trading.swagger.json",
+              "/swagger/data-node/api/v1/trading_data.swagger.json",
             routePath: "/docs/rest/",
           },
         ],
