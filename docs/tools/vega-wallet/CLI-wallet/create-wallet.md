@@ -17,15 +17,15 @@ Note: If you are looking for instructions for connecting your hardware wallet to
 For a full list of Vega Wallet commands, see [CLI Commands](./command-list.md).
 :::
 
-## 1. Install and run Vega Wallet version 0.9+ 
+## 1. Install and run latest Vega Wallet version
 
-**Important:** You will need to use Vega Wallet version 0.9.2 or above to connect to Vega Mainnet. 
+**Important:** You will need to use Vega Wallet version 0.9.2 or above to connect to Vega Mainnet. We recommend always using the latest released version of Vega Wallet. 
 
 These instructions are written to be used in command line. Below, in the snippets, you'll see commands in `highlighted text`. Copy those instructions and paste them into your command line interface.
 
 ### Download file
 
-Download and save the zip file from [Releases](https://github.com/vegaprotocol/vegawallet/releases/), in the Vega Wallet GitHub repo. Keep track of where you've saved the file, because that's where the command line interface will look for it.
+**Download and save the zip file from [Vega Wallet releases](https://github.com/vegaprotocol/vegawallet/releases/)**. Keep track of where you've saved the file, because that's where the command line interface will look for it.
 
 :::note You may need to change your system preferences to run the file
 
@@ -327,10 +327,67 @@ vegawallet network list
 
 </Tabs>
 
-
 :::info 
 If you connect to the mainnet network, the validator you connect to is chosen by a round-robin schedule, as defined in your network configuration. 
 :::
+
+#### Update network list 
+At times you may need to force the wallet to update the list of available networks. Below, choose between forcing an update via URL or file. 
+
+#### Import updated list from URL
+
+Run the following `--force` command to update to the latest available from your chosen URL.  
+
+<Tabs groupId="operating-systems">
+<TabItem value="windows" label="Windows">
+
+```bash
+vegawallet network import --force \
+--from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
+```
+</TabItem>
+<TabItem value="mac" label="MacOS">
+
+```bash
+./vegawallet network import  --force \
+    --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
+```
+</TabItem>
+<TabItem value="linux" label="Linux">
+
+```bash
+./vegawallet network import  --force \
+     --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
+```
+</TabItem>
+</Tabs>
+
+#### Import updated list from URL
+
+Run the following `--force` command to update to the latest available from your chosen file.  
+
+<Tabs groupId="operating-systems">
+<TabItem value="windows" label="Windows">
+
+```bash
+vegawallet network import --force --from-file "PATH_TO_FILE"
+```
+</TabItem>
+<TabItem value="mac" label="MacOS">
+
+```bash
+./vegawallet network import --force --from-file "PATH_TO_FILE"
+```
+</TabItem>
+<TabItem value="linux" label="Linux">
+
+```bash
+./vegawallet network import --force --from-file "PATH_TO_FILE"
+```
+</TabItem>
+
+</Tabs>
+
 
 ## 4. Run the wallet 
 

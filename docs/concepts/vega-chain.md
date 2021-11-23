@@ -38,7 +38,6 @@ A user's VEGA tokens must first be associated with a Vega key before they can be
 Vega networks use the ERC20 token VEGA for staking. Staking requires the combined action of associating VEGA tokens (or fractions of a token) to the Vega staking bridge contract; and using those token(s) to nominate one or more validators. 
 
 **Epochs** 
-
 An epoch is a time period during which staking changes can be announced and then implemented. Changes that are announced in one epoch will only be executed in the following epoch (excepting 'un-nominate now' - see below). The length of an epoch is set using the network parameter `validators.epoch.length`. 
 
 ### Nominating validators
@@ -54,8 +53,11 @@ Each validator has a maximum amount of stake that they can accept. During restri
 
 When a validator's token limit is reached, and more nomination would cause a validator's maximum stake to be exceeded, any additional nominated tokens will not be used. The remaining amount will be available to use to nominate another validator after the next epoch has begun.
 
-#### Automatic nomination
+Given all requested nominations, un-nominations, and current active nominations, the max stake per validator is defined as:
 
+`max stake per validator = current total stake across all validators - total requested un-nominated stake + total requested nominated stake / number of validators`
+
+#### Automatic nomination
 Automatic nomination is triggered when an individual tokenholder has manually nominated 95%+ of their associated tokens. At that point, any newly associated tokens will automatically be nominated to the same validators, in the same proportion.
 
 **Un-nominating validators** 
@@ -79,11 +81,11 @@ VEGA tokenholders can use [token.vega.xyz](https://token.vega.xyz) to associate 
 custodial users should confirm with CoinList how staking works for them.
 :::
 
-### ***Further reading*** 
+**Further reading**
 Read the [staking rewards](https://github.com/vegaprotocol/specs/blob/main/protocol/0058-simple-POS-rewards.md) spec for full details for how rewards are calculated. 
 
 #### Bridges used for staking
-Because VEGA is an ERC20 token, all actions regarding staking are initiated on Ethereum, rather than on the Vega protocol. This is allows VEGA to be staked to a Vega public key without any action on the Vega network, and without putting the tokens under the control of the Vega network.
+Because VEGA is an ERC20 token, all actions regarding staking are initiated on Ethereum, rather than on the Vega protocol. This allows VEGA to be staked to a Vega public key without any action on the Vega network, and without putting the tokens under the control of the Vega network.
 
 Staking **unlocked tokens** is done using the staking bridge contract. The staking bridge contains functions enabling users to deposit, remove, and transfer stake by moving the governance tokens from their wallet to the staking bridge. 
 
