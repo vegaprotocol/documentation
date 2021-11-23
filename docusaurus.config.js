@@ -176,6 +176,28 @@ module.exports = {
               "/swagger/data-node/api/v1/trading_data.swagger.json",
             routePath: "/docs/rest/",
           },
+          {
+            specUrl:
+              "https://raw.githubusercontent.com/vegaprotocol/protos/" +
+              vega_version +
+              "/swagger/data-node/api/v1/trading_proxy.swagger.json",
+            routePath: "/docs/rest/data-node-proxy",
+          },
+          {
+            specUrl:
+              "https://raw.githubusercontent.com/vegaprotocol/protos/" +
+              vega_version +
+              "/swagger/vega/api/v1/core.swagger.json",
+            routePath: "/docs/rest/core",
+          },
+          {
+            specUrl:
+              "https://raw.githubusercontent.com/vegaprotocol/protos/" +
+              vega_version +
+              "/swagger/vega/api/v1/corestate.swagger.json",
+            routePath: "/docs/vega/core-state",
+          },
+
         ],
       },
     ],
