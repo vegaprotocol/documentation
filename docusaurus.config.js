@@ -22,7 +22,7 @@ module.exports = {
       title: "Vega documentation",
       logo: {
         alt: "Vega Protocol Logo",
-        src: "img/logo.svg",
+        src: "img/logo-y.png",
       },
       items: [
         {
@@ -68,7 +68,7 @@ module.exports = {
             },
             {
               label: "Twitch",
-              to: "https://www.twitch.tv/vegacommunity",
+              to: "https://www.twitch.tv/vegaprotocol",
             },
             {
               label: "YouTube",
@@ -84,16 +84,16 @@ module.exports = {
               to: "https://vega.xyz/discord",
             },
             {
-              label: "Telegram",
-              to: "https://t.me/vegacommunity",
-            },
-            {
               label: "Twitter",
               to: "https://twitter.com/vegaprotocol",
             },
             {
               label: "Forum",
               to: "https://community.vega.xyz/",
+            },
+            {
+              label: "Telegram",
+              to: "https://t.me/vegacommunity",
             },
           ],
         },
