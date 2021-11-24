@@ -47,7 +47,7 @@ module.exports = {
         {
           type: "link",
           href: "/docs/api/rest/core/core",
-          label: "GRPC",
+          label: "Core",
         },
         {
           type: "link",
