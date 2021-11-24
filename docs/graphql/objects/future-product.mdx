@@ -10,7 +10,8 @@ type FutureProduct {
   maturity: String!
   settlementAsset: Asset!
   quoteName: String!
-  oracleSpec: OracleSpecConfiguration!
+  oracleSpecForSettlementPrice: OracleSpecConfiguration!
+  oracleSpecForTradingTermination: OracleSpecConfiguration!
   oracleSpecBinding: OracleSpecToFutureBinding!
 }
 ```
@@ -29,9 +30,13 @@ Product asset ID
 
 String representing the quote (e.g. BTCUSD -> USD is quote)
 
-#### `oracleSpec` ([`OracleSpecConfiguration!`](/docs/graphql/objects/oracle-spec-configuration))
+#### `oracleSpecForSettlementPrice` ([`OracleSpecConfiguration!`](/docs/graphql/objects/oracle-spec-configuration))
 
-Describes the oracle data that an instrument wants to get from the oracle engine.
+Describes the oracle data that an instrument wants to get from the oracle engine for settlement price.
+
+#### `oracleSpecForTradingTermination` ([`OracleSpecConfiguration!`](/docs/graphql/objects/oracle-spec-configuration))
+
+Describes the oracle data that an instrument wants to get from the oracle engine for trading termination.
 
 #### `oracleSpecBinding` ([`OracleSpecToFutureBinding!`](/docs/graphql/objects/oracle-spec-to-future-binding))
 

@@ -3,7 +3,7 @@ id: margin-levels
 title: MarginLevels
 ---
 
-Margins for a given a trader
+Margins for a given a party
 
 ```graphql
 type MarginLevels {
@@ -22,7 +22,7 @@ type MarginLevels {
 
 #### `market` ([`Market!`](/docs/graphql/objects/market))
 
-market in which the margin is required for this trader
+market in which the margin is required for this party
 
 #### `asset` ([`Asset!`](/docs/graphql/objects/asset))
 
@@ -30,7 +30,7 @@ asset for the current margins
 
 #### `party` ([`Party!`](/docs/graphql/objects/party))
 
-id of the trader for this margin
+id of the party for this margin
 
 #### `maintenanceLevel` ([`String!`](/docs/graphql/scalars/string))
 
@@ -42,12 +42,12 @@ if the margin is between maintenance and search, the network will initiate a col
 
 #### `initialLevel` ([`String!`](/docs/graphql/scalars/string))
 
-this is the minimal margin required for a trader to place a new order on the network (unsigned int actually)
+this is the minimal margin required for a party to place a new order on the network (unsigned int actually)
 
 #### `collateralReleaseLevel` ([`String!`](/docs/graphql/scalars/string))
 
-If the margin of the trader is greater than this level, then collateral will be released from the margin account into
-the general account of the trader for the given asset.
+If the margin of the party is greater than this level, then collateral will be released from the margin account into
+the general account of the party for the given asset.
 
 #### `timestamp` ([`String!`](/docs/graphql/scalars/string))
 

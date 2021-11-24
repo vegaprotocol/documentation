@@ -9,8 +9,8 @@ No description
 type SettleDistressed {
   marketId: ID!
   partyId: ID!
-  margin: Int!
-  price: Int!
+  margin: String!
+  price: String!
 }
 ```
 
@@ -24,10 +24,10 @@ the market in which a position was closed out
 
 the party who closed out
 
-#### `margin` ([`Int!`](/docs/graphql/scalars/int))
+#### `margin` ([`String!`](/docs/graphql/scalars/string))
 
-the margin taken from distressed trader
+the margin taken from distressed party
 
-#### `price` ([`Int!`](/docs/graphql/scalars/int))
+#### `price` ([`String!`](/docs/graphql/scalars/string))
 
 the price at which position was closed out

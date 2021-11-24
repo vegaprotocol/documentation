@@ -12,6 +12,7 @@ type Erc20WithdrawalApproval {
   expiry: String!
   nonce: String!
   signatures: String!
+  targetAddress: String!
 }
 ```
 
@@ -37,3 +38,7 @@ The nonce to be used in the request
 
 Signature aggregate from the nodes, in the following format:
 0x + sig1 + sig2 + ... + sigN
+
+#### `targetAddress` ([`String!`](/docs/graphql/scalars/string))
+
+The target address which will receive the funds

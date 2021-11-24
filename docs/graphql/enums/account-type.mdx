@@ -8,6 +8,7 @@ The various account types we have (used by collateral)
 ```graphql
 enum AccountType {
   Insurance
+  GlobalInsurance
   Settlement
   Margin
   General
@@ -24,17 +25,21 @@ enum AccountType {
 
 Insurance pool account - only for 'system' party
 
+#### `GlobalInsurance`
+
+Global insurance pool account for an asset
+
 #### `Settlement`
 
 Settlement - only for 'system' party
 
 #### `Margin`
 
-Margin - The leverage account for traders
+Margin - The leverage account for partys
 
 #### `General`
 
-General account - the account containing 'unused' collateral for traders
+General account - the account containing 'unused' collateral for partys
 
 #### `FeeInfrastructure`
 

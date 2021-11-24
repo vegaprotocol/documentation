@@ -9,7 +9,7 @@ No description
 type LedgerEntry {
   fromAccount: String!
   toAccount: String!
-  amount: Int!
+  amount: String!
   reference: String!
   type: String!
   timestamp: String!
@@ -26,7 +26,7 @@ account from which the asset was taken
 
 account to which the balance was transferred
 
-#### `amount` ([`Int!`](/docs/graphql/scalars/int))
+#### `amount` ([`String!`](/docs/graphql/scalars/string))
 
 the amount transferred
 

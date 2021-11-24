@@ -9,7 +9,7 @@ No description
 type SettlePosition {
   marketId: ID!
   partyId: ID!
-  price: Int!
+  price: String!
   tradeSettlements: [TradeSettlement!]
 }
 ```
@@ -24,7 +24,7 @@ the market in which a position was settled
 
 the party who settled a position
 
-#### `price` ([`Int!`](/docs/graphql/scalars/int))
+#### `price` ([`String!`](/docs/graphql/scalars/string))
 
 the settle price
 

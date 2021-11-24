@@ -15,6 +15,7 @@ type Asset {
   minLpStake: String!
   source: AssetSource!
   infrastructureFeeAccount: Account!
+  globalRewardPoolAccount: Account!
 }
 ```
 
@@ -51,3 +52,7 @@ The origin source of the asset (e.g: an erc20 asset)
 #### `infrastructureFeeAccount` ([`Account!`](/docs/graphql/objects/account))
 
 The infrastructure fee account for this asset
+
+#### `globalRewardPoolAccount` ([`Account!`](/docs/graphql/objects/account))
+
+The global reward pool account for this asset

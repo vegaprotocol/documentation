@@ -7,15 +7,19 @@ const FeatureList = [
     title: "Vega concepts",
     description: (
       <>
-        Vega's restricted mainnet is a decentralised network run by a set of validators. Find out about the underlying framework under <a href="/docs/concepts/new-to-vega">concepts</a>. 
+        Vega's restricted mainnet is a decentralised network run by a set of
+        validators. Find out about the underlying framework under{" "}
+        <a href="/docs/concepts/new-to-vega">concepts</a>.
       </>
-    ), 
+    ),
   },
   {
     title: "APIs",
     description: (
       <>
-        Vega provides GraphQL, gRPC and REST APIs to programmatically interact with the protocol. Find the documentation under <a href="/docs/api/overview">API</a>. 
+        Vega provides GraphQL, gRPC and REST APIs to programmatically interact
+        with the protocol. Find the documentation under{" "}
+        <a href="/docs/api/overview">API</a>.
       </>
     ),
   },
@@ -23,7 +27,9 @@ const FeatureList = [
     title: "Tools for using Vega",
     description: (
       <>
-        Vega has a number of tools available for interacting with the functionality the protocol provides. See the tools available for restricted mainnet under <a href="/docs/tools/overview">tools</a>.
+        Vega has a number of tools available for interacting with the
+        functionality the protocol provides. See the tools available for
+        restricted mainnet under <a href="/docs/tools/overview">tools</a>.
       </>
     ),
   },

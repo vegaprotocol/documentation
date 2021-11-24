@@ -10,7 +10,7 @@ type PositionResolution {
   marketId: ID!
   distressed: Int!
   closed: Int!
-  markPrice: Int!
+  markPrice: String!
 }
 ```
 
@@ -22,12 +22,12 @@ the market ID where position resolution happened
 
 #### `distressed` ([`Int!`](/docs/graphql/scalars/int))
 
-number of distressed traders on market
+number of distressed partys on market
 
 #### `closed` ([`Int!`](/docs/graphql/scalars/int))
 
-number of traders closed out
+number of partys closed out
 
-#### `markPrice` ([`Int!`](/docs/graphql/scalars/int))
+#### `markPrice` ([`String!`](/docs/graphql/scalars/string))
 
-the mark price at which traders were distressed/closed out
+the mark price at which partys were distressed/closed out

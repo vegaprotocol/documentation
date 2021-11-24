@@ -61,7 +61,7 @@ Number of contracts remaining of the total that have not yet been bought or sold
 
 #### `party` ([`Party!`](/docs/graphql/objects/party))
 
-The trader who place the order (probably stored internally as the trader's public key)
+The party who place the order (probably stored internally as the party's public key)
 
 #### `createdAt` ([`String!`](/docs/graphql/scalars/string))
 
@@ -85,7 +85,7 @@ Trades relating to this order
 
 #### `type` ([`OrderType`](/docs/graphql/enums/order-type))
 
-Type the order type (defaults to TRADER)
+Type the order type (defaults to PARTY)
 
 #### `rejectionReason` ([`OrderRejectionReason`](/docs/graphql/enums/order-rejection-reason))
 

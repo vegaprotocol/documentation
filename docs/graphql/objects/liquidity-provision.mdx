@@ -12,7 +12,7 @@ type LiquidityProvision {
   createdAt: String!
   updatedAt: String
   market: Market!
-  commitmentAmount: Int!
+  commitmentAmount: String!
   fee: String!
   sells: [LiquidityOrderReference!]!
   buys: [LiquidityOrderReference!]!
@@ -44,7 +44,7 @@ RFC3339Nano time of when the liquidity provision was updated
 
 Market identifier for the order
 
-#### `commitmentAmount` ([`Int!`](/docs/graphql/scalars/int))
+#### `commitmentAmount` ([`String!`](/docs/graphql/scalars/string))
 
 Specified as a unitless number that represents the amount of settlement asset of the market.
 

@@ -10,7 +10,8 @@ type Future {
   maturity: String!
   settlementAsset: Asset!
   quoteName: String!
-  oracleSpec: OracleSpec!
+  oracleSpecForSettlementPrice: OracleSpec!
+  oracleSpecForTradingTermination: OracleSpec!
   oracleSpecBinding: OracleSpecToFutureBinding!
 }
 ```
@@ -29,9 +30,13 @@ The name of the asset (string)
 
 String representing the quote (e.g. BTCUSD -> USD is quote)
 
-#### `oracleSpec` ([`OracleSpec!`](/docs/graphql/objects/oracle-spec))
+#### `oracleSpecForSettlementPrice` ([`OracleSpec!`](/docs/graphql/objects/oracle-spec))
 
-The oracle spec describing the oracle data of interest.
+The oracle spec describing the oracle data of interest for settlement price.
+
+#### `oracleSpecForTradingTermination` ([`OracleSpec!`](/docs/graphql/objects/oracle-spec))
+
+The oracle spec describing the oracle data of interest for trading termination.
 
 #### `oracleSpecBinding` ([`OracleSpecToFutureBinding!`](/docs/graphql/objects/oracle-spec-to-future-binding))
 

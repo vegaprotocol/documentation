@@ -18,6 +18,9 @@ type Party {
   withdrawals: [Withdrawal!]
   deposits: [Deposit!]
   liquidityProvisions(market: String, reference: String): [LiquidityProvision!]
+  delegations(nodeId: String): [Delegation!]
+  stake: PartyStake!
+  rewardDetails: [RewardPerAssetDetail]
 }
 ```
 
@@ -118,3 +121,15 @@ An optional market id
 - ##### `reference` ([`String`](/docs/graphql/scalars/string))
 
 An optional reference
+
+#### `delegations` ([`[Delegation!]`](/docs/graphql/objects/delegation))
+
+- ##### `nodeId` ([`String`](/docs/graphql/scalars/string))
+
+#### `stake` ([`PartyStake!`](/docs/graphql/objects/party-stake))
+
+The staking informations for this Party
+
+#### `rewardDetails` ([`[RewardPerAssetDetail]`](/docs/graphql/objects/reward-per-asset-detail))
+
+return reward information
