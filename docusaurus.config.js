@@ -22,7 +22,7 @@ module.exports = {
       title: "Vega documentation",
       logo: {
         alt: "Vega Protocol Logo",
-        src: "img/logo.svg",
+        src: "img/logo-y.png",
       },
       items: [
         {
@@ -67,7 +67,7 @@ module.exports = {
             },
             {
               label: "Twitch",
-              to: "https://www.twitch.tv/vegacommunity",
+              to: "https://www.twitch.tv/vegaprotocol",
             },
             {
               label: "YouTube",
