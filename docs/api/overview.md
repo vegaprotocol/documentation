@@ -1,10 +1,10 @@
 
 
-# Overview
+# API Overview
 
 The Vega data node has three APIs for you to interact with. 
 
-Most of the APIs are designed to use for trading-related queries, and if you'd like to try out the APIs on testnet, you can find more [reference documentation](https://docs.fairground.vega.xyz/docs/api-reference/) (including the GraphQL playground) and [how-to guides](https://docs.fairground.vega.xyz/docs/api-howtos/) (including a Gitpod environment), within [Vega Fairground documentation](https://docs.fairground.vega.xyz/). 
+Most of the APIs are designed to use for trading-related queries, and so you can use them in the testnet environment. [Vega Fairground documentation](https://docs.fairground.vega.xyz/) includes a [GraphQL playground](https://lb.testnet.vega.xyz/playground) for trying queries, as well as general [how-to guides](https://docs.fairground.vega.xyz/docs/api-howtos/) (including a Gitpod environment) to try out Vega Fairground. 
 
 ## What is each API best for?
 

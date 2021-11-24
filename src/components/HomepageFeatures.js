@@ -5,14 +5,16 @@ import styles from "./HomepageFeatures.module.css";
 const FeatureList = [
   {
     title: "Vega concepts",
+    href: "/docs/concepts/new-to-vega",
     description: (
       <>
-        Vega's restricted mainnet is a decentralised network run by a set of validators. Find out about the underlying framework under <a href="/docs/concepts/new-to-vega">concepts</a>. 
+        Vega's restricted mainnet is a decentralised network run by a set of validators. Read about the underlying framework under <a href="/docs/concepts/new-to-vega">concepts</a>. 
       </>
     ), 
   },
   {
-    title: "APIs",
+    title: "API references",
+    href: "/docs/api/overview",
     description: (
       <>
         Vega provides GraphQL, gRPC and REST APIs to programmatically interact with the protocol. Find the documentation under <a href="/docs/api/overview">API</a>. 
@@ -21,19 +23,20 @@ const FeatureList = [
   },
   {
     title: "Tools for using Vega",
+    href: "/docs/tools/overview",
     description: (
       <>
-        Vega has a number of tools available for interacting with the functionality the protocol provides. See the tools available for restricted mainnet under <a href="/docs/tools/overview">tools</a>.
+        Vega has a number of tools available for interacting with the functionality the protocol provides. See tools available for restricted mainnet under <a href="/docs/tools/overview">tools</a>.
       </>
     ),
   },
 ];
 
-function Feature({ Svg, title, description }) {
+function Feature({ Svg, title, description, href }) {
   return (
     <div className={clsx("col col--4")}>
       <div className="text--center padding-horiz--md">
-        <h3>{title}</h3>
+        <h3><a href={href}>{title}</a></h3>
         <p>{description}</p>
       </div>
     </div>
