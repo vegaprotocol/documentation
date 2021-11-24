@@ -84,16 +84,16 @@ module.exports = {
               to: "https://vega.xyz/discord",
             },
             {
-              label: "Telegram",
-              to: "https://t.me/vegacommunity",
-            },
-            {
               label: "Twitter",
               to: "https://twitter.com/vegaprotocol",
             },
             {
               label: "Forum",
               to: "https://community.vega.xyz/",
+            },
+            {
+              label: "Telegram",
+              to: "https://t.me/vegacommunity",
             },
           ],
         },
