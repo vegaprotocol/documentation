@@ -53,8 +53,8 @@ module.exports = {
           type: "link",
           href: "/docs/api/rest/core/state",
           label: "Core state",
-        }
-      ]
+        },
+      ],
     },
   ],
   concepts: [

@@ -15,5 +15,5 @@ Core nodes run the network. As they are primarily concerned with maintaining the
 Data nodes aggregate the outputs from core nodes and produce more useful APIs.
 
 * [Core](/docs/api/rest/core/core)
-* [Core state](/docs/api/rest/core/)
+* [Core state](/docs/api/rest/core/state)
 
