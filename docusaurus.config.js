@@ -163,10 +163,10 @@ module.exports = {
           sidebarPath: "./sidebarsProtodocs.js",
         },
         docs: {
-          path: './protodocs',
-          routeBasePath: 'protodocs',
-          sidebarPath: './sidebarsProtodocs.js'
-        }
+          path: "./protodocs",
+          routeBasePath: "protodocs",
+          sidebarPath: "./sidebarsProtodocs.js",
+        },
       },
     ],
     [

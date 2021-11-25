@@ -8,7 +8,9 @@ const FeatureList = [
     href: "/docs/concepts/new-to-vega",
     description: (
       <>
-        Restricted mainnet is a decentralised network run by a set of validators. Read about the underlying framework under <a href="/docs/concepts/new-to-vega">concepts</a>. 
+        Restricted mainnet is a decentralised network run by a set of
+        validators. Read about the underlying framework under{" "}
+        <a href="/docs/concepts/new-to-vega">concepts</a>.
       </>
     ),
   },
@@ -17,7 +19,9 @@ const FeatureList = [
     href: "/docs/api/overview",
     description: (
       <>
-        GraphQL, gRPC and REST APIs are available to programmatically interact with the protocol. Find the documentation under <a href="/docs/api/overview">API</a>. 
+        GraphQL, gRPC and REST APIs are available to programmatically interact
+        with the protocol. Find the documentation under{" "}
+        <a href="/docs/api/overview">API</a>.
       </>
     ),
   },
@@ -26,7 +30,9 @@ const FeatureList = [
     href: "/docs/tools/overview",
     description: (
       <>
-        Several tools are available for interacting with the functionality Vega provides. See tools available for restricted mainnet under <a href="/docs/tools/overview">tools</a>.
+        Several tools are available for interacting with the functionality Vega
+        provides. See tools available for restricted mainnet under{" "}
+        <a href="/docs/tools/overview">tools</a>.
       </>
     ),
   },
@@ -36,7 +42,9 @@ function Feature({ Svg, title, description, href }) {
   return (
     <div className={clsx("col col--4")}>
       <div className="text--center padding-horiz--md">
-        <h3><a href={href}>{title}</a></h3>
+        <h3>
+          <a href={href}>{title}</a>
+        </h3>
         <p>{description}</p>
       </div>
     </div>
