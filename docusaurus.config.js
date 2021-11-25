@@ -18,6 +18,7 @@ module.exports = {
   organizationName: "vegaprotocol",
   projectName: "documentation",
   themeConfig: {
+    image: "img/logo-y.png",
     navbar: {
       title: "Vega documentation",
       logo: {
@@ -33,19 +34,18 @@ module.exports = {
         {
           to: "/docs/concepts/new-to-vega",
           label: "Concepts",
-          position: "left"
+          position: "left",
         },
         {
           to: "/docs/api/overview",
           label: "API",
-          position: "left"
+          position: "left",
         },
         {
           to: "/docs/tools/overview",
           label: "Tools",
-          position: "left"
-        }
-
+          position: "left",
+        },
       ],
     },
     footer: {
@@ -159,7 +159,12 @@ module.exports = {
       {
         protobuffet: {
           fileDescriptorsPath: "./proto.json",
-          protoDocsPath: "protodocs", // prodoDocsPath seems to be hard coded to "protodocs", so don't change this
+          protoDocsPath: "./protodocs", // prodoDocsPath seems to be hard coded to "protodocs", so don't change this
+          sidebarPath: "./sidebarsProtodocs.js",
+        },
+        docs: {
+          path: "./protodocs",
+          routeBasePath: "protodocs",
           sidebarPath: "./sidebarsProtodocs.js",
         },
       },
@@ -174,7 +179,28 @@ module.exports = {
               "https://raw.githubusercontent.com/vegaprotocol/protos/" +
               vega_version +
               "/swagger/data-node/api/v1/trading_data.swagger.json",
-            routePath: "/docs/rest/",
+            routePath: "/docs/api/rest/data-node/data",
+          },
+          {
+            specUrl:
+              "https://raw.githubusercontent.com/vegaprotocol/protos/" +
+              vega_version +
+              "/swagger/data-node/api/v1/trading_proxy.swagger.json",
+            routePath: "/docs/api/rest/data-node/proxy",
+          },
+          {
+            specUrl:
+              "https://raw.githubusercontent.com/vegaprotocol/protos/" +
+              vega_version +
+              "/swagger/vega/api/v1/core.swagger.json",
+            routePath: "/docs/api/rest/core/core",
+          },
+          {
+            specUrl:
+              "https://raw.githubusercontent.com/vegaprotocol/protos/" +
+              vega_version +
+              "/swagger/vega/api/v1/corestate.swagger.json",
+            routePath: "/docs/api/rest/core/state",
           },
         ],
       },

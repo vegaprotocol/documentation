@@ -4,7 +4,7 @@ title: Vega Chain
 hide_title: false
 ---
 
-Vega uses Tendermint as a consensus layer to form a blockchain. The rest of the information here informs on how that blockchain and its relevant components is comprised. For more information on how Vega bridges to Ethereum, see (link). 
+Vega uses Tendermint as a consensus layer to form a blockchain. The rest of the information here informs on how that blockchain and its relevant components is comprised. [Read more about how Vega bridges to Ethereum](/docs/concepts/vega-chain/#bridges-used-for-staking). 
 
 ## Delegated proof of stake
 Vega runs on a delegated proof of stake blockchain. Participants--validators and token-holders--use their VEGA tokens to nominate the validator nodes that run the network. Non-validator participants assign the voting rights of their VEGA tokens to endorse a validator's trustworthiness. 
