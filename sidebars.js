@@ -16,7 +16,7 @@ module.exports = {
     "api/overview",
     {
       type: "link",
-      href: "/protodocs/vega.proto",
+      href: "/protodocs/vega/vega.proto",
       label: "GRPC",
     },
     {

@@ -158,9 +158,14 @@ module.exports = {
       {
         protobuffet: {
           fileDescriptorsPath: "./proto.json",
-          protoDocsPath: "protodocs", // prodoDocsPath seems to be hard coded to "protodocs", so don't change this
+          protoDocsPath: "./protodocs", // prodoDocsPath seems to be hard coded to "protodocs", so don't change this
           sidebarPath: "./sidebarsProtodocs.js",
         },
+        docs: {
+          path: './protodocs',
+          routeBasePath: 'protodocs',
+          sidebarPath: './sidebarsProtodocs.js'
+        }
       },
     ],
     [

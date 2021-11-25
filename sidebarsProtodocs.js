@@ -1,5 +1,5 @@
 module.exports = {
-  protodocs: [
+  "protodocs": [
     {
       type: "category",
       label: "Files",
