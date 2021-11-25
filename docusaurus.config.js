@@ -18,6 +18,7 @@ module.exports = {
   organizationName: "vegaprotocol",
   projectName: "documentation",
   themeConfig: {
+    image: "img/logo-y.png",
     navbar: {
       title: "Vega documentation",
       logo: {

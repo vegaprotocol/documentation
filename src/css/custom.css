@@ -16,8 +16,11 @@
   --ifm-color-primary-lightest: #00F780;
   --ifm-code-font-size: 95%;
 
-  --ifm-link-color: #FF077F;
   --vega-yellow: #DFFF0B;
+  --vega-pink: #FF077F;
+
+  --ifm-navbar-link-hover-color: var(--vega-pink);
+  --ifm-link-color: #FF077F;
 }
 /* Code listings - links to other classes */
 html[data-theme="dark"] a code {

@@ -14,15 +14,15 @@ let { schemaSidebar } = require("./docs/graphql/sidebar-schema");
 module.exports = {
   api: [
     "api/overview",
-    {
-      type: "link",
-      href: "/protodocs/vega/vega.proto",
-      label: "GRPC",
-    },
-    {
+   {
       type: "doc",
       label: "GraphQL",
       id: "graphql/schema",
+    },
+    {
+      type: "link",
+      href: "/protodocs/vega.proto",
+      label: "GRPC",
     },
     {
       type: "category",
