@@ -22,7 +22,7 @@ Currently, Vega is in restricted mainnet, which is run by a set of validators. T
 * [Vega on YouTube](https://youtube.com/vegaprotocol): Video walkthroughs and conversations with Vega contributors
 
 ## What is Vega's restricted mainnet? 
-Restricted mainnet is the first decentralised version of the Vega network. The first step of a three-stage launch process, it will be followed by alpha mainnet, which will have trading with limits, and v1 mainnet with unrestricted trading.
+Restricted mainnet is the first decentralised version of the Vega network. The first step of a three-stage launch process, it will be followed by alpha mainnet, which will have trading with limits, and v1 mainnet with unrestricted trading. 
 
 * **Tokenholders can nominate validators** - Tokenholders earn staking rewards for securing the network.  <br/>
 * **Network governance is encouraged** - Tokenholders can take part in proposing and voting on changes to network configuration to define the optimal network configuration in preparation for the alpha release. <br/>
@@ -38,8 +38,9 @@ Its functionality is limited and is riskier than networks that will follow it, a
 * [Get a Vega Wallet](/docs/tools/vega-wallet/CLI-wallet/create-wallet): You'll need it for staking, and you can connect it to Fairground, and use it for trading on Vega Console (through the wallet). 
 
 #### Token management and network governance 
-* [Mainnet token interface](https://token.vega.xyz): Interact with your $VEGA tokens on the token interface. 
-* [Fairground token interface](https://token.fairground.wtf): You can also try out the interface using testnet tokens, if you want to familiarise yourself with it first. 
+* [Mainnet token interface](https://token.vega.xyz): Interact with your $VEGA tokens on the token interface.
+* [Mainnet FAQ](https://blog.vega.xyz/the-vega-restricted-mainnet-faqs-6bedc7a57f24): Regularly updated list of the most commonly asked questions and answers to help you get your bearings with restricted mainnet.
+* [Fairground token interface](https://token.fairground.wtf): You can also try out the interface using testnet tokens, if you want to familiarise yourself with it first.
 
 #### Fairground, Vega's testnet
 * [Learn about Fairground](https://fairground.wtf): Though trading isn't enabled on mainnet, you can try trading on Fairground. Keep an eye on the site for incentive opportunties, too. 
