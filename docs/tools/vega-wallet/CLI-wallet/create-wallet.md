@@ -11,7 +11,7 @@ To set up the Vega Wallet, follow the step-by-step instructions below. Using the
 
 This software a work-in-progress and is frequently updated, and does not yet have a user interface. 
 
-Note: If you are looking for instructions for connecting your hardware wallet to MetaMask, see [MetamMask's guide](https://metamask.zendesk.com/hc/en-us/articles/360020394612-How-to-connect-a-Trezor-or-Ledger-Hardware-Wallet).
+Note: If you are looking for instructions for connecting your hardware wallet to MetaMask, see [MetaMask's guide](https://metamask.zendesk.com/hc/en-us/articles/360020394612-How-to-connect-a-Trezor-or-Ledger-Hardware-Wallet).
 
 :::info
 For a full list of Vega Wallet commands, see [CLI Commands](./command-list.md).
