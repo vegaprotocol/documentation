@@ -65,8 +65,7 @@ You’ll see an output with your public and private key, and your mnemonic. **Do
 If you want to restore your wallet, use the following command:
 
 ```bash
-vegawallet import --wallet "YOUR_WALLET" \
-    --mnemonic-file "PATH_TO_YOUR_MNEMONIC"
+vegawallet import --wallet "YOUR_WALLET"  --mnemonic-file "PATH_TO_YOUR_MNEMONIC"
 ```
 
 The flag `--mnemonic-file` is used to locate the file that contains the
@@ -114,9 +113,7 @@ For better key management, you may want to add metadata to your key pairs. This
 is done with the following command:
 
 ```bash
-vegawallet key annotate --wallet "YOUR_USERNAME" \
-    --meta "key1:value1;key2:value2" \
-    --pubkey "YOUR_HEX_PUBLIC_KEY"
+vegawallet key annotate --wallet "YOUR_USERNAME" --meta "key1:value1;key2:value2" --pubkey "YOUR_HEX_PUBLIC_KEY"
 ```
 
 An item of metadata is represented as a key-value property.
@@ -126,9 +123,7 @@ An item of metadata is represented as a key-value property.
 You can give to each key pair a nickname/alias with a meta `name`. For example:
 
 ```bash
-vegawallet key annotate --wallet "YOUR_USERNAME" \
-    --meta "name:my-alias" \
-    --pubkey "YOUR_HEX_PUBLIC_KEY"
+vegawallet key annotate --wallet "YOUR_USERNAME" --meta "name:my-alias" --pubkey "YOUR_HEX_PUBLIC_KEY"
 ```
 
 **Important**
@@ -143,8 +138,7 @@ You can prevent the use of a key by "tainting" it with the following
 command:
 
 ```bash
-vegawallet key taint --wallet "YOUR_NAME" \
-    --pubkey "YOUR_HEX_PUBIC_KEY"
+vegawallet key taint --wallet "YOUR_NAME" --pubkey "YOUR_HEX_PUBIC_KEY"
 ```
 
 It will then prompt you to input a passphrase. You can also specify the
@@ -155,8 +149,7 @@ passphrase with the `--passphrase` flag.
 If you have tainted a key by mistake, you can untaint it using the command:
 
 ```bash
-vegawallet key untaint --wallet "YOUR_WALLET" \
-    --pubkey "YOUR_HEX_PUBIC_KEY"
+vegawallet key untaint --wallet "YOUR_WALLET" --pubkey "YOUR_HEX_PUBIC_KEY"
 ```
 
 It will then prompt you to input a passphrase. You can also specify the
@@ -188,12 +181,8 @@ To sign and verify any kind of base-64 encoded messages, use the following
 commands:
 
 ```bash
-vegawallet sign --wallet "YOUR_WALLET" \
-    --pubkey "YOUR_HEX_PUBIC_KEY" \
-    --message "c3BpY2Ugb2YgZHVuZQo="
-vegawallet verify --pubkey "YOUR_HEX_PUBIC_KEY" \
-     --message "c3BpY2Ugb2YgZHVuZQo=" \
-     --signature "76f978asd6fa8s76f"
+vegawallet sign --wallet "YOUR_WALLET" --pubkey "YOUR_HEX_PUBIC_KEY" --message "c3BpY2Ugb2YgZHVuZQo="
+vegawallet verify --pubkey "YOUR_HEX_PUBIC_KEY" --message "c3BpY2Ugb2YgZHVuZQo=" --signature "76f978asd6fa8s76f"
 ```
 
 It will then prompt you to input a passphrase. You can also specify the
@@ -258,9 +247,7 @@ Instead of sending a command through the API, you can send it through the
 command line, use the following command:
 
 ```bash
-vegawallet command --pubkey "YOUR_HEX_PUBIC_KEY" \
-    --wallet "YOUR_WALLET" \
-    --network "YOUR_NETWORK" '{"THE_COMMAND": {...}, "propagate": true}'
+vegawallet command --pubkey "YOUR_HEX_PUBIC_KEY" --wallet "YOUR_WALLET" --network "YOUR_NETWORK" '{"THE_COMMAND": {...}, "propagate": true}'
 ```
 
 ## Isolate a key pair for HD wallet
@@ -270,6 +257,5 @@ On HD (hierarchical deterministic) wallets, the wallet node is used to generate 
 You can isolate a single key pair, without the wallet node, in an "isolated wallet" with the following command:
 
 ```bash
-vegawallet key isolate --pubkey "YOUR_HEX_PUBIC_KEY" \
-    --wallet "YOUR_WALLET"
+vegawallet key isolate --pubkey "YOUR_HEX_PUBIC_KEY" --wallet "YOUR_WALLET"
 ```
