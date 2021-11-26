@@ -108,9 +108,7 @@ Use your mnemonic (recovery phrase) to import a wallet you created in the past i
 <TabItem value="windows" label="Windows">
 
 ```bash
-vegawallet import \
-    --wallet "YOUR_USERNAME" \
-    --mnemonic-file "PATH_TO_YOUR_MNEMONIC"
+vegawallet import --wallet "YOUR_USERNAME" --mnemonic-file "PATH_TO_YOUR_MNEMONIC"
 ```
 </TabItem>
 <TabItem value="mac" label="MacOS">
@@ -179,9 +177,7 @@ When creating a key, you can give an alias by adding a metadata item called `nam
 <TabItem value="windows" label="Windows">
 
 ```bash
-vegawallet key generate \
-    --wallet "YOUR_USERNAME" \
-    --meta "name:CHOOSE_ALIAS_FOR_KEY"
+vegawallet key generate --wallet "YOUR_USERNAME" --meta "name:CHOOSE_ALIAS_FOR_KEY"
 ```
 </TabItem>
 <TabItem value="mac" label="MacOS">
@@ -208,10 +204,7 @@ vegawallet key generate \
 <TabItem value="windows" label="Windows">
 
 ```bash
-vegawallet meta \
-    --meta="name:CHOOSE_CUSTOM_ALIAS_FOR_KEY" \
-    --wallet="YOUR_USERNAME" \
-    --pubkey="REPLACE_THIS_WITH_YOUR_PUBLIC_KEY"
+vegawallet meta --meta="name:CHOOSE_CUSTOM_ALIAS_FOR_KEY" --wallet="YOUR_USERNAME" --pubkey="REPLACE_THIS_WITH_YOUR_PUBLIC_KEY"
 ```
 </TabItem>
 <TabItem value="mac" label="MacOS">
@@ -252,8 +245,7 @@ Use the following command to import from the URL:
 <TabItem value="windows" label="Windows">
 
 ```bash
-vegawallet network import \
---from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
+vegawallet network import --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
 ```
 </TabItem>
 <TabItem value="mac" label="MacOS">
@@ -342,8 +334,7 @@ Run the following `--force` command to update to the latest available from your 
 <TabItem value="windows" label="Windows">
 
 ```bash
-vegawallet network import --force \
---from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
+vegawallet network import --force --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
 ```
 </TabItem>
 <TabItem value="mac" label="MacOS">
