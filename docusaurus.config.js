@@ -206,5 +206,7 @@ module.exports = {
       },
     ],
   ],
-  themes: [],
+  themes: [
+    "@saucelabs/theme-github-codeblock"
+  ],
 };
