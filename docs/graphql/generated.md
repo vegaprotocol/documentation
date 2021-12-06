@@ -11,6 +11,3 @@ Use the docs in the sidebar to find out how to use the schema:
 
 - **Allowed operations**: queries and mutations
 - **Schema-defined types**: scalars, objects, enums, interfaces, unions, and input objects
-
-Try out queries in the **[GraphQL Playground](https://graphql.vega.community/query/playground)**
-
