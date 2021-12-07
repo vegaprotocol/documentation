@@ -64,7 +64,7 @@ Download `vegawallet-linux-amd64.zip`
 
 ## 2. Generate or import existing wallet
 
-The steps below will guide you through initialising the wallet, and creating new key pairs / importing an existing wallet. To import an existing wallet, you'll need the mnemonic (recovery phrase) to hand.
+The steps below will guide you through initialising the wallet, and creating new key pairs or importing an existing wallet. To import an existing wallet, you'll need the mnemonic (recovery phrase) to hand.
 
 :::info
  You'll need to run the commands from the directory you've saved the wallet file in. Use the command `pwd` to find out where your terminal is looking in the file system. Use the command `cd` and the path/to/wallet/directory to tell the command line where to find the file. 
@@ -74,9 +74,9 @@ The steps below will guide you through initialising the wallet, and creating new
 You can see a list of available commands by running  `./vegawallet -h` on MacOS and Linux, or `vegawallet -h` on Windows.
 :::
 
-### Initialise the wallet
+### Initialise the software
 
-The `init` command (below) will initialise the wallet. This creates the folder, the configuration files, and default networks needed by the wallet to operate. 
+The `init` command (below) will initialise the Vega Wallet software. This creates the folder, the configuration files, and default networks needed by the software to operate. 
 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
@@ -137,7 +137,7 @@ vegawallet import --wallet "YOUR_USERNAME" --mnemonic-file "PATH_TO_YOUR_MNEMONI
 
 ### Create wallet credentials
 
-Next, **create a name and passphrase** for your Wallet, and **create a public and private key** and **mnemonic (recovery phrase) .
+Next, **create a name and passphrase** for your Wallet, and **create a public and private key** and **mnemonic (recovery phrase).
 
 Replace `YOUR_USERNAME` (below) with your chosen username:
 
@@ -174,75 +174,15 @@ Keep your mnemonic (recovery phrase) safe and secret. You will need your mnemoni
 **Your mnemonic is only shown once, at key creation, and cannot be recovered. DO NOT SHARE YOUR PRIVATE KEY OR MNEMONIC.**
 :::
 
-### Give each new key a nickname/alias
-
-When creating a key, you can give an alias by adding a metadata item called `name`.
-
-
-<Tabs groupId="operating-systems">
-<TabItem value="windows" label="Windows">
-
-```bash
-vegawallet key generate --wallet "YOUR_USERNAME" --meta "name:CHOOSE_ALIAS_FOR_KEY"
-```
-</TabItem>
-<TabItem value="mac" label="MacOS">
-
-```bash
-./vegawallet key generate \
-    --wallet "YOUR_USERNAME" \
-    --meta "name:CHOOSE_ALIAS_FOR_KEY"`
-```
-</TabItem>
-<TabItem value="linux" label="Linux">
-
-```bash
-./vegawallet key generate \
-    --wallet "YOUR_USERNAME" \
-    --meta "name:CHOOSE_ALIAS_FOR_KEY"`
-```
-</TabItem>
-</Tabs>
-
-### Give an existing key a nickname/alias
-
-<Tabs groupId="operating-systems">
-<TabItem value="windows" label="Windows">
-
-```bash
-vegawallet meta --meta="name:CHOOSE_CUSTOM_ALIAS_FOR_KEY" --wallet="YOUR_USERNAME" --pubkey="REPLACE_THIS_WITH_YOUR_PUBLIC_KEY"
-```
-</TabItem>
-<TabItem value="mac" label="MacOS">
-
-```bash
-./vegawallet meta \
-    --meta="name:CHOOSE_ALIAS_FOR_KEY" \
-    --wallet="YOUR_USERNAME" \
-    --pubkey="REPLACE_THIS_WITH_YOUR_PUBLIC_KEY"
-```
-</TabItem>
-<TabItem value="linux" label="Linux">
-
-```bash
-./vegawallet meta \
-    --meta="name:CHOOSE_ALIAS_FOR_KEY" \
-    --wallet="YOUR_USERNAME" \
-    --pubkey="REPLACE_THIS_WITH_YOUR_PUBLIC_KEY"
-```
-</TabItem>
-</Tabs>
-
-:::info
-You can also use the key annotate command to tag a key with other data you might want, using a property name and a value. This will be useful for developing with Vega Wallet in the future. Find out how to do this via the Vega Wallet commands.
-:::
-
 ## 3. Choose a network
 
 To use Vega Wallet, you'll need to choose a network to connect to. 
 
-### Import network list 
+### Import networks
+
 To import the list of available mainnet networks provided by the validators, use the [`mainnet1.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml) file on the networks repository.
+
+#### Import networks from URL
 
 Use the following command to import from the URL: 
 
@@ -269,6 +209,8 @@ vegawallet network import --from-url https://raw.githubusercontent.com/vegaproto
 ```
 </TabItem>
 </Tabs>
+
+#### Import networks from file
 
 Alternatively you can import a network list from a file. Use the following command to import from file: 
 
@@ -298,8 +240,8 @@ vegawallet network import --from-file "PATH_TO_FILE"
 You can override the imported network name using the `--with-name` flag.
 :::
 
-### View network list 
- 
+### List imported networks
+
 If you want to view the list of available networks that you imported, plus those already available in the wallet configuration, run the following command: 
 
 
@@ -329,10 +271,11 @@ vegawallet network list
 If you connect to the mainnet network, the validator you connect to is chosen by a round-robin schedule, as defined in your network configuration. 
 :::
 
-#### Update network list 
+#### Update networks
+
 At times you may need to force the wallet to update the list of available networks. Below, choose between forcing an update via URL or file. 
 
-#### Import updated list from URL
+#### Update network from URL
 
 Run the following `--force` command to update to the latest available from your chosen URL.  
 
@@ -359,7 +302,7 @@ vegawallet network import --force --from-url https://raw.githubusercontent.com/v
 </TabItem>
 </Tabs>
 
-#### Import updated list from URL
+#### Update network from file
 
 Run the following `--force` command to update to the latest available from your chosen file.  
 
@@ -386,7 +329,7 @@ vegawallet network import --force --from-file "PATH_TO_FILE"
 </Tabs>
 
 
-## 4. Run the wallet 
+## 4. Run the wallet
 
 To use your wallet with the Vega mainnet, connect your wallet to the network `mainnet`, which you imported in step 3. To use your wallet with Fairground, Vega's testnet, connect your wallet to the network `fairground`. 
 
