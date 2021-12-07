@@ -102,7 +102,7 @@ vegawallet init
 
 ### Import existing wallet
 
-Use your mnemonic (recovery phrase) to import a wallet you created in the past into a new version of the wallet software. If you were not provided with a mnemonic (recovery phrase) or have lost it, you will need to create a new wallet/keypair. Use the command below to import the plain-text file with your mnemonic in it. 
+Use your mnemonic (recovery phrase) to import a wallet you created in the past into a new version of the wallet software. If you were not provided with a mnemonic (recovery phrase) or have lost it, you will need to create a new wallet and generate new keys. Use the command below to import the plain-text file with your mnemonic in it. 
 
 Once you import, you will need to create wallet credentials (below). 
 
