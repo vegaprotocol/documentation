@@ -19,7 +19,7 @@ For a full list of Vega Wallet commands, see [CLI Commands](./command-list.md).
 
 **Important:** You will need to use Vega Wallet version 0.9.2 or above to connect to Vega Mainnet. We recommend always using the latest released version of Vega Wallet. 
 
-These instructions cover version 0.11. You can refer to [documentation for 0.10.0 or earlier](docs/tools/vega-wallet/cli-wallet/past-versions/create-wallet-0.10) if you need it. 
+These instructions cover version 0.11. You can refer to [documentation for 0.10.0 or earlier](/docs/tools/vega-wallet/cli-wallet/past-versions/create-wallet-0.10) if you need it. 
 
 These instructions are written to be used in command line. Below, in the snippets, you'll see commands in `highlighted text`. Copy those instructions and paste them into your command line interface.
 
