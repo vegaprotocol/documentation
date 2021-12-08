@@ -17,11 +17,13 @@ Note: If you are looking for instructions for connecting your hardware wallet to
 For a full list of Vega Wallet commands, see [CLI Commands](./command-list.md).
 :::
 
-## 1. Install and run latest Vega Wallet version
-
 **Important:** You will need to use Vega Wallet version 0.9.2 or above to connect to Vega Mainnet. We recommend always using the latest released version of Vega Wallet. 
 
+These instructions cover version 0.11. You can refer to [documentation for 0.10.0 or earlier](docs/tools/vega-wallet/cli-wallet/past-versions/create-wallet-0.10) if you need it. 
+
 These instructions are written to be used in command line. Below, in the snippets, you'll see commands in `highlighted text`. Copy those instructions and paste them into your command line interface.
+
+## 1. Install and run latest Vega Wallet version (0.11)
 
 ### Download file
 
@@ -64,7 +66,7 @@ Download `vegawallet-linux-amd64.zip`
 
 ## 2. Generate or import existing wallet
 
-The steps below will guide you through initialising the wallet, and creating new key pairs or importing an existing wallet. To import an existing wallet, you'll need the mnemonic (recovery phrase) to hand.
+The steps below will guide you through initialising the wallet, and creating new key pairs or importing an existing wallet. To import an existing wallet, you'll need the recovery phrase to hand.
 
 :::info
  You'll need to run the commands from the directory you've saved the wallet file in. Use the command `pwd` to find out where your terminal is looking in the file system. Use the command `cd` and the path/to/wallet/directory to tell the command line where to find the file. 
@@ -102,19 +104,19 @@ vegawallet init
 
 ### Import existing wallet
 
-Use your mnemonic (recovery phrase) to import a wallet you created in the past into a new version of the wallet software. If you were not provided with a mnemonic (recovery phrase) or have lost it, you will need to create a new wallet and generate new keys. Use the command below to import the plain-text file with your mnemonic in it. 
+Use your recovery phrase to import a wallet you created in the past into a new version of the wallet software. If you were not provided with a recovery phrase or have lost it, you will need to create a new wallet and generate new keys. Use the command below to import the plain-text file with your recovery phrase in it. 
 
 Once you import, you will need to create wallet credentials (below). 
 
 :::info 
-Because keys are generated in a deterministic way, when you import your wallet using the mnemonic, you will see the same key you had before. 
+Because keys are generated in a deterministic way, when you import your wallet using the recovery phrase, you will see the same key you had before. 
 :::
 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
 
 ```bash
-vegawallet import --wallet "YOUR_USERNAME" --mnemonic-file "PATH_TO_YOUR_MNEMONIC"
+vegawallet import --wallet "YOUR_USERNAME" --recovery-phrase-file "PATH_TO_YOUR_RECOVERY-PHRASE"
 ```
 </TabItem>
 <TabItem value="mac" label="MacOS">
@@ -122,7 +124,7 @@ vegawallet import --wallet "YOUR_USERNAME" --mnemonic-file "PATH_TO_YOUR_MNEMONI
 ```bash
 ./vegawallet import \
     --wallet "YOUR_USERNAME" \
-    --mnemonic-file "PATH_TO_YOUR_MNEMONIC"
+    --recovery-phrase-file "PATH_TO_YOUR_RECOVERY-PHRASE"
 ```
 </TabItem>
 <TabItem value="linux" label="Linux">
@@ -130,14 +132,14 @@ vegawallet import --wallet "YOUR_USERNAME" --mnemonic-file "PATH_TO_YOUR_MNEMONI
 ```bash
 ./vegawallet import \
     --wallet "YOUR_USERNAME" \
-    --mnemonic-file "PATH_TO_YOUR_MNEMONIC"
+    --recovery-phrase-file "PATH_TO_YOUR_RECOVERY-PHRASE"
 ```
 </TabItem>
 </Tabs>
 
 ### Create wallet credentials
 
-Next, **create a name and passphrase** for your Wallet, and **create a public and private key** and **mnemonic (recovery phrase).
+Next, **create a name and passphrase** for your Wallet, and **create a public and private key** and **recovery phrase.
 
 Replace `YOUR_USERNAME` (below) with your chosen username:
 
@@ -165,13 +167,13 @@ vegawallet key generate --wallet "YOUR_USERNAME"
 
 It will then prompt you to **input a passphrase**, and then **confirm that passphrase**. You'll use this username and passphrase to login to Vega Console. (Instructions on connecting to Console are below.)
 
-The key generate command in that instruction will generate public and private keys as well as a mnemonic for the wallet, at the same time as creating a user name.
+The key generate command in that instruction will generate public and private keys as well as a recovery phrase for the wallet, at the same time as creating a name for your wallet.
 
-You’ll see a public and private key, as well as a mnemonic (recovery phrase).
+You’ll see a public and private key, as well as a recovery phrase.
 :::warning
-Keep your mnemonic (recovery phrase) safe and secret. You will need your mnemonic to import your keys. 
+Keep your recovery phrase safe and secret. You will need your recovery phrase to import your keys. 
 
-**Your mnemonic is only shown once, at key creation, and cannot be recovered. DO NOT SHARE YOUR PRIVATE KEY OR MNEMONIC.**
+**Your recovery phrase is only shown once, at key creation, and cannot be recovered. DO NOT SHARE YOUR PRIVATE KEY OR RECOVERY PHRASE.**
 :::
 
 ## 3. Choose a network
