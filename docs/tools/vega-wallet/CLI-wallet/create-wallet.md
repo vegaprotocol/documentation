@@ -7,21 +7,17 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-To set up the Vega Wallet, follow the step-by-step instructions below. Using the Vega Wallet ensures your keys will be completely disassociated from your personal identity, and Vega will have no way to connect them with you, unless you share your public key for any reason. 
+To set up the Vega Wallet, follow the step-by-step instructions below. These instructions cover version 0.11, the latest release. You can refer to [documentation for 0.10.0 or earlier](/docs/tools/vega-wallet/CLI-wallet/past-versions/create-wallet-v0.10) if you need it. 
 
 This software a work-in-progress and is frequently updated, and does not yet have a user interface. 
 
 Note: If you are looking for instructions for connecting your hardware wallet to MetaMask, see [MetaMask's guide](https://metamask.zendesk.com/hc/en-us/articles/360020394612-How-to-connect-a-Trezor-or-Ledger-Hardware-Wallet).
 
-:::info
-For a full list of Vega Wallet commands, see [CLI Commands](./command-list.md).
-:::
+:::caution
+You must to use Vega Wallet version 0.9.2 or newer to connect to Vega Mainnet. We recommend always using the latest released version of Vega Wallet. 
+::: 
 
-**Important:** You will need to use Vega Wallet version 0.9.2 or above to connect to Vega Mainnet. We recommend always using the latest released version of Vega Wallet. 
-
-These instructions cover version 0.11. You can refer to [documentation for 0.10.0 or earlier](/docs/tools/vega-wallet/cli-wallet/past-versions/create-wallet-0.10) if you need it. 
-
-These instructions are written to be used in command line. Below, in the snippets, you'll see commands in `highlighted text`. Copy those instructions and paste them into your command line interface.
+Use the following instructions in command line. Below, in the snippets, you'll see commands in `highlighted text`. Copy those instructions and paste them into your command line interface.
 
 ## 1. Install and run latest Vega Wallet version (0.11)
 
@@ -29,7 +25,7 @@ These instructions are written to be used in command line. Below, in the snippet
 
 **Download and save the zip file from [Vega Wallet releases](https://github.com/vegaprotocol/vegawallet/releases/)**. Keep track of where you've saved the file, because that's where the command line interface will look for it.
 
-:::note You may need to change your system preferences to run the file
+:::note You may need to change your system preferences to run the file. 
 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">

@@ -1,4 +1,5 @@
 ---
+sidebar_position: 0
 title: Use Vega Wallet versions 0.10 and older
 hide_title: false
 ---
@@ -6,7 +7,7 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-To set up the Vega Wallet, follow the step-by-step instructions below. Using the Vega Wallet ensures your keys will be completely disassociated from your personal identity, and Vega will have no way to connect them with you, unless you share your public key for any reason. 
+To set up the Vega Wallet, follow the step-by-step instructions below. 
 
 Note: If you are looking for instructions for connecting your hardware wallet to MetaMask, see [MetaMask's guide](https://metamask.zendesk.com/hc/en-us/articles/360020394612-How-to-connect-a-Trezor-or-Ledger-Hardware-Wallet).
 
@@ -18,9 +19,7 @@ These instructions are written to be used in command line. Below, in the snippet
 
 ### Download file
 
-**Download and save the zip file from [Vega Wallet releases](https://github.com/vegaprotocol/vegawallet/releases/)**. Keep track of where you've saved the file, because that's where the command line interface will look for it. 
-
-**These instructions are only relevant for versions 0.9.2 through 0.10.0.**
+**Download and save the zip file from [Vega Wallet releases](https://github.com/vegaprotocol/vegawallet/releases/)**. Keep track of where you've saved the file, because that's where the command line interface will look for it. **These instructions are only relevant for versions 0.9.2 through 0.10.0.**
 
 :::note You may need to change your system preferences to run the file
 
