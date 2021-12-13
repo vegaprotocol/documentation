@@ -60,12 +60,12 @@ Download `vegawallet-linux-amd64.zip`
 </Tabs>
 :::
 
-## 2. Generate or import existing wallet
+## 2. Generate new wallet
 
-The steps below will guide you through initialising the wallet, and creating new key pairs or importing an existing wallet. To import an existing wallet, you'll need the recovery phrase to hand.
+The steps below will guide you through initialising the wallet, and creating new key pairs or importing an existing wallet. 
 
 :::info
- You'll need to run the commands from the directory you've saved the wallet file in. Use the command `pwd` to find out where your terminal is looking in the file system. Use the command `cd` and the path/to/wallet/directory to tell the command line where to find the file. 
+You'll need to run the commands from the directory you've saved the wallet file in. Use the command `pwd` to find out where your terminal is looking in the file system. Use the command `cd` and the path/to/wallet/directory to tell the command line where to find the file. 
 :::
 
 :::info
@@ -74,7 +74,7 @@ You can see a list of available commands by running  `./vegawallet -h` on MacOS 
 
 ### Initialise the software
 
-The `init` command (below) will initialise the Vega Wallet software. This creates the folder, the configuration files, and default networks needed by the software to operate. 
+The `init` command will initialise the software the first time you use it. This creates the folders and the configuration files needed by the software to operate. 
 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
@@ -98,92 +98,62 @@ vegawallet init
 </TabItem>
 </Tabs>
 
-### Import existing wallet
+### Create your wallet
 
-Use your recovery phrase to import a wallet you created in the past into a new version of the wallet software. If you were not provided with a recovery phrase or have lost it, you will need to create a new wallet and generate new keys. Use the command below to import the plain-text file with your recovery phrase in it. 
+Next, create a wallet by giving it **a name and passphrase**. 
 
-Once you import, you will need to create wallet credentials (below). 
+This step will: 
+* create your first public and private key 
+* show your wallet's recovery phrase (save this immediately)
 
-:::info 
-Because keys are generated in a deterministic way, when you import your wallet using the recovery phrase, you will see the same key you had before. 
-:::
-
-<Tabs groupId="operating-systems">
-<TabItem value="windows" label="Windows">
-
-```bash
-vegawallet import --wallet "YOUR_USERNAME" --recovery-phrase-file "PATH_TO_YOUR_RECOVERY-PHRASE"
-```
-</TabItem>
-<TabItem value="mac" label="MacOS">
-
-```bash
-./vegawallet import \
-    --wallet "YOUR_USERNAME" \
-    --recovery-phrase-file "PATH_TO_YOUR_RECOVERY-PHRASE"
-```
-</TabItem>
-<TabItem value="linux" label="Linux">
-
-```bash
-./vegawallet import \
-    --wallet "YOUR_USERNAME" \
-    --recovery-phrase-file "PATH_TO_YOUR_RECOVERY-PHRASE"
-```
-</TabItem>
-</Tabs>
-
-### Create wallet credentials
-
-Next, **create a name and passphrase** for your Wallet, and **create a public and private key** and **recovery phrase.
-
-Replace `YOUR_USERNAME` (below) with your chosen username:
+Replace `YOUR_WALLET_NAME` (below) with your chosen wallet name:
 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
 
 ```bash
-vegawallet key generate --wallet "YOUR_USERNAME"
+vegawallet create --wallet "YOUR_WALLET_NAME"
 ```
 </TabItem>
 <TabItem value="mac" label="MacOS">
 
 ```bash
-./vegawallet key generate --wallet "YOUR_USERNAME"
+./vegawallet create --wallet "YOUR_WALLET_NAME"
 ```
 </TabItem>
 <TabItem value="linux" label="Linux">
 
 ```bash
-./vegawallet key generate --wallet "YOUR_USERNAME"
+./vegawallet create --wallet "YOUR_WALLET_NAME"
 ```
 </TabItem>
 
 </Tabs>
 
-It will then prompt you to **input a passphrase**, and then **confirm that passphrase**. You'll use this username and passphrase to login to Vega Console. (Instructions on connecting to Console are below.)
+It will then prompt you to **input a passphrase**, and then **confirm that passphrase**. You'll use this wallet name and passphrase to login to the token site and Vega Console.
 
-The key generate command in that instruction will generate public and private keys as well as a recovery phrase for the wallet, at the same time as creating a name for your wallet.
-
-You’ll see a public and private key, as well as a recovery phrase.
 :::warning
-Keep your recovery phrase safe and secret. You will need your recovery phrase to import your keys. 
+Keep your recovery phrase safe and secret. You will need it to import your keys. 
 
-**Your recovery phrase is only shown once, at key creation, and cannot be recovered. DO NOT SHARE YOUR PRIVATE KEY OR RECOVERY PHRASE.**
+**Your recovery phrase is only shown once ever and cannot be recovered. DO NOT SHARE YOUR RECOVERY PHRASE.**
 :::
 
 ## 3. Choose a network
 
-To use Vega Wallet, you'll need to choose a network to connect to. 
+If you want to interact with the Token dApp or Vega Console, you'll need to import network configuration for the network(s) you want to connect to.
 
 ### Import networks
 
-To import the list of available mainnet networks provided by the validators, use the [`mainnet1.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml) file on the networks repository.
+Import the following network configurations: 
+
+* **Mainnet** network (run by validators): [`mainnet1.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml)
+* **Fairground** network: [`fairground.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/fairground/fairground.toml)
 
 #### Import networks from URL
 
-Use the following command to import from the URL: 
+Use the following command to import from URL. 
 
+**The URL used below is for mainnet, update the URL if you want to import a different network.*
 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
@@ -235,13 +205,12 @@ vegawallet network import --from-file "PATH_TO_FILE"
 </Tabs>
 
 :::info
-You can override the imported network name using the `--with-name` flag.
+Each network has a default name. You can rename the network using the `--with-name` flag. 
 :::
 
 ### List imported networks
 
-If you want to view the list of available networks that you imported, plus those already available in the wallet configuration, run the following command: 
-
+To see the names of the networks you imported, run the following command: 
 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
@@ -265,71 +234,9 @@ vegawallet network list
 
 </Tabs>
 
-:::info 
-If you connect to the mainnet network, the validator you connect to is chosen by a round-robin schedule, as defined in your network configuration. 
-:::
-
-#### Update networks
-
-At times you may need to force the wallet to update the list of available networks. Below, choose between forcing an update via URL or file. 
-
-#### Update network from URL
-
-Run the following `--force` command to update to the latest available from your chosen URL.  
-
-<Tabs groupId="operating-systems">
-<TabItem value="windows" label="Windows">
-
-```bash
-vegawallet network import --force --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
-```
-</TabItem>
-<TabItem value="mac" label="MacOS">
-
-```bash
-./vegawallet network import  --force \
-    --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
-```
-</TabItem>
-<TabItem value="linux" label="Linux">
-
-```bash
-./vegawallet network import  --force \
-     --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
-```
-</TabItem>
-</Tabs>
-
-#### Update network from file
-
-Run the following `--force` command to update to the latest available from your chosen file.  
-
-<Tabs groupId="operating-systems">
-<TabItem value="windows" label="Windows">
-
-```bash
-vegawallet network import --force --from-file "PATH_TO_FILE"
-```
-</TabItem>
-<TabItem value="mac" label="MacOS">
-
-```bash
-./vegawallet network import --force --from-file "PATH_TO_FILE"
-```
-</TabItem>
-<TabItem value="linux" label="Linux">
-
-```bash
-./vegawallet network import --force --from-file "PATH_TO_FILE"
-```
-</TabItem>
-
-</Tabs>
-
-
 ## 4. Run the wallet
 
-To use your wallet with the Vega mainnet, connect your wallet to the network `mainnet`, which you imported in step 3. To use your wallet with Fairground, Vega's testnet, connect your wallet to the network `fairground`. 
+For applications to be able to talk to your wallet, you will need to run the service. Every time you run the service, you will have to choose which network you need. Choose the network name from the list in step 3.
 
 To choose a network and run the wallet, use the following command: 
 
@@ -358,3 +265,56 @@ vegawallet service run --network "NETWORK_NAME"
 :::info
 To terminate the process, if you want to run other commands in Vega Wallet for example, use `ctrl+c`.
 :::
+
+## 4a. Connect to Vega apps through the wallet 
+
+In some cases, you'll need to run a Vega app via the wallet service, instead of directly in your browser. 
+
+### Connect to Token dApp
+
+<Tabs groupId="operating-systems">
+<TabItem value="windows" label="Windows">
+
+```bash
+vegawallet service run --network "NETWORK_NAME" --with-token-dapp
+```
+</TabItem>
+<TabItem value="mac" label="MacOS">
+
+```bash
+./vegawallet service run --network "NETWORK_NAME" --with-token-dapp
+```
+
+</TabItem>
+<TabItem value="linux" label="Linux">
+
+```bash
+./vegawallet service run --network "NETWORK_NAME" --with-token-dapp
+```
+</TabItem>
+</Tabs>
+
+
+### Connect to Vega Console 
+
+<Tabs groupId="operating-systems">
+<TabItem value="windows" label="Windows">
+
+```bash
+vegawallet service run --network "NETWORK_NAME" --with-console
+```
+</TabItem>
+<TabItem value="mac" label="MacOS">
+
+```bash
+./vegawallet service run --network "NETWORK_NAME" --with-console
+```
+
+</TabItem>
+<TabItem value="linux" label="Linux">
+
+```bash
+./vegawallet service run --network "NETWORK_NAME" --with-console
+```
+</TabItem>
+</Tabs>
