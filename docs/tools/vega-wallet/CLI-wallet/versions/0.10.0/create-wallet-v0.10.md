@@ -1,6 +1,6 @@
 ---
 sidebar_position: 0
-title: Use Vega Wallet versions 0.10 and older
+title: Use Vega Wallet versions 0.10 or older
 hide_title: false
 ---
 

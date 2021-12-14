@@ -10,7 +10,11 @@ The following list of commands, sub-commands, and flags will help you use [Vega 
 
 By default, the wallet will be stored at a specific location. These can stay as-is, but if you want to specify a different location for test or isolation purposes, use the `--home` flag to do so.
 
-## List of available commands
+:::info
+You can see a list of available commands by running  `./vegawallet -h` on MacOS and Linux, or `vegawallet -h` on Windows.
+:::
+
+## List of available commands & get help
 
 There are 3 ways to list the available commands
 

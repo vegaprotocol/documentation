@@ -7,7 +7,7 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-To set up the Vega Wallet, follow the step-by-step instructions below. These instructions cover version 0.11, the latest release. You can refer to [documentation for 0.10.0 or earlier](/docs/tools/vega-wallet/CLI-wallet/past-versions/create-wallet-v0.10) if you need it. 
+To download Vega Wallet and create your wallet, follow the step-by-step instructions below. These instructions cover version 0.11, the latest release. You can refer to [documentation for 0.10.0 or earlier](/docs/tools/vega-wallet/CLI-wallet/past-versions/create-wallet-v0.10) if you need it. 
 
 This software a work-in-progress and is frequently updated, and does not yet have a user interface. 
 
@@ -23,7 +23,7 @@ Use the following instructions in command line. Below, in the snippets, you'll s
 
 ### Download file
 
-**Download and save the zip file from [Vega Wallet releases](https://github.com/vegaprotocol/vegawallet/releases/)**. Keep track of where you've saved the file, because that's where the command line interface will look for it.
+**Download and save the zip file from [Vega Wallet software releases](https://github.com/vegaprotocol/vegawallet/releases/)**. Keep track of where you've saved the file, because that's where the command line interface will look for it.
 
 :::note You may need to change your system preferences to run the file. 
 
@@ -60,16 +60,16 @@ Download `vegawallet-linux-amd64.zip`
 </Tabs>
 :::
 
-## 2. Generate new wallet
-
-The steps below will guide you through initialising the wallet, and creating new key pairs or importing an existing wallet. 
-
 :::info
 You'll need to run the commands from the directory you've saved the wallet file in. Use the command `pwd` to find out where your terminal is looking in the file system. Use the command `cd` and the path/to/wallet/directory to tell the command line where to find the file. 
 :::
 
+## 2. Generate new wallet
+
+The steps below will guide you through initialising a wallet, and creating new key pairs or importing an existing wallet. 
+
 :::info
-You can see a list of available commands by running  `./vegawallet -h` on MacOS and Linux, or `vegawallet -h` on Windows.
+To restore a wallet from your recovery phrase, see the [restore wallet guide](docs/tools/vega-wallet/CLI-wallet/restore-wallet).
 :::
 
 ### Initialise the software
@@ -148,6 +148,10 @@ Import the following network configurations:
 
 * **Mainnet** network (run by validators): [`mainnet1.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml)
 * **Fairground** network: [`fairground.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/fairground/fairground.toml)
+
+:::info
+To update your networks list, see [manage networks](docs/tools/vega-wallet/CLI-wallet/manage-networks/update-networks) for instructions.
+:::
 
 #### Import networks from URL
 
