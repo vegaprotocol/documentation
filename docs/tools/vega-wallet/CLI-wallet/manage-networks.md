@@ -1,6 +1,6 @@
 ---
-sidebar_position: 1
-title: Import existing wallet
+sidebar_position: 3
+title: Manage networks
 hide_title: false
 ---
 

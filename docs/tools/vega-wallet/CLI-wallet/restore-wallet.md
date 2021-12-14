@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Restore wallet
+title: Restore a wallet
 hide_title: false
 ---
 
