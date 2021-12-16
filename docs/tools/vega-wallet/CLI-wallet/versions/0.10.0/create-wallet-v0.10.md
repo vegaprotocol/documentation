@@ -15,7 +15,7 @@ Note: If you are looking for instructions for connecting your hardware wallet to
 
 **Important:** You will need to use Vega Wallet version 0.9.2 or above to connect to Vega Mainnet. **We recommend always using the [latest released version of Vega Wallet](/docs/tools/vega-wallet/CLI-wallet/create-wallet).** These instructions cover versions 0.9.2 through 0.10.0.
 
-These instructions are written to be used in command line. Below, in the snippets, you'll see commands in `highlighted text`. Copy those instructions and paste them into your command line interface.
+These instructions are written to be used in command line. Below, you'll see commands in the code blocks for each operating system. Copy those instructions and paste them into your command line interface.
 
 ### Download file
 
