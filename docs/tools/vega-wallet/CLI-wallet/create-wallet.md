@@ -13,11 +13,15 @@ This software a work-in-progress and is frequently updated, and does not yet hav
 
 Note: If you are looking for instructions for connecting your hardware wallet to MetaMask, see [MetaMask's guide](https://metamask.zendesk.com/hc/en-us/articles/360020394612-How-to-connect-a-Trezor-or-Ledger-Hardware-Wallet).
 
+Use the following instructions in command line. Below, you'll see commands in the code blocks for each operating system. Copy those instructions and paste them into your command line interface.
+
 :::caution
 You must to use Vega Wallet version 0.9.2 or newer to connect to Vega Mainnet. We recommend always using the latest released version of Vega Wallet. 
 ::: 
 
-Use the following instructions in command line. Below, in the snippets, you'll see commands in `highlighted text`. Copy those instructions and paste them into your command line interface.
+:::info 
+In your command line interface, you can view a list of available commands by running ./vegawallet -h on MacOS and Linux, or vegawallet -h on Windows. Help is also available for every command, for example: `vegawallet create -h` will provide information about the `create` command.
+:::
 
 ## 1. Install and run latest Vega Wallet version (0.11)
 

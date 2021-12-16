@@ -12,6 +12,10 @@ There are some situations in which you'll need to restore a wallet you previousl
 * If you deleted the wallet app 
 * If you are updating from release 0.9.0, (including 0.9.0-preN) or older
 
+:::info 
+You can see a list of available commands by running ./vegawallet -h on MacOS and Linux, or vegawallet -h on Windows. Help is also available for every command, for example: `vegawallet import -h` will provide information about the `import` command.
+:::
+
 ## Restore a wallet
 
 Use your recovery phrase to restore a wallet with the `import` command. If you were not provided with a recovery phrase or have lost it, you will need to create a new wallet and generate new keys. Use the command below to import the plain-text file with your recovery phrase in it. 

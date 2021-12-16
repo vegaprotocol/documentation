@@ -7,9 +7,11 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Manage networks
-
 You'll need to import and choose a network to use your wallet to interact with Vega. This page explains the network-related commands within Vega Wallet, and how to use them. 
+
+:::info 
+You can see a list of available commands by running ./vegawallet -h on MacOS and Linux, or vegawallet -h on Windows. Help is also available for every command, for example: `vegawallet network -h` will provide information about the `network` command, and `vegawallet network import -h` will describe importing a network.
+:::
 
 ## Update networks
 
