@@ -17,7 +17,7 @@ You can see a list of available commands by running ./vegawallet -h on MacOS and
 
 At times you may need to force the wallet to update the list of available networks. Below, choose between forcing an update via URL or file. 
 
-#### Update network from URL
+### Update network from URL
 
 Run the following `--force` command to update to the latest available from your chosen URL.  
 
@@ -44,7 +44,7 @@ vegawallet network import --force --from-url https://raw.githubusercontent.com/v
 </TabItem>
 </Tabs>
 
-#### Update network from file
+### Update network from file
 
 Run the following `--force` command to update to the latest available from your chosen file.  
 
@@ -70,7 +70,7 @@ vegawallet network import --force --from-file "PATH_TO_FILE"
 
 </Tabs>
 
-### List networks 
+## List networks 
 
 To see the names of the networks you've imported, run the following command: 
 
@@ -96,7 +96,7 @@ vegawallet network list
 
 </Tabs>
 
-### Display network configuration 
+## Display network configuration 
 
 You can display the information that the wallet uses to connect to a network. This includes the API and app hosts. 
 
@@ -124,7 +124,7 @@ vegawallet network describe --network "NETWORK_NAME"
 
 </Tabs>
 
-### Delete networks 
+## Delete networks 
 
 If you don't want to connect to a specific network any longer, or you want to clear the configuration, you can delete that network from your computer. 
 
