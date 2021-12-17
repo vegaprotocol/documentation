@@ -1,11 +1,15 @@
 ---
 sidebar_position: 1
-title: Migrating from 0.10.0 to 0.11.0
+title: Migrate from 0.10.0
 hide_title: false
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+Version 0.11.0 has a number of changes to the commands and how information is displayed. While both sets of commands will work for version 0.11.0, that won't be true in a future version. 
+
+Below find an explanation of changes to how the wallet works. 
 
 ## Create a wallet
 
@@ -57,6 +61,10 @@ It's now matching the rest of the command line semantic:
 vegawallet command send ...
 vegawallet tx send ...
 ```
+
+## More guidance in help
+
+The `--help` flags across commands offer more information about each command and sub-command.  You'll see an explanation of each command, and examples of how to use them. 
 
 ## How can I print my private keys ?
 

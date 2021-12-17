@@ -1,13 +1,13 @@
 ---
 sidebar_position: 1
-title: Create and use Vega Wallet
+title: Create a wallet
 hide_title: false
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-To download Vega Wallet and create your wallet, follow the step-by-step instructions below. These instructions cover version 0.11, the latest release. You can refer to [documentation for 0.10.0 or earlier](/docs/tools/vega-wallet/CLI-wallet/versions/0.10.0/create-wallet-v0.10) if you need it. 
+To download Vega Wallet and create your wallet, follow the step-by-step instructions below. These instructions cover version 0.11, the latest release. You can refer to [documentation for 0.10.0 or earlier](/docs/tools/vega-wallet/CLI-wallet/old-versions/0.10.0/create-wallet-v0.10) if you need it. 
 
 This software a work-in-progress and is frequently updated, and does not yet have a user interface. 
 

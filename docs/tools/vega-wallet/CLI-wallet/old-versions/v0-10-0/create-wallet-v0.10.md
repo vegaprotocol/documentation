@@ -1,19 +1,19 @@
 ---
 sidebar_position: 0
-title: Use Vega Wallet versions 0.10 or older
+title: Vega Wallet versions 0.10-0.9.2
 hide_title: false
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-To set up the Vega Wallet, follow the step-by-step instructions below. 
+To set up Vega Wallet version 0.10.0 or 0.9.2, follow the step-by-step instructions below. 
 
 Note: If you are looking for instructions for connecting your hardware wallet to MetaMask, see [MetaMask's guide](https://metamask.zendesk.com/hc/en-us/articles/360020394612-How-to-connect-a-Trezor-or-Ledger-Hardware-Wallet).
 
 ## 1. Install and run Vega Wallet
 
-**Important:** You will need to use Vega Wallet version 0.9.2 or above to connect to Vega Mainnet. **We recommend always using the [latest released version of Vega Wallet](/docs/tools/vega-wallet/CLI-wallet/create-wallet).** These instructions cover versions 0.9.2 through 0.10.0.
+**Important:** You will need to use Vega Wallet version 0.9.2 or above to connect to Vega Mainnet. **We recommend always using the [latest released version of Vega Wallet](/docs/tools/vega-wallet/CLI-wallet/latest/create-wallet).** These instructions cover versions 0.9.2 through 0.10.0.
 
 These instructions are written to be used in command line. Below, you'll see commands in the code blocks for each operating system. Copy those instructions and paste them into your command line interface.
 
