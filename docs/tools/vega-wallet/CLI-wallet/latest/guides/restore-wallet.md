@@ -86,4 +86,4 @@ vegawallet import --wallet "YOUR_WALLET_NAME" --recovery-phrase-file "PATH_TO_YO
 
 Once you've imported your wallet, you can carry on with running it and interacting with the network. 
 
-More guidance: [Create a Wallet walkthrough - Step 3](/docs/tools/vega-wallet/CLI-wallet/create-wallet#3-choose-a-network) 
+More guidance: [Create a Wallet walkthrough - Step 3](/docs/tools/vega-wallet/CLI-wallet/latest/create-wallet#3-choose-a-network)

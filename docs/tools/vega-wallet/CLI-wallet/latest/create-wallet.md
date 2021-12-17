@@ -7,7 +7,7 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-To download Vega Wallet and create your wallet, follow the step-by-step instructions below. These instructions cover version 0.11, the latest release. You can refer to [documentation for 0.10.0 or earlier](/docs/tools/vega-wallet/CLI-wallet/old-versions/0-10-0/create-wallet-v0-10) if you need it. 
+To download Vega Wallet and create your wallet, follow the step-by-step instructions below. These instructions cover version 0.11, the latest release. You can refer to [documentation for 0.10.0 or earlier](/docs/tools/vega-wallet/CLI-wallet/old-versions/v0-10-0/create-wallet-v0-10) if you need it. 
 
 This software a work-in-progress and is frequently updated, and does not yet have a user interface. 
 
@@ -20,7 +20,7 @@ You must to use Vega Wallet version 0.9.2 or newer to connect to Vega Mainnet. W
 ::: 
 
 :::info 
-In your command line interface, you can view a list of available commands by running ./vegawallet -h on MacOS and Linux, or vegawallet -h on Windows. Help is also available for every command, for example: `vegawallet create -h` will provide information about the `create` command.
+In your command line interface, you can view a list of available commands by running `./vegawallet -h` on MacOS and Linux, or `vegawallet -h` on Windows. Help is also available for every command, for example: `vegawallet create -h` will provide information about the `create` command.
 :::
 
 ## 1. Install and run latest Vega Wallet version (0.11)
@@ -73,7 +73,7 @@ You'll need to run the commands from the directory you've saved the wallet file 
 The steps below will guide you through initialising a wallet, and creating new key pairs or importing an existing wallet. 
 
 :::info
-To restore a wallet from your recovery phrase, see the [restore wallet guide](/docs/tools/vega-wallet/CLI-wallet/latest/guides/restore-wallet).
+To restore a wallet from your recovery phrase, see the [restore a wallet guide](/docs/tools/vega-wallet/CLI-wallet/latest/guides/restore-wallet).
 :::
 
 ### Initialise the software
@@ -161,7 +161,7 @@ To update your networks list, see [manage networks](/docs/tools/vega-wallet/CLI-
 
 Use the following command to import from URL. 
 
-**The URL used below is for mainnet, update the URL if you want to import a different network.*
+*The URL used below is for mainnet, update the URL if you want to import a different network.*
 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
