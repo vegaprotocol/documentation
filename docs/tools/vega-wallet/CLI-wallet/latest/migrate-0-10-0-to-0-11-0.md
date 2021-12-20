@@ -55,7 +55,7 @@ In the HTTP reponse for importing a wallet, the `mnemonic` property has been dep
 
 **Up to version 0.11.0** 
 
-In 0.10.0, starting the Vega Console through your wallet was acheived using the `--console-proxy` flag. 
+In 0.10.0, starting the Vega Console through your wallet was achieved using the `--console-proxy` flag. 
 
 **Version 0.11.0 onwards**
 
