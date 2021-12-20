@@ -99,7 +99,7 @@ The `send command` and `send transaction` semantic will not be available from ve
 
 ## More guidance in help
 
-The `--help` flags across commands offer more information about each command and sub-command.  You'll see an explanation of each command and examples of how to use them. 
+The `--help` flag offers more information about each command and sub-command.  You'll see an explanation of each command and examples of how to use them. 
 
 ## How can I print my private keys?
 
