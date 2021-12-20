@@ -86,7 +86,7 @@ vegawallet send tx ...
 
 **Version 0.11.0 onwards** 
 
-It now matches the rest of the command line semantic:
+It now matches the rest of the command line semantics:
 
 ```sh
 vegawallet command send ...
