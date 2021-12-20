@@ -95,7 +95,7 @@ vegawallet tx send ...
 
 **Deprecation** 
 
-The `send command` and `send transaction` semantic will not be available from version 0.12.0, and only `command send` and `tx send` will be available.
+The `send command` and `send transaction` commands will be removed from version 0.12.0, and only `command send` and `tx send` will be available.
 
 ## More guidance in help
 
