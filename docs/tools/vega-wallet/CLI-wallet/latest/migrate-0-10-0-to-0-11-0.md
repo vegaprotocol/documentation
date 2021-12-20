@@ -7,71 +7,108 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Version 0.11.0 has a number of changes to the commands and how information is displayed. While both sets of commands will work for version 0.11.0, that won't be true in a future version. 
+Version 0.11.0 has a number of changes to the commands and how information is displayed. 
+
+While both new and old commands will work for version 0.11.0, they will not work in software version 0.12.0 and onward. 
 
 Below find an explanation of changes to how the wallet works. 
 
 ## Create a wallet
 
-Up to the version 0.10.0, creating a wallet is done through the command:
+**Up to version 0.11.0** 
+
+Creating a wallet was done using the command:
+
 ```sh
-vegawallet key generate --wallet MY_NEW_WALLET
+vegawallet key generate --wallet WALLET_NAME
 ```
 
-From the version 0.11.0, the creation is done through the command:
+**Version 0.11.0 onwards**
+
+Create a wallet using the command:
+
 ```sh
-vegawallet create --wallet MY_NEW_WALLET
+vegawallet create --wallet WALLET_NAME
 ```
 
-For ease of use, the `create` command generate the first key.
+For ease of use, the `create` command generates the first key.
 
-Creation of the wallet through the `key generate` command is deprecated and will be removed in version 0.12.0.
+**Deprecation** 
+
+Creation of the wallet using the `key generate` command is deprecated and will be removed in version 0.12.0.
 
 ## Restore a wallet
 
-From the version 0.11.0, using the `import` command generate the first key similarly with the `create` command.
+**Version 0.11.0 onwards**
 
-The `--mnemonic-file` flag has been deprecated in favor of the `--recovery-phrase-file` flag. The `--mnemonic-file` flag will be removed in version 0.12.0.
+Using the `import` command generates the first key, just as the `create` command does.
 
-In the HTTP request for creating a wallet, the `mnemonic` property has been deprecated in favor of the `recoveryPhrase` property and will be removed in version 0.12.0.
+**Deprecation** 
 
-In the HTTP reponse for importing a wallet, the `mnemonic` property has been deprecated in favor of the `recoveryPhrase` property and will be removed in version 0.12.0.
+The `--mnemonic-file` flag has been deprecated in favour of the `--recovery-phrase-file` flag. The `--mnemonic-file` flag will be removed in version 0.12.0.
 
-## Running the service with proxies
+In the HTTP request for creating a wallet, the `mnemonic` property has been deprecated in favour of the `recoveryPhrase` property and will be removed in version 0.12.0.
 
-Starting the Vega Console proxy was acheived through the `--console-proxy` flag. This flag is deprecated in favor of `--with-console` and doesn't have a short version anymore. It will be removed in version 0.12.0.
+In the HTTP reponse for importing a wallet, the `mnemonic` property has been deprecated in favour of the `recoveryPhrase` property and will be removed in version 0.12.0.
+
+## Connect to a site using a proxy
+
+**Up to version 0.11.0** 
+
+In 0.10.0, starting the Vega Console through your wallet was acheived using the `--console-proxy` flag. 
+
+**Version 0.11.0 onwards**
+
+Starting the Vega Console through your wallet is done using the `--with-console` flag. 
 
 It's now possible to proxy the Vega Token dApp from the command line with the `--with-token-dapp` flag.
 
-The proxies can be started next to each other in a single command:
+Both sites can be started in a single command:
+
 ```sh
 vegawallet service run --network NETWORK --with-console --with-token-dapp
 ```
 
-## Send a command using and a transaction through the CLI
+**Deprecation** 
 
-Prior to version 0.11.0, the command used to send a command or a raw transaction is:
-``sh
+`--console-proxy` is deprecated in favour of `--with-console` and doesn't have a short version anymore. The old command will continue to work until version 0.12.0 is released.
+
+## Send a command or transaction
+
+**Up to version 0.11.0** 
+
+The command used to send a command or a raw transaction was:
+
+```sh
 vegawallet send command ...
 vegawallet send tx ...
 ```
 
-It's now matching the rest of the command line semantic:
+**Version 0.11.0 onwards** 
+
+It now matches the rest of the command line semantic:
+
 ```sh
 vegawallet command send ...
 vegawallet tx send ...
 ```
 
+**Deprecation** 
+
+The `send command` and `send transaction` semantic will not be available from version 0.12.0, and only `command send` and `tx send` will be available.
+
 ## More guidance in help
 
-The `--help` flags across commands offer more information about each command and sub-command.  You'll see an explanation of each command, and examples of how to use them. 
+The `--help` flags across commands offer more information about each command and sub-command.  You'll see an explanation of each command and examples of how to use them. 
 
-## How can I print my private keys ?
+## How can I print my private keys?
 
-For security reasons, we decided to not print the private keys on any output, and cannot be accessed from any commands anymore. In most cases, Vega Wallet can take care of your needs by using an appropriate command.
+For security reasons, Vega Wallet will no longer print the private keys on any output, and it cannot be accessed from any commands.
+
+In most cases, Vega Wallet can take care of your needs by using the available commands.
 
 ## Networks are not generated by default
 
-We decided to not embed default network configurations in Vega Wallet. They all need to be imported.
+Default network configurations are not embedded in Vega Wallet anymore. They all need to be imported.
 
-As a result, running the `init` command won't generate `fairground` network configuration anymore.
+As a result, running the `init` command won't generate the `fairground` network configuration anymore.
