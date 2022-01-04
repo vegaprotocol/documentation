@@ -8,6 +8,11 @@
   YARN_VERSION = "1.22.10"
 
 [[redirects]]
-  from = "/docs/tools/vega-wallet/CLI-wallet/create-wallet"
-  to = "/docs/tools/vega-wallet/CLI-wallet/latest/create-wallet"
+  from = "/docs/tools/vega-wallet/cli-wallet/create-wallet"
+  to = "/docs/tools/vega-wallet/cli-wallet/latest/create-wallet"
+  status = 301
+
+[[redirects]]
+  from = "/docs/tools/vega-wallet/CLI-wallet/*"
+  to = "/docs/tools/vega-wallet/cli-wallet/:splat"
   status = 301
