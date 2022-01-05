@@ -102,12 +102,12 @@ Validators and nominators both receive incentives from the network, depending on
 
 **To be considered for staking rewards, a participant must associate VEGA to a Vega key and nominate one or more validators.**
 
-For restricted mainnet, all rewards are evenly distributed among validators. 
+For restricted mainnet, rewards are distributed among validators in proportion to their total stake. The total stake includes a validator's own stake and the tokens nominated to that validator. 
 
 At the end of each epoch, reward payments are calculated per active validator, and then some of that reward is divided between their nominators. The proportion that goes to nominators is defined by the network parameter `reward.staking.delegation.delegatorShare`. 
 
 :::note Further reading
-Read the [staking rewards](https://github.com/vegaprotocol/specs/blob/main/protocol/0058-simple-POS-rewards.md) spec for full details for how rewards are calculated. 
+Read the [staking rewards](https://github.com/vegaprotocol/specs/blob/main/protocol/0058-simple-POS-rewards.md) spec for full details for how rewards are calculated and will be in future iterations. 
 :::
  
 :::info
