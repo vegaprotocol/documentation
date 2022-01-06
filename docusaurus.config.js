@@ -137,6 +137,14 @@ module.exports = {
         diffMethod: "SCHEMA-DIFF",
       },
     ],
+    [
+      // Search
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      {
+        language: ["en"],
+        hashed: true,
+      },
+    ],
   ],
   presets: [
     [
@@ -206,7 +214,5 @@ module.exports = {
       },
     ],
   ],
-  themes: [
-    "@saucelabs/theme-github-codeblock"
-  ],
+  themes: ["@saucelabs/theme-github-codeblock"],
 };
