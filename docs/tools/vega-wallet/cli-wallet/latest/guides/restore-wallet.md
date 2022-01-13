@@ -53,11 +53,13 @@ vegawallet import --wallet "YOUR_WALLET_NAME" --recovery-phrase-file "PATH_TO_YO
 
 It will then prompt you to **input a passphrase**, and then **confirm that passphrase**. You'll use this wallet name and passphrase to login to the token site and Vega Console.
 
+Once you've imported your wallet, you can carry on with running it and interacting with the network. 
+
 ## Common errors 
 
 ### I restored my wallet but the generated keys are different.
-* Make sure you used the right recovery phrase for that wallet. 
-* a. The version of the Wallet you imported (v1 or v2) is not the same version. You'll need to restore with using the `--version` flag. 
+* Make sure you used the right recovery phrase for that wallet. If your recovery phrase is incorrect, it will either fail or you will end up creating a new wallet with new keys.  
+* If your wallet is version 1, restore it using the `--version` flag. See the instructions below.  
 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
@@ -84,6 +86,5 @@ vegawallet import --wallet "YOUR_WALLET_NAME" --recovery-phrase-file "PATH_TO_YO
 </TabItem>
 </Tabs>
 
-Once you've imported your wallet, you can carry on with running it and interacting with the network. 
 
 More guidance: [Create a Wallet walkthrough - Step 3](/docs/tools/vega-wallet/cli-wallet/latest/create-wallet#3-choose-a-network)
