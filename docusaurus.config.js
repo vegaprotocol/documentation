@@ -46,6 +46,11 @@ module.exports = {
           label: "Tools",
           position: "left",
         },
+        {
+          to: "/docs/releases/overview",
+          label: "Releases",
+          position: "left",
+        },
       ],
     },
     footer: {
