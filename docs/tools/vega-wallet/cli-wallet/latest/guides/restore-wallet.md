@@ -13,7 +13,7 @@ There are some situations in which you'll need to restore a wallet you previousl
 * If you are updating from release 0.9.0, (including 0.9.0-preN) or older
 
 :::info 
-You can see a list of available commands by running ./vegawallet -h on MacOS and Linux, or vegawallet -h on Windows. Help is also available for every command, for example: `vegawallet import -h` will provide information about the `import` command.
+You can see a list of available commands by running `./vegawallet -h` on MacOS and Linux, or `vegawallet -h` on Windows. Help is also available for every command, for example: `vegawallet import -h` will provide information about the `import` command.
 :::
 
 ## Restore a wallet
@@ -30,23 +30,23 @@ Because keys are generated in a deterministic way, when you restore your wallet,
 <TabItem value="windows" label="Windows">
 
 ```bash
-vegawallet import --wallet "YOUR_WALLET_NAME" --recovery-phrase-file "PATH_TO_YOUR_RECOVERY-PHRASE"
+vegawallet import --wallet "MY_WALLET_NAME" --recovery-phrase-file "PATH_TO_MY_RECOVERY-PHRASE"
 ```
 </TabItem>
 <TabItem value="mac" label="MacOS">
 
 ```bash
 ./vegawallet import \
-    --wallet "YOUR_WALLET_NAME" \
-    --recovery-phrase-file "PATH_TO_YOUR_RECOVERY_PHRASE"
+    --wallet "MY_WALLET_NAME" \
+    --recovery-phrase-file "PATH_TO_MY_RECOVERY_PHRASE"
 ```
 </TabItem>
 <TabItem value="linux" label="Linux">
 
 ```bash
 ./vegawallet import \
-    --wallet "YOUR_WALLET_NAME" \
-    --recovery-phrase-file "PATH_TO_YOUR_RECOVERY_PHRASE"
+    --wallet "MY_WALLET_NAME" \
+    --recovery-phrase-file "PATH_TO_MY_RECOVERY_PHRASE"
 ```
 </TabItem>
 </Tabs>
@@ -65,7 +65,7 @@ Once you've imported your wallet, you can carry on with running it and interacti
 <TabItem value="windows" label="Windows">
 
 ```bash
-vegawallet import --wallet "YOUR_WALLET_NAME" --recovery-phrase-file "PATH_TO_YOUR_RECOVERY-PHRASE" --version 1
+vegawallet import --wallet "MY_WALLET_NAME" --recovery-phrase-file "PATH_TO_MY_RECOVERY-PHRASE" --version 1
 ```
 </TabItem>
 <TabItem value="mac" label="MacOS">
@@ -73,7 +73,7 @@ vegawallet import --wallet "YOUR_WALLET_NAME" --recovery-phrase-file "PATH_TO_YO
 ```bash
 ./vegawallet import \
     --wallet "YOUR_WALLET_NAME" \
-    --recovery-phrase-file "PATH_TO_YOUR_RECOVERY_PHRASE" --version 1
+    --recovery-phrase-file "PATH_TO_MY_RECOVERY_PHRASE" --version 1
 ```
 </TabItem>
 <TabItem value="linux" label="Linux">
@@ -81,7 +81,7 @@ vegawallet import --wallet "YOUR_WALLET_NAME" --recovery-phrase-file "PATH_TO_YO
 ```bash
 ./vegawallet import \
     --wallet "YOUR_WALLET_NAME" \
-    --recovery-phrase-file "PATH_TO_YOUR_RECOVERY_PHRASE" --version 1
+    --recovery-phrase-file "PATH_TO_MY_RECOVERY_PHRASE" --version 1
 ```
 </TabItem>
 </Tabs>
