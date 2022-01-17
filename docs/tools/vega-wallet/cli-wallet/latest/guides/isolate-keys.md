@@ -51,8 +51,7 @@ You will be prompted to enter the passphrase for your wallet.
 Once your key has been isolated in a new wallet, you'll receive the following response
 
 ```
-✓ Key pair has been isolated in 
-/ wallet ISOLATED_WALLET_NAME at: FILE_PATH.isolated
+✓ Key pair has been isolated in wallet ISOLATED_WALLET_NAME at: FILE_PATH.isolated
 ✓ Key isolation succeeded
 ```
 
