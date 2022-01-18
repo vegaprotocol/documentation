@@ -231,4 +231,11 @@ You will need to respect the block height that you set in you transaction with t
 You must wait if the block height you define is higher than the blockchain's block height. Transactions set with a future block height will be rejected.
 
 If the block height you set is smaller than the blockchain's block height, you should send your transaction ASAP. If it's too small (~ > 150), it will be rejected by the replay protection mechanism.
+
+If the current height is 200:
+
+* a transaction with block height 10 gets rejected because 200 - 10 = 190 and 190 > 150
+* a transaction with block height 60 gets accepted because 200 - 60 = 140 and 140 < 150
+* a transaction with block height 201 get rejected because 200 - 201 = -1 and -1 is futuristic.
+
 :::
