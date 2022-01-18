@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 title: Migrate from 0.10.0
 hide_title: false
 ---

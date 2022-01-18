@@ -110,25 +110,25 @@ This step will:
 * create your first public and private key 
 * show your wallet's recovery phrase (save this immediately)
 
-Replace `YOUR_WALLET_NAME` (below) with your chosen wallet name:
+Replace `MY_WALLET_NAME` (below) with your chosen wallet name:
 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
 
 ```bash
-vegawallet create --wallet "YOUR_WALLET_NAME"
+vegawallet create --wallet "MY_WALLET_NAME"
 ```
 </TabItem>
 <TabItem value="mac" label="MacOS">
 
 ```bash
-./vegawallet create --wallet "YOUR_WALLET_NAME"
+./vegawallet create --wallet "MY_WALLET_NAME"
 ```
 </TabItem>
 <TabItem value="linux" label="Linux">
 
 ```bash
-./vegawallet create --wallet "YOUR_WALLET_NAME"
+./vegawallet create --wallet "MY_WALLET_NAME"
 ```
 </TabItem>
 
