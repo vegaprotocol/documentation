@@ -228,7 +228,7 @@ vegawallet tx send --network NETWORK BASE64_TRANSACTION
 :::info
 You will need to respect the block height that you set in you transaction with the command `vegawallet command sign`.
 
-If the block height you set is higher than the blockchain's block height, you should wait until they are more closely aligned - within 150 blocks. Transactions set with a future block height beyond that tolerance will be rejected.
+You must wait if the block height you define is higher than the blockchain's block height. Transactions set with a future block height will be rejected.
 
 If the block height you set is smaller than the blockchain's block height, you should send your transaction ASAP. If it's too small (~ > 150), it will be rejected by the replay protection mechanism.
 :::
