@@ -14,8 +14,8 @@ This guide will teach you how to build a Vega command to include in a transactio
 A command is an action you want to issue to the network. To submit that command to the network, you will need to sign it to verify it, and add in other data. 
 
 Vega Wallet allows you to send and sign commands to the Vega network by using the following wallet commands:
-* `vegawallet command send`: turns a command into a transaction
-* `vegawallet command sign`: signs the command
+* `vegawallet command send`: turns a command into a transaction and send it
+* `vegawallet command sign`: turns a command into a transaction (base64-encoded) without sending it
 
 :::info Commands and transactions are different
 A Vega transaction is a bundle containing a Vega command, a signature, a public key and target block height.
