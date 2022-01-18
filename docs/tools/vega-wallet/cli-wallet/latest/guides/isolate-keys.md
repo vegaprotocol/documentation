@@ -11,7 +11,7 @@ If you want to move a key pair from a standard wallet into a wallet that can onl
 
 This optional step creates an extra layer of security, particularly for validators and others who are concerned about their wallets being compromised. 
 
-An isolated wallet can only contain a single key pair that has been stripped from its cryptographic node. A wallet without a cryptographic node, which is used to create keys, minimises the impact of that wallet being compromised, as it makes it impossible to retrieve or generate keys. 
+An isolated wallet can only contain a single key pair that has been stripped from its cryptographic node. If a wallet without a cryptographic node is compromised, the damage is minimised as it is impossible to generate keys or retrieve any keys other than the isolated one.
 
 ## Isolate key pair
 
