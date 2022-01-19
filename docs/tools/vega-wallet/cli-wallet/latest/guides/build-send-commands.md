@@ -83,18 +83,19 @@ This is a _partial_ example for order submission
 
 ## Send commands 
 
-### Tips for sending commands
+**Tips for sending commands**
 
 1. The command should be written on a single line, to prevent problems with the CLI not properly handling multiple arguments.
 2. Wrap the JSON payload with single quotes in the command line to prevent the CLI from interpreting the JSON command as a special command.
 
+
 **Command structure**
 ```bash
-vegawallet some-command '{"commandName": {"someProperty": "someValue", "anObject": {"nestedProperty":42}}}'
+vegawallet command-name '{"commandName": {"someProperty": "someValue", "anObject": {"nestedProperty":42}}}'
 ```
 
-This will send the command to the first node configured in the network configuration, via its gRPC API.
 
+**Send the command to the first node configured in the network configuration, via its gRPC API using:**
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
 
@@ -116,32 +117,32 @@ vegawallet command send --network "NETWORK" --wallet "MY_WALLET_NAME" --pubkey "
 </TabItem>
 </Tabs>
 
-Customise the number of retries (default to 5) using:
 
+**Customise the number of retries (default to 5) using:**
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
 
 ```bash
-vegawallet command send --retries 10 ...
+vegawallet command send --retries 10
 ```
 </TabItem>
 <TabItem value="mac" label="MacOS">
 
 ```bash
-./vegawallet command send --retries 10 ...
+./vegawallet command send --retries 10
 ```
 </TabItem>
 <TabItem value="linux" label="Linux">
 
 ```bash
-./vegawallet command send --retries 10 ...
+./vegawallet command send --retries 10
 
 ```
 </TabItem>
 </Tabs>
 
-If you don't want to rely on the nodes defined in the network configuration, you can specify a node address:
 
+**If you don't want to rely on the nodes defined in the network configuration, you can specify a node address:**
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
 
@@ -163,8 +164,8 @@ vegawallet command send --node-address "ADDRESS"
 </TabItem>
 </Tabs>
 
-See more options by using the help flag:
 
+**See more options by using the help flag:**
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
 
@@ -196,36 +197,73 @@ The workflow is:
 2. Send that transaction using an online computer
 
 
-#### 1. Build a transaction on an air-gapped computer
+#### 1. Build transaction on an air-gapped computer
 
 This will build a transaction containing the specified command, its signature and additional protocol related data:
 
-```bash
-vegawallet command sign --wallet WALLET --pubkey PUBKEY --tx-height TX_HEIGHT COMMAND
-```
+<Tabs groupId="operating-systems">
+<TabItem value="windows" label="Windows">
 
-`TX_HEIGHT` should be should be close to the current block height when the transaction is applied, with a threshold of approximately 150 blocks.
+```bash
+vegawallet command sign --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY" --tx-height "TRANSACTION_BLOCK_HEIGHT"
+```
+</TabItem>
+<TabItem value="mac" label="MacOS">
+
+```bash
+./vegawallet command sign --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY" --tx-height "TRANSACTION_BLOCK_HEIGHT"
+```
+</TabItem>
+<TabItem value="linux" label="Linux">
+
+```bash
+./vegawallet command sign --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY" --tx-height "TRANSACTION_BLOCK_HEIGHT"
+```
+  
+</TabItem>
+</Tabs>
+
+`TRANSACTION_BLOCK_HEIGHT` should be should be close to the current block height when the transaction is applied, with a threshold of approximately 150 blocks. Note: If it is higher than the blockchain's block height, it will be rejected.
 
 The resulting transaction is encoded using base64.
 
-You can decode it using `base64` command line utility. First save the transaction in a file `result.txt`, then:
+You can decode it using `base64` command line utility. First save the transaction in a file `result.txt`, then use:
+
 ```bash
 base64 --decode --input result.txt
 ```
 
 The transaction will be decoded and displayed on screen.
 
-#### 2. Send a transaction with an online computer
+#### 2. Send transaction with an online computer
 
 Use any way to transfer the transaction from your air-grapped computer to the online one.
 
 Then, send the transaction using:
 
-```bash
-vegawallet tx send --network NETWORK BASE64_TRANSACTION
-```
+<Tabs groupId="operating-systems">
+<TabItem value="windows" label="Windows">
 
-:::info
+```bash
+vegawallet tx send --network "NETWORK" "BASE64_TRANSACTION"
+```
+</TabItem>
+<TabItem value="mac" label="MacOS">
+
+```bash
+./vegawallet tx send --network "NETWORK" "BASE64_TRANSACTION"
+```
+</TabItem>
+<TabItem value="linux" label="Linux">
+
+```bash
+./vegawallet tx send --network "NETWORK" "BASE64_TRANSACTION"
+```
+  
+</TabItem>
+</Tabs>
+
+:::info Block height 
 You will need to respect the block height that you set in you transaction with the command `vegawallet command sign`.
 
 You must wait if the block height you define is higher than the blockchain's block height. Transactions set with a future block height will be rejected.
@@ -234,8 +272,7 @@ If the block height you set is smaller than the blockchain's block height, you s
 
 If the current height is 200:
 
-* a transaction with block height 10 gets rejected because 200 - 10 = 190 and 190 > 150
-* a transaction with block height 60 gets accepted because 200 - 60 = 140 and 140 < 150
-* a transaction with block height 201 get rejected because 200 - 201 = -1 and -1 is futuristic.
-
+* a transaction with block height 10 is rejected because 200 - 10 = 190 and 190 > 150
+* a transaction with block height 60 is accepted because 200 - 60 = 140 and 140 < 150
+* a transaction with block height 201 is rejected because 200 - 201 = -1 and -1 is in the future
 :::
