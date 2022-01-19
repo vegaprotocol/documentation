@@ -85,8 +85,8 @@ This is a _partial_ example for order submission
 
 **Tips for sending commands**
 
-1. The command should be written on a single line, to prevent problems with the CLI not properly handling multiple arguments.
-2. Wrap the JSON payload with single quotes in the command line to prevent the CLI from interpreting the JSON command as a special command.
+1. Write the command on a single line to prevent problems with the CLI not properly handling multiple arguments.
+3. Wrap the JSON payload with single quotes in the command line to prevent the CLI from interpreting the JSON command as a special command.
 
 
 **Command structure**
@@ -223,7 +223,7 @@ vegawallet command sign --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY" --tx-
 </TabItem>
 </Tabs>
 
-`TRANSACTION_BLOCK_HEIGHT` should be should be close to the current block height when the transaction is applied, with a threshold of approximately 150 blocks. Note: If it is higher than the blockchain's block height, it will be rejected.
+`TRANSACTION_BLOCK_HEIGHT` must be close to the current block height when the transaction is applied, with a threshold of approximately 150 blocks. Note: If it is higher than the blockchain's block height, it will be rejected.
 
 The resulting transaction is encoded using base64.
 
