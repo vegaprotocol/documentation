@@ -205,19 +205,19 @@ This will build a transaction containing the specified command, its signature an
 <TabItem value="windows" label="Windows">
 
 ```bash
-vegawallet command sign --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY" --tx-height "TRANSACTION_BLOCK_HEIGHT"
+vegawallet command sign --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY" --tx-height "TRANSACTION_BLOCK_HEIGHT" "COMMAND"
 ```
 </TabItem>
 <TabItem value="mac" label="MacOS">
 
 ```bash
-./vegawallet command sign --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY" --tx-height "TRANSACTION_BLOCK_HEIGHT"
+./vegawallet command sign --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY" --tx-height "TRANSACTION_BLOCK_HEIGHT" "COMMAND"
 ```
 </TabItem>
 <TabItem value="linux" label="Linux">
 
 ```bash
-./vegawallet command sign --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY" --tx-height "TRANSACTION_BLOCK_HEIGHT"
+./vegawallet command sign --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY" --tx-height "TRANSACTION_BLOCK_HEIGHT" "COMMAND"
 ```
   
 </TabItem>
