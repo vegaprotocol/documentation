@@ -7,16 +7,19 @@ hide_title: false
 Vega uses Tendermint as a consensus layer to form a blockchain. The rest of the information here informs on how that blockchain and its relevant components is comprised. [Read more about how Vega bridges to Ethereum](/docs/concepts/vega-chain/#bridges-used-for-staking). 
 
 ## Delegated proof of stake
-Vega runs on a delegated proof of stake blockchain. Participants--validators and token-holders--use their VEGA tokens to nominate the validator nodes that run the network. Non-validator participants assign the voting rights of their VEGA tokens to endorse a validator's trustworthiness. 
+Vega runs on a delegated proof of stake blockchain. Participants -- validators and token-holders -- use their VEGA tokens to nominate the validator nodes that run the network. Non-validator participants assign the voting rights of their VEGA tokens to endorse a validator's trustworthiness. 
 
 **Participants who hold a balance of VEGA, the governance asset, can stake that asset on the network.** This is done by associating those tokens to a Vega key to use as stake, and then nominating one or more validators they trust to help secure the network. 
 
-Everyone participating in staking is rewarded for keeping the network running (and in the future can be penalised for not meeting the requirements of running the network). 
+Everyone participating in keeping the network secure, robust and reliable, including nominators, is rewarded for keeping the network running. Not meeting the requirements of running the network can lead to penalties. 
 
-<!-- Penalties: 
-- Validators can lose their VEGA to the network if they don't meet the requirements or prove to be bad actors. The tokens are sent to the insurance pool. (link to insurance pool section when available) 
-- Nominators will lose future rewards
+### Penalties 
+Validators that don't meet the requirements or prove to be bad actors will have rewards withheld. Nominators of a validator that doesn't meet the requirements will also receive fewer (or no) rewards. A validator's performance is calculated based on their **validator score**, and in the future their **performance score**. 
 
+### Validator score
+The validator score is calculated based on how much stake a validator has. If, at the end of an epoch, a validator does not have sufficient self-stake or has overall too much stake, then their validator score will be lowered. 
+
+<!--
 ### ***Further reading***
 Link to spec for staking and validator rewards when publicly available. (valpol)
 -->
@@ -54,8 +57,6 @@ VEGA tokenholders can use [token.vega.xyz](https://token.vega.xyz) to associate 
 
 ### Maximum stake per validator
 Each validator has a maximum amount of stake that they can accept. During restricted mainnet, this will be the same amount for all validators. 
-
-When a validator's token limit is reached, and more nomination would cause a validator's maximum stake to be exceeded, any additional nominated tokens will not be used. The remaining amount will be available to use to nominate another validator after the next epoch has begun.
 
 The max stake per validator equation includes all nominations and un-nominations requested in the next epoch, and the current epoch's active nominations, divided by the optimal number of validators. The optimal number of validators is defined using network parameters. 
 
