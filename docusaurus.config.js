@@ -143,6 +143,7 @@ module.exports = {
       {
         language: ["en"],
         hashed: true,
+        indexBlog: false
       },
     ],
   ],

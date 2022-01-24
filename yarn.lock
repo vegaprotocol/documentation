@@ -1966,16 +1966,14 @@
     mark.js "^8.11.1"
     tslib "^2.2.0"
 
-"@edno/docusaurus2-graphql-doc-generator@1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@edno/docusaurus2-graphql-doc-generator/-/docusaurus2-graphql-doc-generator-1.7.0.tgz#7e89a4d6120d4f49f828c541aade47ac343aefb8"
-  integrity sha512-9hhSpdigIQJsu0yAWBZ2o8ZdqfKC+mg9wLArolDVu0zehWw+d/UYH6Pub51NSUUaHB84AaEML/LAsm1beq4Drg==
+"@edno/docusaurus2-graphql-doc-generator@1.8.2":
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/@edno/docusaurus2-graphql-doc-generator/-/docusaurus2-graphql-doc-generator-1.8.2.tgz#a8103d2ab1bf4a0c801ac7400c236c2f4d5b9002"
+  integrity sha512-OFgRWY2cGkIJvoRKp6vnSDouhfGvSqGK0c6d5r3xGfevWyFFS+DoFvYpvAseB8Z6N2CbnO/pqxWdXz0CqCrzoQ==
   dependencies:
-    "@graphql-inspector/core" "^3.0.1"
-    "@graphql-tools/graphql-file-loader" "^7.1.0"
-    "@graphql-tools/load" "^7.3.2"
-    picocolors "^1.0.0"
-    prettier "^2.4.1"
+    "@graphql-inspector/core" "^3.0.2"
+    "@graphql-tools/graphql-file-loader" "^7.3.3"
+    "@graphql-tools/load" "^7.5.1"
 
 "@emotion/is-prop-valid@^0.8.8":
   version "0.8.8"
@@ -2004,7 +2002,7 @@
   resolved "https://registry.yarnpkg.com/@exodus/schemasafe/-/schemasafe-1.0.0-rc.6.tgz#7985f681564cff4ffaebb5896eb4be20af3aae7a"
   integrity sha512-dDnQizD94EdBwEj/fh3zPRa/HWCS9O5au2PuHhZBbuM3xWHxuaKzPBOEWze7Nn0xW68MIpZ7Xdyn1CoCpjKCuQ==
 
-"@graphql-inspector/core@^3.0.1":
+"@graphql-inspector/core@^3.0.2":
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/@graphql-inspector/core/-/core-3.0.2.tgz#715149382c6381ea91bd4a9ba0ab36899e2f4608"
   integrity sha512-whAUHUD0ivsMpAkX7A7v0IlX069j6fpvMiLmsNzpX1MWMBu44TujlUbeuANegmTysyXxgHvWXtiHhW2zpZ/3QQ==
@@ -2035,7 +2033,7 @@
     tslib "~2.3.0"
     value-or-promise "1.0.11"
 
-"@graphql-tools/graphql-file-loader@^7.1.0":
+"@graphql-tools/graphql-file-loader@^7.3.3":
   version "7.3.3"
   resolved "https://registry.yarnpkg.com/@graphql-tools/graphql-file-loader/-/graphql-file-loader-7.3.3.tgz#7cee2f84f08dc13fa756820b510248b857583d36"
   integrity sha512-6kUJZiNpYKVhum9E5wfl5PyLLupEDYdH7c8l6oMrk6c7EPEVs6iSUyB7yQoWrtJccJLULBW2CRQ5IHp5JYK0mA==
@@ -2055,13 +2053,13 @@
     resolve-from "5.0.0"
     tslib "~2.3.0"
 
-"@graphql-tools/load@^7.3.2":
-  version "7.4.1"
-  resolved "https://registry.yarnpkg.com/@graphql-tools/load/-/load-7.4.1.tgz#aa572fcef11d6028097b6ef39c13fa9d62e5a441"
-  integrity sha512-UvBodW5hRHpgBUBVz5K5VIhJDOTFIbRRAGD6sQ2l9J5FDKBEs3u/6JjZDzbdL96br94D5cEd2Tk6auaHpTn7mQ==
+"@graphql-tools/load@^7.5.1":
+  version "7.5.1"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/load/-/load-7.5.1.tgz#8c7f846d2185ddc1d44fdfbf1ed9cb678f69e40b"
+  integrity sha512-j9XcLYZPZdl/TzzqA83qveJmwcCxgGizt5L1+C1/Z68brTEmQHLdQCOR3Ma3ewESJt6DU05kSTu2raKaunkjRg==
   dependencies:
     "@graphql-tools/schema" "8.3.1"
-    "@graphql-tools/utils" "^8.5.1"
+    "@graphql-tools/utils" "^8.6.0"
     p-limit "3.1.0"
     tslib "~2.3.0"
 
@@ -2112,6 +2110,13 @@
   version "8.5.3"
   resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-8.5.3.tgz#404062e62cae9453501197039687749c4885356e"
   integrity sha512-HDNGWFVa8QQkoQB0H1lftvaO1X5xUaUDk1zr1qDe0xN1NL0E/CrQdJ5UKLqOvH4hkqVUPxQsyOoAZFkaH6rLHg==
+  dependencies:
+    tslib "~2.3.0"
+
+"@graphql-tools/utils@^8.6.0":
+  version "8.6.1"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-8.6.1.tgz#52c7eb108f2ca2fd01bdba8eef85077ead1bf882"
+  integrity sha512-uxcfHCocp4ENoIiovPxUWZEHOnbXqj3ekWc0rm7fUhW93a1xheARNHcNKhwMTR+UKXVJbTFQdGI1Rl5XdyvDBg==
   dependencies:
     tslib "~2.3.0"
 
@@ -11832,11 +11837,6 @@ prettier@2.4.1:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.4.1.tgz#671e11c89c14a4cfc876ce564106c4a6726c9f5c"
   integrity sha512-9fbDAXSBcc6Bs1mZrDYb3XKzDLm4EXXL9sC1LqKP5rZkT6KRr/rf9amVUcODVXgguK/isJz0d0hP72WeaKWsvA==
-
-prettier@^2.4.1:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.5.0.tgz#a6370e2d4594e093270419d9cc47f7670488f893"
-  integrity sha512-FM/zAKgWTxj40rH03VxzIPdXmj39SwSjwG0heUcNFwI+EMZJnY93yAiKXM3dObIKAM5TA88werc8T/EwhB45eg==
 
 pretty-error@^4.0.0:
   version "4.0.0"
