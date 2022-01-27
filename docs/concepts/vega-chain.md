@@ -17,7 +17,8 @@ Read more: [Validator nodes](/docs/concepts/vega-chain#validator-nodes)
 
 Everyone participating in keeping the network secure, robust and reliable, including nominators, is **rewarded** for keeping the network running. Not meeting the requirements of running the network can lead to penalties, such as **rewards being withheld**.
 
-Read more: [Rewards](/docs/concepts/vega-chain#rewards) 
+Read more: [Rewards](/docs/concepts/vega-chain#rewards)
+
 Read more: [Penalties](/docs/concepts/vega-chain#penalties)
 
 ### VEGA token
@@ -100,7 +101,7 @@ Validators and nominators both receive incentives for securing the network. The 
 
 **To be considered for staking rewards, a tokenholder must associate VEGA to a Vega key and nominate one or more validators.**
 
-In each epoch, rewards are distributed among validators in proportion to the number of tokens they represent (i.e., their total stake). The total stake includes a validator's own stake and the tokens nominated to that validator. Of this reward, a fixed amount is distributed among the tokenholders the validator represents. Currently that is 88.3%; though validators can vote to change that value.
+In each epoch, rewards are distributed among validators in proportion to the number of tokens they represent (i.e., their total stake). The total stake includes a validator's own stake and the tokens nominated to that validator. Of this reward, a fixed amount is distributed among the tokenholders the validator represents. Currently that is 88.3%, though validators can vote to change that value.
 
 The reward scheme uses a linear reward curve - the reward per staked token is independent of the behaviour of other tokenholders. This holds for validators as well, with the exception that there is a maximum amount of stake an individual validator can take on. 
 
@@ -128,22 +129,24 @@ Read more: [How a validator node's performance is determined](/docs/concepts/veg
 ## Validator nodes
 The Vega network is operated by a number of independent validators, who each run a node. Validator nodes are responsible for agreeing on the order of transactions and creating new blocks so that all nodes can agree on the state of the network. 
 
-If a validator's stake or performance is sub-par, their validator score (and eventually performance score) will be lowered, and that validator's node will be chosen less frequently to propose a block. Vega feeds the voting power of each validator node to the Tendermint consensus algorithm. 
+If a validator's stake or performance is sub-par, their validator score will be lowered, and that validator's node will be chosen less frequently to propose a block. (This can also affect the rewards they and their nominators receive.) Vega feeds the voting power of each validator node to the Tendermint consensus algorithm. 
 
-Restricted mainnet validators will not lose stake or rewards if they have a temporary interruption of service.
+In this version of restricted mainnet, validators will not lose stake or rewards if they have a temporary interruption of service.
 
 ### Validator node performance
-A validator node's performance is measured by a validator score, and in the future, a performance score, as well. The validator score is calculated for each epoch based on how much stake a validator has, with respect to several factors including the number of validators and the optimal stake. 
+A validator node's performance is expressed through a validator score, and in the future, a performance score as well. 
 
-If, at the end of an epoch, a validator does not have sufficient stake self-nominated or has overall too much stake, then their validator score will be lowered, which can impact the rewards they and their nominators receive. 
+The validator score is calculated for each epoch, based on how much stake a validator has as well as other factors including the total number of validators and the optimal stake. 
+
+If, at the end of an epoch, a validator does not have sufficient stake self-nominated or has overall too much stake, then their validator score will be lowered, which can impact the rewards a validator and its' nominators receive. 
 
 Below are the two factors that can lower a validator's score, and why. 
 
 #### Not enough self-nominated stake
 Self-nominated stake refers to the amount of VEGA a validator has staked to their own node.  The minimum stake amount required is set using the network parameter `reward.staking.delegation.minimumValidatorStake`. Not having enough self-nominated stake can have an impact on rewards. 
 
-* **Network risk**: A validator who has not committed enough stake to meet the minimum is a risk to the network because they may not be invested in keeping the network running.
-* **Validator score**: If a validator does not meet the `reward.staking.delegation.minimumValidatorStake`, then the validator's score is set to zero.
+* **Network risk**: A validator who has not committed enough stake to meet the minimum is a risk to the network because they may not be invested in keeping the network running
+* **Validator score**: If a validator does not meet the `reward.staking.delegation.minimumValidatorStake`, then the validator's score is set to zero
 * **Reward impact**: A validator with too little self-stake forfeits their share of the rewards for each epoch they are below the threshold. However, tokenholders who nominated that validator will still receive rewards
 
 #### Too much stake
