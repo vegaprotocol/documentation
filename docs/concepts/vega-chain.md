@@ -9,25 +9,31 @@ Vega uses Tendermint as a consensus layer to form a blockchain. The rest of the 
 Read more: [How Vega bridges to Ethereum](/docs/concepts/vega-chain/#bridges-used-for-staking)
 
 ## Delegated proof of stake
-Vega runs on a delegated proof of stake blockchain. Participants -- validators and token-holders -- use their VEGA tokens to nominate validator nodes that run the network. Non-validator participants assign the voting rights of their VEGA tokens to endorse a validator's trustworthiness. 
+Vega runs on a delegated proof of stake blockchain. 
+
+Validator nodes run the Vega network, and they deciding on the validity of the blocks containing the network's transactions and thus execute those transactions. The validators who run validator nodes are required to own a minimum amount of VEGA tokens that they delegate to themselves.
 
 Read more: [Validator nodes](/docs/concepts/vega-chain#validator-nodes)
 
-**Participants who hold a balance of VEGA, the governance asset, can stake that asset on the network.** This is done by associating those tokens to a Vega key to use as stake, and then nominating one or more validators they trust to help secure the network. 
+**Participants who hold a balance of VEGA, the governance asset, can use their tokens to nominate validator nodes.** This is done by associating those tokens to a Vega key to use as stake, and then nominating one or more validators they trust to help secure the network. Nominate validators loans the consensus voting weight of the VEGA tokens to endorse a validator's trustworthiness. 
+
+Tokens, in addition to their use for nominating validators, also grant tokenholder voting rights on governance actions. If a token is delegated, its governance voting rights stay with the tokenholder and are not transferred to any validators the tokenholder nominates.
 
 Everyone participating in keeping the network secure, robust and reliable, including nominators, is **rewarded** for keeping the network running. Not meeting the requirements of running the network can lead to penalties, such as **rewards being withheld**.
 
 Read more: [Rewards](/docs/concepts/vega-chain#rewards)
+
+Vega is non-slashing -- there is no mechanism through which a tokenholder can lose a staked token through a validator being punished. Any measures to that end use different mechanisms that will affect a bad validator's (and potentially their delegators') revenue, but not the delegated tokens themselves.
 
 Read more: [Penalties](/docs/concepts/vega-chain#penalties)
 
 ### VEGA token
 Vega uses the VEGA ERC20 token for governance, which includes nominating validators to run nodes, and creating and voting on governance proposals.
 
-A VEGA token (or fraction) can be either unassociated or associated with a Vega key:
+A VEGA token (or fraction) can be either dissociated or associated with a Vega key:
 
-* **Unassociated**: The tokenholder is free to do what they want with the token, but cannot nominate a validator with it
-* **Associated**: The token is locked in the staking smart contract and can be used to nominate a validator. It must be unassociated to withdraw it
+* **Dissociated**: A tokenholder is free to do what they want with the token, but cannot nominate a validator with it
+* **Associated**: The token is locked in the staking smart contract and can be used to nominate a validator. It must be dissociated to withdraw it
 
 **All tokens can be used for staking and voting** on governance proposals. This includes tokens that are locked in the vesting contract. Tokens that are staked can be used to vote, and tokens used to vote can be staked.
 
@@ -38,11 +44,19 @@ A user's VEGA tokens must first be associated with a Vega key before they can be
 :::
 
 ### Bridges used for staking
-Because VEGA is an ERC20 token, all actions regarding staking are initiated on Ethereum, rather than on the Vega protocol. This allows VEGA to be staked to a Vega public key without any action on the Vega network, and without putting the tokens under the control of the Vega network.
+Associating and dissociating VEGA tokens to a Vega key are initiated on Ethereum, rather than on the Vega protocol. This allows VEGA to be staked with a Vega public key without any action on the Vega network, and without putting the tokens under the control of the Vega network.
 
-* Staking **unlocked tokens** is done using the staking bridge contract. The staking bridge contains functions enabling users to deposit, remove, and transfer stake by moving the governance tokens from their wallet to the staking bridge. 
+All governance voting and validator nominations happen exclusively on the Vega chain. 
 
-* When staking **locked tokens**, the Vega node interacts with the ERC20 vesting contract, which holds locked tokens and provides the same utility as the staking bridge smart contract. 
+:::info
+Ethereum gas fees are only incurred in the process of associating tokens to a Vega key and transferring rewards from a Vega key to an Ethereum address.
+:::
+
+The Vega protocol listens for stake events from staking bridges. Currently there are two bridges: one for staking unlocked, freely tradeable tokens, and one that connects to the vesting contract for locked, untradeable tokens. 
+
+* Staking **unlocked tokens** uses the staking bridge contract. The staking bridge contains functions enabling users to deposit, remove, and transfer stake by notifying the staking bridge what tokens are associated to which Vega key. 
+
+* When staking **locked tokens**, the Vega node interacts with the ERC20 vesting contract, which holds tokens that are locked per a vesting schedule, and provides the same utility as the staking bridge smart contract. This allows locked tokens to be used for staking and governance while not being freely tradeable. 
 
 Whether tokens are unlocked or locked, the bridge events make the Vega network of how many tokens a given party has associated and/or unassociated.
 
@@ -59,7 +73,7 @@ To avoid fragmentation or spam, there is a minimum delegateable stake that defin
 Vega networks use the ERC20 token VEGA for staking. Staking requires the combined action of associating VEGA tokens (or fractions of a token) to the Vega staking bridge contract; and using those token(s) to nominate one or more validators. 
 
 #### Epochs
-An epoch is a time period during which staking changes can be announced and then implemented. Changes that are announced in one epoch will only be executed in the following epoch (excepting 'un-nominate now' - see below). The length of an epoch is set by the network parameter `validators.epoch.length`. 
+An epoch is a time period during which staking changes can be announced and then implemented. Changes that are announced in one epoch will only be executed in the following epoch (excepting ['un-nominate now'](/docs/concepts/vega-chain#un-nominate-now)). The length of an epoch is set by the network parameter `validators.epoch.length`. 
 
 ### Nominating validators
 Using tokens to nominate validators keeps the decentralised network functioning. 
@@ -82,10 +96,12 @@ Exceptions to automatic nomination:
 * For the epoch after un-nominating validators (see below), tokens are not auto-nominated, to provide time to change the delegation / remove tokens.  
 
 ### Un-nominating validators
-Participants can remove their nomination at the end of an epoch, or immediately. The un-nominated tokens will be restored back to the participant's associated token balance.
+Participants can remove their nomination at the end of an epoch, or immediately. The un-nominated tokens will be restored back to the participant's associated token balance. 
+
+If nominated tokens are moved to a different Ethereum address, they are un-nominated immediately, (equivalent to ['un-nominate now'](/docs/concepts/vega-chain#un-nominate-now)) and rewards are forfeited for that epoch. 
 
 #### Un-nominate towards the end of the epoch
-A participant can un-nominate towards the end of the current epoch, which means the stake is not used for the validator from the following epoch. 
+A participant can un-nominate towards the end of the current epoch, which means the stake is not used for the validator from the following epoch. The participant, and their nominated validator, is entitled to the rewards from that epoch (unlike when un-nominating now). 
 
 The action is announced in the next available block of the same epoch, but the nominator keeps their nomination active until the last block of that epoch. At that point, the tokens are returned. The nominator cannot move those tokens before the epoch ends.
 
@@ -103,7 +119,9 @@ Validators and nominators both receive incentives for securing the network. The 
 
 In each epoch, rewards are distributed among validators in proportion to the number of tokens they represent (i.e., their total stake). The total stake includes a validator's own stake and the tokens nominated to that validator. Of this reward, a fixed amount is distributed among the tokenholders the validator represents. Currently that is 88.3%, though validators can vote to change that value.
 
-The reward scheme uses a linear reward curve - the reward per staked token is independent of the behaviour of other tokenholders. This holds for validators as well, with the exception that there is a maximum amount of stake an individual validator can take on. 
+The reward scheme uses a linear reward curve - the reward per staked token is independent of the behaviour of other tokenholders. 
+
+This holds for validators as well, with the exception that there is a maximum amount of stake an individual validator can take on. To avoid validators getting too big, the rewards a validator gets, and thus can distribute to its nominators, is capped. In other words, the reward per token is decreases if a validator exceeds a maximum size.
 
 At the end of each epoch, reward payments are calculated per active validator, and then some of that reward is divided between their nominators. 
 
@@ -218,7 +236,8 @@ Those checkpoints happen at defined intervals, and on every deposit and withdraw
 4. All other validators verify the checkpoint against their own, restore the state and then allow other transactions on the network. 
 
 <!-- ### ***Further reading*** 
-For a full list of data stored in a checkpoint, see SPECS LINK.
+DPOS - For a full list of data stored in a checkpoint, see SPECS LINK.
+Non-validator participants keep the network fair by controlling the voting power of validators. When tokens are delegated, the tokenholders choose the validators for the network. it is the responsibility of tokenholders to manage who validates the network (and its transactions).
 ## Tendermint consensus
  ### Transaction and sequencing
  ### Transaction ordering
