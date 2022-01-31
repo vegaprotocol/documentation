@@ -13,12 +13,18 @@ You'll need to import and choose a network to use your wallet to interact with V
 You can see a list of available commands by running `./vegawallet -h` on MacOS and Linux, or `vegawallet -h` on Windows. Help is also available for every command, for example: `vegawallet network -h` will provide information about the `network` command, and `vegawallet network import -h` will describe importing a network.
 :::
 
+## Network URLs
+
+You can use the following network URLs to connect to the mainnet or fairground network through your wallet: 
+
+* **Mainnet** network (run by validators): [`mainnet1.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml)
+* **Fairground** network: [`fairground.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/fairground/fairground.toml)
+
 ## Update networks
 
 At times you may need to force the wallet to update the list of available networks. Below, choose between forcing an update via URL or file. 
 
-### Update network from URL
-
+#### Update to latest available network 
 Run the following `--force` command to update to the latest available from your chosen URL.  
 
 <Tabs groupId="operating-systems">
