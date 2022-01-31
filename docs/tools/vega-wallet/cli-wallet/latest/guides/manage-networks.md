@@ -24,7 +24,8 @@ You can use the following network URLs to connect to the mainnet or fairground n
 
 At times you may need to force the wallet to update the list of available networks. Below, choose between forcing an update via URL or file. 
 
-#### Update to latest available network 
+### Update network from URL
+ 
 Run the following `--force` command to update to the latest available from your chosen URL.  
 
 <Tabs groupId="operating-systems">
