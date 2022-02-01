@@ -11,7 +11,7 @@ Read more: [How Vega bridges to Ethereum](/docs/concepts/vega-chain/#bridges-use
 ## Delegated proof of stake
 Vega runs on a delegated proof of stake blockchain. 
 
-Validator nodes run the Vega network, and they deciding on the validity of the blocks containing the network's transactions and thus execute those transactions. The validators who run validator nodes are required to own a minimum amount of VEGA tokens that they delegate to themselves.
+Validator nodes run the Vega network, and they decide on the validity of the blocks containing the network's transactions and thus execute those transactions. The validators who run validator nodes are required to own a minimum amount of VEGA tokens that they delegate to themselves.
 
 Read more: [Validator nodes](/docs/concepts/vega-chain#validator-nodes)
 
@@ -58,7 +58,7 @@ The Vega protocol listens for stake events from staking bridges. Currently there
 
 * When staking **locked tokens**, the Vega node interacts with the ERC20 vesting contract, which holds tokens that are locked per a vesting schedule, and provides the same utility as the staking bridge smart contract. This allows locked tokens to be used for staking and governance while not being freely tradeable. 
 
-Whether tokens are unlocked or locked, the bridge events make the Vega network of how many tokens a given party has associated and/or unassociated.
+Whether tokens are unlocked or locked, the bridge events let the Vega network know of how many tokens a given party has associated and/or unassociated.
 
 All events (including the above, plus stake per validator and others) are only registered after a certain number of block confirmations, as defined by the network parameter `blockchains.ethereumConfig`. 
 
@@ -67,7 +67,10 @@ All events (including the above, plus stake per validator and others) are only r
 :::
 
 ### Spam protection
-To avoid fragmentation or spam, there is a minimum delegateable stake that defines the smallest unit (fractions of) tokens that can be used for nomination, defined by the network parameter `validators.delegation.minAmount`. 
+There are several spam protections enabled to protect the Vega network. 
+
+- A participant who wants to submit a delegation (nomination) transaction, needs to have a balance of at least the minimum defined by the network parameter `spam.protection.delegation.min.tokens` to be able to submit the transaction
+- A participant cannot send more delegation transactions per day than the max set by the `spam.protection.max.delegations` network parameter
 
 ## Staking on Vega
 Vega networks use the ERC20 token VEGA for staking. Staking requires the combined action of associating VEGA tokens (or fractions of a token) to the Vega staking bridge contract; and using those token(s) to nominate one or more validators. 
@@ -117,7 +120,7 @@ Validators and nominators both receive incentives for securing the network. The 
 
 **To be considered for staking rewards, a tokenholder must associate VEGA to a Vega key and nominate one or more validators.**
 
-In each epoch, rewards are distributed among validators in proportion to the number of tokens they represent (i.e., their total stake). The total stake includes a validator's own stake and the tokens nominated to that validator. Of this reward, a fixed amount is distributed among the tokenholders the validator represents. Currently that is 88.3%, though validators can vote to change that value.
+In each epoch, rewards are distributed among validators in proportion to the number of tokens they represent (i.e., their total stake). The total stake includes a validator's own stake and the tokens nominated to that validator. Of this reward, a fixed amount is distributed among the tokenholders the validator represents.
 
 The reward scheme uses a linear reward curve - the reward per staked token is independent of the behaviour of other tokenholders. 
 
@@ -164,7 +167,7 @@ Below are the two factors that can lower a validator's score, and why.
 Self-nominated stake refers to the amount of VEGA a validator has staked to their own node.  The minimum stake amount required is set using the network parameter `reward.staking.delegation.minimumValidatorStake`. Not having enough self-nominated stake can have an impact on rewards. 
 
 * **Network risk**: A validator who has not committed enough stake to meet the minimum is a risk to the network because they may not be invested in keeping the network running
-* **Validator score**: If a validator does not meet the `reward.staking.delegation.minimumValidatorStake`, then the validator's score is set to zero
+* **Validator score**: If a validator does not meet the `reward.staking.delegation.minimumValidatorStake`, the validator is given a lower score, which can affect their rewards
 * **Reward impact**: A validator with too little self-stake forfeits their share of the rewards for each epoch they are below the threshold. However, tokenholders who nominated that validator will still receive rewards
 
 #### Too much stake
