@@ -101,7 +101,7 @@ Exceptions to automatic nomination:
 ### Un-nominating validators
 Participants can remove their nomination at the end of an epoch, or immediately. The un-nominated tokens will be restored back to the participant's associated token balance. 
 
-If nominated tokens are moved to a different Ethereum address, they are un-nominated immediately, (equivalent to ['un-nominate now'](/docs/concepts/vega-chain#un-nominate-now)) and rewards are forfeited for that epoch. 
+If nominated tokens are moved to a different Ethereum address, they are un-nominated immediately, (equivalent to ['un-nominate now'](/docs/concepts/vega-chain#un-nominate-now)) and rewards are forfeited for that epoch. In this case, or any in which you dissociate tokens without first removing the nomination from a particular validator, the tokens are un-nominated from each validator you've nominated in proportion to the nomination. 
 
 #### Un-nominate towards the end of the epoch
 A participant can un-nominate towards the end of the current epoch, which means the stake is not used for the validator from the following epoch. The participant, and their nominated validator, is entitled to the rewards from that epoch (unlike when un-nominating now). 
