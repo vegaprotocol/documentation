@@ -15,15 +15,15 @@ Validator nodes run the Vega network, and they decide on the validity of the blo
 
 Read more: [Validator nodes](/docs/concepts/vega-chain#validator-nodes)
 
-**Participants who hold a balance of VEGA, the governance asset, can use their tokens to nominate validator nodes.** This is done by associating those tokens to a Vega key to use as stake, and then nominating one or more validators they trust to help secure the network. Nominate validators loans the consensus voting weight of the VEGA tokens to endorse a validator's trustworthiness. 
+**Participants who hold a balance of VEGA, the governance asset, can use their tokens to nominate validator nodes.** This is done by associating those tokens to a Vega key to use as stake, and then nominating one or more validators they trust to help secure the network. Nominating validators loans the consensus voting weight of the VEGA tokens to endorse a validator's trustworthiness. 
 
-Tokens, in addition to their use for nominating validators, also grant tokenholder voting rights on governance actions. If a token is delegated, its governance voting rights stay with the tokenholder and are not transferred to any validators the tokenholder nominates.
+Tokens, in addition to their use for nominating validators, also grant tokenholder voting rights on governance actions. If a token is delegated, its governance voting rights stay with the tokenholder and are not transferred to any validators that the tokenholder nominates.
 
 Everyone participating in keeping the network secure, robust and reliable, including nominators, is **rewarded** for keeping the network running. Not meeting the requirements of running the network can lead to penalties, such as **rewards being withheld**.
 
 Read more: [Rewards](/docs/concepts/vega-chain#rewards)
 
-Vega is non-slashing -- there is no mechanism through which a tokenholder can lose a staked token through a validator being punished. Any measures to that end use different mechanisms that will affect a bad validator's (and potentially their delegators') revenue, but not the delegated tokens themselves.
+Vega is non-slashing -- there is no mechanism through which a tokenholder can lose a staked token through a validator being punished. Any measures to that end use different mechanisms that will affect a bad validator's (and potentially their delegators') revenue, but does not affect the delegated tokens themselves.
 
 Read more: [Penalties](/docs/concepts/vega-chain#penalties)
 
@@ -44,12 +44,12 @@ A user's VEGA tokens must first be associated with a Vega key before they can be
 :::
 
 ### Bridges used for staking
-Associating and dissociating VEGA tokens to a Vega key are initiated on Ethereum, rather than on the Vega protocol. This allows VEGA to be staked with a Vega public key without any action on the Vega network, and without putting the tokens under the control of the Vega network.
+Both associating and dissociating VEGA tokens to a Vega key are initiated on Ethereum, rather than on the Vega protocol. This allows VEGA to be staked with a Vega public key without any action on the Vega network, and without putting the tokens under the control of the Vega network.
 
 All governance voting and validator nominations happen exclusively on the Vega chain. 
 
 :::info
-Ethereum gas fees are only incurred in the process of associating tokens to a Vega key and transferring rewards from a Vega key to an Ethereum address.
+Ethereum gas fees are only incurred in the process of associating tokens to a Vega key and transferring rewards from a Vega key to an Ethereum address. Nominating validators and changing nominations does not incur gas fees.
 :::
 
 The Vega protocol listens for stake events from staking bridges. Currently there are two bridges: one for staking unlocked, freely tradeable tokens, and one that connects to the vesting contract for locked, untradeable tokens. 
@@ -58,7 +58,7 @@ The Vega protocol listens for stake events from staking bridges. Currently there
 
 * When staking **locked tokens**, the Vega node interacts with the ERC20 vesting contract, which holds tokens that are locked per a vesting schedule, and provides the same utility as the staking bridge smart contract. This allows locked tokens to be used for staking and governance while not being freely tradeable. 
 
-Whether tokens are unlocked or locked, the bridge events let the Vega network know of how many tokens a given party has associated and/or unassociated.
+Whether tokens are unlocked or locked, the bridge events let the Vega network know how many tokens a given party has associated and/or dissociated.
 
 All events (including the above, plus stake per validator and others) are only registered after a certain number of block confirmations, as defined by the network parameter `blockchains.ethereumConfig`. 
 
@@ -69,8 +69,8 @@ All events (including the above, plus stake per validator and others) are only r
 ### Spam protection
 There are several spam protections enabled to protect the Vega network. 
 
-- A participant who wants to submit a delegation (nomination) transaction, needs to have a balance of at least the minimum defined by the network parameter `spam.protection.delegation.min.tokens` to be able to submit the transaction
-- A participant cannot send more delegation transactions per day than the max set by the `spam.protection.max.delegations` network parameter
+* A participant who wants to submit a delegation (nomination) transaction, needs to have a balance of at least the minimum defined by the network parameter `spam.protection.delegation.min.tokens` to be able to submit the transaction
+* A participant cannot send more delegation transactions per day than the max set by the `spam.protection.max.delegations` network parameter
 
 ## Staking on Vega
 Vega networks use the ERC20 token VEGA for staking. Staking requires the combined action of associating VEGA tokens (or fractions of a token) to the Vega staking bridge contract; and using those token(s) to nominate one or more validators. 
@@ -101,7 +101,7 @@ Exceptions to automatic nomination:
 ### Un-nominating validators
 Participants can remove their nomination at the end of an epoch, or immediately. The un-nominated tokens will be restored back to the participant's associated token balance. 
 
-If nominated tokens are moved to a different Ethereum address, they are un-nominated immediately, (equivalent to ['un-nominate now'](/docs/concepts/vega-chain#un-nominate-now)) and rewards are forfeited for that epoch. In this case, or any in which you dissociate tokens without first removing the nomination from a particular validator, the tokens are un-nominated from each validator you've nominated in proportion to the nomination. 
+If nominated tokens are moved to a different Ethereum address, they are un-nominated immediately, (equivalent to ['un-nominate now'](/docs/concepts/vega-chain#un-nominate-now)) and rewards are forfeited for that epoch. In this case, or any case in which you dissociate tokens without first removing the nomination from a particular validator, the tokens are un-nominated from each validator you've nominated, in proportion to the nomination. 
 
 #### Un-nominate towards the end of the epoch
 A participant can un-nominate towards the end of the current epoch, which means the stake is not used for the validator from the following epoch. The participant, and their nominated validator, is entitled to the rewards from that epoch (unlike when un-nominating now). 
@@ -143,7 +143,7 @@ CoinList custodial users should confirm with CoinList how staking works for them
 ### Penalties
 Validator nodes that don't meet the requirements or prove to be bad actors will have rewards withheld, and a vaildator's nominators may also receive fewer (or no) rewards. 
 
-There is no token slashing, i.e., a tokenholder cannot lose their tokens through any actions of as validator.
+There is no token slashing, i.e., a tokenholder cannot lose their tokens through any actions of a validator.
 
 Read more: [How a validator node's performance is determined](/docs/concepts/vega-chain#validator-node-performance)
 
@@ -159,12 +159,12 @@ A validator node's performance is expressed through a validator score, and in th
 
 The validator score is calculated for each epoch, based on how much stake a validator has as well as other factors including the total number of validators and the optimal stake. 
 
-If, at the end of an epoch, a validator does not have sufficient stake self-nominated or has overall too much stake, then their validator score will be lowered, which can impact the rewards a validator and its' nominators receive. 
+If, at the end of an epoch, a validator does not have sufficient stake self-nominated or has overall too much stake, then their validator score will be lowered, which can impact the rewards a validator and its nominators receive. 
 
 Below are the two factors that can lower a validator's score, and why. 
 
 #### Not enough self-nominated stake
-Self-nominated stake refers to the amount of VEGA a validator has staked to their own node.  The minimum stake amount required is set using the network parameter `reward.staking.delegation.minimumValidatorStake`. Not having enough self-nominated stake can have an impact on rewards. 
+Self-nominated stake refers to the amount of VEGA a validator has staked to their own node.  The minimum stake amount required is defined by the network parameter `reward.staking.delegation.minimumValidatorStake`. Not having enough self-nominated stake can have an impact on rewards. 
 
 * **Network risk**: A validator who has not committed enough stake to meet the minimum is a risk to the network because they may not be invested in keeping the network running
 * **Validator score**: If a validator does not meet the `reward.staking.delegation.minimumValidatorStake`, the validator is given a lower score, which can affect their rewards
@@ -186,7 +186,7 @@ The validator score takes into account a number of factors, including the total 
 
 Factors that affect the validator score:
 
-`min_validators` = value of the network parameter that defines the minimum viable number of validators to run Vega:
+`min_validators` = value of the network parameter that defines the minimum viable number of validators to run Vega
 `num_validators` = actual number of validators running nodes on Vega
 `comp_level` = value of the network parameter that defines the competition level
 `total_stake` = sum of all stake across all validators and their delegations
