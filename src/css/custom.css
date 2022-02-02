@@ -7,20 +7,22 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #00F780;
-  --ifm-color-primary-dark: #00F780;
-  --ifm-color-primary-darker: #00F780;
-  --ifm-color-primary-darkest: #00F780;
-  --ifm-color-primary-light: #00F780;
-  --ifm-color-primary-lighter: #00F780;
-  --ifm-color-primary-lightest: #00F780;
-  --ifm-code-font-size: 95%;
-
+  --vega-green: #00F780; 
   --vega-yellow: #DFFF0B;
   --vega-pink: #FF077F;
 
-  --ifm-link-color: #FF077F;
+  --ifm-color-primary: var(--vega-green);
+  --ifm-color-primary-dark: var(--vega-green);
+  --ifm-color-primary-darker: var(--vega-green);
+  --ifm-color-primary-darkest: var(--vega-green);
+  --ifm-color-primary-light: var(--vega-green);
+  --ifm-color-primary-lighter: var(--vega-green);
+  --ifm-color-primary-lightest: var(--vega-green);
+  --ifm-link-color: var(--vega-pink);
+  --search-local-highlight-color: var(--vega-pink);
+  --ifm-code-font-size: 95%;
 }
+
 /* Code listings - links to other classes */
 html[data-theme="dark"] a code {
   color: var(--vega-yellow);
