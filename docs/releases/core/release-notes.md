@@ -6,9 +6,9 @@ hide_title: false
 
 While the Vega core software is closed-source, you can refer here for a full list of release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-### Versions 0.46.0-0.47.4 combined | 2022-01-11
+### Versions 0.46.0-0.47.6 combined | 2022-01-11
 
-This release was made available to validators on 11 January, 2022. 
+This release was made available to validators on 11 January, 2022. Validators released it to the mainnet network on 31 January, 2022.
 
 A key theme of this combined release has been improvements to the checkpointing feature; this includes fixes to ensure epochs and other key data is preserved as they should be during checkpoint restarts. In addition to this, the “free-form governance” feature has been implemented. This feature further decentralises the protocol by allowing users to submit a range of governance proposals for community consideration and voting.
 
@@ -45,6 +45,8 @@ A “null blockchain” implementation of the protocol has been created. Whilst 
 - Update validator power in Tendermint based on their staking
 
 **Fixes**
+- Handle undelegate stake with no balances gracefully
+- Bug fix for incorrectly reporting auto delegation
 - Send an epoch event when loaded from checkpoint
 - Non determinism in checkpoint fixed
 - Set minimum for validator power to avoid accidentally removing them
