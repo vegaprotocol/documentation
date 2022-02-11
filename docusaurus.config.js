@@ -42,7 +42,7 @@ module.exports = {
           position: "left",
         },
         {
-          to: "/docs/tools/overview",
+          to: "/docs/tools/",
           label: "Tools",
           position: "left",
         },

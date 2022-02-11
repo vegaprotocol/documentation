@@ -7,7 +7,7 @@ Vega provides several tools to make it easier to interact with the protocol.
 
 For restricted mainnet, those tools include:
 ### Vega Wallet
-Use **[Vega Wallet](/docs/tools/vega-wallet/cli-wallet/latest/create-wallet)** to connect to a network to associate tokens for staking, and to sign messages. Using the Vega Wallet ensures your keys will be completely disassociated from your personal identity, and Vega will have no way to connect them with you, unless you share your public key for any reason.
+Use **[Vega Wallet](/docs/tools/vega-wallet)** to connect to a network to associate tokens for staking, and to sign messages. Using the Vega Wallet ensures your keys will be completely disassociated from your personal identity, and Vega will have no way to connect them with you, unless you share your public key for any reason.
 
 Guides for the latest version: 
 - [Create a wallet](/docs/tools/vega-wallet/cli-wallet/latest/create-wallet)
