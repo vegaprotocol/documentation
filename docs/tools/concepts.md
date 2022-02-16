@@ -16,7 +16,7 @@ Each cryptographic key pair includes a public key and a private key. Those keys 
 
 Data that is encrypted with the public key can only be decrypted with its corresponding private key.
 
-- [More on signing transactions](/docs/tools/vega-wallet/concepts/#signing-transactions)
+- More on signing transactions
 
 ## Wallet 
 Key pairs are stored within an encrypted and passphrase-protected wallet file so you don't have to manage them yourself, or risk exposing your private key. 
