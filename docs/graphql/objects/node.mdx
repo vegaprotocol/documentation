@@ -1,0 +1,86 @@
+---
+id: node
+title: Node
+---
+
+No description
+
+```graphql
+type Node {
+  id: String!
+  pubkey: String!
+  tmPubkey: String!
+  ethereumAdddress: String!
+  infoUrl: String!
+  location: String!
+  stakedByOperator: String!
+  stakedByDelegates: String!
+  stakedTotal: String!
+  pendingStake: String!
+  epochData: EpochData
+  status: NodeStatus!
+  delegations(partyId: String): [Delegation!]
+  score: String!
+  normalisedScore: String!
+  name: String!
+  avatarUrl: String
+}
+```
+
+### Fields
+
+#### `id` ([`String!`](/docs/graphql/scalars/string))
+
+The node url eg n01.vega.xyz
+
+#### `pubkey` ([`String!`](/docs/graphql/scalars/string))
+
+Pubkey of the node operator
+
+#### `tmPubkey` ([`String!`](/docs/graphql/scalars/string))
+
+Public key of Tendermint
+
+#### `ethereumAdddress` ([`String!`](/docs/graphql/scalars/string))
+
+Ethereum public key of the node
+
+#### `infoUrl` ([`String!`](/docs/graphql/scalars/string))
+
+URL where I can find out more info on the node. Will this be possible?
+
+#### `location` ([`String!`](/docs/graphql/scalars/string))
+
+Country code for the location of the node
+
+#### `stakedByOperator` ([`String!`](/docs/graphql/scalars/string))
+
+The amount the node has put up themselves
+
+#### `stakedByDelegates` ([`String!`](/docs/graphql/scalars/string))
+
+The amount of stake that has been delegated by token holders
+
+#### `stakedTotal` ([`String!`](/docs/graphql/scalars/string))
+
+Total amount staked on node
+
+#### `pendingStake` ([`String!`](/docs/graphql/scalars/string))
+
+Amount of stake on the next epoch
+
+#### `epochData` ([`EpochData`](/docs/graphql/objects/epoch-data))
+
+#### `status` ([`NodeStatus!`](/docs/graphql/enums/node-status))
+
+#### `delegations` ([`[Delegation!]`](/docs/graphql/objects/delegation))
+
+- ##### `partyId` ([`String`](/docs/graphql/scalars/string))
+
+#### `score` ([`String!`](/docs/graphql/scalars/string))
+
+#### `normalisedScore` ([`String!`](/docs/graphql/scalars/string))
+
+#### `name` ([`String!`](/docs/graphql/scalars/string))
+
+#### `avatarUrl` ([`String`](/docs/graphql/scalars/string))

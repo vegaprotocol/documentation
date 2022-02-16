@@ -1,4 +1,6 @@
 # Vega Protocol 
+ ## Transaction messages 
+ (to include protobufs of CORE txs (i.e. ones that actually appear in TM blocks)) 
 ## Governance
 Governance allows the Vega network to arrive at on-chain decisions, where tokenholders can create proposals that other tokenholders can vote to approve or reject. 
 
@@ -18,7 +20,7 @@ Try out proposing markets using [Fairground](https://fairground.wtf), Vega's tes
 1. During the proposal period, network participants who are eligible to vote on the proposal can submit votes for or against the proposal.
 1. When the proposal period closes, the network calculates the outcome by:
    - comparing the total number of votes cast as a percentage of the number eligible to be cast, to the minimum participation requirement. If the minimum is not reached, the proposal is rejected.
-	- comparing the number of 'for' votes as a percentage of all votes cast (maximum one vote counted per party) to the required majority. 
+	- comparing the number of 'for' votes afs a percentage of all votes cast (maximum one vote counted per party) to the required majority. 
 1. If the required majority of 'for' votes is met, the action described in the proposal will be taken (i.e., proposal is enacted) on the defined enactment date. Note the enactment date must be at least the minimum enactment period for the proposal type/subtype (specified by a network parameter) _after_ voting closes.
 
 ### Voting on proposals 
@@ -36,9 +38,111 @@ Tokenholders can create proposals using the APIs.
 Vote on proposals on the [Vega token governance page](https://token.vega.xyz/governance).
 :::
 
-## Collateral management 
+## Market governance
+
+### New market proposal
+
+#### Market
+
+#### Tradable instrument
+
+#### Instrument
+
+### Market / instrument parameters
+
+## Asset governance 
+
+### New asset proposal 
+
+### Risk models and parameters
+When proposing a market, the market proposer will need to choose the risk parameters associated with the risk model that's appropriate for the product. Find out more about the relationship between the product, instrument, and tradable instrument above. The purpose of the risk model is for the calculation of margins on the market. 
+
+For a detailed explanation, read the [Margins and Credit Risk on Vega](https://vega.xyz/papers/margins-and-credit-risk.pdf) paper (note a position size of 1 is assumed throughout it).
+
+The first product available to create on Fairground is built-in, direct, cash-settled future. That product uses a log-normal risk parameter. Here are the parameters: 
+
+Below are the risk parameters, the accepted values for each parameter and suggested values for some of them. 
+
+Please note the parameters should be chosen so that the risk model adequately represents the dynamics of the underlying instrument and so that the resulting margins strike the right balance between prudence and capital efficiency.
+
+When suggested values are provided, these should be used as a reference point and to aid derivation of the value appropriate for the market being proposed, and not in place of rigorous analysis and calibration.
+
+Model independent parameters used in margin calculation are:
+
+* `Risk aversion lambda` - probability level used in [Expected Shortfall](https://vega.xyz/papers/margins-and-credit-risk.pdf#page=7) calculation when obtaining `Risk Factor Long` and `Risk Factor Short`:
+  * accepted values: **strictly greater than 0 and strictly smaller than 1**,
+  * suggested value: `0.001` - indicates the probability that the position value drops by more than its current value at risk at level lambda.
+* `Tau` - projection horizon measured as a year fraction used in Expected Shortfall calculation when obtaining `Risk Factor Long` and `Risk Factor Short`:
+  * accepted values: **any strictly non-negative real number**,
+  * suggested value: `0.000114077116130504` - corresponds to one hour expressed as year fraction.
+* `Risk free rate` - annualised growth rate of the risk-free asset, it's used for discounting of future cash flows:
+  * accepted values: **any real number**,
+  * suggested value: `0`.
+
+The remaining, model specific parameters are covered in sections below.
+
+#### Log-normal
+The log-normal model assumes that the price of the underlying asset follows the process specified by the stochastic differential equation:
+
+dS<sub>t</sub> = S<sub>t</sub>(Mu*dt+Sigma*dW<sub>t</sub>), S(t) = s,
+
+where `Mu`, `Sigma` and `s` are constants and `dW` represents a Brownian Motion increment. For any time in `t` in the interval `(0,T]` the model implies a distribution where the natural logarithm of price is normally distributed (hence the name Log-Normal).  
+
+* `Mu` - annualised growth rate of the underlying asset:
+  * accepted values: **any real number**,
+  * suggested value: `0`.
+* `Volatility (Sigma)` - annualised volatility of the underlying asset:
+  * accepted values: **any strictly non-negative real number**,
+  * suggested value: asset dependent, should be derived from the historical time-series of prices.
+
+### Changing models
+
+### Thresholds and rules
+
+## Network governance
+
+### Parameters
+There are certain parameters within Vega that influence the behaviour of the system and can be changed by on-chain governance. 
+
+A network parameter is defined by:
+* Name
+* Type
+* Value
+* Constraints
+* Governance update policy 
+
+### Changing parameters
+
+Network parameters can be changed by governance, however some network parameters need to be more difficult to change than others. Therefore, the protocol needs to know for each network parameter what governance thresholds apply for ascertaining a proposal's ability to change the parameter's value. Specifically, those thresholds are:
+
+* `MinimumProposalPeriod`
+* `MinimumPreEnactmentPeriod`
+* `MinimumRequiredParticipation` 
+* `MinimumRequiredMajority`
+
+There are groups of network parameters that will use the same values for the thresholds. Importantly, these `Minimum` levels are themselves network parameters, and therefore subject to change. They should be self-referential in terms of ascertaining the success of changing them.
+
+For example, consider a network parameter that specifies the proportion of fees that goes to validators (`feeAmtValidators`), with change thresholds:
+
+* `MinimumProposalPeriod = 30 days`
+* `MinimumPreEnactmentPeriod = 10 days` 
+* `MinimumRequiredParticipation = 60%` 
+* `MinimumRequiredMajority = 80%`
+
+Thus, a proposal to change the `feeAmtValidators.MinimumProposalPeriod` would need to pass all of the thresholds listed above.
+
+Network parameters can only be added and removed with Vega core software releases.
+
+### Threshold and rules
+  
+## Collateral management
+Intro. What is the collateral management in general? (TODO)
+ 
 The collateral for restricted mainnet is exclusively VEGA, which is used for staking and rewards. 
  
+:::info You'll need a Vega Wallet for staking, and for receiving rewards. You'll be able to see your account balance on token.vega.xyz.
+:::
+
 :::info
 You'll need a Vega Wallet for staking and receiving rewards. Connect to wallets and see your account balance on the [Vega token website](https://token.vega.xyz). CoinList custodial users should confirm with CoinList how staking works for them.
 :::

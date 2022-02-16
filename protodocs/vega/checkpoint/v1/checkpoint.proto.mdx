@@ -1,0 +1,66 @@
+---
+title: checkpoint.proto
+hide_title: true
+---
+
+import { ProtoMessage, ProtoServiceMethod, ProtoEnum } from '@theme/ProtoFile';
+
+## `checkpoint.proto`
+_**path** vega/checkpoint/v1/checkpoint.proto_
+
+_**package** vega.checkpoint.v1_
+
+
+
+---
+
+## Messages
+
+
+### `AssetBalance`
+<ProtoMessage key={0} message={{"name":"AssetBalance","longName":"AssetBalance","fullName":"vega.checkpoint.v1.AssetBalance","description":"AssetBalance represents the total balance of a given asset for a party","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"party","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"asset","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"balance","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `AssetEntry`
+<ProtoMessage key={1} message={{"name":"AssetEntry","longName":"AssetEntry","fullName":"vega.checkpoint.v1.AssetEntry","description":"AssetEntrty is a single (enabled) asset","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"id","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"asset_details","description":"","label":"","type":"AssetDetails","longType":"vega.AssetDetails","fullType":"vega.AssetDetails","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/protodocs/vega/assets.proto#assetdetails"}]}} />
+
+
+### `Assets`
+<ProtoMessage key={2} message={{"name":"Assets","longName":"Assets","fullName":"vega.checkpoint.v1.Assets","description":"Assets contains all the enabled assets as AssetEntries","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"assets","description":"","label":"repeated","type":"AssetEntry","longType":"AssetEntry","fullType":"vega.checkpoint.v1.AssetEntry","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/protodocs/vega/checkpoint/v1/checkpoint.proto#assetentry"}]}} />
+
+
+### `Block`
+<ProtoMessage key={3} message={{"name":"Block","longName":"Block","fullName":"vega.checkpoint.v1.Block","description":"Block message contains data related to block at which the checkpoint\nwas created (ie block height)","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"height","description":"","label":"","type":"int64","longType":"int64","fullType":"int64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `Checkpoint`
+<ProtoMessage key={4} message={{"name":"Checkpoint","longName":"Checkpoint","fullName":"vega.checkpoint.v1.Checkpoint","description":"Checkpoint aggregates the various engine snapshots","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"governance","description":"","label":"","type":"bytes","longType":"bytes","fullType":"bytes","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"assets","description":"","label":"","type":"bytes","longType":"bytes","fullType":"bytes","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"collateral","description":"","label":"","type":"bytes","longType":"bytes","fullType":"bytes","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"network_parameters","description":"","label":"","type":"bytes","longType":"bytes","fullType":"bytes","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"delegation","description":"","label":"","type":"bytes","longType":"bytes","fullType":"bytes","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"epoch","description":"will just be an epoch event","label":"","type":"bytes","longType":"bytes","fullType":"bytes","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"block","description":"","label":"","type":"bytes","longType":"bytes","fullType":"bytes","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `CheckpointState`
+<ProtoMessage key={5} message={{"name":"CheckpointState","longName":"CheckpointState","fullName":"vega.checkpoint.v1.CheckpointState","description":"CheckpointState is the entire checkpoint serialised (basically serialised the Checkpoint message + hash)","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"hash","description":"","label":"","type":"bytes","longType":"bytes","fullType":"bytes","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"state","description":"","label":"","type":"bytes","longType":"bytes","fullType":"bytes","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `Collateral`
+<ProtoMessage key={6} message={{"name":"Collateral","longName":"Collateral","fullName":"vega.checkpoint.v1.Collateral","description":"Collateral contains the balances per party","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"balances","description":"","label":"repeated","type":"AssetBalance","longType":"AssetBalance","fullType":"vega.checkpoint.v1.AssetBalance","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/protodocs/vega/checkpoint/v1/checkpoint.proto#assetbalance"}]}} />
+
+
+### `Delegate`
+<ProtoMessage key={7} message={{"name":"Delegate","longName":"Delegate","fullName":"vega.checkpoint.v1.Delegate","description":"Delegate contains all entries for a checkpoint","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"active","description":"","label":"repeated","type":"DelegateEntry","longType":"DelegateEntry","fullType":"vega.checkpoint.v1.DelegateEntry","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/protodocs/vega/checkpoint/v1/checkpoint.proto#delegateentry"},{"name":"pending","description":"","label":"repeated","type":"DelegateEntry","longType":"DelegateEntry","fullType":"vega.checkpoint.v1.DelegateEntry","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/protodocs/vega/checkpoint/v1/checkpoint.proto#delegateentry"},{"name":"auto_delegation","description":"","label":"repeated","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `DelegateEntry`
+<ProtoMessage key={8} message={{"name":"DelegateEntry","longName":"DelegateEntry","fullName":"vega.checkpoint.v1.DelegateEntry","description":"Delegated amounts for party/node\nundelegate and epoch seq are only relevant for pending entries","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"party","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"node","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"amount","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"undelegate","description":"","label":"","type":"bool","longType":"bool","fullType":"bool","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"epoch_seq","description":"","label":"","type":"uint64","longType":"uint64","fullType":"uint64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `NetParams`
+<ProtoMessage key={9} message={{"name":"NetParams","longName":"NetParams","fullName":"vega.checkpoint.v1.NetParams","description":"NetParams contains all network parameters","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"params","description":"","label":"repeated","type":"NetworkParameter","longType":"vega.NetworkParameter","fullType":"vega.NetworkParameter","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/protodocs/vega/vega.proto#networkparameter"}]}} />
+
+
+### `Proposals`
+<ProtoMessage key={10} message={{"name":"Proposals","longName":"Proposals","fullName":"vega.checkpoint.v1.Proposals","description":"Proposals will contain all accepted proposals","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"proposals","description":"","label":"repeated","type":"Proposal","longType":"vega.Proposal","fullType":"vega.Proposal","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/protodocs/vega/governance.proto#proposal"}]}} />
+
+---
+
+
+  

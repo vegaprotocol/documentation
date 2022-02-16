@@ -1,0 +1,51 @@
+---
+id: stake-linking
+title: StakeLinking
+---
+
+A Stake linking represent the intend from a party to deposit / remove stake on their account
+
+```graphql
+type StakeLinking {
+  id: ID!
+  type: StakeLinkingType!
+  timestamp: String!
+  party: Party!
+  amount: String!
+  status: StakeLinkingStatus!
+  finalizedAt: String
+  txHash: String!
+}
+```
+
+### Fields
+
+#### `id` ([`ID!`](/docs/graphql/scalars/id))
+
+#### `type` ([`StakeLinkingType!`](/docs/graphql/enums/stake-linking-type))
+
+Type of linking: link|unlink
+
+#### `timestamp` ([`String!`](/docs/graphql/scalars/string))
+
+The time at which the request happened on ethereum
+
+#### `party` ([`Party!`](/docs/graphql/objects/party))
+
+The party initiating the stake linking
+
+#### `amount` ([`String!`](/docs/graphql/scalars/string))
+
+The amount linked or unlinked
+
+#### `status` ([`StakeLinkingStatus!`](/docs/graphql/enums/stake-linking-status))
+
+The status of the linking
+
+#### `finalizedAt` ([`String`](/docs/graphql/scalars/string))
+
+The time at which the stake linking was full processed by the vega network, null until defined
+
+#### `txHash` ([`String!`](/docs/graphql/scalars/string))
+
+The transaction hash (ethereum) which initiated the link/unlink
