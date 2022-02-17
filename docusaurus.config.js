@@ -42,8 +42,13 @@ module.exports = {
           position: "left",
         },
         {
-          to: "/docs/tools/overview",
+          to: "/docs/tools/",
           label: "Tools",
+          position: "left",
+        },
+        {
+          to: "/docs/releases/overview",
+          label: "Releases",
           position: "left",
         },
       ],
@@ -137,6 +142,16 @@ module.exports = {
         diffMethod: "SCHEMA-DIFF",
       },
     ],
+    [
+      // Search
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      {
+        language: ["en"],
+        hashed: true,
+        indexBlog: false,
+        docsRouteBasePath: ["/docs", "/protodocs"]
+      },
+    ],
   ],
   presets: [
     [
@@ -206,7 +221,5 @@ module.exports = {
       },
     ],
   ],
-  themes: [
-    "@saucelabs/theme-github-codeblock"
-  ],
+  themes: ["@saucelabs/theme-github-codeblock"],
 };
