@@ -2,7 +2,7 @@
 
 ## Orders
 ### Submitting an order
-Traders can submit orders into any market that is active - i.e. not in a protective auction, or matured, expired, or settled. Orders will only be accepted if sufficient margin can be allocated from a trader's available collateral. 
+Orders can be submitted into any market that is active - i.e. not in a protective auction, or matured, expired, or settled. Orders will only be accepted if sufficient margin can be allocated from a trader's available collateral. 
 
 If, during continuous trading, an order is going to be matched with another order on the book for the same party (wash trade), then execution of that order will be stopped and the order will be cancelled and removed (if on the book). 
 
@@ -245,27 +245,62 @@ If a trader's deployed margin on the market is insufficient to cover a mark to m
 
 ## Market data
 
-## Liquidity mining
+## Liquidity mining (provision)
 
 ### Parameters
 
 ### Liquidity providers
-Vega's liquidity protocol is designed to incentivise a set of participants on each market to provide orders on the limit order book during continuous trading.
+Participants with sufficient collateral can provide liquidity for markets. Every market on Vega must have at least one committed liquidity provider. When a governance proposal to create a market is submitted, the proposal has to include liquidity provision commitment.
 
-Any Vega participant with sufficient collateral can provide liquidity for a market by submitting a transaction to the network.
+A liquidity provision commitment is made up of a series of orders that sit on the order book to be filled. Liquidity providers need to be able to support their liquidity commitment - their available collateral must be able to meet the size of the nominated commitment amount and the margins required to support the orders generated from that commitment. 
 
-Liquidity providers need to make a financial commitment. They receive rewards for providing liquidity, and penalties for not upholding their commitment. Rewards are collected by the protocol from the market's fees, paid by price takers, and distributed to the market's liquidity providers according to their relative contributions.
+### Liquidity rewards
+Liquidity providers receive rewards for providing liquidity, and penalties for not upholding their commitment. 
 
-### Commitments
-When liquidity providers make a liquidity commitment, the liquidity provider's available collateral must be able to meet the size of the nominated commitment amount and the margins required to support the orders generated from that commitment.
+Rewards are calculated automatically from the market's fees, which are paid by price takers, and distributed to the market's liquidity providers according to their relative commitments.
+
+### Liquidity commitment transaction
+
+Participants can commit liquidity by submitting a liquidity submission transaction to the network.
 
 A liquidity commitment transaction must include:
-* Market identifier of the market, provided it is in a state that accepts liquidity provision
+* Market identifier, provided the market is in a state that accepts liquidity commitments
 * Liquidity commitment amount
 * Proposed liquidity fee level
 * A set of liquidity buy and sell orders
 
-If the liquidity provider's margin account doesn't have enough funds to support those orders, the protocol will search for funds in the general account for the appropriate asset. If even the general account doesn't have sufficient amount to provide margin to support the orders, then the protocol will transfer the remaining funds from the bond account, and a penalty will be applied and transferred from the bond account to the market's insurance pool.
+### Submit liquidity commitment orders
+A liquidity provider must submit a valid set of liquidity provider orders. That set must include a buy shape and a sell shape. 
+
+The network will translate these shapes into order book volume by creating an order set according to a set of rules. 
+
+Each entry must specify:
+
+  **Liquidity proportion**: The relative proportion of the commitment to be allocated at a price level. Note, the network will normalise the liquidity proportions of the refined order set. This must be a strictly positive number.
+  **Price peg**: A price level must be specified by a reference point (e.g mid, best bid, best offer) and an amount of units away.
+
+# Example:
+Buy-shape: {
+  buy-entry-1: [liquidity-proportion-1, [price-peg-reference-1, number-of-units-from-reference-1]],
+  buy-entry-2: [liquidity-proportion-2, [price-peg-reference-2, number-of-units-from-reference-2]],
+}
+
+# Example with values
+Buy-shape: {
+  buy-entry-1: [2, [best-bid, -10]],
+  buy-entry-2: [13, [best-bid, -11]],
+}
+
+### Amend liquidity commitment orders
+Liquidity commitment orders can be amended by providing a new set of liquidity provision orders in the liquidity provider transaction. If the amended orders are invalid, the transaction is rejected, and the previous set of orders will be retained.
+
+### Cancel liquidity commitment orders
+
+#### Not enough liquidity 
+
+**If a market has too little liquidity**: Vega continuously calculates whether each market has a sufficient amount committed. When markets are deemed insufficiently liquid, they are placed into a liquidity monitoring auction.
+
+**If a liquidity provider can't cover their commitment**: If the liquidity provider's margin account doesn't have enough funds to support their orders: the protocol will search for funds in the general account for the appropriate asset. If even the general account doesn't have sufficient amount to provide margin to support the orders, then the protocol will transfer the remaining funds from the bond account, and a penalty will be applied and transferred from the bond account to the market's insurance pool.
 
 The liquidity obligation will remain unchanged and the protocol will periodically search the liquidity provider's general account for the appropriate asset and attempt to top up bond account to the amount specified in liquidity commitment.
 
@@ -287,7 +322,7 @@ The market's liquidity requirement is derived from the maximum open interest obs
 ### Liquidity provision orders
 The buy and sell orders that are part of a liquidity commitment transaction are used to make up the remainder of the liquidity obligation if the liquidity supplied by the manually maintained orders falls short of it.
 
-Those orders a special batch order type that automatically updates price/size as needed to meet the commitment, and automatically refreshes its volume after trading to ensure continuous liquidity provision. They are essentially sets of pegged orders grouped by order book side, with a proportion of required volume specified for each order. Hence they are sometimes referred to as 'shapes', since the overall volume depends on the remaining liquidity obligation and the mid-price along with the risk model parameters, but the sizes of orders relative to each other can still be controlled.
+Those orders use a special batch order type that automatically updates price/size as needed to meet the commitment, and automatically refreshes its volume after trading to ensure continuous liquidity provision. They are essentially sets of pegged orders grouped by order book side, with a proportion of required volume specified for each order. Hence they are sometimes referred to as 'shapes', since the overall volume depends on the remaining liquidity obligation and the mid-price along with the risk model parameters, but the sizes of orders relative to each other can still be controlled.
 
 Liquidity providers are not required to supply any orders that offer liquidity or trade during an auction uncrossing. They must maintain their stake however and their liquidity orders will be placed back on the book when normal trading resumes.
 
