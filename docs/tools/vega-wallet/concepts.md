@@ -7,9 +7,11 @@ Vega Wallet is an app that lets you manage wallets and cryptographic key pairs. 
 Read on to understand the basic concepts of wallets and keys, and how they work. 
 
 ## Cryptographic keys
-Each cryptographic key pair includes a public key and a private key. Those keys are associated with an entity that needs to authenticate their identity, or sign and send transaction data. Data that is encrypted with the public key can only be decrypted with its corresponding private key.
+Each cryptographic key pair includes a public key and a private key. 
 
-Anyone can send someone encrypted information using the public key associated with the private key. However, only the owner of the private key can decrypt the information. The goal is to prove that a transaction was indeed signed by the originator and was not forged.
+Those keys are associated with an entity that needs to authenticate their identity, or sign and send transaction data. The signature is generated through combining the signer's private key with the data being sent in the transaction. Data that is signed with the private key can only be verified with its corresponding public key.
+
+Signing a transaction proves the signer is the owner of the collateral used in the transaction. The network's validator nodes check and authenticate transactions automatically as they come in.  
 
 **Public key**: A public key can be published or shared. 
 
@@ -41,7 +43,7 @@ Every time you want to use a wallet or its keys, you’ll need to use the passph
 ### Recovery phrase
 When a wallet is created using a Vega Wallet app, the app provides you with a recovery phrase. Every wallet has a recovery phrase attached to it. That recovery phrase is only displayed by the Vega Wallet app once, and it must be saved somewhere secure and private.
 
-You may find yourself in a situation where you can't access your wallet. Perhaps you are using a different computer, or you deleted your wallet. If you delete the wallet file (for example by running the command to delete a wallet), no software will be able to interact with those keys. 
+You may find yourself in a situation where you can't access your wallet. Perhaps you are using a different computer, or you deleted your wallet. If you delete the wallet file (for example by running the command to delete a wallet), no software will be able to interact with those keys, and thus, the assets associated with the keys. 
 
 A wallet can be restored, as long as you have the wallet's recovery phrase. Without the recovery phrase, you cannot restore your wallet, and you lose access to those keys.
 
