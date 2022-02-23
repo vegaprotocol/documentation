@@ -23,7 +23,7 @@ You must to use Vega Wallet version 0.9.2 or newer to connect to Vega Mainnet. W
 In your command line interface, you can view a list of available commands by running `./vegawallet -h` on MacOS and Linux, or `vegawallet -h` on Windows. Help is also available for every command, for example: `vegawallet create -h` will provide information about the `create` command.
 :::
 
-## 1. Install and run latest Vega Wallet version (0.11)
+## 1. Install and run latest Vega Wallet version (0.12)
 
 ### Download file
 
