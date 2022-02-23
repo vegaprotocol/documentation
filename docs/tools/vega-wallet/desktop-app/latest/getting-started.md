@@ -36,7 +36,7 @@ Download `vegawallet-darwin-arm64.zip`
 
 <TabItem value="linux" label="Linux">
 
-Download `vegawallet-linux-amd64.zip`
+Download `vegawallet-desktop-linux-amd64.zip`
 </TabItem>
 </Tabs>
 
