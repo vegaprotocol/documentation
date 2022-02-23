@@ -21,7 +21,7 @@ Click through the tabs below to find out which download file you need.
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
 
-Download `vegawallet-windows-amd64.zip`
+Download `vegawallet-desktop-windows-amd64.zip`
 
 </TabItem>
 <TabItem value="mac" label="MacOS">
