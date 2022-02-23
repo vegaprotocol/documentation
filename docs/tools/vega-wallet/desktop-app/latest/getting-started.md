@@ -20,18 +20,24 @@ Click through the tabs below to find out which download file you need.
 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
-  
-For Windows devices with an AMD processor (aka x86-64): 
+
+**For Windows devices with an AMD processor (aka x86-64)**: 
+
 Download `vegawallet-desktop-windows-amd64.zip`
 
-For Windows devices with an ARM processor ([See Windows FAQ](https://support.microsoft.com/en-us/windows/windows-arm-based-pcs-faq-477f51df-2e3b-f68f-31b0-06f5e4f8ebb5#ID0EFD=Windows_11):   
+**For Windows devices with an ARM processor** ([See Windows FAQ](https://support.microsoft.com/en-us/windows/windows-arm-based-pcs-faq-477f51df-2e3b-f68f-31b0-06f5e4f8ebb5#ID0EFD=Windows_11)):
+
+Download `vegawallet-desktop-windows-arm64.zip`
+
 </TabItem>
 <TabItem value="mac" label="MacOS">
 
-For Macs with an AMD processor (aka x86-64):
+**For Macs with an AMD processor (aka x86-64)**:
+
 Download `vegawallet-desktop-darwin-amd64.zip`
 
-For Macs with an M1 processor ([See Apple guidance](https://support.apple.com/en-us/HT211814)): 
+**For Macs with an M1 processor** ([See Apple guidance](https://support.apple.com/en-us/HT211814)): 
+
 Download `vegawallet-desktop-darwin-arm64.zip`
   
 </TabItem>
@@ -70,7 +76,7 @@ If you already have a Vega wallet with keys, recover the wallet using your recov
 The Vega Wallet desktop app does not yet have the full functionality of the CLI wallet app.
 
 ### Not yet supported
-To do any of the following, you will need to use the **[CLI wallet](docs/tools/vega-wallet/cli-wallet/)**:
+To do any of the following, you will need to use the **[CLI wallet](/docs/tools/vega-wallet/cli-wallet)**:
 * Customise key details
 * Isolate keys
 * Build and send commands 
@@ -84,4 +90,4 @@ You recover a wallet using your recovery phrase, and the public key you see does
 * Ensure that your recovery phrase includes the exact same words, in the exact same order, as they were provided to you when you first created your wallet. 
 
 ### Reporting bugs
-[Nolt](https://vega-testnet.nolt.io/): If you discover a bug or are having problems with the Desktop Wallet app, report them on Nolt. 
+**[Report using Nolt](https://vega-testnet.nolt.io/)**: If you discover a bug or are having problems with the Desktop Wallet app, report them on Nolt. 
