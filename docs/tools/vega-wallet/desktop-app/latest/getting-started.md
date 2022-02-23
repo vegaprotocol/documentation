@@ -5,7 +5,7 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The Vega Wallet is available to use as a desktop application. Set-up takes less than 5 minutes, from downloading the software to connecting to a Vega dApp.
+The Vega Wallet is available to use as a desktop app. Set-up takes less than 5 minutes, from downloading the software to connecting to a Vega dApp.
 
 ## Download and start the Vega Wallet desktop app
 
@@ -20,17 +20,19 @@ Click through the tabs below to find out which download file you need.
 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
-
+  
+For Windows devices with an AMD processor (aka x86-64): 
 Download `vegawallet-desktop-windows-amd64.zip`
 
+For Windows devices with an ARM processor ([See Windows FAQ](https://support.microsoft.com/en-us/windows/windows-arm-based-pcs-faq-477f51df-2e3b-f68f-31b0-06f5e4f8ebb5#ID0EFD=Windows_11):   
 </TabItem>
 <TabItem value="mac" label="MacOS">
 
-Download `vegawallet-darwin-amd64.zip`
+For Macs with an AMD processor (aka x86-64):
+Download `vegawallet-desktop-darwin-amd64.zip`
 
-For Macs with an M1 processor (released since November 2020): 
-
-Download `vegawallet-darwin-arm64.zip`
+For Macs with an M1 processor ([See Apple guidance](https://support.apple.com/en-us/HT211814)): 
+Download `vegawallet-desktop-darwin-arm64.zip`
   
 </TabItem>
 
@@ -67,10 +69,19 @@ If you already have a Vega wallet with keys, recover the wallet using your recov
 ## Troubleshooting
 The Vega Wallet desktop app does not yet have the full functionality of the CLI wallet app.
 
-### Not supported
+### Not yet supported
 To do any of the following, you will need to use the **[CLI wallet](docs/tools/vega-wallet/cli-wallet/)**:
-* Customise key details 
-* Isolate keys 
+* Customise key details
+* Isolate keys
+* Build and send commands 
 
 ### Wallet recovery provides wrong keys 
-Wallet version explanation 
+#### Problem
+You recover a wallet using your recovery phrase, and the public key you see doesn't match the key you expect (such as if you expected that key to have assets associated with it, and it doesn't). 
+
+#### Possible solutions
+* Choose the alternate wallet version number alongside your recovery phrase. If you recovered and chose "version 2", then you should try using the same recovery phrase but choose "version 1". 
+* Ensure that your recovery phrase includes the exact same words, in the exact same order, as they were provided to you when you first created your wallet. 
+
+### Reporting bugs
+[Nolt](https://vega-testnet.nolt.io/): If you discover a bug or are having problems with the Desktop Wallet app, report them on Nolt. 
