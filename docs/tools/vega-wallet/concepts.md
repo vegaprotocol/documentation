@@ -11,18 +11,18 @@ Each cryptographic key pair includes a public key and a private key.
 
 Those keys are associated with an entity that needs to authenticate their identity, or sign and send transaction data. The signature is generated through combining the signer's private key with the data being sent in the transaction. Data that is signed with the private key can only be verified with its corresponding public key.
 
-Signing a transaction proves the signer is the owner of the collateral used in the transaction. The network's validator nodes check and authenticate transactions automatically as they come in.  
+Signing a transaction proves the signer acknowledges a transaction is valid, and initiated by the holder of the private key. Signing with the private key is the ultimate proof to verify the authenticity of something.
+
+The network's validator nodes check and authenticate transactions automatically as they come in.
 
 **Public key**: A public key can be published or shared. 
 
-**Private key**: A private is saved in your wallet file, but is never displayed and is kept secret. 
+**Private key**: A private is saved in your wallet file, but is never displayed and is kept secret. A private key should never be shared, and it's safer that it's also never displayed. 
 
 ## Wallet 
-Key pairs are stored within an encrypted and passphrase-protected wallet file so you don't have to manage key pairs yourself, or risk exposing your private key. 
+Key pairs are stored within an encrypted wallet file, and the information can only be accessed with a passphrase. This ensures you don't have to manage key pairs yourself, or risk exposing your private key. 
 
 The wallet file can hold any number of key pairs, and you can have more than one wallet file, each with its own set of key pairs. When you use the Vega Wallet app to create a wallet, that wallet file and its configuration details are stored on your computer. 
-
-A wallet file is encrypted and the information within it can only be accessed with a passphrase. 
 
 — Basic Wallet diagram
 
@@ -60,9 +60,7 @@ As long as the exact words, in the exact order, are used to restore keys, then t
 -Recovery phrase diagram
 
 ## Signing transactions
-Vega doesn’t have track of accounts, concept of a “user account” doesn’t exist, everything is a transaction. You need to sign a transaction with your cryptographic keys. 
-
-What’s happening when you’re signing a transaction? (Be sure to use the Vega key that’s associated with the relevant assets you need for the transaction. If you want to issue a transaction, you may need to have the relevant tokens (but why)).  (Link off to transaction content maybe) 
+When interacting with the Vega protocol, ownership is ensured through the signature you attach to your transactions. This signature is created by your cryptographic keys. That's why you're asked for your passphrase when you issue a transaction -- the software needs to access the keys to create a signature.
 
 —diagram of signing a transaction. User > message ‘scroll’ > choose wallet> choose key pair to stamp it > message becomes wax sealed letter (bundled with signature) > goes to Vega network  
 
