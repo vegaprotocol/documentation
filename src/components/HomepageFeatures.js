@@ -27,7 +27,7 @@ const FeatureList = [
   },
   {
     title: "Tools for using Vega",
-    href: "/docs/tools/overview",
+    href: "/docs/tools",
     description: (
       <>
         Several tools are available for interacting with the functionality Vega
