@@ -11,7 +11,7 @@ Each cryptographic key pair includes a public key and a private key.
 
 Those keys are associated with an entity that needs to authenticate their identity, or sign and send transaction data. The signature is generated through combining the signer's private key with the data being sent in the transaction. Data that is signed with the private key can only be verified with its corresponding public key.
 
-Signing a transaction proves the signer acknowledges a transaction is valid, and initiated by the holder of the private key. Signing with the private key is the ultimate proof to verify the authenticity of something.
+When a participant signs a transaction, the participant is confirming that a transaction is valid, and initiated by them, the holder of the private key. Signing with the private key is the ultimate proof to verify the authenticity of the signed message/transaction.
 
 The network's validator nodes check and authenticate transactions automatically as they come in.
 
