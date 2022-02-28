@@ -60,7 +60,11 @@ As long as the exact words, in the exact order, are used to restore keys, then t
 -Recovery phrase diagram
 
 ## Signing transactions
-When interacting with the Vega protocol, ownership is ensured through the signature you attach to your transactions. This signature is created by your cryptographic keys. That's why you're asked for your passphrase when you issue a transaction -- the software needs to access the keys to create a signature.
+Each transaction needs to have a digital signature attached to it, which ensures ownership of that transaction. The signature is created by your cryptographic keys. Every transaction has a different digital signature that depends on the private key of the user signing the transaction.
+
+When signing a transaction, you'll be asked for your passphrase when you issue a transaction -- the Vega wallet software needs to access the keys to create a signature.
+
+Once a transaction is signed and submitted using the Vega wallet, the transaction is gossiped to the validator nodes. The nodes then verify the signature using the signer's public key, and agree to execute the transaction by adding it to the block. 
 
 —diagram of signing a transaction. User > message ‘scroll’ > choose wallet> choose key pair to stamp it > message becomes wax sealed letter (bundled with signature) > goes to Vega network  
 
