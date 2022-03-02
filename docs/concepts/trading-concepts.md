@@ -1,6 +1,11 @@
 # Trading protocol (?)
+The Vega protocol software is built to provide a framework for creating markets for trading financial instruments that are based on the values of their underlying assets. All markets created using the Vega protocol are initiated and voted on by tokeholders. 
+
+Participants in a market ... 
 
 ## Orders
+An order is an instruction to long or short on a market. Placing an order does not guarantee it is filled.
+
 ### Submitting an order
 Orders can be submitted into any market that is active - i.e. not in a protective auction, or matured, expired, or settled. Orders will only be accepted if sufficient margin can be allocated from a trader's available collateral. 
 
@@ -13,73 +18,7 @@ Order sizes can be fractional, as long as the order is within the maximum number
 Amendments that change price or increase size will be executed as an atomic cancel and replace, meaning the time priority will be lost (i.e. as if the original order was cancelled and removed from the book and a new order submitted with the modified values). 
 
    #### Cancelling an order
-   #### Order types/Times in force
-   ### Batch operations on orders
- 
 
-## Position management and margin
-Vega's margining system implements automated cross margining. Cross margining, which means gains on one market can be released and used as margin on another, is supported between all markets. More detailed explanation on the rationale is available in [Section 6 of the protocol whitepaper](https://vega.xyz/papers/vega-protocol-whitepaper.pdf#page21).
-
-### Margin 
-The margin calculation for a new order, and the amount deducted from collateral to cover margin, is based on all the open orders. A trader will need enough margin to keep a position open, whether it goes for or against the trader. The margin calculations ensure a trader does not enter a trade that will immediately need to be closed out.
-
-### Basic margin calculations
-Vega calculates four margin levels:
-* **Initial level**: The amount that will be transferred from your collateral to be used as margin when an order is placed or trade executed. To avoid a margin search as soon as position is open, the initial margin level is set above the search level:
-  * m<sup>initial</sup> := α<sup>initial</sup> * m<sup>maintenance</sup>, where α<sup>initial</sup> is a constant and α<sup>initial</sup> > α<sup>search</sup>.
-* **Search level**: When the margin balance drops below the search level -- but is still above the maintenance level -- the network will try to allocate an additional amount (up to the current initial margin level) from a trader's collateral, if possible, to be used for margin:
-  * m<sup>search</sup> := α<sup>search</sup> * m<sup>maintenance</sup>, where α<sup>search</sup> is a constant and α<sup>search</sup> > 1.
-* **Release level**: Once a trader's margin balance exceeds the margin release level, the position is considered overcollateralised and funds are released back to collateral so that the margin balance is equal to the current initial margin level:
-  * m<sup>release</sup> := α<sup>release</sup> * m<sup>maintenance</sup>, where α<sup>release</sup> is a constant and α<sup>release</sup> > α<sup>initial</sup>.
-* **Maintenance margin**: This is implied by the risk model and corresponds to the minimum amount required to cover adverse market moves with a given probability level. As soon as the margin balance drops below the maintenance margin level, the position close-out process gets initiated.
-
-#### Calculating the margin on open orders
-The network calculates the largest long / short position. If the long position is the riskiest, the margin algorithm multiplies by a `risk factor long` and by the `mark price` (for futures). If the short position is the riskiest, then the algorithm multiplies the position by the `risk factor short` and by the `mark price`. These capture the outcome of probabilistic distribution of future market moves, and are market specific.
-
-##### Example 
-Image to be uploaded - <img alt="Calculating margin on open orders" src="/images/2-calculate-margin-open-orders.png" width="500" />
-
-There is an open sell order of size 1 on the book. The risk factor for short positions is 0.074347011. The current mark price is 0.02690. So minimum margin = 0.2690 x 0.074347011 = 0.00200 (rounded to 5 decimal places).
-
-##### Margin on open positions
-The following calculation takes into account "slippage" as seen on an order book.
-
-##### Example:
-
-<img alt="Calculating margin on an open positions" src="/images/3-margin-open-positions.png" width="500" />
-
-The trader has an open short position of size 1 and no open orders. The risk factor for short positions is 0.074347011. The current mark price is 0.02672. The best offer price is 0.02676 and it has enough volume so that theoretically the position could be closed-out at that price. So maintenance margin = 0.02672 x 0.074347011 + max (0, 0.02676 - 0.02672) = 0.00203 (rounded to 5 decimal places), where the second term in the sum is the "slippage" component. Other margin levels are derived from the maintenance margin using the scaling factors that form part of the market configuration.
-
-### Initial margin calculation
-The initial margin is the minimum amount of collateral required to enter a new trade.
-
-A market parameter will specify α<sup>initial</sup> > α<sup>search</sup> and the minimum collateral amount required for a new trade to be entered into as the initial margin. m<sup>initial</sup>:= (1 + α<sup>initial</sup>) m<sup>maintenance</sup>
-
-An initial margin level m<sup>initial</sup> that is higher than the margin search level (1 + α<sup>search</sup>) m<sup>maintenance</sup> ensures that a small negative price move won't lead to a situation where the network has to attempt to allocate more collateral immediately after a trade has been entered into.
-
-### Mark to market
-- what is mark to market 
-- for a market created on Vega, the mark-to-market price is calculated every time the price moves. This is in contrast to traditional futures markets, for which mark to market is calculated once per day. 
-
-Mark to market aims to provide a realistic appraisal of of a position based on the current market conditions. 
-Settlement instructions are generated based on the change in market value of the open positions of a party.
-
-When the mark price changes, the network calculates settlement cash flows for each party.
-
-The process is repeated each time the mark price changes until the maturity date for the market is reached.
-
-### Margin search and release
-
-### Close-outs
-In most cases, the allocated margin should cover market swings. If the swing is bigger than the margin is collateralised for, then money is pulled from the collateral to cover the requirement. If a trader has no more collateral, and their allocated margin is below the maintenance margin, the trader gets closed out and any margin balance remaining after the close-out is transferred to the market's insurance pool. In the unlikely event that the insurance pool balance is insufficient to cover the entire balance, loss socialisation will get applied.
-
-Note that (link->) price monitoring should assure that large swings occur only due to genuine changes in market participants' view of the true average price of the traded instrument, and not as a result of short-lived artefacts of market microstructure.
-
-### Position resolution
-
-## Pre-trade and trade
-
-### Positions and netting
 
 ### Order types
 There are three order types available to traders: limit orders, market orders, and pegged orders. One order type is automatically triggered to close out positions for distressed traders - that's called a network order.
@@ -87,7 +26,8 @@ There are three order types available to traders: limit orders, market orders, a
 ### Limit order
 A limit order is an instruction that allows you to specify the minimum price at which you will sell, or the maximum at which you will buy. 
 
-Times in force available for limit orders:
+#### Times in force available for limit orders
+
 * **GTC**: A Good til Cancelled order trades at a specific price until it is filled or cancelled. 
 * **GTT**: A Good til Time order is a GTC order with an additional predefined cancellation time. 
 * **GFN**: A Good for Normal order is an order that will only trade in a continuous market. The order can act like either a GTC or GTT order depending on whether the expiry field is set.
@@ -98,12 +38,17 @@ Times in force available for limit orders:
 ### Market order
 A market order is an instruction to buy or sell at the best available price in the market. 
 
-Market orders can use either IOC or FOK.
+#### Times in force available for limit orders
+
+* **IOC**: An Immediate or Cancel order executes all or part of a trade immediately and cancels any unfilled portion of the order. 
+* **FOK**: A Fill or Kill order either trades completely until the remaining size is 0, or not at all, and does not remain on the book if it doesn't trade.
 
 ### Network order
 A network order is triggered by the Vega network to close out a distressed trader, as part of position resolution. Network orders cannot be submitted by a party.
 
-Network orders use FOK market orders.  
+#### Times in force used in network orders
+
+* **FOK**: A Fill or Kill order either trades completely until the remaining size is 0, or not at all, and does not remain on the book if it doesn't trade.
 
 ### Pegged order
 Pegged orders are orders that are a defined distance from a reference price (i.e. best bid, mid and best offer/ask), rather than at a specific price, and generate limit orders based on the set parameters. Currently, pegged orders can only use GTC and GTT times in force, but IOC and FOK will be available in a future release.
@@ -179,20 +124,104 @@ If you don't have enough collateral to fill the margin requirements on an order,
 |      GTT      |   Yes   |    No   |         No        |         No         |      Filled      |
 
 
-# Collateral
+   ### Batch operations on orders
+
+## Position management and margin
+Vega's margining system implements automated cross margining. Cross margining, which means gains on one market can be released and used as margin on another, is supported between all markets. More detailed explanation on the rationale is available in [Section 6 of the protocol whitepaper](https://vega.xyz/papers/vega-protocol-whitepaper.pdf#page21).
+
+### Margin 
+The margin calculation for a new order, and the amount deducted from collateral to cover margin, is based on all the open orders. A trader will need enough margin to keep a position open, whether it goes for or against the trader. The margin calculations ensure a trader does not enter a trade that will immediately need to be closed out.
+
+### Basic margin calculations
+Vega calculates four margin levels:
+* **Initial level**: The amount that will be transferred from your collateral to be used as margin when an order is placed or trade executed. To avoid a margin search as soon as position is open, the initial margin level is set above the search level:
+  * m<sup>initial</sup> := α<sup>initial</sup> * m<sup>maintenance</sup>, where α<sup>initial</sup> is a constant and α<sup>initial</sup> > α<sup>search</sup>.
+* **Search level**: When the margin balance drops below the search level -- but is still above the maintenance level -- the network will try to allocate an additional amount (up to the current initial margin level) from a trader's collateral, if possible, to be used for margin:
+  * m<sup>search</sup> := α<sup>search</sup> * m<sup>maintenance</sup>, where α<sup>search</sup> is a constant and α<sup>search</sup> > 1.
+* **Release level**: Once a trader's margin balance exceeds the margin release level, the position is considered overcollateralised and funds are released back to collateral so that the margin balance is equal to the current initial margin level:
+  * m<sup>release</sup> := α<sup>release</sup> * m<sup>maintenance</sup>, where α<sup>release</sup> is a constant and α<sup>release</sup> > α<sup>initial</sup>.
+* **Maintenance margin**: This is implied by the risk model and corresponds to the minimum amount required to cover adverse market moves with a given probability level. As soon as the margin balance drops below the maintenance margin level, the position close-out process gets initiated.
+
+#### Calculating the margin on open orders
+The network calculates the largest long / short position. If the long position is the riskiest, the margin algorithm multiplies by a `risk factor long` and by the `mark price` (for futures). If the short position is the riskiest, then the algorithm multiplies the position by the `risk factor short` and by the `mark price`. These capture the outcome of probabilistic distribution of future market moves, and are market specific.
+
+##### Example 
+Image to be uploaded - <img alt="Calculating margin on open orders" src="/images/2-calculate-margin-open-orders.png" width="500" />
+
+There is an open sell order of size 1 on the book. The risk factor for short positions is 0.074347011. The current mark price is 0.02690. So minimum margin = 0.2690 x 0.074347011 = 0.00200 (rounded to 5 decimal places).
+
+##### Margin on open positions
+The following calculation takes into account "slippage" as seen on an order book.
+
+##### Example:
+
+<img alt="Calculating margin on an open positions" src="/images/3-margin-open-positions.png" width="500" />
+
+The trader has an open short position of size 1 and no open orders. The risk factor for short positions is 0.074347011. The current mark price is 0.02672. The best offer price is 0.02676 and it has enough volume so that theoretically the position could be closed-out at that price. So maintenance margin = 0.02672 x 0.074347011 + max (0, 0.02676 - 0.02672) = 0.00203 (rounded to 5 decimal places), where the second term in the sum is the "slippage" component. Other margin levels are derived from the maintenance margin using the scaling factors that form part of the market configuration.
+
+### Initial margin calculation
+The initial margin is the minimum amount of collateral required to enter a new trade.
+
+A market parameter will specify α<sup>initial</sup> > α<sup>search</sup> and the minimum collateral amount required for a new trade to be entered into as the initial margin. m<sup>initial</sup>:= (1 + α<sup>initial</sup>) m<sup>maintenance</sup>
+
+An initial margin level m<sup>initial</sup> that is higher than the margin search level (1 + α<sup>search</sup>) m<sup>maintenance</sup> ensures that a small negative price move won't lead to a situation where the network has to attempt to allocate more collateral immediately after a trade has been entered into.
+
+### Mark to market
+- what is mark to market 
+- for a market created on Vega, the mark-to-market price is calculated every time the price moves. This is in contrast to traditional futures markets, for which mark to market is calculated once per day. 
+
+Mark to market aims to provide a realistic appraisal of of a position based on the current market conditions. 
+Settlement instructions are generated based on the change in market value of the open positions of a party.
+
+When the mark price changes, the network calculates settlement cash flows for each party.
+
+The process is repeated each time the mark price changes until the maturity date for the market is reached.
+
+### Margin search and release [WIP]
+
+When a trader's balance in their margin account (for a market) is less than their position’s collateral search level the protocol will attempt to transfer sufficient collateral from the trader’s main collateral account to top up their margin account to the level of the initial margin.
+Close outs
+
+After a collateral search, if the amount in the margin account is below the closeout level AFTER the collateral transfer request completes (whether successful or not) OR in an async (sharded) environment if the latest view of the trader’s available collateral suggests this will be the case, the trader is considered to be distressed and is added to list of traders that will then undergo position resolution.
+
+Position resolution is executed simultaneously for ALL traders on a market that have been determined to require it during a single event. That is, the orchestrator ‘batches up’ the traders and runs position resolution once the full set of traders is known for this event. Sometimes that will only be for one trader, sometimes it will be for many.
+Releasing collateral
+
+Traders who have a margin account balance greater than the release level should have the excess margin released to their general collateral account, to the point where their new margin level is equal to the initial margin.
+
+### Not enough collateral to hold a position 
+When a participant does not have enough collateral to hold their open positions, the protocol will automatically trigger a close-out. 
+
+In most cases, the allocated margin should cover market swings. If the swing is bigger than the margin is collateralised for, then money is pulled from the collateral to cover the requirement. If a trader has no more collateral, and their allocated margin is below the maintenance margin, the trader gets closed out and any margin balance remaining after the close-out is transferred to the market's insurance pool. In the unlikely event that the insurance pool balance is insufficient to cover the entire balance, loss socialisation will get applied.
+
+Note that (link->) price monitoring should assure that large swings occur only due to genuine changes in market participants' view of the true average price of the traded instrument, and not as a result of short-lived artefacts of market microstructure.
+
+### Position resolution
+
+## Pre-trade and trade
+
+### Positions and netting
 
 ## Trading modes 
 
 ### Continuous trading
-On a continuous trading market, the Vega network tries to execute an order as soon as it is received. 
+On a market with continuous trading, the Vega network tries to execute an order as soon as it is received. 
 
 A continuous trading market uses a limit order book as the default price determination method.
 
 ### Auctions
-Auctions are a trading mode that collect orders during a set period, called an auction call period. The auction call period's ending is based on the condition that the auction aims to meet. Auctions that are based on market conditions are triggered automatically.
+Auctions are a trading mode that collect orders during a set period, called an *auction call period*. The end of an auction call period is determined by the condition that the auction aims to meet. Auctions that are based on market conditions are triggered automatically.
 
-During the call period, no trades are created, but all orders are queued. At the conclusion of the call period, trades are produced in a single action known as an auction uncrossing. During the uncrossing, auctions always try to maximise the traded volume, subject to the requirements of the orders placed.
+Market conditions that could trigger an auction:
+* A market has opened for trading, which means it needs a defined price to start trading from 
+* Not enough liquidity on a market
+* Price swing on a market is perceived, based on risk models, to be extreme and unrealistic 
 
+#### Auction call period
+
+During the auction call period, no trades are created, but all orders are queued. At the conclusion of the call period, trades are produced in a single action known as an auction uncrossing. During the uncrossing, auctions always try to maximise the traded volume, subject to the requirements of the orders placed.
+
+#### Supported auction types
 The Vega protocol supports several types of auctions:
 
 * Opening auctions: Every continuous trading market opens with an auction. Their purpose is to calibrate a market and help with price discovery
@@ -203,14 +232,13 @@ The Vega protocol supports several types of auctions:
 ## Market protection
 
 ### Price monitoring
-The dynamics of market price movements mean that prices don't always represent the participants' true average view of the price, but are instead artefacts of the market microstructure. Sometimes low liquidity and/or a large quantity of order volume can cause the price to diverge from the true market price. It is impossible to tell at any point in time if this has happened or not.
+The dynamics of market price movements mean that prices don't always represent the participants' true average view of the price, but are instead artefacts of the market microstructure. Sometimes low liquidity and/or a large quantity of order volume can cause the price to diverge from the true market price. The Vega protocol is designed to assume that relatively small moves are 'real' and that larger moves might not be.
 
-As a result, the Vega protocol is designed to assume that relatively small moves are 'real' and that larger moves might not be. 
+Price monitoring exists to determine the real price, in the latter case. If the move is deemed to be large, the market's trading mode is temporarily changed into auction mode to get more information from market participants before any trades are generated.
 
-Price monitoring exists to determine the real price in the latter case. If the move is deemed to be large, the market's trading mode is temporarily changed into auction mode to get more information from market participants before any trades are generated.
+Distinguishing between small and large moves can be highly subjective and market-dependent. The protocol relies on risk models to formalise this process. A market's risk model can be used to obtain the price projection at a future point in time given the current price. A price monitoring auction trigger can be constructed using a projection fixed time horizon and probability level.
 
-Distinguishing between small and large moves can be highly subjective and market-dependent. We rely on risk models to formalise this process. A market's risk model can be used to obtain the price projection at a future point in time given the current price. A price monitoring auction trigger can be constructed using a projection fixed time horizon and probability level.
-
+#### Price monitoring triggers
 Price monitoring behaviour is governed by a set of price monitoring triggers specified for the market. 
 
 Each trigger contains:
@@ -474,15 +502,22 @@ Each entry must specify:
 * *Liquidity proportion*: The relative proportion of the commitment to be allocated at a price level. Note, the network will normalise the liquidity proportions of the refined order set. This must be a strictly positive number.
 * *Price peg*: A price level must be specified by a reference point (e.g mid, best bid, best offer) and an amount of units away.
 
-# Example:
+#### Example:
 *Buy shape*: {
   buy-entry-1: [liquidity-proportion-1, [price-peg-reference-1, number-of-units-from-reference-1]],
   buy-entry-2: [liquidity-proportion-2, [price-peg-reference-2, number-of-units-from-reference-2]],
 }
-
-*Buy shape* with values (needs update as includes negative offsets): {
-  buy-entry-1: [2, [best-bid, -10]],
-  buy-entry-2: [13, [best-bid, -11]],
+*Sell-shape*: {
+  sell-entry-1: [sell-liquidity-proportion-1, [sell-price-peg-reference-1, sell-number-of-units-from-reference-1]],
+  sell-entry-2: [sell-liquidity-proportion-2, [sell-price-peg-reference-2, sell-number-of-units-from-reference-2]],
+}
+*Buy shape* with values: {
+  buy-entry-1: [2, [best-bid, 10]],
+  buy-entry-2: [13, [best-bid, 11]],
+}
+*Sell-shape* with values: {
+  sell-entry-1: [5, [best-ask, 8]],
+  sell-entry-2: [5, [best-ask, 9]],
 }
 
 ### Amend liquidity commitment orders
