@@ -3,11 +3,11 @@ title: Vega Wallet
 hide_title: false
 ---
 
-Vega Wallet allows you to manage wallets and key pairs, and sign transactions. 
+Vega Wallet allows you to manage wallets and key pairs, and sign transactions. You can interact with a Vega wallet and its keys through two different apps: 
 
 ## Vega Wallet Desktop app
 The **[desktop wallet](/docs/tools/vega-wallet/desktop-app/)** provides a visual interface to: 
-* Connect to existing wallet
+* Connect to existing Vega wallet
 * Create new wallet 
 * Connect to networks
 * Sign transactions

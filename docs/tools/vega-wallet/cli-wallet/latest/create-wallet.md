@@ -36,9 +36,9 @@ In your command line interface, you can view a list of available commands by run
 
 Download `vegawallet-windows-amd64.zip`
 
-You may need to change your system preferences for this specific instance, in order to run Vega Wallet. If you open the file from downloads, you may get a message from Windows Defender saying "`vegawallet-windows-amd64` cannot be opened because it is from an unidentified developer".
+You may need to change your system preferences for this specific instance, in order to run Vega Wallet. If you open the file from downloads, you may get a message from Windows Defender saying it prevented an unrecognised app from starting.
 
-Click on the (More info) text, which will reveal a button to "Run anyway".
+Click on the (More info) text, which will reveal the option to "Run anyway".
 </TabItem>
 <TabItem value="mac" label="MacOS">
 
