@@ -135,7 +135,7 @@ sample-api-scripts> submit-cancel-liquidity-provision/submit-cancel-liquidity-pr
 
 You can view the list of users supplying liquidity to market in two easy ways, first by querying the REST endpoint for a node given the partyID and marketID:
 
-`https://<node address>/liquidity-provisions/party/{party}/market/{market}
+`https://<node address>/liquidity-provisions/party/{party}/market/{market}`
 
 Secondly you can use the `vegatools` command line tool to view the details about the liquidity providers for a given market. The repo for this tool can be found here: `https://github.com/vegaprotocol/vegatools`
 
