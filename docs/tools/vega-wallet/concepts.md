@@ -24,7 +24,6 @@ Key pairs are stored within an encrypted wallet file, and the information can on
 
 The wallet file can hold any number of key pairs, and you can have more than one wallet file, each with its own set of key pairs. When you use the Vega Wallet app to create a wallet, that wallet file and its configuration details are stored on your computer. 
 
-
 ![Single wallet with multiple keys](/img/concept-diagrams/basic-wallet.png)
 
 ### Wallet name
@@ -59,6 +58,13 @@ As long as the exact words, in the exact order, are used to restore keys, then t
 (Link to further reading about mnemonic phrases) 
 
 ![Back up phrase used to restore existing wallet](/img/concept-diagrams/recovery-phrase.png)
+
+## Networks 
+Because wallets can be used to interact with various networks (such as a testnet or a mainnet), a network configuration must be available to the Vega Wallet app. 
+
+The network details are stored in a configuration file for each network. The configuration file provides a list of servers for the wallet to connect to, in order to interact with a network, as well as URLs for dApps that the wallet can connect to. 
+
+Network configuration files use information that you import, either from a text file or a URL that contains the network details.  
 
 ## Signing transactions
 Each transaction needs to have a digital signature attached to it, which ensures ownership of that transaction. The signature is created by your cryptographic keys. Every transaction has a different digital signature that depends on the private key of the user signing the transaction.
