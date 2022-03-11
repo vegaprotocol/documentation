@@ -7,13 +7,11 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-As of the release of the CLI wallet app version 0.11, there are a number of changes from previous versions. 
+CLI commands for interacting with the Vega Wallet changed in version 0.11. In some cases, information is also displayed differently. 
  
-Any versions older than 0.12.0 will not work with the commands that were available in versions 0.10 or earlier. In some cases, information is also displayed differently. 
+Any versions older than 0.12.0 will not work with the commands that were available in versions 0.10 or earlier. Both new and old commands work for version 0.11.0. 
 
-While both new and old commands work for version 0.11.0, they do not work in software version 0.12.0 and onward. 
-
-Below find an explanation of changes between the versions. 
+**Below, find an explanation of changes between the versions.**
 
 :::info
 It's recommended that you keep your wallet app updated to the latest version. 
