@@ -43,7 +43,7 @@ module.exports = {
         },
         {
           to: "/docs/tools/",
-          label: "Apps and tools",
+          label: "Apps and Tools",
           position: "left",
         },
         {
