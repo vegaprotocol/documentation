@@ -32,6 +32,8 @@ Download `vegawallet-desktop-windows-amd64.zip`
 Download `vegawallet-desktop-windows-arm64.zip`
 
 You may need to change your system preferences for this specific instance, in order to run Vega Wallet. If you open the file from downloads, you may get a message from Windows Defender saying it prevented an unrecognised app from starting.
+  
+If you do not have WebView2 installed on your computer, you will be prompted to install it. Click "OK" to install and continue.   
 
 </TabItem>
 <TabItem value="mac" label="MacOS">
