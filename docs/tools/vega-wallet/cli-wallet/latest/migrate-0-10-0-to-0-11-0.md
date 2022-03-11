@@ -1,17 +1,23 @@
 ---
 sidebar_position: 2
-title: Migrate from 0.10.0
+title: Breaking changes when upgrading from 0.10.0
 hide_title: false
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Version 0.11.0 has a number of changes to the commands and how information is displayed. 
+As of the release of the CLI wallet app version 0.11, there are a number of changes from previous versions. 
+ 
+Any versions older than 0.12.0 will not work with the commands that were available in versions 0.10 or earlier. In some cases, information is also displayed differently. 
 
-While both new and old commands will work for version 0.11.0, they will not work in software version 0.12.0 and onward. 
+While both new and old commands work for version 0.11.0, they do not work in software version 0.12.0 and onward. 
 
-Below find an explanation of changes to how the wallet works. 
+Below find an explanation of changes between the versions. 
+
+:::info
+It's recommended that you keep your wallet app updated to the latest version. 
+:::
 
 ## Create a wallet
 
