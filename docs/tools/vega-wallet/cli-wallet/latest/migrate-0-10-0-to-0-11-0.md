@@ -1,17 +1,21 @@
 ---
 sidebar_position: 2
-title: Migrate from 0.10.0
+title: Breaking changes when upgrading from 0.10.0
 hide_title: false
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Version 0.11.0 has a number of changes to the commands and how information is displayed. 
+CLI commands for interacting with the Vega Wallet changed in version 0.11. In some cases, information is also displayed differently. 
+ 
+Any versions older than 0.12.0 will not work with the commands that were available in versions 0.10 or earlier. Both new and old commands work for version 0.11.0. 
 
-While both new and old commands will work for version 0.11.0, they will not work in software version 0.12.0 and onward. 
+**Below, find an explanation of changes between the versions.**
 
-Below find an explanation of changes to how the wallet works. 
+:::info
+It's recommended that you keep your wallet app updated to the latest version. 
+:::
 
 ## Create a wallet
 
