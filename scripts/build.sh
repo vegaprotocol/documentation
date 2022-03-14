@@ -4,7 +4,7 @@ set -e
 
 grpc_doc_owner=vegaprotocol
 grpc_doc_repo=sdk-docs
-grpc_doc_branch="v0.45.0"
+grpc_doc_branch="v0.47.0"
 
 gh_token="${GITHUB_API_TOKEN:?}"
 
