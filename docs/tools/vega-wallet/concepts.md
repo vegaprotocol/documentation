@@ -55,8 +55,6 @@ A recovery phrase is made up of a list of words. The list of words, in the order
 
 As long as the exact words, in the exact order, are used to restore keys, then the calculation of the private keys will always have the same result. While a recovery phrase is displayed as a set of words to be human-readable, that set translates into a long string of data.
 
-(Link to further reading about mnemonic phrases) 
-
 ![Back up phrase used to restore existing wallet](/img/concept-diagrams/recovery-phrase.png)
 
 ## Networks 
@@ -66,11 +64,11 @@ The network details are stored in a configuration file for each network. The con
 
 Network configuration files use information that you import, either from a text file or a URL that contains the network details.  
 
+![Sign and send transactions](/img/concept-diagrams/sign-and-send-transaction.png)
+
 ## Signing transactions
 Each transaction needs to have a digital signature attached to it, which ensures ownership of that transaction. The signature is created by your cryptographic keys. Every transaction has a different digital signature that depends on the private key of the user signing the transaction.
 
 When signing a transaction, you'll be asked for your passphrase when you issue a transaction -- the Vega wallet software needs to access the keys to create a signature.
 
 Once a transaction is signed and submitted using the Vega wallet, the transaction is gossiped to the validator nodes. The nodes then verify the signature using the signer's public key, and agree to execute the transaction by adding it to the block. 
-
-![Back up phrase used to restore existing wallet](/img/concept-diagrams/sign-and-send-transaction.png)
