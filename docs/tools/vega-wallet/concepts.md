@@ -1,5 +1,5 @@
 ---
-title: Wallet Concepts
+title: What is Vega Wallet?
 hide_title: false
 ---
 Vega Wallet is an app that lets you manage wallets and cryptographic key pairs. Key pairs are used to sign and send transactions in a secure way. 
