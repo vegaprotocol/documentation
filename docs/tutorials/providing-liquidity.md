@@ -15,14 +15,16 @@ If you proposed a market that was enacted and want to change your liquidity prov
 
 
 # Using the sample-api-scripts helper scripts
-Vega supplies a github repository that contains a set of sample scripts that perform many of the basic exchange actions. The repository can be found here: `https://github.com/vegaprotocol/sample-api-scripts`. Inside the root folder there is a credentials file that can be customised to your Vega network. For more information about running the scripts please see the README.md in the root of the repository.
+**[Sample API scripts](https://github.com/vegaprotocol/sample-api-scripts/README.md)**: Vega supplies a github repository that contains a set of sample scripts that perform many of the basic exchange actions. Inside the root folder there is a credentials file that can be customised to your Vega network. For more information about running the scripts please see the [README.md](https://github.com/vegaprotocol/sample-api-scripts/#readme) in the root of the repository.
 
-# What is a liquidity provision?
+# What is liquidity provision?
+Supplying liquidity to a market (having open orders resting on the order book) is a way for traders to earn from liquidity fees, which are paid by traders on each trade. 
 
-Supplying liquidity to a market (having open orders resting on the book) is a way for traders to earn liquidity fees. In order to qualify for the fees the user must commit an amount of underlying market asset which is stored in a special account named the bond account. The placement of the orders on the book is decided by two shapes that are created by the user which define at which price levels the orders will be placed and what weight each price level will have. Vega then calculates using the total bond amount, the current price and the weight on each level, the size of the liquidity order placed at each price level. As the prices in the book move, Vega will recalculate the order sizes and prices and update the orders.
+In order to qualify to receive a portion of the fees, the user must commit an amount of the underlying market asset which is stored in a special account named the bond account. 
 
-# Creating a liquidity provision
+The placement of the orders on the book is decided by two shapes that are created by the user which define at which price levels the orders will be placed and what weight each price level will have. Vega then calculates using the total bond amount, the current price and the weight on each level, the size of the liquidity order placed at each price level. As the prices in the book move, Vega will recalculate the order sizes and prices and update the orders.
 
+# Creating a liquidity provision order
 There are two ways to create liquidity, the first is supplying the bond amount and shape in the same message as the governance message that created the market. If the market is already up and running then you have a second option of sending a `liquidityProvisionSubmission` message. As most people will not e creating their own market we will concentrate on the second option. In the `sample-api-scripts` repo there is a folder name `submit-create-liquidity-provision` which has a set of scripts to create a new liquidity provision. If we look at the python script the important part is the description of the commit amount and price levels:
 
 ```
@@ -110,8 +112,7 @@ sample-api-scripts> submit-amend-liquidity-provision/submit-amend-liquidity-prov
 
 
 # Cancelling a liquidity provision
-
-If you no longer want to partake in the liquidity provisioning for a market you can cancel your provision using the `liquidityProvisionCancellation`. This will remove any orders created as part of your supplied shape and it will return your bond amount back into your general account.
+If you no longer want to keep a liquidity commitment open for a market, you can cancel your commitment using the `liquidityProvisionCancellation`. This will remove any orders created as part of your supplied shape and it will return the bond amount back into your general account.
 
 ```
 submission = {
@@ -123,30 +124,28 @@ submission = {
 }
 ```
 
-If there is not enough liquidity left in the market after you cancel it will force the market into a liquidity auction where it will stay until there is enough new liquidity supplied to bring it back out into continuous trading.
+If there is not enough liquidity left in the market after you cancel, it will force the market into a liquidity auction where it will stay until there is enough new liquidity supplied to bring it back out into continuous trading.
 
-To execute a test liquidity provision cancel you can run this following script from the `samples-api-scripts` repo:
+To test a liquidity provision cancellation on testnet, or see how a cancellation is built, you can use the following script from the `samples-api-scripts` repo:
 ```
 sample-api-scripts> submit-cancel-liquidity-provision/submit-cancel-liquidity-provision-order.sh
 ```
 
-
 # Viewing existing liquidity provisions
-
 You can view the list of users supplying liquidity to market in two easy ways, first by querying the REST endpoint for a node given the partyID and marketID:
 
 `https://<node address>/liquidity-provisions/party/{party}/market/{market}`
 
 Secondly you can use the `vegatools` command line tool to view the details about the liquidity providers for a given market. The repo for this tool can be found here: `https://github.com/vegaprotocol/vegatools`
 
-To see the current liquidity commitments for a market you can use this commandline:
+To see the current liquidity commitments for a market you can use this command line:
 
 `vegatools liquiditycommitment -a=n06.testnet.vega.xyz:3007`
 
 <-- link to picture vegatools-liquidity-commitment.png in same folder as this file -->
 
 # What can go wrong when using liquidity provisions?
-If you run out of margin to maintain your position vega will use some of your bond to cover the margin requirements. You will get charged a fee when this happens and it reduces the amount of liquidity you have as your bond amount will be smaller.
+If you run out of margin to maintain your position, Vega will use some of your bond to cover the margin requirements. You will get charged a fee when this happens and it reduces the amount of liquidity you have as your bond amount will be smaller.
 
 
 :::info
