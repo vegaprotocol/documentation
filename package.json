@@ -6,7 +6,7 @@
     "prettier": "prettier --write '*.js' 'src/**/*.js'",
     "docusaurus": "docusaurus",
     "generate-graphql": "mkdir -p docs/graphql && docusaurus graphql-to-doc --force && sed --in-place -e '/Generated on/d' docs/graphql/generated.md && sed --in-place -e 's/Schema Documentation/GraphQL Schema/g' docs/graphql/generated.md",
-    "generate-grpc": "mkdir -p protodocs && docusaurus generate-proto-docs && find . -type f -name '*.mdx'",
+    "generate-grpc": "mkdir -p protodocs && docusaurus generate-proto-docs && find . -type f -name '*.mdx' -exec sed -i 's/hide_title: true/hide_title: false/g' {} +",
     "start": "docusaurus start",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",

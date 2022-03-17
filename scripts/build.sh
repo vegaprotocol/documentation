@@ -3,8 +3,12 @@
 set -e
 
 grpc_doc_owner=vegaprotocol
-grpc_doc_repo=sdk-docs
-grpc_doc_branch="v0.47.0"
+grpc_doc_repo=protos
+grpc_doc_branch=develop
+
+graphql_doc_owner=vegaprotocol
+graphql_doc_repo=data-node
+graphql_doc_branch=v0.49.2
 
 gh_token="${GITHUB_API_TOKEN:?}"
 
@@ -25,15 +29,27 @@ create_venv() {
 
 create_venv
 
+echo "Fetching grpc..."
 python3 scripts/github_get_file.py \
 	--outdir . \
 	--token "$gh_token" \
 	--owner "${grpc_doc_owner:?}" \
 	--repo "${grpc_doc_repo:?}" \
 	--branch "${grpc_doc_branch:?}" \
-	--file generated/doc.json
-mv ./generated/doc.json ./proto.json
+	--file generated/proto.json
+mv ./generated/proto.json ./proto.json
 rm -rf ./generated
+
+echo "Fetching graphql..."
+python3 scripts/github_get_file.py \
+	--outdir . \
+	--token "$gh_token" \
+	--owner "${graphql_doc_owner:?}" \
+	--repo "${graphql_doc_repo:?}" \
+	--branch "${graphql_doc_branch:?}" \
+	--file gateway/graphql/schema.graphql
+mv ./gateway/graphql/schema.graphql ./schema.graphql
+rm -rf ./gateway
 
 deactivate
 
@@ -45,3 +61,6 @@ yarn run generate-graphql
 yarn run generate-grpc
 yarn run build
 yarn run prettier
+
+rm schema.graphql
+rm proto.json
