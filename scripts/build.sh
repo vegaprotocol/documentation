@@ -3,8 +3,8 @@
 set -e
 
 grpc_doc_owner=vegaprotocol
-grpc_doc_repo=sdk-docs
-grpc_doc_branch="v0.47.0"
+grpc_doc_repo=protos
+grpc_doc_branch="v0.49.0"
 
 gh_token="${GITHUB_API_TOKEN:?}"
 
@@ -31,8 +31,8 @@ python3 scripts/github_get_file.py \
 	--owner "${grpc_doc_owner:?}" \
 	--repo "${grpc_doc_repo:?}" \
 	--branch "${grpc_doc_branch:?}" \
-	--file generated/doc.json
-mv ./generated/doc.json ./proto.json
+	--file generated/proto.json
+mv ./generated/proto.json ./
 rm -rf ./generated
 
 deactivate
