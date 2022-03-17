@@ -132,10 +132,7 @@ module.exports = {
         loaders: {
           UrlLoader: "@graphql-tools/url-loader",
         },
-        schema:
-          "https://raw.githubusercontent.com/vegaprotocol/sdk-docs/" +
-          vega_version +
-          "/graphql/sources/data-node/schema.graphql",
+        schema: "./schema.graphql",
         rootPath: "docs",
         baseURL: "graphql",
         linkRoot: "/docs",
@@ -149,7 +146,7 @@ module.exports = {
         language: ["en"],
         hashed: true,
         indexBlog: false,
-        docsRouteBasePath: ["/docs", "/protodocs"]
+        docsRouteBasePath: ["/docs", "/protodocs"],
       },
     ],
   ],
