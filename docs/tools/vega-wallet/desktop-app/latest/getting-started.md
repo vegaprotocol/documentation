@@ -89,6 +89,17 @@ If your Vega wallet was created on a different device, or you lost access to it 
 4. Identify if your wallet was version 1 or 2 by choosing the version number. 
 5. Choose a Vega network to connect to: Click on the arrow in the bottom bar of the app. 
 
+## Updating the app
+It's recommended that you keep the Vega Wallet app up-to-date, to take advantage of the latest features. 
+
+To update to the latest version:
+
+1. (Optional) Delete the old version of the Vega Wallet app, so you can keep track of which is the latest version. Currently, downloading a new version does not overwrite the previous one. Deleting the app will not delete your wallets or keys. 
+2. Download the latest version for your operating system from [GitHub](https://github.com/vegaprotocol/vegawallet-desktop/releases).
+3. Click on the compressed folder to get access to the new app file. 
+4. Open the latest version of the Vega Wallet desktop app.
+
+
 ## Troubleshooting
 The Vega Wallet desktop app does not yet have the full functionality of the CLI wallet app.
 
@@ -99,7 +110,6 @@ To do any of the following, you will need to use the **[CLI wallet](/docs/tools/
 * Build and send commands 
 
 ### 'Wallet already exists' error when recovering wallet
-
 #### Problem
 You recover a wallet using your recovery phrase. When you enter the wallet name, you get an error of `Wallet with this name already exists`. 
 
