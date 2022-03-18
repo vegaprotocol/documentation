@@ -131,7 +131,9 @@ At the end of each epoch, reward payments are calculated per active validator, a
 Read more: [Risks of over-staked validators](/docs/concepts/vega-chain#too-much-stake)
  
 :::info
-VEGA tokenholders can use **[token.vega.xyz](https://token.vega.xyz)** to associate their tokens and nominate validators to receive rewards. Staking rewards are paid into  your Vega wallet after each epoch ends. 
+VEGA tokenholders can use **[token.vega.xyz](https://token.vega.xyz)** to associate their tokens and nominate validators to receive rewards. Staking rewards are paid into your Vega wallet after each epoch ends. 
+
+Staking rewards must be withdrawn to an Ethereum wallet, and then associated to a Vega wallet, before they can be staked.
 
 CoinList custodial users should confirm with CoinList how staking works for them.
 :::
