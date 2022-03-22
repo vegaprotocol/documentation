@@ -1,5 +1,5 @@
 # Vega Protocol 
- ## Transaction messages 
+ ## Transaction messages [WIP]
  (to include protobufs of CORE txs (i.e. ones that actually appear in TM blocks)) 
 ## Governance
 Governance allows the Vega network to arrive at on-chain decisions, where tokenholders can create proposals that other tokenholders can vote to approve or reject. 
@@ -38,21 +38,162 @@ Tokenholders can create proposals using the APIs.
 Vote on proposals on the [Vega token governance page](https://token.vega.xyz/governance).
 :::
 
-## Market governance
+## Market governance [WIP]
+Markets are proposed and voted into existence by Vega tokenholders. The parameters of a market can also be changed when a tokenholder raises a proposal 
 
-### New market proposal
+### Propose a new market [WIP]
 
-#### Market
+Timestamps 
+Closing
+Enactment
+Validation 
 
-#### Tradable instrument
+Instrument: Name, Code, Type (future)
+Future: Settlement asset, quote name, 
+Oracles: oracle spec for settlement price, pubkey for oracle, filters, conditions of the filters, oracle spec for trading termination, filters, conditions, oracle spec binding: settlement price property, trading termination property
+market decimal places
+market metadata: examples - base:BTC, quote:USD, class:fx/crypto, monthly, sector:crypto
+price monitoring (risk) parameters: 
+liquidity monitoring parameters: 
+risk model: "logNormal": "riskAversionParameter": 0.0001, "tau": 0.0000190129, "params": "mu": 0, "r": 0.016, "sigma": 1.25
+liquidity commitment: commitment amount, fee level, sell shape: reference (best ask), proportion, offset. buy shape: reference (best bid), proportion, offset.
 
-#### Instrument
+"terms": 
+        "closingTimestamp": 0,
+        "enactmentTimestamp": 0,
+        "validationTimestamp": 0,
+        "newMarket": {
+          "changes": {
+            "instrument": {
+              "name": "BTCUSD Monthly (30 Jun 2022)",
+              "code": "BTCUSD.MF21",
+              "future": {
+                "settlementAsset": "fDAI",
+                "quoteName": "USD",
+                "oracleSpecForSettlementPrice": {
+                  "pubKeys": [
+                    "0xab5c950b071684321d59360ccb924d9c5010b31abd6b4148206a57e73594abc9"
+                  ],
+                  "filters": [
+                    {
+                      "key": {
+                        "name": "prices.BTC.value",
+                        "type": "TYPE_INTEGER"
+                      },
+                      "conditions": [
+                        {
+                          "operator": "OPERATOR_EQUALS",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "oracleSpecForTradingTermination": {
+                  "pubKeys": [
+                    "0xab5c950b071684321d59360ccb924d9c5010b31abd6b4148206a57e73594abc9"
+                  ],
+                  "filters": [
+                    {
+                      "key": {
+                        "name": "termination.BTC.value",
+                        "type": "TYPE_BOOLEAN"
+                      },
+                      "conditions": [
+                        {
+                          "operator": "OPERATOR_EQUALS",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "oracleSpecBinding": {
+                  "settlementPriceProperty": "prices.BTC.value",
+                  "tradingTerminationProperty": "termination.BTC.value"
+                }
+              }
+            },
+            "decimalPlaces": 5,
+            "metadata": [
+              "formerly:076BB86A5AA41E3E",
+              "base:BTC",
+              "quote:USD",
+              "class:fx/crypto",
+              "monthly",
+              "sector:crypto"
+            ],
+            "priceMonitoringParameters": {
+              "triggers": [
+                {
+                  "horizon": 43200,
+                  "probability": "0.9999999",
+                  "auctionExtension": 600
+                },
+                {
+                  "horizon": 300,
+                  "probability": "0.9999",
+                  "auctionExtension": 60
+                }
+              ]
+            },
+            "liquidityMonitoringParameters": {
+              "targetStakeParameters": {
+                "timeWindow": 3600,
+                "scalingFactor": 10
+              },
+              "triggeringRatio": 0.0,
+              "auctionExtension": 1
+            },
+            "logNormal": {
+              "riskAversionParameter": 0.0001,
+              "tau": 0.0000190129,
+              "params": {
+                "mu": 0,
+                "r": 0.016,
+                "sigma": 1.25
+              }
+            }
+          },
+          "liquidityCommitment": {
+            "commitmentAmount": "1",
+            "fee": "0.01",
+            "sells": [
+              {
+                "reference": "PEGGED_REFERENCE_BEST_ASK",
+                "proportion": 10,
+                "offset": "2000"
+              },
+              {
+                "reference": "PEGGED_REFERENCE_BEST_ASK",
+                "proportion": 10,
+                "offset": "1000"
+              }
+            ],
+            "buys": [
+              {
+                "reference": "PEGGED_REFERENCE_BEST_BID",
+                "proportion": 10,
+                "offset": "1000"
+              },
+              {
+                "reference": "PEGGED_REFERENCE_BEST_BID",
+                "proportion": 10,
+                "offset": "2000"
 
-### Market / instrument parameters
+##### Market [WIP] 
 
-## Asset governance 
+##### Tradable instrument [WIP]
 
-### New asset proposal 
+##### Instrument [WIP]
+
+#### Market / instrument parameters [WIP]
+
+### Propose changes to a market [WIP]
+
+## Asset governance [WIP]
+
+### New asset proposal [WIP]
 
 ### Risk models and parameters
 When proposing a market, the market proposer will need to choose the risk parameters associated with the risk model that's appropriate for the product. Find out more about the relationship between the product, instrument, and tradable instrument above. The purpose of the risk model is for the calculation of margins on the market. 
@@ -95,11 +236,11 @@ where `Mu`, `Sigma` and `s` are constants and `dW` represents a Brownian Motion 
   * accepted values: **any strictly non-negative real number**,
   * suggested value: asset dependent, should be derived from the historical time-series of prices.
 
-### Changing models
+### Changing models [WIP]
 
-### Thresholds and rules
+### Thresholds and rules [WIP]
 
-## Network governance
+## Network governance [WIP]
 
 ### Parameters
 There are certain parameters within Vega that influence the behaviour of the system and can be changed by on-chain governance. 
@@ -112,7 +253,6 @@ A network parameter is defined by:
 * Governance update policy 
 
 ### Changing parameters
-
 Network parameters can be changed by governance, however some network parameters need to be more difficult to change than others. Therefore, the protocol needs to know for each network parameter what governance thresholds apply for ascertaining a proposal's ability to change the parameter's value. Specifically, those thresholds are:
 
 * `MinimumProposalPeriod`
@@ -133,9 +273,9 @@ Thus, a proposal to change the `feeAmtValidators.MinimumProposalPeriod` would ne
 
 Network parameters can only be added and removed with Vega core software releases.
 
-### Threshold and rules
+### Threshold and rules [WIP]
   
-## Collateral management
+## Collateral management [WIP]
 Intro. What is the collateral management in general? (TODO)
  
 The collateral for restricted mainnet is exclusively VEGA, which is used for staking and rewards. 

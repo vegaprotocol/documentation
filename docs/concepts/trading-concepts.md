@@ -4,21 +4,39 @@ The Vega protocol software is built to provide a framework for creating markets 
 Participants in a market ... 
 
 ## Orders
-An order is an instruction to long or short on a market. Placing an order does not guarantee it is filled.
+An order is an instruction to execute a trade that is long or short on a market's price. Placing an order does not guarantee it is filled. Orders stay on the order book until they are filled, expired or cancelled.
+
+When an order is placed, it is uniquely identified to the Vega network by its order ID, the market ID - which is unique to each market, and party ID - which is owned by the signer of the transaction. 
 
 ### Submitting an order
-Orders can be submitted into any market that is active - i.e. not in a protective auction, or matured, expired, or settled. Orders will only be accepted if sufficient margin can be allocated from a trader's available collateral. 
+Orders can be submitted into any market that is active - i.e., not in a protective auction, or matured, expired, or settled. Orders will only be accepted if sufficient margin can be allocated from a trader's available collateral. 
 
-If, during continuous trading, an order is going to be matched with another order on the book for the same party (wash trade), then execution of that order will be stopped and the order will be cancelled and removed (if on the book). 
+[**Margin**](/docs/concepts/trading-concepts#margin): Find out how margin works in the Vega system. 
+
+If, during continuous trading, an order is going to be matched with another order on the book for the same party (also known as a wash trade), then execution of that order will be stopped and the order will be cancelled and removed, if it on the book. 
 
 ### Order sizes
-Order sizes can be fractional, as long as the order is within the maximum number of decimal places allowable. Any order containing more precision that this will be rejected.  If a market requires that orders are specified using integers, fractional order sizes does not apply and 1 is the smallest increment. A market's decimal places are specified in the market framework (link).
+Order sizes can be fractional, as long as the order is within the maximum number of decimal places allowable for the market. Any order containing more precision than this will be rejected. A market's decimal places are specified in the market framework (link).
+
+If a market requires that orders are specified using integers, fractional order sizes do not apply and 1 is the smallest increment.
 
 ### Amending an order
-Amendments that change price or increase size will be executed as an atomic cancel and replace, meaning the time priority will be lost (i.e. as if the original order was cancelled and removed from the book and a new order submitted with the modified values). 
+Orders that have not been filled can be amended using the APIs. Amendments that change price or increase size will be executed as a cancel and replace, meaning the time priority will be lost -- as if the original order was cancelled and removed from the book and a new order was submitted with the modified values.
 
-   #### Cancelling an order
+Orders cannot be amended using Vega Console. Instead, an individual order should be cancelled and a new order placed. 
 
+#### Cancelling an order
+Orders that have not been filled can be cancelled. 
+
+When trading using the APIs, there are three options for cancelling a standard [limit](/docs/concepts/trading-concepts#limit-order) or [market](/docs/concepts/trading-concepts#market-order) order. A trader can cancel individual orders, all orders for their public key across all markets, or all orders for their public key on a single market. Each of those ways will remove the orders from the order book, and push out order update messages. 
+
+* Cancel with orderID, marketID and partyID - This removes the defined order from the order book of the given market
+* Cancel with partyID and marketID - This removes all the orders for a given party in the given market
+* Cancel with partyID - This removes every order for that given party across all markets
+
+When trading on Vega Console, a trader will only be able cancel individual orders on individual markets, one at a time.
+
+[**Liquidity provision orders**]: Information about how to cancel liquidity commitments. 
 
 ### Order types
 There are three order types available to traders: limit orders, market orders, and pegged orders. One order type is automatically triggered to close out positions for distressed traders - that's called a network order.
@@ -27,7 +45,6 @@ There are three order types available to traders: limit orders, market orders, a
 A limit order is an instruction that allows you to specify the minimum price at which you will sell, or the maximum at which you will buy. 
 
 #### Times in force available for limit orders
-
 * **GTC**: A Good til Cancelled order trades at a specific price until it is filled or cancelled. 
 * **GTT**: A Good til Time order is a GTC order with an additional predefined cancellation time. 
 * **GFN**: A Good for Normal order is an order that will only trade in a continuous market. The order can act like either a GTC or GTT order depending on whether the expiry field is set.
@@ -50,40 +67,11 @@ A network order is triggered by the Vega network to close out a distressed trade
 
 * **FOK**: A Fill or Kill order either trades completely until the remaining size is 0, or not at all, and does not remain on the book if it doesn't trade.
 
-### Pegged order
-Pegged orders are orders that are a defined distance from a reference price (i.e. best bid, mid and best offer/ask), rather than at a specific price, and generate limit orders based on the set parameters. Currently, pegged orders can only use GTC and GTT times in force, but IOC and FOK will be available in a future release.
-
-A pegged order is not placed on the order book itself, but instead generates a limit order with the price generated based on the reference and offset value. As the price levels in the order book move around, the order's price on the order book also moves.
-
-The reference can only be positive and we apply it differently depending on if we are a buy or sell.
-3:25 PM
-If we are a buy the offset is taken away from the reference price. If we are a sell they the offset is added to the reference price.
-
-#### Reference prices for pegged orders
-Rather than being set for a specific limit price, a pegged order is a defined distance from a reference price (such as the best bid, mid, or best offer/ask). That is the price against which the final order price is calculated. The reference price is based on the live market, and the final price is calculated and used to insert the new order. The distance is also known as the offset value, which is an absolute value that must be cleanly divisible by the tick size, and can be [negative or] positive. 
-
-#### Amending pegged orders
-Pegged orders can be amended like standard limit orders - their reference, offset and time in force values can all be amended. If amending an order cannot be performed in-place, the order will lose time priority in the order book (but will keep its priority in the list of pegged orders). Amends must be done to the pegged order itself, not any limit orders derived from pegged orders. 
-
-#### Parked pegged orders 
-There are some situations in which pegged orders are parked, or moved off the order book, until the market returns to a state that allows pegs, or the orders are cancelled or expire. When orders return to the book, they are re-priced based on current market prices, sorted by their original entry time. If the primary trading mode of a market doesn't allow pegged orders (such as an auctions-only market), then the pegged orders are rejected.  Those situations include:
-* Auctions - pegged orders are only valid during continuous trading
-* When the reference price does not exist (e.g. no best bid)
-* The price moves to a value that means it would create an invalid order if the offset was applied
-
-Pegged orders are restricted in what values can be used when they are created, these can be defined by a list of rules each order must abide with. Note: IOC and FOK are not currently available for pegged orders, but will be in a future release. 
-
-| Type (Time in Force)      | Side  |   Bid Peg   | Mid Peg |  Offer Peg  |
-|---------------------------|-------|-------------|---------|-------------|
-| Persistent (GTC, GTT)	    | Buy	  | <= 0        | < 0     | Not allowed |
-| Persistent (GTC, GTT)	    | Sell  | Not allowed | > 0     | >= 0        |
-| Non persistent (IOC, FOK) |	Buy   | > 0         | > 0     | >= 0        |
-| Non persistent (IOC, FOK) |	Sell  | <= 0        | < 0	  | < 0         |
-
 ### Order status
 If you don't have enough collateral to fill the margin requirements on an order, it will show up as 'Rejected'. If you cancel an order, the status will be listed as 'Cancelled', and if the the network cannot fill an order, based on the parameters you set, for example, then the order will show up as 'Stopped'. The following charts explain the order types and the statuses that they'll show, based on what happens in the network. 
 
 #### Fill or Kill
+
 | Time In Force | Filled | Resulting status |
 |---------------|--------|------------------|
 |      FOK      |   No   |      Stopped     |
@@ -91,6 +79,7 @@ If you don't have enough collateral to fill the margin requirements on an order,
 
 
 #### Immediate or Cancel
+
 | Time In Force | Filled  | Resulting status       |
 |---------------|---------|------------------------|
 |      IOC      |    No   |  Stopped               |
@@ -99,6 +88,7 @@ If you don't have enough collateral to fill the margin requirements on an order,
 
 
 #### Good til Cancelled
+
 | Time In Force | Filled  | Cancelled by user | Stopped by network | Resulting status |
 |---------------|---------|-------------------|--------------------|------------------|
 |      GTC      |    No   |         No        |         No         |      Active      |
@@ -123,8 +113,37 @@ If you don't have enough collateral to fill the margin requirements on an order,
 |      GTT      | Partial |    No   |         No        |        Yes         |      Stopped     |
 |      GTT      |   Yes   |    No   |         No        |         No         |      Filled      |
 
+### Pegged order
+Pegged orders are orders that are a defined distance from a reference price (i.e. best bid, mid and best offer/ask), rather than at a specific price, and generate limit orders based on the set parameters. Currently, pegged orders can only use GTC and GTT times in force, but IOC and FOK will be available in a future release.
 
-   ### Batch operations on orders
+A pegged order is not placed on the order book itself, but instead generates a limit order with the price generated based on the reference and offset value. As the price levels in the order book move around, the order's price on the order book also moves.
+
+The reference can only be positive and Vega applies it differently depending on if the order is a buy or sell.
+
+If we are a buy the offset is taken away from the reference price. If we are a sell they the offset is added to the reference price.
+
+#### Reference prices for pegged orders
+Rather than being set for a specific limit price, a pegged order is a defined distance from a reference price (such as the best bid, mid, or best offer/ask). That is the price against which the final order price is calculated. The reference price is based on the live market, and the final price is calculated and used to insert the new order. The distance is also known as the offset value, which is an absolute value that must be cleanly divisible by the tick size, and can be [negative or] positive. 
+
+#### Amending pegged orders
+Pegged orders can be amended like standard limit orders - their reference, offset and time in force values can all be amended. If amending an order cannot be performed in-place, the order will lose time priority in the order book (but will keep its priority in the list of pegged orders). Amends must be done to the pegged order itself, not any limit orders derived from pegged orders. 
+
+#### Parked pegged orders 
+There are some situations in which pegged orders are parked, or moved off the order book, until the market returns to a state that allows pegs, or the orders are cancelled or expire. When orders return to the book, they are re-priced based on current market prices, sorted by their original entry time. If the primary trading mode of a market doesn't allow pegged orders (such as an auctions-only market), then the pegged orders are rejected.  Those situations include:
+* Auctions - pegged orders are only valid during continuous trading
+* When the reference price does not exist (e.g. no best bid)
+* The price moves to a value that means it would create an invalid order if the offset was applied
+
+Pegged orders are restricted in what values can be used when they are created, these can be defined by a list of rules each order must abide with. Note: IOC and FOK are not currently available for pegged orders, but will be in a future release. 
+
+| Type (Time in Force)      | Side  |   Bid Peg   | Mid Peg |  Offer Peg  |
+|---------------------------|-------|-------------|---------|-------------|
+| Persistent (GTC, GTT)	    | Buy	  | <= 0        | < 0     | Not allowed |
+| Persistent (GTC, GTT)	    | Sell  | Not allowed | > 0     | >= 0        |
+| Non persistent (IOC, FOK) |	Buy   | > 0         | > 0     | >= 0        |
+| Non persistent (IOC, FOK) |	Sell  | <= 0        | < 0	    | < 0         |
+
+### Batch operations on orders [WIP]
 
 ## Position management and margin
 Vega's margining system implements automated cross margining. Cross margining, which means gains on one market can be released and used as margin on another, is supported between all markets. More detailed explanation on the rationale is available in [Section 6 of the protocol whitepaper](https://vega.xyz/papers/vega-protocol-whitepaper.pdf#page21).
@@ -221,7 +240,7 @@ Market conditions that could trigger an auction:
 
 During the auction call period, no trades are created, but all orders are queued. At the conclusion of the call period, trades are produced in a single action known as an auction uncrossing. During the uncrossing, auctions always try to maximise the traded volume, subject to the requirements of the orders placed.
 
-#### Supported auction types
+#### Auction types
 The Vega protocol supports several types of auctions:
 
 * Opening auctions: Every continuous trading market opens with an auction. Their purpose is to calibrate a market and help with price discovery
@@ -229,7 +248,14 @@ The Vega protocol supports several types of auctions:
 * Liquidity monitoring auctions: A market will go into a liquidity monitoring auction if the total commitment from liquidity providers (total stake) drops too low relative to the estimate of the market's liquidity demand (target stake), or if the best bid and/or best ask price implied by limit orders from market participants are not available
 * Frequent batch auctions: A trading mode set for a market in its inception, that has trading occur only through repeated auctions, as opposed to continuous trading (Not yet available)
 
-## Market protection
+## Market protections
+In a pseudonymous environment where counter-parties may be identified by no more than a public key, it's essential to consider the credit risk, given that the avenues available for traditional marketplaces aren't available. If a counterparty owes more in settlement than their posted collateral, there is no way to reclaim those assets.
+
+The Vega protocol has been designed with rules to detect dangerous market conditions and apply protective measures, and to constantly maintain effective collateralisation for all positions.
+
+Margin calculations take into account the probability of the liquidation value of a position falling short of the available capital. The network is also designed to frequently re-evaluate each individual's risk, and pre-emptively close positions.
+
+Some of those mechanisms include price monitoring, liqudity monitoring, and frequent mark to market calculations.
 
 ### Price monitoring
 The dynamics of market price movements mean that prices don't always represent the participants' true average view of the price, but are instead artefacts of the market microstructure. Sometimes low liquidity and/or a large quantity of order volume can cause the price to diverge from the true market price. The Vega protocol is designed to assume that relatively small moves are 'real' and that larger moves might not be.
@@ -238,7 +264,7 @@ Price monitoring exists to determine the real price, in the latter case. If the 
 
 Distinguishing between small and large moves can be highly subjective and market-dependent. The protocol relies on risk models to formalise this process. A market's risk model can be used to obtain the price projection at a future point in time given the current price. A price monitoring auction trigger can be constructed using a projection fixed time horizon and probability level.
 
-#### Price monitoring triggers
+#### Price monitoring triggers [WIP]
 Price monitoring behaviour is governed by a set of price monitoring triggers specified for the market. 
 
 Each trigger contains:
@@ -267,7 +293,7 @@ Let's work through an example:
 
 As mentioned above, price monitoring is meant to stop large market movements that are not 'real' from occurring, rather than just detect them after the fact. To achieve that the module works preemptively: a transaction that would've caused the price monitoring bounds to be breached doesn't get processed in the default trading mode, the market first switches to price monitoring auction mode and then that transaction (and any subsequent ones until the auction time elapses) get processed. Clearly, the market can still make a large move within the auction as long as crossing orders from both buy and sell side get submitted. The purpose of price monitoring is only to extract more information out of the market in the event of a large move and not to stop the market from making that move altogether.
 
-### Liquidity monitoring
+### Liquidity monitoring [WIP]
 
 #### Not enough liquidity on a market
 **If a market has too little liquidity**: Vega continuously calculates whether each market has a sufficient amount committed. When markets are deemed insufficiently liquid, they are placed into a liquidity monitoring auction.
