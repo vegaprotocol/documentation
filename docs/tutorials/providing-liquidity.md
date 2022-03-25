@@ -26,7 +26,7 @@ The shape of the orders placed for a liquidity provision can influence how likel
 ## Using the sample-api-scripts helper scripts
 **[Sample API scripts](https://github.com/vegaprotocol/sample-api-scripts/README.md)**: Vega supplies a GitHub repository that contains a set of sample scripts that perform many of the basic actions you can do with the Vega protocol. 
 
-#### Setting up the helper scripts
+### Setting up the helper scripts
 Inside the root folder there is a credentials file that can be customised to your Vega network. For more information about running the scripts please see the [README.md](https://github.com/vegaprotocol/sample-api-scripts/#readme) in the root of the repository.
 
 ## Creating a liquidity commitment
@@ -44,7 +44,8 @@ The liquidity provision submission must include:
     * Proportion: The proportion of your committed collateral allocated to this order
     * Reference price: The price that you want the order offset to reference. You can choose from the market’s mid price, best bid price, or the best ask price. In the examples below, the reference price is pegged to the mid-price, which means as the mid-price moves, so do the LP orders. (See a full list of applicable reference price levels in the [API documentation](https://docs.vega.xyz/protodocs/vega/vega.proto#peggedreference).)
 
-In the [`sample-api-scripts` repo](https://github.com/vegaprotocol/sample-api-scripts/), there is a folder named `submit-create-liquidity-provision`, which has a set of scripts to create a new liquidity provision. 
+### API script 
+In the [`sample-api-scripts` repo](https://github.com/vegaprotocol/sample-api-scripts/), there is a folder named `submit-create-liquidity-provision`, which has a set of scripts to create a new liquidity provision.
 
 You can see in the python script that the most important part is the description of the commit amount and price levels:
 
@@ -101,9 +102,18 @@ You can try out your liquidity provision shape on Fairground, the Vega testnet. 
 ## Amending a liquidity commitment
 The Vega system does not take into account your current position when it creates the orders from your liquidity provision shape. Therefore, if you are currently long or short, the orders created will be the same. For example, if you create a shape that is more likely to result in a long position, then over time you are likely to become longer. 
 
-As you are required to have enough margin to cover you position, this puts more strain on your margin account as your position grows. 
+As you are required to have enough margin to cover you position, this puts more strain on your margin account as your position grows.
 
 One way you can help control your margin requirements is to change the shape of liquidity provision order to help reduce your position. For this, you can use the `liquidityProvisionAmendment` command.
+
+### API script
+In the below example, the shape is being changed to increase the chance that sell orders will be matched. This will help to reduce the size of a long position. The activity of the market itself will control exactly what gets filled, and the shape of your orders does not guarantee your orders will be filled.
+
+To execute a test liquidity provision amend you can run this following script from the `samples-api-scripts` repo:
+```
+sample-api-scripts> submit-amend-liquidity-provision/submit-amend-liquidity-provision-order.sh
+```
+
 
 ```
 submission = {
@@ -132,15 +142,16 @@ submission = {
 
 ```
 
-In the above example, the shape is being changed to increase the chance that sell orders will be matched. This will help to reduce the size of a long position. The activity of the market itself will control exactly what gets filled, and the shape of your orders does not guarantee your orders will be filled.
-
-To execute a test liquidity provision amend you can run this following script from the `samples-api-scripts` repo:
-```
-sample-api-scripts> submit-amend-liquidity-provision/submit-amend-liquidity-provision-order.sh
-```
-
 ## Cancelling a liquidity commitment
 If you no longer want to keep a liquidity commitment open for a market, you can cancel your commitment using the `liquidityProvisionCancellation`. This will remove any orders created as part of your supplied shape and it will return the bond amount back into your general account.
+
+If there is not enough liquidity left in the market after you cancel, it will force the market into a liquidity auction where it will stay until there is enough new liquidity supplied to bring it back out into continuous trading.
+
+### API script
+To test a liquidity provision cancellation on testnet, or see how a cancellation is built, you can use the following script from the `samples-api-scripts` repo:
+```
+sample-api-scripts> submit-cancel-liquidity-provision/submit-cancel-liquidity-provision-order.sh
+```
 
 ```
 submission = {
@@ -150,13 +161,6 @@ submission = {
     "pubKey": pubkey,
     "propagate": True
 }
-```
-
-If there is not enough liquidity left in the market after you cancel, it will force the market into a liquidity auction where it will stay until there is enough new liquidity supplied to bring it back out into continuous trading.
-
-To test a liquidity provision cancellation on testnet, or see how a cancellation is built, you can use the following script from the `samples-api-scripts` repo:
-```
-sample-api-scripts> submit-cancel-liquidity-provision/submit-cancel-liquidity-provision-order.sh
 ```
 
 ## Viewing existing liquidity provisions
