@@ -176,7 +176,7 @@ To see the current liquidity commitments for a market on testnet, you can use th
 
 `vegatools liquiditycommitment -a=n06.testnet.vega.xyz:3007`
 
-<-- link to picture vegatools-liquidity-commitment.png in same folder as this file -->
+![Vega Tool for liquidity commitment](/img/tutorials/vegatools-liquidity-commitment.png)
 
 ## What can go wrong when providing liquidity?
 If you run out of margin to maintain your position, Vega will use some of your bond to cover the margin requirements. You will get charged a fee when this happens and it reduces the amount of liquidity you have as your bond amount will be smaller.

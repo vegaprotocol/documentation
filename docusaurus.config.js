@@ -42,6 +42,11 @@ module.exports = {
           position: "left",
         },
         {
+          to: "/docs/tutorials",
+          label: "API tutorials",
+          position: "left",
+        },
+        {
           to: "/docs/tools/",
           label: "Apps and Tools",
           position: "left",
