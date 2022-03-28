@@ -5,12 +5,12 @@ hide_title: false
 
 In this tutorial, you'll learn how to build a liquidity commitment order to provide liquidity on a live market created with Vega. You'll need to actively manage your liquidity commitment, so you'll also learn how to amend your order, as well as cancel it. 
 
-If you proposed a market that was enacted and want to change your liquidity provision shape, skip down to [amending a liquidity commitment]. 
+If you proposed a market that was enacted and want to change your liquidity provision shape, skip down to **[amending a liquidity commitment](/docs/tutorials/providing-liquidity#amending-a-liquidity-commitment)**. 
 
 ## Providing liquidity 
 Supplying liquidity to a market keeps open orders resting on the order book, to keep a relatively balanced set of orders available. Participants who provide liquidity earn from liquidity fees, which are paid by the *price takers* on each trade.
 
-[Fees]: Learn more about the fee structure. 
+**[Fees]**: Learn more about the fee structure. 
 
 In order to qualify to receive a portion of the liquidity fees, the liquidity provider must commit an amount of the underlying market asset. The party placing the orders must have enough available collateral to meet the size of the nominated commitment amount and the margins required to support the orders generated from that commitment. Once the order is committed, the commitment amount is stored in a bond account. 
 
