@@ -5,7 +5,7 @@ hide_title: false
 
 In this tutorial, you'll learn how to build a liquidity commitment order to provide liquidity on a live market created with Vega. You'll need to actively manage your liquidity commitment, so you'll also learn how to amend your order, as well as cancel it. 
 
-If you proposed a market that was enacted and want to change your liquidity provision shape, skip down to **[amending a liquidity commitment](/docs/tutorials/providing-liquidity#amending-a-liquidity-commitment)**. 
+If you proposed a market that was enacted and want to change your liquidity provision shape, skip down to **[amending a liquidity commitment](/docs/tutorials/providing-liquidity#amending-a-liquidity-commitment)**.
 
 ## Providing liquidity 
 Supplying liquidity to a market keeps open orders resting on the order book, to keep a relatively balanced set of orders available. Participants who provide liquidity earn from liquidity fees, which are paid by the *price takers* on each trade.
@@ -36,13 +36,17 @@ There are two ways to provide liquidity to a market: supplying the bond amount a
 
 The liquidity provision submission must include:
 
-* The market’s unique ID (Confirm it’s in a state that accepts liquidity commitments)
-* Liquidity commitment amount: The amount of asset that you want to allocate to providing liquidity. The amount will be moved into a bond account during the duration of your liquidity commitment
-* Proposed liquidity fee level
-* A set of liquidity buy and sell order shapes, which include:
-    * Offset: How many ticks away from the reference price you want your orders to be. The tick size is the smallest decimal place the market allows for orders
-    * Proportion: The proportion of your committed collateral allocated to this order
-    * Reference price: The price that you want the order offset to reference. You can choose from the market’s mid price, best bid price, or the best ask price. In the examples below, the reference price is pegged to the mid-price, which means as the mid-price moves, so do the LP orders. (See a full list of applicable reference price levels in the [API documentation](https://docs.vega.xyz/protodocs/vega/vega.proto#peggedreference).)
+* The market’s unique ID (Confirm it’s in a state that accepts liquidity commitments), denoted as `marketId`
+* Liquidity commitment amount: The amount of asset that you want to allocate to providing liquidity. The amount will be moved into a bond account during the duration of your liquidity commitment, denoted as `commitmentAmount`
+* Proposed liquidity fee level: The scaling factor for the fee you wish to receive when your order is matched, on a scale between 0 and 1. For example, a fee level of 0.01 would mean `0.01 * total trade amount` is charged. Denoted as `fee`
+* A set of liquidity buy and sell order shapes (denoted as `buys` and `sells`), which include:
+    * Offset: How many ticks away from the reference price you want your orders to be. The tick size is the smallest decimal place the market allows for orders. There is a tradeoff between bigger offsets leading to higher margin cost but less position risk, versus smaller offsets leading to smaller margin cost but more more postion risk. If a provider plans to commit approximately 1 million to a liquidity commitment, then about 5-10% should be reserved for the bond if the position risk is low. If a provider manages their positions and margin carefully, they can then commit more to the bond 
+    * Proportion: The proportion of your committed collateral allocated to this order, as a weight
+    * Reference price: The price that you want the order offset to reference. You can choose from the market’s mid price, best bid price, or the best ask price. In the examples below, the reference price is pegged to the mid-price, which means as the mid-price moves, so do the LP orders. (See a full list of applicable reference price levels in the [API documentation](https://docs.vega.xyz/protodocs/vega/vega.proto#peggedreference)), denoted as `reference`
+
+To submit the liquidity provision message, you'll also need: 
+* Public key: The public key being used to place the liquidity commitment
+* Propagate: Can be true or false - if true, then the liquidity commitment will be signed and sent as a transaction to the nodes. If you prefer to manually submit the transaction, set propogate to false and include the data in a transaction
 
 ### API script 
 In the [`sample-api-scripts` repo](https://github.com/vegaprotocol/sample-api-scripts/), there is a folder named `submit-create-liquidity-provision`, which has a set of scripts to create a new liquidity provision.
@@ -52,14 +56,14 @@ You can see in the python script that the most important part is the description
 ```
 submission = {
     "liquidityProvisionSubmission": {
-        "marketId": marketID,                   <-- The market ID for the market you wish to supply liquidity to -->
-        "commitmentAmount": "100",              <-- The amount of the asset you want to `bond`, or allocate to providing liquidity -->
-        "fee": "0.01",                          <-- The scaling factor for the fee you wish to receive when your order is matched -->
-        "buys": [                               <-- The buy side shape -->
+        "marketId": marketID,
+        "commitmentAmount": "100",              
+        "fee": "0.01",
+        "buys": [                               
             {
-                "offset": "1",                      <-- How far from the reference price the price level should be set at -->
-                "proportion": "1",                  <-- What weight this level should have -->
-                "reference": "PEGGED_REFERENCE_MID" <-- The reference price for this price level -->
+                "offset": "1",                      
+                "proportion": "1",
+                "reference": "PEGGED_REFERENCE_MID"
             },
             {
                 "offset": "2",
@@ -67,7 +71,7 @@ submission = {
                 "reference": "PEGGED_REFERENCE_MID"
             }
         ],
-        "sells": [                              <-- The sell side shape -->
+        "sells": [
             {
                 "offset": "1",
                 "proportion": "1",
@@ -85,7 +89,7 @@ submission = {
             }
         ]
     },
-    "pubKey": pubkey,                             <-- The public key you're using to place the liquidity commitment -->
+    "pubKey": pubkey,
     "propagate": True
 }
 ```
