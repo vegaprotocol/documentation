@@ -49,6 +49,6 @@ Its functionality is limited and is riskier than networks that will follow it, a
 
 ## How can I contribute to Vega?
 
-* [Bugs and feature requests](https://vega-testnet.nolt.io): Raise any bugs you find, or feature requests you have, on the Vega Nolt board.
+* [Bugs and feature requests](https://github.com/vegaprotocol/feedback/discussions/): Raise any bugs you find, or feature requests you have, on Vega's feedback board.
 * [Developer bounties](https://github.com/vegaprotocol/bounties/): See available bounties on the bounties repo. 
 * [Documentation translation](https://github.com/vegaprotocol/documentation/issues): Raise an issue on the documentation repo to express your interest in translating Vega documentation. 
