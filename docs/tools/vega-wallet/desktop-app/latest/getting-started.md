@@ -116,7 +116,7 @@ You recover a wallet using your recovery phrase. When you enter the wallet name,
 #### Solution
 The wallet you are trying to recover already exists on your device. You can use your existing wallet with the Vega Wallet desktop app. On the onboarding screen, choose `Use existing` to connect to an existing Vega wallet. 
 
-If you see the error message `Wallet with this name already exists` but you do not see that wallet on the Wallets screen, then report the issue on **[Nolt](https://vega-testnet.nolt.io/)**. 
+If you see the error message `Wallet with this name already exists` but you do not see that wallet on the Wallets screen, then report the issue on the **[feedback board](https://github.com/vegaprotocol/feedback/discussions/)**. 
 
 ### Wallet recovery provides wrong keys 
 #### Problem
@@ -127,4 +127,4 @@ You recover a wallet using your recovery phrase, and the public key you see does
 * Ensure that your recovery phrase includes the exact same words, in the exact same order, as they were provided to you when you first created your wallet. 
 
 ### Reporting bugs
-**[Report using Nolt](https://vega-testnet.nolt.io/)**: If you discover a bug or are having problems with the Desktop Wallet app, report them on Nolt. 
+**[Report on the feedback board](https://github.com/vegaprotocol/feedback/discussions/)**: If you discover a bug or are having problems with the Desktop Wallet app, report them on Vega's feedback board. 
