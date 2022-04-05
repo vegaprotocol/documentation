@@ -29,6 +29,10 @@ The shape of the orders placed for a liquidity provision can influence how likel
 ### Setting up the helper scripts
 Inside the root folder there is a credentials file that can be customised to your Vega network. For more information about running the scripts please see the [README.md](https://github.com/vegaprotocol/sample-api-scripts/#readme) in the root of the repository.
 
+### Requirements [WIP]
+You'll need to have the following installed on your computer:
+
+
 ## Creating a liquidity commitment
 There are two ways to provide liquidity to a market: supplying the bond amount and order shape when proposing a market, or sending **send a `liquidityProvisionSubmission` message** once the market is live and trading. This tutorial focuses on the second option. 
 
