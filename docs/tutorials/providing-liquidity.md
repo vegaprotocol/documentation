@@ -33,7 +33,7 @@ For more information about running the scripts, including the tools or applicati
 
 
 ## Creating a liquidity commitment
-There are two ways to provide liquidity to a market: supplying the bond amount and order shape when proposing a market, or sending **send a `liquidityProvisionSubmission` message** once the market is live and trading. This tutorial focuses on the second option. 
+There are two ways to provide liquidity to a market: supplying the bond amount and order shape when proposing a market, or **sending a `liquidityProvisionSubmission` message** once the market is live and trading. This tutorial focuses on the second option. 
 
 [Market proposals]: Read about how to propose a market.
 
