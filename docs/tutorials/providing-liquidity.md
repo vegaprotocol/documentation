@@ -31,13 +31,12 @@ Inside the root folder there is a credentials file that can be customised to you
 
 For more information about running the scripts, including the tools or applications required for these scripts to work, please see the **[README.md](https://github.com/vegaprotocol/sample-api-scripts/#readme)** in the root of the repository.
 
-
 ## Creating a liquidity commitment
-There are two ways to provide liquidity to a market: supplying the bond amount and order shape when proposing a market, or **sending a `liquidityProvisionSubmission` message** once the market is live and trading. This tutorial focuses on the second option. 
+There are two ways to provide liquidity to a market: supplying the bond amount and order shape when proposing a market, or **sending a `liquidityProvisionSubmission` message** once the market is live and trading. This tutorial focuses on the second option, using Python.
 
 [Market proposals]: Read about how to propose a market.
 
-The liquidity provision submission must include:
+**The liquidity provision submission must include**:
 
 * The market’s unique ID (Confirm it’s in a state that accepts liquidity commitments), denoted as `marketId`
 * Liquidity commitment amount: The amount of asset that you want to allocate to providing liquidity. The amount will be moved into a bond account during the duration of your liquidity commitment, denoted as `commitmentAmount`
@@ -52,15 +51,22 @@ To submit the liquidity provision message, you'll also need:
 * Propagate: Can be true or false - if true, then the liquidity commitment will be signed and sent as a transaction to the nodes. If you prefer to manually submit the transaction, set propogate to false and include the data in a transaction
 
 #### Balancing position risk with margin cost
-
 There's an intrinsic relationship between position risk and margin cost when committing liquidity to a market. Offsets further from a market's current trading prices (large offsets) require more margin but have lower position risk, whereas offsets closer to a market's current trading prices (small offsets) require less margin but have higher position risk. 
 
 For example, a liquidity provider plans to commit the approximate equivalent of 1 million USD to a liquidity commitment: If their position risk is low (larger offsets) then about 5-10% can be reserved for the bond. If their position risk is higher (smaller offsets), and a provider manages their positions and margin carefully, the provider would need to reserve more to commit to the bond.
 
 ### API script
-In the [`sample-api-scripts` repo](https://github.com/vegaprotocol/sample-api-scripts/), there is a folder named `submit-create-liquidity-provision`, which has a set of scripts to create a new liquidity provision.
+In the [`sample-api-scripts`](https://github.com/vegaprotocol/sample-api-scripts/) repo, there is a folder named [`submit-create-liquidity-provision`](https://github.com/vegaprotocol/sample-api-scripts/tree/master/submit-create-liquidity-provision), which has a set of scripts to create a new liquidity provision.
 
-You can see in the python script that the most important part is the description of the commit amount and price levels:
+:::hint
+You'll find the script files on your computer by searching for `sample-api-scripts`. You'll need to edit the script file, using a text or code editor, with the values you want for your liquidity provision, including the market ID and commitment details.
+:::
+
+See a list of all markets and market IDs by running the following script, and use the market ID in your credentials file:
+
+`python3 get-markets-and-market-data/get-markets-and-marketdata.py`
+
+You can see in the python script that the most important part is the description of the commitment amount and price levels:
 
 ```
 submission = {
@@ -103,14 +109,12 @@ submission = {
 }
 ```
 
-To execute a test liquidity provision creation you can run this following script from the `samples-api-scripts` repo:
-```
-sample-api-scripts> submit-create-liquidity-provision/submit-create-liquidity-provision-order.sh
-```
+### Run the script
+To execute a liquidity provision creation you can run the following script from the `samples-api-scripts` repo:
 
-:::info
-You can try out your liquidity provision shape on Fairground, the Vega testnet. (How?)
-:::
+```
+python3 submit-create-liquidity-provision/submit-create-liquidity-provision-order.py
+```
 
 ## Amending a liquidity commitment
 The Vega system does not take into account your current position when it creates the orders from your liquidity provision shape. Therefore, if you are currently long or short, the orders created will be the same. For example, if you create a shape that is more likely to result in a long position, then over time you are likely to become longer. 
@@ -124,7 +128,7 @@ In the below example, the shape is being changed to increase the chance that sel
 
 To execute a test liquidity provision amend you can run this following script from the `samples-api-scripts` repo:
 ```
-sample-api-scripts> submit-amend-liquidity-provision/submit-amend-liquidity-provision-order.sh
+python3 submit-amend-liquidity-provision/submit-amend-liquidity-provision-order.py
 ```
 
 
@@ -162,8 +166,9 @@ If there is not enough liquidity left in the market after you cancel, it will fo
 
 ### API script
 To test a liquidity provision cancellation on testnet, or see how a cancellation is built, you can use the following script from the `samples-api-scripts` repo:
+
 ```
-sample-api-scripts> submit-cancel-liquidity-provision/submit-cancel-liquidity-provision-order.sh
+python3 submit-cancel-liquidity-provision/submit-cancel-liquidity-provision-order.py
 ```
 
 ```
