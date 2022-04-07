@@ -27,10 +27,9 @@ The shape of the orders placed for a liquidity provision can influence how likel
 **[Sample API scripts](https://github.com/vegaprotocol/sample-api-scripts/README.md)**: Vega supplies a GitHub repository that contains a set of sample scripts that perform many of the basic actions you can do with the Vega protocol. 
 
 ### Setting up the helper scripts
-Inside the root folder there is a credentials file that can be customised to your Vega network. For more information about running the scripts please see the [README.md](https://github.com/vegaprotocol/sample-api-scripts/#readme) in the root of the repository.
+Inside the root folder there is a credentials file that can be customised to your Vega network. 
 
-### Requirements [WIP]
-You'll need to have the following installed on your computer:
+For more information about running the scripts, including the tools or applications required for these scripts to work, please see the **[README.md](https://github.com/vegaprotocol/sample-api-scripts/#readme)** in the root of the repository.
 
 
 ## Creating a liquidity commitment
