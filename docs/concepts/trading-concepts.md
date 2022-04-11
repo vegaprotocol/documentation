@@ -1,7 +1,7 @@
-# Trading protocol (?)
-The Vega protocol software is built to provide a framework for creating markets for trading financial instruments that are based on the values of their underlying assets. All markets created using the Vega protocol are initiated and voted on by tokeholders. 
+# Trading framework (?)
+The Vega protocol software is built to provide a framework for creating markets for trading financial instruments that are based on the values of their underlying assets. All markets created using the Vega protocol have been initiated and voted on by tokeholders.
 
-Participants in a market ... 
+Participants that interact with a futures market created using Vega can submit market, limit, pegged and liquidity commitment orders. 
 
 ## Orders
 An order is an instruction to execute a trade that is long or short on a market's price. Placing an order does not guarantee it is filled. Orders stay on the order book until they are filled, expired or cancelled.
@@ -196,26 +196,37 @@ When the mark price changes, the network calculates settlement cash flows for ea
 
 The process is repeated each time the mark price changes until the maturity date for the market is reached.
 
-### Margin search and release [WIP]
+### Margin: Searching for collateral
+When a trader's balance in their margin account (for a market) is less than their position’s *search level*, the protocol will attempt to transfer sufficient collateral from the trader’s main collateral account to top up their margin account to the level of the initial margin. 
 
-When a trader's balance in their margin account (for a market) is less than their position’s collateral search level the protocol will attempt to transfer sufficient collateral from the trader’s main collateral account to top up their margin account to the level of the initial margin.
-Close outs
+If the margin account can be topped up, then the position stays open. If a market's swing is bigger than a user's margin is collateralised for, then money is pulled from the collateral to cover the requirement. In most cases, the allocated margin should cover market swings.
 
-After a collateral search, if the amount in the margin account is below the closeout level AFTER the collateral transfer request completes (whether successful or not) OR in an async (sharded) environment if the latest view of the trader’s available collateral suggests this will be the case, the trader is considered to be distressed and is added to list of traders that will then undergo position resolution.
+Price monitoring should ensure that large swings only occur only due to genuine changes in market participants' view of the true average price of the traded instrument.
 
-Position resolution is executed simultaneously for ALL traders on a market that have been determined to require it during a single event. That is, the orchestrator ‘batches up’ the traders and runs position resolution once the full set of traders is known for this event. Sometimes that will only be for one trader, sometimes it will be for many.
-Releasing collateral
+Read more: [Price monitoring](/docs/concepts/trading-concepts#price-monitoring)
 
-Traders who have a margin account balance greater than the release level should have the excess margin released to their general collateral account, to the point where their new margin level is equal to the initial margin.
+If there is not enough collateral to provide the required margin, then the position will be closed out.
 
-### Not enough collateral to hold a position 
-When a participant does not have enough collateral to hold their open positions, the protocol will automatically trigger a close-out. 
+### Margin: Releasing collateral
+Traders who have a margin account balance greater than the release level will have the excess assets released to their general collateral account, to the point where their new margin level is equal to the initial margin level.
 
-In most cases, the allocated margin should cover market swings. If the swing is bigger than the margin is collateralised for, then money is pulled from the collateral to cover the requirement. If a trader has no more collateral, and their allocated margin is below the maintenance margin, the trader gets closed out and any margin balance remaining after the close-out is transferred to the market's insurance pool. In the unlikely event that the insurance pool balance is insufficient to cover the entire balance, loss socialisation will get applied.
+### Close-outs: Not enough collateral to hold a position
+When a participant does not have enough collateral to hold their open positions, the protocol will automatically trigger a close-out via position resolution. 
 
-Note that (link->) price monitoring should assure that large swings occur only due to genuine changes in market participants' view of the true average price of the traded instrument, and not as a result of short-lived artefacts of market microstructure.
+Read more: [Position resolution](/docs/concepts/trading-concepts#position-resolution)
 
-### Position resolution
+If a trader has no more collateral, and their allocated margin is below the maintenance margin, the trader gets closed out and any margin balance remaining after the closeout is transferred to the market's insurance pool.
+
+In the unlikely event that the insurance pool balance is insufficient to cover the entire balance, loss socialisation will be applied.
+
+Read more: [Loss socialisation](/docs/concepts/trading-concepts#loss-socialisation)
+
+### Position resolution [WIP]
+If a participant's margin amount is below the closeout level and cannot be rectified, that trader is considered to be distressed and is added to list of traders that will then undergo position resolution.
+
+Position resolution is executed simultaneously for all traders on a market that have been determined to require it during a single event. Distressed trader(s) are ‘batched up’, and position resolution is run once the full set of traders is known for this event. 
+
+**How often?**
 
 ## Pre-trade and trade
 
@@ -320,7 +331,9 @@ The market's liquidity requirement is derived from the maximum open interest obs
 ### Insurance pools
 Each market has its own insurance pool set aside. However, there's also a general insurance pool per asset. It sits there until there are markets that use that asset. When a market expires, the insurance pool funds from that market go into the bigger insurance pool, which other markets that use the same collateral currency can pull from. Insurance pools grow in two scenarios: if a trader gets closed out, and if a liquidity provider pays a fine for failing to provide their committed liquidity. (link to liquidity provision)
 
-If a trader's deployed margin on the market is insufficient to cover a mark to market (MTM) settlement liability, Vega will search the trader's available balance of the settlement asset. If this search is unable to cover the full liability, the trader will be considered distressed and undergo position resolution, and the market's insurance pool (for that settlement asset) will be utilised to make up the difference required to cover the MTM loss amount. Should the funds in the insurance pool be insufficient for that, (link ->)loss socialisation will be applied.
+If a trader's deployed margin on the market is insufficient to cover a mark to market (MTM) settlement liability, Vega will search the trader's available balance of the settlement asset. If this search is unable to cover the full liability, the trader will be considered distressed and undergo position resolution, and the market's insurance pool (for that settlement asset) will be utilised to make up the difference required to cover the MTM loss amount. Should the funds in the insurance pool be insufficient for that, loss socialisation will be applied.
+
+Read more: [Loss socialisation](/docs/concepts/trading-concepts#loss-socialisation)
 
 ## Market data
 
@@ -489,7 +502,7 @@ A liquidity commitment order type has a specific set of features that set it apa
 * *Sits on the order book*: The orders are always priced limit orders that sit on the order book, and do not trade on entry
 * *Returns to the order book after being filled*: The order is always refreshed after it trades, based on the above requirements so that the full commitment is always supplied
 
-#### Liquidity fee (WIP)
+#### Liquidity fee [WIP]
 As part of the liquidity commitment transaction, a liquidity provider submits their desired level for the liquidity fee factor for the market. 
 
 The fee factor is set from the values submitted by all liquidity providers for a given market. 
@@ -605,7 +618,7 @@ The fee factors are set through the following network parameters: `market.fee.fa
 
 ## Market / product / trade lifecycle
 
-### Settlement
+### Settlement [WIP]
   Vega executes settlement with a two step process:
   1. Collection -  The protocol collects from the margin accounts of those who, according to the settlement formula, are liable to pay collateral. The collection instruction will aim to collect all the owed collateral, starting with the trader's margin account for the market. Whatever is not available from the margin account (if any) is collected from the general account, and if there is any remaining, it is collected from the market's insurance pool (link). If the full required amount cannot be collected from all three accounts then as much as possible is collected and loss socialisation is enacted. 
  
@@ -615,10 +628,13 @@ The fee factors are set through the following network parameters: `market.fee.fa
  
  These transfers will debit from the market's market settlement account and be credited to the margin accounts of traders who have are due to receive an asset flow as a result of the settlement.
  
-   #### Loss socialisation 
-   If some collection transfers are not able to supply the full amount to the market settlement account due to some traders having insufficient collateral to handle the price / position (mark to market) move, and if the insurance pool can't cover the shortfall, then not enough funds can be collected to distribute the full amount of the mark to market gains made by traders on the other side. In that case, the funds that have been collected must be fairly distributed. This is called loss socialisation. 
- 
-  Loss socialisation is implemented by reducing the amount that is distributed to each trader with a mark to market gain, based on their relative position size. 
+#### Loss socialisation 
+Loss socialisation occurs when there are traders that don't have sufficient collateral to handle the price moves of their open position(s), and the insurance pool cannot cover their shortfall. 
+
+This situation would mean collection transfers are not able to supply the full amount to the market settlement account, and not enough funds can be collected to distribute the full amount of mark to market gains made by traders on the other side. 
+
+The funds that have been collected must be fairly distributed. Loss socialisation is implemented by reducing the amount that is distributed to each trader with a mark to market gain, based on their relative position size. 
+
 ```
 distribute_amount[trader] = mtm_gain[trader] * ( actual_collected_amount / target_collect_amount )
 ```

@@ -1,6 +1,4 @@
 # Vega Protocol 
- ## Transaction messages [WIP]
- (to include protobufs of CORE txs (i.e. ones that actually appear in TM blocks)) 
 ## Governance
 Governance allows the Vega network to arrive at on-chain decisions, where tokenholders can create proposals that other tokenholders can vote to approve or reject. 
 
@@ -20,7 +18,7 @@ Try out proposing markets using [Fairground](https://fairground.wtf), Vega's tes
 1. During the proposal period, network participants who are eligible to vote on the proposal can submit votes for or against the proposal.
 1. When the proposal period closes, the network calculates the outcome by:
    - comparing the total number of votes cast as a percentage of the number eligible to be cast, to the minimum participation requirement. If the minimum is not reached, the proposal is rejected.
-	- comparing the number of 'for' votes afs a percentage of all votes cast (maximum one vote counted per party) to the required majority. 
+	- comparing the number of 'for' votes as a percentage of all votes cast (maximum one vote counted per party) to the required majority. 
 1. If the required majority of 'for' votes is met, the action described in the proposal will be taken (i.e., proposal is enacted) on the defined enactment date. Note the enactment date must be at least the minimum enactment period for the proposal type/subtype (specified by a network parameter) _after_ voting closes.
 
 ### Voting on proposals 
@@ -39,18 +37,37 @@ Vote on proposals on the [Vega token governance page](https://token.vega.xyz/gov
 :::
 
 ## Market governance [WIP]
-Markets are proposed and voted into existence by Vega tokenholders. The parameters of a market can also be changed when a tokenholder raises a proposal 
+Markets are proposed and voted into existence by Vega tokenholders. 
+
+Read more: Propose a new market
+
+The parameters of a market can also be changed, if a tokenholder proposes those changes and they are voted in by a sufficient number of tokenholders and/or liquidity providers.
+
+Read more: Propose a market change
 
 ### Propose a new market [WIP]
+Tokenholders can propose markets, which then need to be voted on by other tokenholders. If the market proposal gets a majority of tokeholder support, then it will be enacted. 
 
-Timestamps 
-Closing
-Enactment
-Validation 
+:::info
+A liquidity commitment is required when proposing a market. The public key proposing the market will need to have deposited enough of the market's settlement collateral to fulfil their liquidity commitment. 
+:::
+
+! What you need to propose a new market: 
+
+Links to empty json, plus API guide, plus reference to token dApp once it's possible to propose, with some info about what is needed. 
+
+Timestamps: Closing, Enactment, Validation 
+
+        "closingTimestamp": 0,
+        "enactmentTimestamp": 0,
+        "validationTimestamp": 0,
 
 Instrument: Name, Code, Type (future)
+
 Future: Settlement asset, quote name, 
+
 Oracles: oracle spec for settlement price, pubkey for oracle, filters, conditions of the filters, oracle spec for trading termination, filters, conditions, oracle spec binding: settlement price property, trading termination property
+
 market decimal places
 market metadata: examples - base:BTC, quote:USD, class:fx/crypto, monthly, sector:crypto
 price monitoring (risk) parameters: 
@@ -58,71 +75,7 @@ liquidity monitoring parameters:
 risk model: "logNormal": "riskAversionParameter": 0.0001, "tau": 0.0000190129, "params": "mu": 0, "r": 0.016, "sigma": 1.25
 liquidity commitment: commitment amount, fee level, sell shape: reference (best ask), proportion, offset. buy shape: reference (best bid), proportion, offset.
 
-"terms": 
-        "closingTimestamp": 0,
-        "enactmentTimestamp": 0,
-        "validationTimestamp": 0,
-        "newMarket": {
-          "changes": {
-            "instrument": {
-              "name": "BTCUSD Monthly (30 Jun 2022)",
-              "code": "BTCUSD.MF21",
-              "future": {
-                "settlementAsset": "fDAI",
-                "quoteName": "USD",
-                "oracleSpecForSettlementPrice": {
-                  "pubKeys": [
-                    "0xab5c950b071684321d59360ccb924d9c5010b31abd6b4148206a57e73594abc9"
-                  ],
-                  "filters": [
-                    {
-                      "key": {
-                        "name": "prices.BTC.value",
-                        "type": "TYPE_INTEGER"
-                      },
-                      "conditions": [
-                        {
-                          "operator": "OPERATOR_EQUALS",
-                          "value": "1"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                "oracleSpecForTradingTermination": {
-                  "pubKeys": [
-                    "0xab5c950b071684321d59360ccb924d9c5010b31abd6b4148206a57e73594abc9"
-                  ],
-                  "filters": [
-                    {
-                      "key": {
-                        "name": "termination.BTC.value",
-                        "type": "TYPE_BOOLEAN"
-                      },
-                      "conditions": [
-                        {
-                          "operator": "OPERATOR_EQUALS",
-                          "value": "1"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                "oracleSpecBinding": {
-                  "settlementPriceProperty": "prices.BTC.value",
-                  "tradingTerminationProperty": "termination.BTC.value"
-                }
-              }
-            },
-            "decimalPlaces": 5,
-            "metadata": [
-              "formerly:076BB86A5AA41E3E",
-              "base:BTC",
-              "quote:USD",
-              "class:fx/crypto",
-              "monthly",
-              "sector:crypto"
-            ],
+        
             "priceMonitoringParameters": {
               "triggers": [
                 {
@@ -182,11 +135,72 @@ liquidity commitment: commitment amount, fee level, sell shape: reference (best 
                 "offset": "2000"
 
 ##### Market [WIP] 
+"newMarket": {
+          "changes": {
+            
+            "decimalPlaces": 5,
+            "metadata": [
+              "formerly:076BB86A5AA41E3E",
+              "base:BTC",
+              "quote:USD",
+              "class:fx/crypto",
+              "monthly",
+              "sector:crypto"
+            ],
 
 ##### Tradable instrument [WIP]
 
 ##### Instrument [WIP]
-
+"instrument": {
+              "name": "BTCUSD Monthly (30 Jun 2022)",
+              "code": "BTCUSD.MF21",
+              "future": {
+                "settlementAsset": "fDAI",
+                "quoteName": "USD",
+                "oracleSpecForSettlementPrice": {
+                  "pubKeys": [
+                    "0xab5c950b071684321d59360ccb924d9c5010b31abd6b4148206a57e73594abc9"
+                  ],
+                  "filters": [
+                    {
+                      "key": {
+                        "name": "prices.BTC.value",
+                        "type": "TYPE_INTEGER"
+                      },
+                      "conditions": [
+                        {
+                          "operator": "OPERATOR_EQUALS",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "oracleSpecForTradingTermination": {
+                  "pubKeys": [
+                    "0xab5c950b071684321d59360ccb924d9c5010b31abd6b4148206a57e73594abc9"
+                  ],
+                  "filters": [
+                    {
+                      "key": {
+                        "name": "termination.BTC.value",
+                        "type": "TYPE_BOOLEAN"
+                      },
+                      "conditions": [
+                        {
+                          "operator": "OPERATOR_EQUALS",
+                          "value": "1"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "oracleSpecBinding": {
+                  "settlementPriceProperty": "prices.BTC.value",
+                  "tradingTerminationProperty": "termination.BTC.value"
+                }
+              }
+            },
 #### Market / instrument parameters [WIP]
 
 ### Propose changes to a market [WIP]
@@ -280,9 +294,6 @@ Intro. What is the collateral management in general? (TODO)
  
 The collateral for restricted mainnet is exclusively VEGA, which is used for staking and rewards. 
  
-:::info You'll need a Vega Wallet for staking, and for receiving rewards. You'll be able to see your account balance on token.vega.xyz.
-:::
-
 :::info
 You'll need a Vega Wallet for staking and receiving rewards. Connect to wallets and see your account balance on the [Vega token website](https://token.vega.xyz). CoinList custodial users should confirm with CoinList how staking works for them.
 :::
