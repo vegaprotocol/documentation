@@ -44,7 +44,7 @@ Once you clone the repository, you'll find the script files on your computer by 
 
 You can see a list of all markets and market IDs by running the following script. Use the market ID in your credentials file:
 
-```
+```bash
 python3 get-markets-and-market-data/get-markets-and-marketdata.py
 ```
 
@@ -74,7 +74,7 @@ In the [`sample-api-scripts`](https://github.com/vegaprotocol/sample-api-scripts
 
 You can see in the liquidity commitment python script that the most important part is the description of the commitment amount, which includes the offset and proportion for each shape:
 
-```
+```python
 submission = {
     "liquidityProvisionSubmission": {
         "marketId": marketID,
@@ -118,7 +118,7 @@ submission = {
 ### Run the script
 To execute a liquidity provision creation you can run the following script from the `samples-api-scripts` repo:
 
-```
+```bash
 python3 submit-create-liquidity-provision/submit-create-liquidity-provision-order.py
 ```
 
@@ -134,13 +134,13 @@ In the below example, the shape is being changed to increase the chance that sel
 
 To execute a liquidity provision amend, edit and run the following script from the `samples-api-scripts` repo:
 
-```
+```bash
 python3 submit-amend-liquidity-provision/submit-amend-liquidity-provision-order.py
 ```
 
 In the following example, you can see the offset was chosen to be further away for the *best buy* price, but closer to the *best ask* price:
 
-```
+```python
 submission = {
     "liquidityProvisionAmendment": {
         "marketId": marketID,
@@ -175,11 +175,11 @@ If there is not enough liquidity left in the market after you cancel, it will fo
 ### API script
 To cancel a liquidity commitment, or see how a cancellation is built, you can use the following script from the `samples-api-scripts` repo:
 
-```
+```bash
 python3 submit-cancel-liquidity-provision/submit-cancel-liquidity-provision-order.py
 ```
 
-```
+```python
 submission = {
     "liquidityProvisionCancellation": {
         "marketId": marketID, <--The marketID is pre-filled based on the details in your credentials file
