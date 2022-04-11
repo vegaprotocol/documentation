@@ -10,31 +10,49 @@ If you proposed a market that was enacted and want to change your liquidity prov
 ## Providing liquidity
 Supplying liquidity to a market keeps open orders resting on the order book, to keep a relatively balanced set of orders available. Participants who provide liquidity earn from liquidity fees, which are paid by the *price takers* on each trade.
 
-**[Fees]**: Learn more about the fee structure. 
+<!-- **[Fees]**: Learn more about the fee structure. -->
 
-In order to qualify to receive a portion of the liquidity fees, the liquidity provider must commit an amount of the underlying market asset. The party placing the orders must have enough available collateral to meet the size of the nominated commitment amount and the margins required to support the orders generated from that commitment. Once the order is committed, the commitment amount is stored in a bond account. 
+To qualify to receive a portion of the liquidity fees, the liquidity provider must commit an amount of the market's settlement asset. The party placing the orders must have enough available collateral to meet the size of their chosen commitment amount and cover the margin required to support the orders generated from that commitment. 
 
-If orders from the liquidity shape are filled, the collateral to cover the margin comes from your general collateral account. 
+Once the order is committed, the commitment amount is stored in a bond account.
+
+If orders from the liquidity shape are filled, the collateral to cover the margin comes from the party's general collateral account. 
 
 ### Shapes for liquidity commitment orders
-The placement of the orders on the book is decided by two shapes. The shapes are created by the liquidity provider, and they define at which price levels the orders will be placed, and what weight each price level will have. 
+The placement of the orders on the book is defined by two shapes: buy shape and sell shape. The shapes are created by the liquidity provider, and they define at which price levels the orders will be placed, and what weight each price level will have. 
 
 Vega then calculates the size of the liquidity order placed at each price level using: the total bond amount, the current price, and the weight on each level. As the prices on the order book move, Vega will recalculate the order sizes and prices and update the orders.
 
 The shape of the orders placed for a liquidity provision can influence how likely they are to get matched with incoming orders. Orders closer to the best bid/ask price are more likely to be filled than orders further away.
 
+#### Balancing position risk with margin cost
+There's an intrinsic relationship between position risk and margin cost when committing liquidity to a market. Offsets further from a market's current trading prices (large offsets) require more margin but have lower position risk, whereas offsets closer to a market's current trading prices (small offsets) require less margin but have higher position risk. 
+
+For example, a liquidity provider plans to commit the approximate equivalent of 1 million USD to a liquidity commitment: If their position risk is low (larger offsets) then about 5-10% can be reserved for the bond. If their position risk is higher (smaller offsets), and a provider manages their positions and margin carefully, the provider would need to reserve more to commit to the bond.
+
 ## Using the sample-api-scripts helper scripts
-**[Sample API scripts](https://github.com/vegaprotocol/sample-api-scripts/README.md)**: Vega supplies a GitHub repository that contains a set of sample scripts that perform many of the basic actions you can do with the Vega protocol. 
+**[Sample API scripts](https://github.com/vegaprotocol/sample-api-scripts/README.md)**: This GitHub repository has a set of sample scripts that perform many of the basic actions you can do with the Vega protocol, including submitting, amending, and cancelling liquidity commitments. 
 
 ### Setting up the helper scripts
-Inside the root folder there is a credentials file that can be customised to your Vega network. 
+Inside the scripts root folder there is a credentials file that must be customised with your wallet credentials, and can also be customised to interact with a specific network.
 
 For more information about running the scripts, including the tools or applications required for these scripts to work, please see the **[README.md](https://github.com/vegaprotocol/sample-api-scripts/#readme)** in the root of the repository.
 
-## Creating a liquidity commitment
-There are two ways to provide liquidity to a market: supplying the bond amount and order shape when proposing a market, or **sending a `liquidityProvisionSubmission` message** once the market is live and trading. This tutorial focuses on the second option, using Python.
+:::hint
+Once you clone the repository, you'll find the script files on your computer by searching for `sample-api-scripts`. You'll need to edit the script files using a text or code editor, with the values you want for your liquidity provision, including the market ID and commitment details.
+:::
 
-[Market proposals]: Read about how to propose a market.
+You can see a list of all markets and market IDs by running the following script. Use the market ID in your credentials file:
+
+```
+python3 get-markets-and-market-data/get-markets-and-marketdata.py
+```
+
+
+## Creating a liquidity commitment
+There are two ways to provide liquidity to a market: supplying the bond amount and order shape when proposing a market, or **sending a `liquidityProvisionSubmission` message** once the market is live and trading. This tutorial focuses on the second option, using Python. Note: There are also scripts available for Bash.
+
+<!-- [Market proposals]: Read about how to propose a market.-->
 
 **The liquidity provision submission must include**:
 
@@ -46,27 +64,15 @@ There are two ways to provide liquidity to a market: supplying the bond amount a
     * Proportion: The proportion of your committed collateral allocated to this order, as a weight
     * Reference price: The price that you want the order offset to reference. You can choose from the market’s mid price, best bid price, or the best ask price. In the examples below, the reference price is pegged to the mid-price, which means as the mid-price moves, so do the LP orders. (See a full list of applicable reference price levels in the [API documentation](https://docs.vega.xyz/protodocs/vega/vega.proto#peggedreference)), denoted as `reference`
 
-To submit the liquidity provision message, you'll also need: 
+**To submit the liquidity provision message, you'll also need**: 
+
 * Public key: The public key being used to place the liquidity commitment
 * Propagate: Can be true or false - if true, then the liquidity commitment will be signed and sent as a transaction to the nodes. If you prefer to manually submit the transaction, set propogate to false and include the data in a transaction
-
-#### Balancing position risk with margin cost
-There's an intrinsic relationship between position risk and margin cost when committing liquidity to a market. Offsets further from a market's current trading prices (large offsets) require more margin but have lower position risk, whereas offsets closer to a market's current trading prices (small offsets) require less margin but have higher position risk. 
-
-For example, a liquidity provider plans to commit the approximate equivalent of 1 million USD to a liquidity commitment: If their position risk is low (larger offsets) then about 5-10% can be reserved for the bond. If their position risk is higher (smaller offsets), and a provider manages their positions and margin carefully, the provider would need to reserve more to commit to the bond.
 
 ### API script
 In the [`sample-api-scripts`](https://github.com/vegaprotocol/sample-api-scripts/) repo, there is a folder named [`submit-create-liquidity-provision`](https://github.com/vegaprotocol/sample-api-scripts/tree/master/submit-create-liquidity-provision), which has a set of scripts to create a new liquidity provision.
 
-:::hint
-You'll find the script files on your computer by searching for `sample-api-scripts`. You'll need to edit the script file, using a text or code editor, with the values you want for your liquidity provision, including the market ID and commitment details.
-:::
-
-See a list of all markets and market IDs by running the following script, and use the market ID in your credentials file:
-
-`python3 get-markets-and-market-data/get-markets-and-marketdata.py`
-
-You can see in the python script that the most important part is the description of the commitment amount and price levels:
+You can see in the liquidity commitment python script that the most important part is the description of the commitment amount, which includes the offset and proportion for each shape:
 
 ```
 submission = {
@@ -117,20 +123,22 @@ python3 submit-create-liquidity-provision/submit-create-liquidity-provision-orde
 ```
 
 ## Amending a liquidity commitment
-The Vega system does not take into account your current position when it creates the orders from your liquidity provision shape. Therefore, if you are currently long or short, the orders created will be the same. For example, if you create a shape that is more likely to result in a long position, then over time you are likely to become longer. 
+The Vega system does not take into account your current position when it creates the orders from your liquidity provision shape. 
 
-As you are required to have enough margin to cover you position, this puts more strain on your margin account as your position grows.
+Therefore, if you are currently long or short, the orders created will be the same. For example, if you create a shape that is more likely to result in a long position, then over time you are likely to become longer. As you are required to have enough margin to cover you position, this puts more strain on your margin account as your position grows.
 
 One way you can help control your margin requirements is to change the shape of liquidity provision order to help reduce your position. For this, you can use the `liquidityProvisionAmendment` command.
 
 ### API script
-In the below example, the shape is being changed to increase the chance that sell orders will be matched. This will help to reduce the size of a long position. The activity of the market itself will control exactly what gets filled, and the shape of your orders does not guarantee your orders will be filled.
+In the below example, the shape is being changed to increase the chance that sell orders will be matched. This would help to reduce the size of a long position. The activity of the market itself will control exactly what gets filled, and the shape of your orders does not guarantee your orders will be filled.
 
-To execute a test liquidity provision amend you can run this following script from the `samples-api-scripts` repo:
+To execute a liquidity provision amend, edit and run the following script from the `samples-api-scripts` repo:
+
 ```
 python3 submit-amend-liquidity-provision/submit-amend-liquidity-provision-order.py
 ```
 
+In the following example, you can see the offset was chosen to be further away for the *best buy* price, but closer to the *best ask* price:
 
 ```
 submission = {
@@ -165,7 +173,7 @@ If you no longer want to keep a liquidity commitment open for a market, you can 
 If there is not enough liquidity left in the market after you cancel, it will force the market into a liquidity auction where it will stay until there is enough new liquidity supplied to bring it back out into continuous trading.
 
 ### API script
-To test a liquidity provision cancellation on testnet, or see how a cancellation is built, you can use the following script from the `samples-api-scripts` repo:
+To cancel a liquidity commitment, or see how a cancellation is built, you can use the following script from the `samples-api-scripts` repo:
 
 ```
 python3 submit-cancel-liquidity-provision/submit-cancel-liquidity-provision-order.py
@@ -174,7 +182,7 @@ python3 submit-cancel-liquidity-provision/submit-cancel-liquidity-provision-orde
 ```
 submission = {
     "liquidityProvisionCancellation": {
-        "marketId": marketID,
+        "marketId": marketID, <--The marketID is pre-filled based on the details in your credentials file
     },
     "pubKey": pubkey,
     "propagate": True
@@ -184,11 +192,13 @@ submission = {
 ## Viewing existing liquidity provisions
 You can view the list of participants supplying liquidity to market in two easy ways: using the endpoint or a Vega Tool. 
 
-1. One, by querying the REST endpoint for a node given the partyID and marketID:
+1. Querying the REST endpoint for a node given the partyID (public key) and marketID:
 
 `https://<node address>/liquidity-provisions/party/{party}/market/{market}`
 
-2. Alternatively, you can use the `vegatools` command line tool to view the details about the liquidity providers for a given market. The repo for this tool can be found here: `https://github.com/vegaprotocol/vegatools`
+2. Using the `vegatools` command line tool to view the details about the liquidity providers for a given market. 
+
+[Vega Tools repo](https://github.com/vegaprotocol/vegatools): Try the liquidity commitment tool, under the `liquiditycommitment` folder. Check the `readme` file for how to set up the Vega Tools.  
 
 To see the current liquidity commitments for a market on testnet, you can use this command line:
 
