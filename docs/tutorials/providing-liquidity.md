@@ -38,7 +38,7 @@ Inside the scripts root folder there is a credentials file that must be customis
 
 For more information about running the scripts, including the tools or applications required for these scripts to work, please see the **[README.md](https://github.com/vegaprotocol/sample-api-scripts/#readme)** in the root of the repository.
 
-:::hint
+:::tip
 Once you clone the repository, you'll find the script files on your computer by searching for `sample-api-scripts`. You'll need to edit the script files using a text or code editor, with the values you want for your liquidity provision, including the market ID and commitment details.
 :::
 
