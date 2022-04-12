@@ -176,7 +176,7 @@ As with the consensus validators, ersatz validators are defined based on how muc
 
 Ersatz validators, and the tokenholders who stake them, receive a share of rewards. The rewards for ersatz validators are calculated and penalised in the same way as consensus validators, except scaled down. How much they are scaled is based on the network parameter `network.validators.ersatz.rewardFactor`.
 
-### How ersatz validators are chosen
+### How standby validators are chosen
 If there are free slots for ersatz validators, and there are nodes that have submitted the transaction to join (and satisfy all joining conditions)[link to becoming a validator], they are added as ersatz validators in the next epoch. 
 
 If a node that submits the transaction to join has a higher score than the lowest scoring ersatz validator (scaled up by the incumbent factor), then it will become an ersatz validator and the lowest scoring ersatz validator is removed from the standby set.
@@ -185,14 +185,14 @@ As the nodes vying for an ersatz spot will not have a performance record, their 
 
 Note: An inactive node that's proposing to become a validator will have a performance score of 0 and will thus be automatically excluded, regardless of their stake.
 
-### Moving from ersatz to consensus validator
+### Moving from standby to consensus validator
 An ersatz validator that wants to be in line for promotion to become a consensus validator needs to do the following: 
 
 1. Run a non-validating node
 2. Have enough self-stake, (as defined by the network parameter `reward.staking.delegation.minimumValidatorStake`) 
 3. Forward the relevant Ethereum events
 
-### Validator node performance
+## Validator node performance
 A validating node’s performance is calculated based on three factors: their ranking - whether they are consensus or ersatz validators, their voting power based on their performance - which defines their performance score, and their stake - which defines their validator score.
 
 ### Performance score: Consensus validators
@@ -207,7 +207,7 @@ let `t` be the total voting power in the previous epoch
 let expected = `v*b/t` the number of blocks the validator is expected to propose. 
 Then `validator_performance = max(0.05, min((p/expected, 1))`
 
-### Performance score: Candidate and ersatz validators
+### Performance score: Standby validators
 For validator candidates that have submitted a transaction to become consensus validator nodes, the performance score is defined as follows:
 
 During each epoch, and every 1000 blocks, the candidate validator node is to send a hash of block number ‘b’ separately signed by the three necessary keys and submitted. The network will verify this to confirm that the validator owns the keys. 
@@ -297,7 +297,7 @@ At the end of each epoch, the Vega network will calculate the unnormalised valid
 Vega sorts all current consensus validators from the highest performance score to the lowest. All of those who submit a transaction expressing intent to be a validator are then sorted by their validator score, highest to lowest.
 
 * If there are already empty consensus validator slots, then the non-consensus validators who have the top scores are moved in to be consensus validators, starting in the next epoch.
-* If  a potential validator has a higher score than the lowest incumbent consensus validator, then in the next epoch the higher-scoring validator becomes a consensus validator, and the lowest scoring incumbent becomes an ersatz validator.
+* If a potential validator has a higher score than the lowest incumbent consensus validator, then in the next epoch the higher-scoring validator becomes a consensus validator, and the lowest scoring incumbent becomes an ersatz validator.
 * If two validators have the same performance score, then the network places higher the one who's been validator for longer, and if two validators who joined at the same time have the same score, the priority goes to the one who submitted the transaction to become validator first.
 
 ## Network life
