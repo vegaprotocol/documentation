@@ -11,11 +11,11 @@ Read more: [How Vega bridges to Ethereum](/docs/concepts/vega-chain/#bridges-use
 ## Delegated proof of stake
 Vega runs on a delegated proof of stake blockchain. 
 
-Validator nodes run the Vega network, and they decide on the validity of the blocks containing the network's transactions and thus execute those transactions. The validators who run validator nodes are required to own a minimum amount of VEGA tokens that they delegate to themselves.
+Validating nodes run the Vega network, and they decide on the validity of the blocks containing the network's transactions and thus execute those transactions. The validators who run validating nodes are required to own a minimum amount of VEGA tokens that they delegate to themselves.
 
-Read more: [Validator nodes](/docs/concepts/vega-chain#validator-nodes)
+Read more: [Validating nodes](/docs/concepts/vega-chain#validating-nodes)
 
-**Participants who hold a balance of VEGA, the governance asset, can use their tokens to nominate validator nodes.** This is done by associating those tokens to a Vega key to use as stake, and then nominating one or more validators they trust to help secure the network. Nominating validators loans the consensus voting weight of the VEGA tokens to endorse a validator's trustworthiness. 
+**Participants who hold a balance of VEGA, the governance asset, can use their tokens to nominate validating nodes.** This is done by associating those tokens to a Vega key to use as stake, and then nominating one or more validators they trust to help secure the network. Nominating validators loans the consensus voting weight of the VEGA tokens to endorse a validator's trustworthiness. 
 
 Tokens, in addition to their use for nominating validators, also grant tokenholder voting rights on governance actions. If a token is delegated, its governance voting rights stay with the tokenholder and are not transferred to any validators that the tokenholder nominates.
 
@@ -143,60 +143,64 @@ Read more: [Risks of over-staked validators](/docs/concepts/vega-chain#too-much-
 :::
 
 ### Penalties
-Validator nodes that don't meet the requirements or prove to be bad actors will have rewards withheld, and a vaildator's nominators may also receive fewer (or no) rewards. 
+Validating nodes that don't meet the requirements or prove to be bad actors will have rewards withheld, and a vaildator's nominators may also receive fewer (or no) rewards. 
 
 There is no token slashing, i.e., a tokenholder cannot lose their tokens through any actions of a validator.
 
-Read more: [How a validator node's performance is determined](/docs/concepts/vega-chain#validator-node-performance)
+Read more: [How a validating node's performance is determined](/docs/concepts/vega-chain#validating-node-performance)
 
-## Validator nodes
+## Validating nodes
 The Vega network is operated by a number of independent validators, who each run a node.
 
-There are two types of validator nodes: consensus validators and ersatz validators.
+There are two types of validating nodes: consensus validators and standby validators.
 
-## Consensus validator nodes
-Consensus validator nodes are responsible for agreeing on the order of transactions and creating new blocks so that all nodes can agree on the state of the network.
+## Consensus validating nodes
+Consensus validating nodes are responsible for agreeing on the order of transactions and creating new blocks so that all nodes can agree on the state of the network.
 
 They receive rewards based on having enough (but not too much) self-stake, as well as how many tokenholders nominate them. The tokenholders who nominate them also receive a cut of the rewards.
 
-If a consensus validator's stake or performance is subpar, their validator score will be lowered, and that validator's node will be chosen less frequently to propose a block, because Vega feeds the voting power of each validator node to the Tendermint consensus algorithm.
+If a consensus validator's stake or performance is subpar, their validator score will be lowered, and that validator's node will be chosen less frequently to propose a block, because Vega feeds the voting power of each validating node to the Tendermint consensus algorithm.
 
 This can also affect the rewards they and their nominators receive.
-If a consensus validator node stops validating, or performs poorly, then a standby validator can replace it.
+If a consensus validating node stops validating, or performs poorly, then a standby validator can replace it.
 
 ### How consensus validators are chosen
 Consensus validators are chosen based on a range of variables, including the validator scores, and the number of available slots. If there are no empty slots, at most one validator can be changed per epoch.
 
-If an ersatz validator has a better overall performance than an existing consensus validator, then an ersatz validator can be promoted to replace a consensus validator.
+If a standby validator has a better overall performance than an existing consensus validator, then a standby validator can be promoted to replace a consensus validator.
 
-## Ersatz (standby) validators
-Ersatz validators do not contribute to the chain, but are set up to join the consensus validator set if an existing validator drops off. As they don’t participate in consensus, they don’t need to be registered with a multisig contract.
+## Standby validators
+Standby (also called ersatz) validators do not contribute to the chain, but are set up to join the consensus validator set if an existing validator drops off. As they don’t participate in consensus, they don’t need to be registered with a multisig contract.
 
-As with the consensus validators, ersatz validators are defined based on how much self-stake and nominated stake they have.
+As with the consensus validators, standby validators are defined based on how much self-stake and nominated stake they have.
 
-Ersatz validators, and the tokenholders who stake them, receive a share of rewards. The rewards for ersatz validators are calculated and penalised in the same way as consensus validators, except scaled down. How much they are scaled is based on the network parameter `network.validators.ersatz.rewardFactor`.
+Standby validators, and the tokenholders who stake them, receive a share of rewards. The rewards for standby validators are calculated and penalised in the same way as consensus validators, except scaled down. How much they are scaled is based on the network parameter `network.validators.ersatz.rewardFactor`.
 
 ### How standby validators are chosen
-If there are free slots for ersatz validators, and there are nodes that have submitted the transaction to join (and satisfy all joining conditions)[link to becoming a validator], they are added as ersatz validators in the next epoch. 
+If there are free slots for one or more standby validators, and there are nodes that have submitted the transaction to join (and satisfy all joining conditions)[link to becoming a validator details], they are added as standby validators in the next epoch. 
 
-If a node that submits the transaction to join has a higher score than the lowest scoring ersatz validator (scaled up by the incumbent factor), then it will become an ersatz validator and the lowest scoring ersatz validator is removed from the standby set.
+If a node that submits the transaction to join has a higher score than the lowest scoring standby validator (scaled up by the incumbent factor), then it will become a standby validator and the lowest scoring standby validator is removed from the standby set.
 
-As the nodes vying for an ersatz spot will not have a performance record, their performance score is calculated as the average of the performance scores of all ersatz validators.
+As the nodes vying for a standby spot will not have a performance record, their performance score is calculated as the average of the performance scores of all standby validators.
 
 Note: An inactive node that's proposing to become a validator will have a performance score of 0 and will thus be automatically excluded, regardless of their stake.
 
 ### Moving from standby to consensus validator
-An ersatz validator that wants to be in line for promotion to become a consensus validator needs to do the following: 
+A standby validator that wants to be in line for promotion to become a consensus validator needs to do the following: 
 
 1. Run a non-validating node
 2. Have enough self-stake, (as defined by the network parameter `reward.staking.delegation.minimumValidatorStake`) 
 3. Forward the relevant Ethereum events
 
-## Validator node performance
-A validating node’s performance is calculated based on three factors: their ranking - whether they are consensus or ersatz validators, their voting power based on their performance - which defines their performance score, and their stake - which defines their validator score.
+## Validating node performance
+A validating node’s performance is calculated based on three factors:
+
+* Ranking, whether it is a consensus or standby validator
+* Voting power based on the performance, which defines the performance score
+* Stake, which defines the validator score
 
 ### Performance score: Consensus validators
-For each block, the proposer is selected deterministically and is roughly proportional to the voting power of each consensus validator.
+For each block, the proposer is selected deterministically and the number of times each consensus validator is selected is roughly proportional to their voting power.
 
 A validator’s performance is calculated as follows:
 
@@ -208,24 +212,22 @@ let expected = `v*b/t` the number of blocks the validator is expected to propose
 Then `validator_performance = max(0.05, min((p/expected, 1))`
 
 ### Performance score: Standby validators
-For validator candidates that have submitted a transaction to become consensus validator nodes, the performance score is defined as follows:
+The performance score for *new* standby validators is set to 0. The performance score of a standby validator is calculated based on them successfully submitting transactions.
 
-During each epoch, and every 1000 blocks, the candidate validator node is to send a hash of block number ‘b’ separately signed by the three necessary keys and submitted. The network will verify this to confirm that the validator owns the keys. 
+Validator candidates that have submitted a transaction to become consensus validating nodes will need to send a hash of block number `b`, separately signed by the three required keys and submitted, during each epoch and every 1000 blocks. The message with the signed block hash must be in blocks `b+1000` to `b+1010` to count as successfully delivered.
 
-‘b` is defined as such: The first time sending the hash, `b` is the block number in which the joining transaction was included. 
+The network will verify this to confirm that the validator owns the keys. 
 
-Then it's incremented by 1000. 
+`b` is defined as: 
+* The first time, it is the block number in which the joining transaction was included
+* Subsequent times, it is incremented by 1000
 
-The network will keep track of the last 10 times this was supposed to happen, and the performance score is the number of times this has been verified divided by 10.
-
-The message with the signed block hash must be in blocks `b+1000` to `b+1010` to count as successfully delivered.
-
-Initially the performance score for candidate validators is set to 0. Both consensus validators and candidate validators should sign and send those messages, but it only impacts the scores of the candidate validators.
+The network will keep track of the last 10 times a standby validator was meant to submit the transactions, and the performance score is the number of times this has been verified, divided by 10.
 
 ### Validator score
-The validator score is calculated for each epoch, based on how much stake a validator has as well as other factors including the total number of validators and the optimal stake. 
+The validator score is calculated for each epoch, based on how much stake a validator has as well as other factors including the total number of validators and the optimal stake. This is true for both consensus and standby validators. 
 
-If, at the end of an epoch, a validator does not have sufficient stake self-nominated or has overall too much stake, then their validator score will be lowered, which can impact the rewards a validator and its nominators receive. 
+If, at the end of an epoch, a validator does not have sufficient stake self-nominated or has overall too much stake, then their validator score will be lowered. This can impact the rewards a validator and its nominators receive. 
 
 Below are the two factors that can lower a validator's score, and why. 
 
@@ -233,11 +235,11 @@ Below are the two factors that can lower a validator's score, and why.
 Self-nominated stake refers to the amount of VEGA a validator has staked to their own node.  The minimum stake amount required is defined by the network parameter `reward.staking.delegation.minimumValidatorStake`. Not having enough self-nominated stake can have an impact on rewards. 
 
 * **Network risk**: A validator who has not committed enough stake to meet the minimum is a risk to the network because they may not be invested in keeping the network running
-* **Validator score**: If a validator does not meet the `reward.staking.delegation.minimumValidatorStake`, the validator is given a lower score, which can affect their rewards
-* **Reward impact**: A validator with too little self-stake forfeits their share of the rewards for each epoch they are below the threshold, as do the tokenholders who stake to them. 
+* **Validator score**: If a validator does not meet the `reward.staking.delegation.minimumValidatorStake`, the validator is given a lower score
+* **Reward impact**: A validator with too little self-stake forfeits their share of the rewards for each epoch they are below the threshold, and tokenholders who nominated that validator **will not receive rewards** for every epoch the node is below the minimum
 
 #### Too much stake
-An over-staked validator has more stake than is ideal for a healthy and functioning network. Staking to an over-staked node can affect your rewards. 
+An over-staked validator has more stake than is ideal for a healthy and functioning network. Staking to an over-staked node can affect the rewards a tokenholder receives. 
 
 * **Network risk**: The risk of an over-staked node is that it could have too much consensus voting power
 * **Validator score**: A node that is over-staked is given a lower validator score - the more over-staked it is, the lower the score 
@@ -297,7 +299,7 @@ At the end of each epoch, the Vega network will calculate the unnormalised valid
 Vega sorts all current consensus validators from the highest performance score to the lowest. All of those who submit a transaction expressing intent to be a validator are then sorted by their validator score, highest to lowest.
 
 * If there are already empty consensus validator slots, then the non-consensus validators who have the top scores are moved in to be consensus validators, starting in the next epoch.
-* If a potential validator has a higher score than the lowest incumbent consensus validator, then in the next epoch the higher-scoring validator becomes a consensus validator, and the lowest scoring incumbent becomes an ersatz validator.
+* If a potential validator has a higher score than the lowest incumbent consensus validator, then in the next epoch the higher-scoring validator becomes a consensus validator, and the lowest scoring incumbent becomes a standby validator.
 * If two validators have the same performance score, then the network places higher the one who's been validator for longer, and if two validators who joined at the same time have the same score, the priority goes to the one who submitted the transaction to become validator first.
 
 ## Network life
@@ -316,7 +318,7 @@ Checkpoints allow the chain to be restarted from a previously valid state in the
 
 Those checkpoints happen at defined intervals, and on every deposit and withdrawal request. 
 
-1. Each validator node calculates the hash of the checkpoint file and then sends this through consensus to ensure all the nodes in the network agree on the state. 
+1. Each validating node calculates the hash of the checkpoint file and then sends this through consensus to ensure all the nodes in the network agree on the state. 
 2. If/when a network is taken down, the checkpoint file's hash is added to the genesis block. 
 3. At network start-up, a validator submits a restore transaction with the checkpoint file. 
 4. All other validators verify the checkpoint against their own, restore the state and then allow other transactions on the network. 
