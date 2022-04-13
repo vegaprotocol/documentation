@@ -7,7 +7,7 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-To download Vega Wallet and create your wallet, follow the step-by-step instructions below. These instructions cover version 0.14, the latest release. 
+To download Vega Wallet and create your wallet using versions 0.13, 0.12, or 0.11, follow the step-by-step instructions below. You can also refer to [documentation for 0.10.0 or earlier](/docs/tools/vega-wallet/cli-wallet/old-versions/v0-10-0/create-wallet-v0-10) if you need it.
 
 This software a work-in-progress and is frequently updated. 
 
@@ -16,14 +16,14 @@ Note: If you are looking for instructions for connecting your hardware wallet to
 Use the following instructions in command line. Below, you'll see commands in the code blocks for each operating system. Copy those instructions and paste them into your command line interface.
 
 :::caution
-You must use Vega Wallet version 0.9.2 or newer to connect to the Vega mainnet. We recommend always using the latest released version of Vega Wallet. 
+You must to use Vega Wallet version 0.9.2 or newer to connect to Vega Mainnet. We recommend always using the latest released version of Vega Wallet. 
 ::: 
 
 :::info 
 In your command line interface, you can view a list of available commands by running `./vegawallet -h` on MacOS and Linux, or `vegawallet -h` on Windows. Help is also available for every command, for example: `vegawallet create -h` will provide information about the `create` command.
 :::
 
-## 1. Install and run Vega Wallet
+## 1. Install and run latest Vega Wallet version (0.12)
 
 ### Download file
 
@@ -274,7 +274,7 @@ vegawallet service run --network "NETWORK_NAME"
 To terminate the process, if you want to run other commands in Vega Wallet for example, use `ctrl+c`.
 :::
 
-## 4b. Connect to Vega apps through the wallet 
+## 4a. Connect to Vega apps through the wallet 
 
 In some cases, you'll need to run a Vega app via the wallet service, instead of directly in your browser. 
 
@@ -326,13 +326,3 @@ vegawallet service run --network "NETWORK_NAME" --with-console
 ```
 </TabItem>
 </Tabs>
-
-## 5. Approve transactions
-
-You will need to use your wallet to approve any transactions that you create for the Vega network. You might create those transactions through the token dApp or when using the APIs, for example. 
-
-When a transaction is submitted, you will receive a prompt asking if you want to approve the transaction. 
-
-Choose `y` to approve or `n` to reject the transaction.
-
-Note: You can use the flag `--automatic-consent` to approve all transactions that are submitted while your wallet is running. Once you terminate the wallet process, that consent is withdrawn.
