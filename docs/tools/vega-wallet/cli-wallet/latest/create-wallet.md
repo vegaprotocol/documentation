@@ -272,7 +272,7 @@ vegawallet service run --network "NETWORK_NAME"
 To terminate the process, if you want to run other commands in Vega Wallet for example, use `ctrl+c`.
 :::
 
-## 4b. Connect to Vega apps through the wallet 
+## 4a. Connect to Vega apps through the wallet 
 
 In some cases, you'll need to run a Vega app via the wallet service, instead of directly in your browser. 
 
@@ -335,7 +335,7 @@ Choose `y` to approve or `n` to reject the transaction.
 
 ### Pre-approve transactions
 
-Alternatively, you can pre-approve all transactions that are created while the wallet is running with the auto-consent flag: 
+Alternatively, you can automatically approve all transactions that are created, by skipping the review, while the wallet is running with the auto-consent flag: 
 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">

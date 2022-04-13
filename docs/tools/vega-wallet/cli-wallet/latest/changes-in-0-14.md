@@ -12,7 +12,7 @@ From version 0.14 onwards, you will need to approve transactions with your Vega 
 **Below, find an explanation of changes between the versions.**
 
 :::info
-It's recommended that you keep your wallet app updated to the latest version. 
+It's highly recommended that you keep your wallet app updated to the latest version. 
 :::
 
 ## Submitting a transaction
@@ -26,5 +26,5 @@ For every transaction submitted, the wallet will prompt with details of the tran
 ![Prompt for approving a transaction on testnet](/img/software-prompt-images/wallet-approve-transaction-prompt.png)
 
 :::info
-When starting the wallet service, can use the flag `--automatic-consent` to approve all transactions that are submitted while your wallet is running. Once you terminate the wallet process, that consent is withdrawn. 
+When starting the wallet service, you can use the flag `--automatic-consent` to automatically approve all transactions that are submitted, meaning skipping the review. Once you terminate the wallet process, that consent is withdrawn and you'll need to re-enable it each time.
 :::
