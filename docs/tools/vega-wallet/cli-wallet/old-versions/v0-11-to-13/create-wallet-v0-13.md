@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Create a wallet
+title: Vega Wallet versions 0.11-0.13
 hide_title: false
 ---
 

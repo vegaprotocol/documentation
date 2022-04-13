@@ -26,5 +26,5 @@ For every transaction submitted, the wallet will prompt with details of the tran
 ![Prompt for approving a transaction on testnet](/img/software-prompt-images/wallet-approve-transaction-prompt.png)
 
 :::info
-You can use the flag `--automatic-consent` to approve all transactions that are submitted while your wallet is running. Once you terminate the wallet process, that consent is withdrawn. 
+When starting the wallet service, can use the flag `--automatic-consent` to approve all transactions that are submitted while your wallet is running. Once you terminate the wallet process, that consent is withdrawn. 
 :::

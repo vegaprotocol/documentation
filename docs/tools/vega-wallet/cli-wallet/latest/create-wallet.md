@@ -7,9 +7,7 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-To download Vega Wallet and create your wallet, follow the step-by-step instructions below. These instructions cover version 0.14, the latest release. 
-
-This software a work-in-progress and is frequently updated. 
+To download Vega Wallet and create your wallet, follow the step-by-step instructions below. This software a work-in-progress and is frequently updated. These instructions cover version 0.14, the latest release.
 
 Note: If you are looking for instructions for connecting your hardware wallet to MetaMask, see [MetaMask's guide](https://metamask.zendesk.com/hc/en-us/articles/360020394612-How-to-connect-a-Trezor-or-Ledger-Hardware-Wallet).
 
@@ -335,4 +333,28 @@ When a transaction is submitted, you will receive a prompt asking if you want to
 
 Choose `y` to approve or `n` to reject the transaction.
 
-Note: You can use the flag `--automatic-consent` to approve all transactions that are submitted while your wallet is running. Once you terminate the wallet process, that consent is withdrawn.
+### Pre-approve transactions
+
+Alternatively, you can pre-approve all transactions that are created while the wallet is running with the auto-consent flag: 
+
+<Tabs groupId="operating-systems">
+<TabItem value="windows" label="Windows">
+
+```bash
+vegawallet service run --network "NETWORK_NAME" --automatic-consent
+```
+</TabItem>
+<TabItem value="mac" label="MacOS">
+
+```bash
+./vegawallet service run --network "NETWORK_NAME" --automatic-consent
+```
+
+</TabItem>
+<TabItem value="linux" label="Linux">
+
+```bash
+./vegawallet service run --network "NETWORK_NAME" --automatic-consent
+```
+</TabItem>
+</Tabs>
