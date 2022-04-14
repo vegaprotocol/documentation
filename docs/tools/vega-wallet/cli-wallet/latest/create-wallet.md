@@ -14,7 +14,7 @@ Note: If you are looking for instructions for connecting your hardware wallet to
 Use the following instructions in command line. Below, you'll see commands in the code blocks for each operating system. Copy those instructions and paste them into your command line interface.
 
 :::caution
-To use Vega mainnet on [version 0.47.6](https://explorer.vega.xyz/), we recommend using wallet version 0.13.1.
+To use Vega mainnet on [version 0.47.6](https://explorer.vega.xyz/), we recommend using wallet [version 0.13.1](https://github.com/vegaprotocol/vegawallet/releases/tag/v0.13.1).
 ::: 
 
 :::info 
