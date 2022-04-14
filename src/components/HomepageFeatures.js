@@ -27,12 +27,12 @@ const FeatureList = [
   },
   {
     title: "Tools for using Vega",
-    href: "/docs/tools/overview",
+    href: "/docs/tools",
     description: (
       <>
         Several tools are available for interacting with the functionality Vega
         provides. See tools available for restricted mainnet under{" "}
-        <a href="/docs/tools/overview">tools</a>.
+        <a href="/docs/tools">tools</a>.
       </>
     ),
   },
