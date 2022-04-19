@@ -73,4 +73,3 @@ yarn run build
 yarn run prettier
 
 rm schema.graphql
-rm proto.json
