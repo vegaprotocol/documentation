@@ -71,6 +71,5 @@ find . -type f -name '*.mdx' -exec sed -i -E 's/hide_title: true/hide_title: fal
 
 yarn run build
 yarn run prettier
-yarn run generate-proposals > docs/tutorials/proposals.md
 
 rm schema.graphql

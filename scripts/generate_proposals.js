@@ -7,7 +7,9 @@ const { newMarket } = require('./libGenerateProposals/newMarket')
 const { newFreeform } = require('./libGenerateProposals/newFreeform')
 const { newAsset } = require('./libGenerateProposals/newAsset')
 const { updateNetworkParameter } = require('./libGenerateProposals/updateNetworkParameter');
+const { writeFileSync } = require('fs');
 
+let buffer = '';
 
 if (!process.env.VEGA_VERSION) {
   console.error('Please set an environment variable VEGA_VERSION (e.g. VEGA_VERSION=v0.50.1')
@@ -47,6 +49,10 @@ function daysInTheFuture(daysToAdd) {
   return new addDays(Date.now(), daysToAdd).getTime()
 }
 
+function log(line) {
+  buffer += `${line || ''}\n` 
+}
+
 function newProposal(changesAndDocs, skeleton, type) {
   assert.ok(skeleton.properties.closingTimestamp);
   assert.ok(skeleton.properties.enactmentTimestamp);
@@ -58,7 +64,7 @@ function newProposal(changesAndDocs, skeleton, type) {
   // Freeform proposals don't get enacted, so they can't have this
   if (type !== 'newFreeform'){
     proposal.enactmentTimestamp = daysInTheFuture(20)
- proposal[inspect.custom]= () => {
+    proposal[inspect.custom]= () => {
    const splitClosingTitle = skeleton.properties.closingTimestamp.title.split('\n')
    const splitEnactmentTitle = skeleton.properties.enactmentTimestamp.title.split('\n')
    return `{
@@ -81,33 +87,30 @@ function newProposal(changesAndDocs, skeleton, type) {
     ${type}:  ${inspect(proposal[type], { depth: 20 })}
 }`
  }
- 
   }
 
   proposal[type] = changesAndDocs.result
-
-  console.log(`\r\n## ${nameByType[type]}`);
-  console.log(`<Tabs groupId="${type}">`)
-  console.log(`<TabItem value="annotated" label="Annotated example">`)
-  console.log()
-  console.log('```javascript');
-  console.log(annotator(proposal))
-  console.log('```');
-  console.log(`</TabItem>`)
-  console.log(`<TabItem value="json" label="JSON example">`)
-  console.log()
-  console.log('```json');
-  console.log(JSON.stringify(proposal, null, 2))
-  console.log('```');
-  console.log(`</TabItem>`)
-  console.log(`<TabItem value="cmd" label="Command line example">`)
-  console.log()
-  console.log('```bash');
-  console.log(`vegawallet command send --wallet your_username --pubkey your_key --network mainnet '${JSON.stringify({"proposalSubmission": { reference: `test-${type}`, terms: proposal }})}'`);
-  console.log('```');
-  console.log(`</TabItem>`)
-  console.log(`</Tabs>`)
-  console.groupEnd();
+  log(`\r\n## ${nameByType[type]}`);
+  log(`<Tabs groupId="${type}">`)
+  log(`<TabItem value="annotated" label="Annotated example">`)
+  log()
+  log('```javascript');
+  log(annotator(proposal))
+  log('```');
+  log(`</TabItem>`)
+  log(`<TabItem value="json" label="JSON example">`)
+  log()
+  log('```json');
+  log(JSON.stringify(proposal, null, 2))
+  log('```');
+  log(`</TabItem>`)
+  log(`<TabItem value="cmd" label="Command line example">`)
+  log()
+  log('```bash');
+  log(`vegawallet command send --wallet your_username --pubkey your_key --network mainnet '${JSON.stringify({"proposalSubmission": { reference: `test-${type}`, terms: proposal }})}'`);
+  log('```');
+  log(`</TabItem>`)
+  log(`</Tabs>`)
 }
 
 const ProposalGenerator = new Map([
@@ -117,13 +120,25 @@ const ProposalGenerator = new Map([
   ['newMarket', newMarket]
 ])
 
+function printMarkdownHeader(){
+  log('---')
+  log('title: Proposals by example')
+  log('hide_title: false')
+  log('keywords:');
+  log('- proposal')
+  log('- governance')
+  log('- ' + Object.keys(nameByType).join('\n- '))
+  log('---')
+  log(`import Tabs from '@theme/Tabs';`)
+  log(`import TabItem from '@theme/TabItem';`)
+  log()
+}
+
 
 function parse(api) {
-  console.log(`import Tabs from '@theme/Tabs';`)
-  console.log(`import TabItem from '@theme/TabItem';`)
-  console.log()
-
   const proposalTypes = omit(api.definitions.vegaProposalTerms.properties, notProposalTypes )
+
+  printMarkdownHeader();
 
   Object.keys(proposalTypes).forEach(type => {
       if ( excludeUnimplementedTypes.indexOf(type) === -1) {
@@ -135,8 +150,17 @@ function parse(api) {
         }
      }
   })
+
   const changes = ProposalGenerator.get('newMarket')(proposalTypes['newMarket'])
   newProposal(changes, api.definitions.vegaProposalTerms, 'newMarket') 
 }
 
-SwaggerParser.dereference(url).then(parse);
+function output() {
+  if (process.argv[2]) {
+    writeFileSync(process.argv[2], buffer)
+  } else {
+    console.log(buffer);
+  }
+}
+
+SwaggerParser.dereference(url).then(parse).then(output);
