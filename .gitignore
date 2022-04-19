@@ -33,3 +33,4 @@ yarn-error.log*
 
 # Do not commit the huge proto json file pulled from the api repo.
 /proto.json
+/schema.grapqhl
