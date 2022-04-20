@@ -3,7 +3,9 @@ title: Providing liquidity using APIs
 hide_title: false
 ---
 
-In this tutorial, you'll learn how to build a liquidity commitment order to provide liquidity on a live market created with Vega. You'll need to actively manage your liquidity commitment, so you'll also learn how to amend your order, as well as cancel it. 
+In this tutorial, you'll learn how to build a liquidity commitment order to provide liquidity on a live market created with Vega. You'll need to actively manage your liquidity commitment, so you'll also learn how to amend your order, as well as cancel it.
+
+It also includes information on how to set up the sample scripts that the tutorial is based on. The scripts are available in Python and Bash, but the tutorial uses Python.
 
 If you proposed a market that was enacted and want to change your liquidity provision shape, skip down to **[amending a liquidity commitment](/docs/tutorials/providing-liquidity#amending-a-liquidity-commitment)**.
 
@@ -36,7 +38,7 @@ For example, a liquidity provider plans to commit the approximate equivalent of 
 ### Setting up the helper scripts
 Inside the scripts root folder there is a credentials file that must be customised with your wallet credentials, and can also be customised to interact with a specific network.
 
-For more information about running the scripts, including the tools or applications required for these scripts to work, please see the **[README.md](https://github.com/vegaprotocol/sample-api-scripts/#readme)** in the root of the repository.
+For more information about running the scripts, including the tools or applications required for these scripts to work, please see the **[README](https://github.com/vegaprotocol/sample-api-scripts/#readme)** in the root of the repository.
 
 :::tip
 Once you clone the repository, you'll find the script files on your computer by searching for `sample-api-scripts`. You'll need to edit the script files using a text or code editor, with the values you want for your liquidity provision, including the market ID and commitment details.
@@ -72,7 +74,7 @@ There are two ways to provide liquidity to a market: supplying the bond amount a
 ### API script
 In the [`sample-api-scripts`](https://github.com/vegaprotocol/sample-api-scripts/) repo, there is a folder named [`submit-create-liquidity-provision`](https://github.com/vegaprotocol/sample-api-scripts/tree/master/submit-create-liquidity-provision), which has a set of scripts to create a new liquidity provision.
 
-You can see in the liquidity commitment python script that the most important part is the description of the commitment amount, which includes the offset and proportion for each shape:
+You can see in the liquidity commitment Python script that the most important part is the description of the commitment amount, which includes the offset and proportion for each shape:
 
 ```python
 submission = {
@@ -190,19 +192,21 @@ submission = {
 ```
 
 ## Viewing existing liquidity provisions
-You can view the list of participants supplying liquidity to market in two easy ways: using the endpoint or a Vega Tool. 
+You can view the list of participants supplying liquidity to a market in two easy ways: using the endpoint or a Vega Tool. 
 
 1. Querying the REST endpoint for a node given the partyID (public key) and marketID:
 
 `https://<node address>/liquidity-provisions/party/{party}/market/{market}`
 
-2. Using the `vegatools` command line tool to view the details about the liquidity providers for a given market. 
+2. Using the `vegatools` command line tool to view the liquidity providers for a given market. 
 
-[Vega Tools repo](https://github.com/vegaprotocol/vegatools): Try the liquidity commitment tool, under the `liquiditycommitment` folder. Check the `readme` file for how to set up the Vega Tools.  
+[Vega Tools repo](https://github.com/vegaprotocol/vegatools): Try the liquidity commitment tool, under the `liquiditycommitment` folder. Check the **[README.md](https://github.com/vegaprotocol/vegatools#vegatools)** file for how to set up the Vega Tools.  
 
-To see the current liquidity commitments for a market on testnet, you can use this command line:
+To see the current liquidity commitments for a market on testnet, use this command line:
 
-`vegatools liquiditycommitment -a=n06.testnet.vega.xyz:3007`
+```bash
+vegatools liquiditycommitment -a=n06.testnet.vega.xyz:3007
+```
 
 ![Vega Tool for liquidity commitment](/img/tutorials/vegatools-liquidity-commitment.png)
 
