@@ -296,7 +296,7 @@ A node operator that wants to express interest in running a validating node for 
 4. Wait for others to delegate to them. It would be worth announcing to the community that you have started a node and are looking for stake)
 
 ### How candidate validators are ranked
-At the end of each epoch, the Vega network will calculate the unnormalised validator score (link). The consensus validators during that epoch will have their validator scores scaled by (1 + `network.validators.incumbentBonus`). This number combines self-stake and nominated stake with the performance score (which measures basic node performance).
+At the end of each epoch, the Vega network will calculate validator score. The consensus validators during that epoch will have their validator scores scaled by (1 + `network.validators.incumbentBonus`). This number combines self-stake and nominated stake with the performance score (which measures basic node performance).
 
 Vega sorts all current consensus validators from the highest performance score to the lowest. All of those who submit a transaction expressing intent to be a validator are then sorted by their validator score, highest to lowest.
 
