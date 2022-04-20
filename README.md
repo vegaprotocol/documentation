@@ -11,6 +11,40 @@ If you have any questions, drop them into Vega's [Discord](https://vega.xyz/disc
 
 This website is built using [Docusaurus 2](https://docusaurus.io/).
 
+## Requirements
+For the scripts to work there must be an up to date version of `node` installed along with `yarn`.
+
+The best way to get the correct version of node is using the `nvm` utility which can be installed from these instructions:
+
+`https://github.com/nvm-sh/nvm#installing-and-updating`
+
+Once nvm is installed (check with `nvm --version`) you can run the following command from inside the root of the documentation folder to download and install the correct version of node required by the script:
+
+```
+> nvm install
+> npm --version
+```
+
+`Yarn` can be install by running:
+
+```
+> npm install -g yarn
+> yarn --version
+```
+
+The libraries needed by yarn can be installed by:
+
+```
+> yarn install
+```
+
+Lastly you need to have Python3 installed, you can check if you have by running:
+
+```
+> python3 --version
+```
+
+
 ## Installation and local development
 
 Edit `scripts/build.sh` and update `vega_api_branch` to a new branch/tag as necessary.
