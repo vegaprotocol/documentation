@@ -177,13 +177,15 @@ As with the consensus validators, standby validators are defined based on how mu
 Standby validators, and the tokenholders who stake them, receive a share of rewards. The rewards for standby validators are calculated and penalised in the same way as consensus validators, except scaled down. How much they are scaled is based on the network parameter `network.validators.ersatz.rewardFactor`.
 
 ### How standby validators are chosen
-If there are free slots for one or more standby validators, and there are nodes that have submitted the transaction to join (and satisfy all joining conditions)[link to becoming a validator details], they are added as standby validators in the next epoch. 
+If there are free slots for one or more standby validators, and there are nodes that have submitted the transaction to join (and satisfy all joining conditions), they are added as standby validators in the next epoch. 
 
 If a node that submits the transaction to join has a higher score than the lowest scoring standby validator (scaled up by the incumbent factor), then it will become a standby validator and the lowest scoring standby validator is removed from the standby set.
 
 As the nodes vying for a standby spot will not have a performance record, their performance score is calculated as the average of the performance scores of all standby validators.
 
 Note: An inactive node that's proposing to become a validator will have a performance score of 0 and will thus be automatically excluded, regardless of their stake.
+
+Read more: [Becoming a validator](/docs/concepts/vega-chain#becoming-a-validator)
 
 ### Moving from standby to consensus validator
 A standby validator that wants to be in line for promotion to become a consensus validator needs to do the following: 
