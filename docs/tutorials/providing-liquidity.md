@@ -5,7 +5,7 @@ hide_title: false
 
 In this tutorial, you'll learn how to build a liquidity commitment order to provide liquidity on a live market created with Vega. You'll need to actively manage your liquidity commitment, so you'll also learn how to amend your order, as well as cancel it.
 
-It also includes information on how to set up the sample scripts that the tutorial is based on. The scripts are available in Python and Bash, but the tutorial uses Python.
+You'll also be guided on setting up the sample scripts the tutorial is based on. The scripts are available in Python and Bash, but the tutorial uses Python.
 
 If you proposed a market that was enacted and want to change your liquidity provision shape, skip down to **[amending a liquidity commitment](/docs/tutorials/providing-liquidity#amending-a-liquidity-commitment)**.
 
@@ -14,9 +14,9 @@ Supplying liquidity to a market keeps open orders resting on the order book, to 
 
 <!-- **[Fees]**: Learn more about the fee structure. -->
 
-To qualify to receive a portion of the liquidity fees, the liquidity provider must commit an amount of the market's settlement asset. The party placing the orders must have enough available collateral to meet the size of their chosen commitment amount and cover the margin required to support the orders generated from that commitment. 
+To qualify to receive a portion of the liquidity fees, the liquidity provider must commit an amount of the market's settlement asset. 
 
-Once the order is committed, the commitment amount is stored in a bond account.
+The party placing the orders must have enough available collateral to meet the size of their chosen commitment amount, and cover the margin required to support the orders generated from that commitment. Once the order is committed, the commitment amount is stored in a bond account.
 
 If orders from the liquidity shape are filled, the collateral to cover the margin comes from the party's general collateral account. 
 
@@ -32,7 +32,7 @@ There's an intrinsic relationship between position risk and margin cost when com
 
 For example, a liquidity provider plans to commit the approximate equivalent of 1 million USD to a liquidity commitment: If their position risk is low (larger offsets) then about 5-10% can be reserved for the bond. If their position risk is higher (smaller offsets), and a provider manages their positions and margin carefully, the provider would need to reserve more to commit to the bond.
 
-## Using the sample-api-scripts helper scripts
+## Using the sample helper scripts
 **[Sample API scripts](https://github.com/vegaprotocol/sample-api-scripts/README.md)**: This GitHub repository has a set of sample scripts that perform many of the basic actions you can do with the Vega protocol, including submitting, amending, and cancelling liquidity commitments. 
 
 ### Setting up the helper scripts
@@ -44,22 +44,24 @@ For more information about running the scripts, including the tools or applicati
 Once you clone the repository, you'll find the script files on your computer by searching for `sample-api-scripts`. You'll need to edit the script files using a text or code editor, with the values you want for your liquidity provision, including the market ID and commitment details.
 :::
 
-You can see a list of all markets and market IDs by running the following script. Use the market ID in your credentials file:
+#### List available markets
+See a list of all markets and market IDs by running the following script, and use the market ID in your credentials file:
 
 ```bash
 python3 get-markets-and-market-data/get-markets-and-marketdata.py
 ```
 
-
 ## Creating a liquidity commitment
-There are two ways to provide liquidity to a market: supplying the bond amount and order shape when proposing a market, or **sending a `liquidityProvisionSubmission` message** once the market is live and trading. This tutorial focuses on the second option, using Python. Note: There are also scripts available for Bash.
+There are two ways to provide liquidity to a market: supplying the bond amount and order shape when proposing a market, or **sending a `liquidityProvisionSubmission` message** once the market is live and trading. 
+
+This tutorial focuses on the second option, using Python. Note: There are also scripts available for Bash.
 
 <!-- [Market proposals]: Read about how to propose a market.-->
 
 **The liquidity provision submission must include**:
 
 * The market’s unique ID (Confirm it’s in a state that accepts liquidity commitments), denoted as `marketId`
-* Liquidity commitment amount: The amount of asset that you want to allocate to providing liquidity. The amount will be moved into a bond account during the duration of your liquidity commitment, denoted as `commitmentAmount`
+* Liquidity commitment amount: The amount of funds that you want to allocate to providing liquidity. The amount will be moved into a bond account during the duration of your liquidity commitment, denoted as `commitmentAmount`
 * Proposed liquidity fee level: The scaling factor for the fee you wish to receive when your order is matched, on a scale between 0 and 1. For example, a fee level of 0.01 would mean `0.01 * total trade amount` is charged. Denoted as `fee`
 * A set of liquidity buy and sell order shapes (denoted as `buys` and `sells`), which include:
     * Offset: How many ticks away from the reference price you want your orders to be. The tick size is the smallest decimal place the market allows for orders. There is a tradeoff between larger offsets, which have higher margin cost but less position risk, versus smaller offsets, which have smaller margin cost but more postion risk
@@ -134,6 +136,7 @@ One way you can help control your margin requirements is to change the shape of 
 ### API script
 In the below example, the shape is being changed to increase the chance that sell orders will be matched. This would help to reduce the size of a long position. The activity of the market itself will control exactly what gets filled, and the shape of your orders does not guarantee your orders will be filled.
 
+### Run the script
 To execute a liquidity provision amend, edit and run the following script from the `samples-api-scripts` repo:
 
 ```bash
@@ -175,6 +178,9 @@ If you no longer want to keep a liquidity commitment open for a market, you can 
 If there is not enough liquidity left in the market after you cancel, it will force the market into a liquidity auction where it will stay until there is enough new liquidity supplied to bring it back out into continuous trading.
 
 ### API script
+If you no longer want to commit open orders through a liquidity provision, you will need to cancel it. If there are any positions open from your liquidity orders, they will not be cancelled when you cancel your liquidity commitment. 
+
+### Run the script
 To cancel a liquidity commitment, or see how a cancellation is built, you can use the following script from the `samples-api-scripts` repo:
 
 ```bash
@@ -192,7 +198,7 @@ submission = {
 ```
 
 ## Viewing existing liquidity provisions
-You can view the list of participants supplying liquidity to a market in two easy ways: using the endpoint or a Vega Tool. 
+You can view the list of participants supplying liquidity to a market in two ways: using the endpoint or a Vega Tool. 
 
 1. Querying the REST endpoint for a node given the partyID (public key) and marketID:
 
