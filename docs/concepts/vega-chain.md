@@ -290,10 +290,10 @@ The normalised validator score number directly affects how much each validator (
 ## Becoming a validator
 A node operator that wants to express interest in running a validating node for Vega needs to do the following: 
 
-1. Start a Vega node as non-validating node (including the associated infrastructure)
+1. Start a Vega node as non-validating node, including the associated infrastructure: a system with a minimum of 4 cores, 16GB RAM, and 256GB SSD (subject  to increase in the future)
 2. Submit a transaction using their keys, announcing they want to validate, and receive a response that the network has verified key ownership (see below)
 3. Self-stake to their validator Vega key at least as much as the amount defined by the reward.staking.delegation.minimumValidatorStake network parameter
-4. Wait for others to delegate to them (It would be worth announcing to the community that you have started a node and are looking for stake)
+4. Wait for others to delegate to them. It would be worth announcing to the community that you have started a node and are looking for stake)
 
 ### How candidate validators are ranked
 At the end of each epoch, the Vega network will calculate the unnormalised validator score (link). The consensus validators during that epoch will have their validator scores scaled by (1 + `network.validators.incumbentBonus`). This number combines self-stake and nominated stake with the performance score (which measures basic node performance).
