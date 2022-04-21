@@ -1,4 +1,4 @@
-# Trading framework (?)
+# Trading framework
 The Vega protocol software is built to provide a framework for creating markets for trading financial instruments that are based on the values of their underlying assets. All markets created using the Vega protocol have been initiated and voted on by tokeholders.
 
 Participants that interact with a futures market created using Vega can submit market, limit, pegged and liquidity commitment orders. 
@@ -62,6 +62,8 @@ A market order is an instruction to buy or sell at the best available price in t
 
 ### Network order
 A network order is triggered by the Vega network to close out a distressed trader, as part of position resolution. Network orders cannot be submitted by a party.
+
+Read more: [Position resolution](/docs/concepts/trading-concepts#position-resolution)
 
 #### Times in force used in network orders
 
@@ -145,11 +147,42 @@ Pegged orders are restricted in what values can be used when they are created, t
 
 ### Batch operations on orders [WIP]
 
-## Position management and margin
-Vega's margining system implements automated cross margining. Cross margining, which means gains on one market can be released and used as margin on another, is supported between all markets. More detailed explanation on the rationale is available in [Section 6 of the protocol whitepaper](https://vega.xyz/papers/vega-protocol-whitepaper.pdf#page21).
+## Position management [WIP]
+- margin 
+
+## Market protections
+In a pseudonymous environment where counter-parties may be identified by no more than a public key, it's essential to consider the credit risk, given that the avenues available for traditional marketplaces aren't available. If a counterparty owes more in settlement than their posted collateral, there is no way to reclaim those assets.
+
+The Vega protocol has been designed with rules to detect dangerous market conditions and apply protective measures, and to constantly maintain effective collateralisation for all positions.
+
+Margin calculations take into account the probability of the liquidation value of a position falling short of the available capital. The network is also designed to frequently re-evaluate each individual's risk, and pre-emptively close positions.
+
+Some of those measures include price monitoring, liqudity monitoring, and frequent mark to market calculations.
+
+Read more: 
+* [Margin on Vega](/docs/concepts/trading-framework/#margin)
+* [Price monitoring](/docs/concepts/trading-framework/#price-monitoring)
+* [Liquidity monitoring](/docs/concepts/trading-framework/#liquidity-monitoring)
+* [Distressed traders](/docs/concepts/trading-framework/#distressed-traders)
+
+### Mark to market
+Marking to market refers to the settling of gains and losses due to changes in the market value of the underlying product. Marking to market aims to provide a realistic appraisal of of a position based on the current market conditions.
+
+If the value goes up, a trader that holds a long position receives money in their general account – equal to the underlying's change in value – from a trader that holds a short position, and conversely if the value goes down, the holder of the short position recieves money from the holder of the long position. 
+For a market created on Vega, the mark-to-market price is calculated every time the price moves. This is in contrast to traditional futures markets, for which marking to market occurs once per day. 
+
+Settlement instructions are generated based on the change in market value of the open positions of a party. When the mark price changes, the network calculates settlement cash flows for each party,  and the process is repeated each time the mark price changes until the maturity date for the market is reached.
+
+Because the margin for a market is calculated dynamically based on the market conditions, the mark price also has an effect on how much collateral is set aside for margin.
 
 ### Margin 
-The margin calculation for a new order, and the amount deducted from collateral to cover margin, is based on all the open orders. A trader will need enough margin to keep a position open, whether it goes for or against the trader. The margin calculations ensure a trader does not enter a trade that will immediately need to be closed out.
+The margin calculation for a new order, and the amount deducted from collateral to cover margin, is based on all of a trader's open orders. A trader will need enough margin to keep a position open, whether it goes for or against the trader. The margin calculations ensure a trader does not enter a trade that will immediately need to be closed out.
+
+Vega's margining system implements automated cross margining. Cross margining, which means gains on one market can be released and used as margin on another, is supported between all markets that use the same settlement asset. 
+
+:::note Further reading
+**[Automated cross margining](https://vega.xyz/papers/vega-protocol-whitepaper.pdf#page21)** - Section 6 of the protocol whitepaper.
+:::
 
 ### Basic margin calculations
 Vega calculates four margin levels:
@@ -161,22 +194,31 @@ Vega calculates four margin levels:
   * m<sup>release</sup> := α<sup>release</sup> * m<sup>maintenance</sup>, where α<sup>release</sup> is a constant and α<sup>release</sup> > α<sup>initial</sup>.
 * **Maintenance margin**: This is implied by the risk model and corresponds to the minimum amount required to cover adverse market moves with a given probability level. As soon as the margin balance drops below the maintenance margin level, the position close-out process gets initiated.
 
-#### Calculating the margin on open orders
+### Calculating the margin on open orders
 The network calculates the largest long / short position. If the long position is the riskiest, the margin algorithm multiplies by a `risk factor long` and by the `mark price` (for futures). If the short position is the riskiest, then the algorithm multiplies the position by the `risk factor short` and by the `mark price`. These capture the outcome of probabilistic distribution of future market moves, and are market specific.
 
-##### Example 
+#### Example 
 Image to be uploaded - <img alt="Calculating margin on open orders" src="/images/2-calculate-margin-open-orders.png" width="500" />
 
 There is an open sell order of size 1 on the book. The risk factor for short positions is 0.074347011. The current mark price is 0.02690. So minimum margin = 0.2690 x 0.074347011 = 0.00200 (rounded to 5 decimal places).
 
-##### Margin on open positions
-The following calculation takes into account "slippage" as seen on an order book.
+### Margin on open positions
+The following calculation takes into account 'slippage', as seen on an order book.
 
-##### Example:
-
+#### Example:
 <img alt="Calculating margin on an open positions" src="/images/3-margin-open-positions.png" width="500" />
 
-The trader has an open short position of size 1 and no open orders. The risk factor for short positions is 0.074347011. The current mark price is 0.02672. The best offer price is 0.02676 and it has enough volume so that theoretically the position could be closed-out at that price. So maintenance margin = 0.02672 x 0.074347011 + max (0, 0.02676 - 0.02672) = 0.00203 (rounded to 5 decimal places), where the second term in the sum is the "slippage" component. Other margin levels are derived from the maintenance margin using the scaling factors that form part of the market configuration.
+The trader has an open short position of size 1, and no open orders. 
+
+The risk factor for short position is 0.074347011. 
+
+The current mark price is 0.02672. 
+
+The best offer price is 0.02676 and it has enough volume so that theoretically the position could be closed-out at that price. 
+
+maintenance margin = 0.02672 x 0.074347011 + max (0, 0.02676 - 0.02672) = 0.00203 (rounded to 5 decimal places), where the second term in the sum is the 'slippage' component. 
+
+Other margin levels are derived from the maintenance margin using the scaling factors that form part of the market configuration.
 
 ### Initial margin calculation
 The initial margin is the minimum amount of collateral required to enter a new trade.
@@ -184,17 +226,6 @@ The initial margin is the minimum amount of collateral required to enter a new t
 A market parameter will specify α<sup>initial</sup> > α<sup>search</sup> and the minimum collateral amount required for a new trade to be entered into as the initial margin. m<sup>initial</sup>:= (1 + α<sup>initial</sup>) m<sup>maintenance</sup>
 
 An initial margin level m<sup>initial</sup> that is higher than the margin search level (1 + α<sup>search</sup>) m<sup>maintenance</sup> ensures that a small negative price move won't lead to a situation where the network has to attempt to allocate more collateral immediately after a trade has been entered into.
-
-### Mark to market
-- what is mark to market 
-- for a market created on Vega, the mark-to-market price is calculated every time the price moves. This is in contrast to traditional futures markets, for which mark to market is calculated once per day. 
-
-Mark to market aims to provide a realistic appraisal of of a position based on the current market conditions. 
-Settlement instructions are generated based on the change in market value of the open positions of a party.
-
-When the mark price changes, the network calculates settlement cash flows for each party.
-
-The process is repeated each time the mark price changes until the maturity date for the market is reached.
 
 ### Margin: Searching for collateral
 When a trader's balance in their margin account (for a market) is less than their position’s *search level*, the protocol will attempt to transfer sufficient collateral from the trader’s main collateral account to top up their margin account to the level of the initial margin. 
@@ -210,23 +241,38 @@ If there is not enough collateral to provide the required margin, then the posit
 ### Margin: Releasing collateral
 Traders who have a margin account balance greater than the release level will have the excess assets released to their general collateral account, to the point where their new margin level is equal to the initial margin level.
 
-### Close-outs: Not enough collateral to hold a position
-When a participant does not have enough collateral to hold their open positions, the protocol will automatically trigger a close-out via position resolution. 
+### Distressed traders
+If a trader's available margin on a market is below the closeout level and cannot be rectified, that trader is considered to be distressed.
+
+A distressed trader has all their open orders on that market cancelled. The network will then recalculate the margin requirement on the trader's remaining open position. If they then have sufficient collateral, they are no longer considered a distressed trader. 
+
+However, if the trader does not have sufficient collateral, they are added to list of traders that will then undergo position resolution to close out their positions.
 
 Read more: [Position resolution](/docs/concepts/trading-concepts#position-resolution)
 
-If a trader has no more collateral, and their allocated margin is below the maintenance margin, the trader gets closed out and any margin balance remaining after the closeout is transferred to the market's insurance pool.
+### Closeouts
+When a participant does not have enough collateral to hold their open positions, the protocol will automatically trigger a closeout.
 
-In the unlikely event that the insurance pool balance is insufficient to cover the entire balance, loss socialisation will be applied.
+The closeout process is a last resort for a position. If a trader's deployed margin on the market is insufficient to cover a mark to market settlement liability, first Vega will search the trader's available balance of the settlement asset. If this search is unable to cover the full liability, the trader will be considered distressed and undergo position resolution. Any margin balance remaining after closeout is transferred to the market's insurance pool.
 
-Read more: [Loss socialisation](/docs/concepts/trading-concepts#loss-socialisation)
+The insurance pool is drawn from to make up the difference required to cover the mark to market loss amount. Should the funds in the insurance pool be insufficient for that, loss socialisation will be applied.
 
-### Position resolution [WIP]
-If a participant's margin amount is below the closeout level and cannot be rectified, that trader is considered to be distressed and is added to list of traders that will then undergo position resolution.
+Read more: 
+* [Position resolution](/docs/concepts/trading-concepts#position-resolution)
+* [Loss socialisation](/docs/concepts/trading-concepts#loss-socialisation)
 
-Position resolution is executed simultaneously for all traders on a market that have been determined to require it during a single event. Distressed trader(s) are ‘batched up’, and position resolution is run once the full set of traders is known for this event. 
+### Position resolution
+Position resolution is executed simultaneously, during a single event, for all traders on a market that have been determined to require it. Distressed trader(s) are ‘batched up’, and position resolution is run once the full set of traders is known for this event.
 
-**How often?**
+The network calculates the overall net long or short positions in the batch that requires position resolution, which tells the network how much volume (either long or short) needs to be sourced from the order book. For example, if there are 3 distressed traders with +5, -4 and +2 positions respectively, then the net outstanding liability is +3. 
+
+The outstanding liability is sourced from the market's order book via a single market order executed by the network as a counterparty. In this example, a market order to sell 3 would be placed on the order book. This order is described as a 'network order'.
+
+The network generates a set of trades with all the distressed traders, all at the volume weighted average price of the network's (new) open position. At this point, neither the distressed traders nor the network will have any open positions. Note, network orders do not affect the market's mark price. 
+
+All of the remaining collateral in each distressed trader's margin account for that market is confiscated to the market's insurance pool.
+
+Read more: [Insurance pools](/docs/concepts/trading-concepts#insurance-pools)
 
 ## Pre-trade and trade
 
@@ -240,7 +286,9 @@ On a market with continuous trading, the Vega network tries to execute an order 
 A continuous trading market uses a limit order book as the default price determination method.
 
 ### Auctions
-Auctions are a trading mode that collect orders during a set period, called an *auction call period*. The end of an auction call period is determined by the condition that the auction aims to meet. Auctions that are based on market conditions are triggered automatically.
+Auctions are a trading mode that collect orders during a set period, called an *auction call period*. 
+
+The end of an auction call period is determined by the condition that the auction aims to meet. Auctions that are based on market conditions are triggered automatically.
 
 Market conditions that could trigger an auction:
 * A market has opened for trading, which means it needs a defined price to start trading from 
@@ -248,47 +296,46 @@ Market conditions that could trigger an auction:
 * Price swing on a market is perceived, based on risk models, to be extreme and unrealistic 
 
 #### Auction call period
+During the auction call period, no trades are created, but all orders are queued. 
 
-During the auction call period, no trades are created, but all orders are queued. At the conclusion of the call period, trades are produced in a single action known as an auction uncrossing. During the uncrossing, auctions always try to maximise the traded volume, subject to the requirements of the orders placed.
+At the conclusion of the call period, trades are produced in a single action known as an auction uncrossing. During the uncrossing, auctions always try to maximise the traded volume, subject to the requirements of the orders placed.
 
 #### Auction types
 The Vega protocol supports several types of auctions:
 
-* Opening auctions: Every continuous trading market opens with an auction. Their purpose is to calibrate a market and help with price discovery
-* Price monitoring auctions: A market will go into a price monitoring auction if generating a trade would result in a price that is larger than the theoretical bounds implied by the risk model, and the market's price monitoring settings. The trade is not generated, the orders that instigated that trade remain on the order book, and the market goes into an auction, the length of which is defined by price monitoring settings (chosen during the market proposal)
-* Liquidity monitoring auctions: A market will go into a liquidity monitoring auction if the total commitment from liquidity providers (total stake) drops too low relative to the estimate of the market's liquidity demand (target stake), or if the best bid and/or best ask price implied by limit orders from market participants are not available
-* Frequent batch auctions: A trading mode set for a market in its inception, that has trading occur only through repeated auctions, as opposed to continuous trading (Not yet available)
-
-## Market protections
-In a pseudonymous environment where counter-parties may be identified by no more than a public key, it's essential to consider the credit risk, given that the avenues available for traditional marketplaces aren't available. If a counterparty owes more in settlement than their posted collateral, there is no way to reclaim those assets.
-
-The Vega protocol has been designed with rules to detect dangerous market conditions and apply protective measures, and to constantly maintain effective collateralisation for all positions.
-
-Margin calculations take into account the probability of the liquidation value of a position falling short of the available capital. The network is also designed to frequently re-evaluate each individual's risk, and pre-emptively close positions.
-
-Some of those mechanisms include price monitoring, liqudity monitoring, and frequent mark to market calculations.
+* **Opening auctions**: Every continuous trading market opens with an auction. Their purpose is to calibrate a market and help with price discovery
+* **Price monitoring auctions**: A market will go into a price monitoring auction if generating a trade would result in a price that is larger than the theoretical bounds implied by the risk model, and the market's price monitoring settings. The trade is not generated, the orders that instigated that trade remain on the order book, and the market goes into an auction, the length of which is defined by price monitoring settings (chosen during the market proposal)
+* **Liquidity monitoring auctions**: A market will go into a liquidity monitoring auction if the total commitment from liquidity providers (total stake) drops too low relative to the estimate of the market's liquidity demand (target stake), or if the best bid and/or best ask price implied by limit orders from market participants are not available
+* **Frequent batch auctions**: A trading mode set for a market in its inception, that has trading occur only through repeated auctions, as opposed to continuous trading (Not yet available)
 
 ### Price monitoring
-The dynamics of market price movements mean that prices don't always represent the participants' true average view of the price, but are instead artefacts of the market microstructure. Sometimes low liquidity and/or a large quantity of order volume can cause the price to diverge from the true market price. The Vega protocol is designed to assume that relatively small moves are 'real' and that larger moves might not be.
+The dynamics of market price movements mean that prices don't always represent the participants' true average view of the price, but are instead artefacts of the market microstructure. 
 
-Price monitoring exists to determine the real price, in the latter case. If the move is deemed to be large, the market's trading mode is temporarily changed into auction mode to get more information from market participants before any trades are generated.
+Sometimes low liquidity and/or a large quantity of order volume can cause the price to diverge from the true market price. The Vega protocol is designed to assume that relatively small moves are 'real' and that larger moves might not be. 
 
-Distinguishing between small and large moves can be highly subjective and market-dependent. The protocol relies on risk models to formalise this process. A market's risk model can be used to obtain the price projection at a future point in time given the current price. A price monitoring auction trigger can be constructed using a projection fixed time horizon and probability level.
+Price monitoring exists to determine the real price, in the case that price moves are extreme and unrealistic. If the move is deemed to be large, the market's trading mode is temporarily changed into auction mode to get more information from market participants before any trades are generated.
+
+Distinguishing between small and large moves can be highly subjective and market-dependent. The protocol relies on risk models to formalise this process.
+
+A market's risk model can be used to obtain the price projection at a future point in time, given the current price. A price monitoring auction trigger can be constructed using a projected fixed time horizon and probability level.
+
+Note: A market's risk model is defined within the market proposal.
 
 #### Price monitoring triggers [WIP]
-Price monitoring behaviour is governed by a set of price monitoring triggers specified for the market. 
+Each market has a set of price monitoring triggers. When those points are breached, the market will enter a price monitoring auction. 
 
 Each trigger contains:
 * *Horizon*: Time horizon of the price projection in seconds
 * *Probability*: The probability level for price projection, e.g. value of 0.95 will result in a price range such that over the specified projection horizon, the prices observed in the market should be in that range 95% of the time.
-* *Auction extension*: auction extension duration in seconds, should the price breach its theoretical level over the specified horizon at the specified probability level.
+* *Auction extension*: Auction extension duration in seconds, should the price breach its theoretical level over the specified horizon at the specified probability level.
 
-If the market has no triggers specified in the market proposal then the default triggers driven by a network parameter will be used. If triggers are set to an empty array (either explicitly or if they are omitted and that's what the network parameter is set to), then price monitoring is effectively switched off, and the market will never go into price monitoring auction irrespective of prices generated by trades.
+If the market did not have any triggers specified in its market proposal, then the default triggers (driven by a network parameter) will be used. If the triggers are set to an empty array (either explicitly or if they are omitted and that's what the network parameter is set to), then price monitoring is effectively switched off, and the market will never go into price monitoring auction.
 
-In case of multiple triggers, each trigger is checked separately and the resulting price monitoring auction length will be the sum of auction durations from all the triggers that were breached. Furthermore, there could be a situation where only a single trigger is breached to begin with, but as the initial price monitoring auction period comes to an end, the indicative uncrossing price breaches one or more of the other triggers resulting in an auction extension. This process continues until no more triggers are breached after the appropriate auction extension period elapses (either because price doesn't breach any other triggers or all triggers have already been breached - once a given trigger is activated it's not checked again until the price monitoring auction is resolved and market goes back into its default trading mode).
+In case of multiple triggers, each trigger is checked separately and the resulting price monitoring auction length will be the sum of auction durations from all the triggers that were breached. 
 
-Let's work through an example:
+There could be a situation where only a single trigger is breached to begin with, but as the initial price monitoring auction period comes to an end, the indicative uncrossing price breaches one or more of the other triggers, resulting in an auction extension. This process continues until no more triggers are breached after the appropriate auction extension period elapses. This can be because price doesn't breach any other triggers, or all triggers have already been breached. Once a given trigger is activated, it's not checked again until the price monitoring auction is resolved and market goes back into its default trading mode.
 
+#### Price monitoring example
 * Assume the market is configured to have two price monitoring triggers, where horizon, probability and auction extension for the two triggers are:
   * trigger 1: `1h, 0.95, 1min`,
   * trigger 2: `2h, 0.99, 5min`.
@@ -296,24 +343,37 @@ Let's work through an example:
   * trigger 1: `[95,105]`,
   * trigger 2: `[90,110]`.
 * Any trades with prices greater than or equal to `95` and less than or equal to `105` will be generated as per the default trading mode of the market.
-* Now:
-  * If an incoming order would get matched so that the price of any of the resulting trades is less than `90` or more than `110`, then that order won't get processed in the default trading mode, the market will go into a price monitoring auction, the order will get processed in the auction mode (if order type is valid for an auction), and after 6 minutes the relevant (if any) trades will be generated as per the order book state at that time. The market will return to its default trading mode and price monitoring bounds will be reset, with price ranges depending on the last mark price available.
+
+Now:
+  * If an incoming order would get matched so that the price of any of the resulting trades is less than `90` or more than `110`, then that order won't be processed in the default trading mode, the market will go into a price monitoring auction, the order will get processed in the auction mode (if order type is valid for an auction), and after 6 minutes the relevant (if any) trades will be generated as per the order book state at that time. The market will return to its default trading mode and price monitoring bounds will be reset, with price ranges depending on the last mark price available.
   * If an incoming order would get matched so that the price in any of the resulting trades is in the `[90,95]` or `[105,110]` range, the market goes into a price monitoring auction with the initial duration of 1 minute.
     * If after 1 minute has passed there are no trades resulting from the auction or the indicative price of the auction, then if in the `[95,105]` the trades are generated and the price monitoring auction concludes.
-    * If after 1 minute has passed the indicative price of the auction is outside the `[95,105]`, the auction gets extended by 5 minutes, as concluding the auction at the 1 minute mark would breach the valid ranges implied by the second trigger. After the 5 minutes, trades (if any) get generated irrespective of their price (there are no more active triggers) and the price monitoring auction concludes.
+    * If after 1 minute has passed the indicative price of the auction is outside the `[95,105]`, the auction gets extended by 5 minutes, as concluding the auction at the 1 minute mark would breach the valid ranges implied by the second trigger. After the 5 minutes, trades (if any) are generated irrespective of their price, as there are no more active triggers, and the price monitoring auction concludes.
 
-As mentioned above, price monitoring is meant to stop large market movements that are not 'real' from occurring, rather than just detect them after the fact. To achieve that the module works preemptively: a transaction that would've caused the price monitoring bounds to be breached doesn't get processed in the default trading mode, the market first switches to price monitoring auction mode and then that transaction (and any subsequent ones until the auction time elapses) get processed. Clearly, the market can still make a large move within the auction as long as crossing orders from both buy and sell side get submitted. The purpose of price monitoring is only to extract more information out of the market in the event of a large move and not to stop the market from making that move altogether.
+Price monitoring is meant to stop large market movements that are not 'real' from occurring, rather than just detect them after the fact. To achieve that, the module works preemptively: a transaction that would've caused the price monitoring bounds to be breached doesn't get processed in the default trading mode. The market first switches to price monitoring auction mode, and then that transaction (and any subsequent ones until the auction time elapses) get processed. 
 
-### Liquidity monitoring [WIP]
+The market can still make a large move within the auction, as long as crossing orders from both buy and sell side get submitted. 
 
-#### Not enough liquidity on a market
-**If a market has too little liquidity**: Vega continuously calculates whether each market has a sufficient amount committed. When markets are deemed insufficiently liquid, they are placed into a liquidity monitoring auction.
+The purpose of price monitoring is to extract more information out of the market in the event of a large move, not to stop the market from making that move altogether.
 
-**If a liquidity provider can't cover their commitment**: If the liquidity provider's margin account doesn't have enough funds to support their orders: the protocol will search for funds in the general account for the appropriate asset. If even the general account doesn't have sufficient amount to provide margin to support the orders, then the protocol will transfer the remaining funds from the bond account, and a penalty will be applied and transferred from the bond account to the market's insurance pool.
+### Liquidity monitoring
+Besides the obvious appeal to traders, a liquid market also offers some risk management, particularly in a system that does not have a central counter-party. 
 
-The liquidity obligation will remain unchanged and the protocol will periodically search the liquidity provider's general account for the appropriate asset and attempt to top up bond account to the amount specified in liquidity commitment.
+When a trader is distressed, their position can only be liquidated if there is enough volume on the order book to offload it.
 
-Should the funds in the bond account eventually drop to 0 as a result of a collateral search, the liquidity provider will be marked for closeout and the liquidity provision will get removed from the market. If there's an imbalance between total and target stake (see below) as a result, the market will go into liquidity auction as a consequence.
+In order to ensure there is enough liquidity to keep a market active and protect against insolvent parties, the network must be able to detect when the market's liquidity is too low. 
+
+When a market's liquidity drops below the safe level, the market enters into a liquidity monitoring auction, and terminates the auction when the market liquidity level is back at a sufficiently high level. The liquidity mechanics of the Vega protocol mean there is an incentive (through fee-setting) to provide the necessary liquidity. 
+
+There are two scenarios that can trigger liquidity monitoring mechanisms: 
+
+**If a market has too little liquidity**: Vega continuously calculates whether each market has a sufficient amount committed. When markets are deemed insufficiently liquid, they are placed into auction.
+
+**If a liquidity provider can't cover their commitment**: If the liquidity provider's margin account doesn't have enough funds to support their orders, the protocol will search for funds in the general account for the relevant asset. If the general account doesn't have sufficient amount to provide margin to support the orders, then the protocol will transfer the remaining funds from the liquidity provider's bond account, and a penalty will be applied and funds transferred from the bond account to the market's insurance pool.
+
+The liquidity obligation will remain unchanged and the protocol will periodically search the liquidity provider's general account and attempt to top up the bond account to the amount specified in liquidity commitment.
+
+Should the funds in the bond account drop to 0 as a result of a collateral search, the liquidity provider will be marked for closeout and the liquidity provision will be removed from the market. If there's an imbalance between total and target stake (see below) as a result, the market will go into liquidity auction.
 
 The liquidity obligation is calculated from the liquidity commitment amount using the stake_to_ccy_siskas network parameter as:
 
@@ -321,19 +381,24 @@ The liquidity obligation is calculated from the liquidity commitment amount usin
 
 Note here `ccy` stands for 'currency'. Liquidity measure units are 'currency siskas', e.g. ETH or USD siskas. This is because the calculation is basically `volume ⨉ probability of trading ⨉ price of the volume` and the price of the volume is in the said currency.
 
-Liquidity obligation is considered to be met when the `volume ⨉ probability of trading ⨉ price of orders` of all liquidity providers per each order book side measured separately is at least `liquidity_obligation_in_ccy_siskas`.
-
-The amount committed during the liquidity provision transaction is stored in a bond account (one per party per market). The deposits and withdrawals for the account are governed by the protocol and cannot be manually triggered. The funds will be deposited as part of the successful liquidity commitment transaction. They will remain there for as long as the liquidity provider is active, to act as a guarantee for the liquidity obligation taken on by the provider, to assure that the commitment is firm and the protocol can rely on that liquidity in any market conditions.
+Liquidity obligation is considered to be met when the `volume ⨉ probability of trading ⨉ price of orders` of all liquidity providers, per each order book side, measured separately, is at least `liquidity_obligation_in_ccy_siskas`.
 
 #### Target stake
-The market's liquidity requirement is derived from the maximum open interest observed over a rolling time window. This amount, called the target stake, is used by the protocol for calculating the market's liquidity fee level from liquidity commitments, and triggering liquidity monitoring auctions if there's an imbalance between target stake and total stake (sum of all liquidity commitments).
+The market's liquidity requirement is derived from the maximum open interest observed over a rolling time window. This amount, called the target stake, is used by the protocol to calculate the market's liquidity fee level from liquidity commitments, and triggering liquidity monitoring auctions if there's an imbalance between it and the total stake (sum of all liquidity commitments).
 
 ### Insurance pools
-Each market has its own insurance pool set aside. However, there's also a general insurance pool per asset. It sits there until there are markets that use that asset. When a market expires, the insurance pool funds from that market go into the bigger insurance pool, which other markets that use the same collateral currency can pull from. Insurance pools grow in two scenarios: if a trader gets closed out, and if a liquidity provider pays a fine for failing to provide their committed liquidity. (link to liquidity provision)
+Each market has its own insurance pool, and each asset has its own general insurance pool. 
 
-If a trader's deployed margin on the market is insufficient to cover a mark to market (MTM) settlement liability, Vega will search the trader's available balance of the settlement asset. If this search is unable to cover the full liability, the trader will be considered distressed and undergo position resolution, and the market's insurance pool (for that settlement asset) will be utilised to make up the difference required to cover the MTM loss amount. Should the funds in the insurance pool be insufficient for that, loss socialisation will be applied.
+When a market expires, the funds from that market's insurance pool go into the bigger asset insurance pool, which other markets that use the same currency can pull from. 
 
-Read more: [Loss socialisation](/docs/concepts/trading-concepts#loss-socialisation)
+Insurance pools grow in two scenarios:
+* If a trader is closed out because they do not have enough collateral to support an open positions
+* If a liquidity provider pays a penalty for failing to provide their committed liquidity
+
+Read more:
+* [Closeouts](/docs/concepts/trading-concepts#closeouts)
+* [Liquidity provision penalties](/docs/concepts/trading-concepts#penalties)
+* [Loss socialisation](/docs/concepts/trading-concepts#loss-socialisation)
 
 ## Market data
 
@@ -350,6 +415,13 @@ When a market is proposed, the proposer, who must also be able to provide liquid
 Participants with sufficient collateral can provide liquidity for markets. Every market on Vega must have at least one committed liquidity provider. When a governance proposal to create a market is submitted, the proposal has to include liquidity provision commitment.
 
 A liquidity provision commitment is made up of a series of orders that sit on the order book to be filled. Liquidity providers need to be able to support their liquidity commitment - their available collateral must be able to meet the size of the nominated commitment amount and the margins required to support the orders generated from that commitment. 
+
+#### Bond account
+The amount committed during the liquidity provision transaction is stored in a bond account (one per party, per market). The deposits and withdrawals for the account are governed by the protocol and cannot be manually triggered. 
+
+The funds are deposited as part of a successful liquidity provision transaction. They will remain in the bond account for as long as the liquidity provider is active, to act as a guarantee for the liquidity obligation taken on by the provider, to assure that the commitment is firm and the protocol can rely on that liquidity in any market conditions.
+
+## Penalties [WIP]
 
 ### Liquidity rewards
 Liquidity providers receive rewards for providing liquidity, and penalties for not upholding their commitment. 

@@ -22,7 +22,7 @@ Try out proposing markets using [Fairground](https://fairground.wtf), Vega's tes
 1. If the required majority of 'for' votes is met, the action described in the proposal will be taken (i.e., proposal is enacted) on the defined enactment date. Note the enactment date must be at least the minimum enactment period for the proposal type/subtype (specified by a network parameter) _after_ voting closes.
 
 ### Voting on proposals 
-VEGA tokenholders can vote for or against any proposals. In restricted mainnet, Vega tokenholders will be able to define the optimal network configuration by creating and voting on network parameter proposals. 
+VEGA tokenholders can vote for or against any proposals. 
 
 * Any tokenholder with more than 0 tokens associated with a Vega key can vote on proposals. 
 * The Vega key used for voting will need to have more than 0 tokens when a vote is submitted, as well as when votes are counted at the proposal's closing date/time, otherwise the vote is disregarded. 
@@ -257,7 +257,8 @@ where `Mu`, `Sigma` and `s` are constants and `dW` represents a Brownian Motion 
 ## Network governance [WIP]
 
 ### Parameters
-There are certain parameters within Vega that influence the behaviour of the system and can be changed by on-chain governance. 
+There are certain parameters within Vega that influence the behaviour of the system and can be changed by on-chain governance. Vega tokenholders can define the optimal network configuration by creating and voting on network parameter proposals.
+
 
 A network parameter is defined by:
 * Name
