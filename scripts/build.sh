@@ -56,7 +56,7 @@ deactivate
 export VEGA_VERSION="$grpc_doc_branch"
 
 # Create an empty folder to keep the tools happy
-mkdir -p /docs/grpc
+mkdir -p ./docs/grpc
 
 yarn install
 yarn run generate-graphql
