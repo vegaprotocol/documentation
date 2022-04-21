@@ -36,9 +36,9 @@ HTTP REST and GraphQL commands are not supported.
 
 The supported commands can be found here:
 
-* [Trading commands](https://docs.vega.xyz/protodocs/vega/commands/v1/commands.proto)
-* [Validator commands](https://docs.vega.xyz/protodocs/vega/commands/v1/validator_commands.proto)
-* [Oracle commands](https://docs.vega.xyz/protodocs/vega/commands/v1/oracles.proto)
+* [Trading commands](https://docs.vega.xyz/docs/grpc/vega/commands/v1/commands.proto)
+* [Validator commands](https://docs.vega.xyz/docs/grpc/vega/commands/v1/validator_commands.proto)
+* [Oracle commands](https://docs.vega.xyz/docs/grpc/vega/commands/v1/oracles.proto)
 
 ### Command format
 

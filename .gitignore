@@ -3,7 +3,6 @@
 
 # Production
 /build
-/protodocs
 /docs/graphql/directives/
 /docs/graphql/enums/
 /docs/graphql/inputs/
@@ -14,6 +13,7 @@
 /docs/graphql/subscriptions/
 /docs/graphql/scalars/
 /docs/graphql/unions/
+/docs/grpc/
 
 # Generated files
 .docusaurus

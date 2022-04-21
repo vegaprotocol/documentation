@@ -146,7 +146,7 @@ module.exports = {
         language: ["en"],
         hashed: true,
         indexBlog: false,
-        docsRouteBasePath: ["/docs", "/protodocs"],
+        docsRouteBasePath: ["/docs"],
       },
     ],
   ],
@@ -171,12 +171,12 @@ module.exports = {
       {
         protobuffet: {
           fileDescriptorsPath: "./proto.json",
-          protoDocsPath: "./protodocs", // prodoDocsPath seems to be hard coded to "protodocs", so don't change this
+          protoDocsPath: "./docs/grpc",
           sidebarPath: "./sidebarsProtodocs.js",
         },
         docs: {
-          path: "./protodocs",
-          routeBasePath: "protodocs",
+          path: "./docs/grpc",
+          routeBasePath: "./docs/grpc",
           sidebarPath: "./sidebarsProtodocs.js",
         },
       },

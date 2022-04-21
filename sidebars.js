@@ -21,7 +21,7 @@ module.exports = {
     },
     {
       type: "link",
-      href: "/protodocs/vega/vega.proto",
+      href: "/docs/grpc/vega/vega.proto",
       label: "GRPC",
     },
     {
