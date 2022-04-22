@@ -79,7 +79,7 @@ sed -i -E 's/Schema Documentation/GraphQL Schema/g' docs/graphql/generated.md
 echo "GRPC: Do not hide titles"
 find . -type f -name '*.mdx' -exec sed -i -E 's/hide_title: true/hide_title: false/g' {} +
 echo "GRPC: Fix sidebar links"
-sed -i -E '/"vega\/"grpc\/vega\//d' docs/grpc/sidebar.js
+sed -i -E 's/"vega\//"grpc\/vega\//g' docs/grpc/sidebar.js
 
 yarn run build
 yarn run prettier
