@@ -34,3 +34,8 @@ yarn-error.log*
 # Do not commit the huge proto json file pulled from the api repo.
 /proto.json
 /schema.grapqhl
+
+# Never commit files accidentally created by platform incompatible seds
+*.md-E
+*.mdx-E
+
