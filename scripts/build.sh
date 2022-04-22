@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# This script fetches schemas for our three documentation types (REST, GraphQL, GRPC) and uses
+# docusaurus generator plugins to produce markdown documents for them.
+#
+# Each documentation type uses a different generator, so the behaviour for each varies slightly
+#
+# Additionally, a script is called to generate proposal documentation. It's not a docusaurus plugin.
+
 set -e
 
 grpc_doc_owner=vegaprotocol

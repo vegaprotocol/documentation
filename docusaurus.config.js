@@ -1,5 +1,8 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 
+// This is required at runtime currently due to the way redocusaurus is configured
+// to fetch the swagger files. This will change in future to grab them in build.sh
+// and rely on local copies, allowing us to remove this variable
 let vega_version = process.env.VEGA_VERSION;
 if (vega_version === undefined || vega_version === "") {
   console.log("Please specify env var VEGA_VERSION.");
@@ -125,7 +128,8 @@ module.exports = {
   },
   plugins: [
     [
-      // GraphQL
+      // This plugin extends the CLI to give us a generator that takes in our schema and produces
+      // markdown files inside the docs folder, so these are included in the versioned docs.
       require.resolve("@edno/docusaurus2-graphql-doc-generator"),
       {
         // https://github.com/edno/graphql-markdown#options
@@ -140,7 +144,7 @@ module.exports = {
       },
     ],
     [
-      // Search
+      // An alternative to algolia
       require.resolve("@easyops-cn/docusaurus-search-local"),
       {
         language: ["en"],
@@ -149,40 +153,44 @@ module.exports = {
         docsRouteBasePath: ["/docs"],
       },
     ],
+    [
+      // docusaurus-protobuffet as a preset is the standard approach. However, we want the GRPC docs to be
+      // versioned along with the ./docs/ folder, so here we are using the plugin for it's file generation
+      // portion only. The *plugin* extends the docusaurus CLI to give us `generate-grpc`, but does not 
+      // set up another instance of `docs` that controls rendering for the GRPC portion of the docs. Which
+      // is to say: GRPC is treated like any other part of our docs.
+      // 
+      // The weird thing this causes is that the React components in ProtoFile are provided by the theme, which
+      // is no long available - so that component has been 'swizzled' out of the theme and in to ./src/theme
+      require.resolve("docusaurus-protobuffet-plugin"),
+      {
+        routeBasePath: '/docs/grpc',
+        fileDescriptorsPath: "./proto.json",
+        protoDocsPath: "./docs/grpc",
+        sidebarPath: "./docs/grpc/sidebar.js",
+     }
+    ],
   ],
   presets: [
     [
       "@docusaurus/preset-classic",
       {
         debug: undefined,
-        blog: false, // disabled
+        // We don't have a '/blog/' section on the site, so disable this section
+        blog: false, 
+        // Configuration for the '/docs/' section of the site
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/vegaprotocol/documentation/edit/main/",
         },
+        // Vega specific theme overrides go here
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
       },
     ],
     [
-      // gRPC
-      "docusaurus-protobuffet",
-      {
-        protobuffet: {
-          fileDescriptorsPath: "./proto.json",
-          protoDocsPath: "./docs/grpc",
-          sidebarPath: "./sidebarsProtodocs.js",
-        },
-        docs: {
-          path: "./docs/grpc",
-          routeBasePath: "./docs/grpc",
-          sidebarPath: "./sidebarsProtodocs.js",
-        },
-      },
-    ],
-    [
-      // REST
+      // REST - see note at the top. Currently this is not versioned inside docs, but can be
       "redocusaurus",
       {
         specs: [
