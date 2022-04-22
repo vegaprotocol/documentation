@@ -56,8 +56,8 @@ deactivate
 export VEGA_VERSION="$grpc_doc_branch"
 
 yarn install
-yarn run generate-graphql
 yarn run generate-grpc
+yarn run generate-graphql
 
 # This var is used in GraphQL tidyup
 echo "GraphQL: Removing generated on date..."

@@ -9,8 +9,6 @@ const { newAsset } = require('./libGenerateProposals/newAsset')
 const { updateNetworkParameter } = require('./libGenerateProposals/updateNetworkParameter');
 const { writeFileSync } = require('fs');
 
-let buffer = '';
-
 if (!process.env.VEGA_VERSION) {
   console.error('Please set an environment variable VEGA_VERSION (e.g. VEGA_VERSION=v0.50.1')
   process.exit(1)
@@ -23,8 +21,7 @@ const url = `https://raw.githubusercontent.com/vegaprotocol/protos/${version}/sw
 
 // Input: Fields to remove from a specific place in the Swagger file
 const notProposalTypes = ['closingTimestamp', 'enactmentTimestamp', 'validationTimestamp', 'title', 'type']
-// Input: Ignore these types as they are not finished. And a hack to make newMarket go to the bottom
-const excludeUnimplementedTypes = ['updateMarket', 'newMarket'];
+const excludeUnimplementedTypes = ['updateMarket'];
 
 // Output: Used to put a nice title on the output
 const nameByType = {
@@ -47,10 +44,6 @@ function annotator(proposal) {
  */
 function daysInTheFuture(daysToAdd) {
   return new addDays(Date.now(), daysToAdd).getTime()
-}
-
-function log(line) {
-  buffer += `${line || ''}\n` 
 }
 
 function newProposal(changesAndDocs, skeleton, type) {
@@ -90,27 +83,29 @@ function newProposal(changesAndDocs, skeleton, type) {
   }
 
   proposal[type] = changesAndDocs.result
-  log(`\r\n## ${nameByType[type]}`);
-  log(`<Tabs groupId="${type}">`)
-  log(`<TabItem value="annotated" label="Annotated example">`)
-  log()
-  log('```javascript');
-  log(annotator(proposal))
-  log('```');
-  log(`</TabItem>`)
-  log(`<TabItem value="json" label="JSON example">`)
-  log()
-  log('```json');
-  log(JSON.stringify(proposal, null, 2))
-  log('```');
-  log(`</TabItem>`)
-  log(`<TabItem value="cmd" label="Command line example">`)
-  log()
-  log('```bash');
-  log(`vegawallet command send --wallet your_username --pubkey your_key --network mainnet '${JSON.stringify({"proposalSubmission": { reference: `test-${type}`, terms: proposal }})}'`);
-  log('```');
-  log(`</TabItem>`)
-  log(`</Tabs>`)
+  const annotated = `
+  ${'```javascript'}
+  ${annotator(proposal)}
+  ${'```'}`
+
+  const json = `
+  ${'```json'}
+  ${JSON.stringify(proposal, null, 2)}
+  ${'```'}
+  `
+
+  const cmd = `
+  ${'```bash'}
+  vegawallet command send --wallet your_username --pubkey your_key --network mainnet '${JSON.stringify({"proposalSubmission": { reference: `test-${type}`, terms: proposal }})}
+  ${'```'}
+  `
+
+  return {
+    annotated,
+    json,
+    cmd
+  }
+
 }
 
 const ProposalGenerator = new Map([
@@ -120,47 +115,33 @@ const ProposalGenerator = new Map([
   ['newMarket', newMarket]
 ])
 
-function printMarkdownHeader(){
-  log('---')
-  log('title: Proposals by example')
-  log('hide_title: false')
-  log('keywords:');
-  log('- proposal')
-  log('- governance')
-  log('- ' + Object.keys(nameByType).join('\n- '))
-  log('---')
-  log(`import Tabs from '@theme/Tabs';`)
-  log(`import TabItem from '@theme/TabItem';`)
-  log()
-}
-
-
 function parse(api) {
   const proposalTypes = omit(api.definitions.vegaProposalTerms.properties, notProposalTypes )
 
-  printMarkdownHeader();
-
-  Object.keys(proposalTypes).forEach(type => {
+  const partials = Object.keys(proposalTypes).map(type => {
       if ( excludeUnimplementedTypes.indexOf(type) === -1) {
         if (ProposalGenerator.has(type)) {
             const changes = ProposalGenerator.get(type)(proposalTypes[type])
-            newProposal(changes, api.definitions.vegaProposalTerms, type) 
+             output(newProposal(changes, api.definitions.vegaProposalTerms, type), type)
         } else {
             assert.fail('Unknown proposal type: ' + type)
         }
      }
   })
 
-  const changes = ProposalGenerator.get('newMarket')(proposalTypes['newMarket'])
-  newProposal(changes, api.definitions.vegaProposalTerms, 'newMarket') 
+  return partials
 }
 
-function output() {
+function output(partial, title) {
+  const path = './docs/tutorials/_generated-proposals'
+
   if (process.argv[2]) {
-    writeFileSync(process.argv[2], buffer)
+    writeFileSync(`${path}/_${title}_annotated.md`, partial.annotated)
+    writeFileSync(`${path}/_${title}_json.md`, partial.json)
+    writeFileSync(`${path}/_${title}_cmd.md`, partial.cmd)
   } else {
-    console.log(buffer);
+    console.dir(partial);
   }
 }
 
-SwaggerParser.dereference(url).then(parse).then(output);
+SwaggerParser.dereference(url).then(parse);

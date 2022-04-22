@@ -7,7 +7,7 @@
     "docusaurus": "docusaurus",
     "generate-graphql": "mkdir -p docs/graphql && docusaurus graphql-to-doc",
     "generate-grpc": "mkdir -p protodocs && docusaurus generate-proto-docs",
-    "generate-proposals": "node scripts/generate_proposals.js ./docs/tutorials/proposals.md",
+    "generate-proposals": "node scripts/generate_proposals.js output",
     "generate-proposals:debug": "node scripts/generate_proposals.js",
     "start": "docusaurus start",
     "build": "docusaurus build",
