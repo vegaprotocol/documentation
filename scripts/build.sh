@@ -53,8 +53,6 @@ rm -rf ./gateway
 deactivate
 
 # This var is used in docusaurus.config.js.
-export VEGA_VERSION="$grpc_doc_branch"
-
 yarn install
 yarn run generate-graphql
 yarn run generate-grpc

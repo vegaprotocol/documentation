@@ -187,32 +187,25 @@ module.exports = {
       {
         specs: [
           {
-            specUrl:
+            spec:
               "https://raw.githubusercontent.com/vegaprotocol/protos/" +
               vega_version +
               "/swagger/data-node/api/v1/trading_data.swagger.json",
-            routePath: "/docs/api/rest/data-node/data",
+            route: "/docs/api/rest/data-node/data",
           },
           {
-            specUrl:
-              "https://raw.githubusercontent.com/vegaprotocol/protos/" +
-              vega_version +
-              "/swagger/data-node/api/v1/trading_proxy.swagger.json",
-            routePath: "/docs/api/rest/data-node/proxy",
-          },
-          {
-            specUrl:
+            spec:
               "https://raw.githubusercontent.com/vegaprotocol/protos/" +
               vega_version +
               "/swagger/vega/api/v1/core.swagger.json",
-            routePath: "/docs/api/rest/core/core",
+            route: "/docs/api/rest/core/core",
           },
           {
-            specUrl:
+            spec:
               "https://raw.githubusercontent.com/vegaprotocol/protos/" +
               vega_version +
               "/swagger/vega/api/v1/corestate.swagger.json",
-            routePath: "/docs/api/rest/core/state",
+            route: "/docs/api/rest/core/state",
           },
         ],
       },
