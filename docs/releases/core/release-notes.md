@@ -6,8 +6,185 @@ hide_title: false
 
 While the Vega core software is closed-source, you can refer here for a full list of release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-### Versions 0.46.0-0.47.6 combined | 2022-01-11
+### Versions 0.50.3-0.49.X combined | 2022-04-XX
+This release was made available to validators on XXXXX.
 
+The primary focus of this and the next upcoming releases has been to complete the final remaining features, progress data-node improvements for scalability and to add test coverage and fix bugs.
+
+Note: While many of the features below are related to trading, it is not yet enabled on mainnet. 
+
+**Proposals to change market parameters**: After a market has been proposed and enacted, changes to the market parameters are required. Tokenholders will be able to submit proposals to change market parameters.
+
+To change any market parameter, the proposer will submit the same data as if they were to create a market, except for the liquidity commitment, however this submission would contain the desired updates to the fields / structures that they wish to be changed. Some of the market parameters will not be able to be changed: market decimal places, position decimal places, settlement asset and the market name.
+
+Read more: 
+* [Market framework spec](https://github.com/vegaprotocol/specs/blob/main/protocol/0001-MKTF-market_framework.md#market)
+* [Change market parameters](https://github.com/vegaprotocol/specs/blob/main/protocol/0028-GOVE-governance.md#2-change-market-parameters)
+
+... [WIP] - **add the rest of 0.50 in here**
+
+**EEF internalising**: The Ethereum Event Forwarder is functionality inside Vega that allows the network to be aware of activity on the Ethereum network. When the forwarder service is aware of events, such as the staking or unlocking of tokens, it translates and passes the events to the tendermint blockchain in Vega. Originally this was deployed as a single service alongside the Vega node, with the node needing to be configured to accept events from the forwarder service. This has now been rewritten and internalised into the Vega node, which simplifies the configuration of running a Vega node and makes it easier to deploy. Other benefits of doing this include it being easier to maintain and add future enhancements, which will be described in future release notes.
+
+**Data node**: In order to have a scalable solution for accessing data, work has begun on migrating the datastore into a postgres with time-series database. Migrations of assets, accounts, markets, market data, orders and trades have been done. The changes have been made to the codebase and live in parallel with the existing solution. As the remaining APIs are migrated and testing is completed, the old datastore and APIs will be removed.
+
+**Market decimal places**: In this release, the protocol now makes it possible to configure a market for which orders can only be priced in increments of a specific size. This is done by specifying a different (smaller) number of decimal places than its settlement asset supports. To explain this, consider a market that settles in GBP. This market can now be configured to have 0 decimal places so that the price levels on the orderbook will be separated by at least £1, rather than the default £0.01. 
+
+Read more: [Market decimal places](https://github.com/vegaprotocol/specs/blob/main/protocol/0070-MKTD-market-decimal-places.md)
+
+**Offsets for pegged and liquidity commitment orders**: The numbers used to offset how far from the reference price a pegged and liquidity provision order (respectively) can now only be input as positive. Whether they need to be added or subtracted from the price will be dependent on the order side.
+
+Read more: [Pegged orders](https://github.com/vegaprotocol/specs/blob/main/protocol/0037-OPEG-pegged_orders.md)
+
+**Liquidity provision improvements**: The `LiquidityProvisionSubmission` API was used for submitting, amending and cancelling liquidity provision.  To both simplify the code and have a more explicit user experience a breaking change has been implemented to split these into three API commands. 
+
+**Floating point determinism**: Computations within a blockchain-based system need to be deterministic as the application state between nodes replicating it can start to differ potentially resulting in consensus failure. The protocol has been improved so that if the system has a differing floating point value there is a resolution strategy to reach consensus on the value that should be used. This is key due to the fact that validators will be running different hardware that could increase the chances of this happening.
+
+Read more: [Floating point consensus](https://github.com/vegaprotocol/specs/blob/main/protocol/0065-FTCO-floating_point_consensus.md)
+
+**Snapshots**: In order to simplify and streamline the process for both restarting or adding a node on the Vega network, the snapshot feature has been implemented. To allow a Vega node to be restarted or join without the need to replay the whole blockchain, a Vega node can load an existing snapshot. Snapshots contain all the network state required to start a node; nodes can use a snapshot stored locally or one created by a different node in the network. Starting a node using a snapshot populates all the state inside the core as if the core had processed the historic blockchain. The node can then start or resume listening to blocks after the snapshot until it gets to the live block height where it will be classed as a normal contributing node. This is a key feature to both ensure the constant availability of the network and for decentralisation.
+
+**On-chain treasury**: This release also sees the introduction of the on-chain treasury. This is a series of, per asset type, accounts that allows the transfer of the reward types that will be seen when trading is enabled. Part of this change has seen the enabling of transfers between wallets, this allows the reward accounts in the treasury to pay out rewards. With these recurring transfers the reward pools will be distributed in full each epoch. This means that the network parameters for fractional payout and payout delays will be removed. Rewards will be distributed to those staking and providing liquidity, first on testnet, and soon it will be available as a feature validators can release on mainnet.
+
+An on-chain treasury, per asset type, has been implemented where the balance of the insurance pool is transferred when the market closes. To enable this transfers between Vega Wallets has been enabled, this not only is a feature of the on-chain treasury/rewards system but also allows people using the protocol to be able to transfer assets between wallets. With this feature there have been other changes around the rewards system meaning the full amount of the global reward pool will be distributed in all assets at the end of each epoch.
+
+Read more: 
+* [On-chain treasury](https://github.com/vegaprotocol/specs/blob/main/protocol/0055-TREA-on_chain_treasury.md)
+* [Transfers](https://github.com/vegaprotocol/specs/blob/main/protocol/0057-TRAN-transfers.md)
+
+**Validators joining and leaving, and standby validators**: 
+In addition to the consensus validators, there is now functionality on testnet to allow a set of ersatz, or standby validators. These are validators that will  not contribute to the chain, but are on standby to jump in if a current validator drops off or their performance drops below a certain threshold. In order to be considered as an ersatz validator, the node operators need to meet certain criteria, including a minimum self-stake as well as stake nominated by other token holders.
+
+Note: The network will be set to allow 0 standby validators for alpha mainnet, and increase the validator numbers via governance as early alpha mainnet progresses.
+
+Read more: [Validators chosen by stake](https://github.com/vegaprotocol/specs/blob/main/protocol/0069-VCBS-validators_chosen_by_stake.md)
+
+#### Breaking changes
+- Separate endpoints for liquidity provision submissions, amendment and cancellation
+- Disallow negative offset for pegged and liquidity provision orders
+- Add ranking scores and reward score to node
+- Add support for fractional order sizes
+- Add more data to submit transaction endpoints
+- Restructure Ethereum Config to separate staking and vesting contract addresses, plus add block height at which they have been added respectively
+- Rework free form proposal protos so that they align with other proposals
+- Add support for decimal places specific to markets. This means market price values and position events can have different values. Positions will be expressed in asset decimal places, market specific data events will list prices in market precision
+- Remove tick size from market
+- Remove maturity field from future
+- Remove trading mode one-off from market proposal
+
+#### New
+- Add ability to stream events to a file
+- Add block hash to statistics and to block height request
+- Extend auction feature tests
+- Add validation of update market proposals
+- Emit validators signature when a validator is added or remove from the set
+- Update the decimal library
+- Get rid of unnecessary `ToDecimal` conversions (no functional change)
+- Implement governance vote based on equity-like share for market update
+- Add specific insurance pool balance test
+- Add possibility to list snapshots from the Vega command line
+- Update feature tests related to liquidity provision following integration of probability of trading with floating point consensus
+- State variable engine for floating point consensus
+- Add an example client application that uses the null-blockchain
+- Add network limits service and events
+- Add a command to clean up all Vega node state
+- Remove Float from network parameters, use `num.Decimal` instead
+- Send staking asset total supply through consensus
+- Require Go minimum version 1.17
+- Integrate risk factors with floating point consensus engine
+- Change snapshot interval default to 1000 blocks
+- Fast forward epochs when loading from checkpoint to trigger payouts for the skipped time
+- Integrate price ranges with floating point consensus engine
+- Ensure validators are started with the right set of keys
+- Move to `ghcr.io` docker container registry
+- Remove execution configuration duplication from configuration root
+- Probability of trading integrated into floating point consensus engine
+- Measure validator performance and use to penalise rewards
+- Allow raw private keys for bridge functions
+- Add `--update` and `--replace` flags on `vega genesis new validator`
+- Add `--network-url` option to `vega tm`
+- Add transfer command support (one off transfers)
+- Add transfer command support (recurring transfers)
+- Add cancel transfer command
+- Fix null blockchain by forcing it to always be a non-validator node
+- Remove old ID generator fields from execution engine's snapshot
+- Reward refactoring for network treasury
+- Added endpoint `SubmitRawTransaction` to provide support for different transaction request message versions
+- Replace asset insurance pool with network treasury
+- Internalise Ethereum Event Forwarder
+- Make `BlockNr` part of event interface
+- Rename `min_lp_stake` to quantum + use it in liquidity provisions
+- Check smart contract hash on startup to ensure the correct version is being used
+- Add integration test ensuring positions plug-in calculates P&L accurately
+- Validators joining and leaving the network
+- Add `totalTokenSupplyStake` to the snapshots
+- Add transfers snapshots
+- Serialise timestamp in time update message as number of nanoseconds instead of seconds
+- Add internal oracle supplying Vega time data for time-triggered events
+- Use a deterministic generator for order IDs, set new order IDs to the transaction hash of the Submit transaction
+- Hash again list of hash from engines
+- Make trade IDs unique using the deterministic ID generator
+- Simplified performance score
+- Add command line tool to sign for the asset pool method `set_bridge_address`
+- Send governance events when restoring proposals on checkpoint reload
+- Fix margins calculations for positions with a size of 0 but with a non zero potential sell or buy
+- Improve and optimise replay protection
+- Add Ethereum events reconciliation for `multisig control`
+
+#### Fixes
+- Fix time formatting problem that was breaking consensus on nodes in different time zones
+- Fix concurrent write to price monitoring ref price cache
+- Fix `vega announce_node` to work with `--home` and `--passphrase-file`
+- Fix price monitoring snapshot
+- Fix topology and `erc20` topology snapshots
+- Epoch service now notifies other engines when it has restored from a snapshot
+- Fixes for invalid data types in the `MarketData` proto message.
+- Set Tendermint validators' voting power when loading from snapshot
+- Fixed tracking of liquidity fee received and added feature tests for the fee based rewards
+- Add ranking score information to checkpoint and snapshot and emit an event when loaded
+- Fix the string used for resource ID of stake total supply to be stable to fix the replay of non validator node locally
+- Fix margin balance not being released after close-out
+- Fix panic in loading topology from snapshot
+- Better error when trying to use the null-blockchain with an ERC20 asset
+- Set statistics block height after a snapshot reload
+- User tree importer and exporter to transfer snapshots via `statesync`
+- Updated `vega verify genesis` to understand new `app_state` layout
+- Set log level in snapshot engine
+- Save checkpoint with `UnixNano` when taking a snapshot
+- Fix restoring markets from snapshot by handling generated providers properly
+- `corestate` endpoints are now populated after a snapshot restore
+- save state of the `feesplitter` in the execution snapshot
+- Fix restoring markets from snapshot in an auction with orders
+- Set transfer responses event when paying rewards
+- Withdrawal fails should return a status rejected rather than cancelled
+- Deposits stayed in memory indefinitely, and withdrawal keys were not being sorted to ensure determinism
+- Fail when missing Tendermint home and public key in `nodewallet import` command
+- Bug fix for `--snapshot.db-path` parameter not being used if it is set
+- Bug fix for `--snapshot.max-retries` parameter not working correctly
+- Restore all market fields when restoring from a snapshot
+- Fix restoring rejected markets by signalling to the generated providers that their parent is dead
+- An array of fixes in the snapshot code path
+- Allow replaying a chain from zero when old snapshots exist
+- Fix liquidity provision commands decode
+- Remove all references to `TxV2`
+- Fix commit hash problem when checkpoint and snapshot overlap. Ensure the snapshot contains the correct checkpoint state.
+- Handle removing stake with no balances gracefully
+- Fix protobuf conversion in orders
+- Set a protocol version and properly send it to `Tendermint` in all cases
+- `TimeUpdate` is now first event sent
+- Ensure Ethereum event forwarder doesn't process the current block multiple times
+- Ensure verification of type between oracle spec binding and oracle spec
+- Add vesting contract as part of the Ethereum event forwarder
+- Dispatch network parameter updates at the same block when loaded from checkpoint
+- Fix for markets loaded from snapshot not terminated by their oracle
+- Add testing for auction state changes and remove unnecessary market state change
+- Added verification of `uint` market data in integration test
+- Fixed issue where LP orders did not get redeployed
+- Snapshot fixes for market and update market tracker on trades
+- Snapshot fixes for the `statevar` engine
+- Fixed panic in `maybeInvalidateDuringAuction`
+- Fixed liquidity auction trigger for certain cancel & replace amends
+
+### Versions 0.46.0-0.47.6 combined | 2022-01-11
 This release was made available to validators on 11 January, 2022. Validators released it to the mainnet network on 31 January, 2022.
 
 A key theme of this combined release has been improvements to the checkpointing feature; this includes fixes to ensure epochs and other key data is preserved as they should be during checkpoint restarts. In addition to this, the “free-form governance” feature has been implemented. This feature further decentralises the protocol by allowing users to submit a range of governance proposals for community consideration and voting.
