@@ -37,7 +37,11 @@ There's an intrinsic relationship between position risk and margin cost when com
 For example, a liquidity provider plans to commit the approximate equivalent of 1 million USD to a liquidity commitment: If their position risk is low (larger offsets) then about 5-10% can be reserved for the bond. If their position risk is higher (smaller offsets), and a provider manages their positions and margin carefully, the provider would need to reserve more to commit to the bond.
 
 ## Using the sample helper scripts
-**[Sample API scripts](https://github.com/vegaprotocol/sample-api-scripts)**: This GitHub repository has a set of sample scripts that perform many of the basic actions you can do with the Vega protocol, including submitting, amending, and cancelling liquidity commitments. 
+**[Sample API scripts](https://github.com/vegaprotocol/sample-api-scripts)**: This GitHub repository has a set of sample scripts that perform many of the basic actions you can do with the Vega protocol, including submitting, amending, and cancelling liquidity commitments.
+
+When using the scripts, you will receive a message that the transactions have been submitted, but won't get a response about whether or not they've been accepted. 
+
+For liquidity provision, use the tools below under **[Viewing existing liquidity provisions](/docs/tutorials/providing-liquidity/#viewing-existing-liquidity-provisions)** to check on them. 
 
 ### Setting up the helper scripts
 Inside the scripts root folder there is a credentials file that must be customised with your wallet credentials, and can also be customised to interact with a specific network.
@@ -49,7 +53,7 @@ Once you clone the repository, you'll find the script files on your computer by 
 :::
 
 #### List available markets
-See a list of all markets and market IDs by running the following script, and use the market ID in your credentials file:
+You'll need  to identify which market you want to supply liquidity to, and add the market ID to your credentials file. Remember to change the market ID in your credentials file if you want to provide liquidity on a different market in the future. See a list of all markets and market IDs by running the following script:
 
 ```bash
 python3 get-markets-and-market-data/get-markets-and-marketdata.py
@@ -71,21 +75,21 @@ This tutorial focuses on the second option, using Python. Note: There are also s
 * A set of liquidity buy and sell order shapes (denoted as `buys` and `sells`), which include:
     * Offset: How many ticks away from the reference price you want your orders to be. The tick size is the smallest decimal place the market allows for orders. There is a tradeoff between larger offsets, which have higher margin cost but less position risk, versus smaller offsets, which have smaller margin cost but more postion risk
     * Proportion: The proportion of your committed collateral allocated to this order, as a weight
-    * Reference price: The price that you want the order offset to reference. You can choose from the market’s mid price, best bid price, or the best ask price. In the examples below, the reference price is pegged to the mid-price, which means as the mid-price moves, so do the LP orders.
+    * Reference price: The price that you want the order offset to reference. You can choose from the market’s mid price, best bid price, or the best ask price. In the examples below, the reference price is pegged to the mid-price, which means as the mid-price moves, so do the LP orders. This would be useful if, for example, you wanted to always provide a spread of 10 ticks, then you could peg your first orders 5 ticks from the mid price on each side.
     
     (See a full list of applicable reference price levels in the [API documentation](https://docs.vega.xyz/protodocs/vega/vega.proto#peggedreference)), denoted as `reference`
 
 **To submit the liquidity provision message, you'll also need**: 
 
 * Public key: The public key being used to place the liquidity commitment
-* Propagate: Can be true or false - if true, then the liquidity commitment will be signed and sent as a transaction to the nodes. If you prefer to manually submit the transaction, set propogate to false and include the data in a transaction
+* Propagate: Is true or false. Propogate is used to define if you want the liquidity commitment sent to the nodes for processing immediately (true), or if you want to manually submit the orders in a transaction (false). Note: If you choose to manually submit, it must be within the block tolerance level or it will be rejected
 
 ### API script
-In the [`sample-api-scripts`](https://github.com/vegaprotocol/sample-api-scripts/) repo, there is a folder named [`submit-create-liquidity-provision`](https://github.com/vegaprotocol/sample-api-scripts/tree/master/submit-create-liquidity-provision), which has a set of scripts to create a new liquidity provision.
+In the [`sample-api-scripts`](https://github.com/vegaprotocol/sample-api-scripts/) repo, there is a folder named [`submit-create-liquidity-provision`](https://github.com/vegaprotocol/sample-api-scripts/tree/master/submit-create-liquidity-provision), which has a set of scripts to create a new liquidity provision using the `liquidityProvisionSubmission` command.
 
 You can see in the liquidity commitment Python script below that the most important part is the description of the commitment amount, which includes the offset and proportion for each shape. 
 
-The reference price in this example is pegged to the mid price, which means in this commitment the offsets define the spread. This would be useful if, for example, you wanted to always provide a spread of 10 ticks, then you could peg your first orders 5 ticks from the mid price on each side. 
+The reference price in this example is pegged to the mid price, which means in this commitment the offsets define the spread. 
 
 However, if you want a dynamic spread that would change depending on how far apart the priced limit orders on the book are, you could peg your buys to the best bid and sells to the best offer.
 
@@ -131,8 +135,8 @@ submission = {
 }
 ```
 
-### Run the script
-To execute a liquidity provision creation you can run the following script from the `samples-api-scripts` repo:
+### Edit and run the script
+To run the script with your own values, you will need to edit the file, save it and run the following script from the `samples-api-scripts` repo:
 
 ```bash
 python3 submit-create-liquidity-provision/submit-create-liquidity-provision-order.py
@@ -147,17 +151,12 @@ Therefore, if you are currently long or short, the orders created will be the sa
 
 One way you can help control your margin requirements is to change the shape of liquidity provision order to help reduce your position. For this, you can use the `liquidityProvisionAmendment` command.
 
+Submitting an amendment will replace the entire set of orders with the ones in your amendment transaction. If you want to keep any of your orders, you'll need to add them into your amendment.
+
 ### API script
 In the below example, the shape is being changed to increase the chance that sell orders will be matched. This would help to reduce the size of a long position. The activity of the market itself will control exactly what gets filled, and the shape of your orders does not guarantee your orders will be filled.
 
-### Run the script
-To execute a liquidity provision amend, edit and run the following script from the `samples-api-scripts` repo:
-
-```bash
-python3 submit-amend-liquidity-provision/submit-amend-liquidity-provision-order.py
-```
-
-In the following example, you can see the offset was chosen to be further away for the *best buy* price, but closer to the *best ask* price:
+In the following example, you can see the offset was chosen to be further away for the *best bid* price, but closer to the *best ask* price:
 
 ```python
 submission = {
@@ -184,6 +183,13 @@ submission = {
     "propagate": True
 }
 
+```
+
+### Edit and run the script
+To run the script with your own values, you will need to edit the file, save it and run the following script from the `samples-api-scripts` repo:
+
+```bash
+python3 submit-amend-liquidity-provision/submit-amend-liquidity-provision-order.py
 ```
 
 ## Cancelling a liquidity commitment
