@@ -216,13 +216,17 @@ Then `validator_performance = max(0.05, min((p/expected, 1))`
 ### Performance score: Standby validators
 The performance score for *new* standby validators is set to 0. The performance score of a standby validator is calculated based on them successfully submitting transactions.
 
-Validator candidates that have submitted a transaction to become consensus validating nodes will need to send a hash of block number `b`, separately signed by the three required keys and submitted, during each epoch and every 1000 blocks. The message with the signed block hash must be in blocks `b+1000` to `b+1010` to count as successfully delivered.
+Validator candidates that have submitted a transaction to become consensus validating nodes will need to send a hash of block number `b`, separately signed by the three required keys and submitted, during each epoch and every set number of blocks (`numBlocks`). 
+
+`numBlocks` = the higher of (the lower of (50 and the epoch duration in seconds) and (epoch duration in seconds x 0.01)
+
+The message with the signed block hash must be in blocks `b+numBlocks` to `b+numBlocks` to count as successfully delivered.
 
 The network will verify this to confirm that the validator owns the keys. 
 
 `b` is defined as: 
 * The first time, it is the block number in which the joining transaction was included
-* Subsequent times, it is incremented by 1000
+* Subsequent times, it is incremented by `numBlocks`
 
 The network will keep track of the last 10 times a standby validator was meant to submit the transactions, and the performance score is the number of times this has been verified, divided by 10.
 
@@ -288,6 +292,11 @@ The normalised validator score number directly affects how much each validator (
 - Validator 1 (and its nominators) will receive 0 rewards. Validator 2 & 3 will split the 1000 equally.
 
 ## Becoming a validator
+
+::info 
+The network is set to not allow any standby validators for alpha mainnet, and the number of validators will be increased via governance as early alpha mainnet progresses.
+:::
+
 A node operator that wants to express interest in running a validating node for Vega needs to do the following: 
 
 1. Start a Vega node as non-validating node, including the associated infrastructure: a system with a minimum of 4 cores, 16GB RAM, and 256GB SSD (subject  to increase in the future)
