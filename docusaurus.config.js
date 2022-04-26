@@ -208,6 +208,16 @@ module.exports = {
       // REST - see note at the top. Currently this is not versioned inside docs, but can be
       "redocusaurus",
       {
+        theme: {
+          primaryColor: undefined,
+          options: {
+            expandDefaultServerVariables: true,
+            expandResponses: true,
+            hideDownloadButton: true,
+            schemaExpansionLevel: 5,
+            expandSingleSchemaField: true
+          },
+        },
         // start-rest-versions
         specs: [
           {
@@ -253,7 +263,7 @@ module.exports = {
           {
             id: "trading-v0.50.1",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/data-node/api/v1/trading_data.swagger.json",
-            route: "/docs/testnet/api/rest/data-node/data",
+            route: "/docs/api/rest/data-node/data",
             layout: {
               searchMetaDatas: {
                 version: "v0.50.1",
@@ -263,7 +273,7 @@ module.exports = {
           {
             id: "core-v0.50.1",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/vega/api/v1/core.swagger.json",
-            route: "/docs/testnet/api/rest/core/core",
+            route: "/docs/api/rest/core/core",
             layout: {
               searchMetaDatas: {
                 version: "v0.50.1",
@@ -273,7 +283,7 @@ module.exports = {
           {
             id: "state-v0.50.1",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/vega/api/v1/corestate.swagger.json",
-            route: "/docs/testnet/api/rest/core/state",
+            route: "/docs/api/rest/core/state",
             layout: {
               searchMetaDatas: {
                 version: "v0.50.1",
