@@ -10,7 +10,7 @@
  */
 
 let { schemaSidebar } = require("./docs/graphql/sidebar-schema");
-// let { protodocs } = require("./docs/grpc/sidebar");
+let { protodocs } = require("./docs/grpc/sidebar");
 
 module.exports = {
   api: [
@@ -71,8 +71,7 @@ module.exports = {
       dirName: "releases",
     },
   ],
-  //  grpc: protodocs,
-  grpc: {},
+  grpc: protodocs,
   // GraphQL
   schemaSidebar: schemaSidebar,
 };
