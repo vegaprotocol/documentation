@@ -195,7 +195,7 @@ module.exports = {
           {
             id: "trading-v0.47.0",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/data-node/api/v1/trading_data.swagger.json",
-            route: "/docs/v0.47.0/api/rest/data-node/data",
+            route: "/docs/api/rest/data-node/data",
             layout: {
               searchMetaDatas: {
                 version: "v0.47.6"
@@ -205,7 +205,7 @@ module.exports = {
           {
             id: "core-v0.47.0",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/vega/api/v1/core.swagger.json",
-            route: "/docs/v0.47.0/api/rest/core/core",
+            route: "/docs/api/rest/core/core",
             layout: {
               searchMetaDatas: {
                 version: "v0.47.0"
@@ -215,7 +215,7 @@ module.exports = {
           {
             id: "proxy-v0.47.0",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/data-node/api/v1/trading_proxy.swagger.json",
-            route: "/docs/v0.47.0/api/rest/core/proxy",
+            route: "/docs/api/rest/core/proxy",
             layout: {
               searchMetaDatas: {
                 version: "v0.47.0"
@@ -225,7 +225,7 @@ module.exports = {
           {
             id: "state-v0.47.0",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/data-node/api/v1/trading_data.swagger.json",
-            route: "/docs/v0.47.0/api/rest/core/state",
+            route: "/docs/api/rest/core/state",
             layout: {
               searchMetaDatas: {
                 version: "v0.47.0"
@@ -235,7 +235,7 @@ module.exports = {
           {
             id: "trading-v0.50.1",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/data-node/api/v1/trading_data.swagger.json",
-            route: "/docs/api/rest/data-node/data",
+            route: "/docs/next/api/rest/data-node/data",
             layout: {
               searchMetaDatas: {
                 version: "v0.50.1"
@@ -245,7 +245,7 @@ module.exports = {
           {
             id: "core-v0.50.1",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/vega/api/v1/core.swagger.json",
-            route: "/docs/api/rest/core/core",
+            route: "/docs/next/api/rest/core/core",
             layout: {
               searchMetaDatas: {
                 version: "v0.50.1"
@@ -255,7 +255,7 @@ module.exports = {
           {
             id: "state-v0.50.1",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/vega/api/v1/corestate.swagger.json",
-            route: "/docs/api/rest/core/state",
+            route: "/docs/next/api/rest/core/state",
             layout: {
               searchMetaDatas: {
                 version: "v0.50.1"
