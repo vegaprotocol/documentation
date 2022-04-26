@@ -10,7 +10,7 @@
  */
 
 let { schemaSidebar } = require("./docs/graphql/sidebar-schema");
-let { protodocs } = require("./docs/grpc/sidebar");
+// let { protodocs } = require("./docs/grpc/sidebar");
 
 module.exports = {
   api: [
@@ -39,11 +39,6 @@ module.exports = {
           type: "link",
           href: "/docs/api/rest/data-node/data",
           label: "Data node",
-        },
-        {
-          type: "link",
-          href: "/docs/api/rest/data-node/proxy",
-          label: "Data node proxy",
         },
         {
           type: "link",
@@ -76,7 +71,8 @@ module.exports = {
       dirName: "releases",
     },
   ],
-  grpc: protodocs, 
+  //  grpc: protodocs,
+  grpc: {},
   // GraphQL
   schemaSidebar: schemaSidebar,
 };

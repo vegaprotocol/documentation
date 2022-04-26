@@ -1,0 +1,37 @@
+---
+id: update-market-proposals
+title: updateMarketProposals
+---
+
+
+Governance proposals that aim to update existing markets
+
+```graphql
+updateMarketProposals(
+  marketId: ID
+  inState: ProposalState
+): [Proposal!]
+```
+
+
+### Arguments
+
+#### `marketId` ([`ID`](/docs/mainnet/graphql/scalars/id))
+
+Optionally, select proposals for a specific market. Leave out for all
+
+
+#### `inState` ([`ProposalState`](/docs/mainnet/graphql/enums/proposal-state))
+
+Returns only proposals in the specified state. Leave out to get all proposals
+
+
+### Type
+
+#### [`Proposal`](/docs/mainnet/graphql/objects/proposal) 
+
+
+
+
+
+

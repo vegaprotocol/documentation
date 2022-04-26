@@ -1,0 +1,38 @@
+---
+title: assets.proto
+hide_title: false
+---
+
+import { ProtoMessage, ProtoServiceMethod, ProtoEnum } from '@theme/ProtoFile';
+
+## `assets.proto`
+_**path** vega/assets.proto_
+
+_**package** vega_
+
+
+
+---
+
+## Messages
+
+
+### `Asset`
+<ProtoMessage key={0} message={{"name":"Asset","longName":"Asset","fullName":"vega.Asset","description":"The Vega representation of an external asset","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"id","description":"Internal identifier of the asset","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"details","description":"The definition of the external source for this asset","label":"","type":"AssetDetails","longType":"AssetDetails","fullType":"vega.AssetDetails","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/docs/grpc/vega/assets.proto#assetdetails"}]}} />
+
+
+### `AssetDetails`
+<ProtoMessage key={1} message={{"name":"AssetDetails","longName":"AssetDetails","fullName":"vega.AssetDetails","description":"The Vega representation of an external asset","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"name","description":"Name of the asset (e.g: Great British Pound)","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"symbol","description":"Symbol of the asset (e.g: GBP)","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"total_supply","description":"Total circulating supply for the asset","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"decimals","description":"Number of decimal / precision handled by this asset","label":"","type":"uint64","longType":"uint64","fullType":"uint64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"quantum","description":"The minimum economically meaningful amount in the asset","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"builtin_asset","description":"A built-in asset","label":"","type":"BuiltinAsset","longType":"BuiltinAsset","fullType":"vega.BuiltinAsset","ismap":false,"isoneof":true,"oneofdecl":"source","defaultValue":"","typeLink":"/docs/grpc/vega/assets.proto#builtinasset"},{"name":"erc20","description":"An Ethereum ERC20 asset","label":"","type":"ERC20","longType":"ERC20","fullType":"vega.ERC20","ismap":false,"isoneof":true,"oneofdecl":"source","defaultValue":"","typeLink":"/docs/grpc/vega/assets.proto#erc20"}]}} />
+
+
+### `BuiltinAsset`
+<ProtoMessage key={2} message={{"name":"BuiltinAsset","longName":"BuiltinAsset","fullName":"vega.BuiltinAsset","description":"A Vega internal asset","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"max_faucet_amount_mint","description":"Maximum amount that can be requested by a party through the built-in asset faucet at a time","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `ERC20`
+<ProtoMessage key={3} message={{"name":"ERC20","longName":"ERC20","fullName":"vega.ERC20","description":"An ERC20 token based asset, living on the ethereum network","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"contract_address","description":"The address of the contract for the token, on the ethereum network","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+---
+
+
+  

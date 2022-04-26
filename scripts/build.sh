@@ -7,15 +7,18 @@
 #
 # Additionally, a script is called to generate proposal documentation. It's not a docusaurus plugin.
 
+rm proto.json
+rm schema.graphql
+
 set -e
 
 grpc_doc_owner=vegaprotocol
 grpc_doc_repo=protos
-grpc_doc_branch=develop
+grpc_doc_branch="${VEGA_VERSION}"
 
 graphql_doc_owner=vegaprotocol
 graphql_doc_repo=data-node
-graphql_doc_branch=v0.49.2
+graphql_doc_branch="${VEGA_VERSION}"
 
 gh_token="${GITHUB_API_TOKEN:?}"
 
@@ -78,8 +81,5 @@ find . -type f -name '*.mdx' -exec sed -i -E 's/hide_title: true/hide_title: fal
 echo "GRPC: Fix sidebar links"
 sed -i -E 's/"vega\//"grpc\/vega\//g' docs/grpc/sidebar.js
 
-yarn run build
+# yarn run build
 yarn run prettier
-
-rm schema.graphql
-rm proto.json

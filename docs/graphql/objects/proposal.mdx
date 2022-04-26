@@ -1,0 +1,72 @@
+---
+id: proposal
+title: Proposal
+---
+
+
+No description
+
+```graphql
+type Proposal {
+  id: ID
+  reference: String!
+  party: Party!
+  state: ProposalState!
+  datetime: String!
+  terms: ProposalTerms!
+  votes: ProposalVotes!
+  rejectionReason: ProposalRejectionReason
+  errorDetails: String
+}
+```
+
+
+### Fields
+
+#### `id` ([`ID`](/docs/testnet/graphql/scalars/id))
+
+Proposal ID that is filled by VEGA once proposal reaches the network
+
+
+#### `reference` ([`String`](/docs/testnet/graphql/scalars/string))
+
+A UUID reference to aid tracking proposals on VEGA
+
+
+#### `party` ([`Party`](/docs/testnet/graphql/objects/party))
+
+Party that prepared the proposal
+
+
+#### `state` ([`ProposalState`](/docs/testnet/graphql/enums/proposal-state))
+
+State of the proposal
+
+
+#### `datetime` ([`String`](/docs/testnet/graphql/scalars/string))
+
+RFC3339Nano time and date when the proposal reached Vega network
+
+
+#### `terms` ([`ProposalTerms`](/docs/testnet/graphql/objects/proposal-terms))
+
+Terms of the proposal
+
+
+#### `votes` ([`ProposalVotes`](/docs/testnet/graphql/objects/proposal-votes))
+
+Votes cast for this proposal
+
+
+#### `rejectionReason` ([`ProposalRejectionReason`](/docs/testnet/graphql/enums/proposal-rejection-reason))
+
+Reason for the proposal to be rejected by the core
+
+
+#### `errorDetails` ([`String`](/docs/testnet/graphql/scalars/string))
+
+Error details of the rejectionReason
+
+
+
+

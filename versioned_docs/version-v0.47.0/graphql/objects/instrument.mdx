@@ -1,0 +1,48 @@
+---
+id: instrument
+title: Instrument
+---
+
+
+Describe something that can be traded on Vega
+
+```graphql
+type Instrument {
+  id: String!
+  code: String!
+  name: String!
+  metadata: InstrumentMetadata!
+  product: Product!
+}
+```
+
+
+### Fields
+
+#### `id` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+Uniquely identify an instrument accrods all instruments available on Vega (string)
+
+
+#### `code` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+A short non necessarily unique code used to easily describe the instrument (e.g: FX:BTCUSD/DEC18) (string)
+
+
+#### `name` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+Full and fairly descriptive name for the instrument
+
+
+#### `metadata` ([`InstrumentMetadata`](/docs/mainnet/graphql/objects/instrument-metadata))
+
+Metadata for this instrument
+
+
+#### `product` ([`Product`](/docs/mainnet/graphql/unions/product))
+
+A reference to or instance of a fully specified product, including all required product parameters for that product (Product union)
+
+
+
+

@@ -1,0 +1,53 @@
+---
+id: reward-summary
+title: RewardSummary
+---
+
+
+No description
+
+```graphql
+type RewardSummary {
+  asset: Asset!
+  amount: String!
+  rewards(
+  skip: Int
+  first: Int
+  last: Int
+): [Reward]
+}
+```
+
+
+### Fields
+
+#### `asset` ([`Asset`](/docs/graphql/objects/asset))
+
+The asset for which these rewards are associated
+
+
+#### `amount` ([`String`](/docs/graphql/scalars/string))
+
+Total quantity of rewards awarded in this asset
+
+
+#### `rewards` ([`Reward`](/docs/graphql/objects/reward))
+
+List of individual reward payouts, ordered by epoch
+- ##### `skip` ([`Int`](/docs/graphql/scalars/int))
+
+Pagination skip
+
+
+- ##### `first` ([`Int`](/docs/graphql/scalars/int))
+
+Pagination first element
+
+
+- ##### `last` ([`Int`](/docs/graphql/scalars/int))
+
+Pagination last element
+
+
+
+

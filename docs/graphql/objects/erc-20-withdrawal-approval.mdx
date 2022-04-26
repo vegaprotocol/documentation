@@ -1,0 +1,55 @@
+---
+id: erc-20-withdrawal-approval
+title: Erc20WithdrawalApproval
+---
+
+
+All the data related to the approval of a withdrawal from the network
+
+```graphql
+type Erc20WithdrawalApproval {
+  assetSource: String!
+  amount: String!
+  expiry: String!
+  nonce: String!
+  signatures: String!
+  targetAddress: String!
+}
+```
+
+
+### Fields
+
+#### `assetSource` ([`String`](/docs/testnet/graphql/scalars/string))
+
+The source asset in the ethereum network
+
+
+#### `amount` ([`String`](/docs/testnet/graphql/scalars/string))
+
+The amount to be withdrawn
+
+
+#### `expiry` ([`String`](/docs/testnet/graphql/scalars/string))
+
+Timestamp in seconds for expiry of the approval
+
+
+#### `nonce` ([`String`](/docs/testnet/graphql/scalars/string))
+
+The nonce to be used in the request
+
+
+#### `signatures` ([`String`](/docs/testnet/graphql/scalars/string))
+
+Signature aggregate from the nodes, in the following format:
+0x + sig1 + sig2 + ... + sigN
+
+
+#### `targetAddress` ([`String`](/docs/testnet/graphql/scalars/string))
+
+The target address which will receive the funds
+
+
+
+

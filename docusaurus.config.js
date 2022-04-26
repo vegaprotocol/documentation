@@ -21,9 +21,9 @@ module.exports = {
       },
       items: [
         {
-          type: 'docsVersionDropdown',
-          position: 'right',
-          dropdownItemsAfter: [{to: '/versions', label: 'All versions'}],
+          type: "docsVersionDropdown",
+          position: "right",
+          dropdownItemsAfter: [{ to: "/versions", label: "All versions" }],
           dropdownActiveClassDisabled: true,
         },
         {
@@ -32,22 +32,26 @@ module.exports = {
           position: "right",
         },
         {
-          to: "/docs/concepts/new-to-vega",
+          type: "doc",
+          docId: "concepts/new-to-vega",
           label: "Concepts",
           position: "left",
         },
         {
-          to: "/docs/api/overview",
+          type: "doc",
+          docId: "api/overview",
           label: "API",
           position: "left",
         },
         {
-          to: "/docs/tools/",
+          type: "doc",
+          docId: "tools/index",
           label: "Apps and Tools",
           position: "left",
         },
         {
-          to: "/docs/releases/overview",
+          type: "doc",
+          docId: "releases/overview",
           label: "Releases",
           position: "left",
         },
@@ -136,7 +140,7 @@ module.exports = {
         schema: "./schema.graphql",
         rootPath: "docs",
         baseURL: "graphql",
-        linkRoot: "/docs",
+        linkRoot: "/docs/testnet/",
         diffMethod: "SCHEMA-DIFF",
       },
     ],
@@ -153,19 +157,19 @@ module.exports = {
     [
       // docusaurus-protobuffet as a preset is the standard approach. However, we want the GRPC docs to be
       // versioned along with the ./docs/ folder, so here we are using the plugin for it's file generation
-      // portion only. The *plugin* extends the docusaurus CLI to give us `generate-grpc`, but does not 
+      // portion only. The *plugin* extends the docusaurus CLI to give us `generate-grpc`, but does not
       // set up another instance of `docs` that controls rendering for the GRPC portion of the docs. Which
       // is to say: GRPC is treated like any other part of our docs.
-      // 
+      //
       // The weird thing this causes is that the React components in ProtoFile are provided by the theme, which
       // is no long available - so that component has been 'swizzled' out of the theme and in to ./src/theme
       require.resolve("docusaurus-protobuffet-plugin"),
       {
-        routeBasePath: '/docs/grpc',
+        routeBasePath: "/docs/grpc",
         fileDescriptorsPath: "./proto.json",
         protoDocsPath: "./docs/grpc",
         sidebarPath: "./docs/grpc/sidebar.js",
-     }
+      },
     ],
   ],
   presets: [
@@ -174,11 +178,25 @@ module.exports = {
       {
         debug: undefined,
         // We don't have a '/blog/' section on the site, so disable this section
-        blog: false, 
+        blog: false,
         // Configuration for the '/docs/' section of the site
         docs: {
+          disableVersioning: false,
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/vegaprotocol/documentation/edit/main/",
+          lastVersion: "v0.47.0",
+          versions: {
+            current: {
+              banner: "unreleased",
+              label: "testnet (v0.50.x)",
+              path: "testnet",
+            },
+            "v0.47.0": {
+              banner: "none",
+              label: "mainnet (v0.47.x)",
+              path: "mainnet",
+            },
+          },
         },
         // Vega specific theme overrides go here
         theme: {
@@ -195,72 +213,72 @@ module.exports = {
           {
             id: "trading-v0.47.0",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/data-node/api/v1/trading_data.swagger.json",
-            route: "/docs/api/rest/data-node/data",
+            route: "/docs/mainnet/api/rest/data-node/data",
             layout: {
               searchMetaDatas: {
-                version: "v0.47.6"
-              }
-            }
+                version: "v0.47.6",
+              },
+            },
           },
           {
             id: "core-v0.47.0",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/vega/api/v1/core.swagger.json",
-            route: "/docs/api/rest/core/core",
+            route: "/docs/mainnet/api/rest/core/core",
             layout: {
               searchMetaDatas: {
-                version: "v0.47.0"
-              }
-            }
-           },
+                version: "v0.47.0",
+              },
+            },
+          },
           {
             id: "proxy-v0.47.0",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/data-node/api/v1/trading_proxy.swagger.json",
-            route: "/docs/api/rest/core/proxy",
+            route: "/docs/mainnet/api/rest/core/proxy",
             layout: {
               searchMetaDatas: {
-                version: "v0.47.0"
-              }
-            }
+                version: "v0.47.0",
+              },
+            },
           },
           {
             id: "state-v0.47.0",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/data-node/api/v1/trading_data.swagger.json",
-            route: "/docs/api/rest/core/state",
+            route: "/docs/mainnet/api/rest/core/state",
             layout: {
               searchMetaDatas: {
-                version: "v0.47.0"
-              }
-            }
+                version: "v0.47.0",
+              },
+            },
           },
           {
             id: "trading-v0.50.1",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/data-node/api/v1/trading_data.swagger.json",
-            route: "/docs/next/api/rest/data-node/data",
+            route: "/docs/testnet/api/rest/data-node/data",
             layout: {
               searchMetaDatas: {
-                version: "v0.50.1"
-              }
-            }
+                version: "v0.50.1",
+              },
+            },
           },
           {
             id: "core-v0.50.1",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/vega/api/v1/core.swagger.json",
-            route: "/docs/next/api/rest/core/core",
+            route: "/docs/testnet/api/rest/core/core",
             layout: {
               searchMetaDatas: {
-                version: "v0.50.1"
-              }
-            }
-           },
+                version: "v0.50.1",
+              },
+            },
+          },
           {
             id: "state-v0.50.1",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/vega/api/v1/corestate.swagger.json",
-            route: "/docs/next/api/rest/core/state",
+            route: "/docs/testnet/api/rest/core/state",
             layout: {
               searchMetaDatas: {
-                version: "v0.50.1"
-              }
-            }
+                version: "v0.50.1",
+              },
+            },
           },
         ],
         // end-rest-versions

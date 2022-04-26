@@ -1,0 +1,84 @@
+---
+id: transfer
+title: Transfer
+---
+
+
+A user initiated transfer
+
+```graphql
+type Transfer {
+  id: ID!
+  from: String!
+  fromAccountType: AccountType!
+  to: String!
+  toAccountType: AccountType!
+  asset: Asset
+  amount: String!
+  reference: String
+  status: TransferStatus!
+  timestamp: String!
+  kind: TransferKind!
+}
+```
+
+
+### Fields
+
+#### `id` ([`ID`](/docs/graphql/scalars/id))
+
+Identified of this transfer
+
+
+#### `from` ([`String`](/docs/graphql/scalars/string))
+
+The public key of the sender in this transfer
+
+
+#### `fromAccountType` ([`AccountType`](/docs/graphql/enums/account-type))
+
+The account type from which funds have been sent from
+
+
+#### `to` ([`String`](/docs/graphql/scalars/string))
+
+The public key of the received of the funds
+
+
+#### `toAccountType` ([`AccountType`](/docs/graphql/enums/account-type))
+
+The account type which has received the funds
+
+
+#### `asset` ([`Asset`](/docs/graphql/objects/asset))
+
+The asset
+
+
+#### `amount` ([`String`](/docs/graphql/scalars/string))
+
+The amount sent
+
+
+#### `reference` ([`String`](/docs/graphql/scalars/string))
+
+An optional reference
+
+
+#### `status` ([`TransferStatus`](/docs/graphql/enums/transfer-status))
+
+The status of this transfer
+
+
+#### `timestamp` ([`String`](/docs/graphql/scalars/string))
+
+The time at which the transfer was submitted
+
+
+#### `kind` ([`TransferKind`](/docs/graphql/unions/transfer-kind))
+
+
+
+
+
+
