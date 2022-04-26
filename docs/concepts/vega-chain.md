@@ -176,6 +176,10 @@ As with the consensus validators, standby validators are defined based on how mu
 
 Standby validators, and the tokenholders who stake them, receive a share of rewards. The rewards for standby validators are calculated and penalised in the same way as consensus validators, except scaled down. How much they are scaled is based on the network parameter `network.validators.ersatz.rewardFactor`.
 
+:::info 
+The network is set to not allow any standby validators for alpha mainnet, and the number of validators will be increased via governance as early alpha mainnet progresses.
+:::
+
 ### How standby validators are chosen
 If there are free slots for one or more standby validators, and there are nodes that have submitted the transaction to join (and satisfy all joining conditions), they are added as standby validators in the next epoch. 
 
@@ -293,7 +297,7 @@ The normalised validator score number directly affects how much each validator (
 
 ## Becoming a validator
 
-::info 
+:::info 
 The network is set to not allow any standby validators for alpha mainnet, and the number of validators will be increased via governance as early alpha mainnet progresses.
 :::
 
