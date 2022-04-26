@@ -1,5 +1,6 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 
+<<<<<<< HEAD
 // This is required at runtime currently due to the way redocusaurus is configured
 // to fetch the swagger files. This will change in future to grab them in build.sh
 // and rely on local copies, allowing us to remove this variable
@@ -9,6 +10,8 @@ if (vega_version === undefined || vega_version === "") {
   process.exit(1);
 }
 
+=======
+>>>>>>> update
 module.exports = {
   title: "Vega",
   tagline:
@@ -29,6 +32,12 @@ module.exports = {
         src: "img/logo-y.png",
       },
       items: [
+        {
+          type: 'docsVersionDropdown',
+          position: 'right',
+          dropdownItemsAfter: [{to: '/versions', label: 'All versions'}],
+          dropdownActiveClassDisabled: true,
+        },
         {
           href: "https://github.com/vegaprotocol/documentation",
           label: "GitHub",
@@ -193,29 +202,80 @@ module.exports = {
       // REST - see note at the top. Currently this is not versioned inside docs, but can be
       "redocusaurus",
       {
+        // start-rest-versions
         specs: [
           {
-            spec:
-              "https://raw.githubusercontent.com/vegaprotocol/protos/" +
-              vega_version +
-              "/swagger/data-node/api/v1/trading_data.swagger.json",
+            id: "trading-v0.47.0",
+            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/data-node/api/v1/trading_data.swagger.json",
+            route: "/docs/v0.47.0/api/rest/data-node/data",
+            layout: {
+              searchMetaDatas: {
+                version: "v0.47.6"
+              }
+            }
+          },
+          {
+            id: "core-v0.47.0",
+            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/vega/api/v1/core.swagger.json",
+            route: "/docs/v0.47.0/api/rest/core/core",
+            layout: {
+              searchMetaDatas: {
+                version: "v0.47.0"
+              }
+            }
+           },
+          {
+            id: "proxy-v0.47.0",
+            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/data-node/api/v1/trading_proxy.swagger.json",
+            route: "/docs/v0.47.0/api/rest/core/proxy",
+            layout: {
+              searchMetaDatas: {
+                version: "v0.47.0"
+              }
+            }
+          },
+          {
+            id: "state-v0.47.0",
+            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/data-node/api/v1/trading_data.swagger.json",
+            route: "/docs/v0.47.0/api/rest/core/state",
+            layout: {
+              searchMetaDatas: {
+                version: "v0.47.0"
+              }
+            }
+          },
+          {
+            id: "trading-v0.50.1",
+            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/data-node/api/v1/trading_data.swagger.json",
             route: "/docs/api/rest/data-node/data",
+            layout: {
+              searchMetaDatas: {
+                version: "v0.50.1"
+              }
+            }
           },
           {
-            spec:
-              "https://raw.githubusercontent.com/vegaprotocol/protos/" +
-              vega_version +
-              "/swagger/vega/api/v1/core.swagger.json",
+            id: "core-v0.50.1",
+            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/vega/api/v1/core.swagger.json",
             route: "/docs/api/rest/core/core",
-          },
+            layout: {
+              searchMetaDatas: {
+                version: "v0.50.1"
+              }
+            }
+           },
           {
-            spec:
-              "https://raw.githubusercontent.com/vegaprotocol/protos/" +
-              vega_version +
-              "/swagger/vega/api/v1/corestate.swagger.json",
+            id: "state-v0.50.1",
+            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/vega/api/v1/corestate.swagger.json",
             route: "/docs/api/rest/core/state",
+            layout: {
+              searchMetaDatas: {
+                version: "v0.50.1"
+              }
+            }
           },
         ],
+        // end-rest-versions
       },
     ],
   ],
