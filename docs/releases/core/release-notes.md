@@ -13,7 +13,7 @@ The primary focus of this and the next upcoming releases has been to complete th
 
 Note: While many of the features below are related to trading, it is not yet enabled on mainnet. 
 
-**Proposals to change market parameters**: After a market has been proposed and enacted, changes to the market parameters are required. Tokenholders will be able to submit proposals to change market parameters.
+**Proposals to change market parameters**: After a market has been proposed and enacted, changes to the market parameters can be proposed in a different governance action. Tokenholders will be able to submit proposals to change market parameters.
 
 To change any market parameter, the proposer will submit the same data as if they were to create a market, except for the liquidity commitment, however this submission would contain the desired updates to the fields / structures that they wish to be changed. Some of the market parameters will not be able to be changed: market decimal places, position decimal places, settlement asset and the market name.
 
@@ -33,7 +33,7 @@ This data is now stored in the checkpoints, which means that it is now possible 
 
 **Add Ethereum key rotation support**: Vega now supports validators rotating their Ethereum keys. Ethereum keys are required so that validators can allow deposits and withdrawals via the Ethereum bridge. The controller of the bridge is a multisig bundle, and periodically validators will want to change their keys but still be part of the controlling group. This feature allows them to do this with a new transaction type.
 
-Read more: [Key management](https://github.com/vegaprotocol/specs-internal/blob/master/protocol/0067-KEYS-key_management.md)
+Read more: [Key management](https://github.com/vegaprotocol/specs/blob/master/protocol/0067-KEYS-key_management.md)
 
 **Liquidity Provision Improvements**: Over the last month, the project team has been running a number of community incentives, including around liquidity provision. A number of bugs and enhancements have been introduced as a result of the incentive. These include:
 * In some cases, amending liquidity orders triggered a liquidity auction. This was due to the fact that an order amend was effectively equivalent to a cancel and submit. During investigations it was found that if there was only 1 order on either side of the book, amending it would trigger an auction because, temporarily, there were no orders left
