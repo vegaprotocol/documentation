@@ -6,8 +6,8 @@ hide_title: false
 
 While the Vega core software is closed-source, you can refer here for a full list of release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-### Versions 0.50.3-0.49.8 combined | 2022-04-XX
-This release was made available to validators on XXXXX.
+### Versions 0.50.3-0.49.8 combined | 2022-04-27
+This release was made available to validators on 27 April, 2022.
 
 The primary focus of this and the next upcoming releases has been to complete the final remaining features, progress data-node improvements for scalability and to add test coverage and fix bugs.
 
