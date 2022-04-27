@@ -6,7 +6,7 @@ hide_title: false
 
 While the Vega data node (API) software is still closed-source, you can refer here for a full list of release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-### Versions 0.50.1-0.49.3 combined | 2022-04-XX
+### Versions 0.50.1-0.49.3 combined | 2022-04-27
 
 - Breaking change: Extend node model with additional information about reward scores and ranking scores plus validator statuses
 - Migrate withdrawal API to retrieve data from `Postgres`
