@@ -17,13 +17,13 @@ Read more: [Validating nodes](/docs/concepts/vega-chain#validating-nodes)
 
 **Participants who hold a balance of VEGA, the governance asset, can use their tokens to nominate validating nodes.** This is done by associating those tokens to a Vega key to use as stake, and then nominating one or more validators they trust to help secure the network. Nominating validators loans the consensus voting weight of the VEGA tokens to endorse a validator's trustworthiness. 
 
-Tokens, in addition to their use for nominating validators, also grant tokenholder voting rights on governance actions. If a token is delegated, its governance voting rights stay with the tokenholder and are not transferred to any validators that the tokenholder nominates.
+Tokens, in addition to their use for nominating validators, also grant tokenholder voting rights on governance actions. If a token is used to nominate validator(s), its governance voting rights stay with the tokenholder and are not transferred to any validators that the tokenholder nominates.
 
 Everyone participating in keeping the network secure, robust and reliable, including nominators, is **rewarded** for keeping the network running. Not meeting the requirements of running the network can lead to penalties, such as **rewards being withheld**.
 
 Read more: [Rewards](/docs/concepts/vega-chain#rewards)
 
-Vega is non-slashing -- there is no mechanism through which a tokenholder can lose a staked token through a validator being punished. Any measures to that end use different mechanisms that will affect a bad validator's (and potentially their delegators') revenue, but does not affect the delegated tokens themselves.
+Vega is non-slashing -- there is no mechanism through which a tokenholder can lose a staked token through a validator being punished. Any measures to that end use different mechanisms that will affect a bad validator's (and potentially their nominators') revenue, but does not affect the nominated tokens themselves.
 
 Read more: [Penalties](/docs/concepts/vega-chain#penalties)
 
@@ -96,7 +96,7 @@ Automatic nomination is triggered when an individual tokenholder has manually no
 
 Exceptions to automatic nomination: 
 * If, ahead of the next epoch a participant uses their available tokens to nominate validators manually, that takes precedence over automatic nomination. 
-* For the epoch after un-nominating validators (see below), tokens are not auto-nominated, to provide time to change the delegation / remove tokens.  
+* For the epoch after un-nominating validators (see below), tokens are not auto-nominated, to provide time to change the nomination / remove tokens.  
 
 ### Un-nominating validators
 Participants can remove their nomination at the end of an epoch, or immediately. The un-nominated tokens will be restored back to the participant's associated token balance. 
@@ -267,8 +267,8 @@ Factors that affect the validator score:
 `min_validators` = value of the network parameter that defines the minimum viable number of validators to run Vega
 `num_validators` = actual number of validators running nodes on Vega
 `comp_level` = value of the network parameter that defines the competition level
-`total_stake` = sum of all stake across all validators and their delegations
-`optimal_stake` = total delegation divided by the greater of `min_validators`, OR (`num_validators` / `comp_level`): Optimal stake is how much stake each validator is expected to have, at most
+`total_stake` = sum of all stake across all validators
+`optimal_stake` = total nomination divided by the greater of `min_validators`, OR (`num_validators` / `comp_level`): Optimal stake is how much stake each validator is expected to have, at most
 `optimal_stake_multiplier` = value defined by the network parameter, which indicates how many times the optimal stake a validator is penalised for, if they are further than the optimal stake
 
 `validator_stake_i` = stake of the given validator whose score is being calculated
@@ -306,7 +306,7 @@ A node operator that wants to express interest in running a validating node for 
 1. Start a Vega node as non-validating node, including the associated infrastructure: a system with a minimum of 4 cores, 16GB RAM, and 256GB SSD (subject  to increase in the future)
 2. Submit a transaction using their keys, announcing they want to validate, and receive a response that the network has verified key ownership (see below)
 3. Self-stake to their validator Vega key at least as much as the amount defined by the reward.staking.delegation.minimumValidatorStake network parameter
-4. Wait for others to delegate to them. It would be worth announcing to the community that you have started a node and are looking for stake)
+4. Wait for others to nominate them. It would be worth announcing to the community that you have started a node and are looking for stake)
 
 ### How candidate validators are ranked
 At the end of each epoch, the Vega network will calculate validator score. The consensus validators during that epoch will have their validator scores scaled by (1 + `network.validators.incumbentBonus`). This number combines self-stake and nominated stake with the performance score (which measures basic node performance).
@@ -340,7 +340,7 @@ Those checkpoints happen at defined intervals, and on every deposit and withdraw
 
 <!-- ### ***Further reading*** 
 DPOS - For a full list of data stored in a checkpoint, see SPECS LINK.
-Non-validator participants keep the network fair by controlling the voting power of validators. When tokens are delegated, the tokenholders choose the validators for the network. it is the responsibility of tokenholders to manage who validates the network (and its transactions).
+Non-validator participants keep the network fair by controlling the voting power of validators. When tokens are used to nominate validators, the tokenholders choose the validators for the network. it is the responsibility of tokenholders to manage who validates the network (and its transactions).
 ## Tendermint consensus
  ### Transaction and sequencing
  ### Transaction ordering
