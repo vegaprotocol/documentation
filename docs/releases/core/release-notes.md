@@ -81,6 +81,7 @@ Read more: [Validators chosen by stake](https://github.com/vegaprotocol/specs/bl
 - Separate endpoints for liquidity provision submissions, amendment and cancellation
 - Disallow negative offset for pegged and liquidity provision orders
 - Add ranking scores and reward score to node
+- Proposals have a new field for the rationale, which is optional for now but will be mandatory in a future release
 - Add support for fractional order sizes
 - Add more data to submit transaction endpoints
 - Scale settlement price based on oracle definition
