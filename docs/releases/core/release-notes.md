@@ -6,7 +6,7 @@ hide_title: false
 
 While the Vega core software is closed-source, you can refer here for a full list of release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-### Versions 0.50.3-0.49.X combined | 2022-04-XX
+### Versions 0.50.3-0.49.8 combined | 2022-04-XX
 This release was made available to validators on XXXXX.
 
 The primary focus of this and the next upcoming releases has been to complete the final remaining features, progress data-node improvements for scalability and to add test coverage and fix bugs.
@@ -21,7 +21,26 @@ Read more:
 * [Market framework spec](https://github.com/vegaprotocol/specs/blob/main/protocol/0001-MKTF-market_framework.md#market)
 * [Change market parameters](https://github.com/vegaprotocol/specs/blob/main/protocol/0028-GOVE-governance.md#2-change-market-parameters)
 
-... [WIP] - **add the rest of 0.50 in here**
+**Spam Protection**: This release introduces a rate-limiting scheme to prevent clients from attacking the network by spamming the network with requests. Unlike many other systems Vega does not charge a transaction fee; fees are only charged on trades. To prevent spamming, there is a client-side Proof of Work (PoW) mechanism required along with all transaction submissions. The difficulty of the PoW puzzle can be adjusted by governance, and is low for most use-case scenarios. It is automatically increased if a single client submits an abnormal number of transactions.
+
+This rate-limiting is based upon a client-side PoW which is quite different from the PoW term predominantly used for proof-of-work blockchains and associated with high energy consumption.
+
+Read more: [Spam protection POW](https://github.com/vegaprotocol/specs/blob/main/protocol/0072-SPPW-spam-protection-PoW.md)
+
+**Checkpoint Improvements**: Checkpoints have been simplified. Before, validators would have to have a synchronisation period between nodes in order to reconcile the state from Ethereum when restarting the network from a checkpoint. This was due to the fact that the validators and staking balances were not stored in the checkpoint files.
+
+This data is now stored in the checkpoints, which means that it is now possible to restart from checkpoints asynchronously, which removes the synchronisation period (when feasible). This will become especially important as validator numbers increase and the network sees validators joining and leaving based on stake.
+
+**Add Ethereum key rotation support**: Vega now supports validators rotating their Ethereum keys. Ethereum keys are required so that validators can allow deposits and withdrawals via the Ethereum bridge. The controller of the bridge is a multisig bundle, and periodically validators will want to change their keys but still be part of the controlling group. This feature allows them to do this with a new transaction type.
+
+Read more: [Key management](https://github.com/vegaprotocol/specs-internal/blob/master/protocol/0067-KEYS-key_management.md)
+
+**Liquidity Provision Improvements**: Over the last month, the project team has been running a number of community incentives, including around liquidity provision. A number of bugs and enhancements have been introduced as a result of the incentive. These include:
+* In some cases, amending liquidity orders triggered a liquidity auction. This was due to the fact that an order amend was effectively equivalent to a cancel and submit. During investigations it was found that if there was only 1 order on either side of the book, amending it would trigger an auction because, temporarily, there were no orders left
+* A fix has been implemented to ensure that the margin is correctly released when an LP order is cancelled
+* With the introduction of the market decimal places feature (see below), an issue was found related to decimal places and price bounds. This fix ensures that LP orders are adjusted to the min/max price according to the market precision
+
+**Tendermint**: The current version of Tendermint being used by Vega has a bug where a transaction would pass `checkTx` but was never added to the memory pool. Tendermint has fixed the bug and the protocol is now able to use `sendTx` sync successfully. Therefore, if any transactions are rejected by the memory pool an error is raised to indicate why this has happened. 
 
 **EEF internalising**: The Ethereum Event Forwarder is functionality inside Vega that allows the network to be aware of activity on the Ethereum network. When the forwarder service is aware of events, such as the staking or unlocking of tokens, it translates and passes the events to the tendermint blockchain in Vega. Originally this was deployed as a single service alongside the Vega node, with the node needing to be configured to accept events from the forwarder service. This has now been rewritten and internalised into the Vega node, which simplifies the configuration of running a Vega node and makes it easier to deploy. Other benefits of doing this include it being easier to maintain and add future enhancements, which will be described in future release notes.
 
@@ -64,6 +83,7 @@ Read more: [Validators chosen by stake](https://github.com/vegaprotocol/specs/bl
 - Add ranking scores and reward score to node
 - Add support for fractional order sizes
 - Add more data to submit transaction endpoints
+- Scale settlement price based on oracle definition
 - Restructure Ethereum Config to separate staking and vesting contract addresses, plus add block height at which they have been added respectively
 - Rework free form proposal protos so that they align with other proposals
 - Add support for decimal places specific to markets. This means market price values and position events can have different values. Positions will be expressed in asset decimal places, market specific data events will list prices in market precision
@@ -72,6 +92,15 @@ Read more: [Validators chosen by stake](https://github.com/vegaprotocol/specs/bl
 - Remove trading mode one-off from market proposal
 
 #### New
+- Set and increment LP version field correctly
+- Add integration test for LP versioning
+- Add integration test making sure margin is released when an LP is cancelled
+- Use `BroadcastTxSync` instead of async for submitting transactions to Tendermint
+- Add support for settlement price decimal place in governance
+- Ensure at most 5 triggers are used in price monitoring settings
+- Add Ethereum key rotation support
+- Add retries to floating point consensus engine to work around Tendermint missing transactions
+- Remove genesis sign command
 - Add ability to stream events to a file
 - Add block hash to statistics and to block height request
 - Extend auction feature tests
@@ -131,6 +160,41 @@ Read more: [Validators chosen by stake](https://github.com/vegaprotocol/specs/bl
 - Add Ethereum events reconciliation for `multisig control`
 
 #### Fixes
+- Set market pending timestamp to the time at which the market is created
+- Do not induce a system panic when admin server stops
+- Fix invalid `http` status set in faucet
+- Always call `StartAggregate()` when signing validators joining and leaving even if not a validator
+- Fix pegged orders to be reset to the order pointer after snapshot loading
+- Fix the check for overflow in scaling settlement price
+- Fix panic in loading validator checkpoint
+- Unwrap properly position decimal place from payload
+- Set last mark price to settlement price when market is settled
+- Send proof-of-work when announcing node
+- Ensure to / from in transfers payloads are Vega public keys
+- Stop updating the market's initial configuration when an opening auction is extended
+- Return an error if market decimal place > asset decimal place
+- Stabilise state sync restore and restore block height in the topology engine
+- Mark a snapshot state change when liquidity provision state changes
+- Add missing commands to the `TxError` event
+- Fix banking snapshot for transfers, risk factor restoration, and `statevar` handling of settled markets
+- Fixed mark to market bug where settlement balance would not be zero when loss amount was 1.
+- Fixed proof of engine end of block callback never called to clear up state
+- Fix positions engines `vwBuys` and `vwSell` when amending, send events on `Update` and `UpdateNetwork`
+- Target stake in asset decimal place in Market Data
+- Fixed promotion of ersatz to Tendermint validator
+- Fixed wrong tick size used for calculating probability of trading
+- Fixed the default voting power in case there is stake in the network
+- Add proto serialisation for update market proposal
+- Ensure update market proposal computes a proper auction duration
+- Add replay protection for validator commands
+- Ensure Oracle specs handle numbers using `num.Decimal` and `num.Int`
+- Fix settlement at expiry to scale the settlement price from market decimals to asset decimals
+- Fix mark to market settlement where transfers get truncated resulting in settlement balance not being zero after settlement
+- Send order event on settlement
+- Use settlement price if exists when received trading terminated even
+- Fix bug where amending orders in opening auctions did not work as expected
+- Process recurring transfer before rewards
+- Allow recurring transfers to start during the current epoch
 - Fix time formatting problem that was breaking consensus on nodes in different time zones
 - Fix concurrent write to price monitoring ref price cache
 - Fix `vega announce_node` to work with `--home` and `--passphrase-file`
