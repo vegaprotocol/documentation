@@ -152,7 +152,7 @@ Read more: [How a validating node's performance is determined](/docs/concepts/ve
 ## Validating nodes
 The Vega network is operated by a number of independent validators, who each run a node.
 
-There are two types of validating nodes: consensus validators and standby validators.
+There are two types of validating nodes: consensus validators and standby validators. There can also be pending validators, which are on the waiting list to be accepted as standby validators.
 
 ## Consensus validating nodes
 Consensus validating nodes are responsible for agreeing on the order of transactions and creating new blocks so that all nodes can agree on the state of the network.
@@ -167,14 +167,14 @@ If a consensus validating node stops validating, or performs poorly, then a stan
 ### How consensus validators are chosen
 Consensus validators are chosen based on a range of variables, including the validator scores, and the number of available slots. If there are no empty slots, at most one validator can be changed per epoch.
 
-If a standby validator has a better overall performance than an existing consensus validator, then a standby validator can be promoted to replace a consensus validator.
+If a standby validator has a better validator score (which includes performance score and stake) than an existing consensus validator, then a standby validator can be promoted to replace a consensus validator.
 
 ## Standby validators
-Standby (also called ersatz) validators do not contribute to the chain, but are set up to join the consensus validator set if an existing validator drops off. As they don’t participate in consensus, they don’t need to be registered with a multisig contract.
+Standby (also called ersatz) validators do not contribute to the chain, but are set up to join the consensus validator set if there are free slots for consensus validators, such as if one drops off or more slots are made available. As they don’t participate in consensus, they don’t need to be registered with a multisig contract.
 
-As with the consensus validators, standby validators are defined based on how much self-stake and nominated stake they have.
+As with the consensus validators, standby validators need to have a certain amount of self-stake and nominated stake.
 
-Standby validators, and the tokenholders who stake them, receive a share of rewards. The rewards for standby validators are calculated and penalised in the same way as consensus validators, except scaled down. How much they are scaled is based on the network parameter `network.validators.ersatz.rewardFactor`.
+Standby validators, and the tokenholders who stake them, receive a share of rewards. The rewards for standby validators are calculated and penalised in the same way as consensus validators, except scaled down based on the stake they have. How much they are scaled is based on the network parameter `network.validators.ersatz.rewardFactor`.
 
 :::info 
 The network is set to not allow any standby validators for alpha mainnet, and the number of validators will be increased via governance as early alpha mainnet progresses.
@@ -185,16 +185,15 @@ If there are free slots for one or more standby validators, and there are nodes 
 
 If a node that submits the transaction to join has a higher score than the lowest scoring standby validator (scaled up by the incumbent factor), then it will become a standby validator and the lowest scoring standby validator is removed from the standby set.
 
-As the nodes vying for a standby spot will not have a performance record, their performance score is calculated as the average of the performance scores of all standby validators.
 
-Note: An inactive node that's proposing to become a validator will have a performance score of 0 and will thus be automatically excluded, regardless of their stake.
+Note: A node that has a ranking score of 0 (meaning they have no stake and a performance score of 0) for longer than 10 epochs is removed from Vega and will have to resubmit their request to become a validator.
 
 Read more: [Becoming a validator](/docs/concepts/vega-chain#becoming-a-validator)
 
 ### Moving from standby to consensus validator
 A standby validator that wants to be in line for promotion to become a consensus validator needs to do the following: 
 
-1. Run a non-validating node
+1. Run a validating node
 2. Have enough self-stake, (as defined by the network parameter `reward.staking.delegation.minimumValidatorStake`) 
 3. Forward the relevant Ethereum events
 
@@ -303,7 +302,7 @@ The network is set to not allow any standby validators for alpha mainnet, and th
 
 A node operator that wants to express interest in running a validating node for Vega needs to do the following: 
 
-1. Start a Vega node as non-validating node, including the associated infrastructure: a system with a minimum of 4 cores, 16GB RAM, and 256GB SSD (subject  to increase in the future)
+1. Start a Vega validating node, including the associated infrastructure: a system with a minimum of 4 cores, 16GB RAM, and 256GB SSD (subject  to increase in the future)
 2. Submit a transaction using their keys, announcing they want to validate, and receive a response that the network has verified key ownership (see below)
 3. Self-stake to their validator Vega key at least as much as the amount defined by the reward.staking.delegation.minimumValidatorStake network parameter
 4. Wait for others to nominate them. It would be worth announcing to the community that you have started a node and are looking for stake)
