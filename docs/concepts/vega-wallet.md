@@ -7,7 +7,7 @@ Vega Wallet is an app that lets you manage wallets and cryptographic key pairs. 
 Read on to understand the basic concepts of wallets and keys, and how they work. 
 
 :::info
-For getting started guides and information about downloading a Vega Wallet, visit the [Vega Wallet section](/docs/tools/vega-wallet) of the documentation.
+For getting started guides and information about downloading a Vega Wallet, visit the [Tools section](/docs/tools/vega-wallet) of the documentation.
 :::
 
 ## Cryptographic keys
