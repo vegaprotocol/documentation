@@ -6,14 +6,14 @@ hide_title: false
 
 # Welcome! 
 
-Welcome to Vega! This is a work-in-progress documentation site that focuses on Vega's restricted mainnet. 
+Welcome to Vega! This documentation site contains information about how the Vega protocol is designed and what the software provides, as well as reference documentation for GraphQL, gRPC, and REST.  
 
 If you have questions, join our community on [Discord](https://vega.xyz/discord)! We're keen to help.
 
 ## What is Vega?​
 Vega is a protocol for creating and trading derivatives on a fully decentralised network. 
 
-Currently, Vega is in restricted mainnet, which is run by a set of validators. There's also a Vega testnet called Fairground, which has trading enabled. 
+Currently, Vega is in restricted mainnet, which is run by a set of validators. There's also a Vega testnet called Fairground, where you can try out trading, get comfortable with the software and use the newest features. 
 
 ### Learn more 
 * [Vega whitepaper](https://vega.xyz/papers/vega-protocol-whitepaper.pdf): A high-level overview of the protocol <br/>

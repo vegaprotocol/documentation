@@ -279,6 +279,9 @@ Read more: [Insurance pools](/docs/concepts/trading-framework#insurance-pools)
 ### Positions and netting
 
 ## Trading modes 
+A market's trading mode denotes the types of trading that can be done on it while the market is in that mode. A market can only have one trading mode at a time.
+
+The Vega software currently supports two trading modes: continuous trading (using a limit order book) and auctions. 
 
 ### Continuous trading
 On a market with continuous trading, the Vega network tries to execute an order as soon as it is received. 
@@ -321,19 +324,25 @@ A market's risk model can be used to obtain the price projection at a future poi
 
 Note: A market's risk model is defined within the market proposal.
 
-#### Price monitoring triggers [WIP]
-Each market has a set of price monitoring triggers. When those points are breached, the market will enter a price monitoring auction. 
+#### Price monitoring triggers
+Each market has a set of price monitoring triggers. When those points are breached, the market will enter a price monitoring auction. Price monitoring triggers are defined in a market's proposal, and a governance proposal to change them can be raised and voted on by tokenholders.
 
 Each trigger contains:
 * *Horizon*: Time horizon of the price projection in seconds
-* *Probability*: The probability level for price projection, e.g. value of 0.95 will result in a price range such that over the specified projection horizon, the prices observed in the market should be in that range 95% of the time.
-* *Auction extension*: Auction extension duration in seconds, should the price breach its theoretical level over the specified horizon at the specified probability level.
+* *Probability*: The probability level for price projection. For example, a value of 0.95 will result in a price range such that over the specified horizon, the prices observed in the market should be in that range 95% of the time
+* *Auction extension*: Auction extension duration in seconds. Should the price breach its theoretical level over the specified horizon at the specified probability level, the market will continue in auction for the time specified
 
-If the market did not have any triggers specified in its market proposal, then the default triggers (driven by a network parameter) will be used. If the triggers are set to an empty array (either explicitly or if they are omitted and that's what the network parameter is set to), then price monitoring is effectively switched off, and the market will never go into price monitoring auction.
+If the market did not have any triggers specified in its market proposal, then the default triggers will be used (defined by the network parameter `market.monitor.price.defaultParameters`). If the triggers are set to an empty array, either explicitly or if they are omitted and that's what the network parameter is set to, then price monitoring is effectively switched off, and the market will never go into price monitoring auction.
 
-In case of multiple triggers, each trigger is checked separately and the resulting price monitoring auction length will be the sum of auction durations from all the triggers that were breached. 
+In case of multiple monitoring triggers, each trigger is checked separately and the resulting price monitoring auction length will be the sum of auction durations from all the triggers that were breached.
 
 There could be a situation where only a single trigger is breached to begin with, but as the initial price monitoring auction period comes to an end, the indicative uncrossing price breaches one or more of the other triggers, resulting in an auction extension. This process continues until no more triggers are breached after the appropriate auction extension period elapses. This can be because price doesn't breach any other triggers, or all triggers have already been breached. Once a given trigger is activated, it's not checked again until the price monitoring auction is resolved and market goes back into its default trading mode.
+
+Price monitoring is meant to stop large market movements that are not 'real' from occurring, rather than just detect them after the fact. To achieve that, the module works preemptively: a transaction that would've caused the price monitoring bounds to be breached doesn't get processed in the default trading mode. The market first switches to price monitoring auction mode, and then that transaction (and any subsequent ones until the auction time elapses) get processed. 
+
+The market can still make a large move within the auction, as long as crossing orders from both buy and sell side get submitted. 
+
+The purpose of price monitoring is to extract more information out of the market in the event of a large move, not to stop the market from making that move altogether.
 
 #### Price monitoring example
 * Assume the market is configured to have two price monitoring triggers, where horizon, probability and auction extension for the two triggers are:
@@ -350,16 +359,8 @@ Now:
     * If after 1 minute has passed there are no trades resulting from the auction or the indicative price of the auction, then if in the `[95,105]` the trades are generated and the price monitoring auction concludes.
     * If after 1 minute has passed the indicative price of the auction is outside the `[95,105]`, the auction gets extended by 5 minutes, as concluding the auction at the 1 minute mark would breach the valid ranges implied by the second trigger. After the 5 minutes, trades (if any) are generated irrespective of their price, as there are no more active triggers, and the price monitoring auction concludes.
 
-Price monitoring is meant to stop large market movements that are not 'real' from occurring, rather than just detect them after the fact. To achieve that, the module works preemptively: a transaction that would've caused the price monitoring bounds to be breached doesn't get processed in the default trading mode. The market first switches to price monitoring auction mode, and then that transaction (and any subsequent ones until the auction time elapses) get processed. 
-
-The market can still make a large move within the auction, as long as crossing orders from both buy and sell side get submitted. 
-
-The purpose of price monitoring is to extract more information out of the market in the event of a large move, not to stop the market from making that move altogether.
-
 ### Liquidity monitoring
-Besides the obvious appeal to traders, a liquid market also offers some risk management, particularly in a system that does not have a central counter-party. 
-
-When a trader is distressed, their position can only be liquidated if there is enough volume on the order book to offload it.
+Besides the obvious appeal to traders, a liquid market also offers some risk management, particularly in a system that does not have a central counter-party. When a trader is distressed, their position can only be liquidated if there is enough volume on the order book to offload it.
 
 In order to ensure there is enough liquidity to keep a market active and protect against insolvent parties, the network must be able to detect when the market's liquidity is too low. 
 
@@ -400,16 +401,24 @@ Read more:
 * [Liquidity provision penalties](/docs/concepts/trading-framework#penalties)
 * [Loss socialisation](/docs/concepts/trading-framework#loss-socialisation)
 
-## Market data
+## Market data [WIP]
 
-### Decimal places 
+### Decimal places
+The number of decimal places for various figures can be configured, including the increments an order size can be priced in and the number of decimal places an asset has.
 
-## Liquidity
+#### Market decimal places
+It is possible to configure a market for which orders can only be priced in increments of a specific size. This is done by specifying, within a market proposal, a different (smaller) number of decimal places than the market's settlement asset supports. Consider a market that settles in GBP. This market can be configured to have 0 decimal places so that the price levels on the order book will be separated by at least £1, rather than the default £0.01 that the asset would support.
+
+#### Asset decimal places [WIP]
+
+
+
+## Liquidity [WIP]
 The Vega protocol allows liquidity to be priced individually for each market. The liquidity incentive amounts are dependent on factors like the fees liquidity providers charge. (Competition? Markets that have more LP can make LPs compete on fees.) 
 
-When a market is proposed, the proposer, who must also be able to provide liquidity, proposes the liquidity fee for that market. Other participants who want to commit  liquidity can do so by submitting liquidity provision orders to an open market. 
+When a market is proposed, the proposer, who must also be able to provide liquidity, proposes the liquidity fee for that market. Other participants who want to commit liquidity can do so by submitting liquidity provision orders to an open market. 
 
-### Parameters
+### Parameters [WIP]
 
 ### Liquidity providers
 Participants with sufficient collateral can provide liquidity for markets. Every market on Vega must have at least one committed liquidity provider. When a governance proposal to create a market is submitted, the proposal has to include liquidity provision commitment.
@@ -430,10 +439,60 @@ Rewards are calculated automatically from the market's fees, which are paid by p
 
 Note: During an auction uncrossing, liquidity providers are not required to supply any orders that offer liquidity or would cause trades. However, they must maintain their liquidity stake(?), and their liquidity orders are placed back on the order book when normal trading resumes.
 
-### SETTING LIQUIDITY FEES  (WIP)
-(add `read more below` link)
+### Liquidity commitment transaction
+Participants can commit liquidity by submitting a liquidity submission transaction to the network. 
 
-### CALCULATING LIQUIDITY FEES (WIP)
+The buy and sell orders that are part of a liquidity commitment transaction are used to make up the remainder of the liquidity obligation if the liquidity supplied by the manually maintained orders falls short of it. (??)
+
+A liquidity commitment transaction must include:
+* Market identifier for a market that is in a state that accepts liquidity commitments
+* Liquidity commitment amount
+* Proposed liquidity fee level
+* A set of liquidity buy and sell orders
+
+### Liquidity commitment order type
+In essence, liquidity commitment orders are sets of pegged orders grouped by order book size, with a proportion set for each order within the order 'shape'. The overall volume depends on the remaining liquidity obligation, the mid-price, and the risk model parameters, but the sizes of orders relative to each other can still be controlled.
+
+Those orders use a special batch order type that automatically updates price and size as needed to meet the commitment, and automatically refreshes its volume after trading to ensure continuous liquidity provision.
+
+A liquidity commitment order type has a specific set of features that set it apart from a standard order: 
+* *Submitted as a batch order*: A liquidity commitment order allows simultaneously specifying multiple orders in one message/transaction
+* *Sits on the order book*: The orders are always priced limit orders that sit on the order book, and do not trade on entry
+* *Returns to the order book after being filled*: The order is always refreshed after it trades, based on the above requirements so that the full commitment is always supplied
+
+#### Liquidity fee [WIP]
+As part of the liquidity commitment transaction, a liquidity provider submits their desired liquidity fee factor, which is then, with all the other submitted fee factors, to calculate the actual fee each participant will pay on a trade. This fee can change as liquidity providers change their commitment or stop providing liquidity altogether.  
+
+The fee factor for the market is then set from the values submitted by all liquidity providers for a given market.
+
+In the example below, there are 3 liquidity providers all bidding for their chosen fee level. The liquidity orders they submit are sorted into increasing fee order so that the lowest fee bid is at the top, and the highest is at the bottom. The fee level chosen for the market is derived from the liquidity commitment of the market (`target stake`) and the amount of stake committed from each bidder. Vega processes the LP orders from top to bottom by adding up the commitment stake as it goes until it reaches a level greater than or equal to the `target stake`. When that point is reached, the fee used is the fee of the last liquidity order processed.
+
+First, (we) see a list of pairs that capture each liquidity provider's committed liquidity, together with their desired liquidity fee factor. This list is then arranged by increasing order of fee amount. 
+
+[LP-1-stake, LP-1-liquidity-fee-factor]
+[LP-2-stake, LP-2-liquidity-fee-factor]
+...
+[LP-N-stake, LP-N-liquidity-fee-factor]
+
+where N is the number of liquidity providers who have committed to supply liquidity to this market. Note that LP-1-liquidity-fee-factor <= LP-2-liquidity-fee-factor <= ... <= LP-N-liquidity-fee-factor because we demand this list of pairs to be sorted in this way.
+
+Find the smallest integer k such that [target stake] < sum from i=1 to k of [LP-stake-i]. In other words, we want in this ordered list to find the liquidity providers that supply the liquidity that's required. If no such k exists - set k=N.
+
+Finally, set the liquidity-fee-factor for this market to be the fee LP-k-liquidity-fee-factor.
+Example for fee setting mechanism
+
+[LP 1 stake = 120 ETH, LP 1 liquidity-fee-factor = 0.5%]
+[LP 2 stake = 20 ETH, LP 2 liquidity-fee-factor = 0.75%]
+[LP 3 stake = 60 ETH, LP 3 liquidity-fee-factor = 3.75%]
+
+    If the target stake = 119 then the needed liquidity is given by LP 1, thus k=1 and so the market's liquidity-fee-factor is LP 1 fee = 0.5%.
+    If the target stake = 123 then the needed liquidity is given by LP 1 and LP 2, thus k=2 and so the market's liquidity-fee-factor is LP 2 fee = 0.75%.
+    If the target stake = 240 then even putting all the liquidity supplied above does not meet the estimated market liquidity demand and thus we set k=N and so the market's liquidity-fee-factor is LP N fee = LP 3 fee = 3.75%.
+    Initially (before market opened) the [target stake] is by definition zero (it's not possible to have a position on a market that's not opened yet). Hence by default the market's initial liquidity-fee-factor is the lowest liquidity-fee-factor.
+
+Once the market opens, and the opening auction starts, a clock starts ticking. The protocol calculates the target stake (!!!!link). The fee is continuously re-evaluated using the mechanism above.
+
+### CALCULATING LIQUIDITY FEES [WIP]
 Calculating market value proxy
 
 It's calculated, with `t` denoting time now measured so that at t=0 the opening auction ended, as follows:
@@ -465,9 +524,11 @@ Example
     A LP has committed stake of 10000 ETH. The traded notional over active_time_window is 9000 ETH. So the market_value_proxy is 10000 ETH.
     A LP has committed stake of 10000 ETH. The traded notional over active_time_window is 250 000 ETH. Thus the market_value_proxy is 250 000 ETH.
 
-Calculating liquidity provider equity-like share
+### Calculating liquidity provider equity-like share [WIP]
 
-The guiding principle of this section is that by committing stake a liquidity provider buys a portion of the market_value_proxy of the market.
+The concept of the equity-like share of a market's trading for a liquidity provider broadly ensures that liquidity providers who get into a market early benefit from helping to grow the market. Those liquidity providers who commit early in a market's existence will receive a larger proportion of the fees than their actual commitment would imply, because they were a larger proportion of the commitment earlier on, once other parties are also committing liquidity to the market.
+
+The guiding principle of this is that by committing stake a liquidity provider buys a portion of the market_value_proxy of the market.
 
 At any time let's say we have market_value_proxy calculated above and existing liquidity providers as below
 
@@ -553,57 +614,6 @@ When the time defined by ``liquidity_providers_fee_distribution_time_step` elaps
 0.25 x 103.5 = 25.875 ETH to LP 2's margin account
 0.10 x 103.5 = 10.350 ETH to LP 3's margin account
 
-### Liquidity commitment transaction
-Participants can commit liquidity by submitting a liquidity submission transaction to the network. 
-
-The buy and sell orders that are part of a liquidity commitment transaction are used to make up the remainder of the liquidity obligation if the liquidity supplied by the manually maintained orders falls short of it. (??)
-
-A liquidity commitment transaction must include:
-* Market identifier for a market that is in a state that accepts liquidity commitments
-* Liquidity commitment amount
-* Proposed liquidity fee level
-* A set of liquidity buy and sell orders
-
-### Liquidity commitment order type
-In essence, liquidity commitment orders are sets of pegged orders grouped by order book size, with a proportion set for each order within the order 'shape'. The overall volume depends on the remaining liquidity obligation, the mid-price, and the risk model parameters, but the sizes of orders relative to each other can still be controlled.
-
-Those orders use a special batch order type that automatically updates price and size as needed to meet the commitment, and automatically refreshes its volume after trading to ensure continuous liquidity provision.
-
-A liquidity commitment order type has a specific set of features that set it apart from a standard order: 
-* *Submitted as a batch order*: A liquidity commitment order allows simultaneously specifying multiple orders in one message/transaction
-* *Sits on the order book*: The orders are always priced limit orders that sit on the order book, and do not trade on entry
-* *Returns to the order book after being filled*: The order is always refreshed after it trades, based on the above requirements so that the full commitment is always supplied
-
-#### Liquidity fee [WIP]
-As part of the liquidity commitment transaction, a liquidity provider submits their desired level for the liquidity fee factor for the market. 
-
-The fee factor is set from the values submitted by all liquidity providers for a given market. 
-
-First, (we) see a list of pairs that capture each liquidity provider's committed liquidity, together with their desired liquidity fee factor. This list is then arranged by increasing order of fee amount. 
-
-[LP-1-stake, LP-1-liquidity-fee-factor]
-[LP-2-stake, LP-2-liquidity-fee-factor]
-...
-[LP-N-stake, LP-N-liquidity-fee-factor]
-
-where N is the number of liquidity providers who have committed to supply liquidity to this market. Note that LP-1-liquidity-fee-factor <= LP-2-liquidity-fee-factor <= ... <= LP-N-liquidity-fee-factor because we demand this list of pairs to be sorted in this way.
-
-Find the smallest integer k such that [target stake] < sum from i=1 to k of [LP-stake-i]. In other words, we want in this ordered list to find the liquidity providers that supply the liquidity that's required. If no such k exists - set k=N.
-
-Finally, set the liquidity-fee-factor for this market to be the fee LP-k-liquidity-fee-factor.
-Example for fee setting mechanism
-
-[LP 1 stake = 120 ETH, LP 1 liquidity-fee-factor = 0.5%]
-[LP 2 stake = 20 ETH, LP 2 liquidity-fee-factor = 0.75%]
-[LP 3 stake = 60 ETH, LP 3 liquidity-fee-factor = 3.75%]
-
-    If the target stake = 119 then the needed liquidity is given by LP 1, thus k=1 and so the market's liquidity-fee-factor is LP 1 fee = 0.5%.
-    If the target stake = 123 then the needed liquidity is given by LP 1 and LP 2, thus k=2 and so the market's liquidity-fee-factor is LP 2 fee = 0.75%.
-    If the target stake = 240 then even putting all the liquidity supplied above does not meet the estimated market liquidity demand and thus we set k=N and so the market's liquidity-fee-factor is LP N fee = LP 3 fee = 3.75%.
-    Initially (before market opened) the [target stake] is by definition zero (it's not possible to have a position on a market that's not opened yet). Hence by default the market's initial liquidity-fee-factor is the lowest liquidity-fee-factor.
-
-Once the market opens, and the opening auction starts, a clock starts ticking. The protocol calculates the target stake (!!!!link). The fee is continuously re-evaluated using the mechanism above.
-
 ### Submit liquidity commitment orders
 A liquidity provider must submit a valid set of liquidity provider orders. That set must include a *buy shape* and a *sell shape*. 
 
@@ -634,17 +644,17 @@ Each entry must specify:
 ### Amend liquidity commitment orders
 Liquidity commitment orders can be amended by providing a new set of liquidity provision orders in the liquidity provider transaction. If the amended orders are invalid, the transaction is rejected, and the previous set of orders will be retained.
 
-### Cancel liquidity commitment orders
+### Cancel liquidity commitment orders  [WIP]
 
-## Data sourcing framework
+## Data sourcing framework  [WIP]
 
-### Signed messages
+### Signed messages  [WIP]
 
-### Filters
+### Filters [WIP]
 
-### Internal sources
+### Internal sources [WIP]
 
-## Fees and rewards
+## Fees and rewards [WIP]
 
 ### Fees
 The Vega protocol does not charge gas fees, but rather has a fee structure that rewards participants who fill essential roles for a decentralised trading infrastructure.
@@ -678,17 +688,17 @@ The fee is the same irrespective of the number of transactions the order gets fi
 The fee factors are set through the following network parameters: `market.fee.factors.infrastructureFee`, `market.fee.factors.makerFee`, `market.fee.factors.liquidityFee`.
 
 
-## Collateral
+## Collateral [WIP]
 
-### Assets on Vega
+### Assets on Vega [WIP]
 
-### Accounts (general, margin, bond) and transfers, double entry accounting
+### Accounts (general, margin, bond) and transfers, double entry accounting [WIP]
 
-### Bridges
+### Bridges [WIP]
 
-#### Ethereum
+#### Ethereum [WIP]
 
-## Market / product / trade lifecycle
+## Market / product / trade lifecycle [WIP]
 
 ### Settlement [WIP]
   Vega executes settlement with a two step process:
@@ -710,8 +720,8 @@ The funds that have been collected must be fairly distributed. Loss socialisatio
 ```
 distribute_amount[trader] = mtm_gain[trader] * ( actual_collected_amount / target_collect_amount )
 ```
-#### Settlement when closing out
+#### Settlement when closing out [WIP]
 
-#### Settlement at expiry
+#### Settlement at expiry [WIP]
 
-#### Mark to market settlement (link to m-t-m)
+#### Mark to market settlement (link to m-t-m) [WIP]
