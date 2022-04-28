@@ -21,7 +21,7 @@ module.exports = {
     },
     {
       type: "link",
-      href: "/docs/grpc/vega/vega.proto",
+      href: "/docs/testnet/grpc/vega/vega.proto",
       label: "GRPC",
     },
     {
@@ -36,17 +36,17 @@ module.exports = {
         },
         {
           type: "link",
-          href: "/docs/api/rest/data-node/data",
+          href: "/docs/testnet/api/rest/data-node/data",
           label: "Data node",
         },
         {
           type: "link",
-          href: "/docs/api/rest/core/core",
+          href: "/docs/testnet/api/rest/core/core",
           label: "Core",
         },
         {
           type: "link",
-          href: "/docs/api/rest/core/state",
+          href: "/docs/testnet/api/rest/core/state",
           label: "Core state",
         },
       ],

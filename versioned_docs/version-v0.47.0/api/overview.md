@@ -16,7 +16,7 @@ Most of the APIs are designed to use for trading-related queries, and so you can
 
 If you’re writing a web app, GraphQL is flexible and allows efficient data retrieval. Like gRPC, GraphQL supports near real time streaming of updates from Vega. It uses websockets under the hood but follows the specification for streaming as set by GraphQL.
 
-[GraphQL overview](../graphql): See what GraphQL covers. 
+[GraphQL overview](../graphql/overview): See what GraphQL covers. 
 
 [GraphQL Playground](https://graphql.vega.community/query/playground): Try out GraphQL queries. 
 
