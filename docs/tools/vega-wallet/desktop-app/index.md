@@ -3,6 +3,9 @@ title: Desktop Wallet
 hide_title: false
 ---
 
-The Vega Wallet is available to use as a desktop application. It allows you to use your existing Vega wallet, create new wallets, or restore wallets. The desktop app also lets you connect to Vega networks and start Vega dApps through the visual interface.
+The Vega Wallet is available to use as a desktop application. 
 
-**[Get started](/docs/tools/vega-wallet/desktop-app/latest/getting-started)**: Start by downloading the software, and then use an existing Vega wallet, create a new wallet or restore a wallet.
+The desktop app works with your existing Vega wallets, or you can create new wallets. The desktop app also lets you connect to Vega networks and start Vega dApps through the visual interface.
+
+* **[Download the app](https://github.com/vegaprotocol/vegawallet-desktop/releases)**: On GitHub, download the desktop app for your operating system.
+* **[Get started](/docs/tools/vega-wallet/desktop-app/latest/getting-started)**: Read a guide on using the desktop app to connect an existing Vega wallet, create or restore a wallet and start interacting with your keys.

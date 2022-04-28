@@ -16,3 +16,8 @@
   from = "/docs/tools/vega-wallet/CLI-wallet/*"
   to = "/docs/tools/vega-wallet/cli-wallet/:splat"
   status = 301
+
+[[redirects]]
+from = "/docs/tools/vega-wallet/concepts"
+to = "/docs/concepts/vega-wallet"
+status = 301
