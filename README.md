@@ -47,11 +47,11 @@ Lastly you need to have Python3 installed, you can check if you have by running:
 
 ## Installation and local development
 
-Edit `scripts/build.sh` and update `vega_api_branch` to a new branch/tag as necessary.
+Edit `scripts/generate-api-docs.sh` and update `vega_api_branch` to a new branch/tag as necessary.
 
 ```console
 cd /path/to/src/github.com/vegaprotocol/documentation
-GITHUB_API_TOKEN=a1b2c3 ./scripts/build.sh
+GITHUB_API_TOKEN=a1b2c3 ./scripts/generate-api-docs.sh
 ```
 
 ## Running locally
