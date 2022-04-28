@@ -165,7 +165,7 @@ module.exports = {
       // is no long available - so that component has been 'swizzled' out of the theme and in to ./src/theme
       require.resolve("docusaurus-protobuffet-plugin"),
       {
-        routeBasePath: "/docs/grpc",
+        routeBasePath: "/docs/testnet/grpc",
         fileDescriptorsPath: "./proto.json",
         protoDocsPath: "./docs/grpc",
         sidebarPath: "./docs/grpc/sidebar.js",
