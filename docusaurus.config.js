@@ -23,7 +23,7 @@ module.exports = {
         {
           type: "docsVersionDropdown",
           position: "right",
-          dropdownItemsAfter: [{ to: "/versions", label: "All versions" }],
+          dropdownItemsAfter: [],
           dropdownActiveClassDisabled: true,
         },
         {
@@ -212,7 +212,7 @@ module.exports = {
           primaryColor: undefined,
           options: {
             expandDefaultServerVariables: true,
-            expandResponses: true,
+            expandResponses: "all",
             hideDownloadButton: true,
             schemaExpansionLevel: 5,
             expandSingleSchemaField: true

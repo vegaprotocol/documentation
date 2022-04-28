@@ -9,7 +9,6 @@
  Create as many sidebars as you want.
  */
 
-let { schemaSidebar } = require("./docs/graphql/sidebar-schema");
 let { protodocs } = require("./docs/grpc/sidebar");
 
 module.exports = {
