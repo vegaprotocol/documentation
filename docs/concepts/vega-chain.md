@@ -150,9 +150,11 @@ There is no token slashing, i.e., a tokenholder cannot lose their tokens through
 Read more: [How a validating node's performance is determined](/docs/concepts/vega-chain#validating-node-performance)
 
 ## Validating nodes
-The Vega network is operated by a number of independent validators, who each run a node.
+The Vega network is operated by a number of independent validators, who each run a node. 
 
-There are two types of validating nodes: consensus validators and standby validators. There can also be pending validators, which are on the waiting list to be accepted as standby validators.
+There are three types of validating nodes: consensus validators, standby validators, and pending validators. 
+
+Consensus validators are responsible for keeping the network and transactions running. Standby validating nodes are ready to step in if a consensus validating node does not fulfil its requirements. Pending validating nodes are one level below standby, and should be equipped to move up and replace a standby validating node if a spot opens up.
 
 ## Consensus validating nodes
 Consensus validating nodes are responsible for agreeing on the order of transactions and creating new blocks so that all nodes can agree on the state of the network.
@@ -162,6 +164,7 @@ They receive rewards based on having enough (but not too much) self-stake, as we
 If a consensus validator's stake or performance is subpar, their validator score will be lowered, and that validator's node will be chosen less frequently to propose a block, because Vega feeds the voting power of each validating node to the Tendermint consensus algorithm.
 
 This can also affect the rewards they and their nominators receive.
+
 If a consensus validating node stops validating, or performs poorly, then a standby validator can replace it.
 
 ### How consensus validators are chosen
