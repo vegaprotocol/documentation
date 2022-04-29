@@ -23,8 +23,11 @@ module.exports = {
         {
           type: "docsVersionDropdown",
           position: "right",
+          // Removes the All Versions page
           dropdownItemsAfter: [],
           dropdownActiveClassDisabled: true,
+          // Makes the menu not clickable when not open
+          href: '#'
         },
         {
           href: "https://github.com/vegaprotocol/documentation",
