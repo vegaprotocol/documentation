@@ -34,7 +34,7 @@ Deposits will take ~50 block confirmations to arrive on Vega. You can check usin
 Now that the staking balance is available, you'll want to choose a validator to stake to. 
 
 ## 3. Waiting for the next epoch
-A nomination to a validator occurs in one epoch, [and takes effect in the subsequent epoch](../concepts/vega-chain#operation/ERC20WithdrawalApproval). That means that during the first period in which you nominate, no rewards will be received. For each subsequent epoch, rewards will be deposited to the Vega key, in the form of Vega tokens. Specific reward payouts can be queried via the API ([REST](../api/rest/data-node/data#operation/TradingDataService_GetRewards), [GraphQL](..api/rest/data-node/data#operation/TradingDataService_GetRewards)).
+A nomination to a validator occurs in one epoch, [and takes effect in the subsequent epoch](../concepts/vega-chain#operation/ERC20WithdrawalApproval). That means that during the first period in which you nominate, no rewards will be received. For each subsequent epoch, rewards will be deposited to the Vega key, in the form of Vega tokens. Specific reward payouts can be queried via the API ([REST](../api/rest/data-node/data#operation/TradingDataService_GetRewards), [GraphQL](../api/rest/data-node/data#operation/TradingDataService_GetRewards)).
 
 ## 4. Withdrawing rewards
 Now that rewards have been paid in to your account, you will want to request a withdrawal. This involves preparing a withdrawal request, which the validators will confirm and sign in order for you to be able to request the withdrawal on Ethereum. The funds will immediately be locked on Vega, to allow for you to withdraw them through the Ethereum bridge.
