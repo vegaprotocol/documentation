@@ -36,6 +36,10 @@ Tokenholders can create proposals using the APIs.
 Vote on proposals on the [Vega token governance page](https://token.vega.xyz/governance).
 :::
 
+## Asset governance [WIP]
+
+### New asset proposal [WIP]
+
 ## Market governance [WIP]
 Markets are proposed and voted into existence by Vega tokenholders. 
 
@@ -205,22 +209,14 @@ liquidity commitment: commitment amount, fee level, sell shape: reference (best 
 
 ### Propose changes to a market [WIP]
 
-## Asset governance [WIP]
-
-### New asset proposal [WIP]
-
 ### Risk models and parameters
 When proposing a market, the market proposer will need to choose the risk parameters associated with the risk model that's appropriate for the product. Find out more about the relationship between the product, instrument, and tradable instrument above. The purpose of the risk model is for the calculation of margins on the market. 
 
-For a detailed explanation, read the [Margins and Credit Risk on Vega](https://vega.xyz/papers/margins-and-credit-risk.pdf) paper (note a position size of 1 is assumed throughout it).
+The first product available to create is cash-settled futures, which use a log-normal risk parameter. 
 
-The first product available to create on Fairground is built-in, direct, cash-settled future. That product uses a log-normal risk parameter. Here are the parameters: 
+You should choose parameters that ensure the risk model adequately represents the dynamics of the underlying instrument, and that the resulting margins strike the right balance between prudence and capital efficiency.
 
-Below are the risk parameters, the accepted values for each parameter and suggested values for some of them. 
-
-Please note the parameters should be chosen so that the risk model adequately represents the dynamics of the underlying instrument and so that the resulting margins strike the right balance between prudence and capital efficiency.
-
-When suggested values are provided, these should be used as a reference point and to aid derivation of the value appropriate for the market being proposed, and not in place of rigorous analysis and calibration.
+Below are the risk parameters, the accepted values for each parameter and suggested values for some. When suggested values are provided, these should be used as a reference point and to aid in deciding on what's appropriate for the market, not in place of rigorous analysis and calibration.
 
 Model independent parameters used in margin calculation are:
 
@@ -235,6 +231,10 @@ Model independent parameters used in margin calculation are:
   * suggested value: `0`.
 
 The remaining, model specific parameters are covered in sections below.
+
+:::note Further reading
+**[Margins and Credit Risk on Vega](https://vega.xyz/papers/margins-and-credit-risk.pdf)** - Note, a position size of 1 is assumed throughout the research paper.
+:::
 
 #### Log-normal
 The log-normal model assumes that the price of the underlying asset follows the process specified by the stochastic differential equation:
@@ -300,7 +300,9 @@ You'll need a Vega Wallet for staking and receiving rewards. Connect to wallets 
 :::
 
 ### Deposits
-For restricted mainnet, the deposits function for Vega is not required. To stake, instead of depositing, tokens must be associated to a Vega key. Tokens used for staking stay in your Ethereum wallet, rather than being held in the ERC20 bridge contract. [Read more about staking VEGA tokens.](/docs/concepts/vega-chain#staking-on-vega)
+For restricted mainnet, the deposits function for Vega is not required. To stake, instead of depositing, tokens must be associated to a Vega key. Tokens used for staking stay in your Ethereum wallet, rather than being held in the ERC20 bridge contract. 
+
+Read more: [Staking VEGA tokens](./vega-chain#staking-on-vega)
 
 The first assets that will be available for interacting with markets on Vega will be ERC20 assets. They will need to be deposited into the ERC20 bridge contract. The funds in that smart contract will then be made available to the user's chosen public key.
 

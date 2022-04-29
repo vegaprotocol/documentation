@@ -104,7 +104,7 @@ To update to the latest version:
 The Vega Wallet desktop app does not yet have the full functionality of the CLI wallet app.
 
 ### Not yet supported
-To do any of the following, you will need to use the **[CLI wallet](/docs/tools/vega-wallet/cli-wallet)** app:
+To do any of the following, you will need to use the **[CLI wallet](../../cli-wallet)** app:
 * Customise key details
 * Isolate keys
 * Build and send commands 

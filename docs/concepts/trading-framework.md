@@ -11,7 +11,7 @@ When an order is placed, it is uniquely identified to the Vega network by its or
 ### Submitting an order
 Orders can be submitted into any market that is active - i.e., not in a protective auction, or matured, expired, or settled. Orders will only be accepted if sufficient margin can be allocated from a trader's available collateral. 
 
-[**Margin**](/docs/concepts/trading-framework#margin): Find out how margin works in the Vega system. 
+[**Margin**](#margin): Find out how margin works in the Vega system. 
 
 If, during continuous trading, an order is going to be matched with another order on the book for the same party (also known as a wash trade), then execution of that order will be stopped and the order will be cancelled and removed, if it on the book. 
 
@@ -28,15 +28,20 @@ Orders cannot be amended using Vega Console. Instead, an individual order should
 #### Cancelling an order
 Orders that have not been filled can be cancelled. 
 
-When trading using the APIs, there are three options for cancelling a standard [limit](/docs/concepts/trading-framework#limit-order) or [market](/docs/concepts/trading-framework#market-order) order. A trader can cancel individual orders, all orders for their public key across all markets, or all orders for their public key on a single market. Each of those ways will remove the orders from the order book, and push out order update messages. 
+When trading using the APIs, there are three options for cancelling a standard limit or market order. A trader can cancel individual orders, all orders for their public key across all markets, or all orders for their public key on a single market. Each of those ways will remove the orders from the order book, and push out order update messages. 
 
 * Cancel with orderID, marketID and partyID - This removes the defined order from the order book of the given market
 * Cancel with partyID and marketID - This removes all the orders for a given party in the given market
 * Cancel with partyID - This removes every order for that given party across all markets
 
-When trading on Vega Console, a trader will only be able cancel individual orders on individual markets, one at a time.
+When trading on Vega Console, a trader will only be able cancel individual orders on individual markets, one at a time. 
 
-[**Liquidity provision orders**]: Information about how to cancel liquidity commitments. 
+Cancelling the orders that are created from a liquiity commitment cannot be cancelled in the same way.
+
+Read more: 
+[Limit orders](#limit-order)
+[Market orders](#market-order)
+[Cancelling liquidity commitment orders](#cancel-liquidity-commitment-orders)
 
 ### Order types
 There are three order types available to traders: limit orders, market orders, and pegged orders. One order type is automatically triggered to close out positions for distressed traders - that's called a network order.
@@ -63,7 +68,7 @@ A market order is an instruction to buy or sell at the best available price in t
 ### Network order
 A network order is triggered by the Vega network to close out a distressed trader, as part of position resolution. Network orders cannot be submitted by a party.
 
-Read more: [Position resolution](/docs/concepts/trading-framework#position-resolution)
+Read more: [Position resolution](#position-resolution)
 
 #### Times in force used in network orders
 
@@ -160,10 +165,10 @@ Margin calculations take into account the probability of the liquidation value o
 Some of those measures include price monitoring, liqudity monitoring, and frequent mark to market calculations.
 
 Read more: 
-* [Margin on Vega](/docs/concepts/trading-framework/#margin)
-* [Price monitoring](/docs/concepts/trading-framework/#price-monitoring)
-* [Liquidity monitoring](/docs/concepts/trading-framework/#liquidity-monitoring)
-* [Distressed traders](/docs/concepts/trading-framework/#distressed-traders)
+* [Margin on Vega](#margin)
+* [Price monitoring](#price-monitoring)
+* [Liquidity monitoring](#liquidity-monitoring)
+* [Distressed traders](#distressed-traders)
 
 ### Mark to market
 Marking to market refers to the settling of gains and losses due to changes in the market value of the underlying product. Marking to market aims to provide a realistic appraisal of of a position based on the current market conditions.
@@ -234,7 +239,7 @@ If the margin account can be topped up, then the position stays open. If a marke
 
 Price monitoring should ensure that large swings only occur only due to genuine changes in market participants' view of the true average price of the traded instrument.
 
-Read more: [Price monitoring](/docs/concepts/trading-framework#price-monitoring)
+Read more: [Price monitoring](#price-monitoring)
 
 If there is not enough collateral to provide the required margin, then the position will be closed out.
 
@@ -248,7 +253,7 @@ A distressed trader has all their open orders on that market cancelled. The netw
 
 However, if the trader does not have sufficient collateral, they are added to list of traders that will then undergo position resolution to close out their positions.
 
-Read more: [Position resolution](/docs/concepts/trading-framework#position-resolution)
+Read more: [Position resolution](#position-resolution)
 
 ### Closeouts
 When a participant does not have enough collateral to hold their open positions, the protocol will automatically trigger a closeout.
@@ -258,8 +263,8 @@ The closeout process is a last resort for a position. If a trader's deployed mar
 The insurance pool is drawn from to make up the difference required to cover the mark to market loss amount. Should the funds in the insurance pool be insufficient for that, loss socialisation will be applied.
 
 Read more: 
-* [Position resolution](/docs/concepts/trading-framework#position-resolution)
-* [Loss socialisation](/docs/concepts/trading-framework#loss-socialisation)
+* [Position resolution](#position-resolution)
+* [Loss socialisation](#loss-socialisation)
 
 ### Position resolution
 Position resolution is executed simultaneously, during a single event, for all traders on a market that have been determined to require it. Distressed trader(s) are ‘batched up’, and position resolution is run once the full set of traders is known for this event.
@@ -272,7 +277,7 @@ The network generates a set of trades with all the distressed traders, all at th
 
 All of the remaining collateral in each distressed trader's margin account for that market is confiscated to the market's insurance pool.
 
-Read more: [Insurance pools](/docs/concepts/trading-framework#insurance-pools)
+Read more: [Insurance pools](#insurance-pools)
 
 ## Pre-trade and trade
 
@@ -397,9 +402,9 @@ Insurance pools grow in two scenarios:
 * If a liquidity provider pays a penalty for failing to provide their committed liquidity
 
 Read more:
-* [Closeouts](/docs/concepts/trading-framework#closeouts)
-* [Liquidity provision penalties](/docs/concepts/trading-framework#penalties)
-* [Loss socialisation](/docs/concepts/trading-framework#loss-socialisation)
+* [Closeouts](#closeouts)
+* [Liquidity provision penalties](#penalties)
+* [Loss socialisation](#loss-socialisation)
 
 ## Market data [WIP]
 
@@ -413,10 +418,14 @@ It is possible to configure a market for which orders can only be priced in incr
 
 
 
-## Liquidity [WIP]
-The Vega protocol allows liquidity to be priced individually for each market. The liquidity incentive amounts are dependent on factors like the fees liquidity providers charge. (Competition? Markets that have more LP can make LPs compete on fees.) 
+## Liquidity
+The Vega protocol allows liquidity to be priced individually for each market, a design decision that allows for liquidity providers to earn more on markets with little LP competition, and drives down fees on markets where there are many participants committing liquidity. 
+
+Liquidity fees are defined based on the commitments and proposed fee levels chosen by the providers, not by the protocol. 
 
 When a market is proposed, the proposer, who must also be able to provide liquidity, proposes the liquidity fee for that market. Other participants who want to commit liquidity can do so by submitting liquidity provision orders to an open market. 
+
+Participants who want to commit liquidity to a market can enter their commitments as soon as a market proposal is submitted and accepted, or at any time during the market's  lifecycle. 
 
 ### Parameters [WIP]
 
@@ -430,14 +439,28 @@ The amount committed during the liquidity provision transaction is stored in a b
 
 The funds are deposited as part of a successful liquidity provision transaction. They will remain in the bond account for as long as the liquidity provider is active, to act as a guarantee for the liquidity obligation taken on by the provider, to assure that the commitment is firm and the protocol can rely on that liquidity in any market conditions.
 
-## Penalties [WIP]
-
 ### Liquidity rewards
 Liquidity providers receive rewards for providing liquidity, and penalties for not upholding their commitment. 
 
 Rewards are calculated automatically from the market's fees, which are paid by price takers, and distributed to the market's liquidity providers according to their relative commitments.
 
-Note: During an auction uncrossing, liquidity providers are not required to supply any orders that offer liquidity or would cause trades. However, they must maintain their liquidity stake(?), and their liquidity orders are placed back on the order book when normal trading resumes.
+Note: During an auction uncrossing, liquidity providers are not required to supply any orders that offer liquidity or would cause trades. However, they must maintain their liquidity commitment, and their liquidity orders are placed back on the order book when normal trading resumes.
+
+### Penalties for not fulfilling liquidity commitment
+If the liquidity provider's margin account doesn't have enough funds to support their orders, the protocol will search for funds in the general account for the relevant asset. If the general account doesn't have sufficient amount to provide margin to support the orders, then the protocol will transfer the remaining funds from the liquidity provider's bond account, and a penalty will be applied and funds transferred from the bond account to the market's insurance pool.
+
+The liquidity obligation will remain unchanged and the protocol will periodically search the liquidity provider's general account and attempt to top up the bond account to the amount specified in liquidity commitment.
+
+Should the funds in the bond account drop to 0 as a result of a collateral search, the liquidity provider will be marked for closeout and the liquidity provision will be removed from the market. If there's an imbalance between total and target stake as a result, the market will go into liquidity auction.
+
+If this happens while the market is transitioning from auction mode to continuous trading, a penalty will not be applied. 
+
+The penalty formula defines how much will be removed from the bond account:
+
+`bond penalty = market.liquidity.bondPenaltyParameter ⨉ shortfall`
+
+* `market.liquidity.bondPenaltyParameter` is a network parameter
+* shortfall refers to the absolute value of the funds that either the liquidity provider was unable to cover through their margin and general accounts, are needed for settlement (mark to market or product driven), or are needed to meet their margin requirements
 
 ### Liquidity commitment transaction
 Participants can commit liquidity by submitting a liquidity submission transaction to the network. 
@@ -460,40 +483,37 @@ A liquidity commitment order type has a specific set of features that set it apa
 * *Sits on the order book*: The orders are always priced limit orders that sit on the order book, and do not trade on entry
 * *Returns to the order book after being filled*: The order is always refreshed after it trades, based on the above requirements so that the full commitment is always supplied
 
-#### Liquidity fee [WIP]
-As part of the liquidity commitment transaction, a liquidity provider submits their desired liquidity fee factor, which is then, with all the other submitted fee factors, to calculate the actual fee each participant will pay on a trade. This fee can change as liquidity providers change their commitment or stop providing liquidity altogether.  
+### Liquidity fee
+As part of the liquidity commitment transaction, a liquidity provider submits their desired liquidity fee factor. The fee factors submitted by all those who submitted liquidity provision orders are used to calculate the actual fee each participant will pay on a trade in that market, and thus how much each liquidity provider receives.
 
-The fee factor for the market is then set from the values submitted by all liquidity providers for a given market.
+This fee can change as the market's target stake changes, and / or as liquidity providers change their commitment or stop providing liquidity altogether. 
 
-In the example below, there are 3 liquidity providers all bidding for their chosen fee level. The liquidity orders they submit are sorted into increasing fee order so that the lowest fee bid is at the top, and the highest is at the bottom. The fee level chosen for the market is derived from the liquidity commitment of the market (`target stake`) and the amount of stake committed from each bidder. Vega processes the LP orders from top to bottom by adding up the commitment stake as it goes until it reaches a level greater than or equal to the `target stake`. When that point is reached, the fee used is the fee of the last liquidity order processed.
+How much a provider receives in fees is also dependent on when they began to commit liquidity on the market, as liquidity providers who commit to a market early benefit from helping to grow the market (also known as the 'equity-like share')
 
-First, (we) see a list of pairs that capture each liquidity provider's committed liquidity, together with their desired liquidity fee factor. This list is then arranged by increasing order of fee amount. 
+Read more: 
+* [Target stake](#target-stake)
+* [Equity-like share for a liquidity provider](#equity-like-share-for-a-liquidity-provider)
 
-[LP-1-stake, LP-1-liquidity-fee-factor]
-[LP-2-stake, LP-2-liquidity-fee-factor]
-...
-[LP-N-stake, LP-N-liquidity-fee-factor]
+The liquidity orders that LPs submit are sorted into increasing fee order so that the lowest fee percentage bid is at the top, and the highest is at the bottom. 
 
-where N is the number of liquidity providers who have committed to supply liquidity to this market. Note that LP-1-liquidity-fee-factor <= LP-2-liquidity-fee-factor <= ... <= LP-N-liquidity-fee-factor because we demand this list of pairs to be sorted in this way.
+The fee level chosen for the market is derived from the liquidity commitment of the market (target stake) and the amount of stake committed from each bidder. Vega processes the LP orders from top to bottom by adding up the commitment stake as it goes, until it reaches a level equal to, or greater than, the target stake. When that point is reached, the fee factor that was provided with the last processed liquidity order is used.
 
-Find the smallest integer k such that [target stake] < sum from i=1 to k of [LP-stake-i]. In other words, we want in this ordered list to find the liquidity providers that supply the liquidity that's required. If no such k exists - set k=N.
+Initially, before a market opens for trading, the target stake is zero, as it's not possible to have a position on a market that's not opened yet. Hence by default the market's initial liquidity-fee-factor is the lowest proposed.
 
-Finally, set the liquidity-fee-factor for this market to be the fee LP-k-liquidity-fee-factor.
-Example for fee setting mechanism
+Once the market opens and its opening auction begins, a clock starts ticking. The protocol calculates the target stake, and the fee is continuously re-evaluated.
 
-[LP 1 stake = 120 ETH, LP 1 liquidity-fee-factor = 0.5%]
-[LP 2 stake = 20 ETH, LP 2 liquidity-fee-factor = 0.75%]
-[LP 3 stake = 60 ETH, LP 3 liquidity-fee-factor = 3.75%]
+#### Liquidity fee example
+In the example below, there are 3 liquidity providers all bidding for their chosen fee level, with the lowest fee bid at the top, and the highest at the bottom. 
 
-    If the target stake = 119 then the needed liquidity is given by LP 1, thus k=1 and so the market's liquidity-fee-factor is LP 1 fee = 0.5%.
-    If the target stake = 123 then the needed liquidity is given by LP 1 and LP 2, thus k=2 and so the market's liquidity-fee-factor is LP 2 fee = 0.75%.
-    If the target stake = 240 then even putting all the liquidity supplied above does not meet the estimated market liquidity demand and thus we set k=N and so the market's liquidity-fee-factor is LP N fee = LP 3 fee = 3.75%.
-    Initially (before market opened) the [target stake] is by definition zero (it's not possible to have a position on a market that's not opened yet). Hence by default the market's initial liquidity-fee-factor is the lowest liquidity-fee-factor.
+* [LP 1 stake = 120 ETH, LP 1 liquidity-fee-factor = 0.5%]
+* [LP 2 stake = 20 ETH, LP 2 liquidity-fee-factor = 0.75%]
+* [LP 3 stake = 60 ETH, LP 3 liquidity-fee-factor = 3.75%]
 
-Once the market opens, and the opening auction starts, a clock starts ticking. The protocol calculates the target stake (!!!!link). The fee is continuously re-evaluated using the mechanism above.
+* If the target stake = 119 then the needed liquidity is given by LP 1, thus market's liquidity-fee-factor is the LP 1 fee: 0.5%.
+* If the target stake = 123 then the needed liquidity is given by the combination of LP 1 and LP 2, and so the market's liquidity-fee-factor is LP 2 fee: 0.75%.
+* If the target stake = 240 then all the liquidity supplied above does not meet the estimated market liquidity demand, and thus the market's liquidity-fee-factor is set to the highest, LP 3's fee: 3.75%.
 
-### CALCULATING LIQUIDITY FEES [WIP]
-Calculating market value proxy
+### Calculating market value proxy ???? [WIP]
 
 It's calculated, with `t` denoting time now measured so that at t=0 the opening auction ended, as follows:
 
@@ -524,7 +544,7 @@ Example
     A LP has committed stake of 10000 ETH. The traded notional over active_time_window is 9000 ETH. So the market_value_proxy is 10000 ETH.
     A LP has committed stake of 10000 ETH. The traded notional over active_time_window is 250 000 ETH. Thus the market_value_proxy is 250 000 ETH.
 
-### Calculating liquidity provider equity-like share [WIP]
+### Equity-like share for a liquidity provider [WIP]
 
 The concept of the equity-like share of a market's trading for a liquidity provider broadly ensures that liquidity providers who get into a market early benefit from helping to grow the market. Those liquidity providers who commit early in a market's existence will receive a larger proportion of the fees than their actual commitment would imply, because they were a larger proportion of the commitment earlier on, once other parties are also committing liquidity to the market.
 

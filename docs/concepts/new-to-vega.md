@@ -35,11 +35,11 @@ Its functionality is limited and is riskier than networks that will follow it, a
 ## How can I use Vega?
 
 #### Vega Wallet
-* [Get a Vega Wallet](/docs/tools/vega-wallet/cli-wallet/latest/create-wallet): You'll need it for staking, and you can connect it to Fairground, and use it for trading on Vega Console (through the wallet). 
+* [Get a Vega Wallet](../tools/vega-wallet/cli-wallet/latest/create-wallet): You'll need it for staking, and you can connect it to Fairground and use it for trading on Vega Console.
 
 #### Token management and network governance 
 * [Mainnet token interface](https://token.vega.xyz): Interact with your $VEGA tokens on the token interface.
-* [Mainnet FAQ](https://blog.vega.xyz/the-vega-restricted-mainnet-faqs-6bedc7a57f24): Regularly updated list of the most commonly asked questions and answers to help you get your bearings with restricted mainnet.
+* [Mainnet FAQ](https://blog.vega.xyz/the-vega-restricted-mainnet-faqs-6bedc7a57f24): List of the most commonly asked questions and answers to help you get your bearings with restricted mainnet.
 * [Fairground token interface](https://token.fairground.wtf): You can also try out the interface using testnet tokens, if you want to familiarise yourself with it first.
 
 #### Fairground, Vega's testnet
@@ -48,7 +48,6 @@ Its functionality is limited and is riskier than networks that will follow it, a
 * [Share your proposal on Discord](https://vega.xyz/discord): If you propose a market, let everyone know on Discord so that people can vote on it. 
 
 ## How can I contribute to Vega?
-
 * [Bugs and feature requests](https://github.com/vegaprotocol/feedback/discussions/): Raise any bugs you find, or feature requests you have, on Vega's feedback board.
 * [Developer bounties](https://github.com/vegaprotocol/bounties/): See available bounties on the bounties repo. 
-* [Documentation translation](https://github.com/vegaprotocol/documentation/issues): Raise an issue on the documentation repo to express your interest in translating Vega documentation. 
+* [Documentation translation](https://github.com/vegaprotocol/documentation/issues): Raise an issue on the documentation repo to express your interest in translating Vega documentation.

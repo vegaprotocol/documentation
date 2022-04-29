@@ -6,14 +6,14 @@ hide_title: false
 
 Vega uses Tendermint as a consensus layer to form a blockchain. The rest of the information here informs on how that blockchain and its relevant components is comprised. 
 
-Read more: [How Vega bridges to Ethereum](/docs/concepts/vega-chain/#bridges-used-for-staking)
+Read more: [How Vega bridges to Ethereum](#bridges-used-for-staking)
 
 ## Delegated proof of stake
 Vega runs on a delegated proof of stake blockchain. 
 
 Validator nodes run the Vega network, and they decide on the validity of the blocks containing the network's transactions and thus execute those transactions. The validators who run validator nodes are required to own a minimum amount of VEGA tokens that they delegate to themselves.
 
-Read more: [Validator nodes](/docs/concepts/vega-chain#validator-nodes)
+Read more: [Validator nodes](#validator-nodes)
 
 **Participants who hold a balance of VEGA, the governance asset, can use their tokens to nominate validator nodes.** This is done by associating those tokens to a Vega key to use as stake, and then nominating one or more validators they trust to help secure the network. Nominating validators loans the consensus voting weight of the VEGA tokens to endorse a validator's trustworthiness. 
 
@@ -21,11 +21,11 @@ Tokens, in addition to their use for nominating validators, also grant tokenhold
 
 Everyone participating in keeping the network secure, robust and reliable, including nominators, is **rewarded** for keeping the network running. Not meeting the requirements of running the network can lead to penalties, such as **rewards being withheld**.
 
-Read more: [Rewards](/docs/concepts/vega-chain#rewards)
+Read more: [Rewards](#rewards)
 
 Vega is non-slashing -- there is no mechanism through which a tokenholder can lose a staked token through a validator being punished. Any measures to that end use different mechanisms that will affect a bad validator's (and potentially their delegators') revenue, but does not affect the delegated tokens themselves.
 
-Read more: [Penalties](/docs/concepts/vega-chain#penalties)
+Read more: [Penalties](=#penalties)
 
 ### VEGA token
 Vega uses the VEGA ERC20 token for governance, which includes nominating validators to run nodes, and creating and voting on governance proposals.
@@ -37,7 +37,7 @@ A VEGA token (or fraction) can be either dissociated or associated with a Vega k
 
 **All tokens can be used for staking and voting** on governance proposals. This includes tokens that are locked in the vesting contract. Tokens that are staked can be used to vote, and tokens used to vote can be staked.
 
-Read more: [Governance of Vega](/docs/concepts/vega-protocol#governance)
+Read more: [Governance of Vega](./vega-protocol#governance)
 
 :::info
 A user's VEGA tokens must first be associated with a Vega key before they can be used for governance and staking.
@@ -76,7 +76,7 @@ There are several spam protections enabled to protect the Vega network.
 Vega networks use the ERC20 token VEGA for staking. Staking requires the combined action of associating VEGA tokens (or fractions of a token) to the Vega staking bridge contract; and using those token(s) to nominate one or more validators. 
 
 #### Epochs
-An epoch is a time period during which staking changes can be announced and then implemented. Changes that are announced in one epoch will only be executed in the following epoch (excepting ['un-nominate now'](/docs/concepts/vega-chain#un-nominate-now)). The length of an epoch is set by the network parameter `validators.epoch.length`. 
+An epoch is a time period during which staking changes can be announced and then implemented. Changes that are announced in one epoch will only be executed in the following epoch (excepting ['un-nominate now'](#un-nominate-now)). The length of an epoch is set by the network parameter `validators.epoch.length`. 
 
 ### Nominating validators
 Using tokens to nominate validators keeps the decentralised network functioning. 
@@ -85,7 +85,7 @@ Tokenholders can nominate validators to encourage a diverse set of reliable node
 
 When a tokenholder chooses a validator (or validators) to nominate with their tokens, the amount is immediately subtracted from their available balance, and is used at the start of the next epoch to actively nominate those validator(s).
 
-Read more: [Rewards for staking](/docs/concepts/vega-chain#rewards)
+Read more: [Rewards for staking](#rewards)
 
 :::info
 VEGA tokenholders can use **[token.vega.xyz](https://token.vega.xyz)** to associate their tokens and nominate validators. A Vega Wallet and Ethereum wallet are both required. CoinList custodial users should confirm with CoinList how staking works for them.
@@ -101,7 +101,7 @@ Exceptions to automatic nomination:
 ### Un-nominating validators
 Participants can remove their nomination at the end of an epoch, or immediately. The un-nominated tokens will be restored back to the participant's associated token balance. 
 
-If nominated tokens are moved to a different Ethereum address, they are un-nominated immediately, (equivalent to ['un-nominate now'](/docs/concepts/vega-chain#un-nominate-now)) and rewards are forfeited for that epoch. In this case, or any case in which you dissociate tokens without first removing the nomination from a particular validator, the tokens are un-nominated from each validator you've nominated, in proportion to the nomination. 
+If nominated tokens are moved to a different Ethereum address, they are un-nominated immediately, (equivalent to ['un-nominate now'](#un-nominate-now)) and rewards are forfeited for that epoch. In this case, or any case in which you dissociate tokens without first removing the nomination from a particular validator, the tokens are un-nominated from each validator you've nominated, in proportion to the nomination. 
 
 #### Un-nominate towards the end of the epoch
 A participant can un-nominate towards the end of the current epoch, which means the stake is not used for the validator from the following epoch. The participant, and their nominated validator, is entitled to the rewards from that epoch (unlike when un-nominating now). 
@@ -136,7 +136,7 @@ This holds for validators as well, with the exception that there is a maximum am
 
 At the end of each epoch, reward payments are calculated per active validator, and then some of that reward is divided between their nominators. 
 
-Read more: [Risks of over-staked validators](/docs/concepts/vega-chain#too-much-stake)
+Read more: [Risks of over-staked validators](#too-much-stake)
  
 :::note Further reading
 **[Staking rewards spec](https://github.com/vegaprotocol/specs/blob/main/protocol/0058-REWS-simple_pos_rewards.md)** - more detail on how rewards are calculated and will be in future iterations. 
@@ -147,7 +147,7 @@ Validator nodes that don't meet the requirements or prove to be bad actors will 
 
 There is no token slashing, i.e., a tokenholder cannot lose their tokens through any actions of a validator.
 
-Read more: [How a validator node's performance is determined](/docs/concepts/vega-chain#validator-node-performance)
+Read more: [How a validator node's performance is determined](#validator-node-performance)
 
 ## Validator nodes
 The Vega network is operated by a number of independent validators, who each run a node. Validator nodes are responsible for agreeing on the order of transactions and creating new blocks so that all nodes can agree on the state of the network. 

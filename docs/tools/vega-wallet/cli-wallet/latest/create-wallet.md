@@ -71,7 +71,7 @@ You'll need to run the commands from the directory you've saved the wallet file 
 The steps below will guide you through initialising a wallet, and creating new key pairs or importing an existing wallet. 
 
 :::info
-To restore a wallet from your recovery phrase, see the [restore a wallet guide](/docs/tools/vega-wallet/cli-wallet/latest/guides/restore-wallet).
+To restore a wallet from your recovery phrase, see the [restore a wallet guide](../guides/restore-wallet).
 :::
 
 ### Initialise the software
@@ -152,7 +152,7 @@ Import the following network configurations:
 * **Fairground** network: [`fairground.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/fairground/fairground.toml)
 
 :::info
-To update your networks list, see [manage networks](/docs/tools/vega-wallet/cli-wallet/latest/guides/manage-networks#update-networks) for instructions.
+To update your networks list, see [manage networks](../guides/manage-networks#update-networks) for instructions.
 ::: 
 
 #### Import networks from URL
