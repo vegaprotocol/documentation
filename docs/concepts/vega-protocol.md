@@ -22,7 +22,7 @@ Try out proposing markets using [Fairground](https://fairground.wtf), Vega's tes
 1. If the required majority of 'for' votes is met, the action described in the proposal will be taken (i.e., proposal is enacted) on the defined enactment date. Note the enactment date must be at least the minimum enactment period for the proposal type/subtype (specified by a network parameter) _after_ voting closes.
 
 ### Voting on proposals 
-VEGA tokenholders can vote for or against any proposals. In restricted mainnet, Vega tokenholders will be able to define the optimal network configuration by creating and voting on network parameter proposals. 
+VEGA tokenholders can vote for or against any proposals.
 
 * Any tokenholder with more than 0 tokens associated with a Vega key can vote on proposals. 
 * The Vega key used for voting will need to have more than 0 tokens when a vote is submitted, as well as when votes are counted at the proposal's closing date/time, otherwise the vote is disregarded. 
@@ -30,8 +30,9 @@ VEGA tokenholders can vote for or against any proposals. In restricted mainnet, 
 * Each public key with a non-zero token balance gets one vote.
 * While the voting period is open, a public key can vote multiple times but only the most recent vote will count at the proposal's close.
 
-Tokenholders can create proposals using the APIs. 
+Tokenholders can create proposals using the APIs.
 
+<!-- 
 :::info
 Vote on proposals on the [Vega token governance page](https://token.vega.xyz/governance).
 :::
@@ -53,11 +54,11 @@ Follow a step-by-step guide to depositing testnet collateral for trading on Fair
 :::
 
 ### Withdrawals
-In restricted mainnet, the only assets that are available to withdraw are rewards accrued through staking tokens to network validators. 
+In restricted mainnet, the only assets that are available to withdraw are rewards accrued through staking tokens to network validators.
 
-To stake those rewards, the recipient must withdraw them from the Vega key the rewards are credited to, and send the tokens to their Ethereum wallet. After withdrawing, the tokens can be associated with a Vega key. 
+To stake those rewards, the recipient must withdraw them from the Vega key the rewards are credited to, and send the tokens to their Ethereum wallet. After withdrawing, the tokens can be associated with a Vega key.
 
-Note: Associated and deposited are not equivalent, as deposited tokens are held within the ERC20 bridge contract, and associated tokens stay in an Ethereum wallet or in the vesting contract. 
+Note: Associated and deposited are not equivalent, as deposited tokens are held within the ERC20 bridge contract, and associated tokens stay in an Ethereum wallet or in the vesting contract.
 
 :::info
 Track and withdraw rewards on the [Vega token withdrawals page](https://token.vega.xyz/withdraw).
@@ -66,4 +67,4 @@ Track and withdraw rewards on the [Vega token withdrawals page](https://token.ve
 ### On-chain network treasury 
 In restricted mainnet, rewards for nominating a validator will be distributed from the on-chain network treasury, in the form of VEGA tokens. 
 
-The on-chain network treasury is a set of accounts that are funded by parties, deposits, or by direct transfers to allocate funds for rewards, grants, and other initiatives.
+The on-chain network treasury is a set of accounts that are funded by parties, deposits, or by direct transfers to allocate funds for rewards, grants, and other initiatives. -->
