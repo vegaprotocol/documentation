@@ -3,7 +3,7 @@ title: Vega Wallet
 hide_title: false
 ---
 
-Vega Wallet allows you to manage wallets and key pairs, and sign transactions.
+Vega Wallet allows you to manage wallets and key pairs, sign and broadcast transactions.
 
 You can interact with a Vega wallet and its keys through two different apps:
 
