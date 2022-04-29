@@ -40,12 +40,12 @@ const FeatureList = [
   },
   {
     title: "Vega Wallet",
-    href: "/docs/tools/vega-wallet/desktop-app",
+    href: `./docs/${latestVersion}/tools/vega-wallet/desktop-app`,
     description: (
      <>
         Download the {" "}
-        <a href="/docs/tools/vega-wallet/desktop-app"> Vega wallet desktop app</a> to easily interact with your keys. More advanced users may prefer the  {" "}
-        <a href="/docs/tools/vega-wallet/cli-wallet"> Vega Wallet for CLI</a>.
+        <a href={`./docs/${latestVersion}/tools/vega-wallet/desktop-app`}> Vega wallet desktop app</a> to easily interact with your keys. More advanced users may prefer the  {" "}
+        <a href={`./docs/${latestVersion}/tools/vega-wallet/cli-wallet`}> Vega Wallet for CLI</a>.
       </>
     ),
   },
