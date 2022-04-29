@@ -1,0 +1,36 @@
+---
+id: liquidity-provider-fee-share
+title: LiquidityProviderFeeShare
+---
+
+
+The equity like share of liquidity fee for each liquidity provider
+
+```graphql
+type LiquidityProviderFeeShare {
+  party: Party!
+  equityLikeShare: String!
+  averageEntryValuation: String!
+}
+```
+
+
+### Fields
+
+#### `party` ([`Party`](/docs/testnet/graphql/objects/party))
+
+The liquidity provider party id
+
+
+#### `equityLikeShare` ([`String`](/docs/testnet/graphql/scalars/string))
+
+The share own by this liquidity provider (float)
+
+
+#### `averageEntryValuation` ([`String`](/docs/testnet/graphql/scalars/string))
+
+the average entry valuation of the liquidity provider for the market
+
+
+
+
