@@ -25,7 +25,7 @@ Read more: [Rewards](#rewards)
 
 Vega is non-slashing -- there is no mechanism through which a tokenholder can lose a staked token through a validator being punished. Any measures to that end use different mechanisms that will affect a bad validator's (and potentially their delegators') revenue, but does not affect the delegated tokens themselves.
 
-Read more: [Penalties](=#penalties)
+Read more: [Penalties](#penalties)
 
 ### VEGA token
 Vega uses the VEGA ERC20 token for governance, which includes nominating validators to run nodes, and creating and voting on governance proposals.
