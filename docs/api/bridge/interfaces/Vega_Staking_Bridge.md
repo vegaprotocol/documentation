@@ -58,7 +58,8 @@ Emits Stake_Deposited eventUser MUST run &quot;approve&quot; on token prior to r
 
 | Name | Type | Description |
 |:-:|:-:| - |
-| vega_public_key | `uint256` | Target Vega public key to be credited with the stake |
+| vega_public_key | `bytes32` | Target Vega public key to be credited with the stake |
+| amount | `uint256` | Token amount to stake |
 
 
 

@@ -1,4 +1,4 @@
-# IERC20_Bridge_Logic_Restricted
+# IERC20_Bridge_Logic
 > 👤 Vega Protocol
 ```
 ERC20 Bridge Logic Interface
@@ -359,7 +359,11 @@ MUST emit Asset_Withdrawn if successful
 
 | Name | Type | Description |
 |:-:|:-:| - |
+| asset_source | `address` | Contract address for given ERC20 token |
 | target | `address` | Target Ethereum address to receive withdrawn ERC20 tokens |
+| amount | `uint256` | Amount of ERC20 tokens to withdraw |
+| nonce | `uint256` | Vega-assigned single-use number that provides replay attack protection |
+| signatures | `memory` | Vega-supplied signature bundle of a validator-signed order |
 
 
 

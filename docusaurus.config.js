@@ -48,7 +48,7 @@ module.exports = {
         },
         {
           type: "doc",
-          docId: "tutorials",
+          docId: "tutorials/index",
           label: "API tutorials",
           position: "left",
         },

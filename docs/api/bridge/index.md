@@ -11,7 +11,7 @@ Allows users to stake locked or unlocked Vega tokens.
 * Source & ABIs: [vegaprotocol/Staking_Bridge](https://github.com/vegaprotocol/Staking_Bridge)
 * Ropsten: `0xF5A3830F002BE78dd801214F5316b677E0355c60` ([View on Etherscan](https://ropsten.etherscan.io/address/0xF5A3830F002BE78dd801214F5316b677E0355c60))
 
-For an introduction to staking on Vega, [see this blog post](https://blog.vega.xyz/staking-on-vega-17f22113e3df).
+For an introduction to staking on Vega, [check out our Concepts section](../../concepts/vega-chain.md#bridges-used-for-staking) or for a higher level overview [see this blog post](https://blog.vega.xyz/staking-on-vega-17f22113e3df).
 
 ## [ERC20 asset bridge](./interfaces/IERC20_Bridge_Logic)
 Used for depositing ERC20 tokens in to a Vega network.
