@@ -195,7 +195,7 @@ python3 submit-amend-liquidity-provision/submit-amend-liquidity-provision-order.
 ## Cancelling a liquidity commitment
 If you no longer want to keep a liquidity commitment open for a market, you can cancel your commitment using the `liquidityProvisionCancellation`. This will remove any orders created as part of your supplied shape and it will return the bond amount back into your general account.
 
-If there is not enough liquidity left in the market after you cancel, it will force the market into a liquidity auction where it will stay until there is enough new liquidity supplied to bring it back out into continuous trading.
+If cancelling a commitment would leave a market without enough liquidity, then the cancellation will not be accepted. 
 
 ### API script
 If you no longer want to commit open orders through a liquidity provision, you will need to cancel it. If there are any positions open from your liquidity orders, they will not be cancelled when you cancel your liquidity commitment. 
