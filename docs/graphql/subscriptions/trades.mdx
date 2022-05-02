@@ -1,0 +1,37 @@
+---
+id: trades
+title: trades
+---
+
+
+Subscribe to the trades updates
+
+```graphql
+trades(
+  marketId: ID
+  partyId: ID
+): [Trade!]
+```
+
+
+### Arguments
+
+#### `marketId` ([`ID`](/docs/testnet/graphql/scalars/id))
+
+ID of the market from which we want trades updates
+
+
+#### `partyId` ([`ID`](/docs/testnet/graphql/scalars/id))
+
+ID of the party from which we want trades updates
+
+
+### Type
+
+#### [`Trade`](/docs/testnet/graphql/objects/trade) 
+
+A trade on Vega, the result of two orders being 'matched' in the market
+
+
+
+

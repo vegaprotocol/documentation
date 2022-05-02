@@ -47,11 +47,11 @@ Lastly you need to have Python3 installed, you can check if you have by running:
 
 ## Installation and local development
 
-Edit `scripts/build.sh` and update `vega_api_branch` to a new branch/tag as necessary.
+Edit `scripts/generate-api-docs.sh` and update `vega_api_branch` to a new branch/tag as necessary.
 
 ```console
 cd /path/to/src/github.com/vegaprotocol/documentation
-GITHUB_API_TOKEN=a1b2c3 ./scripts/build.sh
+GITHUB_API_TOKEN=a1b2c3 ./scripts/generate-api-docs.sh
 ```
 
 ## Running locally
@@ -59,3 +59,15 @@ GITHUB_API_TOKEN=a1b2c3 ./scripts/build.sh
 ```console
 yarn run serve
 ```
+
+# API documentation
+
+## Plugins used
+- [docusaurus-protobuffet](https://www.npmjs.com/package/docusaurus-protobuffet) - Protobuf docs
+- [redocusaurus](https://www.npmjs.com/package/redocusaurus) - REST docs
+- [docusaurus2-graphql-doc-generator](https://www.npmjs.com/package/@edno/docusaurus2-graphql-doc-generator) - GraphQL docs
+
+## Setup
+- GraphQL docs are generated in to `/docs/graphql/`
+- docusaurus-protobuffet-plugin is used to generate docs, but unlike the defaults setup generates them into the `/docs/` so as to avoid documenting them separately
+- New versions of REST docs are configured in `docusaurus.config.js`, as redocusaurus does not generate pages.

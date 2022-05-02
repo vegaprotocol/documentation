@@ -87,4 +87,5 @@ vegawallet import --wallet "MY_WALLET_NAME" --recovery-phrase-file "PATH_TO_MY_R
 </Tabs>
 
 
-More guidance: [Create a Wallet walkthrough - Step 3](/docs/tools/vega-wallet/cli-wallet/latest/create-wallet#3-choose-a-network)
+More guidance: [Create a Wallet walkthrough - Step 3](../create-wallet#3-choose-a-network)
+

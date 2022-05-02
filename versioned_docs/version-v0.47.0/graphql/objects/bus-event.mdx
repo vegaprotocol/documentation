@@ -1,0 +1,42 @@
+---
+id: bus-event
+title: BusEvent
+---
+
+
+No description
+
+```graphql
+type BusEvent {
+  eventId: ID!
+  block: String!
+  type: BusEventType!
+  event: Event!
+}
+```
+
+
+### Fields
+
+#### `eventId` ([`ID`](/docs/mainnet/graphql/scalars/id))
+
+the id for this event
+
+
+#### `block` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+the block hash
+
+
+#### `type` ([`BusEventType`](/docs/mainnet/graphql/enums/bus-event-type))
+
+the type of event we're dealing with
+
+
+#### `event` ([`Event`](/docs/mainnet/graphql/unions/event))
+
+the payload - the wrapped event
+
+
+
+

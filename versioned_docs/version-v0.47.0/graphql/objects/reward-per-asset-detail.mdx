@@ -1,0 +1,36 @@
+---
+id: reward-per-asset-detail
+title: RewardPerAssetDetail
+---
+
+
+Reward information for a given asset
+
+```graphql
+type RewardPerAssetDetail {
+  asset: Asset!
+  rewards: [Reward]
+  totalAmount: String!
+}
+```
+
+
+### Fields
+
+#### `asset` ([`Asset`](/docs/mainnet/graphql/objects/asset))
+
+Asset in which the reward was paid
+
+
+#### `rewards` ([`Reward`](/docs/mainnet/graphql/objects/reward))
+
+A list of rewards received for this asset
+
+
+#### `totalAmount` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+The total amount of rewards received for this asset.
+
+
+
+
