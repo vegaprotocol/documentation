@@ -3,10 +3,10 @@
   {
     // Timestamp (Unix time in seconds) when voting closes for this proposal,
     // constrained by `minClose` and `maxClose` network parameters (int64 as string) 
-    closingTimestamp: 1652272406222,
+    closingTimestamp: 1653138543628,
     // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
     // constrained by `minEnact` and `maxEnact` network parameters (int64 as string) 
-    enactmentTimestamp: 1652358806225,
+    enactmentTimestamp: 1653224943628,
     newMarket:  {
       changes: {
         // Decimal places used for the new market (uint64 as string) 
@@ -16,9 +16,9 @@
         // New market instrument configuration
         instrument: {
         // Instrument name
-        name: "Apples Yearly (2022)",
+        name: "Oranges Daily",
         // Instrument code
-        code: "APPLES.22",
+        code: "ORANGES.24h",
         // Future
         future: {
           // Product settlement asset identifier (string)
@@ -101,7 +101,7 @@
           }
       },
         // Optional new market meta data, tags
-        metadata: ["sector:health","source:docs.vega.xyz"],
+        metadata: ["sector:materials","sector:food","source:docs.vega.xyz"],
         // Price monitoring parameters
         priceMonitoringParameters: {
           // PriceMonitoringTrigger holds together price projection horizon τ, probability level p, and auction extension duration
@@ -145,7 +145,7 @@
           // R param (double as number) 
           r: 0.016,     
           // Sigma param (double as number) 
-          sigma: 1.25,     
+          sigma: 0.8,     
         }
       },
        }

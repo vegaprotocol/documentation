@@ -1,12 +1,12 @@
 
   ```json
   {
-  "closingTimestamp": 1652272406226,
-  "enactmentTimestamp": 1652358806226,
+  "closingTimestamp": 1653138543630,
+  "enactmentTimestamp": 1653224943630,
   "newAsset": {
     "changes": {
-      "name": "BNB",
-      "symbol": "BNB",
+      "name": "XRP",
+      "symbol": "XRP",
       "totalSupply": "19010568",
       "decimals": "5",
       "quantum": "1",

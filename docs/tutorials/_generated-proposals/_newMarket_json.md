@@ -1,15 +1,15 @@
 
   ```json
   {
-  "closingTimestamp": 1652272406222,
-  "enactmentTimestamp": 1652358806225,
+  "closingTimestamp": 1653138543628,
+  "enactmentTimestamp": 1653224943628,
   "newMarket": {
     "changes": {
       "decimalPlaces": "5",
       "positionDecimalPlaces": "5",
       "instrument": {
-        "name": "Apples Yearly (2022)",
-        "code": "APPLES.22",
+        "name": "Oranges Daily",
+        "code": "ORANGES.24h",
         "future": {
           "settlementAsset": "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
           "quoteName": "tEuro",
@@ -59,7 +59,8 @@
         }
       },
       "metadata": [
-        "sector:health",
+        "sector:materials",
+        "sector:food",
         "source:docs.vega.xyz"
       ],
       "priceMonitoringParameters": {
@@ -85,44 +86,44 @@
         "params": {
           "mu": 0,
           "r": 0.016,
-          "sigma": 1.25
+          "sigma": 0.8
         }
       }
     },
     "liquidityCommitment": {
-      "commitmentAmount": "857005",
-      "fee": "0.56",
+      "commitmentAmount": "5644780",
+      "fee": "0.72",
       "buys": [
         {
-          "offset": "40",
-          "proportion": 3,
-          "reference": "PEGGED_REFERENCE_BEST_BID"
-        },
-        {
-          "offset": "70",
-          "proportion": 8,
-          "reference": "PEGGED_REFERENCE_BEST_BID"
-        },
-        {
-          "offset": "97",
+          "offset": "49",
           "proportion": 9,
+          "reference": "PEGGED_REFERENCE_BEST_BID"
+        },
+        {
+          "offset": "17",
+          "proportion": 6,
+          "reference": "PEGGED_REFERENCE_BEST_BID"
+        },
+        {
+          "offset": "95",
+          "proportion": 7,
           "reference": "PEGGED_REFERENCE_BEST_BID"
         }
       ],
       "sells": [
         {
-          "offset": "7",
-          "proportion": 7,
+          "offset": "57",
+          "proportion": 10,
           "reference": "PEGGED_REFERENCE_BEST_ASK"
         },
         {
-          "offset": "53",
-          "proportion": 2,
+          "offset": "94",
+          "proportion": 8,
           "reference": "PEGGED_REFERENCE_BEST_ASK"
         },
         {
-          "offset": "32",
-          "proportion": 1,
+          "offset": "95",
+          "proportion": 3,
           "reference": "PEGGED_REFERENCE_BEST_ASK"
         }
       ]

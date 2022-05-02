@@ -3,7 +3,7 @@
   {
     // Timestamp (Unix time in seconds) when voting closes for this proposal,
     // constrained by `minClose` and `maxClose` network parameters (int64 as string}) 
-    closingTimestamp: 1652272406226,
+    closingTimestamp: 1653138543630,
     newFreeform:  {
         changes: {
           // The URL containing content that describes the proposal (string) 
