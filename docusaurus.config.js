@@ -149,7 +149,7 @@ module.exports = {
         language: ["en"],
         hashed: true,
         indexBlog: false,
-        docsRouteBasePath: ["/docs", "/protodocs"]
+        docsRouteBasePath: ["/docs", "/protodocs"],
       },
     ],
   ],

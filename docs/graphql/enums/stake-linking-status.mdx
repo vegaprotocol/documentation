@@ -3,7 +3,9 @@ id: stake-linking-status
 title: StakeLinkingStatus
 ---
 
+
 The status of the stake linking
+
 
 ```graphql
 enum StakeLinkingStatus {
@@ -13,18 +15,25 @@ enum StakeLinkingStatus {
 }
 ```
 
+
 ### Values
 
-#### `Pending`
+#### `Pending` 
 
 The stake linking is pending in the vega network, this means that
 the vega network have seen a StakeLinking, but is still to confirm
 it's valid on the ethereum chain, and accepted by all nodes of the network
 
-#### `Accepted`
+
+#### `Accepted` 
 
 The stake linking has been accepted and processed fully (balance updated) by the network
 
-#### `Rejected`
+
+#### `Rejected` 
 
 The vega network have rejected this stake linking
+
+
+
+
