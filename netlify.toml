@@ -9,15 +9,40 @@
 
 [[redirects]]
   from = "/docs/tools/vega-wallet/cli-wallet/create-wallet"
-  to = "/docs/tools/vega-wallet/cli-wallet/latest/create-wallet"
+  to = "/docs/mainnet/tools/vega-wallet/cli-wallet/latest/create-wallet"
   status = 301
 
 [[redirects]]
   from = "/docs/tools/vega-wallet/CLI-wallet/*"
-  to = "/docs/tools/vega-wallet/cli-wallet/:splat"
+  to = "/docs/mainnet/tools/vega-wallet/cli-wallet/:splat"
   status = 301
 
 [[redirects]]
  from = "/docs/tools/vega-wallet/concepts"
- to = "/docs/concepts/vega-wallet"
+ to = "/docs/mainnet/concepts/vega-wallet"
  status = 301
+
+[[redirects]]
+  from = "/docs/tools/vega-wallet/cli-wallet/latest/create-wallet"
+  to = "/docs/mainnet/tools/vega-wallet/cli-wallet/latest/create-wallet"
+  status = 301
+
+[[redirects]]
+  from = "/docs/tools/vega-wallet"
+  to = "/docs/mainnet/tools/vega-wallet"
+  status = 301
+
+[[redirects]]
+  from = "/docs/tools/vega-wallet/desktop-app/latest/getting-started"
+  to = "/docs/mainnet/tools/vega-wallet/desktop-app/latest/getting-started"
+  status = 301
+
+[[redirects]]
+  from = "/docs/concepts/new-to-vega"
+  to = "/docs/mainnet/concepts/new-to-vega"
+  status = 301
+
+[[redirects]]
+  from = "/docs/releases/core/release-notes"
+  to = "/docs/mainnet/releases/core/release-notes"
+  status = 301
