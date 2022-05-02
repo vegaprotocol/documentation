@@ -47,13 +47,14 @@ module.exports = {
           position: "left",
         },
         {
-          to: "/docs/tutorials",
+          type: "doc",
+          docId: "tutorials/index",
           label: "API tutorials",
           position: "left",
         },
         {
-          to: "/docs/tools/",
           type: "doc",
+          docId: "tools/index",
           label: "Apps and Tools",
           position: "left",
         },
