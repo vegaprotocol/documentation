@@ -22,4 +22,4 @@ Use the **[command line app](./cli-wallet/)** to do everything you can do with t
 * Build and send commands
 
 ## What is a wallet?
-**[Wallet concepts](../concepts/vega-wallet)**: Read about how the Vega Wallet works and what the terms like 'wallet name' and 'recovery phrase' mean.
+**[Wallet concepts](../../concepts/vega-wallet)**: Read about how the Vega Wallet works and what the terms like 'wallet name' and 'recovery phrase' mean.
