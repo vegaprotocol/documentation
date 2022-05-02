@@ -1,7 +1,11 @@
 ---
 title: Staking tokens
 hide_title: false
+vega_network: TESTNET
+ethereum_network: Ropsten
 ---
+import EthAddresses from '@site/src/components/EthAddresses';
+
 
 :::tip
 
@@ -48,3 +52,8 @@ With the signature bundle fetched in step 4, the final step is to submit that wi
 * `target` - the Ethereum address to receive the rewards
 * `nonce` - the nonce from step 4
 * `signatures` - signature bundle from step 4
+
+## Ethereum addresses for Testnet
+<EthAddresses frontMatter={frontMatter} />
+
+
