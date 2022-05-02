@@ -3,17 +3,9 @@
 
 # Production
 /build
-/protodocs
-/docs/graphql/directives/
-/docs/graphql/enums/
-/docs/graphql/inputs/
-/docs/graphql/interfaces/
-/docs/graphql/mutations/
-/docs/graphql/objects/
-/docs/graphql/queries/
-/docs/graphql/subscriptions/
-/docs/graphql/scalars/
-/docs/graphql/unions/
+
+./proto.json
+./schema.graphql
 
 # Generated files
 .docusaurus
@@ -33,3 +25,9 @@ yarn-error.log*
 
 # Do not commit the huge proto json file pulled from the api repo.
 /proto.json
+/schema.grapqhl
+
+# Never commit files accidentally created by platform incompatible seds
+*.md-E
+*.mdx-E
+

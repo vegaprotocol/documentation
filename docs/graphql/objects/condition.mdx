@@ -1,0 +1,30 @@
+---
+id: condition
+title: Condition
+---
+
+
+Condition describes the condition that must be validated by the
+
+```graphql
+type Condition {
+  operator: ConditionOperator!
+  value: String
+}
+```
+
+
+### Fields
+
+#### `operator` ([`ConditionOperator`](/docs/testnet/graphql/enums/condition-operator))
+
+comparator is the type of comparison to make on the value.
+
+
+#### `value` ([`String`](/docs/testnet/graphql/scalars/string))
+
+value is used by the comparator.
+
+
+
+

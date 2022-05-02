@@ -2,37 +2,39 @@ import React from "react";
 import clsx from "clsx";
 import styles from "./HomepageFeatures.module.css";
 
+const latestVersion = "mainnet";
+
 const FeatureList = [
   {
     title: "Vega concepts",
-    href: "/docs/concepts/new-to-vega",
+    href: `./docs/${latestVersion}/concepts/new-to-vega`,
     description: (
       <>
         Restricted mainnet is a decentralised network run by a set of
         validators. Read about the underlying framework under{" "}
-        <a href="/docs/concepts/new-to-vega">concepts</a>.
+        <a href={`./docs/${latestVersion}/concepts`}>concepts</a>.
       </>
     ),
   },
   {
     title: "API references",
-    href: "/docs/api/overview",
+    href: `./docs/${latestVersion}/api/overview`,
     description: (
       <>
         GraphQL, gRPC and REST APIs are available to programmatically interact
         with the protocol. Find the documentation under{" "}
-        <a href="/docs/api/overview">API</a>.
+        <a href={`./docs/${latestVersion}/api/overview`}>API</a>.
       </>
     ),
   },
   {
     title: "Tools for using Vega",
-    href: "/docs/tools",
+    href: `./docs/${latestVersion}/tools`,
     description: (
       <>
         Several tools are available for interacting with the functionality Vega
         provides. See tools available for restricted mainnet under{" "}
-        <a href="/docs/tools">tools</a>.
+        <a href={`./docs/${latestVersion}/tools`}>tools</a>.
       </>
     ),
   },
