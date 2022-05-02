@@ -24,7 +24,7 @@ Staking tokens from a user's Ethereum wallet is a three step process:
 5. On Ethereum, the withdrawal confirmation is submitted to the Staking bridge, and the rewards are released to the specified address
 
 ## 1. Associating tokens
-Tokens are associated by interacting with the [Vega staking bridge](../api/bridge/interfaces/Vega_Staking_Bridge#stake). The two parameters are:
+Tokens are associated by calling [`stake` on the Vega staking bridge](../api/bridge/contracts/Vega_Staking_Bridge#stake). The two parameters are:
 * `vega_public_key` - the public key of the address that will perform staking on Vega
 * `amount` - the amount of stake being associated with the Vega key
 

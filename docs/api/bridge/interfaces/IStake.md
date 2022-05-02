@@ -1,94 +1,108 @@
-# IStake
-> 
+---
+id: IStake
+title: IStake
+original_id: IStake
+---
 
-### 🔎 Details
+# IStake.sol
+
+View Source: [contracts/tests/IStake.sol](https://github.com/vegaprotocol/Staking_Bridge/blob/main/contracts/IStake.sol)
+
+**↘ Derived Contracts: [Vega_Staking_Bridge](../contracts/Vega_Staking_Bridge)**
+
+**IStake**
 
 Interface contains all of the events necessary for staking Vega token
 
+## Stake_Deposited
 
-### 🎟 Events
+**Parameters**
 
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| user | address |  | 
+| amount | uint256 |  | 
+| vega_public_key | bytes32 |  | 
 
-#### Stake_Deposited
-| Name | Indexed | Type |
-|:-:|:-:|:-:|
-| user | `true` | `address` |
-| amount | `false` | `uint256` |
-| vega_public_key | `true` | `bytes32` |
+## Stake_Removed
 
+**Parameters**
 
-#### Stake_Removed
-| Name | Indexed | Type |
-|:-:|:-:|:-:|
-| user | `true` | `address` |
-| amount | `false` | `uint256` |
-| vega_public_key | `true` | `bytes32` |
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| user | address |  | 
+| amount | uint256 |  | 
+| vega_public_key | bytes32 |  | 
 
+## Stake_Transferred
 
-#### Stake_Transferred
-| Name | Indexed | Type |
-|:-:|:-:|:-:|
-| from | `true` | `address` |
-| amount | `false` | `uint256` |
-| to | `true` | `address` |
-| vega_public_key | `true` | `bytes32` |
+**Parameters**
 
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| from | address |  | 
+| amount | uint256 |  | 
+| to | address |  | 
+| vega_public_key | bytes32 |  | 
 
+## Functions
 
-## `staking_token`
+- [IStake.sol](#istakesol)
+  - [Stake_Deposited](#stake_deposited)
+  - [Stake_Removed](#stake_removed)
+  - [Stake_Transferred](#stake_transferred)
+  - [Functions](#functions)
+    - [staking_token](#staking_token)
+    - [stake_balance](#stake_balance)
+    - [total_staked](#total_staked)
 
->👀 `view`
+### staking_token
 
+```js
+function staking_token() external view
+returns(address)
+```
 
+**Returns**
 
+the address of the token that is able to be staked
 
-### → Returns
+**Arguments**
 
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
 
+### stake_balance
 
-| Name | Type |
-|:-:|:-:|
-|  Not specified  | `address` |
+```js
+function stake_balance(address target, bytes32 vega_public_key) external view
+returns(uint256)
+```
 
+**Returns**
 
+the number of tokens staked for that address->vega_public_key pair
 
-## `stake_balance`
+**Arguments**
 
->👀 `view`
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| target | address | Target address to check | 
+| vega_public_key | bytes32 | Target vega public key to check | 
 
+### total_staked
 
+```js
+function total_staked() external view
+returns(uint256)
+```
 
+**Returns**
 
-### ⚙️ Parameters
+total tokens staked on contract
 
-| Name | Type | Description |
-|:-:|:-:| - |
-| vega_public_key | `address` | Target vega public key to check |
+**Arguments**
 
-### → Returns
-
-
-
-| Name | Type |
-|:-:|:-:|
-|  Not specified  | `uint256` |
-
-
-
-## `total_staked`
-
->👀 `view`
-
-
-
-
-### → Returns
-
-
-
-| Name | Type |
-|:-:|:-:|
-|  Not specified  | `uint256` |
-
-
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
 

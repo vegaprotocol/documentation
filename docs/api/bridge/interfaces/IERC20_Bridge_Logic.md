@@ -1,629 +1,423 @@
-# IERC20_Bridge_Logic
-> 👤 Vega Protocol
-```
-ERC20 Bridge Logic Interface
-```
+---
+id: IERC20_Bridge_Logic
+title: IERC20_Bridge_Logic
+original_id: IERC20_Bridge_Logic
+---
 
+# ERC20 Bridge Logic Interface (IERC20_Bridge_Logic_Restricted.sol)
 
-### 📋 Notice
+View Source: [contracts/IERC20_Bridge_Logic.sol](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/IERC20_Bridge_Logic.sol)
+
+**↘ Derived Contracts: [ERC20_Bridge_Logic](../contracts/ERC20_Bridge_Logic)**
+
+**IERC20_Bridge_Logic_Restricted**
 
 Implementations of this interface are used by Vega network users to deposit and withdraw ERC20 tokens to/from Vega.
 
+## Asset_Withdrawn
 
+**Parameters**
 
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| user_address | address |  | 
+| asset_source | address |  | 
+| amount | uint256 |  | 
+| nonce | uint256 |  | 
 
-### 🎟 Events
+## Asset_Deposited
 
+**Parameters**
 
-#### Asset_Deposit_Maximum_Set
-| Name | Indexed | Type |
-|:-:|:-:|:-:|
-| asset_source | `true` | `address` |
-| new_maximum | `false` | `uint256` |
-| nonce | `false` | `uint256` |
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| user_address | address |  | 
+| asset_source | address |  | 
+| amount | uint256 |  | 
+| vega_public_key | bytes32 |  | 
 
+## Asset_Listed
 
-#### Asset_Deposit_Minimum_Set
-| Name | Indexed | Type |
-|:-:|:-:|:-:|
-| asset_source | `true` | `address` |
-| new_minimum | `false` | `uint256` |
-| nonce | `false` | `uint256` |
+**Parameters**
 
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| asset_source | address |  | 
+| vega_asset_id | bytes32 |  | 
+| nonce | uint256 |  | 
 
-#### Asset_Deposited
-| Name | Indexed | Type |
-|:-:|:-:|:-:|
-| user_address | `true` | `address` |
-| asset_source | `true` | `address` |
-| amount | `false` | `uint256` |
-| vega_public_key | `false` | `bytes32` |
+## Asset_Removed
 
+**Parameters**
 
-#### Asset_Listed
-| Name | Indexed | Type |
-|:-:|:-:|:-:|
-| asset_source | `true` | `address` |
-| vega_asset_id | `true` | `bytes32` |
-| nonce | `false` | `uint256` |
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| asset_source | address |  | 
+| nonce | uint256 |  | 
 
+## Asset_Limits_Updated
 
-#### Asset_Removed
-| Name | Indexed | Type |
-|:-:|:-:|:-:|
-| asset_source | `true` | `address` |
-| nonce | `false` | `uint256` |
+**Parameters**
 
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| asset_source | address |  | 
+| lifetime_limit | uint256 |  | 
+| withdraw_threshold | uint256 |  | 
 
-#### Asset_Withdrawn
-| Name | Indexed | Type |
-|:-:|:-:|:-:|
-| user_address | `true` | `address` |
-| asset_source | `true` | `address` |
-| amount | `false` | `uint256` |
-| nonce | `false` | `uint256` |
+## Bridge_Withdraw_Delay_Set
 
+**Parameters**
 
-#### Bridge_Resumed
-| Name | Indexed | Type |
-|:-:|:-:|:-:|
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| withdraw_delay | uint256 |  | 
 
+## Bridge_Stopped
 
-#### Bridge_Stopped
-| Name | Indexed | Type |
-|:-:|:-:|:-:|
+**Parameters**
 
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
 
-#### Depositor_Exempted
-| Name | Indexed | Type |
-|:-:|:-:|:-:|
-| depositor | `true` | `address` |
+## Bridge_Resumed
 
+**Parameters**
 
-#### Depositor_Exemption_Revoked
-| Name | Indexed | Type |
-|:-:|:-:|:-:|
-| depositor | `true` | `address` |
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
 
+## Depositor_Exempted
 
-#### Exemption_Lister_Set
-| Name | Indexed | Type |
-|:-:|:-:|:-:|
-| lister | `true` | `address` |
+**Parameters**
 
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| depositor | address |  | 
 
+## Depositor_Exemption_Revoked
 
-## `list_asset`
+**Parameters**
 
->👀 `nonpayable`
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| depositor | address |  | 
 
-### 📋 Notice
+## Functions
 
-This function lists the given ERC20 token contract as valid for deposit to this bridgeSee MultisigControl for more about signatures
-
-
-### 🔎 Details
-
-MUST emit Asset_Listed if successful
-
-### ⚙️ Parameters
-
-| Name | Type | Description |
-|:-:|:-:| - |
-| withdraw_threshold | `address` | Amount at which the withdraw delay goes into effect *RESTRICTION FEATURE* |
-
-
-
-## `remove_asset`
-
->👀 `nonpayable`
-
-### 📋 Notice
-
-This function removes from listing the given ERC20 token contract. This marks the token as invalid for deposit to this bridgeSee MultisigControl for more about signatures
-
-
-### 🔎 Details
-
-MUST emit Asset_Removed if successful
-
-### ⚙️ Parameters
-
-| Name | Type | Description |
-|:-:|:-:| - |
-| signatures | `address` | Vega-supplied signature bundle of a validator-signed order |
-
-
-
-## `set_deposit_minimum`
-
->👀 `nonpayable`
-
-### 📋 Notice
-
-This function sets the minimum allowable deposit for the given ERC20 tokenSee MultisigControl for more about signatures
-
-
-### 🔎 Details
-
-MUST emit Asset_Deposit_Minimum_Set if successful
-
-### ⚙️ Parameters
-
-| Name | Type | Description |
-|:-:|:-:| - |
-| signatures | `address` | Vega-supplied signature bundle of a validator-signed order |
-
-
-
-## `set_deposit_maximum`
-
->👀 `nonpayable`
-
-### 📋 Notice
-
-This function sets the maximum allowable deposit for the given ERC20 tokenSee MultisigControl for more about signatures
-
-
-### 🔎 Details
-
-MUST emit Asset_Deposit_Maximum_Set if successful
-
-### ⚙️ Parameters
-
-| Name | Type | Description |
-|:-:|:-:| - |
-| signatures | `address` | Vega-supplied signature bundle of a validator-signed order |
-
-
-
-## `set_lifetime_deposit_max`
-
->👀 `nonpayable`
-
-### 📋 Notice
-
-This function sets the lifetime maximum deposit for a given asset
-
-
-### 🔎 Details
-
-asset must first be listed
-
-### ⚙️ Parameters
-
-| Name | Type | Description |
-|:-:|:-:| - |
-| signatures | `address` | Vega-supplied signature bundle of a validator-signed order |
-
-
-
-## `set_withdraw_delay`
-
->👀 `nonpayable`
-
-### 📋 Notice
+- [ERC20 Bridge Logic Interface (IERC20_Bridge_Logic_Restricted.sol)](#erc20-bridge-logic-interface-ierc20_bridge_logic_restrictedsol)
+  - [Asset_Withdrawn](#asset_withdrawn)
+  - [Asset_Deposited](#asset_deposited)
+  - [Asset_Listed](#asset_listed)
+  - [Asset_Removed](#asset_removed)
+  - [Asset_Limits_Updated](#asset_limits_updated)
+  - [Bridge_Withdraw_Delay_Set](#bridge_withdraw_delay_set)
+  - [Bridge_Stopped](#bridge_stopped)
+  - [Bridge_Resumed](#bridge_resumed)
+  - [Depositor_Exempted](#depositor_exempted)
+  - [Depositor_Exemption_Revoked](#depositor_exemption_revoked)
+  - [Functions](#functions)
+    - [list_asset](#list_asset)
+    - [remove_asset](#remove_asset)
+    - [set_asset_limits](#set_asset_limits)
+    - [set_withdraw_delay](#set_withdraw_delay)
+    - [global_stop](#global_stop)
+    - [global_resume](#global_resume)
+    - [exempt_depositor](#exempt_depositor)
+    - [revoke_exempt_depositor](#revoke_exempt_depositor)
+    - [withdraw_asset](#withdraw_asset)
+    - [is_exempt_depositor](#is_exempt_depositor)
+    - [deposit_asset](#deposit_asset)
+    - [is_asset_listed](#is_asset_listed)
+    - [get_asset_deposit_lifetime_limit](#get_asset_deposit_lifetime_limit)
+    - [get_withdraw_threshold](#get_withdraw_threshold)
+    - [get_multisig_control_address](#get_multisig_control_address)
+    - [get_vega_asset_id](#get_vega_asset_id)
+    - [get_asset_source](#get_asset_source)
+
+### list_asset
+
+This function lists the given ERC20 token contract as valid for deposit to this bridgeMUST emit Asset_Listed if successful
+
+```js
+function list_asset(address asset_source, bytes32 vega_asset_id, uint256 lifetime_limit, uint256 withdraw_threshold, uint256 nonce, bytes signatures) public nonpayable
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| asset_source | address | Contract address for given ERC20 token | 
+| vega_asset_id | bytes32 | Vega-generated asset ID for internal use in Vega Core | 
+| lifetime_limit | uint256 | Initial lifetime deposit limit *RESTRICTION FEATURE* | 
+| withdraw_threshold | uint256 | Amount at which the withdraw delay goes into effect *RESTRICTION FEATURE* | 
+| nonce | uint256 | Vega-assigned single-use number that provides replay attack protection | 
+| signatures | bytes | Vega-supplied signature bundle of a validator-signed order | 
+
+### remove_asset
+
+This function removes from listing the given ERC20 token contract. This marks the token as invalid for deposit to this bridgeMUST emit Asset_Removed if successful
+
+```js
+function remove_asset(address asset_source, uint256 nonce, bytes signatures) public nonpayable
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| asset_source | address | Contract address for given ERC20 token | 
+| nonce | uint256 | Vega-assigned single-use number that provides replay attack protection | 
+| signatures | bytes | Vega-supplied signature bundle of a validator-signed order | 
+
+### set_asset_limits
+
+This function sets the lifetime maximum deposit for a given assetasset must first be listed
+
+```js
+function set_asset_limits(address asset_source, uint256 lifetime_limit, uint256 threshold, uint256 nonce, bytes signatures) public nonpayable
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| asset_source | address | Contract address for given ERC20 token | 
+| lifetime_limit | uint256 | Deposit limit for a given ethereum address | 
+| threshold | uint256 |  | 
+| nonce | uint256 | Vega-assigned single-use number that provides replay attack protection | 
+| signatures | bytes | Vega-supplied signature bundle of a validator-signed order | 
+
+### set_withdraw_delay
 
 This function sets the withdraw delay for withdrawals over the per-asset set thresholds
 
+```js
+function set_withdraw_delay(uint256 delay, uint256 nonce, bytes signatures) public nonpayable
+```
 
+**Arguments**
 
-### ⚙️ Parameters
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| delay | uint256 | Amount of time to delay a withdrawal | 
+| nonce | uint256 | Vega-assigned single-use number that provides replay attack protection | 
+| signatures | bytes | Vega-supplied signature bundle of a validator-signed order | 
 
-| Name | Type | Description |
-|:-:|:-:| - |
-| signatures | `uint256` | Vega-supplied signature bundle of a validator-signed order |
+### global_stop
 
+This function triggers the global bridge stop that halts all withdrawals and deposits until it is resumedbridge must not be stopped already
 
+```js
+function global_stop(uint256 nonce, bytes signatures) public nonpayable
+```
 
-## `set_withdraw_threshold`
+**Arguments**
 
->👀 `nonpayable`
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| nonce | uint256 | Vega-assigned single-use number that provides replay attack protection | 
+| signatures | bytes | Vega-supplied signature bundle of a validator-signed order | 
 
-### 📋 Notice
+### global_resume
 
-This function sets the withdraw threshold above which the withdraw delay goes into effect
+This function resumes bridge operations from the stopped statebridge must be stopped
 
+```js
+function global_resume(uint256 nonce, bytes signatures) public nonpayable
+```
 
-### 🔎 Details
+**Arguments**
 
-asset must first be listed
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| nonce | uint256 | Vega-assigned single-use number that provides replay attack protection | 
+| signatures | bytes | Vega-supplied signature bundle of a validator-signed order | 
 
-### ⚙️ Parameters
+### exempt_depositor
 
-| Name | Type | Description |
-|:-:|:-:| - |
-| threshold | `address` | Withdraw size above which the withdraw delay goes into effect |
+this function allows the exemption_lister to exempt a depositor from the deposit limitsMUST emit Depositor_Exempted if successful
 
+```js
+function exempt_depositor() public nonpayable
+```
 
+**Arguments**
 
-## `global_stop`
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
 
->👀 `nonpayable`
+### revoke_exempt_depositor
 
-### 📋 Notice
+this function allows the exemption_lister to revoke a depositor's exemption from deposit limitsMUST emit Depositor_Exemption_Revoked if successful
 
-This function triggers the global bridge stop that halts all withdrawals and deposits until it is resumed
+```js
+function revoke_exempt_depositor() public nonpayable
+```
 
+**Arguments**
 
-### 🔎 Details
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
 
-bridge must not be stopped alreadyMUST emit Bridge_Stopped if successful
+### withdraw_asset
 
-### ⚙️ Parameters
+This function withdrawals assets to the target Ethereum addressMUST emit Asset_Withdrawn if successful
 
-| Name | Type | Description |
-|:-:|:-:| - |
-| signatures | `uint256` | Vega-supplied signature bundle of a validator-signed order |
+```js
+function withdraw_asset(address asset_source, uint256 amount, address target, uint256 creation, uint256 nonce, bytes signatures) public nonpayable
+```
 
+**Arguments**
 
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| asset_source | address | Contract address for given ERC20 token | 
+| amount | uint256 | Amount of ERC20 tokens to withdraw | 
+| target | address | Target Ethereum address to receive withdrawn ERC20 tokens | 
+| creation | uint256 | Timestamp of when requestion was created *RESTRICTION FEATURE* | 
+| nonce | uint256 | Vega-assigned single-use number that provides replay attack protection | 
+| signatures | bytes | Vega-supplied signature bundle of a validator-signed order | 
 
-## `global_resume`
-
->👀 `nonpayable`
-
-### 📋 Notice
-
-This function resumes bridge operations from the stopped state
-
-
-### 🔎 Details
-
-bridge must be stoppedMUST emit Bridge_Resumed if successful
-
-### ⚙️ Parameters
-
-| Name | Type | Description |
-|:-:|:-:| - |
-| signatures | `uint256` | Vega-supplied signature bundle of a validator-signed order |
-
-
-
-## `set_exemption_lister`
-
->👀 `nonpayable`
-
-### 📋 Notice
-
-this function allows MultisigControl to set the address that can exempt depositors from the deposit limitsthis feature is specifically for liquidity and rewards providers
-
-
-### 🔎 Details
-
-MUST emit Exemption_Lister_Set if successful
-
-### ⚙️ Parameters
-
-| Name | Type | Description |
-|:-:|:-:| - |
-| signatures | `address` | Vega-supplied signature bundle of a validator-signed order |
-
-
-
-## `exempt_depositor`
-
->👀 `nonpayable`
-
-### 📋 Notice
-
-this function allows the exemption_lister to exempt a depositor from the deposit limitsthis feature is specifically for liquidity and rewards providers
-
-
-### 🔎 Details
-
-MUST emit Depositor_Exempted if successful
-
-### ⚙️ Parameters
-
-| Name | Type | Description |
-|:-:|:-:| - |
-| depositor | `address` | The depositor to exempt from limits |
-
-
-
-## `revoke_exempt_depositor`
-
->👀 `nonpayable`
-
-### 📋 Notice
-
-this function allows the exemption_lister to revoke a depositor&#39;s exemption from deposit limitsthis feature is specifically for liquidity and rewards providers
-
-
-### 🔎 Details
-
-MUST emit Depositor_Exemption_Revoked if successful
-
-### ⚙️ Parameters
-
-| Name | Type | Description |
-|:-:|:-:| - |
-| depositor | `address` | The depositor from which to revoke deposit exemptions |
-
-
-
-## `withdraw_asset`
-
->👀 `nonpayable`
-
-### 📋 Notice
-
-This function withdrawals assets to the target Ethereum addressSee MultisigControl for more about signatures
-
-
-### 🔎 Details
-
-MUST emit Asset_Withdrawn if successful
-
-### ⚙️ Parameters
-
-| Name | Type | Description |
-|:-:|:-:| - |
-| asset_source | `address` | Contract address for given ERC20 token |
-| target | `address` | Target Ethereum address to receive withdrawn ERC20 tokens |
-| amount | `uint256` | Amount of ERC20 tokens to withdraw |
-| nonce | `uint256` | Vega-assigned single-use number that provides replay attack protection |
-| signatures | `memory` | Vega-supplied signature bundle of a validator-signed order |
-
-
-
-## `deposit_asset`
-
->👀 `nonpayable`
-
-### 📋 Notice
-
-This function allows a user to deposit given ERC20 tokens into VegaERC20 approve function should be run before running this
-
-
-### 🔎 Details
-
-MUST emit Asset_Deposited if successfulERC20 approve function should be run before running this
-
-### ⚙️ Parameters
-
-| Name | Type | Description |
-|:-:|:-:| - |
-| vega_public_key | `address` | Target Vega public key to be credited with this deposit |
-
-
-
-## `is_asset_listed`
-
->👀 `view`
-
-### 📋 Notice
-
-This view returns true if the given ERC20 token contract has been listed valid for deposit
-
-
-
-### ⚙️ Parameters
-
-| Name | Type | Description |
-|:-:|:-:| - |
-| asset_source | `address` | Contract address for given ERC20 token |
-
-### → Returns
-
-
-
-| Name | Type |
-|:-:|:-:|
-|  Not specified  | `bool` |
-
-
-
-## `get_deposit_minimum`
-
->👀 `view`
-
-### 📋 Notice
-
-This view returns minimum valid deposit
-
-
-
-### ⚙️ Parameters
-
-| Name | Type | Description |
-|:-:|:-:| - |
-| asset_source | `address` | Contract address for given ERC20 token |
-
-### → Returns
-
-
-
-| Name | Type |
-|:-:|:-:|
-|  Not specified  | `uint256` |
-
-
-
-## `get_deposit_maximum`
-
->👀 `view`
-
-### 📋 Notice
-
-This view returns maximum valid deposit
-
-
-
-### ⚙️ Parameters
-
-| Name | Type | Description |
-|:-:|:-:| - |
-| asset_source | `address` | Contract address for given ERC20 token |
-
-### → Returns
-
-
-
-| Name | Type |
-|:-:|:-:|
-|  Not specified  | `uint256` |
-
-
-
-## `get_asset_deposit_limit`
-
->👀 `view`
-
-### 📋 Notice
-
-This view returns the lifetime deposit limit for the given asset
-
-
-
-### ⚙️ Parameters
-
-| Name | Type | Description |
-|:-:|:-:| - |
-| asset_source | `address` | Contract address for given ERC20 token |
-
-### → Returns
-
-
-
-| Name | Type |
-|:-:|:-:|
-|  Not specified  | `uint256` |
-
-
-
-## `get_withdraw_threshold`
-
->👀 `view`
-
-### 📋 Notice
-
-This view returns the given token&#39;s withdraw threshold above which the withdraw delay goes into effect
-
-
-
-### ⚙️ Parameters
-
-| Name | Type | Description |
-|:-:|:-:| - |
-| asset_source | `address` | Contract address for given ERC20 token |
-
-### → Returns
-
-
-
-| Name | Type |
-|:-:|:-:|
-|  Not specified  | `uint256` |
-
-
-
-## `get_exemption_lister`
-
->👀 `view`
-
-### 📋 Notice
-
-this view returns the address that can exempt depositors from deposit limits
-
-
-
-### → Returns
-
-
-
-| Name | Type |
-|:-:|:-:|
-|  Not specified  | `address` |
-
-
-
-## `is_exempt_depositor`
-
->👀 `view`
-
-### 📋 Notice
+### is_exempt_depositor
 
 this view returns true if the given despoitor address has been exempted from deposit limits
 
+```js
+function is_exempt_depositor(address depositor) public view
+returns(bool)
+```
 
+**Returns**
 
-### ⚙️ Parameters
+true if depositor is exempt
 
-| Name | Type | Description |
-|:-:|:-:| - |
-| depositor | `address` | The depositor to check |
+**Arguments**
 
-### → Returns
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| depositor | address | The depositor to check | 
 
+### deposit_asset
 
+This function allows a user to deposit given ERC20 tokens into VegaMUST emit Asset_Deposited if successful
 
-| Name | Type |
-|:-:|:-:|
-|  Not specified  | `bool` |
+```js
+function deposit_asset(address asset_source, uint256 amount, bytes32 vega_public_key) public nonpayable
+```
 
+**Arguments**
 
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| asset_source | address | Contract address for given ERC20 token | 
+| amount | uint256 | Amount of tokens to be deposited into Vega | 
+| vega_public_key | bytes32 | Target Vega public key to be credited with this deposit | 
 
-## `get_multisig_control_address`
+### is_asset_listed
 
->👀 `view`
+This view returns true if the given ERC20 token contract has been listed valid for deposit
 
+```js
+function is_asset_listed(address asset_source) public view
+returns(bool)
+```
 
+**Returns**
 
+True if asset is listed
 
-### → Returns
+**Arguments**
 
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| asset_source | address | Contract address for given ERC20 token | 
 
+### get_asset_deposit_lifetime_limit
 
-| Name | Type |
-|:-:|:-:|
-|  Not specified  | `address` |
+This view returns the lifetime deposit limit for the given asset
 
+```js
+function get_asset_deposit_lifetime_limit(address asset_source) public view
+returns(uint256)
+```
 
+**Returns**
 
-## `get_vega_asset_id`
+Lifetime limit for the given asset
 
->👀 `view`
+**Arguments**
 
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| asset_source | address | Contract address for given ERC20 token | 
 
+### get_withdraw_threshold
 
+This view returns the given token's withdraw threshold above which the withdraw delay goes into effect
 
-### ⚙️ Parameters
+```js
+function get_withdraw_threshold(address asset_source) public view
+returns(uint256)
+```
 
-| Name | Type | Description |
-|:-:|:-:| - |
-| asset_source | `address` | Contract address for given ERC20 token |
+**Returns**
 
-### → Returns
+Withdraw threshold
 
+**Arguments**
 
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| asset_source | address | Contract address for given ERC20 token | 
 
-| Name | Type |
-|:-:|:-:|
-|  Not specified  | `bytes32` |
+### get_multisig_control_address
 
+```js
+function get_multisig_control_address() public view
+returns(address)
+```
 
+**Returns**
 
-## `get_asset_source`
+current multisig_control_address
 
->👀 `view`
+**Arguments**
 
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
 
+### get_vega_asset_id
 
+```js
+function get_vega_asset_id(address asset_source) public view
+returns(bytes32)
+```
 
-### ⚙️ Parameters
+**Returns**
 
-| Name | Type | Description |
-|:-:|:-:| - |
-| vega_asset_id | `bytes32` | Vega-assigned asset ID for which you want the ERC20 token address |
+The assigned Vega Asset ID for given ERC20 token
 
-### → Returns
+**Arguments**
 
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| asset_source | address | Contract address for given ERC20 token | 
 
+### get_asset_source
 
-| Name | Type |
-|:-:|:-:|
-|  Not specified  | `address` |
+```js
+function get_asset_source(bytes32 vega_asset_id) public view
+returns(address)
+```
 
+**Returns**
 
+The ERC20 token contract address for a given Vega Asset ID
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+| vega_asset_id | bytes32 | Vega-assigned asset ID for which you want the ERC20 token address | 
 

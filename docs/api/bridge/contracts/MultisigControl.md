@@ -1,53 +1,53 @@
 ---
-id: IMultisigControl
-title: IMultisigControl
-original_id: IMultisigControl
+id: MultisigControl
+title: MultisigControl
+original_id: MultisigControl
 ---
 
-# MultisigControl Interface (IMultisigControl.sol)
+# MultisigControl (MultisigControl.sol)
 
-View Source: [contracts/IMultisigControl.sol](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/IMultisigControl.sol)
+View Source: [contracts/MultisigControl.sol](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/MultisigControl.sol)
 
-**↘ Derived Contracts: [MultisigControl](../contracts/MultisigControl)**
+**↗ Extends: [IMultisigControl](../interfaces/IMultisigControl)**
 
-**IMultisigControl**
+**MultisigControl**
 
-Implementations of this interface are used by the Vega network to control smart contracts without the need for Vega to have any Ethereum of its own.
+This contract enables validators, through a multisignature process, to run functions on contracts by consensus
 
-## SignerAdded
+## Contract Members
+**Constants & Variables**
 
-**Parameters**
+```js
+uint16 internal threshold;
+```
+---
 
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| new_signer | address |  | 
-| nonce | uint256 |  | 
+```js
+uint8 internal signer_count;
+```
+---
 
-## SignerRemoved
+```js
+mapping(address => bool) internal signers;
+```
+---
 
-**Parameters**
+```js
+mapping(uint256 => bool) internal used_nonces;
+```
+---
 
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| old_signer | address |  | 
-| nonce | uint256 |  | 
-
-## ThresholdSet
-
-**Parameters**
-
-| Name        | Type           | Description  |
-| ------------- |------------- | -----|
-| new_threshold | uint16 |  | 
-| nonce | uint256 |  | 
+```js
+mapping(bytes32 => mapping(address => bool)) internal has_signed;
+```
+---
 
 ## Functions
 
-- [MultisigControl Interface (IMultisigControl.sol)](#multisigcontrol-interface-imultisigcontrolsol)
-  - [SignerAdded](#signeradded)
-  - [SignerRemoved](#signerremoved)
-  - [ThresholdSet](#thresholdset)
+- [MultisigControl (MultisigControl.sol)](#multisigcontrol-multisigcontrolsol)
+  - [Contract Members](#contract-members)
   - [Functions](#functions)
+    - [](#)
     - [set_threshold](#set_threshold)
     - [add_signer](#add_signer)
     - [remove_signer](#remove_signer)
@@ -57,9 +57,20 @@ Implementations of this interface are used by the Vega network to control smart 
     - [is_valid_signer](#is_valid_signer)
     - [is_nonce_used](#is_nonce_used)
 
+### 
+
+```js
+function () public nonpayable
+```
+
+**Arguments**
+
+| Name        | Type           | Description  |
+| ------------- |------------- | -----|
+
 ### set_threshold
 
-Sets threshold of signatures that must be met before function is executed.MUST emit ThresholdSet event
+Sets threshold of signatures that must be met before function is executed.Emits ThresholdSet event
 
 ```js
 function set_threshold(uint16 new_threshold, uint256 nonce, bytes signatures) public nonpayable
@@ -75,7 +86,7 @@ function set_threshold(uint16 new_threshold, uint256 nonce, bytes signatures) pu
 
 ### add_signer
 
-Adds new valid signer and adjusts signer count.MUST emit 'SignerAdded' event
+Adds new valid signer and adjusts signer count.Emits 'SignerAdded' event
 
 ```js
 function add_signer(address new_signer, uint256 nonce, bytes signatures) public nonpayable
@@ -91,7 +102,7 @@ function add_signer(address new_signer, uint256 nonce, bytes signatures) public 
 
 ### remove_signer
 
-Removes currently valid signer and adjusts signer count.MUST emit 'SignerRemoved' event
+Removes currently valid signer and adjusts signer count.Emits 'SignerRemoved' event
 
 ```js
 function remove_signer(address old_signer, uint256 nonce, bytes signatures) public nonpayable
@@ -116,7 +127,7 @@ returns(bool)
 
 **Returns**
 
-MUST return true if valid signatures are over the threshold
+Returns true if valid signatures are over the threshold
 
 **Arguments**
 
