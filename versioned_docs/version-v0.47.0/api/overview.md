@@ -6,9 +6,16 @@ The Vega data node has three APIs for you to interact with.
 
 Most of the APIs are designed to use for trading-related queries, and so you can use them in the testnet environment. 
 
+
 :::info 
 [Vega Fairground documentation](https://docs.fairground.vega.xyz/) includes [how-to guides](https://docs.fairground.vega.xyz/docs/api-howtos/) and a Gitpod environment to try out Vega Fairground. 
 :::
+
+## Ethereum bridges
+
+You can also interact with the Ethereum smart contracts, which allow for bridging between Vega and Ethereum.
+
+[Smart contracts overview](./bridge)
 
 ## What is each API best for?
 
