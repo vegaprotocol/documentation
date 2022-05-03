@@ -15,4 +15,4 @@ There are two apps available to interact with a Vega Wallet, the **[CLI wallet a
 Use **[$VEGA Token website](https://token.vega.xyz)** to stake your tokens to nominate the validators that run the network, participate in network governance, and earn and claim rewards.
 
 ### Vega Tools repo
-The **[Vega Tools repo](https://github.com/vegaprotocol/vegatools)** provides a set of utilities for inspecting and interacting with a Vega network through the APIs. 
+The **[Vega Tools repo](https://github.com/vegaprotocol/vegatools)** provides a set of utilities for inspecting and interacting with a Vega network through the APIs.

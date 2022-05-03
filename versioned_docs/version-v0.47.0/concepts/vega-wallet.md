@@ -1,10 +1,14 @@
 ---
-title: What is Vega Wallet?
+title: Vega Wallet
 hide_title: false
 ---
 Vega Wallet is an app that lets you manage wallets and cryptographic key pairs. Key pairs are used to sign and send transactions in a secure way. 
 
 Read on to understand the basic concepts of wallets and keys, and how they work. 
+
+:::info
+For getting started guides and information about downloading a Vega Wallet, visit the [Tools section](../tools/vega-wallet) of the documentation.
+::: 
 
 ## Cryptographic keys
 Each cryptographic key pair includes a public key and a private key. 
@@ -71,4 +75,4 @@ Each transaction needs to have a digital signature attached to it, which ensures
 
 When signing a transaction, you'll be asked for your passphrase when you issue a transaction -- the Vega wallet software needs to access the keys to create a signature.
 
-Once a transaction is signed and submitted using the Vega wallet, the transaction is gossiped to the validator nodes. The nodes then verify the signature using the signer's public key, and agree to execute the transaction by adding it to the block. 
+Once a transaction is signed and submitted using the Vega wallet, the transaction is gossiped to the validator nodes. The nodes then verify the signature using the signer's public key, and agree to execute the transaction by adding it to the block.

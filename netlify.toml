@@ -18,6 +18,11 @@
   status = 301
 
 [[redirects]]
+ from = "/docs/tools/vega-wallet/concepts"
+ to = "/docs/mainnet/concepts/vega-wallet"
+ status = 301
+
+[[redirects]]
   from = "/docs/tools/vega-wallet/cli-wallet/latest/create-wallet"
   to = "/docs/mainnet/tools/vega-wallet/cli-wallet/latest/create-wallet"
   status = 301
@@ -41,4 +46,3 @@
   from = "/docs/releases/core/release-notes"
   to = "/docs/mainnet/releases/core/release-notes"
   status = 301
-  
