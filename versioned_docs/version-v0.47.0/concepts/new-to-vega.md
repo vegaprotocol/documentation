@@ -6,9 +6,13 @@ hide_title: false
 
 # Welcome! 
 
-Welcome to Vega! This is a work-in-progress documentation site that focuses on Vega's restricted mainnet. 
+Welcome to Vega! This is a work-in-progress documentation site. 
 
 If you have questions, join our community on [Discord](https://vega.xyz/discord)! We're keen to help.
+
+:::info
+This documentation version has up-to-date API reference docs for Fairground, Vega's testnet. However, for information on trading, refer to the [Fairground docs](https://docs.fairground.vega.xyz) site while this site is under construction.
+:::
 
 ## What is Vega?​
 Vega is a protocol for creating and trading derivatives on a fully decentralised network. 
@@ -16,13 +20,14 @@ Vega is a protocol for creating and trading derivatives on a fully decentralised
 Currently, Vega is in restricted mainnet, which is run by a set of validators. There's also a Vega testnet called Fairground, which has trading enabled. 
 
 ### Learn more 
-* [Vega whitepaper](https://vega.xyz/papers/vega-protocol-whitepaper.pdf): A high-level overview of the protocol <br/>
-* [Vega website](https://vega.xyz): More about the project and the team <br/>
-* [Fairground docs](https://docs.fairground.vega.xyz): Testnet-specific documentation including trading info and guides <br/>
+* [Vega whitepaper](https://vega.xyz/papers/vega-protocol-whitepaper.pdf): A high-level overview of the protocol
+* [Vega website](https://vega.xyz): More about the project and the team
+* [Fairground docs](https://docs.fairground.vega.xyz): Testnet-specific documentation including trading info and guides
 * [Vega on YouTube](https://youtube.com/vegaprotocol): Video walkthroughs and conversations with Vega contributors
+* [Engineering roadmap](https://github.com/orgs/vegaprotocol/projects/114/views/4): Board showing the features the team has planned and their current status
 
 ## What is Vega's restricted mainnet? 
-Restricted mainnet is the first decentralised version of the Vega network. The first step of a three-stage launch process, it will be followed by alpha mainnet, which will have trading with limits, and v1 mainnet with unrestricted trading. 
+Restricted mainnet is the first decentralised version of the Vega network. The first step of a three-stage launch process, it will be followed by alpha mainnet, which will have trading with limits, and v1 mainnet with unrestricted trading.
 
 * **Tokenholders can nominate validators** - Tokenholders earn staking rewards for securing the network.  <br/>
 * **Network governance is encouraged** - Tokenholders can take part in proposing and voting on changes to network configuration to define the optimal network configuration in preparation for the alpha release. <br/>
@@ -48,7 +53,6 @@ Its functionality is limited and is riskier than networks that will follow it, a
 * [Share your proposal on Discord](https://vega.xyz/discord): If you propose a market, let everyone know on Discord so that people can vote on it. 
 
 ## How can I contribute to Vega?
-
 * [Bugs and feature requests](https://github.com/vegaprotocol/feedback/discussions/): Raise any bugs you find, or feature requests you have, on Vega's feedback board.
 * [Developer bounties](https://github.com/vegaprotocol/bounties/): See available bounties on the bounties repo. 
-* [Documentation translation](https://github.com/vegaprotocol/documentation/issues): Raise an issue on the documentation repo to express your interest in translating Vega documentation. 
+* [Documentation translation](https://github.com/vegaprotocol/documentation/issues): Raise an issue on the documentation repo to express your interest in translating Vega documentation.

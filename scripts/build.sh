@@ -85,4 +85,5 @@ echo "GRPC: Fix sidebar links"
 sed -i -E 's/"vega\//"grpc\/vega\//g' docs/grpc/sidebar.js
 
 yarn run build
-yarn run prettier
+
+rm schema.graphql
