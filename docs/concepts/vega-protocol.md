@@ -72,6 +72,9 @@ Future: Settlement asset, quote name,
 
 Oracles: oracle spec for settlement price, pubkey for oracle, filters, conditions of the filters, oracle spec for trading termination, filters, conditions, oracle spec binding: settlement price property, trading termination property
 
+Read more: [Data sources](./trading-framework#data-sources)
+)
+
 market decimal places
 market metadata: examples - base:BTC, quote:USD, class:fx/crypto, monthly, sector:crypto
 price monitoring (risk) parameters: 

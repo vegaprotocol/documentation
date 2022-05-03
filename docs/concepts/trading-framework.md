@@ -180,7 +180,9 @@ Settlement instructions are generated based on the change in market value of the
 
 Because the margin for a market is calculated dynamically based on the market conditions, the mark price also has an effect on how much collateral is set aside for margin.
 
-### Margin 
+Read more: [Mark to market settlement](#mark-to-market-settlement)
+
+### Margin
 The margin calculation for a new order, and the amount deducted from collateral to cover margin, is based on all of a trader's open orders. A trader will need enough margin to keep a position open, whether it goes for or against the trader. The margin calculations ensure a trader does not enter a trade that will immediately need to be closed out.
 
 Vega's margining system implements automated cross margining. Cross margining, which means gains on one market can be released and used as margin on another, is supported between all markets that use the same settlement asset. 
@@ -279,9 +281,20 @@ All of the remaining collateral in each distressed trader's margin account for t
 
 Read more: [Insurance pools](#insurance-pools)
 
-## Pre-trade and trade
+#### Loss socialisation 
+Loss socialisation occurs when there are traders that don't have sufficient collateral to handle the price moves of their open position(s), and the insurance pool cannot cover their shortfall. 
 
-### Positions and netting
+This situation would mean collection transfers are not able to supply the full amount to the market settlement account, and not enough funds can be collected to distribute the full amount of mark to market gains made by traders on the other side. 
+
+The funds that have been collected must be fairly distributed. Loss socialisation is implemented by reducing the amount that is distributed to each trader with a mark to market gain, based on their relative position size. 
+
+```
+distribute_amount[trader] = mtm_gain[trader] * ( actual_collected_amount / target_collect_amount )
+```
+
+## Pre-trade and trade [WIP]
+
+### Positions and netting [WIP]
 
 ## Trading modes 
 A market's trading mode denotes the types of trading that can be done on it while the market is in that mode. A market can only have one trading mode at a time.
@@ -684,14 +697,6 @@ If cancelling a commitment would leave a market without enough liquidity, then t
 
 If there are any open positions that were created from the liquidity orders, they will not be cancelled when a liquidity commitment is cancelled. 
 
-## Data sourcing framework  [WIP]
-
-### Signed messages  [WIP]
-
-### Filters [WIP]
-
-### Internal sources [WIP]
-
 ## Fees and rewards [WIP]
 
 ### Fees
@@ -725,7 +730,6 @@ The fee is the same irrespective of the number of transactions the order gets fi
 
 The fee factors are set through the following network parameters: `market.fee.factors.infrastructureFee`, `market.fee.factors.makerFee`, `market.fee.factors.liquidityFee`.
 
-
 ## Collateral [WIP]
 
 ### Assets on Vega [WIP]
@@ -738,108 +742,111 @@ The fee factors are set through the following network parameters: `market.fee.fa
 
 ## Market / product / trade lifecycle [WIP]
 
-### Settlement [WIP]
-Vega executes settlement with a two step process:
-  1. Collection -  The protocol collects from the margin accounts of those who, according to the settlement formula, are liable to pay collateral. The collection instruction will aim to collect all the owed collateral, starting with the trader's margin account for the market. Whatever is not available from the margin account (if any) is collected from the general account, and if there is any remaining, it is collected from the market's insurance pool (link). If the full required amount cannot be collected from all three accounts then as much as possible is collected and loss socialisation is enacted. 
+### Settlement
+To start, only cash-settled futures markets can be created. This means that settlement occurs in the settlement asset of the market, which is defined in the market framework. 
+
+The settlement asset does not need to be the same asset as the ‘quote unit’ (i.e. BTC/ETH on a BTC/ETH December 2028 market). The settlement asset is defined by within the governance proposal that led to the market's creation. 
+
+The network executes settlement with a two step process:
+
+1. Collection -  The protocol collects from the margin accounts of those who, according to the settlement formula, are liable to pay. The instruction will aim to collect all the owed collateral, starting with the trader's margin account for the market. Whatever is not available from the margin account (if any) is collected from the general account, and if there is any remaining, it is collected from the market's insurance pool. If the full required amount cannot be collected from all three accounts, then as much as possible is collected and loss socialisation is enacted.
  
-  Collection will result in ledger entries being formulated. They adhere to double entry accounting and record the actual transfers that occurred on the ledger. The destination account is the *market settlement account* for the market, which will have a zero balance before the settlement process begins and after it completes.
+Collection will result in ledger entries being formulated. They adhere to double entry accounting and record the actual transfers that occurred on the ledger. The destination account is the *market settlement account* for the market, which will have a zero balance before the settlement process begins and after it completes.
  
- 2. Distribution -  If all requested amounts are succesfully transferred to the market settlement account, then the amount collected will match the amount to be distributed and the settlement function will formulate instructions to distribute to the margin accounts of those whose moves have been positive according to the amount they are owed. 
+2. Distribution -  If all requested amounts are succesfully transferred to the market settlement account, then the amount collected will match the amount to be distributed and the settlement function will formulate instructions to distribute to the margin accounts of those whose moves have been positive according to the amount they are owed. 
  
 These transfers will debit from the market's market settlement account and be credited to the margin accounts of traders who have are due to receive an asset flow as a result of the settlement.
+
+Read more: 
+* [Insurance pools](#insurance-pools)
+* [Loss socialisation](#loss-socialisation)
  
-#### Loss socialisation 
-Loss socialisation occurs when there are traders that don't have sufficient collateral to handle the price moves of their open position(s), and the insurance pool cannot cover their shortfall. 
+#### Settlement at market expiry
+When a market reaches its maturity date and time, a final settlement is carried out. That settlement is based on a pre-defined oracle publishing data that triggers the market’s expiry.
 
-This situation would mean collection transfers are not able to supply the full amount to the market settlement account, and not enough funds can be collected to distribute the full amount of mark to market gains made by traders on the other side. 
+The oracle trigger will cause the market to enter into a 'trading terminated' state. Markets in this state no longer accept trading, but retain the positions and margin balances that were in place after processing the market’s maturity trigger. In the case of futures markets, termination occurs just prior to, or at, settlement.
 
-The funds that have been collected must be fairly distributed. Loss socialisation is implemented by reducing the amount that is distributed to each trader with a mark to market gain, based on their relative position size. 
-
-```
-distribute_amount[trader] = mtm_gain[trader] * ( actual_collected_amount / target_collect_amount )
-```
-#### Settlement when closing out [WIP]
-
-#### Settlement at expiry [WIP]
-
-#### Mark to market settlement (link to m-t-m) [WIP]
-
-
-TO BE REORGANISED: 
-To start, all testnet markets are “cash” settled futures. This means that settlement occurs in the (testnet) settlement asset of the market, which is defined in the market framework. The settlement asset does not need to be the same asset as the ‘quote unit’ (i.e. BTC/ETH on a BTC/ETH December 2020 market). The settlement asset is defined by the market creator.
-
-You can see the settlement asset in Vega Console in the market details view. (Search for ‘info’). When trading through APIs, you can call up the market data.
-
-Mark to market settlement Settlement instructions are generated based on the change in market value of the open positions of a party.
-
-When the mark price changes, the network calculates settlement cash flows for each party.
-
-Each time the mark price for a given market changes, all the open positions and orders are marked to market, resulting in interim partial payments that are calculated by the network.
-
-Settlement at a market’s expiry When a market reaches its maturity date and time, a final settlement is carried out based on a pre-defined oracle publishing data that triggers the market’s expiry.
-
-The oracle trigger will cause the market to enter into a “trading terminated” state. Markets in this state no longer accept trading, but retain the positions and margin balances that were in place after processing the market’s maturity trigger. In the case of futures markets, termination occurs just prior to, or at, the settlement of the product.
-
-Once a market settles, all open positions in that market are closed based on final oracle price, open orders are cancelled, and all collateral held in the market is released back to the participants. Corresponding cash flows happen as defined by the product type.
+Once a market settles:
+* All open positions in that market are closed based on the final oracle price
+* Open orders are cancelled
+* Collateral held in the market is released back to the participants
+* Corresponding cash flows happen as defined by the product type
 
 For example: A cash-settled futures market reaches its expiry date and time. If the last mark price before settlement is 100, but the oracle price feed emits data that the price is 115, then a trader with a position of 1 long is paid 15. Another trader that has a position of 1 short, pays 15.
 
 After all positions are closed at market expiry, they are ‘forgotten’ by the network.
-Settlement parameters defined through governance
 
-    When a market is proposed, the proposal must specify data sources for any settlement events that the product requires - for the currently available cash-settled futures, this is the final price/value at the expiry of the instrument, and the expiry date/time. If the market passes governance and is thus created, the market will go live.
-    Eventually the market will near its specified expiry, and trading terminates. The data sources provide the final ‘settlement value’. (In future, Vega will allow optional mechanisms for querying, verification, or dispute resolution that are independent of the source.)
-    Vega settles all open positions on the market using the price provided by the data source. Fairground’s cash settled futures are regularly mark to market settled, so the final settlement is simply a case of the protocol doing a final mark to market settlement using the data source price.
+Read more: [Data sources](#data-sources)
 
-Data sources (oracles) for settlement
+#### Mark to market settlement
+Settlement instructions are generated based on the change in market value of the open positions of a party.
 
-The Vega network runs on data. Market settlement, risk models, and other features require a supplied price (or other data), which must come from somewhere, usually completely external to Vega. Specifically for settlement values, Vega requires external data.
+When the mark price changes, the network calculates settlement cash flows for each party.
 
-Vega APIs and protocol capabilities support a wide range of data sourcing styles and standards, and Vega will not integrate directly with specific oracle / data providers at the protocol level. This framework is flexible to make it easy to create and combine oracles, and therefore to design markets on almost anything.
+Each time the mark price for a given market changes, all the open positions and orders are marked to market, resulting in interim partial payments that are calculated by the network. Those payments go directly the relevant trader's collateral. 
+
+Read more: [Mark to market](#mark-to-market)
+
+#### Settlement parameters defined through governance
+Data sources for settlement must be specified when a market is proposed. For cash-settled futures, this is the final price/value at the expiry of the instrument, and the expiry date/time.
+
+At the point when a market nears its specified expiry, trading terminates, and the data sources provide the final ‘settlement value’.
+
+The network settles all open positions on the market using the price provided by the data source. Positions are regularly mark to market settled, so the final settlement is, in effect, a final mark to market settlement using the data source price.
+
+Read more: [Mark to market settlement](#mark-to-market-settlement)
+
+## Data sources
+Data sources, or oracles, are essential to markets created on Vega.
+
+Market settlement, risk models, and other features require a supplied price, or other data, which must come from somewhere, usually completely external to Vega. Specifically for settlement values, Vega requires external data.
+
+Vega APIs and protocol capabilities support a wide range of data sourcing styles and standards, and Vega will not integrate directly with specific oracles / data providers at the protocol level. This framework is flexible to make it easy to create and combine oracles, and therefore to design markets on almost anything.
 
 The current implementation requires that a market proposal defines two data sources, and the price based on those sources is final.
-Data source requirements
 
-Multiple instruments can rely on the same data source, and can settle based on the same SubmitData message.
+### Data sourcing framework
+Vega supports three data source types, though not all three can be used to settle markets. Internal data sources cannot be nominated for settling a market, but are used to emit an event or value at/after a given Vega time to trigger 'trading terminated', for example.
+
+Data sources must be able to emit four types of data:
+* Number
+* String
+* Date/Time
+* Structured data records, such  as a set of key-value pairs
+
+### Data source requirements
+Multiple instruments can rely on the same data source, and can settle based on the same `SubmitData` message.
 
 Data sources must provide:
 
-    Type of data source (signed message, internal Vega market data, date/time, Ethereum, etc.)
-    Data type (e.g. float for a price) - this must be compatible with the usage of the data source (if it is a settlement price, a numeric value would be required; for a trading termination trigger which consumes no data then any data type, etc.). Note that it is possible to have more than one “compatible” type, for instance it might be that a number could be a string or a raw numeric value in a JSON data source.
-    Data source specific details (for signed message, public key of sender; for Ethereum, contract address, method name; etc.)
+* Type of data source (signed message, internal Vega market data, date/time, Ethereum, etc.)
+* Data type (e.g. float for a price) - this must be compatible with the usage of the data source (if it is a settlement price, a numeric value would be required; for a trading termination trigger which consumes no data then any data type, etc.). Note that it is possible to have more than one “compatible” type, for instance it might be that a number could be a string or a raw numeric value in a JSON data source.
+* Data source specific details (for signed message, public key of sender; for Ethereum, contract address, method name; etc.)
 
 Data sources must be able to emit the following data types:
 
-    Number (for prices or in filter comparisons)
-    String (to be used to compare against in filters)
-    Date/Time (to compare against in filters)
-    Structured data records, such as a set of key value pairs (inputs to filters)
+* Number (for prices or in filter comparisons)
+* String (to be used to compare against in filters)
+* Date/Time (to compare against in filters)
+* Structured data records, such as a set of key value pairs (inputs to filters)
 
 Data sources nominated for use by Vega may refer to other data sources. For instance, one that takes a source of structured data records as input and emits only the value of a named field (e.g. to return BTCUSD_PRICE from a record containing many prices) or one that takes another data source as input and emits only data that matches a set of defined filters (e.g. to return only records with specific values in the timestamp and ticket symbol fields).
-Data sourcing framework
 
-Vega supports three data source types, though not all three can be used to settle markets. Internal data sources cannot be nominated for settling a market, but are used to emit an event or value at/after a given Vega time to trigger “trading terminated”, for example.
+### Signed message data sources
+Signed message data sources are the first external data source to be supported on Vega, and can be nominated for settling a market. They introduce a Vega transaction that represents a data result. The result is validated by ensuring the signed message is signed by one of a set of public keys provided in a market’s proposal.
 
-Data sources must be able to emit the following data types:
-
-    Number
-    String (for MVP these would only be used to compare against in filters)
-    Date/Time (for MVP these would only be used to compare against in filters)
-    Structured data records i.e. a set of key value pairs (for MVP these would be inputs to filters)
-
-Signed message data sources are the first external data source to be supported on Vega, and can be nominated for settling a market. Signed message data sources introduce a Vega transaction that represents a data result. The result is validated by ensuring the signed message is signed by one of a set of public keys provided in a market’s proposal.
-
-Currently on Fairground, signed message data sources require only one of the specified keys to sign and submit the data transaction. It will only be possible to construct external oracles in which one or more third party entities/systems must be trusted, but this will change with future work.
+:::info
+There are no rewards associated with being a signed message data source, nor are there fees associated with being or using a signed message data source.
+:::
 
 A signed message data source must include:
 
-    Public keys (and key algorithm to be used if required) that can sign and submit values for this oracle
-    Type of data to be supplied in the transaction. Supported types are a simple native Vega transaction (i.e. protobuf message) containing one or more key/value pairs of data fields with values that are expressed in the data types listed above
-    ABI encoded data
+* Public keys that can sign and submit values for this oracle, as well as the key algorithm to be used, if required
+* Type of data to be supplied in the transaction. Supported types are a simple native Vega transaction (i.e. protobuf message) containing one or more key/value pairs of data fields with values that are expressed in the data types listed above
+* ABI encoded data
 
-As a public key may provide many messages, a filter is likely to be needed to extract the required message, and a field select would be used to extract the required field (‘price’ or ‘temperature’, etc.).
-
-Note: There are no rewards associated with being a signed message data source, nor are there fees associated with being or using a signed message data source.
+### Filtered data source
+As a public key may provide many messages, it's likely a filter is needed to extract the required message. A field select would then be used to extract the required field (‘price’ or ‘temperature’, etc.).
 
 A filtered data source includes another data source definition within its own definition, and outputs a modified stream of data. It contains one or more conditions that are applied to data to determine whether that data is emitted.
 
@@ -847,13 +854,33 @@ Multiple products can filter the same data source differently and settle based o
 
 A filtered data source must specify:
 
-    Data: Another data source that defines the input data
-    Filters: A list of at least one filter to apply to the data
+* Data: Another data source that defines the input data
+* Filters: A list of at least one filter to apply to the data
 
 A filter specifies a condition to apply to the data. If all filters match, the data is emitted. The filter types are defined in the Operator field of a market proposal.
 
 Filter condition types:
 
-    Equals: Data must exactly match the filter, i.e. Equals key = ticker, value = TSLA
-    Greater / greater or equal: Data can be greater than or equal to the filter, i.e. GreaterOrEqual key = timestamp, value = 2021-12-31T23:59:59
-    Less / less or equal: Data can be less than or equal to the filter, i.e. LessOrEqual key = timestamp, value = 2021-12-31T23:59:59
+* Equals: Data must exactly match the filter, i.e. Equals key = ticker, value = TSLA
+* Greater / greater or equal to: Data can be greater than or equal to the filter, i.e. GreaterOrEqual key = timestamp, value = 2021-12-31T23:59:59
+* Less / less or equal to: Data can be less than or equal to the filter, i.e. LessOrEqual key = timestamp, value = 2021-12-31T23:59:59
+
+### Internal data source
+An internal data source provides information that comes from within Vega, rather than an external source. They are defined and used in the same way as external data sources, but are triggered by the relevant event in protocol rather than by an incoming transaction.
+
+There are currently two types of data that can come from internal data sources: value and time-triggered.
+
+#### Internal data source: Value [WIP]
+This data source provides an immediate value, and is used where a data source is required, but the value is already known at the time of definition.
+
+Any code expecting to be triggered when a value is received on a data source would be triggered immediately by a data source of this type, for instance as soon as a market parameter change is enacted, if it contained a value type data source for final settlement, final settlement would occur.
+
+'Value' can be used to submit a governance change proposal to update a futures market's settlement data source to a price value. This would happen if the defined data source fails and tokenholders choose to vote to accept a specific value to be used for settlement.
+
+Example:
+`value { type: number, value: 1400.5 }`
+
+#### Internal data source: Time triggered [WIP]
+This data source would be used to emit an event or value, at or after the given time printed on the block. For example, this could be used to trigger 'trading terminated' for futures.
+
+A time triggered data source will emit the contents of the specified data source (could be omitted if just triggering trading termination, or could be a value as described above, or another data source in order to implement a delay/ensure the value from the data source is not emitted before a certain time).
