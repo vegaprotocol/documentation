@@ -634,14 +634,23 @@ When the time defined by ``liquidity_providers_fee_distribution_time_step` elaps
 0.25 x 103.5 = 25.875 ETH to LP 2's margin account
 0.10 x 103.5 = 10.350 ETH to LP 3's margin account
 
-### Submit liquidity commitment orders
+### Submit liquidity commitment
 A liquidity provider must submit a valid set of liquidity provider orders. That set must include a *buy shape* and a *sell shape*. 
 
-The network will translate these shapes into order book volume by creating an order set according to a set of rules. (What are those rules?)
+The network will translate these shapes into order book volume by creating an order set. 
 
 Each entry must specify:
-* *Liquidity proportion*: The relative proportion of the commitment to be allocated at a price level. Note, the network will normalise the liquidity proportions of the refined order set. This must be a strictly positive number.
-* *Price peg*: A price level must be specified by a reference point (e.g mid, best bid, best offer) and an amount of units away.
+* Public key: The public key being used to place the liquidity commitment
+* The market’s unique ID, denoted as `marketId` - The market must be in a state to accept liquidity commitment, and is not a rejected market, has not had trading terminated, or has not been settled 
+* Liquidity commitment amount: The amount of funds to allocate to providing liquidity. The amount will be moved into a bond account during the duration of the liquidity commitment, denoted as `commitmentAmount`
+* Proposed liquidity fee level: The scaling factor for the fee the submitter is bidding to receive when the order is matched, on a scale between 0 and 1. For example, a fee level of 0.01 would mean `0.01 * total trade amount` is charged. Note: The proposed fee level is used along with other proposed fee levels to define the fees on the market. Denoted as `fee`
+* A set of liquidity buy and sell order shapes (denoted as `buys` and `sells`), which include:
+    * Offset: How many ticks away from the reference price you want your orders to be. The tick size is the smallest decimal place the market allows for orders. There is a tradeoff between larger offsets, which have higher margin cost but less position risk, versus smaller offsets, which have smaller margin cost but more postion risk
+    * Proportion: The proportion of your committed collateral allocated to this order, as a weight
+    * Reference price: The price that you want the order offset to reference. You can choose from the market’s mid price, best bid price, or the best ask price. In the examples below, the reference price is pegged to the mid-price, which means as the mid-price moves, so do the LP orders. This would be useful if, for example, you wanted to always provide a spread of 10 ticks, then you could peg your first orders 5 ticks from the mid price on each side.
+  * Propagate: Is true or false. Propogate is used to define if you want the liquidity commitment sent to the nodes for processing immediately (true), or if you want to manually submit the orders in a transaction (false). Note: If you choose to manually submit, it must be within the block tolerance level or it will be rejected
+
+See a full list of applicable reference price levels in the [API documentation](https://docs.vega.xyz/protodocs/vega/vega.proto#peggedreference)), denoted as `reference`.
 
 #### Example:
 *Buy shape*: {
@@ -661,10 +670,19 @@ Each entry must specify:
   sell-entry-2: [5, [best-ask, 9]],
 }
 
-### Amend liquidity commitment orders
-Liquidity commitment orders can be amended by providing a new set of liquidity provision orders in the liquidity provider transaction. If the amended orders are invalid, the transaction is rejected, and the previous set of orders will be retained.
+### Amend liquidity commitment
+Liquidity commitment orders can be amended by providing a new set of liquidity provision orders in the liquidity provider transaction. 
 
-### Cancel liquidity commitment orders  [WIP]
+When amending a liquidity commitment, the network will always allow the submitter to provide more liquidity. However, reducing the liquidity commitment will depend on the maximum amount that the market can reduce by given the current liquidity demand in the market. If the submitter were to reduce their commitment to the point where the market would drop below its required stake threshold, then the amendment would not be accepted.
+
+Submitting an amendment replaces the entire set of orders with the ones in the amendment transaction. To keep any of the existing order shapes, they'll need to added into the amendment.
+
+### Cancel liquidity commitment
+Cancelling a liquidity commitment, in effect, requests that the liquidity provision orders are amended to zero. Once the orders are cancelled, the bond amount is returned back into the submitter's general account.
+
+If cancelling a commitment would leave a market without enough liquidity, then the cancellation will not be accepted. 
+
+If there are any open positions that were created from the liquidity orders, they will not be cancelled when a liquidity commitment is cancelled. 
 
 ## Data sourcing framework  [WIP]
 
@@ -714,21 +732,21 @@ The fee factors are set through the following network parameters: `market.fee.fa
 
 ### Accounts (general, margin, bond) and transfers, double entry accounting [WIP]
 
-### Bridges [WIP]
+### Bridges used for assets [WIP]
 
 #### Ethereum [WIP]
 
 ## Market / product / trade lifecycle [WIP]
 
 ### Settlement [WIP]
-  Vega executes settlement with a two step process:
+Vega executes settlement with a two step process:
   1. Collection -  The protocol collects from the margin accounts of those who, according to the settlement formula, are liable to pay collateral. The collection instruction will aim to collect all the owed collateral, starting with the trader's margin account for the market. Whatever is not available from the margin account (if any) is collected from the general account, and if there is any remaining, it is collected from the market's insurance pool (link). If the full required amount cannot be collected from all three accounts then as much as possible is collected and loss socialisation is enacted. 
  
   Collection will result in ledger entries being formulated. They adhere to double entry accounting and record the actual transfers that occurred on the ledger. The destination account is the *market settlement account* for the market, which will have a zero balance before the settlement process begins and after it completes.
  
  2. Distribution -  If all requested amounts are succesfully transferred to the market settlement account, then the amount collected will match the amount to be distributed and the settlement function will formulate instructions to distribute to the margin accounts of those whose moves have been positive according to the amount they are owed. 
  
- These transfers will debit from the market's market settlement account and be credited to the margin accounts of traders who have are due to receive an asset flow as a result of the settlement.
+These transfers will debit from the market's market settlement account and be credited to the margin accounts of traders who have are due to receive an asset flow as a result of the settlement.
  
 #### Loss socialisation 
 Loss socialisation occurs when there are traders that don't have sufficient collateral to handle the price moves of their open position(s), and the insurance pool cannot cover their shortfall. 
@@ -745,3 +763,97 @@ distribute_amount[trader] = mtm_gain[trader] * ( actual_collected_amount / targe
 #### Settlement at expiry [WIP]
 
 #### Mark to market settlement (link to m-t-m) [WIP]
+
+
+TO BE REORGANISED: 
+To start, all testnet markets are “cash” settled futures. This means that settlement occurs in the (testnet) settlement asset of the market, which is defined in the market framework. The settlement asset does not need to be the same asset as the ‘quote unit’ (i.e. BTC/ETH on a BTC/ETH December 2020 market). The settlement asset is defined by the market creator.
+
+You can see the settlement asset in Vega Console in the market details view. (Search for ‘info’). When trading through APIs, you can call up the market data.
+
+Mark to market settlement Settlement instructions are generated based on the change in market value of the open positions of a party.
+
+When the mark price changes, the network calculates settlement cash flows for each party.
+
+Each time the mark price for a given market changes, all the open positions and orders are marked to market, resulting in interim partial payments that are calculated by the network.
+
+Settlement at a market’s expiry When a market reaches its maturity date and time, a final settlement is carried out based on a pre-defined oracle publishing data that triggers the market’s expiry.
+
+The oracle trigger will cause the market to enter into a “trading terminated” state. Markets in this state no longer accept trading, but retain the positions and margin balances that were in place after processing the market’s maturity trigger. In the case of futures markets, termination occurs just prior to, or at, the settlement of the product.
+
+Once a market settles, all open positions in that market are closed based on final oracle price, open orders are cancelled, and all collateral held in the market is released back to the participants. Corresponding cash flows happen as defined by the product type.
+
+For example: A cash-settled futures market reaches its expiry date and time. If the last mark price before settlement is 100, but the oracle price feed emits data that the price is 115, then a trader with a position of 1 long is paid 15. Another trader that has a position of 1 short, pays 15.
+
+After all positions are closed at market expiry, they are ‘forgotten’ by the network.
+Settlement parameters defined through governance
+
+    When a market is proposed, the proposal must specify data sources for any settlement events that the product requires - for the currently available cash-settled futures, this is the final price/value at the expiry of the instrument, and the expiry date/time. If the market passes governance and is thus created, the market will go live.
+    Eventually the market will near its specified expiry, and trading terminates. The data sources provide the final ‘settlement value’. (In future, Vega will allow optional mechanisms for querying, verification, or dispute resolution that are independent of the source.)
+    Vega settles all open positions on the market using the price provided by the data source. Fairground’s cash settled futures are regularly mark to market settled, so the final settlement is simply a case of the protocol doing a final mark to market settlement using the data source price.
+
+Data sources (oracles) for settlement
+
+The Vega network runs on data. Market settlement, risk models, and other features require a supplied price (or other data), which must come from somewhere, usually completely external to Vega. Specifically for settlement values, Vega requires external data.
+
+Vega APIs and protocol capabilities support a wide range of data sourcing styles and standards, and Vega will not integrate directly with specific oracle / data providers at the protocol level. This framework is flexible to make it easy to create and combine oracles, and therefore to design markets on almost anything.
+
+The current implementation requires that a market proposal defines two data sources, and the price based on those sources is final.
+Data source requirements
+
+Multiple instruments can rely on the same data source, and can settle based on the same SubmitData message.
+
+Data sources must provide:
+
+    Type of data source (signed message, internal Vega market data, date/time, Ethereum, etc.)
+    Data type (e.g. float for a price) - this must be compatible with the usage of the data source (if it is a settlement price, a numeric value would be required; for a trading termination trigger which consumes no data then any data type, etc.). Note that it is possible to have more than one “compatible” type, for instance it might be that a number could be a string or a raw numeric value in a JSON data source.
+    Data source specific details (for signed message, public key of sender; for Ethereum, contract address, method name; etc.)
+
+Data sources must be able to emit the following data types:
+
+    Number (for prices or in filter comparisons)
+    String (to be used to compare against in filters)
+    Date/Time (to compare against in filters)
+    Structured data records, such as a set of key value pairs (inputs to filters)
+
+Data sources nominated for use by Vega may refer to other data sources. For instance, one that takes a source of structured data records as input and emits only the value of a named field (e.g. to return BTCUSD_PRICE from a record containing many prices) or one that takes another data source as input and emits only data that matches a set of defined filters (e.g. to return only records with specific values in the timestamp and ticket symbol fields).
+Data sourcing framework
+
+Vega supports three data source types, though not all three can be used to settle markets. Internal data sources cannot be nominated for settling a market, but are used to emit an event or value at/after a given Vega time to trigger “trading terminated”, for example.
+
+Data sources must be able to emit the following data types:
+
+    Number
+    String (for MVP these would only be used to compare against in filters)
+    Date/Time (for MVP these would only be used to compare against in filters)
+    Structured data records i.e. a set of key value pairs (for MVP these would be inputs to filters)
+
+Signed message data sources are the first external data source to be supported on Vega, and can be nominated for settling a market. Signed message data sources introduce a Vega transaction that represents a data result. The result is validated by ensuring the signed message is signed by one of a set of public keys provided in a market’s proposal.
+
+Currently on Fairground, signed message data sources require only one of the specified keys to sign and submit the data transaction. It will only be possible to construct external oracles in which one or more third party entities/systems must be trusted, but this will change with future work.
+
+A signed message data source must include:
+
+    Public keys (and key algorithm to be used if required) that can sign and submit values for this oracle
+    Type of data to be supplied in the transaction. Supported types are a simple native Vega transaction (i.e. protobuf message) containing one or more key/value pairs of data fields with values that are expressed in the data types listed above
+    ABI encoded data
+
+As a public key may provide many messages, a filter is likely to be needed to extract the required message, and a field select would be used to extract the required field (‘price’ or ‘temperature’, etc.).
+
+Note: There are no rewards associated with being a signed message data source, nor are there fees associated with being or using a signed message data source.
+
+A filtered data source includes another data source definition within its own definition, and outputs a modified stream of data. It contains one or more conditions that are applied to data to determine whether that data is emitted.
+
+Multiple products can filter the same data source differently and settle based on different SubmitData messages. Multiple products can filter the same data source differently and settle based on different fields from the same SubmitData message.
+
+A filtered data source must specify:
+
+    Data: Another data source that defines the input data
+    Filters: A list of at least one filter to apply to the data
+
+A filter specifies a condition to apply to the data. If all filters match, the data is emitted. The filter types are defined in the Operator field of a market proposal.
+
+Filter condition types:
+
+    Equals: Data must exactly match the filter, i.e. Equals key = ticker, value = TSLA
+    Greater / greater or equal: Data can be greater than or equal to the filter, i.e. GreaterOrEqual key = timestamp, value = 2021-12-31T23:59:59
+    Less / less or equal: Data can be less than or equal to the filter, i.e. LessOrEqual key = timestamp, value = 2021-12-31T23:59:59
