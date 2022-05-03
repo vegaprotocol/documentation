@@ -7,7 +7,7 @@ In this tutorial, you'll learn how to build a liquidity commitment order to prov
 
 You'll also be guided on setting up the sample scripts the tutorial is based on. The scripts are available in Python and Bash, but the tutorial uses Python.
 
-If you proposed a market that was enacted and want to change your liquidity provision shape, skip down to **[amending a liquidity commitment](/docs/tutorials/providing-liquidity#amending-a-liquidity-commitment)**.
+If you proposed a market that was enacted and want to change your liquidity provision shape, skip down to **[amending a liquidity commitment](#amending-a-liquidity-commitment)**.
 
 At the end of the tutorial, find troubleshooting tips as well as more resources for understanding the mechanics of liquidity provision on Vega. 
 
@@ -41,7 +41,7 @@ For example, a liquidity provider plans to commit the approximate equivalent of 
 
 When using the scripts, you will receive a message that the transactions have been submitted, but won't get a response about whether or not they've been accepted. 
 
-For liquidity provision, use the tools below under **[Viewing existing liquidity provisions](/docs/tutorials/providing-liquidity/#viewing-existing-liquidity-provisions)** to check on them. 
+For liquidity provision, use the tools below under **[Viewing existing liquidity provisions](#viewing-existing-liquidity-provisions)** to check on them. 
 
 ### Setting up the helper scripts
 Inside the scripts root folder there is a credentials file that must be customised with your wallet credentials, and can also be customised to interact with a specific network.
