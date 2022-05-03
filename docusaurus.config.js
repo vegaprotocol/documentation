@@ -48,6 +48,12 @@ module.exports = {
         },
         {
           type: "doc",
+          docId: "tutorials/index",
+          label: "API tutorials",
+          position: "left",
+        },
+        {
+          type: "doc",
           docId: "tools/index",
           label: "Apps and Tools",
           position: "left",
@@ -191,12 +197,12 @@ module.exports = {
           versions: {
             current: {
               banner: "unreleased",
-              label: "testnet (v0.50.x)",
+              label: "testnet (v0.50)",
               path: "testnet",
             },
             "v0.47.0": {
               banner: "none",
-              label: "mainnet (v0.47.x)",
+              label: "mainnet (v0.47)",
               path: "mainnet",
             },
           },
