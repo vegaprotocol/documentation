@@ -220,11 +220,14 @@ submission = {
 ## Viewing existing liquidity provisions
 You can view the list of participants supplying liquidity to a market in two ways: using the endpoint or a Vega Tool. 
 
-1. Querying the REST endpoint for a node given the partyID (public key) and marketID:
+**Use the endpoint**
 
+Querying the REST endpoint for a node given the partyID (public key) and marketID:
 `https://<node address>/liquidity-provisions/party/{party}/market/{market}`
 
-2. Using the `vegatools` command line tool to view the liquidity providers for a given market. 
+**Use the Vega Tool**
+
+Using the `vegatools` command line tool to view the liquidity providers for a given market. 
 
 [Vega Tools repo](https://github.com/vegaprotocol/vegatools): Try the liquidity commitment tool, under the `liquiditycommitment` folder. Check the **[README.md](https://github.com/vegaprotocol/vegatools#vegatools)** file for how to set up the Vega Tools.  
 
