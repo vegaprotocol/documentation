@@ -1,5 +1,5 @@
 ---
-title: Providing liquidity using APIs
+title: Providing liquidity
 hide_title: false
 ---
 
