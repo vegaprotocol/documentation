@@ -1,7 +1,8 @@
 ---
 title: Overview
-vega_network: TESTNET
-ethereum_network: Ropsten
+vega_network: MAINNET
+ethereum_network: Mainnet
+sidebar_position: 1
 ---
 
 import EthAddresses from '@site/src/components/EthAddresses';
