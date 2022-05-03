@@ -1,0 +1,60 @@
+---
+id: aggregated-balance
+title: AggregatedBalance
+---
+
+
+No description
+
+```graphql
+type AggregatedBalance {
+  timestamp: Timestamp!
+  balance: String!
+  accountId: String
+  partyId: String
+  assetId: String
+  marketId: String
+  accountType: AccountType
+}
+```
+
+
+### Fields
+
+#### `timestamp` ([`Timestamp`](/docs/mainnet/graphql/scalars/timestamp))
+
+RFC3339Nano time from at which this balance was relevant
+
+
+#### `balance` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+Net balance of the accounts specified in the filter at this time
+
+
+#### `accountId` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+Account identifier, if query was grouped by account - else null
+
+
+#### `partyId` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+Party identifier, if query was grouped by party - else null
+
+
+#### `assetId` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+Asset identifier, if query was grouped by asset - else null
+
+
+#### `marketId` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+Market identifier, if query was grouped by market - else null
+
+
+#### `accountType` ([`AccountType`](/docs/mainnet/graphql/enums/account-type))
+
+Account type, if query was grouped by account type - else null
+
+
+
+

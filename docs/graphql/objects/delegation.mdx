@@ -1,0 +1,42 @@
+---
+id: delegation
+title: Delegation
+---
+
+
+No description
+
+```graphql
+type Delegation {
+  amount: String!
+  party: Party!
+  node: Node!
+  epoch: Int!
+}
+```
+
+
+### Fields
+
+#### `amount` ([`String`](/docs/testnet/graphql/scalars/string))
+
+Amount delegated
+
+
+#### `party` ([`Party`](/docs/testnet/graphql/objects/party))
+
+Party which is delegating
+
+
+#### `node` ([`Node`](/docs/testnet/graphql/objects/node))
+
+URL of node you are delegating to
+
+
+#### `epoch` ([`Int`](/docs/testnet/graphql/scalars/int))
+
+Epoch of delegation
+
+
+
+

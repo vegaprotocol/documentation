@@ -1,0 +1,37 @@
+---
+id: signature-input
+title: SignatureInput
+---
+
+
+A signature to be bundled with a transaction
+
+
+```graphql
+type SignatureInput {
+  sig: String!
+  algo: String!
+  version: Int!
+}
+```
+
+
+### Fields
+
+#### `sig` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+The signature, base64 encoded
+
+
+#### `algo` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+The algorithm used to produice the signature
+
+
+#### `version` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+The version of the signature
+
+
+
+

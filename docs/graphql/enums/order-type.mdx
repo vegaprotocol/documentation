@@ -1,0 +1,37 @@
+---
+id: order-type
+title: OrderType
+---
+
+
+No description
+
+```graphql
+enum OrderType {
+  Market
+  Limit
+  Network
+}
+```
+
+
+### Values
+
+#### `Market` 
+
+the default order type
+
+
+#### `Limit` 
+
+mentioned in ticket, but as yet unused order type
+
+
+#### `Network` 
+
+Used for distressed parties, an order placed by the network to close out distressed parties
+similar to Market order, only no party is attached to the order.
+
+
+
+
