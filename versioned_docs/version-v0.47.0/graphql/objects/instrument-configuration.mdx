@@ -1,0 +1,36 @@
+---
+id: instrument-configuration
+title: InstrumentConfiguration
+---
+
+
+No description
+
+```graphql
+type InstrumentConfiguration {
+  name: String!
+  code: String!
+  futureProduct: FutureProduct
+}
+```
+
+
+### Fields
+
+#### `name` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+Full and fairly descriptive name for the instrument
+
+
+#### `code` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+A short non necessarily unique code used to easily describe the instrument (e.g: FX:BTCUSD/DEC18)
+
+
+#### `futureProduct` ([`FutureProduct`](/docs/mainnet/graphql/objects/future-product))
+
+Future product specification
+
+
+
+

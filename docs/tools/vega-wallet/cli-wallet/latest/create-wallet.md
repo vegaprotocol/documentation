@@ -13,10 +13,6 @@ Note: If you are looking for instructions for connecting your hardware wallet to
 
 Use the following instructions in command line. Below, you'll see commands in the code blocks for each operating system. Copy those instructions and paste them into your command line interface.
 
-:::caution
-To use Vega mainnet on [version 0.47.6](https://explorer.vega.xyz/), we recommend using wallet [version 0.13.1](https://github.com/vegaprotocol/vegawallet/releases/tag/v0.13.1).
-::: 
-
 :::info 
 In your command line interface, you can view a list of available commands by running `./vegawallet -h` on MacOS and Linux, or `vegawallet -h` on Windows. Help is also available for every command, for example: `vegawallet create -h` will provide information about the `create` command.
 :::
@@ -71,7 +67,7 @@ You'll need to run the commands from the directory you've saved the wallet file 
 The steps below will guide you through initialising a wallet, and creating new key pairs or importing an existing wallet. 
 
 :::info
-To restore a wallet from your recovery phrase, see the [restore a wallet guide](/docs/tools/vega-wallet/cli-wallet/latest/guides/restore-wallet).
+To restore a wallet from your recovery phrase, see the [restore a wallet guide](./guides/restore-wallet).
 :::
 
 ### Initialise the software
@@ -152,7 +148,7 @@ Import the following network configurations:
 * **Fairground** network: [`fairground.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/fairground/fairground.toml)
 
 :::info
-To update your networks list, see [manage networks](/docs/tools/vega-wallet/cli-wallet/latest/guides/manage-networks#update-networks) for instructions.
+To update your networks list, see [manage networks](./guides/manage-networks#update-networks) for instructions.
 ::: 
 
 #### Import networks from URL

@@ -1,0 +1,192 @@
+---
+id: statistics
+title: Statistics
+---
+
+
+Statistics about the node
+
+```graphql
+type Statistics {
+  blockHeight: Int!
+  backlogLength: Int!
+  totalPeers: Int!
+  genesisTime: String!
+  currentTime: String!
+  upTime: String!
+  vegaTime: String!
+  status: String!
+  txPerBlock: Int!
+  averageTxBytes: Int!
+  averageOrdersPerBlock: Int!
+  tradesPerSecond: Int!
+  ordersPerSecond: Int!
+  totalMarkets: Int!
+  totalAmendOrder: Int!
+  totalCancelOrder: Int!
+  totalCreateOrder: Int!
+  totalOrders: Int!
+  totalTrades: Int!
+  appVersionHash: String!
+  appVersion: String!
+  chainVersion: String!
+  blockDuration: Int!
+  orderSubscriptions: Int!
+  tradeSubscriptions: Int!
+  candleSubscriptions: Int!
+  marketDepthSubscriptions: Int!
+  marketDepthUpdateSubscriptions: Int!
+  positionsSubscriptions: Int!
+}
+```
+
+
+### Fields
+
+#### `blockHeight` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+Current block number
+
+
+#### `backlogLength` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+Number of items in the backlog
+
+
+#### `totalPeers` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+Total number of peers on the vega network
+
+
+#### `genesisTime` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+RFC3339Nano genesis time of the chain
+
+
+#### `currentTime` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+RFC3339Nano current time (real)
+
+
+#### `upTime` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+RFC3339Nano uptime of the node
+
+
+#### `vegaTime` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+RFC3339Nano current time of the chain (decided through consensus)
+
+
+#### `status` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+Status of the vega application connection with the chain
+
+
+#### `txPerBlock` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+Number of transaction processed per block
+
+
+#### `averageTxBytes` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+Average size of the transactions
+
+
+#### `averageOrdersPerBlock` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+Average number of orders added per blocks
+
+
+#### `tradesPerSecond` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+Number of the trades per seconds
+
+
+#### `ordersPerSecond` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+Number of orders per seconds
+
+
+#### `totalMarkets` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+Total number of markets
+
+
+#### `totalAmendOrder` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+Total number of amended orders
+
+
+#### `totalCancelOrder` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+Total number of cancelled orders
+
+
+#### `totalCreateOrder` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+Total number of orders created
+
+
+#### `totalOrders` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+Total number of orders
+
+
+#### `totalTrades` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+Total number of trades
+
+
+#### `appVersionHash` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+Version commit hash of the vega node
+
+
+#### `appVersion` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+Version of the vega node (semver)
+
+
+#### `chainVersion` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+Version of the chain (semver)
+
+
+#### `blockDuration` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+Duration of the last block, in nanoseconds
+
+
+#### `orderSubscriptions` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+Number of orders subscriptions
+
+
+#### `tradeSubscriptions` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+Number of trades subscriptions
+
+
+#### `candleSubscriptions` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+Number of candles subscriptions
+
+
+#### `marketDepthSubscriptions` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+Number of market depth subscriptions
+
+
+#### `marketDepthUpdateSubscriptions` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+Number of market depth update subscriptions
+
+
+#### `positionsSubscriptions` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+Number of positions subscriptions
+
+
+
+
