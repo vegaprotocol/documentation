@@ -58,21 +58,20 @@ function generateOracleSpec(skeleton) {
                     name: "${spec.filters[0].key.name}",
                     // ${skeleton.properties.filters.items.properties.key.properties.type.description} (${skeleton.properties.filters.items.properties.key.properties.type.type})
                     type: "${spec.filters[0].key.type}",
-                  }
-                }
-              ],
-              // ${splitDescription[0]}
-              // ${splitDescription[1]}
-              conditions: [
-                {
-                  // ${skeleton.properties.filters.items.properties.conditions.items.properties.operator.description} (${skeleton.properties.filters.items.properties.conditions.items.properties.operator.type})
-                  operator: "${spec.filters[0].conditions[0].operator}",
-                  // ${skeleton.properties.filters.items.properties.conditions.items.properties.value.description} (${skeleton.properties.filters.items.properties.conditions.items.properties.value.type})
-                  value: "${spec.filters[0].conditions[0].value}",
-                }
-              ]
-            }
-          ]`}
+                  },
+                  // ${splitDescription[0]}
+                  // ${splitDescription[1]}
+                  conditions: [
+                    {
+                      // ${skeleton.properties.filters.items.properties.conditions.items.properties.operator.description} (${skeleton.properties.filters.items.properties.conditions.items.properties.operator.type})
+                      operator: "${spec.filters[0].conditions[0].operator}",
+                      // ${skeleton.properties.filters.items.properties.conditions.items.properties.value.description} (${skeleton.properties.filters.items.properties.conditions.items.properties.value.type})
+                      value: "${spec.filters[0].conditions[0].value}",
+                    }
+                  ]
+              }
+          ]
+        }`}
 
     return spec;
 }
@@ -270,16 +269,16 @@ function generatePriceMonitoringParameters(skeleton) {
           // ${skeleton.properties.triggers.items.title}
           triggers: [
             {
-            // ${skeleton.properties.triggers.items.properties.horizon.title} (${skeleton.properties.triggers.items.properties.horizon.format} as ${skeleton.properties.triggers.items.properties.horizon.type})
-            horizon: "${params.triggers[0].horizon}",
-            // ${skeleton.properties.triggers.items.properties.probability.title} (${skeleton.properties.triggers.items.properties.probability.type})
-            probability: "${params.triggers[0].probability}",
-            // ${splitTitle[0]}
-            // ${splitTitle[1]}
-            // ${splitTitle[2]} (${skeleton.properties.triggers.items.properties.auctionExtension.format} as ${skeleton.properties.triggers.items.properties.auctionExtension.type})
-            auctionExtension: "${params.triggers[0].auctionExtension}",
-            }
-        ]
+              // ${skeleton.properties.triggers.items.properties.horizon.title} (${skeleton.properties.triggers.items.properties.horizon.format} as ${skeleton.properties.triggers.items.properties.horizon.type})
+              horizon: "${params.triggers[0].horizon}",
+              // ${skeleton.properties.triggers.items.properties.probability.title} (${skeleton.properties.triggers.items.properties.probability.type})
+              probability: "${params.triggers[0].probability}",
+              // ${splitTitle[0]}
+              // ${splitTitle[1]}
+              // ${splitTitle[2]} (${skeleton.properties.triggers.items.properties.auctionExtension.format} as ${skeleton.properties.triggers.items.properties.auctionExtension.type})
+              auctionExtension: "${params.triggers[0].auctionExtension}",
+              }
+          ]
       }`
   }
 
