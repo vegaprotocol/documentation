@@ -16,7 +16,7 @@ import NewAssetCMD from './_generated-proposals/_newAsset_cmd.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# New asset (ERC20)
+# Propose a new asset (ERC20)
 New assets can be proposed through the governance system.
 
 <Tabs groupId="newAsset">

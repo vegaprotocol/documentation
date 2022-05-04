@@ -13,7 +13,7 @@ import NewMarketCMD from './_generated-proposals/_newMarket_cmd.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Example market proposal
+# Propose a new market
 Propose a new market on Fairground. 
 
 1. The annotated example describes what is needed for each field in the proposal. 

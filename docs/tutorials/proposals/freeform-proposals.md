@@ -1,5 +1,5 @@
 ---
-title: Other governance proposals
+title: Freeform proposals
 hide_title: false
 keywords:
 - proposal
@@ -16,7 +16,7 @@ import NewFreeformCMD from './_generated-proposals/_newFreeform_cmd.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# New Freeform Proposal
+# Create a freeform proposal
 The aim of this is to allow community to provide votes on proposals which don't change any of the behaviour of the currently running Vega blockchain. That is to say, at enactment time, no changes are effected on the system, but the record of how token holders voted will be stored on chain. 
 
 <Tabs groupId="newFreeform">
