@@ -3,17 +3,13 @@
   {
     // Timestamp (Unix time in seconds) when voting closes for this proposal,
     // constrained by `minClose` and `maxClose` network parameters (int64 as string) 
-    closingTimestamp: 1653138543629,
+    closingTimestamp: 1653235733190,
     // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
     // constrained by `minEnact` and `maxEnact` network parameters (int64 as string) 
-    enactmentTimestamp: 1653224943629,
+    enactmentTimestamp: 1653322133190,
     updateNetworkParameter:  {
-      changes: {
-        // The unique key (string) 
-        key: "governance.proposal.asset.requiredMajority",
-        // The value for the network parameter (string) 
-        value: "0.5630835734911792"
-      }
-    }
+  key: 'governance.proposal.freeform.minVoterBalance',
+  value: '0.2510547904343712'
+}
  }
   ```

@@ -1,13 +1,14 @@
 
   ```json
   {
-  "closingTimestamp": 1653138543629,
-  "enactmentTimestamp": 1653224943629,
+  "closingTimestamp": 1653235733190,
+  "enactmentTimestamp": 1653322133190,
   "updateNetworkParameter": {
-    "changes": {
-      "key": "governance.proposal.asset.requiredMajority",
-      "value": "0.5630835734911792"
-    }
+    "key": "governance.proposal.freeform.minVoterBalance",
+    "value": "0.2510547904343712"
+  },
+  "rationale": {
+    "description": "Update governance.proposal.freeform.minVoterBalance"
   }
 }
   ```

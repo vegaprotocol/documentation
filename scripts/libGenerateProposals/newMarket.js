@@ -384,7 +384,11 @@ function generateRiskModel(skeleton, riskModelType) {
 }
 
 function newMarket(skeleton) {
-  const result = {};
+  const result = {
+    rationale: {
+      description: `Add Lorem Ipsum market`
+    }
+  };
   const docs = {};
 
   assert.ok(skeleton.properties.changes);
@@ -412,6 +416,9 @@ function newMarket(skeleton) {
 
   result[inspect.custom]= () => {
    return `{
+      rationale: {
+        description: "${result.rationale.description}"
+      },
       changes: {
         // ${skeleton.properties.changes.properties.decimalPlaces.title} (${skeleton.properties.changes.properties.decimalPlaces.format} as ${skeleton.properties.changes.properties.decimalPlaces.type}) 
         decimalPlaces: "${result.changes.decimalPlaces}",

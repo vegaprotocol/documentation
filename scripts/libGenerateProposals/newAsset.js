@@ -12,7 +12,6 @@ const assetNames = [
 ];
 
 function newAsset(skeleton) {
-  const result = {};
   const docs = skeleton;
 
   assert.ok(skeleton.properties.changes);
@@ -24,8 +23,11 @@ function newAsset(skeleton) {
   assert.ok(skeleton.properties.changes.properties.erc20);
 
   const asset = sample(assetNames);
+  const rationale = {
+    description: `Add ${asset.name} (${asset.symbol})`
+  };
 
-  result.changes = {
+  const changes = {
     name: asset.name,
     symbol: asset.symbol,
     totalSupply: '19010568',
@@ -38,6 +40,9 @@ function newAsset(skeleton) {
  
  result[inspect.custom]= () => {
       return `{
+        rationale: {
+          description: "${result.rationale.description}"
+        },
         changes: {
           // ${skeleton.properties.changes.properties.name.title} (${skeleton.properties.changes.properties.name.type}) 
           name: "${result.changes.name}",
@@ -57,7 +62,7 @@ function newAsset(skeleton) {
        }
     }`
  } 
- return { result, docs }
+ return { result }
 }
 
 module.exports = { newAsset }

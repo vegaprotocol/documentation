@@ -46,12 +46,14 @@ function daysInTheFuture(daysToAdd) {
   return new addDays(Date.now(), daysToAdd).getTime()
 }
 
-function newProposal(changesAndDocs, skeleton, type) {
+function newProposal(p, skeleton, type) {
   assert.ok(skeleton.properties.closingTimestamp);
   assert.ok(skeleton.properties.enactmentTimestamp);
 
   const proposal = {
-    closingTimestamp: daysInTheFuture(19),
+    terms: {
+      closingTimestamp: daysInTheFuture(19),
+    }
   }
 
   // Freeform proposals don't get enacted, so they can't have this
@@ -71,7 +73,7 @@ function newProposal(changesAndDocs, skeleton, type) {
  }`
  }
   } else {
-    proposal[inspect.custom]= () => {
+/*    proposal[inspect.custom]= () => {
     const splitTitle = skeleton.properties.closingTimestamp.title.split('\n')
     return `{
     // ${splitTitle[0]}
@@ -79,10 +81,12 @@ function newProposal(changesAndDocs, skeleton, type) {
     closingTimestamp: ${proposal.closingTimestamp},
     ${type}:  ${inspect(proposal[type], { depth: 20 })}
 }`
- }
+ } */
   }
 
-  proposal[type] = changesAndDocs.result
+  proposal.terms = { ...proposal.terms, ...p.terms }
+  proposal.rationale = p.rationale
+
   const annotated = `
   ${'```javascript'}
   ${annotator(proposal)}
@@ -93,10 +97,9 @@ function newProposal(changesAndDocs, skeleton, type) {
   ${JSON.stringify(proposal, null, 2)}
   ${'```'}
   `
-
   const cmd = `
   ${'```bash'}
-  vegawallet command send --wallet your_username --pubkey your_key --network mainnet '${JSON.stringify({"proposalSubmission": { reference: `test-${type}`, terms: proposal }})}
+  vegawallet command send --wallet your_username --pubkey your_key --network mainnet '${JSON.stringify({"proposalSubmission": proposal })}'
   ${'```'}
   `
 
@@ -121,8 +124,10 @@ function parse(api) {
   const partials = Object.keys(proposalTypes).map(type => {
       if ( excludeUnimplementedTypes.indexOf(type) === -1) {
         if (ProposalGenerator.has(type)) {
-            const changes = ProposalGenerator.get(type)(proposalTypes[type])
-             output(newProposal(changes, api.definitions.vegaProposalTerms, type), type)
+            if (type === 'newFreeform') {
+              const changes = ProposalGenerator.get(type)(proposalTypes[type])
+              output(newProposal(changes, api.definitions.vegaProposalTerms, type), type)
+            }
         } else {
             assert.fail('Unknown proposal type: ' + type)
         }
