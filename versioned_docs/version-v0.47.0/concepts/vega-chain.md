@@ -189,7 +189,7 @@ If a node that submits the transaction to join has a higher score than the lowes
 
 Note: A node that has a ranking score of 0 (meaning they have no stake and a performance score of 0) for longer than 10 epochs is removed from Vega and will have to resubmit their request to become a validator.
 
-Read more: [Becoming a validator](/docs/concepts/vega-chain#becoming-a-validator)
+Read more: [Becoming a validator](#becoming-a-validator)
 
 ### Moving from standby to consensus validator
 A standby validator that wants to be in line for promotion to become a consensus validator needs to do the following: 
