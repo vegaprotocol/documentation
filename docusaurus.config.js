@@ -43,13 +43,7 @@ module.exports = {
         {
           type: "doc",
           docId: "api/overview",
-          label: "API",
-          position: "left",
-        },
-        {
-          type: "doc",
-          docId: "tutorials/index",
-          label: "API tutorials",
+          label: "APIs",
           position: "left",
         },
         {

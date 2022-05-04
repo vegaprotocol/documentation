@@ -1,6 +1,7 @@
 ---
-title: Tutorials for Vega APIs
+title: Overview
 hide_title: false
+sidebar_position: 1
 ---
 Take a look at the tutorials for help with using Vega's APIs. 
 
