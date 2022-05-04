@@ -1,0 +1,34 @@
+---
+title: Network parameter proposals
+hide_title: false
+keywords:
+- proposal
+- governance
+- newFreeform
+- updateNetworkParameter
+- newAsset
+- newMarket
+---
+
+import UpdateNetworkParameterAnnotated from './_generated-proposals/_updateNetworkParameter_annotated.md';
+import UpdateNetworkParameterJSON from './_generated-proposals/_updateNetworkParameter_json.md';
+import UpdateNetworkParameterCMD from './_generated-proposals/_updateNetworkParameter_cmd.md';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Network parameters are a constant (or an array of constants) in the system whose values are able to be changed by on-chain governance. Here's how to propose a change to one.
+
+## Update a network parameter
+You can submit a proposal to change a network parameter. 
+
+<Tabs groupId="updateNetworkParameter">
+  <TabItem value="annotated" label="Annotated example">
+    <UpdateNetworkParameterAnnotated />
+  </TabItem>
+  <TabItem value="json" label="JSON example">
+    <UpdateNetworkParameterJSON />
+  </TabItem>
+  <TabItem value="cmd" label="Command line">
+    <UpdateNetworkParameterCMD />
+  </TabItem>
+</Tabs>

@@ -99,7 +99,7 @@ function newProposal(p, skeleton, type) {
   `
   const cmd = `
   ${'```bash'}
-  vegawallet command send --wallet your_username --pubkey your_key --network mainnet '${JSON.stringify({"proposalSubmission": proposal })}'
+  vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '${JSON.stringify({"proposalSubmission": proposal })}'
   ${'```'}
   `
 
@@ -138,7 +138,7 @@ function parse(api) {
 }
 
 function output(partial, title) {
-  const path = './docs/tutorials/_generated-proposals'
+  const path = './docs/tutorials/proposals/_generated-proposals'
 
   if (process.argv[2]) {
     writeFileSync(`${path}/_${title}_annotated.md`, partial.annotated)
