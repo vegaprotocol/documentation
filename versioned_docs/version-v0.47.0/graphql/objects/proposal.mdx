@@ -23,47 +23,47 @@ type Proposal {
 
 ### Fields
 
-#### `id` ([`ID`](/docs/mainnet/graphql/scalars/id))
+#### `id` ([`ID`](/docs/v0.47/graphql/scalars/id))
 
 Proposal ID that is filled by VEGA once proposal reaches the network
 
 
-#### `reference` ([`String`](/docs/mainnet/graphql/scalars/string))
+#### `reference` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 A UUID reference to aid tracking proposals on VEGA
 
 
-#### `party` ([`Party`](/docs/mainnet/graphql/objects/party))
+#### `party` ([`Party`](/docs/v0.47/graphql/objects/party))
 
 Party that prepared the proposal
 
 
-#### `state` ([`ProposalState`](/docs/mainnet/graphql/enums/proposal-state))
+#### `state` ([`ProposalState`](/docs/v0.47/graphql/enums/proposal-state))
 
 State of the proposal
 
 
-#### `datetime` ([`String`](/docs/mainnet/graphql/scalars/string))
+#### `datetime` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 RFC3339Nano time and date when the proposal reached Vega network
 
 
-#### `terms` ([`ProposalTerms`](/docs/mainnet/graphql/objects/proposal-terms))
+#### `terms` ([`ProposalTerms`](/docs/v0.47/graphql/objects/proposal-terms))
 
 Terms of the proposal
 
 
-#### `votes` ([`ProposalVotes`](/docs/mainnet/graphql/objects/proposal-votes))
+#### `votes` ([`ProposalVotes`](/docs/v0.47/graphql/objects/proposal-votes))
 
 Votes cast for this proposal
 
 
-#### `rejectionReason` ([`ProposalRejectionReason`](/docs/mainnet/graphql/enums/proposal-rejection-reason))
+#### `rejectionReason` ([`ProposalRejectionReason`](/docs/v0.47/graphql/enums/proposal-rejection-reason))
 
 Reason for the proposal to be rejected by the core
 
 
-#### `errorDetails` ([`String`](/docs/mainnet/graphql/scalars/string))
+#### `errorDetails` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 Error details of the rejectionReason
 

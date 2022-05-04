@@ -25,57 +25,57 @@ type Withdrawal {
 
 ### Fields
 
-#### `id` ([`ID`](/docs/mainnet/graphql/scalars/id))
+#### `id` ([`ID`](/docs/v0.47/graphql/scalars/id))
 
 The Vega internal id of the withdrawal
 
 
-#### `party` ([`Party`](/docs/mainnet/graphql/objects/party))
+#### `party` ([`Party`](/docs/v0.47/graphql/objects/party))
 
 The PartyID initiating the witndrawal
 
 
-#### `amount` ([`String`](/docs/mainnet/graphql/scalars/string))
+#### `amount` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 The amount to be withdrawn
 
 
-#### `asset` ([`Asset`](/docs/mainnet/graphql/objects/asset))
+#### `asset` ([`Asset`](/docs/v0.47/graphql/objects/asset))
 
 The asset to be withdrawn
 
 
-#### `status` ([`WithdrawalStatus`](/docs/mainnet/graphql/enums/withdrawal-status))
+#### `status` ([`WithdrawalStatus`](/docs/v0.47/graphql/enums/withdrawal-status))
 
 The current status of the withdrawal
 
 
-#### `ref` ([`String`](/docs/mainnet/graphql/scalars/string))
+#### `ref` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 A reference the foreign chain can use to refere to when processing the withdrawal
 
 
-#### `expiry` ([`String`](/docs/mainnet/graphql/scalars/string))
+#### `expiry` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 RFC3339Nano time until the withdrawal will be invalid
 
 
-#### `createdTimestamp` ([`String`](/docs/mainnet/graphql/scalars/string))
+#### `createdTimestamp` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 RFC3339Nano time at which the withdrawal was created
 
 
-#### `withdrawnTimestamp` ([`String`](/docs/mainnet/graphql/scalars/string))
+#### `withdrawnTimestamp` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 RFC3339Nano time at which the withdrawal was finalized
 
 
-#### `txHash` ([`String`](/docs/mainnet/graphql/scalars/string))
+#### `txHash` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 Hash of the transaction on the foreign chain
 
 
-#### `details` ([`WithdrawalDetails`](/docs/mainnet/graphql/unions/withdrawal-details))
+#### `details` ([`WithdrawalDetails`](/docs/v0.47/graphql/unions/withdrawal-details))
 
 Foreign chain specific details about the withdrawal
 

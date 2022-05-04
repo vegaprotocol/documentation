@@ -20,32 +20,32 @@ type FutureProduct {
 
 ### Fields
 
-#### `maturity` ([`String`](/docs/mainnet/graphql/scalars/string))
+#### `maturity` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 RFC3339Nano time when the future products matures
 
 
-#### `settlementAsset` ([`Asset`](/docs/mainnet/graphql/objects/asset))
+#### `settlementAsset` ([`Asset`](/docs/v0.47/graphql/objects/asset))
 
 Product asset ID
 
 
-#### `quoteName` ([`String`](/docs/mainnet/graphql/scalars/string))
+#### `quoteName` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 String representing the quote (e.g. BTCUSD -&#x003E; USD is quote)
 
 
-#### `oracleSpecForSettlementPrice` ([`OracleSpecConfiguration`](/docs/mainnet/graphql/objects/oracle-spec-configuration))
+#### `oracleSpecForSettlementPrice` ([`OracleSpecConfiguration`](/docs/v0.47/graphql/objects/oracle-spec-configuration))
 
 Describes the oracle data that an instrument wants to get from the oracle engine for settlement price.
 
 
-#### `oracleSpecForTradingTermination` ([`OracleSpecConfiguration`](/docs/mainnet/graphql/objects/oracle-spec-configuration))
+#### `oracleSpecForTradingTermination` ([`OracleSpecConfiguration`](/docs/v0.47/graphql/objects/oracle-spec-configuration))
 
 Describes the oracle data that an instrument wants to get from the oracle engine for trading termination.
 
 
-#### `oracleSpecBinding` ([`OracleSpecToFutureBinding`](/docs/mainnet/graphql/objects/oracle-spec-to-future-binding))
+#### `oracleSpecBinding` ([`OracleSpecToFutureBinding`](/docs/v0.47/graphql/objects/oracle-spec-to-future-binding))
 
 OracleSpecToFutureBinding tells on which property oracle data should be
 used as settlement price.

@@ -29,77 +29,77 @@ type Trade {
 
 ### Fields
 
-#### `id` ([`ID`](/docs/mainnet/graphql/scalars/id))
+#### `id` ([`ID`](/docs/v0.47/graphql/scalars/id))
 
 The hash of the trade data
 
 
-#### `market` ([`Market`](/docs/mainnet/graphql/objects/market))
+#### `market` ([`Market`](/docs/v0.47/graphql/objects/market))
 
 The market the trade occurred on
 
 
-#### `buyOrder` ([`String`](/docs/mainnet/graphql/scalars/string))
+#### `buyOrder` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 The order that bought
 
 
-#### `sellOrder` ([`String`](/docs/mainnet/graphql/scalars/string))
+#### `sellOrder` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 The order that sold
 
 
-#### `buyer` ([`Party`](/docs/mainnet/graphql/objects/party))
+#### `buyer` ([`Party`](/docs/v0.47/graphql/objects/party))
 
 The party that bought
 
 
-#### `seller` ([`Party`](/docs/mainnet/graphql/objects/party))
+#### `seller` ([`Party`](/docs/v0.47/graphql/objects/party))
 
 The party that sold
 
 
-#### `aggressor` ([`Side`](/docs/mainnet/graphql/enums/side))
+#### `aggressor` ([`Side`](/docs/v0.47/graphql/enums/side))
 
 The aggressor indicates whether this trade was related to a BUY or SELL
 
 
-#### `price` ([`String`](/docs/mainnet/graphql/scalars/string))
+#### `price` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 The price of the trade (probably initially the passive order price, other determination algorithms are possible though) (uint64)
 
 
-#### `size` ([`String`](/docs/mainnet/graphql/scalars/string))
+#### `size` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 The number of contracts trades, will always be &#x003C;= the remaining size of both orders immediately before the trade (uint64)
 
 
-#### `createdAt` ([`String`](/docs/mainnet/graphql/scalars/string))
+#### `createdAt` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 RFC3339Nano time for when the trade occurred
 
 
-#### `type` ([`TradeType`](/docs/mainnet/graphql/enums/trade-type))
+#### `type` ([`TradeType`](/docs/v0.47/graphql/enums/trade-type))
 
 The type of trade
 
 
-#### `buyerFee` ([`TradeFee`](/docs/mainnet/graphql/objects/trade-fee))
+#### `buyerFee` ([`TradeFee`](/docs/v0.47/graphql/objects/trade-fee))
 
 The fee paid by the buyer side of the trade
 
 
-#### `sellerFee` ([`TradeFee`](/docs/mainnet/graphql/objects/trade-fee))
+#### `sellerFee` ([`TradeFee`](/docs/v0.47/graphql/objects/trade-fee))
 
 The fee paid by the seller side of the trade
 
 
-#### `buyerAuctionBatch` ([`Int`](/docs/mainnet/graphql/scalars/int))
+#### `buyerAuctionBatch` ([`Int`](/docs/v0.47/graphql/scalars/int))
 
 The batch in witch the buyer order was submitted (applies only for Auctions modes)
 
 
-#### `sellerAuctionBatch` ([`Int`](/docs/mainnet/graphql/scalars/int))
+#### `sellerAuctionBatch` ([`Int`](/docs/v0.47/graphql/scalars/int))
 
 The batch in witch the seller order was submitted (applies only for Auctions modes)
 

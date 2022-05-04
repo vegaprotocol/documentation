@@ -50,133 +50,133 @@ type Party {
 
 ### Fields
 
-#### `id` ([`ID`](/docs/mainnet/graphql/scalars/id))
+#### `id` ([`ID`](/docs/v0.47/graphql/scalars/id))
 
 Party identifier
 
 
-#### `orders` ([`Order`](/docs/mainnet/graphql/objects/order))
+#### `orders` ([`Order`](/docs/v0.47/graphql/objects/order))
 
 Orders relating to a party
-- ##### `skip` ([`Int`](/docs/mainnet/graphql/scalars/int))
+- ##### `skip` ([`Int`](/docs/v0.47/graphql/scalars/int))
 
 Pagination skip
 
 
-- ##### `first` ([`Int`](/docs/mainnet/graphql/scalars/int))
+- ##### `first` ([`Int`](/docs/v0.47/graphql/scalars/int))
 
 Pagination first element
 
 
-- ##### `last` ([`Int`](/docs/mainnet/graphql/scalars/int))
+- ##### `last` ([`Int`](/docs/v0.47/graphql/scalars/int))
 
 Pagination last element
 
 
-#### `trades` ([`Trade`](/docs/mainnet/graphql/objects/trade))
+#### `trades` ([`Trade`](/docs/v0.47/graphql/objects/trade))
 
 Trades relating to a party (specifically where party is either buyer OR seller)
-- ##### `marketId` ([`ID`](/docs/mainnet/graphql/scalars/id))
+- ##### `marketId` ([`ID`](/docs/v0.47/graphql/scalars/id))
 
 ID of the market we want to get trades for
 
 
-- ##### `skip` ([`Int`](/docs/mainnet/graphql/scalars/int))
+- ##### `skip` ([`Int`](/docs/v0.47/graphql/scalars/int))
 
 Pagination skip
 
 
-- ##### `first` ([`Int`](/docs/mainnet/graphql/scalars/int))
+- ##### `first` ([`Int`](/docs/v0.47/graphql/scalars/int))
 
 Pagination first element
 
 
-- ##### `last` ([`Int`](/docs/mainnet/graphql/scalars/int))
+- ##### `last` ([`Int`](/docs/v0.47/graphql/scalars/int))
 
 Pagination last element
 
 
-#### `accounts` ([`Account`](/docs/mainnet/graphql/objects/account))
+#### `accounts` ([`Account`](/docs/v0.47/graphql/objects/account))
 
 Collateral accounts relating to a party
-- ##### `marketId` ([`ID`](/docs/mainnet/graphql/scalars/id))
+- ##### `marketId` ([`ID`](/docs/v0.47/graphql/scalars/id))
 
 Market ID - specify what market accounts for the party to return
 
 
-- ##### `asset` ([`String`](/docs/mainnet/graphql/scalars/string))
+- ##### `asset` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 Asset (USD, EUR etc)
 
 
-- ##### `type` ([`AccountType`](/docs/mainnet/graphql/enums/account-type))
+- ##### `type` ([`AccountType`](/docs/v0.47/graphql/enums/account-type))
 
 Filter accounts by type (General account, margin account, etc...)
 
 
-#### `positions` ([`Position`](/docs/mainnet/graphql/objects/position))
+#### `positions` ([`Position`](/docs/v0.47/graphql/objects/position))
 
 Trading positions relating to a party
 
 
-#### `margins` ([`MarginLevels`](/docs/mainnet/graphql/objects/margin-levels))
+#### `margins` ([`MarginLevels`](/docs/v0.47/graphql/objects/margin-levels))
 
 marginLevels
-- ##### `marketId` ([`ID`](/docs/mainnet/graphql/scalars/id))
+- ##### `marketId` ([`ID`](/docs/v0.47/graphql/scalars/id))
 
 market id off the margin to get, nil if all markets
 
 
-#### `proposals` ([`Proposal`](/docs/mainnet/graphql/objects/proposal))
+#### `proposals` ([`Proposal`](/docs/v0.47/graphql/objects/proposal))
 
 
-- ##### `inState` ([`ProposalState`](/docs/mainnet/graphql/enums/proposal-state))
+- ##### `inState` ([`ProposalState`](/docs/v0.47/graphql/enums/proposal-state))
 
 Select only proposals in the specified state. Leave out to get all proposals
 
 
-#### `votes` ([`ProposalVote`](/docs/mainnet/graphql/objects/proposal-vote))
+#### `votes` ([`ProposalVote`](/docs/v0.47/graphql/objects/proposal-vote))
 
 
 
 
-#### `withdrawals` ([`Withdrawal`](/docs/mainnet/graphql/objects/withdrawal))
+#### `withdrawals` ([`Withdrawal`](/docs/v0.47/graphql/objects/withdrawal))
 
 The list of all withdrawals initiated by the party
 
 
-#### `deposits` ([`Deposit`](/docs/mainnet/graphql/objects/deposit))
+#### `deposits` ([`Deposit`](/docs/v0.47/graphql/objects/deposit))
 
 The list of all deposits for a party by the party
 
 
-#### `liquidityProvisions` ([`LiquidityProvision`](/docs/mainnet/graphql/objects/liquidity-provision))
+#### `liquidityProvisions` ([`LiquidityProvision`](/docs/v0.47/graphql/objects/liquidity-provision))
 
 The list of the liquidity provision commitment from this party
-- ##### `market` ([`String`](/docs/mainnet/graphql/scalars/string))
+- ##### `market` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 An optional market id
 
 
-- ##### `reference` ([`String`](/docs/mainnet/graphql/scalars/string))
+- ##### `reference` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 An optional reference
 
 
-#### `delegations` ([`Delegation`](/docs/mainnet/graphql/objects/delegation))
+#### `delegations` ([`Delegation`](/docs/v0.47/graphql/objects/delegation))
 
 
-- ##### `nodeId` ([`String`](/docs/mainnet/graphql/scalars/string))
+- ##### `nodeId` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 
 
 
-#### `stake` ([`PartyStake`](/docs/mainnet/graphql/objects/party-stake))
+#### `stake` ([`PartyStake`](/docs/v0.47/graphql/objects/party-stake))
 
 The staking informations for this Party
 
 
-#### `rewardDetails` ([`RewardPerAssetDetail`](/docs/mainnet/graphql/objects/reward-per-asset-detail))
+#### `rewardDetails` ([`RewardPerAssetDetail`](/docs/v0.47/graphql/objects/reward-per-asset-detail))
 
 return reward information
 

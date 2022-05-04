@@ -22,40 +22,40 @@ type OracleSpec {
 
 ### Fields
 
-#### `id` ([`String`](/docs/mainnet/graphql/scalars/string))
+#### `id` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 id is a hash generated from the OracleSpec data.
 
 
-#### `createdAt` ([`String`](/docs/mainnet/graphql/scalars/string))
+#### `createdAt` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 RFC3339Nano creation date time
 
 
-#### `updatedAt` ([`String`](/docs/mainnet/graphql/scalars/string))
+#### `updatedAt` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 RFC3339Nano last updated timestamp
 
 
-#### `pubKeys` ([`String`](/docs/mainnet/graphql/scalars/string))
+#### `pubKeys` ([`String`](/docs/v0.47/graphql/scalars/string))
 
 pubKeys is the list of authorized public keys that signed the data for this
 oracle. All the public keys in the oracle data should be contained in these
 public keys.
 
 
-#### `filters` ([`Filter`](/docs/mainnet/graphql/objects/filter))
+#### `filters` ([`Filter`](/docs/v0.47/graphql/objects/filter))
 
 filters describes which oracle data are considered of interest or not for
 the product (or the risk model).
 
 
-#### `status` ([`OracleSpecStatus`](/docs/mainnet/graphql/enums/oracle-spec-status))
+#### `status` ([`OracleSpecStatus`](/docs/v0.47/graphql/enums/oracle-spec-status))
 
 status describes the status of the oracle spec
 
 
-#### `data` ([`OracleData`](/docs/mainnet/graphql/objects/oracle-data))
+#### `data` ([`OracleData`](/docs/v0.47/graphql/objects/oracle-data))
 
 data list all the oracle data broadcast to this spec
 
