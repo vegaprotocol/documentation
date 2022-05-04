@@ -430,7 +430,6 @@ It is possible to configure a market for which orders can only be priced in incr
 #### Asset decimal places [WIP]
 
 
-
 ## Liquidity
 The Vega protocol allows liquidity to be priced individually for each market, a design decision that allows for liquidity providers to earn more on markets with little LP competition, and drives down fees on markets where there are many participants committing liquidity. 
 
@@ -884,3 +883,11 @@ Example:
 This data source would be used to emit an event or value, at or after the given time printed on the block. For example, this could be used to trigger 'trading terminated' for futures.
 
 A time triggered data source will emit the contents of the specified data source (could be omitted if just triggering trading termination, or could be a value as described above, or another data source in order to implement a delay/ensure the value from the data source is not emitted before a certain time).
+
+Every time the network 'ticks' (at a set time), it sends oracle data with a constant property name vegaprotocol.builtin.timestamp 
+If you're using this property in your oracle binding, and in your trading termination declaration, it's no longer mandatory to use a type_boolean, and you can use the timestamp property instead. To settle at a given time without providing true/false terminated property. 
+
+<!-- notes: 
+(highlight shortcomings of trading termination as a way to extract data from a payload. no way to add computation on top of it. maybe it's worth adding some internal oracle data into the market proposal)
+
+ideally: only have property emission time, filter on it, get the oracle data, and then say if data is greater than/equal, to timestamp, set termination to true. or make extra computations, such as settlment price that's average of a price range -->
