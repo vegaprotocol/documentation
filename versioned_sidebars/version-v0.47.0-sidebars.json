@@ -13,11 +13,11 @@
     {
       "type": "link",
       "label": "GraphQL",
-      "href": "/docs/mainnet/graphql/overview"
+      "href": "/docs/v0.47/graphql/overview"
     },
     {
       "type": "link",
-      "href": "/docs/mainnet/grpc/vega/vega.proto",
+      "href": "/docs/v0.47/grpc/vega/vega.proto",
       "label": "GRPC"
     },
     {
@@ -32,22 +32,22 @@
         },
         {
           "type": "link",
-          "href": "/docs/mainnet/api/rest/data-node/data",
+          "href": "/docs/v0.47/api/rest/data-node/data",
           "label": "Data node"
         },
         {
           "type": "link",
-          "href": "/docs/mainnet/api/rest/data-node/proxy",
+          "href": "/docs/v0.47/api/rest/data-node/proxy",
           "label": "Data node proxy"
         },
         {
           "type": "link",
-          "href": "/docs/mainnet/api/rest/core/core",
+          "href": "/docs/v0.47/api/rest/core/core",
           "label": "Core"
         },
         {
           "type": "link",
-          "href": "/docs/mainnet/api/rest/core/state",
+          "href": "/docs/v0.47/api/rest/core/state",
           "label": "Core state"
         }
       ]

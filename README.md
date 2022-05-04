@@ -71,3 +71,38 @@ yarn run serve
 - GraphQL docs are generated in to `/docs/graphql/`
 - docusaurus-protobuffet-plugin is used to generate docs, but unlike the defaults setup generates them into the `/docs/` so as to avoid documenting them separately
 - New versions of REST docs are configured in `docusaurus.config.js`, as redocusaurus does not generate pages.
+
+# Versioning
+This site uses [Docusaurus' built in support for versioning](https://docusaurus.io/docs/versioning). This is configured so that:
+
+* */docs/mainnet/* represents the last deployed version on [mainnet](https://blog.vega.xyz/what-to-expect-from-restricted-mainnet-616086d9fdaf)
+* */docs/testnet/* represents the most recent version on [Fairground testnet](https://fairground.wtf)
+
+At present, Testnet typically contains breaking changes, and so switching the
+
+## Version tags
+In these pre-v1-in-semver times, where version numbers are in the form v(`major.minor.patch`) the versions move when a new *minor* release is deployed to a network. Tagging a version is done [with Docusaurus' `docs:version` command](https://docusaurus.io/docs/versioning#tagging-a-new-version), for example:
+
+```
+yarn run docusaurus docs:version v0.51.0
+```
+
+This would take a copy of the current docs folder, and make a new folder in `versioned_docs` called `v0.50.2` with the same content. This mostly works for us, but there are now some manual steps:
+
+### Post tagging: moving labels
+Then in [docusaurus.config.js](https://github.com/vegaprotocol/documentation/blob/main/docusaurus.config.js#L196-L210), the `docs` configuration needs to be updated:
+- `lastVersion` should be set to the version number of `mainnet`
+- The labels and paths should be updated so that the [networks mentioned above](#versioning) line up to their deployed version
+- This will leave older versions without a 'testnet' or 'mainnet' mapping - leave the label and path as the version number
+- Only three releases need to be kept. Older ones can be removed.
+
+### Post tagging: fixing 'absolute' links
+Some of the [API docs generators](#plugins-used) put a full link in the sidebar or documentaiton, rather than relative. There is a script in `scripts/version-switch.sh` that contains some example replacement regexes that will help with this
+
+### Post tagging: adding redocusaurus documents
+Ensure that there are three new redocusaurus configurations in `docusaurus.config.js` that have the correct version label in them.
+
+# Notes
+- Only *the sidebar* and *things in the /docs/ folder* are 'versioned'.
+- Some updates will need to touch old versions as well as the current version
+

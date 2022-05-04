@@ -14,11 +14,11 @@ set -e
 
 grpc_doc_owner=vegaprotocol
 grpc_doc_repo=protos
-grpc_doc_branch="v0.50.1"
+grpc_doc_branch="v0.50.2"
 
 graphql_doc_owner=vegaprotocol
 graphql_doc_repo=data-node
-graphql_doc_branch="v0.50.1"
+graphql_doc_branch="v0.50.2"
 
 gh_token="${GITHUB_API_TOKEN:?}"
 
@@ -88,3 +88,4 @@ yarn run build
 yarn run prettier
 
 rm schema.graphql
+touch proto.json

@@ -20,6 +20,9 @@ module.exports = {
         src: "img/logo-y.png",
       },
       items: [
+// The version switcher will be hidden until the current docs.fairground.wtf is sufficiently replaced
+// For now, you can manually replace 'mainnet' with 'testnet' in the URL of a page and probably browse
+// away to your heart's content
 /*        {
           type: "docsVersionDropdown",
           position: "right",
@@ -231,7 +234,7 @@ module.exports = {
           {
             id: "trading-v0.47.0",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/data-node/api/v1/trading_data.swagger.json",
-            route: "/docs/mainnet/api/rest/data-node/data",
+            route: "/docs/v0.47/api/rest/data-node/data",
             layout: {
               searchMetaDatas: {
                 version: "v0.47.6",
@@ -241,7 +244,7 @@ module.exports = {
           {
             id: "core-v0.47.0",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/vega/api/v1/core.swagger.json",
-            route: "/docs/mainnet/api/rest/core/core",
+            route: "/docs/v0.47/api/rest/core/core",
             layout: {
               searchMetaDatas: {
                 version: "v0.47.0",
@@ -251,7 +254,7 @@ module.exports = {
           {
             id: "proxy-v0.47.0",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/data-node/api/v1/trading_proxy.swagger.json",
-            route: "/docs/mainnet/api/rest/data-node/proxy",
+            route: "/docs/v0.47/api/rest/data-node/proxy",
             layout: {
               searchMetaDatas: {
                 version: "v0.47.0",
@@ -261,7 +264,7 @@ module.exports = {
           {
             id: "state-v0.47.0",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/data-node/api/v1/trading_data.swagger.json",
-            route: "/docs/mainnet/api/rest/core/state",
+            route: "/docs/v0.47/api/rest/core/state",
             layout: {
               searchMetaDatas: {
                 version: "v0.47.0",
@@ -269,36 +272,67 @@ module.exports = {
             },
           },
           {
-            id: "trading-v0.50.1",
-            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/data-node/api/v1/trading_data.swagger.json",
-            route: "/docs/testnet/api/rest/data-node/data",
+            id: "trading-v0.50.2",
+            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.2/swagger/data-node/api/v1/trading_data.swagger.json",
+            route: "/docs/mainnet/api/rest/data-node/data",
             layout: {
               searchMetaDatas: {
-                version: "v0.50.1",
+                version: "v0.50.2",
               },
             },
           },
           {
-            id: "core-v0.50.1",
-            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/vega/api/v1/core.swagger.json",
-            route: "/docs/testnet/api/rest/core/core",
+            id: "core-v0.50.2",
+            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.2/swagger/vega/api/v1/core.swagger.json",
+            route: "/docs/mainnet/api/rest/core/core",
             layout: {
               searchMetaDatas: {
-                version: "v0.50.1",
+                version: "v0.50.2",
               },
             },
           },
           {
             id: "state-v0.50.1",
-            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/vega/api/v1/corestate.swagger.json",
-            route: "/docs/testnet/api/rest/core/state",
+            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.2/swagger/vega/api/v1/corestate.swagger.json",
+            route: "/docs/mainnet/api/rest/core/state",
             layout: {
               searchMetaDatas: {
-                version: "v0.50.1",
+                version: "v0.50.2",
               },
             },
           },
-        ],
+          // 0.51.0 is not yet tagged, so currently this is the same as /mainnet/
+          {
+            id: "trading-v0.51.0",
+            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.2/swagger/data-node/api/v1/trading_data.swagger.json",
+            route: "/docs/testnet/api/rest/data-node/data",
+            layout: {
+              searchMetaDatas: {
+                version: "v0.50.2",
+              },
+            },
+          },
+          {
+            id: "core-v0.51.0",
+            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.2/swagger/vega/api/v1/core.swagger.json",
+            route: "/docs/testnet/api/rest/core/core",
+            layout: {
+              searchMetaDatas: {
+                version: "v0.51.0",
+              },
+            },
+          },
+          {
+            id: "state-v0.51.0",
+            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.2/swagger/vega/api/v1/corestate.swagger.json",
+            route: "/docs/testnet/api/rest/core/state",
+            layout: {
+              searchMetaDatas: {
+                version: "v0.51.0",
+              },
+            },
+          },
+         ],
         // end-rest-versions
       },
     ],
