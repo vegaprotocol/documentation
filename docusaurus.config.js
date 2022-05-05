@@ -6,7 +6,7 @@ module.exports = {
     "A protocol for creating and trading derivatives on a fully decentralised network",
   url: "https://docs.vega.xyz/",
   baseUrl: "/",
-  trailingSlashes: false,
+  trailingSlash: false,
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
