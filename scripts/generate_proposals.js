@@ -8,7 +8,7 @@ const { newFreeform } = require('./libGenerateProposals/newFreeform')
 const { newAsset } = require('./libGenerateProposals/newAsset')
 const { updateNetworkParameter } = require('./libGenerateProposals/updateNetworkParameter');
 const { writeFileSync } = require('fs');
-
+const prettyJs = require('pretty-js');
 if (!process.env.VEGA_VERSION) {
   console.error('Please set an environment variable VEGA_VERSION (e.g. VEGA_VERSION=v0.50.1')
   process.exit(1)
@@ -50,16 +50,14 @@ function newProposal(p, skeleton, type) {
   assert.ok(skeleton.properties.closingTimestamp);
   assert.ok(skeleton.properties.enactmentTimestamp);
 
-  const proposal = {
-    terms: {
-      closingTimestamp: daysInTheFuture(19),
-    }
-  }
+  const proposal = p
+  proposal.terms.closingTimestamp = daysInTheFuture(19)
 
   // Freeform proposals don't get enacted, so they can't have this
   if (type !== 'newFreeform'){
-    proposal.enactmentTimestamp = daysInTheFuture(20)
-    proposal[inspect.custom]= () => {
+    proposal.terms.enactmentTimestamp = daysInTheFuture(20)
+  }
+/*    proposal[inspect.custom]= () => {
    const splitClosingTitle = skeleton.properties.closingTimestamp.title.split('\n')
    const splitEnactmentTitle = skeleton.properties.enactmentTimestamp.title.split('\n')
    return `{
@@ -73,7 +71,7 @@ function newProposal(p, skeleton, type) {
  }`
  }
   } else {
-/*    proposal[inspect.custom]= () => {
+    proposal[inspect.custom]= () => {
     const splitTitle = skeleton.properties.closingTimestamp.title.split('\n')
     return `{
     // ${splitTitle[0]}
@@ -81,20 +79,21 @@ function newProposal(p, skeleton, type) {
     closingTimestamp: ${proposal.closingTimestamp},
     ${type}:  ${inspect(proposal[type], { depth: 20 })}
 }`
- } */
-  }
+ } 
+  }*/
 
-  proposal.terms = { ...proposal.terms, ...p.terms }
-  proposal.rationale = p.rationale
+  const formatOptions = {
+    indent: "  "
+  }
 
   const annotated = `
   ${'```javascript'}
-  ${annotator(proposal)}
+${prettyJs(annotator(proposal), formatOptions)}
   ${'```'}`
 
   const json = `
   ${'```json'}
-  ${JSON.stringify(proposal, null, 2)}
+${prettyJs(JSON.stringify(proposal, null, 2), formatOptions)}
   ${'```'}
   `
   const cmd = `
@@ -124,10 +123,8 @@ function parse(api) {
   const partials = Object.keys(proposalTypes).map(type => {
       if ( excludeUnimplementedTypes.indexOf(type) === -1) {
         if (ProposalGenerator.has(type)) {
-            if (type === 'newFreeform') {
-              const changes = ProposalGenerator.get(type)(proposalTypes[type])
-              output(newProposal(changes, api.definitions.vegaProposalTerms, type), type)
-            }
+            const changes = ProposalGenerator.get(type)(proposalTypes[type])
+            output(newProposal(changes, api.definitions.vegaProposalTerms, type), type)
         } else {
             assert.fail('Unknown proposal type: ' + type)
         }

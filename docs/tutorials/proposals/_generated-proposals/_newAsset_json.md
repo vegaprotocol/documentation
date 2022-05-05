@@ -1,20 +1,24 @@
 
   ```json
-  {
-  "closingTimestamp": 1653235733190,
-  "enactmentTimestamp": 1653322133190,
-  "newAsset": {
-    "name": "Ethereum",
-    "symbol": "ETH",
-    "totalSupply": "19010568",
-    "decimals": "5",
-    "quantum": "1",
-    "erc20": {
-      "contractAddress": "0xcb84d72e61e383767c4dfeb2d8ff7f4fb89abc6e"
-    }
+{
+  rationale: {
+    description: "Add Ethereum (ETH)"
   },
-  "rationale": {
-    "description": "Add Ethereum (ETH)"
+  terms: {
+    newAsset: {
+      changes: {
+        name: "Ethereum",
+        symbol: "ETH",
+        totalSupply: "19010568",
+        decimals: "5",
+        quantum: "1",
+        erc20: {
+          contractAddress: "0xcb84d72e61e383767c4dfeb2d8ff7f4fb89abc6e"
+        }
+      }
+    },
+    closingTimestamp: 1653389760506,
+    enactmentTimestamp: 1653476160506
   }
 }
   ```

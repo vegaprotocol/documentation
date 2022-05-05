@@ -27,11 +27,11 @@ function generateOracleSpec(skeleton) {
         {
           key: {
             name: "prices.AAPL.value",
-            type: "TYPE_INTEGER"
+            type: "TYPE_BOOLEAN"
           },
           conditions: [
             {
-              operator: "OPERATOR_EQUALS",
+              operator: "OPERATOR_GREATER_THAN",
               value: "1"
             }
           ]
@@ -232,15 +232,16 @@ function generateNewMarketCommitment(skeleton) {
 
   commitment[inspect.custom]= () => {
    return `{
-  // ${skeleton.properties.commitmentAmount.title} (${skeleton.properties.commitmentAmount.type}) 
-  commitmentAmount: "${commitment.commitmentAmount}",
-  // ${skeleton.properties.fee.title} (${skeleton.properties.fee.format} as ${skeleton.properties.fee.type}) 
-  fee: ${commitment.fee},
-  // ${skeleton.properties.buys.title}
-  buys: ${inspect(commitment.buys, { depth: 20 })},
-  // ${skeleton.properties.buys.title}
-  sells: ${inspect(commitment.sells, { depth: 20 })},
-}}`
+          // ${skeleton.properties.commitmentAmount.title} (${skeleton.properties.commitmentAmount.type}) 
+          commitmentAmount: "${commitment.commitmentAmount}",
+          // ${skeleton.properties.fee.title} (${skeleton.properties.fee.format} as ${skeleton.properties.fee.type}) 
+          fee: ${commitment.fee},
+          // ${skeleton.properties.buys.title}
+          buys: ${inspect(commitment.buys, { depth: 20 })},
+          // ${skeleton.properties.buys.title}
+          sells: ${inspect(commitment.sells, { depth: 20 })},
+        }
+      }`
  }
 
   return commitment;
@@ -383,13 +384,6 @@ function generateRiskModel(skeleton, riskModelType) {
 }
 
 function newMarket(skeleton) {
-  const result = {
-    rationale: {
-      description: `Add Lorem Ipsum market`
-    }
-  };
-  const docs = {};
-
   assert.ok(skeleton.properties.changes);
   assert.ok(skeleton.properties.changes.properties.decimalPlaces);
   assert.ok(skeleton.properties.changes.properties.positionDecimalPlaces);
@@ -400,45 +394,55 @@ function newMarket(skeleton) {
   assert.ok(skeleton.properties.changes.properties.logNormal);
   assert.ok(skeleton.properties.liquidityCommitment);
 
-  result.changes = {
-    decimalPlaces: "5",
-    positionDecimalPlaces: "5",
-    instrument: generateInstrument(skeleton.properties.changes.properties.instrument),
-    metadata: generateMetadata(skeleton.properties.changes.properties.metadata),
-    priceMonitoringParameters: generatePriceMonitoringParameters(skeleton.properties.changes.properties.priceMonitoringParameters),
-    liquidityMonitoringParameters: generateLiquidityMonitoringParameters(skeleton.properties.changes.properties.liquidityMonitoringParameters),
-    logNormal: generateRiskModel(skeleton.properties.changes.properties.logNormal, 'logNormal')
+  const result = {
+    rationale: {
+      description: `Add Lorem Ipsum market`
+    },
+    terms: {
+      newMarket: {
+        changes: {
+          decimalPlaces: "5",
+          positionDecimalPlaces: "5",
+          instrument: generateInstrument(skeleton.properties.changes.properties.instrument),
+          metadata: generateMetadata(skeleton.properties.changes.properties.metadata),
+          priceMonitoringParameters: generatePriceMonitoringParameters(skeleton.properties.changes.properties.priceMonitoringParameters),
+          liquidityMonitoringParameters: generateLiquidityMonitoringParameters(skeleton.properties.changes.properties.liquidityMonitoringParameters),
+          logNormal: generateRiskModel(skeleton.properties.changes.properties.logNormal, 'logNormal')
+        },
+        liquidityCommitment: generateNewMarketCommitment(skeleton.properties.liquidityCommitment)
+      }
+    }
   };
 
   /*------- Liquidity Commitment required */
-  result.liquidityCommitment = generateNewMarketCommitment(skeleton.properties.liquidityCommitment)
 
-  result[inspect.custom]= () => {
+  result.terms[inspect.custom]= () => {
    return `{
-      rationale: {
-        description: "${result.rationale.description}"
-      },
-      changes: {
-        // ${skeleton.properties.changes.properties.decimalPlaces.title} (${skeleton.properties.changes.properties.decimalPlaces.format} as ${skeleton.properties.changes.properties.decimalPlaces.type}) 
-        decimalPlaces: "${result.changes.decimalPlaces}",
-        // ${skeleton.properties.changes.properties.positionDecimalPlaces.title} (${skeleton.properties.changes.properties.positionDecimalPlaces.format} as ${skeleton.properties.changes.properties.positionDecimalPlaces.type}) 
-        positionDecimalPlaces: "${result.changes.positionDecimalPlaces}",
-        // ${skeleton.properties.changes.properties.instrument.title}
-        instrument: ${inspect(result.changes.instrument, { depth: 20 })},
-        // ${skeleton.properties.changes.properties.metadata.title}
-        metadata: ${JSON.stringify(result.changes.metadata)},
-        // ${skeleton.properties.changes.properties.priceMonitoringParameters.title}
-        priceMonitoringParameters: ${inspect(result.changes.priceMonitoringParameters, { depth: 20 })},
-        // ${skeleton.properties.changes.properties.liquidityMonitoringParameters.title}
-        liquidityMonitoringParameters: ${inspect(result.changes.liquidityMonitoringParameters, { depth: 20 })},
-        // ${skeleton.properties.changes.properties.logNormal.title}
-        logNormal: ${inspect(result.changes.logNormal, { depth: 20 })},
-       }
+      newMarket: {
+        changes: {
+          // ${skeleton.properties.changes.properties.decimalPlaces.title} (${skeleton.properties.changes.properties.decimalPlaces.format} as ${skeleton.properties.changes.properties.decimalPlaces.type}) 
+          decimalPlaces: "${result.terms.newMarket.changes.decimalPlaces}",
+          // ${skeleton.properties.changes.properties.positionDecimalPlaces.title} (${skeleton.properties.changes.properties.positionDecimalPlaces.format} as ${skeleton.properties.changes.properties.positionDecimalPlaces.type}) 
+          positionDecimalPlaces: "${result.terms.newMarket.changes.positionDecimalPlaces}",
+          // ${skeleton.properties.changes.properties.instrument.title}
+          instrument: ${inspect(result.terms.newMarket.changes.instrument, { depth: 20 })},
+          // ${skeleton.properties.changes.properties.metadata.title}
+          metadata: ${JSON.stringify(result.terms.newMarket.changes.metadata)},
+          // ${skeleton.properties.changes.properties.priceMonitoringParameters.title}
+          priceMonitoringParameters: ${inspect(result.terms.newMarket.changes.priceMonitoringParameters, { depth: 20 })},
+          // ${skeleton.properties.changes.properties.liquidityMonitoringParameters.title}
+          liquidityMonitoringParameters: ${inspect(result.terms.newMarket.changes.liquidityMonitoringParameters, { depth: 20 })},
+          // ${skeleton.properties.changes.properties.logNormal.title}
+          logNormal: ${inspect(result.terms.newMarket.changes.logNormal, { depth: 20 })},
+        },
+        // ${skeleton.properties.liquidityCommitment.title}
+        liquidityCommitment: ${inspect(result.terms.newMarket.liquidityCommitment, { depth: 20 })},
+      }
     }`
   }
 
   
-  return { result, docs }
+  return result
 }
 
 module.exports = { newMarket }

@@ -22,19 +22,17 @@ function newFreeform(skeleton) {
   };
 
 
-/* result[inspect.custom]= () => {
+  result.rationale[inspect.custom]= () => {
       return `{
-        rationale: {
-            // ${skeleton.properties.changes.properties.url.title} (${skeleton.properties.changes.properties.url.type}) 
-            url: "${result.rationale.url}",
-            // ${skeleton.properties.changes.properties.description.title} (${skeleton.properties.changes.properties.description.type})
-            description: "${result.rationale.description}",
-            // ${skeleton.properties.changes.properties.hash.title} (${skeleton.properties.changes.properties.hash.type})
-            hash: "${result.rationale.hash}"
-        }
-      }
-    }`
- } */
+    // ${skeleton.properties.changes.properties.url.title} (${skeleton.properties.changes.properties.url.type}) 
+    url: "${result.rationale.url}",
+    // ${skeleton.properties.changes.properties.description.title} (${skeleton.properties.changes.properties.description.type})
+    description: "${result.rationale.description}",
+    // ${skeleton.properties.changes.properties.hash.title} (${skeleton.properties.changes.properties.hash.type})
+    hash: "${result.rationale.hash}"
+  }
+}`
+ } 
 
   return result;
 }
