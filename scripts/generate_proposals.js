@@ -21,14 +21,15 @@ const url = `https://raw.githubusercontent.com/vegaprotocol/protos/${version}/sw
 
 // Input: Fields to remove from a specific place in the Swagger file
 const notProposalTypes = ['closingTimestamp', 'enactmentTimestamp', 'validationTimestamp', 'title', 'type']
-const excludeUnimplementedTypes = ['updateMarket'];
+const excludeUnimplementedTypes = ['updateMarket', 'newAsset'];
 
 // Output: Used to put a nice title on the output
 const nameByType = {
   newFreeform: 'New Freeform Proposal',
   updateNetworkParameter: 'Update a network parameter',
   newAsset: 'New asset (ERC20)',
-  newMarket: 'New market'
+  newMarket: 'New market',
+  updateMarket: 'Update market'
 }
 
 function annotator(proposal) {
