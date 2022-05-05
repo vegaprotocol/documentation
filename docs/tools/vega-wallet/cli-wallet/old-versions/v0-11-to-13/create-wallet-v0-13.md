@@ -1,23 +1,29 @@
 ---
 sidebar_position: 1
-title: Create a wallet
+title: Vega Wallet versions 0.11-0.13
 hide_title: false
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-To download Vega Wallet and create your wallet, follow the step-by-step instructions below. This software a work-in-progress and is frequently updated. These instructions cover version 0.14, the latest release.
+To download Vega Wallet and create your wallet using versions 0.13, 0.12, or 0.11, follow the step-by-step instructions below. You can also refer to [documentation for 0.10.0 or earlier](/docs/tools/vega-wallet/cli-wallet/old-versions/v0-10-0/create-wallet-v0-10) if you need it.
+
+This software a work-in-progress and is frequently updated. 
 
 Note: If you are looking for instructions for connecting your hardware wallet to MetaMask, see [MetaMask's guide](https://metamask.zendesk.com/hc/en-us/articles/360020394612-How-to-connect-a-Trezor-or-Ledger-Hardware-Wallet).
 
 Use the following instructions in command line. Below, you'll see commands in the code blocks for each operating system. Copy those instructions and paste them into your command line interface.
 
+:::caution
+You must to use Vega Wallet version 0.9.2 or newer to connect to Vega Mainnet. We recommend always using the latest released version of Vega Wallet. 
+::: 
+
 :::info 
 In your command line interface, you can view a list of available commands by running `./vegawallet -h` on MacOS and Linux, or `vegawallet -h` on Windows. Help is also available for every command, for example: `vegawallet create -h` will provide information about the `create` command.
 :::
 
-## 1. Install and run Vega Wallet
+## 1. Install and run latest Vega Wallet version (0.12)
 
 ### Download file
 
@@ -67,7 +73,7 @@ You'll need to run the commands from the directory you've saved the wallet file 
 The steps below will guide you through initialising a wallet, and creating new key pairs or importing an existing wallet. 
 
 :::info
-To restore a wallet from your recovery phrase, see the [restore a wallet guide](./guides/restore-wallet).
+To restore a wallet from your recovery phrase, see the [restore a wallet guide](/docs/tools/vega-wallet/cli-wallet/latest/guides/restore-wallet).
 :::
 
 ### Initialise the software
@@ -148,7 +154,7 @@ Import the following network configurations:
 * **Fairground** network: [`fairground.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/fairground/fairground.toml)
 
 :::info
-To update your networks list, see [manage networks](./guides/manage-networks#update-networks) for instructions.
+To update your networks list, see [manage networks](/docs/tools/vega-wallet/cli-wallet/latest/guides/manage-networks#update-networks) for instructions.
 ::: 
 
 #### Import networks from URL
@@ -317,40 +323,6 @@ vegawallet service run --network "NETWORK_NAME" --with-console
 
 ```bash
 ./vegawallet service run --network "NETWORK_NAME" --with-console
-```
-</TabItem>
-</Tabs>
-
-## 5. Approve transactions
-
-You will need to use your wallet to approve any transactions that you create for the Vega network. You might create those transactions through the token dApp or when using the APIs, for example. 
-
-When a transaction is submitted, you will receive a prompt asking if you want to approve the transaction. 
-
-Choose `y` to approve or `n` to reject the transaction.
-
-### Pre-approve transactions
-
-Alternatively, you can automatically approve all transactions that are created, by skipping the review, while the wallet is running with the auto-consent flag: 
-
-<Tabs groupId="operating-systems">
-<TabItem value="windows" label="Windows">
-
-```bash
-vegawallet service run --network "NETWORK_NAME" --automatic-consent
-```
-</TabItem>
-<TabItem value="mac" label="MacOS">
-
-```bash
-./vegawallet service run --network "NETWORK_NAME" --automatic-consent
-```
-
-</TabItem>
-<TabItem value="linux" label="Linux">
-
-```bash
-./vegawallet service run --network "NETWORK_NAME" --automatic-consent
 ```
 </TabItem>
 </Tabs>
