@@ -90,7 +90,7 @@ function newProposal(p, skeleton, type) {
 
 
   const formatOptions = {
-    indent: "  "
+    indent: " "
   }
 
   const annotated = `
@@ -100,7 +100,7 @@ ${prettyJs(annotator(proposal), formatOptions)}
 
   const json = `
   ${'```json'}
-${prettyJs(JSON.stringify(proposal, null, 2), formatOptions)}
+${JSON.stringify(proposal, null, '  ')}
   ${'```'}
   `
   const cmd = `
