@@ -1,5 +1,5 @@
 ---
-title: Provide liquidity
+title: Providing liquidity
 hide_title: false
 ---
 
@@ -18,11 +18,7 @@ The Vega protocol allows liquidity to be priced individually for each market, so
 Supplying liquidity to a market keeps open orders resting on the order book, to keep a relatively balanced set of orders available. Those orders are not defined by actual numerical prices or sizes, but by liquidity shapes, which are dependent on a reference price level the provider chooses and the liquidity commitment amount. The order price follows the reference price level as the market moves.
 
 ### Liquidity fees
-Liquidity fees are defined based on the commitments and proposed fee levels chosen by the providers, not by the protocol. 
-
-Participants who provide liquidity earn from liquidity fees, which are paid by the *price takers* on each trade.
-
-<!-- **[Fees]**: Learn more about the fee structure. -->
+Participants who provide liquidity earn from liquidity fees, which are paid by the *price takers* on each trade. Liquidity fees are defined based on the commitments and proposed fee levels chosen by the providers, not by the protocol. 
 
 To qualify to receive a portion of the liquidity fees, the liquidity provider must commit an amount of the market's settlement asset. 
 
@@ -266,7 +262,7 @@ Rewards are calculated automatically from the market's fees, which are paid by p
 
 Note: During an auction uncrossing, liquidity providers are not required to supply any orders that offer liquidity or would cause trades. However, they must maintain their liquidity commitment, and their liquidity orders are placed back on the order book when normal trading resumes.
 
-### Equity-like share for a liquidity provider
+#### Equity-like share for a liquidity provider
 The concept of the equity-like share of a market's trading for a liquidity provider broadly ensures that liquidity providers who get into a market early benefit from helping to grow the market. Those liquidity providers who commit early in a market's existence will receive a larger proportion of the fees than their actual commitment would imply, because they were a larger proportion of the commitment earlier on, once other parties are also committing liquidity to the market.
 
 #### Penalties for not fulfilling liquidity commitment
