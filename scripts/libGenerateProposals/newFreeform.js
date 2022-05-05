@@ -10,26 +10,33 @@ function newFreeform(skeleton) {
   assert.equal(skeleton.properties.changes.properties.hash.type, 'string', 'New Freeform Proposal: hash type changed');
 
   const result = {
-    terms: {
-      newFreeform: {
-      }
-    },
-    rationale: {
+   rationale: {
       url: 'https://dweb.link/ipfs/bafybeigwwctpv37xdcwacqxvekr6e4kaemqsrv34em6glkbiceo3fcy4si',
       hash: 'bafybeigwwctpv37xdcwacqxvekr6e4kaemqsrv34em6glkbiceo3fcy4si',
       description: `Lorem ipsum dolor sit amet`,
     },
-  };
+    terms: {
+      newFreeform: {
+      }
+    }
+   };
 
 
+  result.terms.newFreeform[inspect.custom]= () => {
+    return `{
+      // This object remains empty, but is required 
+    }`
+  }
   result.rationale[inspect.custom]= () => {
       return `{
     // ${skeleton.properties.changes.properties.url.title} (${skeleton.properties.changes.properties.url.type}) 
     url: "${result.rationale.url}",
-    // ${skeleton.properties.changes.properties.description.title} (${skeleton.properties.changes.properties.description.type})
-    description: "${result.rationale.description}",
+
     // ${skeleton.properties.changes.properties.hash.title} (${skeleton.properties.changes.properties.hash.type})
-    hash: "${result.rationale.hash}"
+    hash: "${result.rationale.hash}",
+    
+    // ${skeleton.properties.changes.properties.description.title} (${skeleton.properties.changes.properties.description.type})
+    description: "${result.rationale.description}"
   }
 }`
  } 

@@ -10,8 +10,8 @@
         decimalPlaces: "5",
         positionDecimalPlaces: "5",
         instrument: {
-          name: "Apples Yearly (2022)",
-          code: "APPLES.22",
+          name: "Oranges Daily",
+          code: "ORANGES.24h",
           future: {
             settlementAsset: "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
             quoteName: "tEuro",
@@ -61,6 +61,8 @@
           }
         },
         metadata: [
+          "sector:energy",
+          "sector:health",
           "sector:tech",
           "source:docs.vega.xyz"
         ],
@@ -83,7 +85,7 @@
         },
         logNormal: {
           tau: 0.0001140771161,
-          riskAversionParameter: 0.001,
+          riskAversionParameter: 0.01,
           params: {
             mu: 0,
             r: 0.016,
@@ -92,46 +94,46 @@
         }
       },
       liquidityCommitment: {
-        commitmentAmount: "9500065",
-        fee: "0.44",
+        commitmentAmount: "7914028",
+        fee: "0.41",
         buys: [
           {
-            offset: "2",
-            proportion: 1,
+            offset: "40",
+            proportion: 9,
             reference: "PEGGED_REFERENCE_BEST_BID"
           },
           {
-            offset: "64",
+            offset: "73",
+            proportion: 10,
+            reference: "PEGGED_REFERENCE_BEST_BID"
+          },
+          {
+            offset: "4",
             proportion: 4,
-            reference: "PEGGED_REFERENCE_BEST_BID"
-          },
-          {
-            offset: "38",
-            proportion: 2,
             reference: "PEGGED_REFERENCE_BEST_BID"
           }
         ],
         sells: [
           {
-            offset: "46",
-            proportion: 3,
+            offset: "50",
+            proportion: 8,
             reference: "PEGGED_REFERENCE_BEST_ASK"
           },
           {
-            offset: "34",
-            proportion: 3,
+            offset: "94",
+            proportion: 7,
             reference: "PEGGED_REFERENCE_BEST_ASK"
           },
           {
-            offset: "52",
-            proportion: 3,
+            offset: "89",
+            proportion: 6,
             reference: "PEGGED_REFERENCE_BEST_ASK"
           }
         ]
       }
     },
-    closingTimestamp: 1653389760498,
-    enactmentTimestamp: 1653476160499
+    closingTimestamp: 1653392022025,
+    enactmentTimestamp: 1653478422026
   }
 }
   ```

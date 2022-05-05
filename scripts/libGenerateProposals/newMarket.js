@@ -47,7 +47,8 @@ function generateOracleSpec(skeleton) {
             // ${splitPubkeys[0]}
             // ${splitPubkeys[1]}
             // ${splitPubkeys[2]} (${skeleton.properties.pubKeys.type} of ${skeleton.properties.pubKeys.items.type}s)
-            pubKeys: ${JSON.stringify(spec.pubKeys)} 
+            pubKeys: ${JSON.stringify(spec.pubKeys)},
+
             // ${splitFilters[0]}
             // ${splitFilters[1]}
             filters: [
@@ -416,28 +417,26 @@ function newMarket(skeleton) {
 
   /*------- Liquidity Commitment required */
 
-  result.terms[inspect.custom]= () => {
+  result.terms.newMarket[inspect.custom]= () => {
    return `{
-      newMarket: {
         changes: {
-          // ${skeleton.properties.changes.properties.decimalPlaces.title} (${skeleton.properties.changes.properties.decimalPlaces.format} as ${skeleton.properties.changes.properties.decimalPlaces.type}) 
+          // ${skeleton.properties.changes.properties.decimalPlaces.title} (${skeleton.properties.changes.properties.decimalPlaces.format} as ${skeleton.properties.changes.properties.decimalPlaces.type})
           decimalPlaces: "${result.terms.newMarket.changes.decimalPlaces}",
-          // ${skeleton.properties.changes.properties.positionDecimalPlaces.title} (${skeleton.properties.changes.properties.positionDecimalPlaces.format} as ${skeleton.properties.changes.properties.positionDecimalPlaces.type}) 
+          // ${skeleton.properties.changes.properties.positionDecimalPlaces.title} (${skeleton.properties.changes.properties.positionDecimalPlaces.format} as ${skeleton.properties.changes.properties.positionDecimalPlaces.type})
           positionDecimalPlaces: "${result.terms.newMarket.changes.positionDecimalPlaces}",
           // ${skeleton.properties.changes.properties.instrument.title}
-          instrument: ${inspect(result.terms.newMarket.changes.instrument, { depth: 20 })},
+          instrument: ${inspect(result.terms.newMarket.changes.instrument, { depth: 19 })},
           // ${skeleton.properties.changes.properties.metadata.title}
           metadata: ${JSON.stringify(result.terms.newMarket.changes.metadata)},
           // ${skeleton.properties.changes.properties.priceMonitoringParameters.title}
-          priceMonitoringParameters: ${inspect(result.terms.newMarket.changes.priceMonitoringParameters, { depth: 20 })},
+          priceMonitoringParameters: ${inspect(result.terms.newMarket.changes.priceMonitoringParameters, { depth: 19 })},
           // ${skeleton.properties.changes.properties.liquidityMonitoringParameters.title}
-          liquidityMonitoringParameters: ${inspect(result.terms.newMarket.changes.liquidityMonitoringParameters, { depth: 20 })},
+          liquidityMonitoringParameters: ${inspect(result.terms.newMarket.changes.liquidityMonitoringParameters, { depth: 19 })},
           // ${skeleton.properties.changes.properties.logNormal.title}
-          logNormal: ${inspect(result.terms.newMarket.changes.logNormal, { depth: 20 })},
+          logNormal: ${inspect(result.terms.newMarket.changes.logNormal, { depth: 19 })},
         },
         // ${skeleton.properties.liquidityCommitment.title}
-        liquidityCommitment: ${inspect(result.terms.newMarket.liquidityCommitment, { depth: 20 })},
-      }
+        liquidityCommitment: ${inspect(result.terms.newMarket.liquidityCommitment, { depth: 19 })},
     }`
   }
 

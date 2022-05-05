@@ -7,19 +7,19 @@
     terms: {
       newMarket: {
         changes: {
-          // Decimal places used for the new market (uint64 as string) 
+          // Decimal places used for the new market (uint64 as string)
           decimalPlaces: "5",
 
-          // Decimal places for order sizes (uint64 as string) 
+          // Decimal places for order sizes (uint64 as string)
           positionDecimalPlaces: "5",
 
           // New market instrument configuration
           instrument: {
             // Instrument name
-            name: "Apples Yearly (2022)",
+            name: "Oranges Daily",
 
             // Instrument code
-            code: "APPLES.22",
+            code: "ORANGES.24h",
 
             // Future
             future: {
@@ -39,8 +39,9 @@
                 // public keys. (array of strings)
                 pubKeys: [
                   "0xab5c950b071684321d59360ccb924d9c5010b31abd6b4148206a57e73594abc9"
-                ]  // filters describes which oracle data are considered of interest or not for
+                ],
 
+                // filters describes which oracle data are considered of interest or not for
                 // the product (or the risk model).
                 filters: [
                   {
@@ -75,8 +76,9 @@
                 // public keys. (array of strings)
                 pubKeys: [
                   "0xab5c950b071684321d59360ccb924d9c5010b31abd6b4148206a57e73594abc9"
-                ]  // filters describes which oracle data are considered of interest or not for
+                ],
 
+                // filters describes which oracle data are considered of interest or not for
                 // the product (or the risk model).
                 filters: [
                   {
@@ -119,6 +121,8 @@
 
             // Optional new market meta data, tags
             metadata: [
+              "sector:energy",
+              "sector:health",
               "sector:tech",
               "source:docs.vega.xyz"
             ],
@@ -167,7 +171,7 @@
             tau: 0.0001140771161,
 
             // Risk Aversion Parameter (double as number) 
-            riskAversionParameter: "0.001",
+            riskAversionParameter: "0.01",
 
             // Risk model parameters for log normal
             params: {
@@ -186,31 +190,31 @@
         // The commitment from the party creating the NewMarket proposal
         liquidityCommitment: {
           // Specified as a unitless number that represents the amount of settlement asset of the market (string) 
-          commitmentAmount: "9500065",
+          commitmentAmount: "7914028",
 
           // Nominated liquidity fee factor, which is an input to the calculation of taker fees on the market, as per seeting fees and rewarding liquidity providers (undefined as string) 
-          fee: 0.44,
+          fee: 0.41,
 
           // A set of liquidity buy orders to meet the liquidity provision obligation
           buys: [
             {
               // The offset/amount of units away for the order (string) 
-              offset: "2",
+              offset: "40",
 
               // The relative proportion of the commitment to be allocated at a price level (int64 as integer) 
-              proportion: 1,
+              proportion: 9,
 
               // The pegged reference point for the order (string) 
               reference: "PEGGED_REFERENCE_BEST_BID",
             },
             {
-              offset: "64",
-              proportion: 4,
+              offset: "73",
+              proportion: 10,
               reference: "PEGGED_REFERENCE_BEST_BID",
             },
             {
-              offset: "38",
-              proportion: 2,
+              offset: "4",
+              proportion: 4,
               reference: "PEGGED_REFERENCE_BEST_BID",
             }
           ],
@@ -219,28 +223,36 @@
           sells: [
             {
               // The offset/amount of units away for the order (string) 
-              offset: "46",
+              offset: "50",
 
               // The relative proportion of the commitment to be allocated at a price level (int64 as integer) 
-              proportion: 3,
+              proportion: 8,
 
               // The pegged reference point for the order (string) 
               reference: "PEGGED_REFERENCE_BEST_ASK",
             },
             {
-              offset: "34",
-              proportion: 3,
+              offset: "94",
+              proportion: 7,
               reference: "PEGGED_REFERENCE_BEST_ASK",
             },
             {
-              offset: "52",
-              proportion: 3,
+              offset: "89",
+              proportion: 6,
               reference: "PEGGED_REFERENCE_BEST_ASK",
             }
           ],
         }
       },
-    }
+    },
+
+    // Timestamp (Unix time in seconds) when voting closes for this proposal,
+    // constrained by `minClose` and `maxClose` network parameters (int64 as string) 
+    closingTimestamp: 1653392022025,
+
+    // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
+    // constrained by `minEnact` and `maxEnact` network parameters (int64 as string) 
+    enactmentTimestamp: 1653478422026,
   }
 }
   ```

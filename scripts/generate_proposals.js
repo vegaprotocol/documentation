@@ -37,6 +37,34 @@ function annotator(proposal) {
    return res;
 }
 
+function addTermsAnnotator(skeleton, terms, type) {
+  const splitClosingTitle = skeleton.properties.closingTimestamp.title.split('\n')
+  if (type === 'newFreeform') {
+    return () => {
+      return `{
+      ${type}:  ${inspect(terms[type], { depth: 20 })},
+      // ${splitClosingTitle[0]}
+      // ${splitClosingTitle[1]} (${skeleton.properties.closingTimestamp.format} as ${skeleton.properties.closingTimestamp.type}}) 
+      closingTimestamp: ${terms.closingTimestamp},
+  }`
+    }
+  }
+
+  return () => {
+    const splitEnactmentTitle = skeleton.properties.enactmentTimestamp.title.split('\n')
+    return `{
+     ${type}:  ${inspect(terms[type], { depth: 20 })},
+      // ${splitClosingTitle[0]}
+      // ${splitClosingTitle[1]} (${skeleton.properties.closingTimestamp.format} as ${skeleton.properties.closingTimestamp.type}) 
+      closingTimestamp: ${terms.closingTimestamp},
+      // ${splitEnactmentTitle[0]}
+      // ${splitEnactmentTitle[1]} (${skeleton.properties.enactmentTimestamp.format} as ${skeleton.properties.enactmentTimestamp.type}) 
+      enactmentTimestamp: ${terms.enactmentTimestamp},
+  }`
+
+  }
+}
+
 /**
  * Convenience function to return now + a certain number of days
  * @param {number} daysToAdd 
@@ -57,30 +85,8 @@ function newProposal(p, skeleton, type) {
   if (type !== 'newFreeform'){
     proposal.terms.enactmentTimestamp = daysInTheFuture(20)
   }
-/*    proposal[inspect.custom]= () => {
-   const splitClosingTitle = skeleton.properties.closingTimestamp.title.split('\n')
-   const splitEnactmentTitle = skeleton.properties.enactmentTimestamp.title.split('\n')
-   return `{
-    // ${splitClosingTitle[0]}
-    // ${splitClosingTitle[1]} (${skeleton.properties.closingTimestamp.format} as ${skeleton.properties.closingTimestamp.type}) 
-    closingTimestamp: ${proposal.closingTimestamp},
-    // ${splitEnactmentTitle[0]}
-    // ${splitEnactmentTitle[1]} (${skeleton.properties.enactmentTimestamp.format} as ${skeleton.properties.enactmentTimestamp.type}) 
-    enactmentTimestamp: ${proposal.enactmentTimestamp},
-    ${type}:  ${inspect(proposal[type], { depth: 20 })}
- }`
- }
-  } else {
-    proposal[inspect.custom]= () => {
-    const splitTitle = skeleton.properties.closingTimestamp.title.split('\n')
-    return `{
-    // ${splitTitle[0]}
-    // ${splitTitle[1]} (${skeleton.properties.closingTimestamp.format} as ${skeleton.properties.closingTimestamp.type}}) 
-    closingTimestamp: ${proposal.closingTimestamp},
-    ${type}:  ${inspect(proposal[type], { depth: 20 })}
-}`
- } 
-  }*/
+  proposal.terms[inspect.custom] = addTermsAnnotator(skeleton, proposal.terms, type)
+
 
   const formatOptions = {
     indent: "  "
