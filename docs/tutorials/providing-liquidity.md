@@ -256,21 +256,27 @@ If you run out of margin to maintain your position, Vega will use some of your b
 <p>
 
 #### Liquidity fees
-Liquidity providers receive a cut of fees, paid by price takers.
+Liquidity providers receive a cut of the fees paid by price takers. 
    
-The amount received is calculated automatically from the market's fees and distributed to the market's liquidity providers according to their relative commitments.
+The amount each liquidity provider receives depends on:
+* Fee factor, which specifies what percentage of a trade's value is collected from the price taker for every trade and combined in a pool 
+* Their equity-like share of the market, which is based on when they committed liquidity to the market
+   
+The fee factor determines how much money goes into the pool, and a provider's equity-like share determines what percentage of that pool they receive. 
+   
+#### Liquidity fee factor  
+As part of the liquidity commitment transaction, a liquidity provider submits their desired liquidity fee factor, which is a percentage fee on each trade. 
+   
+The fee factors are used to calculate the actual fee each participant will pay on a trade in that market. Once the fee factor for the market is set, it's used in the calculations for all those with a liquidity commitment, regardless of whether the fee factor they originally submitted was higher or lower.
+d
+The fee factor can change as the market's target stake changes, or as liquidity providers change their commitment or stop providing liquidity altogether. (See the 'Liquidity monitoring and target stake' section for more info.)
 
-As part of the liquidity commitment transaction, a liquidity provider submits their desired liquidity fee factor. The fee factors submitted by all those who submitted liquidity provision orders are used to calculate the actual fee each participant will pay on a trade in that market, and thus how much each liquidity provider receives. Once the fee factor for the market is set, all those with a liquidity commitment earn that fee, regardless of whether the fee factor submitted is higher or lower.
+#### How the fee factor is derived
+The liquidity orders submitted are sorted into increasing fee order so that the lowest fee percentage bid is at the top, and the highest is at the bottom. 
 
-This fee can change as the market's target stake changes, and / or as liquidity providers change their commitment or stop providing liquidity altogether. (See the 'Liquidity monitoring and target stake' section for more info.)
+The market's 'winning' fee factor depends on the liquidity commitment of the market (target stake) and the amount committed from each bidder. Vega processes the LP orders from top to bottom, adding up the commitment amounts until it reaches a level equal to, or greater than, the target stake. When that point is reached, the fee factor that was provided with the last processed liquidity order is used.
 
-How much a provider receives in fees is also dependent on when they began to commit liquidity on the market, as liquidity providers who commit to a market early benefit from helping to grow the market (also known as the 'equity-like share').
-
-The liquidity orders that LPs submit are sorted into increasing fee order so that the lowest fee percentage bid is at the top, and the highest is at the bottom. 
-
-The fee level chosen for the market is derived from the liquidity commitment of the market (target stake) and the amount of stake committed from each bidder. Vega processes the LP orders from top to bottom by adding up the commitment stake as it goes, until it reaches a level equal to, or greater than, the target stake. When that point is reached, the fee factor that was provided with the last processed liquidity order is used.
-
-Initially, before a market opens for trading, the target stake is zero, as it's not possible to have a position on a market that's not opened yet. Hence by default the market's initial liquidity-fee-factor is the lowest proposed.
+Initially, before a market opens for trading, the target stake is zero, as it's not possible to have a position on a market that's not opened yet. Hence by default the market's initial liquidity fee factor is the lowest proposed.
 
 Once the market opens and its opening auction begins, a clock starts ticking. The protocol calculates the target stake, and the fee is continuously re-evaluated.
 
@@ -288,6 +294,11 @@ In the example below, there are 3 liquidity providers all bidding for their chos
 </ul>
 
 [**Fee level calculations**](https://github.com/vegaprotocol/specs/blob/master/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#example-for-fee-setting-mechanism): Read more on how the fee levels are calculated based on liquidity providers' proposed fee levels.
+      
+#### Equity-like share
+Besides the amount they've committed, how much a provider receives in fees is also dependent on when they began to commit liquidity on the market. The amount is adjusted to provide a greater share of the pool to the liquidity providers that committed earlier in a market's lifetime. In effect, liquidity providers who commit to a market early benefit from helping to grow the market.
+   
+[Equity-like share calculations](https://github.com/vegaprotocol/specs/blob/main/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#calculating-liquidity-provider-equity-like-share): See the variables that go into calculating equity-like share. 
 
 </p>
 </details>
