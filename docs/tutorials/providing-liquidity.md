@@ -18,9 +18,9 @@ The Vega protocol allows liquidity to be priced individually for each market, so
 Supplying liquidity to a market keeps open orders resting on the order book, to keep a relatively balanced set of orders available. Those orders are not defined by actual numerical prices or sizes, but by liquidity shapes, which are dependent on a reference price level the provider chooses and the liquidity commitment amount. The order price follows the reference price level as the market moves.
 
 ### Liquidity fees
-Participants who provide liquidity earn from liquidity fees, which are paid by the *price takers* on each trade. Liquidity fees are defined based on the commitments and proposed fee levels chosen by the providers, not by the protocol. 
+Participants who provide liquidity earn from liquidity fees, which are paid by the *price takers* on each trade. Liquidity fees are defined based on the commitments and proposed fee levels chosen by the providers, not by the protocol.
 
-To qualify to receive a portion of the liquidity fees, the liquidity provider must commit an amount of the market's settlement asset. 
+To qualify to receive a portion of the liquidity fees, the liquidity provider must commit an amount of the market's settlement asset, and propose a fee level. Once the fee for the market is set, all liquidity orders charge that fee.
 
 The party placing the orders must have enough available collateral to meet the size of their chosen commitment amount, and cover the margin required to support the orders generated from that commitment. Once the order is committed, the commitment amount is stored in a bond account.
 
@@ -78,7 +78,7 @@ This tutorial focuses on the second option, using Python. Note: There are also s
 
 * The market’s unique ID, denoted as `marketId` - Confirm that the market is in a state to accept liquidity commitment, and is not a rejected market, has not had trading terminated, or has not been settled 
 * Liquidity commitment amount: The amount of funds that you want to allocate to providing liquidity. The amount will be moved into a bond account during the duration of your liquidity commitment, denoted as `commitmentAmount`
-* Proposed liquidity fee level: The scaling factor for the fee you are bidding to receive when your order is matched, on a scale between 0 and 1. For example, a fee level of 0.01 would mean `0.01 * total trade amount` is charged. Note: Your proposed fee level is used along with other proposed fee levels to define the fees on the market. Denoted as `fee`
+* Proposed liquidity fee: The scaling factor for the fee you are bidding to receive when your order is matched, on a scale between 0 and 1. For example, a fee level of 0.01 would mean `0.01 * total trade amount` is charged. Note: Your proposed fee is used along with other proposed fees and commitments to determine the actual fee percentage for the market. Denoted as `fee`
 
 * A set of liquidity buy and sell order shapes (denoted as `buys` and `sells`), which include:
     * Offset: How many ticks away from the reference price you want your orders to be. The tick size is the smallest decimal place the market allows for orders. There is a tradeoff between larger offsets, which have higher margin cost but less position risk, versus smaller offsets, which have smaller margin cost but more postion risk
@@ -252,55 +252,31 @@ If you run out of margin to maintain your position, Vega will use some of your b
 
 ## Resources 
 
-<details><summary>Learn about the reward and penalty mechanics</summary>
+<details><summary>Learn about earning liquidity fees</summary>
 <p>
 
-#### Liquidity rewards
-Liquidity providers receive rewards for providing liquidity, and penalties for not upholding their commitment. 
+#### Liquidity fees
+Liquidity providers receive a cut of the fees paid by price takers. 
+   
+The amount each liquidity provider receives depends on:
+* The market's liquidity fee, or the percentage of a trade's value which is collected from the price taker for every trade, and combined in a pool 
+* Their equity-like share of the market, which is based on when they committed liquidity to the market
+   
+The fee percentage determines how much money goes into the pool, and a provider's equity-like share determines what percentage of that pool they receive. 
+   
+#### Liquidity fee  
+As part of the liquidity commitment transaction, a liquidity provider submits their desired liquidity fee as a number between 0 and 1. That number is converted to a percentage, and fees are paid on each trade.
+   
+The proposed fees are used to calculate the actual fee each participant will pay on a trade in that market. Once the fee for the market is set, all liquidity orders charge that fee, regardless of whether the provider's submitted fee was higher or lower.
 
-Rewards are calculated automatically from the market's fees, which are paid by price takers, and distributed to the market's liquidity providers according to their relative commitments.
+The fees can change as the market's target stake changes, or as liquidity providers change their commitment or stop providing liquidity altogether. (See the 'Liquidity monitoring and target stake' section for more info.)
 
-Note: During an auction uncrossing, liquidity providers are not required to supply any orders that offer liquidity or would cause trades. However, they must maintain their liquidity commitment, and their liquidity orders are placed back on the order book when normal trading resumes.
+#### How the fee is derived
+The liquidity orders submitted are sorted into increasing fee order so that the lowest fee percentage bid is at the top, and the highest is at the bottom. 
 
-#### Equity-like share for a liquidity provider
-The concept of the equity-like share of a market's trading for a liquidity provider broadly ensures that liquidity providers who get into a market early benefit from helping to grow the market. Those liquidity providers who commit early in a market's existence will receive a larger proportion of the fees than their actual commitment would imply, because they were a larger proportion of the commitment earlier on, once other parties are also committing liquidity to the market.
+The market's 'winning' fee depends on the liquidity commitment of the market (target stake) and the amount committed from each bidder. Vega processes the LP orders from top to bottom, adding up the commitment amounts until it reaches a level equal to, or greater than, the target stake. When that point is reached, the fee that was provided with the last processed liquidity order is used.
 
-#### Penalties for not fulfilling liquidity commitment
-If the liquidity provider's margin account doesn't have enough funds to support their orders, the protocol will search for funds in the general account for the relevant asset. If the general account doesn't have sufficient amount to provide margin to support the orders, then the protocol will transfer the remaining funds from the liquidity provider's bond account, and a penalty will be applied and funds transferred from the bond account to the market's insurance pool.
-
-The liquidity obligation will remain unchanged and the protocol will periodically search the liquidity provider's general account and attempt to top up the bond account to the amount specified in liquidity commitment.
-
-Should the funds in the bond account drop to 0 as a result of a collateral search, the liquidity provider will be marked for closeout and the liquidity provision will be removed from the market. If there's an imbalance between total and target stake as a result, the market will go into liquidity auction.
-
-If this happens while the market is transitioning from auction mode to continuous trading, a penalty will not be applied. 
-
-The penalty formula defines how much will be removed from the bond account:
-
-`bond penalty = market.liquidity.bondPenaltyParameter ⨉ shortfall`
-
-<ul>
-<li>`market.liquidity.bondPenaltyParameter` is a network parameter</li>
-<li>shortfall refers to the absolute value of the funds that either the liquidity provider was unable to cover through their margin and general accounts, are needed for settlement (mark to market or product driven), or are needed to meet their margin requirements</li>
-</ul>
-
-</p>
-</details>
-
-<details><summary>Learn about the liquidity fee mechanics</summary>
-<p>
-
-#### Liquidity fee
-As part of the liquidity commitment transaction, a liquidity provider submits their desired liquidity fee factor. The fee factors submitted by all those who submitted liquidity provision orders are used to calculate the actual fee each participant will pay on a trade in that market, and thus how much each liquidity provider receives.
-
-This fee can change as the market's target stake changes, and / or as liquidity providers change their commitment or stop providing liquidity altogether. 
-
-How much a provider receives in fees is also dependent on when they began to commit liquidity on the market, as liquidity providers who commit to a market early benefit from helping to grow the market (also known as the 'equity-like share').
-
-The liquidity orders that LPs submit are sorted into increasing fee order so that the lowest fee percentage bid is at the top, and the highest is at the bottom. 
-
-The fee level chosen for the market is derived from the liquidity commitment of the market (target stake) and the amount of stake committed from each bidder. Vega processes the LP orders from top to bottom by adding up the commitment stake as it goes, until it reaches a level equal to, or greater than, the target stake. When that point is reached, the fee factor that was provided with the last processed liquidity order is used.
-
-Initially, before a market opens for trading, the target stake is zero, as it's not possible to have a position on a market that's not opened yet. Hence by default the market's initial liquidity-fee-factor is the lowest proposed.
+Initially, before a market opens for trading, the target stake is zero, as it's not possible to have a position on a market that's not opened yet. Hence by default the market's initial liquidity fee is the lowest proposed.
 
 Once the market opens and its opening auction begins, a clock starts ticking. The protocol calculates the target stake, and the fee is continuously re-evaluated.
 
@@ -318,6 +294,37 @@ In the example below, there are 3 liquidity providers all bidding for their chos
 </ul>
 
 [**Fee level calculations**](https://github.com/vegaprotocol/specs/blob/master/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#example-for-fee-setting-mechanism): Read more on how the fee levels are calculated based on liquidity providers' proposed fee levels.
+      
+#### Equity-like share
+Besides the amount they've committed, how much a provider receives in fees is also dependent on when they began to commit liquidity on the market. The amount is adjusted to provide a greater share of the pool to the liquidity providers that committed earlier in a market's lifetime. In effect, liquidity providers who commit to a market early benefit from helping to grow the market.
+   
+[Equity-like share calculations](https://github.com/vegaprotocol/specs/blob/main/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#calculating-liquidity-provider-equity-like-share): See the variables that go into calculating equity-like share. 
+
+</p>
+</details>
+
+<details><summary>Learn about the penalties</summary>
+<p>
+
+#### Penalties for not fulfilling liquidity commitment
+If the liquidity provider's margin account doesn't have enough funds to support their orders, the protocol will search for funds in the general account for the relevant asset. If the general account doesn't have sufficient amount to provide margin to support the orders, then the protocol will transfer the remaining funds from the liquidity provider's bond account, and a penalty will be applied and funds transferred from the bond account to the market's insurance pool.
+
+The liquidity obligation will remain unchanged and the protocol will periodically search the liquidity provider's general account and attempt to top up the bond account to the amount specified in liquidity commitment.
+
+Should the funds in the bond account drop to 0 as a result of a collateral search, the liquidity provider will be marked for closeout and the liquidity provision will be removed from the market. If there's an imbalance between total and target stake as a result, the market will go into liquidity auction.
+
+If this happens while the market is transitioning from auction mode to continuous trading, a penalty will not be applied. 
+
+Note: During an auction uncrossing, liquidity providers are not required to supply any orders that offer liquidity or would cause trades. However, they must maintain their liquidity commitment, and their liquidity orders are placed back on the order book when normal trading resumes.
+
+The penalty formula defines how much will be removed from the bond account:
+
+`bond penalty = market.liquidity.bondPenaltyParameter ⨉ shortfall`
+
+<ul>
+<li>`market.liquidity.bondPenaltyParameter` is a network parameter</li>
+<li>shortfall refers to the absolute value of the funds that either the liquidity provider was unable to cover through their margin and general accounts, are needed for settlement (mark to market or product driven), or are needed to meet their margin requirements</li>
+</ul>
 
 </p>
 </details>
