@@ -260,7 +260,7 @@ Liquidity providers receive a cut of the fees paid by price takers.
    
 The amount each liquidity provider receives depends on:
 * The market's liquidity fee, or the percentage of a trade's value which is collected from the price taker for every trade, and combined in a pool 
-* Their equity-like share of the market, which is based on when they committed liquidity to the market
+* Their equity-like share of the market, which is based on the relative size of their commitment amount, and when they committed liquidity to the market
    
 The fee percentage determines how much money goes into the pool, and a provider's equity-like share determines what percentage of that pool they receive. 
    
@@ -296,7 +296,7 @@ In the example below, there are 3 liquidity providers all bidding for their chos
 [**Fee level calculations**](https://github.com/vegaprotocol/specs/blob/master/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#example-for-fee-setting-mechanism): Read more on how the fee levels are calculated based on liquidity providers' proposed fee levels.
       
 #### Equity-like share
-Besides the amount they've committed, how much a provider receives in fees is also dependent on when they began to commit liquidity on the market. The amount is adjusted to provide a greater share of the pool to the liquidity providers that committed earlier in a market's lifetime. In effect, liquidity providers who commit to a market early benefit from helping to grow the market.
+Besides the amount they've committed, how much a provider receives in fees is also dependent on when they began to commit liquidity on the market. The amount is adjusted to provide a greater share of the pool to the liquidity providers that committed earlier, and more, in a market's lifetime. In effect, liquidity providers who commit to a market early benefit from helping to grow the market.
    
 [Equity-like share calculations](https://github.com/vegaprotocol/specs/blob/main/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#calculating-liquidity-provider-equity-like-share): See the variables that go into calculating equity-like share. 
 
