@@ -9,6 +9,7 @@
 # - 'mainnet' moved to version 'v0.50.2', which means replacing all the links in what was formerly 'testnet' to 'mainnet'
 # - Now that v0.47.0 is not deployed anywhere, it means removing its bespoke path and fixing all the links from 'mainnet' to 'v0.47.0'
 # - You will still get some build errors related to the REST documentation. This is managed from docusaurus.config.js
+# - Pages that use <EthAddresses /> will need their frontmatter updated to reflect network
 # -----
 
 # Old docs
