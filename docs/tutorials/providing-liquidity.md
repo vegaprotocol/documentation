@@ -18,9 +18,9 @@ The Vega protocol allows liquidity to be priced individually for each market, so
 Supplying liquidity to a market keeps open orders resting on the order book, to keep a relatively balanced set of orders available. Those orders are not defined by actual numerical prices or sizes, but by liquidity shapes, which are dependent on a reference price level the provider chooses and the liquidity commitment amount. The order price follows the reference price level as the market moves.
 
 ### Liquidity fees
-Participants who provide liquidity earn from liquidity fees, which are paid by the *price takers* on each trade. Liquidity fees are defined based on the commitments and proposed fee levels chosen by the providers, not by the protocol. Once the fee factor for the market is set, all those with a liquidity commitment earn that fee, regardless of whether the fee factor submitted is higher or lower.
+Participants who provide liquidity earn from liquidity fees, which are paid by the *price takers* on each trade. Liquidity fees are defined based on the commitments and proposed fee levels chosen by the providers, not by the protocol.
 
-To qualify to receive a portion of the liquidity fees, the liquidity provider must commit an amount of the market's settlement asset. 
+To qualify to receive a portion of the liquidity fees, the liquidity provider must commit an amount of the market's settlement asset, and propose a fee level. Once the fee for the market is set, all liquidity orders charge that fee.
 
 The party placing the orders must have enough available collateral to meet the size of their chosen commitment amount, and cover the margin required to support the orders generated from that commitment. Once the order is committed, the commitment amount is stored in a bond account.
 
@@ -78,7 +78,7 @@ This tutorial focuses on the second option, using Python. Note: There are also s
 
 * The market’s unique ID, denoted as `marketId` - Confirm that the market is in a state to accept liquidity commitment, and is not a rejected market, has not had trading terminated, or has not been settled 
 * Liquidity commitment amount: The amount of funds that you want to allocate to providing liquidity. The amount will be moved into a bond account during the duration of your liquidity commitment, denoted as `commitmentAmount`
-* Proposed liquidity fee level: The scaling factor for the fee you are bidding to receive when your order is matched, on a scale between 0 and 1. For example, a fee level of 0.01 would mean `0.01 * total trade amount` is charged. Note: Your proposed fee level is used along with other proposed fee levels to define the fees on the market. Denoted as `fee`
+* Proposed liquidity fee: The scaling factor for the fee you are bidding to receive when your order is matched, on a scale between 0 and 1. For example, a fee level of 0.01 would mean `0.01 * total trade amount` is charged. Note: Your proposed fee is used along with other proposed fees and commitments to determine the actual fee percentage for the market. Denoted as `fee`
 
 * A set of liquidity buy and sell order shapes (denoted as `buys` and `sells`), which include:
     * Offset: How many ticks away from the reference price you want your orders to be. The tick size is the smallest decimal place the market allows for orders. There is a tradeoff between larger offsets, which have higher margin cost but less position risk, versus smaller offsets, which have smaller margin cost but more postion risk
@@ -259,24 +259,24 @@ If you run out of margin to maintain your position, Vega will use some of your b
 Liquidity providers receive a cut of the fees paid by price takers. 
    
 The amount each liquidity provider receives depends on:
-* Fee factor, which specifies what percentage of a trade's value is collected from the price taker for every trade and combined in a pool 
+* The market's liquidity fee, or the percentage of a trade's value which is collected from the price taker for every trade, and combined in a pool 
 * Their equity-like share of the market, which is based on when they committed liquidity to the market
    
-The fee factor determines how much money goes into the pool, and a provider's equity-like share determines what percentage of that pool they receive. 
+The fee percentage determines how much money goes into the pool, and a provider's equity-like share determines what percentage of that pool they receive. 
    
-#### Liquidity fee factor  
-As part of the liquidity commitment transaction, a liquidity provider submits their desired liquidity fee factor, which is a percentage fee on each trade. 
+#### Liquidity fee  
+As part of the liquidity commitment transaction, a liquidity provider submits their desired liquidity fee as a number between 0 and 1. That number is converted to a percentage, and fees are paid on each trade.
    
-The fee factors are used to calculate the actual fee each participant will pay on a trade in that market. Once the fee factor for the market is set, it's used in the calculations for all those with a liquidity commitment, regardless of whether the fee factor they originally submitted was higher or lower.
-d
-The fee factor can change as the market's target stake changes, or as liquidity providers change their commitment or stop providing liquidity altogether. (See the 'Liquidity monitoring and target stake' section for more info.)
+The proposed fees are used to calculate the actual fee each participant will pay on a trade in that market. Once the fee for the market is set, all liquidity orders charge that fee, regardless of whether the provider's submitted fee was higher or lower.
 
-#### How the fee factor is derived
+The fees can change as the market's target stake changes, or as liquidity providers change their commitment or stop providing liquidity altogether. (See the 'Liquidity monitoring and target stake' section for more info.)
+
+#### How the fee is derived
 The liquidity orders submitted are sorted into increasing fee order so that the lowest fee percentage bid is at the top, and the highest is at the bottom. 
 
-The market's 'winning' fee factor depends on the liquidity commitment of the market (target stake) and the amount committed from each bidder. Vega processes the LP orders from top to bottom, adding up the commitment amounts until it reaches a level equal to, or greater than, the target stake. When that point is reached, the fee factor that was provided with the last processed liquidity order is used.
+The market's 'winning' fee depends on the liquidity commitment of the market (target stake) and the amount committed from each bidder. Vega processes the LP orders from top to bottom, adding up the commitment amounts until it reaches a level equal to, or greater than, the target stake. When that point is reached, the fee that was provided with the last processed liquidity order is used.
 
-Initially, before a market opens for trading, the target stake is zero, as it's not possible to have a position on a market that's not opened yet. Hence by default the market's initial liquidity fee factor is the lowest proposed.
+Initially, before a market opens for trading, the target stake is zero, as it's not possible to have a position on a market that's not opened yet. Hence by default the market's initial liquidity fee is the lowest proposed.
 
 Once the market opens and its opening auction begins, a clock starts ticking. The protocol calculates the target stake, and the fee is continuously re-evaluated.
 
