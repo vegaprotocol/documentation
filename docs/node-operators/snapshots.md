@@ -67,7 +67,7 @@ node runner in the network (e.g, at which block height a snapshot was taken).
 
 Tendermint offers the possibility to gossip about snapshots taken by other nodes. This can be enabled via the tendermint configuration. You will also need the hash of the block at the height you want to load the snapshot, but also a list of trusted tendermint RPC servers (the default port on the node should be 26657).
 
-Update the following tendermint configuration section:
+Update the following Tendermint configuration section:
 ```Toml
 [statesync]
 enable = true # this default to false, set it to true
