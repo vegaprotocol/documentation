@@ -80,7 +80,7 @@ trust_hash = "5E1501B89463A9F23C454A58DB92913D960E47DCA76D1FC1EA03988A6C6D0C30" 
 The previous example uses addresses from the vega testnet (fairground) make sure to use address of node on the network you are willing to join.
 :::
 
-Other settings are available to configure snapshots, but those are the only one required to start the node from a given block. You can get more details on snapshot from the [tendermint documentation](https://docs.tendermint.com/master/spec/abci/apps.html#state-sync).
+Other settings are available to configure snapshots, however, those described in this documentation are the only ones required to start the node from a given block. You can get more details on snapshots from the [Tendermint documentation](https://docs.tendermint.com/master/spec/abci/apps.html#state-sync).
 
 ## Inspect snapshots data using vegatools
 
