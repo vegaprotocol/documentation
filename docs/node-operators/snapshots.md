@@ -7,13 +7,13 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This section will take you through using the state snapshots, these allow a node to be start without having to replay the whole chain in order to catchup with the current block height of the network.
+This section will take you through using the state snapshots, these allow a node to be started without having to replay the whole chain in order to catch up with the current block height of the network.
 
-A node can be started by using a local snapshot (state of the chain built by the current node) this can be useful when the node have been running with the network, have built their own state locally, but had to shutdown for maintenance or upgrade for example.
+A node can be started by using a local snapshot (state of the chain built by the current node). This can be useful when the node has been running with the network, has built their own state locally, but had to shutdown for maintenance or upgrade for example.
 
-The snapshots can also be retrieved from the network without previous local state, this would be useful when a node is joining the network after the bootstrap of the network.
+The snapshots can also be retrieved from the network without any previous local state. This would be useful when a node is joining the network after the bootstrap of the network.
 
-All not of the network will be taking snapshot of the state at the same block height, this is configured globally using the following network parameter:
+All node of the network will be taking a snapshot of the state at the same block height, this is configured globally using the following network parameter:
 ```Json
 {
   "snapshot.interval.length": "10000",
@@ -22,7 +22,7 @@ All not of the network will be taking snapshot of the state at the same block he
 As of now the snapshots are configured to be taken every 10000 blocks on mainnet.
 
 ## List available snapshots
-The vega toolchain offer a subcommand to list all snapshots available locally. Once your node have been running for a while, you should be able to see them using the following command:
+The vega toolchain offers a subcommand to list all snapshots available locally. Once your node has been running for a while, you should be able to see them using the following command:
 ```
 vega snapshots --home=/path/to/vega/home
 Snapshots available: 2
@@ -61,11 +61,11 @@ From the configuration file in the Snapshot section:
 ## Snapshots from the network
 
 :::note
-When loading snapshots from the network, the steps down previously to load locally are not necessary. You will need to get the snapshots information from another
-node runner in the network (e.g: which block height a snapshot was taken).
+When loading snapshots from the network, the steps described previously to load them locally are not necessary. You will need to get the snapshots information from another
+node runner in the network (e.g, at which block height a snapshot was taken).
 :::
 
-Tendermint offer the possibility to gossip snapshots taken by other nodes. This can be enabled via the tendermint configuration. You will also need the hash of the block at the height you want to load the snapshot, but also a list of trusted tendermint RPC server (the default port on the node should be 26657).
+Tendermint offers the possibility to gossip about snapshots taken by other nodes. This can be enabled via the tendermint configuration. You will also need the hash of the block at the height you want to load the snapshot, but also a list of trusted tendermint RPC servers (the default port on the node should be 26657).
 
 Update the following tendermint configuration section:
 ```Toml
@@ -90,7 +90,7 @@ This is not required to deploy / uses the snapshots. This section shows how to u
 
 Vegatools offer basic utilities to read the data from a snapshots and dump it into json format.
 
-If you have go and git configured on your environment you can install vegatools like so:
+If you have `go` and `git` configured on your environment you can install vegatools like so:
 ```
 git clone git@github.com:vegaprotocol/vegatools.git && cd vegatools && go install
 ```
