@@ -85,7 +85,7 @@ Other settings are available to configure snapshots, however, those described in
 ## Inspect snapshots data using vegatools
 
 :::note
-This is not required to deploy / uses the snapshots. This section shows how to use vegatools to inspect the data stored in the snapshot.
+This is not required to deploy / use the snapshots. This section shows how to use vegatools to inspect the data stored in the snapshot.
 :::
 
 Vegatools offer basic utilities to read the data from a snapshots and dump it into json format.
