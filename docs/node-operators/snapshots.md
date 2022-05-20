@@ -43,7 +43,7 @@ With this setting a node will always keep the last 10 snapshots in its database.
 ## Using a local snapshot
 Using the `vega snapshots` command line we can get a list of all snapshots available locally.
 
-You can then start your node using a snapshot either directly from the command line or the configuration file by specifying the block height.
+You can then start your node using a snapshot either directly from the command line or with the configuration file by specifying the block height.
 
 From the command line:
 ```
