@@ -29,7 +29,7 @@ Snapshots available: 2
 	Height 901, version: 4, size 92, hash: 562414bb5be3ccc8403fbd030d06eebc799bfef5ca25b02ad360fec349cb4bc8
 	Height 601, version: 3, size 92, hash: 72a2edd960cf3340ae94bf092991f923850738144789959124590675798fefd9
 ```
-Here we can see that our node took 2 snapshots, at the block 901 and 601.
+Here we can see that our node took two snapshots, at the block 901 and 601.
 
 You can set how many blocks you want the note to retain through the vega configuration:
 ```Toml
