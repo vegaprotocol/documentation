@@ -152,7 +152,7 @@ This should be done via a pull request on the [networks](https://github.com/vega
 ### Step 3: Restart the network
 
 :::note
-This is a critical part which needs to be done with all validator synchronously (this will not be needed in future updates).
+This is a critical part which needs to be done with all validators synchronously (this will not be needed in future updates).
 :::
 
 All validators needs to restart their node in a synchronous way. The reason is that the network needs to synchronise it's state with the ethereum state of vega token delegation to the vega network. This is done during the bootstrapping period which happend during the N first block of the chain (this can be configured in the genesis file).
