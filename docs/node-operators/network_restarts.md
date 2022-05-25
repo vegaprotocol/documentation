@@ -16,7 +16,7 @@ This guide is valid for a network restart with the version 0.51.x
 
 ### Step -1: Verify your nodewallet keys (to do before any following steps)
 
-In a recent version of the vega core, validation have been added at runtime to ensure that the keys that validators have setup in the genesis block matches the ones saves in the nodewallet.
+In a recent version of the vega core, validation has been added at runtime to ensure the keys that validators have setup in the genesis block matches those saved in the nodewallet.
 
 We can do this by by running the following command:
 ```
