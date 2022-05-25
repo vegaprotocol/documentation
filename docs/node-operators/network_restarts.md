@@ -74,7 +74,7 @@ vega nodewallet --home=/path/to/vega/home import --chain=tendermint --tendermint
 
 #### Update the vega configuration
 
-New fields have been added to the vega configuration. We recommand you generate a new default config and ensure that no sections are missing from the configuration if the default are not correct for you.
+New fields have been added to the vega configuration. We recommend you generate a new default config and ensure that no sections are missing from the configuration if the default is not as required for your specific configuration.
 
 The configuration needs now to specify if a node is running as a validator or not, in the case of a vega validator node (taking part of tendermint consensus) we will want to add the following line to the vega configuration:
 ```
