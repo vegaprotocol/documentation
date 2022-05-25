@@ -157,7 +157,7 @@ This is a critical part which needs to be done with all validators synchronously
 
 All validators need to restart their node in a synchronous way. This is required as the network needs to synchronise its state with the Ethereum state in relations to the vega token delegation to the vega network. This is done during the bootstrapping period which happens during the first `N` blocks of the chain (`N` can be configured in the genesis file).
 
-During the bootstraping no transaction from users can be emitted apart from the transaction to submit the checkpoint. This should be done only once by one of the validators using the following command:
+During the bootstrapping no transactions from users can be emitted other than the transaction to submit the checkpoint. This should be done only once by one of the validators using the following command:
 ```
 vega checkpoint restore --home=/path/to/vega/home --passphrase-file=YOUR_NODEWALLET_PASSPHRASE_FILE --checkpoint-file=/path/the/
 checkpoint/file
