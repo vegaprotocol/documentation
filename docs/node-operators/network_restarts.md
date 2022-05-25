@@ -155,7 +155,7 @@ This should be done via a pull request on the [networks](https://github.com/vega
 This is a critical part which needs to be done with all validators synchronously (this will not be needed in future updates).
 :::
 
-All validators needs to restart their node in a synchronous way. The reason is that the network needs to synchronise it's state with the ethereum state of vega token delegation to the vega network. This is done during the bootstrapping period which happend during the N first block of the chain (this can be configured in the genesis file).
+All validators need to restart their node in a synchronous way. This is required as the network needs to synchronise its state with the Ethereum state in relations to the vega token delegation to the vega network. This is done during the bootstrapping period which happens during the first `N` blocks of the chain (`N` can be configured in the genesis file).
 
 During the bootstraping no transaction from users can be emitted apart from the transaction to submit the checkpoint. This should be done only once by one of the validators using the following command:
 ```
