@@ -137,7 +137,7 @@ rm -rf /path/to/data-node/home/vega/data-node/storage/
 ```
 
 :::info
-The exact path of the data-node folder to remove can be found using `vega paths list`, this path is `DataNodeStorageHome` under this list.
+The exact path of the data-node folder to remove can be found using `vega paths list`. The required path is `DataNodeStorageHome` in the list.
 :::
 
 ### Step 2: Update the genesis file
