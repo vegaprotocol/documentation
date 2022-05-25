@@ -167,4 +167,4 @@ Once this is done, we will need to monitor the network to make sure all delegati
 
 ### Misc
 
-The ethereum event forwarder is now not required anymore, this should be removed from your infrastructure and not started. This service have been re-written and is not integrated in the vega core node.
+The ethereum event forwarder is now not required anymore, this should be removed from your infrastructure and not started. This service has been re-written and is now integrated in the vega core node.
