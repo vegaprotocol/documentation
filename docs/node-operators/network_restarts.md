@@ -7,7 +7,7 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Vega networks support restarts using checkpoint. Checkpoint are a minimal save of the state done by the network every N block OR after funds are moved in or out the network. They are both a way of restarting a clean chain with the current view of all accounts balances but also a security measure in order to not misplace any funds in case a major issue will happen and would require a restart of the chain.
+Vega networks support restarts using checkpoints. Checkpoints are a minimal save of the state of the network every N block, or, after funds are moved in or out of the network. They are both, a way of restarting a clean chain with the current view of all accounts balances, and a security measure in order to not misplace any funds in case of a major issue that would require a restart of the chain.
 
 :::note
 This guide is valid for a network restart with the version 0.51.x
