@@ -59,7 +59,7 @@ Info to add in genesis file under `app_state.validators` key
 
 You should the verify that your validator information set in the [genesis file](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json) matches the one from the output of the command, mainly your tendermint public key (`plmxJSjg5IC7r8yLWBQUFFTosvXC+rTpbXgf0kCoqoY=` here), vega public key (`ec066610abbd1736b69cadcb059b9efdfdd9e3e33560fc46b2b8b62764edf33f` here) and ethereum address (`0xDdF662BBb29EB7a42340E426A75dd13337E482fc` here).
 
-If any differs please mention it on discord.
+Should there be a difference between the keys in the genesis file and those in the output of the command, this should be raised on discord.
 
 ### Step 0: Edit configuration
 
