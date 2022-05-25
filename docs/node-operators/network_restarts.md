@@ -63,7 +63,7 @@ If any differs please mention it on discord.
 
 ### Step 0: Edit configuration
 
-You can prepare you configuration but you may not want to update your mainnet node with these before it's stopped.
+You can prepare your configuration but you may not want to update your mainnet node with the configuration before it's stopped.
 
 #### Add the tendermint public key to your nodewallet
 
