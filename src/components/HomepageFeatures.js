@@ -12,7 +12,7 @@ const FeatureList = [
       <>
         Restricted mainnet is a decentralised network run by a set of
         validators. Read about the underlying framework under{" "}
-        <a href={`./docs/${latestVersion}/concepts`}>concepts</a>.
+        <a href={`./docs/${latestVersion}/concepts/new-to-vega`}>concepts</a>.
       </>
     ),
   },
