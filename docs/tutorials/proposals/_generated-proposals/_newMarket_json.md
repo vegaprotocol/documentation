@@ -61,8 +61,8 @@
           }
         },
         "metadata": [
-          "sector:health",
-          "sector:food",
+          "sector:materials",
+          "sector:tech",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -88,51 +88,51 @@
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 1.25
+            "sigma": 0.3
           }
         }
       },
       "liquidityCommitment": {
-        "commitmentAmount": "6848160",
-        "fee": "0.25",
+        "commitmentAmount": "3105891",
+        "fee": "0.67",
         "buys": [
           {
-            "offset": "52",
-            "proportion": 6,
+            "offset": "46",
+            "proportion": 5,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           },
           {
-            "offset": "61",
-            "proportion": 4,
+            "offset": "96",
+            "proportion": 2,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           },
           {
-            "offset": "54",
+            "offset": "55",
             "proportion": 3,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           }
         ],
         "sells": [
           {
-            "offset": "95",
-            "proportion": 9,
-            "reference": "PEGGED_REFERENCE_BEST_ASK"
-          },
-          {
-            "offset": "8",
+            "offset": "44",
             "proportion": 5,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           },
           {
-            "offset": "80",
-            "proportion": 8,
+            "offset": "17",
+            "proportion": 3,
+            "reference": "PEGGED_REFERENCE_BEST_ASK"
+          },
+          {
+            "offset": "18",
+            "proportion": 1,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           }
         ]
       }
     },
-    "closingTimestamp": 1653407413180,
-    "enactmentTimestamp": 1653493813181
+    "closingTimestamp": 1656242082512,
+    "enactmentTimestamp": 1656328482512
   }
 }
   ```

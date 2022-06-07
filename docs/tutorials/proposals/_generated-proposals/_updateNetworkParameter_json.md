@@ -2,17 +2,17 @@
   ```json
 {
   "rationale": {
-    "description": "Update governance.proposal.asset.requiredMajority"
+    "description": "Update governance.proposal.freeform.minVoterBalance"
   },
   "terms": {
     "updateNetworkParameter": {
       "changes": {
-        "key": "governance.proposal.asset.requiredMajority",
-        "value": "0.8431903681496988"
+        "key": "governance.proposal.freeform.minVoterBalance",
+        "value": "0.9890741499104239"
       }
     },
-    "closingTimestamp": 1653407413189,
-    "enactmentTimestamp": 1653493813189
+    "closingTimestamp": 1656242082517,
+    "enactmentTimestamp": 1656328482517
   }
 }
   ```
