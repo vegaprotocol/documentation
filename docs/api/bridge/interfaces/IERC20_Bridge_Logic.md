@@ -8,7 +8,7 @@ original_id: IERC20_Bridge_Logic
 
 View Source: [contracts/IERC20_Bridge_Logic.sol](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/IERC20_Bridge_Logic.sol)
 
-**↘ Derived Contracts: [ERC20_Bridge_Logic](../contracts/ERC20_Bridge_Logic)**
+**↘ Derived Contracts: [ERC20_Bridge_Logic](../contracts/ERC20_Bridge_Logic.md)**
 
 **IERC20_Bridge_Logic_Restricted**
 
