@@ -12,6 +12,7 @@ Governance with tokenholder participation is essential on Vega. Markets and asse
 
 This section includes sample proposals that you can amend and submit via the command line.
 * [New market proposal](./market-proposals)
+* [Update network parameter proposal](./market-proposals#update-an-existing-market)
 * [Update network parameter proposal](./network-parameter-proposals)
 * [New freeform proposal](./freeform-proposals)
 

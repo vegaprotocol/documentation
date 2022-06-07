@@ -19,8 +19,6 @@ function newAsset(skeleton) {
   assert.ok(skeleton.properties.changes.properties.decimals);
   assert.ok(skeleton.properties.changes.properties.quantum);
   assert.ok(skeleton.properties.changes.properties.erc20);
-  assert.ok(skeleton.properties.changes.properties.erc20.properties.lifetimeLimit);
-  assert.ok(skeleton.properties.changes.properties.erc20.properties.withdrawThreshold);
 
   const asset = sample(assetNames);
   const result = {

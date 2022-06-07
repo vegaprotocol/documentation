@@ -2,18 +2,15 @@
   ```json
 {
   "rationale": {
-    "description": "Add Lorem Ipsum market"
+    "description": "Update Lorem Ipsum market"
   },
   "terms": {
-    "newMarket": {
+    "updateMarket": {
+      "marketId": "123",
       "changes": {
-        "decimalPlaces": "5",
-        "positionDecimalPlaces": "5",
         "instrument": {
-          "name": "Apples Yearly (2022)",
           "code": "APPLES.22",
           "future": {
-            "settlementAsset": "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
             "quoteName": "tEuro",
             "settlementPriceDecimals": 5,
             "oracleSpecForSettlementPrice": {
@@ -60,11 +57,6 @@
             }
           }
         },
-        "metadata": [
-          "sector:health",
-          "sector:materials",
-          "source:docs.vega.xyz"
-        ],
         "priceMonitoringParameters": {
           "triggers": [
             {
@@ -74,65 +66,19 @@
             }
           ]
         },
-        "liquidityMonitoringParameters": {
-          "targetStakeParameters": {
-            "timeWindow": "3600",
-            "scalingFactor": 10
-          },
-          "triggeringRatio": 0.7,
-          "auctionExtension": "1"
-        },
         "logNormal": {
           "tau": 0.0001140771161,
-          "riskAversionParameter": 0.01,
+          "riskAversionParameter": 0.001,
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 0.3
+            "sigma": 1.25
           }
         }
-      },
-      "liquidityCommitment": {
-        "commitmentAmount": "7695301",
-        "fee": "0.46",
-        "buys": [
-          {
-            "offset": "53",
-            "proportion": 8,
-            "reference": "PEGGED_REFERENCE_BEST_BID"
-          },
-          {
-            "offset": "10",
-            "proportion": 9,
-            "reference": "PEGGED_REFERENCE_BEST_BID"
-          },
-          {
-            "offset": "59",
-            "proportion": 6,
-            "reference": "PEGGED_REFERENCE_BEST_BID"
-          }
-        ],
-        "sells": [
-          {
-            "offset": "11",
-            "proportion": 8,
-            "reference": "PEGGED_REFERENCE_BEST_ASK"
-          },
-          {
-            "offset": "37",
-            "proportion": 1,
-            "reference": "PEGGED_REFERENCE_BEST_ASK"
-          },
-          {
-            "offset": "68",
-            "proportion": 9,
-            "reference": "PEGGED_REFERENCE_BEST_ASK"
-          }
-        ]
       }
     },
-    "closingTimestamp": 1656261847243,
-    "enactmentTimestamp": 1656348247243
+    "closingTimestamp": 1656261847235,
+    "enactmentTimestamp": 1656348247235
   }
 }
   ```

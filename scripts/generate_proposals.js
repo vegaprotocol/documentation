@@ -4,6 +4,7 @@ const { addDays } = require('date-fns');
 const omit = require('lodash/omit');
 const SwaggerParser = require("@apidevtools/swagger-parser");
 const { newMarket } = require('./libGenerateProposals/newMarket')
+const { updateMarket } = require('./libGenerateProposals/updateMarket')
 const { newFreeform } = require('./libGenerateProposals/newFreeform')
 const { newAsset } = require('./libGenerateProposals/newAsset')
 const { updateNetworkParameter } = require('./libGenerateProposals/updateNetworkParameter');
@@ -21,13 +22,14 @@ const url = `https://raw.githubusercontent.com/vegaprotocol/protos/${version}/sw
 
 // Input: Fields to remove from a specific place in the Swagger file
 const notProposalTypes = ['closingTimestamp', 'enactmentTimestamp', 'validationTimestamp', 'title', 'type']
-const excludeUnimplementedTypes = ['updateMarket', 'newAsset'];
+const excludeUnimplementedTypes = [];
 
 // Output: Used to put a nice title on the output
 const nameByType = {
   newFreeform: 'New Freeform Proposal',
   updateNetworkParameter: 'Update a network parameter',
   newAsset: 'New asset (ERC20)',
+  updateAsset: 'Update asset (ERC20)',
   newMarket: 'New market',
   updateMarket: 'Update market'
 }
@@ -121,14 +123,18 @@ const ProposalGenerator = new Map([
   ['newFreeform', newFreeform],
   ['updateNetworkParameter', updateNetworkParameter],
   ['newAsset', newAsset],
-  ['newMarket', newMarket]
+  ['newMarket', newMarket],
+  ['updateMarket', updateMarket]
 ])
 
 function parse(api) {
   const proposalTypes = omit(api.definitions.vegaProposalTerms.properties, notProposalTypes )
 
+  console.dir(proposalTypes)
+
   const partials = Object.keys(proposalTypes).map(type => {
-      if ( excludeUnimplementedTypes.indexOf(type) === -1) {
+      console.log(type)
+      if (excludeUnimplementedTypes.indexOf(type) === -1) {
         if (ProposalGenerator.has(type)) {
             const changes = ProposalGenerator.get(type)(proposalTypes[type])
             output(newProposal(changes, api.definitions.vegaProposalTerms, type), type)

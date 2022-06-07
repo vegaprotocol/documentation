@@ -10,6 +10,10 @@ keywords:
 import NewMarketAnnotated from './_generated-proposals/_newMarket_annotated.md';
 import NewMarketJSON from './_generated-proposals/_newMarket_json.md';
 import NewMarketCMD from './_generated-proposals/_newMarket_cmd.md';
+import UpdateMarketAnnotated from './_generated-proposals/_updateMarket_annotated.md';
+import UpdateMarketJSON from './_generated-proposals/_updateMarket_json.md';
+import UpdateMarketCMD from './_generated-proposals/_updateMarket_cmd.md';
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -26,7 +30,7 @@ Propose a new market on Fairground.
 6. Use the command line to submit your proposal.
 7. You can see your proposal on the [Fairground block explorer](https://explorer.fairground.wtf/governance). 
 
-<Tabs groupId="newFreeform">
+<Tabs groupId="newMarket">
   <TabItem value="annotated" label="Annotated example">
     <NewMarketAnnotated />
   </TabItem>
@@ -37,3 +41,19 @@ Propose a new market on Fairground.
     <NewMarketCMD />
   </TabItem>
 </Tabs>
+
+# Update an existing market
+Some parts of a market can also be changed via governance using the `updateMarket` proposal. This is similar to the `newMarket` proposal, but (fortunately) most fields are not required if they are changed by the proposal.
+
+<Tabs groupId="updateMarket">
+  <TabItem value="annotated" label="Annotated example">
+    <UpdateMarketAnnotated />
+  </TabItem>
+  <TabItem value="json" label="JSON example">
+    <UpdateMarketJSON />
+  </TabItem>
+  <TabItem value="cmd" label="Command line">
+    <UpdateMarketCMD />
+  </TabItem>
+</Tabs>
+

@@ -444,4 +444,4 @@ function newMarket(skeleton) {
   return result
 }
 
-module.exports = { newMarket }
+module.exports = { newMarket, generateOracleSpecBinding, generateOracleSpec }
