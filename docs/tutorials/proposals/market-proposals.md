@@ -1,6 +1,7 @@
 ---
 title: Market proposals
 hide_title: false
+toc: true
 keywords:
 - proposal
 - governance
@@ -17,7 +18,7 @@ import UpdateMarketCMD from './_generated-proposals/_updateMarket_cmd.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Propose a new market
+## Propose a new market
 Propose a new market on Fairground. 
 
 1. The annotated example describes what is needed for each field in the proposal. 
@@ -42,7 +43,7 @@ Propose a new market on Fairground.
   </TabItem>
 </Tabs>
 
-# Update an existing market
+## Update an existing market
 Some parts of a market can also be changed via governance using the `updateMarket` proposal. This is similar to the `newMarket` proposal, but (fortunately) most fields are not required if they are changed by the proposal.
 
 <Tabs groupId="updateMarket">
