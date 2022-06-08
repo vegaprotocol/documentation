@@ -8,7 +8,7 @@ original_id: IETH_Bridge_Logic
 
 View Source: [contracts/IETH_Bridge_Logic.sol](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/ETH_Bridge_Logic.sol)
 
-**↘ Derived Contracts: [ETH_Bridge_Logic](../contracts/ETH_Bridge_Logic)**
+**↘ Derived Contracts: [ETH_Bridge_Logic](../contracts/ETH_Bridge_Logic.md)**
 
 **IETH_Bridge_Logic**
 
