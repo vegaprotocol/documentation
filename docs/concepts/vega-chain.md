@@ -303,10 +303,25 @@ The network is set to not allow any standby validators for alpha mainnet, and th
 
 A node operator that wants to express interest in running a validating node for Vega needs to do the following: 
 
-1. Start a Vega validating node, including the associated infrastructure: a system with a minimum of 4 cores, 16GB RAM, and 256GB SSD (subject  to increase in the future)
+1. Start a Vega validating node, including the associated infrastructure (see below)
 2. Submit a transaction using their keys, announcing they want to validate, and receive a response that the network has verified key ownership (see below)
 3. Self-stake to their validator Vega key at least as much as the amount defined by the reward.staking.delegation.minimumValidatorStake network parameter
 4. Wait for others to nominate them. It would be worth announcing to the community that you have started a node and are looking for stake)
+
+### Infrastructure guidelines
+Validators need to run a set of executables each with their own resource requirements to enable the network to function under varying loads. 
+
+For a validator running a node the following guidelines can be used when sizing up the hardware required.
+
+| Resource    | Minimum     | Recommended |
+| ----------- | ----------- | ----------- |
+| CPU | 4 cores at >3Ghz | 6 cores at >= 4Ghz|
+| RAM   | 8GB        | 16GB        |
+| Storage   | 256GB SSD| 1TB NVMe SSD |
+
+The impact of using fewer cores than recommended is that the critical parts (data node and non-validators) will be starved of CPU resources, which will reduce the maximum throughput of the network.
+
+The impact of having slower cores than recommended (or older cores that have a reduced IPC rate compared to modern Zen3 cores) is that the maximum throughput will be reduced due to the bottlenecks being single threaded.
 
 ### How candidate validators are ranked
 At the end of each epoch, the Vega network will calculate validator score. The consensus validators during that epoch will have their validator scores scaled by (1 + `network.validators.incumbentBonus`). This number combines self-stake and nominated stake with the performance score (which measures basic node performance).
