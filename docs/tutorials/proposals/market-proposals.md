@@ -18,7 +18,8 @@ import UpdateMarketCMD from './_generated-proposals/_updateMarket_cmd.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Propose a new market
+## Market proposals
+
 Propose a new market on Fairground. 
 
 1. The annotated example describes what is needed for each field in the proposal. 
@@ -30,6 +31,8 @@ Propose a new market on Fairground.
 5. Copy the command shown in the 'command line' tab, edit the fields for your wallet name and pub key, and replace the sample market proposal details with yours
 6. Use the command line to submit your proposal.
 7. You can see your proposal on the [Fairground block explorer](https://explorer.fairground.wtf/governance). 
+
+## Propose a new market
 
 <Tabs groupId="newMarket">
   <TabItem value="annotated" label="Annotated example">

@@ -3,13 +3,14 @@ const assert = require('assert').strict;
 const { addDays } = require('date-fns');
 const omit = require('lodash/omit');
 const SwaggerParser = require("@apidevtools/swagger-parser");
-const { newMarket } = require('./libGenerateProposals/newMarket')
+const { newMarket, produceOverview } = require('./libGenerateProposals/newMarket')
 const { updateMarket } = require('./libGenerateProposals/updateMarket')
 const { newFreeform } = require('./libGenerateProposals/newFreeform')
 const { newAsset } = require('./libGenerateProposals/newAsset')
 const { updateNetworkParameter } = require('./libGenerateProposals/updateNetworkParameter');
 const { writeFileSync } = require('fs');
 const prettyJs = require('pretty-js');
+const { format } = require('path');
 if (!process.env.VEGA_VERSION) {
   console.error('Please set an environment variable VEGA_VERSION (e.g. VEGA_VERSION=v0.50.1')
   process.exit(1)
@@ -111,7 +112,19 @@ ${JSON.stringify(proposal, null, '  ')}
   ${'```'}
   `
 
+  const excerpts = {}
+  if (type === 'newMarket') {
+    const removeBlankLines = /^\s*\n/gm 
+    excerpts.oracle = `${'```javascript'}
+${prettyJs(annotator(proposal.terms.newMarket.changes.instrument.future.oracleSpecForTradingTermination), formatOptions).replace(removeBlankLines, '')}
+${'```'}`
+
+    excerpts.overview = `${'```javascript'}
+${prettyJs(inspect(produceOverview(proposal), { depth: 3 }), formatOptions).replace(removeBlankLines, '')}
+${'```'}`
+  }
   return {
+    excerpts,
     annotated,
     json,
     cmd
@@ -130,10 +143,7 @@ const ProposalGenerator = new Map([
 function parse(api) {
   const proposalTypes = omit(api.definitions.vegaProposalTerms.properties, notProposalTypes )
 
-  console.dir(proposalTypes)
-
   const partials = Object.keys(proposalTypes).map(type => {
-      console.log(type)
       if (excludeUnimplementedTypes.indexOf(type) === -1) {
         if (ProposalGenerator.has(type)) {
             const changes = ProposalGenerator.get(type)(proposalTypes[type])
@@ -154,6 +164,12 @@ function output(partial, title) {
     writeFileSync(`${path}/_${title}_annotated.md`, partial.annotated)
     writeFileSync(`${path}/_${title}_json.md`, partial.json)
     writeFileSync(`${path}/_${title}_cmd.md`, partial.cmd)
+
+    // Special case: Excerpt some sections of JSON so they can be documented in detail
+    if (title === 'newMarket') {
+      writeFileSync(`${path}/_${title}_json_oracle.md`, partial.excerpts.oracle)
+      writeFileSync(`${path}/_${title}_json_overview.md`, partial.excerpts.overview)
+    }
   } else {
     console.dir(partial);
   }

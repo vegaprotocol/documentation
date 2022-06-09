@@ -1,5 +1,5 @@
 
   ```bash
-  vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{"proposalSubmission":{"rationale":{"description":"Update market.fee.factors.infrastructureFee"},"terms":{"updateNetworkParameter":{"changes":{"key":"market.fee.factors.infrastructureFee","value":"0.8968196144347058"}},"closingTimestamp":1656261847247,"enactmentTimestamp":1656348247247}}}'
+  vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{"proposalSubmission":{"rationale":{"description":"Update governance.proposal.freeform.minVoterBalance"},"terms":{"updateNetworkParameter":{"changes":{"key":"governance.proposal.freeform.minVoterBalance","value":"0.8431183263092281"}},"closingTimestamp":1656442525858,"enactmentTimestamp":1656528925858}}}'
   ```
   
