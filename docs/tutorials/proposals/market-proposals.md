@@ -8,6 +8,8 @@ keywords:
 - newMarket
 ---
 
+import NewMarketJSONOracle from './_generated-proposals/_newMarket_json_oracle.md';
+import NewMarketJSONOverview from './_generated-proposals/_newMarket_json_overview.md';
 import NewMarketAnnotated from './_generated-proposals/_newMarket_annotated.md';
 import NewMarketJSON from './_generated-proposals/_newMarket_json.md';
 import NewMarketCMD from './_generated-proposals/_newMarket_cmd.md';
@@ -30,10 +32,19 @@ Propose a new market on Fairground.
    * enough of the settlement asset (testnet) available to place the liquidity commitment that you have built in the proposal.
 5. Copy the command shown in the 'command line' tab, edit the fields for your wallet name and pub key, and replace the sample market proposal details with yours
 6. Use the command line to submit your proposal.
-7. You can see your proposal on the [Fairground block explorer](https://explorer.fairground.wtf/governance). 
+7. You can see your proposal on the [Fairground block explorer](https://explorer.fairground.wtf/governance).
 
 ## Propose a new market
 
+### Overview
+There are a lot of details required for proposing a market. The general shape is as follows:
+<NewMarketJSONOverview/>
+
+### Oracle bindings
+Oracle feeds can be used to terminate trading and settle markets. An oracle spec binding looks like this:
+<NewMarketJSONOracle/>
+
+### Full example
 <Tabs groupId="newMarket">
   <TabItem value="annotated" label="Annotated example">
     <NewMarketAnnotated />
