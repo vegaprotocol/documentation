@@ -453,7 +453,7 @@ function produceOverview(p) {
   proposal.terms.newMarket.changes.metadata = []
   proposal.terms.newMarket.changes.priceMonitoringParameters = []
   proposal.terms.newMarket.changes.liquidityMonitoringParameters = []
-  proposal.terms.newMarket.changes.logNormal = []
+  proposal.terms.newMarket.changes.logNormal = {} 
   proposal.terms.newMarket.liquidityCommitment = {}
   return proposal.terms.newMarket
 }
