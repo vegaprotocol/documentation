@@ -8,6 +8,7 @@ keywords:
 - newMarket
 ---
 
+import NewMarketJSONInstrument from './_generated-proposals/_newMarket_json_instrument.md';
 import NewMarketJSONOracle from './_generated-proposals/_newMarket_json_oracle.md';
 import NewMarketJSONOverview from './_generated-proposals/_newMarket_json_overview.md';
 import NewMarketAnnotated from './_generated-proposals/_newMarket_annotated.md';
@@ -38,9 +39,13 @@ Propose a new market on Fairground.
 
 ### Overview
 There are a lot of details required for proposing a market. The general shape is as follows:
-<NewMarketJSONOverview/>
+<NewMarketJSONOverview />
 
 ### Instrument
+An instrument contains the following properties. For easy reading, the Oracle filters are separated out - see [Oracle bindings](#oracle-bindings) below to see the fields for specifying oracle data.
+
+<NewMarketJSONInstrument />
+
 #### Oracle bindings
 Oracle feeds can be used to terminate trading and settle markets. An oracle spec binding looks like this:
 <NewMarketJSONOracle/>
