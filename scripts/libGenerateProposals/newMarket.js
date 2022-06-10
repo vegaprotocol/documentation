@@ -458,4 +458,13 @@ function produceOverview(p) {
   return proposal.terms.newMarket
 }
 
-module.exports = { newMarket, generateOracleSpecBinding, generateOracleSpec, produceOverview }
+// Produces a very basic object 'overview' of an instrument
+function produceInstrument(i) {
+  const instrument = Object.assign({}, i)
+  instrument.future.oracleSpecForSettlementPrice = {}
+  instrument.future.oracleSpecForTradingTermination = {}
+  return instrument
+}
+
+
+module.exports = { newMarket, generateOracleSpecBinding, generateOracleSpec, produceOverview, produceInstrument }

@@ -40,7 +40,8 @@ Propose a new market on Fairground.
 There are a lot of details required for proposing a market. The general shape is as follows:
 <NewMarketJSONOverview/>
 
-### Oracle bindings
+### Instrument
+#### Oracle bindings
 Oracle feeds can be used to terminate trading and settle markets. An oracle spec binding looks like this:
 <NewMarketJSONOracle/>
 

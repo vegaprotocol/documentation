@@ -3,7 +3,7 @@ const assert = require('assert').strict;
 const { addDays } = require('date-fns');
 const omit = require('lodash/omit');
 const SwaggerParser = require("@apidevtools/swagger-parser");
-const { newMarket, produceOverview } = require('./libGenerateProposals/newMarket')
+const { newMarket, produceOverview, produceInstrument } = require('./libGenerateProposals/newMarket')
 const { updateMarket } = require('./libGenerateProposals/updateMarket')
 const { newFreeform } = require('./libGenerateProposals/newFreeform')
 const { newAsset } = require('./libGenerateProposals/newAsset')
@@ -114,9 +114,15 @@ ${JSON.stringify(proposal, null, '  ')}
 
   const excerpts = {}
   if (type === 'newMarket') {
+    // This is pretty lazy custom code for one type. If more proposal types require excerpts, rethink this
     const removeBlankLines = /^\s*\n/gm 
+
     excerpts.oracle = `${'```javascript'}
 ${prettyJs(annotator(proposal.terms.newMarket.changes.instrument.future.oracleSpecForTradingTermination), formatOptions).replace(removeBlankLines, '')}
+${'```'}`
+
+    excerpts.instrument = `${'```javascript'}
+${prettyJs(annotator(produceInstrument(proposal.terms.newMarket.changes.instrument)), formatOptions).replace(removeBlankLines, '')}
 ${'```'}`
 
     excerpts.overview = `${'```javascript'}
@@ -168,6 +174,7 @@ function output(partial, title) {
     // Special case: Excerpt some sections of JSON so they can be documented in detail
     if (title === 'newMarket') {
       writeFileSync(`${path}/_${title}_json_oracle.md`, partial.excerpts.oracle)
+      writeFileSync(`${path}/_${title}_json_instrument.md`, partial.excerpts.instrument)
       writeFileSync(`${path}/_${title}_json_overview.md`, partial.excerpts.overview)
     }
   } else {
