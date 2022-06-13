@@ -125,7 +125,7 @@ Wait for a new checkpoint file to be produced, then stop all the nodes of the ne
 Save the selected checkpoint file in a safe location you will need to reuse it later.
 
 :::info
-You can locate all your node checkpoint under: `/path/to/vega/home/vega/node/checkpoints`
+You can locate all your nodes checkpoint files under: `/path/to/vega/home/vega/node/checkpoints`
 You also can get a list of all path used by your node using `vega paths list`, the checkpoints folder path is `CheckpointStateHome` under this list.
 :::
 
