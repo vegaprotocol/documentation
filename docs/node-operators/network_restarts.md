@@ -121,7 +121,7 @@ If you do not want to enable SSL, ensure `HTTPSEnabled` is set to false or the d
 
 ### Step 1: Stop the network
 
-Wait for a new checkpoint file to be produce then stop all the nodes of the network (vega, data-node and tendermint). Then backup all tendermint chain data and vega data.
+Wait for a new checkpoint file to be produced, then stop all the nodes of the network (vega, data-node and Tendermint). Once stopped backup all Tendermint chain data and vega data.
 Save the selected checkpoint file in a safe location you will need to reuse it later.
 
 :::info
