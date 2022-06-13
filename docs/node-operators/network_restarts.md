@@ -126,7 +126,7 @@ Save the selected checkpoint file in a safe location you will need to reuse it l
 
 :::info
 You can locate all your nodes checkpoint files under: `/path/to/vega/home/vega/node/checkpoints`
-You also can get a list of all path used by your node using `vega paths list`, the checkpoints folder path is `CheckpointStateHome` under this list.
+You can also get a list of all paths used by your node using `vega paths list`, the checkpoints folder path is `CheckpointStateHome` within this list.
 :::
 
 You can now remove all previous state of the chain by doing:
