@@ -87,7 +87,7 @@ As for the vega configuration, new fields have been added in the data-node confi
 
 The vega node connected to the data-node should add the following line to its config:
 ```
-NodeMode = "validator"
+NodeMode = "full"
 ```
 
 The data-node configuration supports SSL for the HTTP connection. It is highly recommended that SSL is setup on the data-node as this enables GraphQL subscriptions which are used by frontend dApps.
