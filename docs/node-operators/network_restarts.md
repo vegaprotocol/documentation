@@ -117,7 +117,7 @@ This can be setup in the following section of the data-node:
     APMEnabled = true
 ```
 
-If you do not want to enable ssl make sure to set `HTTPSEnabled` to false or the data-node would not start properly.
+If you do not want to enable SSL, ensure `HTTPSEnabled` is set to false or the data-node will not start properly.
 
 ### Step 1: Stop the network
 
