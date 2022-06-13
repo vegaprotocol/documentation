@@ -90,7 +90,7 @@ The vega node connected to the data-node should add the following line to its co
 NodeMode = "validator"
 ```
 
-The data-node configuration also support ssl for the http connection. We recommend that you setup ssl on your node as it enabled graphql subscriptions which are used by the frontend.
+The data-node configuration supports SSL for the HTTP connection. It is highly recommended that SSL is setup on the data-node as this enables GraphQL subscriptions which are used by frontend dApps.
 This can be setup in the following section of the data-node:
 ```
 [Gateway]
