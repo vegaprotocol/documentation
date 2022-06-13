@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-title: Validator node
+title: Set up validating node
 hide_title: false
 ---
 
@@ -10,67 +10,77 @@ import TabItem from '@theme/TabItem';
 This section will take your through all the steps to configure your node as a validator and join an existing network.
 
 :::note
-All the following command will use an optional --home flag. This flag allow to specify a custom home for the configuration, state, cache, of your vega node. The flag is not mandatory and a default path will be chosen if not specified (the XDG Base Directory standard is use to create the path, see: [XDG Base Directory spec](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html).
+All the following commands will use an optional --home flag. This flag allows you to specify a custom home for the configuration, state, and cache of your Vega node. The flag is not mandatory and a default path will be chosen if not specified (the XDG Base Directory standard is use to create the path, see: [XDG Base Directory spec](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html).
 :::
+
 :::info
-You can list all the path used by your vega installation by using the following command:
+You can list all the path used by your Vega installation by using the following command:
 ```
 vega paths list
 ```
 :::
 
 ## Generate the configurations
+Start by generating a Vega validator node configuration.
 
-We start by generating a vega validator node configuration, you will be asked for a passphrase for your nodewallet (if writing automation you may want to use --nodewallet-passphrase-file option which allow you to specify a file containing the passphrase, make sure to save this passphrase as it allow to unlock the nodewallet:
+You will be asked for a passphrase for your node wallet. 
+
+(If writing automation, you may want to use `--nodewallet-passphrase-file`, which allows you to specify a file containing the passphrase.)
+
+Make sure to save this passphrase as it allows you to unlock the node wallet. This command should output the path of the main configuration file. Feel free to open and change settings if needed. (Below you'll find more info on mandatory settings):
+
 ```
 vega init --home="path/to/home/root" validator
 ```
 
-This command should output the path of the main configuration file, feel free to open and change setting if needed (we'll go through setting up a couple mandatory setting later).
-
-Then generate the tendermint node configuration, for convenience the vega toolchain also embed tendermint, you can run all tendermint subcommand using this vega command:
+Then generate the Tendermint node configuration. For convenience, the Vega toolchain also embeds Tendermint. You can run all Tendermint subcommands using this Vega command:
 ```
 vega tm
 ```
-We will generate the configuration using the following command:
+
+Generate the configuration using the following command:
 ```
 vega tm --home="path/to/tendermint/home/root" init
 ```
 
-## Setup the nodewallet
-Each validator node require a few cryptographic wallets to operate properly:
-- Ethereumn wallet: this will be used to sign transaction going through the ERC20 bridge
-- Vega wallet this will be used to sign transaction sent by validators in the vega network
-The public key of the tendermint node needs to be saved in the nodewallet as well. All these
-informations need to be check in properly before starting the node, when the network starts or a node is added to the validator set these information will be checked against the transaction used to register the node on the network, any incorrect setup will stop the node from joining the network.
+## Set up the node wallet
+Each validator node requires two cryptographic wallets to operate properly:
+* Ethereum wallet: Used to sign transactions going through the ERC20 bridge
+* Vega wallet: Used to sign transaction sent by validators in the Vega network
+
+The public key of the Tendermint node also needs to be saved in the node wallet. 
+
+All this information needs to be checked in properly before starting the node. When the network starts or a node is added to the validator set, this information will be checked against the transaction used to register the node on the network. Any incorrect set-up will stop the node from joining the network.
 
 :::note
-For the following nodewallet command you will be prompted to input your nodewallet passphrase (that you created when initialised vega). If you cannot run these command interactively you can specify a file containing the passphrase using the following flag: `--passphrase-file=`.
+For the following node wallet command, you will be prompted to input your node wallet passphrase (that you created when you initialised Vega). If you cannot run these command interactively you can specify a file containing the passphrase using the following flag: `--passphrase-file=`.
 :::
 
 ### Tendermint public key
-To save the tendermint public key in your nodewallet use the following command:
+To save the Tendermint public key in your node wallet, use the following command:
 ```
 vega nodewallet import --chain=tendermint --home=path/to/home --tendermint-pubkey="YOUR_TENDERMINT_PUBKEY"
 ```
 
-If you are using the keys generated by tendermint, you can find the public key at the following path: `path/to/tendermint/config/priv_validator_key.json`, if you're tendermint node is set up to use tmkns, then refer to the [documentation](https://github.com/iqlusioninc/tmkms) to get your public key.
+If you are using the keys generated by Tendermint, you can find the public key at the following path: `path/to/tendermint/config/priv_validator_key.json`. 
+
+If your Tendermint node is set up to use `tmkms`, then refer to the [documentation](https://github.com/iqlusioninc/tmkms) to get your public key.
 
 :::note
-If you are not using tmkms (e.g: the default software keys generated by tendermint, you could run the following command instead:
+If you are not using tmkms (e.g: the default software keys generated by tendermint, run the following command instead:
 ```
 vega nodewallet import --chain=tendermint --home=path/to/home --tendermint-home=path/to/tendermint
 ```
-This will read the tendermint keys from the configuration path, and setup your nodewallet properly.
+This will read the Tendermint keys from the configuration path, and set up your node wallet properly.
 :::
 
 ### Ethereum wallet
-Vega support two types of ethereum wallet, you can either register a wallet available from a clef instance or import a keystore file (e.g: create with `geth account`).
+Vega supports two types of Ethereum wallet: you can either register a wallet available from a clef instance or import a keystore file (e.g: create with `geth account`).
 
 #### Using clef
-To setup your clef instance please refer to the [clef documentation](https://geth.ethereum.org/docs/clef/tutorial).
+To set up your clef instance please refer to the [clef documentation](https://geth.ethereum.org/docs/clef/tutorial).
 
-First set the address of  your clef instance in the vega configuration (`path/to/home/config/node/config.toml`):
+Set the address of your clef instance in the Vega configuration (`path/to/home/config/node/config.toml`):
 ```Toml
 [NodeWallet]
   Level = "Info"
@@ -90,38 +100,44 @@ vega nodewallet import --chain=ethereum --home=path/to/home --clef-account-addre
 ```
 
 #### Using a keystore account file
-You can either import an existing keystore (see how to create them [using geth](https://geth.ethereum.org/docs/getting-started)) using the following command:
+You can either import an existing keystore or create a new one. (Learn how to create a keystore [using geth](https://geth.ethereum.org/docs/getting-started)) 
+
+Import an existing keystore using the following command:
 ```
 vega nodewallet import --chain=ethereum --home="path/to/home" --wallet-passphrase-file="file/containing/account/passphrase" --wallet-path="path/to/wallet"
 ```
 
-Or use the following command to create a new one and save it in the nodewallet:
+Or use the following command to create a new keystore and save it in the node wallet:
 ```
 vega nodewallet generate --chain=ethereum --home="path/to/home" --wallet-passphrase-file="file/containing/account/passphrase"
 ```
 
 #### Vega wallet
+We recommend you use an isolated key. 
 
-We recommend you use an isolated key, for information on how to isolate vega wallet keys see [here](../tools/vega-wallet/cli-wallet/latest/guides/isolate-keys.md):
+Read the guide on how to isolate Vega wallet keys: [Isolate keys]((../tools/vega-wallet/cli-wallet/latest/guides/isolate-keys.md)
+
+Give the node access to the key using the following command: 
 ```
 vega nodewallet import --chain=vega --home="path/to/home" --wallet-passphrase-file="file/containing/account/passphrase" --wallet-path="path/to/wallet"
 ```
 
-Alternatively you can also create a new wallet and save it in the nodewallet:
+Alternatively you can create a new Vega wallet and save it in the node wallet:
 ```
 vega nodewallet generate --chain=vega --home="path/to/home" --wallet-passphrase-file="file/containing/account/passphrase"
 ```
 
 :::info
-You can verify the informations save in your nodewallet using the following command:
+You can verify the information saved in your node wallet using the following command:
 ```
 vega nodewallet show
 ```
 :::
 
-### Configure the ethereum node address
-Each vega validator node needs to be connected to an ethereum node. This allow the node to verify that event happened on ethereum (e.g: a deposit or a withdrawal).
-Set the ethereum node address in the vega configuration (`path/to/home/config/node/config.toml`):
+### Configure the Ethereum node address
+Each Vega validator node needs to be connected to an Ethereum node. This allows the Vega node to verify that an event happened on Ethereum (e.g: a deposit or a withdrawal).
+
+Set the Ethereum node address in the Vega configuration (`path/to/home/config/node/config.toml`):
 ```Toml
 [NodeWallet]
   Level = "Info"
@@ -133,23 +149,12 @@ Set the ethereum node address in the vega configuration (`path/to/home/config/no
 
 
 ### Join a network
+In order to join a network the public keys of your validator need to be included in a genesis file. The genesis files for public Vega networks are maintained in the [vegaprotocol/networks](https://github.com/vegaprotocol/networks) repository. 
 
-In order to join a network the public keys of your validator need to be included in a Genesis file. The Gensis files for public Vega networks are maintained in the [vegaprotocol/networks](https://github.com/vegaprotocol/networks) repository. If you want to join a network at the next restart you will need to generate your validator config to be added to a genesis file. Alternatively you can create a new network by creating a genesis file.
+If you want to join a network at the next restart, you will need to generate your validator config to be added to a genesis file. Alternatively you can [create a new network](#create-a-new-network) by creating a genesis file.
 
-#### Create a new network
-A new network can be create using the following command:
-```
-vega genesis generate --home="path/to/home" --tm-home="path/to/tendermint"
- ```
-This will generate a new genesis file with a single validator (using informations setup in the nodewallet) and all default network parameters.
-
-:::warning
-This command will overwrite any genesis file in your tendermint config (path/to/tendermint/config/genesis.json). If you want just want to see the output of the command without commiting to the change use the --dry-run flag.
-:::
-
-
-#### Add validators information in an existing genesis file
-If you are willing to join another network with an existing genesis file, you can use the following command to generate your validator node information to be added in the genesis file of the network you want to join:
+#### Add validator information to an existing genesis file
+If you are willing to join another network with an existing genesis file, use the following command to generate your validator node information to be added in the genesis file of the network you want to join:
 ```
 vega genesis new validator --home="path/to/home" \
     --country="YOUR_COUNTRY" \
@@ -158,7 +163,7 @@ vega genesis new validator --home="path/to/home" \
 	--avatar-url="YOUR_AVATAR_URL" \
 ```
 
-This should print a json payload similar to:
+This will print a json payload similar to:
 ```
 Info to add in genesis file under `validators` key
 {
@@ -188,3 +193,16 @@ Info to add in genesis file under `app_state.validators` key
 ```
 
 Then add both section in the appropriates places in the genesis file.
+
+### Create a new network
+A new network can be created using the following command:
+```
+vega genesis generate --home="path/to/home" --tm-home="path/to/tendermint"
+ ```
+This will generate a new genesis file with a single validator (using information set up in the node wallet) and all default network parameters.
+
+:::warning
+This command will overwrite any genesis file in your Tendermint config (path/to/tendermint/config/genesis.json). 
+
+If you only want to see the output of the command without commiting to the change, use the `--dry-run` flag.
+:::
