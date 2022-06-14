@@ -8,7 +8,7 @@ original_id: Ownable
 
 View Source: [contracts/tests/Ownable.sol](https://github.com/vegaprotocol/MultisigControl/blob/solidoc/docs/Ownable.md)
 
-**↘ Derived Contracts: [Killable](./Killable)**
+**↘ Derived Contracts: [Killable](./Killable.md)**
 
 **Ownable**
 

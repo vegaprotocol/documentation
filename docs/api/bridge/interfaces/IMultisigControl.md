@@ -8,7 +8,7 @@ original_id: IMultisigControl
 
 View Source: [contracts/IMultisigControl.sol](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/IMultisigControl.sol)
 
-**↘ Derived Contracts: [MultisigControl](../contracts/MultisigControl)**
+**↘ Derived Contracts: [MultisigControl](../contracts/MultisigControl.md)**
 
 **IMultisigControl**
 

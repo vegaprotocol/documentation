@@ -8,7 +8,7 @@ original_id: Killable
 
 View Source: [contracts/tests/Killable.sol](https://github.com/vegaprotocol/MultisigControl/blob/solidoc/docs/Killable.md)
 
-**↗ Extends: [Ownable](./Ownable)**
+**↗ Extends: [Ownable](./Ownable.md)**
 
 **Killable**
 

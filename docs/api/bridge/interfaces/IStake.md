@@ -8,7 +8,7 @@ original_id: IStake
 
 View Source: [contracts/tests/IStake.sol](https://github.com/vegaprotocol/Staking_Bridge/blob/main/contracts/IStake.sol)
 
-**↘ Derived Contracts: [Vega_Staking_Bridge](../contracts/Vega_Staking_Bridge)**
+**↘ Derived Contracts: [Vega_Staking_Bridge](../contracts/Vega_Staking_Bridge.md)**
 
 **IStake**
 
