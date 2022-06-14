@@ -7,27 +7,27 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Vega networks support restarts using checkpoints. Checkpoints are a minimal save of the state of the network every N block, or, after funds are moved in or out of the network. They are both, a way of restarting a clean chain with the current view of all accounts balances, and a security measure in order to not misplace any funds in case of a major issue that would require a restart of the chain.
+Vega networks support restarts using checkpoints. Checkpoints are a minimal save of the state of the network every N block, or, after funds are moved in or out of the network. They are both a way of restarting a clean chain with the current view of all accounts balances, and a security measure in order to not misplace any funds in case of a major issue that would require a restart of the chain.
 
 :::note
-This guide is valid for a network restart with the version 0.51.x
+This guide is valid for a network restart with version 0.50
 :::
 
 
-### Step -1: Verify your nodewallet keys (to do before any following steps)
+## Step -1: Verify your node wallet keys (to do before any following steps)
 
-In a recent version of the vega core, validation has been added at runtime to ensure the keys that validators have setup in the genesis block matches those saved in the nodewallet.
+In a recent version of the Vega core, validation has been added at runtime to ensure the keys that validators have set up in the genesis block matches those saved in the node wallet.
 
-We can do this by by running the following command:
+Do this by by running the following command:
 ```
-vega genesis new validator --tm-home=/path/to/tendermint/home --home=/path/to/vega/home --country="any" --info-url="any" --name="any"
+vega genesis new validator --tm-home="/path/to/tendermint/home" --home="/path/to/vega/home" --country="any" --info-url="any" --name="any"
 ```
 
 :::note
-The 3 flags `--country, --info-url, --name` here are just placeholder to run the command, we are only interested in the output
+The 3 flags `--country, --info-url, --name` here are placeholders to run the command, only the output is important
 :::
 
-The output of the command should look like something like this:
+The output of the command should look similar to this:
 ```
 Enter node wallet passphrase:
 Info to add in genesis file under `validators` key
@@ -57,41 +57,38 @@ Info to add in genesis file under `app_state.validators` key
 }
 ```
 
-You should the verify that your validator information set in the [genesis file](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json) matches the one from the output of the command, mainly your tendermint public key (`plmxJSjg5IC7r8yLWBQUFFTosvXC+rTpbXgf0kCoqoY=` here), vega public key (`ec066610abbd1736b69cadcb059b9efdfdd9e3e33560fc46b2b8b62764edf33f` here) and ethereum address (`0xDdF662BBb29EB7a42340E426A75dd13337E482fc` here).
+You should the verify that your validator information set in the [genesis file](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json) matches the one from the output of the command. In particular, your Tendermint public key (`plmxJSjg5IC7r8yLWBQUFFTosvXC+rTpbXgf0kCoqoY=` here), Vega public key (`ec066610abbd1736b69cadcb059b9efdfdd9e3e33560fc46b2b8b62764edf33f` here) and Ethereum address (`0xDdF662BBb29EB7a42340E426A75dd13337E482fc` here) need to match.
 
-Should there be a difference between the keys in the genesis file and those in the output of the command, this should be raised on discord.
+Should there be a difference between the keys in the genesis file and those in the output of the command, this should be raised on Discord.
 
-### Step 0: Edit configuration
-
+## Step 0: Edit configuration
 You can prepare your configuration but you may not want to update your mainnet node with the configuration before it's stopped.
 
-#### Add the tendermint public key to your nodewallet
-
-The nodewallet now requires to know the tendermint public key. You can save this key by running the following vega command:
+### Add the Tendermint public key to your node wallet
+The node wallet now requires your Tendermint public key. You can save this key by running the following Vega command:
 ```
-vega nodewallet --home=/path/to/vega/home import --chain=tendermint --tendermint-pukey=YOUR_TENDERMINT_PUBEY
+vega nodewallet --home="/path/to/vega/home" import --chain=tendermint --tendermint-pubkey="YOUR_TENDERMINT_PUBKEY"
 ```
 
-#### Update the vega configuration
+### Update the Vega configuration
+New fields have been added to the Vega configuration. We recommend you generate a new default config and ensure that no sections are missing from the configuration if the default is not as required for your specific configuration.
 
-New fields have been added to the vega configuration. We recommend you generate a new default config and ensure that no sections are missing from the configuration if the default is not as required for your specific configuration.
-
-The configuration must specify if a node is running as a validator or not, in the case of running a vega validator node (taking part of Tendermint consensus) add the following line to the vega configuration:
+The configuration must specify if a node is running as a validator or not. If you are running a Vega validator node (taking part in Tendermint consensus) add the following line to the Vega configuration:
 ```
 NodeMode = "validator"
 ```
 
 #### Update the data-node configuration
+For the Vega configuration, new fields have been added in the data-node configuration. We recommend you generate a default one to compare with what you used.
 
-As for the vega configuration, new fields have been added in the data-node configuration, we recommend you generate a default one to compare with what you used today.
-
-The vega node connected to the data-node should add the following line to its config:
+The Vega node connected to the data-node should add the following line to its config:
 ```
 NodeMode = "full"
 ```
 
-The data-node configuration supports SSL for the HTTP connection. It is highly recommended that SSL is setup on the data-node as this enables GraphQL subscriptions which are used by frontend dApps.
-This can be setup in the following section of the data-node:
+The data-node configuration supports SSL for the HTTP connection. It is highly recommended that SSL is setup on the data-node as this enables GraphQL subscriptions, which are used by frontend dApps.
+
+This can be set up in the following section of the data-node:
 ```
 [Gateway]
   Level = "Info"
@@ -120,20 +117,20 @@ This can be setup in the following section of the data-node:
 If you do not want to enable SSL, ensure `HTTPSEnabled` is set to false or the data-node will not start properly.
 
 ### Step 1: Stop the network
+Wait for a new checkpoint file to be produced, then stop all the nodes of the network (Vega, data-node and Tendermint). Once stopped, back up all Tendermint chain data and Vega data.
 
-Wait for a new checkpoint file to be produced, then stop all the nodes of the network (vega, data-node and Tendermint). Once stopped backup all Tendermint chain data and vega data.
-Save the selected checkpoint file in a safe location you will need to reuse it later.
+Save the selected checkpoint file in a safe location. You will need to reuse it later.
 
 :::info
-You can locate all your nodes checkpoint files under: `/path/to/vega/home/vega/node/checkpoints`
-You can also get a list of all paths used by your node using `vega paths list`, the checkpoints folder path is `CheckpointStateHome` within this list.
+You can locate all your nodes' checkpoint files under: `/path/to/vega/home/vega/node/checkpoints`
+You can also get a list of all paths used by your node using `vega paths list`. The checkpoints folder path is `CheckpointStateHome` within this list.
 :::
 
-You can now remove all previous state of the chain by doing:
+You can now remove all previous states of the chain by running:
 ```
-vega --home=/path/to/vega/home unsafe_reset_all
-vega tm --home=/path/to/tendermint/home unsafe_reset_all
-rm -rf /path/to/data-node/home/vega/data-node/storage/
+vega --home="/path/to/vega/home unsafe_reset_all"
+vega tm --home="/path/to/tendermint/home unsafe_reset_all"
+rm -rf "/path/to/data-node/home/vega/data-node/storage/"
 ```
 
 :::info
@@ -141,30 +138,30 @@ The exact path of the data-node folder to remove can be found using `vega paths 
 :::
 
 ### Step 2: Update the genesis file
-
 One of the validators will now need to update the [genesis file](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json) with the following information:
-- the new start date of the network
-- the new network ID
-- the hash of the checkpoint file to be used.
+- The new start date of the network
+- The new network ID
+- The hash of the checkpoint file to be used
 
 This should be done via a pull request on the [networks](https://github.com/vegaprotocol/networks) repo and ideally approved by 2/3+1 of all validators.
 
 ### Step 3: Restart the network
 
 :::note
-This is a critical part which needs to be done with all validators synchronously (this will not be needed in future updates).
+This is a critical step that needs to be done with all validators synchronously. (This will not be needed in future updates).
 :::
 
-All validators need to restart their node in a synchronous way. This is required as the network needs to synchronise its state with the Ethereum state in relations to the vega token delegation to the vega network. This is done during the bootstrapping period which happens during the first `N` blocks of the chain (`N` can be configured in the genesis file).
+All validators need to restart their node in a synchronous way. This is required as the network needs to synchronise its state with the Ethereum state in relation to the Vega token delegation to the Vega network. 
 
-During the bootstrapping no transactions from users can be emitted other than the transaction to submit the checkpoint. This should be done only once by one of the validators using the following command:
+This is done during the bootstrapping period, which happens during the first `N` blocks of the chain (`N` can be configured in the genesis file).
+
+During the bootstrapping no transactions from users can be emitted other than the transaction to submit the checkpoint. This should be done only once by **one** of the validators using the following command:
 ```
-vega checkpoint restore --home=/path/to/vega/home --passphrase-file=YOUR_NODEWALLET_PASSPHRASE_FILE --checkpoint-file=/path/the/
-checkpoint/file
+vega checkpoint restore --home="/path/to/vega/home" --passphrase-file="YOUR_NODEWALLET_PASSPHRASE_FILE" --checkpoint-file="/path/tothe/
+checkpoint/file"
 ```
 
-Once this is done, we will need to monitor the network to make sure all delegation are recovered properly by the end of the bootstraping period
+Once this is done, you will need to monitor the network to make sure all delegation are recovered properly by the end of the bootstraping period.
 
-### Misc
-
-The ethereum event forwarder is now not required anymore, this should be removed from your infrastructure and not started. This service has been re-written and is now integrated in the vega core node.
+### Deprecated
+The Ethereum event forwarder is no longer required. This should be removed from your infrastructure and not started. This service has been re-written and is now integrated in the Vega core node.
