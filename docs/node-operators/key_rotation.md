@@ -7,24 +7,23 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Etheruem Key rotation for Validators
+## Etheruem Key rotation for validators
 
 todo
 
-## Vega Keys rotation for Validators
+## Vega key rotation for validators
 
-This is a safety related feature specifically for validators to manage their Vega keys. To run the Vega network validators need three keys: Ethereum, Tendermint and Vega. This documentation is specifically about the Vega key.
+This is a safety related feature specifically for validators to manage their Vega keys. To run the Vega network, validators need three keys: Ethereum, Tendermint and Vega. This section is specifically about the Vega key.
 
-In the case that the Vega key gets compromised, or the validator decides to rotate to a new key, there is a mechanism available in Vega to perform a key rotation.
+In the case that the Vega key is compromised, or the validator decides to switch to a new key, there is a mechanism available in Vega to perform a key rotation.
 
-Rotation to the new key is done in 4 different steps.
-1. Generating new key from the original wallet (with Vega Wallet CLI)
-1. Isolating newly created key to a standalone wallet (with Vega Wallet CLI)
-1. Creating and submitting key rotation transaction to the network (with Vega Wallet CLI)
-Importing and reloading the isolated wallet to run Vega validator node (with Vega binary)
+Rotation to the new key is done in 4 steps:
+1. Generate new key from the original wallet (with Vega Wallet CLI)
+1. Isolate newly created key to a standalone wallet (with Vega Wallet CLI)
+1. Create and submit key rotation transaction to the network (with Vega Wallet CLI)
+1. Import and reload the isolated wallet to run Vega validator node (with Vega binary)
 
 ### Prerequisites:
-
 1. Installed [Vega Wallet CLI](https://github.com/vegaprotocol/vegawallet)
 1. Running validator node with admin server enabled
 1. Access to wallet with current Vega and Master key (usually the original wallet that generated those keys)
@@ -38,76 +37,73 @@ Importing and reloading the isolated wallet to run Vega validator node (with Veg
 :::
 
 
-### Step 1. Generating new key from the original wallet
+### Step 1. Generate new key from the original wallet
 
 :::note 
-It is required to have access to the wallet that holds the original key that is to be rotated.
+You must have access to the wallet that holds the original key that is to be rotated.
 :::
 
-**1.A** Firstly, validate that it's possible to see the public key to be rotated in the wallet. The printed public key will be referred to as `CURRENT_PUB_KEY`
+**1.A** First, validate that it's possible to see the public key to be rotated in the wallet. The printed public key will be referred to as `CURRENT_PUB_KEY`
 
 ```
-vegawallet --home WALLET_PATH key list --wallet WALLET_NAME
+vegawallet --home "WALLET_PATH" key list --wallet "WALLET_NAME"
 ```
 
 **1.B** After confirming that this wallet is holding the current key; generate a new key. The printed public will be referred to as `GENERATED_PUB_KEY`
 
 ```
-vegawallet --home WALLET_PATH key generate --wallet WALLET_NAME
+vegawallet --home "WALLET_PATH" key generate --wallet "WALLET_NAME"
 ```
 
 Once a new key has been generated in the same wallet,  move to step 2.
 
-### Step 2. Isolating newly created key to a standalone wallet
+### Step 2. Isolate newly created key to a standalone wallet
 
 This step isolates the key into a standalone wallet so it can be imported to the validator's node wallet.
 
 The following command will isolate the key to a separate wallet. Please make a note of the isolated wallet path - referred to as:
 
 ```
-vegawallet --home WALLET_PATH key isolate --wallet WALLET_NAME -k THE_GENERATED_PUB_KEY
+vegawallet --home "WALLET_PATH" key isolate --wallet "WALLET_NAME" -k "GENERATED_PUB_KEY"
 ```
 
-### Step 3. Creating and submitting key rotation transaction to the network
-
+### Step 3. Create and submit key rotation transaction to the network
 After generating a new key and isolating it to a wallet, create and submit a transaction for the network to request the key rotation.
 
-`TX_HEIGHT` - current block height of the network. This can be approximately -50 blocks from the actual height but it should be as close as possible. Please make sure this is chosen correctly otherwise the transaction can be refused by replay protection.
+`TX_HEIGHT` - current block height of the network. This can be approximately -50 blocks from the actual height but it should be as close as possible. Please make sure this is chosen correctly otherwise the transaction will be refused by replay protection.
 `TARGET_HEIGHT` - a block height when the key rotation will take place. It has to be in the future. It is recommended to do it at least 30-50 blocks in future because there will be more time to do step 4 in the meantime.
 `BASE64_TRANSACTION` - transaction output by step `3.A`
-`VEGA_NETWORK` - is the Vega network that the validator node is running on.
+`VEGA_NETWORK` - the Vega network that the validator node is running on
 
-**3.A** This step will create a KeyRotationSubmission transaction and output it as a Base64 string. The output transaction is referred to as `BASE64_TRANSACTION`
+**3.A** This step will create a key rotation submission transaction and output it as a Base64 string. The output transaction is referred to as `BASE64_TRANSACTION`
 
 ```
-vegawallet --home WALLET_PATH key rotate --current-pubkey  CURRENT_PUB_KEY --new-pubkey GENERATED_PUB_KEY  --tx-height TX_HEIGHT —target-height TARGET_HEIGHT --wallet WALLET_NAME
+vegawallet --home "WALLET_PATH" key rotate --current-pubkey "CURRENT_PUB_KEY" --new-pubkey "GENERATED_PUB_KEY" --tx-height "TX_HEIGHT" —target-height "TARGET_HEIGHT" --wallet "WALLET_NAME"
 ```
 
 **3.B** After successfully creating the transaction, submit it to the network. If this step is successful, move to step 4.
 
 ```
-vegawallet tx send --network VEGA_NETWORK BASE64_TRANSACTION
+vegawallet tx send --network "VEGA_NETWORK" "BASE64_TRANSACTION"
 ```
 
-
-### Step 4. Importing and reloading the isolated wallet to the running Vega validator node
-
-Finally, ensure to import the isolated wallet from step `2.A` to the validator node wallet and reload it in the running node.
+### Step 4. Import and reload the isolated wallet to the running Vega validator node
+Finally, be sure to import the isolated wallet from step `2.A` to the validator node wallet and reload it in the running node.
 
 `HOME` - home folder of the running validator node
 
 **4.A** Import the isolated wallet to the running instance of the validator node
 
 ```
-vega nodewallet import --home HOME --wallet-path ISOLATED_WALLET_PATH -c vega --force
+vega nodewallet import --home "HOME" --wallet-path "ISOLATED_WALLET_PATH" -c vega --force
 ```
 
 **4.B** After successfully importing the wallet, wait until the network rotates to the new key (block height will get to `TARGET_HEIGHT` or later) and then reload the validator node wallet to use the new key from the isolated wallet.
 
 ```
-vega nodewallet reload --home HOME -c vega
+vega nodewallet reload --home "HOME" -c vega
 ```
 
-The command above should output that it is using a new public key the `GENERATED_PUB_KEY` instead of `CURRENT_PUB_KEY`.
+The command above should output that it is using a new public key - the `GENERATED_PUB_KEY`, instead of `CURRENT_PUB_KEY`.
 
-Validate that the key has be rotated successfully in the network using Data Node API endpoint as described in the [documentation](https://docs.vega.xyz/docs/mainnet/api/rest/data-node/data#operation/GetKeyRotations)
+Validate that the key has be rotated successfully in the network using the data node API endpoint as described in the [data node documentation](https://docs.vega.xyz/docs/mainnet/api/rest/data-node/data#operation/GetKeyRotations)
