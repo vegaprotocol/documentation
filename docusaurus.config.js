@@ -21,7 +21,7 @@ module.exports = {
         src: "img/logo-y.png",
       },
       items: [
-/*        {
+        /*        {
           type: "docsVersionDropdown",
           position: "right",
           // Removes the All Versions page
@@ -225,7 +225,7 @@ module.exports = {
             expandResponses: "all",
             hideDownloadButton: true,
             schemaExpansionLevel: 5,
-            expandSingleSchemaField: true
+            expandSingleSchemaField: true,
           },
         },
         // start-rest-versions
