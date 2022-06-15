@@ -21,6 +21,9 @@ type Order {
   status: OrderStatus!
   reference: String!
   trades: [Trade!]
+  tradesPaged(
+  pagination: Pagination
+): TradeConnection!
   type: OrderType
   rejectionReason: OrderRejectionReason
   version: String!
@@ -96,6 +99,14 @@ The external reference (if available) for the order
 #### `trades` ([`Trade`](/docs/testnet/graphql/objects/trade))
 
 Trades relating to this order
+
+
+#### `tradesPaged` ([`TradeConnection`](/docs/testnet/graphql/objects/trade-connection))
+
+Trades relating to this order
+- ##### `pagination` ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+
 
 
 #### `type` ([`OrderType`](/docs/testnet/graphql/enums/order-type))

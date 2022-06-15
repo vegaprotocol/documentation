@@ -15,6 +15,10 @@ type RewardSummary {
   first: Int
   last: Int
 ): [Reward]
+  rewardsConnection(
+  asset: String
+  pagination: Pagination
+): RewardsConnection
 }
 ```
 
@@ -47,6 +51,19 @@ Pagination first element
 - ##### `last` ([`Int`](/docs/testnet/graphql/scalars/int))
 
 Pagination last element
+
+
+#### `rewardsConnection` ([`RewardsConnection`](/docs/testnet/graphql/objects/rewards-connection))
+
+List of individual reward payouts, ordered by epoch
+- ##### `asset` ([`String`](/docs/testnet/graphql/scalars/string))
+
+An optional asset
+
+
+- ##### `pagination` ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+Cursor pagination information
 
 
 

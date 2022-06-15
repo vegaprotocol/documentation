@@ -18,6 +18,9 @@ type Position {
   unrealisedPNL: String!
   averageEntryPrice: String!
   margins: [MarginLevels!]
+  marginsPaged(
+  pagination: Pagination
+): MarginConnection!
   updatedAt: String
 }
 ```
@@ -58,6 +61,14 @@ Average entry price for this position
 #### `margins` ([`MarginLevels`](/docs/testnet/graphql/objects/margin-levels))
 
 margins of the party for the given position
+
+
+#### `marginsPaged` ([`MarginConnection`](/docs/testnet/graphql/objects/margin-connection))
+
+margins of the party for the given position
+- ##### `pagination` ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+
 
 
 #### `updatedAt` ([`String`](/docs/testnet/graphql/scalars/string))
