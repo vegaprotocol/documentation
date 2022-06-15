@@ -1,0 +1,54 @@
+---
+id: reward
+title: Reward
+---
+
+
+Reward information for a single party
+
+```graphql
+type Reward {
+  asset: Asset!
+  party: Party!
+  epoch: Epoch!
+  amount: String!
+  percentageOfTotal: String!
+  receivedAt: String!
+}
+```
+
+
+### Fields
+
+#### `asset` ([`Asset`](/docs/testnet/graphql/objects/asset))
+
+The asset for which this reward is associated
+
+
+#### `party` ([`Party`](/docs/testnet/graphql/objects/party))
+
+Party receiving the reward
+
+
+#### `epoch` ([`Epoch`](/docs/testnet/graphql/objects/epoch))
+
+Epoch for which this reward was distributed
+
+
+#### `amount` ([`String`](/docs/testnet/graphql/scalars/string))
+
+Amount received for this reward
+
+
+#### `percentageOfTotal` ([`String`](/docs/testnet/graphql/scalars/string))
+
+Percentage out of the total distributed reward
+
+
+#### `receivedAt` ([`String`](/docs/testnet/graphql/scalars/string))
+
+Time at which the rewards was received
+
+
+
+

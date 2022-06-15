@@ -1,0 +1,30 @@
+---
+id: price-monitoring-settings
+title: PriceMonitoringSettings
+---
+
+
+Configuration of a market price monitoring auctions triggers
+
+```graphql
+type PriceMonitoringSettings {
+  parameters: PriceMonitoringParameters
+  updateFrequencySecs: Int!
+}
+```
+
+
+### Fields
+
+#### `parameters` ([`PriceMonitoringParameters`](/docs/testnet/graphql/objects/price-monitoring-parameters))
+
+Specified a set of PriceMonitoringParameters to be use for price monitoring purposes
+
+
+#### `updateFrequencySecs` ([`Int`](/docs/testnet/graphql/scalars/int))
+
+How often (in seconds) the price monitoring bounds should be updated
+
+
+
+

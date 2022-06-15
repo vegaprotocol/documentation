@@ -1,0 +1,36 @@
+---
+id: recurring-transfer
+title: RecurringTransfer
+---
+
+
+The specific details for a recurring transfer
+
+```graphql
+type RecurringTransfer {
+  startEpoch: Int!
+  endEpoch: Int
+  factor: String!
+}
+```
+
+
+### Fields
+
+#### `startEpoch` ([`Int`](/docs/testnet/graphql/scalars/int))
+
+The epoch at which this recurring transfer will start
+
+
+#### `endEpoch` ([`Int`](/docs/testnet/graphql/scalars/int))
+
+An optional epoch at whihc this transfer will stop
+
+
+#### `factor` ([`String`](/docs/testnet/graphql/scalars/string))
+
+The factor of the initial amount to be distributed
+
+
+
+

@@ -7,8 +7,17 @@ title: oracleSpecs
 All registered oracle specs
 
 ```graphql
-oracleSpecs: [OracleSpec!]
+oracleSpecs(
+  pagination: OffsetPagination
+): [OracleSpec!]
 ```
+
+
+### Arguments
+
+#### `pagination` ([`OffsetPagination`](/docs/testnet/graphql/inputs/offset-pagination))
+
+Pagination
 
 
 ### Type
