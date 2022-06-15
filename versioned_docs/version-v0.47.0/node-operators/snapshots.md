@@ -7,7 +7,7 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This section will take you through using the state snapshots. These allow a node to be started without having to replay the whole chain in order to catch up with the current block height of the network.
+This section will take you through using the state snapshots, these allow a node to be started without having to replay the whole chain in order to catch up with the current block height of the network.
 
 A node can be started by using a local snapshot (state of the chain built by the current node). This can be useful when the node has been running with the network, has built their own state locally, but had to shutdown for maintenance or upgrade for example.
 
