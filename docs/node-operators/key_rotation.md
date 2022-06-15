@@ -7,12 +7,7 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Etheruem Key rotation for validators
-
-todo
-
 ## Vega key rotation for validators
-
 This is a safety related feature specifically for validators to manage their Vega keys. To run the Vega network, validators need three keys: Ethereum, Tendermint and Vega. This section is specifically about the Vega key.
 
 In the case that the Vega key is compromised, or the validator decides to switch to a new key, there is a mechanism available in Vega to perform a key rotation.
@@ -107,3 +102,8 @@ vega nodewallet reload --home "HOME" -c vega
 The command above should output that it is using a new public key - the `GENERATED_PUB_KEY`, instead of `CURRENT_PUB_KEY`.
 
 Validate that the key has be rotated successfully in the network using the data node API endpoint as described in the [data node documentation](https://docs.vega.xyz/docs/mainnet/api/rest/data-node/data#operation/GetKeyRotations)
+
+<!--
+## Etheruem Key rotation for validators
+This section will be updated with information on how to rotate Ethereum keys.
+-->
