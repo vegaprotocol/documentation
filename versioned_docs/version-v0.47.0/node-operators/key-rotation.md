@@ -7,9 +7,9 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Etheruem Key rotation for validators
+<!--## Etheruem Key rotation for validators
 
-todo
+todo -->
 
 ## Vega key rotation for validators
 

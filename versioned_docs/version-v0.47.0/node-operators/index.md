@@ -1,6 +1,7 @@
 ---
-title: Node operators
+title: Overview
 hide_title: false
+sidebar_position: 1
 ---
 Get guidance on how to maintain and upgrade a node. 
 
