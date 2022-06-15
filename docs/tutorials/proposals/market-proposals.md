@@ -29,7 +29,7 @@ Propose a new market on Fairground.
 2. To create your own proposal and submit it using the command line, you will need to copy the JSON example into a text editor, and edit it with the values you want for the market.
 3. Connect to your Vega Wallet, and note your wallet name and public key.
 4. To propose a market you will need:
-   * 1 (ropsten) Vega token to submit the proposal 
+   * 1 (ropsten) Vega token, staked to a validator, to submit the proposal 
    * enough of the settlement asset (testnet) available to place the liquidity commitment that you have built in the proposal.
 5. Copy the command shown in the 'command line' tab, edit the fields for your wallet name and pub key, and replace the sample market proposal details with yours
 6. Use the command line to submit your proposal.
@@ -38,11 +38,18 @@ Propose a new market on Fairground.
 ## Propose a new market
 
 ### Overview
-There are a lot of details required for proposing a market. The general shape is as follows:
+There are a lot of details required for proposing a market. The contents of a changes object specifies what will be different after the proposal. In this case, these are the changes that will occur on the network, in the form of a new market.
+
+The general shape is as follows:
 <NewMarketJSONOverview />
 
 ### Instrument
-An instrument contains the following properties. For easy reading, the Oracle filters are separated out - see [Oracle bindings](#oracle-bindings) below to see the fields for specifying oracle data.
+An instrument contains the following properties: 
+* Decimal places need to be defined for both order sizes and the market.
+  * The `decimalPlaces` field sets the smallest price increment on the book
+  * The `positionDecimalPlaces` sets how big the smallest order / position on the market can be
+
+For easy reading, the Oracle filters are separated out - see [Oracle bindings](#oracle-bindings) below to see the fields for specifying oracle data.
 
 <NewMarketJSONInstrument />
 
