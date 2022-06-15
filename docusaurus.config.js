@@ -62,6 +62,12 @@ module.exports = {
           label: "Releases",
           position: "left",
         },
+        {
+          type: "doc",
+          docId: "node-operators/index",
+          label: "Node operators",
+          position: "left",
+        },
       ],
     },
     footer: {
