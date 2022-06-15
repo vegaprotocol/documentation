@@ -194,7 +194,7 @@ module.exports = {
           disableVersioning: false,
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/vegaprotocol/documentation/edit/main/",
-          lastVersion: "v0.47.0",
+          lastVersion: "v0.50.2",
           versions: {
             current: {
               banner: "unreleased",
