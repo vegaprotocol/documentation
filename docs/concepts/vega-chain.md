@@ -88,7 +88,7 @@ When a tokenholder chooses a validator (or validators) to nominate with their to
 Read more: [Rewards for staking](#rewards)
 
 :::info
-VEGA tokenholders can use **[token.vega.xyz](https://token.vega.xyz)** to associate their tokens and nominate validators. A Vega Wallet and Ethereum wallet are both required. CoinList custodial users should confirm with CoinList how staking works for them.
+VEGA tokenholders can use **[token.fairground.wtf](https://token.fairground.wtf)** to associate their tokens and nominate validators. A Vega Wallet and Ethereum wallet are both required. CoinList custodial users should confirm with CoinList how staking works for them.
 :::
 
 ### Automatic nomination
