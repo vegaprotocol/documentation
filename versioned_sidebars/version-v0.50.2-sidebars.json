@@ -19,7 +19,7 @@
     },
     {
       "type": "link",
-      "href": "/docs/testnet/grpc/vega/vega.proto",
+      "href": "/docs/mainnet/grpc/vega/vega.proto",
       "label": "GRPC"
     },
     {
@@ -34,17 +34,17 @@
         },
         {
           "type": "link",
-          "href": "/docs/testnet/api/rest/data-node/data",
+          "href": "/docs/mainnet/api/rest/data-node/data",
           "label": "Data node"
         },
         {
           "type": "link",
-          "href": "/docs/testnet/api/rest/core/core",
+          "href": "/docs/mainnet/api/rest/core/core",
           "label": "Core"
         },
         {
           "type": "link",
-          "href": "/docs/testnet/api/rest/core/state",
+          "href": "/docs/mainnet/api/rest/core/state",
           "label": "Core state"
         }
       ]

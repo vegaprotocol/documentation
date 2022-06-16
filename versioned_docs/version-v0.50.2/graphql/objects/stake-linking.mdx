@@ -22,42 +22,42 @@ type StakeLinking {
 
 ### Fields
 
-#### `id` ([`ID`](/docs/testnet/graphql/scalars/id))
+#### `id` ([`ID`](/docs/mainnet/graphql/scalars/id))
 
 
 
 
-#### `type` ([`StakeLinkingType`](/docs/testnet/graphql/enums/stake-linking-type))
+#### `type` ([`StakeLinkingType`](/docs/mainnet/graphql/enums/stake-linking-type))
 
 Type of linking: link|unlink
 
 
-#### `timestamp` ([`String`](/docs/testnet/graphql/scalars/string))
+#### `timestamp` ([`String`](/docs/mainnet/graphql/scalars/string))
 
 The time at which the request happened on ethereum
 
 
-#### `party` ([`Party`](/docs/testnet/graphql/objects/party))
+#### `party` ([`Party`](/docs/mainnet/graphql/objects/party))
 
 The party initiating the stake linking
 
 
-#### `amount` ([`String`](/docs/testnet/graphql/scalars/string))
+#### `amount` ([`String`](/docs/mainnet/graphql/scalars/string))
 
 The amount linked or unlinked
 
 
-#### `status` ([`StakeLinkingStatus`](/docs/testnet/graphql/enums/stake-linking-status))
+#### `status` ([`StakeLinkingStatus`](/docs/mainnet/graphql/enums/stake-linking-status))
 
 The status of the linking
 
 
-#### `finalizedAt` ([`String`](/docs/testnet/graphql/scalars/string))
+#### `finalizedAt` ([`String`](/docs/mainnet/graphql/scalars/string))
 
 The time at which the stake linking was full processed by the vega network, null until defined
 
 
-#### `txHash` ([`String`](/docs/testnet/graphql/scalars/string))
+#### `txHash` ([`String`](/docs/mainnet/graphql/scalars/string))
 
 The transaction hash (ethereum) which initiated the link/unlink
 
