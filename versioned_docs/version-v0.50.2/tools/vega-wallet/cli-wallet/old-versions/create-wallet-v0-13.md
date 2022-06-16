@@ -7,7 +7,7 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-To download Vega Wallet and create your wallet using versions 0.13, 0.12, or 0.11, follow the step-by-step instructions below. You can also refer to [documentation for 0.10.0 or earlier](../../old-versions/v0-10-0/create-wallet-v0-10.md) if you need it.
+To download Vega Wallet and create your wallet using versions 0.13, 0.12, or 0.11, follow the step-by-step instructions below. You can also refer to [documentation for 0.10.0 or earlier](./v0-10-0/create-wallet-v0-10.md) if you need it.
 
 This software a work-in-progress and is frequently updated. 
 
@@ -73,7 +73,7 @@ You'll need to run the commands from the directory you've saved the wallet file 
 The steps below will guide you through initialising a wallet, and creating new key pairs or importing an existing wallet. 
 
 :::info
-To restore a wallet from your recovery phrase, see the [restore a wallet guide](../../latest/guides/restore-wallet.md).
+To restore a wallet from your recovery phrase, see the [restore a wallet guide](../latest//guides/restore-wallet.md).
 :::
 
 ### Initialise the software
@@ -154,7 +154,7 @@ Import the following network configurations:
 * **Fairground** network: [`fairground.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/fairground/fairground.toml)
 
 :::info
-To update your networks list, see [manage networks](../../latest/guides/manage-networks.md#update-networks) for instructions.
+To update your networks list, see [manage networks](../latest//guides/manage-networks.md#update-networks) for instructions.
 ::: 
 
 #### Import networks from URL
