@@ -7,7 +7,7 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-To download Vega Wallet and create your wallet, follow the step-by-step instructions below. This software a work-in-progress and is frequently updated. These instructions cover version 0.14, the latest release.
+To download Vega Wallet and create your wallet, follow the step-by-step instructions below. This software a work-in-progress and is frequently updated. These instructions cover version 0.14 and newer.
 
 Note: If you are looking for instructions for connecting your hardware wallet to MetaMask, see [MetaMask's guide](https://metamask.zendesk.com/hc/en-us/articles/360020394612-How-to-connect-a-Trezor-or-Ledger-Hardware-Wallet).
 
