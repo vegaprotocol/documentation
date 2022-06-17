@@ -9,6 +9,8 @@ keywords:
 ---
 
 import NewMarketJSONInstrument from './_generated-proposals/_newMarket_json_instrument.md';
+import NewMarketJSONLiquidityMonitoring from './_generated-proposals/_newMarket_json_liqparams.md';
+import NewMarketJSONPriceMonitoring from './_generated-proposals/_newMarket_json_priceparams.md';
 import NewMarketJSONOracle from './_generated-proposals/_newMarket_json_oracle.md';
 import NewMarketJSONOverview from './_generated-proposals/_newMarket_json_overview.md';
 import NewMarketAnnotated from './_generated-proposals/_newMarket_annotated.md';
@@ -63,6 +65,12 @@ An instrument contains the following properties:
 For easy reading, the Oracle filters are separated out - see [Oracle bindings](#oracle-bindings) below to see the fields for specifying oracle data.
 
 <NewMarketJSONInstrument />
+
+#### Liquidity monitoring
+<NewMarketJSONPriceMonitoring />
+
+#### Price monitoring
+<NewMarketJSONLiquidityMonitoring />
 
 #### Oracle bindings
 Oracle feeds can be used to terminate trading and settle markets. An oracle spec binding looks like this:

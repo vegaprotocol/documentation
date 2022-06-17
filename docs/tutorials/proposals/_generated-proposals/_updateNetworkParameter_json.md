@@ -8,11 +8,11 @@
     "updateNetworkParameter": {
       "changes": {
         "key": "governance.proposal.freeform.minVoterBalance",
-        "value": "0.3105772339004276"
+        "value": "0.7841836353684473"
       }
     },
-    "closingTimestamp": 1656507550147,
-    "enactmentTimestamp": 1656593950147
+    "closingTimestamp": 1657121948910,
+    "enactmentTimestamp": 1657208348910
   }
 }
   ```

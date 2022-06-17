@@ -121,6 +121,15 @@ ${JSON.stringify(proposal, null, '  ')}
 ${prettyJs(annotator(proposal.terms.newMarket.changes.instrument.future.oracleSpecForTradingTermination), formatOptions).replace(removeBlankLines, '')}
 ${'```'}`
 
+    excerpts.liqparams = `${'```javascript'}
+${prettyJs(annotator(proposal.terms.newMarket.changes.liquidityMonitoringParameters), formatOptions).replace(removeBlankLines, '')}
+${'```'}`
+
+    excerpts.priceparams = `${'```javascript'}
+${prettyJs(annotator(proposal.terms.newMarket.changes.priceMonitoringParameters), formatOptions).replace(removeBlankLines, '')}
+${'```'}`
+
+
     excerpts.instrument = `${'```javascript'}
 ${prettyJs(annotator(produceInstrument(proposal.terms.newMarket.changes.instrument)), formatOptions).replace(removeBlankLines, '')}
 ${'```'}`
@@ -128,7 +137,11 @@ ${'```'}`
     excerpts.overview = `${'```javascript'}
 ${prettyJs(inspect(produceOverview(proposal), { depth: 3 }), formatOptions).replace(removeBlankLines, '')}
 ${'```'}`
-  }
+
+    excerpts.overview = `${'```javascript'}
+${prettyJs(inspect(produceOverview(proposal), { depth: 3 }), formatOptions).replace(removeBlankLines, '')}
+${'```'}`
+   }
   return {
     excerpts,
     annotated,
@@ -155,7 +168,7 @@ function parse(api) {
             const changes = ProposalGenerator.get(type)(proposalTypes[type])
             output(newProposal(changes, api.definitions.vegaProposalTerms, type), type)
         } else {
-            assert.fail('Unknown proposal type: ' + type)
+            console.error('Unknown proposal type: ' + type)
         }
      }
   })
@@ -176,6 +189,8 @@ function output(partial, title) {
       writeFileSync(`${path}/_${title}_json_oracle.md`, partial.excerpts.oracle)
       writeFileSync(`${path}/_${title}_json_instrument.md`, partial.excerpts.instrument)
       writeFileSync(`${path}/_${title}_json_overview.md`, partial.excerpts.overview)
+      writeFileSync(`${path}/_${title}_json_liqparams.md`, partial.excerpts.liqparams)
+      writeFileSync(`${path}/_${title}_json_priceparams.md`, partial.excerpts.priceparams)
     }
   } else {
     console.dir(partial);

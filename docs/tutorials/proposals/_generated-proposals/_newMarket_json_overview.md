@@ -12,9 +12,9 @@
   // Price monitoring parameters
   priceMonitoringParameters: [],
   // Liquidity monitoring parameters
-  liquidityMonitoringParameters: [],
+  liquidityMonitoringParameters: {},
   // Log normal risk model parameters, valid only if MODEL_LOG_NORMAL is selected
-  logNormal: [],
+  logNormal: {},
  },
  // The commitment from the party creating the NewMarket proposal
  liquidityCommitment: {},
