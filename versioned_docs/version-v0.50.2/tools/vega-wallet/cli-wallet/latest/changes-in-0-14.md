@@ -11,10 +11,6 @@ From version 0.14 onwards, you will need to approve transactions with your Vega 
  
 **Below, find an explanation of changes between the versions.**
 
-:::caution
-To use Vega mainnet on [version 0.47.6](https://explorer.vega.xyz/), we recommend using wallet version 0.13.1.
-:::
-
 ## Submitting a transaction
 
 **Up to version 0.14** 
