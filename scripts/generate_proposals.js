@@ -108,7 +108,7 @@ ${JSON.stringify(proposal, null, '  ')}
   `
   const cmd = `
   ${'```bash'}
-  vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '${JSON.stringify({"proposalSubmission": proposal })}'
+  ./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '${JSON.stringify({"proposalSubmission": proposal }, null, ' ').replace(/(\r\n|\r|\n)/g, '\\ \n')}'
   ${'```'}
   `
 

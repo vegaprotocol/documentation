@@ -56,9 +56,9 @@
           }
         },
         "metadata": [
-          "sector:food",
-          "sector:materials",
           "sector:tech",
+          "sector:materials",
+          "sector:health",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -84,51 +84,51 @@
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 0.8
+            "sigma": 0.5
           }
         }
       },
       "liquidityCommitment": {
-        "commitmentAmount": "7687143",
-        "fee": "0.87",
+        "commitmentAmount": "1340427",
+        "fee": "0.73",
         "buys": [
           {
-            "offset": "70",
-            "proportion": 7,
+            "offset": "85",
+            "proportion": 8,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           },
           {
-            "offset": "97",
+            "offset": "13",
             "proportion": 9,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           },
           {
-            "offset": "4",
-            "proportion": 7,
+            "offset": "95",
+            "proportion": 6,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           }
         ],
         "sells": [
           {
-            "offset": "51",
-            "proportion": 5,
-            "reference": "PEGGED_REFERENCE_BEST_ASK"
-          },
-          {
-            "offset": "85",
+            "offset": "84",
             "proportion": 7,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           },
           {
-            "offset": "40",
-            "proportion": 5,
+            "offset": "36",
+            "proportion": 7,
+            "reference": "PEGGED_REFERENCE_BEST_ASK"
+          },
+          {
+            "offset": "38",
+            "proportion": 1,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           }
         ]
       }
     },
-    "closingTimestamp": 1657378701,
-    "enactmentTimestamp": 1657465101
+    "closingTimestamp": 1657379090,
+    "enactmentTimestamp": 1657465490
   }
 }
   ```
