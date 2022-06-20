@@ -2,9 +2,7 @@
 ## Governance
 Governance allows the Vega network to arrive at on-chain decisions, where tokenholders can create proposals that other tokenholders can vote to approve or reject. 
 
-Governance proposals for restricted mainnet are limited to network parameter change proposals, as trading is not available. 
-
-In future versions, Vega will support proposals for creating markets and assets, proposals for changing network parameters, markets and assets, and freeform proposals for community suggestions. 
+Vega supports on-chain proposals for creating markets and assets, changing network parameters, markets and assets. Vega also supports freeform proposals for community suggestions that will not be enacted on-chain. 
 
 :::info 
 Try out proposing markets using [Fairground](https://fairground.wtf), Vega's testnet. 
@@ -20,6 +18,13 @@ Try out proposing markets using [Fairground](https://fairground.wtf), Vega's tes
    - comparing the total number of votes cast as a percentage of the number eligible to be cast, to the minimum participation requirement. If the minimum is not reached, the proposal is rejected.
 	- comparing the number of 'for' votes as a percentage of all votes cast (maximum one vote counted per party) to the required majority. 
 1. If the required majority of 'for' votes is met, the action described in the proposal will be taken (i.e., proposal is enacted) on the defined enactment date. Note the enactment date must be at least the minimum enactment period for the proposal type/subtype (specified by a network parameter) _after_ voting closes.
+
+### Community support for a propsal
+Having a submitted proposal pass the governance threshold requires the support of other Vega tokenholders. To give your proposal the best chance at success, you'll need to get the community on board.
+
+* Sense check your proposal by sharing an outline of your proposed action on the [community forum](https://community.vega.xyz) to find out if there is support for the proposal and its intention.
+* Share the detailed proposal on the forum, including the rationale, the specific parameters, and the data (JSON or similar) that would be submitted on-chain Invite discussion to amend the proposal until it reaches a final state that is ready to be submitted.
+* Once you submit the proposal, invite the community to vote, and be sure to vote on it yourself, too.
 
 ### Voting on proposals 
 VEGA tokenholders can vote for or against any proposals. 
@@ -53,7 +58,7 @@ Read more: Propose a market change
 Tokenholders can propose markets, which then need to be voted on by other tokenholders. If the market proposal gets a majority of tokeholder support, then it will be enacted. 
 
 :::info
-A liquidity commitment is required when proposing a market. The public key proposing the market will need to have deposited enough of the market's settlement collateral to fulfil their liquidity commitment. 
+A liquidity commitment is optional when proposing a market, but a market will not enter into continuous trading until its liquidity needs are met.
 :::
 
 ! What you need to propose a new market: 
