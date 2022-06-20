@@ -13,6 +13,7 @@ import NewMarketJSONLiquidityMonitoring from './_generated-proposals/_newMarket_
 import NewMarketJSONPriceMonitoring from './_generated-proposals/_newMarket_json_priceparams.md';
 import NewMarketJSONOracle from './_generated-proposals/_newMarket_json_oracle.md';
 import NewMarketJSONOverview from './_generated-proposals/_newMarket_json_overview.md';
+import NewMarketJSONLiquidityCommitment from './_generated-proposals/_newMarket_json_liquidity.md';
 import NewMarketAnnotated from './_generated-proposals/_newMarket_annotated.md';
 import NewMarketJSON from './_generated-proposals/_newMarket_json.md';
 import NewMarketCMD from './_generated-proposals/_newMarket_cmd.md';
@@ -24,29 +25,38 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## Market proposals
-Propose a new market on Fairground. 
+This page provides tutorials for two market proposal types:
+* Propose a new market
+* Change an existing market
 
-1. The annotated example describes what is needed for each field in the proposal. 
-2. To create your own proposal and submit it using the command line, you will need to copy the JSON example into a text editor, and edit it with the values you want for the market.
-3. Connect to your Vega Wallet, and note your wallet name and public key.
-4. To propose a market you will need:
-   * 1 (ropsten) Vega token, associated with the public key you're using to propose the market, and staked to a validator.
-   * enough of the settlement asset (testnet) available to place the liquidity commitment that you have built in the proposal.
-5. Copy the command shown in the 'command line' tab, edit the fields for your wallet name and pub key, and replace the sample market proposal details with yours
-6. Use the command line to submit your proposal.
-7. You can see your proposal on the [Fairground block explorer](https://explorer.fairground.wtf/governance).
+1. The full annotated example describes what is needed for each field in the proposal, and is there for guidance.
+2. Be sure to have your Vega wallet name and public key ready.
+3. To submit a proposal you will need:
+   * At least 1 (ropsten) Vega token, associated with the public key you're using to propose the market, and staked to a validator.
+   * Enough of the settlement asset (testnet) available to place the liquidity commitment that you have built in the proposal, if you are submitting a liquidity commitment.
+4. To create your own proposal and submit it using the command line, you will need to copy the command line example into a text editor and edit it with the values you want for the market.
+5. Use the command line to submit your proposal.
+6. You can see your proposal on the [Fairground block explorer](https://explorer.fairground.wtf/governance).
 
 ## Propose a new market
+The proposal for creating a new market has been divided up into sections to provide more information on what is needed for each section.
+
+Below that you'll find: 
+* Full annotated proposal
+* JSON proposal you can copy and amend to propose via the token dApp
+* Command line proposal you can copy and amend to propose using a CLI
 
 ### Overview
-There are a lot of details required for proposing a market. The contents of a changes object specifies what will be different after the proposal. In this case, these are the changes that will occur on the network, in the form of a new market.
+There are a lot of details required for proposing a market. The contents of a `changes` object specifies what will be different after the proposal. In this case, these are the changes that will occur on the network, in the form of a new market.
 
 The general shape is as follows:
+<NewMarketJSONOverview />
+
+Instrument, liquidity monitoring parameters, price monitoring parameters, oracles, and liquidity commitment are all described in more detail below.
 
 Decimal places need to be defined for both order sizes and the market.
   * The `decimalPlaces` field sets the smallest price increment on the book
   * The `positionDecimalPlaces` sets how big the smallest order / position on the market can be
-<NewMarketJSONOverview />
 
 ### Instrument
 The instrument shape is as follows, see below for a description of each property:
@@ -63,7 +73,7 @@ An instrument contains the following properties:
 * Oracle spec for trading termination: The fields that define the oracle used for terminating trading on the market
 * Oracle spec binding: The fields describe how specific information provided by the oracle data is used. For example, they can identify the specific name of the settlement price output, or the specific name of the trading termination property
 *  
-For easy reading, the Oracle filters are separated out - see [Oracle bindings](#oracle-bindings) below to see the fields for specifying oracle data.
+For easy reading, the oracle filters are separated out - see [Oracle bindings](#oracle-bindings) below to see the fields for specifying oracle data.
 
 #### Liquidity monitoring
 The liquidity monitoring fields below are optional, and if empty will default to the network parameters. See below for more details on each field.
@@ -100,6 +110,28 @@ Oracle feeds can be used to terminate trading and settle markets. See below for 
 * Operator: This adds a constraint to the value, such as LESS_THAN, GREATER_THAN. For example if you wanted to ensure that the price would always be above zero, you would set the operator to ‘GREATER_THAN’ and the Value to be ‘0’
 * Value: A number that is constrained by the operator
 
+#### Liquidity commitment <!--(optional)-->
+<!--There is an option to provide liquidity to the market you propose, but it is not required. Note that a market without enough liquidity will be stuck in a liquidity seeking auction until it gets the liquidity it needs. -->
+
+:::info
+Learn how to amend your liquidity commitment or add liquidity later in the [Providing Liquidity](././providing-liquidity.md) tutorial.
+:::
+
+<NewMarketJSONLiquidityCommitment/>
+
+New market commitment input: The liquidity commitment submitted with the new market, based on the parameters set below.
+
+* Commitment amount: This number represents the amount of the settlement asset for the market, written without a decimal point but to 5 decimal places (for example 5.00011 should be expressed as 500011)
+* Fee: Your nominated liquidity fee factor, which is an input to the calculation of liquidity fees on the market
+* Liquidity order input - Sells: A set of liquidity sell orders to meet the liquidity provision obligation
+* Reference: The sell order’s reference point for its price level. (Examples: mid, best bid, best ask)
+* Proportion: The relative proportion of the commitment to be allocated at the reference price level, written as a positive integer
+* Offset: The number of units away from the reference to place orders. (Example: 2)
+* Liquidity order input - Buys: A set of liquidity buy orders to meet the liquidity provision obligation
+* Reference: The buy order’s reference point for its price level (Examples: mid, best bid, best ask)
+* Proportion: The relative proportion of the commitment to be allocated the reference price level, written as a positive integer
+* Offset: The number of units away from the reference to place orders (Example: 2)
+
 ### Full example
 <Tabs groupId="newMarket">
   <TabItem value="annotated" label="Annotated example">
@@ -113,8 +145,8 @@ Oracle feeds can be used to terminate trading and settle markets. See below for 
   </TabItem>
 </Tabs>
 
-## Update an existing market
-Some parts of a market can also be changed via governance using the `updateMarket` proposal. This is similar to the `newMarket` proposal, but (fortunately) most fields are not required if they are changed by the proposal.
+## Change an existing market
+Some parts of a market can also be changed via governance using the `updateMarket` proposal. This is similar to the `newMarket` proposal, but most fields are not required.
 
 <Tabs groupId="updateMarket">
   <TabItem value="annotated" label="Annotated example">
