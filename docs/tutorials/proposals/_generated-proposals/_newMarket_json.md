@@ -10,8 +10,8 @@
         "decimalPlaces": "5",
         "positionDecimalPlaces": "5",
         "instrument": {
-          "name": "Oranges Daily",
-          "code": "ORANGES.24h",
+          "name": "Apples Yearly (2022)",
+          "code": "APPLES.22",
           "future": {
             "settlementAsset": "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
             "quoteName": "tEuro",
@@ -24,7 +24,7 @@
                 {
                   "key": {
                     "name": "prices.AAPL.value",
-                    "type": "TYPE_BOOLEAN"
+                    "type": "TYPE_INTEGER"
                   },
                   "conditions": [
                     {
@@ -45,12 +45,7 @@
                     "name": "prices.AAPL.value",
                     "type": "TYPE_BOOLEAN"
                   },
-                  "conditions": [
-                    {
-                      "operator": "OPERATOR_GREATER_THAN",
-                      "value": "1"
-                    }
-                  ]
+                  "conditions": []
                 }
               ]
             },
@@ -61,8 +56,7 @@
           }
         },
         "metadata": [
-          "sector:tech",
-          "sector:food",
+          "sector:energy",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -84,55 +78,55 @@
         },
         "logNormal": {
           "tau": 0.0001140771161,
-          "riskAversionParameter": 0.01,
+          "riskAversionParameter": 0.0001,
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 0.8
+            "sigma": 1.25
           }
         }
       },
       "liquidityCommitment": {
-        "commitmentAmount": "2765812",
-        "fee": "0.79",
+        "commitmentAmount": "321881",
+        "fee": "0.61",
         "buys": [
           {
-            "offset": "60",
-            "proportion": 4,
-            "reference": "PEGGED_REFERENCE_BEST_BID"
-          },
-          {
-            "offset": "3",
+            "offset": "10",
             "proportion": 7,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           },
           {
-            "offset": "82",
-            "proportion": 10,
+            "offset": "97",
+            "proportion": 2,
+            "reference": "PEGGED_REFERENCE_BEST_BID"
+          },
+          {
+            "offset": "24",
+            "proportion": 5,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           }
         ],
         "sells": [
           {
-            "offset": "33",
-            "proportion": 4,
+            "offset": "22",
+            "proportion": 10,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           },
           {
-            "offset": "70",
+            "offset": "93",
+            "proportion": 6,
+            "reference": "PEGGED_REFERENCE_BEST_ASK"
+          },
+          {
+            "offset": "92",
             "proportion": 5,
-            "reference": "PEGGED_REFERENCE_BEST_ASK"
-          },
-          {
-            "offset": "96",
-            "proportion": 1,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           }
         ]
       }
     },
-    "closingTimestamp": 1657364391,
-    "enactmentTimestamp": 1657450791
+    "closingTimestamp": 1657376936,
+    "enactmentTimestamp": 1657463336
   }
 }
   ```

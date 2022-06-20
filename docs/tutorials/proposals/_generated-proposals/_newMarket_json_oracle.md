@@ -19,14 +19,7 @@
    },
    // conditions are the conditions that should be matched by the data to be
    // considered of interest.
-   conditions: [
-    {
-     // comparator is the type of comparison to make on the value. (string)
-     operator: "OPERATOR_GREATER_THAN",
-     // value is used by the comparator. (string)
-     value: "1",
-    }
-   ]
+   conditions: []
   }
  ]
 }

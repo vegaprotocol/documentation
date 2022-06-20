@@ -12,7 +12,7 @@
     // Updated market instrument configuration
     instrument: {
      // Instrument code
-     code: "APPLES.22",
+     code: "ORANGES.24h",
 
      // Future
      future: {
@@ -41,7 +41,7 @@
           name: "prices.AAPL.value",
 
           // type is the type of the property. (string)
-          type: "TYPE_BOOLEAN",
+          type: "TYPE_INTEGER",
          },
 
          // conditions are the conditions that should be matched by the data to be
@@ -83,15 +83,7 @@
 
          // conditions are the conditions that should be matched by the data to be
          // considered of interest.
-         conditions: [
-          {
-           // comparator is the type of comparison to make on the value. (string)
-           operator: "OPERATOR_GREATER_THAN",
-
-           // value is used by the comparator. (string)
-           value: "1",
-          }
-         ]
+         conditions: []
         }
        ]
       },
@@ -134,7 +126,7 @@
       tau: 0.0001140771161,
 
       // Risk Aversion Parameter (double as number) 
-      riskAversionParameter: "0.0001",
+      riskAversionParameter: "0.001",
 
       // Risk model parameters for log normal
       params: {
@@ -145,7 +137,7 @@
        r: 0.016,
 
        // Sigma param (double as number) 
-       sigma: 0.5,
+       sigma: 0.8,
       }
      },
     },
@@ -153,11 +145,11 @@
 
    // Timestamp (Unix time in seconds) when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters (int64 as string) 
-   closingTimestamp: 1657364391,
+   closingTimestamp: 1657376936,
 
    // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
    // constrained by `minEnact` and `maxEnact` network parameters (int64 as string) 
-   enactmentTimestamp: 1657450791,
+   enactmentTimestamp: 1657463336,
   }
  }
   ```

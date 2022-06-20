@@ -8,11 +8,11 @@
     "updateNetworkParameter": {
       "changes": {
         "key": "governance.proposal.asset.requiredMajority",
-        "value": "0.5451965564959742"
+        "value": "0.913180705537888"
       }
     },
-    "closingTimestamp": 1657364391,
-    "enactmentTimestamp": 1657450791
+    "closingTimestamp": 1657376936,
+    "enactmentTimestamp": 1657463336
   }
 }
   ```

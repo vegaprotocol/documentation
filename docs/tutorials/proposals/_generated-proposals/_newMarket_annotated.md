@@ -16,10 +16,10 @@
      // New market instrument configuration
      instrument: {
       // Instrument name
-      name: "Oranges Daily",
+      name: "Apples Yearly (2022)",
 
       // Instrument code
-      code: "ORANGES.24h",
+      code: "APPLES.22",
 
       // Future
       future: {
@@ -51,7 +51,7 @@
            name: "prices.AAPL.value",
 
            // type is the type of the property. (string)
-           type: "TYPE_BOOLEAN",
+           type: "TYPE_INTEGER",
           },
 
           // conditions are the conditions that should be matched by the data to be
@@ -93,15 +93,7 @@
 
           // conditions are the conditions that should be matched by the data to be
           // considered of interest.
-          conditions: [
-           {
-            // comparator is the type of comparison to make on the value. (string)
-            operator: "OPERATOR_GREATER_THAN",
-
-            // value is used by the comparator. (string)
-            value: "1",
-           }
-          ]
+          conditions: []
          }
         ]
        },
@@ -121,8 +113,7 @@
 
       // Optional new market meta data, tags
       metadata: [
-       "sector:tech",
-       "sector:food",
+       "sector:energy",
        "source:docs.vega.xyz"
       ],
 
@@ -170,7 +161,7 @@
       tau: 0.0001140771161,
 
       // Risk Aversion Parameter (double as number) 
-      riskAversionParameter: "0.01",
+      riskAversionParameter: "0.0001",
 
       // Risk model parameters for log normal
       params: {
@@ -181,7 +172,7 @@
        r: 0.016,
 
        // Sigma param (double as number) 
-       sigma: 0.8,
+       sigma: 1.25,
       }
      },
     },
@@ -189,31 +180,31 @@
     // The commitment from the party creating the NewMarket proposal
     liquidityCommitment: {
      // Specified as a unitless number that represents the amount of settlement asset of the market (string) 
-     commitmentAmount: "2765812",
+     commitmentAmount: "321881",
 
      // Nominated liquidity fee factor, which is an input to the calculation of taker fees on the market, as per seeting fees and rewarding liquidity providers (undefined as string) 
-     fee: 0.79,
+     fee: 0.61,
 
      // A set of liquidity buy orders to meet the liquidity provision obligation
      buys: [
       {
        // The offset/amount of units away for the order (string) 
-       offset: "60",
+       offset: "10",
 
        // The relative proportion of the commitment to be allocated at a price level (int64 as integer) 
-       proportion: 4,
+       proportion: 7,
 
        // The pegged reference point for the order (string) 
        reference: "PEGGED_REFERENCE_BEST_BID",
       },
       {
-       offset: "3",
-       proportion: 7,
+       offset: "97",
+       proportion: 2,
        reference: "PEGGED_REFERENCE_BEST_BID",
       },
       {
-       offset: "82",
-       proportion: 10,
+       offset: "24",
+       proportion: 5,
        reference: "PEGGED_REFERENCE_BEST_BID",
       }
      ],
@@ -222,22 +213,22 @@
      sells: [
       {
        // The offset/amount of units away for the order (string) 
-       offset: "33",
+       offset: "22",
 
        // The relative proportion of the commitment to be allocated at a price level (int64 as integer) 
-       proportion: 4,
+       proportion: 10,
 
        // The pegged reference point for the order (string) 
        reference: "PEGGED_REFERENCE_BEST_ASK",
       },
       {
-       offset: "70",
-       proportion: 5,
+       offset: "93",
+       proportion: 6,
        reference: "PEGGED_REFERENCE_BEST_ASK",
       },
       {
-       offset: "96",
-       proportion: 1,
+       offset: "92",
+       proportion: 5,
        reference: "PEGGED_REFERENCE_BEST_ASK",
       }
      ],
@@ -247,11 +238,11 @@
 
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string) 
-  closingTimestamp: 1657364391,
+  closingTimestamp: 1657376936,
 
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string) 
-  enactmentTimestamp: 1657450791,
+  enactmentTimestamp: 1657463336,
  }
 }
   ```

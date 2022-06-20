@@ -14,7 +14,7 @@ const instruments = [
 const metadata = ['sector:energy', 'sector:tech', 'sector:materials', 'sector:health', 'sector:food']
 
 // TODO more type assertions
-function generateOracleSpec(skeleton) {
+function generateSettlementOracleSpec(skeleton) {
   assert.equal(skeleton.properties.pubKeys.type, 'array', 'Oracle spec pubkeys used to be an array')
   assert.equal(skeleton.properties.pubKeys.items.type, 'string', 'Oracle spec pubkeys used to be an array of strings')
   assert.equal(skeleton.properties.filters.type, 'array', 'Oracle spec filters')
@@ -27,7 +27,7 @@ function generateOracleSpec(skeleton) {
         {
           key: {
             name: "prices.AAPL.value",
-            type: "TYPE_BOOLEAN"
+            type: "TYPE_INTEGER"
           },
           conditions: [
             {
@@ -77,6 +77,58 @@ function generateOracleSpec(skeleton) {
     return spec;
 }
 
+// TODO more type assertions
+function generateTerminationOracleSpec(skeleton) {
+  assert.equal(skeleton.properties.pubKeys.type, 'array', 'Oracle spec pubkeys used to be an array')
+  assert.equal(skeleton.properties.pubKeys.items.type, 'string', 'Oracle spec pubkeys used to be an array of strings')
+  assert.equal(skeleton.properties.filters.type, 'array', 'Oracle spec filters')
+
+  const spec = {
+    pubKeys: [
+        "0xab5c950b071684321d59360ccb924d9c5010b31abd6b4148206a57e73594abc9"
+      ],
+      filters: [
+        {
+          key: {
+            name: "prices.AAPL.value",
+            type: "TYPE_BOOLEAN"
+          },
+          conditions: []
+        }
+      ]
+    }
+
+  spec[inspect.custom]= () => {
+    const splitDescription = skeleton.properties.filters.items.properties.conditions.description.split('\n');
+    const splitPubkeys = skeleton.properties.pubKeys.description.split('\n');
+    const splitFilters = skeleton.properties.filters.description.split('\n');
+   return `{
+            // ${splitPubkeys[0]}
+            // ${splitPubkeys[1]}
+            // ${splitPubkeys[2]} (${skeleton.properties.pubKeys.type} of ${skeleton.properties.pubKeys.items.type}s)
+            pubKeys: ${JSON.stringify(spec.pubKeys)},
+
+            // ${splitFilters[0]}
+            // ${splitFilters[1]}
+            filters: [
+                {
+                  // ${skeleton.properties.filters.items.properties.key.description}
+                  key: {
+                    // ${skeleton.properties.filters.items.properties.key.properties.name.description} (${skeleton.properties.filters.items.properties.key.properties.name.type})
+                    name: "${spec.filters[0].key.name}",
+                    // ${skeleton.properties.filters.items.properties.key.properties.type.description} (${skeleton.properties.filters.items.properties.key.properties.type.type})
+                    type: "${spec.filters[0].key.type}",
+                  },
+                  // ${splitDescription[0]}
+                  // ${splitDescription[1]}
+                  conditions: [
+                 ]
+              }
+          ]
+        }`}
+
+    return spec;
+}
 function generateOracleSpecBinding(skeleton) {
   assert.equal(skeleton.properties.settlementPriceProperty.type, 'string', 'Oracle spec binding: settlement price property changed format')
   assert.equal(skeleton.properties.tradingTerminationProperty.type, 'string', 'Oracle spec binding: trading termination property changed format')
@@ -128,8 +180,8 @@ function generateInstrument(skeleton) {
       settlementAsset: idForAnExistingVegaAsset,
       quoteName: 'tEuro',
       settlementPriceDecimals: 5,
-      oracleSpecForSettlementPrice: generateOracleSpec(skeleton.properties.future.properties.oracleSpecForSettlementPrice),
-      oracleSpecForTradingTermination: generateOracleSpec(skeleton.properties.future.properties.oracleSpecForSettlementPrice),
+      oracleSpecForSettlementPrice: generateSettlementOracleSpec(skeleton.properties.future.properties.oracleSpecForSettlementPrice),
+      oracleSpecForTradingTermination: generateTerminationOracleSpec(skeleton.properties.future.properties.oracleSpecForTradingTermination),
       oracleSpecBinding: generateOracleSpecBinding(skeleton.properties.future.properties.oracleSpecBinding)
     }
   }
@@ -467,4 +519,4 @@ function produceInstrument(i) {
 }
 
 
-module.exports = { newMarket, generateOracleSpecBinding, generateOracleSpec, produceOverview, produceInstrument }
+module.exports = { newMarket, generateOracleSpecBinding, generateTerminationOracleSpec, generateSettlementOracleSpec, produceOverview, produceInstrument }

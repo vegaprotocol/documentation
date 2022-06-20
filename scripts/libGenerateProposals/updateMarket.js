@@ -1,5 +1,5 @@
 const sample = require('lodash/sample');
-const { generateOracleSpec, generateOracleSpecBinding } = require('./newMarket')
+const { generateSettlementOracleSpec, generateTerminationOracleSpec, generateOracleSpecBinding } = require('./newMarket')
 const assert = require('assert').strict;
 const { inspect } = require('util');
 
@@ -28,8 +28,8 @@ function generateInstrument(skeleton) {
     future: {
       quoteName: 'tEuro',
       settlementPriceDecimals: 5,
-      oracleSpecForSettlementPrice: generateOracleSpec(skeleton.properties.future.properties.oracleSpecForSettlementPrice),
-      oracleSpecForTradingTermination: generateOracleSpec(skeleton.properties.future.properties.oracleSpecForSettlementPrice),
+      oracleSpecForSettlementPrice: generateSettlementOracleSpec(skeleton.properties.future.properties.oracleSpecForSettlementPrice),
+      oracleSpecForTradingTermination: generateTerminationOracleSpec(skeleton.properties.future.properties.oracleSpecForTradingTermination),
       oracleSpecBinding: generateOracleSpecBinding(skeleton.properties.future.properties.oracleSpecBinding)
     }
   }

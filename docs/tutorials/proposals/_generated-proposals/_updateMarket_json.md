@@ -9,7 +9,7 @@
       "marketId": "123",
       "changes": {
         "instrument": {
-          "code": "APPLES.22",
+          "code": "ORANGES.24h",
           "future": {
             "quoteName": "tEuro",
             "settlementPriceDecimals": 5,
@@ -21,7 +21,7 @@
                 {
                   "key": {
                     "name": "prices.AAPL.value",
-                    "type": "TYPE_BOOLEAN"
+                    "type": "TYPE_INTEGER"
                   },
                   "conditions": [
                     {
@@ -42,12 +42,7 @@
                     "name": "prices.AAPL.value",
                     "type": "TYPE_BOOLEAN"
                   },
-                  "conditions": [
-                    {
-                      "operator": "OPERATOR_GREATER_THAN",
-                      "value": "1"
-                    }
-                  ]
+                  "conditions": []
                 }
               ]
             },
@@ -68,17 +63,17 @@
         },
         "logNormal": {
           "tau": 0.0001140771161,
-          "riskAversionParameter": 0.0001,
+          "riskAversionParameter": 0.001,
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 0.5
+            "sigma": 0.8
           }
         }
       }
     },
-    "closingTimestamp": 1657364391,
-    "enactmentTimestamp": 1657450791
+    "closingTimestamp": 1657376936,
+    "enactmentTimestamp": 1657463336
   }
 }
   ```

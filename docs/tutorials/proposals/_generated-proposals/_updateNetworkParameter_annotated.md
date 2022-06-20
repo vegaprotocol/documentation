@@ -11,17 +11,17 @@
     key: "governance.proposal.asset.requiredMajority",
 
     // The value for the network parameter (string) 
-    value: "0.5451965564959742"
+    value: "0.913180705537888"
    }
   },
 
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string) 
-  closingTimestamp: 1657364391,
+  closingTimestamp: 1657376936,
 
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string) 
-  enactmentTimestamp: 1657450791,
+  enactmentTimestamp: 1657463336,
  }
 }
   ```
