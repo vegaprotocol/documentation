@@ -1,6 +1,6 @@
 
   ```bash
-  vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{\ 
+  ./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{\ 
  "proposalSubmission": {\ 
   "rationale": {\ 
    "description": "Add BNB (BNB)"\ 
@@ -18,8 +18,8 @@
      }\ 
     }\ 
    },\ 
-   "closingTimestamp": 1657379090,\ 
-   "enactmentTimestamp": 1657465490\ 
+   "closingTimestamp": 1657381811,\ 
+   "enactmentTimestamp": 1657468211\ 
   }\ 
  }\ 
 }'

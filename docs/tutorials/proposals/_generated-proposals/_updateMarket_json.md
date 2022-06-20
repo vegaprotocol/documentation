@@ -9,7 +9,7 @@
       "marketId": "123",
       "changes": {
         "instrument": {
-          "code": "ORANGES.24h",
+          "code": "APPLES.22",
           "future": {
             "quoteName": "tEuro",
             "settlementPriceDecimals": 5,
@@ -63,17 +63,17 @@
         },
         "logNormal": {
           "tau": 0.0001140771161,
-          "riskAversionParameter": 0.0001,
+          "riskAversionParameter": 0.01,
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 1.25
+            "sigma": 0.3
           }
         }
       }
     },
-    "closingTimestamp": 1657379090,
-    "enactmentTimestamp": 1657465490
+    "closingTimestamp": 1657381811,
+    "enactmentTimestamp": 1657468211
   }
 }
   ```

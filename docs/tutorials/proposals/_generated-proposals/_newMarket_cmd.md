@@ -1,6 +1,6 @@
 
   ```bash
-  vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{\ 
+  ./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{\ 
  "proposalSubmission": {\ 
   "rationale": {\ 
    "description": "Add Lorem Ipsum market"\ 
@@ -57,9 +57,9 @@
       }\ 
      },\ 
      "metadata": [\ 
-      "sector:tech",\ 
       "sector:materials",\ 
-      "sector:health",\ 
+      "sector:energy",\ 
+      "sector:food",\ 
       "source:docs.vega.xyz"\ 
      ],\ 
      "priceMonitoringParameters": {\ 
@@ -81,55 +81,55 @@
      },\ 
      "logNormal": {\ 
       "tau": 0.0001140771161,\ 
-      "riskAversionParameter": 0.001,\ 
+      "riskAversionParameter": 0.0001,\ 
       "params": {\ 
        "mu": 0,\ 
        "r": 0.016,\ 
-       "sigma": 0.5\ 
+       "sigma": 0.8\ 
       }\ 
      }\ 
     },\ 
     "liquidityCommitment": {\ 
-     "commitmentAmount": "1340427",\ 
-     "fee": "0.73",\ 
+     "commitmentAmount": "6267070",\ 
+     "fee": "0.34",\ 
      "buys": [\ 
       {\ 
-       "offset": "85",\ 
+       "offset": "64",\ 
+       "proportion": 4,\ 
+       "reference": "PEGGED_REFERENCE_BEST_BID"\ 
+      },\ 
+      {\ 
+       "offset": "11",\ 
        "proportion": 8,\ 
        "reference": "PEGGED_REFERENCE_BEST_BID"\ 
       },\ 
       {\ 
-       "offset": "13",\ 
-       "proportion": 9,\ 
-       "reference": "PEGGED_REFERENCE_BEST_BID"\ 
-      },\ 
-      {\ 
-       "offset": "95",\ 
-       "proportion": 6,\ 
+       "offset": "96",\ 
+       "proportion": 4,\ 
        "reference": "PEGGED_REFERENCE_BEST_BID"\ 
       }\ 
      ],\ 
      "sells": [\ 
       {\ 
-       "offset": "84",\ 
+       "offset": "82",\ 
        "proportion": 7,\ 
        "reference": "PEGGED_REFERENCE_BEST_ASK"\ 
       },\ 
       {\ 
-       "offset": "36",\ 
-       "proportion": 7,\ 
+       "offset": "75",\ 
+       "proportion": 2,\ 
        "reference": "PEGGED_REFERENCE_BEST_ASK"\ 
       },\ 
       {\ 
-       "offset": "38",\ 
-       "proportion": 1,\ 
+       "offset": "40",\ 
+       "proportion": 5,\ 
        "reference": "PEGGED_REFERENCE_BEST_ASK"\ 
       }\ 
      ]\ 
     }\ 
    },\ 
-   "closingTimestamp": 1657379090,\ 
-   "enactmentTimestamp": 1657465490\ 
+   "closingTimestamp": 1657381811,\ 
+   "enactmentTimestamp": 1657468211\ 
   }\ 
  }\ 
 }'

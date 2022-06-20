@@ -499,15 +499,13 @@ function newMarket(skeleton) {
 // Produces a very basic object 'overview', i.e. a lot of the details removed
 function produceOverview(p) {
   const proposal = Object.assign({}, p)
-  delete proposal.terms.closingTimestamp
-  delete proposal.terms.enactmentTimestamp
   proposal.terms.newMarket.changes.instrument = {}
   proposal.terms.newMarket.changes.metadata = []
   proposal.terms.newMarket.changes.priceMonitoringParameters = []
   proposal.terms.newMarket.changes.liquidityMonitoringParameters = {}
   proposal.terms.newMarket.changes.logNormal = {} 
   proposal.terms.newMarket.liquidityCommitment = {}
-  return proposal.terms.newMarket
+  return proposal.terms
 }
 
 // Produces a very basic object 'overview' of an instrument
