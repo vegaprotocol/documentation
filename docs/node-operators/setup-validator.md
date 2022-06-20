@@ -159,7 +159,7 @@ If you are willing to join another network with an existing genesis file, use th
 vega genesis new validator --home="path/to/home" \
     --country="YOUR_COUNTRY" \
 	--info-url="http://your.website.com" \
-	--info-url="YOUR_NODE_NAME" \
+	--name="YOUR_NODE_NAME" \
 	--avatar-url="YOUR_AVATAR_URL" \
 ```
 
