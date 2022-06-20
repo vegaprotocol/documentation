@@ -2,13 +2,13 @@
   ```json
 {
   "rationale": {
-    "description": "Add Ethereum (ETH)"
+    "description": "Add Bitcoin (Tether)"
   },
   "terms": {
     "newAsset": {
       "changes": {
-        "name": "Ethereum",
-        "symbol": "ETH",
+        "name": "Bitcoin",
+        "symbol": "Tether",
         "totalSupply": "19010568",
         "decimals": "5",
         "quantum": "1",
@@ -17,8 +17,8 @@
         }
       }
     },
-    "closingTimestamp": 1657376936,
-    "enactmentTimestamp": 1657463336
+    "closingTimestamp": 1657378701,
+    "enactmentTimestamp": 1657465101
   }
 }
   ```

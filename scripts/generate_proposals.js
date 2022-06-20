@@ -125,6 +125,10 @@ ${'```'}`
 ${prettyJs(annotator(proposal.terms.newMarket.changes.liquidityMonitoringParameters), formatOptions).replace(removeBlankLines, '')}
 ${'```'}`
 
+    excerpts.liquidity = `${'```javascript'}
+${prettyJs(annotator(proposal.terms.newMarket.liquidityCommitment), formatOptions).replace(removeBlankLines, '')}
+${'```'}`
+
     excerpts.priceparams = `${'```javascript'}
 ${prettyJs(annotator(proposal.terms.newMarket.changes.priceMonitoringParameters), formatOptions).replace(removeBlankLines, '')}
 ${'```'}`
@@ -191,6 +195,7 @@ function output(partial, title) {
       writeFileSync(`${path}/_${title}_json_overview.md`, partial.excerpts.overview)
       writeFileSync(`${path}/_${title}_json_liqparams.md`, partial.excerpts.liqparams)
       writeFileSync(`${path}/_${title}_json_priceparams.md`, partial.excerpts.priceparams)
+      writeFileSync(`${path}/_${title}_json_liquidity.md`, partial.excerpts.liquidity)
     }
   } else {
     console.dir(partial);

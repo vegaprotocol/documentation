@@ -56,7 +56,9 @@
           }
         },
         "metadata": [
-          "sector:energy",
+          "sector:food",
+          "sector:materials",
+          "sector:tech",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -78,55 +80,55 @@
         },
         "logNormal": {
           "tau": 0.0001140771161,
-          "riskAversionParameter": 0.0001,
+          "riskAversionParameter": 0.001,
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 1.25
+            "sigma": 0.8
           }
         }
       },
       "liquidityCommitment": {
-        "commitmentAmount": "321881",
-        "fee": "0.61",
+        "commitmentAmount": "7687143",
+        "fee": "0.87",
         "buys": [
           {
-            "offset": "10",
+            "offset": "70",
             "proportion": 7,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           },
           {
             "offset": "97",
-            "proportion": 2,
+            "proportion": 9,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           },
           {
-            "offset": "24",
-            "proportion": 5,
+            "offset": "4",
+            "proportion": 7,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           }
         ],
         "sells": [
           {
-            "offset": "22",
-            "proportion": 10,
+            "offset": "51",
+            "proportion": 5,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           },
           {
-            "offset": "93",
-            "proportion": 6,
+            "offset": "85",
+            "proportion": 7,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           },
           {
-            "offset": "92",
+            "offset": "40",
             "proportion": 5,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           }
         ]
       }
     },
-    "closingTimestamp": 1657376936,
-    "enactmentTimestamp": 1657463336
+    "closingTimestamp": 1657378701,
+    "enactmentTimestamp": 1657465101
   }
 }
   ```
