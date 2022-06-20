@@ -1,6 +1,6 @@
 const { inspect } = require('util');
 const assert = require('assert').strict;
-const { addDays } = require('date-fns');
+const { addDays, getUnixTime } = require('date-fns');
 const omit = require('lodash/omit');
 const SwaggerParser = require("@apidevtools/swagger-parser");
 const { newMarket, produceOverview, produceInstrument } = require('./libGenerateProposals/newMarket')
@@ -10,7 +10,6 @@ const { newAsset } = require('./libGenerateProposals/newAsset')
 const { updateNetworkParameter } = require('./libGenerateProposals/updateNetworkParameter');
 const { writeFileSync } = require('fs');
 const prettyJs = require('pretty-js');
-const { format } = require('path');
 if (!process.env.VEGA_VERSION) {
   console.error('Please set an environment variable VEGA_VERSION (e.g. VEGA_VERSION=v0.50.1')
   process.exit(1)
@@ -72,10 +71,11 @@ function addTermsAnnotator(skeleton, terms, type) {
 /**
  * Convenience function to return now + a certain number of days
  * @param {number} daysToAdd 
- * @returns 
+ * @returns string unix timestamp of the date in the future
  */
 function daysInTheFuture(daysToAdd) {
-  return new addDays(Date.now(), daysToAdd).getTime()
+  const d = addDays(Date.now(), daysToAdd)
+  return getUnixTime(d)
 }
 
 function newProposal(p, skeleton, type) {

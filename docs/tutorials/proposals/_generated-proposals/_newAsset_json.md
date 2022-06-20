@@ -2,13 +2,13 @@
   ```json
 {
   "rationale": {
-    "description": "Add BNB (BNB)"
+    "description": "Add Bitcoin (Tether)"
   },
   "terms": {
     "newAsset": {
       "changes": {
-        "name": "BNB",
-        "symbol": "BNB",
+        "name": "Bitcoin",
+        "symbol": "Tether",
         "totalSupply": "19010568",
         "decimals": "5",
         "quantum": "1",
@@ -17,8 +17,8 @@
         }
       }
     },
-    "closingTimestamp": 1657121948911,
-    "enactmentTimestamp": 1657208348911
+    "closingTimestamp": 1657364391,
+    "enactmentTimestamp": 1657450791
   }
 }
   ```
