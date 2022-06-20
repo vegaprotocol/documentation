@@ -24,14 +24,13 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## Market proposals
-
 Propose a new market on Fairground. 
 
 1. The annotated example describes what is needed for each field in the proposal. 
 2. To create your own proposal and submit it using the command line, you will need to copy the JSON example into a text editor, and edit it with the values you want for the market.
 3. Connect to your Vega Wallet, and note your wallet name and public key.
 4. To propose a market you will need:
-   * 1 (ropsten) Vega token, staked to a validator, to submit the proposal 
+   * 1 (ropsten) Vega token, associated with the public key you're using to propose the market, and staked to a validator.
    * enough of the settlement asset (testnet) available to place the liquidity commitment that you have built in the proposal.
 5. Copy the command shown in the 'command line' tab, edit the fields for your wallet name and pub key, and replace the sample market proposal details with yours
 6. Use the command line to submit your proposal.
@@ -43,14 +42,16 @@ Propose a new market on Fairground.
 There are a lot of details required for proposing a market. The contents of a changes object specifies what will be different after the proposal. In this case, these are the changes that will occur on the network, in the form of a new market.
 
 The general shape is as follows:
-<NewMarketJSONOverview />
 
-### Decimal places
 Decimal places need to be defined for both order sizes and the market.
   * The `decimalPlaces` field sets the smallest price increment on the book
   * The `positionDecimalPlaces` sets how big the smallest order / position on the market can be
+<NewMarketJSONOverview />
 
 ### Instrument
+The instrument shape is as follows, see below for a description of each property:
+<NewMarketJSONInstrument />
+
 An instrument contains the following properties: 
 * Name: a string for the  market name. Best practice is to include a full and fairly descriptive name for the instrument. Example: BTC/USD DEC18
 * Instrument code: This is a shortcode used to easily describe the instrument (e.g: FX:BTCUSD/DEC18). The more information you add, the easier it is for people to know what the market offers 
@@ -64,16 +65,30 @@ An instrument contains the following properties:
 *  
 For easy reading, the Oracle filters are separated out - see [Oracle bindings](#oracle-bindings) below to see the fields for specifying oracle data.
 
-<NewMarketJSONInstrument />
-
 #### Liquidity monitoring
+The liquidity monitoring fields below are optional, and if empty will default to the network parameters. See below for more details on each field.
+
 <NewMarketJSONPriceMonitoring />
 
+* Target stake parameters: Target stake parameters are derived from open interest history over a time window to calculate the maximum open interest. 
+* Time window: Defines the length of time over which open interest is measured. If empty, this field defaults to the network parameter `market.stake.target.timeWindow` Example: 1h0m0s
+* Scaling factor: This must be set within the range defined by the network parameter `market.stake.target.scalingFactor`, and defines the scaling between the liquidity demand estimate, based on open interest and target stake. The scaling factor must be a number greater than zero and finite
+* Triggering ratio: Specifies the triggering ratio for entering liquidity auction. If empty, the network will default to the network parameter `market.liquidity.targetstake.triggering.ratio`
+* Auction extension: Specifies by how many seconds an auction should be extended if leaving the auction were to trigger a liquidity auction. If empty, the network will default to the network parameter `market.monitor.price.defaultParameters`
+
+
 #### Price monitoring
+Price monitoring parameters are optional, and configure the acceptable price movement bounds for price monitoring. <!--If you leave these blank, they will default to whatever the network-wide parameters are set as.--> See below for more details on each field.
+
 <NewMarketJSONLiquidityMonitoring />
 
+* Horizon: Price monitoring projection horizon τ in seconds (set as >0)
+* Probability: Price monitoring probability level p (set as >0 and <1)
+* Auction extension in seconds: Price monitoring auction extension duration in seconds should the price breach its theoretical level over the specified horizon at the specified probability level (set as >0)
+
 #### Oracle bindings
-Oracle feeds can be used to terminate trading and settle markets. An oracle spec binding looks like this:
+Oracle feeds can be used to terminate trading and settle markets. See below for a full description of each field. An oracle spec binding looks like this:
+
 <NewMarketJSONOracle/>
 
 * Pub keys: Public key(s) that can sign and submit values for this oracle
