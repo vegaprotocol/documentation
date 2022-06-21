@@ -29,14 +29,23 @@ This page provides tutorials for two market proposal types:
 * Propose a new market
 * Change an existing market
 
-1. The full annotated example describes what is needed for each field in the proposal, and is there for guidance.
+1. The full annotated example is there to guide you through what is needed for each field in the proposal.
 2. Be sure to have your Vega wallet name and public key ready.
 3. To submit a proposal you will need:
    * At least 1 (ropsten) Vega token, associated with the public key you're using to propose the market, and staked to a validator.
-   * Enough of the settlement asset (testnet) available to place the liquidity commitment that you have built in the proposal, if you are submitting a liquidity commitment.
-4. To create your own proposal and submit it using the command line, you will need to copy the command line example into a text editor and edit it with the values you want for the market.
-5. Use the command line to submit your proposal.
-6. You can see your proposal on the [Fairground block explorer](https://explorer.fairground.wtf/governance).
+   * For a new market proposal: Enough of the settlement asset (testnet) available to fulfil your liquidity commitment, if you are submitting a liquidity commitment.
+
+### Submit using command line
+1. To create your own proposal and submit it using the command line, copy the command line example into a text editor and include the values you want for the market.
+2. Use the command line to submit your proposal.
+3. You can see your proposal on the [Fairground block explorer](https://explorer.fairground.wtf/governance).
+4. Your proposal will need enough voting weight to pass.
+
+### Submit using token dApp
+1. To create your own proposal and submit with the token dApp, copy the JSON example into a text editor and include the values you want for the market.
+2. Use the token dApp's Governance page to submit your proposal. 
+3. You can see your proposal on the token dApp governance page.
+4. Your proposal will need enough voting weight to pass.
 
 ## Propose a new market
 The proposal for creating a new market has been divided up into sections to provide more information on what is needed for each section.
@@ -78,8 +87,9 @@ For easy reading, the oracle filters are separated out - see [Oracle bindings](#
 #### Liquidity monitoring
 The liquidity monitoring fields below are optional, and if empty will default to the network parameters. See below for more details on each field.
 
-<NewMarketJSONPriceMonitoring />
+<NewMarketJSONLiquidityMonitoring />
 
+Liquidity monitoring uses the following properties: 
 * Target stake parameters: Target stake parameters are derived from open interest history over a time window to calculate the maximum open interest. 
 * Time window: Defines the length of time over which open interest is measured. If empty, this field defaults to the network parameter `market.stake.target.timeWindow` Example: 1h0m0s
 * Scaling factor: This must be set within the range defined by the network parameter `market.stake.target.scalingFactor`, and defines the scaling between the liquidity demand estimate, based on open interest and target stake. The scaling factor must be a number greater than zero and finite
@@ -90,8 +100,9 @@ The liquidity monitoring fields below are optional, and if empty will default to
 #### Price monitoring
 Price monitoring parameters are optional, and configure the acceptable price movement bounds for price monitoring. <!--If you leave these blank, they will default to whatever the network-wide parameters are set as.--> See below for more details on each field.
 
-<NewMarketJSONLiquidityMonitoring />
+<NewMarketJSONPriceMonitoring />
 
+Price monitoring uses the following properties: 
 * Horizon: Price monitoring projection horizon τ in seconds (set as >0)
 * Probability: Price monitoring probability level p (set as >0 and <1)
 * Auction extension in seconds: Price monitoring auction extension duration in seconds should the price breach its theoretical level over the specified horizon at the specified probability level (set as >0)
@@ -101,6 +112,7 @@ Oracle feeds can be used to terminate trading and settle markets. See below for 
 
 <NewMarketJSONOracle/>
 
+Oracle bindings require the following properties: 
 * Pub keys: Public key(s) that can sign and submit values for this oracle
 * Filters: Filters define which oracle data is of importance for the purposes of the type of governance proposal
 * Key: Defines the specific type of information the oracle provides that are is relevant to the proposed market. Example: If an oracle provides a list of prices for various markets, focus only on the specific relevant price for the market
@@ -120,7 +132,6 @@ Learn how to amend your liquidity commitment or add liquidity later in the [Prov
 <NewMarketJSONLiquidityCommitment/>
 
 New market commitment input: The liquidity commitment submitted with the new market, based on the parameters set below.
-
 * Commitment amount: This number represents the amount of the settlement asset for the market, written without a decimal point but to 5 decimal places (for example 5.00011 should be expressed as 500011)
 * Fee: Your nominated liquidity fee factor, which is an input to the calculation of liquidity fees on the market
 * Liquidity order input - Sells: A set of liquidity sell orders to meet the liquidity provision obligation
