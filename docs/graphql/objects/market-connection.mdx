@@ -1,0 +1,36 @@
+---
+id: market-connection
+title: MarketConnection
+---
+
+
+No description
+
+```graphql
+type MarketConnection {
+  totalCount: Int!
+  edges: [MarketEdge!]!
+  pageInfo: PageInfo!
+}
+```
+
+
+### Fields
+
+#### `totalCount` ([`Int`](/docs/testnet/graphql/scalars/int))
+
+The total number of markets in this connection
+
+
+#### `edges` ([`MarketEdge`](/docs/testnet/graphql/objects/market-edge))
+
+The markets in this connection
+
+
+#### `pageInfo` ([`PageInfo`](/docs/testnet/graphql/objects/page-info))
+
+The pagination information
+
+
+
+

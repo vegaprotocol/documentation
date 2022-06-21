@@ -1,0 +1,72 @@
+---
+id: asset
+title: Asset
+---
+
+
+Represents an asset in vega
+
+```graphql
+type Asset {
+  id: ID!
+  name: String!
+  symbol: String!
+  totalSupply: String!
+  decimals: Int!
+  quantum: String!
+  source: AssetSource!
+  infrastructureFeeAccount: Account!
+  globalRewardPoolAccount: Account
+}
+```
+
+
+### Fields
+
+#### `id` ([`ID`](/docs/mainnet/graphql/scalars/id))
+
+The id of the asset
+
+
+#### `name` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+The full name of the asset (e.g: Great British Pound)
+
+
+#### `symbol` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+The symbol of the asset (e.g: GBP)
+
+
+#### `totalSupply` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+The total supply of the market
+
+
+#### `decimals` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+The precision of the asset
+
+
+#### `quantum` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+The minimum economically meaningful amount in the asset
+
+
+#### `source` ([`AssetSource`](/docs/mainnet/graphql/unions/asset-source))
+
+The origin source of the asset (e.g: an erc20 asset)
+
+
+#### `infrastructureFeeAccount` ([`Account`](/docs/mainnet/graphql/objects/account))
+
+The infrastructure fee account for this asset
+
+
+#### `globalRewardPoolAccount` ([`Account`](/docs/mainnet/graphql/objects/account))
+
+The global reward pool account for this asset
+
+
+
+

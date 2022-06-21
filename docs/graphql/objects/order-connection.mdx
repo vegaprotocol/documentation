@@ -1,0 +1,36 @@
+---
+id: order-connection
+title: OrderConnection
+---
+
+
+No description
+
+```graphql
+type OrderConnection {
+  totalCount: Int
+  edges: [OrderEdge!]
+  pageInfo: PageInfo
+}
+```
+
+
+### Fields
+
+#### `totalCount` ([`Int`](/docs/testnet/graphql/scalars/int))
+
+The total number of orders in this connection
+
+
+#### `edges` ([`OrderEdge`](/docs/testnet/graphql/objects/order-edge))
+
+The orders in this connection
+
+
+#### `pageInfo` ([`PageInfo`](/docs/testnet/graphql/objects/page-info))
+
+The pagination information
+
+
+
+

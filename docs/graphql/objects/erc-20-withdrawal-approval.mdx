@@ -14,6 +14,7 @@ type Erc20WithdrawalApproval {
   nonce: String!
   signatures: String!
   targetAddress: String!
+  creation: String!
 }
 ```
 
@@ -49,6 +50,11 @@ Signature aggregate from the nodes, in the following format:
 #### `targetAddress` ([`String`](/docs/testnet/graphql/scalars/string))
 
 The target address which will receive the funds
+
+
+#### `creation` ([`String`](/docs/testnet/graphql/scalars/string))
+
+Timestamp at which the withdrawal was created
 
 
 
