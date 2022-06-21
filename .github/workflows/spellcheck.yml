@@ -1,0 +1,22 @@
+---
+
+name: Spellcheck
+
+"on":
+  pull_request:
+    branches:
+      - main
+
+jobs:
+
+  spellcheck:
+    name: Spellcheck
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out
+      uses: actions/checkout@v3
+
+    - name: Run PySpelling
+      uses: rojopolis/spellcheck-github-actions@0.24.0
+      with:
+        task_name: Markdown
