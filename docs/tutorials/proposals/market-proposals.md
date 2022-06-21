@@ -26,8 +26,8 @@ import TabItem from '@theme/TabItem';
 
 ## Market proposals
 This page provides tutorials for two market proposal types:
-* Propose a new market
-* Change an existing market
+* [Propose a new market](#propose-a-new-market)
+* [Change an existing market](#change-an-existing-market)
 
 1. The full annotated example is there to guide you through what is needed for each field in the proposal.
 2. Be sure to have your Vega wallet name and public key ready.
@@ -96,7 +96,6 @@ Liquidity monitoring uses the following properties:
 * Triggering ratio: Specifies the triggering ratio for entering liquidity auction. If empty, the network will default to the network parameter `market.liquidity.targetstake.triggering.ratio`
 * Auction extension: Specifies by how many seconds an auction should be extended if leaving the auction were to trigger a liquidity auction. If empty, the network will default to the network parameter `market.monitor.price.defaultParameters`
 
-
 #### Price monitoring
 Price monitoring parameters are optional, and configure the acceptable price movement bounds for price monitoring. <!--If you leave these blank, they will default to whatever the network-wide parameters are set as.--> See below for more details on each field.
 
@@ -126,12 +125,12 @@ Oracle bindings require the following properties:
 <!--There is an option to provide liquidity to the market you propose, but it is not required. Note that a market without enough liquidity will be stuck in a liquidity seeking auction until it gets the liquidity it needs. -->
 
 :::info
-Learn how to amend your liquidity commitment or add liquidity later in the [Providing Liquidity](././providing-liquidity.md) tutorial.
+Learn how to amend your liquidity commitment or add liquidity later in the [Providing Liquidity](../providing-liquidity.md) tutorial.
 :::
 
 <NewMarketJSONLiquidityCommitment/>
 
-New market commitment input: The liquidity commitment submitted with the new market, based on the parameters set below.
+New market commitment input: The liquidity commitment submitted with the new market, based on the parameters below.
 * Commitment amount: This number represents the amount of the settlement asset for the market, written without a decimal point but to 5 decimal places (for example 5.00011 should be expressed as 500011)
 * Fee: Your nominated liquidity fee factor, which is an input to the calculation of liquidity fees on the market
 * Liquidity order input - Sells: A set of liquidity sell orders to meet the liquidity provision obligation
@@ -170,4 +169,3 @@ Some parts of a market can also be changed via governance using the `updateMarke
     <UpdateMarketCMD />
   </TabItem>
 </Tabs>
-
