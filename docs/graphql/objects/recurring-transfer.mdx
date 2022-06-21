@@ -11,6 +11,7 @@ type RecurringTransfer {
   startEpoch: Int!
   endEpoch: Int
   factor: String!
+  dispatchStrategy: DispatchStrategy
 }
 ```
 
@@ -30,6 +31,11 @@ An optional epoch at whihc this transfer will stop
 #### `factor` ([`String`](/docs/testnet/graphql/scalars/string))
 
 The factor of the initial amount to be distributed
+
+
+#### `dispatchStrategy` ([`DispatchStrategy`](/docs/testnet/graphql/objects/dispatch-strategy))
+
+An optional dispatch strategy for the recurring transfer
 
 
 

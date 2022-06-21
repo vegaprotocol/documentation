@@ -1,0 +1,90 @@
+---
+id: liquidity-provision
+title: LiquidityProvision
+---
+
+
+The command to be sent to the chain for a liquidity provision submission
+
+```graphql
+type LiquidityProvision {
+  id: ID
+  party: Party!
+  createdAt: String!
+  updatedAt: String
+  market: Market!
+  commitmentAmount: String!
+  fee: String!
+  sells: [LiquidityOrderReference!]!
+  buys: [LiquidityOrderReference!]!
+  version: String!
+  status: LiquidityProvisionStatus!
+  reference: String
+}
+```
+
+
+### Fields
+
+#### `id` ([`ID`](/docs/mainnet/graphql/scalars/id))
+
+Unique identifier for the order (set by the system after consensus)
+
+
+#### `party` ([`Party`](/docs/mainnet/graphql/objects/party))
+
+The Id of the party making this commitment
+
+
+#### `createdAt` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+When the liquidity provision was initially created (formatted RFC3339)
+
+
+#### `updatedAt` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+RFC3339Nano time of when the liquidity provision was updated
+
+
+#### `market` ([`Market`](/docs/mainnet/graphql/objects/market))
+
+Market identifier for the order
+
+
+#### `commitmentAmount` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+Specified as a unit-less number that represents the amount of settlement asset of the market.
+
+
+#### `fee` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+nominated liquidity fee factor, which is an input to the calculation of taker fees on the market, as per setting fees and rewarding liquidity providers.
+
+
+#### `sells` ([`LiquidityOrderReference`](/docs/mainnet/graphql/objects/liquidity-order-reference))
+
+a set of liquidity sell orders to meet the liquidity provision obligation, see MM orders spec.
+
+
+#### `buys` ([`LiquidityOrderReference`](/docs/mainnet/graphql/objects/liquidity-order-reference))
+
+a set of liquidity buy orders to meet the liquidity provision obligation, see MM orders spec.
+
+
+#### `version` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+The version of this LiquidityProvision
+
+
+#### `status` ([`LiquidityProvisionStatus`](/docs/mainnet/graphql/enums/liquidity-provision-status))
+
+The current status of this liquidity provision
+
+
+#### `reference` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+A reference for the orders created out of this Liquidity provision
+
+
+
+

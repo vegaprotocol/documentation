@@ -1,0 +1,36 @@
+---
+id: log-normal-risk-model
+title: LogNormalRiskModel
+---
+
+
+A type of risk model for futures trading
+
+```graphql
+type LogNormalRiskModel {
+  riskAversionParameter: Float!
+  tau: Float!
+  params: LogNormalModelParams!
+}
+```
+
+
+### Fields
+
+#### `riskAversionParameter` ([`Float`](/docs/mainnet/graphql/scalars/float))
+
+Lambda parameter of the risk model
+
+
+#### `tau` ([`Float`](/docs/mainnet/graphql/scalars/float))
+
+Tau parameter of the risk model
+
+
+#### `params` ([`LogNormalModelParams`](/docs/mainnet/graphql/objects/log-normal-model-params))
+
+Params for the log normal risk model
+
+
+
+

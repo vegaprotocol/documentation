@@ -14,12 +14,19 @@ type Party {
   first: Int
   last: Int
 ): [Order!]
+  ordersPaged(
+  pagination: Pagination
+): OrderConnection!
   trades(
   marketId: ID
   skip: Int
   first: Int
   last: Int
 ): [Trade!]
+  tradesPaged(
+  marketId: ID
+  pagination: Pagination
+): TradeConnection!
   accounts(
   marketId: ID
   asset: String
@@ -29,6 +36,10 @@ type Party {
   margins(
   marketId: ID
 ): [MarginLevels!]
+  marginsPaged(
+  marketId: ID
+  pagination: Pagination
+): MarginConnection!
   proposals(
   inState: ProposalState
 ): [Proposal]
@@ -52,6 +63,10 @@ type Party {
   first: Int
   last: Int
 ): [Reward]
+  rewardsConnection(
+  asset: String
+  pagination: Pagination
+): RewardsConnection
   rewardSummaries(
   asset: String
 ): [RewardSummary]
@@ -85,6 +100,14 @@ Pagination first element
 Pagination last element
 
 
+#### `ordersPaged` ([`OrderConnection`](/docs/testnet/graphql/objects/order-connection))
+
+Orders relating to a party
+- ##### `pagination` ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+Pagination information
+
+
 #### `trades` ([`Trade`](/docs/testnet/graphql/objects/trade))
 
 Trades relating to a party (specifically where party is either buyer OR seller)
@@ -106,6 +129,19 @@ Pagination first element
 - ##### `last` ([`Int`](/docs/testnet/graphql/scalars/int))
 
 Pagination last element
+
+
+#### `tradesPaged` ([`TradeConnection`](/docs/testnet/graphql/objects/trade-connection))
+
+
+- ##### `marketId` ([`ID`](/docs/testnet/graphql/scalars/id))
+
+
+
+
+- ##### `pagination` ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+
 
 
 #### `accounts` ([`Account`](/docs/testnet/graphql/objects/account))
@@ -137,6 +173,19 @@ marginLevels
 - ##### `marketId` ([`ID`](/docs/testnet/graphql/scalars/id))
 
 market id off the margin to get, nil if all markets
+
+
+#### `marginsPaged` ([`MarginConnection`](/docs/testnet/graphql/objects/margin-connection))
+
+Margin level for a market
+- ##### `marketId` ([`ID`](/docs/testnet/graphql/scalars/id))
+
+market id off the margin to get, nil if all markets
+
+
+- ##### `pagination` ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+Pagination information
 
 
 #### `proposals` ([`Proposal`](/docs/testnet/graphql/objects/proposal))
@@ -224,6 +273,19 @@ Pagination first element
 - ##### `last` ([`Int`](/docs/testnet/graphql/scalars/int))
 
 Pagination last element
+
+
+#### `rewardsConnection` ([`RewardsConnection`](/docs/testnet/graphql/objects/rewards-connection))
+
+
+- ##### `asset` ([`String`](/docs/testnet/graphql/scalars/string))
+
+An optional asset
+
+
+- ##### `pagination` ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+Cursor pagination information
 
 
 #### `rewardSummaries` ([`RewardSummary`](/docs/testnet/graphql/objects/reward-summary))
