@@ -1,5 +1,5 @@
 ---
-title: Network parameter proposals
+title: Propose a network parameter change
 hide_title: false
 keywords:
 - proposal

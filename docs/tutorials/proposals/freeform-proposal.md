@@ -1,5 +1,5 @@
 ---
-title: Freeform proposals
+title: Freeform proposal
 hide_title: false
 keywords:
 - proposal

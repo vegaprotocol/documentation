@@ -18,7 +18,7 @@ Take a look at the tutorials for help with using Vega's APIs.
 ## Governance proposals
 | Topic                                                                 |  Description                                                                                                        |
 | ----------------------------------------------------------------------| -------------------------------------------------------------------------------------------------------- |
-| [Propose a new market](./proposals/market-proposals.md)                           | How to propose a market. |
-| [Propose a change to a market](./proposals/market-proposals.md#update-an-existing-market)                           | How to propose a market. |
-| [Propose a change to network parameters](./proposals/network-parameter-proposals.md)        | How to propose a change to the value of a network parameter. |
-| [Create a freeform proposal](./proposals/freeform-proposals.md)                     | How to create a freeform proposal. |
+| [Propose a new market](./proposals/new-market-proposal.md)                           | How to propose a market. |
+| [Propose a change to a market](./proposals/update-market-proposal.md)                           | How to propose a market. |
+| [Propose a change to network parameters](./proposals/network-parameter-proposal.md)        | How to propose a change to the value of a network parameter. |
+| [Create a freeform proposal](./proposals/freeform-proposal.md)                     | How to create a freeform proposal. |
