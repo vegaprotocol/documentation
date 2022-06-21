@@ -101,7 +101,6 @@ js
 json
 Json
 JSON
-keyEmits
 keypair
 keystore
 Killable
@@ -244,9 +243,6 @@ validators
 Validators
 validator's
 vega
-Vegaemits
-VegaEmits
-VegaMUST
 vegaprotocol
 vegatools
 vegawallet

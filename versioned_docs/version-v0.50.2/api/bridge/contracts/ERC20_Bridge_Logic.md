@@ -300,7 +300,7 @@ true if depositor is exempt
 
 ### withdraw_asset
 
-This function withdraws assets to the target Ethereum addressEmits Asset_Withdrawn if successful
+This function withdraws assets to the target Ethereum address. Emits Asset_Withdrawn if successful
 
 ```js
 function withdraw_asset(address asset_source, uint256 amount, address target, uint256 creation, uint256 nonce, bytes signatures) public nonpayable

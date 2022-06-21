@@ -59,7 +59,7 @@ Implementations of this interface are used by the Vega network to control smart 
 
 ### set_threshold
 
-Sets threshold of signatures that must be met before function is executed.MUST emit ThresholdSet event
+Sets threshold of signatures that must be met before function is executed. MUST emit ThresholdSet event
 
 ```js
 function set_threshold(uint16 new_threshold, uint256 nonce, bytes signatures) public nonpayable
@@ -75,7 +75,7 @@ function set_threshold(uint16 new_threshold, uint256 nonce, bytes signatures) pu
 
 ### add_signer
 
-Adds new valid signer and adjusts signer count.MUST emit 'SignerAdded' event
+Adds new valid signer and adjusts signer count. MUST emit 'SignerAdded' event
 
 ```js
 function add_signer(address new_signer, uint256 nonce, bytes signatures) public nonpayable
@@ -91,7 +91,7 @@ function add_signer(address new_signer, uint256 nonce, bytes signatures) public 
 
 ### remove_signer
 
-Removes currently valid signer and adjusts signer count.MUST emit 'SignerRemoved' event
+Removes currently valid signer and adjusts signer count. MUST emit 'SignerRemoved' event
 
 ```js
 function remove_signer(address old_signer, uint256 nonce, bytes signatures) public nonpayable

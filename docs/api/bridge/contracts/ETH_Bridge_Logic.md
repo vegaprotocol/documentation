@@ -129,7 +129,7 @@ function withdraw_asset(uint256 amount, uint256 expiry, address payable target, 
 
 ### deposit_asset
 
-This function allows a user to deposit ETH into VegaEmits ETH_Deposited if successful
+This function allows a user to deposit ETH into Vega. Emits ETH_Deposited if successful
 
 ```js
 function deposit_asset(bytes32 vega_public_key) public payable

@@ -70,7 +70,7 @@ function () public nonpayable
 
 ### set_threshold
 
-Sets threshold of signatures that must be met before function is executed.Emits ThresholdSet event
+Sets threshold of signatures that must be met before function is executed. Emits ThresholdSet event
 
 ```js
 function set_threshold(uint16 new_threshold, uint256 nonce, bytes signatures) public nonpayable
@@ -86,7 +86,7 @@ function set_threshold(uint16 new_threshold, uint256 nonce, bytes signatures) pu
 
 ### add_signer
 
-Adds new valid signer and adjusts signer count.Emits 'SignerAdded' event
+Adds new valid signer and adjusts signer count. Emits 'SignerAdded' event
 
 ```js
 function add_signer(address new_signer, uint256 nonce, bytes signatures) public nonpayable
@@ -102,7 +102,7 @@ function add_signer(address new_signer, uint256 nonce, bytes signatures) public 
 
 ### remove_signer
 
-Removes currently valid signer and adjusts signer count.Emits 'SignerRemoved' event
+Removes currently valid signer and adjusts signer count. Emits 'SignerRemoved' event
 
 ```js
 function remove_signer(address old_signer, uint256 nonce, bytes signatures) public nonpayable
