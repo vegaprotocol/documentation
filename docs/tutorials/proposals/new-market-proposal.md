@@ -63,6 +63,8 @@ The contents of a `changes` object specifies what will be different after the pr
 
 Instrument, liquidity monitoring parameters, price monitoring parameters, oracles, and liquidity commitment are all described in more detail below.
 
+Rationale requires a description, which is a free-text field that describes the purpose of the proposal.
+
 Decimal places need to be defined for both order sizes and the market.
 * `decimalPlaces` - sets the smallest price increment on the book
 * `positionDecimalPlaces` - sets how big the smallest order / position on the market can be
