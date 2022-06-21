@@ -1,7 +1,6 @@
 ---
 
 matrix:
-
   - name: Markdown
     sources:
       - '!venv/**/*.md|**/*.md'
@@ -15,7 +14,6 @@ matrix:
       wordlists:
         - wordlist.txt
     pipeline:
-      - pyspelling.filters.url: null
       # Filters: https://github.com/facelessuser/pyspelling/tree/master/docs/src/markdown/filters
       - pyspelling.filters.context:
           context_visible_first: true
