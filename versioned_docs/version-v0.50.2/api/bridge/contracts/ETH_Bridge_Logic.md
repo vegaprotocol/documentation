@@ -79,7 +79,7 @@ returns(address)
 
 ### set_deposit_minimum
 
-This function sets the minimum allowable deposit for ETHEmits ETH_Deposit_Minimum_Set if successful
+This function sets the minimum allowable deposit for ETH. Emits ETH_Deposit_Minimum_Set if successful
 
 ```js
 function set_deposit_minimum(uint256 minimum_amount, uint256 nonce, bytes signatures) public nonpayable
@@ -95,7 +95,7 @@ function set_deposit_minimum(uint256 minimum_amount, uint256 nonce, bytes signat
 
 ### set_deposit_maximum
 
-This function sets the maximum allowable deposit for ETHEmits ETH_Deposit_Maximum_Set if successful
+This function sets the maximum allowable deposit for ETH. Emits ETH_Deposit_Maximum_Set if successful
 
 ```js
 function set_deposit_maximum(uint256 maximum_amount, uint256 nonce, bytes signatures) public nonpayable
@@ -111,7 +111,7 @@ function set_deposit_maximum(uint256 maximum_amount, uint256 nonce, bytes signat
 
 ### withdraw_asset
 
-This function allows the withdrawal of ETHEmits ETH_Withdrawn if successful
+This function allows the withdrawal of ETH. Emits ETH_Withdrawn if successful
 
 ```js
 function withdraw_asset(uint256 amount, uint256 expiry, address payable target, uint256 nonce, bytes signatures) public nonpayable

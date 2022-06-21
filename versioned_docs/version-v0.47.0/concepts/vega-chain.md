@@ -143,7 +143,7 @@ Read more: [Risks of over-staked validators](#too-much-stake)
 :::
 
 ### Penalties
-Validator nodes that don't meet the requirements or prove to be bad actors will have rewards withheld, and a vaildator's nominators may also receive fewer (or no) rewards. 
+Validator nodes that don't meet the requirements or prove to be bad actors will have rewards withheld, and a validator's nominators may also receive fewer (or no) rewards. 
 
 There is no token slashing, i.e., a tokenholder cannot lose their tokens through any actions of a validator.
 

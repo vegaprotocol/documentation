@@ -48,9 +48,9 @@ The gRPC command needs to be formatted as a JSON payload, as follows:
 {"commandName": {"someProperty": "someValue", "anObject": {"nestedProperty":42}}}
 ```
 
-* `commandName` is the name of the command you want to submit, such as "voteSubmission", or "orderCancellation". It should be camel or snake case.
-* `someProperty` is the name of the property or properties that are required by the command, such as "proposalId" on "voteSubmission", or "price" on "orderSubmission". It should be camel or snake case.
-* If the command you want to send has nested fields, `anObject` is the name of the object that wraps them, such as "peggedOrder" on "orderSubmission", or "terms" on "proposalSubmission".
+* `commandName` is the name of the command you want to submit, such as `voteSubmission`, or `orderCancellation`. It should be camel or snake case.
+* `someProperty` is the name of the property or properties that are required by the command, such as `proposalId` on `voteSubmission`, or `price` on `orderSubmission`. It should be camel or snake case.
+* If the command you want to send has nested fields, `anObject` is the name of the object that wraps them, such as `peggedOrder` on `orderSubmission`, or `terms` on `proposalSubmission`.
 
 ### Example commands
 

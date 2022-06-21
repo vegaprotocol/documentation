@@ -20,7 +20,7 @@ Implementation of the {IERC20} interface.
  https://forum.zeppelin.solutions/t/how-to-implement-erc20-supply-mechanisms/226[How
  to implement supply mechanisms].
  We have followed general OpenZeppelin guidelines: functions revert instead
- of returning `false` on failure. This behavior is nonetheless conventional
+ of returning `false` on failure. This behaviour is nonetheless conventional
  and does not conflict with the expectations of ERC20 applications.
  Additionally, an {Approval} event is emitted on calls to {transferFrom}.
  This allows applications to reconstruct the allowance for all accounts just

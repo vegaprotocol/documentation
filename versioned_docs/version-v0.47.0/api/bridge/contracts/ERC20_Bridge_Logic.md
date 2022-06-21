@@ -118,7 +118,7 @@ returns(address)
 
 ### list_asset
 
-This function lists the given ERC20 token contract as valid for deposit to this bridgeEmits Asset_Listed if successful
+This function lists the given ERC20 token contract as valid for deposit to this bridge. Emits Asset_Listed if successful
 
 ```js
 function list_asset(address asset_source, bytes32 vega_asset_id, uint256 lifetime_limit, uint256 withdraw_threshold, uint256 nonce, bytes signatures) public nonpayable
@@ -137,7 +137,7 @@ function list_asset(address asset_source, bytes32 vega_asset_id, uint256 lifetim
 
 ### remove_asset
 
-This function removes from listing the given ERC20 token contract. This marks the token as invalid for deposit to this bridgeEmits Asset_Removed if successful
+This function removes from listing the given ERC20 token contract. This marks the token as invalid for deposit to this bridge. Emits Asset_Removed if successful
 
 ```js
 function remove_asset(address asset_source, uint256 nonce, bytes signatures) public nonpayable

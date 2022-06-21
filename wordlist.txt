@@ -60,6 +60,7 @@ EthAddresses
 ethereum
 Ethereum
 ETHEREUM
+executables
 familiarise
 favour
 FC
@@ -121,6 +122,7 @@ Math
 MetaMask
 MetaMask's
 minimised
+minimumValidatorStake
 Mintable
 mul
 multisig
@@ -240,7 +242,7 @@ Validator
 VALIDATOR
 validators
 Validators
-vaildator's
+validator's
 vega
 Vegaemits
 VegaEmits

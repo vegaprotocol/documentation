@@ -103,7 +103,7 @@ function set_deposit_maximum(uint256 maximum_amount, uint256 nonce, bytes signat
 
 ### withdraw_asset
 
-This function withdraws assets to the target Ethereum addressMUST emit Asset_Withdrawn if successful
+This function withdraws assets to the target Ethereum address. MUST emit Asset_Withdrawn if successful
 
 ```js
 function withdraw_asset(uint256 amount, uint256 expiry, address payable target, uint256 nonce, bytes signatures) public nonpayable
