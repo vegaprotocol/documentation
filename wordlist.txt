@@ -1,4 +1,5 @@
 ABCI
+addressEmits
 addressMUST
 amd
 anObject
@@ -9,10 +10,12 @@ balanceOf
 behaviour
 BFT
 blockchain
+blockchains
 blockchain's
 bool
 boolean
 bridgeEmits
+bridgeMUST
 calldata
 cancelled
 ccy
@@ -46,6 +49,7 @@ decrypt
 decrypts
 delegator
 delegators
+deterministically
 disincentivise
 docusaurus
 Docusaurus
@@ -54,6 +58,7 @@ EIP
 enums
 erc
 ERC
+eth
 ETH
 EthAddresses
 ETHEmits
@@ -68,6 +73,8 @@ FOK
 freeform
 frontend
 gapped
+GBP
+Ghz
 github
 Github
 GitHub
@@ -81,6 +88,7 @@ gRPC
 GRPC
 HD
 IERC
+IETH
 implementers
 IMultisigControl
 increaseAllowance
@@ -93,11 +101,13 @@ initialising
 integrations
 Internalise
 isOwner
+IPC
 IStake
 js
 json
 Json
 JSON
+keyEmits
 keypair
 keystore
 Killable
@@ -135,12 +145,16 @@ NodeWallet
 nonpayable
 normalised
 nvm
+NVMe
 onboarding
 onlyOwner
 onwards
 OpenZeppelin
+opportunties
+orderbook
 orderSubmission
 Ownable
+partyID
 peggedOrder
 penalise
 postgres
@@ -148,8 +162,11 @@ PoW
 pre
 preN
 prev
+proposalId
 proposalSubmission
 proto
+protos
+protobuf
 Protobuf
 protobuffet
 pubkey
@@ -160,6 +177,7 @@ README
 renounceOwnership
 repo
 reponse
+resumedbridge
 roadmap
 Ropsten
 rpc
@@ -184,6 +202,7 @@ Stabilise
 statebridge
 stateful
 statesync
+SSD
 SSL
 subcommand
 subcommands
@@ -210,6 +229,7 @@ Toml
 toolchain
 totalSupply
 tradeable
+tradeoff
 transferFrom
 transferOwnership
 tx
@@ -217,6 +237,7 @@ uint
 undelegate
 un
 Un
+unnominated
 unrecognised
 untradeable
 url
@@ -227,13 +248,16 @@ Validator
 VALIDATOR
 validators
 Validators
-validator's
+vaildator's
 vega
+Vegaemits
+VegaEmits
 VegaMUST
 vegaprotocol
 vegatools
 vegawallet
 verifier
+voteSubmission
 walkthrough
 walkthroughs
 websockets
