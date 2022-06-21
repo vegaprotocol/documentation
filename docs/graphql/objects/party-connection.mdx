@@ -1,0 +1,36 @@
+---
+id: party-connection
+title: PartyConnection
+---
+
+
+No description
+
+```graphql
+type PartyConnection {
+  totalCount: Int!
+  edges: [PartyEdge!]!
+  pageInfo: PageInfo!
+}
+```
+
+
+### Fields
+
+#### `totalCount` ([`Int`](/docs/testnet/graphql/scalars/int))
+
+The total number of parties in this connection
+
+
+#### `edges` ([`PartyEdge`](/docs/testnet/graphql/objects/party-edge))
+
+The parties in this connection
+
+
+#### `pageInfo` ([`PageInfo`](/docs/testnet/graphql/objects/page-info))
+
+The pagination information
+
+
+
+

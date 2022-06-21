@@ -1,0 +1,37 @@
+---
+id: margins
+title: margins
+---
+
+
+Subscribe to the margin changes
+
+```graphql
+margins(
+  partyId: ID!
+  marketId: ID
+): MarginLevels!
+```
+
+
+### Arguments
+
+#### `partyId` ([`ID`](/docs/mainnet/graphql/scalars/id))
+
+id of the party we want to subscribe for margin updates
+
+
+#### `marketId` ([`ID`](/docs/mainnet/graphql/scalars/id))
+
+market we want to listen to margin updates (nil if we want updates for all markets)
+
+
+### Type
+
+#### [`MarginLevels`](/docs/mainnet/graphql/objects/margin-levels) 
+
+Margins for a given a party
+
+
+
+

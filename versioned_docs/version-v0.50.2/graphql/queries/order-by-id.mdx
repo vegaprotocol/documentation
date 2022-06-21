@@ -1,0 +1,37 @@
+---
+id: order-by-id
+title: orderByID
+---
+
+
+An order in the VEGA network found by orderID
+
+```graphql
+orderByID(
+  orderId: ID!
+  version: Int
+): Order!
+```
+
+
+### Arguments
+
+#### `orderId` ([`ID`](/docs/mainnet/graphql/scalars/id))
+
+ID for an order
+
+
+#### `version` ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+version of the order (omitted or 0 for most recent; 1 for original; 2 for first amendment, etc)
+
+
+### Type
+
+#### [`Order`](/docs/mainnet/graphql/objects/order) 
+
+An order in Vega, if active it will be on the OrderBook for the market
+
+
+
+
