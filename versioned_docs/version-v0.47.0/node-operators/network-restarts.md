@@ -161,7 +161,7 @@ vega checkpoint restore --home="/path/to/vega/home" --passphrase-file="YOUR_NODE
 checkpoint/file"
 ```
 
-Once this is done, you will need to monitor the network to make sure all delegation are recovered properly by the end of the bootstraping period.
+Once this is done, you will need to monitor the network to make sure all delegation are recovered properly by the end of the bootstrapping period.
 
 ### Deprecated
 The Ethereum event forwarder is no longer required. This should be removed from your infrastructure and not started. This service has been re-written and is now integrated in the Vega core node.

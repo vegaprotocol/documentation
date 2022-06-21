@@ -20,7 +20,6 @@ While the Vega data node (API) software is still closed-source, you can refer he
 - Add filtering/pagination GraphQL schema for rewards
 - Add handling for checking/storing Chain ID
 - Added subscriptions for delegations & rewards
-- Add changelog and project board Github actions and update linked PR action version
 - Set time limit for system-tests, and also do not ignore failures for pull requests
 - Move to XDG file structure
 - Stabilise API tests

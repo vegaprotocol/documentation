@@ -137,7 +137,7 @@ Implementations of this interface are used by Vega network users to deposit and 
 
 ### list_asset
 
-This function lists the given ERC20 token contract as valid for deposit to this bridgeMUST emit Asset_Listed if successful
+This function lists the given ERC20 token contract as valid for deposit to this bridge. MUST emit Asset_Listed if successful
 
 ```js
 function list_asset(address asset_source, bytes32 vega_asset_id, uint256 lifetime_limit, uint256 withdraw_threshold, uint256 nonce, bytes signatures) public nonpayable
@@ -156,7 +156,7 @@ function list_asset(address asset_source, bytes32 vega_asset_id, uint256 lifetim
 
 ### remove_asset
 
-This function removes from listing the given ERC20 token contract. This marks the token as invalid for deposit to this bridgeMUST emit Asset_Removed if successful
+This function removes from listing the given ERC20 token contract. This marks the token as invalid for deposit to this bridge. MUST emit Asset_Removed if successful
 
 ```js
 function remove_asset(address asset_source, uint256 nonce, bytes signatures) public nonpayable
@@ -172,7 +172,7 @@ function remove_asset(address asset_source, uint256 nonce, bytes signatures) pub
 
 ### set_asset_limits
 
-This function sets the lifetime maximum deposit for a given assetasset must first be listed
+This function sets the lifetime maximum deposit for a given asset. Asset must first be listed
 
 ```js
 function set_asset_limits(address asset_source, uint256 lifetime_limit, uint256 threshold, uint256 nonce, bytes signatures) public nonpayable
@@ -206,7 +206,7 @@ function set_withdraw_delay(uint256 delay, uint256 nonce, bytes signatures) publ
 
 ### global_stop
 
-This function triggers the global bridge stop that halts all withdrawals and deposits until it is resumedbridge must not be stopped already
+This function triggers the global bridge stop that halts all withdrawals and deposits until it is resumed. Bridge must not be stopped already
 
 ```js
 function global_stop(uint256 nonce, bytes signatures) public nonpayable
@@ -236,7 +236,7 @@ function global_resume(uint256 nonce, bytes signatures) public nonpayable
 
 ### exempt_depositor
 
-this function allows the exemption_lister to exempt a depositor from the deposit limitsMUST emit Depositor_Exempted if successful
+this function allows the exemption_lister to exempt a depositor from the deposit limits. MUST emit Depositor_Exempted if successful
 
 ```js
 function exempt_depositor() public nonpayable
@@ -249,7 +249,7 @@ function exempt_depositor() public nonpayable
 
 ### revoke_exempt_depositor
 
-this function allows the exemption_lister to revoke a depositor's exemption from deposit limitsMUST emit Depositor_Exemption_Revoked if successful
+this function allows the exemption_lister to revoke a depositor's exemption from deposit limits. MUST emit Depositor_Exemption_Revoked if successful
 
 ```js
 function revoke_exempt_depositor() public nonpayable
@@ -262,7 +262,7 @@ function revoke_exempt_depositor() public nonpayable
 
 ### withdraw_asset
 
-This function withdrawals assets to the target Ethereum addressMUST emit Asset_Withdrawn if successful
+This function withdrawals assets to the target Ethereum address. MUST emit Asset_Withdrawn if successful
 
 ```js
 function withdraw_asset(address asset_source, uint256 amount, address target, uint256 creation, uint256 nonce, bytes signatures) public nonpayable
@@ -275,13 +275,13 @@ function withdraw_asset(address asset_source, uint256 amount, address target, ui
 | asset_source | address | Contract address for given ERC20 token | 
 | amount | uint256 | Amount of ERC20 tokens to withdraw | 
 | target | address | Target Ethereum address to receive withdrawn ERC20 tokens | 
-| creation | uint256 | Timestamp of when requestion was created *RESTRICTION FEATURE* | 
+| creation | uint256 | Timestamp of when request was created *RESTRICTION FEATURE* | 
 | nonce | uint256 | Vega-assigned single-use number that provides replay attack protection | 
 | signatures | bytes | Vega-supplied signature bundle of a validator-signed order | 
 
 ### is_exempt_depositor
 
-this view returns true if the given despoitor address has been exempted from deposit limits
+this view returns true if the given depositor address has been exempted from deposit limits
 
 ```js
 function is_exempt_depositor(address depositor) public view
@@ -300,7 +300,7 @@ true if depositor is exempt
 
 ### deposit_asset
 
-This function allows a user to deposit given ERC20 tokens into VegaMUST emit Asset_Deposited if successful
+This function allows a user to deposit given ERC20 tokens into Vega. MUST emit Asset_Deposited if successful
 
 ```js
 function deposit_asset(address asset_source, uint256 amount, bytes32 vega_public_key) public nonpayable

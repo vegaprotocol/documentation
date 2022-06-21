@@ -291,7 +291,7 @@ Those scores are then normalised (divided by the sum of them):
 - Validator 2 gets a normalised score of 0.5
 - Validator 3 gets a normalised score of 0.5
 
-The normalised validator score number directly affects how much each validator (and its nominators) would recieve of the 1000 reward. 
+The normalised validator score number directly affects how much each validator (and its nominators) would receive of the 1000 reward. 
 
 - Validator 1 (and its nominators) will receive 0 rewards. Validator 2 & 3 will split the 1000 equally.
 

@@ -237,7 +237,7 @@ The transaction will be decoded and displayed on screen.
 
 #### 2. Send transaction with an online computer
 
-Use any way to transfer the transaction from your air-grapped computer to the online one.
+Use any way to transfer the transaction from your air-gapped computer to the online one.
 
 Then, send the transaction using:
 

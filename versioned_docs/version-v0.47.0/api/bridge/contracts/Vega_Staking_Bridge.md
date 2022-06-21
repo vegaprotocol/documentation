@@ -55,7 +55,7 @@ function (address token) public nonpayable
 
 ### stake
 
-This stakes the given amount of tokens and credits them to the provided Vega public keyEmits Stake_Deposited event
+This stakes the given amount of tokens and credits them to the provided Vega public key. Emits Stake_Deposited event
 
 ```js
 function stake(uint256 amount, bytes32 vega_public_key) public nonpayable
@@ -70,7 +70,7 @@ function stake(uint256 amount, bytes32 vega_public_key) public nonpayable
 
 ### remove_stake
 
-This removes specified amount of stake of available to userEmits Stake_Removed event if successful
+This removes specified amount of stake of available to user. Emits Stake_Removed event if successful
 
 ```js
 function remove_stake(uint256 amount, bytes32 vega_public_key) public nonpayable
@@ -85,7 +85,7 @@ function remove_stake(uint256 amount, bytes32 vega_public_key) public nonpayable
 
 ### transfer_stake
 
-This transfers all stake from the sender's address to the "new_address"Emits Stake_Transfered event if successful
+This transfers all stake from the sender's address to the "new_address". Emits Stake_Transferred event if successful
 
 ```js
 function transfer_stake(uint256 amount, address new_address, bytes32 vega_public_key) public nonpayable
@@ -96,7 +96,7 @@ function transfer_stake(uint256 amount, address new_address, bytes32 vega_public
 | Name        | Type           | Description  |
 | ------------- |------------- | -----|
 | amount | uint256 | Stake amount to transfer | 
-| new_address | address | Target ETH address to recieve the stake | 
+| new_address | address | Target ETH address to receive the stake | 
 | vega_public_key | bytes32 | Target Vega public key to be credited with the transfer | 
 
 ### staking_token

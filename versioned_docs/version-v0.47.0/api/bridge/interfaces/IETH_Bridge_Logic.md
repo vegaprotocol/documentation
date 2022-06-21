@@ -71,7 +71,7 @@ Implementations of this interface are used by Vega network users to deposit and 
 
 ### set_deposit_minimum
 
-This function sets the minimum allowable deposit for ETHMUST emit Asset_Deposit_Minimum_Set if successful
+This function sets the minimum allowable deposit for ETH. MUST emit Asset_Deposit_Minimum_Set if successful
 
 ```js
 function set_deposit_minimum(uint256 minimum_amount, uint256 nonce, bytes signatures) public nonpayable
@@ -87,7 +87,7 @@ function set_deposit_minimum(uint256 minimum_amount, uint256 nonce, bytes signat
 
 ### set_deposit_maximum
 
-This function sets the maximum allowable deposit for ETHMUST emit Asset_Deposit_Maximum_Set if successful
+This function sets the maximum allowable deposit for ETH. MUST emit Asset_Deposit_Maximum_Set if successful
 
 ```js
 function set_deposit_maximum(uint256 maximum_amount, uint256 nonce, bytes signatures) public nonpayable
