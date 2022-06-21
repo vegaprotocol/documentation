@@ -15,7 +15,6 @@ matrix:
       wordlists:
         - wordlist.txt
     pipeline:
-      - pyspelling.filters.url: null
       # Filters: https://github.com/facelessuser/pyspelling/tree/master/docs/src/markdown/filters
       - pyspelling.filters.context:
           context_visible_first: true
@@ -44,30 +43,6 @@ matrix:
             - api-ref-button
             - code
             - pre
-
-  - name: Python
-    sources:
-      - "scripts/*.py"
-    default_encoding: utf-8
-    aspell:
-      d: en_GB
-      lang: en
-    dictionary:
-      encoding: utf-8
-      output: .pyspelling-custom-py.dic.tmp
-      wordlists:
-        - wordlist.txt
-    pipeline:
-      - pyspelling.filters.context:
-          context_visible_first: true
-          escapes: '\\[\\`]'
-          delimiters:
-            # Ignore multiline content between (possibly indented) triple backticks
-            - open: '(?s)^(?P<open>[ ]*```)'
-              close: '^(?P=open)$'
-            # Ignore text between inline back ticks
-            - open: '(?P<open>`)'
-              close: '(?P=open)'
-      - pyspelling.filters.python:
-          strings: false
-          comments: false
+      - pyspelling.filters.url:
+      markdown_extensions:
+        - pymdownx.superfences:
