@@ -226,7 +226,7 @@ There are several reasons for this decision, including:
 - It allows for rapid iteration, as the ability to start new chains for new features is simpler.
 - Once there is a network with trading, the thousands of transactions per second will generate a lot of data. Given that most instruments expire, this allows for new markets to be created on a new chain, allowing an old market/chain to come to an end rather than keeping the history and data forever.
 
-### Network checkpoints 
+### Network checkpoints
 The network's validators periodically store checkpoints of all important state parameters such as balances and governance proposals. 
 
 Checkpoints allow the chain to be restarted from a previously valid state in the event of consensus failure, or a critical issue being discovered. 
