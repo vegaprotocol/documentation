@@ -14,5 +14,16 @@ There are two apps available to interact with a Vega Wallet, the **[CLI wallet a
 ### $VEGA Token website
 Use **[$VEGA Token website](https://token.vega.xyz)** to stake your tokens to nominate the validators that run the network, participate in network goveranance, and earn and claim rewards.
 
+### Vega Capsule
+Use **[Vega Capsule](https://github.com/vegaprotocol/vegacapsule)** to create an instance of the Vega network on your computer to experiment with using the protocol. 
+
+[Set up Vega Capsule](https://github.com/vegaprotocol/vegacapsule#vegacapsule): The Vega Capsule `readme` file in the repo provides information on the prerequisites you need, and details on how to set up Capsule. 
+
+* Become familiar with Vega, and run commands and API scripts in a controlled environment
+* Try out liquidity strategies locally before using the public testnet
+* Practice with the market creation process, to make sure proposals will be accepted for a vote
+* Simulate network conditions ahead of putting forward a network configuration change proposal
+* Simulate market conditions or price scenarios without being concerned about unexpected user behaviour
+
 ### Vega Tools repo
 The **[Vega Tools repo](https://github.com/vegaprotocol/vegatools)** provides a set of utilities for inspecting and interacting with a Vega network through the APIs. 
