@@ -113,7 +113,7 @@ ${'```'}
   `
   const win = `
   ${'```bash'}
-vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --network fairground "${JSON.stringify({"proposalSubmission": proposal }, null, ' ').replace('"', '\"')}"
+vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --network fairground "${JSON.stringify({"proposalSubmission": proposal }, null, ' ').replace(/"/g, '\\"')}"
 ${'```'}
   `
 

@@ -113,8 +113,8 @@
 
       // Optional new market meta data, tags
       metadata: [
+       "sector:food",
        "sector:health",
-       "sector:energy",
        "source:docs.vega.xyz"
       ],
 
@@ -162,7 +162,7 @@
       tau: 0.0001140771161,
 
       // Risk Aversion Parameter (double as number) 
-      riskAversionParameter: "0.01",
+      riskAversionParameter: "0.001",
 
       // Risk model parameters for log normal
       params: {
@@ -173,7 +173,7 @@
        r: 0.016,
 
        // Sigma param (double as number) 
-       sigma: 0.5,
+       sigma: 0.3,
       }
      },
     },
@@ -181,31 +181,31 @@
     // The commitment from the party creating the NewMarket proposal
     liquidityCommitment: {
      // Specified as a unitless number that represents the amount of settlement asset of the market (string) 
-     commitmentAmount: "9199259",
+     commitmentAmount: "8450831",
 
      // Nominated liquidity fee factor, which is an input to the calculation of taker fees on the market, as per seeting fees and rewarding liquidity providers (undefined as string) 
-     fee: 0.68,
+     fee: 0.035,
 
      // A set of liquidity buy orders to meet the liquidity provision obligation
      buys: [
       {
        // The offset/amount of units away for the order (string) 
-       offset: "81",
+       offset: "85",
 
        // The relative proportion of the commitment to be allocated at a price level (int64 as integer) 
-       proportion: 7,
+       proportion: 1,
 
        // The pegged reference point for the order (string) 
        reference: "PEGGED_REFERENCE_BEST_BID",
       },
       {
-       offset: "76",
-       proportion: 9,
+       offset: "23",
+       proportion: 4,
        reference: "PEGGED_REFERENCE_BEST_BID",
       },
       {
-       offset: "12",
-       proportion: 3,
+       offset: "27",
+       proportion: 2,
        reference: "PEGGED_REFERENCE_BEST_BID",
       }
      ],
@@ -214,22 +214,22 @@
      sells: [
       {
        // The offset/amount of units away for the order (string) 
-       offset: "47",
+       offset: "61",
 
        // The relative proportion of the commitment to be allocated at a price level (int64 as integer) 
-       proportion: 1,
+       proportion: 5,
 
        // The pegged reference point for the order (string) 
        reference: "PEGGED_REFERENCE_BEST_ASK",
       },
       {
-       offset: "88",
-       proportion: 6,
+       offset: "83",
+       proportion: 4,
        reference: "PEGGED_REFERENCE_BEST_ASK",
       },
       {
-       offset: "68",
-       proportion: 3,
+       offset: "13",
+       proportion: 6,
        reference: "PEGGED_REFERENCE_BEST_ASK",
       }
      ],
@@ -239,11 +239,11 @@
 
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string) 
-  closingTimestamp: 1657557844,
+  closingTimestamp: 1657558422,
 
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string) 
-  enactmentTimestamp: 1657644244,
+  enactmentTimestamp: 1657644822,
  }
 }
 ```

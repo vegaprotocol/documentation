@@ -11,17 +11,17 @@
     key: "governance.proposal.freeform.minVoterBalance",
 
     // The value for the network parameter (string) 
-    value: "0.8253601133665003"
+    value: "0.36787646733031276"
    }
   },
 
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string) 
-  closingTimestamp: 1657557844,
+  closingTimestamp: 1657558422,
 
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string) 
-  enactmentTimestamp: 1657644244,
+  enactmentTimestamp: 1657644822,
  }
 }
 ```

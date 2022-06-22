@@ -56,8 +56,8 @@
           }
         },
         "metadata": [
+          "sector:food",
           "sector:health",
-          "sector:energy",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -79,55 +79,55 @@
         },
         "logNormal": {
           "tau": 0.0001140771161,
-          "riskAversionParameter": 0.01,
+          "riskAversionParameter": 0.001,
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 0.5
+            "sigma": 0.3
           }
         }
       },
       "liquidityCommitment": {
-        "commitmentAmount": "9199259",
-        "fee": "0.68",
+        "commitmentAmount": "8450831",
+        "fee": "0.035",
         "buys": [
           {
-            "offset": "81",
-            "proportion": 7,
+            "offset": "85",
+            "proportion": 1,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           },
           {
-            "offset": "76",
-            "proportion": 9,
+            "offset": "23",
+            "proportion": 4,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           },
           {
-            "offset": "12",
-            "proportion": 3,
+            "offset": "27",
+            "proportion": 2,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           }
         ],
         "sells": [
           {
-            "offset": "47",
-            "proportion": 1,
+            "offset": "61",
+            "proportion": 5,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           },
           {
-            "offset": "88",
+            "offset": "83",
+            "proportion": 4,
+            "reference": "PEGGED_REFERENCE_BEST_ASK"
+          },
+          {
+            "offset": "13",
             "proportion": 6,
-            "reference": "PEGGED_REFERENCE_BEST_ASK"
-          },
-          {
-            "offset": "68",
-            "proportion": 3,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           }
         ]
       }
     },
-    "closingTimestamp": 1657557844,
-    "enactmentTimestamp": 1657644244
+    "closingTimestamp": 1657558422,
+    "enactmentTimestamp": 1657644822
   }
 }
 ```
