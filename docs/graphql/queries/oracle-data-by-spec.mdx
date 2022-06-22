@@ -9,6 +9,7 @@ All oracle data for a given oracle spec ID
 ```graphql
 oracleDataBySpec(
   oracleSpecID: String!
+  pagination: OffsetPagination
 ): [OracleData!]
 ```
 
@@ -18,6 +19,11 @@ oracleDataBySpec(
 #### `oracleSpecID` ([`String`](/docs/testnet/graphql/scalars/string))
 
 ID for an oracle spec
+
+
+#### `pagination` ([`OffsetPagination`](/docs/testnet/graphql/inputs/offset-pagination))
+
+Pagination
 
 
 ### Type

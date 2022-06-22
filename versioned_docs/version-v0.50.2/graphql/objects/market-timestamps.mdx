@@ -1,0 +1,42 @@
+---
+id: market-timestamps
+title: MarketTimestamps
+---
+
+
+timestamps for when the market changes state
+
+```graphql
+type MarketTimestamps {
+  proposed: String
+  pending: String
+  open: String
+  close: String
+}
+```
+
+
+### Fields
+
+#### `proposed` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+Time when the market is first proposed
+
+
+#### `pending` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+Time when the market has been voted in and waiting to be created
+
+
+#### `open` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+Time when the market is open and ready to accept trades
+
+
+#### `close` ([`String`](/docs/mainnet/graphql/scalars/string))
+
+Time when the market is closed
+
+
+
+

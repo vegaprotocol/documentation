@@ -9,6 +9,8 @@ An asset originated from an Ethereum ERC20 Token
 ```graphql
 type ERC20 {
   contractAddress: String!
+  lifetimeLimit: String!
+  withdrawThreshold: String!
 }
 ```
 
@@ -18,6 +20,18 @@ type ERC20 {
 #### `contractAddress` ([`String`](/docs/testnet/graphql/scalars/string))
 
 The address of the erc20 contract
+
+
+#### `lifetimeLimit` ([`String`](/docs/testnet/graphql/scalars/string))
+
+The lifetime limits deposit per address
+Note: this is a temporary measure for restricted mainnet
+
+
+#### `withdrawThreshold` ([`String`](/docs/testnet/graphql/scalars/string))
+
+The maximum allowed per withdraw
+Note: this is a temporary measure for restricted mainnet
 
 
 
