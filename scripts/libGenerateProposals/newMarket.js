@@ -505,7 +505,7 @@ function produceOverview(p) {
   proposal.terms.newMarket.changes.liquidityMonitoringParameters = {}
   proposal.terms.newMarket.changes.logNormal = {} 
   proposal.terms.newMarket.liquidityCommitment = {}
-  return proposal.terms
+  return proposal
 }
 
 // Produces a very basic object 'overview' of an instrument

@@ -57,9 +57,8 @@
       }\ 
      },\ 
      "metadata": [\ 
-      "sector:materials",\ 
+      "sector:tech",\ 
       "sector:energy",\ 
-      "sector:food",\ 
       "source:docs.vega.xyz"\ 
      ],\ 
      "priceMonitoringParameters": {\ 
@@ -81,55 +80,55 @@
      },\ 
      "logNormal": {\ 
       "tau": 0.0001140771161,\ 
-      "riskAversionParameter": 0.0001,\ 
+      "riskAversionParameter": 0.01,\ 
       "params": {\ 
        "mu": 0,\ 
        "r": 0.016,\ 
-       "sigma": 0.8\ 
+       "sigma": 0.5\ 
       }\ 
      }\ 
     },\ 
     "liquidityCommitment": {\ 
-     "commitmentAmount": "6267070",\ 
-     "fee": "0.34",\ 
+     "commitmentAmount": "3085992",\ 
+     "fee": "0.12",\ 
      "buys": [\ 
       {\ 
-       "offset": "64",\ 
-       "proportion": 4,\ 
-       "reference": "PEGGED_REFERENCE_BEST_BID"\ 
-      },\ 
-      {\ 
-       "offset": "11",\ 
+       "offset": "75",\ 
        "proportion": 8,\ 
        "reference": "PEGGED_REFERENCE_BEST_BID"\ 
       },\ 
       {\ 
-       "offset": "96",\ 
-       "proportion": 4,\ 
+       "offset": "70",\ 
+       "proportion": 7,\ 
+       "reference": "PEGGED_REFERENCE_BEST_BID"\ 
+      },\ 
+      {\ 
+       "offset": "65",\ 
+       "proportion": 2,\ 
        "reference": "PEGGED_REFERENCE_BEST_BID"\ 
       }\ 
      ],\ 
      "sells": [\ 
       {\ 
-       "offset": "82",\ 
-       "proportion": 7,\ 
-       "reference": "PEGGED_REFERENCE_BEST_ASK"\ 
-      },\ 
-      {\ 
-       "offset": "75",\ 
+       "offset": "58",\ 
        "proportion": 2,\ 
        "reference": "PEGGED_REFERENCE_BEST_ASK"\ 
       },\ 
       {\ 
-       "offset": "40",\ 
-       "proportion": 5,\ 
+       "offset": "31",\ 
+       "proportion": 9,\ 
+       "reference": "PEGGED_REFERENCE_BEST_ASK"\ 
+      },\ 
+      {\ 
+       "offset": "4",\ 
+       "proportion": 8,\ 
        "reference": "PEGGED_REFERENCE_BEST_ASK"\ 
       }\ 
      ]\ 
     }\ 
    },\ 
-   "closingTimestamp": 1657381811,\ 
-   "enactmentTimestamp": 1657468211\ 
+   "closingTimestamp": 1657554552,\ 
+   "enactmentTimestamp": 1657640952\ 
   }\ 
  }\ 
 }'
