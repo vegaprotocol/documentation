@@ -1,6 +1,6 @@
 
   ```bash
-  ./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{
+./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{
  "proposalSubmission": {
   "rationale": {
    "description": "Update Lorem Ipsum market"
@@ -10,7 +10,7 @@
     "marketId": "123",
     "changes": {
      "instrument": {
-      "code": "ORANGES.24h",
+      "code": "APPLES.22",
       "future": {
        "quoteName": "tEuro",
        "settlementPriceDecimals": 5,
@@ -64,19 +64,19 @@
      },
      "logNormal": {
       "tau": 0.0001140771161,
-      "riskAversionParameter": 0.001,
+      "riskAversionParameter": 0.0001,
       "params": {
        "mu": 0,
        "r": 0.016,
-       "sigma": 1.25
+       "sigma": 0.3
       }
      }
     }
    },
-   "closingTimestamp": 1657556650,
-   "enactmentTimestamp": 1657643050
+   "closingTimestamp": 1657557562,
+   "enactmentTimestamp": 1657643962
   }
  }
 }'
-  ```
+```
   

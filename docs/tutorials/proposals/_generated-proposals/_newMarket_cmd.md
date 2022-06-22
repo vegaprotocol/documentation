@@ -1,6 +1,6 @@
 
   ```bash
-  ./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{
+./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{
  "proposalSubmission": {
   "rationale": {
    "description": "Add Lorem Ipsum market"
@@ -58,7 +58,7 @@
      },
      "metadata": [
       "sector:food",
-      "sector:tech",
+      "sector:energy",
       "source:docs.vega.xyz"
      ],
      "priceMonitoringParameters": {
@@ -84,53 +84,53 @@
       "params": {
        "mu": 0,
        "r": 0.016,
-       "sigma": 1.25
+       "sigma": 0.3
       }
      }
     },
     "liquidityCommitment": {
-     "commitmentAmount": "645751",
-     "fee": "0.26",
+     "commitmentAmount": "256434",
+     "fee": "0.59",
      "buys": [
       {
-       "offset": "8",
-       "proportion": 3,
+       "offset": "59",
+       "proportion": 2,
        "reference": "PEGGED_REFERENCE_BEST_BID"
       },
       {
-       "offset": "100",
-       "proportion": 10,
+       "offset": "70",
+       "proportion": 4,
        "reference": "PEGGED_REFERENCE_BEST_BID"
       },
       {
-       "offset": "2",
-       "proportion": 3,
+       "offset": "6",
+       "proportion": 6,
        "reference": "PEGGED_REFERENCE_BEST_BID"
       }
      ],
      "sells": [
       {
-       "offset": "4",
+       "offset": "70",
+       "proportion": 1,
+       "reference": "PEGGED_REFERENCE_BEST_ASK"
+      },
+      {
+       "offset": "77",
+       "proportion": 9,
+       "reference": "PEGGED_REFERENCE_BEST_ASK"
+      },
+      {
+       "offset": "67",
        "proportion": 5,
-       "reference": "PEGGED_REFERENCE_BEST_ASK"
-      },
-      {
-       "offset": "30",
-       "proportion": 3,
-       "reference": "PEGGED_REFERENCE_BEST_ASK"
-      },
-      {
-       "offset": "84",
-       "proportion": 2,
        "reference": "PEGGED_REFERENCE_BEST_ASK"
       }
      ]
     }
    },
-   "closingTimestamp": 1657556650,
-   "enactmentTimestamp": 1657643050
+   "closingTimestamp": 1657557562,
+   "enactmentTimestamp": 1657643962
   }
  }
 }'
-  ```
+```
   

@@ -2,13 +2,13 @@
   ```json
 {
   "rationale": {
-    "description": "Add Solana (SOL)"
+    "description": "Add Ethereum (ETH)"
   },
   "terms": {
     "newAsset": {
       "changes": {
-        "name": "Solana",
-        "symbol": "SOL",
+        "name": "Ethereum",
+        "symbol": "ETH",
         "totalSupply": "19010568",
         "decimals": "5",
         "quantum": "1",
@@ -17,9 +17,9 @@
         }
       }
     },
-    "closingTimestamp": 1657556650,
-    "enactmentTimestamp": 1657643050
+    "closingTimestamp": 1657557562,
+    "enactmentTimestamp": 1657643962
   }
 }
-  ```
+```
   

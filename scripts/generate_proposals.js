@@ -99,22 +99,22 @@ function newProposal(p, skeleton, type) {
   const annotated = `
   ${'```javascript'}
 ${prettyJs(annotator(proposal), formatOptions)}
-  ${'```'}`
+${'```'}`
 
   const json = `
   ${'```json'}
 ${JSON.stringify(proposal, null, '  ')}
-  ${'```'}
+${'```'}
   `
   const cmd = `
   ${'```bash'}
-  ./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '${JSON.stringify({"proposalSubmission": proposal }, null, ' ')}'
-  ${'```'}
+./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '${JSON.stringify({"proposalSubmission": proposal }, null, ' ')}'
+${'```'}
   `
   const win = `
   ${'```bash'}
-  vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --network fairground '${JSON.stringify({"proposalSubmission": proposal }, null, ' ').replace(/(\r\n|\r|\n)/g, '')}'
-  ${'```'}
+vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --network fairground "${JSON.stringify({"proposalSubmission": proposal }, null, ' ').replace('"', '\"').replace(/(\r\n|\r|\n)/g, ' ^\r\n')}"
+${'```'}
   `
 
   const excerpts = {}
