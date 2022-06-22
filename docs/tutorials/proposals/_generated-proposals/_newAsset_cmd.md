@@ -3,13 +3,13 @@
 ./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{
  "proposalSubmission": {
   "rationale": {
-   "description": "Add Ethereum (ETH)"
+   "description": "Add BNB (BNB)"
   },
   "terms": {
    "newAsset": {
     "changes": {
-     "name": "Ethereum",
-     "symbol": "ETH",
+     "name": "BNB",
+     "symbol": "BNB",
      "totalSupply": "19010568",
      "decimals": "5",
      "quantum": "1",
@@ -18,8 +18,8 @@
      }
     }
    },
-   "closingTimestamp": 1657557562,
-   "enactmentTimestamp": 1657643962
+   "closingTimestamp": 1657557844,
+   "enactmentTimestamp": 1657644244
   }
  }
 }'
