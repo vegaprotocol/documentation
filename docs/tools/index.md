@@ -9,10 +9,18 @@ For restricted mainnet, those tools include:
 ### Vega Wallet
 Use **[Vega Wallet](./vega-wallet/index.md)** to connect to a network to associate tokens for staking, and to sign messages. Using the Vega Wallet ensures your keys will be completely disassociated from your personal identity, and Vega will have no way to connect them with you, unless you share your public key for any reason.
 
-There are two apps available to interact with a Vega Wallet, the **[CLI wallet app](./vega-wallet/cli-wallet/index.md)**, and the **[desktop wallet app](./vega-wallet/desktop-app/index.md)**. 
+There are two apps available to interact with a Vega Wallet: 
+* **[CLI wallet app](./vega-wallet/cli-wallet/index.md)**
+* **[Desktop wallet app](./vega-wallet/desktop-app/index.md)**
 
 ### $VEGA Token website
 Use **[$VEGA Token website](https://token.vega.xyz)** to stake your tokens to nominate the validators that run the network, participate in network goveranance, and earn and claim rewards.
+
+### Block explorer
+The block explorer allows you to query transactions, network parameters, available assets (and their IDs) and more.
+
+* **[Block explorer for mainnet](https://explorer.vega.xyz/)**
+* **[Block explorer for fairground](https://explorer.fairground.wtf/)**
 
 ### Vega Capsule
 Use **[Vega Capsule](https://github.com/vegaprotocol/vegacapsule)** to create an instance of the Vega network on your computer to experiment with using the protocol. 
