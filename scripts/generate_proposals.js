@@ -108,7 +108,12 @@ ${JSON.stringify(proposal, null, '  ')}
   `
   const cmd = `
   ${'```bash'}
-  ./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '${JSON.stringify({"proposalSubmission": proposal }, null, ' ').replace(/(\r\n|\r|\n)/g, '\\ \n')}'
+  ./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '${JSON.stringify({"proposalSubmission": proposal }, null, ' ')}'
+  ${'```'}
+  `
+  const win = `
+  ${'```bash'}
+  vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --network fairground '${JSON.stringify({"proposalSubmission": proposal }, null, ' ')}'
   ${'```'}
   `
 
@@ -150,7 +155,8 @@ ${'```'}`
     excerpts,
     annotated,
     json,
-    cmd
+    cmd,
+    win
   }
 
 }
@@ -187,6 +193,7 @@ function output(partial, title) {
     writeFileSync(`${path}/_${title}_annotated.md`, partial.annotated)
     writeFileSync(`${path}/_${title}_json.md`, partial.json)
     writeFileSync(`${path}/_${title}_cmd.md`, partial.cmd)
+    writeFileSync(`${path}/_${title}_win.md`, partial.win)
 
     // Special case: Excerpt some sections of JSON so they can be documented in detail
     if (title === 'newMarket') {

@@ -13,6 +13,7 @@ keywords:
 import UpdateNetworkParameterAnnotated from './_generated-proposals/_updateNetworkParameter_annotated.md';
 import UpdateNetworkParameterJSON from './_generated-proposals/_updateNetworkParameter_json.md';
 import UpdateNetworkParameterCMD from './_generated-proposals/_updateNetworkParameter_cmd.md';
+import UpdateNetworkParameterWin from './_generated-proposals/_updateNetworkParameter_win.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -28,7 +29,10 @@ You can submit a proposal to change a network parameter.
   <TabItem value="json" label="JSON example">
     <UpdateNetworkParameterJSON />
   </TabItem>
-  <TabItem value="cmd" label="Command line">
+  <TabItem value="cmd" label="Linux / OSX">
     <UpdateNetworkParameterCMD />
+  </TabItem>
+  <TabItem value="win" label="Windows">
+    <UpdateNetworkParameterWin />
   </TabItem>
 </Tabs>

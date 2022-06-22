@@ -2,13 +2,13 @@
   ```json
 {
   "rationale": {
-    "description": "Add XRP (XRP)"
+    "description": "Add BNB (BNB)"
   },
   "terms": {
     "newAsset": {
       "changes": {
-        "name": "XRP",
-        "symbol": "XRP",
+        "name": "BNB",
+        "symbol": "BNB",
         "totalSupply": "19010568",
         "decimals": "5",
         "quantum": "1",
@@ -17,8 +17,8 @@
         }
       }
     },
-    "closingTimestamp": 1657554552,
-    "enactmentTimestamp": 1657640952
+    "closingTimestamp": 1657555971,
+    "enactmentTimestamp": 1657642371
   }
 }
   ```

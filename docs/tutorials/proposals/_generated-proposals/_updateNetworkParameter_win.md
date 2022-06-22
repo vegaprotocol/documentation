@@ -1,6 +1,6 @@
 
   ```bash
-  ./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{
+  vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --network fairground '{
  "proposalSubmission": {
   "rationale": {
    "description": "Update governance.proposal.asset.requiredMajority"

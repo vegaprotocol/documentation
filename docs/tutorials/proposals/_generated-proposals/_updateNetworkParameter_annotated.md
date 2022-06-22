@@ -2,26 +2,26 @@
   ```javascript
 {
  rationale: {
-  description: "Update governance.proposal.freeform.minVoterBalance"
+  description: "Update governance.proposal.asset.requiredMajority"
  },
  terms: {
   updateNetworkParameter: {
    changes: {
     // The unique key (string) 
-    key: "governance.proposal.freeform.minVoterBalance",
+    key: "governance.proposal.asset.requiredMajority",
 
     // The value for the network parameter (string) 
-    value: "0.6184675137542133"
+    value: "0.3140862870737786"
    }
   },
 
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string) 
-  closingTimestamp: 1657554552,
+  closingTimestamp: 1657555971,
 
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string) 
-  enactmentTimestamp: 1657640952,
+  enactmentTimestamp: 1657642371,
  }
 }
   ```

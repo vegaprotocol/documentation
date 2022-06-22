@@ -13,6 +13,7 @@ keywords:
 import NewFreeformAnnotated from './_generated-proposals/_newFreeform_annotated.md';
 import NewFreeformJSON from './_generated-proposals/_newFreeform_json.md';
 import NewFreeformCMD from './_generated-proposals/_newFreeform_cmd.md';
+import NewFreeformWin from './_generated-proposals/_newFreeform_win.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -26,7 +27,10 @@ The aim of this is to allow community to provide votes on proposals which don't 
   <TabItem value="json" label="JSON example">
     <NewFreeformJSON />
   </TabItem>
-  <TabItem value="cmd" label="Command line">
+  <TabItem value="cmd" label="Linux / OSX">
     <NewFreeformCMD />
+  </TabItem>
+  <TabItem value="win" label="Windows">
+    <NewFreeformWin />
   </TabItem>
 </Tabs>

@@ -17,9 +17,7 @@ import NewMarketJSONLiquidityCommitment from './_generated-proposals/_newMarket_
 import NewMarketAnnotated from './_generated-proposals/_newMarket_annotated.md';
 import NewMarketJSON from './_generated-proposals/_newMarket_json.md';
 import NewMarketCMD from './_generated-proposals/_newMarket_cmd.md';
-import UpdateMarketAnnotated from './_generated-proposals/_updateMarket_annotated.md';
-import UpdateMarketJSON from './_generated-proposals/_updateMarket_json.md';
-import UpdateMarketCMD from './_generated-proposals/_updateMarket_cmd.md';
+import NewMarketWin from './_generated-proposals/_newMarket_win.md';
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -156,7 +154,10 @@ New market commitment input: The liquidity commitment submitted with the new mar
   <TabItem value="json" label="JSON example">
     <NewMarketJSON />
   </TabItem>
-  <TabItem value="cmd" label="Command line">
+  <TabItem value="cmd" label="Linux / OSX">
     <NewMarketCMD />
+  </TabItem>
+  <TabItem value="win" label="Windows">
+    <NewMarketWin />
   </TabItem>
 </Tabs>

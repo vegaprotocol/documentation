@@ -10,8 +10,8 @@
         "decimalPlaces": "5",
         "positionDecimalPlaces": "5",
         "instrument": {
-          "name": "Apples Yearly (2022)",
-          "code": "APPLES.22",
+          "name": "Oranges Daily",
+          "code": "ORANGES.24h",
           "future": {
             "settlementAsset": "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
             "quoteName": "tEuro",
@@ -56,8 +56,9 @@
           }
         },
         "metadata": [
-          "sector:tech",
-          "sector:energy",
+          "sector:food",
+          "sector:health",
+          "sector:materials",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -88,46 +89,46 @@
         }
       },
       "liquidityCommitment": {
-        "commitmentAmount": "3085992",
-        "fee": "0.12",
+        "commitmentAmount": "3916909",
+        "fee": "0.58",
         "buys": [
           {
-            "offset": "75",
-            "proportion": 8,
+            "offset": "53",
+            "proportion": 1,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           },
           {
-            "offset": "70",
-            "proportion": 7,
+            "offset": "11",
+            "proportion": 10,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           },
           {
-            "offset": "65",
-            "proportion": 2,
+            "offset": "74",
+            "proportion": 6,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           }
         ],
         "sells": [
           {
-            "offset": "58",
-            "proportion": 2,
+            "offset": "67",
+            "proportion": 6,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           },
           {
-            "offset": "31",
-            "proportion": 9,
+            "offset": "76",
+            "proportion": 4,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           },
           {
-            "offset": "4",
-            "proportion": 8,
+            "offset": "26",
+            "proportion": 5,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           }
         ]
       }
     },
-    "closingTimestamp": 1657554552,
-    "enactmentTimestamp": 1657640952
+    "closingTimestamp": 1657555971,
+    "enactmentTimestamp": 1657642371
   }
 }
   ```
