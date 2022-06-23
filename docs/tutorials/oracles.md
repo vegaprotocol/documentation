@@ -152,29 +152,88 @@ Assuming the two sources defined above had submitted data, the result would be s
 ```
 
 When configuring a market's instrument, we will need to select the data from these two sources. This is done by:
-1. Defining an Oracle Spec binding for settlement price
+1. Defining an Oracle Spec Binding for settlement price
 2. Configuring an Oracle Spec for settlement price values
-3. Defining an Oracle Spec binding for trading termination
-4. Defining an Oracle Spec for trading termination values
+3. Defining an Oracle Spec Binding for trading termination
+4. configuring an Oracle Spec for trading termination values
 
-The **binding** tells the market which field contains the value. The **spec** defines which public keys to watch for data from, and which values to pass through to the binding.
+The **binding** tells the market which field contains the value. The **spec** defines which public keys to watch for data from, and which values to pass through to the binding. For now we'll focus on using the oracles for settlement price - both examples below use a Vega time oracle to terminate the market.
 
-### Open Oracle spec
-For the binding, use the `name` field of the data. In the case of our example above, this would be `"prices.BTC.value"`.
+### Open Oracle spec for settlement
+For the binding, use the `name` field of the data. In the case of our example above, this would be `"prices.BTC.value"`. 
 
 ```javascript
 "oracleSpecBinding": {
   "settlementPriceProperty": "prices.BTC.value",
-  "tradingTerminationProperty": "?"
+  "tradingTerminationProperty": "vegaprotocol.builtin.timestamp"
 }
 ```
 
-### JSON Oracle spec
-For the binding, use the `name` field of the data. In the case of our example above, this would be `"moonwalkers"`.
+The following Oracle Spec would make the market use the BTC value from the Open Oracle data submitted above:
+
+```javascript
+   "oracleSpecForSettlementPrice": {
+        "pubKeys": ["0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"],
+        "filters": [{
+            "key": {
+                "name": "price.BTC.value",
+                "type": "TYPE_INTEGER",
+            },
+            "conditions": [{
+                "operator": "OPERATOR_GREATER_THAN",
+                "value": "0",
+            }]
+        }]
+    }
+```
+
+### JSON Oracle spec for settlement
+For the binding, use the `name` field of the data. In the case of our example above, this would be `"moonwalkers"`.  
 
 ```javascript
 "oracleSpecBinding": {
   "settlementPriceProperty": "moonwalkers",
-  "tradingTerminationProperty": "?"
+  "tradingTerminationProperty": "vegaprotocol.builtin.timestamp"
 }
 ```
+
+The Oracle Specification that would bind to the `moonwalkers` property would be as follows:
+
+```javascript
+   "oracleSpecForSettlementPrice": {
+        "pubKeys": ["123abc"],
+        "filters": [{
+            "key": {
+                "name": "moonwalkers",
+                "type": "TYPE_INTEGER",
+            },
+            "conditions": [{
+                "operator": "OPERATOR_GREATER_THAN",
+                "value": "12",
+            }]
+        }]
+    }
+```
+
+### Trading Termination
+To configure the time at which we want to terminate the market, we can use a built in time source rather than relying on a timestamp in the Oracle data. It's possible to settle on other properties - for instance checking if a `boolean` is `true` - but time is a good starting point.
+
+The following Oracle Specification, combined with the spec binding above, would make a market settle at the given timestamp.
+
+```javascript
+"oracleSpecForTradingTermination": {
+    // pubKeys is empty as we're using a built in oracle
+    "pubKeys": [],
+    "filters": [{
+        "key": {
+            "name": "vegaprotocol.builtin.timestamp",
+            "type": "TYPE_TIMESTAMP",
+        },
+        "conditions": [{
+            "operator": "OPERATOR_GREATER_THAN_OR_EQUAL",
+            "value": "1648684800000000000",
+        }]
+    }]
+}
+```
+
