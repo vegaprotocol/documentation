@@ -13,6 +13,7 @@ type Proposal {
   party: Party!
   state: ProposalState!
   datetime: String!
+  rationale: ProposalRationale!
   terms: ProposalTerms!
   votes: ProposalVotes!
   rejectionReason: ProposalRejectionReason
@@ -46,6 +47,11 @@ State of the proposal
 #### `datetime` ([`String`](/docs/testnet/graphql/scalars/string))
 
 RFC3339Nano time and date when the proposal reached Vega network
+
+
+#### `rationale` ([`ProposalRationale`](/docs/testnet/graphql/objects/proposal-rationale))
+
+Rationale behind the proposal
 
 
 #### `terms` ([`ProposalTerms`](/docs/testnet/graphql/objects/proposal-terms))

@@ -115,7 +115,7 @@ vega nodewallet generate --chain=ethereum --home="path/to/home" --wallet-passphr
 #### Vega wallet
 We recommend you use an isolated key. 
 
-Read the guide on how to isolate Vega wallet keys: [Isolate keys]((../tools/vega-wallet/cli-wallet/latest/guides/isolate-keys.md)
+Read the guide on how to isolate Vega wallet keys: [Isolate keys](../tools/vega-wallet/cli-wallet/latest/guides/isolate-keys.md)
 
 Give the node access to the key using the following command: 
 ```
