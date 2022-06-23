@@ -38,11 +38,16 @@ Before starting you will need both Git and Go 1.18 installed on your system. Git
 
 ### Environment set-up
 Set up the environment variables required to build both node binaries.
+
+Linux is the operating system we are compiling the node for in this example.
+
 ```Shell
-export GOOS=linux # The operating system we are compiling the node for in this example.
+export GOOS=linux 
 ```
+Amd64 is the architecture targeted. 
+
 ```Shell
-export GOARCH=amd64 # The architecture targeted.
+export GOARCH=amd64
 ```
 :::note
 

@@ -130,7 +130,7 @@ vega nodewallet generate --chain=vega --home="path/to/home" --wallet-passphrase-
 :::info
 You can verify the information saved in your node wallet using the following command:
 ```
-vega nodewallet show
+vega nodewallet show --home-"/path/to/vega/home"
 ```
 :::
 
