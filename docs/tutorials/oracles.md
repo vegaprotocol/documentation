@@ -30,7 +30,7 @@ Any Vega keypair can submit oracle data to the chain. In the configuration for a
 
 ### 2. Encode the Open Oracle message
 
-```bash title="Linux command line example"
+```bash title="Linux/OSX command line example"
 echo '{"timestamp":"1649265840","messages":["0x000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000624dccb000000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000000000a2e04f5f00000000000000000000000000000000000000000000000000000000000000006707269636573000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000034254430000000000000000000000000000000000000000000000000000000000"],"signatures":["0x8362a456997287a6b89e2de52e26c2aca423ab0ed401f9a23c81da2e2c56a5db27365adcb478d7b36558df58ca5dd240191a0f08a7f0ed79ee23cec77521e5c2000000000000000000000000000000000000000000000000000000000000001b"],"prices":{"BTC":"43721.75"}}' | base64
 ```
 
@@ -40,8 +40,9 @@ eyJ0aW1lc3RhbXAiOiIxNjQ5MjY1ODQwIiwibWVzc2FnZXMiOlsiMHgwMDAwMDAwMDAwMDAwMDAwMDAw
 ```
 
 ### 3. Submit the message to the chain
+When submitting the `OracleDataSubmission`, make sure to specify the `source` field as `ORACLE_SOURCE_OPEN_ORACLE`.
 
-```bash title="Linux command line example"
+```bash title="Linux/OSX command line example"
 vegawallet command send --wallet oracle-wallet --pubkey 123abc --network fairground '{"oracleDataSubmission": { "source": "ORACLE_SOURCE_OPEN_ORACLE", "payload":"eyJ0aW1lc3RhbXAiOiIxNjQ5MjY1ODQwIiwibWVzc2FnZXMiOlsiMHgwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDgwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA2MjRkY2NiMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwYzAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwYTJlMDRmNWYwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwNjcwNzI2OTYzNjU3MzAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAzNDI1NDQzMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMCJdLCJzaWduYXR1cmVzIjpbIjB4ODM2MmE0NTY5OTcyODdhNmI4OWUyZGU1MmUyNmMyYWNhNDIzYWIwZWQ0MDFmOWEyM2M4MWRhMmUyYzU2YTVkYjI3MzY1YWRjYjQ3OGQ3YjM2NTU4ZGY1OGNhNWRkMjQwMTkxYTBmMDhhN2YwZWQ3OWVlMjNjZWM3NzUyMWU1YzIwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDFiIl0sInByaWNlcyI6eyJCVEMiOiI0MzcyMS43NSJ9fQo=" }}'
 ```
 
@@ -49,6 +50,7 @@ You will be able to see this data by querying the API for `OracleData`. In the A
 
 ## JSON Oracle
 ### API Notes
+- Data should be encoded as strings. `true` should be `"true"`, `12` should be `"12"`
 - In the API responses, the `pubKeys` field for JSON Oracle data submissions is set to the VEGA public key
 
 [JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON) oracles are an alternative to Open Oracle data. The advantage is that they can be totally custom objects, as long as they are valid JSON. The disadvantage is that they are not attested by any off-chain source in the way that Open Oracle messages are. Due to this constraint, it's generally advisable to find an Open Oracle price source before resorting to JSON data.
@@ -63,7 +65,8 @@ JSON oracles can contain arbitrary JSON data - but to be useful for market creat
 ```
 
 ### 2. Encode the message
-```bash title="Linux command line example"
+All OracleDataSubmission data is base64 encoded. Here's how to do that on a Linux o
+```bash title="Linux/OSX command line example"
 echo '{"moonwalkers":"12"}' | base64
 ```
 
@@ -73,6 +76,12 @@ eyJtb29ud2Fsa2VycyI6IjEyIn0K
 ```
 
 ### 3. Submit the message to the chain
-```bash title="Linux command line example"
+When submitting the `OracleDataSubmission`, make sure to specify the `source` field as `ORACLE_SOURCE_JSON`.
+
+```bash title="Linux/OSX command line example"
 vegawallet command send --wallet oracle-wallet --pubkey 123abc --network fairground '{"oracleDataSubmission": { "source": "ORACLE_SOURCE_JSON", "payload":"eyJtb29ud2Fsa2VycyI6IjEyIn0K" }}'
 ```
+
+## Writing an OracleSpec to match data
+### Open Oracle spec
+### JSON Oracle spec
