@@ -2,9 +2,9 @@
 # Oracles
 
 ## Who can submit Oracle Data
-Any Vega keypair can submit oracle data to the chain. In the configuration for a market, an Oracle Specification field dictates which oracle data feeds it is interested in. This specification mean that a market creator will choose in advance a price source, and which fields are required for the market to operate.
+Any Vega keypair can submit oracle data to the chain. In the configuration for a market, an Oracle Specification field dictates which oracle data feeds it is interested in. This specification mean that the creator of an instrument for a market will choose in advance a price source, and which fields are required for the market to operate.
 
-## Choosing an Oracle for a market
+## Choosing an Oracle for a market instrument
 
 ## Submitting Oracle Data
 
@@ -91,5 +91,90 @@ vegawallet command send \
 ```
 
 ## Writing an OracleSpec to match data
+The following GraphQL query shows previous Oracle Data submissions, which can be useful for determining the fields that a market's Oracle Spec requires
+```graphql
+{
+  oracleData {
+    pubKeys
+    data {
+      name
+      value
+    }
+    broadcastAt
+    matchedSpecIds
+  }
+}
+```
+
+Assuming the two sources defined above had submitted data, the result would be something like this:
+```javascript
+{
+  "data": {
+    "oracleData": [
+      // This is the Open Oracle data message 
+      {
+        "pubKeys": [
+          // This is the Ethereum public key of the Coinbase oracle, the original signer of the Open Oracle message
+          // we submitted above
+          "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
+        ],
+        "data": [
+          {
+            "name": "prices.BTC.value",
+            "value": "43721750000"
+          },
+          {
+            "name": "prices.BTC.timestamp",
+            "value": "1649265840"
+          }
+        ],
+        "broadcastAt": "",
+        "matchedSpecIds": null
+      },
+      // This is the JSON Oracle data message 
+      {
+        "pubKeys": [
+          // For JSON Oracles, the public key is the vega key that submitted the message
+          "123abc"
+        ],
+        "data": [
+          {
+            "name": "moonwalkers",
+            "value": "12"
+          }
+        ],
+        "broadcastAt": "",
+        "matchedSpecIds": null
+      }
+    ]
+  }
+}
+```
+
+When configuring a market's instrument, we will need to select the data from these two sources. This is done by:
+1. Defining an Oracle Spec binding for settlement price
+2. Configuring an Oracle Spec for settlement price values
+3. Defining an Oracle Spec binding for trading termination
+4. Defining an Oracle Spec for trading termination values
+
+The **binding** tells the market which field contains the value. The **spec** defines which public keys to watch for data from, and which values to pass through to the binding.
+
 ### Open Oracle spec
+For the binding, use the `name` field of the data. In the case of our example above, this would be `"prices.BTC.value"`.
+
+```javascript
+"oracleSpecBinding": {
+  "settlementPriceProperty": "prices.BTC.value",
+  "tradingTerminationProperty": "?"
+}
+```
+
 ### JSON Oracle spec
+For the binding, use the `name` field of the data. In the case of our example above, this would be `"moonwalkers"`.
+
+```javascript
+"oracleSpecBinding": {
+  "settlementPriceProperty": "moonwalkers",
+  "tradingTerminationProperty": "?"
+}
+```
