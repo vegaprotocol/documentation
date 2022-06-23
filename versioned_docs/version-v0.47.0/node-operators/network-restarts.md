@@ -128,8 +128,8 @@ You can also get a list of all paths used by your node using `vega paths list`. 
 
 You can now remove all previous states of the chain by running:
 ```
-vega --home="/path/to/vega/home unsafe_reset_all"
-vega tm --home="/path/to/tendermint/home unsafe_reset_all"
+./vega unsafe_reset_all --home="/path/to/vega/home"
+vega tm unsafe_reset_all --home="/path/to/tendermint/home"
 rm -rf "/path/to/data-node/home/vega/data-node/storage/"
 ```
 
