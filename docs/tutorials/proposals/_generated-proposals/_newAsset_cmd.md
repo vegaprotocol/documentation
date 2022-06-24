@@ -3,13 +3,13 @@
 ./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{
  "proposalSubmission": {
   "rationale": {
-   "description": "Add BNB (BNB)"
+   "description": "Add XRP (XRP)"
   },
   "terms": {
    "newAsset": {
     "changes": {
-     "name": "BNB",
-     "symbol": "BNB",
+     "name": "XRP",
+     "symbol": "XRP",
      "totalSupply": "19010568",
      "decimals": "5",
      "quantum": "1",
@@ -18,8 +18,8 @@
      }
     }
    },
-   "closingTimestamp": 1657714005,
-   "enactmentTimestamp": 1657800405
+   "closingTimestamp": 1657721401,
+   "enactmentTimestamp": 1657807801
   }
  }
 }'

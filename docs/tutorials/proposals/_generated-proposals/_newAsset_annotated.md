@@ -2,16 +2,16 @@
   ```javascript
 {
  rationale: {
-  description: "Add BNB (BNB)"
+  description: "Add XRP (XRP)"
  },
  terms: {
   newAsset: {
    changes: {
     // Name of the asset (e.g: Great British Pound) (string) 
-    name: "BNB",
+    name: "XRP",
 
     // Symbol of the asset (e.g: GBP) (string) 
-    symbol: "BNB",
+    symbol: "XRP",
 
     // Total circulating supply for the asset (string) 
     totalSupply: "19010568",
@@ -32,11 +32,11 @@
 
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string) 
-  closingTimestamp: 1657714005,
+  closingTimestamp: 1657721401,
 
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string) 
-  enactmentTimestamp: 1657800405,
+  enactmentTimestamp: 1657807801,
  }
 }
 ```

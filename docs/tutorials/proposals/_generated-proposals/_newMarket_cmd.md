@@ -11,8 +11,8 @@
      "decimalPlaces": "18",
      "positionDecimalPlaces": "5",
      "instrument": {
-      "name": "Apples Yearly (2022)",
-      "code": "APPLES.22",
+      "name": "Oranges Daily",
+      "code": "ORANGES.24h",
       "future": {
        "settlementAsset": "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
        "quoteName": "tEuro",
@@ -60,7 +60,9 @@
       }
      },
      "metadata": [
+      "sector:energy",
       "sector:tech",
+      "sector:health",
       "source:docs.vega.xyz"
      ],
      "priceMonitoringParameters": {
@@ -86,51 +88,51 @@
       "params": {
        "mu": 0,
        "r": 0.016,
-       "sigma": 1.25
+       "sigma": 0.3
       }
      }
     },
     "liquidityCommitment": {
-     "commitmentAmount": "7562706",
-     "fee": "0.46",
+     "commitmentAmount": "2500460",
+     "fee": "0.10",
      "buys": [
       {
-       "offset": "90",
+       "offset": "84",
        "proportion": 8,
        "reference": "PEGGED_REFERENCE_BEST_BID"
       },
       {
-       "offset": "99",
-       "proportion": 8,
+       "offset": "43",
+       "proportion": 9,
        "reference": "PEGGED_REFERENCE_BEST_BID"
       },
       {
-       "offset": "46",
-       "proportion": 7,
+       "offset": "1",
+       "proportion": 3,
        "reference": "PEGGED_REFERENCE_BEST_BID"
       }
      ],
      "sells": [
       {
-       "offset": "35",
-       "proportion": 4,
+       "offset": "20",
+       "proportion": 9,
        "reference": "PEGGED_REFERENCE_BEST_ASK"
       },
       {
-       "offset": "54",
-       "proportion": 4,
-       "reference": "PEGGED_REFERENCE_BEST_ASK"
-      },
-      {
-       "offset": "80",
+       "offset": "65",
        "proportion": 3,
+       "reference": "PEGGED_REFERENCE_BEST_ASK"
+      },
+      {
+       "offset": "69",
+       "proportion": 8,
        "reference": "PEGGED_REFERENCE_BEST_ASK"
       }
      ]
     }
    },
-   "closingTimestamp": 1657714005,
-   "enactmentTimestamp": 1657800405
+   "closingTimestamp": 1657721401,
+   "enactmentTimestamp": 1657807801
   }
  }
 }'

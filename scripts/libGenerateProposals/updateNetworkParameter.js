@@ -19,7 +19,7 @@ function updateNetworkParameter(skeleton) {
       updateNetworkParameter: {
         changes: {
           key: keyToUpdate,
-          value: Math.random().toString()
+          value: "300"
         }
       }
     }
