@@ -52,7 +52,7 @@ go tool dist list
 ```
 :::
 
-Both binaries can be build without the CGO support. Disable it with the following command:
+Both binaries can be built without the CGO support. Disable it with the following command:
 ```
 export CGO_ENABLED=0
 ```
