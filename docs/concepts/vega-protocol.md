@@ -37,7 +37,7 @@ Tokenholders can create proposals using the APIs.
 Vote on proposals on the [Vega token governance page](https://token.vega.xyz/governance).
 :::
 
-## Collateral management 
+## Collateral management
 The collateral for restricted mainnet is exclusively VEGA, which is used for staking and rewards. 
  
 :::info

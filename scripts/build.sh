@@ -69,8 +69,8 @@ export VEGA_VERSION="$grpc_doc_branch"
 
 yarn install
 mkdir -p ./docs/grpc
-yarn run generate-graphql
 yarn run generate-grpc
+yarn run generate-graphql
 
 # This var is used in GraphQL tidyup
 echo "GraphQL: Removing generated on date..."
@@ -85,6 +85,5 @@ echo "GRPC: Fix sidebar links"
 sed -i -E 's/"vega\//"grpc\/vega\//g' docs/grpc/sidebar.js
 
 yarn run build
-yarn run prettier
 
 rm schema.graphql
