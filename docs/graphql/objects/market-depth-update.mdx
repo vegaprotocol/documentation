@@ -13,6 +13,7 @@ type MarketDepthUpdate {
   buy: [PriceLevel!]
   sell: [PriceLevel!]
   sequenceNumber: String!
+  previousSequenceNumber: String!
 }
 ```
 
@@ -36,7 +37,12 @@ Sell side price levels (if available)
 
 #### `sequenceNumber` ([`String`](/docs/testnet/graphql/scalars/string))
 
-Sequence number for the current snapshot of the market depth
+Sequence number for the current snapshot of the market depth. It is always increasing but not monotonic.
+
+
+#### `previousSequenceNumber` ([`String`](/docs/testnet/graphql/scalars/string))
+
+Sequence number of the last update sent; useful for checking that no updates were missed.
 
 
 
