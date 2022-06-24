@@ -18,9 +18,13 @@ import TabItem from '@theme/TabItem';
 
 
 ## Update an existing market
-Some parts of a market can be changed via governance using the `updateMarket` proposal. This is similar to the `newMarket` proposal, but most fields are not required.
+Participants with enough equity-like share of a market can propose changes to some market properties via governance using the `updateMarket` proposal. This is similar to the `newMarket` proposal, but most fields are not required.
 
-See the descriptions in the [propose a new market](#propose-a-new-market) for 
+:::info
+Only participants with the minimum equity-like share can propose a change to a market. The minimum is defined by the network parameter `governance.proposal.updateMarket.minProposerEquityLikeShare`.
+:::
+
+See the descriptions in the [propose a new market](#propose-a-new-market) for more on each field.
 
 <Tabs groupId="updateMarket">
   <TabItem value="annotated" label="Annotated example">
