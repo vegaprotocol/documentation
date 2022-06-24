@@ -7,57 +7,59 @@
   "terms": {
     "newMarket": {
       "changes": {
-        "decimalPlaces": "5",
+        "decimalPlaces": "18",
         "positionDecimalPlaces": "5",
         "instrument": {
-          "name": "Oranges Daily",
-          "code": "ORANGES.24h",
+          "name": "Apples Yearly (2022)",
+          "code": "APPLES.22",
           "future": {
             "settlementAsset": "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
             "quoteName": "tEuro",
-            "settlementPriceDecimals": 5,
+            "settlementPriceDecimals": 18,
             "oracleSpecForSettlementPrice": {
               "pubKeys": [
-                "0xab5c950b071684321d59360ccb924d9c5010b31abd6b4148206a57e73594abc9"
+                "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
               ],
               "filters": [
                 {
                   "key": {
-                    "name": "prices.AAPL.value",
+                    "name": "prices.BTC.value",
                     "type": "TYPE_INTEGER"
                   },
                   "conditions": [
                     {
                       "operator": "OPERATOR_GREATER_THAN",
-                      "value": "1"
+                      "value": "0"
                     }
                   ]
                 }
               ]
             },
             "oracleSpecForTradingTermination": {
-              "pubKeys": [
-                "0xab5c950b071684321d59360ccb924d9c5010b31abd6b4148206a57e73594abc9"
-              ],
+              "pubKeys": [],
               "filters": [
                 {
                   "key": {
-                    "name": "prices.AAPL.value",
-                    "type": "TYPE_BOOLEAN"
+                    "name": "vegaprotocol.builtin.timestamp",
+                    "type": "TYPE_TIMESTAMP"
                   },
-                  "conditions": []
+                  "conditions": [
+                    {
+                      "operator": "OPERATOR_GREATER_THAN_OR_EQUAL",
+                      "value": "1648684800000000000"
+                    }
+                  ]
                 }
               ]
             },
             "oracleSpecBinding": {
-              "settlementPriceProperty": "prices.AAPL.value",
-              "tradingTerminationProperty": "prices.AAPL.value"
+              "settlementPriceProperty": "prices.BTC.value",
+              "tradingTerminationProperty": "vegaprotocol.builtin.timestamp"
             }
           }
         },
         "metadata": [
-          "sector:food",
-          "sector:health",
+          "sector:tech",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -79,55 +81,55 @@
         },
         "logNormal": {
           "tau": 0.0001140771161,
-          "riskAversionParameter": 0.001,
+          "riskAversionParameter": 0.0001,
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 0.3
+            "sigma": 1.25
           }
         }
       },
       "liquidityCommitment": {
-        "commitmentAmount": "8450831",
-        "fee": "0.035",
+        "commitmentAmount": "7562706",
+        "fee": "0.46",
         "buys": [
           {
-            "offset": "85",
-            "proportion": 1,
+            "offset": "90",
+            "proportion": 8,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           },
           {
-            "offset": "23",
-            "proportion": 4,
+            "offset": "99",
+            "proportion": 8,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           },
           {
-            "offset": "27",
-            "proportion": 2,
+            "offset": "46",
+            "proportion": 7,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           }
         ],
         "sells": [
           {
-            "offset": "61",
-            "proportion": 5,
-            "reference": "PEGGED_REFERENCE_BEST_ASK"
-          },
-          {
-            "offset": "83",
+            "offset": "35",
             "proportion": 4,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           },
           {
-            "offset": "13",
-            "proportion": 6,
+            "offset": "54",
+            "proportion": 4,
+            "reference": "PEGGED_REFERENCE_BEST_ASK"
+          },
+          {
+            "offset": "80",
+            "proportion": 3,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           }
         ]
       }
     },
-    "closingTimestamp": 1657558422,
-    "enactmentTimestamp": 1657644822
+    "closingTimestamp": 1657714005,
+    "enactmentTimestamp": 1657800405
   }
 }
 ```

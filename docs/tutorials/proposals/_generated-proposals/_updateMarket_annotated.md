@@ -12,7 +12,7 @@
     // Updated market instrument configuration
     instrument: {
      // Instrument code
-     code: "APPLES.22",
+     code: "ORANGES.24h",
 
      // Future
      future: {
@@ -28,7 +28,7 @@
        // oracle. All the public keys in the oracle data should be contained in these
        // public keys. (array of strings)
        pubKeys: [
-        "0xab5c950b071684321d59360ccb924d9c5010b31abd6b4148206a57e73594abc9"
+        "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
        ],
 
        // filters describes which oracle data are considered of interest or not for
@@ -38,7 +38,7 @@
          // key is the oracle data property key targeted by the filter.
          key: {
           // name is the name of the property. (string)
-          name: "prices.AAPL.value",
+          name: "prices.BTC.value",
 
           // type is the type of the property. (string)
           type: "TYPE_INTEGER",
@@ -52,7 +52,7 @@
            operator: "OPERATOR_GREATER_THAN",
 
            // value is used by the comparator. (string)
-           value: "1",
+           value: "0",
           }
          ]
         }
@@ -64,9 +64,7 @@
        // pubKeys is the list of authorized public keys that signed the data for this
        // oracle. All the public keys in the oracle data should be contained in these
        // public keys. (array of strings)
-       pubKeys: [
-        "0xab5c950b071684321d59360ccb924d9c5010b31abd6b4148206a57e73594abc9"
-       ],
+       pubKeys: [],
 
        // filters describes which oracle data are considered of interest or not for
        // the product (or the risk model).
@@ -75,10 +73,10 @@
          // key is the oracle data property key targeted by the filter.
          key: {
           // name is the name of the property. (string)
-          name: "prices.AAPL.value",
+          name: "vegaprotocol.builtin.timestamp",
 
           // type is the type of the property. (string)
-          type: "TYPE_BOOLEAN",
+          type: "TYPE_TIMESTAMP",
          },
 
          // conditions are the conditions that should be matched by the data to be
@@ -94,10 +92,10 @@
        // that should be used as settlement price.
        // If it is set to "prices.BTC.value", then the Future will use the value of
        // this property as settlement price. (string) 
-       settlementPriceProperty: "prices.AAPL.value",
+       settlementPriceProperty: "prices.BTC.value",
 
        // the name of the property in the oracle data that signals termination of trading (string) 
-       tradingTerminationProperty: "prices.AAPL.value"
+       tradingTerminationProperty: "vegaprotocol.builtin.timestamp"
       }
      },
 
@@ -126,7 +124,7 @@
       tau: 0.0001140771161,
 
       // Risk Aversion Parameter (double as number) 
-      riskAversionParameter: "0.0001",
+      riskAversionParameter: "0.001",
 
       // Risk model parameters for log normal
       params: {
@@ -137,7 +135,7 @@
        r: 0.016,
 
        // Sigma param (double as number) 
-       sigma: 0.8,
+       sigma: 1.25,
       }
      },
     },
@@ -145,11 +143,11 @@
 
    // Timestamp (Unix time in seconds) when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters (int64 as string) 
-   closingTimestamp: 1657558422,
+   closingTimestamp: 1657714005,
 
    // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
    // constrained by `minEnact` and `maxEnact` network parameters (int64 as string) 
-   enactmentTimestamp: 1657644822,
+   enactmentTimestamp: 1657800405,
   }
  }
 ```

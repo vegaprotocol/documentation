@@ -1,9 +1,9 @@
 ```javascript
 {
  // Instrument name
- name: "Oranges Daily",
+ name: "Apples Yearly (2022)",
  // Instrument code
- code: "ORANGES.24h",
+ code: "APPLES.22",
  // Future
  future: {
   // Product settlement asset identifier (string)
@@ -11,7 +11,7 @@
   // Product quote name (string)
   quoteName: "tEuro",
   // the number of decimal places implied by the settlement price emitted by the settlement oracle (int64 as integer)
-  settlementPriceDecimals: 5,
+  settlementPriceDecimals: 18,
   // The oracle spec describing the oracle data of settlement price (object)
   oracleSpecForSettlementPrice: {},
   // The oracle spec describing the oracle data of trading termination (object)
@@ -22,9 +22,9 @@
    // that should be used as settlement price.
    // If it is set to "prices.BTC.value", then the Future will use the value of
    // this property as settlement price. (string) 
-   settlementPriceProperty: "prices.AAPL.value",
+   settlementPriceProperty: "prices.BTC.value",
    // the name of the property in the oracle data that signals termination of trading (string) 
-   tradingTerminationProperty: "prices.AAPL.value"
+   tradingTerminationProperty: "vegaprotocol.builtin.timestamp"
   }
  }
 ```

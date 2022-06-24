@@ -8,7 +8,7 @@
    newMarket: {
     changes: {
      // Decimal places used for the new market (uint64 as string)
-     decimalPlaces: "5",
+     decimalPlaces: "18",
 
      // Decimal places for order sizes (uint64 as string)
      positionDecimalPlaces: "5",
@@ -16,10 +16,10 @@
      // New market instrument configuration
      instrument: {
       // Instrument name
-      name: "Oranges Daily",
+      name: "Apples Yearly (2022)",
 
       // Instrument code
-      code: "ORANGES.24h",
+      code: "APPLES.22",
 
       // Future
       future: {
@@ -30,7 +30,7 @@
        quoteName: "tEuro",
 
        // the number of decimal places implied by the settlement price emitted by the settlement oracle (int64 as integer)
-       settlementPriceDecimals: 5,
+       settlementPriceDecimals: 18,
 
        // The oracle spec describing the oracle data of settlement price (object)
        oracleSpecForSettlementPrice: {
@@ -38,7 +38,7 @@
         // oracle. All the public keys in the oracle data should be contained in these
         // public keys. (array of strings)
         pubKeys: [
-         "0xab5c950b071684321d59360ccb924d9c5010b31abd6b4148206a57e73594abc9"
+         "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
         ],
 
         // filters describes which oracle data are considered of interest or not for
@@ -48,7 +48,7 @@
           // key is the oracle data property key targeted by the filter.
           key: {
            // name is the name of the property. (string)
-           name: "prices.AAPL.value",
+           name: "prices.BTC.value",
 
            // type is the type of the property. (string)
            type: "TYPE_INTEGER",
@@ -62,7 +62,7 @@
             operator: "OPERATOR_GREATER_THAN",
 
             // value is used by the comparator. (string)
-            value: "1",
+            value: "0",
            }
           ]
          }
@@ -74,9 +74,7 @@
         // pubKeys is the list of authorized public keys that signed the data for this
         // oracle. All the public keys in the oracle data should be contained in these
         // public keys. (array of strings)
-        pubKeys: [
-         "0xab5c950b071684321d59360ccb924d9c5010b31abd6b4148206a57e73594abc9"
-        ],
+        pubKeys: [],
 
         // filters describes which oracle data are considered of interest or not for
         // the product (or the risk model).
@@ -85,10 +83,10 @@
           // key is the oracle data property key targeted by the filter.
           key: {
            // name is the name of the property. (string)
-           name: "prices.AAPL.value",
+           name: "vegaprotocol.builtin.timestamp",
 
            // type is the type of the property. (string)
-           type: "TYPE_BOOLEAN",
+           type: "TYPE_TIMESTAMP",
           },
 
           // conditions are the conditions that should be matched by the data to be
@@ -104,17 +102,16 @@
         // that should be used as settlement price.
         // If it is set to "prices.BTC.value", then the Future will use the value of
         // this property as settlement price. (string) 
-        settlementPriceProperty: "prices.AAPL.value",
+        settlementPriceProperty: "prices.BTC.value",
 
         // the name of the property in the oracle data that signals termination of trading (string) 
-        tradingTerminationProperty: "prices.AAPL.value"
+        tradingTerminationProperty: "vegaprotocol.builtin.timestamp"
        }
       },
 
       // Optional new market meta data, tags
       metadata: [
-       "sector:food",
-       "sector:health",
+       "sector:tech",
        "source:docs.vega.xyz"
       ],
 
@@ -162,7 +159,7 @@
       tau: 0.0001140771161,
 
       // Risk Aversion Parameter (double as number) 
-      riskAversionParameter: "0.001",
+      riskAversionParameter: "0.0001",
 
       // Risk model parameters for log normal
       params: {
@@ -173,7 +170,7 @@
        r: 0.016,
 
        // Sigma param (double as number) 
-       sigma: 0.3,
+       sigma: 1.25,
       }
      },
     },
@@ -181,31 +178,31 @@
     // The commitment from the party creating the NewMarket proposal
     liquidityCommitment: {
      // Specified as a unitless number that represents the amount of settlement asset of the market (string) 
-     commitmentAmount: "8450831",
+     commitmentAmount: "7562706",
 
      // Nominated liquidity fee factor, which is an input to the calculation of taker fees on the market, as per seeting fees and rewarding liquidity providers (undefined as string) 
-     fee: 0.035,
+     fee: 0.46,
 
      // A set of liquidity buy orders to meet the liquidity provision obligation
      buys: [
       {
        // The offset/amount of units away for the order (string) 
-       offset: "85",
+       offset: "90",
 
        // The relative proportion of the commitment to be allocated at a price level (int64 as integer) 
-       proportion: 1,
+       proportion: 8,
 
        // The pegged reference point for the order (string) 
        reference: "PEGGED_REFERENCE_BEST_BID",
       },
       {
-       offset: "23",
-       proportion: 4,
+       offset: "99",
+       proportion: 8,
        reference: "PEGGED_REFERENCE_BEST_BID",
       },
       {
-       offset: "27",
-       proportion: 2,
+       offset: "46",
+       proportion: 7,
        reference: "PEGGED_REFERENCE_BEST_BID",
       }
      ],
@@ -214,22 +211,22 @@
      sells: [
       {
        // The offset/amount of units away for the order (string) 
-       offset: "61",
+       offset: "35",
 
        // The relative proportion of the commitment to be allocated at a price level (int64 as integer) 
-       proportion: 5,
+       proportion: 4,
 
        // The pegged reference point for the order (string) 
        reference: "PEGGED_REFERENCE_BEST_ASK",
       },
       {
-       offset: "83",
+       offset: "54",
        proportion: 4,
        reference: "PEGGED_REFERENCE_BEST_ASK",
       },
       {
-       offset: "13",
-       proportion: 6,
+       offset: "80",
+       proportion: 3,
        reference: "PEGGED_REFERENCE_BEST_ASK",
       }
      ],
@@ -239,11 +236,11 @@
 
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string) 
-  closingTimestamp: 1657558422,
+  closingTimestamp: 1657714005,
 
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string) 
-  enactmentTimestamp: 1657644822,
+  enactmentTimestamp: 1657800405,
  }
 }
 ```

@@ -2,13 +2,13 @@
   ```json
 {
   "rationale": {
-    "description": "Add Solana (SOL)"
+    "description": "Add BNB (BNB)"
   },
   "terms": {
     "newAsset": {
       "changes": {
-        "name": "Solana",
-        "symbol": "SOL",
+        "name": "BNB",
+        "symbol": "BNB",
         "totalSupply": "19010568",
         "decimals": "5",
         "quantum": "1",
@@ -17,8 +17,8 @@
         }
       }
     },
-    "closingTimestamp": 1657558422,
-    "enactmentTimestamp": 1657644822
+    "closingTimestamp": 1657714005,
+    "enactmentTimestamp": 1657800405
   }
 }
 ```

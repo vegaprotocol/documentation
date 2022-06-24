@@ -29,10 +29,10 @@ See the descriptions in the [propose a new market](#propose-a-new-market) for
   <TabItem value="json" label="JSON example">
     <UpdateMarketJSON />
   </TabItem>
-  <TabItem value="cmd" label="Linux / OSX">
+  <TabItem value="cmd" label="Linux / OSX command line">
     <UpdateMarketCMD />
   </TabItem>
-  <TabItem value="win" label="Windows">
+  <TabItem value="win" label="Windows command line">
     <UpdateMarketWin />
   </TabItem>
 </Tabs>

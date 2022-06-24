@@ -154,10 +154,10 @@ New market commitment input: The liquidity commitment submitted with the new mar
   <TabItem value="json" label="JSON example">
     <NewMarketJSON />
   </TabItem>
-  <TabItem value="cmd" label="Linux / OSX">
+  <TabItem value="cmd" label="Linux / OSX command line">
     <NewMarketCMD />
   </TabItem>
-  <TabItem value="win" label="Windows">
+  <TabItem value="win" label="Windows command line">
     <NewMarketWin />
   </TabItem>
 </Tabs>

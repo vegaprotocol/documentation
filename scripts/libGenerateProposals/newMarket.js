@@ -21,18 +21,18 @@ function generateSettlementOracleSpec(skeleton) {
 
   const spec = {
     pubKeys: [
-        "0xab5c950b071684321d59360ccb924d9c5010b31abd6b4148206a57e73594abc9"
+        "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
       ],
       filters: [
         {
           key: {
-            name: "prices.AAPL.value",
+            name: "prices.BTC.value",
             type: "TYPE_INTEGER"
           },
           conditions: [
             {
               operator: "OPERATOR_GREATER_THAN",
-              value: "1"
+              value: "0"
             }
           ]
         }
@@ -84,16 +84,19 @@ function generateTerminationOracleSpec(skeleton) {
   assert.equal(skeleton.properties.filters.type, 'array', 'Oracle spec filters')
 
   const spec = {
-    pubKeys: [
-        "0xab5c950b071684321d59360ccb924d9c5010b31abd6b4148206a57e73594abc9"
-      ],
+    pubKeys: [],
       filters: [
         {
           key: {
-            name: "prices.AAPL.value",
-            type: "TYPE_BOOLEAN"
+            name: "vegaprotocol.builtin.timestamp",
+            type: "TYPE_TIMESTAMP"
           },
-          conditions: []
+          conditions: [
+            {
+                "operator": "OPERATOR_GREATER_THAN_OR_EQUAL",
+                "value": "1648684800000000000",
+            }
+          ],
         }
       ]
     }
@@ -134,8 +137,8 @@ function generateOracleSpecBinding(skeleton) {
   assert.equal(skeleton.properties.tradingTerminationProperty.type, 'string', 'Oracle spec binding: trading termination property changed format')
 
   const binding = {
-    settlementPriceProperty: "prices.AAPL.value",
-    tradingTerminationProperty: "prices.AAPL.value"
+    settlementPriceProperty: "prices.BTC.value",
+    tradingTerminationProperty: "vegaprotocol.builtin.timestamp"
   }
 
   binding[inspect.custom]= () => {
@@ -179,7 +182,7 @@ function generateInstrument(skeleton) {
     future: {
       settlementAsset: idForAnExistingVegaAsset,
       quoteName: 'tEuro',
-      settlementPriceDecimals: 5,
+      settlementPriceDecimals: 18,
       oracleSpecForSettlementPrice: generateSettlementOracleSpec(skeleton.properties.future.properties.oracleSpecForSettlementPrice),
       oracleSpecForTradingTermination: generateTerminationOracleSpec(skeleton.properties.future.properties.oracleSpecForTradingTermination),
       oracleSpecBinding: generateOracleSpecBinding(skeleton.properties.future.properties.oracleSpecBinding)
@@ -454,7 +457,7 @@ function newMarket(skeleton) {
     terms: {
       newMarket: {
         changes: {
-          decimalPlaces: "5",
+          decimalPlaces: "18",
           positionDecimalPlaces: "5",
           instrument: generateInstrument(skeleton.properties.changes.properties.instrument),
           metadata: generateMetadata(skeleton.properties.changes.properties.metadata),

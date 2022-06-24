@@ -29,10 +29,10 @@ You can submit a proposal to change a network parameter.
   <TabItem value="json" label="JSON example">
     <UpdateNetworkParameterJSON />
   </TabItem>
-  <TabItem value="cmd" label="Linux / OSX">
+  <TabItem value="cmd" label="Linux / OSX command line">
     <UpdateNetworkParameterCMD />
   </TabItem>
-  <TabItem value="win" label="Windows">
+  <TabItem value="win" label="Windows command line">
     <UpdateNetworkParameterWin />
   </TabItem>
 </Tabs>

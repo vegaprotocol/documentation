@@ -27,10 +27,10 @@ The aim of this is to allow community to provide votes on proposals which don't 
   <TabItem value="json" label="JSON example">
     <NewFreeformJSON />
   </TabItem>
-  <TabItem value="cmd" label="Linux / OSX">
+  <TabItem value="cmd" label="Linux / OSX command line">
     <NewFreeformCMD />
   </TabItem>
-  <TabItem value="win" label="Windows">
+  <TabItem value="win" label="Windows command line">
     <NewFreeformWin />
   </TabItem>
 </Tabs>
