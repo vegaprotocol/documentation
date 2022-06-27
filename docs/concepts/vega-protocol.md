@@ -19,13 +19,6 @@ Try out proposing markets using [Fairground](https://fairground.wtf), Vega's tes
 	- comparing the number of 'for' votes as a percentage of all votes cast (maximum one vote counted per party) to the required majority. 
 1. If the required majority of 'for' votes is met, the action described in the proposal will be taken (i.e., proposal is enacted) on the defined enactment date. Note the enactment date must be at least the minimum enactment period for the proposal type/subtype (specified by a network parameter) _after_ voting closes.
 
-### Community support for a propsal
-Having a submitted proposal pass the governance threshold requires the support of other Vega tokenholders. To give your proposal the best chance at success, you'll need to get the community on board.
-
-* Sense check your proposal by sharing an outline of your proposed action on the [community forum](https://community.vega.xyz) to find out if there is support for the proposal and its intention.
-* Share the detailed proposal on the forum, including the rationale, the specific parameters, and the data (JSON or similar) that would be submitted on-chain Invite discussion to amend the proposal until it reaches a final state that is ready to be submitted.
-* Once you submit the proposal, invite the community to vote, and be sure to vote on it yourself, too.
-
 ### Voting on proposals 
 VEGA tokenholders can vote for or against any proposals. 
 
@@ -35,118 +28,68 @@ VEGA tokenholders can vote for or against any proposals.
 * Each public key with a non-zero token balance gets one vote.
 * While the voting period is open, a public key can vote multiple times but only the most recent vote will count at the proposal's close.
 
-Tokenholders can create proposals using the APIs. 
-
 :::info
 Vote on proposals on the [Vega token governance page](https://token.vega.xyz/governance).
 :::
+
+### Submitting governance proposals
+A proposal must have all of the relevant information, in the correct format, before it can be submitted. 
+
+The Vega public key of the proposer also must have enough VEGA staked to submit a proposal. For a market change proposal, the proposer must also have enough equity-like stake in the market from their liquidity commitment. 
+
+If the above conditions are not met, the proposal will be rejected and will not be available for a vote. You'll then need to re-submit the proposal.
+
+[Creating and submitting proposals](./tutorials/proposals/index.md): See guides that describe how tokenholders can submit proposals using the command line.
+
+### Community support for a propsal
+Having a submitted proposal pass the governance threshold requires the support of other Vega tokenholders. To give your proposal the best chance at success, you'll need to get the community on board.
+
+* Sense check your proposal by sharing an outline of your proposed action on the [community forum](https://community.vega.xyz) to find out if there is support for the proposal and its intention.
+* Share the detailed proposal on the forum, including the rationale, the specific parameters, and the data (JSON or similar) that would be submitted on-chain Invite discussion to amend the proposal until it reaches a final state that is ready to be submitted.
+* Once you submit the proposal, invite the community to vote, and be sure to vote on it yourself, too.
 
 ## Asset governance [WIP]
 
 ### New asset proposal [WIP]
 
 ## Market governance [WIP]
-Markets are proposed and voted into existence by Vega tokenholders. 
+Markets are proposed and voted into existence by Vega tokenholders. The parameters for a market all need to be defined in the proposal.
 
-Read more: Propose a new market
+The parameters of a market can also be changed if a liquidity provider with enough equity-like stake in the market proposes those changes and they are voted in by a sufficient number of tokenholders and/or liquidity providers.
 
-The parameters of a market can also be changed, if a tokenholder proposes those changes and they are voted in by a sufficient number of tokenholders and/or liquidity providers.
+When creating a market governance proposal, whether it is for a new market or to change parameters for an existing market, it's recommended that you sense check the proposal and share the final details with the tokenholder community before proposing, so that you can garner support and make any necessary amends. 
 
-Read more: Propose a market change
+[Vega community forum](https://community.vega.xyz): Share your draft proposals for community discussion. 
 
 ### Propose a new market [WIP]
-Tokenholders can propose markets, which then need to be voted on by other tokenholders. If the market proposal gets a majority of tokeholder support, then it will be enacted. 
+Tokenholders can propose new markets, which then need to be voted on by other tokenholders. If the market proposal gets a majority of tokeholder support, then it will be enacted. The required majority is set with the network parameter `governance.proposal.market.requiredMajority`. 
 
 :::info
 A liquidity commitment is optional when proposing a market, but a market will not enter into continuous trading until its liquidity needs are met.
 :::
 
-! What you need to propose a new market: 
+To propose a market, you'll need to provide the details required for the market to begin trading right away.
 
-Links to empty json, plus API guide, plus reference to token dApp once it's possible to propose, with some info about what is needed. 
+Required fields include: 
+* Instrument details, including a human-readable name, an understandable shortcode for the market, the type of product (futures)
+* Product specifics including the settlement asset and quote name
+* Decimal places for the settlement asset, market, and positions 
+* Oracle details, including the oracle's public key, specifications for the settlement price and trading termination, and data filters
+* Liquidity monitoring parameters, including the target stake parameters, triggering ratio and auction extension
+* Risk model parameters
 
-Timestamps: Closing, Enactment, Validation 
+Optional fields include: 
+* Metadata so that people can easily interpret the market's details
+* Price monitoring parameters, including the triggers covering the horizon, probability and auction extension time. If left blank these parameters will default to the values set in the network parameters
+* Liquidity commitment: the amount committed, proposed fee level, and the buy and sell order shapes. Note: Once a market is proposed, it can accept liquidity commitments from any party
 
-        "closingTimestamp": 0,
-        "enactmentTimestamp": 0,
-        "validationTimestamp": 0,
+Read more:
+* [Data sources](./trading-framework#data-sources)
+* [Liquidity monitoring parameters]
+* [Price monitoring parameters]
+* [Risk models and parameters]
 
-Instrument: Name, Code, Type (future)
-
-Future: Settlement asset, quote name, 
-
-Oracles: oracle spec for settlement price, pubkey for oracle, filters, conditions of the filters, oracle spec for trading termination, filters, conditions, oracle spec binding: settlement price property, trading termination property
-
-Read more: [Data sources](./trading-framework#data-sources)
-)
-
-market decimal places
-market metadata: examples - base:BTC, quote:USD, class:fx/crypto, monthly, sector:crypto
-price monitoring (risk) parameters: 
-liquidity monitoring parameters: 
-risk model: "logNormal": "riskAversionParameter": 0.0001, "tau": 0.0000190129, "params": "mu": 0, "r": 0.016, "sigma": 1.25
-liquidity commitment: commitment amount, fee level, sell shape: reference (best ask), proportion, offset. buy shape: reference (best bid), proportion, offset.
-
-        
-            "priceMonitoringParameters": {
-              "triggers": [
-                {
-                  "horizon": 43200,
-                  "probability": "0.9999999",
-                  "auctionExtension": 600
-                },
-                {
-                  "horizon": 300,
-                  "probability": "0.9999",
-                  "auctionExtension": 60
-                }
-              ]
-            },
-            "liquidityMonitoringParameters": {
-              "targetStakeParameters": {
-                "timeWindow": 3600,
-                "scalingFactor": 10
-              },
-              "triggeringRatio": 0.0,
-              "auctionExtension": 1
-            },
-            "logNormal": {
-              "riskAversionParameter": 0.0001,
-              "tau": 0.0000190129,
-              "params": {
-                "mu": 0,
-                "r": 0.016,
-                "sigma": 1.25
-              }
-            }
-          },
-          "liquidityCommitment": {
-            "commitmentAmount": "1",
-            "fee": "0.01",
-            "sells": [
-              {
-                "reference": "PEGGED_REFERENCE_BEST_ASK",
-                "proportion": 10,
-                "offset": "2000"
-              },
-              {
-                "reference": "PEGGED_REFERENCE_BEST_ASK",
-                "proportion": 10,
-                "offset": "1000"
-              }
-            ],
-            "buys": [
-              {
-                "reference": "PEGGED_REFERENCE_BEST_BID",
-                "proportion": 10,
-                "offset": "1000"
-              },
-              {
-                "reference": "PEGGED_REFERENCE_BEST_BID",
-                "proportion": 10,
-                "offset": "2000"
-
-##### Market [WIP] 
+<!--##### Market [WIP] 
 "newMarket": {
           "changes": {
             
@@ -212,10 +155,7 @@ liquidity commitment: commitment amount, fee level, sell shape: reference (best 
                   "tradingTerminationProperty": "termination.BTC.value"
                 }
               }
-            },
-#### Market / instrument parameters [WIP]
-
-### Propose changes to a market [WIP]
+            },-->
 
 ### Risk models and parameters
 When proposing a market, the market proposer will need to choose the risk parameters associated with the risk model that's appropriate for the product. Find out more about the relationship between the product, instrument, and tradable instrument above. The purpose of the risk model is for the calculation of margins on the market. 
@@ -226,7 +166,7 @@ You should choose parameters that ensure the risk model adequately represents th
 
 Below are the risk parameters, the accepted values for each parameter and suggested values for some. When suggested values are provided, these should be used as a reference point and to aid in deciding on what's appropriate for the market, not in place of rigorous analysis and calibration.
 
-Model independent parameters used in margin calculation are:
+Model-independent parameters used in margin calculation are:
 
 * `Risk aversion lambda` - probability level used in [Expected Shortfall](https://vega.xyz/papers/margins-and-credit-risk.pdf#page=7) calculation when obtaining `Risk Factor Long` and `Risk Factor Short`:
   * accepted values: **strictly greater than 0 and strictly smaller than 1**,
@@ -244,7 +184,7 @@ The remaining, model specific parameters are covered in sections below.
 **[Margins and Credit Risk on Vega](https://vega.xyz/papers/margins-and-credit-risk.pdf)** - Note, a position size of 1 is assumed throughout the research paper.
 :::
 
-#### Log-normal
+#### Log-normal risk model
 The log-normal model assumes that the price of the underlying asset follows the process specified by the stochastic differential equation:
 
 dS<sub>t</sub> = S<sub>t</sub>(Mu*dt+Sigma*dW<sub>t</sub>), S(t) = s,
@@ -258,15 +198,16 @@ where `Mu`, `Sigma` and `s` are constants and `dW` represents a Brownian Motion 
   * accepted values: **any strictly non-negative real number**,
   * suggested value: asset dependent, should be derived from the historical time-series of prices.
 
-### Changing models [WIP]
+<!--### Changing models [WIP]
 
 ### Thresholds and rules [WIP]
 
-## Network governance [WIP]
+### Propose changes to a market [WIP]
 
-### Parameters
+## Network governance [WIP]-->
+
+### Network parameters
 There are certain parameters within Vega that influence the behaviour of the system and can be changed by on-chain governance. Vega tokenholders can define the optimal network configuration by creating and voting on network parameter proposals.
-
 
 A network parameter is defined by:
 * Name
@@ -275,7 +216,7 @@ A network parameter is defined by:
 * Constraints
 * Governance update policy 
 
-### Changing parameters
+### Changing network parameters [WIP]
 Network parameters can be changed by governance, however some network parameters need to be more difficult to change than others. Therefore, the protocol needs to know for each network parameter what governance thresholds apply for ascertaining a proposal's ability to change the parameter's value. Specifically, those thresholds are:
 
 * `MinimumProposalPeriod`
@@ -296,12 +237,13 @@ Thus, a proposal to change the `feeAmtValidators.MinimumProposalPeriod` would ne
 
 Network parameters can only be added and removed with Vega core software releases.
 
-### Threshold and rules [WIP]
+<!--### Threshold and rules [WIP]-->
   
-## Collateral management [WIP]
+## Asset management [WIP]
+In contrast to staking tokens, assets for trading, paying fees, and providing liquidity need to be deposited using a bridge contract, and can be withdrawn if they are not being used for margin or liquidity commitment.
+
 Intro. What is the collateral management in general? (TODO)
  
-The collateral for restricted mainnet is exclusively VEGA, which is used for staking and rewards. 
  
 :::info
 You'll need a Vega Wallet for staking and receiving rewards. Connect to wallets and see your account balance on the [Vega token website](https://token.vega.xyz). CoinList custodial users should confirm with CoinList how staking works for them.
