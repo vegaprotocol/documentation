@@ -12,7 +12,7 @@ With the upgrade of the network to Vega protocol version v0.52.x will come an up
 
 This guide will explain, step-by-step, how the Vega team and the validators will upgrade the smart contracts.
 
-You can find the updated code for the smart contracts on the [Multisig Control repo](https://github.com/vegaprotocol/MultisigControl).
+You can find the updated code for the smart contracts on the [Multisig Control repo](https://github.com/vegaprotocol/MultisigControl/tree/a421bce980391c6c1509fc621185ca33810709fd).
 
 :::info
 The code for all contracts deployed by the Vega team will be uploaded to [etherscan](https://etherscan.io). All the methods to verify information from contracts can be called from there. The Vega team will provide links to the contracts on etherscan once they are deployed and the source code uploaded.
@@ -21,27 +21,27 @@ The code for all contracts deployed by the Vega team will be uploaded to [ethers
 ## Deploy the new contracts
 
 ### Step 0: Deploy the new multisig control contract (Vega team)
-The Vega team will deploy the new multsig control contract. Find the source code for it in the [multisig control solidity file](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/MultisigControl.sol). This contract is used by the Vega network to authorise any action related to the collateral bridge or asset pool.
+The Vega team will deploy the new multsig control contract. Find the source code for it in the [multisig control solidity file](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/MultisigControl.sol). This contract is used by the Vega network to authorise any action related to the collateral bridge or asset pool.
 
 The deployer of the contract (an ethereum account managed by the Vega team) will, at first, be the only valid signer.
 
 ### Step 1: Set the multisig control contract threshold (Vega team)
 In order to simplify the next steps, we will reduce the threshold required for each signature to the minimum. This will allow the Vega team to set up the contract properly (e.g: adding new signers) by only requiring a single signature. This will be updated again before the upgrade is finalised.
 
-The [`set_threshold`](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/MultisigControl.sol#L32-L42) method will be used to update the threshold.
+The [`set_threshold`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/MultisigControl.sol#L32-L42) method will be used to update the threshold.
 
 ### Step 2: Add all existing validators to the multisig control contract (Vega team)
-To set up the new contract in the same  way as the previous version, all current validators on the Vega network will be added to the new contract as valid signers. This will be done using the [`add_signer`](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/MultisigControl.sol#L50-L61) method.
+To set up the new contract in the same  way as the previous version, all current validators on the Vega network will be added to the new contract as valid signers. This will be done using the [`add_signer`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/MultisigControl.sol#L50-L61) method.
 
 ### Step 3: Remove the deployer from the signer set (Vega team)
-Once all the validators have been added back to the signers set, the Vega account can be removed from the valid signers. This will be done using the [`remove_signer`](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/MultisigControl.sol#L69-L80) method.
+Once all the validators have been added back to the signers set, the Vega account can be removed from the valid signers. This will be done using the [`remove_signer`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/MultisigControl.sol#L69-L80) method.
 
-You can verify that by calling the [`is_valid_signer`](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/MultisigControl.sol#L183-L185) method on the contract, using the Vega account address (the address will be shared at the time of the upgrade). The result should be `false`. Calling it with any current validator's address should return `true`.
+You can verify that by calling the [`is_valid_signer`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/MultisigControl.sol#L183-L185) method on the contract, using the Vega account address (the address will be shared at the time of the upgrade). The result should be `false`. Calling it with any current validator's address should return `true`.
 
-You can also call the [`get_valid_signer_count`](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/MultisigControl.sol#L172-L174) method to get the number of valid signers on the contract. At the time of writing this should be `13` -- the number of validators on Vega.
+You can also call the [`get_valid_signer_count`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/MultisigControl.sol#L172-L174) method to get the number of valid signers on the contract. At the time of writing this should be `13` -- the number of validators on Vega.
 
 ### Step 4: Update the threshold to 667 (Vega team and validators)
-At this point, with only validators in the validator set, we will need to set the multisig control to require at least 2/3 of validator signatures to authorise any action on the bridge. We will again use the [`set_threshold`](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/MultisigControl.sol#L32-L42) method to do this.
+At this point, with only validators in the validator set, we will need to set the multisig control to require at least 2/3 of validator signatures to authorise any action on the bridge. We will again use the [`set_threshold`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/MultisigControl.sol#L32-L42) method to do this.
 
 Each validator will need to provide a signature using the following command:
 ```
@@ -51,12 +51,12 @@ vega bridge erc20 set_threshold --home="/path/to/vega/home" --submitter="VEGA_AC
 The `--submitter` and `--nonce` will be provided on Discord prior to the upgrade, as will the final command to be run by the validators.
 :::
 
-You can verify the new value of the threshold using the [`get_current_threshold`](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/MultisigControl.sol#L177-L179) method.
+You can verify the new value of the threshold using the [`get_current_threshold`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/MultisigControl.sol#L177-L179) method.
 
 ### Step 5: Confirm the validators have control over the multisig control contract (Vega team and validators)
 After the new multisig control has been fully set up, and the validators are the only signers recognised, we will make sure that only the validators can control it.
 
-We will do so by calling the [`burn_nonce`](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/MultisigControl.sol#L87-L91) method on the new multisig control contract. By doing so, the validators will invalidate a nonce, making it impossible to use in the future. Only the current signers on the contract can successfully call this method. Doing so will prove that the validators control the contract exclusively.
+We will do so by calling the [`burn_nonce`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/MultisigControl.sol#L87-L91) method on the new multisig control contract. By doing so, the validators will invalidate a nonce, making it impossible to use in the future. Only the current signers on the contract can successfully call this method. Doing so will prove that the validators control the contract exclusively.
 
 First, the validators will need to generate the signature using the following command:
 ```
@@ -67,10 +67,10 @@ vega bridge erc20 burn_nonce --home="/path/to/vega/home" --submitter="0xSOME_ADD
 The `--submitter` and `--nonce` parameters will be shared prior to the upgrade.
 :::
 
-The Vega team will then submit the signature to the contract. Anyone can call the [`is_nonce_used`](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/MultisigControl.sol#L87-L91) method on the contract. Before the call, this should return `false`, and `true` after.
+The Vega team will then submit the signature to the contract. Anyone can call the [`is_nonce_used`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/MultisigControl.sol#L87-L91) method on the contract. Before the call, this should return `false`, and `true` after.
 
 ### Step 6: Deploy the collateral bridge contract (Vega team)
-The Vega team will then deploy the updated version of the collateral bridge contract. The code can be found in [ERC20 Bridge Logic Restricted](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/ERC20_Bridge_Logic_Restricted.sol).
+The Vega team will then deploy the updated version of the collateral bridge contract. The code can be found in [ERC20 Bridge Logic Restricted](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/ERC20_Bridge_Logic_Restricted.sol).
 
 The contract will be deployed, pointing to the existing [asset pool](https://etherscan.io/address/0xf0f0fcda832415b935802c6dad0a6da2c7eaed8f). This can be verified on [etherscan](https://etherscan.io) as part of the contract constructor arguments.
 
@@ -123,19 +123,19 @@ For all the following steps, the Vega team will share the transactions they subm
 :::
 
 ### Step 9: Update the multisig control on the asset pool (Vega team)
-Using the signature created by the validators in `Step 8`, the Vega team will update the multisig control contract used by the asset pool by calling the [`set_multisig_control`](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/ERC20_Asset_Pool.sol#L38-L53) method.
+Using the signature created by the validators in `Step 8`, the Vega team will update the multisig control contract used by the asset pool by calling the [`set_multisig_control`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/ERC20_Asset_Pool.sol#L38-L53) method.
 
-The public [`multisig_control_address`](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/ERC20_Asset_Pool.sol#L15) variable of the asset pool should be updated to the new address. **Make sure to verify it has been updated.**
+The public [`multisig_control_address`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/ERC20_Asset_Pool.sol#L15) variable of the asset pool should be updated to the new address. **Make sure to verify it has been updated.**
 
 ### Step 10: Update the bridge on the asset pool (Vega team)
-Using the signature created by the validators in `Step 8`, the Vega team will update the collateral bridge used by the asset pool by calling the [`set_bridge_address`](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/ERC20_Asset_Pool.sol#L60-L72) method.
+Using the signature created by the validators in `Step 8`, the Vega team will update the collateral bridge used by the asset pool by calling the [`set_bridge_address`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/ERC20_Asset_Pool.sol#L60-L72) method.
 
-The public [`erc20_bridge_address`](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/ERC20_Asset_Pool.sol#L18) variable of the asset pool should be updated to the new address. **Make sure to verify it has been updated.**
+The public [`erc20_bridge_address`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/ERC20_Asset_Pool.sol#L18) variable of the asset pool should be updated to the new address. **Make sure to verify it has been updated.**
 
 ### Step 11: List the VEGA token on the collateral bridge (Vega team)
-Using the signature created previously by the validators in `Step 8`, the Vega team will then list the VEGA token on the collateral bridge using the [`list_asset`](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/ERC20_Bridge_Logic_Restricted.sol#L42-L70) method.
+Using the signature created previously by the validators in `Step 8`, the Vega team will then list the VEGA token on the collateral bridge using the [`list_asset`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/ERC20_Bridge_Logic_Restricted.sol#L42-L70) method.
 
-The correct execution of this method can be verified by calling the [`is_asset_listed`](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/ERC20_Bridge_Logic_Restricted.sol#L301-L303) method on the collateral bridge using the token address. **Make sure to verify it is correct.**
+The correct execution of this method can be verified by calling the [`is_asset_listed`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/ERC20_Bridge_Logic_Restricted.sol#L301-L303) method on the collateral bridge using the token address. **Make sure to verify it is correct.**
 
 ### Step 12: Update the genesis file (Vega team and validators)
 The Vega team will then submit a pull request on the [networks repository](https://github.com/vegaprotocol/networks) to update the network parameter `blockchain.ethereumConfig` from the genesis with the addresses of the new collateral bridge and multisig control contracts.
