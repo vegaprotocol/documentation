@@ -62,21 +62,21 @@ When creating a market governance proposal, whether it is for a new market or to
 [Vega community forum](https://community.vega.xyz): Share your draft proposals for community discussion. 
 
 ### Propose a new market [WIP]
-Tokenholders can propose new markets, which then need to be voted on by other tokenholders. If the market proposal gets a majority of tokeholder support, then it will be enacted. The required majority is set with the network parameter `governance.proposal.market.requiredMajority`. 
+Tokenholders can propose new markets, which then need to be voted on by other tokenholders. If the market proposal gets a majority of tokeholder support, then it will be enacted. The required majority is defined by the network parameter `governance.proposal.market.requiredMajority`. 
 
 :::info
 A liquidity commitment is optional when proposing a market, but a market will not enter into continuous trading until its liquidity needs are met.
 :::
 
-To propose a market, you'll need to provide the details required for the market to begin trading right away.
+To propose a market, you'll need to provide the details required for the market to begin trading right away. While some of the fields are free-text, others are constrained by a range set through network parameters, to ensure that the values provided are fit for purpose.
 
 Required fields include: 
 * Instrument details, including a human-readable name, an understandable shortcode for the market, the type of product (futures)
+* Risk model parameters
 * Product specifics including the settlement asset and quote name
 * Decimal places for the settlement asset, market, and positions 
 * Oracle details, including the oracle's public key, specifications for the settlement price and trading termination, and data filters
 * Liquidity monitoring parameters, including the target stake parameters, triggering ratio and auction extension
-* Risk model parameters
 
 Optional fields include: 
 * Metadata so that people can easily interpret the market's details
@@ -89,78 +89,10 @@ Read more:
 * [Price monitoring parameters]
 * [Risk models and parameters]
 
-<!--##### Market [WIP] 
-"newMarket": {
-          "changes": {
-            
-            "decimalPlaces": 5,
-            "metadata": [
-              "formerly:076BB86A5AA41E3E",
-              "base:BTC",
-              "quote:USD",
-              "class:fx/crypto",
-              "monthly",
-              "sector:crypto"
-            ],
-
-##### Tradable instrument [WIP]
-
-##### Instrument [WIP]
-"instrument": {
-              "name": "BTCUSD Monthly (30 Jun 2022)",
-              "code": "BTCUSD.MF21",
-              "future": {
-                "settlementAsset": "fDAI",
-                "quoteName": "USD",
-                "oracleSpecForSettlementPrice": {
-                  "pubKeys": [
-                    "0xab5c950b071684321d59360ccb924d9c5010b31abd6b4148206a57e73594abc9"
-                  ],
-                  "filters": [
-                    {
-                      "key": {
-                        "name": "prices.BTC.value",
-                        "type": "TYPE_INTEGER"
-                      },
-                      "conditions": [
-                        {
-                          "operator": "OPERATOR_EQUALS",
-                          "value": "1"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                "oracleSpecForTradingTermination": {
-                  "pubKeys": [
-                    "0xab5c950b071684321d59360ccb924d9c5010b31abd6b4148206a57e73594abc9"
-                  ],
-                  "filters": [
-                    {
-                      "key": {
-                        "name": "termination.BTC.value",
-                        "type": "TYPE_BOOLEAN"
-                      },
-                      "conditions": [
-                        {
-                          "operator": "OPERATOR_EQUALS",
-                          "value": "1"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                "oracleSpecBinding": {
-                  "settlementPriceProperty": "prices.BTC.value",
-                  "tradingTerminationProperty": "termination.BTC.value"
-                }
-              }
-            },-->
-
 ### Risk models and parameters
-When proposing a market, the market proposer will need to choose the risk parameters associated with the risk model that's appropriate for the product. Find out more about the relationship between the product, instrument, and tradable instrument above. The purpose of the risk model is for the calculation of margins on the market. 
+When proposing a market, the market proposer will need to choose the risk parameters associated with the risk model that's appropriate for the instrument. The risk model is essential for calculating margins on the market. 
 
-The first product available to create is cash-settled futures, which use a log-normal risk parameter. 
+The first product available to create is cash-settled futures, which uses a log-normal risk model. While the model is pre-defined, you'll need to choose the individual parameters.
 
 You should choose parameters that ensure the risk model adequately represents the dynamics of the underlying instrument, and that the resulting margins strike the right balance between prudence and capital efficiency.
 
@@ -216,7 +148,7 @@ A network parameter is defined by:
 * Constraints
 * Governance update policy 
 
-### Changing network parameters [WIP]
+### Changing network parameters
 Network parameters can be changed by governance, however some network parameters need to be more difficult to change than others. Therefore, the protocol needs to know for each network parameter what governance thresholds apply for ascertaining a proposal's ability to change the parameter's value. Specifically, those thresholds are:
 
 * `MinimumProposalPeriod`
@@ -224,13 +156,13 @@ Network parameters can be changed by governance, however some network parameters
 * `MinimumRequiredParticipation` 
 * `MinimumRequiredMajority`
 
-There are groups of network parameters that will use the same values for the thresholds. Importantly, these `Minimum` levels are themselves network parameters, and therefore subject to change. They should be self-referential in terms of ascertaining the success of changing them.
+There are groups of network parameters that will use the same values for the thresholds. Importantly, these `minimum` levels are themselves network parameters, and therefore subject to change. They should be self-referential in terms of ascertaining the success of changing them.
 
 For example, consider a network parameter that specifies the proportion of fees that goes to validators (`feeAmtValidators`), with change thresholds:
 
 * `MinimumProposalPeriod = 30 days`
-* `MinimumPreEnactmentPeriod = 10 days` 
-* `MinimumRequiredParticipation = 60%` 
+* `MinimumPreEnactmentPeriod = 10 days`
+* `MinimumRequiredParticipation = 60%`
 * `MinimumRequiredMajority = 80%`
 
 Thus, a proposal to change the `feeAmtValidators.MinimumProposalPeriod` would need to pass all of the thresholds listed above.
@@ -239,37 +171,28 @@ Network parameters can only be added and removed with Vega core software release
 
 <!--### Threshold and rules [WIP]-->
   
-## Asset management [WIP]
-In contrast to staking tokens, assets for trading, paying fees, and providing liquidity need to be deposited using a bridge contract, and can be withdrawn if they are not being used for margin or liquidity commitment.
-
-Intro. What is the collateral management in general? (TODO)
- 
- 
-:::info
-You'll need a Vega Wallet for staking and receiving rewards. Connect to wallets and see your account balance on the [Vega token website](https://token.vega.xyz). CoinList custodial users should confirm with CoinList how staking works for them.
-:::
+## Asset management
+Assets used for trading, paying fees, funding rewards, and providing liquidity need to be deposited using a bridge contract, and can be withdrawn back into an Ethereum wallet if they are not being used for margin or liquidity commitment. 
 
 ### Deposits
-For restricted mainnet, the deposits function for Vega is not required. To stake, instead of depositing, tokens must be associated to a Vega key. Tokens used for staking stay in your Ethereum wallet, rather than being held in the ERC20 bridge contract. 
+The first assets that will be available for interacting with markets on Vega will be ERC20 assets. They will need to be deposited into the ERC20 bridge contract. The funds in that smart contract will then be made available to the user's chosen Vega public key.
 
-Read more: [Staking VEGA tokens](./vega-chain#staking-on-vega)
-
-The first assets that will be available for interacting with markets on Vega will be ERC20 assets. They will need to be deposited into the ERC20 bridge contract. The funds in that smart contract will then be made available to the user's chosen public key.
-
-:::info
-Follow a step-by-step guide to depositing testnet collateral for trading on Fairground on the [Fairground docs](https://docs.fairground.vega.xyz/docs/console/#how-to-deposit-tokens-to-use-on-vega).
+:::info 
+Associated and deposited are not equivalent, as deposited tokens are held within the ERC20 bridge contract, and associated tokens stay in an Ethereum wallet or in the vesting contract.
 :::
 
-### Withdrawals
-In restricted mainnet, the only assets that are available to withdraw are rewards accrued through staking tokens to network validators. 
+### Withdrawals [WIP]
+more research needed on how transfers affects this
 
-To stake those rewards, the recipient must withdraw them from the Vega key the rewards are credited to, and send the tokens to their Ethereum wallet. After withdrawing, the tokens can be associated with a Vega key. 
-
-Note: Associated and deposited are not equivalent, as deposited tokens are held within the ERC20 bridge contract, and associated tokens stay in an Ethereum wallet or in the vesting contract. 
+##### Withdrawing VEGA
+VEGA used for staking must be associated with a Vega key, and to withdraw those tokens, they must be dissociated first. Rewards accrued through staking are not associated automatically. To stake those tokens or transfer them, they need to be withdrawn from the Vega key the rewards are credited to, and sent to an Ethereum wallet.
 
 :::info
-Track and withdraw rewards on the [Vega token withdrawals page](https://token.vega.xyz/withdraw).
+Track and withdraw staking rewards on the [Vega token withdrawals page](https://token.vega.xyz/withdraw).
 :::
+
+##### Withdrawing collateral
+Assets used for trading and related activities can only be withdrawn if they are not being held in bond for liquidity or in the margin account for active orders. 
 
 ### On-chain network treasury 
 In restricted mainnet, rewards for nominating a validator will be distributed from the on-chain network treasury, in the form of VEGA tokens. 
