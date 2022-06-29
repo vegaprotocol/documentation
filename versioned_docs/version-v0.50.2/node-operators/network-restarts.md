@@ -141,9 +141,10 @@ The exact path of the data-node folder to remove can be found using `vega paths 
 One of the validators will now need to update the [genesis file](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json) with the following information:
 - The new start date of the network
 - The new network ID
-- Load the checkpoint data into the genesis file.
 
-To load the checkpoint in the genesis file you can:
+You'll then need to load the checkpoint data into the genesis file.
+
+To load the checkpoint in the genesis file use the following command:
 ```
 vega genesis load_checkpoint --checkpoint-path="/path/to/checkpoint/file" --genesis-file="/path/to/genesis/file"
 ```
@@ -152,7 +153,7 @@ This should be done via a pull request on the [networks](https://github.com/vega
 
 ### Step 3: Restart the network
 
-The validators can now restart the network. Once 2/3+1 of validators are online the network should start produce blocks.
+The validators can then restart the network. Once 2/3+1 of validators are online the network should start produce blocks.
 
 ### Deprecated
 The Ethereum event forwarder is no longer required. This should be removed from your infrastructure and not started. This service has been re-written and is now integrated in the Vega core node.
