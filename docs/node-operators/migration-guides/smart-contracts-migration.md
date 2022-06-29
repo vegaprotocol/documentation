@@ -35,14 +35,7 @@ The [`set_threshold`](https://github.com/vegaprotocol/MultisigControl/blob/a421b
 ### Step 2: Add all existing validators to the multisig control contract (Vega team)
 To set up the new contract in the same  way as the previous version, all current validators on the Vega network will be added to the new contract as valid signers. This will be done using the [`add_signer`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/MultisigControl.sol#L50-L61) method.
 
-### Step 3: Remove the deployer from the signer set (Vega team)
-Once all the validators have been added back to the signers set, the Vega account can be removed from the valid signers. This will be done using the [`remove_signer`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/MultisigControl.sol#L69-L80) method.
-
-You can verify that by calling the [`is_valid_signer`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/MultisigControl.sol#L183-L185) method on the contract, using the Vega account address (the address will be shared at the time of the upgrade). The result should be `false`. Calling it with any current validator's address should return `true`.
-
-You can also call the [`get_valid_signer_count`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/MultisigControl.sol#L172-L174) method to get the number of valid signers on the contract. At the time of writing this should be `13` -- the number of validators on Vega.
-
-### Step 4: Update the threshold to 667 (Vega team and validators)
+### Step 3: Update the threshold to 667 (Vega team and validators)
 At this point, with only validators in the validator set, we will need to set the multisig control to require at least 2/3 of validator signatures to authorise any action on the bridge. We will again use the [`set_threshold`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/MultisigControl.sol#L32-L42) method to do this.
 
 Each validator will need to provide a signature using the following command:
@@ -54,6 +47,13 @@ The `--submitter` and `--nonce` will be provided on Discord prior to the upgrade
 :::
 
 You can verify the new value of the threshold using the [`get_current_threshold`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/MultisigControl.sol#L177-L179) method.
+
+### Step 4: Remove the deployer from the signer set (Vega team)
+Once all the validators have been added back to the signers set, the Vega account can be removed from the valid signers. This will be done using the [`remove_signer`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/MultisigControl.sol#L69-L80) method.
+
+You can verify that by calling the [`is_valid_signer`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/MultisigControl.sol#L183-L185) method on the contract, using the Vega account address (the address will be shared at the time of the upgrade). The result should be `false`. Calling it with any current validator's address should return `true`.
+
+You can also call the [`get_valid_signer_count`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/MultisigControl.sol#L172-L174) method to get the number of valid signers on the contract. At the time of writing this should be `13` -- the number of validators on Vega.
 
 ### Step 5: Confirm the validators have control over the multisig control contract (Vega team and validators)
 After the new multisig control has been fully set up, and the validators are the only signers recognised, we will make sure that only the validators can control it.
