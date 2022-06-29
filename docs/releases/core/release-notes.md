@@ -4,20 +4,19 @@ title: Core software releases
 hide_title: false
 ---
 
-Now the Vega core software is public on a business-source licence, you can both view the repository changelogs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
+The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
 ### Versions 0.50.4 | 2022-06-29
 This release was made available to validators on 29 June, 2022.
 
 This is a patch release to address two high priority bugs seen in version 0.50.3.
 
-A critical defect was identified on Mainnet 0.50.3 where some staking events on Ethereum were replicated multiple times on Vega. During investigations it was identified that some validators were still running their event forwarder as an external service, which forwards events in a slightly different format, meaning those events were not successfully deduplicated. The defect that made it non-deterministic and not successfully deduplicate has now been resolved in [5510](https://github.com/vegaprotocol/vega/pull/5510) - fix: dedupe sorting made consistent
+A critical defect was identified on mainnet 0.50.3 where some staking events on Ethereum were replicated multiple times on Vega. During investigations it was identified that some validators were still running their event forwarder as an external service, which forwards events in a slightly different format, meaning those events were not successfully deduplicated. The defect that made it non-deterministic and not successfully deduplicate has now been resolved in [5510](https://github.com/vegaprotocol/vega/pull/5510) - fix: dedupe sorting made consistent
 
 When restarting from a checkpoint file during the 0.50.3 deployment, at the end of the epoch the reward was paid as expected. However, the `rewardScore` field for the validators in that first epoch was missing in GraphQL. For all following epochs the `rewardScore` field was present as it should be. The cause was identified: when the core emits the event at the end of the first epoch, after the checkpoint restart, it was emitted with the wrong epoch sequence. This has now been resolved in [5515](https://github.com/vegaprotocol/vega/pull/5515) - fix: emit `rewardScore` correctly when loading from checkpoint
 
 For full detailed information on the changes please see:
-[Vega Core Changelog](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md)
-[Data-node Changelog](https://github.com/vegaprotocol/data-node/blob/develop/CHANGELOG.md)
+[Vega core change log](https://github.com/vegaprotocol/vega/blob/release/v0.50.4/CHANGELOG.md#0504)
 
 ### Versions 0.50.3-0.49.8 combined | 2022-04-27
 This release was made available to validators on 27 April, 2022.
@@ -90,6 +89,10 @@ Note: The network will be set to allow 0 standby validators for alpha mainnet, a
 
 Read more: [Validators chosen by stake](https://github.com/vegaprotocol/specs/blob/main/protocol/0069-VCBS-validators_chosen_by_stake.md)
 
+For full detailed information on the changes please see:
+[Vega core change log](https://github.com/vegaprotocol/vega/blob/release/v0.50.3/CHANGELOG.md)
+[Data node change log](https://github.com/vegaprotocol/data-node/releases/tag/v0.50.0)
+
 #### Breaking changes
 - Separate endpoints for liquidity provision submissions, amendment and cancellation
 - Disallow negative offset for pegged and liquidity provision orders
@@ -105,163 +108,6 @@ Read more: [Validators chosen by stake](https://github.com/vegaprotocol/specs/bl
 - Remove maturity field from future
 - Remove trading mode one-off from market proposal
 
-#### New
-- Set and increment LP version field correctly
-- Add integration test for LP versioning
-- Add integration test making sure margin is released when an LP is cancelled
-- Use `BroadcastTxSync` instead of async for submitting transactions to Tendermint
-- Add support for settlement price decimal place in governance
-- Ensure at most 5 triggers are used in price monitoring settings
-- Add Ethereum key rotation support
-- Add retries to floating point consensus engine to work around Tendermint missing transactions
-- Remove genesis sign command
-- Add ability to stream events to a file
-- Add block hash to statistics and to block height request
-- Extend auction feature tests
-- Add validation of update market proposals
-- Emit validators signature when a validator is added or remove from the set
-- Update the decimal library
-- Get rid of unnecessary `ToDecimal` conversions (no functional change)
-- Implement governance vote based on equity-like share for market update
-- Add specific insurance pool balance test
-- Add possibility to list snapshots from the Vega command line
-- Update feature tests related to liquidity provision following integration of probability of trading with floating point consensus
-- State variable engine for floating point consensus
-- Add an example client application that uses the null-blockchain
-- Add network limits service and events
-- Add a command to clean up all Vega node state
-- Remove Float from network parameters, use `num.Decimal` instead
-- Send staking asset total supply through consensus
-- Require Go minimum version 1.17
-- Integrate risk factors with floating point consensus engine
-- Change snapshot interval default to 1000 blocks
-- Fast forward epochs when loading from checkpoint to trigger payouts for the skipped time
-- Integrate price ranges with floating point consensus engine
-- Ensure validators are started with the right set of keys
-- Move to `ghcr.io` docker container registry
-- Remove execution configuration duplication from configuration root
-- Probability of trading integrated into floating point consensus engine
-- Measure validator performance and use to penalise rewards
-- Allow raw private keys for bridge functions
-- Add `--update` and `--replace` flags on `vega genesis new validator`
-- Add `--network-url` option to `vega tm`
-- Add transfer command support (one off transfers)
-- Add transfer command support (recurring transfers)
-- Add cancel transfer command
-- Fix null blockchain by forcing it to always be a non-validator node
-- Remove old ID generator fields from execution engine's snapshot
-- Reward refactoring for network treasury
-- Added endpoint `SubmitRawTransaction` to provide support for different transaction request message versions
-- Replace asset insurance pool with network treasury
-- Internalise Ethereum Event Forwarder
-- Make `BlockNr` part of event interface
-- Rename `min_lp_stake` to quantum + use it in liquidity provisions
-- Check smart contract hash on startup to ensure the correct version is being used
-- Add integration test ensuring positions plug-in calculates P&L accurately
-- Validators joining and leaving the network
-- Add `totalTokenSupplyStake` to the snapshots
-- Add transfers snapshots
-- Serialise timestamp in time update message as number of nanoseconds instead of seconds
-- Add internal oracle supplying Vega time data for time-triggered events
-- Use a deterministic generator for order IDs, set new order IDs to the transaction hash of the Submit transaction
-- Hash again list of hash from engines
-- Make trade IDs unique using the deterministic ID generator
-- Simplified performance score
-- Add command line tool to sign for the asset pool method `set_bridge_address`
-- Send governance events when restoring proposals on checkpoint reload
-- Fix margins calculations for positions with a size of 0 but with a non zero potential sell or buy
-- Improve and optimise replay protection
-- Add Ethereum events reconciliation for `multisig control`
-
-#### Fixes
-- Set market pending timestamp to the time at which the market is created
-- Do not induce a system panic when admin server stops
-- Fix invalid `http` status set in faucet
-- Always call `StartAggregate()` when signing validators joining and leaving even if not a validator
-- Fix pegged orders to be reset to the order pointer after snapshot loading
-- Fix the check for overflow in scaling settlement price
-- Fix panic in loading validator checkpoint
-- Unwrap properly position decimal place from payload
-- Set last mark price to settlement price when market is settled
-- Send proof-of-work when announcing node
-- Ensure to / from in transfers payloads are Vega public keys
-- Stop updating the market's initial configuration when an opening auction is extended
-- Return an error if market decimal place > asset decimal place
-- Stabilise state sync restore and restore block height in the topology engine
-- Mark a snapshot state change when liquidity provision state changes
-- Add missing commands to the `TxError` event
-- Fix banking snapshot for transfers, risk factor restoration, and `statevar` handling of settled markets
-- Fixed mark to market bug where settlement balance would not be zero when loss amount was 1.
-- Fixed proof of engine end of block callback never called to clear up state
-- Fix positions engines `vwBuys` and `vwSell` when amending, send events on `Update` and `UpdateNetwork`
-- Target stake in asset decimal place in Market Data
-- Fixed promotion of ersatz to Tendermint validator
-- Fixed wrong tick size used for calculating probability of trading
-- Fixed the default voting power in case there is stake in the network
-- Add proto serialisation for update market proposal
-- Ensure update market proposal computes a proper auction duration
-- Add replay protection for validator commands
-- Ensure Oracle specs handle numbers using `num.Decimal` and `num.Int`
-- Fix settlement at expiry to scale the settlement price from market decimals to asset decimals
-- Fix mark to market settlement where transfers get truncated resulting in settlement balance not being zero after settlement
-- Send order event on settlement
-- Use settlement price if exists when received trading terminated even
-- Fix bug where amending orders in opening auctions did not work as expected
-- Process recurring transfer before rewards
-- Allow recurring transfers to start during the current epoch
-- Fix time formatting problem that was breaking consensus on nodes in different time zones
-- Fix concurrent write to price monitoring ref price cache
-- Fix `vega announce_node` to work with `--home` and `--passphrase-file`
-- Fix price monitoring snapshot
-- Fix topology and `erc20` topology snapshots
-- Epoch service now notifies other engines when it has restored from a snapshot
-- Fixes for invalid data types in the `MarketData` proto message.
-- Set Tendermint validators' voting power when loading from snapshot
-- Fixed tracking of liquidity fee received and added feature tests for the fee based rewards
-- Add ranking score information to checkpoint and snapshot and emit an event when loaded
-- Fix the string used for resource ID of stake total supply to be stable to fix the replay of non validator node locally
-- Fix margin balance not being released after close-out
-- Fix panic in loading topology from snapshot
-- Better error when trying to use the null-blockchain with an ERC20 asset
-- Set statistics block height after a snapshot reload
-- User tree importer and exporter to transfer snapshots via `statesync`
-- Updated `vega verify genesis` to understand new `app_state` layout
-- Set log level in snapshot engine
-- Save checkpoint with `UnixNano` when taking a snapshot
-- Fix restoring markets from snapshot by handling generated providers properly
-- `corestate` endpoints are now populated after a snapshot restore
-- save state of the `feesplitter` in the execution snapshot
-- Fix restoring markets from snapshot in an auction with orders
-- Set transfer responses event when paying rewards
-- Withdrawal fails should return a status rejected rather than cancelled
-- Deposits stayed in memory indefinitely, and withdrawal keys were not being sorted to ensure determinism
-- Fail when missing Tendermint home and public key in `nodewallet import` command
-- Bug fix for `--snapshot.db-path` parameter not being used if it is set
-- Bug fix for `--snapshot.max-retries` parameter not working correctly
-- Restore all market fields when restoring from a snapshot
-- Fix restoring rejected markets by signalling to the generated providers that their parent is dead
-- An array of fixes in the snapshot code path
-- Allow replaying a chain from zero when old snapshots exist
-- Fix liquidity provision commands decode
-- Remove all references to `TxV2`
-- Fix commit hash problem when checkpoint and snapshot overlap. Ensure the snapshot contains the correct checkpoint state.
-- Handle removing stake with no balances gracefully
-- Fix protobuf conversion in orders
-- Set a protocol version and properly send it to `Tendermint` in all cases
-- `TimeUpdate` is now first event sent
-- Ensure Ethereum event forwarder doesn't process the current block multiple times
-- Ensure verification of type between oracle spec binding and oracle spec
-- Add vesting contract as part of the Ethereum event forwarder
-- Dispatch network parameter updates at the same block when loaded from checkpoint
-- Fix for markets loaded from snapshot not terminated by their oracle
-- Add testing for auction state changes and remove unnecessary market state change
-- Added verification of `uint` market data in integration test
-- Fixed issue where LP orders did not get redeployed
-- Snapshot fixes for market and update market tracker on trades
-- Snapshot fixes for the `statevar` engine
-- Fixed panic in `maybeInvalidateDuringAuction`
-- Fixed liquidity auction trigger for certain cancel & replace amends
-
 ### Versions 0.46.0-0.47.6 combined | 2022-01-11
 This release was made available to validators on 11 January, 2022. Validators released it to the mainnet network on 31 January, 2022.
 
@@ -271,151 +117,28 @@ The protocol calculates a validator score for each validator. This score is used
 
 A “null blockchain” implementation of the protocol has been created. Whilst this has no impact on the validators running the nodes, or users using the network, it’s an important part of our future testing, and validation of the protocol strategy. In fact it’s the first step into building an integrated tool, or suite of tools, in order to simulate networks in various conditions.
 
-**Improvements**
-- Unwrap the timestamps in reward payout event
-- Remove badger related code from the codebase
-- Add oracle snapshot
-- Add liquidity snapshot
-- Experiment at removing the snapshot details from the engine
-- Adding more error messages
-- Extend integration tests with global check for net deposits
-- Add tests to show margins not being released
-- Add trading fees feature test
-- Updating return codes
-- Implement liquidity supplied snapshot
-- Add target liquidity engine
-- Remove staking of cache at the beginning of the epoch for spam protection
-- Change spam error messages to debug and enabled reloading of configuration
-- Remove usage of `vegatime.Now` over the code base
-- Add Prometheus metrics on snapshots
-- Add markets snapshot
-- Refactor delegation
-- Add CLI options to start node with a null-blockchain
-- Add transaction hash to `SubmitTransactionResponse`
-- Add step to clear all events in integration tests
-- Fully remove expiry from withdrawals
-- Add free form governance proposals
-- Reduce the number of iterations in reward calculation
-- Include chain ID in event bus messages
-- Update validator power in Tendermint based on their staking
-
-**Fixes**
-- Handle undelegate stake with no balances gracefully
-- Bug fix for incorrectly reporting auto delegation
-- Send an epoch event when loaded from checkpoint
-- Non determinism in checkpoint fixed
-- Set minimum for validator power to avoid accidentally removing them
-- Limit delegation epochs in core API
-- Fix premature ending of epoch when loading from checkpoint
-- Wire network parameters to time service to flush out pending changes
-- Disable snapshots while still in testing
-- Fix non determinism in topology checkpoint
-- Do not validate assets when loading checkpoint from non-validators
-- Return 400 on bad mint amounts sent via the faucet
-- Add free form governance network parameters to `allKeys` map
-- Add ability for the null-blockchain to deliver transactions
-- Introduce API to allow time-forwarding in the null-blockchain
-- Add support for validator key rotation
-- Remove the need for an Ethereum connection when using the null-blockchain
-- Allow reloading of null-blockchain configuration while core is running
-- Change validator weights to be based on validator score
-- Add checkpoint validator key rotation
-- Add network parameters overwrite from checkpoints
-- Add calls to enable state-sync via tendermint
-- Fix non determinism in deposits snapshot
-- Add some logging + height/version handling fixes
-- Fix problem where chain ID was not present on event bus during checkpoint loading
-- Fix rewards checkpoint not assigned to its correct place
-- Limit the number of iterations for reward calculation for delegator and fix for division by zero
-- Remove state from the witness snapshot and infer it from votes
-- Fix notary implementation
-- Fix non deterministic test by using same `idGenerator`
-- Remove usage of `time.Now()` in the auction state
-- Implement `Uint` for network parameters and for money values
-- Fix orders still being accepted after market in trading terminated state
-- Fix drone pipeline
-- Set proper status on withdrawal errors
-- Fix to missing pending rewards in LNL checkpoint
-- Fix snapshot cleanup, improve logging when specified block height could not be reloaded
-- Fix division by zero when all validator scores are 0
-- Fix reward account balance not being saved/loaded to/from checkpoint
-- Wire rewards checkpoint to checkpoint engine and store infrastructure fee accounts in collateral checkpoint
+For full detailed information on the changes please see:
+[Vega core change log](https://github.com/vegaprotocol/vega/blob/release/v0.47.6/CHANGELOG.md)
+[Data node change log](https://github.com/vegaprotocol/data-node/releases/tag/v0.47.1)
 
 ### Version 0.45.6 | 2021-12-22
-- Fully remove expiry from withdrawals and release version v0.45.5
+For full detailed information on the changes please see:
+[Vega core change log](https://github.com/vegaprotocol/vega/blob/release/v0.45.6/CHANGELOG.md)
 
 ### Version 0.45.4 | 2021-11-05
-- If all association is nominated, allow association to be unnominated and nominated again in the same epoch
-- Remove staking of cache at the beginning of the epoch for spam protection
+[Vega core change log](https://github.com/vegaprotocol/vega/blob/release/v0.45.4/CHANGELOG.md)
 
 ### Versions 0.45.0-0.45.2 combined | 2021-10-27
-- Add Visual Studio Code configuration
-- Add snapshot node topology
-- Implement retries for notary transactions
-- Implement retries for witness transactions
-- Add replay protection snapshot
-- Add ABCI snapshot
-- Reconcile delegation more frequently
-- Add staking snapshot
-- Add timestamps to rewards
-- Add witness snapshot
-- Add stake verifier snapshot
-- Update the Vega Wallet version
-- Make event forwarder hashing result more random
-- Prevent overflow with pending delegation
-- Ensure sufficient balances when nominating multiple nodes
-- Checkpoints fixes
-- Add rewards snapshot
-- Add limit snapshot
-- Ask for passphrase confirmation on initialisation and generate commands when applicable
-- Implement spam snapshot
-- Add ERC20 logic signing
-- Implement snapshot for notary
-- Enable linters
-- Ensure the vega and Ethereum wallet are not nil before accessing
-- Replay protection snapshot
-- Set timeout for system-tests steps
-- Improve handling of expected trades
-- Make event forward mode deterministic
-- Update code still using `uint64`
-- Add command to list and describe Vega paths
-- Add minimum validators network parameter and bug fix for overflow reward
-
+For full detailed information on the changes please see:
+[Vega core change log](https://github.com/vegaprotocol/vega/blob/release/v0.45.1/CHANGELOG.md)
+[Vega data node change log](https://github.com/vegaprotocol/data-node/blob/develop/CHANGELOG.md#0451)
 
 ### Version 0.44.1 | 2021-10-08
-- Fix `undelegateNow` to use the passed amount instead of 0
-- Remove 0 balance events from checkpoint of delegations
-- Fix event sent on reward pool creation + fix owner
+For full detailed information on the changes please see:
+[Vega core change log](https://github.com/vegaprotocol/vega/blob/release/v0.44.1/CHANGELOG.md)
 
 ### Version 0.44.0 | 2021-10-07
-- Clean up and separate checkpoints and snapshots
-- Added `assetActions` to banking snapshot
-- Add tools and linting
-- Assets snapshot implemented
-- Add clef wallet
-- Snapshot positions engine
-- Update to latest proto and go mod tidy
-- Adding `IDGenerator` types
-- Banking snapshot
-- Matching engine snapshots
-- Add fields to validators genesis
-- Port code to use last version of proto (layout change)
-- Collateral snapshots
-- Snapshot epoch engine
-- Add delegation snapshot
-- Document default file location
-- Update proto dependencies to latest
-- Additional test scenarios for delegation & rewards
-- Simplify node wallet integration
-- Auto delegation
-- Add auto delegation to checkpoint
-- Snapshot preparation
-- Edge case scenarios delegation
-- Fix filename for checkpoints
-- Remove delay in reward/delegation calculation
-- De-duplicate stake linkings
-- Add missing key to all network parameters key map
-- Send delegation events
-- Simplify checkpointing for network parameters and start fixing collateral checkpoint
-- Fixed non-deterministic checkpoint and added auto delegation to checkpoint
-- Fixed epoch issue
+For full detailed information on the changes please see:
+[Vega core change log](https://github.com/vegaprotocol/vega/blob/release/v0.44.0/CHANGELOG.md)
+[Vega data node change log](https://github.com/vegaprotocol/data-node/blob/develop/CHANGELOG.md#0440)
+
