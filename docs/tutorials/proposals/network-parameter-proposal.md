@@ -20,8 +20,6 @@ import TabItem from '@theme/TabItem';
 # Propose a network parameter change
 Network parameters are a constant (or an array of constants) in the system whose values are able to be changed by on-chain governance. Here's how to propose a change to one.
 
-You can submit a proposal to change a network parameter. 
-
 <Tabs groupId="updateNetworkParameter">
   <TabItem value="annotated" label="Annotated example">
     <UpdateNetworkParameterAnnotated />

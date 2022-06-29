@@ -48,20 +48,23 @@ Having a submitted proposal pass the governance threshold requires the support o
 * Share the detailed proposal on the forum, including the rationale, the specific parameters, and the data (JSON or similar) that would be submitted on-chain Invite discussion to amend the proposal until it reaches a final state that is ready to be submitted.
 * Once you submit the proposal, invite the community to vote, and be sure to vote on it yourself, too.
 
-## Asset governance [WIP]
+<!--## Asset governance [WIP]
 
-### New asset proposal [WIP]
+### New asset proposal [WIP]-->
 
-## Market governance [WIP]
+## Market governance
 Markets are proposed and voted into existence by Vega tokenholders. The parameters for a market all need to be defined in the proposal.
 
-The parameters of a market can also be changed if a liquidity provider with enough equity-like stake in the market proposes those changes and they are voted in by a sufficient number of tokenholders and/or liquidity providers.
+Some market parameters can also be changed. They can only be proposed by a liquidity provider with enough equity-like stake in the market, and need to be voted for by a sufficient number of tokenholders and/or liquidity providers.
 
 When creating a market governance proposal, whether it is for a new market or to change parameters for an existing market, it's recommended that you sense check the proposal and share the final details with the tokenholder community before proposing, so that you can garner support and make any necessary amends. 
 
-[Vega community forum](https://community.vega.xyz): Share your draft proposals for community discussion. 
+Read more:
+* [Vega community forum](https://community.vega.xyz): Share your draft proposals for community discussion.
+* [New market proposal](../tutorials/proposals/new-market-proposal.md): Guide to submitting a proposal for a new market using the command line
+* [Update market proposal](../tutorials/proposals/update-market-proposal.md): Guide to submitting a proposal to change a market using the command line
 
-### Propose a new market [WIP]
+### Propose a new market
 Tokenholders can propose new markets, which then need to be voted on by other tokenholders. If the market proposal gets a majority of tokeholder support, then it will be enacted. The required majority is defined by the network parameter `governance.proposal.market.requiredMajority`. 
 
 :::info
@@ -84,10 +87,12 @@ Optional fields include:
 * Liquidity commitment: the amount committed, proposed fee level, and the buy and sell order shapes. Note: Once a market is proposed, it can accept liquidity commitments from any party
 
 Read more:
-* [Data sources](./trading-framework#data-sources)
+* [Risk models and parameters](#risk-models-and-parameters)
+* [New market proposal](../tutorials/proposals/new-market-proposal.md): Guide to submitting a proposal for a new market using the command line
+<!--
+* [Data sources]
 * [Liquidity monitoring parameters]
-* [Price monitoring parameters]
-* [Risk models and parameters]
+* [Price monitoring parameters]-->
 
 ### Risk models and parameters
 When proposing a market, the market proposer will need to choose the risk parameters associated with the risk model that's appropriate for the instrument. The risk model is essential for calculating margins on the market. 
@@ -110,7 +115,7 @@ Model-independent parameters used in margin calculation are:
   * accepted values: **any real number**,
   * suggested value: `0`.
 
-The remaining, model specific parameters are covered in sections below.
+The remaining, model specific parameters are covered below.
 
 :::note Further reading
 **[Margins and Credit Risk on Vega](https://vega.xyz/papers/margins-and-credit-risk.pdf)** - Note, a position size of 1 is assumed throughout the research paper.
@@ -134,40 +139,40 @@ where `Mu`, `Sigma` and `s` are constants and `dW` represents a Brownian Motion 
 
 ### Thresholds and rules [WIP]
 
-### Propose changes to a market [WIP]
+### Propose changes to a market [WIP]-->
 
-## Network governance [WIP]-->
-
-### Network parameters
+### Network parameter governance
 There are certain parameters within Vega that influence the behaviour of the system and can be changed by on-chain governance. Vega tokenholders can define the optimal network configuration by creating and voting on network parameter proposals.
+
+Network parameters can only be added and removed with Vega core software releases.
 
 A network parameter is defined by:
 * Name
 * Type
 * Value
 * Constraints
-* Governance update policy 
+* Governance update policy
 
-### Changing network parameters
-Network parameters can be changed by governance, however some network parameters need to be more difficult to change than others. Therefore, the protocol needs to know for each network parameter what governance thresholds apply for ascertaining a proposal's ability to change the parameter's value. Specifically, those thresholds are:
+**Read more:** [Guide to submitting a network parameter proposal using the command line](../tutorials/proposals/network-parameter-proposal.md)
+
+### Thresholds for network parameters
+Some network parameters need to be more difficult to change than others. Therefore, the protocol needs to know for each network parameter what governance thresholds apply for ascertaining a proposal's ability to change the parameter's value. Specifically, those thresholds are:
 
 * `MinimumProposalPeriod`
 * `MinimumPreEnactmentPeriod`
 * `MinimumRequiredParticipation` 
 * `MinimumRequiredMajority`
 
-There are groups of network parameters that will use the same values for the thresholds. Importantly, these `minimum` levels are themselves network parameters, and therefore subject to change. They should be self-referential in terms of ascertaining the success of changing them.
+There are groups of network parameters that will use the same values for the thresholds. Importantly, these `minimum` levels are themselves network parameters, and therefore subject to change.
 
-For example, consider a network parameter that specifies the proportion of fees that goes to validators (`feeAmtValidators`), with change thresholds:
+Consider a network parameter that specifies the proportion of fees that goes to validators (`feeAmtValidators`), with change thresholds:
 
 * `MinimumProposalPeriod = 30 days`
 * `MinimumPreEnactmentPeriod = 10 days`
 * `MinimumRequiredParticipation = 60%`
 * `MinimumRequiredMajority = 80%`
 
-Thus, a proposal to change the `feeAmtValidators.MinimumProposalPeriod` would need to pass all of the thresholds listed above.
-
-Network parameters can only be added and removed with Vega core software releases.
+A proposal to change the `feeAmtValidators.MinimumProposalPeriod` would need to pass all of the thresholds listed above.
 
 <!--### Threshold and rules [WIP]-->
   
