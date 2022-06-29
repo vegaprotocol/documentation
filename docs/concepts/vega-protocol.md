@@ -89,10 +89,12 @@ Optional fields include:
 Read more:
 * [Risk models and parameters](#risk-models-and-parameters)
 * [New market proposal](../tutorials/proposals/new-market-proposal.md): Guide to submitting a proposal for a new market using the command line
+
 <!--
 * [Data sources]
 * [Liquidity monitoring parameters]
-* [Price monitoring parameters]-->
+* [Price monitoring parameters]
+-->
 
 ### Risk models and parameters
 When proposing a market, the market proposer will need to choose the risk parameters associated with the risk model that's appropriate for the instrument. The risk model is essential for calculating margins on the market. 
