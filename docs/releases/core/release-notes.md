@@ -4,7 +4,20 @@ title: Core software releases
 hide_title: false
 ---
 
-While the Vega core software is closed-source, you can refer here for a full list of release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
+Now the Vega core software is public on a business-source licence, you can both view the repository changelogs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
+
+### Versions 0.50.4 | 2022-06-29
+This release was made available to validators on 29 June, 2022.
+
+This is a patch release to address two high priority bugs seen in version 0.50.3.
+
+A critical defect was identified on Mainnet 0.50.3 where some staking events on Ethereum were replicated multiple times on Vega. During investigations it was identified that some validators were still running their event forwarder as an external service, which forwards events in a slightly different format, meaning those events were not successfully deduplicated. The defect that made it non-deterministic and not successfully deduplicate has now been resolved in [5510](https://github.com/vegaprotocol/vega/pull/5510) - fix: dedupe sorting made consistent
+
+When restarting from a checkpoint file during the 0.50.3 deployment, at the end of the epoch the reward was paid as expected. However, the `rewardScore` field for the validators in that first epoch was missing in GraphQL. For all following epochs the `rewardScore` field was present as it should be. The cause was identified: when the core emits the event at the end of the first epoch, after the checkpoint restart, it was emitted with the wrong epoch sequence. This has now been resolved in [5515](https://github.com/vegaprotocol/vega/pull/5515) - fix: emit `rewardScore` correctly when loading from checkpoint
+
+For full detailed information on the changes please see:
+[Vega Core Changelog](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md)
+[Data-node Changelog](https://github.com/vegaprotocol/data-node/blob/develop/CHANGELOG.md)
 
 ### Versions 0.50.3-0.49.8 combined | 2022-04-27
 This release was made available to validators on 27 April, 2022.
