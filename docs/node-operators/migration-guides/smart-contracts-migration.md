@@ -129,15 +129,16 @@ Using the signature created by the validators in `Step 8`, the Vega team will up
 
 The public [`multisig_control_address`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/ERC20_Asset_Pool.sol#L15) variable of the asset pool should be updated to the new address. **Make sure to verify it has been updated.**
 
-### Step 10: Update the bridge on the asset pool (Vega team)
-Using the signature created by the validators in `Step 8`, the Vega team will update the collateral bridge used by the asset pool by calling the [`set_bridge_address`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/ERC20_Asset_Pool.sol#L60-L72) method.
-
-The public [`erc20_bridge_address`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/ERC20_Asset_Pool.sol#L18) variable of the asset pool should be updated to the new address. **Make sure to verify it has been updated.**
-
-### Step 11: List the VEGA token on the collateral bridge (Vega team)
+### Step 10: List the VEGA token on the collateral bridge (Vega team)
 Using the signature created previously by the validators in `Step 8`, the Vega team will then list the VEGA token on the collateral bridge using the [`list_asset`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/ERC20_Bridge_Logic_Restricted.sol#L42-L70) method.
 
 The correct execution of this method can be verified by calling the [`is_asset_listed`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/ERC20_Bridge_Logic_Restricted.sol#L301-L303) method on the collateral bridge using the token address. **Make sure to verify it is correct.**
+
+### Step 11: Update the bridge on the asset pool (Vega team)
+Using the signature created by the validators in `Step 8`, the Vega team will update the collateral bridge used by the asset pool by calling the [`set_bridge_address`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/ERC20_Asset_Pool.sol#L60-L72) method. This is done after listing all assets such that the new bridge doesn't take effect until it has been verified to have been correctly setup.
+
+The public [`erc20_bridge_address`](https://github.com/vegaprotocol/MultisigControl/blob/a421bce980391c6c1509fc621185ca33810709fd/contracts/ERC20_Asset_Pool.sol#L18) variable of the asset pool should be updated to the new address. **Make sure to verify it has been updated.**
+
 
 ### Step 12: Update the genesis file (Vega team and validators)
 The Vega team will then submit a pull request on the [networks repository](https://github.com/vegaprotocol/networks) to update the network parameter `blockchain.ethereumConfig` from the genesis with the addresses of the new collateral bridge and multisig control contracts.
