@@ -32,7 +32,7 @@ A critical defect was identified on mainnet 0.50.3 where some staking events on 
 When restarting from a checkpoint file during the 0.50.3 deployment, at the end of the epoch the reward was paid as expected. However, the `rewardScore` field for the validators in that first epoch was missing in GraphQL. For all following epochs the `rewardScore` field was present as it should be. The cause was identified: when the core emits the event at the end of the first epoch, after the checkpoint restart, it was emitted with the wrong epoch sequence. This has now been resolved in [5515](https://github.com/vegaprotocol/vega/pull/5515) - fix: emit `rewardScore` correctly when loading from checkpoint
 
 For full detailed information on the changes please see:
-[Vega core change log](https://github.com/vegaprotocol/vega/blob/release/v0.50.4/CHANGELOG.md#0504)
+[Vega core release 0.54.0](https://github.com/vegaprotocol/vega/releases/tag/v0.50.4)
 
 ### Versions 0.50.3-0.49.8 combined | 2022-04-27
 This release was made available to validators on 27 April, 2022.
