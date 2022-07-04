@@ -11,9 +11,9 @@ While there are many open-source components to Vega software, not all of the cod
 
 [**Vega Wallet on GitHub**](https://github.com/vegaprotocol/vegawallet/releases) - The code for the Vega Wallet CLI app is open source, and you can read about the contents of each release on the Vega Wallet repo.
 
-[**Vega Desktop Wallet on GitHub](https://github.com/vegaprotocol/vegawallet-desktop/releases) - The code for the Vega Wallet desktop app is open source, and you can read the contents of each release on the repo.
+[**Vega Desktop Wallet on GitHub**](https://github.com/vegaprotocol/vegawallet-desktop/releases) - The code for the Vega Wallet desktop app is open source, and you can read the contents of each release on the repo.
 
-[**Vega Desktop Wallet on GitHub](https://github.com/vegaprotocol/vegawallet-desktop/releases) - The code for the Vega Wallet desktop app is open source, and you can read the contents of each release on the repo.
+[**Vega Desktop Wallet on GitHub**](https://github.com/vegaprotocol/vegawallet-desktop/releases) - The code for the Vega Wallet desktop app is open source, and you can read the contents of each release on the repo.
 
 [**Token dApp on GitHub**](https://github.com/vegaprotocol/token-frontend/releases) - The Token dApp, which provides an interface for interacting with VEGA tokens, is open-source and you can read the contents of each release on the Token Frontend repo.
 
