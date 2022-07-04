@@ -26,27 +26,27 @@ At times you may need to force the wallet to update the list of available networ
 
 ### Update network from URL
  
-Run the following `--force` command to update to the latest available from your chosen URL.  
+Run the following `--force` command to update to the latest available from your chosen URL. See above for links to mainnet and fairground network files.
 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
 
 ```bash
-vegawallet network import --force --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
+vegawallet network import --force --from-url "URL_OF_TOML_FILE"
 ```
 </TabItem>
 <TabItem value="mac" label="MacOS">
 
 ```bash
 ./vegawallet network import --force \
-    --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
+    --from-url "URL_OF_TOML_FILE"
 ```
 </TabItem>
 <TabItem value="linux" label="Linux">
 
 ```bash
 ./vegawallet network import --force \
-     --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
+     --from-url "URL_OF_TOML_FILE"
 ```
 </TabItem>
 </Tabs>
