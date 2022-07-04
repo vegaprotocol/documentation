@@ -5,13 +5,13 @@ hide_title: false
 
 While there are many open-source components to Vega software, not all of the code is open yet. Read on for links to release notes, some of which live in the open repositories on GitHub, and others which are published here. 
 
-[**Vega core software**](#vega-core-software) - Below, find a summary of each version's features and breaking changes. See the full release notes on [GitHub](https://github.com/vegaprotocol/vega/releases).
+[**Vega core software**](#vega-core-software) - Below, find a summary of each version's features and breaking changes.
 
-[**Data node APIs on GitHub**](https://github.com/vegaprotocol/vegawallet/releases) - The data node APIs allow for querying for historic information and for snapshots of the current state of the systems.
+See the full release notes on [GitHub](https://github.com/vegaprotocol/vega/releases).
+
+[**Data node APIs on GitHub**](https://github.com/vegaprotocol/data-node/releases) - The data node APIs allow for querying for historic information and for snapshots of the current state of the systems.
 
 [**Vega Wallet on GitHub**](https://github.com/vegaprotocol/vegawallet/releases) - The code for the Vega Wallet CLI app is open source, and you can read about the contents of each release on the Vega Wallet repo.
-
-[**Vega Desktop Wallet on GitHub**](https://github.com/vegaprotocol/vegawallet-desktop/releases) - The code for the Vega Wallet desktop app is open source, and you can read the contents of each release on the repo.
 
 [**Vega Desktop Wallet on GitHub**](https://github.com/vegaprotocol/vegawallet-desktop/releases) - The code for the Vega Wallet desktop app is open source, and you can read the contents of each release on the repo.
 
@@ -106,8 +106,8 @@ Note: The network will be set to allow 0 standby validators for alpha mainnet, a
 Read more: [Validators chosen by stake](https://github.com/vegaprotocol/specs/blob/main/protocol/0069-VCBS-validators_chosen_by_stake.md)
 
 For full detailed information on the changes please see:
-* [Vega core change log](https://github.com/vegaprotocol/vega/blob/release/v0.50.3/CHANGELOG.md)
-* [Data node change log](https://github.com/vegaprotocol/data-node/releases/tag/v0.50.0)
+* [Vega core change log](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0502)
+* [Data node change log](https://github.com/vegaprotocol/data-node/blob/develop/CHANGELOG.md#0500)
 
 #### Breaking changes
 - Separate endpoints for liquidity provision submissions, amendment and cancellation
@@ -134,26 +134,26 @@ The protocol calculates a validator score for each validator. This score is used
 A “null blockchain” implementation of the protocol has been created. Whilst this has no impact on the validators running the nodes, or users using the network, it’s an important part of our future testing, and validation of the protocol strategy. In fact it’s the first step into building an integrated tool, or suite of tools, in order to simulate networks in various conditions.
 
 For full detailed information on the changes please see:
-* [Vega core change log](https://github.com/vegaprotocol/vega/blob/release/v0.47.6/CHANGELOG.md)
-* [Data node change log](https://github.com/vegaprotocol/data-node/releases/tag/v0.47.1)
+* [Vega core change log](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0476)
+* [Data node change log](https://github.com/vegaprotocol/data-node/blob/develop/CHANGELOG.md#0471)
 
 ### Version 0.45.6 | 2021-12-22
 For full detailed information on the changes please see:
-* [Vega core change log](https://github.com/vegaprotocol/vega/blob/release/v0.45.6/CHANGELOG.md)
+* [Vega core change log](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0456)
 
 ### Version 0.45.4 | 2021-11-05
-* [Vega core change log](https://github.com/vegaprotocol/vega/blob/release/v0.45.4/CHANGELOG.md)
+* [Vega core change log](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0454)
 
 ### Versions 0.45.0-0.45.2 combined | 2021-10-27
 For full detailed information on the changes please see:
-* [Vega core change log](https://github.com/vegaprotocol/vega/blob/release/v0.45.1/CHANGELOG.md)
+* [Vega core change log](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0452))
 * [Vega data node change log](https://github.com/vegaprotocol/data-node/blob/develop/CHANGELOG.md#0451)
 
 ### Version 0.44.1 | 2021-10-08
 For full detailed information on the changes please see:
-* [Vega core change log](https://github.com/vegaprotocol/vega/blob/release/v0.44.1/CHANGELOG.md)
+* [Vega core change log](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0441)
 
 ### Version 0.44.0 | 2021-10-07
 For full detailed information on the changes please see:
-* [Vega core change log](https://github.com/vegaprotocol/vega/blob/release/v0.44.0/CHANGELOG.md)
+* [Vega core change log](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0440)
 * [Vega data node change log](https://github.com/vegaprotocol/data-node/blob/develop/CHANGELOG.md#0440)
