@@ -23,7 +23,7 @@ See the full release notes on [GitHub](https://github.com/vegaprotocol/vega/rele
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
 ### Versions 0.50.4 | 2022-06-29
-This release was made available to validators on 29 June, 2022, who then released it to mainnet on 30 June, 2022.
+This release was shared with validators on 29 June, 2022. The validators released it to the mainnet network on on 30 June, 2022.
 
 This is a patch release to address two high priority bugs seen in version 0.50.3.
 
@@ -35,7 +35,7 @@ For full detailed information on the changes please see:
 * [Vega core change log](https://github.com/vegaprotocol/vega/blob/release/v0.50.4/CHANGELOG.md#0504)
 
 ### Versions 0.50.3-0.49.8 combined | 2022-04-27
-This release was made available to validators on 27 April, 2022, who then released it to mainnet on 22 June, 2022.
+This release was shared with validators on 27 April, 2022. The validators released it to the mainnet network on 22 June, 2022.
 
 The primary focus of this and the next upcoming releases has been to complete the final remaining features, progress data-node improvements for scalability and to add test coverage and fix bugs.
 
@@ -125,7 +125,7 @@ For full detailed information on the changes please see:
 - Remove trading mode one-off from market proposal
 
 ### Versions 0.46.0-0.47.6 combined | 2022-01-11
-This release was made available to validators on 11 January, 2022. Validators released it to the mainnet network on 31 January, 2022.
+This release was shared with validators on 11 January, 2022. Validators released it to the mainnet network on 31 January, 2022.
 
 A key theme of this combined release has been improvements to the checkpointing feature; this includes fixes to ensure epochs and other key data is preserved as they should be during checkpoint restarts. In addition to this, the “free-form governance” feature has been implemented. This feature further decentralises the protocol by allowing users to submit a range of governance proposals for community consideration and voting.
 
