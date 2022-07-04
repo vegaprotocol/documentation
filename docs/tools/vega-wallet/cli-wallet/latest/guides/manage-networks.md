@@ -14,19 +14,16 @@ You can see a list of available commands by running `./vegawallet -h` on MacOS a
 :::
 
 ## Network URLs
-
 You can use the following network URLs to connect to the mainnet or fairground network through your wallet: 
 
 * **Mainnet** network (run by validators): [`mainnet1.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml)
 * **Fairground** network: [`fairground.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/fairground/fairground.toml)
 
 ## Update networks
-
 At times you may need to force the wallet to update the list of available networks. Below, choose between forcing an update via URL or file. 
 
 ### Update network from URL
- 
-Run the following `--force` command to update to the latest available from your chosen URL. See above for links to mainnet and fairground network files.
+Run the following `--force` command to update to the latest available from your chosen URL, which needs to be a TOML file. See above for links to mainnet and fairground network files.
 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
@@ -52,8 +49,7 @@ vegawallet network import --force --from-url "URL_OF_TOML_FILE"
 </Tabs>
 
 ### Update network from file
-
-Run the following `--force` command to update to the latest available from your chosen file.  
+Run the following `--force` command to update to the latest available from your chosen file, which needs to be saved as a .TOML. See the files linked in [Network URLs](#network-urls) for the structure.
 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
@@ -77,8 +73,7 @@ vegawallet network import --force --from-file "PATH_TO_FILE"
 
 </Tabs>
 
-## List networks 
-
+## List networks
 To see the names of the networks you've imported, run the following command: 
 
 <Tabs groupId="operating-systems">
@@ -104,7 +99,6 @@ vegawallet network list
 </Tabs>
 
 ## Display network configuration 
-
 You can display the information that the wallet uses to connect to a network. This includes the API and app hosts. 
 
 You'll need to define the name of the network you want to describe.  Run the following command: 
@@ -131,8 +125,7 @@ vegawallet network describe --network "NETWORK_NAME"
 
 </Tabs>
 
-## Delete networks 
-
+## Delete networks
 If you don't want to connect to a specific network any longer, or you want to clear the configuration, you can delete that network from your computer. 
 
 Use the following command to delete a network. You'll need to include the name of the network you want to delete. 
