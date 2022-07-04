@@ -41,11 +41,11 @@ If the above conditions are not met, the proposal will be rejected and will not 
 
 [Creating and submitting proposals](../tutorials/proposals/index.md): See guides that describe how tokenholders can submit proposals using the command line.
 
-### Community support for a propsal
+### Community support for a proposal
 Having a submitted proposal pass the governance threshold requires the support of other Vega tokenholders. To give your proposal the best chance at success, you'll need to get the community on board.
 
 * Sense check your proposal by sharing an outline of your proposed action on the [community forum](https://community.vega.xyz) to find out if there is support for the proposal and its intention.
-* Share the detailed proposal on the forum, including the rationale, the specific parameters, and the data (JSON or similar) that would be submitted on-chain Invite discussion to amend the proposal until it reaches a final state that is ready to be submitted.
+* Share the detailed proposal on the forum, including the rationale, the specific parameters, and the data (JSON or similar) that would be submitted on-chain. Invite discussion to amend the proposal until it reaches a final state that is ready to be submitted.
 * Once you submit the proposal, invite the community to vote, and be sure to vote on it yourself, too.
 
 <!--## Asset governance [WIP]
