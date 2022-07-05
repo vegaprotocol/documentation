@@ -31,7 +31,7 @@ Submission process
 * If the above conditions are not met, the proposal will be rejected and will not be available for a vote. You'll then need to re-submit the proposal.
 
 :::info 
-Read the [creating and submitting proposals guides](https://community.vega.xyz/) to understand how tokenholders can submit proposals using the command line. 
+Read the [creating and submitting proposals guides](../tutorials/proposals/) to understand how tokenholders can submit proposals using the command line. 
 :::
 
 ### 4. Voting 
