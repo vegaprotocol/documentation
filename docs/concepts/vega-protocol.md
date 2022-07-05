@@ -8,45 +8,55 @@ Vega supports on-chain proposals for creating markets and assets, changing netwo
 Try out proposing markets using [Fairground](https://fairground.wtf), Vega's testnet. 
 :::
 
-### Lifecycle of a governance proposal 
-1. VEGA tokenholder creates and submits a governance proposal. 
-1. The governance proposal is accepted by the validator nodes as a transaction.
-1. The nodes decide whether to validate the proposal. This is when the network parameters that validate the minimum duration, minimum time to enactment, minimum participation rate, and required majority are evaluated. If not specified on the proposal, the required participation rate and majority for success are defined based on the existing network parameters, and copied to the proposal. The proposal is immutable once entered.
-1. If valid, the proposal is considered 'active' for the defined proposal period. That period must be at least as long as the minimum duration for the proposal type, specified by the network parameter.
-1. During the proposal period, network participants who are eligible to vote on the proposal can submit votes for or against the proposal.
-1. When the proposal period closes, the network calculates the outcome by:
-   - comparing the total number of votes cast as a percentage of the number eligible to be cast, to the minimum participation requirement. If the minimum is not reached, the proposal is rejected.
-	- comparing the number of 'for' votes as a percentage of all votes cast (maximum one vote counted per party) to the required majority. 
-1. If the required majority of 'for' votes is met, the action described in the proposal will be taken (i.e., proposal is enacted) on the defined enactment date. Note the enactment date must be at least the minimum enactment period for the proposal type/subtype (specified by a network parameter) _after_ voting closes.
+## Lifecycle of a governance proposal 
+### 1. Sense check 
+Share an outline of your proposed action informally on the forum. Get an idea of whether there is support for the proposal and refine your plans to be able to find out if there is sufficient interest in making a change.
 
-### Voting on proposals 
-VEGA tokenholders can vote for or against any proposals. 
-
-* Any tokenholder with more than 0 tokens associated with a Vega key can vote on proposals. 
-* The Vega key used for voting will need to have more than 0 tokens when a vote is submitted, as well as when votes are counted at the proposal's closing date/time, otherwise the vote is disregarded. 
-* Tokens used for voting are not locked or transferred: they can be used for staking as well as for voting on any/all active proposals
-* Each public key with a non-zero token balance gets one vote.
-* While the voting period is open, a public key can vote multiple times but only the most recent vote will count at the proposal's close.
-
-:::info
-Vote on proposals on the [Vega token governance page](https://token.vega.xyz/governance).
+:::info 
+Check out the [forum](https://community.vega.xyz/) and create a new topic to sense check your proposal with the community. 
 :::
 
-### Submitting governance proposals
-A proposal must have all of the relevant information, in the correct format, before it can be submitted. 
+### 2. Formalising a proposal
+Share the detailed proposal on the forum, including rationale and specifics of the proposed addition/change, including the data (JSON or similar) that would be submitted on chain. Invite debate and discussion to amend the proposal until it reaches a final state, ready to submit.
+ 
+### 3. Submitting a proposal 
+As a token holder, you can submit the proposal using the APIs to create a new market, change an existing market, change network parameters, add an external asset to Vega and make a freeform proposal (for changes that will not change network behaviour). For each, you will define specific inputs for a set list of parameters, which are validated by the nodes before entering into the voting period you set. Rally the community to vote for your proposal on the forum.
 
-The Vega public key of the proposer also must have enough VEGA staked to submit a proposal. For a market change proposal, the proposer must also have enough equity-like stake in the market from their liquidity commitment. 
+Submission process
+* A proposal must have all of the relevant information, in the correct format, before it can be submitted. 
+* The governance proposal is accepted by the validator nodes as a transaction.
+* The nodes decide whether to validate the proposal. This is when the network parameters that validate the minimum duration, minimum time to enactment, minimum participation rate, and required majority are evaluated. If not specified on the proposal, the required participation rate and majority for success are defined based on the existing network parameters, and copied to the proposal. The proposal is immutable once entered.
+* If valid, the proposal is considered 'active' for the defined proposal period. That period must be at least as long as the minimum duration for the proposal type, specified by the network parameter.
+* The Vega public key of the proposer also must have enough VEGA staked to submit a proposal. For a market change proposal, the proposer must also have enough equity-like stake in the market from their liquidity commitment.
+* If the above conditions are not met, the proposal will be rejected and will not be available for a vote. You'll then need to re-submit the proposal.
 
-If the above conditions are not met, the proposal will be rejected and will not be available for a vote. You'll then need to re-submit the proposal.
+:::info 
+Read the [creating and submitting proposals guides](https://community.vega.xyz/) to understand how tokenholders can submit proposals using the command line. 
+:::
 
-[Creating and submitting proposals](../tutorials/proposals/index.md): See guides that describe how tokenholders can submit proposals using the command line.
+### 4. Voting 
+VEGA tokenholders can vote for or against any proposals. 
 
-### Community support for a proposal
-Having a submitted proposal pass the governance threshold requires the support of other Vega tokenholders. To give your proposal the best chance at success, you'll need to get the community on board.
+Voting rules
+* Tokens used for voting are not locked or transferred: they can be used for staking as well as for voting on any/all active proposals.
+* Each public key with a non-zero token balance gets one vote.
+* While the voting period is open, a public key can vote multiple times but only the most recent vote will count at the proposal's close.
+* The Vega key used for voting will need to have more than 0 tokens when a vote is submitted, as well as when votes are counted at the proposal's closing date/time, otherwise the vote is disregarded.
 
-* Sense check your proposal by sharing an outline of your proposed action on the [community forum](https://community.vega.xyz) to find out if there is support for the proposal and its intention.
-* Share the detailed proposal on the forum, including the rationale, the specific parameters, and the data (JSON or similar) that would be submitted on-chain. Invite discussion to amend the proposal until it reaches a final state that is ready to be submitted.
-* Once you submit the proposal, invite the community to vote, and be sure to vote on it yourself, too.
+How the outcome is calculated 
+* Comparing the total number of votes cast as a percentage of the number eligible to be cast, to the minimum participation requirement. If the minimum is not reached, the proposal is rejected.
+* Comparing the number of 'for' votes as a percentage of all votes cast (maximum one vote counted per party) to the required majority
+
+:::info
+Vote on active proposals on the [Vega token interface](https://token.vega.xyz/governance).
+:::
+
+### 5. Enacting changes
+If a proposal receives enough votes in favour within the enactment period, the network parameters automatically change (except for a free form proposal).
+* When the required majority of 'for' votes is met, the action described in the proposal will be taken on the defined enactment date.
+* Note the enactment date must be at least the minimum enactment period for the proposal type/subtype (specified by a network parameter) after voting closes.
+
+
 
 <!--## Asset governance [WIP]
 
