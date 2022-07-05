@@ -35,7 +35,7 @@ Read the [creating and submitting proposals guides](https://community.vega.xyz/)
 :::
 
 ### 4. Voting 
-VEGA tokenholders can vote for or against any proposals. 
+VEGA tokenholders can vote for or against any active proposals. 
 
 Voting rules
 * Tokens used for voting are not locked or transferred: they can be used for staking as well as for voting on any/all active proposals.
