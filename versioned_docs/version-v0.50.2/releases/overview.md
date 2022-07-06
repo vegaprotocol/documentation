@@ -146,7 +146,7 @@ For full detailed information on the changes please see:
 
 ### Versions 0.45.0-0.45.2 combined | 2021-10-27
 For full detailed information on the changes please see:
-* [Vega core change log](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0452))
+* [Vega core change log](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0452)
 * [Vega data node change log](https://github.com/vegaprotocol/data-node/blob/develop/CHANGELOG.md#0451)
 
 ### Version 0.44.1 | 2021-10-08
