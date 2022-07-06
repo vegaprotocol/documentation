@@ -10,14 +10,10 @@ Try out proposing markets using [Fairground](https://fairground.wtf), Vega's tes
 
 ## Lifecycle of a governance proposal 
 ### 1. Sense check 
-Share an outline of your proposed action informally on the forum. Get an idea of whether there is support for the proposal and refine your plans to be able to find out if there is sufficient interest in making a change.
-
-:::info 
-Check out the [forum](https://community.vega.xyz/) and create a new topic to sense check your proposal with the community. 
-:::
+Share an outline of your proposed action informally on [the forum](https://community.vega.xyz/). Get an idea of whether there is support for the proposal and refine your plans to be able to find out if there is sufficient interest in making a change.
 
 ### 2. Formalising a proposal
-Share the detailed proposal on the forum, including rationale and specifics of the proposed addition/change, including the data (JSON or similar) that would be submitted on chain. Invite debate and discussion to amend the proposal until it reaches a final state, ready to submit.
+Share the detailed proposal on [the forum](https://community.vega.xyz/), including rationale and specifics of the proposed addition/change, including the data (JSON or similar) that would be submitted on chain. Invite debate and discussion to amend the proposal until it reaches a final state, ready to submit.
  
 ### 3. Submitting a proposal 
 As a token holder, you can submit the proposal using the APIs to create a new market, change an existing market, change network parameters, add an external asset to Vega and make a freeform proposal (for changes that will not change network behaviour). For each, you will define specific inputs for a set list of parameters, which are validated by the nodes before entering into the voting period you set. Rally the community to vote for your proposal on the forum.
