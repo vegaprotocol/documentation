@@ -84,7 +84,9 @@ function generateTerminationOracleSpec(skeleton) {
   assert.equal(skeleton.properties.filters.type, 'array', 'Oracle spec filters')
 
   const spec = {
-    pubKeys: [],
+    pubKeys: [
+        "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
+      ],
       filters: [
         {
           key: {

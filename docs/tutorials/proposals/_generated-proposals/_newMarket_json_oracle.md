@@ -3,7 +3,9 @@
  // pubKeys is the list of authorized public keys that signed the data for this
  // oracle. All the public keys in the oracle data should be contained in these
  // public keys. (array of strings)
- pubKeys: [],
+ pubKeys: [
+  "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
+ ],
  // filters describes which oracle data are considered of interest or not for
  // the product (or the risk model).
  filters: [

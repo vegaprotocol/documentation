@@ -36,7 +36,9 @@
               ]
             },
             "oracleSpecForTradingTermination": {
-              "pubKeys": [],
+              "pubKeys": [
+                "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
+              ],
               "filters": [
                 {
                   "key": {
@@ -59,9 +61,8 @@
           }
         },
         "metadata": [
+          "sector:food",
           "sector:energy",
-          "sector:tech",
-          "sector:health",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -87,51 +88,51 @@
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 0.3
+            "sigma": 0.8
           }
         }
       },
       "liquidityCommitment": {
-        "commitmentAmount": "2500460",
-        "fee": "0.10",
+        "commitmentAmount": "3109145",
+        "fee": "0.11",
         "buys": [
           {
-            "offset": "84",
+            "offset": "37",
+            "proportion": 6,
+            "reference": "PEGGED_REFERENCE_BEST_BID"
+          },
+          {
+            "offset": "88",
+            "proportion": 7,
+            "reference": "PEGGED_REFERENCE_BEST_BID"
+          },
+          {
+            "offset": "20",
             "proportion": 8,
-            "reference": "PEGGED_REFERENCE_BEST_BID"
-          },
-          {
-            "offset": "43",
-            "proportion": 9,
-            "reference": "PEGGED_REFERENCE_BEST_BID"
-          },
-          {
-            "offset": "1",
-            "proportion": 3,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           }
         ],
         "sells": [
           {
-            "offset": "20",
-            "proportion": 9,
+            "offset": "41",
+            "proportion": 6,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           },
           {
-            "offset": "65",
-            "proportion": 3,
-            "reference": "PEGGED_REFERENCE_BEST_ASK"
-          },
-          {
-            "offset": "69",
+            "offset": "100",
             "proportion": 8,
+            "reference": "PEGGED_REFERENCE_BEST_ASK"
+          },
+          {
+            "offset": "41",
+            "proportion": 6,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           }
         ]
       }
     },
-    "closingTimestamp": 1657721401,
-    "enactmentTimestamp": 1657807801
+    "closingTimestamp": 1658846745,
+    "enactmentTimestamp": 1658933145
   }
 }
 ```

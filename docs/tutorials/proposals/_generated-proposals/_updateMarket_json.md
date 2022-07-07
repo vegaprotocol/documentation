@@ -33,7 +33,9 @@
               ]
             },
             "oracleSpecForTradingTermination": {
-              "pubKeys": [],
+              "pubKeys": [
+                "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
+              ],
               "filters": [
                 {
                   "key": {
@@ -70,13 +72,13 @@
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 0.5
+            "sigma": 0.8
           }
         }
       }
     },
-    "closingTimestamp": 1657721401,
-    "enactmentTimestamp": 1657807801
+    "closingTimestamp": 1658846745,
+    "enactmentTimestamp": 1658933145
   }
 }
 ```

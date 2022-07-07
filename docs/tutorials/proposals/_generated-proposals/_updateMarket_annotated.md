@@ -64,7 +64,9 @@
        // pubKeys is the list of authorized public keys that signed the data for this
        // oracle. All the public keys in the oracle data should be contained in these
        // public keys. (array of strings)
-       pubKeys: [],
+       pubKeys: [
+        "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
+       ],
 
        // filters describes which oracle data are considered of interest or not for
        // the product (or the risk model).
@@ -135,7 +137,7 @@
        r: 0.016,
 
        // Sigma param (double as number) 
-       sigma: 0.5,
+       sigma: 0.8,
       }
      },
     },
@@ -143,11 +145,11 @@
 
    // Timestamp (Unix time in seconds) when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters (int64 as string) 
-   closingTimestamp: 1657721401,
+   closingTimestamp: 1658846745,
 
    // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
    // constrained by `minEnact` and `maxEnact` network parameters (int64 as string) 
-   enactmentTimestamp: 1657807801,
+   enactmentTimestamp: 1658933145,
   }
  }
 ```
