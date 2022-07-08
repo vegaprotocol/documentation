@@ -3,12 +3,7 @@ title: Overview
 hide_title: false
 sidebar_position: 1
 ---
-Take a look at the tutorials for help with using Vega's APIs. 
-
-## Interacting with markets
-| Topic                                                                 |  Description                                                                                                        |
-| ----------------------------------------------------------------------| -------------------------------------------------------------------------------------------------------- |
-| [Create, amend, cancel liquidity commitment](./providing-liquidity.md)                               | This guide describes how to create a commit liquidity onto a market, as well as how to manage that commitment. |
+Take a look at the tutorials for help with using Vega's APIs.
 
 ## Integrating with Vega
 | Topic                                                                 |  Description                                                                                                        |
