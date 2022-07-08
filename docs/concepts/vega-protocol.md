@@ -8,21 +8,21 @@ Vega supports on-chain proposals for creating markets and assets, and changing n
 Try out proposing markets using [Fairground](https://fairground.wtf), Vega's testnet. 
 :::
 
-## Lifecycle of a governance proposal 
+### Lifecycle of a governance proposal 
 
-## 1. Sense checking proposal idea (off-chain)
+#### 1. Sense checking proposal idea (off-chain)
 Before submitting a proposal, it's recommended that you share an outline of your proposed action informally on the [community forum](https://community.vega.xyz/). You can find out if there is sufficient interest in making a change.
 
 Proposals can be submitted for creating a new market, amending an existing market, changing network parameters, adding an external asset to Vega and making a freeform proposal (for changes that will not change network behaviour).
 
-### 2. Formalising proposal (off-chain)
+#### 2. Formalising proposal (off-chain)
 Once the proposal details are refined, share the detailed proposal on the [community forum](https://community.vega.xyz/). 
 
 Including as much detail as possible gives other community members the opportunity to fully understand your proposal. Include the rationale for the proposal (and IPFS hash for more details), as well as the specifics of the proposed addition/change, as well as the data (JSON or similar) that would be submitted on-chain. Invite debate and discussion to amend the proposal until it reaches a final state, ready to submit.
 
 When formalising the proposal, it is worth ensuring that any fields that are dependent on a range set by network parameters are correctly defined.
 
-### 3. Submitting proposal and telling the community (on-chain and off-chain)
+#### 3. Submitting proposal and telling the community (on-chain and off-chain)
 Tokenholders can submit a governance proposal to the network using the command line or via a script. 
 
 Once a proposal is submitted and accepted, rally the community on the [forum](https://community.vega.xyz/) to vote on the proposal. 
@@ -33,7 +33,7 @@ Proposals are first checked by the wallet, then verified by the nodes before ent
 
 A proposal is immutable once entered.
 
-#### Validating a proposal
+##### Validating a proposal
 * The governance proposal is checked and then accepted by the wallet as a transaction.
 * The validator nodes then check and validate the proposal. This is when the proposal data that defines the minimum duration, minimum time to enactment, minimum participation rate, and required majority are evaluated against the network's requirements. If not specified on the proposal, the required participation rate and majority for success are defined and copied to the proposal.
 * If the above conditions are not met, the proposal will be rejected and will not be available for a vote. **You'll need to fix and re-submit the proposal.**
@@ -42,7 +42,7 @@ A proposal is immutable once entered.
 Read the [creating and submitting proposals guides](../tutorials/proposals/) to understand how tokenholders can submit proposals using the command line. 
 :::
 
-### 4. Voting 
+#### 4. Voting 
 VEGA tokenholders can vote for or against any active proposals, as long as they tokens they want to vote with are associated with their key. It's not necessary to nominate validators with all the tokens, but the tokens must be associated to the Vega key used for voting. 
 
 * The number of tokens associated with the voting key determines how much weight the vote has. 
@@ -51,7 +51,7 @@ VEGA tokenholders can vote for or against any active proposals, as long as they 
 * While the voting period is open, a public key can vote multiple times but only the most recent vote will count at the proposal's close.
 * The Vega key used for voting will need to have more than 0 tokens when a vote is submitted, as well as when votes are counted at the proposal's closing date/time, otherwise the vote is disregarded.
 
-#### How the outcome is calculated 
+##### How the outcome is calculated 
 * The network compares the weight of all valid votes cast as a percentage of the total weight that could vote, to the minimum participation requirement - `participation_rate = SUM (weightings of ALL valid votes cast) / max total weighting possible`
 * The network compares the weight of all 'for' votes, as a percentage of the weight of all votes cast, to the required majority - `for_rate = SUM (weightings of votes cast for) / SUM (weightings of all votes cast)`
 * If the minimum for both is reached, the proposal is enacted. If at least one is not reached, the proposal fails.
@@ -64,7 +64,7 @@ For proposals to change market parameters, there are additional requirements. Th
 Vote on active proposals on the [Vega token dApp](https://token.fairground.wtf/governance).
 :::
 
-### 5. Enacting changes
+#### 5. Enacting changes
 If a proposal receives enough token weight in favour within the enactment period, the change/addition is accepted (except for a freeform proposal), and will be enacted on the enactment date defined in the proposal. If a proposal doesn't require an enactment date and time, then it will be enacted immediately.
 
 Note the enactment date must be at least the minimum enactment period for the proposal type/subtype (specified by a network parameter) after voting closes.
@@ -168,7 +168,7 @@ where `Mu`, `Sigma` and `s` are constants and `dW` represents a Brownian Motion 
 ### Propose changes to a market
 Details on proposing changes to market to come.
 
-### Network parameter governance
+## Network parameter governance
 There are certain parameters within Vega that influence the behaviour of the system and can be changed by on-chain governance. Vega tokenholders can define the optimal network configuration by creating and voting on network parameter proposals.
 
 Network parameters can only be added and removed with Vega core software releases.
