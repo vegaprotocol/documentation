@@ -241,7 +241,9 @@ Once the transaction is verified, the Vega public key submitted in the transacti
 -->
 
 ### Withdrawals
-<!-- Assets used for trading and related activities can only be withdrawn if they are not being held in bond for liquidity or in the margin account for active orders.-->VEGA tokens can only be withdrawn if they are not staked.
+<!-- Assets used for trading and related activities can only be withdrawn if they are not being held in bond for liquidity or in the margin account for active orders.-->
+
+VEGA tokens can only be withdrawn if they are not staked.
 
 When a participant decides they want to remove their assets from the Vega network, they'll need to submit a withdrawal request via a Vega app or the API.
 
