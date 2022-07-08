@@ -67,9 +67,9 @@ Decimal places need to be defined for both order sizes and the market.
 * `decimalPlaces` - sets the smallest price increment on the book
 * `positionDecimalPlaces` - sets how big the smallest order / position on the market can be
 
-Timestamps are required for ending the voting period, as well as enacting the changes.
+Timestamps are required for ending the voting period, as well as enacting the market. The time between closing and enactment also defines how long an opening auction will be. It cannot be longer than 7 days.
 * `closingTimestamp` - Time when voting closes for the proposal. It must be expressed in Unix time in seconds, and must be constrained by `minClose` and `maxClose` network parameters.
-* `enactmentTimestamp` - Time when the proposal will be enacted -- if passed. It must be expressed in Unix time in seconds, and must be between the  `minEnact` and `maxEnact` network parameters.
+* `enactmentTimestamp` - Time and date when the market will be enacted (ready for trading). It must be expressed in Unix time in seconds, and must be between the  `minEnact` and `maxEnact` network parameters.
 
 ### Instrument
 The instrument shape is as follows, see below for a description of each property:
