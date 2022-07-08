@@ -13,7 +13,7 @@ Try out proposing markets using [Fairground](https://fairground.wtf), Vega's tes
 ## 1. Sense checking proposal idea (off-chain)
 Before submitting a proposal, it's recommended that you share an outline of your proposed action informally on the [community forum](https://community.vega.xyz/). You can find out if there is sufficient interest in making a change.
 
-Proposals can be submitted for creating a new market,  an existing market, change network parameters, add an external asset to Vega and make a freeform proposal (for changes that will not change network behaviour).
+Proposals can be submitted for creating a new market, amending an existing market, changing network parameters, adding an external asset to Vega and making a freeform proposal (for changes that will not change network behaviour).
 
 ### 2. Formalising proposal (off-chain)
 Once the proposal details are refined, share the detailed proposal on the [community forum](https://community.vega.xyz/). 
@@ -61,7 +61,7 @@ For proposals to change market parameters, there are additional requirements. Th
 * The rate of 'for' votes cast by liquidity providers, calculated as the sum of all who voted 'for', divided by the LP participation rate - `LP for rate = SUM (all who voted for) / LP participation rate`
 
 :::info
-Vote on active proposals on the [Vega token dApp](https://token.vega.xyz/governance).
+Vote on active proposals on the [Vega token dApp](https://token.fairground.wtf/governance).
 :::
 
 ### 5. Enacting changes
