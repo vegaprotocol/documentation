@@ -22,20 +22,20 @@ Including as much detail as possible gives other community members the opportuni
 
 When formalising the proposal, it is worth ensuring that any fields that are dependent on a range set by network parameters are correctly defined.
 
-### 3. Submit proposal and tell the community (on-chain and off-chain)
+### 3. Submitting proposal and telling the community (on-chain and off-chain)
 Tokenholders can submit a governance proposal to the network using the command line or via a script. 
 
 Once a proposal is submitted and accepted, rally the community on the [forum](https://community.vega.xyz/) to vote on the proposal. 
 
-The Vega public key of the proposer must have enough VEGA staked to submit a proposal. For a market change proposal, the proposer must also have enough equity-like stake in the market from their liquidity commitment.
+The Vega public key of the proposer must have enough VEGA staked to submit a proposal. For a market change proposal, the proposer must also have enough equity-like share in the market from their liquidity commitment.
 
-Proposals are validated by the nodes before entering into the voting period you set. A proposal must have all of the relevant information, in the correct format, and in some cases within the accepted range - otherwise it will be rejected immediately. 
+Proposals are first checked by the wallet, then verified by the nodes before entering into the voting period you set. A proposal must have all of the relevant information, in the correct format, and in some cases within the accepted range - otherwise it will be rejected immediately. 
 
 A proposal is immutable once entered.
 
 #### Validating a proposal
-* The governance proposal is accepted by the validator nodes as a transaction.
-* The nodes then validate the proposal. This is when the proposal data that defines the minimum duration, minimum time to enactment, minimum participation rate, and required majority are evaluated against the network's requirements. If not specified on the proposal, the required participation rate and majority for success are defined and copied to the proposal.
+* The governance proposal is checked and then accepted by the wallet as a transaction.
+* The validator nodes then check and validate the proposal. This is when the proposal data that defines the minimum duration, minimum time to enactment, minimum participation rate, and required majority are evaluated against the network's requirements. If not specified on the proposal, the required participation rate and majority for success are defined and copied to the proposal.
 * If the above conditions are not met, the proposal will be rejected and will not be available for a vote. **You'll need to fix and re-submit the proposal.**
 
 :::info 
@@ -52,9 +52,13 @@ VEGA tokenholders can vote for or against any active proposals, as long as they 
 * The Vega key used for voting will need to have more than 0 tokens when a vote is submitted, as well as when votes are counted at the proposal's closing date/time, otherwise the vote is disregarded.
 
 #### How the outcome is calculated 
-* The network compares the total number of votes cast as a percentage of the number eligible to be cast, to the minimum participation requirement.
-* The network compares the number of 'for' votes, as a percentage of all votes cast (maximum one vote counted per party), to the required majority.
-* If the minimum for either is reached, the proposal is enacted. If neither is reached, the proposal fails. 
+* The network compares the weight of all valid votes cast as a percentage of the total weight that could vote, to the minimum participation requirement - `participation_rate = SUM (weightings of ALL valid votes cast) / max total weighting possible`
+* The network compares the weight of all 'for' votes, as a percentage of the weight of all votes cast, to the required majority - `for_rate = SUM (weightings of votes cast for) / SUM (weightings of all votes cast)`
+* If the minimum for both is reached, the proposal is enacted. If at least one is not reached, the proposal fails.
+
+For proposals to change market parameters, there are additional requirements. The network will also calculate:
+* The LP participation rate, which is the sum of the equity like share of all LPs who cast a vote - `LP participation rate = SUM (equity like share of all LPs who cast a vote)`
+* The rate of 'for' votes cast by liquidity providers, calculated as the sum of all who voted 'for', divided by the LP participation rate - `LP for rate = SUM (all who voted for) / LP participation rate`
 
 :::info
 Vote on active proposals on the [Vega token dApp](https://token.vega.xyz/governance).
@@ -65,9 +69,12 @@ If a proposal receives enough token weight in favour within the enactment period
 
 Note the enactment date must be at least the minimum enactment period for the proposal type/subtype (specified by a network parameter) after voting closes.
 
-<!--## Asset governance [WIP]
+## Asset governance
+Details on asset governance to come. 
 
-### New asset proposal [WIP]-->
+<!--
+### New asset proposal [WIP]
+-->
 
 ## Market governance
 Markets are proposed and voted into existence by Vega tokenholders. The parameters for a market all need to be defined in the proposal.
@@ -156,9 +163,10 @@ where `Mu`, `Sigma` and `s` are constants and `dW` represents a Brownian Motion 
 
 <!--### Changing models [WIP]
 
-### Thresholds and rules [WIP]
+### Thresholds and rules [WIP]-->
 
-### Propose changes to a market [WIP]-->
+### Propose changes to a market
+Details on proposing changes to market to come.
 
 ### Network parameter governance
 There are certain parameters within Vega that influence the behaviour of the system and can be changed by on-chain governance. Vega tokenholders can define the optimal network configuration by creating and voting on network parameter proposals.
