@@ -107,7 +107,30 @@ The Vega Wallet desktop app does not yet have the full functionality of the CLI 
 To do any of the following, you will need to use the **[CLI wallet](../../cli-wallet)** app:
 * Customise key details
 * Isolate keys
-* Build and send commands 
+* Build and send commands
+
+### Transactions are not being sent and wallet app crashes
+#### Problem
+When trying to send transactions using your wallet, whether directly or through a Vega dApp, the transactions fail and the wallet crashes.
+
+#### Solution
+It's possible the network configuration your app is using is looking for nodes that are offline/do not exist.
+
+You can update your network config in 2 ways:
+1. Add a new network and use the network URL listed in the [Manage Networks page](../../cli-wallet/latest/guides/manage-networks#network-urls). 
+  * Click on the arrow in the bottom panel of the wallet app
+  * Click on Manage Networks
+  * Under Network, click Other
+  * Fill in the URL that you want, and choose a name 
+  * If using the same name as the existing network, click on the Overwrite box
+  * Restart the wallet app, as well as any dApps you're using the wallet with
+2. If you know which nodes you want to remove, edit the existing network configuration
+  * Click on the arrow in the bottom panel of the wallet app
+  * Click on Manage Networks
+  * Click Edit next to the network you want to update
+  * Scroll down to the node(s) and remove the outdated ones
+  * Click Submit at the bottom of the screen
+  * Restart the wallet app, as well as any dApps you're using the wallet with
 
 ### 'Wallet already exists' error when recovering wallet
 #### Problem
