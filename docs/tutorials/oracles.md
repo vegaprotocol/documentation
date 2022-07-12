@@ -254,16 +254,15 @@ The Oracle Specification that would bind to the `moonwalkers` property would be 
 ```
 
 ## Terminating a market using oracles
-to do
+The second data source a market needs is for signalling when the market should terminate.
 
 ## Built-in oracle
-Vega provides a timestamp source, which is useful for terminating a market at a set date. The timestamp source provides a Unix timestamp of the Vega time, which is to say the time agreed via consensus.
+Vega provides a timestamp source, which is useful for terminating a market at a set date. `vegaprotocol.builtin.timestamp` provides a Unix timestamp of the Vega time, which is to say the time agreed via consensus.
 
+As the name implies, built in oracle data is generated inside Vega, and cannot be submitted by other keys.
 
 ### Trading Termination
-To configure the time at which you want to terminate the market, you can use a built in time source rather than relying on a timestamp in the oracle data. It's possible to settle on other properties - for instance checking if a `boolean` is `true` - but time is a good starting point.
-
-The following oracle specification, combined with the spec binding above, would make a market settle at the given timestamp.
+It's possible to settle on any oracle field - for instance checking if a `boolean` is `true` - but time is a good starting point, and the [built-in time oracle](#built-in-oracle) can be used for exactly that:
 
 ```javascript
 "oracleSpecForTradingTermination": {
@@ -281,5 +280,7 @@ The following oracle specification, combined with the spec binding above, would 
     }]
 }
 ```
+
+This spec would make the market cease trading when the builtin time oracle posted a Vega timestamp update that was on or after Thu Mar 31 2022 at 00:00:00.
 
 
