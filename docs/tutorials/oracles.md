@@ -2,7 +2,7 @@
 # Oracles
 Oracles are a source of data submitted to settle and terminate markets. All markets need a data source.
 
-The Vega network accepts three sources for oracle data: Open Oracle, JSON data, built-in data that is provided by the network. Not all oracles provide the same type of data.
+The Vega network accepts three sources for oracle data: Open Oracle, JSON data and an internal timestamp source that is provided by the network. Not all oracles provide the same type of data.
 
 ## Who can submit oracle data
 Any Vega keypair can submit oracle data to the chain. In the configuration for a market, an oracle specification field dictates which oracle data feeds it is interested in. In effect, it works as a filter. This specification means that the creator of an instrument for a market will choose in advance a price source, and which data fields the market requires to settle and terminate.
@@ -20,7 +20,7 @@ Below, find instructions on how to submit open oracle data. Anyone can submit Op
 
 ### API notes
 - When looking at market data using the API, the `pubKeys` field in the response for Open Oracle data submissions is set to the Open Oracle signing key
-- ?? 
+- ??
 
 ### 1. Get an Open Oracle message
 
@@ -59,8 +59,8 @@ vegawallet command send \
 
 You will be able to see this data by querying the API for `OracleData`. In the API response you will be able to check which markets had filters that matched this data.
 
-### Querying an existing oracle spec
-The following GraphQL query shows previous oracle data submissions, which can be useful for confirming that an oracle submission was sucessful, and/or determining the fields that a market's oracle spec requires. 
+### Querying the data
+The following GraphQL query shows previous oracle data submissions, which can be useful for confirming that an oracle submission was sucessful, and/or determining the fields that a market's oracle spec requires.
 
 ```graphql
 {
@@ -76,12 +76,12 @@ The following GraphQL query shows previous oracle data submissions, which can be
 }
 ```
 
-Assuming someone submitted Open Oracle data, the result would be something like this:
+The data we submitted in step three will be returned as follows:
 ```javascript
 {
   "data": {
     "oracleData": [
-      // This is the Open Oracle data message 
+      // This is the Open Oracle data message
       {
         "pubKeys": [
           // This is the Ethereum public key of the Coinbase oracle, the original signer of the Open Oracle message
@@ -105,17 +105,16 @@ Assuming someone submitted Open Oracle data, the result would be something like 
   }
 }
 ```
-### Configuring the instrument
+### Using Open Oracle data to settle a market
 When configuring a market's instrument, you will need to select the data from one of the two sources. This is done by:
 1. Defining an oracle spec binding for settlement price
 2. Configuring an oracle spec for settlement price values
 3. Defining an oracle spec binding for trading termination
-4. configuring an oracle spec for trading termination values
+4. Configuring an oracle spec for trading termination values
 
 The **binding** tells the market which field contains the value. The **spec** defines which public keys to watch for data from, and which values to pass through to the binding. For now this will focus on using the oracles for settlement price - both examples below use a Vega time oracle to terminate the market.
 
-### Open Oracle spec for settlement
-For the binding, use the `name` field of the data. In the case of our example above, this would be `"prices.BTC.value"`. 
+For the binding, use the `name` field of the data. In the case of our example above, this would be `"prices.BTC.value"`.
 
 ```javascript
 "oracleSpecBinding": {
@@ -174,7 +173,7 @@ eyJtb29ud2Fsa2VycyI6IjEyIn0K
 When submitting the `OracleDataSubmission`, make sure to specify the `source` field as `ORACLE_SOURCE_JSON`.
 
 ```bash title="Linux/OSX command line example"
-vegawallet command send \ 
+vegawallet command send \
     --wallet oracle-wallet \
     --pubkey 123abc \
     --network fairground \
@@ -182,7 +181,7 @@ vegawallet command send \
 ```
 
 ### Querying an existing oracle spec
-The following GraphQL query shows previous oracle data submissions, which can be useful for confirming that an oracle submission was sucessful, and/or determining the fields that a market's oracle spec requires. 
+The following GraphQL query shows previous oracle data submissions, which can be useful for confirming that an oracle submission was sucessful, and/or determining the fields that a market's oracle spec requires.
 
 ```graphql
 {
@@ -204,7 +203,7 @@ Assuming someone submitted JSON oracle data, the result would be something like 
  {
   "data": {
     "oracleData": [
-      // This is the JSON Oracle data message 
+      // This is the JSON Oracle data message
       {
         "pubKeys": [
           // For JSON Oracles, the public key is the vega key that submitted the message
@@ -227,7 +226,7 @@ Assuming someone submitted JSON oracle data, the result would be something like 
 ### JSON Oracle spec for settlement
 Creating a market based on an oracle... add more detail
 
-For the binding, use the `name` field of the data. In the case of our example above, this would be `"moonwalkers"`.  
+For the binding, use the `name` field of the data. In the case of our example above, this would be `"moonwalkers"`.
 
 ```javascript
 "oracleSpecBinding": {
@@ -254,10 +253,12 @@ The Oracle Specification that would bind to the `moonwalkers` property would be 
     }
 ```
 
-## Writing an oracle spec to match existing data
-to do 
+## Terminating a market using oracles
+to do
 
 ## Built-in oracle
+Vega provides a timestamp source, which is useful for terminating a market at a set date. The timestamp source provides a Unix timestamp of the Vega time, which is to say the time agreed via consensus.
+
 
 ### Trading Termination
 To configure the time at which you want to terminate the market, you can use a built in time source rather than relying on a timestamp in the oracle data. It's possible to settle on other properties - for instance checking if a `boolean` is `true` - but time is a good starting point.
@@ -280,4 +281,5 @@ The following oracle specification, combined with the spec binding above, would 
     }]
 }
 ```
+
 
