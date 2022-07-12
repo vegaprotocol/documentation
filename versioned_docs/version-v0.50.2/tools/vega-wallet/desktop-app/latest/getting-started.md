@@ -122,13 +122,15 @@ You can update your network config in 2 ways:
   * Click on Manage Networks
   * Under Network, click Other
   * Fill in the URL that you want, and choose a name 
-  * If using the same name as the existing network, click on the Overwrite box 
+  * If using the same name as the existing network, click on the Overwrite box
+  * Restart the wallet app, as well as any dApps you're using the wallet with
 2. If you know which nodes you want to remove, edit the existing network configuration
   * Click on the arrow in the bottom panel of the wallet app
   * Click on Manage Networks
   * Click Edit next to the network you want to update
   * Scroll down to the node(s) and remove the outdated ones
   * Click Submit at the bottom of the screen
+  * Restart the wallet app, as well as any dApps you're using the wallet with
 
 ### 'Wallet already exists' error when recovering wallet
 #### Problem
