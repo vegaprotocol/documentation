@@ -7,6 +7,7 @@ keywords:
 - governance
 - newMarket
 ---
+import NetworkParameter from '@site/src/components/NetworkParameter';
 
 import NewMarketJSONInstrument from './_generated-proposals/_newMarket_json_instrument.md';
 import NewMarketJSONLiquidityMonitoring from './_generated-proposals/_newMarket_json_liqparams.md';
@@ -30,6 +31,10 @@ This page provides a tutorial for proposing a new market.
 3. To submit a proposal you will need:
    * At least 1 (ropsten) Vega token, associated with the public key you're using to propose the market, and staked to a validator.
    * Enough of the settlement asset (testnet) available to fulfil your liquidity commitment, if you are submitting a liquidity commitment.
+
+Note that to create a market proposal you need <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens" />
+, while to vote you need <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minVoterBalance" suffix="tokens" hideName={true}/>.
+
 
 ### Submit using command line
 1. To create your own proposal and submit it using the command line, copy the command line example into a text editor and include the values you want for the market.
