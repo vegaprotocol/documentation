@@ -4,19 +4,22 @@ Governance allows the Vega network to arrive at on-chain decisions, where tokenh
 
 Vega supports on-chain proposals for creating markets and assets, and changing network parameters, markets and assets. Vega also supports freeform proposals for community suggestions that will not be enacted on-chain. 
 
+Taking part in governance is a way for tokenholders and community members to contribute to improve the network, and to add value for other network participants.
+
 :::info 
 Try out proposing markets using [Fairground](https://fairground.wtf), Vega's testnet. 
 :::
 
 ### Lifecycle of a governance proposal 
+Before proposing an addition or change to the network, it's worth considering what it contributes to the network, and if it would have enough support to pass a governance vote. You'll have a better chance of positively contributing to the network if you confirm there is support off-chain before submitting a proposal.
 
 #### 1. Sense checking proposal idea (off-chain)
-Before submitting a proposal, it's recommended that you share an outline of your proposed action informally on the [community forum](https://community.vega.xyz/). You can find out if there is sufficient interest in making a change.
+Before submitting a proposal, it's recommended that you share an outline of your proposed action informally in a new topic on the [community forum](https://community.vega.xyz/) Governance section, with a "sense-check" tag. You can find out if there is sufficient interest in making a change.
 
 Proposals can be submitted for creating a new market, amending an existing market, changing network parameters, adding an external asset to Vega and making a freeform proposal (for changes that will not change network behaviour).
 
 #### 2. Formalising proposal (off-chain)
-Once the proposal details are refined, share the detailed proposal on the [community forum](https://community.vega.xyz/). 
+Once the proposal details are refined, share the detailed proposal in the same topic you created for your sense check, and change the tag to "formalise". 
 
 Including as much detail as possible gives other community members the opportunity to fully understand your proposal. Include the rationale for the proposal (and IPFS hash for more details), as well as the specifics of the proposed addition/change, as well as the data (JSON or similar) that would be submitted on-chain. Invite debate and discussion to amend the proposal until it reaches a final state, ready to submit.
 
@@ -25,9 +28,9 @@ When formalising the proposal, it is worth ensuring that any fields that are dep
 #### 3. Submitting proposal and telling the community (on-chain and off-chain)
 Tokenholders can submit a governance proposal to the network using the command line or via a script. 
 
-Once a proposal is submitted and accepted, rally the community on the [forum](https://community.vega.xyz/) to vote on the proposal. 
+Once a proposal is submitted and accepted, rally the community to vote on the proposal by announcing it on the [forum](https://community.vega.xyz/), [Discord](https://vega.xyz/discord), and through your own networks to vote on the proposal. 
 
-The Vega public key of the proposer must have enough VEGA staked to submit a proposal. For a market change proposal, the proposer must also have enough equity-like share in the market from their liquidity commitment.
+The Vega public key of the proposer must have enough VEGA staked to submit a proposal. For a market change proposal, the proposer must also have enough equity-like share in the market from their liquidity commitment, which is defined in the network parameter `governance.proposal.updateMarket.minProposerEquityLikeShare`.
 
 Proposals are first checked by the wallet, then verified by the nodes before entering into the voting period you set. A proposal must have all of the relevant information, in the correct format, and in some cases within the accepted range - otherwise it will be rejected immediately. 
 
@@ -35,7 +38,8 @@ A proposal is immutable once entered.
 
 ##### Validating a proposal
 * The governance proposal is checked and then accepted by the wallet as a transaction.
-* The validator nodes then check and validate the proposal. This is when the proposal data that defines the minimum duration, minimum time to enactment, minimum participation rate, and required majority are evaluated against the network's requirements. If not specified on the proposal, the required participation rate and majority for success are defined and copied to the proposal.
+* The validator nodes then check and validate the proposal. This is when the proposal data that defines the minimum duration, minimum time to enactment, minimum participation rate, and required majority are evaluated against the network's requirements - based on network parameters, which are different depending the type of proposal.
+* If not specified on the proposal, the required participation rate and majority for success are defined and copied to the proposal.
 * If the above conditions are not met, the proposal will be rejected and will not be available for a vote. **You'll need to fix and re-submit the proposal.**
 
 :::info 
@@ -56,18 +60,20 @@ VEGA tokenholders can vote for or against any active proposals, as long as they 
 * The network compares the weight of all 'for' votes, as a percentage of the weight of all votes cast, to the required majority - `for_rate = SUM (weightings of votes cast for) / SUM (weightings of all votes cast)`
 * If the minimum for both is reached, the proposal is enacted. If at least one is not reached, the proposal fails.
 
-For proposals to change market parameters, there are additional requirements. The network will also calculate:
+For proposals to change market parameters, there are additional requirements. The market's liquidity providers can vote with their equity like share without requiring tokenholder participation. However, if tokenholders vote and participation and majority requirements for this vote are met, then the tokenholders' votes can overrule the liquidity providers' votes.
+
+The network will also calculate:
 * The LP participation rate, which is the sum of the equity like share of all LPs who cast a vote - `LP participation rate = SUM (equity like share of all LPs who cast a vote)`
 * The rate of 'for' votes cast by liquidity providers, calculated as the sum of all who voted 'for', divided by the LP participation rate - `LP for rate = SUM (all who voted for) / LP participation rate`
-
+    
 :::info
 Vote on active proposals on the [Vega token dApp](https://token.fairground.wtf/governance).
 :::
 
 #### 5. Enacting changes
-If a proposal receives enough token weight in favour within the enactment period, the change/addition is accepted (except for a freeform proposal), and will be enacted on the enactment date defined in the proposal. If a proposal doesn't require an enactment date and time, then it will be enacted immediately.
+If a proposal receives enough token weight in favour within the enactment period, the change/addition is accepted (except for a freeform proposal), and will be enacted on the enactment date defined in the proposal.
 
-Note the enactment date must be at least the minimum enactment period for the proposal type/subtype (specified by a network parameter) after voting closes.
+Note the enactment date must be at least the minimum enactment period for the proposal type/subtype (specified by a network parameter for each proposal type) after voting closes.
 
 ## Asset governance
 Details on asset governance to come. 
@@ -79,7 +85,7 @@ Details on asset governance to come.
 ## Market governance
 Markets are proposed and voted into existence by Vega tokenholders. The parameters for a market all need to be defined in the proposal.
 
-Some market parameters can also be changed. They can only be proposed by a liquidity provider with enough equity-like stake in the market, and need to be voted for by a sufficient number of tokenholders and/or liquidity providers.
+Some market parameters can also be changed. They can only be proposed by a liquidity provider with enough equity-like share in the market, and need to be voted for by a sufficient number of tokenholders and/or liquidity providers.
 
 When creating a market governance proposal, whether it is for a new market or to change parameters for an existing market, it's recommended that you sense check the proposal and share the final details with the tokenholder community before proposing, so that you can garner support and make any necessary amends. 
 
@@ -89,15 +95,11 @@ Read more:
 * [Update market proposal](../tutorials/proposals/update-market-proposal.md): Guide to submitting a proposal to change a market using the command line
 
 ### Propose a new market
-Tokenholders can propose new markets, which then need to be voted on by other tokenholders. If the market proposal gets a majority of tokeholder support, then it will be enacted. The required majority is defined by the network parameter `governance.proposal.market.requiredMajority`. 
-
-:::info
-A liquidity commitment is optional when proposing a market, but a market will not enter into continuous trading until its liquidity needs are met.
-:::
+Tokenholders can propose new markets, which then need to be voted on by other tokenholders. If the market proposal gets a majority of tokeholder support, then it will be enacted. The required majority is defined by the network parameter `governance.proposal.market.requiredMajority`.
 
 To propose a market, you'll need to provide the details required for the market to begin trading right away. While some of the fields are free-text, others are constrained by a range set through network parameters, to ensure that the values provided are fit for purpose.
 
-Required fields include: 
+Required fields include:
 * Instrument details, including a human-readable name, an understandable shortcode for the market, the type of product (futures)
 * Risk model parameters
 * Product specifics including the settlement asset and quote name
@@ -106,9 +108,8 @@ Required fields include:
 * Liquidity monitoring parameters, including the target stake parameters, triggering ratio and auction extension
 
 Optional fields include: 
-* Metadata so that people can easily interpret the market's details
+* Metadata so that people can easily interpret the market's details - while this is optional, it's highly recommended that you include metadata for the market
 * Price monitoring parameters, including the triggers covering the horizon, probability and auction extension time. If left blank these parameters will default to the values set in the network parameters
-* Liquidity commitment: the amount committed, proposed fee level, and the buy and sell order shapes. Note: Once a market is proposed, it can accept liquidity commitments from any party
 
 Read more:
 * [Risk models and parameters](#risk-models-and-parameters)
@@ -123,7 +124,7 @@ Read more:
 ### Risk models and parameters
 When proposing a market, the market proposer will need to choose the risk parameters associated with the risk model that's appropriate for the instrument. The risk model is essential for calculating margins on the market. 
 
-The first product available to create is cash-settled futures, which uses a log-normal risk model. While the model is pre-defined, you'll need to choose the individual parameters.
+The first product available to create is cash-settled futures, which use a [log-normal risk model](#log-normal-risk-model). While the model is pre-defined, you'll need to choose the individual parameters.
 
 You should choose parameters that ensure the risk model adequately represents the dynamics of the underlying instrument, and that the resulting margins strike the right balance between prudence and capital efficiency.
 
@@ -131,12 +132,12 @@ Below are the risk parameters, the accepted values for each parameter and sugges
 
 Model-independent parameters used in margin calculation are:
 
-* `Risk aversion lambda` - probability level used in [Expected Shortfall](https://vega.xyz/papers/margins-and-credit-risk.pdf#page=7) calculation when obtaining `Risk Factor Long` and `Risk Factor Short`:
-  * accepted values: **strictly greater than 0 and strictly smaller than 1**,
-  * suggested value: `0.001` - indicates the probability that the position value drops by more than its current value at risk at level lambda.
-* `Tau` - projection horizon measured as a year fraction used in Expected Shortfall calculation when obtaining `Risk Factor Long` and `Risk Factor Short`:
+* `Risk aversion lambda` - probability confidence level used in [expected shortfall](https://vega.xyz/papers/margins-and-credit-risk.pdf#page=7) calculation when obtaining the maintenance margin level:
+  * accepted values: **strictly greater than 0 and strictly smaller than 1**
+  * suggested value: `0.001` - indicates the probability that the position value drops by more than its current value at risk at level lambda
+* `Tau` - projection horizon measured as a year fraction used in the expected shortfall calculation to obtain the maintenance margin:
   * accepted values: **any strictly non-negative real number**,
-  * suggested value: `0.000114077116130504` - corresponds to one hour expressed as year fraction.
+  * suggested value: `0.000114077116130504` - corresponds to one hour expressed as year fraction
 * `Risk free rate` - annualised growth rate of the risk-free asset, it's used for discounting of future cash flows:
   * accepted values: **any real number**,
   * suggested value: `0`.
@@ -148,18 +149,18 @@ The remaining, model specific parameters are covered below.
 :::
 
 #### Log-normal risk model
-The log-normal model assumes that the price of the underlying asset follows the process specified by the stochastic differential equation:
-
-dS<sub>t</sub> = S<sub>t</sub>(Mu*dt+Sigma*dW<sub>t</sub>), S(t) = s,
-
-where `Mu`, `Sigma` and `s` are constants and `dW` represents a Brownian Motion increment. For any time in `t` in the interval `(0,T]` the model implies a distribution where the natural logarithm of price is normally distributed (hence the name Log-Normal).  
-
-* `Mu` - annualised growth rate of the underlying asset:
-  * accepted values: **any real number**,
-  * suggested value: `0`.
+The log-normal model assumes that the logarithm of the price increments are normally distributed. The main model parameter is   
 * `Volatility (Sigma)` - annualised volatility of the underlying asset:
   * accepted values: **any strictly non-negative real number**,
-  * suggested value: asset dependent, should be derived from the historical time-series of prices.
+  * suggested value: asset dependent, should be derived from the historical time-series of prices, and a typical value would be 0.8 = 80%
+
+Another paramerer is
+* `Mu` - annualised growth rate of the underlying asset:
+  * accepted values: **any real number**,
+  * suggested value: in almost all situations `0` is the value to use
+
+Further reading: 
+https://vega.xyz/papers/margins-and-credit-risk.pdf - update link on website to published location 
 
 <!--### Changing models [WIP]
 
@@ -167,6 +168,11 @@ where `Mu`, `Sigma` and `s` are constants and `dW` represents a Brownian Motion 
 
 ### Propose changes to a market
 Details on proposing changes to market to come.
+
+<!--  More voting details for market change: 
+1. The tokenholder vote meets or exceeds the minimum set by `governance.proposal.updateMarketParam.requiredParticipation` and the votes in favour are greater than the amount set by `governance.proposal.updateMarketParam.requiredMajority` (in this case the LPs were overridden by governance token holders)
+  2. The governance tokenholder vote does not reach participation threshold, but the liquidity providers' votes do (and has enough votes in favour). The participation rate must be greater than/equal `governance.proposal.updateMarketParam.requiredParticipation`, and the liquidity providers' participation rate must be greater than/equal to `governance.proposal.updateMarketParam.requiredParticipationLP`, and the liquidity providers' votes in favour is greater than/equal to `governance.proposal.updateMarketParam.requiredMajorityLP` -->
+
 
 ## Network parameter governance
 There are certain parameters within Vega that influence the behaviour of the system and can be changed by on-chain governance. Vega tokenholders can define the optimal network configuration by creating and voting on network parameter proposals.
@@ -207,13 +213,13 @@ A proposal to change the `feeAmtValidators.MinimumProposalPeriod` would need to 
 Assets used for trading, paying fees, funding rewards, and providing liquidity need to be deposited using a bridge contract, and can be withdrawn back into an Ethereum wallet if they are not being used for margin or liquidity commitment.
 
 ### Deposits
-The first assets that will be available for interacting with markets on Vega will be ERC20 assets. They will need to be deposited into the ERC20 bridge contract. The funds in that smart contract will then be made available to the user's chosen Vega public key.
+The first assets that will be available for interacting with markets on Vega will be ERC20 assets. An asset's ERC20 token contract needs to be available on the bridge before it can be used. They will then be deposited into the ERC20 bridge contract. The funds in that smart contract will then be made available to the user's chosen Vega public key.
 
 :::info 
 Associated and deposited are not equivalent, as deposited tokens are held within the ERC20 bridge contract, and associated tokens stay in an Ethereum wallet or in the vesting contract.
 :::
 
-To acquire an asset balance on the Vega network, a participant must first deposit an asset using the relevant Vega asset bridge. Every asset class supported by and voted into Vega will have a bridge. 
+To acquire an asset balance on the Vega network, a participant must first deposit an asset using the relevant Vega asset bridge. Every type of asset supported by and voted into Vega will have a bridge. 
 
 Due to variations in asset infrastructure, each bridge will have a different way to make a deposit.
 
