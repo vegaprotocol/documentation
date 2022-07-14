@@ -84,6 +84,9 @@ find . -type f -name '*.mdx' -exec sed -i -E 's/hide_title: true/hide_title: fal
 echo "GRPC: Fix sidebar links"
 sed -i -E 's/"vega\//"grpc\/vega\//g' docs/grpc/sidebar.js
 
+./scripts/version-switch.sh
 yarn run build
 
 rm schema.graphql
+
+
