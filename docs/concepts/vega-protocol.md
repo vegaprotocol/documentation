@@ -4,14 +4,14 @@ Governance allows the Vega network to arrive at on-chain decisions, where tokenh
 
 Vega supports on-chain proposals for creating markets and assets, and changing network parameters, markets and assets. Vega also supports freeform proposals for community suggestions that will not be enacted on-chain. 
 
-Taking part in governance is a way for tokenholders and community members to contribute to improve the network, and to add value for other network participants.
+Taking part in governance by voting, or by proposing additions/changes with community support, is a way for tokenholders and community members to contribute to improve the network, and to add value for other network participants.
 
 :::info 
 Try out proposing markets using [Fairground](https://fairground.wtf), Vega's testnet. 
 :::
 
 ### Lifecycle of a governance proposal 
-Before proposing an addition or change to the network, it's worth considering what it contributes to the network, and if it would have enough support to pass a governance vote. You'll have a better chance of positively contributing to the network if you confirm there is support off-chain before submitting a proposal.
+Proposing an addition or change to the network requires community support. It's worth considering what it contributes to the network, and if it would have enough support to pass a governance vote. You'll have a better chance of positively contributing to the network if you confirm there is support off-chain before submitting a proposal.
 
 #### 1. Sense checking proposal idea (off-chain)
 Before submitting a proposal, it's recommended that you share an outline of your proposed action informally in a new topic on the [community forum](https://community.vega.xyz/) Governance section, with a "sense-check" tag. You can find out if there is sufficient interest in making a change.
@@ -30,26 +30,26 @@ Tokenholders can submit a governance proposal to the network using the command l
 
 Once a proposal is submitted and accepted, rally the community to vote on the proposal by announcing it on the [forum](https://community.vega.xyz/), [Discord](https://vega.xyz/discord), and through your own networks to vote on the proposal. 
 
-The Vega public key of the proposer must have enough VEGA staked to submit a proposal. For a market change proposal, the proposer must also have enough equity-like share in the market from their liquidity commitment, which is defined in the network parameter `governance.proposal.updateMarket.minProposerEquityLikeShare`.
+The Vega public key of the proposer must have enough VEGA staked to submit a proposal. For a 'market parameter change' proposal, the proposer must also have enough equity-like share in the market from their liquidity commitment, which is defined in the network parameter `governance.proposal.updateMarket.minProposerEquityLikeShare`.
 
 Proposals are first checked by the wallet, then verified by the nodes before entering into the voting period you set. A proposal must have all of the relevant information, in the correct format, and in some cases within the accepted range - otherwise it will be rejected immediately. 
 
 A proposal is immutable once entered.
 
-##### Validating a proposal
-* The governance proposal is checked and then accepted by the wallet as a transaction.
-* The validator nodes then check and validate the proposal. This is when the proposal data that defines the minimum duration, minimum time to enactment, minimum participation rate, and required majority are evaluated against the network's requirements - based on network parameters, which are different depending the type of proposal.
-* If not specified on the proposal, the required participation rate and majority for success are defined and copied to the proposal.
-* If the above conditions are not met, the proposal will be rejected and will not be available for a vote. **You'll need to fix and re-submit the proposal.**
-
 :::info 
-Read the [creating and submitting proposals guides](../tutorials/proposals/) to understand how tokenholders can submit proposals using the command line. 
+Read the [creating and submitting proposals guides](../tutorials/proposals/) to see what information needs to be in a proposal, and how to submit them using the command line. 
 :::
 
-#### 4. Voting 
-VEGA tokenholders can vote for or against any active proposals, as long as they tokens they want to vote with are associated with their key. It's not necessary to nominate validators with all the tokens, but the tokens must be associated to the Vega key used for voting. 
+##### Validating a proposal
+* The governance proposal is checked and then accepted by the wallet as a transaction.
+* The validator nodes then check and validate the proposal. This is when the proposal data that defines the minimum duration, minimum time to enactment, minimum participation rate, and required majority are evaluated against the network's requirements, defined in [network parameters](https://explorer.fairground.wtf), which are different depending the type of proposal.
+* If not specified on the proposal, the required participation rate and majority for success are defined and copied to the proposal. You can find them under the [network parameters](https://explorer.fairground.wtf/network-parameters), and they are specific to each proposal type.
+* If the above conditions are not met, the proposal will be rejected and will not be available for a vote. **You'll need to fix and re-submit the proposal.**
 
-* The number of tokens associated with the voting key determines how much weight the vote has. 
+#### 4. Voting 
+VEGA tokenholders can vote for or against any active proposals, as long as they tokens they want to vote with are associated with their key. It's not necessary to nominate validators, but the tokens must be associated to the Vega key used for voting. 
+
+* The number of tokens associated with the voting key determines how much weight the vote has (and for 'market parameter change' proposals, liquidity providers' market share is also taken into account). 
 * Each Vega public key with a non-zero token balance gets one vote, and the key votes with the full weight of all the tokens that key has staked.
 * Tokens used for voting are not locked or transferred: they can be used for staking as well as for voting on any/all active proposals.
 * While the voting period is open, a public key can vote multiple times but only the most recent vote will count at the proposal's close.
@@ -97,6 +97,8 @@ Read more:
 ### Propose a new market
 Tokenholders can propose new markets, which then need to be voted on by other tokenholders. If the market proposal gets a majority of tokeholder support, then it will be enacted. The required majority is defined by the network parameter `governance.proposal.market.requiredMajority`.
 
+A liquidity commitment is optional when proposing a market, but a market will not enter into continuous trading until its liquidity needs are met.
+
 To propose a market, you'll need to provide the details required for the market to begin trading right away. While some of the fields are free-text, others are constrained by a range set through network parameters, to ensure that the values provided are fit for purpose.
 
 Required fields include:
@@ -109,6 +111,7 @@ Required fields include:
 
 Optional fields include: 
 * Metadata so that people can easily interpret the market's details - while this is optional, it's highly recommended that you include metadata for the market
+* Liquidity commitment: the amount committed, proposed fee level, and the buy and sell order shapes. Note: Once a market is proposed, it can accept liquidity commitments from any party
 * Price monitoring parameters, including the triggers covering the horizon, probability and auction extension time. If left blank these parameters will default to the values set in the network parameters
 
 Read more:
@@ -124,7 +127,7 @@ Read more:
 ### Risk models and parameters
 When proposing a market, the market proposer will need to choose the risk parameters associated with the risk model that's appropriate for the instrument. The risk model is essential for calculating margins on the market. 
 
-The first product available to create is cash-settled futures, which use a [log-normal risk model](#log-normal-risk-model). While the model is pre-defined, you'll need to choose the individual parameters.
+The [log-normal risk model](#log-normal-risk-model) is the only one currently supported. While the model is pre-defined, you'll need to choose the individual parameters.
 
 You should choose parameters that ensure the risk model adequately represents the dynamics of the underlying instrument, and that the resulting margins strike the right balance between prudence and capital efficiency.
 
@@ -132,9 +135,9 @@ Below are the risk parameters, the accepted values for each parameter and sugges
 
 Model-independent parameters used in margin calculation are:
 
-* `Risk aversion lambda` - probability confidence level used in [expected shortfall](https://vega.xyz/papers/margins-and-credit-risk.pdf#page=7) calculation when obtaining the maintenance margin level:
+* `Risk aversion lambda` - probability confidence level used in [expected shortfall](https://vega.xyz/papers/margins-and-credit-risk.pdf#page=7) calculation when obtaining the maintenance margin level. This enters the margin calculation as follows. First, the value at risk, defined by confidence lambda is calculated. This is the cash amount that one would need to add to the position to make the probability of the value of the position and cash going negative after time tau to be less than lambda. The margin is then the expected loss of the position given that it incurred a loss bigger than the value at risk. 
   * accepted values: **strictly greater than 0 and strictly smaller than 1**
-  * suggested value: `0.001` - indicates the probability that the position value drops by more than its current value at risk at level lambda
+  * suggested value: `0.00001`
 * `Tau` - projection horizon measured as a year fraction used in the expected shortfall calculation to obtain the maintenance margin:
   * accepted values: **any strictly non-negative real number**,
   * suggested value: `0.000114077116130504` - corresponds to one hour expressed as year fraction
@@ -158,9 +161,6 @@ Another paramerer is
 * `Mu` - annualised growth rate of the underlying asset:
   * accepted values: **any real number**,
   * suggested value: in almost all situations `0` is the value to use
-
-Further reading: 
-https://vega.xyz/papers/margins-and-credit-risk.pdf - update link on website to published location 
 
 <!--### Changing models [WIP]
 
@@ -209,7 +209,7 @@ A proposal to change the `feeAmtValidators.MinimumProposalPeriod` would need to 
 
 <!--### Threshold and rules [WIP]-->
   
-## Asset management
+## Asset/token management
 Assets used for trading, paying fees, funding rewards, and providing liquidity need to be deposited using a bridge contract, and can be withdrawn back into an Ethereum wallet if they are not being used for margin or liquidity commitment.
 
 ### Deposits
@@ -263,16 +263,17 @@ Once a successful withdrawal transaction has occurred, the ERC20 bridge will emi
 ### Diagram: Withdrawals
 ![Withdrawal diagram](/img/concept-diagrams/diagram-withdraw.png)
 
-##### Withdrawing VEGA
-VEGA (an ERC20 token) used for staking is associated with a Vega key, and so to withdraw those tokens, they must be dissociated first.
+##### Withdrawing staked (unlocked) VEGA
+VEGA (an ERC20 token) used for staking is associated with a Vega key. To withdraw unlocked tokens and withdraw them, they must be dissociated first.
 
 Rewards accrued through staking are not associated automatically. To stake those tokens or transfer them, they need to be withdrawn from the Vega key that the rewards are credited to, and sent to an Ethereum wallet.
 
 :::info
-Track and withdraw staking rewards on the [Vega token withdrawals page](https://token.vega.xyz/withdraw).
+Track and withdraw testnet staking rewards on the [Vega token withdrawals page for testnet](https://token.fairground.wtf/withdraw).
 :::
 
-**Read more**: [Withdrawing ERC20 assets](#withdrawing-erc20-assets) for more on the withdrawal transaction
+**Read more**: 
+* [VEGA token](./vega-chain#vega-token) for more details about the VEGA token
 
 ### On-chain network treasury 
 In restricted mainnet, rewards for nominating a validator will be distributed from the on-chain network treasury, in the form of VEGA tokens. 
