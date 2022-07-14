@@ -64,7 +64,8 @@ Note: this issue affects the V1 APIs which will be deprecated and replaced by V2
 
 **Event subscriptions for orders was broken:**
 When placing an order the orders subscription correctly emits an update for the newly created order. However, the bus event subscription did not emit the expected event. The fix for [719](https://github.com/vegaprotocol/data-node/issues/719) (market depth in data-node V1 incorrect due to race condition) changed the type of the order event such that it no longer implemented these interfaces (no code broke as the check is dynamic), and this prevented the event bus from sending events using the party and market filters.
- Full details can be seen in issue [730](https://github.com/vegaprotocol/data-node/issues/730)
+
+Full details can be seen in issue [730](https://github.com/vegaprotocol/data-node/issues/730)
 
 
 #### 0.52.0 (15 June 2022)
