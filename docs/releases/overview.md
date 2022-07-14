@@ -11,7 +11,7 @@ See the full release notes on [GitHub](https://github.com/vegaprotocol/vega/rele
 
 [**Data node APIs on GitHub**](https://github.com/vegaprotocol/data-node/releases) - The data node APIs allow for querying for historic information and for snapshots of the current state of the systems.
 
-[**Vega Wallet on GitHub**](https://github.com/vegaprotocol/vegawallet/releases) - The code for the Vega Wallet CLI app is open source, and you can read about the contents of each release on the Vega Wallet repo.
+[**Vega Wallet on GitHub**](https://github.com/vegaprotocol/vega/releases) - The code for the Vega Wallet CLI app is open source, and you can read about the contents of each release on the Vega Wallet repo.
 
 [**Vega Desktop Wallet on GitHub**](https://github.com/vegaprotocol/vegawallet-desktop/releases) - The code for the Vega Wallet desktop app is open source, and you can read the contents of each release on the repo.
 
@@ -21,6 +21,81 @@ See the full release notes on [GitHub](https://github.com/vegaprotocol/vega/rele
 
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
+
+### Versions 0.53-0.51 | 2022-07-14
+This release was shared with validators on XXXXXXX. The validators released it to the mainnet network on on XXXXXXX.
+
+#### 0.53.0 (14 July 2022)
+**Checkpoint commands:**
+From version 0.53.0, checkpoints are always loaded via the genesis. To facilitate this the  `--genesis-file` option has been added to the `load_checkpoint` command. 
+
+With the introduction of this, the restore checkpoint command has now been deprecated and removed.
+
+**Vega wallet in core repo:**
+The core and Vega Wallet codebases have been unified. This reduces the risk that core and Vega Wallet software changes get out of sync. Users of the CLI wallet app can easily confirm if the version of their wallet is compatible with  the core Vega software version as they will be built and released together, and thus have the same version number. 
+
+In the short term, the CLI wallet app will still be available to download from the Vega Wallet repo, but it will not be supported for future releases.
+
+**Decentralised validator selection bug:**
+During the testing of the decentralised validator selection feature, a bug was found whereby if the network parameter that controls the number of ersatz validators is reduced in the same epoch that an ersatz validator is promoted, the network could be left with a node set where the actual number of ersatz validators was greater than the total allowed number. A fix has been implemented to handle Tendermint demotion and ersatz slot reduction at the same time and keep true to the configured network parameter values.
+
+**PostgreSQL database:**
+As of version 0.53, data node uses [PostgreSQL](https://www.postgresql.org) as its storage back end instead of the previous mix of in-memory and BadgerDB file stores. We also make use of a Postgres extension called [TimescaleDB](https://www.timescale.com), which adds a number of time series specific features.
+
+Postgres is not an embedded database, but a separate server application that needs to be running before a data node starts. A side effect of this transition is a little bit of setup is required by the data node operator. By default, data node will attempt to connect to a database called `vega` listening on `localhost:5432`, using the username and password `vega`. This is all configurable in data node’s `config.toml` file.
+
+We are developing using `PostgreSQL 14.2` and `Timescale 2.6` and _strongly recommend_ that you also use the same versions. For more information see the [Data-node readme](https://github.com/vegaprotocol/data-node/blob/v0.53.0/README.md)
+
+
+**Critical bugs resolved:**
+Collateral checkpoint locked global reward balance:
+With the deployment of version 0.50.3 a new format for the account owner of the global reward account was introduced. When the mainnet was upgraded, the above was interpreted as a general party account rather than the newly formatted global reward account. As such, a balance of 21500 VEGA became locked in an account that is no longer accessible. To resolve this issue and recover the trapped VEGA, when the checkpoint is read, and on discovery of an old account format, the balance is transferred to the relevant new reward account. Full details can be seen in issue [5546](https://github.com/vegaprotocol/vega/issues/5546)
+
+**Unable to query the VEGA asset due to large quantum:**
+Part of testing the network version compatibility is to deploy the latest version of the software using a mainnet checkpoint file. During this test it was found that the VEGA asset could not be found in the data-node via the assets API. To resolve this issue support was introduced in the data-node for large integers for the asset quantum. Full details can be seen in issue [782](https://github.com/vegaprotocol/data-node/issues/782)
+
+
+**Incorrect prices returned from depth endpoint in data node API:**
+The depth value in the data node API appeared to occasionally become desynced from the 'true' prices. This was observed on testnet when a market’s prices of the 'bids' values were much higher than those of 'ask' and did not tally with values from best bid/ask.
+
+In V1 of the data node (which will be replaced with V2) there is a check which relies on the Vega time (block time) being correctly set. However, as the V1 broker is multithreaded per event type, there is no guarantee that the time event that sets the Vega time will arrive at the market depth subscriber with the orders to which the time corresponds. This change sends the Vega time of the block along with the order event in the V1 broker to ensure that a correct sequence number is generated for each order event. 
+
+Note: this issue affects the V1 APIs which will be deprecated and replaced by V2 which is single threaded and thus could not have this bug.
+
+**Event subscriptions for orders was broken:**
+When placing an order the orders subscription correctly emits an update for the newly created order. However, the bus event subscription did not emit the expected event. The fix for [719](https://github.com/vegaprotocol/data-node/issues/719) (market depth in data-node V1 incorrect due to race condition) changed the type of the order event such that it no longer implemented these interfaces (no code broke as the check is dynamic), and this prevented the event bus from sending events using the party and market filters.
+ Full details can be seen in issue [730](https://github.com/vegaprotocol/data-node/issues/730)
+
+
+#### 0.52.0 (15 June 2022)
+**Spam protection updates:** Until version 0.52 any changes to the proof of work network parameters would take effect immediately, which resulted in changes being enforced on transactions that were generated on blocks preceding the current one. This is not desired because someone may have prepared multiple transactions for a block before the changes were applied, which would then be rejected.
+
+To ensure that this does not affect existing transactions the protocol verifies proof of work with the parameters as they were configured at the time of the block of the transaction.
+
+#### 0.51.2 (10 June 2022)
+Version 0.51 of the Vega software implements some key changes to the features of governance and rewards as well as smart contracts. In addition, work continues on the data-node to transition to the time-series `PostGres` data storage and the migrated APIs which will help the data-node scale as usage increases on the network. 
+
+**Breaking change - asset governance:** In release 0.51.2, a breaking change has been introduced that may affect governance proposals that refer to assets. The function used to request the asset bundle before proposing an asset has been renamed to be clearer, as in the future there will be an option for removing assets. 
+
+The following method names have been updated:
+* `GetERC20AssetBundleRequest` is now `GetERC20ListAssetBundleRequest`
+* `GetERC20AssetBundleResponse` is now `GetERC20ListAssetBundleResponse`
+
+**Breaking change - governance:** There has been a breaking change made to the governance process. A rationale is now required for all governance proposals. Every proposal transaction must contain a link to a text file in markdown format which summarises the proposed change and links back to the complete proposed change.
+
+**Smart contract allow-listing:** The `MultisigControl` smart contracts have been updated to permit allow listing oneself to deposit above the specified deposit limits. This change both ensures that there are steps to protect users of the network during the early period of trading being enabled and also gives control to the user to allow list themselves if they understand the risks. 
+
+The contract changes have recently been through an audit of which the final version will be published alongside the deployment of the contracts into testnet. As confidence in the network is established, it is expected that governance proposals will be made to increase the deposit limits.
+
+**Rewards:** To enable giving rewards in arbitrary tokens that may not necessarily be the settlement asset for a given market or the Vega governance token, changes have been implemented to enhance recurring transfers to reward accounts.
+
+When transferring to a reward account, it is possible to define the reward metric, the reward metric asset, and a subset of markets. Should a market not be defined when initiating the transfer the protocol proceeds with all the markets that settle in the reward metric asset.
+
+**Snapshots:** A snapshot is generated every N blocks, and that information is stored in a `GoLevelDB` file on the local file system. By default a node will always start up in normal mode in which it connects to Tendermint and replays any historic blocks before catching up and running at the same pace as the existing nodes on the network. 
+
+The snapshot system will keep by default 10 versions of the snapshots. When it has created 10 it will remove the oldest each time it creates a new snapshot. Extensive testing of snapshots has been conducted and is ready for use by the validators for stopping and starting nodes. 
+
+There has also been an array of fixes implemented for snapshots that ensure that a node restored from a snapshot always maintains consensus.
 
 ### Versions 0.50.4 | 2022-06-29
 This release was shared with validators on 29 June, 2022. The validators released it to the mainnet network on on 30 June, 2022.
