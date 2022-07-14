@@ -23,7 +23,7 @@ See the full release notes on [GitHub](https://github.com/vegaprotocol/vega/rele
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
 ### Versions 0.53-0.51 | 2022-07-14
-This release was shared with validators on XXXXXXX. The validators released it to the mainnet network on on XXXXXXX.
+This version was released to the Vega testnet on 14 July, 2022.
 
 #### 0.53.0 (14 July 2022)
 **Checkpoint commands:**
