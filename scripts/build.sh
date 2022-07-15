@@ -14,11 +14,11 @@ set -e
 
 grpc_doc_owner=vegaprotocol
 grpc_doc_repo=protos
-grpc_doc_branch="v0.52.0"
+grpc_doc_branch="v0.53.0"
 
 graphql_doc_owner=vegaprotocol
 graphql_doc_repo=data-node
-graphql_doc_branch="v0.52.0"
+graphql_doc_branch="v0.53.0"
 
 gh_token="${GITHUB_API_TOKEN:?}"
 
@@ -84,6 +84,9 @@ find . -type f -name '*.mdx' -exec sed -i -E 's/hide_title: true/hide_title: fal
 echo "GRPC: Fix sidebar links"
 sed -i -E 's/"vega\//"grpc\/vega\//g' docs/grpc/sidebar.js
 
+./scripts/version-switch.sh
 yarn run build
 
 rm schema.graphql
+
+
