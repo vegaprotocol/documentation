@@ -1,10 +1,9 @@
 ---
-title: Network parameter change
+title: Propose a network parameter change
 hide_title: false
 keywords:
 - proposal
 - governance
-- newFreeform
 - updateNetworkParameter
 ---
 

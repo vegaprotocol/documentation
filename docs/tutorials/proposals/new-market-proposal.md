@@ -67,9 +67,9 @@ Decimal places need to be defined for both order sizes and the market.
 * `decimalPlaces` - sets the smallest price increment on the book
 * `positionDecimalPlaces` - sets how big the smallest order / position on the market can be
 
-Timestamps are required for ending the voting period, as well as enacting the changes.
+Timestamps are required for ending the voting period, as well as enacting the market. The time between closing and enactment also defines how long an opening auction will be, which must be smaller than/equal to the difference between `maxClose` and `maxEnact`.
 * `closingTimestamp` - Time when voting closes for the proposal. It must be expressed in Unix time in seconds, and must be constrained by `minClose` and `maxClose` network parameters.
-* `enactmentTimestamp` - Time when the proposal will be enacted -- if passed. It must be expressed in Unix time in seconds, and must be between the  `minEnact` and `maxEnact` network parameters.
+* `enactmentTimestamp` - Time and date when the market will be enacted (ready for trading). It must be expressed in Unix time in seconds, and must be between the  `minEnact` and `maxEnact` network parameters.
 
 ### Instrument
 The instrument shape is as follows, see below for a description of each property:
@@ -104,7 +104,7 @@ Oracle bindings require the following properties:
 * Value: A number that is constrained by the operator
 
 ### Liquidity monitoring
-The liquidity monitoring fields below are optional, and if empty will default to the network parameters. See below for more details on each field.
+The liquidity monitoring settings detect when the market's liquidity drops below the safe level, and as such when to launch a 'liquidity seeking' auction. See below for more details on each field.
 
 <NewMarketJSONLiquidityMonitoring />
 
@@ -125,8 +125,8 @@ Price monitoring uses the following properties:
 * Probability: Price monitoring probability level p (set as >0 and <1)
 * Auction extension in seconds: Price monitoring auction extension duration in seconds should the price breach its theoretical level over the specified horizon at the specified probability level (set as >0)
 
-### Liquidity commitment <!--(optional)-->
-<!--There is an option to provide liquidity to the market you propose, but it is not required. Note that a market without enough liquidity will be stuck in a liquidity seeking auction until it gets the liquidity it needs. -->
+### Liquidity commitment (optional)
+There is an option to provide liquidity to the market you propose, but it is not required. Note that a market without enough liquidity will be stuck in a liquidity seeking auction until it gets the liquidity it needs. Once a market is proposed, it can accept liquidity commitments from any party, and those commitments can amended or removed.
 
 :::info
 Learn how to amend your liquidity commitment or add liquidity later in the [Providing Liquidity](../providing-liquidity.md) tutorial.
