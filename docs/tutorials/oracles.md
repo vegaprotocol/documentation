@@ -8,19 +8,17 @@ The Vega network accepts three sources for oracle data: Open Oracle, JSON data a
 Any Vega keypair can submit oracle data to the chain. In the configuration for a market, an oracle specification field dictates which oracle data feeds it is interested in. In effect, it works as a filter. This specification means that the creator of an instrument for a market will choose in advance a price source, and which data fields the market requires to settle and terminate.
 
 ## Submitting oracle data
-to do - general submission guidance
-
-Use the command line, to submit an oracle message as a transaction that is signed by your Vega wallet and sent to the validators for consensus.
+Use the command line to submit an oracle message as a transaction that is signed by your Vega wallet and sent to the validators for consensus.
 
 ## Open Oracle
 [Open Oracle](https://github.com/compound-finance/open-oracle) is a standard for encoding price data and signatures for price messages.
 
 ### Submitting Open Oracle data
-Below, find instructions on how to submit open oracle data. Anyone can submit Open Oracle data, at any time. Markets should be configured to only use the data at the relevant time, such as after a defined settlement date.
+Below, find instructions on how to submit Open Oracle data. Anyone can submit Open Oracle data, at any time. Markets should be configured to only use the data at the relevant time, such as after a defined settlement date.
 
-### API notes
-- When looking at market data using the API, the `pubKeys` field in the response for Open Oracle data submissions is set to the Open Oracle signing key
-- ??
+:::info API note
+When looking at market data using the API, the `pubKeys` field in the response for Open Oracle data submissions is set to the Open Oracle signing key.
+:::
 
 ### 1. Get an Open Oracle message
 
@@ -106,15 +104,19 @@ The data we submitted in step three will be returned as follows:
 }
 ```
 ### Using Open Oracle data to settle a market
-When configuring a market's instrument, you will need to select the data from one of the two sources. This is done by:
+When configuring a market's instrument, you will need to select the data from one of the two sources. 
+
+This is done by:
 1. Defining an oracle spec binding for settlement price
 2. Configuring an oracle spec for settlement price values
 3. Defining an oracle spec binding for trading termination
 4. Configuring an oracle spec for trading termination values
 
-The **binding** tells the market which field contains the value. The **spec** defines which public keys to watch for data from, and which values to pass through to the binding. For now this will focus on using the oracles for settlement price - both examples below use a Vega time oracle to terminate the market.
+The **binding** tells the market which field contains the value.
 
 For the binding, use the `name` field of the data. In the case of our example above, this would be `"prices.BTC.value"`.
+
+The **spec** defines which public keys to watch for data from, and which values to pass through to the binding. For now this will focus on using the oracles for settlement price - both examples below use a Vega time oracle to terminate the market.
 
 ```javascript
 "oracleSpecBinding": {
@@ -142,12 +144,12 @@ The following Oracle Spec would make the market use the BTC value from the Open 
 ```
 
 ## JSON Oracle
-
-### API Notes
-- Data should be encoded as strings. `true` should be `"true"`, `12` should be `"12"`
-- In the API responses, the `pubKeys` field for JSON Oracle data submissions is set to the VEGA public key of the submitter
-
 [JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON) oracles are an alternative to Open Oracle data. The advantage is that they can be totally custom objects, as long as they are valid JSON. The disadvantage is that they are not attested by any off-chain source in the way that Open Oracle messages are. Due to this constraint, it's generally advisable to find an Open Oracle price source before resorting to JSON data.
+
+:::info API note
+- Data should be encoded as strings. `true` should be `"true"`, `12` should be `"12"`
+- In the API responses, the `pubKeys` field for JSON oracle data submissions is set to the VEGA public key of the submitter.
+:::
 
 ### 1. Define your JSON structure
 JSON oracles can contain arbitrary JSON data - but to be useful for market creators, they'll need to know what the structure is ahead of time. Pick a data model and ensure that it's well communicated. For this tutorial, we'll create a JSON oracle for the number of humans that have walked on the moon:
@@ -223,9 +225,7 @@ Assuming someone submitted JSON oracle data, the result would be something like 
 }
 ```
 
-### JSON Oracle spec for settlement
-Creating a market based on an oracle... add more detail
-
+### JSON oracle spec for settlement
 For the binding, use the `name` field of the data. In the case of our example above, this would be `"moonwalkers"`.
 
 ```javascript
@@ -261,7 +261,7 @@ Vega provides a timestamp source, which is useful for terminating a market at a 
 
 As the name implies, built in oracle data is generated inside Vega, and cannot be submitted by other keys.
 
-### Trading Termination
+### Trading termination
 It's possible to settle on any oracle field - for instance checking if a `boolean` is `true` - but time is a good starting point, and the [built-in time oracle](#built-in-oracle) can be used for exactly that:
 
 ```javascript
