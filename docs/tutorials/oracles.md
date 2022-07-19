@@ -207,9 +207,9 @@ All `OracleDataSubmission` data is `base64` encoded. Here's how to do that on Li
 <Tabs groupId="encodeJsonOracle">
   <TabItem value="cmd" label="Linux / OSX command line">
 
-    ```bash title="Linux/OSX command line example"
-    echo '{"moonwalkers":"12"}' | base64
-    ```
+```bash
+echo '{"moonwalkers":"12"}' | base64
+```
 
   </TabItem>
   <TabItem value="win" label="Windows command line">
