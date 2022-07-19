@@ -36,20 +36,30 @@ When looking at market data using the API, the `pubKeys` field in the response f
 ### 2. Encode the Open Oracle message
 <Tabs groupId="encodeOpenOracle">
   <TabItem value="cmd" label="Linux / OSX command line">
+
 ```bash
-echo '{"timestamp":"1649265840","messages":["0x000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000624dccb000000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000000000a2e04f5f00000000000000000000000000000000000000000000000000000000000000006707269636573000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000034254430000000000000000000000000000000000000000000000000000000000"],"signatures":["0x8362a456997287a6b89e2de52e26c2aca423ab0ed401f9a23c81da2e2c56a5db27365adcb478d7b36558df58ca5dd240191a0f08a7f0ed79ee23cec77521e5c2000000000000000000000000000000000000000000000000000000000000001b"],"prices":{"BTC":"43721.75"}}' | base64
-```      
+  echo '{"timestamp":"1649265840","messages":["0x000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000624dccb000000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000000000a2e04f5f00000000000000000000000000000000000000000000000000000000000000006707269636573000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000034254430000000000000000000000000000000000000000000000000000000000"],"signatures":["0x8362a456997287a6b89e2de52e26c2aca423ab0ed401f9a23c81da2e2c56a5db27365adcb478d7b36558df58ca5dd240191a0f08a7f0ed79ee23cec77521e5c2000000000000000000000000000000000000000000000000000000000000001b"],"prices":{"BTC":"43721.75"}}' | base64
+```
+
   </TabItem>
   <TabItem value="win" label="Windows command line">
-Encoding an item as base64 isn't a one-liner on windows. There are numerous online sites that can encode a string, or you can use your programming language of choice to do it.
-1. Save `'{"timestamp":"1649265840","messages":["0x000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000624dccb000000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000000000a2e04f5f00000000000000000000000000000000000000000000000000000000000000006707269636573000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000034254430000000000000000000000000000000000000000000000000000000000"],"signatures":["0x8362a456997287a6b89e2de52e26c2aca423ab0ed401f9a23c81da2e2c56a5db27365adcb478d7b36558df58ca5dd240191a0f08a7f0ed79ee23cec77521e5c2000000000000000000000000000000000000000000000000000000000000001b"],"prices":{"BTC":"43721.75"}}'` to a file, `raw.txt`
-2. Run `certutil -encode raw.txt encoded.txt`
-3. `encoded.txt` now contains your encoded message.
+
+    Encoding an item as base64 isn't a one-liner on windows. There are numerous online sites that can encode a string, or you can use your programming language of choice to do it To do it locally, save the oracle response to a file, `raw.txt`:
+
+```json
+{
+  "timestamp":"1649265840","messages":["0x000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000624dccb000000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000000000a2e04f5f00000000000000000000000000000000000000000000000000000000000000006707269636573000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000034254430000000000000000000000000000000000000000000000000000000000"],"signatures":["0x8362a456997287a6b89e2de52e26c2aca423ab0ed401f9a23c81da2e2c56a5db27365adcb478d7b36558df58ca5dd240191a0f08a7f0ed79ee23cec77521e5c2000000000000000000000000000000000000000000000000000000000000001b"],"prices":{"BTC":"43721.75"}
+}
+```
+  
+  Then run `certutil -encode raw.txt encoded.txt` and `encoded.txt` now contains your encoded message.
+
   </TabItem>
 </Tabs>
 
 
 Will return a payload string that will look something like this:
+
 ```
 eyJ0aW1lc3RhbXAiOiIxNjQ5MjY1ODQwIiwibWVzc2FnZXMiOlsiMHgwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDgwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA2MjRkY2NiMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwYzAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwYTJlMDRmNWYwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwNjcwNzI2OTYzNjU3MzAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAzNDI1NDQzMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMCJdLCJzaWduYXR1cmVzIjpbIjB4ODM2MmE0NTY5OTcyODdhNmI4OWUyZGU1MmUyNmMyYWNhNDIzYWIwZWQ0MDFmOWEyM2M4MWRhMmUyYzU2YTVkYjI3MzY1YWRjYjQ3OGQ3YjM2NTU4ZGY1OGNhNWRkMjQwMTkxYTBmMDhhN2YwZWQ3OWVlMjNjZWM3NzUyMWU1YzIwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDFiIl0sInByaWNlcyI6eyJCVEMiOiI0MzcyMS43NSJ9fQo=
 ```
@@ -59,22 +69,26 @@ When submitting the `OracleDataSubmission`, make sure to specify the `source` fi
 
 <Tabs groupId="submitOpenOracle">
   <TabItem value="cmd" label="Linux / OSX command line">
-```bash
-vegawallet command send \
-    --wallet oracle-wallet \
-    --pubkey 123abc \
-    --network fairground \
-    '{"oracleDataSubmission": { "source": "ORACLE_SOURCE_OPEN_ORACLE", "payload":"INSERT_PAYLOAD_STRING" }}'
-```
+
+    ```bash
+    vegawallet command send \
+        --wallet oracle-wallet \
+        --pubkey 123abc \
+        --network fairground \
+        '{"oracleDataSubmission": { "source": "ORACLE_SOURCE_OPEN_ORACLE", "payload":"INSERT_PAYLOAD_STRING" }}'
+    ```
+
   </TabItem>
   <TabItem value="win" label="Windows command line">
-```bash
-vegawallet.exe command send \
-    --wallet oracle-wallet \
-    --pubkey 123abc \
-    --network fairground \
-    '{"oracleDataSubmission": { "source": "ORACLE_SOURCE_OPEN_ORACLE", "payload":"INSERT_PAYLOAD_STRING" }}'
-```
+
+    ```bash
+    vegawallet.exe command send \
+        --wallet oracle-wallet \
+        --pubkey 123abc \
+        --network fairground \
+        '{"oracleDataSubmission": { "source": "ORACLE_SOURCE_OPEN_ORACLE", "payload":"INSERT_PAYLOAD_STRING" }}'
+    ```
+
   </TabItem>
 </Tabs>
 
@@ -189,15 +203,16 @@ All `OracleDataSubmission` data is `base64` encoded. Here's how to do that on Li
 
 <Tabs groupId="encodeJsonOracle">
   <TabItem value="cmd" label="Linux / OSX command line">
-```bash title="Linux/OSX command line example"
-echo '{"moonwalkers":"12"}' | base64
-```
+
+    ```bash title="Linux/OSX command line example"
+    echo '{"moonwalkers":"12"}' | base64
+    ```
+
   </TabItem>
   <TabItem value="win" label="Windows command line">
-Encoding an item as base64 isn't a one-liner on windows. There are numerous online sites that can encode a string, or you can use your programming language of choice to do it.
-1. Save `'{"moonwalkers":"12"}'` to a file, `raw.txt`
-2. Run `certutil -encode raw.txt encoded.txt`
-3. `encoded.txt` now contains your encoded message.
+
+    Encoding an item as base64 isn't a one-liner on windows. There are numerous online sites that can encode a string, or you can use your programming language of choice to do it. To do it locally, you should save `'{"moonwalkers":"12"}'` to a file, `raw.txt`, then run `certutil -encode raw.txt encoded.txt` and `encoded.txt` now contains your encoded message.
+
   </TabItem>
 </Tabs>
 
@@ -212,6 +227,7 @@ When submitting the `OracleDataSubmission`, make sure to specify the `source` fi
 
 <Tabs groupId="submitJsonOracle">
   <TabItem value="cmd" label="Linux / OSX command line">
+
 ```bash title="Linux/OSX command line example"
 vegawallet command send \
     --wallet oracle-wallet \
@@ -219,8 +235,10 @@ vegawallet command send \
     --network fairground \
     '{"oracleDataSubmission": { "source": "ORACLE_SOURCE_JSON", "payload":"RESPONSE_PAYLOAD" }}'
 ```
+
   </TabItem>
   <TabItem value="win" label="Windows command line">
+
 ```bash title="Linux/OSX command line example"
 vegawallet.exe command send \
     --wallet oracle-wallet \
@@ -228,6 +246,7 @@ vegawallet.exe command send \
     --network fairground \
     '{"oracleDataSubmission": { "source": "ORACLE_SOURCE_JSON", "payload":"RESPONSE_PAYLOAD" }}'
 ```  
+
   </TabItem>
 </Tabs>
 
