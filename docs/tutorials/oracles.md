@@ -1,4 +1,7 @@
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Oracles
 Oracles are a source of data submitted to settle and terminate markets. All markets need a data source.
 
