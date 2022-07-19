@@ -34,10 +34,20 @@ When looking at market data using the API, the `pubKeys` field in the response f
 ```
 
 ### 2. Encode the Open Oracle message
-
-```bash title="Linux/OSX command line example"
+<Tabs groupId="encodeOpenOracle">
+  <TabItem value="cmd" label="Linux / OSX command line">
+```bash
 echo '{"timestamp":"1649265840","messages":["0x000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000624dccb000000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000000000a2e04f5f00000000000000000000000000000000000000000000000000000000000000006707269636573000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000034254430000000000000000000000000000000000000000000000000000000000"],"signatures":["0x8362a456997287a6b89e2de52e26c2aca423ab0ed401f9a23c81da2e2c56a5db27365adcb478d7b36558df58ca5dd240191a0f08a7f0ed79ee23cec77521e5c2000000000000000000000000000000000000000000000000000000000000001b"],"prices":{"BTC":"43721.75"}}' | base64
-```
+```      
+  </TabItem>
+  <TabItem value="win" label="Windows command line">
+Encoding an item as base64 isn't a one-liner on windows. There are numerous online sites that can encode a string, or you can use your programming language of choice to do it.
+1. Save `'{"timestamp":"1649265840","messages":["0x000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000624dccb000000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000000000a2e04f5f00000000000000000000000000000000000000000000000000000000000000006707269636573000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000034254430000000000000000000000000000000000000000000000000000000000"],"signatures":["0x8362a456997287a6b89e2de52e26c2aca423ab0ed401f9a23c81da2e2c56a5db27365adcb478d7b36558df58ca5dd240191a0f08a7f0ed79ee23cec77521e5c2000000000000000000000000000000000000000000000000000000000000001b"],"prices":{"BTC":"43721.75"}}'` to a file, `raw.txt`
+2. Run `certutil -encode raw.txt encoded.txt`
+3. `encoded.txt` now contains your encoded message.
+  </TabItem>
+</Tabs>
+
 
 Will return a payload string that will look something like this:
 ```
@@ -47,13 +57,27 @@ eyJ0aW1lc3RhbXAiOiIxNjQ5MjY1ODQwIiwibWVzc2FnZXMiOlsiMHgwMDAwMDAwMDAwMDAwMDAwMDAw
 ### 3. Submit the message to the chain
 When submitting the `OracleDataSubmission`, make sure to specify the `source` field as `ORACLE_SOURCE_OPEN_ORACLE`.
 
-```bash title="Linux/OSX command line example"
+<Tabs groupId="submitOpenOracle">
+  <TabItem value="cmd" label="Linux / OSX command line">
+```bash
 vegawallet command send \
     --wallet oracle-wallet \
     --pubkey 123abc \
     --network fairground \
     '{"oracleDataSubmission": { "source": "ORACLE_SOURCE_OPEN_ORACLE", "payload":"INSERT_PAYLOAD_STRING" }}'
 ```
+  </TabItem>
+  <TabItem value="win" label="Windows command line">
+```bash
+vegawallet.exe command send \
+    --wallet oracle-wallet \
+    --pubkey 123abc \
+    --network fairground \
+    '{"oracleDataSubmission": { "source": "ORACLE_SOURCE_OPEN_ORACLE", "payload":"INSERT_PAYLOAD_STRING" }}'
+```
+  </TabItem>
+</Tabs>
+
 
 You will be able to see this data by querying the API for `OracleData`. In the API response you will be able to check which markets had filters that matched this data.
 
@@ -162,9 +186,21 @@ JSON oracles can contain arbitrary JSON data - but to be useful for market creat
 
 ### 2. Encode the message
 All `OracleDataSubmission` data is `base64` encoded. Here's how to do that on Linux or OSX:
+
+<Tabs groupId="encodeJsonOracle">
+  <TabItem value="cmd" label="Linux / OSX command line">
 ```bash title="Linux/OSX command line example"
 echo '{"moonwalkers":"12"}' | base64
 ```
+  </TabItem>
+  <TabItem value="win" label="Windows command line">
+Encoding an item as base64 isn't a one-liner on windows. There are numerous online sites that can encode a string, or you can use your programming language of choice to do it.
+1. Save `'{"moonwalkers":"12"}'` to a file, `raw.txt`
+2. Run `certutil -encode raw.txt encoded.txt`
+3. `encoded.txt` now contains your encoded message.
+  </TabItem>
+</Tabs>
+
 
 This will give you something like:
 ```
@@ -174,6 +210,8 @@ eyJtb29ud2Fsa2VycyI6IjEyIn0K
 ### 3. Submit the message to the chain
 When submitting the `OracleDataSubmission`, make sure to specify the `source` field as `ORACLE_SOURCE_JSON`.
 
+<Tabs groupId="submitJsonOracle">
+  <TabItem value="cmd" label="Linux / OSX command line">
 ```bash title="Linux/OSX command line example"
 vegawallet command send \
     --wallet oracle-wallet \
@@ -181,6 +219,20 @@ vegawallet command send \
     --network fairground \
     '{"oracleDataSubmission": { "source": "ORACLE_SOURCE_JSON", "payload":"RESPONSE_PAYLOAD" }}'
 ```
+  </TabItem>
+  <TabItem value="win" label="Windows command line">
+```bash title="Linux/OSX command line example"
+vegawallet.exe command send \
+    --wallet oracle-wallet \
+    --pubkey 123abc \
+    --network fairground \
+    '{"oracleDataSubmission": { "source": "ORACLE_SOURCE_JSON", "payload":"RESPONSE_PAYLOAD" }}'
+```  
+  </TabItem>
+</Tabs>
+
+
+
 
 ### Querying an existing oracle spec
 The following GraphQL query shows previous oracle data submissions, which can be useful for confirming that an oracle submission was sucessful, and/or determining the fields that a market's oracle spec requires.
