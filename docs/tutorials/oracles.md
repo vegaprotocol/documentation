@@ -47,7 +47,7 @@ When looking at market data using the API, the `pubKeys` field in the response f
   </TabItem>
   <TabItem value="win" label="Windows command line">
 
-    Encoding an item as base64 isn't a one-liner on windows. There are numerous online sites that can encode a string, or you can use your programming language of choice to do it To do it locally, save the oracle response to a file, `raw.txt`:
+Encoding an item as base64 isn't a one-liner on windows. There are numerous online sites that can encode a string, or you can use your programming language of choice to do it To do it locally, save the oracle response to a file, `raw.txt`:
 
 ```json
 {
@@ -55,7 +55,7 @@ When looking at market data using the API, the `pubKeys` field in the response f
 }
 ```
   
-  Then run `certutil -encode raw.txt encoded.txt` and `encoded.txt` now contains your encoded message.
+Then run `certutil -encode raw.txt encoded.txt` and `encoded.txt` now contains your encoded message.
 
   </TabItem>
 </Tabs>
@@ -214,7 +214,7 @@ All `OracleDataSubmission` data is `base64` encoded. Here's how to do that on Li
   </TabItem>
   <TabItem value="win" label="Windows command line">
 
-    Encoding an item as base64 isn't a one-liner on windows. There are numerous online sites that can encode a string, or you can use your programming language of choice to do it. To do it locally, you should save `'{"moonwalkers":"12"}'` to a file, `raw.txt`, then run `certutil -encode raw.txt encoded.txt` and `encoded.txt` now contains your encoded message.
+Encoding an item as base64 isn't a one-liner on windows. There are numerous online sites that can encode a string, or you can use your programming language of choice to do it. To do it locally, you should save `'{"moonwalkers":"12"}'` to a file, `raw.txt`, then run `certutil -encode raw.txt encoded.txt` and `encoded.txt` now contains your encoded message.
 
   </TabItem>
 </Tabs>
