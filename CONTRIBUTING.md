@@ -15,7 +15,6 @@ You can fork the repository and edit your own copy, or propose changes via the G
 The [Docusaurus installation guide](https://docusaurus.io/docs/installation) covers the  software requirements for Docusaurus itself. The following guide walks you through getting the Vega documentation served locally.
 
 ### Requirements
-
 The best way to get the correct version of node is using the `nvm` utility which can be installed from these instructions:
 
 `https://github.com/nvm-sh/nvm#installing-and-updating`
