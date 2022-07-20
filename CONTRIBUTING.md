@@ -6,7 +6,7 @@ Anyone is welcome to create a Pull Request. If you're looking to help out, check
 ## Current process
 1. All changes must be be made in a branch, and proposed via a pull request.
 2. The reviewer will check the changes, check the deploy preview and approve or request changes
-3. Finally changes are merged
+3. Once the review is approved, changes can be merged
 
 ## Editing on GitHub
 You can fork the repository and edit your own copy, or propose changes via the GitHub UI. When you are finished and create a Pull Request, a Netlify Deploy Preview will be built and linked. This can be used to review your changes.
