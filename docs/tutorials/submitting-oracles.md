@@ -1,22 +1,76 @@
+---
+title: Using oracle data
+hide_title: false
+---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Oracles
 Oracles are a source of data submitted to settle and terminate markets. All markets need a data source.
 
-The Vega network accepts three sources for oracle data: Open Oracle, JSON data and an internal timestamp source that is provided by the network. Not all oracles provide the same type of data.
+The Vega network accepts three sources for oracle data. Note, not all oracles provide the same type of data. 
+* Open Oracle
+* JSON data 
+* Internal timestamp source that is provided by the network
+
+## Using an oracle when proposing a market
+You need to specify oracle details in a market's governance proposal, before it's submitted. 
+
+When configuring a market's instrument, you will need to select the data from one of the two sources. 
+
+This is done by:
+1. Defining an oracle spec binding for settlement price
+2. Configuring an oracle spec for settlement price values
+3. Defining an oracle spec binding for trading termination
+4. Configuring an oracle spec for trading termination values
+
+The **binding** tells the market which field contains the value. The **spec** defines which public keys to watch for data from, and which values to pass through to the binding.
+
+When it's time for a market to settle, someone needs to submit the oracle data that was pre-defined in the market proposal that triggers settlement and market termination.
+
+<!--Read more: 
+[Market proposal concepts:]
+[Tutorial - proposing a market:]-->
 
 ## Who can submit oracle data
 Any Vega keypair can submit oracle data to the chain. In the configuration for a market, an oracle specification field dictates which oracle data feeds it is interested in. In effect, it works as a filter. This specification means that the creator of an instrument for a market will choose in advance a price source, and which data fields the market requires to settle and terminate.
 
-## Submitting oracle data
-Use the command line to submit an oracle message as a transaction that is signed by your Vega wallet and sent to the validators for consensus.
-
 ## Open Oracle
 [Open Oracle](https://github.com/compound-finance/open-oracle) is a standard for encoding price data and signatures for price messages.
 
+### Using Open Oracle data in a market proposal
+For the binding, use the `name` field of the data. In the case of our example above, this would be `"prices.BTC.value"`.
+
+For now this will focus on using the oracles for settlement price - both examples below use a Vega time oracle to terminate the market.
+
+```javascript
+"oracleSpecBinding": {
+  "settlementPriceProperty": "prices.BTC.value",
+  "tradingTerminationProperty": "vegaprotocol.builtin.timestamp"
+}
+```
+
+The following oracle spec would make the market use the BTC value from the Open Oracle data submitted above:
+
+```javascript
+   "oracleSpecForSettlementPrice": {
+        "pubKeys": ["0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"],
+        "filters": [{
+            "key": {
+                "name": "price.BTC.value",
+                "type": "TYPE_INTEGER",
+            },
+            "conditions": [{
+                "operator": "OPERATOR_GREATER_THAN",
+                "value": "0",
+            }]
+        }]
+    }
+```
+
 ### Submitting Open Oracle data
+Use the command line to submit an Open Oracle message as a transaction that is signed by your Vega wallet and sent to the validators for consensus.
+
 Below, find instructions on how to submit Open Oracle data. Anyone can submit Open Oracle data, at any time. Markets should be configured to only use the data at the relevant time, such as after a defined settlement date.
 
 :::info API note
@@ -44,10 +98,16 @@ When looking at market data using the API, the `pubKeys` field in the response f
   echo '{"timestamp":"1649265840","messages":["0x000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000624dccb000000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000000000a2e04f5f00000000000000000000000000000000000000000000000000000000000000006707269636573000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000034254430000000000000000000000000000000000000000000000000000000000"],"signatures":["0x8362a456997287a6b89e2de52e26c2aca423ab0ed401f9a23c81da2e2c56a5db27365adcb478d7b36558df58ca5dd240191a0f08a7f0ed79ee23cec77521e5c2000000000000000000000000000000000000000000000000000000000000001b"],"prices":{"BTC":"43721.75"}}' | base64
 ```
 
+It will return a payload string that will look something like this:
+
+```
+eyJ0aW1lc3RhbXAiOiIxNjQ5MjY1ODQwIiwibWVzc2FnZXMiOlsiMHgwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDgwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA2MjRkY2NiMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwYzAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwYTJlMDRmNWYwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwNjcwNzI2OTYzNjU3MzAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAzNDI1NDQzMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMCJdLCJzaWduYXR1cmVzIjpbIjB4ODM2MmE0NTY5OTcyODdhNmI4OWUyZGU1MmUyNmMyYWNhNDIzYWIwZWQ0MDFmOWEyM2M4MWRhMmUyYzU2YTVkYjI3MzY1YWRjYjQ3OGQ3YjM2NTU4ZGY1OGNhNWRkMjQwMTkxYTBmMDhhN2YwZWQ3OWVlMjNjZWM3NzUyMWU1YzIwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDFiIl0sInByaWNlcyI6eyJCVEMiOiI0MzcyMS43NSJ9fQo=
+```
+
   </TabItem>
   <TabItem value="win" label="Windows command line">
 
-Encoding an item as base64 isn't a one-liner on windows. There are numerous online sites that can encode a string, or you can use your programming language of choice to do it To do it locally, save the oracle response to a file, `raw.txt`:
+Encoding an item as base64 isn't a one-liner on windows. There are numerous online sites that can encode a string, or you can use your programming language of choice to do it. To do it locally, save the oracle response to a file, `raw.txt`:
 
 ```json
 {
@@ -55,17 +115,14 @@ Encoding an item as base64 isn't a one-liner on windows. There are numerous onli
 }
 ```
   
-Then run `certutil -encode raw.txt encoded.txt` and `encoded.txt` now contains your encoded message.
+Then run the following command:
+```
+certutil -encode raw.txt encoded.txt
+``` 
+`encoded.txt` will now contain your encoded message.
 
   </TabItem>
 </Tabs>
-
-
-Will return a payload string that will look something like this:
-
-```
-eyJ0aW1lc3RhbXAiOiIxNjQ5MjY1ODQwIiwibWVzc2FnZXMiOlsiMHgwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDgwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA2MjRkY2NiMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwYzAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwYTJlMDRmNWYwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwNjcwNzI2OTYzNjU3MzAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAzNDI1NDQzMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMCJdLCJzaWduYXR1cmVzIjpbIjB4ODM2MmE0NTY5OTcyODdhNmI4OWUyZGU1MmUyNmMyYWNhNDIzYWIwZWQ0MDFmOWEyM2M4MWRhMmUyYzU2YTVkYjI3MzY1YWRjYjQ3OGQ3YjM2NTU4ZGY1OGNhNWRkMjQwMTkxYTBmMDhhN2YwZWQ3OWVlMjNjZWM3NzUyMWU1YzIwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDFiIl0sInByaWNlcyI6eyJCVEMiOiI0MzcyMS43NSJ9fQo=
-```
 
 ### 3. Submit the message to the chain
 When submitting the `OracleDataSubmission`, make sure to specify the `source` field as `ORACLE_SOURCE_OPEN_ORACLE`.
@@ -144,48 +201,40 @@ The data we submitted in step three will be returned as follows:
   }
 }
 ```
-### Using Open Oracle data to settle a market
-When configuring a market's instrument, you will need to select the data from one of the two sources. 
 
-This is done by:
-1. Defining an oracle spec binding for settlement price
-2. Configuring an oracle spec for settlement price values
-3. Defining an oracle spec binding for trading termination
-4. Configuring an oracle spec for trading termination values
+## JSON Oracle
+[JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON) oracles are an alternative to Open Oracle data. The advantage is that they can be totally custom objects, as long as they are valid JSON. The disadvantage is that they are not attested by any off-chain source in the way that Open Oracle messages are. Due to this constraint, it's generally advisable to find an Open Oracle price source before resorting to JSON data.
 
-The **binding** tells the market which field contains the value.
-
-For the binding, use the `name` field of the data. In the case of our example above, this would be `"prices.BTC.value"`.
-
-The **spec** defines which public keys to watch for data from, and which values to pass through to the binding. For now this will focus on using the oracles for settlement price - both examples below use a Vega time oracle to terminate the market.
+### Using JSON oracle spec in a market proposal
+For the binding, use the `name` field of the data. In the case of our example above, this would be `"moonwalkers"`.
 
 ```javascript
 "oracleSpecBinding": {
-  "settlementPriceProperty": "prices.BTC.value",
+  "settlementPriceProperty": "moonwalkers",
   "tradingTerminationProperty": "vegaprotocol.builtin.timestamp"
 }
 ```
 
-The following Oracle Spec would make the market use the BTC value from the Open Oracle data submitted above:
+The Oracle Specification that would bind to the `moonwalkers` property would be as follows:
 
 ```javascript
    "oracleSpecForSettlementPrice": {
-        "pubKeys": ["0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"],
+        "pubKeys": ["123abc"],
         "filters": [{
             "key": {
-                "name": "price.BTC.value",
+                "name": "moonwalkers",
                 "type": "TYPE_INTEGER",
             },
             "conditions": [{
                 "operator": "OPERATOR_GREATER_THAN",
-                "value": "0",
+                "value": "12",
             }]
         }]
     }
 ```
 
-## JSON Oracle
-[JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON) oracles are an alternative to Open Oracle data. The advantage is that they can be totally custom objects, as long as they are valid JSON. The disadvantage is that they are not attested by any off-chain source in the way that Open Oracle messages are. Due to this constraint, it's generally advisable to find an Open Oracle price source before resorting to JSON data.
+### Submitting JSON oracle data
+Use the command line to submit a JSON oracle message as a transaction that is signed by your Vega wallet and sent to the validators for consensus.
 
 :::info API note
 - Data should be encoded as strings. `true` should be `"true"`, `12` should be `"12"`
@@ -211,19 +260,28 @@ All `OracleDataSubmission` data is `base64` encoded. Here's how to do that on Li
 echo '{"moonwalkers":"12"}' | base64
 ```
 
-  </TabItem>
-  <TabItem value="win" label="Windows command line">
-
-Encoding an item as base64 isn't a one-liner on windows. There are numerous online sites that can encode a string, or you can use your programming language of choice to do it. To do it locally, you should save `'{"moonwalkers":"12"}'` to a file, `raw.txt`, then run `certutil -encode raw.txt encoded.txt` and `encoded.txt` now contains your encoded message.
-
-  </TabItem>
-</Tabs>
-
-
 This will give you something like:
 ```
 eyJtb29ud2Fsa2VycyI6IjEyIn0K
 ```
+
+
+  </TabItem>
+  <TabItem value="win" label="Windows command line">
+
+Encoding an item as base64 isn't a one-liner on windows. There are numerous online sites that can encode a string, or you can use your programming language of choice to do it. 
+
+To do it locally, save `'{"moonwalkers":"12"}'` to a file, `raw.txt`. 
+
+Then run the following command: 
+```
+certutil -encode raw.txt encoded.txt
+```
+
+`encoded.txt` now contains your encoded message.
+
+  </TabItem>
+</Tabs>
 
 ### 3. Submit the message to the chain
 When submitting the `OracleDataSubmission`, make sure to specify the `source` field as `ORACLE_SOURCE_JSON`.
@@ -253,11 +311,8 @@ vegawallet.exe command send \
   </TabItem>
 </Tabs>
 
-
-
-
 ### Querying an existing oracle spec
-The following GraphQL query shows previous oracle data submissions, which can be useful for confirming that an oracle submission was sucessful, and/or determining the fields that a market's oracle spec requires.
+The following GraphQL query shows previous oracle data submissions, which can be useful for confirming that an oracle submission was successful, and/or determining the fields that a market's oracle spec requires.
 
 ```graphql
 {
@@ -299,43 +354,12 @@ Assuming someone submitted JSON oracle data, the result would be something like 
 }
 ```
 
-### JSON oracle spec for settlement
-For the binding, use the `name` field of the data. In the case of our example above, this would be `"moonwalkers"`.
-
-```javascript
-"oracleSpecBinding": {
-  "settlementPriceProperty": "moonwalkers",
-  "tradingTerminationProperty": "vegaprotocol.builtin.timestamp"
-}
-```
-
-The Oracle Specification that would bind to the `moonwalkers` property would be as follows:
-
-```javascript
-   "oracleSpecForSettlementPrice": {
-        "pubKeys": ["123abc"],
-        "filters": [{
-            "key": {
-                "name": "moonwalkers",
-                "type": "TYPE_INTEGER",
-            },
-            "conditions": [{
-                "operator": "OPERATOR_GREATER_THAN",
-                "value": "12",
-            }]
-        }]
-    }
-```
-
-## Terminating a market using oracles
-The second data source a market needs is for signalling when the market should terminate.
-
 ## Built-in oracle
 Vega provides a timestamp source, which is useful for terminating a market at a set date. `vegaprotocol.builtin.timestamp` provides a Unix timestamp of the Vega time, which is to say the time agreed via consensus.
 
 As the name implies, built in oracle data is generated inside Vega, and cannot be submitted by other keys.
 
-### Trading termination
+### Using built-in oracle for trading termination
 It's possible to settle on any oracle field - for instance checking if a `boolean` is `true` - but time is a good starting point, and the [built-in time oracle](#built-in-oracle) can be used for exactly that:
 
 ```javascript
