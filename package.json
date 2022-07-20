@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "postinstall": "touch proto.json",
     "prettier": "prettier --write '*.js' 'src/**/*.js'",
     "docusaurus": "docusaurus",
     "generate-grpc": "mkdir -p docs/grpc && docusaurus generate-proto-docs",
