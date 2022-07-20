@@ -95,8 +95,11 @@ go build -v -ldflags "-X main.CLIVersion=`git describe --tags 2>/dev/null` -X ma
 
 This will result in a Vega binary built at the root of the repository. 
 
-To ensure that the compilation was successful, run the following command:
+3. To ensure that the compilation was successful, run the following command:
 ```
 ./data-node version
 ```
 This will print the version of the binary you just built.
+
+### Data node requirement as of 0.53
+After building the data node, you will have to run a PostgreSQL server (starting with version 0.53). There are a number of ways to do this as described in the [data node readme](https://github.com/vegaprotocol/data-node/blob/develop/README.md). The simplest and recommended way to do this is **[using docker](https://github.com/vegaprotocol/data-node#using-docker)**, which is also described in the data node readme.
