@@ -4,7 +4,7 @@ You can make changes through the GitHub web UI, or if you have a more complex se
 Anyone is welcome to create a Pull Request. If you're looking to help out, check out the [Issues list](https://github.com/vegaprotocol/documentation/issues) and ensure there isn't an existing [Pull Request](https://github.com/vegaprotocol/documentation/pulls) for the issue.
 
 ## Current process
-1. All changes should be made in a branch, and proposed via a pull request.
+1. All changes must be be made in a branch, and proposed via a pull request.
 2. The reviewer will check the changes, check the deploy preview and approve or request changes
 3. Finally changes are merged
 
