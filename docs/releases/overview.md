@@ -40,11 +40,13 @@ In the short term, the CLI wallet app will still be available to download from t
 During the testing of the decentralised validator selection feature, a bug was found whereby if the network parameter that controls the number of ersatz validators is reduced in the same epoch that an ersatz validator is promoted, the network could be left with a node set where the actual number of ersatz validators was greater than the total allowed number. A fix has been implemented to handle Tendermint demotion and ersatz slot reduction at the same time and keep true to the configured network parameter values.
 
 **PostgreSQL database:**
+**Find out how to run a data node with Postgres in the [data-node readme](https://github.com/vegaprotocol/data-node/blob/v0.53.0/README.md).**
+
 As of version 0.53, data node uses [PostgreSQL](https://www.postgresql.org) as its storage back end instead of the previous mix of in-memory and BadgerDB file stores. We also make use of a Postgres extension called [TimescaleDB](https://www.timescale.com), which adds a number of time series specific features.
 
 Postgres is not an embedded database, but a separate server application that needs to be running before a data node starts. A side effect of this transition is a little bit of setup is required by the data node operator. By default, data node will attempt to connect to a database called `vega` listening on `localhost:5432`, using the username and password `vega`. This is all configurable in data node’s `config.toml` file.
 
-We are developing using `PostgreSQL 14.2` and `Timescale 2.6` and _strongly recommend_ that you also use the same versions. For more information see the [Data-node readme](https://github.com/vegaprotocol/data-node/blob/v0.53.0/README.md)
+We are developing using `PostgreSQL 14.2` and `Timescale 2.6` and _strongly recommend_ that you also use the same versions. For more information see the **[data-node readme](https://github.com/vegaprotocol/data-node/blob/v0.53.0/README.md)**.
 
 
 **Critical bugs resolved:**
@@ -56,7 +58,7 @@ Part of testing the network version compatibility is to deploy the latest versio
 
 
 **Incorrect prices returned from depth endpoint in data node API:**
-The depth value in the data node API appeared to occasionally become ddesynchronised from the 'true' prices. This was observed on testnet when a market’s prices of the 'bids' values were much higher than those of 'ask' and did not tally with values from best bid/ask.
+The depth value in the data node API appeared to occasionally become desynchronised from the 'true' prices. This was observed on testnet when a market’s prices of the 'bids' values were much higher than those of 'ask' and did not tally with values from best bid/ask.
 
 In V1 of the data node (which will be replaced with V2) there is a check which relies on the Vega time (block time) being correctly set. However, as the V1 broker is multi-threaded per event type, there is no guarantee that the time event that sets the Vega time will arrive at the market depth subscriber with the orders to which the time corresponds. This change sends the Vega time of the block along with the order event in the V1 broker to ensure that a correct sequence number is generated for each order event. 
 
