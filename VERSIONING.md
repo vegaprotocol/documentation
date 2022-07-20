@@ -23,7 +23,7 @@ Then in [docusaurus.config.js](https://github.com/vegaprotocol/documentation/blo
 - Only two releases need to be kept. Older ones can be removed.
 
 ### Post tagging: fixing 'absolute' links
-Some of the [API docs generators](#plugins-used) put a full link in the sidebar or documentaiton, rather than relative. There is a script in `scripts/version-switch.sh` that contains some example replacement regexes that will help with this
+Some of the [API docs generators](#plugins-used) put a full link in the sidebar or documentation, rather than relative. There is a script in `scripts/version-switch.sh` that contains some example replacement regexes that will help with this
 
 ### Post tagging: adding redocusaurus documents
 Ensure that there are three new redocusaurus configurations in `docusaurus.config.js` that have the correct version label in them.
