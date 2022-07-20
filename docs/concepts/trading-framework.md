@@ -16,7 +16,7 @@ Orders can be submitted into any market that is active - i.e., not in a protecti
 If, during continuous trading, an order is going to be matched with another order on the book for the same party (also known as a wash trade), then execution of that order will be stopped and the order will be cancelled and removed, if it on the book. 
 
 ### Order sizes
-Order sizes can be fractional, as long as the order is within the maximum number of decimal places allowable for the market. Any order containing more precision than this will be rejected. A market's decimal places are specified in the market framework (link).
+Order sizes can be fractional, as long as the order is within the maximum number of decimal places allowable for the market. Any order containing more precision than this will be rejected. A market's decimal places are specified at the time of the market's proposal.
 
 If a market requires that orders are specified using integers, fractional order sizes do not apply and 1 is the smallest increment.
 
@@ -152,8 +152,12 @@ Pegged orders are restricted in what values can be used when they are created, t
 
 ### Batch operations on orders [WIP]
 
-## Position management [WIP]
-- margin 
+## Position management
+As markets and collateral are not managed through human intervention, markets must have certain automated processes that allow for well-functioning markets and assurance that the collateral required to manage positions is available when it's needed. 
+
+There are a few mechanisms that work differently to how they would on a centralised exchange, in order to provide those reassurances. They include
+- Margin: Vega has implemented automated cross-margining. Margin is calculated automatically depending on the number of positions, the size, and the market movements so that there's enough collateral available to sustain a position and not put other market participants, or the market itself, under strain. 
+- Mark to market: Mark to market on Vega happens much more frequently than on a centralised exchange. Every time the market price moves, the mark to market price is recalculated
 
 ## Market protections
 In a pseudonymous environment where counter-parties may be identified by no more than a public key, it's essential to consider the credit risk, given that the avenues available for traditional marketplaces aren't available. If a counterparty owes more in settlement than their posted collateral, there is no way to reclaim those assets.
@@ -422,13 +426,17 @@ Read more:
 ## Market data [WIP]
 
 ### Decimal places
-The number of decimal places for various figures can be configured, including the increments an order size can be priced in and the number of decimal places an asset has.
+Decimal places come up in lots of situations on Vega. They're used for proposing assets, using those assets for a market, and deciding how large or small an order size can be.
+
+They can be configured in the asset's original governance proposal, and then refined even further in a market governance proposal.
 
 #### Market decimal places
 It is possible to configure a market for which orders can only be priced in increments of a specific size. This is done by specifying, within a market proposal, a different (smaller) number of decimal places than the market's settlement asset supports. Consider a market that settles in GBP. This market can be configured to have 0 decimal places so that the price levels on the order book will be separated by at least £1, rather than the default £0.01 that the asset would support.
 
 #### Asset decimal places [WIP]
+In effect, the number of decimal places tell you how divisible a token or asset is. To start, the number of decimal places of an asset used on Vega is defined in the asset governance proposal that introduces the asset to the network. An asset should have up to the number of decimal places that its original token contract has.
 
+When an asset is chosen to be a market's settlement asset, it can have its decimal places limited further for that market specifically. (Why?)
 
 ## Liquidity
 The Vega protocol allows liquidity to be priced individually for each market, a design decision that allows for liquidity providers to earn more on markets with little LP competition, and drives down fees on markets where there are many participants committing liquidity. 
@@ -526,7 +534,6 @@ In the example below, there are 3 liquidity providers all bidding for their chos
 * If the target stake = 240 then all the liquidity supplied above does not meet the estimated market liquidity demand, and thus the market's liquidity-fee-factor is set to the highest, LP 3's fee: 3.75%.
 
 ### Calculating market value proxy ???? [WIP]
-
 It's calculated, with `t` denoting time now measured so that at t=0 the opening auction ended, as follows:
 
 total_stake = sum of all LP stakes
@@ -557,12 +564,13 @@ Example
     A LP has committed stake of 10000 ETH. The traded notional over active_time_window is 250 000 ETH. Thus the market_value_proxy is 250 000 ETH.
 
 ### Equity-like share for a liquidity provider [WIP]
+Liquidity providers who get into a market early benefit from helping to grow the market by earning an equity-like share of the market's trading fees.
 
-The concept of the equity-like share of a market's trading for a liquidity provider broadly ensures that liquidity providers who get into a market early benefit from helping to grow the market. Those liquidity providers who commit early in a market's existence will receive a larger proportion of the fees than their actual commitment would imply, because they were a larger proportion of the commitment earlier on, once other parties are also committing liquidity to the market.
+Those liquidity providers who commit early in a market's existence will receive a larger proportion of the fees than their actual commitment would imply, because they were a larger proportion of the commitment earlier on, once other parties are also committing liquidity to the market.
 
-The guiding principle of this is that by committing stake a liquidity provider buys a portion of the market_value_proxy of the market.
+By committing money for liquidity, a liquidity provider, in effect, buys a portion of the market value proxy. (?)
 
-At any time let's say we have market_value_proxy calculated above and existing liquidity providers as below
+At any time let's say we have market_value_proxy calculated above and existing liquidity providers as below (needs more)
 
 [LP 1 stake, LP 1 avg_entry_valuation]
 [LP 2 stake, LP 2 avg_entry_valuation]
