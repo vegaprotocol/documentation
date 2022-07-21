@@ -2,6 +2,9 @@
 weight: 110
 title: Liquidity provision
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Liquidity provision
 
 ## Introduction
@@ -30,35 +33,43 @@ For more information on how to deposit an asset into Vega, see the section on [H
 
 Connect to a Vega API server, and request *all liquidity provisions* for the specified market:
 
-{{< columns >}}
+
 {{< gitpod >}}
 
-{{< tabs "codesamples1" >}}
-{{< tab "Shell (REST)" >}}
+<Tabs groupId="codesamples1">
+<TabItem value="shell-rest" label="Shell (REST)">
 
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/submit-create-liquidity-provision-order.sh#get_liquidity_provisions" >}} 
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/submit-create-liquidity-provision-order.sh#get_liquidity_provisions" >}}
+:::
 
 See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/LiquidityProvisions) for further query detail.
 
-{{< /tab >}}
-{{< tab "Python (REST)" >}}
+</TabItem>
+<TabItem value="python-rest" label="Python (REST)">
 
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/submit-create-liquidity-provision-order.py#get_liquidity_provisions" >}}
+:::
 
 See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/LiquidityProvisions) for further query detail.
 
-{{< /tab >}}
-{{< tab "Python (gRPC)" >}}
+</TabItem>
+<TabItem value="python-grpc" label="Python (gRPC)">
 
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/submit-create-liquidity-provision-order-with-Vega-API-client.py#import_client" on >}}
+:::
 
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/submit-create-liquidity-provision-order-with-Vega-API-client.py#get_liquidity_provisions" >}}
+:::
 
 See also [gRPC API reference](https://docs.testnet.vega.xyz/api/grpc/#vega.LiquidityProvision) for further query detail.
 
-{{< /tab >}}
+</TabItem>
 
-{{< /tabs >}}
+</Tabs>
 
 
 
@@ -68,11 +79,13 @@ If successful, the response will include:
 | :----------------- | :------------- |
 | `liquidityProvisions` | A collection of liquidity provision data for the specified market. See below more information on each value. |
 
-{{< expand "Example response" >}}
+<details><summary>Example response</summary>
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/response-examples.txt#example_get_liquidity_provisions" on >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/response-examples.txt#example_get_liquidity_provisions" on >}}
+:::
 
-{{< /expand >}}
+</details>
 
 :::info
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/tree/master/submit-create-liquidity-provision).
@@ -83,7 +96,7 @@ For full example code, please visit the [repo on GitHub](https://github.com/vega
 | :----------------- |
 | **Id** -- A unique identifier for the liquidity provision. <hr/> **Party Id** -- The unique identifier of the party which submitted the liquidity provision. <hr/> **Created At** -- A timestamp for when the liquidity provision was created at, in nanoseconds since the Unix epoch. <hr/> **Updated At** -- A timestamp for when the liquidity provision was updated at, in nanoseconds since the Unix epoch. <hr/>  **Market Id** -- The unique market identifier for the data returned. <hr/>  **Commitment Amount** -- Specified as a unitless number that represents the amount of settlement asset of the market. <hr/>  **Fee** -- Nominated liquidity fee factor, which is an input to the calculation of taker fees on the market, as per setting fees and rewarding liquidity providers. <hr/>  **Sells** -- A set of liquidity sell orders which may get deployed automatically to assure the liquidity provision obligation is always met. <hr/>  **Buys** -- A set of liquidity buy orders which may get deployed automatically to assure the liquidity provision obligation is always met. <hr/>  **Version** -- Version of the liquidity commitment transaction (incremented with every re-submission). <hr/>  **Status** -- Status of the liquidity commitment transaction. <hr/>  **Reference** -- A reference shared between this liquidity provision and all its orders. |
 
-{{< /columns >}}
+
 
 ### 4. Compose a liquidity commitment submission message
 
@@ -95,33 +108,41 @@ When submitting a liquidity commitment message, the following fields must be spe
 
 Please see [Providing liquidity for markets]({{<relref "../providing-liquidity/#how-to-provide-liquidity">}}) for details. Please note that the request will be rejected if the message is invalid. This could be because of the market state, the message is formatted incorrectly, or the requested liquidity commitment cannot be supported with your current balance in the market settlement asset.
 
-{{< columns >}}
+
 {{< gitpod >}}
 
-{{< tabs "codesamples2" >}}
-{{< tab "Shell (REST)" >}}
+<Tabs groupId="codesamples2">
+<TabItem value="shell-rest" label="Shell (REST)">
 
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/submit-create-liquidity-provision-order.sh#prepare_liquidity_order" >}}
+:::
 
-{{< /tab >}}
-{{< tab "Python (REST)" >}}
+</TabItem>
+<TabItem value="python-rest" label="Python (REST)">
 
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/submit-create-liquidity-provision-order.py#prepare_liquidity_order" >}}
+:::
 
-{{< /tab >}}
-{{< tab "Python (gRPC)" >}}
+</TabItem>
+<TabItem value="python-grpc" label="Python (gRPC)">
 
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/submit-create-liquidity-provision-order-with-Vega-API-client.py#import_client" on >}}
+:::
 
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/submit-create-liquidity-provision-order-with-Vega-API-client.py#prepare_liquidity_order" >}}
+:::
 
-{{< /tab >}}
+</TabItem>
 
-{{< /tabs >}}
+</Tabs>
 
 
 
-{{< /columns >}}
+
 
 ### 5. Compose a liquidity commitment amendment message
 
@@ -130,35 +151,43 @@ To amend, keep `liquidityCommitment` positive (unchanged to leave as is) and mod
 
 Please note that the request will be rejected if the message is invalid, and the liquidity commitment will stay as is. This could be because of the market state, the message is formatted incorrectly, or the requested liquidity commitment cannot be supported with your current balance in the market settlement asset.
 
-{{< columns >}}
+
 {{< gitpod >}}
 
-{{< tabs "codesamples3" >}}
-{{< tab "Shell (REST)" >}}
+<Tabs groupId="codesamples3">
+<TabItem value="shell-rest" label="Shell (REST)">
 
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-liquidity-provision/submit-amend-liquidity-provision-order.sh#amend_liquidity_order" >}}
+:::
 
-{{< /tab >}}
+</TabItem>
 
-{{< tab "Python (REST)" >}}
+<TabItem value="python-rest" label="Python (REST)">
 
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-liquidity-provision/submit-amend-liquidity-provision-order.py#amend_liquidity_order" >}}
+:::
 
-{{< /tab >}}
+</TabItem>
 
-{{< tab "Python (gRPC)" >}}
+<TabItem value="python-grpc" label="Python (gRPC)">
 
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-liquidity-provision/submit-amend-liquidity-provision-order-with-Vega-API-client.py#import_client" on >}}
+:::
 
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-liquidity-provision/submit-amend-liquidity-provision-order-with-Vega-API-client.py#amend_liquidity_order" >}}
+:::
 
-{{< /tab >}}
+</TabItem>
 
-{{< /tabs >}}
+</Tabs>
 
 
 
-{{< /columns >}}
+
 
 ### 6. Compose a liquidity commitment cancellation message
 
@@ -166,58 +195,74 @@ If the liquidity commitment message has already been submitted successfully, sub
 
 Please note that the cancellation message will be rejected if the message is invalid, and the liquidity commitment will stay as is. This could be because of the market state, the message is formatted incorrectly, or the requested liquidity commitment cannot be supported with your current balance in the market settlement asset.
 
-{{< columns >}}
+
 {{< gitpod >}}
 
-{{< tabs "codesamples4" >}}
-{{< tab "Shell (REST)" >}}
+<Tabs groupId="codesamples4">
+<TabItem value="shell-rest" label="Shell (REST)">
 
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-cancel-liquidity-provision/submit-cancel-liquidity-provision-order.sh#cancel_liquidity_order" >}}
+:::
 
-{{< /tab >}}
-{{< tab "Python (REST)" >}}
+</TabItem>
+<TabItem value="python-rest" label="Python (REST)">
 
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-cancel-liquidity-provision/submit-cancel-liquidity-provision-order.py#cancel_liquidity_order" >}}
+:::
 
-{{< /tab >}}
-{{< tab "Python (gRPC)" >}}
+</TabItem>
+<TabItem value="python-grpc" label="Python (gRPC)">
 
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-cancel-liquidity-provision/submit-cancel-liquidity-provision-order-with-Vega-API-client.py#import_client" on >}}
+:::
 
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-cancel-liquidity-provision/submit-cancel-liquidity-provision-order-with-Vega-API-client.py#cancel_liquidity_order" >}}
+:::
 
-{{< /tab >}}
+</TabItem>
 
-{{< /tabs >}}
+</Tabs>
 
 
 
-{{< /columns >}}
+
 
 ### 7. Sign and send the transaction
 
-{{< columns >}}
+
 {{< gitpod >}}
 
-{{< tabs "codesamples5" >}}
-{{< tab "Shell (REST)" >}}
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/submit-create-liquidity-provision-order.sh#sign_tx_liquidity_order" >}}
+<Tabs groupId="codesamples5">
+<TabItem value="shell-rest" label="Shell (REST)">
 
-  See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
-{{< /tab >}}
-{{< tab "Python (REST)" >}}
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/submit-create-liquidity-provision-order.py#sign_tx_liquidity_order" >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/submit-create-liquidity-provision-order.sh#sign_tx_liquidity_order" >}}
+:::
 
-  See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
-{{< /tab >}}
-{{< tab "Python (gRPC)" >}}
+See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
+</TabItem>
+<TabItem value="python-rest" label="Python (REST)">
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/submit-create-liquidity-provision-order-with-Vega-API-client.py#sign_tx_liquidity_order" >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/submit-create-liquidity-provision-order.py#sign_tx_liquidity_order" >}}
+:::
 
-  See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
-{{< /tab >}}
+See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
+</TabItem>
+<TabItem value="python-grpc" label="Python (gRPC)">
 
-{{< /tabs >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/submit-create-liquidity-provision-order-with-Vega-API-client.py#sign_tx_liquidity_order" >}}
+:::
+
+See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
+</TabItem>
+
+</Tabs>
 
 
 
@@ -227,17 +272,19 @@ If successful, the response will include:
 | :----------------- | :------------- |
 | `signature` | A **signed** transaction message containing the liquidity commitment submission data. Because `propagate` is set to true, the signed data will be automatically forwarded by the wallet server to a node. If you wish to manually submit the transaction you can do so with the data in `signature` (`tx`) and set `propagate` to false. |
 
-{{< expand "Example response" >}}
+<details><summary>Example response</summary>
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/response-examples.txt#example_sign_tx_liquidity_response" on >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/response-examples.txt#example_sign_tx_liquidity_response" on >}}
+:::
 
-{{< /expand >}}
+</details>
 
 :::info
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/tree/master/submit-create-liquidity-provision).
 :::
 
-{{< /columns >}}
+
 
 ## What's next?
 

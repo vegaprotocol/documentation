@@ -41,19 +41,19 @@ When sending an order amendment request, order, market and party identifiers are
 <Tabs groupId="codesamples1">
 <TabItem value="shell-rest" label="Shell (REST)">
 
-:::danger
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.sh#prepare_amend_order" >}}
 :::
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
-:::danger
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.py#prepare_amend_order" >}}
 :::
 </TabItem>
 <TabItem value="python-grpc" label="Python (gRPC)">
 
-:::danger
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders-with-Vega-API-client.py#prepare_amend_order" >}}
 :::
 </TabItem>
@@ -64,7 +64,7 @@ When sending an order amendment request, order, market and party identifiers are
 <Tabs groupId="codesamples2">
 <TabItem value="shell-rest" label="Shell (REST)">
 
-:::danger
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.sh#sign_tx_amend" >}}
 :::
 
@@ -72,7 +72,7 @@ See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
-:::danger
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.py#sign_tx_amend" >}}
 :::
 
@@ -80,7 +80,7 @@ See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
 </TabItem>
 <TabItem value="python-grpc" label="Python (gRPC)">
 
-:::danger
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders-with-Vega-API-client.py#sign_tx_amend" >}}
 :::
 
@@ -96,7 +96,7 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/response-examples.txt#example_sign_tx_amend_response" on >}}
 :::
     

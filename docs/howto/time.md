@@ -2,6 +2,9 @@
 weight: 120
 title: Vega Time
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Vega Time 
 
 ## Why do we need the concept of Vega Time? 
@@ -22,22 +25,31 @@ For more information on how UTC timestamps are provided under the hood, please s
 
 Connect to a Vega API server, and request the latest *Vega Time*:
 
-{{< columns >}}
+
 
 {{< gitpod >}}
 
-{{< tabs "codesamples1" >}}
-{{< tab "Shell (REST)" >}}
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/get-time.sh#get_time" >}}
+<Tabs groupId="codesamples1">
+<TabItem value="shell-rest" label="Shell (REST)">
+
+:::danger Link to GitHub
+{{< github-embed "
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/get-time.sh#get_time" >}}
+:::
 
   See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/GetVegaTime) for further query detail.
-{{< /tab >}}
-{{< tab "Python (REST)" >}}
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/get-time.py#get_time" >}}
+</TabItem>
+<TabItem value="python-rest" label="Python (REST)">
+
+:::danger Link to GitHub
+{{< github-embed "
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/get-time.py#get_time" >}}
+:::
 
   See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/GetVegaTime) for further query detail.
-{{< /tab >}}
-{{< tab "Python (gRPC)" >}}
+</TabItem>
+<TabItem value="python-grpc" label="Python (gRPC)">
+
 Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
 
 ```shell
@@ -45,13 +57,19 @@ pip install --upgrade Vega-API-client
 ```
 This Python snippet code shows how to query for *Vega Time*:
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/get-time-with-Vega-API-client.py#import_client" on >}}
+:::danger Link to GitHub
+{{< github-embed "
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/get-time-with-Vega-API-client.py#import_client" on >}}
+:::
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/get-time-with-Vega-API-client.py#get_time" >}}
+:::danger Link to GitHub
+{{< github-embed "
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/get-time-with-Vega-API-client.py#get_time" >}}
+:::
 
   See also [gRPC API reference](/api/grpc/#datanode.api.v1.GetVegaTimeResponse) for further query detail.
-{{< /tab >}}
-{{< /tabs >}}
+</TabItem>
+</Tabs>
 
 
 
@@ -61,17 +79,20 @@ If successful, the response will include:
 | :----------------- | :------------- |
 | `timestamp` | The timestamp for the current Vega Time, formatted as a numeric value of the number of nanoseconds since the UNIX epoch (January 1, 1970 00:00 UTC). In other words, it's a 64-bit UNIX timestamp with nanosecond precision. |
 
-{{< expand "Example response" >}}
+<details><summary>Example response</summary>
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/response-examples.txt#example_get_time_response" on >}}
+:::danger Link to GitHub
+{{< github-embed "
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/response-examples.txt#example_get_time_response" on >}}
+:::
 
-{{< /expand >}}
+</details>
 
 :::info
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/).
 :::
 
-{{< /columns >}}
+
 
 ## Uses of Vega Time
 

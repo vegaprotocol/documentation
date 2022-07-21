@@ -2,6 +2,9 @@
 weight: 69
 title: Positions and balances
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Positions and balances
 
 ## Introduction
@@ -31,21 +34,28 @@ Connect to a Vega API server, and request *accounts for a party*:
 Note: account balances of any party for which a public key is known can be publicly listed on Vega.  
 :::
 
-{{< columns >}}
+
 {{< gitpod >}}
 
-{{< tabs "codesamples1" >}}
-{{< tab "Shell (REST)" >}}
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts.sh#get_accounts_by_party" >}}
+<Tabs groupId="codesamples1">
+<TabItem value="shell-rest" label="Shell (REST)">
+
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts.sh#get_accounts_by_party" >}}
+:::
 
   See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/PartyAccounts) for further query detail.
-{{< /tab >}}
-{{< tab "Python (REST)" >}}
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts.py#get_accounts_by_party" >}}
+</TabItem>
+<TabItem value="python-rest" label="Python (REST)">
+
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts.py#get_accounts_by_party" >}}
+:::
 
   See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/PartyAccounts) for further query detail.
-{{< /tab >}}
-{{< tab "Python (gRPC)" >}}
+</TabItem>
+<TabItem value="python-grpc" label="Python (gRPC)">
+
 Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
 
 ```shell
@@ -54,13 +64,17 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to query for a *list of orders on a market*:
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts-with-Vega-API-client.py#import_client" on >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts-with-Vega-API-client.py#import_client" on >}}
+:::
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts-with-Vega-API-client.py#get_accounts_by_party" >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts-with-Vega-API-client.py#get_accounts_by_party" >}}
+:::
 
   See also [gRPC API reference](/api/grpc/#datanode.api.v1.PartyAccountsRequest) for further query detail.
-{{< /tab >}}
-{{< /tabs >}}
+</TabItem>
+</Tabs>
 
 
 
@@ -70,17 +84,19 @@ If successful, the response will include:
 | :----------------- | :------------- |
 | `accounts` | A list of zero or more accounts for the party specified. Balances use decimal place values specified by the asset, e.g. 5 decimal places. A party will have one GENERAL account and MARGIN account for each market where they have an open position. Governance assets will also be listed as GENERAL accounts, e.g. VOTE. |
 
-{{< expand "Example response" >}}
+<details><summary>Example response</summary>
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/response-examples.txt#example_accounts_by_party_response" on >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/response-examples.txt#example_accounts_by_party_response" on >}}
+:::
 
-{{< /expand >}}
+</details>
 
 :::info
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/).
 :::
 
-{{< /columns >}}
+
 
 This request has additional (optional) request filter parameters for *market identifier*, *type* and *asset*. Specifying a market will return only accounts related to a particular market and an empty list if the market is not found. Specifying the type will return only accounts related to a particular type e.g. INSURANCE, and specifying an asset will return accounts relating to a particular asset. Please see the [API reference documentation](/api/grpc/#datanode.api.v1.PartyAccountsRequest) for the API for exact details.
 
@@ -89,21 +105,28 @@ This request has additional (optional) request filter parameters for *market ide
 
 Connect to a Vega API server, and request *accounts for a market*:  
 
-{{< columns >}}
+
 {{< gitpod >}}
 
-{{< tabs "codesamples2" >}}
-{{< tab "Shell (REST)" >}}
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts.sh#get_accounts_by_market" >}}
+<Tabs groupId="codesamples2">
+<TabItem value="shell-rest" label="Shell (REST)">
+
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts.sh#get_accounts_by_market" >}}
+:::
 
   See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/MarketAccounts) for further query detail.
-{{< /tab >}}
-{{< tab "Python (REST)" >}}
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts.py#get_accounts_by_market" >}}
+</TabItem>
+<TabItem value="python-rest" label="Python (REST)">
+
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts.py#get_accounts_by_market" >}}
+:::
 
   See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/MarketAccounts) for further query detail.
-{{< /tab >}}
-{{< tab "Python (gRPC)" >}}
+</TabItem>
+<TabItem value="python-grpc" label="Python (gRPC)">
+
 Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
 
 ```shell
@@ -112,13 +135,17 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to query for a *list of orders for a party*:
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts-with-Vega-API-client.py#import_client" on >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts-with-Vega-API-client.py#import_client" on >}}
+:::
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts-with-Vega-API-client.py#get_accounts_by_market" >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts-with-Vega-API-client.py#get_accounts_by_market" >}}
+:::
 
   See also [gRPC API reference](/api/grpc/#datanode.api.v1.MarketAccountsRequest) for further query detail.
-{{< /tab >}}
-{{< /tabs >}}
+</TabItem>
+</Tabs>
 
 
 
@@ -128,17 +155,19 @@ If successful, the response will include:
 | :----------------- | :------------- |
 | `accounts` | A list of zero or more accounts for the market specified. Balances use decimal place values specified by the asset, e.g. 5 decimal places. |
 
-{{< expand "Example response" >}}
+<details><summary>Example response</summary>
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/response-examples.txt#example_accounts_by_market_response" on >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/response-examples.txt#example_accounts_by_market_response" on >}}
+:::
 
-{{< /expand >}}
+</details>
 
 :::info
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/).
 :::
 
-{{< /columns >}}
+
 
 Similar to querying for accounts for a party, this request has an additional (optional) request filter parameter for *asset*. Specifying an asset will return only accounts related to a particular asset and an empty list if the market is not found. Please see the [API reference documentation](/api/grpc/#datanode.api.v1.MarketAccountsRequest) for the API for exact details.
 
@@ -149,21 +178,28 @@ Positions requests return key information such as realised and unrealised profit
 
 Connect to a Vega API server, and request *positions for a party*:  
 
-{{< columns >}}
+
 {{< gitpod >}}
 
-{{< tabs "codesamples3" >}}
-{{< tab "Shell (REST)" >}}
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts.sh#get_positions_by_party" >}}
+<Tabs groupId="codesamples3">
+<TabItem value="shell-rest" label="Shell (REST)">
+
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts.sh#get_positions_by_party" >}}
+:::
 
   See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/PositionsByParty) for further query detail.
-{{< /tab >}}
-{{< tab "Python (REST)" >}}
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts.py#get_positions_by_party" >}}
+</TabItem>
+<TabItem value="python-rest" label="Python (REST)">
+
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts.py#get_positions_by_party" >}}
+:::
 
   See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/PositionsByParty) for further query detail.
-{{< /tab >}}
-{{< tab "Python (gRPC)" >}}
+</TabItem>
+<TabItem value="python-grpc" label="Python (gRPC)">
+
 Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
 
 ```shell
@@ -172,13 +208,17 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to query for a *list of trades for an order*:
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts-with-Vega-API-client.py#import_client" on >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts-with-Vega-API-client.py#import_client" on >}}
+:::
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts-with-Vega-API-client.py#get_positions_by_party" >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts-with-Vega-API-client.py#get_positions_by_party" >}}
+:::
 
   See also [gRPC API reference](/api/grpc/#datanode.api.v1.PositionsByPartyRequest) for further query detail.
-{{< /tab >}}
-{{< /tabs >}}
+</TabItem>
+</Tabs>
 
 
 
@@ -188,17 +228,19 @@ If successful, the response will include:
 | :----------------- | :------------- |
 | `positions` | A list of zero or more positions for the party specified. Each position will include a reference to the related market and the timestamp for when the values were last updated. |
 
-{{< expand "Example response" >}}
+<details><summary>Example response</summary>
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/response-examples.txt#example_positions_by_party_response" on >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/response-examples.txt#example_positions_by_party_response" on >}}
+:::
 
-{{< /expand >}}
+</details>
 
 :::info
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/).
 :::
 
-{{< /columns >}}
+
 
 ## What's next?
 

@@ -1,7 +1,9 @@
 ---
-weight: 96
 title: Streaming events
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Streaming events from Vega
 
 ## Introduction
@@ -60,10 +62,9 @@ There are three request parameters that control the output on the stream from th
 
 Connect to a Vega API server, and request to *stream from the event bus*:  
 
-{{< columns >}}
-{{< gitpod >}}
-{{< tabs "codesamples1" >}}
-{{< tab "Shell (GraphQL)" >}}
+<Tabs groupId="codesamples1">
+<TabItem value="shell-graphql" label="Shell (GraphQL)">
+
 Make sure `graphqurl` is installed (from [GitHub](https://github.com/hasura/graphqurl)):
 
 ```shell
@@ -72,11 +73,14 @@ npm install -g graphqurl
 
 This snippet code shows how to subscribe to *ALL events for a particular market*:
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-events/stream-events.sh#stream_events" >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-events/stream-events.sh#stream_events" >}}
+:::
 
-  See also [GraphQL API reference](/api/graphql/data-node/subscription.doc.html#L75) for further query detail.
-{{< /tab >}}
-{{< tab "Python (gRPC)" >}}
+See also [GraphQL API reference](/api/graphql/data-node/subscription.doc.html#L75) for further query detail.
+</TabItem>
+<TabItem value="python-grpc" label="Python (gRPC)">
+
 Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
 
 ```shell
@@ -85,15 +89,17 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to receive a stream of **ALL events for a particular market*:
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-events/stream-events-with-Vega-API-client.py#import_client" on >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-events/stream-events-with-Vega-API-client.py#import_client" on >}}
+:::
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-events/stream-events-with-Vega-API-client.py#stream_events" >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-events/stream-events-with-Vega-API-client.py#stream_events" >}}
+:::
 
-  See also [gRPC API reference](/api/grpc/#api.v1.ObserveEventsResponse) for further query detail.
-{{< /tab >}}
-{{< /tabs >}}
-
-
+See also [gRPC API reference](/api/grpc/#api.v1.ObserveEventsResponse) for further query detail.
+</TabItem>
+</Tabs>
 
 If successful, the response will include:
 
@@ -101,17 +107,17 @@ If successful, the response will include:
 | :----------------- | :------------- |
 | `events` | A list of zero or more events. If the `BUS_EVENT_TYPE_ALL` types filter is specified the `type` field returned in each event will give the event type code (see above), a unique identifier for the event in an `id` field and a payload which can be one of the data records associated with the type, for example, an `Account` for `BUS_EVENT_TYPE_ACCOUNT` or an `AuctionEvent` for `BUS_EVENT_TYPE_AUCTION` (see above). See example response (below) which shows different payloads for bus event types returned. |
 
-{{< expand "Example response" >}}
+<details><summary>Example response</summary>
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-events/response-examples.txt#example_stream_events_response" on >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-events/response-examples.txt#example_stream_events_response" on >}}
+:::
 
-{{< /expand >}}
+</details>
 
 :::info
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-events/).
 ::::
-
-{{< /columns >}}
 
 ## Are there any limitations to this API?
 

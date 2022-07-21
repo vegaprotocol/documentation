@@ -2,6 +2,9 @@
 weight: 9
 title: Getting started
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Getting Started 
 
 **Welcome!** We're super excited that you've decided to take a dive into the API how-to guides. There's some important information to learn first and then we'll jump into running a query against an API on Vega.
@@ -22,22 +25,27 @@ Let's dive straight in and request a **list of parties** trading on Vega:
 The NODE URLs for the Vega testnet are available in the [APIs]({{<relref "../apis/#what-are-the-testnet-api-server-addresses">}}) section.
 :::
 
-{{< columns >}}
-
 {{< gitpod >}}
 
-{{< tabs "codesamples3" >}}
-{{< tab "Shell (REST)" >}}
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-parties.sh#get_parties" >}}
+<Tabs groupId="codesamples3">
+<TabItem value="shell-rest" label="Shell (REST)">
 
-  See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/Parties) for further query detail.
-{{< /tab >}}
-{{< tab "Python (REST)" >}}
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-parties.py#get_parties" >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-parties.sh#get_parties" >}}
+:::
 
-  See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/Parties) for further query detail.
-{{< /tab >}}
-{{< tab "Python (gRPC)" >}}
+See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/Parties) for further query detail.
+</TabItem>
+<TabItem value="python-rest" label="Python (REST)">
+
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-parties.py#get_parties" >}}
+:::
+
+See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/Parties) for further query detail.
+</TabItem>
+<TabItem value="python-grpc" label="Python (gRPC)">
+
 Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
 
 ```shell
@@ -45,14 +53,18 @@ pip install --upgrade Vega-API-client
 ```
 This Python snippet code shows how to query for *parties*:
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-parties-with-Vega-API-client.py#import_client" on >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-parties-with-Vega-API-client.py#import_client" on >}}
+:::
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-parties-with-Vega-API-client.py#get_parties" >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-parties-with-Vega-API-client.py#get_parties" >}}
+:::
 
-  See also [gRPC API reference](/api/grpc/#datanode.api.v1.PartiesResponse) for further query detail.
-{{< /tab >}}
+See also [gRPC API reference](/api/grpc/#datanode.api.v1.PartiesResponse) for further query detail.
+</TabItem>
 
-{{< /tabs >}}
+</Tabs>
 
 
 
@@ -60,19 +72,19 @@ If successful, the response will include:
 
 | Field          |  Description  |
 | :----------------- | :------------- |
-| `parties` | A list of zero or more parties. A party includes an `id` field which contains the **public key** (pub-key) related to that party. See example response (below). |
+| `parties` | A list of zero or more parties. A party includes an `id` field which contains the **public key** (pub-key) related to that party. See example response (below). |<details><summary>Example response" >}}
 
-{{< expand "Example response" >}}
+<details><summary>Example response</summary>
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/response-examples.txt#example_parties_response" on >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/response-examples.txt#example_parties_response" on >}}
+:::
 
-{{< /expand >}}
+</details>
 
 :::info
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/).
 :::
-
-{{< /columns >}}
 
 ## Introducing Gitpod to run code samples
 

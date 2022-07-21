@@ -2,6 +2,9 @@
 weight: 94
 title: Proposals and voting
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Governance proposals and voting
 
 ## Introduction
@@ -14,18 +17,22 @@ If you're looking specifically for a guide on how to create and propose a **new 
 
 Connect to a Vega API server, and request a *list of proposals*:  
 
-{{< columns >}}
+
 {{< gitpod >}}
 
-{{< tabs "codesamples1" >}}
+<Tabs groupId="codesamples1">
 
-{{< tab "Python (REST)" >}}
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals.py#get_proposals" >}}
+<TabItem value="python-rest" label="Python (REST)">
+
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals.py#get_proposals" >}}
+:::
 
   See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/GetNewMarketProposals) for further query detail.
-{{< /tab >}}
+</TabItem>
 
-{{< tab "Python (gRPC)" >}}
+<TabItem value="python-grpc" label="Python (gRPC)">
+
 Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
 
 ```shell
@@ -34,14 +41,19 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to query for a *list of governance proposals*:
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-with-Vega-API-client.py#import_client" on >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-with-Vega-API-client.py#import_client" on >}}
+:::
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-with-Vega-API-client.py#get_proposals" >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-with-Vega-API-client.py#get_proposals" >}}
+:::
 
   See also [gRPC API reference](/api/grpc/#datanode.api.v1.GetProposalsRequest) for further query detail.
-{{< /tab >}}
+</TabItem>
 
-{{< tab "Shell (GraphQL)" >}}
+<TabItem value="shell-graphql" label="Shell (GraphQL)">
+
 Make sure `graphqurl` is installed (from [GitHub](https://github.com/hasura/graphqurl)):
 
 ```shell
@@ -50,12 +62,14 @@ npm install -g graphqurl
 
 This snippet code shows how to query for a *list of proposals*:
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-gql.sh#get_proposals" >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-gql.sh#get_proposals" >}}
+:::
 
   See also [GraphQL API reference](/api/graphql/data-node/query.doc.html#L73) for further query detail.
-{{< /tab >}}
+</TabItem>
 
-{{< /tabs >}}
+</Tabs>
 
 
 
@@ -65,34 +79,40 @@ If successful, the response will include:
 | :----------------- | :------------- |
 | `proposals` | A list of zero or more proposals from the Vega network. |
 
-{{< expand "Example response" >}}
+<details><summary>Example response</summary>
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/response-examples.txt#example_proposals_response" on >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/response-examples.txt#example_proposals_response" on >}}
+:::
 
-{{< /expand >}}
+</details>
 
 :::info
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/).
 :::
 
-{{< /columns >}}
+
 
 ## How do I see the status of a specific proposal?
 
 Connect to a Vega API server, and request a *proposal by identifier*:  
 
-{{< columns >}}
+
 {{< gitpod >}}
 
-{{< tabs "codesamples2" >}}
+<Tabs groupId="codesamples2">
 
-{{< tab "Python (REST)" >}}
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals.py#get_proposal_detail" >}}
+<TabItem value="python-rest" label="Python (REST)">
+
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals.py#get_proposal_detail" >}}
+:::
 
   See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/GetProposalByID) for further query detail.
-{{< /tab >}}
+</TabItem>
 
-{{< tab "Python (gRPC)" >}}
+<TabItem value="python-grpc" label="Python (gRPC)">
+
 Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
 
 ```shell
@@ -101,14 +121,19 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to query for a *proposal by identifier*:
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-with-Vega-API-client.py#import_client" on >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-with-Vega-API-client.py#import_client" on >}}
+:::
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-with-Vega-API-client.py#get_proposal_detail" >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-with-Vega-API-client.py#get_proposal_detail" >}}
+:::
 
   See also [gRPC API reference](/api/grpc/#datanode.api.v1.GetProposalByIDRequest) for further query detail.
-{{< /tab >}}
+</TabItem>
 
-{{< tab "Shell (GraphQL)" >}}
+<TabItem value="shell-graphql" label="Shell (GraphQL)">
+
 Make sure `graphqurl` is installed (from [GitHub](https://github.com/hasura/graphqurl)):
 
 ```shell
@@ -117,12 +142,14 @@ npm install -g graphqurl
 
 This snippet code shows how to request a *proposal by identifier*:
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-gql.sh#get_proposal_detail" >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-gql.sh#get_proposal_detail" >}}
+:::
 
   See also [GraphQL API reference](/api/graphql/data-node/query.doc.html#L82) for further query detail.
-{{< /tab >}}
+</TabItem>
 
-{{< /tabs >}}
+</Tabs>
 
 
 
@@ -132,34 +159,40 @@ If successful, the response will include:
 | :----------------- | :------------- |
 | `proposal` | A proposal record will be returned if one is found matching the given identifier. Fields including `state` and `[yes/no]votes` will be returned for the proposal allowing a user to fully examine the current status. |
 
-{{< expand "Example response" >}}
+<details><summary>Example response</summary>
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/response-examples.txt#example_proposals_response" on >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/response-examples.txt#example_proposals_response" on >}}
+:::
 
-{{< /expand >}}
+</details>
 
 :::info
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/).
 :::
 
-{{< /columns >}}
+
 
 ## How do I list proposals for a party (public key)?
 
 Connect to a Vega API server, and request *proposals for a party*:  
 
-{{< columns >}}
+
 {{< gitpod >}}
 
-{{< tabs "codesamples3" >}}
+<Tabs groupId="codesamples3">
 
-{{< tab "Python (REST)" >}}
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals.py#get_proposals_by_party" >}}
+<TabItem value="python-rest" label="Python (REST)">
+
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals.py#get_proposals_by_party" >}}
+:::
 
   See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/GetProposalsByParty) for further query detail.
-{{< /tab >}}
+</TabItem>
 
-{{< tab "Python (gRPC)" >}}
+<TabItem value="python-grpc" label="Python (gRPC)">
+
 Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
 
 ```shell
@@ -168,14 +201,19 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to query for a *list of governance proposals*:
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-with-Vega-API-client.py#import_client" on >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-with-Vega-API-client.py#import_client" on >}}
+:::
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-with-Vega-API-client.py#get_proposals_by_party" >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-with-Vega-API-client.py#get_proposals_by_party" >}}
+:::
 
   See also [gRPC API reference](/api/grpc/#datanode.api.v1.GetProposalsByPartyRequest) for further query detail.
-{{< /tab >}}
+</TabItem>
 
-{{< tab "Shell (GraphQL)" >}}
+<TabItem value="shell-graphql" label="Shell (GraphQL)">
+
 Make sure `graphqurl` is installed (from [GitHub](https://github.com/hasura/graphqurl)):
 
 ```shell
@@ -184,12 +222,14 @@ npm install -g graphqurl
 
 This snippet code shows how to query for a *list of proposals*:
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-gql.sh#get_proposals_by_party" >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-gql.sh#get_proposals_by_party" >}}
+:::
 
   See also [GraphQL API reference](/api/graphql/data-node/query.doc.html#L25) for further query detail.
-{{< /tab >}}
+</TabItem>
 
-{{< /tabs >}}
+</Tabs>
 
 
 
@@ -199,17 +239,19 @@ If successful, the response will include:
 | :----------------- | :------------- |
 | `proposals` | A list of zero or more proposals from the Vega network. |
 
-{{< expand "Example response" >}}
+<details><summary>Example response</summary>
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/response-examples.txt#example_proposals_response" on >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/response-examples.txt#example_proposals_response" on >}}
+:::
 
-{{< /expand >}}
+</details>
 
 :::info
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/).
 :::
 
-{{< /columns >}}
+
 
 ## How do I vote for a proposal?
 
@@ -234,18 +276,27 @@ For a working **wallet example** used by this how-to guide, please visit the [AP
 
 After locating a proposal (`proposal_id`) using the listing calls shown above, to vote either **for** (YES) or **against** (NO), simply connect to a Vega API server and submit a vote for a *proposal*:  
 
-{{< columns >}}
+
 {{< gitpod >}}
 
-{{< tabs "codesamples4" >}}
-{{< tab "Python (REST)" >}}
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#get_time" on >}}
+<Tabs groupId="codesamples4">
+<TabItem value="python-rest" label="Python (REST)">
+
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#get_time" on >}}
+:::
+
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#prepare_vote" on >}}
+:::
+
+:::danger Link to GitHub
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#sign_tx_vote" >}}
+:::
 
   See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/PrepareVote) for further query detail.
-{{< /tab >}}
-{{< /tabs >}}
+</TabItem>
+</Tabs>
 
 
 
@@ -255,13 +306,15 @@ If successful, the response will include:
 | :----------------- | :------------- |
 | `signature` | A signed transaction message containing the vote data. In the same way as the market proposal message, if `propagate` is set to **true**, the signed data will be automatically forwarded by the wallet server to a node.
 
-{{< expand "Example response" >}}
+<details><summary>Example response</summary>
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/response-examples.txt#example_sign_tx_vote_response" on >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/response-examples.txt#example_sign_tx_vote_response" on >}}
+:::
 
-{{< /expand >}}
+</details>
 
-{{< /columns >}}
+
 
 ## What's next?
 

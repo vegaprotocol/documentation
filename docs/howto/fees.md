@@ -1,7 +1,9 @@
 ---
-weight: 100
 title: Fees and margins 
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Fees and margin estimation
 
 ## Introduction
@@ -51,21 +53,25 @@ These can also be overridden on a per market basis. It is recommended to check t
 
 Connect to a Vega API server and *estimate fees for an order on a Vega market*:  
 
-{{< columns >}}
-{{< gitpod >}}
+<Tabs groupId="codesamples1">
+<TabItem value="shell-rest" label="Shell (REST)">
 
-{{< tabs "codesamples1" >}}
-{{< tab "Shell (REST)" >}}
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate.sh#get_fees_estimate" >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate.sh#get_fees_estimate" >}}
+:::
 
-  See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/EstimateFee) for further query detail.
-{{< /tab >}}
-{{< tab "Python (REST)" >}}
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate.py#get_fees_estimate" >}}
+See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/EstimateFee) for further query detail.
+</TabItem>
+<TabItem value="python-rest" label="Python (REST)">
 
-  See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/EstimateFee) for further query detail.
-{{< /tab >}}
-{{< tab "Python (gRPC)" >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate.py#get_fees_estimate" >}}
+:::
+
+See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/EstimateFee) for further query detail.
+</TabItem>
+<TabItem value="python-grpc" label="Python (gRPC)">
+
 Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
 
 ```shell
@@ -74,15 +80,17 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to query for *estimating fees*:
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate-with-Vega-API-client.py#import_client" on >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate-with-Vega-API-client.py#import_client" on >}}
+:::
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate-with-Vega-API-client.py#get_fees_estimate" >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate-with-Vega-API-client.py#get_fees_estimate" >}}
+:::
 
-  See also [gRPC API reference](/api/grpc/#datanode.api.v1.EstimateFeeRequest) for further query detail.
-{{< /tab >}}
-{{< /tabs >}}
-
-
+See also [gRPC API reference](/api/grpc/#datanode.api.v1.EstimateFeeRequest) for further query detail.
+</TabItem>
+</Tabs>
 
 If successful, the response will include:
 
@@ -90,38 +98,47 @@ If successful, the response will include:
 | :----------------- | :------------- |
 | `fee` | The estimated fees for the requested order details. |
 
-{{< expand "Example response" >}}
+<details><summary>Example response</summary>
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/response-examples.txt#example_get_fees_estimate_response" on >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/response-examples.txt#example_get_fees_estimate_response" on >}}
+:::
 
-{{< /expand >}}
+</details>
 
 :::info
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/).
 :::
 
-{{< /columns >}}
+
 
 
 ## How do I estimate the margin required for an order?
 
 Connect to a Vega API server and *estimate the margin* for an order on a Vega market:  
 
-{{< columns >}}
+
 {{< gitpod >}}
 
-{{< tabs "codesamples2" >}}
-{{< tab "Shell (REST)" >}}
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate.sh#get_margins_estimate" >}}
+<Tabs groupId="codesamples2">
+<TabItem value="shell-rest" label="Shell (REST)">
+
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate.sh#get_margins_estimate" >}}
+:::
 
   See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/EstimateMargin) for further query detail.
-{{< /tab >}}
-{{< tab "Python (REST)" >}}
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate.py#get_margins_estimate" >}}
+</TabItem>
+<TabItem value="python-rest" label="Python (REST)">
+
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate.py#get_margins_estimate" >}}
+:::
 
   See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/EstimateMargin) for further query detail.
-{{< /tab >}}
-{{< tab "Python (gRPC)" >}}
+</TabItem>
+<TabItem value="python-grpc" label="Python (gRPC)">
+
 Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
 
 ```shell
@@ -130,13 +147,17 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to query for the *estimated margin*:
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate-with-Vega-API-client.py#import_client" on >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate-with-Vega-API-client.py#import_client" on >}}
+:::
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate-with-Vega-API-client.py#get_margins_estimate" >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate-with-Vega-API-client.py#get_margins_estimate" >}}
+:::
 
   See also [gRPC API reference](/api/grpc/#datanode.api.v1.EstimateMarginRequest) for further query detail.
-{{< /tab >}}
-{{< /tabs >}}
+</TabItem>
+</Tabs>
 
 
 
@@ -146,17 +167,19 @@ If successful, the response will include:
 | :----------------- | :------------- |
 | `marginLevels` | The estimated margin for the proposed order. This includes **initial**, **search**, **release** and **maintenance** levels. The margin levels should be adjusted for the number of decimal places on the target market, for example, 5 decimal places. For information on the leverage available and explanations of the margin levels returned, please see the section on [what happens to margin when trading]({{<relref "../trading-questions.md#what-happens-to-margin-when-a-trader-puts-a-trade-on">}}).|
 
-{{< expand "Example response" >}}
+<details><summary>Example response</summary>
 
-  {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/response-examples.txt#example_get_margins_estimate_response" on >}}
+:::danger Link to GitHub
+{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/response-examples.txt#example_get_margins_estimate_response" on >}}
+:::
 
-{{< /expand >}}
+</details>
 
 :::info
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/).
 :::
 
-{{< /columns >}}
+
 
 In a similar way to fees calculation, the network has a set of default margin scaling factors configured by the [network parameters]({{<relref "create-market.md#where-do-i-find-the-current-network-parameters" >}}) in `market.margin.scalingFactors`, for example:
 
