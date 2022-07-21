@@ -9,6 +9,7 @@ Take a look at the tutorials for help with using Vega's APIs.
 | Topic                                                                 |  Description                                                                                                        |
 | ----------------------------------------------------------------------| -------------------------------------------------------------------------------------------------------- |
 | [Create, amend, cancel liquidity commitment](./providing-liquidity.md)                               | This guide describes how to create a commit liquidity onto a market, as well as how to manage that commitment. |
+| [Submit oracle data](./submitting-oracles.md)                               | This guide describes how to include oracles in a proposal and how to submit the data to settle and terminate a market. |
 
 ## Integrating with Vega
 | Topic                                                                 |  Description                                                                                                        |
