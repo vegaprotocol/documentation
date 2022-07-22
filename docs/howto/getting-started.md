@@ -7,6 +7,10 @@ import TabItem from '@theme/TabItem';
 
 # Getting Started 
 
+:::danger Broken links
+* REST API reference
+:::
+
 **Welcome!** We're super excited that you've decided to take a dive into the API how-to guides. There's some important information to learn first and then we'll jump into running a query against an API on Vega.
 
 ## Understanding authentication on Vega
@@ -14,7 +18,7 @@ import TabItem from '@theme/TabItem';
 To **read** information from Vega node API endpoints, **authentication is not required**. However, to **write** information (such as submitting an order) to a Vega node API, you will need to **sign your transaction messages**.
 
 :::info
-If you'd like to skip ahead, code for signing using APIs is available in the [Wallet service]({{<relref "wallet.md">}}) how-to guide and explained more deeply in the section on [signing transactions]({{<relref "../vega-wallet/signing">}}).
+If you'd like to skip ahead, code for signing using APIs is available in the [Wallet service](wallet.md) how-to guide and explained more deeply in the section on [signing transactions](../vega-wallet/signing">}}).
 :::
 
 ## Your first Vega API query
@@ -22,7 +26,7 @@ If you'd like to skip ahead, code for signing using APIs is available in the [Wa
 Let's dive straight in and request a **list of parties** trading on Vega:
 
 :::info
-The NODE URLs for the Vega testnet are available in the [APIs]({{<relref "../apis/#what-are-the-testnet-api-server-addresses">}}) section.
+The NODE URLs for the Vega testnet are available in the [APIs](../apis/#what-are-the-testnet-api-server-addresses">}}) section.
 :::
 
 {{< gitpod >}}
@@ -94,7 +98,7 @@ For each of the API how-to guides in the Vega documentation, the sample code fra
 
 ### Walk through video for Gitpod
 
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ETvdQ6rGm9Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Steps to running samples on Gitpod
 
@@ -108,5 +112,5 @@ For each of the API how-to guides in the Vega documentation, the sample code fra
 
 ## What's next?
 
- * Learn how to sign transactions with [Wallet service]({{<relref "wallet.md">}}) 
- * After that, [Submit an order]({{<relref "submit-order.md">}})
+ * Learn how to sign transactions with [Wallet service](wallet.md) 
+ * After that, [Submit an order](submit-order.md)

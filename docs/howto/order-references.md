@@ -7,6 +7,12 @@ import TabItem from '@theme/TabItem';
 
 # Order references
 
+:::danger Broken links
+* REST API reference
+* gRPC API reference
+* GraphQL API reference
+:::
+
 ## Introduction
 
 When submitting orders to Vega, the order messages must be signed and sent to the Vega blockchain in the form of transactions. Validation checks are performed at multiple stages in the pipeline, for example, before consensus and after consensus. 
@@ -155,5 +161,5 @@ For full example code, please visit the [repo on GitHub](https://github.com/vega
 
 ## What's next?
 
-* Find out about [Markets and Market data]({{<relref "markets.md">}})
-* Change or [Amend an order]({{<relref "amend-order.md">}})
+* Find out about [Markets and Market data](markets.md)
+* Change or [Amend an order](amend-order.md)

@@ -7,11 +7,18 @@ import TabItem from '@theme/TabItem';
 
 # Governance proposals and voting
 
+:::danger Broken links
+* [governance](https://docs.fairground.vega.xyz/docs/trading-questions/#governance)
+* REST API reference
+* GraphQL API reference
+* gRPC API reference
+:::
+
 ## Introduction
 
-Members of the Vega community can view current governance proposals and choose to vote *for them*, or *against them*, using the governance asset of the network. For further background and explanation, please see the section on [governance]({{<relref "../trading-questions.md#governance">}}).
+Members of the Vega community can view current governance proposals and choose to vote *for them*, or *against them*, using the governance asset of the network. For further background and explanation, please see the section on [governance](../trading-questions.md#governance).
 
-If you're looking specifically for a guide on how to create and propose a **new market** on Vega, please see the end-to-end API how-to guide on [Market Creation]({{<relref "create-market.md">}}).
+If you're looking specifically for a guide on how to create and propose a **new market** on Vega, please see the end-to-end API how-to guide on [Market Creation](create-market.md).
 
 ## How do I see a list of proposals?
 
@@ -255,18 +262,18 @@ For full example code, please visit the [repo on GitHub](https://github.com/vega
 
 ## How do I vote for a proposal?
 
-Voting for a proposal requires the use of staking tokens in the wallet owned by the calling party (public key). The minimum amount required is set in the [network parameters]({{<relref "create-market.md#where-do-i-find-the-current-network-parameters">}}) (see values ending in `minVoterBalance`).
+Voting for a proposal requires the use of staking tokens in the wallet owned by the calling party (public key). The minimum amount required is set in the [network parameters](create-market.md#where-do-i-find-the-current-network-parameters) (see values ending in `minVoterBalance`).
 
 :::info
 At present the Vega testnet uses the **VEGA (testnet)** token for governance.  
-Additionally, when a [Vega testnet network reset]({{<relref "../testnet.md#will-the-testnet-be-reset">}}) occurs, any user proposals including votes will be reset.
+Additionally, when a [Vega testnet network reset](../testnet.md#will-the-testnet-be-reset) occurs, any user proposals including votes will be reset.
 :::
 
-For more information on how to check for token balances (including any used for governance/staking), please see the guide to retrieve party [positions and balances]({{<relref "positions-balances.md">}}).
+For more information on how to check for token balances (including any used for governance/staking), please see the guide to retrieve party [positions and balances](positions-balances.md).
 
 ### Log in to wallet and get public key
 
-See the section on the [Wallet service]({{<relref "wallet.md">}}) to learn how to log in, list keys and select a public key.  
+See the section on the [Wallet service](wallet.md) to learn how to log in, list keys and select a public key.  
 
 :::info
 For a working **wallet example** used by this how-to guide, please visit the [API Samples GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/) repo.
@@ -318,5 +325,5 @@ If successful, the response will include:
 
 ## What's next?
 
- * Learn about [Streaming events]({{<relref "event-stream.md">}})
- * How to find and estimate [Trading fees]({{<relref "fees.md">}})
+ * Learn about [Streaming events](event-stream.md)
+ * How to find and estimate [Trading fees](fees.md)

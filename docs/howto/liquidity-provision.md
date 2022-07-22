@@ -7,9 +7,16 @@ import TabItem from '@theme/TabItem';
 
 # Liquidity provision
 
+:::danger Broken links
+* [Providing liquidity for markets](https://docs.fairground.vega.xyz/docs/providing-liquidity/)
+* [How to deposit tokens to use on Vega](https://docs.fairground.vega.xyz/docs/console/#how-to-deposit-tokens-to-use-on-vega)
+* REST API reference
+* Wallet API
+:::
+
 ## Introduction
 
-Liquidity Provision (LP) on Vega is designed to incentivise participants to place orders on the market that maintain liquidity on the order book. To learn more about the mechanics of LP on Vega please see the section on [Providing liquidity for markets]({{<relref "providing-liquidity">}}).
+Liquidity Provision (LP) on Vega is designed to incentivise participants to place orders on the market that maintain liquidity on the order book. To learn more about the mechanics of LP on Vega please see the section on [Providing liquidity for markets](providing-liquidity).
 
 ## How do I provide a liquidity commitment?
 
@@ -17,7 +24,7 @@ Connect to a Vega API server, and *provide a liquidity commitment*:
 
 ### 1. Log in to wallet and get public key
 
-See the section on the [Wallet service]({{<relref "wallet">}}) to learn how to log in, list keys and select a public key.  
+See the section on the [Wallet service](wallet.md) to learn how to log in, list keys and select a public key.  
 
 :::info
 For a working **wallet example** used by this how-to guide, please visit the [API Samples GitHub](https://github.com/vegaprotocol/sample-api-scripts/tree/master/submit-create-liquidity-provision/) repo.
@@ -25,9 +32,9 @@ For a working **wallet example** used by this how-to guide, please visit the [AP
 
 ### 2. Choose a market and ensure account/asset balance
 
-In order to provide liquidity on a [target market]({{<relref "markets/#listing-markets-on-a-vega-network">}}), the [account balance]({{<relref "positions-balances/#listing-collateral-accounts-for-a-party-public-key">}}) for the settlement asset on the related public key (party) should be positive and sufficient to cover the commitment. 
+In order to provide liquidity on a [target market](markets#listing-markets-on-a-vega-network), the [account balance](positions-balances/#listing-collateral-accounts-for-a-party-public-key) for the settlement asset on the related public key (party) should be positive and sufficient to cover the commitment. 
 
-For more information on how to deposit an asset into Vega, see the section on [How to deposit tokens to use on Vega]({{<relref "../console/#how-to-deposit-tokens-to-use-on-vega">}}) or the guide in the [Vega Bridge GitHub repo](https://github.com/vegaprotocol/Public_Test_Bridge_Tools).
+For more information on how to deposit an asset into Vega, see the section on [How to deposit tokens to use on Vega](../console/#how-to-deposit-tokens-to-use-on-vega) or the guide in the [Vega Bridge GitHub repo](https://github.com/vegaprotocol/Public_Test_Bridge_Tools).
 
 ### 3. List all liquidity provisions for the market
 
@@ -106,7 +113,7 @@ When submitting a liquidity commitment message, the following fields must be spe
 - proposed liquidity fee,
 - a set of liquidity buy and sell shapes 
 
-Please see [Providing liquidity for markets]({{<relref "../providing-liquidity/#how-to-provide-liquidity">}}) for details. Please note that the request will be rejected if the message is invalid. This could be because of the market state, the message is formatted incorrectly, or the requested liquidity commitment cannot be supported with your current balance in the market settlement asset.
+Please see [Providing liquidity for markets](../providing-liquidity/#how-to-provide-liquidity) for details. Please note that the request will be rejected if the message is invalid. This could be because of the market state, the message is formatted incorrectly, or the requested liquidity commitment cannot be supported with your current balance in the market settlement asset.
 
 
 {{< gitpod >}}
@@ -243,7 +250,7 @@ Please note that the cancellation message will be rejected if the message is inv
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/submit-create-liquidity-provision-order.sh#sign_tx_liquidity_order" >}}
 :::
 
-See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
+See also [Wallet API](/wallet-api#sign-a-transaction) for further query detail.
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
@@ -251,7 +258,7 @@ See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/submit-create-liquidity-provision-order.py#sign_tx_liquidity_order" >}}
 :::
 
-See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
+See also [Wallet API](/wallet-api#sign-a-transaction) for further query detail.
 </TabItem>
 <TabItem value="python-grpc" label="Python (gRPC)">
 
@@ -259,7 +266,7 @@ See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
 {{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/submit-create-liquidity-provision-order-with-Vega-API-client.py#sign_tx_liquidity_order" >}}
 :::
 
-See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
+See also [Wallet API](/wallet-api#sign-a-transaction) for further query detail.
 </TabItem>
 
 </Tabs>
@@ -288,5 +295,5 @@ For full example code, please visit the [repo on GitHub](https://github.com/vega
 
 ## What's next?
 
- * What's the [Vega Time]({{<relref "time">}})?
+ * What's the [Vega Time](time)?
  * Try the [Vega block explorer](https://explorer.fairground.wtf/)

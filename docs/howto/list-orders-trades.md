@@ -7,6 +7,12 @@ import TabItem from '@theme/TabItem';
 
 # Orders and Trades
 
+:::danger broken links
+* REST API reference
+* gRPC API reference
+* [Market and trading info](https://docs.fairground.vega.xyz/docs/trading-questions/#what-are-the-fees-for-trading-on-the-vega-testnet-and-who-gets-the-fees)
+:::
+
 ## Introduction
 
 In order to track your orders and trades on Vega there are several APIs available. An order may have zero or more related trades and a trade will have exactly one related *buy* order and one related *sell* order.
@@ -18,7 +24,7 @@ The following examples show how easy it is to retrieve orders and trades on Vega
 Connect to a Vega API server, and request *orders on a market*:  
 
 :::info
-See the how-to guide for [Market information]({{<relref "markets.md">}}) to learn how to get a list of market identifiers on Vega.
+See the how-to guide for [Market information](markets.md) to learn how to get a list of market identifiers on Vega.
 :::
 
 
@@ -231,7 +237,7 @@ For full example code, please visit the [repo on GitHub](https://github.com/vega
 Connect to a Vega API server, and request *trades on a market*:  
 
 :::info
-See the how-to guide for [Market information]({{<relref "markets.md">}}) to learn how to get a list of market identifiers on Vega.
+See the how-to guide for [Market information](markets.md) to learn how to get a list of market identifiers on Vega.
 :::
 
 
@@ -302,7 +308,7 @@ For full example code, please visit the [repo on GitHub](https://github.com/vega
 
 ## Where do I find the fees charged for a trade?
 
-Any fees charged on Vega are shown on [individual trades]({{<relref "list-orders-trades.md#listing-trades-for-an-order">}}) returned by the API. For example, on each trade there are the following fields:
+Any fees charged on Vega are shown on [individual trades](#listing-trades-for-an-order) returned by the API. For example, on each trade there are the following fields:
 
 | Field          |  Description  |
 | :----------------- | :------------- |
@@ -329,10 +335,10 @@ Contained inside each of the buyer and seller fee structures are the fees charge
 | `liquidityFee` | Liquidity portion of the fee is paid to market makers for providing liquidity, and is transferred to the market-maker fee pool for the market. |
 | `makerFee` | Maker portion of the fee is transferred to the non-aggressive, or passive party in the trade (the maker, as opposed to the taker). |
 
-Fees are incurred on every trade on Vega, but it is the price taker who pays the fee. The price taker only sees one fee. The price taker is the party that traded using a market order, or placed a limit order that traded immediately. See the explainer section on [Market and trading info]({{<relref "../trading-questions.md#what-are-the-fees-for-trading-on-the-vega-testnet-and-who-gets-the-fees">}}) to learn more on how fees are calculated, and who gets the fees.
+Fees are incurred on every trade on Vega, but it is the price taker who pays the fee. The price taker only sees one fee. The price taker is the party that traded using a market order, or placed a limit order that traded immediately. See the explainer section on [Market and trading info](../trading-questions.md#what-are-the-fees-for-trading-on-the-vega-testnet-and-who-gets-the-fees) to learn more on how fees are calculated, and who gets the fees.
 
 
 ## What's next?
 
- * [Market creation]({{<relref "create-market.md">}}) using governance
- * Learn about [Streaming events]({{<relref "event-stream.md">}})
+ * [Market creation](create-market.md) using governance
+ * Learn about [Streaming events](event-stream.md)

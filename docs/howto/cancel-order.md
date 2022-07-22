@@ -3,6 +3,10 @@ import TabItem from '@theme/TabItem';
 
 # Cancelling orders
 
+:::danger Broken links
+* three instances of [Wallet API](https://docs.fairground.vega.xyz/wallet-api/#sign-a-transaction)
+:::
+
 ## Introduction
 
 Cancelling orders for a party on Vega can be done in three ways:
@@ -25,7 +29,7 @@ Connect to a Vega API server, and *cancel an order*:
 
 ### 1. Log in to wallet and get public key
 
-See the section on the [Wallet service]({{<relref "wallet.md">}}) to learn how to log in, list keys and select a public key.  
+See the section on the [Wallet service](wallet.md) to learn how to log in, list keys and select a public key.  
 
 :::info
 For a working **wallet example** used by this how-to guide, please visit the [API Samples GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/) repo.
@@ -104,7 +108,7 @@ For a working **wallet example** used by this how-to guide, please visit the [AP
 
 ### 3. Sign and send the transaction
 
-<Tabs groupId="codesamples1">
+<Tabs groupId="codesamples2">
 <TabItem value="shell-rest" label="Shell (REST)">
 
 :::danger Link to GitHub
@@ -152,5 +156,5 @@ For full example code, please visit the [repo on GitHub](https://github.com/vega
 
 ## What's next?
 
- * Retrieve collateral [Positions and balances]({{<relref "positions-balances.md">}})
- * Listing [Orders and trades]({{<relref "list-orders-trades.md">}}) data
+ * Retrieve collateral [Positions and balances](positions-balances.md)
+ * Listing [Orders and trades](list-orders-trades.md) data

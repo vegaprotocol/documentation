@@ -6,6 +6,10 @@ import TabItem from '@theme/TabItem';
 
 # Streaming events from Vega
 
+:::danger Broken links
+Almost all of them!
+:::
+
 ## Introduction
 
 There are several streaming data APIs available on Vega. These include, but are not limited to: streaming trades, orders, positions, market data and **events**. 
@@ -127,5 +131,5 @@ As mentioned earlier, the GraphQL API does not currently support streaming `BUS_
 
 ## What's next?
 
- * What's the [Vega Time]({{<relref "time.md">}})?
+ * What's the [Vega Time](time.md)?
  * Try the [Vega block explorer](https://explorer.fairground.wtf/)

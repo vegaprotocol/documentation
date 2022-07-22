@@ -7,6 +7,14 @@ import TabItem from '@theme/TabItem';
 
 # Submitting an order
 
+:::danger Broken links
+* [Trading questions](https://docs.fairground.vega.xyz/docs/trading-questions/#what-order-types-and-time-in-force-values-are-available-to-trade-on-vega)
+* [pegged order](https://docs.fairground.vega.xyz/docs/trading-questions/#pegged-orders)
+* REST API reference
+* gRPC API reference
+* Wallet API 
+:::
+
 ## Introduction
 
 Creating and submitting orders on a Vega network is one of the most common activities when developing against the APIs. This guide will walk you through the steps required to compose, sign and submit order messages to a node.
@@ -20,7 +28,7 @@ An order needs to be routed to the correct market, this must be a valid Vega mar
 This is the unique identifier of the party that is submitting the order, this will be the public key chosen for signing. This is a required field. 
 
 * **PRICE**  
-The price for the order. Currently price is an integer, for example 123456 is a correctly formatted price of 1.23456, assuming market configured to 5 decimal places. This is a required field for Limit orders, it is not required for market orders. Note: the number of decimal places configured for a market is returned by the [Market information]({{<relref "markets.md" >}}) API calls.
+The price for the order. Currently price is an integer, for example 123456 is a correctly formatted price of 1.23456, assuming market configured to 5 decimal places. This is a required field for Limit orders, it is not required for market orders. Note: the number of decimal places configured for a market is returned by the [Market information](markets.md) API calls.
 
 * **SIDE**  
 Vega needs to know whether the order is a `BUY` order or a `SELL` order. To go long, please specify `SIDE_BUY` or to go short specify `SIDE_SELL`. This is a required field.
@@ -29,22 +37,22 @@ Vega needs to know whether the order is a `BUY` order or a `SELL` order. To go l
 This is the size for the order, for example, in a futures market the size equals the number of contracts. This is a required field and cannot be negative.
 
 * **TYPE**  
-This is the type of order, there are two choices here, a `TYPE_LIMIT` for limit orders or `TYPE_MARKET` for market orders. There is also a `TYPE_NETWORK` for network related orders that cannot be set on a submit order message. See the [Trading questions]({{<relref "../trading-questions.md#what-order-types-and-time-in-force-values-are-available-to-trade-on-vega">}}) section for more detail on order types. This is a required field. 
+This is the type of order, there are two choices here, a `TYPE_LIMIT` for limit orders or `TYPE_MARKET` for market orders. There is also a `TYPE_NETWORK` for network related orders that cannot be set on a submit order message. See the [Trading questions](../trading-questions.md#what-order-types-and-time-in-force-values-are-available-to-trade-on-vega">}}) section for more detail on order types. This is a required field. 
 
 * **TIME IN FORCE (TIF)**  
-Vega supports several order types / time in force values for an order. These include `TIME_IN_FORCE_GTC`, `TIME_IN_FORCE_GTT`, `TIME_IN_FORCE_FOK`, `TIME_IN_FORCE_IOC`, `TIME_IN_FORCE_GFN` and `TIME_IN_FORCE_GFA`. A `TIME_IN_FORCE_GTT` order must have an `expiresAt` value but a `TIME_IN_FORCE_GTC` must not have one. See the [Trading questions]({{<relref "../trading-questions.md#what-order-types-and-time-in-force-values-are-available-to-trade-on-vega">}}) section for more detail on order time in force values. This is a required field. 
+Vega supports several order types / time in force values for an order. These include `TIME_IN_FORCE_GTC`, `TIME_IN_FORCE_GTT`, `TIME_IN_FORCE_FOK`, `TIME_IN_FORCE_IOC`, `TIME_IN_FORCE_GFN` and `TIME_IN_FORCE_GFA`. A `TIME_IN_FORCE_GTT` order must have an `expiresAt` value but a `TIME_IN_FORCE_GTC` must not have one. See the [Trading questions](../trading-questions.md#what-order-types-and-time-in-force-values-are-available-to-trade-on-vega">}}) section for more detail on order time in force values. This is a required field. 
 
 * **EXPIRY**  
 `expiresAt` is the timestamp for when you would like the order to expire (if it has not fully traded), in **nanoseconds** since epoch. Please use the current Vega blockchain time as the reference for expiry. Required field only for `TIME_IN_FORCE_GTT` and should not be specified for `TIME_IN_FORCE_GTC`. Specifying this field, even with an empty string on the REST API will [cause a parsing error](#i-get-an-input-error-when-submitting-an-order-with-an-empty-string-as-the-expiry-timestamp), please only include it for `TIME_IN_FORCE_GTT`. Please see [Step 2](#2-get-current-time-on-the-blockchain-optional) below for more detail on how to retrieve the current time from the blockchain.
 
 * **REFERENCE**  
-A reference string for the order, this is typically used to retrieve an order submitted through consensus. It is **user definable**, and it's recommended to set it to be a unique [reference identifier]({{<relref "order-references.md" >}}) string e.g. `my-party-id-50f790bc-c1c6-47fd-a52b-f0849e965c22`. This can be used as a foreign key or reference identifier.
+A reference string for the order, this is typically used to retrieve an order submitted through consensus. It is **user definable**, and it's recommended to set it to be a unique [reference identifier](order-references.md) string e.g. `my-party-id-50f790bc-c1c6-47fd-a52b-f0849e965c22`. This can be used as a foreign key or reference identifier.
 
 * **ID**  
 This is the unique identifier for the order, it is **set by the Vega system after consensus**. This field **should not be set** when creating an order submission. The reference field is used to locate an order after it has been submitted to the blockchain, at which point the `ID` field will typically be available.
 
 * **PEGGED ORDER**  
-A [pegged order]({{<relref "../trading-questions.md#pegged-orders">}}) can be specified for persistent (`TIME_IN_FORCE_GTC`, `TIME_IN_FORCE_GTT`) and non-persistent time in force (`TIME_IN_FORCE_IOC`, `TIME_IN_FORCE_FOK`). If details for a pegged order are included in the order submission message, the system will attempt to activate this feature. A pegged order is a limit order which is set as a defined distance (`offset`) from a `reference` price (such as the best bid, mid, or best offer/ask). This is the price against which the final order price is calculated. The reference price is based on the live market. There are three options for the `reference` field in a pegged order; `PEGGED_REFERENCE_MID`, `PEGGED_REFERENCE_BEST_BID` and `PEGGED_REFERENCE_BEST_ASK`. See the related information in the [Trading questions]({{<relref "../trading-questions.md#pegged-orders">}}) section for full details on `offset` and `reference` price. Sample scripts for submitting and amending a pegged order are available on [GitHub](https://github.com/vegaprotocol/sample-api-scripts/tree/master/submit-amend-pegged-order). 
+A [pegged order](../trading-questions.md#pegged-orders">}}) can be specified for persistent (`TIME_IN_FORCE_GTC`, `TIME_IN_FORCE_GTT`) and non-persistent time in force (`TIME_IN_FORCE_IOC`, `TIME_IN_FORCE_FOK`). If details for a pegged order are included in the order submission message, the system will attempt to activate this feature. A pegged order is a limit order which is set as a defined distance (`offset`) from a `reference` price (such as the best bid, mid, or best offer/ask). This is the price against which the final order price is calculated. The reference price is based on the live market. There are three options for the `reference` field in a pegged order; `PEGGED_REFERENCE_MID`, `PEGGED_REFERENCE_BEST_BID` and `PEGGED_REFERENCE_BEST_ASK`. See the related information in the [Trading questions](../trading-questions.md#pegged-orders">}}) section for full details on `offset` and `reference` price. Sample scripts for submitting and amending a pegged order are available on [GitHub](https://github.com/vegaprotocol/sample-api-scripts/tree/master/submit-amend-pegged-order). 
 
 ## How do I submit an order to a Vega node?
 
@@ -68,7 +76,7 @@ Hints:
 
 ### 1. Log in to wallet and get public key
 
-See the section on the [Wallet service]({{<relref "wallet.md">}}) to learn how to log in, list keys and select a public key.  
+See the section on the [Wallet service](wallet.md) to learn how to log in, list keys and select a public key.  
 
 :::info
 For a working **wallet example** used by this how-to guide, please visit the [API Samples GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/) repo.
@@ -80,7 +88,7 @@ For a working **wallet example** used by this how-to guide, please visit the [AP
 For orders that require an expiry time, such as Good Til Time (`TIME_IN_FORCE_GTT`) orders, the current time on the blockchain is required to calculate the offset. In the example below we get the time and add two minutes to create an expiry time in the future.
 
 :::info
- Timestamps on Vega are returned as a numeric value of the number of nanoseconds since the UNIX epoch (January 1, 1970 00:00 UTC), therefore please convert expiry times into nanoseconds. A more in depth explanation on why we need blockchain based time references can be found in the guide on [Vega Time]({{<relref "time.md">}}).  
+ Timestamps on Vega are returned as a numeric value of the number of nanoseconds since the UNIX epoch (January 1, 1970 00:00 UTC), therefore please convert expiry times into nanoseconds. A more in depth explanation on why we need blockchain based time references can be found in the guide on [Vega Time](time.md">}}).  
 :::
 
 
@@ -150,7 +158,7 @@ If successful, the response will include:
 
 ### 3. Find a market
 
-All markets on Vega have a unique identifier and when submitting an order we must find and use a `marketId` so that the order is routed to the correct market. Market identifiers are generated by the network. This is in contrast to the market name which is typically human readable. In the example below, for simplicity, we query all markets and select the first market returned, however it's common to filter the returned results on market name, or code to find a market. Further detail on how to retrieve [Market Information]({{<relref "markets.md">}}) is available.
+All markets on Vega have a unique identifier and when submitting an order we must find and use a `marketId` so that the order is routed to the correct market. Market identifiers are generated by the network. This is in contrast to the market name which is typically human readable. In the example below, for simplicity, we query all markets and select the first market returned, however it's common to filter the returned results on market name, or code to find a market. Further detail on how to retrieve [Market Information](markets.md) is available.
 
 
 {{< gitpod >}}
@@ -213,7 +221,7 @@ If successful, the response will include:
 This is where we compose a submit order command containing the specifics of the order. This will be signed and sent into the Vega blockchain in step 5. 
 
 :::info
- The **order reference** field is used to look up an order later on. See our guide on [Order references]({{<relref "order-references.md" >}}). Note: Previously this was auto generated by the Vega API, however this reference now needs to be set by the user. It is common to set this to a globally unique reference.
+ The **order reference** field is used to look up an order later on. See our guide on [Order references](order-references.md). Note: Previously this was auto generated by the Vega API, however this reference now needs to be set by the user. It is common to set this to a globally unique reference.
 :::
 
 
@@ -308,7 +316,7 @@ For full example code, please visit the [repo on GitHub](https://github.com/vega
 
 
 
-The order should have now been submitted to the market chosen on the Vega network. You can query the status of the order by its [Order reference]({{<relref "order-references.md">}}).
+The order should have now been submitted to the market chosen on the Vega network. You can query the status of the order by its [Order reference](order-references.md).
 
 ## Troubleshooting
 
@@ -330,5 +338,5 @@ Similar "unexpected end of JSON input" errors can be because of malformed or mis
 
 ## What's next?
 
- * Learn how to find the submitted order by an [Order reference]({{<relref "order-references.md">}}) 
- * Made a mistake? [Cancel an order]({{<relref "cancel-order.md">}})
+ * Learn how to find the submitted order by an [Order reference](order-references.md) 
+ * Made a mistake? [Cancel an order](cancel-order.md)

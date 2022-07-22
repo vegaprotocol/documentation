@@ -7,6 +7,10 @@ import TabItem from '@theme/TabItem';
 
 # How to use Vega Wallet APIs
 
+:::danger Broken links
+* Wallet API reference
+:::
+
 ## Introduction
 
 To submit orders and other commands on Vega, users need to sign transactions with a private and public key pair. Users on Vega are pseudonymous and are referenced by their public keys. To assist with API integration there is a **REST API service** served from the Vega Wallet software providing signing and key management. 
@@ -370,4 +374,4 @@ For full example code, please visit the [repo on GitHub](https://github.com/vega
 
 
 ## What's next?
-* Learn how to [Submit an order]({{<relref "submit-order.md">}}) or [Cancel orders]({{<relref "cancel-order.md">}}).
+* Learn how to [Submit an order](submit-order.md) or [Cancel orders](cancel-order.md).

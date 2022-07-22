@@ -7,6 +7,11 @@ import TabItem from '@theme/TabItem';
 
 # Vega Time 
 
+:::danger Broken links
+* REST API reference
+* gRPC API reference
+:::
+
 ## Why do we need the concept of Vega Time? 
 
 As Vega runs on a custom blockchain optimised for trading (with a consensus layer currently built on top of Tendermint) the protocol requires participants to trade using commands submitted to the blockchain as transactions. 
@@ -96,5 +101,5 @@ For full example code, please visit the [repo on GitHub](https://github.com/vega
 
 ## Uses of Vega Time
 
- * Vega Time reference is used in the [Submit an order]({{<relref "submit-order.md">}}) how-to guide and several others
+ * Vega Time reference is used in the [Submit an order](submit-order.md) how-to guide and several others
  * When working with candlestick chart data, market open/closing times and amending orders
