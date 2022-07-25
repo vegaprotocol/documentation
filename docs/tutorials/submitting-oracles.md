@@ -26,7 +26,7 @@ This is done by:
 
 The **binding** tells the market which field contains the value. The **spec** defines which public keys to watch for data from, and which values to pass through to the binding.
 
-When it's time for a market to settle, someone needs to submit the oracle data that was pre-defined in the market proposal that triggers settlement and market termination.
+When it's time for a market to settle, someone needs to submit the oracle data that matches the oracle spec defined in the market.
 
 Read more: 
 [Market governance concepts:](../concepts/vega-protocol.md)

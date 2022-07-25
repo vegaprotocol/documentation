@@ -103,6 +103,9 @@ Oracle bindings require the following properties:
 * Operator: This adds a constraint to the value, such as LESS_THAN, GREATER_THAN. For example if you wanted to ensure that the price would always be above zero, you would set the operator to ‘GREATER_THAN’ and the Value to be ‘0’
 * Value: A number that is constrained by the operator
 
+:::info Submitting oracle data
+Learn how to find and submit oracle data in the [submitting oracles tutorial](../submitting-oracles.md). 
+
 ### Liquidity monitoring
 The liquidity monitoring settings detect when the market's liquidity drops below the safe level, and as such when to launch a 'liquidity seeking' auction. See below for more details on each field.
 
