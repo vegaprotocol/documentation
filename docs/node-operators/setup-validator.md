@@ -40,7 +40,7 @@ vega tm
 
 Generate the configuration using the following command:
 ```
-vega tm --home="path/to/tendermint/home/root" init
+vega tm --home="path/to/tendermint/home/root" init validator
 ```
 
 ## Set up the node wallet
