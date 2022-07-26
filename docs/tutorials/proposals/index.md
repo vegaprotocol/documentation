@@ -1,5 +1,6 @@
 ---
 title: Governance proposals
+vega_network: TESTNET
 hide_title: false
 keywords:
 - proposal
@@ -15,5 +16,6 @@ This section includes sample proposals that you can amend and submit via the com
 * [Update market proposal](./update-market-proposal.md)
 * [Change network parameter proposal](./network-parameter-proposal.md)
 * [New freeform proposal](./freeform-proposal.md)
+
 
 Read more about the lifecycle of a governance proposal in [the Concepts section](../../concepts/vega-protocol.md#governance).

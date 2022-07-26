@@ -10,67 +10,38 @@
 rm proto.json 2> /dev/null
 rm schema.graphql 2> /dev/null
 
+testnet_network_parameters=https://lb.testnet.vega.xyz/network/parameters
+mainnet_network_paramters=https://api.token.vega.xyz/network/parameters
+
 set -e
 
-grpc_doc_owner=vegaprotocol
+doc_version=v0.53.0
+doc_org=vegaprotocol
+
 grpc_doc_repo=protos
-grpc_doc_branch="v0.53.0"
-
-graphql_doc_owner=vegaprotocol
 graphql_doc_repo=data-node
-graphql_doc_branch="v0.53.0"
 
-gh_token="${GITHUB_API_TOKEN:?}"
-
-create_venv() {
-	venv="$PWD/.venv"
-	# Find python binary in a way which works on Netlify and elsewhere
-	python="$(command -v python3.7 || command -v python3)"
-	if test -z "$python" ; then
-		echo "Failed to find Python"
-		exit 1
-	fi
-	test -d "$venv" || virtualenv --quiet -p "$python" "$venv" 1>/dev/null
-	# shellcheck disable=SC1091
-	source "$venv/bin/activate"
-	gh="$(grep ^PyGithub== requirements.txt)"
-	pip freeze | grep -q '^'"$gh"'$' || pip install --quiet -r requirements.txt 1>/dev/null
-}
-
-create_venv
-
-python3 scripts/github_get_file.py \
-	--outdir . \
-	--token "$gh_token" \
-	--owner "${grpc_doc_owner:?}" \
-	--repo "${grpc_doc_repo:?}" \
-	--branch "${grpc_doc_branch:?}" \
-	--file generated/proto.json
-mv ./generated/proto.json ./proto.json
-rm -rf ./generated
+# https://raw.githubusercontent.com/vegaprotocol/protos/v0.53.0/generated/proto.json
+echo "Fetching grpc..."
+curl "https://raw.githubusercontent.com/${doc_org}/${grpc_doc_repo}/${doc_version}/generated/proto.json" -o "proto.json" -s
 
 echo "Fetching graphql..."
-python3 scripts/github_get_file.py \
-	--outdir . \
-	--token "$gh_token" \
-	--owner "${graphql_doc_owner:?}" \
-	--repo "${graphql_doc_repo:?}" \
-	--branch "${graphql_doc_branch:?}" \
-	--file gateway/graphql/schema.graphql
-mv ./gateway/graphql/schema.graphql ./schema.graphql
-rm -rf ./gateway
+curl "https://raw.githubusercontent.com/${doc_org}/${graphql_doc_repo}/${doc_version}/gateway/graphq/schema.graphql" -o "schema.graphql" -s
 
-deactivate
-
-# This var is used in docusaurus.config.js.
-export VEGA_VERSION="$grpc_doc_branch"
+echo "Fetching latest network parameters as placeholders for NetworkParameter.js"
+rm data/testnet_network_parameters.json
+curl "${testnet_network_parameters}" -o "data/testnet_network_paramters.json" -s
+rm data/mainnet_network_parameters.json
+curl "${mainnet_network_parameters}" -o "data/mainnet_network_parameters" -s
 
 # Create an empty folder to keep the tools happy
-
 yarn install
 mkdir -p ./docs/grpc
 yarn run generate-grpc
 yarn run generate-graphql
+
+rm schema.graphql
+rm proto.json
 
 # This var is used in GraphQL tidyup
 echo "GraphQL: Removing generated on date..."
