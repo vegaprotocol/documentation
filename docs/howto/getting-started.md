@@ -4,6 +4,7 @@ title: Getting started
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import GitPod from './_gitpod.mdx'
 
 # Getting Started 
 
@@ -29,7 +30,7 @@ Let's dive straight in and request a **list of parties** trading on Vega:
 The NODE URLs for the Vega testnet are available in the [APIs](../apis/#what-are-the-testnet-api-server-addresses">}}) section.
 :::
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples3">
 <TabItem value="shell-rest" label="Shell (REST)">

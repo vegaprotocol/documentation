@@ -4,6 +4,7 @@ title: Vega Wallet
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import GitPod from './_gitpod.mdx'
 
 # How to use Vega Wallet APIs
 
@@ -30,7 +31,7 @@ Connect to a Vega Wallet server and log in. This can be either a hosted wallet, 
 
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples1">
 <TabItem value="shell-rest" label="Shell (REST)">
@@ -99,7 +100,7 @@ Connect to a wallet server to create a new wallet. As mentioned earlier, this ca
 
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples2">
 <TabItem value="shell-rest" label="Shell (REST)">
@@ -168,7 +169,7 @@ Once authenticated with Vega Wallet, it is possible to generate one or more new 
 
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples3">
 <TabItem value="shell-rest" label="Shell (REST)">
@@ -240,7 +241,7 @@ Retrieve a list of all key pairs for a wallet. Note that private keys are *not* 
 
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples4">
 <TabItem value="shell-rest" label="Shell (REST)">
@@ -309,7 +310,7 @@ Connect and call sign transaction on a Vega Wallet server. Note: it is possible 
 
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples5">
 <TabItem value="shell-rest" label="Shell (REST)">

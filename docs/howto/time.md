@@ -4,6 +4,7 @@ title: Vega Time
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import GitPod from './_gitpod.mdx'
 
 # Vega Time 
 
@@ -32,7 +33,7 @@ Connect to a Vega API server, and request the latest *Vega Time*:
 
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples1">
 <TabItem value="shell-rest" label="Shell (REST)">
