@@ -15,7 +15,7 @@ mainnet_network_paramters=https://api.token.vega.xyz/network/parameters
 
 set -e
 
-doc_version=v0.52.0
+doc_version=v0.53.0
 doc_org=vegaprotocol
 
 grpc_doc_repo=protos
