@@ -1,5 +1,5 @@
 ---
-weight: 9
+sidebar_position: 2
 title: Getting started
 ---
 import Tabs from '@theme/Tabs';
@@ -95,10 +95,6 @@ For full example code, please visit the [repo on GitHub](https://github.com/vega
 [Gitpod](https://gitpod.io/#https://github.com/vegaprotocol/sample-api-scripts) is an open source platform for running code samples directly in a browser with a built in code editor, terminal and sand boxed environment. It allows users to "click a button" and launch a fresh virtual environment in their browser, connected to their GitHub account, and get started developing on Vega immediately.
 
 For each of the API how-to guides in the Vega documentation, the sample code fragments are captured directly from the [Sample-API-Scripts](https://github.com/vegaprotocol/sample-api-scripts) GitHub repository. On each API how-to there is a **ready to code** button, tapping this will launch a new Gitpod instance and drop the user into that repo with access to the sample code which can be run without checking out any code locally.
-
-### Walk through video for Gitpod
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/ETvdQ6rGm9Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Steps to running samples on Gitpod
 

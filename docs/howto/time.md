@@ -1,5 +1,5 @@
 ---
-weight: 120
+sidebar_position: 17
 title: Vega Time
 ---
 import Tabs from '@theme/Tabs';

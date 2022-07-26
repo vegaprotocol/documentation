@@ -1,5 +1,5 @@
 ---
-weight: 110
+sidebar_position: 16
 title: Liquidity provision
 ---
 import Tabs from '@theme/Tabs';

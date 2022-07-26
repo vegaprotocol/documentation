@@ -1,5 +1,5 @@
 ---
-weight: 69
+sidebar_position: 10
 title: Positions and balances
 ---
 import Tabs from '@theme/Tabs';

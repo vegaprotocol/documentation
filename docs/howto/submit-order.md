@@ -1,5 +1,5 @@
 ---
-weight: 20
+sidebar_position: 4
 title: Submit an order
 ---
 import Tabs from '@theme/Tabs';

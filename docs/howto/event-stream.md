@@ -1,4 +1,5 @@
 ---
+sidebar_position: 14
 title: Streaming events
 ---
 import Tabs from '@theme/Tabs';

@@ -1,5 +1,5 @@
 ---
-weight: 94
+sidebar_position: 13
 title: Proposals and voting
 ---
 import Tabs from '@theme/Tabs';

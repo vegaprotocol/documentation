@@ -1,5 +1,5 @@
 ---
-weight: 70
+sidebar_position: 11
 title: Listing orders and trades
 ---
 import Tabs from '@theme/Tabs';

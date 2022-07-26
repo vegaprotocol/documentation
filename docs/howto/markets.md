@@ -1,5 +1,5 @@
 ---
-weight: 40
+sidebar_position: 6
 title: Market information
 ---
 import Tabs from '@theme/Tabs';

@@ -1,4 +1,5 @@
 ---
+sidebar_position: 15
 title: Fees and margins 
 ---
 import Tabs from '@theme/Tabs';

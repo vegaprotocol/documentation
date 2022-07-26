@@ -1,5 +1,5 @@
 ---
-weight: 10
+sidebar_position: 3
 title: Vega Wallet
 ---
 import Tabs from '@theme/Tabs';

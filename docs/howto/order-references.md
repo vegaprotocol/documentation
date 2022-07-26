@@ -1,5 +1,5 @@
 ---
-weight: 30
+sidebar_position: 5
 title: Order references
 ---
 import Tabs from '@theme/Tabs';
