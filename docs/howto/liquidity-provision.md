@@ -4,6 +4,7 @@ title: Liquidity provision
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import GitPod from './_gitpod.mdx'
 
 # Liquidity provision
 
@@ -41,7 +42,7 @@ For more information on how to deposit an asset into Vega, see the section on [H
 Connect to a Vega API server, and request *all liquidity provisions* for the specified market:
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples1">
 <TabItem value="shell-rest" label="Shell (REST)">
@@ -116,7 +117,7 @@ When submitting a liquidity commitment message, the following fields must be spe
 Please see [Providing liquidity for markets](../providing-liquidity/#how-to-provide-liquidity) for details. Please note that the request will be rejected if the message is invalid. This could be because of the market state, the message is formatted incorrectly, or the requested liquidity commitment cannot be supported with your current balance in the market settlement asset.
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples2">
 <TabItem value="shell-rest" label="Shell (REST)">
@@ -159,7 +160,7 @@ To amend, keep `liquidityCommitment` positive (unchanged to leave as is) and mod
 Please note that the request will be rejected if the message is invalid, and the liquidity commitment will stay as is. This could be because of the market state, the message is formatted incorrectly, or the requested liquidity commitment cannot be supported with your current balance in the market settlement asset.
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples3">
 <TabItem value="shell-rest" label="Shell (REST)">
@@ -203,7 +204,7 @@ If the liquidity commitment message has already been submitted successfully, sub
 Please note that the cancellation message will be rejected if the message is invalid, and the liquidity commitment will stay as is. This could be because of the market state, the message is formatted incorrectly, or the requested liquidity commitment cannot be supported with your current balance in the market settlement asset.
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples4">
 <TabItem value="shell-rest" label="Shell (REST)">
@@ -241,7 +242,7 @@ Please note that the cancellation message will be rejected if the message is inv
 ### 7. Sign and send the transaction
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples5">
 <TabItem value="shell-rest" label="Shell (REST)">

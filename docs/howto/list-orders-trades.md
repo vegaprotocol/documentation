@@ -4,6 +4,7 @@ title: Listing orders and trades
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import GitPod from './_gitpod.mdx'
 
 # Orders and Trades
 
@@ -29,7 +30,7 @@ See the how-to guide for [Market information](markets.md) to learn how to get a 
 
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples1">
 <TabItem value="shell-rest" label="Shell (REST)">
@@ -99,8 +100,7 @@ For full example code, please visit the [repo on GitHub](https://github.com/vega
 Connect to a Vega API server, and request *orders for a party*:  
 
 
-
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples2">
 <TabItem value="shell-rest" label="Shell (REST)">
@@ -168,8 +168,7 @@ For full example code, please visit the [repo on GitHub](https://github.com/vega
 Connect to a Vega API server, and request *trades for an order*:  
 
 
-
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples3">
 <TabItem value="shell-rest" label="Shell (REST)">
@@ -240,9 +239,7 @@ Connect to a Vega API server, and request *trades on a market*:
 See the how-to guide for [Market information](markets.md) to learn how to get a list of market identifiers on Vega.
 :::
 
-
-
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples4">
 <TabItem value="shell-rest" label="Shell (REST)">

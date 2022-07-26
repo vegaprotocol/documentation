@@ -4,6 +4,7 @@ title: Market information
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import GitPod from './_gitpod.mdx'
 
 # Markets and Market Data
 
@@ -25,7 +26,7 @@ Connect to a Vega API server, and request *all markets*:
 
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples1">
 <TabItem value="shell-rest" label="Shell (REST)">
@@ -94,7 +95,7 @@ Connect to a Vega API server, and request the *market data for a market*:
 
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples3">
 <TabItem value="shell-rest" label="Shell (REST)">

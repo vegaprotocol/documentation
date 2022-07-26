@@ -43,7 +43,7 @@ Note: account balances of any party for which a public key is known can be publi
 :::
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples1">
 <TabItem value="shell-rest" label="Shell (REST)">
@@ -114,7 +114,7 @@ This request has additional (optional) request filter parameters for *market ide
 Connect to a Vega API server, and request *accounts for a market*:  
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples2">
 <TabItem value="shell-rest" label="Shell (REST)">
@@ -187,7 +187,7 @@ Positions requests return key information such as realised and unrealised profit
 Connect to a Vega API server, and request *positions for a party*:  
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples3">
 <TabItem value="shell-rest" label="Shell (REST)">

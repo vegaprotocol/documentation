@@ -4,6 +4,7 @@ title: Proposals and voting
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import GitPod from './_gitpod.mdx'
 
 # Governance proposals and voting
 
@@ -25,7 +26,7 @@ If you're looking specifically for a guide on how to create and propose a **new 
 Connect to a Vega API server, and request a *list of proposals*:  
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples1">
 
@@ -105,7 +106,7 @@ For full example code, please visit the [repo on GitHub](https://github.com/vega
 Connect to a Vega API server, and request a *proposal by identifier*:  
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples2">
 
@@ -185,7 +186,7 @@ For full example code, please visit the [repo on GitHub](https://github.com/vega
 Connect to a Vega API server, and request *proposals for a party*:  
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples3">
 
@@ -284,7 +285,7 @@ For a working **wallet example** used by this how-to guide, please visit the [AP
 After locating a proposal (`proposal_id`) using the listing calls shown above, to vote either **for** (YES) or **against** (NO), simply connect to a Vega API server and submit a vote for a *proposal*:  
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples4">
 <TabItem value="python-rest" label="Python (REST)">

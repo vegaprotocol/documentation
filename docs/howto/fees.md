@@ -3,6 +3,7 @@ title: Fees and margins
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import GitPod from './_gitpod.mdx'
 
 # Fees and margin estimation
 
@@ -126,7 +127,7 @@ For full example code, please visit the [repo on GitHub](https://github.com/vega
 Connect to a Vega API server and *estimate the margin* for an order on a Vega market:  
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples2">
 <TabItem value="shell-rest" label="Shell (REST)">

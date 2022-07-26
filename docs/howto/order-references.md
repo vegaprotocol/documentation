@@ -4,6 +4,7 @@ title: Order references
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import GitPod from './_gitpod.mdx'
 
 # Order references
 
@@ -35,7 +36,7 @@ Connect to a Vega API server, and request for an order by *reference*.
 
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples1">
 <TabItem value="shell-rest" label="Shell (REST)">
@@ -104,7 +105,7 @@ Connect to a Vega API server, and request to *stream of orders*:
 
 
 
-{{< gitpod >}}
+<GitPod />
 
 <Tabs groupId="codesamples2">
 <TabItem value="shell-graphql" label="Shell (GraphQL)">

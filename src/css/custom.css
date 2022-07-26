@@ -88,3 +88,10 @@ html[data-theme="dark"] .hero--primary {
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
 }
+
+.gitpod {
+  position: relative;
+  left: 5px;
+  bottom: 0.7em;
+  font-size: small;
+}
