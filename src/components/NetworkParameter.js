@@ -56,7 +56,7 @@ export default function NetworkParameter(props) {
     }
 
     return (<a href={explorerUrl[vega_network]} className={`networkparameter networkparameter--${type}`} title={`Set by network parameter: ${props.param}`}>
-      <span className="networkparametericon">🛠️</span>
+      <span className="networkparametericon">👀</span>
       {(hideName ? null : <span className="networkparametername">{props.param}: </span>)}
       <span className="networkparametervalue">{displayValue || `Could not find ${props.param}`}</span>
     </a>);
