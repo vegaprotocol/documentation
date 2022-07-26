@@ -4,6 +4,7 @@ sidebar_position: 8
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import GitPod from './_gitpod.mdx'
 
 # Cancelling orders
 
@@ -41,69 +42,71 @@ For a working **wallet example** used by this how-to guide, please visit the [AP
 
 ### 2. Compose an order cancellation message
 
+<GitPod />
+
 <Tabs groupId="codesamples1">
 <TabItem value="shell-rest" label="Shell (REST)">
 
 <details><summary>Cancel a single order</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.sh#prepare_cancel_order_req1" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.sh#L215-L223
+```
 </details>
 <details><summary>Cancel all orders on a market </summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.sh#prepare_cancel_order_req2" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.sh#L227-L234
+```
 </details>
 <details><summary>Cancel all orders on all markets </summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.sh#prepare_cancel_order_req3" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.sh#L238-L242
+```
 </details>
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 <details><summary>Cancel a single order</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.py#prepare_cancel_order_req1" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.py#L234-L243
+```
 </details >
 <details><summary>Cancel all orders on a market</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.py#prepare_cancel_order_req2" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.py#L247-L255
+```
 </details >
 <details><summary>Cancel all orders on all markets</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.py#prepare_cancel_order_req3" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.py#L259-L264
+```
 </details >
 </TabItem>
 <TabItem value="python-grpc" label="Python (gRPC)">
 
 <details><summary>Cancel a single order</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders-with-Vega-API-client.py#prepare_cancel_order_req1" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders-with-Vega-API-client.py#L228-L233
+```
 </details >
 
 <details><summary>Cancel all orders on a market</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders-with-Vega-API-client.py#prepare_cancel_order_req2" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders-with-Vega-API-client.py#L237-L241
+```
 </details >
 
 <details><summary>Cancel all orders on all markets</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders-with-Vega-API-client.py#prepare_cancel_order_req3" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders-with-Vega-API-client.py#L245-L248
+```
 </details >
 
 </TabItem>
@@ -112,28 +115,30 @@ For a working **wallet example** used by this how-to guide, please visit the [AP
 
 ### 3. Sign and send the transaction
 
+<GitPod />
+
 <Tabs groupId="codesamples2">
 <TabItem value="shell-rest" label="Shell (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.sh#sign_tx_cancel" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.sh#L248-L258
+```
 
 See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.py#sign_tx_cancel" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.py#L270-L274
+```
 
 See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
 </TabItem>
 <TabItem value="python-grpc" label="Python (gRPC)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders-with-Vega-API-client.py#sign_tx_cancel" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders-with-Vega-API-client.py#L252-L261
+```
 
  See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
 </TabItem>
@@ -147,9 +152,9 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/response-examples.txt#example_sign_tx_cancel_response" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/response-examples.txt#L34-L45
+```
   
 :::info
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/).

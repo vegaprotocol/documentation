@@ -4,6 +4,7 @@ title: Market creation
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import GitPod from './_gitpod.mdx'
 
 # Market creation using governance
 
@@ -39,6 +40,8 @@ For a working **wallet example** used by this how-to guide, please visit the [AP
 
 ### 2. Find a settlement asset
 
+<GitPod />
+
 Pick from an existing settlement asset on Vega. Note: it is also possible to propose assets via governance.
 
 In this example we've chosen an example asset named `tDAI` (other assets are available).
@@ -48,15 +51,13 @@ In this example we've chosen an example asset named `tDAI` (other assets are ava
 
 <script src="https://emgithub.com/embed.js?target=https%3A%2F%2Fgithub.com%2Fvegaprotocol%2Fsample-api-scripts%2Fblob%2Fmaster%2Fpropose-markets%2Fpropose-vote-enact-market.py%23get_assets&style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on"></script>
 
-Test
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#L84-L87
+```
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#get_assets" on >}}
-:::
-
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#find_asset" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#L95-L103
+```
 
 See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/Assets) for further query detail.
 </TabItem>
@@ -70,9 +71,9 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/response-examples.txt#example_get_assets_response" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/response-examples.txt
+```
 </details>
 
 ### 3. Propose a new market
@@ -93,20 +94,22 @@ Once the proposal voting period has **closed**, all votes are counted and if suc
 The following script snippets show an example `BTC/DAI` futures market proposal with calculated offsets using current blockchain time.  
 It is settled in the `tDAI` asset located in step 2.
 
+<GitPod />
+
 <Tabs groupId="codesamples2">
 <TabItem value="python-rest" label="Python (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#get_time" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#L151-L155
+```
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#prepare_propose_market" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#L177-L312
+```
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#sign_tx_proposal" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#L318-L322
+```
 </TabItem>
 </Tabs>
 
@@ -118,9 +121,9 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/response-examples.txt#example_sign_tx_proposal_response" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/response-examples.txt#L2-L15
+```
 </details>
 
 :::caution
@@ -144,16 +147,18 @@ Votes are weighted by the total `VEGA` asset held by the voter, with a minimum b
 
 The total supply of governance asset on the Vega testnet is currently **6.4 million** `VEGA` and the `minVoterBalance` is set to the value `1` token. Due to `VEGA` assets having a precision of 5 decimal places, this means that a participant must hold at least `0.00001` `VEGA`.
 
+<GitPod />
+
 <Tabs groupId="codesamples3">
 <TabItem value="python-rest" label="Python (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#prepare_vote" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#L381-L389
+```
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#sign_tx_vote" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#L396-L400
+```
 
 See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#api/PrepareVote) for further query detail.
 </TabItem>
@@ -167,9 +172,9 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/response-examples.txt#example_sign_tx_vote_response" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/response-examples.txt#L19-L32
+```
 </details>
 
 
@@ -177,12 +182,14 @@ If successful, the response will include:
 
 After the voting period has elapsed, and if the majority of participants voted `Yes`, then you need to wait for the new market to be **enacted**. A simple way to do this is to wait for the new market to appear in the list of available Vega markets.
 
+<GitPod />
+
 <Tabs groupId="codesamples4">
 <TabItem value="python-rest" label="Python (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#wait_for_market" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#wait_for_market
+```
 
 See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/Markets) for further query detail.
 </TabItem>
@@ -196,9 +203,9 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/response-examples.txt#example_wait_for_market_response" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/response-examples.txt#example_wait_for_market_response
+```
 </details>
 
 On Vega, newly proposed markets always start in [auction mode](../trading-questions.md#auction-trading-mode) as a way of ensuring a new market has a fair price at the start of trading. The auction duration is specified in the proposal (in this example it is 120 seconds), after which it will switch to continuous trading. The auction duration is subject to the network minimum which is found by requesting the [network parameters](#where-do-i-find-the-current-network-parameters).
@@ -207,20 +214,22 @@ On Vega, newly proposed markets always start in [auction mode](../trading-questi
 
 The current configuration of all network parameters can be requested from the APIs. Connect to a Vega API server, and request a list of network parameters:
 
+<GitPod />
+
 <Tabs groupId="codesamples5">
 <TabItem value="shell-rest" label="Shell (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-network-parameters/get-network-parameters.sh#get_network_params" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-network-parameters/get-network-parameters.sh#get_network_params
+```
 
 See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/NetworkParameters) for further query detail.
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-network-parameters/get-network-parameters.py#get_network_params" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-network-parameters/get-network-parameters.py#get_network_params
+```
 
 See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/NetworkParameters) for further query detail.
 </TabItem>
@@ -228,19 +237,19 @@ See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#opera
 
 Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
 
-```shell
+```
 pip install --upgrade Vega-API-client
 ```
 
 This Python snippet code shows how to query for *network parameters*:
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-network-parameters/get-network-parameters-with-Vega-API-client.py#import_client" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-network-parameters/get-network-parameters-with-Vega-API-client.py#import_client
+```
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-network-parameters/get-network-parameters-with-Vega-API-client.py#get_network_params" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-network-parameters/get-network-parameters-with-Vega-API-client.py#get_network_params
+```
 
 See also [gRPC API reference](/api/grpc/#datanode.api.v1.NetworkParametersRequest) for further query detail.
 </TabItem>
@@ -254,9 +263,9 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-network-parameters/response-examples.txt#example_get_network_params_response" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-network-parameters/response-examples.txt#example_get_network_params_response
+```
 </details>
 
 ## What's next?
