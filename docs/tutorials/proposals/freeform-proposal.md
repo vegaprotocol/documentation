@@ -22,7 +22,7 @@ import TabItem from '@theme/TabItem';
 The aim of this is to allow community to provide votes on proposals which don't change any of the behaviour of the currently running Vega blockchain. That is to say, at enactment time, no changes are effected on the system, but the record of how token holders voted will be stored on chain. 
 
 Note that to create a freeform proposal you need <NetworkParameter frontMatter={frontMatter} param="governance.proposal.freeform.minProposerBalance" hideName={true} suffix="tokens" />
-, while to vote you only need <NetworkParameter frontMatter={frontMatter} param="governance.proposal.freeform.minVoterBalance" suffix="tokens" hideName={true}/>.
+, while to vote you need <NetworkParameter frontMatter={frontMatter} param="governance.proposal.freeform.minVoterBalance" suffix="tokens" hideName={true}/>.
 
 
 <Tabs groupId="newFreeform">
