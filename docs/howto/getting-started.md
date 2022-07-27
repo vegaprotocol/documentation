@@ -35,17 +35,17 @@ The NODE URLs for the Vega testnet are available in the [APIs](../apis/#what-are
 <Tabs groupId="codesamples3">
 <TabItem value="shell-rest" label="Shell (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-parties.sh#get_parties" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-parties.sh#L28-L33
+```
 
 See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/Parties) for further query detail.
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-parties.py#get_parties" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-parties.py#L36-L41
+```
 
 See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/Parties) for further query detail.
 </TabItem>
@@ -58,13 +58,13 @@ pip install --upgrade Vega-API-client
 ```
 This Python snippet code shows how to query for *parties*:
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-parties-with-Vega-API-client.py#import_client" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-parties-with-Vega-API-client.py#L27
+```
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-parties-with-Vega-API-client.py#get_parties" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-parties-with-Vega-API-client.py#L33-L37
+```
 
 See also [gRPC API reference](/api/grpc/#datanode.api.v1.PartiesResponse) for further query detail.
 </TabItem>
@@ -81,9 +81,9 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/response-examples.txt#example_parties_response" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/response-examples.txt#L2-L17
+```
 
 </details>
 

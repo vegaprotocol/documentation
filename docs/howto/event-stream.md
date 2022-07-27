@@ -78,9 +78,9 @@ npm install -g graphqurl
 
 This snippet code shows how to subscribe to *ALL events for a particular market*:
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-events/stream-events.sh#stream_events" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-events/stream-events.sh#L34-L69
+```
 
 See also [GraphQL API reference](/api/graphql/data-node/subscription.doc.html#L75) for further query detail.
 </TabItem>
@@ -94,13 +94,13 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to receive a stream of **ALL events for a particular market*:
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-events/stream-events-with-Vega-API-client.py#import_client" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-events/stream-events-with-Vega-API-client.py#L30-L31
+```
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-events/stream-events-with-Vega-API-client.py#stream_events" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-events/stream-events-with-Vega-API-client.py#L52-L67
+```
 
 See also [gRPC API reference](/api/grpc/#api.v1.ObserveEventsResponse) for further query detail.
 </TabItem>
@@ -114,9 +114,9 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-events/response-examples.txt#example_stream_events_response" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-events/response-examples.txt#L2-L44
+```
 
 </details>
 

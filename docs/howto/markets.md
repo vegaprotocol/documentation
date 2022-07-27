@@ -24,26 +24,26 @@ Both market information and market data are queryable, the following guides show
 
 Connect to a Vega API server, and request *all markets*:  
 
-
-
 <GitPod />
 
 <Tabs groupId="codesamples1">
 <TabItem value="shell-rest" label="Shell (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata.sh#get_markets" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata.sh#L25-L30
+```
 
-  See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/Markets) for further query detail.
+See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/Markets) for further query detail.
+
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata.py#get_markets" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata.py#L33-L38
+```
 
-  See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/Markets) for further query detail.
+See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/Markets) for further query detail.
+
 </TabItem>
 <TabItem value="python-grpc" label="Python (gRPC)">
 
@@ -55,13 +55,13 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to query for a *list of orders on a market*:
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata-with-Vega-API-client.py#import_client" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata-with-Vega-API-client.py#L27-L28
+```
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata-with-Vega-API-client.py#get_markets" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata-with-Vega-API-client.py#L32-L34
+```
 
   See also [gRPC API reference](/api/grpc/#datanode.api.v1.MarketsResponse) for further query detail.
 </TabItem>
@@ -77,9 +77,9 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/response-examples.txt#example_get_markets_response" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/response-examples.txt#L2-L84
+```
 
 </details>
 
@@ -93,26 +93,26 @@ For full example code, please visit the [repo on GitHub](https://github.com/vega
 
 Connect to a Vega API server, and request the *market data for a market*:  
 
-
-
 <GitPod />
 
 <Tabs groupId="codesamples3">
 <TabItem value="shell-rest" label="Shell (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata.sh#get_market_data" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata.sh#L36-L41
+```
 
-  See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/MarketsData) for further query detail.
+See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/MarketsData) for further query detail.
+
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata.py#get_market_data" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata.py#L45-L50
+```
 
-  See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/MarketsData) for further query detail.
+See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/MarketsData) for further query detail.
+
 </TabItem>
 <TabItem value="python-grpc" label="Python (gRPC)">
 
@@ -124,15 +124,16 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to query for a *list of orders on a market*:
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata-with-Vega-API-client.py#import_client" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata-with-Vega-API-client.py#L27-L28
+```
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata-with-Vega-API-client.py#get_market_data" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata-with-Vega-API-client.py#L41-L46
+```
 
-  See also [gRPC API reference](/api/grpc/#datanode.api.v1.MarketsDataResponse) for further query detail.
+See also [gRPC API reference](/api/grpc/#datanode.api.v1.MarketsDataResponse) for further query detail.
+
 </TabItem>
 </Tabs>
 
@@ -146,9 +147,9 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/response-examples.txt#example_get_market_data_response" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/response-examples.txt#L88-L126
+```
 
 </details>
 

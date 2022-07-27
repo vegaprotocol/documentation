@@ -31,28 +31,26 @@ For more information on how UTC timestamps are provided under the hood, please s
 
 Connect to a Vega API server, and request the latest *Vega Time*:
 
-
-
 <GitPod />
 
 <Tabs groupId="codesamples1">
 <TabItem value="shell-rest" label="Shell (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/get-time.sh#get_time" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/get-time.sh#L25-L30
+```
 
-  See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/GetVegaTime) for further query detail.
+See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/GetVegaTime) for further query detail.
+
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/get-time.py#get_time" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/get-time.py#L32-L39
+```
 
-  See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/GetVegaTime) for further query detail.
+See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/GetVegaTime) for further query detail.
+
 </TabItem>
 <TabItem value="python-grpc" label="Python (gRPC)">
 
@@ -61,23 +59,21 @@ Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Veg
 ```shell
 pip install --upgrade Vega-API-client
 ```
+
 This Python snippet code shows how to query for *Vega Time*:
 
-:::danger Link to GitHub
-{{< github-embed "
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/get-time-with-Vega-API-client.py#import_client" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/get-time-with-Vega-API-client.py#L25
+```
 
-:::danger Link to GitHub
-{{< github-embed "
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/get-time-with-Vega-API-client.py#get_time" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/get-time-with-Vega-API-client.py#L31-L36
+```
 
-  See also [gRPC API reference](/api/grpc/#datanode.api.v1.GetVegaTimeResponse) for further query detail.
+See also [gRPC API reference](/api/grpc/#datanode.api.v1.GetVegaTimeResponse) for further query detail.
+
 </TabItem>
 </Tabs>
-
-
 
 If successful, the response will include:
 
@@ -87,10 +83,9 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger Link to GitHub
-{{< github-embed "
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/response-examples.txt#example_get_time_response" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/response-examples.txt#L2-L5
+```
 
 </details>
 

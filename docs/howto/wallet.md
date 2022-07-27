@@ -10,6 +10,7 @@ import GitPod from './_gitpod.mdx'
 
 :::danger Broken links
 * Wallet API reference
+* All Python (gRPC) code excerpts
 :::
 
 ## Introduction
@@ -29,26 +30,26 @@ Common actions for a wallet include; **logging in**, **retrieving a key pair** a
 
 Connect to a Vega Wallet server and log in. This can be either a hosted wallet, one you run yourself locally or stored in the cloud. The resulting `token` will be used to authenticate with the wallet for other actions (such as signing):
 
-
-
 <GitPod />
 
 <Tabs groupId="codesamples1">
 <TabItem value="shell-rest" label="Shell (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.sh#login_wallet" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.sh#L46-L50
+```
 
-  See also [Wallet API reference](/wallet-api/#logging-in-to-a-wallet) for further query detail.
+See also [Wallet API reference](/wallet-api/#logging-in-to-a-wallet) for further query detail.
+
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.py#login_wallet" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.py#L61-L65
+```
 
-  See also [Wallet API reference](/wallet-api/#logging-in-to-a-wallet) for further query detail.
+See also [Wallet API reference](/wallet-api/#logging-in-to-a-wallet) for further query detail.
+
 </TabItem>
 <TabItem value="python-grpc" label="Python (gRPC)">
 
@@ -60,13 +61,13 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to *log in to an existing wallet*:
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#import_client" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#import_client
+```
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#login_wallet" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#login_wallet
+```
 
   See also [Wallet API reference](/wallet-api/#logging-in-to-a-wallet) for further query detail.
 </TabItem>
@@ -82,9 +83,9 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/response-examples.txt#example_login_wallet_response" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/response-examples.txt#L10-L13
+```
 
 </details>
 
@@ -92,32 +93,30 @@ If successful, the response will include:
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/).
 :::
 
-
-
 ## Creating a new wallet
 
 Connect to a wallet server to create a new wallet. As mentioned earlier, this can be either a hosted wallet, one you run yourself locally or stored in the cloud. Just like logging in, once a new wallet has been created, a `token` will be returned and it will be used to authenticate with the wallet for other actions (such as signing):
-
-
 
 <GitPod />
 
 <Tabs groupId="codesamples2">
 <TabItem value="shell-rest" label="Shell (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.sh#create_wallet" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.sh#L46-L50
+```
 
-  See also [Wallet API reference](/wallet-api/#create-a-wallet) for further query detail.
+See also [Wallet API reference](/wallet-api/#create-a-wallet) for further query detail.
+
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.py#create_wallet" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.py#L46-L50
+```
 
-  See also [Wallet API reference](/wallet-api/#create-a-wallet) for further query detail.
+See also [Wallet API reference](/wallet-api/#create-a-wallet) for further query detail.
+
 </TabItem>
 <TabItem value="python-grpc" label="Python (gRPC)">
 
@@ -129,19 +128,18 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to *create a new wallet*:
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#import_client" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#import_client
+```
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#create_wallet" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#create_wallet
+```
 
-  See also [Wallet API reference](/wallet-api/#create-a-wallet) for further query detail.
+See also [Wallet API reference](/wallet-api/#create-a-wallet) for further query detail.
+
 </TabItem>
 </Tabs>
-
-
 
 If successful, the response will include:
 
@@ -151,9 +149,9 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/response-examples.txt#example_create_wallet_response" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/response-examples.txt#L2-L5
+```
 
 </details>
 
@@ -161,32 +159,30 @@ If successful, the response will include:
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/).
 :::
 
-
-
 ## Generating a new private and public key pair
 
 Once authenticated with Vega Wallet, it is possible to generate one or more new key pairs (private and public keys) to sign transactions for the Vega network. For detailed information on key pairs, see the section on [Wallets and Signing](../wallets-and-deposits/wallet#what-is-a-key-pair). Note that the private key is *not* returned. Your public key will be used as your `party` identifier on Vega:
-
-
 
 <GitPod />
 
 <Tabs groupId="codesamples3">
 <TabItem value="shell-rest" label="Shell (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.sh#generate_keypair" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.sh#L58-L62
+```
 
-  See also [Wallet API reference](/wallet-api/#generate-a-new-key-pair) for further query detail.
+See also [Wallet API reference](/wallet-api/#generate-a-new-key-pair) for further query detail.
+
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.py#generate_keypair" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.py#L70-L84
+```
 
-  See also [Wallet API reference](/wallet-api/#generate-a-new-key-pair) for further query detail.
+See also [Wallet API reference](/wallet-api/#generate-a-new-key-pair) for further query detail.
+
 </TabItem>
 <TabItem value="python-grpc" label="Python (gRPC)">
 
@@ -198,19 +194,18 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to *generate a new key pair*:
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#import_client" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#import_client
+```
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#generate_keypair" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#generate_keypair
+```
 
-  See also [Wallet API reference](/wallet-api/#generate-a-new-key-pair) for further query detail.
+See also [Wallet API reference](/wallet-api/#generate-a-new-key-pair) for further query detail.
+
 </TabItem>
 </Tabs>
-
-
 
 If successful, the response will include:
 
@@ -223,9 +218,9 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/response-examples.txt#example_generate_keypair_response" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/response-examples.txt#L18-L29
+```
 
 </details>
 
@@ -233,32 +228,30 @@ If successful, the response will include:
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/).
 :::
 
-
-
 ## Listing key pairs for a wallet
 
 Retrieve a list of all key pairs for a wallet. Note that private keys are *not* returned:
-
-
 
 <GitPod />
 
 <Tabs groupId="codesamples4">
 <TabItem value="shell-rest" label="Shell (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.sh#get_keys" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.sh#L72-L75
+```
 
-  See also [Wallet API reference](/wallet-api/#list-keys) for further query detail.
+See also [Wallet API reference](/wallet-api/#list-keys) for further query detail.
+
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.py#get_keys" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.py#L89-L96
+```
 
-  See also [Wallet API reference](/wallet-api/#list-keys) for further query detail.
+See also [Wallet API reference](/wallet-api/#list-keys) for further query detail.
+
 </TabItem>
 <TabItem value="python-grpc" label="Python (gRPC)">
 
@@ -270,19 +263,18 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to query for *key pairs*:
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#import_client" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#import_client
+```
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#get_keys" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#get_keys
+```
 
-  See also [Wallet API reference](/wallet-api/#list-keys) for further query detail.
+See also [Wallet API reference](/wallet-api/#list-keys) for further query detail.
+
 </TabItem>
 </Tabs>
-
-
 
 If successful, the response will include:
 
@@ -292,9 +284,9 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/response-examples.txt#example_get_keys_response" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/response-examples.txt#L34-L55
+```
 
 </details>
 
@@ -302,32 +294,30 @@ If successful, the response will include:
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/).
 :::
 
-
-
 ## Signing a transaction
 
 Connect and call sign transaction on a Vega Wallet server. Note: it is possible to set the `propagate` field to `true`. This instructs the wallet to submit the signed transaction directly to the Vega node specified in its config file:
-
-
 
 <GitPod />
 
 <Tabs groupId="codesamples5">
 <TabItem value="shell-rest" label="Shell (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.sh#sign_tx" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.sh#L89-L103
+```
 
-  See also [Wallet API reference](/wallet-api/#sign-a-transaction) for further query detail.
+See also [Wallet API reference](/wallet-api/#sign-a-transaction) for further query detail.
+
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.py#sign_tx" >}}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.py#L115-L127
+```
 
-  See also [Wallet API reference](/wallet-api/#sign-a-transaction) for further query detail.
+See also [Wallet API reference](/wallet-api/#sign-a-transaction) for further query detail.
+
 </TabItem>
 <TabItem value="python-grpc" label="Python (gRPC)">
 
@@ -339,19 +329,18 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to *sign a transaction*:
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#import_client" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#import_client
+```
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#sign_tx" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#sign_tx
+```
 
-  See also [Wallet API reference](/wallet-api/#sign-a-transaction) for further query detail.
+See also [Wallet API reference](/wallet-api/#sign-a-transaction) for further query detail.
+
 </TabItem>
 </Tabs>
-
-
 
 If successful, the response will include:
 
@@ -362,9 +351,9 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/response-examples.txt#example_sign_tx_response" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/response-examples.txt#L71-L79
+```
 
 </details>
 

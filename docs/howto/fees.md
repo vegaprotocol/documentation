@@ -66,17 +66,17 @@ Connect to a Vega API server and *estimate fees for an order on a Vega market*:
 <Tabs groupId="codesamples1">
 <TabItem value="shell-rest" label="Shell (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate.sh#get_fees_estimate
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate.sh#L75-L93
+```
 
 See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/EstimateFee) for further query detail.
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate.py#get_fees_estimate
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate.py#L95-L113
+```
 
 See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/EstimateFee) for further query detail.
 </TabItem>
@@ -90,13 +90,13 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to query for *estimating fees*:
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate-with-Vega-API-client.py#import_client" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate-with-Vega-API-client.py#L50-L53
+```
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate-with-Vega-API-client.py#get_fees_estimate
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate-with-Vega-API-client.py#L99-L112
+```
 
 See also [gRPC API reference](/api/grpc/#datanode.api.v1.EstimateFeeRequest) for further query detail.
 </TabItem>
@@ -110,9 +110,9 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/response-examples.txt#example_get_fees_estimate_response" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/response-examples.txt#L2-L18
+```
 
 </details>
 
@@ -133,17 +133,17 @@ Connect to a Vega API server and *estimate the margin* for an order on a Vega ma
 <Tabs groupId="codesamples2">
 <TabItem value="shell-rest" label="Shell (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate.sh#get_margins_estimate" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate.sh#L102-L120
+```
 
   See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/EstimateMargin) for further query detail.
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate.py#get_margins_estimate" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate.py#L121-L139
+```
 
   See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/EstimateMargin) for further query detail.
 </TabItem>
@@ -157,13 +157,13 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to query for the *estimated margin*:
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate-with-Vega-API-client.py#import_client" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate-with-Vega-API-client.py#L50-L53
+```
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate-with-Vega-API-client.py#get_margins_estimate" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate-with-Vega-API-client.py#L120-L133
+```
 
   See also [gRPC API reference](/api/grpc/#datanode.api.v1.EstimateMarginRequest) for further query detail.
 </TabItem>
@@ -179,9 +179,9 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/response-examples.txt#example_get_margins_estimate_response" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/response-examples.txt#L24-L36
+```
 
 </details>
 

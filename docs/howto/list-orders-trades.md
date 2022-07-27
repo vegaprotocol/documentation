@@ -28,30 +28,28 @@ Connect to a Vega API server, and request *orders on a market*:
 See the how-to guide for [Market information](markets.md) to learn how to get a list of market identifiers on Vega.
 :::
 
-
-
 <GitPod />
 
 <Tabs groupId="codesamples1">
 <TabItem value="shell-rest" label="Shell (REST)">
 
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-market.sh#L30-L35
+```
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-market.sh#get_orders_for_market" >}}
-:::
+See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/OrdersByMarket) for further query detail.
 
-  See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/OrdersByMarket) for further query detail.
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-market.py#get_orders_for_market" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-market.py#L40-L45
+```
 
-  See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/OrdersByMarket) for further query detail.
+See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/OrdersByMarket) for further query detail.
+
 </TabItem>
 <TabItem value="python-grpc" label="Python (gRPC)">
-
 
 Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
 
@@ -61,15 +59,16 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to query for a *list of orders on a market*:
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-market-with-Vega-API-client.py#import_client" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-market-with-Vega-API-client.py#L27-L28
+```
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-market-with-Vega-API-client.py#get_orders_for_market" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-market-with-Vega-API-client.py#L36-L41
+```
 
-  See also [gRPC API reference](/api/grpc/#datanode.api.v1.OrdersByMarketResponse) for further query detail.
+See also [gRPC API reference](/api/grpc/#datanode.api.v1.OrdersByMarketResponse) for further query detail.
+
 </TabItem>
 </Tabs>
 
@@ -83,9 +82,9 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/response-examples.txt#example_get_orders_for_market_response" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/response-examples.txt#L2-L27
+```
 
 </details>
 
@@ -93,31 +92,30 @@ If successful, the response will include:
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/).
 :::
 
-
-
 ## Listing orders for a party (public key)
 
 Connect to a Vega API server, and request *orders for a party*:  
-
 
 <GitPod />
 
 <Tabs groupId="codesamples2">
 <TabItem value="shell-rest" label="Shell (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-party.sh#get_orders_for_party" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-party.sh#L44-L50
+```
 
-  See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/OrdersByParty) for further query detail.
+See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/OrdersByParty) for further query detail.
+
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-party.py#get_orders_for_party" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-party.py#L75-L80
+```
 
-  See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/OrdersByParty) for further query detail.
+See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/OrdersByParty) for further query detail.
+
 </TabItem>
 <TabItem value="python-grpc" label="Python (gRPC)">
 
@@ -129,13 +127,13 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to query for a *list of orders for a party*:
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-party-with-Vega-API-client.py#import_client" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-party-with-Vega-API-client.py#L30-L31
+```
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-party-with-Vega-API-client.py#get_orders_for_party" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-party-with-Vega-API-client.py#L80-L85
+```
 
   See also [gRPC API reference](/api/grpc/#datanode.api.v1.OrdersByPartyResponse) for further query detail.
 </TabItem>
@@ -151,9 +149,9 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/response-examples.txt#example_get_orders_for_party_response" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/response-examples.txt#L31-L56
+```
 
 </details>
 
@@ -167,23 +165,23 @@ For full example code, please visit the [repo on GitHub](https://github.com/vega
 
 Connect to a Vega API server, and request *trades for an order*:  
 
-
 <GitPod />
 
 <Tabs groupId="codesamples3">
 <TabItem value="shell-rest" label="Shell (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-trades-for-order.sh#get_trades_for_order" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-trades-for-order.sh#L25-L31
+```
 
-  See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/TradesByOrder) for further query detail.
+See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/TradesByOrder) for further query detail.
+
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-trades-for-order.py#get_trades_for_order" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-trades-for-order.py#L33-L39
+```
 
   See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/TradesByOrder) for further query detail.
 </TabItem>
@@ -197,13 +195,13 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to query for a *list of trades for an order*:
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-trades-for-order-with-Vega-API-client.py#import_client" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-trades-for-order-with-Vega-API-client.py#L27-L28
+```
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-trades-for-order-with-Vega-API-client.py#get_trades_for_order" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-trades-for-order-with-Vega-API-client.py#L32-L39
+```
 
   See also [gRPC API reference](/api/grpc/#datanode.api.v1.TradesByOrderResponse) for further query detail.
 </TabItem>
@@ -219,9 +217,9 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/response-examples.txt#example_get_trades_for_order_response" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/response-examples.txt#L61-L92
+```
 
 </details>
 
@@ -244,22 +242,23 @@ See the how-to guide for [Market information](markets.md) to learn how to get a 
 <Tabs groupId="codesamples4">
 <TabItem value="shell-rest" label="Shell (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-market.sh#get_trades_for_market" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-market.sh#L39-L44
+```
 
-  See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/TradesByMarket) for further query detail.
+See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/TradesByMarket) for further query detail.
+
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-market.py#get_trades_for_market" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-market.py#L49-L54
+```
 
-  See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/TradesByMarket) for further query detail.
+See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/TradesByMarket) for further query detail.
+
 </TabItem>
 <TabItem value="python-grpc" label="Python (gRPC)">
-
 
 Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
 
@@ -269,15 +268,16 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to query for a *list of trades on a market*:
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-market-with-Vega-API-client.py#import_client" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-market-with-Vega-API-client.py#L27-L28
+```
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-market-with-Vega-API-client.py#get_trades_for_market" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-market-with-Vega-API-client.py#L45-L50
+```
 
-  See also [gRPC API reference](/api/grpc/#datanode.api.v1.TradesByMarketResponse) for further query detail.
+See also [gRPC API reference](/api/grpc/#datanode.api.v1.TradesByMarketResponse) for further query detail.
+
 </TabItem>
 </Tabs>
 
@@ -291,9 +291,9 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/response-examples.txt#example_get_trades_for_market_response" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/response-examples.txt#L97-L128
+```
 
 </details>
 

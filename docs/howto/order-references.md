@@ -34,26 +34,26 @@ Vega aims to produce a block every *1 second*, which means that it may take *1+ 
 
 Connect to a Vega API server, and request for an order by *reference*. 
 
-
-
 <GitPod />
 
 <Tabs groupId="codesamples1">
 <TabItem value="shell-rest" label="Shell (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-by-reference/get-order-by-reference.sh#get_order_by_ref" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-by-reference/get-order-by-reference.sh#L25-L33
+```
 
-  See also wallet [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/OrderByReference) for further query detail.
+See also wallet [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/OrderByReference) for further query detail.
+
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-by-reference/get-order-by-reference.py#get_order_by_ref" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-by-reference/get-order-by-reference.py#L33-L41
+```
 
-  See also wallet [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/OrderByReference) for further query detail.
+See also wallet [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/OrderByReference) for further query detail.
+
 </TabItem>
 <TabItem value="python-grpc" label="Python (gRPC)">
 
@@ -65,19 +65,18 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to query for an order by *reference*:
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-by-reference/get-order-by-reference-with-Vega-API-client.py#import_client" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-by-reference/get-order-by-reference-with-Vega-API-client.py#L25
+```
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-by-reference/get-order-by-reference-with-Vega-API-client.py#get_order_by_ref" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-by-reference/get-order-by-reference-with-Vega-API-client.py#L31-L40
+```
 
-  See also [gRPC API reference](/api/grpc/#datanode.api.v1.OrderByReferenceRequest) for further query detail.
+See also [gRPC API reference](/api/grpc/#datanode.api.v1.OrderByReferenceRequest) for further query detail.
+
 </TabItem>
 </Tabs>
-
-
 
 If successful, the response will include:
 
@@ -87,9 +86,9 @@ If successful, the response will include:
 
 <details><summary>Example response</summary>
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-by-reference/response-examples.txt#example_get_order_by_ref_response" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-by-reference/response-examples.txt#L2-L18
+```
 
 </details>
 
@@ -97,13 +96,9 @@ If successful, the response will include:
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/).
 :::
 
-
-
 ### Subscribe to a stream of orders for a party
 
 Connect to a Vega API server, and request to *stream of orders*:  
-
-
 
 <GitPod />
 
@@ -117,11 +112,12 @@ npm install -g graphqurl
 
 This snippet code shows how to subscribe to a stream of *orders for a party*:
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-orders-by-reference/stream-orders.sh#stream_orders_by_ref" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-orders-by-reference/stream-orders.sh#L25-L29
+```
 
-  See also [GraphQL API reference](/api/graphql/subscription.doc.html#L15) for further query detail.
+See also [GraphQL API reference](/api/graphql/subscription.doc.html#L15) for further query detail.
+
 </TabItem>
 <TabItem value="python-grpc" label="Python (gRPC)">
 
@@ -133,15 +129,16 @@ pip install --upgrade Vega-API-client
 
 This Python snippet code shows how to receive a stream of **orders for a party*:
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-orders-by-reference/stream-orders-with-Vega-API-client.py#import_client" on >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-orders-by-reference/stream-orders-with-Vega-API-client.py#L27
+```
 
-:::danger Link to GitHub
-{{< github-embed "https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-orders-by-reference/stream-orders-with-Vega-API-client.py#stream_orders_by_ref" >}}
-:::
+```js reference
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-orders-by-reference/stream-orders-with-Vega-API-client.py#L44-L53
+```
 
-  See also [gRPC API reference](/api/grpc/#datanode.api.v1.OrdersSubscribeRequest) for further query detail.
+See also [gRPC API reference](/api/grpc/#datanode.api.v1.OrdersSubscribeRequest) for further query detail.
+
 </TabItem>
 </Tabs>
 
