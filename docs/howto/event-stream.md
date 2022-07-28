@@ -84,26 +84,6 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-events/str
 
 See also [GraphQL API reference](/api/graphql/data-node/subscription.doc.html#L75) for further query detail.
 </TabItem>
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
-
-```shell
-pip install --upgrade Vega-API-client
-```
-
-This Python snippet code shows how to receive a stream of **ALL events for a particular market*:
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-events/stream-events-with-Vega-API-client.py#L30-L31
-```
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-events/stream-events-with-Vega-API-client.py#L52-L67
-```
-
-See also [gRPC API reference](/api/grpc/#api.v1.ObserveEventsResponse) for further query detail.
-</TabItem>
 </Tabs>
 
 If successful, the response will include:

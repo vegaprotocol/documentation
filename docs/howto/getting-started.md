@@ -49,26 +49,6 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accou
 
 See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/Parties) for further query detail.
 </TabItem>
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
-
-```shell
-pip install --upgrade Vega-API-client
-```
-This Python snippet code shows how to query for *parties*:
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-parties-with-Vega-API-client.py#L27
-```
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-parties-with-Vega-API-client.py#L33-L37
-```
-
-See also [gRPC API reference](/api/grpc/#datanode.api.v1.PartiesResponse) for further query detail.
-</TabItem>
-
 </Tabs>
 
 

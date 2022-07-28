@@ -80,26 +80,6 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-esti
 
 See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/EstimateFee) for further query detail.
 </TabItem>
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
-
-```shell
-pip install --upgrade Vega-API-client
-```
-
-This Python snippet code shows how to query for *estimating fees*:
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate-with-Vega-API-client.py#L50-L53
-```
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate-with-Vega-API-client.py#L99-L112
-```
-
-See also [gRPC API reference](/api/grpc/#datanode.api.v1.EstimateFeeRequest) for further query detail.
-</TabItem>
 </Tabs>
 
 If successful, the response will include:
@@ -120,13 +100,9 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-esti
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/).
 :::
 
-
-
-
 ## How do I estimate the margin required for an order?
 
 Connect to a Vega API server and *estimate the margin* for an order on a Vega market:  
-
 
 <GitPod />
 
@@ -137,7 +113,8 @@ Connect to a Vega API server and *estimate the margin* for an order on a Vega ma
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate.sh#L102-L120
 ```
 
-  See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/EstimateMargin) for further query detail.
+See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/EstimateMargin) for further query detail.
+
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
@@ -145,31 +122,10 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-esti
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate.py#L121-L139
 ```
 
-  See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/EstimateMargin) for further query detail.
-</TabItem>
-<TabItem value="python-grpc" label="Python (gRPC)">
+See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/EstimateMargin) for further query detail.
 
-Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
-
-```shell
-pip install --upgrade Vega-API-client
-```
-
-This Python snippet code shows how to query for the *estimated margin*:
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate-with-Vega-API-client.py#L50-L53
-```
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate-with-Vega-API-client.py#L120-L133
-```
-
-  See also [gRPC API reference](/api/grpc/#datanode.api.v1.EstimateMarginRequest) for further query detail.
 </TabItem>
 </Tabs>
-
-
 
 If successful, the response will include:
 

@@ -51,29 +51,7 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.py#
 See also [Wallet API reference](/wallet-api/#logging-in-to-a-wallet) for further query detail.
 
 </TabItem>
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
-
-```shell
-pip install --upgrade Vega-API-client
-```
-
-This Python snippet code shows how to *log in to an existing wallet*:
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#import_client
-```
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#login_wallet
-```
-
-  See also [Wallet API reference](/wallet-api/#logging-in-to-a-wallet) for further query detail.
-</TabItem>
 </Tabs>
-
-
 
 If successful, the response will include:
 
@@ -113,27 +91,6 @@ See also [Wallet API reference](/wallet-api/#create-a-wallet) for further query 
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.py#L46-L50
-```
-
-See also [Wallet API reference](/wallet-api/#create-a-wallet) for further query detail.
-
-</TabItem>
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
-
-```shell
-pip install --upgrade Vega-API-client
-```
-
-This Python snippet code shows how to *create a new wallet*:
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#import_client
-```
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#create_wallet
 ```
 
 See also [Wallet API reference](/wallet-api/#create-a-wallet) for further query detail.
@@ -179,27 +136,6 @@ See also [Wallet API reference](/wallet-api/#generate-a-new-key-pair) for furthe
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.py#L70-L84
-```
-
-See also [Wallet API reference](/wallet-api/#generate-a-new-key-pair) for further query detail.
-
-</TabItem>
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
-
-```shell
-pip install --upgrade Vega-API-client
-```
-
-This Python snippet code shows how to *generate a new key pair*:
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#import_client
-```
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#generate_keypair
 ```
 
 See also [Wallet API reference](/wallet-api/#generate-a-new-key-pair) for further query detail.
@@ -253,27 +189,6 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.py#
 See also [Wallet API reference](/wallet-api/#list-keys) for further query detail.
 
 </TabItem>
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
-
-```shell
-pip install --upgrade Vega-API-client
-```
-
-This Python snippet code shows how to query for *key pairs*:
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#import_client
-```
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#get_keys
-```
-
-See also [Wallet API reference](/wallet-api/#list-keys) for further query detail.
-
-</TabItem>
 </Tabs>
 
 If successful, the response will include:
@@ -314,27 +229,6 @@ See also [Wallet API reference](/wallet-api/#sign-a-transaction) for further que
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.py#L115-L127
-```
-
-See also [Wallet API reference](/wallet-api/#sign-a-transaction) for further query detail.
-
-</TabItem>
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
-
-```shell
-pip install --upgrade Vega-API-client
-```
-
-This Python snippet code shows how to *sign a transaction*:
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#import_client
-```
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet-with-Vega-API-client.py#sign_tx
 ```
 
 See also [Wallet API reference](/wallet-api/#sign-a-transaction) for further query detail.

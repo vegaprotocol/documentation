@@ -113,28 +113,6 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-canc
 See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/GetVegaTime) for further query detail.
 
 </TabItem>
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
-
-```shell
-pip install --upgrade Vega-API-client
-```
-
-This Python snippet code shows how to import the clients and then query the *blockchain time*:
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders-with-Vega-API-client.py#L57-L60
-```
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders-with-Vega-API-client.py#L111-L113
-```
-
-See also [gRPC API reference](/api/grpc/#datanode.api.v1.GetVegaTimeResponse) for further query detail.
-
-</TabItem>
-
 </Tabs>
 
 If successful, the response will include:
@@ -176,16 +154,6 @@ See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#opera
 See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/Markets) for further query detail.
 
 </TabItem>
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders-with-Vega-API-client.py#L98-L100
-```
-
-See also [gRPC API reference](/api/grpc/#datanode.api.v1.MarketsRequest) for further query detail.
-
-</TabItem>
-
 </Tabs>
 
 If successful, the response will include:
@@ -227,15 +195,7 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-canc
 ```
 
 </TabItem>
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders-with-Vega-API-client.py#L124-L139
-```
-
-</TabItem>
 </Tabs>
-
 
 ### 5. Sign and send the transaction
 
@@ -255,15 +215,6 @@ See also [REST API reference](/wallet-api/#sign-a-transaction) for further query
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.py#L142-L146
-```
-
-See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
-
-</TabItem>
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders-with-Vega-API-client.py#L143-L152
 ```
 
 See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.

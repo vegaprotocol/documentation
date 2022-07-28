@@ -66,13 +66,6 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-canc
 ```
 
 </TabItem>
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders-with-Vega-API-client.py#L175-L181
-```
-
-</TabItem>
 </Tabs>
 
 ### 3. Sign and send the transaction
@@ -93,15 +86,6 @@ See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.py#L196-L200
-```
-
-
-See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
-</TabItem>
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders-with-Vega-API-client.py#L185-L194
 ```
 
 

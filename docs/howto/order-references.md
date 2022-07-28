@@ -55,27 +55,6 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-by-reference/
 See also wallet [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/OrderByReference) for further query detail.
 
 </TabItem>
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
-
-```shell
-pip install --upgrade Vega-API-client
-```
-
-This Python snippet code shows how to query for an order by *reference*:
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-by-reference/get-order-by-reference-with-Vega-API-client.py#L25
-```
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-by-reference/get-order-by-reference-with-Vega-API-client.py#L31-L40
-```
-
-See also [gRPC API reference](/api/grpc/#datanode.api.v1.OrderByReferenceRequest) for further query detail.
-
-</TabItem>
 </Tabs>
 
 If successful, the response will include:
@@ -119,30 +98,7 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-orders-by-
 See also [GraphQL API reference](/api/graphql/subscription.doc.html#L15) for further query detail.
 
 </TabItem>
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
-
-```shell
-pip install --upgrade Vega-API-client
-```
-
-This Python snippet code shows how to receive a stream of **orders for a party*:
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-orders-by-reference/stream-orders-with-Vega-API-client.py#L27
-```
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-orders-by-reference/stream-orders-with-Vega-API-client.py#L44-L53
-```
-
-See also [gRPC API reference](/api/grpc/#datanode.api.v1.OrdersSubscribeRequest) for further query detail.
-
-</TabItem>
 </Tabs>
-
-
 
 If successful, the response will include:
 
@@ -153,9 +109,6 @@ If successful, the response will include:
 :::info
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-orders-by-reference/).
 :::
-
-
-
 
 ## What's next?
 

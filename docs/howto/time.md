@@ -52,27 +52,6 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/get-tim
 See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/GetVegaTime) for further query detail.
 
 </TabItem>
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
-
-```shell
-pip install --upgrade Vega-API-client
-```
-
-This Python snippet code shows how to query for *Vega Time*:
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/get-time-with-Vega-API-client.py#L25
-```
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/get-time-with-Vega-API-client.py#L31-L36
-```
-
-See also [gRPC API reference](/api/grpc/#datanode.api.v1.GetVegaTimeResponse) for further query detail.
-
-</TabItem>
 </Tabs>
 
 If successful, the response will include:

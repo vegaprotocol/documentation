@@ -86,30 +86,6 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-canc
 ```
 </details >
 </TabItem>
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-<details><summary>Cancel a single order</summary>
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders-with-Vega-API-client.py#L228-L233
-```
-</details >
-
-<details><summary>Cancel all orders on a market</summary>
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders-with-Vega-API-client.py#L237-L241
-```
-</details >
-
-<details><summary>Cancel all orders on all markets</summary>
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders-with-Vega-API-client.py#L245-L248
-```
-</details >
-
-</TabItem>
 </Tabs>
 
 
@@ -133,14 +109,6 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-canc
 ```
 
 See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
-</TabItem>
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders-with-Vega-API-client.py#L252-L261
-```
-
- See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
 </TabItem>
 </Tabs>
 

@@ -45,29 +45,7 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-m
 See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/Markets) for further query detail.
 
 </TabItem>
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
-
-```shell
-pip install --upgrade Vega-API-client
-```
-
-This Python snippet code shows how to query for a *list of orders on a market*:
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata-with-Vega-API-client.py#L27-L28
-```
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata-with-Vega-API-client.py#L32-L34
-```
-
-  See also [gRPC API reference](/api/grpc/#datanode.api.v1.MarketsResponse) for further query detail.
-</TabItem>
 </Tabs>
-
-
 
 If successful, the response will include:
 
@@ -86,8 +64,6 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-m
 :::info
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/).
 :::
-
-
 
 ## Requesting market data
 
@@ -114,30 +90,7 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-m
 See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/MarketsData) for further query detail.
 
 </TabItem>
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
-
-```shell
-pip install --upgrade Vega-API-client
-```
-
-This Python snippet code shows how to query for a *list of orders on a market*:
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata-with-Vega-API-client.py#L27-L28
-```
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata-with-Vega-API-client.py#L41-L46
-```
-
-See also [gRPC API reference](/api/grpc/#datanode.api.v1.MarketsDataResponse) for further query detail.
-
-</TabItem>
 </Tabs>
-
-
 
 If successful, the response will include:
 

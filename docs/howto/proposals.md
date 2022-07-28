@@ -28,7 +28,6 @@ Connect to a Vega API server, and request a *list of proposals*:
 <GitPod />
 
 <Tabs groupId="codesamples1">
-
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
@@ -38,29 +37,6 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/man
 See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/GetNewMarketProposals) for further query detail.
   
 </TabItem>
-
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
-
-```shell
-pip install --upgrade Vega-API-client
-```
-
-This Python snippet code shows how to query for a *list of governance proposals*:
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-with-Vega-API-client.py#L53-L56
-```
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-with-Vega-API-client.py#L89-L92
-```
-
-See also [gRPC API reference](/api/grpc/#datanode.api.v1.GetProposalsRequest) for further query detail.
-
-</TabItem>
-
 <TabItem value="shell-graphql" label="Shell (GraphQL)">
 
 Make sure `graphqurl` is installed (from [GitHub](https://github.com/hasura/graphqurl)):
@@ -75,9 +51,9 @@ This snippet code shows how to query for a *list of proposals*:
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-gql.sh#L30-L62
 ```
 
-  See also [GraphQL API reference](/api/graphql/data-node/query.doc.html#L73) for further query detail.
+See also [GraphQL API reference](/api/graphql/data-node/query.doc.html#L73) for further query detail.
+  
 </TabItem>
-
 </Tabs>
 
 If successful, the response will include:
@@ -105,7 +81,6 @@ Connect to a Vega API server, and request a *proposal by identifier*:
 <GitPod />
 
 <Tabs groupId="codesamples2">
-
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
@@ -115,29 +90,6 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/man
 See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/GetProposalByID) for further query detail.
 
 </TabItem>
-
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
-
-```shell
-pip install --upgrade Vega-API-client
-```
-
-This Python snippet code shows how to query for a *proposal by identifier*:
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-with-Vega-API-client.py#L53-L56
-```
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-with-Vega-API-client.py#L115-L118
-```
-
-See also [gRPC API reference](/api/grpc/#datanode.api.v1.GetProposalByIDRequest) for further query detail.
-
-</TabItem>
-
 <TabItem value="shell-graphql" label="Shell (GraphQL)">
 
 Make sure `graphqurl` is installed (from [GitHub](https://github.com/hasura/graphqurl)):
@@ -152,9 +104,9 @@ This snippet code shows how to request a *proposal by identifier*:
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-gql.sh#L70-L102
 ```
 
-  See also [GraphQL API reference](/api/graphql/data-node/query.doc.html#L82) for further query detail.
-</TabItem>
+See also [GraphQL API reference](/api/graphql/data-node/query.doc.html#L82) for further query detail.
 
+</TabItem>
 </Tabs>
 
 If successful, the response will include:
@@ -182,7 +134,6 @@ Connect to a Vega API server, and request *proposals for a party*:
 <GitPod />
 
 <Tabs groupId="codesamples3">
-
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
@@ -192,29 +143,6 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/man
 See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/GetProposalsByParty) for further query detail.
 
 </TabItem>
-
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
-
-```shell
-pip install --upgrade Vega-API-client
-```
-
-This Python snippet code shows how to query for a *list of governance proposals*:
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-with-Vega-API-client.py#L53-L56
-```
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-with-Vega-API-client.py#L115-L118
-```
-
-See also [gRPC API reference](/api/grpc/#datanode.api.v1.GetProposalsByPartyRequest) for further query detail.
-
-</TabItem>
-
 <TabItem value="shell-graphql" label="Shell (GraphQL)">
 
 Make sure `graphqurl` is installed (from [GitHub](https://github.com/hasura/graphqurl)):
@@ -232,7 +160,6 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/man
 See also [GraphQL API reference](/api/graphql/data-node/query.doc.html#L25) for further query detail.
 
 </TabItem>
-
 </Tabs>
 
 If successful, the response will include:
