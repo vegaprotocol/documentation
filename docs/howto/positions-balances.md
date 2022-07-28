@@ -11,7 +11,6 @@ import TabItem from '@theme/TabItem';
 * [insurance pool](https://docs.fairground.vega.xyz/docs/trading-questions/#what-is-the-insurance-pool)
 * [margins](https://docs.fairground.vega.xyz/docs/trading-questions/#what-happens-to-margin-when-a-trader-puts-a-trade-on)
 * REST API reference
-* gRPC API reference
 * [API reference documentation](https://docs.fairground.vega.xyz/api/grpc/#datanode.api.v1.PartyAccountsRequest)
 :::
 

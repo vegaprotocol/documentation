@@ -6,11 +6,10 @@ title: Overview
 # API How-to Guides
 
 :::danger Broken links
-* Using Vega's APIs 
-* 'How to vote' and 'fee estimates' don't seem to move the viewport to the anchor on the target page, even though the URL is correct 🤔
+* [Using Vega's APIs](https://docs.fairground.vega.xyz/docs/apis/) 
 :::
 
-We're currently building out samples and how-tos for popular programming languages. This is a work-in-progress, and not all the functionality that we plan to support is available. However, we would like your feedback on what you think of it so far. Share your feedback on the [community forum](https://community.vega.xyz/c/testnet/12) or [Discord](https://discord.gg/bkAF3Tu). The [Using Vega's APIs](../apis/">}}) section has reference information and connection details for the current **Vega APIs** (node and wallet).
+We're currently building out samples and how-tos for popular programming languages. This is a work-in-progress, and not all the functionality that we plan to support is available. However, we would like your feedback on what you think of it so far. Share your feedback on the [community forum](https://community.vega.xyz/c/testnet/12) or [Discord](https://discord.gg/bkAF3Tu). The [Using Vega's APIs](../apis/) section has reference information and connection details for the current **Vega APIs** (node and wallet).
 
 :::info
 To get started see the list of guides below.

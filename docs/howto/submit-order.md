@@ -12,7 +12,6 @@ import GitPod from './_gitpod.mdx'
 * [Trading questions](https://docs.fairground.vega.xyz/docs/trading-questions/#what-order-types-and-time-in-force-values-are-available-to-trade-on-vega)
 * [pegged order](https://docs.fairground.vega.xyz/docs/trading-questions/#pegged-orders)
 * REST API reference
-* gRPC API reference
 * Wallet API 
 :::
 

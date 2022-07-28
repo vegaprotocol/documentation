@@ -10,7 +10,6 @@ import GitPod from './_gitpod.mdx'
 
 :::danger Broken links
 * Wallet API reference
-* All Python (gRPC) code excerpts
 :::
 
 ## Introduction

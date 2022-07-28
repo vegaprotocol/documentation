@@ -9,7 +9,7 @@ import GitPod from './_gitpod.mdx'
 # Fees and margin estimation
 
 :::danger Broken links
-* [Free structure](https://docs.fairground.vega.xyz/docs/trading-questions/#what-are-the-fees-for-trading-on-the-vega-testnet-and-who-gets-the-fees)
+* [Fee structure](https://docs.fairground.vega.xyz/docs/trading-questions/#what-are-the-fees-for-trading-on-the-vega-testnet-and-who-gets-the-fees)
 * [fees charged](https://docs.fairground.vega.xyz/docs/trading-questions/#how-are-trading-fees-calculated)
 * [Market and trading info](https://docs.fairground.vega.xyz/docs/trading-questions/#what-are-the-fees-for-trading-on-the-vega-testnet-and-who-gets-the-fees)
 * REST API reference

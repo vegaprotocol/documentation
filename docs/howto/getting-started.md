@@ -27,7 +27,7 @@ If you'd like to skip ahead, code for signing using APIs is available in the [Wa
 Let's dive straight in and request a **list of parties** trading on Vega:
 
 :::info
-The NODE URLs for the Vega testnet are available in the [APIs](../apis/#what-are-the-testnet-api-server-addresses">}}) section.
+The NODE URLs for the Vega testnet are available in the [APIs](../apis/#what-are-the-testnet-api-server-addresses) section.
 :::
 
 <GitPod />

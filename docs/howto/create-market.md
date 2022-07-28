@@ -13,7 +13,6 @@ import GitPod from './_gitpod.mdx'
 * [REST API reference](https://docs.fairground.vega.xyz/api/rest/data-node/api/v1/trading_data.html#operation/Assets)
 * [Market proposals and governance](https://docs.fairground.vega.xyz/docs/trading-questions/#governance)
 * [auction mode](https://docs.fairground.vega.xyz/docs/trading-questions/#auction-trading-mode)
-* [gRPC API reference](https://docs.fairground.vega.xyz/api/grpc/#datanode.api.v1.NetworkParametersRequest)
 :::
 
 ## Introduction
@@ -48,8 +47,6 @@ In this example we've chosen an example asset named `tDAI` (other assets are ava
 
 <Tabs groupId="codesamples1">
 <TabItem value="python-rest" label="Python (REST)">
-
-<script src="https://emgithub.com/embed.js?target=https%3A%2F%2Fgithub.com%2Fvegaprotocol%2Fsample-api-scripts%2Fblob%2Fmaster%2Fpropose-markets%2Fpropose-vote-enact-market.py%23get_assets&style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on"></script>
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#L84-L87
@@ -232,26 +229,6 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-network-param
 ```
 
 See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/NetworkParameters) for further query detail.
-</TabItem>
-<TabItem value="python-grpc" label="Python (gRPC)">
-
-Make sure `vegaapiclient` is installed (from [PyPI](https://pypi.org/project/Vega-API-client/)):
-
-```
-pip install --upgrade Vega-API-client
-```
-
-This Python snippet code shows how to query for *network parameters*:
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-network-parameters/get-network-parameters-with-Vega-API-client.py#import_client
-```
-
-```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-network-parameters/get-network-parameters-with-Vega-API-client.py#get_network_params
-```
-
-See also [gRPC API reference](/api/grpc/#datanode.api.v1.NetworkParametersRequest) for further query detail.
 </TabItem>
 </Tabs>
 

@@ -12,7 +12,6 @@ import GitPod from './_gitpod.mdx'
 * [governance](https://docs.fairground.vega.xyz/docs/trading-questions/#governance)
 * REST API reference
 * GraphQL API reference
-* gRPC API reference
 :::
 
 ## Introduction

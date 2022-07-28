@@ -10,7 +10,6 @@ import GitPod from './_gitpod.mdx'
 
 :::danger broken links
 * REST API reference
-* gRPC API reference
 * [Market and trading info](https://docs.fairground.vega.xyz/docs/trading-questions/#what-are-the-fees-for-trading-on-the-vega-testnet-and-who-gets-the-fees)
 :::
 

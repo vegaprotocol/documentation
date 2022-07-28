@@ -10,7 +10,6 @@ import GitPod from './_gitpod.mdx'
 
 :::danger Broken links
 * REST API reference
-* gRPC API reference
 * [auction mode](https://docs.fairground.vega.xyz/docs/trading-questions/#auction-trading-mode)
 :::
 

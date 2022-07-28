@@ -10,7 +10,6 @@ import GitPod from './_gitpod.mdx'
 
 :::danger Broken links
 * REST API reference
-* gRPC API reference
 * GraphQL API reference
 :::
 
