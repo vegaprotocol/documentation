@@ -9,7 +9,6 @@ import GitPod from './_gitpod.mdx'
 # Markets and Market Data
 
 :::danger Broken links
-* REST API reference
 * [auction mode](https://docs.fairground.vega.xyz/docs/trading-questions/#auction-trading-mode)
 :::
 
@@ -32,16 +31,12 @@ Connect to a Vega API server, and request *all markets*:
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata.sh#L25-L30
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/Markets) for further query detail.
-
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata.py#L33-L38
 ```
-
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/Markets) for further query detail.
 
 </TabItem>
 </Tabs>
@@ -77,16 +72,12 @@ Connect to a Vega API server, and request the *market data for a market*:
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata.sh#L36-L41
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/MarketsData) for further query detail.
-
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-markets-and-market-data/get-markets-and-marketdata.py#L45-L50
 ```
-
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/MarketsData) for further query detail.
 
 </TabItem>
 </Tabs>

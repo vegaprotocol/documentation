@@ -8,10 +8,6 @@ import GitPod from './_gitpod.mdx'
 
 # Vega Time 
 
-:::danger Broken links
-* REST API reference
-:::
-
 ## Why do we need the concept of Vega Time? 
 
 As Vega runs on a custom blockchain optimised for trading (with a consensus layer currently built on top of Tendermint) the protocol requires participants to trade using commands submitted to the blockchain as transactions. 
@@ -39,16 +35,12 @@ Connect to a Vega API server, and request the latest *Vega Time*:
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/get-time.sh#L25-L30
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/GetVegaTime) for further query detail.
-
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/vega-time/get-time.py#L32-L39
 ```
-
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/GetVegaTime) for further query detail.
 
 </TabItem>
 </Tabs>

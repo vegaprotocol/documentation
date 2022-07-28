@@ -10,7 +10,6 @@ import GitPod from './_gitpod.mdx'
 
 :::danger Broken links
 * [governance](https://docs.fairground.vega.xyz/docs/trading-questions/#governance)
-* [REST API reference](https://docs.fairground.vega.xyz/api/rest/data-node/api/v1/trading_data.html#operation/Assets)
 * [Market proposals and governance](https://docs.fairground.vega.xyz/docs/trading-questions/#governance)
 * [auction mode](https://docs.fairground.vega.xyz/docs/trading-questions/#auction-trading-mode)
 :::
@@ -56,7 +55,6 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/p
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#L95-L103
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/Assets) for further query detail.
 </TabItem>
 </Tabs>
 
@@ -157,7 +155,6 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/p
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#L396-L400
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#api/PrepareVote) for further query detail.
 </TabItem>
 </Tabs>
 
@@ -188,7 +185,6 @@ After the voting period has elapsed, and if the majority of participants voted `
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#wait_for_market
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/Markets) for further query detail.
 </TabItem>
 </Tabs>
 
@@ -220,7 +216,6 @@ The current configuration of all network parameters can be requested from the AP
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-network-parameters/get-network-parameters.sh#get_network_params
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/NetworkParameters) for further query detail.
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
@@ -228,7 +223,6 @@ See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#opera
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-network-parameters/get-network-parameters.py#get_network_params
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/NetworkParameters) for further query detail.
 </TabItem>
 </Tabs>
 

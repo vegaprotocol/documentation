@@ -10,8 +10,6 @@ import GitPod from './_gitpod.mdx'
 
 :::danger Broken links
 * [governance](https://docs.fairground.vega.xyz/docs/trading-questions/#governance)
-* REST API reference
-* GraphQL API reference
 :::
 
 ## Introduction
@@ -32,8 +30,6 @@ Connect to a Vega API server, and request a *list of proposals*:
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals.py#L91-L95
 ```
-
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/GetNewMarketProposals) for further query detail.
   
 </TabItem>
 <TabItem value="shell-graphql" label="Shell (GraphQL)">
@@ -50,8 +46,7 @@ This snippet code shows how to query for a *list of proposals*:
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-gql.sh#L30-L62
 ```
 
-See also [GraphQL API reference](/api/graphql/data-node/query.doc.html#L73) for further query detail.
-  
+ 
 </TabItem>
 </Tabs>
 
@@ -86,8 +81,6 @@ Connect to a Vega API server, and request a *proposal by identifier*:
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals.py#L119-L123
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/GetProposalByID) for further query detail.
-
 </TabItem>
 <TabItem value="shell-graphql" label="Shell (GraphQL)">
 
@@ -102,8 +95,6 @@ This snippet code shows how to request a *proposal by identifier*:
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-gql.sh#L70-L102
 ```
-
-See also [GraphQL API reference](/api/graphql/data-node/query.doc.html#L82) for further query detail.
 
 </TabItem>
 </Tabs>
@@ -139,8 +130,6 @@ Connect to a Vega API server, and request *proposals for a party*:
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals.py#L107-L111
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/GetProposalsByParty) for further query detail.
-
 </TabItem>
 <TabItem value="shell-graphql" label="Shell (GraphQL)">
 
@@ -155,8 +144,6 @@ This snippet code shows how to query for a *list of proposals*:
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-votes/manage-proposals-gql.sh#L110-L144
 ```
-
-See also [GraphQL API reference](/api/graphql/data-node/query.doc.html#L25) for further query detail.
 
 </TabItem>
 </Tabs>
@@ -219,7 +206,6 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/p
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#L396-L400
 ```
 
-  See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/PrepareVote) for further query detail.
 </TabItem>
 </Tabs>
 

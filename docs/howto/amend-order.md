@@ -11,7 +11,6 @@ import GitPod from './_gitpod.mdx'
 :::danger Broken links
 * [Trading questions](https://docs.fairground.vega.xyz/docs/trading-questions/#what-order-types-and-time-in-force-values-are-available-to-trade-on-vega)
 * [pegged order](https://docs.fairground.vega.xyz/docs/trading-questions/#pegged-orders)
-* [Wallet API](https://docs.fairground.vega.xyz/wallet-api/#sign-a-transaction)
 :::
 
 ## Introduction
@@ -79,8 +78,6 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-canc
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.sh#L170-L180
 ```
 
-
-See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
@@ -88,8 +85,6 @@ See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.py#L196-L200
 ```
 
-
-See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
 </TabItem>
 </Tabs>
 

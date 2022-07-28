@@ -8,11 +8,6 @@ import GitPod from './_gitpod.mdx'
 
 # Order references
 
-:::danger Broken links
-* REST API reference
-* GraphQL API reference
-:::
-
 ## Introduction
 
 When submitting orders to Vega, the order messages must be signed and sent to the Vega blockchain in the form of transactions. Validation checks are performed at multiple stages in the pipeline, for example, before consensus and after consensus. 
@@ -42,16 +37,12 @@ Connect to a Vega API server, and request for an order by *reference*.
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-by-reference/get-order-by-reference.sh#L25-L33
 ```
 
-See also wallet [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/OrderByReference) for further query detail.
-
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-by-reference/get-order-by-reference.py#L33-L41
 ```
-
-See also wallet [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/OrderByReference) for further query detail.
 
 </TabItem>
 </Tabs>
@@ -93,8 +84,6 @@ This snippet code shows how to subscribe to a stream of *orders for a party*:
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-orders-by-reference/stream-orders.sh#L25-L29
 ```
-
-See also [GraphQL API reference](/api/graphql/subscription.doc.html#L15) for further query detail.
 
 </TabItem>
 </Tabs>

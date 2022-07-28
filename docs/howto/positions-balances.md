@@ -10,7 +10,6 @@ import TabItem from '@theme/TabItem';
 :::danger Broken links
 * [insurance pool](https://docs.fairground.vega.xyz/docs/trading-questions/#what-is-the-insurance-pool)
 * [margins](https://docs.fairground.vega.xyz/docs/trading-questions/#what-happens-to-margin-when-a-trader-puts-a-trade-on)
-* REST API reference
 * [API reference documentation](https://docs.fairground.vega.xyz/api/grpc/#datanode.api.v1.PartyAccountsRequest)
 :::
 
@@ -50,16 +49,12 @@ Note: account balances of any party for which a public key is known can be publi
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts.sh#L85-L90
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/PartyAccounts) for further query detail.
-
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts.py#L105-L110
 ```
-
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/PartyAccounts) for further query detail.
 
 </TabItem>
 </Tabs>
@@ -98,16 +93,12 @@ Connect to a Vega API server, and request *accounts for a market*:
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts.sh#L72-L77
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/MarketAccounts) for further query detail.
-
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts.py#L91-L97
 ```
-
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/MarketAccounts) for further query detail.
 
 </TabItem>
 </Tabs>
@@ -148,16 +139,12 @@ Connect to a Vega API server, and request *positions for a party*:
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts.sh#L98-L103
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/PositionsByParty) for further query detail.
-
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-accounts.py#L118-L123
 ```
-
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/PositionsByParty) for further query detail.
 
 </TabItem>
 </Tabs>

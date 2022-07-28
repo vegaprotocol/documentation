@@ -8,10 +8,6 @@ import GitPod from './_gitpod.mdx'
 
 # How to use Vega Wallet APIs
 
-:::danger Broken links
-* Wallet API reference
-:::
-
 ## Introduction
 
 To submit orders and other commands on Vega, users need to sign transactions with a private and public key pair. Users on Vega are pseudonymous and are referenced by their public keys. To assist with API integration there is a **REST API service** served from the Vega Wallet software providing signing and key management. 
@@ -38,16 +34,12 @@ Connect to a Vega Wallet server and log in. This can be either a hosted wallet, 
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.sh#L46-L50
 ```
 
-See also [Wallet API reference](/wallet-api/#logging-in-to-a-wallet) for further query detail.
-
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.py#L61-L65
 ```
-
-See also [Wallet API reference](/wallet-api/#logging-in-to-a-wallet) for further query detail.
 
 </TabItem>
 </Tabs>
@@ -83,16 +75,12 @@ Connect to a wallet server to create a new wallet. As mentioned earlier, this ca
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.sh#L46-L50
 ```
 
-See also [Wallet API reference](/wallet-api/#create-a-wallet) for further query detail.
-
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.py#L46-L50
 ```
-
-See also [Wallet API reference](/wallet-api/#create-a-wallet) for further query detail.
 
 </TabItem>
 </Tabs>
@@ -128,16 +116,12 @@ Once authenticated with Vega Wallet, it is possible to generate one or more new 
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.sh#L58-L62
 ```
 
-See also [Wallet API reference](/wallet-api/#generate-a-new-key-pair) for further query detail.
-
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.py#L70-L84
 ```
-
-See also [Wallet API reference](/wallet-api/#generate-a-new-key-pair) for further query detail.
 
 </TabItem>
 </Tabs>
@@ -176,16 +160,12 @@ Retrieve a list of all key pairs for a wallet. Note that private keys are *not* 
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.sh#L72-L75
 ```
 
-See also [Wallet API reference](/wallet-api/#list-keys) for further query detail.
-
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.py#L89-L96
 ```
-
-See also [Wallet API reference](/wallet-api/#list-keys) for further query detail.
 
 </TabItem>
 </Tabs>
@@ -221,16 +201,12 @@ Connect and call sign transaction on a Vega Wallet server. Note: it is possible 
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.sh#L89-L103
 ```
 
-See also [Wallet API reference](/wallet-api/#sign-a-transaction) for further query detail.
-
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/wallet/wallet.py#L115-L127
 ```
-
-See also [Wallet API reference](/wallet-api/#sign-a-transaction) for further query detail.
 
 </TabItem>
 </Tabs>

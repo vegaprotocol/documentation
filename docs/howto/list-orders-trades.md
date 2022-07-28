@@ -9,7 +9,6 @@ import GitPod from './_gitpod.mdx'
 # Orders and Trades
 
 :::danger broken links
-* REST API reference
 * [Market and trading info](https://docs.fairground.vega.xyz/docs/trading-questions/#what-are-the-fees-for-trading-on-the-vega-testnet-and-who-gets-the-fees)
 :::
 
@@ -36,16 +35,12 @@ See the how-to guide for [Market information](markets.md) to learn how to get a 
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-market.sh#L30-L35
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/OrdersByMarket) for further query detail.
-
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-market.py#L40-L45
 ```
-
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/OrdersByMarket) for further query detail.
 
 </TabItem>
 </Tabs>
@@ -81,16 +76,12 @@ Connect to a Vega API server, and request *orders for a party*:
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-party.sh#L44-L50
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/OrdersByParty) for further query detail.
-
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-party.py#L75-L80
 ```
-
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/OrdersByParty) for further query detail.
 
 </TabItem>
 </Tabs>
@@ -126,16 +117,12 @@ Connect to a Vega API server, and request *trades for an order*:
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-trades-for-order.sh#L25-L31
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/TradesByOrder) for further query detail.
-
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-trades-for-order.py#L33-L39
 ```
-
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/TradesByOrder) for further query detail.
 
 </TabItem>
 </Tabs>
@@ -175,16 +162,12 @@ See the how-to guide for [Market information](markets.md) to learn how to get a 
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-market.sh#L39-L44
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/TradesByMarket) for further query detail.
-
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-orders-and-trades/get-orders-and-trades-for-market.py#L49-L54
 ```
-
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/TradesByMarket) for further query detail.
 
 </TabItem>
 </Tabs>

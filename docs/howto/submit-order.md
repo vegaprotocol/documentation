@@ -11,8 +11,6 @@ import GitPod from './_gitpod.mdx'
 :::danger Broken links
 * [Trading questions](https://docs.fairground.vega.xyz/docs/trading-questions/#what-order-types-and-time-in-force-values-are-available-to-trade-on-vega)
 * [pegged order](https://docs.fairground.vega.xyz/docs/trading-questions/#pegged-orders)
-* REST API reference
-* Wallet API 
 :::
 
 ## Introduction
@@ -100,16 +98,12 @@ For orders that require an expiry time, such as Good Til Time (`TIME_IN_FORCE_GT
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.sh#L77-L81
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/GetVegaTime) for further query detail.
-
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.py#L104-L108
 ```
-
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/GetVegaTime) for further query detail.
 
 </TabItem>
 </Tabs>
@@ -141,16 +135,12 @@ All markets on Vega have a unique identifier and when submitting an order we mus
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.sh#L64-L67
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/Markets) for further query detail.
-
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
 	https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.py#L88-L92
 ```
-
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/Markets) for further query detail.
 
 </TabItem>
 </Tabs>
@@ -207,16 +197,12 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-canc
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.sh#L116-L126
 ```
 
-See also [REST API reference](/wallet-api/#sign-a-transaction) for further query detail.
-
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.py#L142-L146
 ```
-
-See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
 
 </TabItem>
 </Tabs>

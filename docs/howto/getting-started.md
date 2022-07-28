@@ -8,10 +8,6 @@ import GitPod from './_gitpod.mdx'
 
 # Getting Started 
 
-:::danger Broken links
-* REST API reference
-:::
-
 **Welcome!** We're super excited that you've decided to take a dive into the API how-to guides. There's some important information to learn first and then we'll jump into running a query against an API on Vega.
 
 ## Understanding authentication on Vega
@@ -39,7 +35,6 @@ The NODE URLs for the Vega testnet are available in the [APIs](../apis/#what-are
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-parties.sh#L28-L33
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/Parties) for further query detail.
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
@@ -47,7 +42,6 @@ See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#opera
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/get-parties.py#L36-L41
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/Parties) for further query detail.
 </TabItem>
 </Tabs>
 

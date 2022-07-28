@@ -12,7 +12,6 @@ import GitPod from './_gitpod.mdx'
 * [Fee structure](https://docs.fairground.vega.xyz/docs/trading-questions/#what-are-the-fees-for-trading-on-the-vega-testnet-and-who-gets-the-fees)
 * [fees charged](https://docs.fairground.vega.xyz/docs/trading-questions/#how-are-trading-fees-calculated)
 * [Market and trading info](https://docs.fairground.vega.xyz/docs/trading-questions/#what-are-the-fees-for-trading-on-the-vega-testnet-and-who-gets-the-fees)
-* REST API reference
 * [what happens to margin when trading](https://docs.fairground.vega.xyz/docs/trading-questions/#what-happens-to-margin-when-a-trader-puts-a-trade-on)
 :::
 
@@ -70,7 +69,6 @@ Connect to a Vega API server and *estimate fees for an order on a Vega market*:
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate.sh#L75-L93
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/EstimateFee) for further query detail.
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
@@ -78,7 +76,6 @@ See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#opera
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate.py#L95-L113
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/EstimateFee) for further query detail.
 </TabItem>
 </Tabs>
 
@@ -113,16 +110,12 @@ Connect to a Vega API server and *estimate the margin* for an order on a Vega ma
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate.sh#L102-L120
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/EstimateMargin) for further query detail.
-
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/fees-margins-estimation/get-fees-margins-estimate.py#L121-L139
 ```
-
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/EstimateMargin) for further query detail.
 
 </TabItem>
 </Tabs>

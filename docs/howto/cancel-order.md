@@ -8,10 +8,6 @@ import GitPod from './_gitpod.mdx'
 
 # Cancelling orders
 
-:::danger Broken links
-* three instances of [Wallet API](https://docs.fairground.vega.xyz/wallet-api/#sign-a-transaction)
-:::
-
 ## Introduction
 
 Cancelling orders for a party on Vega can be done in three ways:
@@ -100,7 +96,6 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-canc
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.sh#L248-L258
 ```
 
-See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
@@ -108,7 +103,6 @@ See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/submit-amend-cancel-orders.py#L270-L274
 ```
 
-See also [Wallet API](/wallet-api/#sign-a-transaction) for further query detail.
 </TabItem>
 </Tabs>
 

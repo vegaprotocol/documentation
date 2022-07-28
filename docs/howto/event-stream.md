@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 # Streaming events from Vega
 
 :::danger Broken links
-Almost all of them!
+* [schema documentation](https://docs.fairground.vega.xyz/api/graphql/data-node/subscription.doc.html#L92)
 :::
 
 ## Introduction
@@ -25,32 +25,32 @@ Below is a table of all the event bus types that can be returned from a Vega Nod
 
 | Event type/code                    | Description                                                                            |
 :----------------------------------- | :------------------------------------------------------------------------------------- |
-| `BUS_EVENT_TYPE_ALL`                 | Receive events by ALL event types, used when filtering stream from event bus. <br/> **NOTE: GraphQL API does not currently support subscribing to ALL events.**<br/>See API reference for [gRPC](/api/grpc/#vega.events.v1.BusEventType). |
-| `BUS_EVENT_TYPE_TIME_UPDATE` (gRPC) <br/> `TimeUpdate` (GraphQL) | Event for blockchain time updates.<br/>See API reference for [gRPC](/api/grpc/#vega.events.v1.TimeUpdate) or [GraphQL](/api/graphql/data-node/timeupdate.doc.html).  |
-| `BUS_EVENT_TYPE_TRANSFER_RESPONSES` (gRPC) <br/> `TransferResponses` (GraphQL) | Event for when a transfer happens internally, contains the transfer information.<br/>See API reference for [gRPC](/api/grpc/#vega.events.v1.TransferResponses) or [GraphQL](/api/graphql/data-node/transferresponse.doc.html).  |
-| `BUS_EVENT_TYPE_POSITION_RESOLUTION` (gRPC) <br/> `PositionResolution` (GraphQL) | Event indicating position resolution has occurred.<br/>See API reference for [gRPC](/api/grpc/#vega.events.v1.PositionResolution) or [GraphQL](/api/graphql/data-node/positionresolution.doc.html). |
-| `BUS_EVENT_TYPE_ORDER` (gRPC) <br/> `Order` (GraphQL)  | Event for order updates, both new and existing orders.<br/>See API reference for [gRPC](/api/grpc/#vega.Order) or [GraphQL](/api/graphql/data-node/order.doc.html). |
-| `BUS_EVENT_TYPE_ACCOUNT` (gRPC) <br/> `Account` (GraphQL)  | Event for account updates.<br/>See API reference for [gRPC](/api/grpc/#vega.Account) or [GraphQL](/api/graphql/data-node/account.doc.html). |
-| `BUS_EVENT_TYPE_PARTY`  (gRPC) <br/> `Party` (GraphQL)  | Event for party updates.<br/>See API reference for [gRPC](/api/grpc/#vega.Party) or [GraphQL](/api/graphql/data-node/party.doc.html). |
-| `BUS_EVENT_TYPE_TRADE` (gRPC) <br/> `Trade` (GraphQL) | Event indicating a new trade has occurred.<br/>See API reference for [gRPC](/api/grpc/#vega.Trade) or [GraphQL](/api/graphql/data-node/trade.doc.html). |
-| `BUS_EVENT_TYPE_MARGIN_LEVELS` (gRPC) <br/> `MarginLevels` (GraphQL) | Event indicating margin levels have changed for a party.<br/>See API reference for [gRPC](/api/grpc/#vega.MarginLevels) or [GraphQL](/api/graphql/data-node/marginlevels.doc.html). |
-| `BUS_EVENT_TYPE_PROPOSAL` (gRPC) <br/> `Proposal` (GraphQL) | Event for proposal updates (for governance).<br/>See API reference for [gRPC](/api/grpc/#vega.Proposal) or [GraphQL](/api/graphql/data-node/proposal.doc.html). |
-| `BUS_EVENT_TYPE_VOTE`  (gRPC) <br/> `Vote` (GraphQL) | Event indicating a new vote has occurred (for governance).<br/>See API reference for [gRPC](/api/grpc/#vega.Vote) or [GraphQL](/api/graphql/data-node/vote.doc.html).  |
-| `BUS_EVENT_TYPE_MARKET_DATA` (gRPC) <br/> `MarketData` (GraphQL) | Event for when market data updates.<br/>See API reference for [gRPC](/api/grpc/#vega.MarketData) or [GraphQL](/api/graphql/data-node/marketdata.doc.html).  |
-| `BUS_EVENT_TYPE_NODE_SIGNATURE` (gRPC) <br/> `NodeSignature` (GraphQL) | Event for a new signature for a Vega node.<br/>See API reference for [gRPC](/api/grpc/#vega.commands.v1.NodeSignature) or [GraphQL](/api/graphql/data-node/nodesignature.doc.html).  |
-| `BUS_EVENT_TYPE_LOSS_SOCIALIZATION` (gRPC) <br/> `LossSocialization` (GraphQL) | Event indicating loss socialisation occurred for a party.<br/>See API reference for [gRPC](/api/grpc//#vega.events.v1.LossSocialization) or [GraphQL](/api/graphql/data-node/losssocialization.doc.html). |
-| `BUS_EVENT_TYPE_SETTLE_POSITION` (gRPC) <br/> `SettlePosition` (GraphQL) | Event for when a position is being settled.<br/>See API reference for [gRPC](/api/grpc/#vega.events.v1.SettlePosition) or [GraphQL](/api/graphql/data-node/settleposition.doc.html). |
-| `BUS_EVENT_TYPE_SETTLE_DISTRESSED` (gRPC) <br/> `SettleDistressed` (GraphQL) | Event for when a position is distressed.<br/>See API reference for [gRPC](/api/grpc/#vega.events.v1.SettleDistressed) or [GraphQL](/api/graphql/data-node/settledistressed.doc.html). |
-| `BUS_EVENT_TYPE_MARKET_CREATED` (gRPC) <br/> `MarketCreated` (GraphQL) | Event indicating a new market was created.<br/>See API reference for [gRPC](/api/grpc/#vega.Market) or [GraphQL](/api/graphql/data-node/market.doc.html). |
-| `BUS_EVENT_TYPE_ASSET` (gRPC) <br/> `Asset` (GraphQL)  | Event for when an asset is added to Vega.<br/>See API reference for [gRPC](/api/grpc/#vega.Asset) or [GraphQL](/api/graphql/data-node/asset.doc.html). |
-| `BUS_EVENT_TYPE_MARKET_TICK` (gRPC) <br/> `MarketTick` (GraphQL) | Event indicating a market tick event.<br/>See API reference for [gRPC](/api/grpc/#vega.events.v1.MarketTick) or [GraphQL](/api/graphql/data-node/markettick.doc.html). |
-| `BUS_EVENT_TYPE_WITHDRAWAL` (gRPC) <br/> `Withdrawal` (GraphQL)  | Event for when a withdrawal occurs.<br/>See API reference for [gRPC](/api/grpc/#vega.Withdrawal) or [GraphQL](/api/graphql/data-node/withdrawal.doc.html). |
-| `BUS_EVENT_TYPE_DEPOSIT` (gRPC) <br/> `Deposit` (GraphQL)  | Event for when a deposit occurs.<br/>See API reference for [gRPC](/api/grpc/#vega.Deposit) or [GraphQL](/api/graphql/data-node/deposit.doc.html). |
-| `BUS_EVENT_TYPE_AUCTION` (gRPC) <br/> `Auction` (GraphQL)  | Event indicating a change in auction state, for example starting or ending an auction.<br/>See API reference for [gRPC](/api/grpc/#vega.events.v1.AuctionEvent) or [GraphQL](/api/graphql/data-node/auctionevent.doc.html). |
-| `BUS_EVENT_TYPE_RISK_FACTOR` (gRPC) <br/> `RiskFactor` (GraphQL) | Event indicating a risk factor has been updated.<br/>See API reference for [gRPC](/api/grpc/#vega.RiskFactor) or [GraphQL](/api/graphql/data-node/riskfactor.doc.html). |
+| `BUS_EVENT_TYPE_ALL`                 | Receive events by ALL event types, used when filtering stream from event bus. <br/> **NOTE: GraphQL API does not currently support subscribing to ALL events.** |
+| `BUS_EVENT_TYPE_TIME_UPDATE` (gRPC) <br/> `TimeUpdate` (GraphQL) | Event for blockchain time updates. |
+| `BUS_EVENT_TYPE_TRANSFER_RESPONSES` (gRPC) <br/> `TransferResponses` (GraphQL) | Event for when a transfer happens internally, contains the transfer information.  |
+| `BUS_EVENT_TYPE_POSITION_RESOLUTION` (gRPC) <br/> `PositionResolution` (GraphQL) | Event indicating position resolution has occurred. |
+| `BUS_EVENT_TYPE_ORDER` (gRPC) <br/> `Order` (GraphQL)  | Event for order updates, both new and existing orders. |
+| `BUS_EVENT_TYPE_ACCOUNT` (gRPC) <br/> `Account` (GraphQL)  | Event for account updates. |
+| `BUS_EVENT_TYPE_PARTY`  (gRPC) <br/> `Party` (GraphQL)  | Event for party updates. |
+| `BUS_EVENT_TYPE_TRADE` (gRPC) <br/> `Trade` (GraphQL) | Event indicating a new trade has occurred. |
+| `BUS_EVENT_TYPE_MARGIN_LEVELS` (gRPC) <br/> `MarginLevels` (GraphQL) | Event indicating margin levels have changed for a party. |
+| `BUS_EVENT_TYPE_PROPOSAL` (gRPC) <br/> `Proposal` (GraphQL) | Event for proposal updates (for governance). |
+| `BUS_EVENT_TYPE_VOTE`  (gRPC) <br/> `Vote` (GraphQL) | Event indicating a new vote has occurred (for governance).  |
+| `BUS_EVENT_TYPE_MARKET_DATA` (gRPC) <br/> `MarketData` (GraphQL) | Event for when market data updates. |
+| `BUS_EVENT_TYPE_NODE_SIGNATURE` (gRPC) <br/> `NodeSignature` (GraphQL) | Event for a new signature for a Vega node. |
+| `BUS_EVENT_TYPE_LOSS_SOCIALIZATION` (gRPC) <br/> `LossSocialization` (GraphQL) | Event indicating loss socialisation occurred for a party. |
+| `BUS_EVENT_TYPE_SETTLE_POSITION` (gRPC) <br/> `SettlePosition` (GraphQL) | Event for when a position is being settled. |
+| `BUS_EVENT_TYPE_SETTLE_DISTRESSED` (gRPC) <br/> `SettleDistressed` (GraphQL) | Event for when a position is distressed. |
+| `BUS_EVENT_TYPE_MARKET_CREATED` (gRPC) <br/> `MarketCreated` (GraphQL) | Event indicating a new market was created. |
+| `BUS_EVENT_TYPE_ASSET` (gRPC) <br/> `Asset` (GraphQL)  | Event for when an asset is added to Vega. |
+| `BUS_EVENT_TYPE_MARKET_TICK` (gRPC) <br/> `MarketTick` (GraphQL) | Event indicating a market tick event. |
+| `BUS_EVENT_TYPE_WITHDRAWAL` (gRPC) <br/> `Withdrawal` (GraphQL)  | Event for when a withdrawal occurs. |
+| `BUS_EVENT_TYPE_DEPOSIT` (gRPC) <br/> `Deposit` (GraphQL)  | Event for when a deposit occurs. |
+| `BUS_EVENT_TYPE_AUCTION` (gRPC) <br/> `Auction` (GraphQL)  | Event indicating a change in auction state, for example starting or ending an auction. |
+| `BUS_EVENT_TYPE_RISK_FACTOR` (gRPC) <br/> `RiskFactor` (GraphQL) | Event indicating a risk factor has been updated. |
 | `BUS_EVENT_TYPE_NETWORK_PARAMETER` (gRPC) | Event indicating a [network parameter](https://lb.testnet.vega.xyz/network/parameters) has been added or updated. |
 | `BUS_EVENT_TYPE_LIQUIDITY_PROVISION` (gRPC) <br/> `LiquidityProvision` (GraphQL) | Event indicating a liquidity provision commitment has been created or updated. |
-| `BUS_EVENT_TYPE_MARKET` (gRPC) <br/> `Market` (GraphQL) | Event indicating a market related event, for example when a market opens.<br/>See API reference for [gRPC](/api/grpc/#vega.events.v1.MarketEvent) or [GraphQL](/api/graphql/data-node/marketevent.doc.html). |
+| `BUS_EVENT_TYPE_MARKET` (gRPC) <br/> `Market` (GraphQL) | Event indicating a market related event, for example when a market opens. |
 
 ## Streaming from the event bus
 
@@ -82,7 +82,6 @@ This snippet code shows how to subscribe to *ALL events for a particular market*
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/stream-events/stream-events.sh#L34-L69
 ```
 
-See also [GraphQL API reference](/api/graphql/data-node/subscription.doc.html#L75) for further query detail.
 </TabItem>
 </Tabs>
 

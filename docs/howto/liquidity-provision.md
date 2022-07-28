@@ -11,8 +11,6 @@ import GitPod from './_gitpod.mdx'
 :::danger Broken links
 * [Providing liquidity for markets](https://docs.fairground.vega.xyz/docs/providing-liquidity/)
 * [How to deposit tokens to use on Vega](https://docs.fairground.vega.xyz/docs/console/#how-to-deposit-tokens-to-use-on-vega)
-* REST API reference
-* Wallet API
 :::
 
 ## Introduction
@@ -50,16 +48,12 @@ Connect to a Vega API server, and request *all liquidity provisions* for the spe
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/submit-create-liquidity-provision-order.sh#L82-L87
 ```
 
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/LiquidityProvisions) for further query detail.
-
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/submit-create-liquidity-provision-order.py#L111-L118
 ```
-
-See also [REST API reference](/api/rest/data-node/api/v1/trading_data.html#operation/LiquidityProvisions) for further query detail.
 
 </TabItem>
 </Tabs>
@@ -177,7 +171,6 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-cancel-liq
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/submit-create-liquidity-provision-order.sh#L140-L150
 ```
 
-See also [Wallet API](/wallet-api#sign-a-transaction) for further query detail.
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
@@ -185,7 +178,6 @@ See also [Wallet API](/wallet-api#sign-a-transaction) for further query detail.
 https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-create-liquidity-provision/submit-create-liquidity-provision-order.py#L173-L177
 ```
 
-See also [Wallet API](/wallet-api#sign-a-transaction) for further query detail.
 </TabItem>
 </Tabs>
 
