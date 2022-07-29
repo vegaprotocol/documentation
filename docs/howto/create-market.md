@@ -176,7 +176,7 @@ After the voting period has elapsed, and if the majority of participants voted `
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#wait_for_market
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/propose-vote-enact-market.py#L445-L459
 ```
 
 </TabItem>
@@ -191,7 +191,7 @@ If successful, the response will include:
 <details><summary>Example response</summary>
 
 ```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/response-examples.txt#example_wait_for_market_response
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/response-examples.txt#L37-L90
 ```
 </details>
 
@@ -207,14 +207,14 @@ The current configuration of all network parameters can be requested from the AP
 <TabItem value="shell-rest" label="Shell (REST)">
 
 ```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-network-parameters/get-network-parameters.sh#get_network_params
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-network-parameters/get-network-parameters.sh#L29-L33
 ```
 
 </TabItem>
 <TabItem value="python-rest" label="Python (REST)">
 
 ```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-network-parameters/get-network-parameters.py#get_network_params
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-network-parameters/get-network-parameters.py#L37-L42
 ```
 
 </TabItem>
@@ -229,7 +229,7 @@ If successful, the response will include:
 <details><summary>Example response</summary>
 
 ```js reference
-https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-network-parameters/response-examples.txt#example_get_network_params_response
+https://github.com/vegaprotocol/sample-api-scripts/blob/master/get-network-parameters/response-examples.txt#L2-L21
 ```
 </details>
 
