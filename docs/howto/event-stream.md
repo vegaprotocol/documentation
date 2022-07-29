@@ -7,10 +7,6 @@ import TabItem from '@theme/TabItem';
 
 # Streaming events from Vega
 
-:::danger Broken links
-* [schema documentation](https://docs.fairground.vega.xyz/api/graphql/data-node/subscription.doc.html#L92)
-:::
-
 ## Introduction
 
 There are several streaming data APIs available on Vega. These include, but are not limited to: streaming trades, orders, positions, market data and **events**. 
@@ -60,7 +56,7 @@ There are three request parameters that control the output on the stream from th
 
 | Field          |  Description  |
 | :----------------- | :------------- |
-| `type` |  **Required field**. An event type code (from table above), for example, to receive a stream with no filtering, specify `BUS_EVENT_TYPE_ALL` for gRPC (Note: ALL events not supported on GraphQL). <br/><br/> To receive *only* blockchain time updates, specify `BUS_EVENT_TYPE_TIME_UPDATE` for gRPC or `TimeUpdate` on GraphQL. <br/><br/> The event types are named differently to fit in with GraphQL conventions, please see the table above. |
+| `type` |  **Required field**. An event type code (from table above), for example, to receive a stream with no filtering, specify `BUS_EVENT_TYPE_ALL` for gRPC (Note: ALL events not supported on GraphQL). <br/><br/> To receive *only* blockchain time updates, specify `BUS_EVENT_TYPE_TIME_UPDATE` for gRPC or `TimeUpdate` on GraphQL. <br/><br/> The event types are named differently to fit in with GraphQL conventions, please see the table above or the [schema documentation](../graphql/subscriptions/bus-events) for the full list. |
 | `batchSize` | **Required field**. The total number of events to batch up on the server before sending to the client. The default value is `0` which will send any and all events when they are available. If the client is not ready for the next data-set, data may be dropped a number of times, and eventually the stream will be closed. <br/><br/> For high traffic event types, it is advised to fine tune your client for receiving events, a good starting point is `5000` and then adjust this figure up or down based on real world results.|
 | `marketId` | **Optional field**. Specify a valid market identifier to receive events for this market *only*. |
 | `partyId` | **Optional field**. Specify a valid party identifier to receive events for this party *only*. |
