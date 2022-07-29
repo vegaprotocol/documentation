@@ -7,6 +7,7 @@ keywords:
 - governance
 - newMarket
 ---
+import NetworkParameter from '@site/src/components/NetworkParameter';
 
 import NewMarketJSONInstrument from './_generated-proposals/_newMarket_json_instrument.md';
 import NewMarketJSONLiquidityMonitoring from './_generated-proposals/_newMarket_json_liqparams.md';
@@ -30,6 +31,10 @@ This page provides a tutorial for proposing a new market.
 3. To submit a proposal you will need:
    * At least 1 (ropsten) Vega token, associated with the public key you're using to propose the market, and staked to a validator.
    * Enough of the settlement asset (testnet) available to fulfil your liquidity commitment, if you are submitting a liquidity commitment.
+
+Note that to create a market proposal you need <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens" />
+, while to vote you need <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minVoterBalance" suffix="tokens" hideName={true}/>.
+
 
 ### Submit using command line
 1. To create your own proposal and submit it using the command line, copy the command line example into a text editor and include the values you want for the market.
@@ -102,6 +107,9 @@ Oracle bindings require the following properties:
 * Conditions: A filter for the oracle data. The conditions that should to be matched by the data to be considered. This is an optional set of fields. For example you could use an operator and a value to denote that a price should be greater than zero
 * Operator: This adds a constraint to the value, such as LESS_THAN, GREATER_THAN. For example if you wanted to ensure that the price would always be above zero, you would set the operator to ‘GREATER_THAN’ and the Value to be ‘0’
 * Value: A number that is constrained by the operator
+
+:::info Submitting oracle data
+Learn how to find and submit oracle data in the [submitting oracles tutorial](../using-oracle-data.md). 
 
 ### Liquidity monitoring
 The liquidity monitoring settings detect when the market's liquidity drops below the safe level, and as such when to launch a 'liquidity seeking' auction. See below for more details on each field.
