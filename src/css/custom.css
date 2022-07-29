@@ -129,5 +129,6 @@ html[data-theme="dark"] .hero--primary {
 }
 
 .networkparametericon {
+  display: inline-block;
   margin-right: 0.2em;
 }

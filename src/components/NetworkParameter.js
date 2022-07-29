@@ -6,6 +6,11 @@ const explorerUrl = {
   'MAINNET': 'https://explorer.vega.xyz/network-parameters',
 }
 
+const factor = Math.pow(10, 18)
+const formatters = {
+  'governanceToken': (value) => parseInt(value) / factor
+}
+
 /**
  * Renders a network parameter and its value, fetching the value live
  * from the relevant network if possible, but using build time values
@@ -16,6 +21,7 @@ const explorerUrl = {
 export default function NetworkParameter(props) {
   const vega_network = props?.frontMatter?.vega_network || 'TESTNET';
   const hideName = props.hideName ? props.hideName : false
+  const hideValue = props.hideValue ? props.hideValue : false
   const suffix = props.suffix ? props.suffix : false
 
   if (!vega_network) {
@@ -43,22 +49,24 @@ export default function NetworkParameter(props) {
   if (data) {
     const value = data[props.param]
     let displayValue
+    const formattedValue = props.formatter && formatters[props.formatter] ? formatters[props.formatter](value) : value
 
     if (suffix) {
       let suffixCorrected = suffix
-      if (suffix === 'tokens' && value === '1') {
+      if (suffix === 'tokens' && (value === '1' || formattedValue === 1)) {
         suffixCorrected = 'token'
       }
 
-      displayValue = <strong>{value} {suffixCorrected}</strong>
+      displayValue = <strong>{formattedValue} {suffixCorrected}</strong>
     } else {
-      displayValue = <strong>{value}</strong>
+      displayValue = <strong>{formattedValue}</strong>
     }
 
-    return (<a href={explorerUrl[vega_network]} className={`networkparameter networkparameter--${type}`} title={`Set by network parameter: ${props.param}`}>
+    return (<a href={`${explorerUrl[vega_network]}#${props.param}`} className={`networkparameter networkparameter--${type}`} title={`Network parameter '${props.param}' is '${value}'`}>
       <span className="networkparametericon">👀</span>
-      {(hideName ? null : <span className="networkparametername">{props.param}: </span>)}
-      <span className="networkparametervalue">{displayValue || `Could not find ${props.param}`}</span>
+      {(hideName ? null : <span className="networkparametername">{props.param}</span>)}
+      {(hideName || hideValue? '' : ': ')}
+      {(hideValue ? null : <span className="networkparametervalue">{displayValue || `Could not find ${props.param}`}</span>)}
     </a>);
   } else {
     // Note this shouldn't happen, as there should be build time defaults
