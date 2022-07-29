@@ -109,7 +109,8 @@ Oracle bindings require the following properties:
 * Value: A number that is constrained by the operator
 
 :::info Submitting oracle data
-Learn how to find and submit oracle data in the [submitting oracles tutorial](../using-oracle-data.md). 
+Learn how to find and submit oracle data in the [submitting oracles tutorial](../using-oracle-data.md).
+:::
 
 ### Liquidity monitoring
 The liquidity monitoring settings detect when the market's liquidity drops below the safe level, and as such when to launch a 'liquidity seeking' auction. See below for more details on each field.
