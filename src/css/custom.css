@@ -89,6 +89,13 @@ html[data-theme="dark"] .hero--primary {
   padding: 0 var(--ifm-pre-padding);
 }
 
+.gitpod {
+  position: relative;
+  left: 5px;
+  bottom: 0.7em;
+  font-size: small;
+}
+
 .networkparameter {
   position: relative;
   display: inline-block;
@@ -120,4 +127,3 @@ html[data-theme="dark"] .hero--primary {
 .networkparametericon {
   margin-right: 0.2em;
 }
-
