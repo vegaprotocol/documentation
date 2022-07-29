@@ -57,7 +57,7 @@ If successful, the response will include:
 
 | Field          |  Description  |
 | :----------------- | :------------- |
-| `accounts` | A list of zero or more accounts for the party specified. Balances use decimal place values specified by the asset, e.g. 5 decimal places. A party will have one GENERAL account and MARGIN account for each market where they have an open position. Governance assets will also be listed as GENERAL accounts, e.g. VOTE. |
+| `accounts` | A list of zero or more accounts for the party specified. Balances use decimal place values specified by the asset, e.g. 5 decimal places. A party will have one GENERAL account and MARGIN account for each market where they have an open position. Governance assets will also be listed in the GENERAL account, e.g. tVEGA. |
 
 <details><summary>Example response</summary>
 
