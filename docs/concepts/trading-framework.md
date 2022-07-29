@@ -1,3 +1,9 @@
+---
+sidebar_position: 3
+title: Trading framework
+hide_title: false
+---
+
 # Trading framework
 The Vega protocol software is built to provide a framework for creating markets for trading financial instruments that are based on the values of their underlying assets. All markets created using the Vega protocol have been initiated and voted on by tokeholders.
 
@@ -50,8 +56,8 @@ There are three order types available to traders: limit orders, market orders, a
 A limit order is an instruction that allows you to specify the minimum price at which you will sell, or the maximum at which you will buy. 
 
 #### Times in force available for limit orders
-* **GTC**: A Good til Cancelled order trades at a specific price until it is filled or cancelled. 
-* **GTT**: A Good til Time order is a GTC order with an additional predefined cancellation time. 
+* **GTC**: A Good 'til Cancelled order trades at a specific price until it is filled or cancelled. 
+* **GTT**: A Good 'til Time order is a GTC order with an additional predefined cancellation time. 
 * **GFN**: A Good for Normal order is an order that will only trade in a continuous market. The order can act like either a GTC or GTT order depending on whether the expiry field is set.
 * **GFA**: A Good for Auction order will only be accepted during an auction period, otherwise it will be rejected. The order can act like either a GTC or GTT order depending on whether an expiry is set.
 * **IOC**: An Immediate or Cancel order executes all or part of a trade immediately and cancels any unfilled portion of the order. 
@@ -94,7 +100,7 @@ If you don't have enough collateral to fill the margin requirements on an order,
 |      IOC      |   Yes   |  Filled                |
 
 
-#### Good til Cancelled
+#### Good 'til Cancelled
 
 | Time In Force | Filled  | Cancelled by user | Stopped by network | Resulting status |
 |---------------|---------|-------------------|--------------------|------------------|
@@ -106,7 +112,7 @@ If you don't have enough collateral to fill the margin requirements on an order,
 |      GTC      | Partial |         No        |        Yes         |      Stopped     |
 |      GTC      |   Yes   |         No        |         No         |      Filled      |
 
-#### Good til Time
+#### Good 'til Time
 
 | Time In Force | Filled  | Expired | Cancelled by user | Stopped by network | Resulting status |
 |---------------|---------|---------|-------------------|--------------------|------------------|
@@ -434,9 +440,9 @@ They can be configured in the asset's original governance proposal, and then ref
 It is possible to configure a market for which orders can only be priced in increments of a specific size. This is done by specifying, within a market proposal, a different (smaller) number of decimal places than the market's settlement asset supports. Consider a market that settles in GBP. This market can be configured to have 0 decimal places so that the price levels on the order book will be separated by at least £1, rather than the default £0.01 that the asset would support.
 
 #### Asset decimal places [WIP]
-In effect, the number of decimal places tell you how divisible a token or asset is. To start, the number of decimal places of an asset used on Vega is defined in the asset governance proposal that introduces the asset to the network. An asset should have up to the number of decimal places that its original token contract has.
+In effect, the number of decimal places tell you how divisible a token or asset is. To start, the number of decimal places of an asset used on Vega is defined in the asset governance proposal that introduces the asset to the network. An asset should the same number of decimal places that its native token contract has.
 
-When an asset is chosen to be a market's settlement asset, it can have its decimal places limited further for that market specifically. (Why?)
+<!-- When an asset is chosen to be a market's settlement asset, it can have its decimal places limited further for that market specifically. (Why? Can it? Settlement decimals field actually takes from the data source so what's going on here?) -->
 
 ## Liquidity
 The Vega protocol allows liquidity to be priced individually for each market, a design decision that allows for liquidity providers to earn more on markets with little LP competition, and drives down fees on markets where there are many participants committing liquidity. 
