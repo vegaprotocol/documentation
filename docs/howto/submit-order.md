@@ -52,11 +52,11 @@ A pegged order can be specified for persistent (`TIME_IN_FORCE_GTC`, `TIME_IN_FO
 The flow to submit a signed `SubmitOrder` message to a Vega node is as
 follows:
 
-1. Wallet API: Create a new wallet, or log in to an existing one.
+1. Wallet API: Create a new wallet, or connect to an existing one.
 2. Wallet API: Create a key pair, if one has not already been created.
 3. Node API: Get a list of markets, to get the market ID of a market.
 4. Wallet API: Call `SignTx`. Send the `OrderSubmission` data and a public
-   key associated with the logged-in wallet. Receive a `SignedBundle` object.
+   key associated with the connected wallet. Receive a `SignedBundle` object.
 6. Node API: Call `SubmitTransaction`. Send the `SignedBundle` object (only required if propagate set to false on `SignTx`).
 
 Hints:
@@ -67,9 +67,9 @@ Hints:
   to `true`. This instructs the Wallet API server to submit the signed transaction
   directly to the Vega node specified in its config file.
 
-### 1. Log in to wallet and get public key
+### 1. Connect to wallet and get public key
 
-See the section on the [Wallet service](wallet.md) to learn how to log in, list keys and select a public key.  
+See the section on the [Wallet service](wallet.md) to learn how to connect to an existing wallet, list keys and select a public key.  
 
 :::info
 For a working **wallet example** used by this how-to guide, please visit the [API Samples GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/) repo.

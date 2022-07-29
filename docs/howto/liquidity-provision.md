@@ -16,9 +16,9 @@ Liquidity Provision (LP) on Vega is designed to incentivise participants to plac
 
 Connect to a Vega API server, and *provide a liquidity commitment*:
 
-### 1. Log in to wallet and get public key
+### 1. Connect to wallet and get public key
 
-See the section on the [Wallet service](wallet.md) to learn how to log in, list keys and select a public key.  
+See the section on the [Wallet service](wallet.md) to learn how to connect to an existing wallet, list keys and select a public key.  
 
 :::info
 For a working **wallet example** used by this how-to guide, please visit the [API Samples GitHub](https://github.com/vegaprotocol/sample-api-scripts/tree/master/submit-create-liquidity-provision/) repo.

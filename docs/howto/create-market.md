@@ -22,9 +22,9 @@ Once voted in, a market will be enacted and available on a Vega network.
 At present the Vega testnet uses the **VEGA (testnet)** token for governance, which you need to stake to a validator before proposing a market. Also, when a Vega testnet network reset occurs, any user proposed and enacted markets will also be reset. Markets will need to be recreated once the network has restarted.
 :::
 
-### 1. Log in to wallet and get public key
+### 1. Connect to wallet and get public key
 
-See the section on the [Wallet service](wallet.md) to learn how to log in, list keys and select a public key.  
+See the section on the [Wallet service](wallet.md) to learn how to connect to an existing wallet, list keys and select a public key.  
 
 :::info
 For a working **wallet example** used by this how-to guide, please visit the [API Samples GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/) repo.

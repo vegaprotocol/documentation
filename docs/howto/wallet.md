@@ -14,12 +14,12 @@ To submit orders and other commands on Vega, users need to sign transactions wit
 
 The Vega Wallet software can store many wallets, and each wallet can store many key pairs. 
 
-Common actions for a wallet include; **logging in**, **retrieving a key pair** and **signing transactions** (such as an order submission). There are several useful how-to guides below that will help with management of keys and signing.
+Common actions for a wallet include; **connecting to a wallet**, **retrieving a public key** and **signing transactions** (such as an order submission). There are several how-to guides below that will help with management of keys and signing.
 
 
-## Logging in to an existing wallet
+## Connecting to an existing wallet
 
-Connect to a Vega Wallet server and log in. This can be either a hosted wallet, one you run yourself locally or stored in the cloud. The resulting `token` will be used to authenticate with the wallet for other actions (such as signing):
+Start a Vega Wallet server and connect to an existing wallet. This can be either a hosted wallet, or one you run yourself locally or stored in the cloud. The resulting `token` will be used to authenticate with the wallet for other actions (such as signing):
 
 <GitPod />
 
@@ -60,7 +60,7 @@ For full example code, please visit the [repo on GitHub](https://github.com/vega
 
 ## Creating a new wallet
 
-Connect to a wallet server to create a new wallet. As mentioned earlier, this can be either a hosted wallet, one you run yourself locally or stored in the cloud. Just like logging in, once a new wallet has been created, a `token` will be returned and it will be used to authenticate with the wallet for other actions (such as signing):
+Choose a wallet server to create a new wallet. As mentioned earlier, this can be either a hosted wallet, one you run yourself locally or stored in the cloud. Once a new wallet has been created, a `token` will be returned and it will be used to authenticate with the wallet for other actions (such as signing):
 
 <GitPod />
 

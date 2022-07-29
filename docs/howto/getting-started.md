@@ -47,7 +47,7 @@ If successful, the response will include:
 
 | Field          |  Description  |
 | :----------------- | :------------- |
-| `parties` | A list of zero or more parties. A party includes an `id` field which contains the **public key** (pub-key) related to that party. See example response (below). |<details><summary>Example response" >}}
+| `parties` | A list of zero or more parties. A party includes an `id` field which contains the **public key** (pubkey) related to that party. See example response (below). |<details><summary>Example response" >}}
 
 <details><summary>Example response</summary>
 

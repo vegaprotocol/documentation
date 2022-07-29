@@ -173,9 +173,9 @@ Additionally, when a Vega testnet network reset occurs, any user proposals inclu
 
 For more information on how to check for token balances (including any used for governance/staking), please see the guide to retrieve party [positions and balances](positions-balances.md).
 
-### Log in to wallet and get public key
+### Connect to wallet and get public key
 
-See the section on the [Wallet service](wallet.md) to learn how to log in, list keys and select a public key.  
+See the section on the [Wallet service](wallet.md) to learn how to connect to an existing wallet, list keys and select a public key.  
 
 :::info
 For a working **wallet example** used by this how-to guide, please visit the [API Samples GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/) repo.

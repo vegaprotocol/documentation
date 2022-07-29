@@ -31,9 +31,9 @@ A pegged order can be amended in a similar way to a regular limit order. Their `
 
 If an order is active and was placed with a party for which you have a public/private key pair, you can amend it. Connect to a Vega API server, and *amend an order*:
 
-### 1. Log in to wallet and get public key
+### 1. Connect to wallet and get public key
 
-See the section on the [Wallet service](wallet.md) to learn how to log in, list keys and select a public key.  
+See the section on the [Wallet service](wallet.md) to learn how to connect to an existing wallet, list keys and select a public key.  
 
 :::info
 For a working **wallet example** used by this how-to guide, please visit the [API Samples GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/submit-amend-cancel-orders/) repo.
