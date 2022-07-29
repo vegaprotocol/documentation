@@ -15,16 +15,12 @@ import GitPod from './_gitpod.mdx'
 To **read** information from Vega node API endpoints, **authentication is not required**. However, to **write** information (such as submitting an order) to a Vega node API, you will need to **sign your transaction messages**.
 
 :::info
-If you'd like to skip ahead, code for signing using APIs is available in the [Wallet service](wallet.md) how-to guide and explained more deeply in the section on [signing transactions](../vega-wallet/signing">}}).
+If you'd like to skip ahead, code for signing using APIs is available in the [Wallet service](wallet.md) how-to guide.
 :::
 
 ## Your first Vega API query
 
 Let's dive straight in and request a **list of parties** trading on Vega:
-
-:::info
-The NODE URLs for the Vega testnet are available in the [APIs](../apis/#what-are-the-testnet-api-server-addresses) section.
-:::
 
 <GitPod />
 

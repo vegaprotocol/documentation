@@ -8,24 +8,17 @@ import GitPod from './_gitpod.mdx'
 
 # Fees and margin estimation
 
-:::danger Broken links
-* [Fee structure](https://docs.fairground.vega.xyz/docs/trading-questions/#what-are-the-fees-for-trading-on-the-vega-testnet-and-who-gets-the-fees)
-* [fees charged](https://docs.fairground.vega.xyz/docs/trading-questions/#how-are-trading-fees-calculated)
-* [Market and trading info](https://docs.fairground.vega.xyz/docs/trading-questions/#what-are-the-fees-for-trading-on-the-vega-testnet-and-who-gets-the-fees)
-* [what happens to margin when trading](https://docs.fairground.vega.xyz/docs/trading-questions/#what-happens-to-margin-when-a-trader-puts-a-trade-on)
-:::
-
 ## Introduction
 
 This guide shows how to use the APIs to estimate fees for trading, as well as how to estimate the margin requirements for a potential order.
 
-On Vega, fees are incurred on every trade and it is the price taker who pays the fee. Vega does not charge 'traditional' gas fees, and importantly the [fee structure](../trading-questions.md#what-are-the-fees-for-trading-on-the-vega-testnet-and-who-gets-the-fees">}}) **rewards the participants that make Vega possible**.
+On Vega, fees are incurred on every trade and it is the price taker who pays the fee. Vega does not charge 'traditional' gas fees, and importantly the fee structure **rewards the participants that make Vega possible**.
 
 Additionally, Vega’s automated cross margining system means gains on one market can be released and used as margin on another. Estimating the margin requirements for a potential order is useful to minimise rejected orders because of insufficient margin or collateral.
 
 ## Where do I find the fees charged for a trade?
 
-Any [fees charged](../trading-questions.md#how-are-trading-fees-calculated) on Vega are shown on [individual trades](list-orders-trades.md#listing-trades-for-an-order">}}) returned by the API. For example, on each trade there are the following fields:
+Any fees charged on Vega are shown on [individual trades](list-orders-trades.md#listing-trades-for-an-order) returned by the API. For example, on each trade there are the following fields:
 
 | Field          |  Description  |
 | :----------------- | :------------- |
@@ -52,7 +45,7 @@ Contained inside each of the buyer and seller fee structures are the fees charge
 | `liquidityFee` | Liquidity portion of the fee is paid to market makers for providing liquidity, and is transferred to the market-maker fee pool for the market. |
 | `makerFee` | Maker portion of the fee is transferred to the non-aggressive, or passive party in the trade (the maker, as opposed to the taker). |
 
-Fees are incurred on every trade on Vega, but it is the price taker who pays the fee. The price taker is the party that traded using a market order, or placed a limit order that traded immediately. See our explainer section on [Market and trading info](../trading-questions.md#what-are-the-fees-for-trading-on-the-vega-testnet-and-who-gets-the-fees">}}) to learn more on how fees are calculated, and who gets the fees.
+Fees are incurred on every trade on Vega, but it is the price taker who pays the fee. The price taker is the party that traded using a market order, or placed a limit order that traded immediately.
 
 The network has a set of default fee factors configured by the [network parameters](create-market.md#where-do-i-find-the-current-network-parameters); `market.fee.factors.infrastructureFee`, `market.fee.factors.liquidityFee` and `market.fee.factors.makerFee`. 
 
@@ -124,7 +117,7 @@ If successful, the response will include:
 
 | Field          |  Description  |
 | :----------------- | :------------- |
-| `marginLevels` | The estimated margin for the proposed order. This includes **initial**, **search**, **release** and **maintenance** levels. The margin levels should be adjusted for the number of decimal places on the target market, for example, 5 decimal places. For information on the leverage available and explanations of the margin levels returned, please see the section on [what happens to margin when trading](../trading-questions.md#what-happens-to-margin-when-a-trader-puts-a-trade-on">}}).|
+| `marginLevels` | The estimated margin for the proposed order. This includes **initial**, **search**, **release** and **maintenance** levels. The margin levels should be adjusted for the number of decimal places on the target market, for example, 5 decimal places. |
 
 <details><summary>Example response</summary>
 

@@ -8,11 +8,6 @@ import GitPod from './_gitpod.mdx'
 
 # Amending orders
 
-:::danger Broken links
-* [Trading questions](https://docs.fairground.vega.xyz/docs/trading-questions/#what-order-types-and-time-in-force-values-are-available-to-trade-on-vega)
-* [pegged order](https://docs.fairground.vega.xyz/docs/trading-questions/#pegged-orders)
-:::
-
 ## Introduction
 
 Amending an order is a common practice for many trading workflows. While you can cancel an open order and submit a new one, amending an order may be a preferred option. There are several fields that can be amended directly in one operation on Vega. These include:
@@ -24,13 +19,13 @@ Amending the size of an order uses the notion of `sizeDelta`, meaning the user s
 Amending the price of an order uses `price` with a nested `value`. Specifying a non-zero value will attempt to amend the order to that price. For example, an existing active order with price 10000 can be amended with a non-negative price `value`, such as 5000. After the amendment the order should have a price of 5000. Any part of an order filled at a previous price will remain, only the unfilled portion can be amended. 
 
 * **TIME IN FORCE (TIF)**  
-Amending the time in force for an active order can be done for `TIME_IN_FORCE_GTC` or `TIME_IN_FORCE_GTT`. `TIME_IN_FORCE_FOK` or `TIME_IN_FORCE_IOC` cannot be amended. Any attempt to amend to another time in force value will be rejected. A `TIME_IN_FORCE_GTT` order must have an `expiresAt` value but a `TIME_IN_FORCE_GTC` must not have one. Any attempt to amend to or from the values `TIME_IN_FORCE_GFA` and `TIME_IN_FORCE_GFN` will also result in a rejected amendment. See the [Trading questions](../trading-questions.md#what-order-types-and-time-in-force-values-are-available-to-trade-on-vega) section for more detail on order types.
+Amending the time in force for an active order can be done for `TIME_IN_FORCE_GTC` or `TIME_IN_FORCE_GTT`. `TIME_IN_FORCE_FOK` or `TIME_IN_FORCE_IOC` cannot be amended. Any attempt to amend to another time in force value will be rejected. A `TIME_IN_FORCE_GTT` order must have an `expiresAt` value but a `TIME_IN_FORCE_GTC` must not have one. Any attempt to amend to or from the values `TIME_IN_FORCE_GFA` and `TIME_IN_FORCE_GFN` will also result in a rejected amendment.
 
 * **EXPIRY**  
 It is possible to change the expiry time for an order, similar to amending the `price`, the `expiresAt` field has a nested `value`. Specifying a valid non-zero `value` will attempt to amend the order to that expiry timestamp. See the section on [Vega Time](time.md) for more detail on how to retrieve the current time from the blockchain.
 
 * **PEGGED ORDER**  
-A [pegged order](../trading-questions.md#pegged-orders) can be amended in a similar way to a regular limit order. Their `reference`, `offset` and `TIF` values can all be amended. If amending an order cannot be performed in-place, the order will lose time priority in the order book (but will keep its priority in the list of pegged orders). Amends must be done to the pegged order itself, not any limit orders derived from pegged orders. It is **not possible** to amend a regular limit order to be a pegged order, and similarly it is also **not possible** to amend a pegged order to be a regular limit/market order. Please use the `peggedReference` field to amend the pegged order reference and the `peggedOffset` field to amend the pegged order offset distance, both can be amended independently. Sample scripts for submitting and amending a pegged order are available on [GitHub](https://github.com/vegaprotocol/sample-api-scripts/tree/master/submit-amend-pegged-order). 
+A pegged order can be amended in a similar way to a regular limit order. Their `reference`, `offset` and `TIF` values can all be amended. If amending an order cannot be performed in-place, the order will lose time priority in the order book (but will keep its priority in the list of pegged orders). Amends must be done to the pegged order itself, not any limit orders derived from pegged orders. It is **not possible** to amend a regular limit order to be a pegged order, and similarly it is also **not possible** to amend a pegged order to be a regular limit/market order. Please use the `peggedReference` field to amend the pegged order reference and the `peggedOffset` field to amend the pegged order offset distance, both can be amended independently. Sample scripts for submitting and amending a pegged order are available on [GitHub](https://github.com/vegaprotocol/sample-api-scripts/tree/master/submit-amend-pegged-order). 
 
 ## How do I amend an order?
 
@@ -110,3 +105,4 @@ For full example code, please visit the [repo on GitHub](https://github.com/vega
 
 * Made a mistake? [Cancel an order](cancel-order.md)
 * Retrieve a list of collateral [Balances and positions](positions-balances.md)
+howtos

@@ -7,12 +7,6 @@ import TabItem from '@theme/TabItem';
 
 # Positions and balances
 
-:::danger Broken links
-* [insurance pool](https://docs.fairground.vega.xyz/docs/trading-questions/#what-is-the-insurance-pool)
-* [margins](https://docs.fairground.vega.xyz/docs/trading-questions/#what-happens-to-margin-when-a-trader-puts-a-trade-on)
-* [API reference documentation](https://docs.fairground.vega.xyz/api/grpc/#datanode.api.v1.PartyAccountsRequest)
-:::
-
 ## Introduction
 
 Using Vega's APIs, you can track collateral balances (also known as collateral accounts in Vega queries), as well as view information about your positions, such as the profit and loss on trades.
@@ -20,9 +14,9 @@ Using Vega's APIs, you can track collateral balances (also known as collateral a
 There are several different types of accounts on Vega, each specific to how the collateral is accessed and managed:
 
 * **INSURANCE**  
-Insurance accounts are available and show the total amount of collateral currently held in the [insurance pool](../trading-questions.md#what-is-the-insurance-pool).
+Insurance accounts are available and show the total amount of collateral currently held in the insurance pool.
 * **MARGIN**  
-Margin accounts are available when a position is open on a market for a party. Please see the section on [margins](../trading-questions.md#what-happens-to-margin-when-a-trader-puts-a-trade-on) for more information.
+Margin accounts are available when a position is open on a market for a party.
 * **GENERAL**  
 General accounts are where undeployed collateral is held, ready to be deployed on a market by trading or used for governance.
 * **SETTLEMENT**  
@@ -77,7 +71,7 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accou
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/).
 :::
 
-This request has additional (optional) request filter parameters for *market identifier*, *type* and *asset*. Specifying a market will return only accounts related to a particular market and an empty list if the market is not found. Specifying the type will return only accounts related to a particular type e.g. INSURANCE, and specifying an asset will return accounts relating to a particular asset. Please see the [API reference documentation](/api/grpc/#datanode.api.v1.PartyAccountsRequest) for the API for exact details.
+This request has additional (optional) request filter parameters for *market identifier*, *type* and *asset*. Specifying a market will return only accounts related to a particular market and an empty list if the market is not found. Specifying the type will return only accounts related to a particular type e.g. INSURANCE, and specifying an asset will return accounts relating to a particular asset.
 
 
 ## Listing collateral accounts for a market
@@ -121,7 +115,7 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accou
 For full example code, please visit the [repo on GitHub](https://github.com/vegaprotocol/sample-api-scripts/blob/master/parties-and-accounts/).
 :::
 
-Similar to querying for accounts for a party, this request has an additional (optional) request filter parameter for *asset*. Specifying an asset will return only accounts related to a particular asset and an empty list if the market is not found. Please see the [API reference documentation](/api/grpc/#datanode.api.v1.MarketAccountsRequest) for the API for exact details.
+Similar to querying for accounts for a party, this request has an additional (optional) request filter parameter for *asset*. Specifying an asset will return only accounts related to a particular asset and an empty list if the market is not found.
 
 
 ## Listing positions for a party (public key)

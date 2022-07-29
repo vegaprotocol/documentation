@@ -16,11 +16,7 @@ Cancelling orders for a party on Vega can be done in three ways:
 * Cancel **all orders** on a **single market**.
 * Cancel **all orders** on **all markets**.
 
-In a similar way to submitting an order, all cancellations must be prepared and signed before submitting to the Vega network. Orders can only be cancelled if they have a status which is `active`, not `expired` and not fully filled. 
-
-:::info
-See the [API reference](/api/grpc/#vega.Order.Status) to learn more about **order status** codes on Vega.
-:::
+In a similar way to submitting an order, all cancellations must be prepared and signed before submitting to the Vega network. Orders can only be cancelled if they have a status which is `active`, not `expired` and not fully filled.
 
 ## How do I cancel orders?
 

@@ -8,14 +8,9 @@ import GitPod from './_gitpod.mdx'
 
 # Liquidity provision
 
-:::danger Broken links
-* [Providing liquidity for markets](https://docs.fairground.vega.xyz/docs/providing-liquidity/)
-* [How to deposit tokens to use on Vega](https://docs.fairground.vega.xyz/docs/console/#how-to-deposit-tokens-to-use-on-vega)
-:::
-
 ## Introduction
 
-Liquidity Provision (LP) on Vega is designed to incentivise participants to place orders on the market that maintain liquidity on the order book. To learn more about the mechanics of LP on Vega please see the section on [Providing liquidity for markets](providing-liquidity).
+Liquidity Provision (LP) on Vega is designed to incentivise participants to place orders on the market that maintain liquidity on the order book.
 
 ## How do I provide a liquidity commitment?
 
@@ -33,7 +28,7 @@ For a working **wallet example** used by this how-to guide, please visit the [AP
 
 In order to provide liquidity on a [target market](markets#listing-markets-on-a-vega-network), the [account balance](positions-balances/#listing-collateral-accounts-for-a-party-public-key) for the settlement asset on the related public key (party) should be positive and sufficient to cover the commitment. 
 
-For more information on how to deposit an asset into Vega, see the section on [How to deposit tokens to use on Vega](../console/#how-to-deposit-tokens-to-use-on-vega) or the guide in the [Vega Bridge GitHub repo](https://github.com/vegaprotocol/Public_Test_Bridge_Tools).
+For more information on how to deposit an asset into Vega the guide in the [Vega Bridge GitHub repo](https://github.com/vegaprotocol/Public_Test_Bridge_Tools).
 
 ### 3. List all liquidity provisions for the market
 
@@ -88,7 +83,7 @@ When submitting a liquidity commitment message, the following fields must be spe
 - proposed liquidity fee,
 - a set of liquidity buy and sell shapes 
 
-Please see [Providing liquidity for markets](../providing-liquidity/#how-to-provide-liquidity) for details. Please note that the request will be rejected if the message is invalid. This could be because of the market state, the message is formatted incorrectly, or the requested liquidity commitment cannot be supported with your current balance in the market settlement asset.
+Please note that the request will be rejected if the message is invalid. This could be because of the market state, the message is formatted incorrectly, or the requested liquidity commitment cannot be supported with your current balance in the market settlement asset.
 
 <GitPod />
 

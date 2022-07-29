@@ -8,10 +8,6 @@ import GitPod from './_gitpod.mdx'
 
 # Orders and Trades
 
-:::danger broken links
-* [Market and trading info](https://docs.fairground.vega.xyz/docs/trading-questions/#what-are-the-fees-for-trading-on-the-vega-testnet-and-who-gets-the-fees)
-:::
-
 ## Introduction
 
 In order to track your orders and trades on Vega there are several APIs available. An order may have zero or more related trades and a trade will have exactly one related *buy* order and one related *sell* order.
@@ -219,7 +215,7 @@ Contained inside each of the buyer and seller fee structures are the fees charge
 | `liquidityFee` | Liquidity portion of the fee is paid to market makers for providing liquidity, and is transferred to the market-maker fee pool for the market. |
 | `makerFee` | Maker portion of the fee is transferred to the non-aggressive, or passive party in the trade (the maker, as opposed to the taker). |
 
-Fees are incurred on every trade on Vega, but it is the price taker who pays the fee. The price taker only sees one fee. The price taker is the party that traded using a market order, or placed a limit order that traded immediately. See the explainer section on [Market and trading info](../trading-questions.md#what-are-the-fees-for-trading-on-the-vega-testnet-and-who-gets-the-fees) to learn more on how fees are calculated, and who gets the fees.
+Fees are incurred on every trade on Vega, but it is the price taker who pays the fee. The price taker only sees one fee. The price taker is the party that traded using a market order, or placed a limit order that traded immediately.
 
 
 ## What's next?

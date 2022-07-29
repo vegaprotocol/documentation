@@ -8,15 +8,9 @@ import GitPod from './_gitpod.mdx'
 
 # Market creation using governance
 
-:::danger Broken links
-* [governance](https://docs.fairground.vega.xyz/docs/trading-questions/#governance)
-* [Market proposals and governance](https://docs.fairground.vega.xyz/docs/trading-questions/#governance)
-* [auction mode](https://docs.fairground.vega.xyz/docs/trading-questions/#auction-trading-mode)
-:::
-
 ## Introduction
 
-A powerful feature of Vega is the ability to create markets using governance. In summary, users in the Vega community can propose and vote for markets using the governance asset of the network. For further background and explanation, please see the section on [governance](../trading-questions.md#governance).
+A powerful feature of Vega is the ability to create markets using governance. In summary, users in the Vega community can propose and vote for markets using the governance asset of the network.
 
 ## How do I propose a market?
 
@@ -25,7 +19,7 @@ To propose a market via the Vega APIs, a user must define a set of specific inpu
 Once voted in, a market will be enacted and available on a Vega network.
 
 :::info
-At present the Vega testnet uses the **VEGA (testnet)** token for governance, which you need to stake to a validator before proposing a market. Also, when a [Vega testnet network reset](../testnet.md#will-the-testnet-be-reset) occurs, any user proposed and enacted markets will also be reset. Markets will need to be recreated once the network has restarted.
+At present the Vega testnet uses the **VEGA (testnet)** token for governance, which you need to stake to a validator before proposing a market. Also, when a Vega testnet network reset occurs, any user proposed and enacted markets will also be reset. Markets will need to be recreated once the network has restarted.
 :::
 
 ### 1. Log in to wallet and get public key
@@ -73,7 +67,7 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/r
 
 ### 3. Propose a new market
 
-Create your proposal for a new market, taking care to craft it to your requirements. Please refer to the field descriptions found in the [Market proposals and governance](../trading-questions.md#governance) section. The current configuration of [network parameters](#where-do-i-find-the-current-network-parameters) can also be loaded programmatically.
+Create your proposal for a new market, taking care to craft it to your requirements. The current configuration of [network parameters](#where-do-i-find-the-current-network-parameters) can also be loaded programmatically.
 
 The current time on the Vega blockchain is required to accurately set validation, closing and enactment times (specified in seconds from the Unix epoch). Please see the how-to guide for [Vega Time](time.md) to learn more about blockchain time. For further guidance on timestamp ranges, please see the following points:
 
@@ -127,7 +121,7 @@ Once the proposal has been signed and forwarded to a Vega node, the caller must 
 
 ### 4. Vote for a market proposal
 
-Participants will need to vote `Yes` on the new market proposal so that after the proposal period it can be successfully marked as **passed**. This will be the case as long as no other parties vote against the new market proposal and there are enough votes (see below). Once passed it will be scheduled to launch into an [opening auction](../trading-questions.md#auctions-how-does-a-new-market-obtain-a-fair-price-at-the-start-of-trading). 
+Participants will need to vote `Yes` on the new market proposal so that after the proposal period it can be successfully marked as **passed**. This will be the case as long as no other parties vote against the new market proposal and there are enough votes (see below). Once passed it will be scheduled to launch into an opening auction. 
 
 One participant's `Yes` vote is typically not enough to pass a market, the voting majority required for a market to pass is defined by the <a href="#where-do-i-find-the-current-network-parameters">network parameter</a>; `governance.proposal.market.requiredMajority` and for reference the weighting calculation is as follows:
 
@@ -201,7 +195,7 @@ https://github.com/vegaprotocol/sample-api-scripts/blob/master/propose-markets/r
 ```
 </details>
 
-On Vega, newly proposed markets always start in [auction mode](../trading-questions.md#auction-trading-mode) as a way of ensuring a new market has a fair price at the start of trading. The auction duration is specified in the proposal (in this example it is 120 seconds), after which it will switch to continuous trading. The auction duration is subject to the network minimum which is found by requesting the [network parameters](#where-do-i-find-the-current-network-parameters).
+On Vega, newly proposed markets always start in auction mode as a way of ensuring a new market has a fair price at the start of trading. The auction duration is specified in the proposal (in this example it is 120 seconds), after which it will switch to continuous trading. The auction duration is subject to the network minimum which is found by requesting the [network parameters](#where-do-i-find-the-current-network-parameters).
 
 ## Where do I find the current network parameters?
 
@@ -230,7 +224,7 @@ If successful, the response will include:
 
 | Field          |  Description  |
 | :----------------- | :------------- |
-| `networkParameters` | A list of key/value pairs containing the current network parameters for a Vega network. Please refer to the field descriptions found in the [governance](../trading-questions.md#governance) section.
+| `networkParameters` | A list of key/value pairs containing the current network parameters for a Vega network.
 
 <details><summary>Example response</summary>
 

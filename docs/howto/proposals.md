@@ -8,13 +8,9 @@ import GitPod from './_gitpod.mdx'
 
 # Governance proposals and voting
 
-:::danger Broken links
-* [governance](https://docs.fairground.vega.xyz/docs/trading-questions/#governance)
-:::
-
 ## Introduction
 
-Members of the Vega community can view current governance proposals and choose to vote *for them*, or *against them*, using the governance asset of the network. For further background and explanation, please see the section on [governance](../trading-questions.md#governance).
+Members of the Vega community can view current governance proposals and choose to vote *for them*, or *against them*, using the governance asset of the network.
 
 If you're looking specifically for a guide on how to create and propose a **new market** on Vega, please see the end-to-end API how-to guide on [Market Creation](create-market.md).
 
@@ -172,7 +168,7 @@ Voting for a proposal requires the use of staking tokens in the wallet owned by 
 
 :::info
 At present the Vega testnet uses the **VEGA (testnet)** token for governance.  
-Additionally, when a [Vega testnet network reset](../testnet.md#will-the-testnet-be-reset) occurs, any user proposals including votes will be reset.
+Additionally, when a Vega testnet network reset occurs, any user proposals including votes will be reset.
 :::
 
 For more information on how to check for token balances (including any used for governance/staking), please see the guide to retrieve party [positions and balances](positions-balances.md).

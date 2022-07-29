@@ -12,10 +12,6 @@ import GitPod from './_gitpod.mdx'
 
 To submit orders and other commands on Vega, users need to sign transactions with a private and public key pair. Users on Vega are pseudonymous and are referenced by their public keys. To assist with API integration there is a **REST API service** served from the Vega Wallet software providing signing and key management. 
 
-:::info
-For more detail on how keys or signing work on a Vega network, see the section on [Wallets and Signing](../../vega-wallet/signing).
-:::
-
 The Vega Wallet software can store many wallets, and each wallet can store many key pairs. 
 
 Common actions for a wallet include; **logging in**, **retrieving a key pair** and **signing transactions** (such as an order submission). There are several useful how-to guides below that will help with management of keys and signing.
@@ -105,7 +101,7 @@ For full example code, please visit the [repo on GitHub](https://github.com/vega
 
 ## Generating a new private and public key pair
 
-Once authenticated with Vega Wallet, it is possible to generate one or more new key pairs (private and public keys) to sign transactions for the Vega network. For detailed information on key pairs, see the section on [Wallets and Signing](../wallets-and-deposits/wallet#what-is-a-key-pair). Note that the private key is *not* returned. Your public key will be used as your `party` identifier on Vega:
+Once authenticated with Vega Wallet, it is possible to generate one or more new key pairs (private and public keys) to sign transactions for the Vega network. Note that the private key is *not* returned. Your public key will be used as your `party` identifier on Vega:
 
 <GitPod />
 
