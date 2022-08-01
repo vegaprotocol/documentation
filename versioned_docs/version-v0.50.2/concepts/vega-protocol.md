@@ -28,7 +28,7 @@ When formalising the proposal, it is worth ensuring that any fields that are dep
 #### 3. Submitting proposal and telling the community (on-chain and off-chain)
 Tokenholders can submit a governance proposal to the network using the command line or via a script.
 
-The Vega public key of the proposer must have enough VEGA staked to submit a proposal. <!--For a 'market parameter change' proposal, the proposer must also have enough equity-like share in the market from their liquidity commitment, which is defined in the network parameter `governance.proposal.updateMarket.minProposerEquityLikeShare`.-->
+The Vega public key of the proposer must have enough VEGA staked to submit a proposal. 
 
 Proposals are first checked by the wallet, then verified by the nodes before entering into the voting period you set. A proposal must have all of the relevant information, in the correct format, and in some cases within the accepted range - otherwise it will be rejected immediately. 
 
@@ -60,12 +60,6 @@ VEGA tokenholders can vote for or against any active proposals, as long as the t
 * The network compares the weight of all 'for' votes, as a percentage of the weight of all votes cast, to the required majority - `for_rate = SUM (weightings of votes cast for) / SUM (weightings of all votes cast)`
 * If the minimum for both is reached, the proposal is enacted. If at least one is not reached, the proposal fails.
 
-<!--For proposals to change market parameters, there are additional requirements. The market's liquidity providers can vote with their equity like share without requiring tokenholder participation. However, if tokenholders vote and participation and majority requirements for this vote are met, then the tokenholders' votes can overrule the liquidity providers' votes.
-
-The network will also calculate:
-* The LP participation rate, which is the sum of the equity like share of all LPs who cast a vote - `LP participation rate = SUM (equity like share of all LPs who cast a vote)`
-* The rate of 'for' votes cast by liquidity providers, calculated as the sum of all who voted 'for', divided by the LP participation rate - `LP for rate = SUM (all who voted for) / LP participation rate`
-    -->
 
 :::info
 Vote on active proposals on the **[Vega token dApp](https://token.vega.xyz/governance)**.
@@ -76,96 +70,7 @@ If a proposal receives enough token weight in favour within the enactment period
 
 Note the enactment date must be at least the minimum enactment period for the proposal type/subtype (specified by a network parameter for each proposal type) after voting closes.
 
-<!--## Asset governance
-Details on asset governance to come. 
-
-### New asset proposal [WIP]
-
-## Market governance
-Markets are proposed and voted into existence by Vega tokenholders. The parameters for a market all need to be defined in the proposal.
-
-Some market parameters can also be changed. They can only be proposed by a liquidity provider with enough equity-like share in the market, and need to be voted for by a sufficient number of tokenholders and/or liquidity providers.
-
-When creating a market governance proposal, whether it is for a new market or to change parameters for an existing market, it's recommended that you sense check the proposal and share the final details with the tokenholder community before proposing, so that you can garner support and make any necessary amends. 
-
-Read more:
-* [Vega community forum](https://community.vega.xyz): Share your draft proposals for community discussion.
-* [New market proposal](../tutorials/proposals/new-market-proposal.md): Guide to submitting a proposal for a new market using the command line
-* [Update market proposal](../tutorials/proposals/update-market-proposal.md): Guide to submitting a proposal to change a market using the command line
-
-### Propose a new market
-Tokenholders can propose new markets, which then need to be voted on by other tokenholders. If the market proposal gets a majority of tokeholder support, then it will be enacted. The required majority is defined by the network parameter `governance.proposal.market.requiredMajority`.
-
-A liquidity commitment is optional when proposing a market, but a market will not enter into continuous trading until its liquidity needs are met.
-
-To propose a market, you'll need to provide the details required for the market to begin trading right away. While some of the fields are free-text, others are constrained by a range set through network parameters, to ensure that the values provided are fit for purpose.
-
-Required fields include:
-* Instrument details, including a human-readable name, an understandable shortcode for the market, the type of product (futures)
-* Risk model parameters
-* Product specifics including the settlement asset and quote name
-* Decimal places for the settlement asset, market, and positions 
-* Oracle details, including the oracle's public key, specifications for the settlement price and trading termination, and data filters
-* Liquidity monitoring parameters, including the target stake parameters, triggering ratio and auction extension
-
-Optional fields include: 
-* Metadata so that people can easily interpret the market's details - while this is optional, it's highly recommended that you include metadata for the market
-* Liquidity commitment: the amount committed, proposed fee level, and the buy and sell order shapes. Note: Once a market is proposed, it can accept liquidity commitments from any party
-* Price monitoring parameters, including the triggers covering the horizon, probability and auction extension time. If left blank these parameters will default to the values set in the network parameters
-
-Read more:
-* [Risk models and parameters](#risk-models-and-parameters)
-* [New market proposal](../tutorials/proposals/new-market-proposal.md): Guide to submitting a proposal for a new market using the command line
-
-* [Data sources]
-* [Liquidity monitoring parameters]
-* [Price monitoring parameters]
-
-### Risk models and parameters
-When proposing a market, the market proposer will need to choose the risk parameters associated with the risk model that's appropriate for the instrument. The risk model is essential for calculating margins on the market. 
-
-The [log-normal risk model](#log-normal-risk-model) is the only one currently supported. While the model is pre-defined, you'll need to choose the individual parameters.
-
-You should choose parameters that ensure the risk model adequately represents the dynamics of the underlying instrument, and that the resulting margins strike the right balance between prudence and capital efficiency.
-
-Below are the risk parameters, the accepted values for each parameter and suggested values for some. When suggested values are provided, these should be used as a reference point and to aid in deciding on what's appropriate for the market, not in place of rigorous analysis and calibration.
-
-Model-independent parameters used in margin calculation are:
-
-* `Risk aversion lambda` - probability confidence level used in [expected shortfall](https://vega.xyz/papers/margins-and-credit-risk.pdf#page=7) calculation when obtaining the maintenance margin level. This enters the margin calculation as follows. First, the value at risk, defined by confidence lambda is calculated. This is the cash amount that one would need to add to the position to make the probability of the value of the position and cash going negative after time tau to be less than lambda. The margin is then the expected loss of the position given that it incurred a loss bigger than the value at risk. 
-  * accepted values: **strictly greater than 0 and strictly smaller than 1**
-  * suggested value: `0.00001`
-* `Tau` - projection horizon measured as a year fraction used in the expected shortfall calculation to obtain the maintenance margin:
-  * accepted values: **any strictly non-negative real number**,
-  * suggested value: `0.000114077116130504` - corresponds to one hour expressed as year fraction
-* `Risk free rate` - annualised growth rate of the risk-free asset, it's used for discounting of future cash flows:
-  * accepted values: **any real number**,
-  * suggested value: `0`.
-
-The remaining, model specific parameters are covered below.
-
-:::note Further reading
-**[Margins and Credit Risk on Vega](https://vega.xyz/papers/margins-and-credit-risk.pdf)** - Note, a position size of 1 is assumed throughout the research paper.
-:::
-
-#### Log-normal risk model
-The log-normal model assumes that the logarithm of the price increments are normally distributed. The main model parameter is   
-* `Volatility (Sigma)` - annualised volatility of the underlying asset:
-  * accepted values: **any strictly non-negative real number**,
-  * suggested value: asset dependent, should be derived from the historical time-series of prices, and a typical value would be 0.8 = 80%
-
-Another paramerer is
-* `Mu` - annualised growth rate of the underlying asset:
-  * accepted values: **any real number**,
-  * suggested value: in almost all situations `0` is the value to use
-
-<!--### Changing models [WIP]
-
-### Thresholds and rules [WIP]
-
-### Propose changes to a market
-Details on proposing changes to market to come.
--->
+<
 
 ## Network parameter governance
 There are certain parameters within Vega that influence the behaviour of the system and can be changed by on-chain governance. Vega tokenholders can define the optimal network configuration by creating and voting on network parameter proposals.
@@ -200,50 +105,12 @@ Consider a network parameter that specifies the proportion of fees that goes to 
 
 A proposal to change the `feeAmtValidators.MinimumProposalPeriod` would need to pass all of the thresholds listed above.
 
-<!--### Threshold and rules [WIP]-->
   
 ## Asset/token management
 In restricted mainnet, the VEGA token can be used for nominating validators and for voting on governance proposals. In a future version, it will be possible to deposit and withdraw assets used for trading.
 
-<!--### Deposits
-The first assets that will be available for interacting with markets on Vega will be ERC20 assets. An asset's ERC20 token contract needs to be available on the bridge before it can be used. They will then be deposited into the ERC20 bridge contract. The funds in that smart contract will then be made available to the user's chosen Vega public key.
-
-:::info 
-Associated and deposited are not equivalent, as deposited tokens are held within the ERC20 bridge contract, and associated tokens stay in an Ethereum wallet or in the vesting contract.
-:::
-
-To acquire an asset balance on the Vega network, a participant must first deposit an asset using the relevant Vega asset bridge. Every type of asset supported by and voted into Vega will have a bridge. 
-
-Due to variations in asset infrastructure, each bridge will have a different way to make a deposit.
-
-#### Depositing ERC20 assets
-ERC20 assets are managed by a smart contract that supports the Vega bridge interface. 
-
-When a participant wants to deposit assets onto a Vega key, they need to call a deposit function on the ERC20 bridge that contains how much of the specified asset the Vega key will receive.
-
-Once deposited, the assets are held in an asset pool for security and to make contract updates easier/less risky.
-
-:::info 
-Before running the deposit function, you must run the ERC20-standard approve function to authorise the bridge smart contract as a spender of the target token. This will only allow a specific amount of that token to be used by the bridge. This can be done directly or through a Vega app.
-
-Further reading: [EIP-20: Token Standard proposal](https://eips.ethereum.org/EIPS/eip-20)
-:::
-
-After a successful deposit transaction, the `Asset_Deposited` event will be emitted for use by the Vega event queue.
-
-The transaction is recognised by the Vega event queue and packaged as an event, which is then submitted to the validator nodes to verify the event contents against an Ethereum node that Vega validators also run. 
-
-Once the transaction is verified, the Vega public key submitted in the transaction will be credited with the deposited asset.
-
-**Read more**: [ERC20 bridge logic API documentation](../api/bridge/contracts/ERC20_Bridge_Logic.md#deposit_asset)
-
-### Diagram: Deposits
-![Deposit diagram](/img/concept-diagrams/diagram-deposit.png)
-
--->
 
 ### Withdrawals
-<!-- Assets used for trading and related activities can only be withdrawn if they are not being held in bond for liquidity or in the margin account for active orders.-->
 
 VEGA tokens can only be withdrawn if they are not staked.
 
