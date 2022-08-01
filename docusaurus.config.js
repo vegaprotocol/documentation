@@ -231,6 +231,46 @@ module.exports = {
         // start-rest-versions
         specs: [
           {
+            id: "trading-v0470",
+            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/data-node/api/v1/trading_data.swagger.json",
+            route: "/docs/v0.47/api/rest/data-node/data",
+            layout: {
+              searchMetaDatas: {
+                version: "v0.47.6",
+              },
+            },
+          },
+          {
+            id: "core-v0470",
+            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/vega/api/v1/core.swagger.json",
+            route: "/docs/v0.47/api/rest/core/core",
+            layout: {
+              searchMetaDatas: {
+                version: "v0.47.0",
+              },
+            },
+          },
+          {
+            id: "proxy-v0470",
+            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/data-node/api/v1/trading_proxy.swagger.json",
+            route: "/docs/v0.47/api/rest/data-node/proxy",
+            layout: {
+              searchMetaDatas: {
+                version: "v0.47.0",
+              },
+            },
+          },
+          {
+            id: "state-v0470",
+            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/data-node/api/v1/trading_data.swagger.json",
+            route: "/docs/v0.47/api/rest/core/state",
+            layout: {
+              searchMetaDatas: {
+                version: "v0.47.0",
+              },
+            },
+          },
+          {
             id: "trading-v0501",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/data-node/api/v1/trading_data.swagger.json",
             route: "/docs/mainnet/api/rest/data-node/data",
