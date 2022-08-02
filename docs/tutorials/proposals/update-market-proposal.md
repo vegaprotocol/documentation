@@ -1,6 +1,7 @@
 ---
 title: Propose an update to a market
 hide_title: false
+vega_network: TESTNET
 toc: true
 keywords:
 - proposal

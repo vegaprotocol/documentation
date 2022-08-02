@@ -1,3 +1,9 @@
+---
+vega_network: TESTNET
+---
+
+import NetworkParameter from '@site/src/components/NetworkParameter';
+
 # Vega Protocol 
 ## Governance
 Governance allows the Vega network to arrive at on-chain decisions, where tokenholders can create proposals that other tokenholders can vote to approve or reject. 
