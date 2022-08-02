@@ -26,6 +26,12 @@ The Vega core software is public on a business-source licence, so you can both v
 This version was released to the Vega testnet on 14 July, 2022.
 
 #### 0.53.0 (14 July 2022)
+
+**Smart contract upgrade:**
+With the upgrade of the network to Vega protocol version v0.53 will come an upgrade of the smart contracts. The multisig control contract and the collateral bridge will be upgraded in order to increase users' control over the funds they deposit (opt-out) and performance improvements, such as decreasing gas cost when using the bridge. The Vega asset pool contract will not be upgraded. Once the new contracts are properly set up on Ethereum, the validators will migrate the asset pool to use the new contracts.
+
+Information on how to upgrade can be found in the [smart contracts migration guide](../node-operators/migration-guides/smart-contracts-migration).
+
 **Checkpoint commands:**
 From version 0.53.0, checkpoints are always loaded via the genesis. To facilitate this the  `--genesis-file` option has been added to the `load_checkpoint` command. 
 
@@ -48,14 +54,12 @@ Postgres is not an embedded database, but a separate server application that nee
 
 We are developing using `PostgreSQL 14.2` and `Timescale 2.6` and _strongly recommend_ that you also use the same versions. For more information see the **[data-node readme](https://github.com/vegaprotocol/data-node/blob/v0.53.0/README.md)**.
 
-
 **Critical bugs resolved:**
 Collateral checkpoint locked global reward balance:
 With the deployment of version 0.50.3 a new format for the account owner of the global reward account was introduced. When the mainnet was upgraded, the above was interpreted as a general party account rather than the newly formatted global reward account. As such, a balance of 21500 VEGA became locked in an account that is no longer accessible. To resolve this issue and recover the trapped VEGA, when the checkpoint is read, and on discovery of an old account format, the balance is transferred to the relevant new reward account. Full details can be seen in issue [5546](https://github.com/vegaprotocol/vega/issues/5546)
 
 **Unable to query the VEGA asset due to large quantum:**
 Part of testing the network version compatibility is to deploy the latest version of the software using a mainnet checkpoint file. During this test it was found that the VEGA asset could not be found in the data-node via the assets API. To resolve this issue support was introduced in the data-node for large integers for the asset quantum. Full details can be seen in issue [782](https://github.com/vegaprotocol/data-node/issues/782)
-
 
 **Incorrect prices returned from depth endpoint in data node API:**
 The depth value in the data node API appeared to occasionally become desynchronised from the 'true' prices. This was observed on testnet when a market’s prices of the 'bids' values were much higher than those of 'ask' and did not tally with values from best bid/ask.
@@ -68,7 +72,6 @@ Note: this issue affects the V1 APIs which will be deprecated and replaced by V2
 When placing an order the orders subscription correctly emits an update for the newly created order. However, the bus event subscription did not emit the expected event. The fix for [719](https://github.com/vegaprotocol/data-node/issues/719) (market depth in data-node V1 incorrect due to race condition) changed the type of the order event such that it no longer implemented these interfaces (no code broke as the check is dynamic), and this prevented the event bus from sending events using the party and market filters.
 
 Full details can be seen in issue [730](https://github.com/vegaprotocol/data-node/issues/730)
-
 
 #### 0.52.0 (15 June 2022)
 **Spam protection updates:** Until version 0.52 any changes to the proof of work network parameters would take effect immediately, which resulted in changes being enforced on transactions that were generated on blocks preceding the current one. This is not desired because someone may have prepared multiple transactions for a block before the changes were applied, which would then be rejected.
