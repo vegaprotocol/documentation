@@ -15,22 +15,22 @@ Participants that interact with a futures market created using Vega can submit m
 
 ## Market data [WIP]
 
-### Decimal places
+## Decimal places
 Decimal places come up in lots of situations on Vega. They're used for proposing assets, using those assets for a market, and deciding how large or small an order size can be.
 
 They can be configured in the asset's original governance proposal, and then refined even further in a market governance proposal.
 
-#### Market decimal places
+### Market decimal places
 It is possible to configure a market for which orders can only be priced in increments of a specific size. This is done by specifying, within a market proposal, a different (smaller) number of decimal places than the market's settlement asset supports. Consider a market that settles in GBP. This market can be configured to have 0 decimal places so that the price levels on the order book will be separated by at least £1, rather than the default £0.01 that the asset would support.
 
-#### Asset decimal places [WIP]
+### Asset decimal places [WIP]
 In effect, the number of decimal places tell you how divisible a token or asset is. To start, the number of decimal places of an asset used on Vega is defined in the asset governance proposal that introduces the asset to the network. An asset should the same number of decimal places that its native token contract has.
 
 <!-- When an asset is chosen to be a market's settlement asset, it can have its decimal places limited further for that market specifically. (Why? Can it? Settlement decimals field actually takes from the data source so what's going on here?) -->
 
 ## Market / product / trade lifecycle [WIP]
 
-### Settlement
+## Settlement
 To start, only cash-settled futures markets can be created. This means that settlement occurs in the settlement asset of the market, which is defined in the market framework. 
 
 The settlement asset does not need to be the same asset as the ‘quote unit’ (i.e. BTC/ETH on a BTC/ETH December 2028 market). The settlement asset is defined by within the governance proposal that led to the market's creation. 
@@ -49,7 +49,7 @@ Read more:
 * [Insurance pools](#insurance-pools)
 * [Loss socialisation](#loss-socialisation)
  
-#### Settlement at market expiry
+### Settlement at market expiry
 When a market reaches its maturity date and time, a final settlement is carried out. That settlement is based on a pre-defined oracle publishing data that triggers the market’s expiry.
 
 The oracle trigger will cause the market to enter into a 'trading terminated' state. Markets in this state no longer accept trading, but retain the positions and margin balances that were in place after processing the market’s maturity trigger. In the case of futures markets, termination occurs just prior to, or at, settlement.
@@ -66,7 +66,7 @@ After all positions are closed at market expiry, they are ‘forgotten’ by the
 
 Read more: [Data sources](#data-sources)
 
-#### Mark to market settlement
+### Mark to market settlement
 Settlement instructions are generated based on the change in market value of the open positions of a party.
 
 When the mark price changes, the network calculates settlement cash flows for each party.
@@ -75,7 +75,7 @@ Each time the mark price for a given market changes, all the open positions and 
 
 Read more: [Mark to market](#mark-to-market)
 
-#### Settlement parameters defined through governance
+### Settlement parameters defined through governance
 Data sources for settlement must be specified when a market is proposed. For cash-settled futures, this is the final price/value at the expiry of the instrument, and the expiry date/time.
 
 At the point when a market nears its specified expiry, trading terminates, and the data sources provide the final ‘settlement value’.

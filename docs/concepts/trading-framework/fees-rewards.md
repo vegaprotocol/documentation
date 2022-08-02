@@ -1,6 +1,6 @@
 ---
 sidebar_position: 6
-title: Liquidity
+title: Fees and rewards
 hide_title: false
 ---
 ## Fees and rewards [WIP]

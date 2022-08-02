@@ -8,12 +8,12 @@ A market's trading mode denotes the types of trading that can be done on it whil
 
 The Vega software currently supports two trading modes: continuous trading (using a limit order book) and auctions. 
 
-### Continuous trading
+## Continuous trading
 On a market with continuous trading, the Vega network tries to execute an order as soon as it is received. 
 
 A continuous trading market uses a limit order book as the default price determination method.
 
-### Auctions
+## Auctions
 Auctions are a trading mode that collect orders during a set period, called an *auction call period*. 
 
 The end of an auction call period is determined by the condition that the auction aims to meet. Auctions that are based on market conditions are triggered automatically.
@@ -23,12 +23,12 @@ Market conditions that could trigger an auction:
 * Not enough liquidity on a market
 * Price swing on a market is perceived, based on risk models, to be extreme and unrealistic 
 
-#### Auction call period
+### Auction call period
 During the auction call period, no trades are created, but all orders are queued. 
 
 At the conclusion of the call period, trades are produced in a single action known as an auction uncrossing. During the uncrossing, auctions always try to maximise the traded volume, subject to the requirements of the orders placed.
 
-#### Auction types
+### Auction types
 The Vega protocol supports several types of auctions:
 
 * **Opening auctions**: Every continuous trading market opens with an auction. Their purpose is to calibrate a market and help with price discovery

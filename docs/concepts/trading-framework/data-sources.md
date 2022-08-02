@@ -3,7 +3,7 @@ sidebar_position: 8
 title: Data sources
 hide_title: false
 ---
-## Data sources
+# Data sources
 Data sources, which come from oracles, are essential to markets created on Vega.
 
 Market settlement, risk models, and other features require a supplied price, or other data, which must come from somewhere, usually completely external to Vega. Specifically for settlement values, Vega requires external data.
@@ -12,7 +12,7 @@ Vega APIs and protocol capabilities support a wide range of data sourcing styles
 
 The current implementation requires that a market proposal defines two data sources, and the price based on those sources is final.
 
-### Data sourcing framework
+## Data sourcing framework
 Vega supports three data source types, though not all three can be used to settle markets. Internal data sources cannot be nominated for settling a market, but are used to emit an event or value at/after a given Vega time to trigger 'trading terminated', for example.
 
 Data sources must be able to emit four types of data:
@@ -21,7 +21,7 @@ Data sources must be able to emit four types of data:
 * Date/Time
 * Structured data records, such  as a set of key-value pairs
 
-### Data source requirements
+## Data source requirements
 Multiple instruments can rely on the same data source, and can settle based on the same `SubmitData` message.
 
 Data sources must provide:
@@ -39,7 +39,7 @@ Data sources must be able to emit the following data types:
 
 Data sources nominated for use by Vega may refer to other data sources. For instance, one that takes a source of structured data records as input and emits only the value of a named field (e.g. to return BTCUSD_PRICE from a record containing many prices) or one that takes another data source as input and emits only data that matches a set of defined filters (e.g. to return only records with specific values in the timestamp and ticket symbol fields).
 
-### Signed message data sources
+## Signed message data sources
 Signed message data sources are the first external data source to be supported on Vega, and can be nominated for settling a market. They introduce a Vega transaction that represents a data result. The result is validated by ensuring the signed message is signed by one of a set of public keys provided in a market’s proposal.
 
 :::info
@@ -52,7 +52,7 @@ A signed message data source must include:
 * Type of data to be supplied in the transaction. Supported types are a simple native Vega transaction (i.e. protobuf message) containing one or more key/value pairs of data fields with values that are expressed in the data types listed above
 * ABI encoded data
 
-### Filtered data source
+## Filtered data source
 As a public key may provide many messages, it's likely a filter is needed to extract the required message. A field select would then be used to extract the required field (‘price’ or ‘temperature’, etc.).
 
 A filtered data source includes another data source definition within its own definition, and outputs a modified stream of data. It contains one or more conditions that are applied to data to determine whether that data is emitted.
@@ -72,12 +72,12 @@ Filter condition types:
 * Greater / greater or equal to: Data can be greater than or equal to the filter, i.e. GreaterOrEqual key = timestamp, value = 2021-12-31T23:59:59
 * Less / less or equal to: Data can be less than or equal to the filter, i.e. LessOrEqual key = timestamp, value = 2021-12-31T23:59:59
 
-### Internal data source
+## Internal data source
 An internal data source provides information that comes from within Vega, rather than an external source. They are defined and used in the same way as external data sources, but are triggered by the relevant event in protocol rather than by an incoming transaction.
 
 There are currently two types of data that can come from internal data sources: value and time-triggered.
 
-#### Internal data source: Value [WIP]
+### Internal data source: Value [WIP]
 This data source provides an immediate value, and is used where a data source is required, but the value is already known at the time of definition.
 
 Any code expecting to be triggered when a value is received on a data source would be triggered immediately by a data source of this type, for instance as soon as a market parameter change is enacted, if it contained a value type data source for final settlement, final settlement would occur.
@@ -87,7 +87,7 @@ Any code expecting to be triggered when a value is received on a data source wou
 Example:
 `value { type: number, value: 1400.5 }`
 
-#### Internal data source: Time triggered [WIP]
+### Internal data source: Time triggered [WIP]
 This data source would be used to emit an event or value, at or after the given time printed on the block. For example, this could be used to trigger 'trading terminated' for futures.
 
 A time triggered data source will emit the contents of the specified data source (could be omitted if just triggering trading termination, or could be a value as described above, or another data source in order to implement a delay/ensure the value from the data source is not emitted before a certain time).
