@@ -28,7 +28,9 @@ When formalising the proposal, it is worth ensuring that any fields that are dep
 #### 3. Submitting proposal and telling the community (on-chain and off-chain)
 Tokenholders can submit a governance proposal to the network using the command line or via a script. 
 
-The Vega public key of the proposer must have enough VEGA staked to submit a proposal. For a 'market parameter change' proposal, the proposer must also have enough equity-like share in the market from their liquidity commitment, which is defined in the network parameter `governance.proposal.updateMarket.minProposerEquityLikeShare`.
+The Vega public key of the proposer must have enough VEGA staked to submit a proposal. 
+
+For a 'market parameter change' proposal, the proposer must also have enough equity-like share in the market from their liquidity commitment, which is defined in the network parameter `governance.proposal.updateMarket.minProposerEquityLikeShare`.
 
 Proposals are first checked by the wallet, then verified by the nodes before entering into the voting period you set. A proposal must have all of the relevant information, in the correct format, and in some cases within the accepted range - otherwise it will be rejected immediately. 
 
@@ -95,7 +97,9 @@ Read more:
 * [Update market proposal](../tutorials/proposals/update-market-proposal.md): Guide to submitting a proposal to change a market using the command line
 
 ### Propose a new market
-Tokenholders can propose new markets, which then need to be voted on by other tokenholders. If the market proposal gets a majority of tokeholder support, then it will be enacted. The required majority is defined by the network parameter `governance proposal market required majority`.
+Tokenholders can propose new markets, which then need to be voted on by other tokenholders. The proposer will need to have at least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the market, and staked to a validator. Note, this amount is set through the network parameter `governance.proposal.market.minProposerBalance`.
+
+If the market proposal gets a majority of tokeholder support, then it will be enacted. The required majority is defined by the network parameter `governance.proposal.market.required.majority`.
 
 A liquidity commitment is optional when proposing a market, but a market will not enter into continuous trading until its liquidity needs are met.
 
