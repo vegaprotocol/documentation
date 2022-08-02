@@ -2,23 +2,25 @@
   ```json
 {
   "rationale": {
-    "title": "Add USDT Coin (USDT)",
-    "description": "Proposal to add USDT Coin (USDT) as an asset"
+    "description": "Add Solana (SOL)"
   },
   "terms": {
     "newAsset": {
       "changes": {
-        "name": "USDT Coin",
-        "symbol": "USDT",
-        "decimals": "18",
+        "name": "Solana",
+        "symbol": "SOL",
+        "totalSupply": "19010568",
+        "decimals": "5",
         "quantum": "1",
         "erc20": {
-          "contractAddress": "0xb404c51bbc10dcbe948077f18a4b8e553d160084"
+          "contractAddress": "0xcb84d72e61e383767c4dfeb2d8ff7f4fb89abc6e",
+          "withdrawThreshold": "10",
+          "lifetimeLimit": "10"
         }
       }
     },
-    "closingTimestamp": 1662374250,
-    "enactmentTimestamp": 1662460650
+    "closingTimestamp": 1661085169,
+    "enactmentTimestamp": 1661171569
   }
 }
 ```

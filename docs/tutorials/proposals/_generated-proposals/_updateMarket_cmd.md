@@ -70,7 +70,7 @@
      },
      "logNormal": {
       "tau": 0.0001140771161,
-      "riskAversionParameter": 0.01,
+      "riskAversionParameter": 0.0001,
       "params": {
        "mu": 0,
        "r": 0.016,
@@ -79,8 +79,8 @@
      }
     }
    },
-   "closingTimestamp": 1662374250,
-   "enactmentTimestamp": 1662460650
+   "closingTimestamp": 1661085169,
+   "enactmentTimestamp": 1661171569
   }
  }
 }'

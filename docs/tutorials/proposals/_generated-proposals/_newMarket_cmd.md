@@ -63,7 +63,8 @@
       }
      },
      "metadata": [
-      "sector:tech",
+      "sector:food",
+      "sector:health",
       "sector:energy",
       "sector:food",
       "source:docs.vega.xyz"
@@ -91,51 +92,51 @@
       "params": {
        "mu": 0,
        "r": 0.016,
-       "sigma": 0.8
+       "sigma": 1.25
       }
      }
     },
     "liquidityCommitment": {
-     "commitmentAmount": "1060019",
-     "fee": "0.79",
+     "commitmentAmount": "3991800",
+     "fee": "0.33",
      "buys": [
       {
-       "offset": "39",
-       "proportion": 8,
-       "reference": "PEGGED_REFERENCE_BEST_BID"
-      },
-      {
-       "offset": "73",
-       "proportion": 5,
-       "reference": "PEGGED_REFERENCE_BEST_BID"
-      },
-      {
-       "offset": "38",
+       "offset": "71",
        "proportion": 9,
+       "reference": "PEGGED_REFERENCE_BEST_BID"
+      },
+      {
+       "offset": "92",
+       "proportion": 10,
+       "reference": "PEGGED_REFERENCE_BEST_BID"
+      },
+      {
+       "offset": "43",
+       "proportion": 2,
        "reference": "PEGGED_REFERENCE_BEST_BID"
       }
      ],
      "sells": [
       {
-       "offset": "66",
-       "proportion": 2,
+       "offset": "37",
+       "proportion": 4,
        "reference": "PEGGED_REFERENCE_BEST_ASK"
       },
       {
-       "offset": "66",
-       "proportion": 1,
+       "offset": "86",
+       "proportion": 3,
        "reference": "PEGGED_REFERENCE_BEST_ASK"
       },
       {
-       "offset": "4",
-       "proportion": 1,
+       "offset": "19",
+       "proportion": 4,
        "reference": "PEGGED_REFERENCE_BEST_ASK"
       }
      ]
     }
    },
-   "closingTimestamp": 1662374250,
-   "enactmentTimestamp": 1662460650
+   "closingTimestamp": 1661085169,
+   "enactmentTimestamp": 1661171569
   }
  }
 }'

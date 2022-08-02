@@ -18,6 +18,7 @@ import TabItem from '@theme/TabItem';
 # Propose a new asset
 
 Read more:
+* [Assets at a protocol level](../../concepts/vega-protocol#assettoken-management)
 * [Governance lifecycle](../../concepts/vega-protocol#lifecycle-of-a-governance-proposal): Learn about the off-chain and on-chain steps for crafting, sharing, and submitting proposals.
 
 In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example, and command line examples for different operating systems, that you'll need to update with the relevant details before submitting.
