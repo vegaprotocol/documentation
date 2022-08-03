@@ -1,5 +1,5 @@
 ---
-title: Providing liquidity
+title: Provide liquidity
 hide_title: false
 ---
 

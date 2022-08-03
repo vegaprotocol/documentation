@@ -1,5 +1,5 @@
 ---
-title: Staking tokens
+title: Stake tokens
 hide_title: false
 vega_network: TESTNET
 ethereum_network: Ropsten
