@@ -295,7 +295,7 @@ Anyone with a Vega public key and assets (such as the VEGA token) can set up a t
 Transfers can be set up to happen only once, or can happen repeatedly.
 
 :::info
-Set up transfers with your Vega wallet using the command line. Find out how in the [transfers guide](../tutorials/transfers.md).
+Set up transfers with your Vega wallet using the command line. Find out how in the [transfers guide](../tutorials/transferring-assets.md).
 :::
 
 #### Transfer limits

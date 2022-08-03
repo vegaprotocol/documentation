@@ -127,14 +127,14 @@ Note: While many of the features below are related to trading, it is not yet ena
 To change any market parameter, the proposer will submit the same data as if they were to create a market, except for the liquidity commitment, however this submission would contain the desired updates to the fields / structures that they wish to be changed. Some of the market parameters will not be able to be changed: market decimal places, position decimal places, settlement asset and the market name.
 
 Read more: 
-* [Market framework spec](https://github.com/vegaprotocol/specs/blob/main/protocol/0001-MKTF-market_framework.md#market)
-* [Change market parameters](https://github.com/vegaprotocol/specs/blob/main/protocol/0028-GOVE-governance.md#2-change-market-parameters)
+* [Market framework spec](https://github.com/vegaprotocol/specs/blob/master/protocol/0001-MKTF-market_framework.md#market)
+* [Change market parameters](https://github.com/vegaprotocol/specs/blob/master/protocol/0028-GOVE-governance.md#2-change-market-parameters)
 
 **Spam Protection**: This release introduces a rate-limiting scheme to prevent clients from attacking the network by spamming the network with requests. Unlike many other systems Vega does not charge a transaction fee; fees are only charged on trades. To prevent spamming, there is a client-side Proof of Work (PoW) mechanism required along with all transaction submissions. The difficulty of the PoW puzzle can be adjusted by governance, and is low for most use-case scenarios. It is automatically increased if a single client submits an abnormal number of transactions.
 
 This rate-limiting is based upon a client-side PoW which is quite different from the PoW term predominantly used for proof-of-work blockchains and associated with high energy consumption.
 
-Read more: [Spam protection POW](https://github.com/vegaprotocol/specs/blob/main/protocol/0072-SPPW-spam-protection-PoW.md)
+Read more: [Spam protection POW](https://github.com/vegaprotocol/specs/blob/master/protocol/0072-SPPW-spam-protection-PoW.md)
 
 **Checkpoint Improvements**: Checkpoints have been simplified. Before, validators would have to have a synchronisation period between nodes in order to reconcile the state from Ethereum when restarting the network from a checkpoint. This was due to the fact that the validators and staking balances were not stored in the checkpoint files.
 
@@ -157,17 +157,17 @@ Read more: [Key management](https://github.com/vegaprotocol/specs/blob/master/pr
 
 **Market decimal places**: In this release, the protocol now makes it possible to configure a market for which orders can only be priced in increments of a specific size. This is done by specifying a different (smaller) number of decimal places than its settlement asset supports. To explain this, consider a market that settles in GBP. This market can now be configured to have 0 decimal places so that the price levels on the orderbook will be separated by at least £1, rather than the default £0.01. 
 
-Read more: [Market decimal places](https://github.com/vegaprotocol/specs/blob/main/protocol/0070-MKTD-market-decimal-places.md)
+Read more: [Market decimal places](https://github.com/vegaprotocol/specs/blob/master/protocol/0070-MKTD-market-decimal-places.md)
 
 **Offsets for pegged and liquidity commitment orders**: The numbers used to offset how far from the reference price a pegged and liquidity provision order (respectively) can now only be input as positive. Whether they need to be added or subtracted from the price will be dependent on the order side.
 
-Read more: [Pegged orders](https://github.com/vegaprotocol/specs/blob/main/protocol/0037-OPEG-pegged_orders.md)
+Read more: [Pegged orders](https://github.com/vegaprotocol/specs/blob/master/protocol/0037-OPEG-pegged_orders.md)
 
 **Liquidity provision improvements**: The `LiquidityProvisionSubmission` API was used for submitting, amending and cancelling liquidity provision.  To both simplify the code and have a more explicit user experience a breaking change has been implemented to split these into three API commands. 
 
 **Floating point determinism**: Computations within a blockchain-based system need to be deterministic as the application state between nodes replicating it can start to differ potentially resulting in consensus failure. The protocol has been improved so that if the system has a differing floating point value there is a resolution strategy to reach consensus on the value that should be used. This is key due to the fact that validators will be running different hardware that could increase the chances of this happening.
 
-Read more: [Floating point consensus](https://github.com/vegaprotocol/specs/blob/main/protocol/0065-FTCO-floating_point_consensus.md)
+Read more: [Floating point consensus](https://github.com/vegaprotocol/specs/blob/master/protocol/0065-FTCO-floating_point_consensus.md)
 
 **Snapshots**: In order to simplify and streamline the process for both restarting or adding a node on the Vega network, the snapshot feature has been implemented. To allow a Vega node to be restarted or join without the need to replay the whole blockchain, a Vega node can load an existing snapshot. Snapshots contain all the network state required to start a node; nodes can use a snapshot stored locally or one created by a different node in the network. Starting a node using a snapshot populates all the state inside the core as if the core had processed the historic blockchain. The node can then start or resume listening to blocks after the snapshot until it gets to the live block height where it will be classed as a normal contributing node. This is a key feature to both ensure the constant availability of the network and for decentralisation.
 
@@ -176,15 +176,15 @@ Read more: [Floating point consensus](https://github.com/vegaprotocol/specs/blob
 An on-chain treasury, per asset type, has been implemented where the balance of the insurance pool is transferred when the market closes. To enable this transfers between Vega Wallets has been enabled, this not only is a feature of the on-chain treasury/rewards system but also allows people using the protocol to be able to transfer assets between wallets. With this feature there have been other changes around the rewards system meaning the full amount of the global reward pool will be distributed in all assets at the end of each epoch.
 
 Read more: 
-* [On-chain treasury](https://github.com/vegaprotocol/specs/blob/main/protocol/0055-TREA-on_chain_treasury.md)
-* [Transfers](https://github.com/vegaprotocol/specs/blob/main/protocol/0057-TRAN-transfers.md)
+* [On-chain treasury](https://github.com/vegaprotocol/specs/blob/master/protocol/0055-TREA-on_chain_treasury.md)
+* [Transfers](https://github.com/vegaprotocol/specs/blob/master/protocol/0057-TRAN-transfers.md)
 
 **Validators joining and leaving, and standby validators**: 
 In addition to the consensus validators, there is now functionality on testnet to allow a set of ersatz, or standby validators. These are validators that will  not contribute to the chain, but are on standby to jump in if a current validator drops off or their performance drops below a certain threshold. In order to be considered as an ersatz validator, the node operators need to meet certain criteria, including a minimum self-stake as well as stake nominated by other token holders.
 
 Note: The network will be set to allow 0 standby validators for alpha mainnet, and increase the validator numbers via governance as early alpha mainnet progresses.
 
-Read more: [Validators chosen by stake](https://github.com/vegaprotocol/specs/blob/main/protocol/0069-VCBS-validators_chosen_by_stake.md)
+Read more: [Validators chosen by stake](https://github.com/vegaprotocol/specs/blob/master/protocol/0069-VCBS-validators_chosen_by_stake.md)
 
 For full detailed information on the changes please see:
 * [Vega core change log](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0502)
