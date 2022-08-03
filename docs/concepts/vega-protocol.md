@@ -289,3 +289,10 @@ Track and withdraw testnet staking rewards on the [Vega token withdrawals page f
 In restricted mainnet, rewards for nominating a validator will be distributed from the on-chain network treasury, in the form of VEGA tokens. 
 
 The on-chain network treasury is a set of accounts that are funded by parties, deposits, or by direct transfers to allocate funds for rewards, grants, and other initiatives.
+
+### Transfers [WIP]
+Transfers can be used to move assets from one Vega key to another, or from a Vega key to a specific account, such as a reward pool used for the on-chain network treasury.
+
+Anyone with a Vega public key and assets (such as the VEGA token) can set up a transfer. Transfers can be set up to happen only once, or can happen repeatedly. 
+
+If the asset used to fund a recurring transfer is depleted, then the transfer is cancelled automatically. You'll have to set up a new transfer if you want to keep funding the key/account.

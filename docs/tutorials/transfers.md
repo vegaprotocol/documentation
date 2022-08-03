@@ -17,13 +17,13 @@ To set up a transfer, you'll need to know the Vega public key that the assets ar
 ### One-off transfer to Vega key
 
 <Tabs groupId="KeytoKeytransferOnce">
-<TabItem value="cmd" label="Linux / OSX command line example">
+<TabItem value="KeytoKeytransferOnceLinuxcmd" label="Linux / OSX command line example">
 
 ```
 vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground {"transfer":"fromAccountType":4,"toAccountType":4,"to":"recipient-Vega-public-key","asset":"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55","amount":"10000000000000000000","oneOff"}:{"deliverOn":0}}}
 ```
 </TabItem>
-<TabItem value="cmd" label="Windows command line example">
+<TabItem value="KeytoKeytransferOnceWincmd" label="Windows command line example">
 to do 
 </TabItem>
 </Tabs>
@@ -31,13 +31,13 @@ to do
 ### One-off transfer to reward pool
 
 <Tabs groupId="KeytoPooltransferOnce">
-<TabItem value="cmd" label="Linux / OSX command line example">
+<TabItem value="KeytoPooltransferOnceLinuxcmd" label="Linux / OSX command line example">
 
 ```
 vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{"transfer":"fromAccountType":4,"toAccountType":12,"to":"0000000000000000000000000000000000000000000000000000000000000000","asset":"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55","amount":"10000000000000000000","oneOff":{"deliverOn":0}}}'
 ```
 </TabItem>
-<TabItem value="cmd" label="Windows command line example">
+<TabItem value="KeytoPooltransferOnceWincmd" label="Windows command line example">
 to do 
 </TabItem>
 </Tabs>
@@ -58,26 +58,26 @@ You'll need to consider the following information to set up a recurring transfer
 factor: percentage of full reward amount you specified that you want to pay each time to vega key
 
 <Tabs groupId="KeytoKeytransferRepeat">
-<TabItem value="cmd" label="Linux / OSX command line">
+<TabItem value="KeytoKeytransferRepeatLinuxcmd" label="Linux / OSX command line">
 
 ```
 vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{"transfer":{"fromAccountType":4,"toAccountType":4,"to":"KEY","asset":"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55","amount":"10000000000000000000","recurring":{"startEpoch":0, "endEpoch":"2", "factor":}}}'
 ```
 </TabItem>
-<TabItem value="cmd" label="Windows command line example">
+<TabItem value="KeytoKeytransferRepeatcmdWin" label="Windows command line example">
 to do 
 </TabItem>
 </Tabs>
  
 ### Recurring transfer to reward pool 
 <Tabs groupId="KeytoPooltransferRepeat">
-<TabItem value="cmd" label="Linux / OSX command line">
+<TabItem value="KeytoKeytransferRepeatLinuxcmd" label="Linux / OSX command line">
 
 ```
 vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{"transfer":{"fromAccountType":4,"toAccountType":12,"to":"0000000000000000000000000000000000000000000000000000000000000000","asset":"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55","amount":"10000000000000000000","recurring":{"startEpoch":0, "endEpoch":"2", "factor":}}}'
 ```
 </TabItem>
-<TabItem value="cmd" label="Windows command line example">
+<TabItem value="KeytoKeytransferRepeatWincmd" label="Windows command line example">
 to do 
 </TabItem>
 </Tabs>
@@ -86,13 +86,13 @@ to do
 To cancel a recurring transfer, you'll need the transfer's ID.
 
 <Tabs groupId="canceltransfer">
-<TabItem value="cmd" label="Linux / OSX command line">
+<TabItem value="canceltransferLinuxcmd" label="Linux / OSX command line">
 
 ```
 vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{ "cancelTransfer": "transfer_id" }'
 ```
 </TabItem>
-<TabItem value="cmd" label="Windows command line example">
+<TabItem value="canceltransferWincmd" label="Windows command line example">
 to do 
 </TabItem>
 </Tabs>
