@@ -1,5 +1,6 @@
 ---
 title: Network parameter change
+vega_network: TESTNET
 hide_title: false
 keywords:
 - proposal

@@ -1,12 +1,14 @@
 ---
 title: Propose a new market
 hide_title: false
+vega_network: TESTNET
 toc: true
 keywords:
 - proposal
 - governance
 - newMarket
 ---
+import NetworkParameter from '@site/src/components/NetworkParameter';
 
 import NewMarketJSONInstrument from './_generated-proposals/_newMarket_json_instrument.md';
 import NewMarketJSONLiquidityMonitoring from './_generated-proposals/_newMarket_json_liqparams.md';
@@ -22,14 +24,18 @@ import NewMarketWin from './_generated-proposals/_newMarket_win.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page provides a tutorial for proposing a new market.
+This page provides a tutorial for submitting a proposal for a new market. 
 <!--[Update an existing market](#update-an-existing-market): change the details of a market that is already enacted.-->
 
 1. The full annotated example is there to guide you through what is needed for each field in the proposal.
-2. Be sure to have your Vega wallet name and public key ready.
+2. Be sure to have your Vega wallet name and public key ready, and have your wallet connected when you submit.
 3. To submit a proposal you will need:
-   * At least 1 (ropsten) Vega token, associated with the public key you're using to propose the market, and staked to a validator.
+   * At least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the market, and staked to a validator. Note, this amount is set through the network parameter `governance.proposal.market.minProposerBalance`.
    * Enough of the settlement asset (testnet) available to fulfil your liquidity commitment, if you are submitting a liquidity commitment.
+
+:::info
+Learn about the full governance lifecycle, includng how to get voter support for your proposal, in the [governance concepts](../../concepts/vega-protocol#governance).
+:::
 
 ### Submit using command line
 1. To create your own proposal and submit it using the command line, copy the command line example into a text editor and include the values you want for the market.
@@ -61,7 +67,7 @@ The contents of a `changes` object specifies what will be different after the pr
 
 Instrument, liquidity monitoring parameters, price monitoring parameters, oracles, and liquidity commitment are all described in more detail below.
 
-Rationale requires a description, which is a free-text field that describes the purpose of the proposal.
+Rationale requires a description, which is a free-text field that describes the purpose of the proposal. Include links with more information about your proposal (such as to the IPFS content or forum post) that voters can reference to learn more about the market.
 
 Decimal places need to be defined for both order sizes and the market.
 * `decimalPlaces` - sets the smallest price increment on the book
@@ -104,7 +110,8 @@ Oracle bindings require the following properties:
 * Value: A number that is constrained by the operator
 
 :::info Submitting oracle data
-Learn how to find and submit oracle data in the [submitting oracles tutorial](../using-oracle-data.md). 
+Learn how to find and submit oracle data in the [submitting oracles tutorial](../using-oracle-data.md).
+:::
 
 ### Liquidity monitoring
 The liquidity monitoring settings detect when the market's liquidity drops below the safe level, and as such when to launch a 'liquidity seeking' auction. See below for more details on each field.

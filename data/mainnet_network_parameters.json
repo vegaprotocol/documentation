@@ -1,0 +1,400 @@
+{
+  "networkParameters": [
+    {
+      "key": "validators.delegation.minAmount",
+      "value": "100000000000000000"
+    },
+    {
+      "key": "governance.proposal.market.minProposerBalance",
+      "value": "1"
+    },
+    {
+      "key": "reward.asset",
+      "value": "d1984e3d365faa05bcafbe41f50f90e3663ee7c0da22bb1e24b164e9532691b2"
+    },
+    {
+      "key": "reward.staking.delegation.maxPayoutPerEpoch",
+      "value": "9890000000000000000000"
+    },
+    {
+      "key": "governance.proposal.freeform.maxClose",
+      "value": "8760h0m0s"
+    },
+    {
+      "key": "spam.pow.increaseDifficulty",
+      "value": "0"
+    },
+    {
+      "key": "transfer.minTransferQuantumMultiple",
+      "value": "0.1"
+    },
+    {
+      "key": "governance.proposal.market.minVoterBalance",
+      "value": "1"
+    },
+    {
+      "key": "spam.protection.max.delegations",
+      "value": "360"
+    },
+    {
+      "key": "market.liquidity.providers.fee.distributionTimeStep",
+      "value": "60m"
+    },
+    {
+      "key": "governance.proposal.market.minEnact",
+      "value": "168h"
+    },
+    {
+      "key": "market.stake.target.scalingFactor",
+      "value": "0.1"
+    },
+    {
+      "key": "network.validators.ersatz.rewardFactor",
+      "value": "0.5"
+    },
+    {
+      "key": "governance.proposal.updateMarket.requiredMajorityLP",
+      "value": "0.66"
+    },
+    {
+      "key": "network.validators.multisig.numberOfSigners",
+      "value": "13"
+    },
+    {
+      "key": "network.checkpoint.marketFreezeDate",
+      "value": "2021-12-30T00:00:00Z"
+    },
+    {
+      "key": "validators.vote.required",
+      "value": "0.67"
+    },
+    {
+      "key": "network.validators.incumbentBonus",
+      "value": "1"
+    },
+    {
+      "key": "transfer.fee.factor",
+      "value": "0.001"
+    },
+    {
+      "key": "governance.proposal.updateMarket.maxEnact",
+      "value": "720h"
+    },
+    {
+      "key": "governance.proposal.updateNetParam.maxEnact",
+      "value": "1440h"
+    },
+    {
+      "key": "governance.proposal.market.requiredMajority",
+      "value": "0.66"
+    },
+    {
+      "key": "governance.proposal.updateMarket.minClose",
+      "value": "72h"
+    },
+    {
+      "key": "reward.staking.delegation.payoutDelay",
+      "value": "0s"
+    },
+    {
+      "key": "market.fee.factors.infrastructureFee",
+      "value": "0.001"
+    },
+    {
+      "key": "spam.protection.proposal.min.tokens",
+      "value": "2000000000000000000000"
+    },
+    {
+      "key": "governance.proposal.updateNetParam.minClose",
+      "value": "72h"
+    },
+    {
+      "key": "governance.proposal.asset.minVoterBalance",
+      "value": "1000000000000000000"
+    },
+    {
+      "key": "spam.protection.max.proposals",
+      "value": "3"
+    },
+    {
+      "key": "spam.pow.numberOfPastBlocks",
+      "value": "100"
+    },
+    {
+      "key": "spam.protection.delegation.min.tokens",
+      "value": "1"
+    },
+    {
+      "key": "governance.proposal.freeform.minVoterBalance",
+      "value": "1000000000000000000"
+    },
+    {
+      "key": "spam.pow.difficulty",
+      "value": "15"
+    },
+    {
+      "key": "governance.proposal.updateNetParam.requiredParticipation",
+      "value": "0.25"
+    },
+    {
+      "key": "network.validators.tendermint.number",
+      "value": "13"
+    },
+    {
+      "key": "governance.proposal.asset.minProposerBalance",
+      "value": "2000000000000000000"
+    },
+    {
+      "key": "market.stake.target.timeWindow",
+      "value": "1h"
+    },
+    {
+      "key": "market.liquidity.minimum.probabilityOfTrading.lpOrders",
+      "value": "1e-8"
+    },
+    {
+      "key": "market.auction.minimumDuration",
+      "value": "30s"
+    },
+    {
+      "key": "governance.proposal.asset.minEnact",
+      "value": "168h"
+    },
+    {
+      "key": "governance.proposal.market.minClose",
+      "value": "168h"
+    },
+    {
+      "key": "governance.proposal.asset.maxClose",
+      "value": "720h"
+    },
+    {
+      "key": "governance.proposal.freeform.minClose",
+      "value": "72h0m0s"
+    },
+    {
+      "key": "governance.proposal.asset.maxEnact",
+      "value": "720h"
+    },
+    {
+      "key": "governance.proposal.updateMarket.maxClose",
+      "value": "720h"
+    },
+    {
+      "key": "governance.proposal.freeform.requiredMajority",
+      "value": "0.66"
+    },
+    {
+      "key": "governance.proposal.asset.requiredParticipation",
+      "value": "0.20"
+    },
+    {
+      "key": "governance.proposal.updateNetParam.minEnact",
+      "value": "72h"
+    },
+    {
+      "key": "spam.pow.numberOfTxPerBlock",
+      "value": "2"
+    },
+    {
+      "key": "governance.proposal.updateMarket.minEnact",
+      "value": "72h"
+    },
+    {
+      "key": "market.auction.maximumDuration",
+      "value": "168h"
+    },
+    {
+      "key": "governance.proposal.updateMarket.requiredMajority",
+      "value": "0.66"
+    },
+    {
+      "key": "market.monitor.price.updateFrequency",
+      "value": "1s"
+    },
+    {
+      "key": "market.liquidityProvision.shapes.maxSize",
+      "value": "100"
+    },
+    {
+      "key": "blockchains.ethereumConfig",
+      "value": "{\"network_id\": \"1\", \"chain_id\": \"1\", \"collateral_bridge_contract\": { \"address\": \"0xCd403f722b76366f7d609842C589906ca051310f\" }, \"confirmations\": 50, \"staking_bridge_contract\": { \"address\": \"0x195064D33f09e0c42cF98E665D9506e0dC17de68\", \"deployment_block_height\": 13146644}, \"token_vesting_contract\": { \"address\": \"0x23d1bFE8fA50a167816fBD79D7932577c06011f4\", \"deployment_block_height\": 12834524 }, \"multisig_control_contract\": {\"address\": \"0x164D322B2377C0fdDB73Cd32f24e972A7d9C72F9\", \"deployment_block_height\": 13572032 }}"
+    },
+    {
+      "key": "reward.staking.delegation.minimumValidatorStake",
+      "value": "3000000000000000000000"
+    },
+    {
+      "key": "market.liquidity.bondPenaltyParameter",
+      "value": "0.000001"
+    },
+    {
+      "key": "validators.epoch.length",
+      "value": "24h"
+    },
+    {
+      "key": "market.liquidity.probabilityOfTrading.tau.scaling",
+      "value": "10.0"
+    },
+    {
+      "key": "reward.staking.delegation.minValidators",
+      "value": "5"
+    },
+    {
+      "key": "snapshot.interval.length",
+      "value": "300"
+    },
+    {
+      "key": "network.validators.minimumEthereumEventsForNewValidator",
+      "value": "3"
+    },
+    {
+      "key": "governance.proposal.asset.minClose",
+      "value": "168h"
+    },
+    {
+      "key": "governance.proposal.market.requiredParticipation",
+      "value": "0.10"
+    },
+    {
+      "key": "governance.proposal.updateNetParam.minProposerBalance",
+      "value": "20000000000000000000000"
+    },
+    {
+      "key": "governance.proposal.updateNetParam.minVoterBalance",
+      "value": "1000000000000000000"
+    },
+    {
+      "key": "market.monitor.price.defaultParameters",
+      "value": "{\"triggers\": [{\"auction_extension\": 300, \"horizon\": 43200, \"probability\": \"0.9999999\"}] }"
+    },
+    {
+      "key": "governance.proposal.updateMarket.minProposerEquityLikeShare",
+      "value": "0.05"
+    },
+    {
+      "key": "market.liquidity.maximumLiquidityFeeFactorLevel",
+      "value": "0.03"
+    },
+    {
+      "key": "network.floatingPointUpdates.delay",
+      "value": "5m"
+    },
+    {
+      "key": "governance.proposal.market.maxEnact",
+      "value": "720h"
+    },
+    {
+      "key": "reward.staking.delegation.maxPayoutPerParticipant",
+      "value": "700000000000000000000"
+    },
+    {
+      "key": "market.liquidity.stakeToCcySiskas",
+      "value": "1.0"
+    },
+    {
+      "key": "governance.proposal.updateMarket.minProposerBalance",
+      "value": "20000000000000000000000"
+    },
+    {
+      "key": "network.checkpoint.timeElapsedBetweenCheckpoints",
+      "value": "5m"
+    },
+    {
+      "key": "reward.staking.delegation.competitionLevel",
+      "value": "1.3"
+    },
+    {
+      "key": "market.liquidityProvision.minLpStakeQuantumMultiple",
+      "value": "1"
+    },
+    {
+      "key": "spam.pow.hashFunction",
+      "value": "sha3_24_rounds"
+    },
+    {
+      "key": "spam.protection.voting.min.tokens",
+      "value": "1000000000000000000"
+    },
+    {
+      "key": "market.value.windowLength",
+      "value": "168h"
+    },
+    {
+      "key": "market.margin.scalingFactors",
+      "value": "{\"search_level\": 1.1, \"initial_margin\": 1.5, \"collateral_release\": 1.7}"
+    },
+    {
+      "key": "governance.proposal.updateNetParam.requiredMajority",
+      "value": "0.66"
+    },
+    {
+      "key": "governance.proposal.asset.requiredMajority",
+      "value": "0.66"
+    },
+    {
+      "key": "governance.proposal.updateNetParam.maxClose",
+      "value": "1440h"
+    },
+    {
+      "key": "reward.staking.delegation.delegatorShare",
+      "value": "0.883"
+    },
+    {
+      "key": "governance.proposal.updateMarket.minVoterBalance",
+      "value": "1000000000000000000"
+    },
+    {
+      "key": "governance.proposal.updateMarket.requiredParticipation",
+      "value": "0.20"
+    },
+    {
+      "key": "governance.proposal.updateMarket.requiredParticipationLP",
+      "value": "0.00001"
+    },
+    {
+      "key": "governance.proposal.freeform.requiredParticipation",
+      "value": "0.1"
+    },
+    {
+      "key": "reward.staking.delegation.optimalStakeMultiplier",
+      "value": "3.0"
+    },
+    {
+      "key": "reward.staking.delegation.payoutFraction",
+      "value": "1.0"
+    },
+    {
+      "key": "spam.protection.max.votes",
+      "value": "3"
+    },
+    {
+      "key": "network.checkpoint.networkEndOfLifeDate",
+      "value": "2021-12-31T23:59:00Z"
+    },
+    {
+      "key": "market.fee.factors.makerFee",
+      "value": "0.0002"
+    },
+    {
+      "key": "governance.proposal.market.maxClose",
+      "value": "720h"
+    },
+    {
+      "key": "spam.protection.maxUserTransfersPerEpoch",
+      "value": "20"
+    },
+    {
+      "key": "governance.proposal.freeform.minProposerBalance",
+      "value": "1000000000000000000"
+    },
+    {
+      "key": "market.liquidity.targetstake.triggering.ratio",
+      "value": "0.7"
+    },
+    {
+      "key": "network.validators.ersatz.multipleOfTendermintValidators",
+      "value": "0"
+    }
+  ]
+}
