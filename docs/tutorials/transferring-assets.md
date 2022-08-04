@@ -24,18 +24,18 @@ For one-off transfers, you can set a delivery date/time for when the transfer ar
 
 ```bash
 vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground 
-{"transfer":"fromAccountType":4,"toAccountType":4,
+'{"transfer":{"fromAccountType":4,"toAccountType":4,
 "to":"recipient-Vega-public-key","asset":"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55",
-"amount":"10000000000000000000","oneOff"}:{"deliverOn":0}}}
+"amount":"10000000000000000000","oneOff":{"deliverOn":0}}}'
 ```
 </TabItem>
 <TabItem value="KeytoKeytransferOnceWincmd" label="Windows command line example">
 
 ```bash
 vegawallet.exe command send --wallet \"wallet-name\" --pubkey \"pubkey\" --network fairground 
-'{\"transfer\":\"fromAccountType\":4,\"toAccountType\":4,
+'{\"transfer\":{\"fromAccountType\":4,\"toAccountType\":4,
 \"to\":\"recipient-Vega-public-key\",\"asset\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\",
-\"amount\":\"10000000000000000000\",\"oneOff\"}:{\"deliverOn\":0}}}'
+\"amount\":\"10000000000000000000\",\"oneOff\":{\"deliverOn\":0}}}'
 ```
 </TabItem>
 </Tabs>
@@ -47,7 +47,7 @@ vegawallet.exe command send --wallet \"wallet-name\" --pubkey \"pubkey\" --netwo
 
 ```bash
 vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground 
-'{"transfer":"fromAccountType":4,"toAccountType":12,
+'{"transfer":{"fromAccountType":4,"toAccountType":12,
 "to":"0000000000000000000000000000000000000000000000000000000000000000","asset":"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55","amount":"10000000000000000000","oneOff":{"deliverOn":0}}}'
 ```
 </TabItem>
@@ -55,7 +55,7 @@ vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairg
 
 ```bash
 vegawallet.exe command send --wallet \"wallet-name\" --pubkey \"pubkey\" --network fairground 
-'{\"transfer\":\"fromAccountType\":4,\"toAccountType\":12,
+'{\"transfer\":{\"fromAccountType\":4,\"toAccountType\":12,
 \"to\":\"0000000000000000000000000000000000000000000000000000000000000000\",\"asset\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\",\"amount\":\"10000000000000000000\",\"oneOff\":{\"deliverOn\":0}}}'
 ```
  
