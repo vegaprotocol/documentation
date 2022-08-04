@@ -23,7 +23,18 @@ For one-off transfers, you can set a delivery date/time for when the transfer ar
 <TabItem value="KeytoKeytransferOnceLinuxcmd" label="Linux / OSX command line example">
 
 ```bash
-vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{"transfer":{"fromAccountType":4,"toAccountType":4, "to":"recipient-Vega-public-key","asset":"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55", "amount":"10000000000000000000","oneOff":{"deliverOn":0}}}'
+vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{
+    "transfer":{
+        "fromAccountType":4,
+        "toAccountType":4,
+        "to":"recipient-Vega-public-key",
+        "asset":"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55",
+        "amount":"10000000000000000000",
+        "oneOff":{ 
+            "deliverOn": 0
+        }
+    }
+}'
 ```
 </TabItem>
 <TabItem value="KeytoKeytransferOnceWincmd" label="Windows command line example">
@@ -40,9 +51,18 @@ vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network f
 <TabItem value="KeytoPooltransferOnceLinuxcmd" label="Linux / OSX command line example">
 
 ```bash
-vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground 
-'{"transfer":{"fromAccountType":4,"toAccountType":12,
-"to":"0000000000000000000000000000000000000000000000000000000000000000","asset":"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55","amount":"10000000000000000000","oneOff":{"deliverOn":0}}}'
+vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{
+    "transfer":{
+        "fromAccountType":4,
+        "toAccountType":12,
+        "to":"0000000000000000000000000000000000000000000000000000000000000000",
+        "asset":"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55",
+        "amount":"10000000000000000000",
+        "oneOff":{
+            "deliverOn": 0
+        }
+    }
+}'
 ```
 </TabItem>
 <TabItem value="KeytoPooltransferOnceWincmd" label="Windows command line example">
@@ -68,14 +88,25 @@ You'll need the following information to set up a recurring transfer:
 <TabItem value="KeytoKeytransferRepeatLinuxcmd" label="Linux / OSX command line">
 
 ```bash
-vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground\ 
-'{"transfer":{"fromAccountType":4,"toAccountType":4,"to":"KEY","asset":"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55","amount":"10000000000000000000","recurring":{"startEpoch":0, "endEpoch":"2", "factor":}}}'
+vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{
+    "transfer":{
+        "fromAccountType":"ACCOUNT_TYPE_GENERAL",
+        "toAccountType": "ACCOUNT_TYPE_GENERAL",
+        "to": "KEY",
+        "asset": "fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55",
+        "amount": "10000000000000000000",
+        "recurring": {
+            "startEpoch": 0,
+            "factor": "2"
+        }
+    }
+}'
 ```
 </TabItem>
 <TabItem value="KeytoKeytransferRepeatcmdWin" label="Windows command line example">
 
 ```bash
-vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground "{\"transfer\":{\"fromAccountType\":4,\"toAccountType\":4,\"to\":\"KEY\",\"asset\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\"\"amount\":\"10000000000000000000\",\"recurring\":{\"startEpoch\":0, \"endEpoch\":\"2\", \"factor\":}}}"
+vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground "{\"transfer\":{\"fromAccountType\": \"ACCOUNT_TYPE_GENERAL\",\"toAccountType\": \"ACCOUNT_TYPE_GENERAL\",\"to\":\"KEY\",\"asset\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\"\"amount\":\"10000000000000000000\",\"recurring\":{\"startEpoch\":0, \"factor\": \"0.3\" }}}"
 ```
 </TabItem>
 </Tabs>
@@ -84,27 +115,47 @@ vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network f
 ### Recurring transfer to reward pool
 
 <Tabs groupId="KeytoPooltransferRepeat">
-<TabItem value="KeytoKeytransferRepeatLinuxcmd" label="Linux / OSX command line">
+<TabItem value="KeytoPooltransferRepeatLinuxcmd" label="Linux / OSX command line">
 
 ```bash
-vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground\ 
-'{"transfer":{"fromAccountType":4,"toAccountType":12,"to":"0000000000000000000000000000000000000000000000000000000000000000","asset":"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55",
-"amount":"10000000000000000000","recurring":{"startEpoch":0, "endEpoch":"2", "factor":}}}'
+vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{
+    "transfer":{
+        "fromAccountType": "ACCOUNT_TYPE_GENERAL",
+        "toAccountType": "ACCOUNT_TYPE_GLOBAL_REWARD",
+        "to":"0000000000000000000000000000000000000000000000000000000000000000",
+        "asset":"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55",
+        "amount":"10000000000000000000",
+        "recurring":{
+            "startEpoch": 0,
+            "factor": "0.3",
+            "dispatchStrategy": {
+                "dispatchMetric": "MarketTradingValue",
+                "marketIdsInScope": "marketid"
+            }
+        }
+    }
+}'
 ```
 </TabItem>
-<TabItem value="KeytoKeytransferRepeatWincmd" label="Windows command line example">
+<TabItem value="KeytoPooltransferRepeatWincmd" label="Windows command line example">
 
 ```bash
 vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground "{
     \"transfer\":{
-        \"fromAccountType\":4,\"toAccountType\":12,
+        \"fromAccountType\":4,
+        \"toAccountType\":12,
         \"to\":\"0000000000000000000000000000000000000000000000000000000000000000\",
         \"asset\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\",
         \"amount\":\"10000000000000000000\",
+        \"reference\":\"reward\",
         \"recurring\":{
-            \"startEpoch\":0,
-            \"endEpoch\":\"2\",
-            \"factor\": 0.3
+            \"startEpoch\": 0,
+            \"endEpoch\": 2,
+            \"factor\": \"3\",
+            \"dispatchStrategy\": {
+                \"dispatchMetric\": \"MarketTradingValue\",
+                \"marketIdsInScope\": \"marketid\"
+            }
         }
     }
 }"
@@ -119,14 +170,14 @@ To cancel a recurring transfer, you'll need the transfer's ID. -how to get trans
 <TabItem value="canceltransferLinuxcmd" label="Linux / OSX command line">
 
 ```
-vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground\ 
-'{ "cancelTransfer": { "transferId": "123" }'
+vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground\
+    '{ "cancelTransfer": { "transferId": "123" }}'
 ```
 </TabItem>
 <TabItem value="canceltransferWincmd" label="Windows command line example">
 
 ```bash
-vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground "{ \"cancelTransfer\": {  \"transferId\":\ "123\" }"
+vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground "{ \"cancelTransfer\": {  \"transferId\": \"123\" }}"
 ``` 
 </TabItem>
 </Tabs>
