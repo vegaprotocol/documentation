@@ -168,7 +168,7 @@ To cancel a recurring transfer, you'll need the transfer's ID. -how to get trans
 <Tabs groupId="canceltransfer">
 <TabItem value="canceltransferLinuxcmd" label="Linux / OSX command line">
 
-```
+```bash
 vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground\
     '{ "cancelTransfer": { "transferId": "123" }}'
 ```
