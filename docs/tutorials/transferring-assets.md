@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 You can send assets to another Vega key or to a reward pool using transfers. Transfers can be one-off, or they can be set up to happen over and over again, at least while the key sending the assets has enough money to keep the transfers going. 
 
 ### Key requirements:
-* To set up a transfer, you'll need to know the **Vega public key** that the assets are coming from, the **public key or [account type number](../grpc/vega/vega.proto.mdx#accounttype)** that the assets are going to, as well as the **asset ID** for the asset you want to transfer. 
+* To set up a transfer, you'll need to know the **Vega public key** that the assets are coming from, the **public key or [account type](../grpc/vega/vega.proto.mdx#accounttype)** (either the number or `ACCOUNT_TYPE_.."`) that the assets are going to, as well as the **asset ID** for the asset you want to transfer. 
 * You'll need to use the same keypair to sign the transaction, because the funds have to come from a key you control
 * The **transfer amount** must be written with no decimal point, but include all decimal places. The amount in the below examples is based on an 18 decimal point asset, and so these transfers would allot 1 tVEGA for transferring.
 
@@ -103,8 +103,9 @@ For a recurring transfer, the assets move from your account to the nominated acc
 
 You'll need the following information to set up a recurring transfer: 
 * `startEpoch`: The number of the epoch in which you want the first transfer to be made. It will initiate at the end of this epoch.
-* `endEpoch` (optional): The number of the epoch in which you want the last transfer to be made. If not specified, the transfer run until you cancel it or the funds run out.
 * `factor`: Written as a decimal less than 1.0, this is the factor used to determine what portion of the full `amount` is transferred in each epoch. Think of it like a percentage, so the number you include, when multiplied by 100, will equal what percentage of the amount you have available will be transferred each time. 
+
+Recurring transfers can also optionally set a [DispatchStrategy](../grpc/vega/vega.proto.mdx#dispatchstrategy), which can be used to distribute rewards based on [Dispatch Metrics](../grpc/vega/vega.proto.mdx#dispatchmetric) that are tracked by the system. The recurring reward pool transfer below would reward the public key that proposed the markets specified, depending on their value.
 
 ### Recurring transfer to Vega key
 
