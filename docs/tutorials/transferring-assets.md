@@ -40,7 +40,19 @@ vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairg
 <TabItem value="KeytoKeytransferOnceWincmd" label="Windows command line example">
 
 ```bash
-vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{\"transfer\":{\"fromAccountType\":\"ACCOUNT_TYPE_GENERAL\":,\"toAccountType\":\"ACCOUNT_TYPE_GENERAL\" \"to\":\"recipient-Vega-public-key\",\"asset\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\", \"amount\":\"10000000000000000000\",\"oneOff\":{\"deliverOn\":0}}}'
+vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground^
+"{\"transfer\":^
+    { ^
+        \"fromAccountType\":\"ACCOUNT_TYPE_GENERAL\", ^
+        \"toAccountType\":\"ACCOUNT_TYPE_GENERAL\", ^
+        \"to\":\"recipient-Vega-public-key\", ^
+        \"asset\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\", ^
+        \"amount\":\"10000000000000000000\", ^
+        \"oneOff\":{ ^
+            \"deliverOn\":0 ^
+        } ^
+    } ^
+}"
 ```
 </TabItem>
 </Tabs>
@@ -68,7 +80,19 @@ vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairg
 <TabItem value="KeytoPooltransferOnceWincmd" label="Windows command line example">
 
 ```bash
-vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{\"transfer\":{\"fromAccountType\": \"ACCOUNT_TYPE_GENERAL\",\"toAccountType\":\"ACCOUNT_TYPE_GLOBAL_REWARD\", \"to\":\"0000000000000000000000000000000000000000000000000000000000000000\",\"asset\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\",\"amount\":\"10000000000000000000\",\"oneOff\":{\"deliverOn\":0}}}'
+vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground ^
+"{ ^
+    \"transfer\": { ^
+        \"fromAccountType\": \"ACCOUNT_TYPE_GENERAL\", ^
+        \"toAccountType\":\"ACCOUNT_TYPE_GLOBAL_REWARD\", ^
+        \"to\":\"0000000000000000000000000000000000000000000000000000000000000000\", ^
+        \"asset\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\", ^
+        \"amount\":\"10000000000000000000\", ^
+        \"oneOff\":{ ^
+            \"deliverOn\":0 ^
+        } ^
+    } ^
+}"
 ```
  
 </TabItem>
@@ -106,7 +130,20 @@ vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairg
 <TabItem value="KeytoKeytransferRepeatcmdWin" label="Windows command line example">
 
 ```bash
-vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground "{\"transfer\":{\"fromAccountType\": \"ACCOUNT_TYPE_GENERAL\",\"toAccountType\": \"ACCOUNT_TYPE_GENERAL\",\"to\":\"KEY\",\"asset\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\"\"amount\":\"10000000000000000000\",\"recurring\":{\"startEpoch\":1, \"factor\": \"3\" }}}"
+vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground^
+"{\"transfer\": ^
+    { ^
+        \"fromAccountType\": \"ACCOUNT_TYPE_GENERAL\", ^
+        \"toAccountType\": \"ACCOUNT_TYPE_GENERAL\", ^
+        \"to\":\"KEY\", ^
+        \"asset\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\", ^
+        \"amount\":\"10000000000000000000\", ^
+        \"recurring\":{ ^
+            \"startEpoch\": 1, ^
+            \"factor\": \"3\" ^
+        } ^
+    } ^
+}"
 ```
 </TabItem>
 </Tabs>
@@ -121,7 +158,7 @@ vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network f
 vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{
     "transfer":{
         "fromAccountType": "ACCOUNT_TYPE_GENERAL",
-        "toAccountType": "ACCOUNT_TYPE_GLOBAL_REWARD",
+        "toAccountType": "ACCOUNT_TYPE_REWARD_MARKET_PROPOSERS",
         "to":"0000000000000000000000000000000000000000000000000000000000000000",
         "asset":"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55",
         "amount":"10000000000000000000",
@@ -129,8 +166,9 @@ vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairg
             "startEpoch": 1,
             "factor": "3",
             "dispatchStrategy": {
-                "dispatchMetric": "MarketTradingValue",
-                "marketIdsInScope": "marketid"
+                "assetForMetric": "123",
+                "dispatchMetric": "DISPATCH_METRIC_MARKET_VALUE",
+                "marketIdsInScope": ["marketid"]
             }
         }
     }
@@ -140,23 +178,24 @@ vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairg
 <TabItem value="KeytoPooltransferRepeatWincmd" label="Windows command line example">
 
 ```bash
-vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground "{
-    \"transfer\":{
-        \"fromAccountType\": \"ACCOUNT_TYPE_GENERAL\",
-        \"toAccountType\": \"ACCOUNT_TYPE_GLOBAL_REWARD\",
-        \"to\":\"0000000000000000000000000000000000000000000000000000000000000000\",
-        \"asset\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\",
-        \"amount\":\"10000000000000000000\",
-        \"reference\":\"reward\",
-        \"recurring\":{
-            \"startEpoch\": 1,
-            \"factor\": \"3\",
-            \"dispatchStrategy\": {
-                \"dispatchMetric\": \"MarketTradingValue\",
-                \"marketIdsInScope\": \"marketid\"
-            }
-        }
-    }
+vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground ^
+"{ ^
+    \"transfer\":{ ^
+        \"fromAccountType\": \"ACCOUNT_TYPE_GENERAL\", ^
+        \"toAccountType\": \"ACCOUNT_TYPE_REWARD_MARKET_PROPOSERS\", ^
+        \"to\":\"0000000000000000000000000000000000000000000000000000000000000000\", ^
+        \"asset\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\", ^
+        \"amount\":\"10000000000000000000\", ^
+        \"reference\":\"reward\", ^
+        \"recurring\":{ ^
+            \"startEpoch\": 1, ^
+            \"factor\": \"3\", ^
+            \"dispatchStrategy\": { ^
+                \"dispatchMetric\": \"DISPATCH_METRIC_MARKET_VALUE\", ^
+                \"marketIdsInScope\": [\"marketid\"] ^
+            } ^
+        } ^
+    } ^
 }"
 ```
 </TabItem>
