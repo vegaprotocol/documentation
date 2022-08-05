@@ -8,9 +8,12 @@ import TabItem from '@theme/TabItem';
 You can send assets to another Vega key or to a reward pool using transfers. Transfers can be one-off, or they can be set up to happen over and over again, at least while the key sending the assets has enough money to keep the transfers going. 
 
 ### Key requirements:
-* To set up a transfer, you'll need to know the **Vega public key** that the assets are coming from, the **public key or [account type](../grpc/vega/vega.proto.mdx#accounttype)** (either the number or `ACCOUNT_TYPE_.."`) that the assets are going to, as well as the **asset ID** for the asset you want to transfer. 
-* You'll need to use the same keypair to sign the transaction, because the funds have to come from a key you control
-* The **transfer amount** must be written with no decimal point, but include all decimal places. The amount in the below examples is based on an 18 decimal point asset, and so these transfers would allot 1 tVEGA for transferring.
+To set up a transfer, you'll need:
+* **Vega public key** that the assets are coming from
+* **Public key or [account type](../grpc/vega/vega.proto.mdx#accounttype)** (either the number or `ACCOUNT_TYPE_.."`) that the assets are going to
+* **[Asset ID](../graphql/queries/assets.mdx)** for the asset you want to transfer. 
+* Use the **same key pair** to sign the transaction, because the funds have to come from a key you control
+* **Transfer amount**, which must be written with no decimal point, but include all decimal places. The amount in the below examples is based on an 18 decimal point asset, and so these transfers would allot 1 tVEGA for transferring
 
 ## One-off transfers
 For one-off transfers, you can set a delivery date/time for when the transfer arrives with the recipient account. The `deliverOn` field sets whether the transfer is delivered immediately or at a predetermined date/time. 
@@ -203,7 +206,7 @@ vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network f
 </Tabs>
 
 ### Cancelling recurring transfers
-To cancel a recurring transfer, you'll need the transfer's ID. -how to get transfer ID? 
+To cancel a recurring transfer, you'll need the transfer's ID. To see the ID for every transfer your public key makes, [run a transfers GraphQL query](../graphql/queries/transfers.mdx) to see the ID for every transfer you make.
 
 <Tabs groupId="canceltransfer">
 <TabItem value="canceltransferLinuxcmd" label="Linux / OSX command line">
