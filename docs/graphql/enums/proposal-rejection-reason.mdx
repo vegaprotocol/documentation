@@ -1,6 +1,7 @@
 ---
 id: proposal-rejection-reason
 title: ProposalRejectionReason
+hide_table_of_contents: false
 ---
 
 
@@ -41,175 +42,199 @@ enum ProposalRejectionReason {
   MajorityThresholdNotReached
   ParticipationThresholdNotReached
   InvalidAssetDetails
+  TooManyPriceMonitoringTriggers
+  TooManyMarketDecimalPlaces
+  InvalidMarket
+  InsufficientEquityLikeShare
 }
 ```
 
 
 ### Values
 
-#### `CloseTimeTooSoon` 
+#### [`CloseTimeTooSoon`](#)
 
 The specified close time is too early based on network parameters
 
 
-#### `CloseTimeTooLate` 
+#### [`CloseTimeTooLate`](#)
 
 The specified close time is too late based on network parameters
 
 
-#### `EnactTimeTooSoon` 
+#### [`EnactTimeTooSoon`](#)
 
 The specified enactment time is too early based on network parameters
 
 
-#### `EnactTimeTooLate` 
+#### [`EnactTimeTooLate`](#)
 
 The specified enactment time is too late based on network parameters
 
 
-#### `InsufficientTokens` 
+#### [`InsufficientTokens`](#)
 
 The proposer for this proposal has insufficient token
 
 
-#### `InvalidInstrumentSecurity` 
+#### [`InvalidInstrumentSecurity`](#)
 
 The instrument quote name and base name were the same
 
 
-#### `NoProduct` 
+#### [`NoProduct`](#)
 
 The proposal has no product specified
 
 
-#### `UnsupportedProduct` 
+#### [`UnsupportedProduct`](#)
 
 The specified product is not supported
 
 
-#### `InvalidFutureMaturityTimestamp` 
+#### [`InvalidFutureMaturityTimestamp`](#)
 
 Invalid future maturity timestamp (expect RFC3339)
 
 
-#### `ProductMaturityIsPassed` 
+#### [`ProductMaturityIsPassed`](#)
 
 The product maturity is already in the past
 
 
-#### `NoTradingMode` 
+#### [`NoTradingMode`](#)
 
 The proposal has no trading mode
 
 
-#### `UnsupportedTradingMode` 
+#### [`UnsupportedTradingMode`](#)
 
 The proposal has an unsupported trading mode
 
 
-#### `NodeValidationFailed` 
+#### [`NodeValidationFailed`](#)
 
 The proposal failed node validation
 
 
-#### `MissingBuiltinAssetField` 
+#### [`MissingBuiltinAssetField`](#)
 
 A builtin asset configuration is missing
 
 
-#### `MissingERC20ContractAddress` 
+#### [`MissingERC20ContractAddress`](#)
 
 The ERC20 contract address is missing from an ERC20 asset proposal
 
 
-#### `InvalidAsset` 
+#### [`InvalidAsset`](#)
 
 The specified asset for the market proposal is invalid
 
 
-#### `IncompatibleTimestamps` 
+#### [`IncompatibleTimestamps`](#)
 
 proposal terms timestamps are not compatible (Validation &#x003C; Closing &#x003C; Enactment)
 
 
-#### `NoRiskParameters` 
+#### [`NoRiskParameters`](#)
 
 Risk parameters are missing from the market proposal
 
 
-#### `NetworkParameterInvalidKey` 
+#### [`NetworkParameterInvalidKey`](#)
 
 Invalid key in update network parameter proposal
 
 
-#### `NetworkParameterInvalidValue` 
+#### [`NetworkParameterInvalidValue`](#)
 
 Invalid value in update network parameter proposal
 
 
-#### `NetworkParameterValidationFailed` 
+#### [`NetworkParameterValidationFailed`](#)
 
 Validation failed for network parameter proposal
 
 
-#### `OpeningAuctionDurationTooSmall` 
+#### [`OpeningAuctionDurationTooSmall`](#)
 
 Opening auction duration is less than the network minimum opening auction time
 
 
-#### `OpeningAuctionDurationTooLarge` 
+#### [`OpeningAuctionDurationTooLarge`](#)
 
 Opening auction duration is more than the network minimum opening auction time
 
 
-#### `MarketMissingLiquidityCommitment` 
+#### [`MarketMissingLiquidityCommitment`](#)
 
 Market proposal is missing a liquidity commitment
 
 
-#### `CouldNotInstantiateMarket` 
+#### [`CouldNotInstantiateMarket`](#)
 
 Market proposal market could not be instantiate in execution
 
 
-#### `InvalidFutureProduct` 
+#### [`InvalidFutureProduct`](#)
 
 Market proposal market contained invalid product definition
 
 
-#### `MissingCommitmentAmount` 
+#### [`MissingCommitmentAmount`](#)
 
 Market proposal is missing commitment amount
 
 
-#### `InvalidFeeAmount` 
+#### [`InvalidFeeAmount`](#)
 
 Market proposal have invalid fee amount
 
 
-#### `InvalidShape` 
+#### [`InvalidShape`](#)
 
 Market proposal have one or more invalid shape
 
 
-#### `InvalidRiskParameter` 
+#### [`InvalidRiskParameter`](#)
 
 Market proposal use an invalid risk parameter
 
 
-#### `MajorityThresholdNotReached` 
+#### [`MajorityThresholdNotReached`](#)
 
 Proposal declined because the majority threshold was not reached
 
 
-#### `ParticipationThresholdNotReached` 
+#### [`ParticipationThresholdNotReached`](#)
 
 Proposal declined because the participation threshold was not reached
 
 
-#### `InvalidAssetDetails` 
+#### [`InvalidAssetDetails`](#)
 
 Asset details are invalid
+
+
+#### [`TooManyPriceMonitoringTriggers`](#)
+
+Too many price monitoring triggers specified in market
+
+
+#### [`TooManyMarketDecimalPlaces`](#)
+
+Too many decimal places specified in market
+
+
+#### [`InvalidMarket`](#)
+
+The market is invalid
+
+
+#### [`InsufficientEquityLikeShare`](#)
+
+The proposal is rejected because the party do not have enough equity like share in the market
 
 
 

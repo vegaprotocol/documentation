@@ -1,6 +1,7 @@
 ---
 id: transfer
 title: Transfer
+hide_table_of_contents: false
 ---
 
 
@@ -25,57 +26,57 @@ type Transfer {
 
 ### Fields
 
-#### `id` ([`ID`](/docs/testnet/graphql/scalars/id))
+#### [`id`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
 
 Identified of this transfer
 
 
-#### `from` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`from`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 The public key of the sender in this transfer
 
 
-#### `fromAccountType` ([`AccountType`](/docs/testnet/graphql/enums/account-type))
+#### [`fromAccountType`](#) ([`AccountType!`](/docs/testnet/graphql/enums/account-type))
 
 The account type from which funds have been sent from
 
 
-#### `to` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`to`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 The public key of the received of the funds
 
 
-#### `toAccountType` ([`AccountType`](/docs/testnet/graphql/enums/account-type))
+#### [`toAccountType`](#) ([`AccountType!`](/docs/testnet/graphql/enums/account-type))
 
 The account type which has received the funds
 
 
-#### `asset` ([`Asset`](/docs/testnet/graphql/objects/asset))
+#### [`asset`](#) ([`Asset`](/docs/testnet/graphql/objects/asset))
 
 The asset
 
 
-#### `amount` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`amount`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 The amount sent
 
 
-#### `reference` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`reference`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
 An optional reference
 
 
-#### `status` ([`TransferStatus`](/docs/testnet/graphql/enums/transfer-status))
+#### [`status`](#) ([`TransferStatus!`](/docs/testnet/graphql/enums/transfer-status))
 
 The status of this transfer
 
 
-#### `timestamp` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`timestamp`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 The time at which the transfer was submitted
 
 
-#### `kind` ([`TransferKind`](/docs/testnet/graphql/unions/transfer-kind))
+#### [`kind`](#) ([`TransferKind!`](/docs/testnet/graphql/unions/transfer-kind))
 
 
 

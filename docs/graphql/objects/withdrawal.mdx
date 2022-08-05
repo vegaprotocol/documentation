@@ -1,6 +1,7 @@
 ---
 id: withdrawal
 title: Withdrawal
+hide_table_of_contents: false
 ---
 
 
@@ -25,57 +26,57 @@ type Withdrawal {
 
 ### Fields
 
-#### `id` ([`ID`](/docs/testnet/graphql/scalars/id))
+#### [`id`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
 
 The Vega internal id of the withdrawal
 
 
-#### `party` ([`Party`](/docs/testnet/graphql/objects/party))
+#### [`party`](#) ([`Party!`](/docs/testnet/graphql/objects/party))
 
 The PartyID initiating the withdrawal
 
 
-#### `amount` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`amount`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 The amount to be withdrawn
 
 
-#### `asset` ([`Asset`](/docs/testnet/graphql/objects/asset))
+#### [`asset`](#) ([`Asset!`](/docs/testnet/graphql/objects/asset))
 
 The asset to be withdrawn
 
 
-#### `status` ([`WithdrawalStatus`](/docs/testnet/graphql/enums/withdrawal-status))
+#### [`status`](#) ([`WithdrawalStatus!`](/docs/testnet/graphql/enums/withdrawal-status))
 
 The current status of the withdrawal
 
 
-#### `ref` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`ref`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 A reference the foreign chain can use to refer to when processing the withdrawal
 
 
-#### `expiry` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`expiry`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 RFC3339Nano time until the withdrawal will be invalid
 
 
-#### `createdTimestamp` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`createdTimestamp`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 RFC3339Nano time at which the withdrawal was created
 
 
-#### `withdrawnTimestamp` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`withdrawnTimestamp`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
 RFC3339Nano time at which the withdrawal was finalized
 
 
-#### `txHash` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`txHash`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
 Hash of the transaction on the foreign chain
 
 
-#### `details` ([`WithdrawalDetails`](/docs/testnet/graphql/unions/withdrawal-details))
+#### [`details`](#) ([`WithdrawalDetails`](/docs/testnet/graphql/unions/withdrawal-details))
 
 Foreign chain specific details about the withdrawal
 

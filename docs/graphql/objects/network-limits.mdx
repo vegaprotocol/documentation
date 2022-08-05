@@ -1,6 +1,7 @@
 ---
 id: network-limits
 title: NetworkLimits
+hide_table_of_contents: false
 ---
 
 
@@ -23,47 +24,47 @@ type NetworkLimits {
 
 ### Fields
 
-#### `canProposeMarket` ([`Boolean`](/docs/testnet/graphql/scalars/boolean))
+#### [`canProposeMarket`](#) ([`Boolean!`](/docs/testnet/graphql/scalars/boolean))
 
 Are market proposals allowed at this point in time
 
 
-#### `canProposeAsset` ([`Boolean`](/docs/testnet/graphql/scalars/boolean))
+#### [`canProposeAsset`](#) ([`Boolean!`](/docs/testnet/graphql/scalars/boolean))
 
 Are asset proposals allowed at this point in time
 
 
-#### `bootstrapFinished` ([`Boolean`](/docs/testnet/graphql/scalars/boolean))
+#### [`bootstrapFinished`](#) ([`Boolean!`](/docs/testnet/graphql/scalars/boolean))
 
 True once block count &#x003E; bootstrapBlockCount
 
 
-#### `proposeMarketEnabled` ([`Boolean`](/docs/testnet/graphql/scalars/boolean))
+#### [`proposeMarketEnabled`](#) ([`Boolean!`](/docs/testnet/graphql/scalars/boolean))
 
 Are market proposals enabled on this chain
 
 
-#### `proposeAssetEnabled` ([`Boolean`](/docs/testnet/graphql/scalars/boolean))
+#### [`proposeAssetEnabled`](#) ([`Boolean!`](/docs/testnet/graphql/scalars/boolean))
 
 Are asset proposals enabled on this chain
 
 
-#### `bootstrapBlockCount` ([`Int`](/docs/testnet/graphql/scalars/int))
+#### [`bootstrapBlockCount`](#) ([`Int!`](/docs/testnet/graphql/scalars/int))
 
 How many blocks before the chain comes out of bootstrap mode
 
 
-#### `genesisLoaded` ([`Boolean`](/docs/testnet/graphql/scalars/boolean))
+#### [`genesisLoaded`](#) ([`Boolean!`](/docs/testnet/graphql/scalars/boolean))
 
 True once the genesis file is loaded
 
 
-#### `proposeMarketEnabledFrom` ([`Timestamp`](/docs/testnet/graphql/scalars/timestamp))
+#### [`proposeMarketEnabledFrom`](#) ([`Timestamp!`](/docs/testnet/graphql/scalars/timestamp))
 
 The date/timestamp in unix nanoseconds at which market proposals will be enabled (0 indicates not set)
 
 
-#### `proposeAssetEnabledFrom` ([`Timestamp`](/docs/testnet/graphql/scalars/timestamp))
+#### [`proposeAssetEnabledFrom`](#) ([`Timestamp!`](/docs/testnet/graphql/scalars/timestamp))
 
 The date/timestamp in unix nanoseconds at which asset proposals will be enabled (0 indicates not set)
 

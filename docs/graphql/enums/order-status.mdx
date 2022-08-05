@@ -1,6 +1,7 @@
 ---
 id: order-status
 title: OrderStatus
+hide_table_of_contents: false
 ---
 
 
@@ -22,43 +23,43 @@ enum OrderStatus {
 
 ### Values
 
-#### `Active` 
+#### [`Active`](#)
 
 The order is active and not cancelled or expired, it could be unfilled, partially filled or fully filled.
 Active does not necessarily mean it's still on the order book.
 
 
-#### `Expired` 
+#### [`Expired`](#)
 
 This order trades any amount and as much as possible and remains on the book until it either trades completely or expires.
 
 
-#### `Cancelled` 
+#### [`Cancelled`](#)
 
 The order is cancelled, the order could be partially filled or unfilled before it was cancelled. It is not possible to cancel an order with 0 remaining.
 
 
-#### `Stopped` 
+#### [`Stopped`](#)
 
 This order was of type IOC or FOK and could not be processed by the matching engine due to lack of liquidity.
 
 
-#### `Filled` 
+#### [`Filled`](#)
 
 This order is fully filled with remaining equals zero.
 
 
-#### `Rejected` 
+#### [`Rejected`](#)
 
 This order was rejected while being processed in the core.
 
 
-#### `PartiallyFilled` 
+#### [`PartiallyFilled`](#)
 
 This order was partially filled.
 
 
-#### `Parked` 
+#### [`Parked`](#)
 
 This order has been removed from the order book and applies to pegged orders only
 

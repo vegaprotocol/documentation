@@ -1,6 +1,7 @@
 ---
 id: proposal-rationale
 title: ProposalRationale
+hide_table_of_contents: false
 ---
 
 
@@ -17,14 +18,14 @@ type ProposalRationale {
 
 ### Fields
 
-#### `description` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`description`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 Description to show a short title / something in case the link goes offline.
 This is to be between 0 and 1024 unicode characters.
 This is mandatory for all proposal.
 
 
-#### `hash` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`hash`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
 Cryptographically secure hash (SHA3-512) of the text pointed by the `url` property
 so that viewers can check that the text hasn't been changed over time.
@@ -32,7 +33,7 @@ Optional except for FreeFrom proposal where it's mandatory.
 If set, the `url` property must be set.
 
 
-#### `url` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`url`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
 Link to a text file describing the proposal in depth.
 Optional except for FreeFrom proposal where it's mandatory.

@@ -1,6 +1,7 @@
 ---
 id: price-monitoring-trigger
 title: PriceMonitoringTrigger
+hide_table_of_contents: false
 ---
 
 
@@ -17,17 +18,17 @@ type PriceMonitoringTrigger {
 
 ### Fields
 
-#### `horizonSecs` ([`Int`](/docs/testnet/graphql/scalars/int))
+#### [`horizonSecs`](#) ([`Int!`](/docs/testnet/graphql/scalars/int))
 
 Price monitoring projection horizon τ in seconds (&#x003E; 0).
 
 
-#### `probability` ([`Float`](/docs/testnet/graphql/scalars/float))
+#### [`probability`](#) ([`Float!`](/docs/testnet/graphql/scalars/float))
 
 Price monitoring probability level p. (&#x003E;0 and &#x003C; 1)
 
 
-#### `auctionExtensionSecs` ([`Int`](/docs/testnet/graphql/scalars/int))
+#### [`auctionExtensionSecs`](#) ([`Int!`](/docs/testnet/graphql/scalars/int))
 
 Price monitoring auction extension duration in seconds should the price
 breach it's theoretical level over the specified horizon at the specified

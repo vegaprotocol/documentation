@@ -1,6 +1,7 @@
 ---
 id: market-state
 title: MarketState
+hide_table_of_contents: false
 ---
 
 
@@ -23,49 +24,49 @@ enum MarketState {
 
 ### Values
 
-#### `Proposed` 
+#### [`Proposed`](#)
 
 The Governance proposal valid and accepted
 
 
-#### `Rejected` 
+#### [`Rejected`](#)
 
 Outcome of governance votes is to reject the market
 
 
-#### `Pending` 
+#### [`Pending`](#)
 
 Governance vote passes/wins
 
 
-#### `Cancelled` 
+#### [`Cancelled`](#)
 
 Market triggers cancellation condition or governance
 votes to close before market becomes Active
 
 
-#### `Active` 
+#### [`Active`](#)
 
 Enactment date reached and usual auction exit checks pass
 
 
-#### `Suspended` 
+#### [`Suspended`](#)
 
 Price monitoring or liquidity monitoring trigger
 
 
-#### `Closed` 
+#### [`Closed`](#)
 
 Governance vote (to close)
 
 
-#### `TradingTerminated` 
+#### [`TradingTerminated`](#)
 
 Defined by the product (i.e. from a product parameter,
 specified in market definition, giving close date/time)
 
 
-#### `Settled` 
+#### [`Settled`](#)
 
 Settlement triggered and completed as defined by product
 

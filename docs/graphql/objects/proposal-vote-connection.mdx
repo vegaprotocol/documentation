@@ -1,0 +1,37 @@
+---
+id: proposal-vote-connection
+title: ProposalVoteConnection
+hide_table_of_contents: false
+---
+
+
+No description
+
+```graphql
+type ProposalVoteConnection {
+  totalCount: Int
+  edges: [ProposalVoteEdge!]
+  pageInfo: PageInfo
+}
+```
+
+
+### Fields
+
+#### [`totalCount`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
+
+The total number of proposal votes in this connection
+
+
+#### [`edges`](#) ([`[ProposalVoteEdge!]`](/docs/testnet/graphql/objects/proposal-vote-edge))
+
+The proposal votes in this connection
+
+
+#### [`pageInfo`](#) ([`PageInfo`](/docs/testnet/graphql/objects/page-info))
+
+The pagination information
+
+
+
+
