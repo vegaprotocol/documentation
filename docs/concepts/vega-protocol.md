@@ -270,10 +270,10 @@ Once a successful withdrawal transaction has occurred, the ERC20 bridge will emi
 
 **Read more**: [ERC20 bridge logic API documentation](../api/bridge/contracts/ERC20_Bridge_Logic.md#withdraw_asset)
 
-### Diagram: Withdrawals
+#### Diagram: Withdrawals
 ![Withdrawal diagram](/img/concept-diagrams/diagram-withdraw.png)
 
-##### Withdrawing staked (unlocked) VEGA
+#### Withdrawing staked (unlocked) VEGA
 VEGA (an ERC20 token) used for staking is associated with a Vega key. To withdraw unlocked tokens and withdraw them, they must be dissociated first.
 
 Rewards accrued through staking are not associated automatically. To stake those tokens or transfer them, they need to be withdrawn from the Vega key that the rewards are credited to, and sent to an Ethereum wallet.
@@ -295,7 +295,7 @@ Anyone with a Vega public key and assets (such as the VEGA token) can set up a t
 Transfers can be set up to happen only once, or can happen repeatedly.
 
 :::info
-Set up transfers with your Vega wallet using the command line. Find out how in the [transfers guide](../tutorials/transferring-assets.md).
+Set up transfers with your Vega wallet using the command line. Find out how in the **[transfers guide](../tutorials/transferring-assets.md)**.
 :::
 
 #### Transfer limits
@@ -311,10 +311,9 @@ A party can also setup recurring transfers that will happen at the end of each e
 A recurring transfer transaction needs to contain the following:
 * How much is available to transfer
 * The starting epoch for the transfer
-* Optionally, the end epoch when the transfers should stop. If it's not specified, the transfer run until cancelled.
-* The percentage of the full amount to pay each epoch, which is defined using the factor - a decimal. (see below)
-
-    The amount paid at the end of each epoch is calculated using the following formula: `amount = start amount x factor ^ (current epoch - start epoch)`
+* Optionally, the end epoch when the transfers should stop. If it's not specified, the transfer run until cancelled
+* The percentage of the full amount to pay each epoch, which is defined using the factor - a decimal
+  - The amount paid at the end of each epoch is calculated using the following formula: `amount = start amount x factor ^ (current epoch - start epoch)`
 
 #### Cancel or amend transfers
 It's possible to cancel a recurring transfer, but not to amend. If you want to change your transfer, you'll need to cancel the existing transfer and submit a new one.

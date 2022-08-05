@@ -7,7 +7,7 @@ import TabItem from '@theme/TabItem';
 
 You can send assets to another Vega key or to a reward pool using transfers. Transfers can be one-off, or they can be set up to happen over and over again, at least while the key sending the assets has enough money to keep the transfers going. 
 
-### Key requirements:
+### Key requirements
 To set up a transfer, you'll need:
 * **Vega public key** that the assets are coming from
 * **Public key or [account type](../grpc/vega/vega.proto.mdx#accounttype)** (either the number or `ACCOUNT_TYPE_.."`) that the assets are going to
