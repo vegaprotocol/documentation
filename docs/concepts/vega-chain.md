@@ -139,7 +139,7 @@ At the end of each epoch, reward payments are calculated per active validator, a
 Read more: [Risks of over-staked validators](#too-much-stake)
  
 :::note Further reading
-**[Staking rewards spec](https://github.com/vegaprotocol/specs/blob/main/protocol/0058-REWS-simple_pos_rewards.md)** - more detail on how rewards are calculated and will be in future iterations. 
+**[Staking rewards spec](https://github.com/vegaprotocol/specs/blob/master/protocol/0061-REWP-pos_rewards.md)** - more detail on how rewards are calculated and will be in future iterations. 
 :::
 
 ### Penalties

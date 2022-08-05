@@ -112,7 +112,7 @@ Or use the following command to create a new keystore and save it in the node wa
 vega nodewallet generate --chain=ethereum --home="path/to/home" --wallet-passphrase-file="file/containing/account/passphrase"
 ```
 
-#### Vega wallet
+### Vega wallet
 We recommend you use an isolated key. 
 
 Read the guide on how to isolate Vega wallet keys: [Isolate keys](../tools/vega-wallet/cli-wallet/latest/guides/isolate-keys.md)

@@ -1,5 +1,5 @@
 ---
-title: Using oracle data
+title: Use oracle data
 hide_title: false
 ---
 
