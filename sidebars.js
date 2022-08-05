@@ -25,7 +25,7 @@ module.exports = {
         },
       ],
     },
-    {
+    /*{
       type: "category",
       label: "How-to guides",
       collapsed: true,
@@ -35,7 +35,7 @@ module.exports = {
           dirName: "howto",
         },
       ],
-    },
+    },*/
     {
       type: "doc",
       label: "GraphQL",
