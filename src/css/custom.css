@@ -10,7 +10,7 @@
   --vega-green: #00F780; 
   --vega-yellow: #DFFF0B;
   --vega-pink: #FF077F;
-
+  --vega-pink-faded: rgba(255, 191, 223);
   --ifm-color-primary: var(--vega-green);
   --ifm-color-primary-dark: var(--vega-green);
   --ifm-color-primary-darker: var(--vega-green);
@@ -87,4 +87,43 @@ html[data-theme="dark"] .hero--primary {
   display: block;
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
+}
+
+.gitpod {
+  position: relative;
+  left: 5px;
+  bottom: 0.7em;
+  font-size: small;
+}
+
+.networkparameter {
+  position: relative;
+  display: inline-block;
+  background: var(--vega-pink-faded);
+  border-radius: 3px;
+  padding: 0 0.2em;
+  border: 1px solid transparent;
+  cursor: pointer;
+  color: #000;
+  text-decoration: none;
+}
+
+.networkparameter--live {
+  border: 1px solid var(--vega-pink);
+}
+
+.networkparameter--buildtime {
+  border: 1px dotted var(--vega-pink);
+}
+
+.networkparameter:hover {
+  text-decoration: none;
+}
+
+.networkparametername {
+  font-weight: bold;
+}
+
+.networkparametericon {
+  margin-right: 0.2em;
 }

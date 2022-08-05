@@ -198,19 +198,14 @@ module.exports = {
           versions: {
             current: {
               banner: "unreleased",
-              label: "testnet (v0.52)",
+              label: "testnet (v0.53)",
               path: "testnet",
             },
             "v0.50.2": {
               banner: "none",
               label: "mainnet (v0.50)",
               path: "mainnet",
-            },
-             "v0.47.0": {
-              banner: "unmaintained",
-              label: "v0.47",
-              path: "v0.47",
-            },
+            }
           },
         },
         // Vega specific theme overrides go here
@@ -236,47 +231,7 @@ module.exports = {
         // start-rest-versions
         specs: [
           {
-            id: "trading-v0.47.0",
-            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/data-node/api/v1/trading_data.swagger.json",
-            route: "/docs/v0.47/api/rest/data-node/data",
-            layout: {
-              searchMetaDatas: {
-                version: "v0.47.6",
-              },
-            },
-          },
-          {
-            id: "core-v0.47.0",
-            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/vega/api/v1/core.swagger.json",
-            route: "/docs/v0.47/api/rest/core/core",
-            layout: {
-              searchMetaDatas: {
-                version: "v0.47.0",
-              },
-            },
-          },
-          {
-            id: "proxy-v0.47.0",
-            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/data-node/api/v1/trading_proxy.swagger.json",
-            route: "/docs/v0.47/api/rest/data-node/proxy",
-            layout: {
-              searchMetaDatas: {
-                version: "v0.47.0",
-              },
-            },
-          },
-          {
-            id: "state-v0.47.0",
-            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.47.0/swagger/data-node/api/v1/trading_data.swagger.json",
-            route: "/docs/v0.47/api/rest/core/state",
-            layout: {
-              searchMetaDatas: {
-                version: "v0.47.0",
-              },
-            },
-          },
-          {
-            id: "trading-v0.50.1",
+            id: "trading-v0501",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/data-node/api/v1/trading_data.swagger.json",
             route: "/docs/mainnet/api/rest/data-node/data",
             layout: {
@@ -286,7 +241,7 @@ module.exports = {
             },
           },
           {
-            id: "core-v0.50.1",
+            id: "core-v0501",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/vega/api/v1/core.swagger.json",
             route: "/docs/mainnet/api/rest/core/core",
             layout: {
@@ -296,7 +251,7 @@ module.exports = {
             },
           },
           {
-            id: "state-v0.50.1",
+            id: "state-v0501",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/vega/api/v1/corestate.swagger.json",
             route: "/docs/mainnet/api/rest/core/state",
             layout: {
@@ -306,32 +261,32 @@ module.exports = {
             },
           },
           {
-            id: "trading-v0.52.0",
-            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/data-node/api/v1/trading_data.swagger.json",
+            id: "trading-v0530",
+            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.53.0/swagger/data-node/api/v1/trading_data.swagger.json",
             route: "/docs/testnet/api/rest/data-node/data",
             layout: {
               searchMetaDatas: {
-                version: "v0.52.0",
+                version: "v0.53.0",
               },
             },
           },
           {
-            id: "core-v0.52.0",
-            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/vega/api/v1/core.swagger.json",
+            id: "core-v0530",
+            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.53.0/swagger/vega/api/v1/core.swagger.json",
             route: "/docs/testnet/api/rest/core/core",
             layout: {
               searchMetaDatas: {
-                version: "v0.52.0",
+                version: "v0.53.0",
               },
             },
           },
           {
-            id: "state-v0.52.0",
-            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/vega/api/v1/corestate.swagger.json",
+            id: "state-v0530",
+            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.53.0/swagger/vega/api/v1/corestate.swagger.json",
             route: "/docs/testnet/api/rest/core/state",
             layout: {
               searchMetaDatas: {
-                version: "v0.52.0",
+                version: "v0.53.0",
               },
             },
           },
@@ -340,5 +295,5 @@ module.exports = {
       },
     ],
   ],
-  themes: ["@saucelabs/theme-github-codeblock"],
+  themes: ["@vegaprotocol/docusaurus-theme-github-codeblock"],
 };

@@ -1,24 +1,18 @@
-/**
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-import React from "react";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import Link from "@docusaurus/Link";
-import Translate from "@docusaurus/Translate";
+import React from 'react';
+import clsx from 'clsx';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import Link from '@docusaurus/Link';
+import Translate from '@docusaurus/Translate';
 import {
   useActivePlugin,
   useDocVersionSuggestions,
-} from "@docusaurus/plugin-content-docs/client";
+} from '@docusaurus/plugin-content-docs/client';
+import {ThemeClassNames} from '@docusaurus/theme-common';
 import {
-  ThemeClassNames,
   useDocsPreferredVersion,
   useDocsVersion,
-} from "@docusaurus/theme-common";
-import clsx from "clsx";
-
-function UnreleasedVersionLabel({ siteTitle, versionMetadata }) {
+} from '@docusaurus/theme-common/internal';
+function UnreleasedVersionLabel({siteTitle, versionMetadata}) {
   return (
     <Translate
       id="theme.docs.versions.unreleasedVersionLabel"
@@ -26,14 +20,14 @@ function UnreleasedVersionLabel({ siteTitle, versionMetadata }) {
       values={{
         siteTitle,
         versionLabel: <b>{versionMetadata.label}</b>,
-      }}
-    >
-      {"This is documentation for {siteTitle} {versionLabel} version."}
+      }}>
+      {
+        'This is documentation for {siteTitle} {versionLabel} version.'
+      }
     </Translate>
   );
 }
-
-function UnmaintainedVersionLabel({ siteTitle, versionMetadata }) {
+function UnmaintainedVersionLabel({siteTitle, versionMetadata}) {
   return (
     <Translate
       id="theme.docs.versions.unmaintainedVersionLabel"
@@ -41,27 +35,23 @@ function UnmaintainedVersionLabel({ siteTitle, versionMetadata }) {
       values={{
         siteTitle,
         versionLabel: <b>{versionMetadata.label}</b>,
-      }}
-    >
+      }}>
       {
-        "This is documentation for {siteTitle} {versionLabel}, which is no longer actively maintained."
+        'This is documentation for {siteTitle} {versionLabel}, which is no longer actively maintained.'
       }
     </Translate>
   );
 }
-
 const BannerLabelComponents = {
   unreleased: UnreleasedVersionLabel,
   unmaintained: UnmaintainedVersionLabel,
 };
-
 function BannerLabel(props) {
   const BannerLabelComponent =
     BannerLabelComponents[props.versionMetadata.banner];
   return <BannerLabelComponent {...props} />;
 }
-
-function LatestVersionSuggestionLabel({ versionLabel, to, onClick }) {
+function LatestVersionSuggestionLabel({versionLabel, to, onClick}) {
   return (
     <Translate
       id="theme.docs.versions.latestVersionSuggestionLabel"
@@ -73,38 +63,31 @@ function LatestVersionSuggestionLabel({ versionLabel, to, onClick }) {
             <Link to={to} onClick={onClick}>
               <Translate
                 id="theme.docs.versions.latestVersionLinkLabel"
-                description="The label used for the latest version suggestion link label"
-              >
+                description="The label used for the latest version suggestion link label">
                 latest version
               </Translate>
             </Link>
           </b>
         ),
-      }}
-    >
+      }}>
       {
-        "For mainnet documentation, see the {latestVersionLink} ({versionLabel})."
+        'For mainnet documentation, see the {latestVersionLink} ({versionLabel}).'
       }
     </Translate>
   );
 }
-
-function DocVersionBannerEnabled({ className, versionMetadata }) {
+function DocVersionBannerEnabled({className, versionMetadata}) {
   const {
-    siteConfig: { title: siteTitle },
+    siteConfig: {title: siteTitle},
   } = useDocusaurusContext();
-  const { pluginId } = useActivePlugin({
-    failfast: true,
-  });
-
+  const {pluginId} = useActivePlugin({failfast: true});
   const getVersionMainDoc = (version) =>
     version.docs.find((doc) => doc.id === version.mainDocId);
-
-  const { savePreferredVersionName } = useDocsPreferredVersion(pluginId);
-  const { latestDocSuggestion, latestVersionSuggestion } =
-    useDocVersionSuggestions(pluginId); // try to link to same doc in latest version (not always possible)
-  // fallback to main doc of latest version
-
+  const {savePreferredVersionName} = useDocsPreferredVersion(pluginId);
+  const {latestDocSuggestion, latestVersionSuggestion} =
+    useDocVersionSuggestions(pluginId);
+  // Try to link to same doc in latest version (not always possible), falling
+  // back to main doc of latest version
   const latestVersionSuggestedDoc =
     latestDocSuggestion ?? getVersionMainDoc(latestVersionSuggestion);
   return (
@@ -112,10 +95,9 @@ function DocVersionBannerEnabled({ className, versionMetadata }) {
       className={clsx(
         className,
         ThemeClassNames.docs.docVersionBanner,
-        "alert alert--warning margin-bottom--md"
+        'alert alert--warning margin-bottom--md',
       )}
-      role="alert"
-    >
+      role="alert">
       <div>
         <BannerLabel siteTitle={siteTitle} versionMetadata={versionMetadata} />
       </div>
@@ -129,10 +111,8 @@ function DocVersionBannerEnabled({ className, versionMetadata }) {
     </div>
   );
 }
-
-export default function DocVersionBanner({ className }) {
+export default function DocVersionBanner({className}) {
   const versionMetadata = useDocsVersion();
-
   if (versionMetadata.banner) {
     return (
       <DocVersionBannerEnabled
@@ -141,6 +121,5 @@ export default function DocVersionBanner({ className }) {
       />
     );
   }
-
   return null;
 }

@@ -38,11 +38,16 @@ Before starting you will need both Git and Go 1.18 installed on your system. Git
 
 ### Environment set-up
 Set up the environment variables required to build both node binaries.
+
+Linux is the operating system we are compiling the node for in this example.
+
 ```Shell
-export GOOS=linux # The operating system we are compiling the node for in this example.
+export GOOS=linux 
 ```
+Amd64 is the architecture targeted. 
+
 ```Shell
-export GOARCH=amd64 # The architecture targeted.
+export GOARCH=amd64
 ```
 :::note
 
@@ -52,7 +57,7 @@ go tool dist list
 ```
 :::
 
-Both binaries can be build without the CGO support. Disable it with the following command:
+Both binaries can be built without the CGO support. Disable it with the following command:
 ```
 export CGO_ENABLED=0
 ```
@@ -65,7 +70,7 @@ git clone https://github.com/vegaprotocol/vega
 
 2. Build the Vega binary by running the following command from the root of the cloned repository:
 ```
-go build -v -ldflags "-X main.CLIVersion=`git describe --tags 2>/dev/null` -X main.CLIVersionHash=`git log -n 1 --pretty=format:"%H"`" ./cmd/vega
+go build -v ./cmd/vega
 ```
 
 This should result in a Vega binary built at the root of the repository. 
@@ -85,13 +90,18 @@ git clone https://github.com/vegaprotocol/data-node
 
 2. Build the data node binary by running the following command from the root of the cloned repository:
 ```
-go build -v -ldflags "-X main.CLIVersion=`git describe --tags 2>/dev/null` -X main.CLIVersionHash=`git log -n 1 --pretty=format:"%H"`" ./cmd/data-node
+go build -v ./cmd/data-node
 ```
 
 This will result in a Vega binary built at the root of the repository. 
 
-To ensure that the compilation was successful, run the following command:
+3. To ensure that the compilation was successful, run the following command:
 ```
 ./data-node version
 ```
 This will print the version of the binary you just built.
+
+### Data node requirement as of 0.53
+After building the data node, you will have to run a PostgreSQL server (starting with version 0.53). 
+
+There are several ways to do this, as described in the [data node readme](https://github.com/vegaprotocol/data-node/blob/develop/README.md). The simplest and recommended way to do this is **[using docker](https://github.com/vegaprotocol/data-node#using-docker)**, which is also described in the data node readme.

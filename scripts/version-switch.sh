@@ -12,15 +12,6 @@
 # - Pages that use <EthAddresses /> will need their frontmatter updated to reflect network
 # -----
 
-# Old docs
-## GraphQL fixup
-find 'versioned_docs/version-v0.47.0/graphql' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/mainnet\/graphql/\/docs\/v0.47\/graphql/g' {} +
-## GRPC fixup
-find 'versioned_docs/version-v0.47.0/grpc' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/mainnet\/grpc/\/docs\/v0.47\/grpc/g' {} +
-## Sidebar fixup
-sed -i -E 's/\/docs\/mainnet\//\/docs\/v0.47\//g' versioned_sidebars/version-v0.47.0-sidebars.json 
-
-
 # Mainnet docs
 ## Ensure all docs in the versioned folder link to /mainnet/
 find 'versioned_docs/version-v0.50.2/graphql' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/testnet\/graphql/\/docs\/mainnet\/graphql/g' {} +
@@ -34,6 +25,14 @@ sed -i -E 's/\/docs\/testnet\//\/docs\/mainnet\//g' versioned_sidebars/version-v
 find 'docs/graphql' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/graphql/\/docs\/testnet\/graphql/g' {} +
 ## Ensure grpxc graphql pages in /docs/ link to /testnet/
 find 'docs/grpc' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/grpc/\/docs\/testnet\/grpc/g' {} +
+
+## Ensure frontmatter for non-testnet docs is set to mainnets
+find 'versioned_docs/' -type f -name '*.mdx' -exec sed -i -E 's/vega_network: TESTNET/vega_network: MAINNET/g' {} +
+find 'versioned_docs/' -type f -name '*.mdx' -exec sed -i -E 's/ethereum_network: ROPSTEN/ethereum_network: MAINNET/g' {} +
+## Do the inverse, just in case
+find 'docs/' -type f -name '*.md' -exec sed -i -E 's/vega_network: MAINNET/vega_network: TESTNET/g' {} +
+find 'docs/' -type f -name '*.md' -exec sed -i -E 's/ethereum_network: MAINNET/ethereum_network: ROPSTEN/g' {} +
+
 
 # Tidy up any stray backup files from seds (non-gnused)
 find . -name "*-E" -exec rm -rf {} +

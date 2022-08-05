@@ -7,67 +7,24 @@ This repo currently includes documentation about the Vega restricted mainnet. Fo
 
 If you have any questions, drop them into Vega's [Discord](https://vega.xyz/discord), [Telegram](https://t.me/vegacommunity), or [Forum](https://community.vega.xyz).
 
-# Docusaurus
+# Software
 
-This website is built using [Docusaurus 2](https://docusaurus.io/).
+This website is built using [Docusaurus 2](https://docusaurus.io/). For more information on how to make changes in this repository, or how to run the site locally, [see CONTRIBUTING.md](./CONTRIBUTING.md).
 
-## Requirements
-For the scripts to work there must be an up to date version of `node` installed along with `yarn`.
-
-The best way to get the correct version of node is using the `nvm` utility which can be installed from these instructions:
-
-`https://github.com/nvm-sh/nvm#installing-and-updating`
-
-Once nvm is installed (check with `nvm --version`) you can run the following command from inside the root of the documentation folder to download and install the correct version of node required by the script:
-
-```
-> nvm install
-> npm --version
-```
-
-`Yarn` can be install by running:
-
-```
-> npm install -g yarn
-> yarn --version
-```
-
-The libraries needed by yarn can be installed by:
-
-```
-> yarn install
-```
-
-Lastly you need to have Python3 installed, you can check if you have by running:
-
-```
-> python3 --version
-```
-
-
-## Installation and local development
-
-Edit `scripts/generate-api-docs.sh` and update `vega_api_branch` to a new branch/tag as necessary.
-
-```console
-cd /path/to/src/github.com/vegaprotocol/documentation
-GITHUB_API_TOKEN=a1b2c3 ./scripts/generate-api-docs.sh
-```
-
-## Running locally
-
-```console
-yarn run serve
-```
-
-# API documentation
-
-## Plugins used
+## Docusaurus plugins
 - [docusaurus-protobuffet](https://www.npmjs.com/package/docusaurus-protobuffet) - Protobuf docs
 - [redocusaurus](https://www.npmjs.com/package/redocusaurus) - REST docs
 - [docusaurus2-graphql-doc-generator](https://www.npmjs.com/package/@edno/docusaurus2-graphql-doc-generator) - GraphQL docs
+- [docusaurus-search-local](https://github.com/easyops-cn/docusaurus-search-local) - 
 
-## Setup
+## Versioning
+All of the text content and API documentation is tied to a release version of the core. To understand how we used Docusaurus versioning, [see VERSIONING.md](./VERSIONING.md).
+
+## Configuration notes
 - GraphQL docs are generated in to `/docs/graphql/`
 - docusaurus-protobuffet-plugin is used to generate docs, but unlike the defaults setup generates them into the `/docs/` so as to avoid documenting them separately
-- New versions of REST docs are configured in `docusaurus.config.js`, as redocusaurus does not generate pages.
+- New versions of REST docs are configured in `docusaurus.config.js`
+- When copying between versions, some files (particularly ones with Ethereum addresses) need to be checked to ensure the [Frontmatter](https://docusaurus.io/docs/markdown-features#front-matter) point to the right networks 
+
+# [License](./LICENSE)
+MIT

@@ -128,8 +128,8 @@ You can also get a list of all paths used by your node using `vega paths list`. 
 
 You can now remove all previous states of the chain by running:
 ```
-vega --home="/path/to/vega/home unsafe_reset_all"
-vega tm --home="/path/to/tendermint/home unsafe_reset_all"
+vega unsafe_reset_all --home="/path/to/vega/home"
+vega tm unsafe_reset_all --home="/path/to/tendermint/home"
 rm -rf "/path/to/data-node/home/vega/data-node/storage/"
 ```
 
@@ -141,27 +141,19 @@ The exact path of the data-node folder to remove can be found using `vega paths 
 One of the validators will now need to update the [genesis file](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json) with the following information:
 - The new start date of the network
 - The new network ID
-- The hash of the checkpoint file to be used
+
+You'll then need to load the checkpoint data into the genesis file.
+
+To load the checkpoint in the genesis file use the following command:
+```
+vega genesis load_checkpoint --checkpoint-path="/path/to/checkpoint/file" --genesis-file="/path/to/genesis/file"
+```
 
 This should be done via a pull request on the [networks](https://github.com/vegaprotocol/networks) repo and ideally approved by 2/3+1 of all validators.
 
 ### Step 3: Restart the network
 
-:::note
-This is a critical step that needs to be done with all validators synchronously. (This will not be needed in future updates).
-:::
-
-All validators need to restart their node in a synchronous way. This is required as the network needs to synchronise its state with the Ethereum state in relation to the Vega token delegation to the Vega network. 
-
-This is done during the bootstrapping period, which happens during the first `N` blocks of the chain (`N` can be configured in the genesis file).
-
-During the bootstrapping no transactions from users can be emitted other than the transaction to submit the checkpoint. This should be done only once by **one** of the validators using the following command:
-```
-vega checkpoint restore --home="/path/to/vega/home" --passphrase-file="YOUR_NODEWALLET_PASSPHRASE_FILE" --checkpoint-file="/path/tothe/
-checkpoint/file"
-```
-
-Once this is done, you will need to monitor the network to make sure all delegation are recovered properly by the end of the bootstraping period.
+The validators can then restart the network. Once 2/3+1 of validators are online the network should start produce blocks.
 
 ### Deprecated
 The Ethereum event forwarder is no longer required. This should be removed from your infrastructure and not started. This service has been re-written and is now integrated in the Vega core node.
