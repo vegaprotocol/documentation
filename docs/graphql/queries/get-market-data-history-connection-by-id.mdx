@@ -1,6 +1,7 @@
 ---
 id: get-market-data-history-connection-by-id
 title: getMarketDataHistoryConnectionByID
+hide_table_of_contents: false
 ---
 
 
@@ -18,33 +19,33 @@ getMarketDataHistoryConnectionByID(
 
 ### Arguments
 
-#### `id` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`id`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 
 
 
-#### `start` ([`Int`](/docs/testnet/graphql/scalars/int))
+#### [`start`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
 
 Optional start date time for the historic data query.
 If both the start and end date is not provided, only the latest snapshot will be returned.
 If only the start date is provided, all market data for the market from the start date forward will be returned.
 
 
-#### `end` ([`Int`](/docs/testnet/graphql/scalars/int))
+#### [`end`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
 
 Optional end date time for the historic data query.
 If both the start and end date is not provided, only the latest snapshot will be returned.
 If only the end date is provided, all market data for the market up to and including the end date will be returned.
 
 
-#### `pagination` ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+#### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
 
 Optional Pagination
 
 
 ### Type
 
-#### [`MarketDataConnection`](/docs/testnet/graphql/objects/market-data-connection) 
+#### [`MarketDataConnection`](/docs/testnet/graphql/objects/market-data-connection)
 
 
 

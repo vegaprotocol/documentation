@@ -1,6 +1,7 @@
 ---
 id: oracle-spec
 title: OracleSpec
+hide_table_of_contents: false
 ---
 
 
@@ -16,48 +17,59 @@ type OracleSpec {
   filters: [Filter!]
   status: OracleSpecStatus!
   data: [OracleData!]!
+  dataConnection(
+  pagination: Pagination
+): OracleDataConnection!
 }
 ```
 
 
 ### Fields
 
-#### `id` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`id`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 id is a hash generated from the OracleSpec data.
 
 
-#### `createdAt` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`createdAt`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 RFC3339Nano creation date time
 
 
-#### `updatedAt` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`updatedAt`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
 RFC3339Nano last updated timestamp
 
 
-#### `pubKeys` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`pubKeys`](#) ([`[String!]`](/docs/testnet/graphql/scalars/string))
 
 pubKeys is the list of authorized public keys that signed the data for this
 oracle. All the public keys in the oracle data should be contained in these
 public keys.
 
 
-#### `filters` ([`Filter`](/docs/testnet/graphql/objects/filter))
+#### [`filters`](#) ([`[Filter!]`](/docs/testnet/graphql/objects/filter))
 
 filters describes which oracle data are considered of interest or not for
 the product (or the risk model).
 
 
-#### `status` ([`OracleSpecStatus`](/docs/testnet/graphql/enums/oracle-spec-status))
+#### [`status`](#) ([`OracleSpecStatus!`](/docs/testnet/graphql/enums/oracle-spec-status))
 
 status describes the status of the oracle spec
 
 
-#### `data` ([`OracleData`](/docs/testnet/graphql/objects/oracle-data))
+#### [`data`](#) ([`[OracleData!]!`](/docs/testnet/graphql/objects/oracle-data))
 
 data list all the oracle data broadcast to this spec
+
+
+#### [`dataConnection`](#) ([`OracleDataConnection!`](/docs/testnet/graphql/objects/oracle-data-connection))
+
+data list all the oracle data broadcast to this spec
+- ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+
 
 
 

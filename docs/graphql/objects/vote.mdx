@@ -1,6 +1,7 @@
 ---
 id: vote
 title: Vote
+hide_table_of_contents: false
 ---
 
 
@@ -20,32 +21,32 @@ type Vote {
 
 ### Fields
 
-#### `value` ([`VoteValue`](/docs/testnet/graphql/enums/vote-value))
+#### [`value`](#) ([`VoteValue!`](/docs/testnet/graphql/enums/vote-value))
 
 The vote value cast
 
 
-#### `party` ([`Party`](/docs/testnet/graphql/objects/party))
+#### [`party`](#) ([`Party!`](/docs/testnet/graphql/objects/party))
 
 The party casting the vote
 
 
-#### `datetime` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`datetime`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 RFC3339Nano time and date when the vote reached Vega network
 
 
-#### `proposalId` ([`ID`](/docs/testnet/graphql/scalars/id))
+#### [`proposalId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
 
 The ID of the proposal this vote applies to
 
 
-#### `governanceTokenBalance` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`governanceTokenBalance`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 Total number of governance token for the party that casted the vote
 
 
-#### `governanceTokenWeight` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`governanceTokenWeight`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 The weight of this vote based on the total of governance token
 

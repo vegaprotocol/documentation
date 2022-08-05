@@ -1,6 +1,7 @@
 ---
 id: withdrawal-status
 title: WithdrawalStatus
+hide_table_of_contents: false
 ---
 
 
@@ -17,17 +18,17 @@ enum WithdrawalStatus {
 
 ### Values
 
-#### `Open` 
+#### [`Open`](#)
 
 The withdrawal is open and being processed by the network
 
 
-#### `Rejected` 
+#### [`Rejected`](#)
 
 The withdrawal have been cancelled by the network, either because it expired, or something went wrong with the foreign chain
 
 
-#### `Finalized` 
+#### [`Finalized`](#)
 
 The withdrawal was finalized, it was first valid, the foreign chain have executed it and the network updated all accounts
 

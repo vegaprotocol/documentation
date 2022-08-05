@@ -1,6 +1,7 @@
 ---
 id: market-depth-update
 title: MarketDepthUpdate
+hide_table_of_contents: false
 ---
 
 
@@ -20,27 +21,27 @@ type MarketDepthUpdate {
 
 ### Fields
 
-#### `market` ([`Market`](/docs/testnet/graphql/objects/market))
+#### [`market`](#) ([`Market!`](/docs/testnet/graphql/objects/market))
 
 Market id
 
 
-#### `buy` ([`PriceLevel`](/docs/testnet/graphql/objects/price-level))
+#### [`buy`](#) ([`[PriceLevel!]`](/docs/testnet/graphql/objects/price-level))
 
 Buy side price levels (if available)
 
 
-#### `sell` ([`PriceLevel`](/docs/testnet/graphql/objects/price-level))
+#### [`sell`](#) ([`[PriceLevel!]`](/docs/testnet/graphql/objects/price-level))
 
 Sell side price levels (if available)
 
 
-#### `sequenceNumber` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`sequenceNumber`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 Sequence number for the current snapshot of the market depth. It is always increasing but not monotonic.
 
 
-#### `previousSequenceNumber` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`previousSequenceNumber`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 Sequence number of the last update sent; useful for checking that no updates were missed.
 

@@ -11,7 +11,7 @@ You can send assets to another Vega key or to a reward pool using transfers. Tra
 To set up a transfer, you'll need:
 * **Vega public key** that the assets are coming from
 * **Public key or [account type](../grpc/vega/vega.proto.mdx#accounttype)** (either the number or `ACCOUNT_TYPE_.."`) that the assets are going to
-* **[Asset ID](../graphql/queries/assets.mdx)** for the asset you want to transfer. 
+* **[Asset ID](../graphql/queries/assets-connection.mdx)** for the asset you want to transfer. 
 * Use the **same key pair** to sign the transaction, because the funds have to come from a key you control
 * **Transfer amount**, which must be written with no decimal point, but include all decimal places. The amount in the below examples is based on an 18 decimal point asset, and so these transfers would allot 1 tVEGA for transferring
 
@@ -206,7 +206,7 @@ vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network f
 </Tabs>
 
 ### Cancelling recurring transfers
-To cancel a recurring transfer, you'll need the transfer's ID. To see the ID for every transfer your public key makes, [run a transfers GraphQL query](../graphql/queries/transfers.mdx) to see the ID for every transfer you make.
+To cancel a recurring transfer, you'll need the transfer's ID. To see the ID for every transfer your public key makes, [run a transfers GraphQL query](../graphql/queries/transfers-connection.mdx) to see the ID for every transfer you make.
 
 <Tabs groupId="canceltransfer">
 <TabItem value="canceltransferLinuxcmd" label="Linux / OSX command line">

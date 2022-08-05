@@ -1,6 +1,7 @@
 ---
 id: order-by-id
 title: orderByID
+hide_table_of_contents: false
 ---
 
 
@@ -16,19 +17,19 @@ orderByID(
 
 ### Arguments
 
-#### `orderId` ([`ID`](/docs/testnet/graphql/scalars/id))
+#### [`orderId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
 
 ID for an order
 
 
-#### `version` ([`Int`](/docs/testnet/graphql/scalars/int))
+#### [`version`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
 
 version of the order (omitted or 0 for most recent; 1 for original; 2 for first amendment, etc)
 
 
 ### Type
 
-#### [`Order`](/docs/testnet/graphql/objects/order) 
+#### [`Order`](/docs/testnet/graphql/objects/order)
 
 An order in Vega, if active it will be on the OrderBook for the market
 

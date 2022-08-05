@@ -1,6 +1,7 @@
 ---
 id: erc-20-withdrawal-approval
 title: Erc20WithdrawalApproval
+hide_table_of_contents: false
 ---
 
 
@@ -21,38 +22,38 @@ type Erc20WithdrawalApproval {
 
 ### Fields
 
-#### `assetSource` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`assetSource`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 The source asset in the ethereum network
 
 
-#### `amount` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`amount`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 The amount to be withdrawn
 
 
-#### `expiry` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`expiry`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 Timestamp in seconds for expiry of the approval
 
 
-#### `nonce` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`nonce`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 The nonce to be used in the request
 
 
-#### `signatures` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`signatures`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 Signature aggregate from the nodes, in the following format:
 0x + sig1 + sig2 + ... + sigN
 
 
-#### `targetAddress` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`targetAddress`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 The target address which will receive the funds
 
 
-#### `creation` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`creation`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 Timestamp at which the withdrawal was created
 

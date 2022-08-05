@@ -1,6 +1,6 @@
 ---
 title: markets.proto
-hide_title: false
+hide_title: true
 ---
 
 import { ProtoMessage, ProtoServiceMethod, ProtoEnum } from '@theme/ProtoFile';
@@ -18,7 +18,7 @@ _**package** vega_
 
 
 ### `AuctionDuration`
-<ProtoMessage key={0} message={{"name":"AuctionDuration","longName":"AuctionDuration","fullName":"vega.AuctionDuration","description":"An auction duration is used to configure 3 auction periods:\n1. `duration > 0`, `volume == 0`:\n  The auction will last for at least N seconds\n2. `duration == 0`, `volume > 0`:\n  The auction will end once we can close with given traded volume\n3. `duration > 0`, `volume > 0`:\n  The auction will take at least N seconds, but can end sooner if we can trade a certain volume","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"duration","description":"Duration of the auction in seconds","label":"","type":"int64","longType":"int64","fullType":"int64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"volume","description":"Target uncrossing trading volume","label":"","type":"uint64","longType":"uint64","fullType":"uint64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+<ProtoMessage key={0} message={{"name":"AuctionDuration","longName":"AuctionDuration","fullName":"vega.AuctionDuration","description":"An auction duration is used to configure 3 auction periods:\n1. `duration > 0`, `volume == 0`:\n  The auction will last for at least N seconds\n2. `duration == 0`, `volume > 0`:\n  The auction will end once the given volume will match at uncrossing\n3. `duration > 0`, `volume > 0`:\n  The auction will take at least N seconds, but can end sooner if the market can trade a certain volume","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"duration","description":"Duration of the auction in seconds","label":"","type":"int64","longType":"int64","fullType":"int64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"volume","description":"Target uncrossing trading volume","label":"","type":"uint64","longType":"uint64","fullType":"uint64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
 
 
 ### `FeeFactors`
@@ -74,7 +74,7 @@ _**package** vega_
 
 
 ### `PriceMonitoringSettings`
-<ProtoMessage key={14} message={{"name":"PriceMonitoringSettings","longName":"PriceMonitoringSettings","fullName":"vega.PriceMonitoringSettings","description":"PriceMonitoringSettings contains the settings for price monitoring","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"parameters","description":"Specifies price monitoring parameters to be used for price monitoring purposes","label":"","type":"PriceMonitoringParameters","longType":"PriceMonitoringParameters","fullType":"vega.PriceMonitoringParameters","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/docs/testnet/grpc/vega/markets.proto#pricemonitoringparameters"},{"name":"update_frequency","description":"Specifies how often (expressed in seconds) the price monitoring bounds should be updated","label":"","type":"int64","longType":"int64","fullType":"int64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+<ProtoMessage key={14} message={{"name":"PriceMonitoringSettings","longName":"PriceMonitoringSettings","fullName":"vega.PriceMonitoringSettings","description":"PriceMonitoringSettings contains the settings for price monitoring","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"parameters","description":"Specifies price monitoring parameters to be used for price monitoring purposes","label":"","type":"PriceMonitoringParameters","longType":"PriceMonitoringParameters","fullType":"vega.PriceMonitoringParameters","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/docs/testnet/grpc/vega/markets.proto#pricemonitoringparameters"}]}} />
 
 
 ### `PriceMonitoringTrigger`

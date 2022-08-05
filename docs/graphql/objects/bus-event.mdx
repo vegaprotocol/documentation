@@ -1,6 +1,7 @@
 ---
 id: bus-event
 title: BusEvent
+hide_table_of_contents: false
 ---
 
 
@@ -18,22 +19,22 @@ type BusEvent {
 
 ### Fields
 
-#### `eventId` ([`ID`](/docs/testnet/graphql/scalars/id))
+#### [`eventId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
 
 the id for this event
 
 
-#### `block` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`block`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 the block hash
 
 
-#### `type` ([`BusEventType`](/docs/testnet/graphql/enums/bus-event-type))
+#### [`type`](#) ([`BusEventType!`](/docs/testnet/graphql/enums/bus-event-type))
 
 the type of event we're dealing with
 
 
-#### `event` ([`Event`](/docs/testnet/graphql/unions/event))
+#### [`event`](#) ([`Event!`](/docs/testnet/graphql/unions/event))
 
 the payload - the wrapped event
 

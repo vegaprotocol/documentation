@@ -1,6 +1,7 @@
 ---
 id: position-resolution
 title: PositionResolution
+hide_table_of_contents: false
 ---
 
 
@@ -18,22 +19,22 @@ type PositionResolution {
 
 ### Fields
 
-#### `marketId` ([`ID`](/docs/testnet/graphql/scalars/id))
+#### [`marketId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
 
 the market ID where position resolution happened
 
 
-#### `distressed` ([`Int`](/docs/testnet/graphql/scalars/int))
+#### [`distressed`](#) ([`Int!`](/docs/testnet/graphql/scalars/int))
 
 number of distressed parties on market
 
 
-#### `closed` ([`Int`](/docs/testnet/graphql/scalars/int))
+#### [`closed`](#) ([`Int!`](/docs/testnet/graphql/scalars/int))
 
 number of parties closed out
 
 
-#### `markPrice` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`markPrice`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 the mark price at which parties were distressed/closed out
 
