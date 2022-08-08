@@ -63,7 +63,6 @@
       }
      },
      "metadata": [
-      "sector:food",
       "sector:health",
       "sector:energy",
       "sector:food",
@@ -88,55 +87,55 @@
      },
      "logNormal": {
       "tau": 0.0001140771161,
-      "riskAversionParameter": 0.0001,
+      "riskAversionParameter": 0.01,
       "params": {
        "mu": 0,
        "r": 0.016,
-       "sigma": 1.25
+       "sigma": 0.3
       }
      }
     },
     "liquidityCommitment": {
-     "commitmentAmount": "3991800",
-     "fee": "0.33",
+     "commitmentAmount": "6686591",
+     "fee": "0.74",
      "buys": [
       {
-       "offset": "71",
-       "proportion": 9,
+       "offset": "54",
+       "proportion": 6,
        "reference": "PEGGED_REFERENCE_BEST_BID"
       },
       {
-       "offset": "92",
+       "offset": "24",
        "proportion": 10,
        "reference": "PEGGED_REFERENCE_BEST_BID"
       },
       {
-       "offset": "43",
-       "proportion": 2,
+       "offset": "38",
+       "proportion": 9,
        "reference": "PEGGED_REFERENCE_BEST_BID"
       }
      ],
      "sells": [
       {
-       "offset": "37",
-       "proportion": 4,
+       "offset": "21",
+       "proportion": 8,
        "reference": "PEGGED_REFERENCE_BEST_ASK"
       },
       {
-       "offset": "86",
+       "offset": "42",
        "proportion": 3,
        "reference": "PEGGED_REFERENCE_BEST_ASK"
       },
       {
-       "offset": "19",
-       "proportion": 4,
+       "offset": "88",
+       "proportion": 1,
        "reference": "PEGGED_REFERENCE_BEST_ASK"
       }
      ]
     }
    },
-   "closingTimestamp": 1661085169,
-   "enactmentTimestamp": 1661171569
+   "closingTimestamp": 1661608109,
+   "enactmentTimestamp": 1661694509
   }
  }
 }'
