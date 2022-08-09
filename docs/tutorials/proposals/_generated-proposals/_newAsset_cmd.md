@@ -3,13 +3,13 @@
 ./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{
  "proposalSubmission": {
   "rationale": {
-   "description": "Add Solana (SOL)"
+   "description": "Add Bitcoin (Tether)"
   },
   "terms": {
    "newAsset": {
     "changes": {
-     "name": "Solana",
-     "symbol": "SOL",
+     "name": "Bitcoin",
+     "symbol": "Tether",
      "totalSupply": "19010568",
      "decimals": "5",
      "quantum": "1",
@@ -20,8 +20,9 @@
      }
     }
    },
-   "closingTimestamp": 1661608109,
-   "enactmentTimestamp": 1661694509
+   "closingTimestamp": 1661685139,
+   "enactmentTimestamp": 1661771539,
+   "validationTimestamp": 1661598739
   }
  }
 }'

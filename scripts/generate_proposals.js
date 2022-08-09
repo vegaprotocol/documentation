@@ -53,8 +53,23 @@ function addTermsAnnotator(skeleton, terms, type) {
     }
   }
 
+  const splitEnactmentTitle = skeleton.properties.enactmentTimestamp.title.split('\n')
+  if (type === 'newAsset') {
+    return () => `{
+     ${type}:  ${inspect(terms[type], { depth: 20 })},
+      // ${splitClosingTitle[0]}
+      // ${splitClosingTitle[1]} (${skeleton.properties.closingTimestamp.format} as ${skeleton.properties.closingTimestamp.type})
+      closingTimestamp: ${terms.closingTimestamp},
+      // ${splitEnactmentTitle[0]}
+      // ${splitEnactmentTitle[1]} (${skeleton.properties.enactmentTimestamp.format} as ${skeleton.properties.enactmentTimestamp.type})
+      enactmentTimestamp: ${terms.enactmentTimestamp},
+      // ${skeleton.properties.validationTimestamp.title} (${skeleton.properties.validationTimestamp.format} as ${skeleton.properties.validationTimestamp.type})
+      validationTimestamp: ${terms.validationTimestamp}
+   }`
+
+  }
+
   return () => {
-    const splitEnactmentTitle = skeleton.properties.enactmentTimestamp.title.split('\n')
     return `{
      ${type}:  ${inspect(terms[type], { depth: 20 })},
       // ${splitClosingTitle[0]}
@@ -88,6 +103,9 @@ function newProposal(p, skeleton, type) {
   // Freeform proposals don't get enacted, so they can't have this
   if (type !== 'newFreeform'){
     proposal.terms.enactmentTimestamp = daysInTheFuture(20)
+  }
+  if (type === 'newAsset'){
+    proposal.terms.validationTimestamp = daysInTheFuture(18)
   }
   proposal.terms[inspect.custom] = addTermsAnnotator(skeleton, proposal.terms, type)
 
