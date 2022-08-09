@@ -1,6 +1,7 @@
 ---
 id: deposit-status
 title: DepositStatus
+hide_table_of_contents: false
 ---
 
 
@@ -17,17 +18,17 @@ enum DepositStatus {
 
 ### Values
 
-#### `Open` 
+#### [`Open`](#)
 
 The deposit is open and being processed by the network
 
 
-#### `Cancelled` 
+#### [`Cancelled`](#)
 
 The deposit have been cancelled by the network, either because it expired, or something went wrong with the foreign chain
 
 
-#### `Finalized` 
+#### [`Finalized`](#)
 
 The deposit was finalized, it was first valid, the foreign chain has executed it and the network updated all accounts
 

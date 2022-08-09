@@ -70,6 +70,8 @@ If a proposal receives enough token weight in favour within the enactment period
 
 Note the enactment date must be at least the minimum enactment period for the proposal type/subtype (specified by a network parameter for each proposal type) after voting closes.
 
+<
+
 ## Network parameter governance
 There are certain parameters within Vega that influence the behaviour of the system and can be changed by on-chain governance. Vega tokenholders can define the optimal network configuration by creating and voting on network parameter proposals.
 
@@ -109,6 +111,7 @@ In restricted mainnet, the VEGA token can be used for nominating validators and 
 
 
 ### Withdrawals
+
 VEGA tokens can only be withdrawn if they are not staked.
 
 When a participant decides they want to remove their assets from the Vega network, they'll need to submit a withdrawal request via a Vega app or the API.

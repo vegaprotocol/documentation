@@ -1,6 +1,7 @@
 ---
 id: reward
 title: Reward
+hide_table_of_contents: false
 ---
 
 
@@ -22,42 +23,42 @@ type Reward {
 
 ### Fields
 
-#### `asset` ([`Asset`](/docs/testnet/graphql/objects/asset))
+#### [`asset`](#) ([`Asset!`](/docs/testnet/graphql/objects/asset))
 
 The asset this reward is paid in
 
 
-#### `marketID` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`marketID`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 The market for which this reward is paid if any
 
 
-#### `rewardType` ([`AccountType`](/docs/testnet/graphql/enums/account-type))
+#### [`rewardType`](#) ([`AccountType!`](/docs/testnet/graphql/enums/account-type))
 
 The type of reward
 
 
-#### `party` ([`Party`](/docs/testnet/graphql/objects/party))
+#### [`party`](#) ([`Party!`](/docs/testnet/graphql/objects/party))
 
 Party receiving the reward
 
 
-#### `epoch` ([`Epoch`](/docs/testnet/graphql/objects/epoch))
+#### [`epoch`](#) ([`Epoch!`](/docs/testnet/graphql/objects/epoch))
 
 Epoch for which this reward was distributed
 
 
-#### `amount` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`amount`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 Amount received for this reward
 
 
-#### `percentageOfTotal` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`percentageOfTotal`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 Percentage out of the total distributed reward
 
 
-#### `receivedAt` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`receivedAt`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 Time at which the rewards was received
 

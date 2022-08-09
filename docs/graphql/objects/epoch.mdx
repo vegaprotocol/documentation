@@ -1,6 +1,7 @@
 ---
 id: epoch
 title: Epoch
+hide_table_of_contents: false
 ---
 
 
@@ -24,45 +25,45 @@ type Epoch {
 
 ### Fields
 
-#### `id` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`id`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 Presumably this is an integer or something. If there's no such thing, disregard
 
 
-#### `timestamps` ([`EpochTimestamps`](/docs/testnet/graphql/objects/epoch-timestamps))
+#### [`timestamps`](#) ([`EpochTimestamps!`](/docs/testnet/graphql/objects/epoch-timestamps))
 
 Timestamps for start/end etc
 
 
-#### `validators` ([`Node`](/docs/testnet/graphql/objects/node))
+#### [`validators`](#) ([`[Node!]!`](/docs/testnet/graphql/objects/node))
 
 Validators that participated in this epoch
 
 
-#### `delegations` ([`Delegation`](/docs/testnet/graphql/objects/delegation))
+#### [`delegations`](#) ([`[Delegation!]!`](/docs/testnet/graphql/objects/delegation))
 
 
-- ##### `partyId` ([`String`](/docs/testnet/graphql/scalars/string))
-
-
-
-
-- ##### `nodeId` ([`String`](/docs/testnet/graphql/scalars/string))
+- ##### [`partyId`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
 
 
 
-- ##### `skip` ([`Int`](/docs/testnet/graphql/scalars/int))
+- ##### [`nodeId`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+
+
+
+
+- ##### [`skip`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
 
 Pagination skip
 
 
-- ##### `first` ([`Int`](/docs/testnet/graphql/scalars/int))
+- ##### [`first`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
 
 Pagination first element
 
 
-- ##### `last` ([`Int`](/docs/testnet/graphql/scalars/int))
+- ##### [`last`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
 
 Pagination last element
 

@@ -1,6 +1,7 @@
 ---
 id: deposit
 title: Deposit
+hide_table_of_contents: false
 ---
 
 
@@ -22,42 +23,42 @@ type Deposit {
 
 ### Fields
 
-#### `id` ([`ID`](/docs/testnet/graphql/scalars/id))
+#### [`id`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
 
 The Vega internal id of the deposit
 
 
-#### `party` ([`Party`](/docs/testnet/graphql/objects/party))
+#### [`party`](#) ([`Party!`](/docs/testnet/graphql/objects/party))
 
 The PartyID initiating the deposit
 
 
-#### `amount` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`amount`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 The amount to be withdrawn
 
 
-#### `asset` ([`Asset`](/docs/testnet/graphql/objects/asset))
+#### [`asset`](#) ([`Asset!`](/docs/testnet/graphql/objects/asset))
 
 The asset to be withdrawn
 
 
-#### `status` ([`DepositStatus`](/docs/testnet/graphql/enums/deposit-status))
+#### [`status`](#) ([`DepositStatus!`](/docs/testnet/graphql/enums/deposit-status))
 
 The current status of the deposit
 
 
-#### `createdTimestamp` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`createdTimestamp`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 RFC3339Nano time at which the deposit was created
 
 
-#### `creditedTimestamp` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`creditedTimestamp`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
 RFC3339Nano time at which the deposit was finalized
 
 
-#### `txHash` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`txHash`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
 Hash of the transaction on the foreign chain
 

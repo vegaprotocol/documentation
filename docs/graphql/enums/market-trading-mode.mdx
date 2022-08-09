@@ -1,6 +1,7 @@
 ---
 id: market-trading-mode
 title: MarketTradingMode
+hide_table_of_contents: false
 ---
 
 
@@ -12,30 +13,36 @@ enum MarketTradingMode {
   OpeningAuction
   BatchAuction
   MonitoringAuction
+  NoTrading
 }
 ```
 
 
 ### Values
 
-#### `Continuous` 
+#### [`Continuous`](#)
 
 Continuous trading where orders are processed and potentially matched on arrival
 
 
-#### `OpeningAuction` 
+#### [`OpeningAuction`](#)
 
 Auction trading where orders are uncrossed at the end of the opening auction period
 
 
-#### `BatchAuction` 
+#### [`BatchAuction`](#)
 
 Auction as normal trading mode for the market, where orders are uncrossed periodically
 
 
-#### `MonitoringAuction` 
+#### [`MonitoringAuction`](#)
 
 Auction triggered by price/liquidity monitoring
+
+
+#### [`NoTrading`](#)
+
+No trading allowed
 
 
 

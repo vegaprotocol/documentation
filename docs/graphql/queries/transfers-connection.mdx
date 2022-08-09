@@ -1,0 +1,44 @@
+---
+id: transfers-connection
+title: transfersConnection
+hide_table_of_contents: false
+---
+
+
+get a list of all transfers for a pubkey
+
+```graphql
+transfersConnection(
+  pubkey: String
+  direction: TransferDirection!
+  pagination: Pagination
+): TransferConnection!
+```
+
+
+### Arguments
+
+#### [`pubkey`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+
+the pubkey to look for
+
+
+#### [`direction`](#) ([`TransferDirection!`](/docs/testnet/graphql/enums/transfer-direction))
+
+direction of the transfer with respect to the pubkey
+
+
+#### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+Pagination information
+
+
+### Type
+
+#### [`TransferConnection`](/docs/testnet/graphql/objects/transfer-connection)
+
+
+
+
+
+

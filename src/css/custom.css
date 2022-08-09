@@ -28,11 +28,15 @@ html[data-theme="dark"] a code {
   color: var(--vega-yellow);
 }
 
+html[data-theme="dark"] a.table-of-contents__link--active code {
+  color: var(--ifm-menu-color-text-active);
+}
+
 html[data-theme="light"] a code {
   background-color: var(--vega-yellow);
 }
 /* Side menu */
- 
+
 .menu__link {
   --ifm-menu-color-background-active: var(--vega-yellow);
   --ifm-menu-color-text-active: #000;

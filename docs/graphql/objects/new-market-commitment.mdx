@@ -1,6 +1,7 @@
 ---
 id: new-market-commitment
 title: NewMarketCommitment
+hide_table_of_contents: false
 ---
 
 
@@ -19,28 +20,28 @@ type NewMarketCommitment {
 
 ### Fields
 
-#### `commitmentAmount` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`commitmentAmount`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 Specified as a unit-less number that represents the amount of settlement asset of the market
 
 
-#### `fee` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`fee`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 Nominated liquidity fee factor, which is an input to the calculation of
 taker fees on the market, as per setting fees and rewarding liquidity provider
 
 
-#### `sells` ([`LiquidityOrder`](/docs/testnet/graphql/objects/liquidity-order))
+#### [`sells`](#) ([`[LiquidityOrder!]`](/docs/testnet/graphql/objects/liquidity-order))
 
 A set of liquidity sell orders to meet the liquidity provision obligation
 
 
-#### `buys` ([`LiquidityOrder`](/docs/testnet/graphql/objects/liquidity-order))
+#### [`buys`](#) ([`[LiquidityOrder!]`](/docs/testnet/graphql/objects/liquidity-order))
 
 A set of liquidity buy orders to meet the liquidity provision obligation
 
 
-#### `reference` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`reference`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
 A reference to be associated to all orders created from this commitment
 

@@ -1,6 +1,7 @@
 ---
 id: order-rejection-reason
 title: OrderRejectionReason
+hide_table_of_contents: false
 ---
 
 
@@ -59,227 +60,227 @@ enum OrderRejectionReason {
 
 ### Values
 
-#### `InvalidMarketId` 
+#### [`InvalidMarketId`](#)
 
 Market id is invalid
 
 
-#### `InvalidOrderId` 
+#### [`InvalidOrderId`](#)
 
 Order id is invalid
 
 
-#### `OrderOutOfSequence` 
+#### [`OrderOutOfSequence`](#)
 
 Order is out of sequence
 
 
-#### `InvalidRemainingSize` 
+#### [`InvalidRemainingSize`](#)
 
 Remaining size in the order is invalid
 
 
-#### `TimeFailure` 
+#### [`TimeFailure`](#)
 
 Time has failed us
 
 
-#### `OrderRemovalFailure` 
+#### [`OrderRemovalFailure`](#)
 
 Unable to remove the order
 
 
-#### `InvalidExpirationTime` 
+#### [`InvalidExpirationTime`](#)
 
 Expiration time is invalid
 
 
-#### `InvalidOrderReference` 
+#### [`InvalidOrderReference`](#)
 
 Order reference is invalid
 
 
-#### `EditNotAllowed` 
+#### [`EditNotAllowed`](#)
 
 Edit is not allowed
 
 
-#### `OrderAmendFailure` 
+#### [`OrderAmendFailure`](#)
 
 Order amend fail
 
 
-#### `OrderNotFound` 
+#### [`OrderNotFound`](#)
 
 Order does not exist
 
 
-#### `InvalidPartyId` 
+#### [`InvalidPartyId`](#)
 
 Party id is invalid
 
 
-#### `MarketClosed` 
+#### [`MarketClosed`](#)
 
 Market is closed
 
 
-#### `MarginCheckFailed` 
+#### [`MarginCheckFailed`](#)
 
 Margin check failed
 
 
-#### `MissingGeneralAccount` 
+#### [`MissingGeneralAccount`](#)
 
 Order missing general account
 
 
-#### `InternalError` 
+#### [`InternalError`](#)
 
 An internal error happened
 
 
-#### `InvalidSize` 
+#### [`InvalidSize`](#)
 
 Invalid size
 
 
-#### `InvalidPersistence` 
+#### [`InvalidPersistence`](#)
 
 Invalid persistence
 
 
-#### `InvalidType` 
+#### [`InvalidType`](#)
 
 Invalid type
 
 
-#### `SelfTrading` 
+#### [`SelfTrading`](#)
 
 Self trading
 
 
-#### `InsufficientFundsToPayFees` 
+#### [`InsufficientFundsToPayFees`](#)
 
 Insufficient funds to pay fees
 
 
-#### `InvalidTimeInForce` 
+#### [`InvalidTimeInForce`](#)
 
 Invalid Time In Force
 
 
-#### `AmendToGTTWithoutExpiryAt` 
+#### [`AmendToGTTWithoutExpiryAt`](#)
 
 Attempt to amend order to GTT without ExpiryAt
 
 
-#### `ExpiryAtBeforeCreatedAt` 
+#### [`ExpiryAtBeforeCreatedAt`](#)
 
 Attempt to amend ExpiryAt to a value before CreatedAt
 
 
-#### `GTCWithExpiryAtNotValid` 
+#### [`GTCWithExpiryAtNotValid`](#)
 
 Attempt to amend to GTC without an ExpiryAt value
 
 
-#### `CannotAmendToFOKOrIOC` 
+#### [`CannotAmendToFOKOrIOC`](#)
 
 Amending to FOK or IOC is invalid
 
 
-#### `CannotAmendToGFAOrGFN` 
+#### [`CannotAmendToGFAOrGFN`](#)
 
 Amending to GFA or GFN is invalid
 
 
-#### `CannotAmendFromGFAOrGFN` 
+#### [`CannotAmendFromGFAOrGFN`](#)
 
 Amending from GFA or GFN is invalid
 
 
-#### `InvalidMarketType` 
+#### [`InvalidMarketType`](#)
 
 Invalid Market Type
 
 
-#### `GFNOrderDuringAuction` 
+#### [`GFNOrderDuringAuction`](#)
 
 Good for normal order received during an auction
 
 
-#### `GFAOrderDuringContinuousTrading` 
+#### [`GFAOrderDuringContinuousTrading`](#)
 
 Good for auction order received during continuous trading
 
 
-#### `IOCOrderDuringAuction` 
+#### [`IOCOrderDuringAuction`](#)
 
 IOC orders are not allowed during auction
 
 
-#### `FOKOrderDuringAuction` 
+#### [`FOKOrderDuringAuction`](#)
 
 FOK orders are not allowed during auction
 
 
-#### `PeggedOrderMustBeLimitOrder` 
+#### [`PeggedOrderMustBeLimitOrder`](#)
 
 Pegged orders must be LIMIT orders
 
 
-#### `PeggedOrderMustBeGTTOrGTC` 
+#### [`PeggedOrderMustBeGTTOrGTC`](#)
 
 Pegged orders can only have TIF GTC or GTT
 
 
-#### `PeggedOrderWithoutReferencePrice` 
+#### [`PeggedOrderWithoutReferencePrice`](#)
 
 Pegged order must have a reference price
 
 
-#### `PeggedOrderBuyCannotReferenceBestAskPrice` 
+#### [`PeggedOrderBuyCannotReferenceBestAskPrice`](#)
 
 Buy pegged order cannot reference best ask price
 
 
-#### `PeggedOrderOffsetMustBeGreaterOrEqualToZero` 
+#### [`PeggedOrderOffsetMustBeGreaterOrEqualToZero`](#)
 
 Pegged order offset must be &#x003E;= 0
 
 
-#### `PeggedOrderSellCannotReferenceBestBidPrice` 
+#### [`PeggedOrderSellCannotReferenceBestBidPrice`](#)
 
 Sell pegged order cannot reference best bid price
 
 
-#### `PeggedOrderOffsetMustBeGreaterThanZero` 
+#### [`PeggedOrderOffsetMustBeGreaterThanZero`](#)
 
 Pegged order offset must be &#x003E; zero
 
 
-#### `InsufficientAssetBalance` 
+#### [`InsufficientAssetBalance`](#)
 
 Insufficient balance to submit the order (no deposit made)
 
 
-#### `CannotAmendPeggedOrderDetailsOnNonPeggedOrder` 
+#### [`CannotAmendPeggedOrderDetailsOnNonPeggedOrder`](#)
 
 Cannot change pegged order fields on a non pegged order
 
 
-#### `UnableToRepricePeggedOrder` 
+#### [`UnableToRepricePeggedOrder`](#)
 
 Unable to reprice a pegged order
 
 
-#### `UnableToAmendPeggedOrderPrice` 
+#### [`UnableToAmendPeggedOrderPrice`](#)
 
 Unable to amend pegged order price
 
 
-#### `NonPersistentOrderExceedsPriceBounds` 
+#### [`NonPersistentOrderExceedsPriceBounds`](#)
 
 Non-persistent order exceeds price bounds
 

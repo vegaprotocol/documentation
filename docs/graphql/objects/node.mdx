@@ -1,6 +1,7 @@
 ---
 id: node
 title: Node
+hide_table_of_contents: false
 ---
 
 
@@ -36,105 +37,105 @@ type Node {
 
 ### Fields
 
-#### `id` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`id`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 The node url eg n01.vega.xyz
 
 
-#### `pubkey` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`pubkey`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 Pubkey of the node operator
 
 
-#### `tmPubkey` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`tmPubkey`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 Public key of Tendermint
 
 
-#### `ethereumAdddress` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`ethereumAdddress`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 Ethereum public key of the node
 
 
-#### `infoUrl` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`infoUrl`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 URL where I can find out more info on the node. Will this be possible?
 
 
-#### `location` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`location`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 Country code for the location of the node
 
 
-#### `stakedByOperator` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`stakedByOperator`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 The amount the node has put up themselves
 
 
-#### `stakedByDelegates` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`stakedByDelegates`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 The amount of stake that has been delegated by token holders
 
 
-#### `stakedTotal` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`stakedTotal`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 Total amount staked on node
 
 
-#### `pendingStake` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`pendingStake`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 Amount of stake on the next epoch
 
 
-#### `epochData` ([`EpochData`](/docs/testnet/graphql/objects/epoch-data))
+#### [`epochData`](#) ([`EpochData`](/docs/testnet/graphql/objects/epoch-data))
 
 
 
 
-#### `status` ([`NodeStatus`](/docs/testnet/graphql/enums/node-status))
+#### [`status`](#) ([`NodeStatus!`](/docs/testnet/graphql/enums/node-status))
 
 
 
 
-#### `delegations` ([`Delegation`](/docs/testnet/graphql/objects/delegation))
+#### [`delegations`](#) ([`[Delegation!]`](/docs/testnet/graphql/objects/delegation))
 
 
-- ##### `partyId` ([`String`](/docs/testnet/graphql/scalars/string))
+- ##### [`partyId`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
 
 
 
-- ##### `skip` ([`Int`](/docs/testnet/graphql/scalars/int))
+- ##### [`skip`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
 
 Pagination skip
 
 
-- ##### `first` ([`Int`](/docs/testnet/graphql/scalars/int))
+- ##### [`first`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
 
 Pagination first element
 
 
-- ##### `last` ([`Int`](/docs/testnet/graphql/scalars/int))
+- ##### [`last`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
 
 Pagination last element
 
 
-#### `rewardScore` ([`RewardScore`](/docs/testnet/graphql/objects/reward-score))
+#### [`rewardScore`](#) ([`RewardScore`](/docs/testnet/graphql/objects/reward-score))
 
 Reward scores for the current epoch for the validator
 
 
-#### `rankingScore` ([`RankingScore`](/docs/testnet/graphql/objects/ranking-score))
+#### [`rankingScore`](#) ([`RankingScore!`](/docs/testnet/graphql/objects/ranking-score))
 
 Ranking scores and status for the validator for the current epoch
 
 
-#### `name` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`name`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 
 
 
-#### `avatarUrl` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`avatarUrl`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
 
 

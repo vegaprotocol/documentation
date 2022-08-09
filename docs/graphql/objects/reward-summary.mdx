@@ -1,6 +1,7 @@
 ---
 id: reward-summary
 title: RewardSummary
+hide_table_of_contents: false
 ---
 
 
@@ -25,43 +26,43 @@ type RewardSummary {
 
 ### Fields
 
-#### `asset` ([`Asset`](/docs/testnet/graphql/objects/asset))
+#### [`asset`](#) ([`Asset!`](/docs/testnet/graphql/objects/asset))
 
 The asset for which these rewards are associated
 
 
-#### `amount` ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`amount`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 Total quantity of rewards awarded in this asset
 
 
-#### `rewards` ([`Reward`](/docs/testnet/graphql/objects/reward))
+#### [`rewards`](#) ([`[Reward]`](/docs/testnet/graphql/objects/reward))
 
 List of individual reward payouts, ordered by epoch
-- ##### `skip` ([`Int`](/docs/testnet/graphql/scalars/int))
+- ##### [`skip`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
 
 Pagination skip
 
 
-- ##### `first` ([`Int`](/docs/testnet/graphql/scalars/int))
+- ##### [`first`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
 
 Pagination first element
 
 
-- ##### `last` ([`Int`](/docs/testnet/graphql/scalars/int))
+- ##### [`last`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
 
 Pagination last element
 
 
-#### `rewardsConnection` ([`RewardsConnection`](/docs/testnet/graphql/objects/rewards-connection))
+#### [`rewardsConnection`](#) ([`RewardsConnection`](/docs/testnet/graphql/objects/rewards-connection))
 
 List of individual reward payouts, ordered by epoch
-- ##### `asset` ([`String`](/docs/testnet/graphql/scalars/string))
+- ##### [`asset`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
 An optional asset
 
 
-- ##### `pagination` ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+- ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
 
 Cursor pagination information
 
