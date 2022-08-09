@@ -54,6 +54,7 @@ function addTermsAnnotator(skeleton, terms, type) {
   }
 
   const splitEnactmentTitle = skeleton.properties.enactmentTimestamp.title.split('\n')
+  // Note: ValidationTimestamp is not currently required by core, but defaults incorrectly. Let's populate it anyway.
   if (type === 'newAsset') {
     return () => `{
      ${type}:  ${inspect(terms[type], { depth: 20 })},
