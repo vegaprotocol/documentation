@@ -75,9 +75,16 @@ Filter condition types:
 ## Internal data source
 An internal data source provides information that comes from within Vega, rather than an external source. They are defined and used in the same way as external data sources, but are triggered by the relevant event in protocol rather than by an incoming transaction.
 
-There are currently two types of data that can come from internal data sources: value and time-triggered.
+There is currently one type of data that can come from internal data sources: time-triggered.
 
-### Internal data source: Value [WIP]
+### Internal data source: Time triggered
+Vega provides a timestamp source, which can be used to terminate a futures market at a set date. `vegaprotocol.builtin.timestamp` provides a Unix timestamp of the Vega time, which is to say the time agreed via consensus. 
+
+As the name implies, a built in data source is generated inside Vega, and cannot be submitted by other keys.
+
+This data source is used to emit an event or value, at or after the given time printed on the block.
+
+<!--### Internal data source: Value [WIP]
 This data source provides an immediate value, and is used where a data source is required, but the value is already known at the time of definition.
 
 Any code expecting to be triggered when a value is received on a data source would be triggered immediately by a data source of this type, for instance as soon as a market parameter change is enacted, if it contained a value type data source for final settlement, final settlement would occur.
@@ -85,15 +92,7 @@ Any code expecting to be triggered when a value is received on a data source wou
 'Value' can be used to submit a governance change proposal to update a futures market's settlement data source to a price value. This would happen if the defined data source fails and tokenholders choose to vote to accept a specific value to be used for settlement.
 
 Example:
-`value { type: number, value: 1400.5 }`
-
-### Internal data source: Time triggered [WIP]
-This data source would be used to emit an event or value, at or after the given time printed on the block. For example, this could be used to trigger 'trading terminated' for futures.
-
-A time triggered data source will emit the contents of the specified data source (could be omitted if just triggering trading termination, or could be a value as described above, or another data source in order to implement a delay/ensure the value from the data source is not emitted before a certain time).
-
-Every time the network 'ticks' (at a set time), it sends oracle data with a constant property name vegaprotocol.builtin.timestamp 
-If you're using this property in your oracle binding, and in your trading termination declaration, it's no longer mandatory to use a type_boolean, and you can use the timestamp property instead. To settle at a given time without providing true/false terminated property. 
+`value { type: number, value: 1400.5 }`-->
 
 <!-- notes: 
 (highlight shortcomings of trading termination as a way to extract data from a payload. no way to add computation on top of it. maybe it's worth adding some internal oracle data into the market proposal)

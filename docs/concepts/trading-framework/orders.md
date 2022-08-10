@@ -151,4 +151,4 @@ Pegged orders are restricted in what values can be used when they are created, t
 | Non persistent (IOC, FOK) |	Buy   | > 0         | > 0     | >= 0        |
 | Non persistent (IOC, FOK) |	Sell  | <= 0        | < 0	    | < 0         |
 
-### Batch operations on orders [WIP]
+<!-- ### Batch operations on orders [WIP] -->

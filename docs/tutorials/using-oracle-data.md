@@ -357,7 +357,7 @@ Assuming someone submitted JSON oracle data, the result would be something like 
 ## Built-in data source
 Vega provides a timestamp source, which is useful for terminating a market at a set date. `vegaprotocol.builtin.timestamp` provides a Unix timestamp of the Vega time, which is to say the time agreed via consensus.
 
-As the name implies, a built in dat source is generated inside Vega, and cannot be submitted by other keys.
+As the name implies, a built in data source is generated inside Vega, and cannot be submitted by other keys.
 
 ### Using built-in oracle data for trading termination
 It's possible to settle on any data source field - for instance checking if a `boolean` is `true` - but time is a good starting point, and the [built-in time data source](#built-in-data-source) can be used for exactly that:

@@ -4,6 +4,13 @@ title: Fees and rewards
 hide_title: false
 ---
 ## Trading fees and rewards
+The Vega trading fee structure incentivises passive trading (placing orders on the order book), providing liquidity, and running the network infrastructure. 
+
+Meanwhile, there is a mechanism that any participant can use to reward traders for their activity in a market, including those who 'take' prices off the order book. Those rewards only exist when a party is funding them, and can be set per market and per activity type (or metric). 
+
+Read more:
+* [Trading fees](#trading-fees)
+* [Trading rewards](#trading-rewards)
 
 ### Trading fees
 The Vega protocol does not charge gas fees, but rather has a fee structure that rewards participants who fill essential roles for a decentralised trading infrastructure.
@@ -111,18 +118,18 @@ This reward pool will transfer VEGA to anyone acting as a price taker and theref
 They may later decide that they have successfully driven so much volume that they would like to encourage more liquidity in the market to help supplement their own. In this case they could fund another reward pool.
 
 Reward Pool 2: 
-Reward asset = VEGA
-Market in scope = ETH / USDT 1Y Future
-Reward metric type = Liquidity fees
+* Reward asset = VEGA
+* Market in scope = ETH / USDT 1Y Future
+* Reward metric type = Liquidity fees
 
 This will provide an additional incentive for LPs to commit liquidity, since in addition to the liquidity fees they would already receive (in USDT, the settlement asset of the market), they would also receive VEGA proportional to the share of liquidity fees they received for the market.
 
 Finally, they may decide that they also want to provide a reward in the market’s settlement asset rather than solely reward in VEGA.  Therefore they transfer funds to an additional reward pool.
 
 Reward pool 3: 
-Reward asset = USDT
-Market in scope = ETH / USDT 1Y Future
-Reward metric type = Maker fees paid
+* Reward asset = USDT
+* Market in scope = ETH / USDT 1Y Future
+* Reward metric type = Maker fees paid
 
 Now, any user that has been a price taker in this market will receive two reward payments at the end of the epoch, once in VEGA and one in USDT, with both proportional to their overall share of maker fees paid in the market. 
 
