@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Trading framework overview
+title: Framework overview
 hide_title: false
 ---
 
@@ -34,7 +34,7 @@ The market lifecycle begins at acceptance of a proposal and is driven by the mar
 ## Market proposal and creation
 Markets on Vega are permissionlessly proposed using [governance](../vega-protocol.md). 
 
-If the proposal is successful and the market is enacted, it will enter into an opening auction at least until the proposed `enactment` date. 
+If the proposal is successful and the market is enacted, it will enter into an opening auction at least until the proposed `enactment` date.
 
 However, the market may stay in an opening auction past the proposed `enactment` date until at least on party makes a liquidity commitment that meets criteria for exiting liquidity monitoring auction.
 
@@ -56,14 +56,14 @@ The overall market status flow is shown in the diagram below. A market is create
 | Settled            |   No           | No trading          | Settlement triggered and completed as defined by product                                      | N/A                                            
 
 
-[1] Accepting LPs: it is possible to submit or amend [liquidity commitments](./liquidity.md#submit-liquidity-commitment)
+[1] Accepting LPs: it is possible to submit or amend [liquidity commitments](./liquidity#submit-liquidity-commitment)
 
 <!--![Life cycle flow diagram](./0043-market-lifecycle-flow-diagram.svg)-->
 
 ## Market status descriptions
 
 ### Proposed
-All markets are first proposed via governance. Once a valid market proposal is accepted the market is created and can accept [liquidity commitments](./liquidity.md#submit-liquidity-commitment). 
+All markets are first proposed via governance. Once a valid market proposal is accepted the market is created and can accept [liquidity commitments](./liquidity#submit-liquidity-commitment). 
 
 Voting begins and its state is `proposed`.
 
@@ -147,12 +147,12 @@ Once the enactment date is reached, the other conditions specified to exit the p
 
 This status indicates it is trading via its normally configured trading mode. 
 
-The market will terminate trading according to a product trigger -- for futures, if the trading termination date is reached -- and can be temporarily suspended automatically by market protections such as [price monitoring](./market-protections.md#price_monitoring), or [liquidity monitoring](./market-protections.md#liquidity_monitoring).
+The market will terminate trading according to a product trigger -- for futures, if the trading termination date is reached -- and can be temporarily suspended automatically by market protections such as [price monitoring](./market-protections#price_monitoring), or [liquidity monitoring](./market-protections#liquidity_monitoring).
 
 **Entry:**
 
 - From Pending: enactment date reached and conditions to transition from pending to active are met
-- From Suspended: conditions specified in [price monitoring](./market-protections.md#price_monitoring), and [liquidity monitoring](./market-protections.md#liquidity_monitoring) are met for the market to exit the suspended status back to active
+- From Suspended: conditions specified in [price monitoring](./market-protections#price_monitoring), and [liquidity monitoring](./market-protections#liquidity_monitoring) are met for the market to exit the suspended status back to active
 
 **Exit:**
 
@@ -256,8 +256,8 @@ Collection will result in ledger entries being formulated. They adhere to double
 These transfers will debit from the market's market settlement account and be credited to the margin accounts of traders who have are due to receive an asset flow as a result of the settlement.
 
 Read more: 
-* [Insurance pools](./market-protection#insurance-pools)
-* [Loss socialisation](./market-protection#loss-socialisation)
+* [Insurance pools](./market-protections#insurance-pools)
+* [Loss socialisation](./market-protections#loss-socialisation)
  
 ### Settlement at market expiry
 When a market reaches its maturity date and time, a final settlement is carried out. That settlement is based on a pre-defined oracle publishing data that triggers the market’s expiry.
