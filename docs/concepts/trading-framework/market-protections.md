@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-title: Position management
+title: Market protections
 hide_title: false
 ---
 

@@ -36,8 +36,8 @@ Collection will result in ledger entries being formulated. They adhere to double
 These transfers will debit from the market's market settlement account and be credited to the margin accounts of traders who have are due to receive an asset flow as a result of the settlement.
 
 Read more: 
-* [Insurance pools](/docs/testnet/concepts/market-protections#insurance-pools)
-* [Loss socialisation](/docs/testnet/concepts/market-protections#loss-socialisation)
+* [Insurance pools](/docs/testnet/concepts/trading-framework/market-protections#insurance-pools)
+* [Loss socialisation](/docs/testnet/concepts/trading-framework/market-protections#loss-socialisation)
  
 ### Settlement at market expiry
 When a market reaches its maturity date and time, a final settlement is carried out. That settlement is based on a pre-defined oracle publishing data that triggers the market’s expiry.
@@ -54,7 +54,7 @@ For example: A cash-settled futures market reaches its expiry date and time. If 
 
 After all positions are closed at market expiry, they are ‘forgotten’ by the network.
 
-Read more: [Data sources](#data-sources)
+Read more: [Data sources](./data-sources.md)
 
 ### Mark to market settlement
 Settlement instructions are generated based on the change in market value of the open positions of a party.
@@ -63,7 +63,7 @@ When the mark price changes, the network calculates settlement cash flows for ea
 
 Each time the mark price for a given market changes, all the open positions and orders are marked to market, resulting in interim partial payments that are calculated by the network. Those payments go directly the relevant trader's collateral. 
 
-Read more: [Mark to market](#mark-to-market)
+Read more: [Mark to market](/docs/testnet/concepts/trading-framework/market-protections#mark-to-market)
 
 ### Settlement parameters defined through governance
 Data sources for settlement must be specified when a market is proposed. For cash-settled futures, this is the final price/value at the expiry of the instrument, and the expiry date/time.
@@ -71,8 +71,6 @@ Data sources for settlement must be specified when a market is proposed. For cas
 At the point when a market nears its specified expiry, trading terminates, and the data sources provide the final ‘settlement value’.
 
 The network settles all open positions on the market using the price provided by the data source. Positions are regularly mark to market settled, so the final settlement is, in effect, a final mark to market settlement using the data source price.
-
-Read more: [Mark to market settlement](#mark-to-market-settlement)
 
 <!--## Pre-trade and trade [WIP]
 
@@ -113,12 +111,12 @@ The overall market status flow is shown in the diagram below. A market is create
 | Settled            |   No           | No trading          | Settlement triggered and completed as defined by product                                      | N/A                                            
 
 
-[1] Accepting LPs: it is possible to submit or amend [liquidity commitments](/docs/testnet/concepts/liquidity#submit-liquidity-commitment)
+[1] Accepting LPs: it is possible to submit or amend [liquidity commitments](/docs/testnet/concepts/trading-framework/liquidity#submit-liquidity-commitment)
 
 <!--![Life cycle flow diagram](./0043-market-lifecycle-flow-diagram.svg)-->
 
 ### Market status: Proposed
-All markets are first proposed permissionlessly via [governance](../vega-protocol.md). Once a valid market proposal is accepted the market is created and can accept [liquidity commitments](/docs/testnet/concepts/liquidity#submit-liquidity-commitment) .
+All markets are first proposed permissionlessly via [governance](../vega-protocol.md). Once a valid market proposal is accepted the market is created and can accept [liquidity commitments](/docs/testnet/concepts/trading-framework/liquidity#submit-liquidity-commitment).
 
 Voting begins and its state is `proposed`.
 
@@ -201,12 +199,12 @@ Once the enactment date is reached, the other conditions specified to exit the p
 
 This status indicates it is trading via its normally configured trading mode. 
 
-The market will terminate trading according to a product trigger -- for futures, if the trading termination date is reached -- and can be temporarily suspended automatically by market protections such as [price monitoring](/docs/testnet/concepts/market-protections#price_monitoring), or [liquidity monitoring](./market-protections#liquidity_monitoring).
+The market will terminate trading according to a product trigger -- for futures, if the trading termination date is reached -- and can be temporarily suspended automatically by market protections such as [price monitoring](/docs/testnet/concepts/trading-framework/market-protections#price-monitoring), or [liquidity monitoring](/docs/testnet/concepts/trading-framework/market-protections#liquidity-monitoring).
 
 **Entry:**
 
 - From Pending: enactment date reached and conditions to transition from pending to active are met
-- From Suspended: conditions specified in [price monitoring](/docs/testnet/concepts/market-protections#price_monitoring), and [liquidity monitoring](./market-protections#liquidity_monitoring) are met for the market to exit the suspended status back to active
+- From Suspended: conditions specified in [price monitoring](/docs/testnet/concepts/trading-framework/market-protections#price-monitoring), and [liquidity monitoring](/docs/testnet/concepts/trading-framework/market-protections#liquidity-monitoring) are met for the market to exit the suspended status back to active
 
 **Exit:**
 
