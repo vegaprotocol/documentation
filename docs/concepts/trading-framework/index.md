@@ -36,8 +36,8 @@ Collection will result in ledger entries being formulated. They adhere to double
 These transfers will debit from the market's market settlement account and be credited to the margin accounts of traders who have are due to receive an asset flow as a result of the settlement.
 
 Read more: 
-* [Insurance pools](./market-protections#insurance-pools)
-* [Loss socialisation](./market-protections#loss-socialisation)
+* [Insurance pools](/docs/testnet/concepts/market-protections#insurance-pools)
+* [Loss socialisation](/docs/testnet/concepts/market-protections#loss-socialisation)
  
 ### Settlement at market expiry
 When a market reaches its maturity date and time, a final settlement is carried out. That settlement is based on a pre-defined oracle publishing data that triggers the market’s expiry.
@@ -113,12 +113,12 @@ The overall market status flow is shown in the diagram below. A market is create
 | Settled            |   No           | No trading          | Settlement triggered and completed as defined by product                                      | N/A                                            
 
 
-[1] Accepting LPs: it is possible to submit or amend [liquidity commitments](./liquidity#submit-liquidity-commitment)
+[1] Accepting LPs: it is possible to submit or amend [liquidity commitments](/docs/testnet/concepts/liquidity#submit-liquidity-commitment)
 
 <!--![Life cycle flow diagram](./0043-market-lifecycle-flow-diagram.svg)-->
 
 ### Market status: Proposed
-All markets are first proposed permissionlessly via [governance](../vega-protocol.md). Once a valid market proposal is accepted the market is created and can accept [liquidity commitments](./liquidity#submit-liquidity-commitment).
+All markets are first proposed permissionlessly via [governance](../vega-protocol.md). Once a valid market proposal is accepted the market is created and can accept [liquidity commitments](/docs/testnet/concepts/liquidity#submit-liquidity-commitment) .
 
 Voting begins and its state is `proposed`.
 
@@ -201,12 +201,12 @@ Once the enactment date is reached, the other conditions specified to exit the p
 
 This status indicates it is trading via its normally configured trading mode. 
 
-The market will terminate trading according to a product trigger -- for futures, if the trading termination date is reached -- and can be temporarily suspended automatically by market protections such as [price monitoring](./market-protections#price_monitoring), or [liquidity monitoring](./market-protections#liquidity_monitoring).
+The market will terminate trading according to a product trigger -- for futures, if the trading termination date is reached -- and can be temporarily suspended automatically by market protections such as [price monitoring](/docs/testnet/concepts/market-protections#price_monitoring), or [liquidity monitoring](./market-protections#liquidity_monitoring).
 
 **Entry:**
 
 - From Pending: enactment date reached and conditions to transition from pending to active are met
-- From Suspended: conditions specified in [price monitoring](./market-protections#price_monitoring), and [liquidity monitoring](./market-protections#liquidity_monitoring) are met for the market to exit the suspended status back to active
+- From Suspended: conditions specified in [price monitoring](/docs/testnet/concepts/market-protections#price_monitoring), and [liquidity monitoring](./market-protections#liquidity_monitoring) are met for the market to exit the suspended status back to active
 
 **Exit:**
 
