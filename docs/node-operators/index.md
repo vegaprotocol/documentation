@@ -10,7 +10,7 @@ All nodes are running the same 'vega' codebase with the latest releases availabl
 Find out how to maintain and upgrade a node by working through the instructions below.
 
 :::tip
-If you want to know  more about how nodes work on Vega, read **[validating nodes](../concepts/vega-chain#validating-nodes)** to explore the different types of nodes that run a Vega network, how they're chosen, and what impact their scores have on their status. 
+If you want to know  more about how nodes work on Vega, read **[validating nodes](/docs/testnet/concepts/vega-chain#validating-nodes)** to explore the different types of nodes that run a Vega network, how they're chosen, and what impact their scores have on their status. 
 :::
 
 | Topic                                                                 |  Description                                                                                                        |
