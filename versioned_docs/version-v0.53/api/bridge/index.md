@@ -1,7 +1,7 @@
 ---
 title: Overview
 vega_network: MAINNET
-ethereum_network: Ropsten
+ethereum_network: MAINNET
 sidebar_position: 1
 ---
 
