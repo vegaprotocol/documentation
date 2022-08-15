@@ -1,0 +1,37 @@
+---
+id: node-signature
+title: NodeSignature
+hide_table_of_contents: false
+---
+
+
+Represents a signature for the approval of a resource from a validator
+
+```graphql
+type NodeSignature {
+  id: ID!
+  signature: String
+  kind: NodeSignatureKind
+}
+```
+
+
+### Fields
+
+#### [`id`](#) ([`ID!`](/docs/mainnet/graphql/scalars/id))
+
+The id of the resource being signed for
+
+
+#### [`signature`](#) ([`String`](/docs/mainnet/graphql/scalars/string))
+
+The signature, as base64 encoding
+
+
+#### [`kind`](#) ([`NodeSignatureKind`](/docs/mainnet/graphql/enums/node-signature-kind))
+
+The kind of signature this is (e.g: withdrawal, new asset, etc)
+
+
+
+

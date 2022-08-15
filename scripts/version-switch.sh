@@ -14,11 +14,13 @@
 
 # Mainnet docs
 ## Ensure all docs in the versioned folder link to /mainnet/
-find 'versioned_docs/version-v0.50.2/graphql' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/testnet\/graphql/\/docs\/mainnet\/graphql/g' {} +
+find 'versioned_docs/version-v0.53/graphql' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/testnet\/graphql/\/docs\/mainnet\/graphql/g' {} +
+
 ## Ensure all docs in the versioned folder link to /mainnet/
-find 'versioned_docs/version-v0.50.2/grpc' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/testnet\/grpc/\/docs\/mainnet\/grpc/g' {} +
+find 'versioned_docs/version-v0.53/grpc' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/testnet\/grpc/\/docs\/mainnet\/grpc/g' {} +
+
 ## Sidebar fixup
-sed -i -E 's/\/docs\/testnet\//\/docs\/mainnet\//g' versioned_sidebars/version-v0.50.2-sidebars.json 
+sed -i -E 's/\/docs\/testnet\//\/docs\/mainnet\//g' versioned_sidebars/version-v0.53-sidebars.json 
 
 # Testnet docs
 ## Ensure graphql pages in /docs/ link to /testnet/

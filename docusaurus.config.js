@@ -194,16 +194,16 @@ module.exports = {
           disableVersioning: false,
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/vegaprotocol/documentation/edit/main/",
-          lastVersion: "v0.50.2",
+          lastVersion: "v0.53",
           versions: {
             current: {
               banner: "unreleased",
               label: "testnet (v0.53)",
               path: "testnet",
             },
-            "v0.50.2": {
+            "v0.53": {
               banner: "none",
-              label: "mainnet (v0.50)",
+              label: "mainnet (v0.53)",
               path: "mainnet",
             }
           },
@@ -230,37 +230,7 @@ module.exports = {
         },
         // start-rest-versions
         specs: [
-          {
-            id: "trading-v0501",
-            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/data-node/api/v1/trading_data.swagger.json",
-            route: "/docs/mainnet/api/rest/data-node/data",
-            layout: {
-              searchMetaDatas: {
-                version: "v0.50.1",
-              },
-            },
-          },
-          {
-            id: "core-v0501",
-            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/vega/api/v1/core.swagger.json",
-            route: "/docs/mainnet/api/rest/core/core",
-            layout: {
-              searchMetaDatas: {
-                version: "v0.50.1",
-              },
-            },
-          },
-          {
-            id: "state-v0501",
-            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.50.1/swagger/vega/api/v1/corestate.swagger.json",
-            route: "/docs/mainnet/api/rest/core/state",
-            layout: {
-              searchMetaDatas: {
-                version: "v0.50.1",
-              },
-            },
-          },
-          {
+         {
             id: "trading-v0530",
             spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.53.0/swagger/data-node/api/v1/trading_data.swagger.json",
             route: "/docs/testnet/api/rest/data-node/data",
