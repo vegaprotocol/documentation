@@ -260,7 +260,37 @@ module.exports = {
               },
             },
           },
-        ],
+          {
+            id: "trading-v0530-mainnet",
+            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.53.0/swagger/data-node/api/v1/trading_data.swagger.json",
+            route: "/docs/mainnet/api/rest/data-node/data",
+            layout: {
+              searchMetaDatas: {
+                version: "v0.53.0",
+              },
+            },
+          },
+          {
+            id: "core-v0530-mainnet",
+            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.53.0/swagger/vega/api/v1/core.swagger.json",
+            route: "/docs/mainnet/api/rest/core/core",
+            layout: {
+              searchMetaDatas: {
+                version: "v0.53.0",
+              },
+            },
+          },
+          {
+            id: "state-v0530-mainnet",
+            spec: "https://raw.githubusercontent.com/vegaprotocol/protos/v0.53.0/swagger/vega/api/v1/corestate.swagger.json",
+            route: "/docs/mainnet/api/rest/core/state",
+            layout: {
+              searchMetaDatas: {
+                version: "v0.53.0",
+              },
+            },
+          },
+         ],
         // end-rest-versions
       },
     ],
