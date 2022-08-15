@@ -60,7 +60,7 @@ vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network f
 </TabItem>
 </Tabs>
 
-### One-off transfer to reward pool
+<!--### One-off transfer to reward pool
 
 <Tabs groupId="KeytoPooltransferOnce">
 <TabItem value="KeytoPooltransferOnceLinuxcmd" label="Linux / OSX command line example">
@@ -97,9 +97,10 @@ vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network f
     } ^
 }"
 ```
- 
+
 </TabItem>
 </Tabs>
+-->
 
 ## Recurring transfers
 For a recurring transfer, the assets move from your account to the nominated account at the end of each epoch.
@@ -153,6 +154,7 @@ vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network f
 </Tabs>
  
 
+<!--
 ### Recurring transfer to reward pool
 
 <Tabs groupId="KeytoPooltransferRepeat">
@@ -204,6 +206,7 @@ vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network f
 ```
 </TabItem>
 </Tabs>
+-->
 
 ### Cancelling recurring transfers
 To cancel a recurring transfer, you'll need the transfer's ID. To see the ID for every transfer your public key makes, [run a transfers GraphQL query](../graphql/queries/transfers-connection.mdx) to see the ID for every transfer you make.
