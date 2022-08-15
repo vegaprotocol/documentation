@@ -4,7 +4,7 @@ title: Market protections
 hide_title: false
 ---
 
-# Position management
+## Position management
 As markets and collateral are not managed through human intervention, markets must have certain automated processes that allow for well-functioning markets and assurance that the collateral required to manage positions is available when it's needed. 
 
 There are a few mechanisms that work differently to how they would on a centralised exchange, in order to provide those reassurances. They include
@@ -104,65 +104,7 @@ If there is not enough collateral to provide the required margin, then the posit
 ### Margin: Releasing collateral
 Traders who have a margin account balance greater than the release level will have the excess assets released to their general collateral account, to the point where their new margin level is equal to the initial margin level.
 
-### Distressed traders
-If a trader's available margin on a market is below the closeout level and cannot be rectified, that trader is considered to be distressed.
-
-A distressed trader has all their open orders on that market cancelled. The network will then recalculate the margin requirement on the trader's remaining open position. If they then have sufficient collateral, they are no longer considered a distressed trader. 
-
-However, if the trader does not have sufficient collateral, they are added to list of traders that will then undergo position resolution to close out their positions.
-
-Read more: [Position resolution](#position-resolution)
-
-### Closeouts
-When a participant does not have enough collateral to hold their open positions, the protocol will automatically trigger a closeout.
-
-The closeout process is a last resort for a position. If a trader's deployed margin on the market is insufficient to cover a mark to market settlement liability, first Vega will search the trader's available balance of the settlement asset. If this search is unable to cover the full liability, the trader will be considered distressed and undergo position resolution. Any margin balance remaining after closeout is transferred to the market's insurance pool.
-
-The insurance pool is drawn from to make up the difference required to cover the mark to market loss amount. Should the funds in the insurance pool be insufficient for that, loss socialisation will be applied.
-
-Read more: 
-* [Position resolution](#position-resolution)
-* [Loss socialisation](#loss-socialisation)
-
-### Position resolution
-Position resolution is executed simultaneously, during a single event, for all traders on a market that have been determined to require it. Distressed trader(s) are ‘batched up’, and position resolution is run once the full set of traders is known for this event.
-
-The network calculates the overall net long or short positions in the batch that requires position resolution, which tells the network how much volume (either long or short) needs to be sourced from the order book. For example, if there are 3 distressed traders with +5, -4 and +2 positions respectively, then the net outstanding liability is +3. 
-
-The outstanding liability is sourced from the market's order book via a single market order executed by the network as a counterparty. In this example, a market order to sell 3 would be placed on the order book. This order is described as a 'network order'.
-
-The network generates a set of trades with all the distressed traders, all at the volume weighted average price of the network's (new) open position. At this point, neither the distressed traders nor the network will have any open positions. Note, network orders do not affect the market's mark price. 
-
-All of the remaining collateral in each distressed trader's margin account for that market is confiscated to the market's insurance pool.
-
-Read more: [Insurance pools](#insurance-pools)
-
-#### Loss socialisation 
-Loss socialisation occurs when there are traders that don't have sufficient collateral to handle the price moves of their open position(s), and the insurance pool cannot cover their shortfall. 
-
-This situation would mean collection transfers are not able to supply the full amount to the market settlement account, and not enough funds can be collected to distribute the full amount of mark to market gains made by traders on the other side. 
-
-The funds that have been collected must be fairly distributed. Loss socialisation is implemented by reducing the amount that is distributed to each trader with a mark to market gain, based on their relative position size. 
-
-```
-distribute_amount[trader] = mtm_gain[trader] * ( actual_collected_amount / target_collect_amount )
-```
-
-### Insurance pools
-Each market has its own insurance pool, and each asset has its own general insurance pool. 
-
-When a market expires, the funds from that market's insurance pool go into the bigger asset insurance pool, which other markets that use the same currency can pull from. 
-
-Insurance pools grow in two scenarios:
-* If a trader is closed out because they do not have enough collateral to support an open positions
-* If a liquidity provider pays a penalty for failing to provide their committed liquidity
-
-Read more:
-* [Closeouts](#closeouts)
-* [Liquidity provision penalties](#penalties)
-* [Loss socialisation](#loss-socialisation)
-
-### Price monitoring
+## Price monitoring
 The dynamics of market price movements mean that prices don't always represent the participants' true average view of the price, but are instead artefacts of the market microstructure. 
 
 Sometimes low liquidity and/or a large quantity of order volume can cause the price to diverge from the true market price. The Vega protocol is designed to assume that relatively small moves are 'real' and that larger moves might not be. 
@@ -175,7 +117,7 @@ A market's risk model can be used to obtain the price projection at a future poi
 
 Note: A market's risk model is defined within the market proposal.
 
-#### Price monitoring triggers
+### Price monitoring triggers
 Each market has a set of price monitoring triggers. When those points are breached, the market will enter a price monitoring auction. Price monitoring triggers are defined in a market's proposal, and a governance proposal to change them can be raised and voted on by tokenholders.
 
 Each trigger contains:
@@ -210,7 +152,7 @@ Now:
     * If after 1 minute has passed there are no trades resulting from the auction or the indicative price of the auction, then if in the `[95,105]` the trades are generated and the price monitoring auction concludes.
     * If after 1 minute has passed the indicative price of the auction is outside the `[95,105]`, the auction gets extended by 5 minutes, as concluding the auction at the 1 minute mark would breach the valid ranges implied by the second trigger. After the 5 minutes, trades (if any) are generated irrespective of their price, as there are no more active triggers, and the price monitoring auction concludes.
 
-### Liquidity monitoring
+## Liquidity monitoring
 Besides the obvious appeal to traders, a liquid market also offers some risk management, particularly in a system that does not have a central counter-party. When a trader is distressed, their position can only be liquidated if there is enough volume on the order book to offload it.
 
 In order to ensure there is enough liquidity to keep a market active and protect against insolvent parties, the network must be able to detect when the market's liquidity is too low. 
@@ -234,3 +176,61 @@ The liquidity obligation is calculated from the liquidity commitment amount usin
 Note here `ccy` stands for 'currency'. Liquidity measure units are 'currency siskas', e.g. ETH or USD siskas. This is because the calculation is basically `volume ⨉ probability of trading ⨉ price of the volume` and the price of the volume is in the said currency.
 
 Liquidity obligation is considered to be met when the `volume ⨉ probability of trading ⨉ price of orders` of all liquidity providers, per each order book side, measured separately, is at least `liquidity_obligation_in_ccy_siskas`.
+
+## Distressed traders
+If a trader's available margin on a market is below the closeout level and cannot be rectified, that trader is considered to be distressed.
+
+A distressed trader has all their open orders on that market cancelled. The network will then recalculate the margin requirement on the trader's remaining open position. If they then have sufficient collateral, they are no longer considered a distressed trader. 
+
+However, if the trader does not have sufficient collateral, they are added to list of traders that will then undergo position resolution to close out their positions.
+
+Read more: [Position resolution](#position-resolution)
+
+### Closeouts
+When a participant does not have enough collateral to hold their open positions, the protocol will automatically trigger a closeout.
+
+The closeout process is a last resort for a position. If a trader's deployed margin on the market is insufficient to cover a mark to market settlement liability, first Vega will search the trader's available balance of the settlement asset. If this search is unable to cover the full liability, the trader will be considered distressed and undergo position resolution. Any margin balance remaining after closeout is transferred to the market's insurance pool.
+
+The insurance pool is drawn from to make up the difference required to cover the mark to market loss amount. Should the funds in the insurance pool be insufficient for that, loss socialisation will be applied.
+
+Read more: 
+* [Position resolution](#position-resolution)
+* [Loss socialisation](#loss-socialisation)
+
+### Position resolution
+Position resolution is executed simultaneously, during a single event, for all traders on a market that have been determined to require it. Distressed trader(s) are ‘batched up’, and position resolution is run once the full set of traders is known for this event.
+
+The network calculates the overall net long or short positions in the batch that requires position resolution, which tells the network how much volume (either long or short) needs to be sourced from the order book. For example, if there are 3 distressed traders with +5, -4 and +2 positions respectively, then the net outstanding liability is +3. 
+
+The outstanding liability is sourced from the market's order book via a single market order executed by the network as a counterparty. In this example, a market order to sell 3 would be placed on the order book. This order is described as a 'network order'.
+
+The network generates a set of trades with all the distressed traders, all at the volume weighted average price of the network's (new) open position. At this point, neither the distressed traders nor the network will have any open positions. Note, network orders do not affect the market's mark price. 
+
+All of the remaining collateral in each distressed trader's margin account for that market is confiscated to the market's insurance pool.
+
+Read more: [Insurance pools](#insurance-pools)
+
+### Loss socialisation 
+Loss socialisation occurs when there are traders that don't have sufficient collateral to handle the price moves of their open position(s), and the insurance pool cannot cover their shortfall. 
+
+This situation would mean collection transfers are not able to supply the full amount to the market settlement account, and not enough funds can be collected to distribute the full amount of mark to market gains made by traders on the other side. 
+
+The funds that have been collected must be fairly distributed. Loss socialisation is implemented by reducing the amount that is distributed to each trader with a mark to market gain, based on their relative position size. 
+
+```
+distribute_amount[trader] = mtm_gain[trader] * ( actual_collected_amount / target_collect_amount )
+```
+
+### Insurance pools
+Each market has its own insurance pool, and each asset has its own general insurance pool. 
+
+When a market expires, the funds from that market's insurance pool go into the bigger asset insurance pool, which other markets that use the same currency can pull from. 
+
+Insurance pools grow in two scenarios:
+* If a trader is closed out because they do not have enough collateral to support an open positions
+* If a liquidity provider pays a penalty for failing to provide their committed liquidity
+
+Read more:
+* [Closeouts](#closeouts)
+* [Liquidity provision penalties](#penalties)
+* [Loss socialisation](#loss-socialisation)

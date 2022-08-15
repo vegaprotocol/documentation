@@ -3,7 +3,6 @@ sidebar_position: 8
 title: Data sources
 hide_title: false
 ---
-# Data sources
 Data sources, which come from oracles, are essential to markets created on Vega.
 
 Market settlement, risk models, and other features require a supplied price, or other data, which must come from somewhere, usually completely external to Vega. Specifically for settlement values, Vega requires external data.

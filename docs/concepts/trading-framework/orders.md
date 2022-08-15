@@ -48,6 +48,8 @@ Read more:
 ## Order types
 There are three order types available to traders: limit orders, market orders, and pegged orders. One order type is automatically triggered to close out positions for distressed traders - that's called a network order.
 
+Orders can be persistent (stay on the order book) or non-persistent (never hit the order book). Some order types in Vega depend on the market state. 
+
 ### Limit order
 A limit order is an instruction that allows you to specify the minimum price at which you will sell, or the maximum at which you will buy. 
 
@@ -76,15 +78,43 @@ Read more: [Position resolution](#position-resolution)
 
 * **FOK**: A Fill or Kill order either trades completely until the remaining size is 0, or not at all, and does not remain on the book if it doesn't trade.
 
+### Pegged order
+Pegged orders are orders that are a defined distance from a reference price (i.e. best bid, mid and best offer/ask), rather than at a specific price, and generate limit orders based on the set parameters. Currently, pegged orders can only use Good 'Til Cancelled and Good Til Time, but Immediate Or Cancel and Fill Or Kill will be available in a future release.
+
+A pegged order is not placed on the order book itself, but instead generates a limit order with the price generated based on the reference and offset value. As the price levels in the order book move around, the order's price on the order book also moves.
+
+The reference can only be positive and Vega applies it differently depending on if the order is a buy or sell.
+
+If we are a buy the offset is taken away from the reference price. If we are a sell they the offset is added to the reference price.
+
+### Reference prices for pegged orders
+Rather than being set for a specific limit price, a pegged order is a defined distance from a reference price (such as the best bid, mid, or best offer/ask). That is the price against which the final order price is calculated. The reference price is based on the live market, and the final price is calculated and used to insert the new order. The distance is also known as the offset value, which is an absolute value that must be cleanly divisible by the tick size, and can be [negative or] positive. 
+
+### Amend pegged orders
+Pegged orders can be amended like standard limit orders - their reference, offset and time in force values can all be amended. If amending an order cannot be performed in-place, the order will lose time priority in the order book (but will keep its priority in the list of pegged orders). Amends must be done to the pegged order itself, not any limit orders derived from pegged orders. 
+
+### Parked pegged orders 
+There are some situations in which pegged orders are parked, or moved off the order book, until the market returns to a state that allows pegs, or the orders are cancelled or expire. When orders return to the book, they are re-priced based on current market prices, sorted by their original entry time. If the primary trading mode of a market doesn't allow pegged orders (such as an auctions-only market), then the pegged orders are rejected.  Those situations include:
+* Auctions - pegged orders are only valid during continuous trading
+* When the reference price does not exist (e.g. no best bid)
+* The price moves to a value that means it would create an invalid order if the offset was applied
+
+Pegged orders are restricted in what values can be used when they are created, these can be defined by a list of rules each order must abide with. Note: IOC and FOK are not currently available for pegged orders, but will be in a future release. 
+
+| Type (Time in Force)      | Side  |   Bid Peg   | Mid Peg |  Offer Peg  |
+|---------------------------|-------|-------------|---------|-------------|
+| Persistent (GTC, GTT)	    | Buy	  | <= 0        | < 0     | Not allowed |
+| Persistent (GTC, GTT)	    | Sell  | Not allowed | > 0     | >= 0        |
+| Non persistent (IOC, FOK) |	Buy   | > 0         | > 0     | >= 0        |
+| Non persistent (IOC, FOK) |	Sell  | <= 0        | < 0	    | < 0         |
+
 ## Order status
 * Rejected: If you don't have enough collateral to fill the margin requirements on an order, it will show up as 'Rejected'
 * Cancelled:  If you cancel an order, the status will be listed as 'Cancelled'
 * Stopped: If the the network cannot fill an order, based on the parameters you set, for example, then the order will show up as 'Stopped'
 
-## Order types
-Orders can be persistent (stay on the order book) or non-persistent (never hit the order book). Some order types in Vega depend on the market state. 
-
-The following charts explain the order types and the statuses that they'll show, based on what happens in the network. 
+## Times in force
+The following charts explain the times in force for orders and the statuses that they'll show, based on what happens in the network. 
 
 ### Fill Or Kill
 Fill Or Kill (FOK): A non-persistent order that either trades all of its volume immediately on entry or is stopped/cancelled immediately without trading anything. In other words, unless the order can be completely filled immediately, it does not trade at all. It is never placed on the book, even if it does not trade.
@@ -139,35 +169,5 @@ Good For Auction (GFA): This order is dependent on the market's state, and will 
 
 ### Good For Normal
 Good For Normal (GFN): This order is dependent on the market's state and will only be accepted by the system if it arrived during the market's standard trading mode, otherwise it will be rejected. The order can act like either a Good 'Til Cancelled or Good Til Time order depending on whether an expiry is set.
-
-## Pegged order
-Pegged orders are orders that are a defined distance from a reference price (i.e. best bid, mid and best offer/ask), rather than at a specific price, and generate limit orders based on the set parameters. Currently, pegged orders can only use Good 'Til Cancelled and Good Til Time, but Immediate Or Cancel and Fill Or Kill will be available in a future release.
-
-A pegged order is not placed on the order book itself, but instead generates a limit order with the price generated based on the reference and offset value. As the price levels in the order book move around, the order's price on the order book also moves.
-
-The reference can only be positive and Vega applies it differently depending on if the order is a buy or sell.
-
-If we are a buy the offset is taken away from the reference price. If we are a sell they the offset is added to the reference price.
-
-### Reference prices for pegged orders
-Rather than being set for a specific limit price, a pegged order is a defined distance from a reference price (such as the best bid, mid, or best offer/ask). That is the price against which the final order price is calculated. The reference price is based on the live market, and the final price is calculated and used to insert the new order. The distance is also known as the offset value, which is an absolute value that must be cleanly divisible by the tick size, and can be [negative or] positive. 
-
-### Amend pegged orders
-Pegged orders can be amended like standard limit orders - their reference, offset and time in force values can all be amended. If amending an order cannot be performed in-place, the order will lose time priority in the order book (but will keep its priority in the list of pegged orders). Amends must be done to the pegged order itself, not any limit orders derived from pegged orders. 
-
-### Parked pegged orders 
-There are some situations in which pegged orders are parked, or moved off the order book, until the market returns to a state that allows pegs, or the orders are cancelled or expire. When orders return to the book, they are re-priced based on current market prices, sorted by their original entry time. If the primary trading mode of a market doesn't allow pegged orders (such as an auctions-only market), then the pegged orders are rejected.  Those situations include:
-* Auctions - pegged orders are only valid during continuous trading
-* When the reference price does not exist (e.g. no best bid)
-* The price moves to a value that means it would create an invalid order if the offset was applied
-
-Pegged orders are restricted in what values can be used when they are created, these can be defined by a list of rules each order must abide with. Note: IOC and FOK are not currently available for pegged orders, but will be in a future release. 
-
-| Type (Time in Force)      | Side  |   Bid Peg   | Mid Peg |  Offer Peg  |
-|---------------------------|-------|-------------|---------|-------------|
-| Persistent (GTC, GTT)	    | Buy	  | <= 0        | < 0     | Not allowed |
-| Persistent (GTC, GTT)	    | Sell  | Not allowed | > 0     | >= 0        |
-| Non persistent (IOC, FOK) |	Buy   | > 0         | > 0     | >= 0        |
-| Non persistent (IOC, FOK) |	Sell  | <= 0        | < 0	    | < 0         |
 
 <!-- ### Batch operations on orders [WIP] -->

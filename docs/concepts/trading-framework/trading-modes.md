@@ -44,20 +44,17 @@ During the auction call period, no trades are created, but all orders are queued
 
 At the conclusion of the call period, trades are produced in a single action known as an auction uncrossing. During the uncrossing, auctions always try to maximise the traded volume, subject to the requirements of the orders placed.
 
-### Auction types
-The Vega protocol supports several types of auctions.
-
-#### Opening auctions
+### Auction type: Opening
 Every continuous trading market opens with an auction. Their purpose is to calibrate a market and help with price discovery. 
 
-#### Price monitoring auctions
+### Auction type: Price monitoring
 A market will go into a price monitoring auction if generating a trade would result in a price that is larger than the theoretical bounds implied by the risk model, and the market's price monitoring settings. 
 
 The trade is not generated, the orders that instigated that trade remain on the order book, and the market goes into an auction, the length of which is defined by price monitoring settings (chosen during the market proposal).
 
 Read more: price monitoring
 
-#### Liquidity monitoring auctions
+### Auction type: Liquidity monitoring
 A market will go into a liquidity monitoring auction if the total commitment from liquidity providers (total stake) drops too low relative to the estimate of the market's liquidity demand (target stake), or if the best bid and/or best ask price implied by limit orders from market participants are not available
 
 Read more: liquidity monitoring

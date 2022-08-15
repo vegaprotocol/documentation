@@ -23,7 +23,7 @@ Other pages in the trading framework section cover the concepts of:
 ### Settlement process
 To start, only cash-settled futures markets can be created. This means that settlement occurs in the settlement asset of the market, which is defined in the market framework when the market was proposed.
 
-The settlement asset is defined by within the governance proposal that led to the market's creation, and **does not** need to be the same asset as the ‘quote unit’ (i.e. ETH on a BTC/ETH December 2028 market). 
+The settlement asset is defined by within the governance proposal that led to the market's creation, and **does not** need to be the same asset as the ‘quote unit’ (i.e. ETH on a BTC/ETH December 2028 market).
 
 The network executes settlement with a two step process:
 
