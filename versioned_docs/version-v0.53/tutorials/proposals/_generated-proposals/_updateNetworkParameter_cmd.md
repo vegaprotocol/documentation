@@ -1,6 +1,6 @@
 
   ```bash
-./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{
+./vegawallet command send --wallet your_walletname --pubkey your_public_key --network mainnet1 '{
  "proposalSubmission": {
   "rationale": {
    "description": "Update governance.proposal.freeform.minVoterBalance"

@@ -26,7 +26,7 @@ For one-off transfers, you can set a delivery date/time for when the transfer ar
 <TabItem value="KeytoKeytransferOnceLinuxcmd" label="Linux / OSX command line example">
 
 ```bash
-vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{
+vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 '{
     "transfer":{
         "fromAccountType": "ACCOUNT_TYPE_GENERAL",
         "toAccountType": "ACCOUNT_TYPE_GENERAL",
@@ -43,7 +43,7 @@ vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairg
 <TabItem value="KeytoKeytransferOnceWincmd" label="Windows command line example">
 
 ```bash
-vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground^
+vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1^
 "{\"transfer\":^
     { ^
         \"fromAccountType\":\"ACCOUNT_TYPE_GENERAL\", ^
@@ -66,7 +66,7 @@ vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network f
 <TabItem value="KeytoPooltransferOnceLinuxcmd" label="Linux / OSX command line example">
 
 ```bash
-vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{
+vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 '{
     "transfer":{
         "fromAccountType": "ACCOUNT_TYPE_GENERAL",
         "toAccountType": "ACCOUNT_TYPE_GLOBAL_REWARD",
@@ -83,7 +83,7 @@ vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairg
 <TabItem value="KeytoPooltransferOnceWincmd" label="Windows command line example">
 
 ```bash
-vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground ^
+vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 ^
 "{ ^
     \"transfer\": { ^
         \"fromAccountType\": \"ACCOUNT_TYPE_GENERAL\", ^
@@ -117,7 +117,7 @@ Recurring transfers can also optionally set a [DispatchStrategy](../grpc/vega/ve
 <TabItem value="KeytoKeytransferRepeatLinuxcmd" label="Linux / OSX command line">
 
 ```bash
-vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{
+vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 '{
     "transfer":{
         "fromAccountType":"ACCOUNT_TYPE_GENERAL",
         "toAccountType": "ACCOUNT_TYPE_GENERAL",
@@ -135,7 +135,7 @@ vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairg
 <TabItem value="KeytoKeytransferRepeatcmdWin" label="Windows command line example">
 
 ```bash
-vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground^
+vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1^
 "{\"transfer\": ^
     { ^
         \"fromAccountType\": \"ACCOUNT_TYPE_GENERAL\", ^
@@ -161,7 +161,7 @@ vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network f
 <TabItem value="KeytoPooltransferRepeatLinuxcmd" label="Linux / OSX command line">
 
 ```bash
-vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{
+vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 '{
     "transfer":{
         "fromAccountType": "ACCOUNT_TYPE_GENERAL",
         "toAccountType": "ACCOUNT_TYPE_REWARD_MARKET_PROPOSERS",
@@ -184,7 +184,7 @@ vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairg
 <TabItem value="KeytoPooltransferRepeatWincmd" label="Windows command line example">
 
 ```bash
-vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground ^
+vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 ^
 "{ ^
     \"transfer\":{ ^
         \"fromAccountType\": \"ACCOUNT_TYPE_GENERAL\", ^
@@ -215,14 +215,14 @@ To cancel a recurring transfer, you'll need the transfer's ID. To see the ID for
 <TabItem value="canceltransferLinuxcmd" label="Linux / OSX command line">
 
 ```bash
-vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground\
+vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1\
     '{ "cancelTransfer": { "transferId": "123" }}'
 ```
 </TabItem>
 <TabItem value="canceltransferWincmd" label="Windows command line example">
 
 ```bash
-vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground "{ \"cancelTransfer\": {  \"transferId\": \"123\" }}"
+vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 "{ \"cancelTransfer\": {  \"transferId\": \"123\" }}"
 ``` 
 </TabItem>
 </Tabs>

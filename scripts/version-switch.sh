@@ -29,11 +29,15 @@ find 'docs/graphql' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/graphql/\/d
 find 'docs/grpc' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/grpc/\/docs\/testnet\/grpc/g' {} +
 
 ## Ensure frontmatter for non-testnet docs is set to mainnets
-find 'versioned_docs/' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/vega_network: TESTNET/vega_network: MAINNET/g' {} +
-find 'versioned_docs/' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/ethereum_network: ROPSTEN/ethereum_network: MAINNET/g' {} +
+find 'versioned_docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/vega_network: TESTNET/vega_network: MAINNET/g' {} +
+find 'versioned_docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/ethereum_network: ROPSTEN/ethereum_network: MAINNET/g' {} +
+
 ## Do the inverse, just in case
-find 'docs/' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/vega_network: MAINNET/vega_network: TESTNET/g' {} +
-find 'docs/' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/ethereum_network: MAINNET/ethereum_network: ROPSTEN/g' {} +
+find 'docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/vega_network: MAINNET/vega_network: TESTNET/g' {} +
+find 'docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/ethereum_network: MAINNET/ethereum_network: ROPSTEN/g' {} +
+
+## Fix tutorials
+find 'versioned_docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/--network fairground/--network mainnet1/g' {} +
 
 
 # Tidy up any stray backup files from seds (non-gnused)
