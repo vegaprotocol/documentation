@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-With the upgrade of the network to Vega protocol version v0.53 (combined) will come an upgrade of the smart contracts. 
+With the upgrade of the network to version v0.53 there was upgrade of the smart contracts.
 
 The multisig control contract and the collateral bridge will be upgraded in order to increase users' control over the funds they deposit (opt-out) and performance improvements, such as decreasing gas cost when using the bridge. The Vega asset pool contract will not be upgraded. Once the new contracts are properly set up on Ethereum, the validators will migrate the asset pool to use the new contracts.
 
