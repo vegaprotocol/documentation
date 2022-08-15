@@ -7,11 +7,12 @@ While there are many open-source components to Vega software, not all of the cod
 
 [**Vega core software**](#vega-core-software) - Below, find a summary of each version's features and breaking changes.
 
+From 0.54.0 the core repository also holds the wallet and data-node code, therefore the following code is included in the releases:
+
+- The data node APIs allow for querying for historic information and for snapshots of the current state of the systems.
+- The code for the Vega Wallet CLI app is open source, and you can read about the contents of each release on the Vega Wallet repo.
+
 See the full release notes on [GitHub](https://github.com/vegaprotocol/vega/releases).
-
-[**Data node APIs on GitHub**](https://github.com/vegaprotocol/data-node/releases) - The data node APIs allow for querying for historic information and for snapshots of the current state of the systems.
-
-[**Vega Wallet on GitHub**](https://github.com/vegaprotocol/vega/releases) - The code for the Vega Wallet CLI app is open source, and you can read about the contents of each release on the Vega Wallet repo.
 
 [**Vega Desktop Wallet on GitHub**](https://github.com/vegaprotocol/vegawallet-desktop/releases) - The code for the Vega Wallet desktop app is open source, and you can read the contents of each release on the repo.
 
@@ -22,8 +23,76 @@ See the full release notes on [GitHub](https://github.com/vegaprotocol/vega/rele
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-### Versions 0.53-0.51 | 2022-07-14
-This version was released to the Vega testnet on 14 July, 2022.
+### Versions 0.54.0 | 2022-08-XX
+This version was released to the Vega testnet on XX August, 2022.
+
+#### 0.54.0 (XX August 2022)
+
+For full details on 0.54.0 see the release pages:
+[vega core](https://github.com/vegaprotocol/vega/releases/tag/v0.54.0)
+
+**BREAKING CHANGES**
+
+**Vega as a built-in application**
+Vega is now a built-in application, this means that Tendermint does not need to be started separately, providing a simpler, streamlined user experience for node operators. This also introduces some changes to the commands used when running a node:
+
+- The `vega node` command has been renamed `vega start`. 
+- The `vega tm` command has been renamed `vega tendermint`. 
+- The `Blockchain.Tendermint.ClientAddr` configuration field has been renamed `Blockchain.Tendermint.RPCAddr`. 
+- The `init` command now also generates the configuration for tendermint, and also has the newly introduced flags `--no-tendermint`,` --tendermint-home` and `--tendermint-key`.
+This work was all done in issue [5579](https://github.com/vegaprotocol/vega/issues/5579)
+
+**Remove `updateFrequency` in price monitoring definition**
+The `updateFrequency` within price monitoring is not being used by the core protocol, therefore, this has now been replaced by the update frequency of the state var. This work was done in issue [5624](https://github.com/vegaprotocol/vega/issues/5624)
+
+**Remove wallet support for launching a proxy in-front of dApps**
+Introducing the proxy was a way to navigate the browser security that prevents webapps from being able to talk to local web servers; this is now no longer required and therefore has been removed. This has been carried out under the issue [5601](https://github.com/vegaprotocol/vega/issues/5601)
+
+**CRITICAL BUG FIXES**
+
+**Updating oracle termination causes the core to panic**
+During activity on testnet for the incentive programme it was found that if a user updated the oracle termination conditions on an enacted continuous market the network would panic. The oracle term condition was set to be ten seconds in the future; when the network reached this time the core threw a panic.
+This bug has been resolved in [5668](https://github.com/vegaprotocol/vega/pull/5668)
+
+**Network parameter set to `0` can cause node startup failure**
+An issue was discovered in when using the [Market Simulator](https://github.com/vegaprotocol/vega-market-sim) when the governance parameter `governance.proposal.updateMarket.minProposerEquityLikeShare` is set to `0` in the `genesis.json`, this resulted in the node startup failing. The fix implemented in [5633](https://github.com/vegaprotocol/vega/issues/5633) addresses this and allows the value to be `0`.
+
+**Cannot unregister order causing core to crash in Market Simulator**
+When using the [Market Simulator](https://github.com/vegaprotocol/vega-market-sim) it was found that a "cannot unregister order" error was thrown and caused the core to crash.
+This bug has been resolved in [5663](https://github.com/vegaprotocol/vega/issues/5663)
+
+**Entering an auction caused by pegged order causes the core to panic**
+It was identified that at some point the market is not in an auction and a pegged order gets repriced, this resulted in it being removed from the book, however, it remained in the pegged list. If the market then goes into an auction the pegged order list is used to try to get the order from the book, however in this case the order does not exist in the book which leads to panic.
+This bug has been resolved in [5825](https://github.com/vegaprotocol/vega/issues/5825)
+
+**CORE**
+
+**Asset proposal**
+In order to complete the work around governance before Alpha mainnet asset proposals have been implemented. This allows a user to propose and modify assets on the network via the governance process. This work was completed in [5242](https://github.com/vegaprotocol/vega/issues/5242) and [5851](https://github.com/vegaprotocol/vega/pull/5851)
+
+**Tendermint**
+During the development of this version of the software, the team upgraded Tendermint to 0.35. This change would have brought breaking changes with it, however, in discussions with the Tendermint project team it became clear this version is to be discontinued. To find out more please see [this blog post](https://interchain-io.medium.com/discontinuing-tendermint-v0-35-a-postmortem-on-the-new-networking-layer-3696c811dabc). In light of this, the upgrade has been rolled back and Vega 0.54 will use the tendermint version 0.34.20.
+This work was done in issue [5249](https://github.com/vegaprotocol/vega/issues/5249) and rolled back in issue [5804](https://github.com/vegaprotocol/vega/issues/5804)
+
+**DATANODE**
+
+**Move datanode into the core repository**
+In order to simplify the process around creating releases and running a node as well as manage dependencies across code repositories, the data node software has been incorporated into the core Vega repo. This work was done in issue [5613](https://github.com/vegaprotocol/vega/issues/5613).
+
+**Version 2 APIs**
+Since the introduction of the PostgresQL database and work to stabilise this, the team has now migrated all the APIs to use the new database. The team is now completing the work on the version 2 APIs that will introduce pagination and filtering to provide a better user experience for people using the network both via the APIs and via dApps.
+This work was done in issue [5685](https://github.com/vegaprotocol/vega/issues/5685)
+and issue [5660](https://github.com/vegaprotocol/vega/issues/5660)
+
+**API improvements**
+In order to ensure that there is API parity between the API types the gRPC endpoints have all been mapped to REST. Further work to understand what level of parity is required and how to better the UX for the GraphQL APIs remains in progress. This work was done in issue [5760](https://github.com/vegaprotocol/vega/issues/5760)
+
+**WALLET**
+
+The Vega Wallet API has been completely rewritten to support all authentication happening within the wallet apps, rather than on the UI-side. These changes have been implemented to provide better wallet security. The wallet has also had some updates in order to provide more meaningful responses for when a transaction fails, this has been implemented to provide a better UX around the wallet. The implementation has been carried out in issues [5439](https://github.com/vegaprotocol/vega/issues/5439), [5541](https://github.com/vegaprotocol/vega/issues/5541) and [5503](https://github.com/vegaprotocol/vega/issues/5503). 
+
+Further information on these changes can be found in the updated documentation implemented in issues [5618](https://github.com/vegaprotocol/vega/issues/5618) and [5619](https://github.com/vegaprotocol/vega/issues/5619).
+
 
 #### 0.53.0 (14 July 2022)
 
