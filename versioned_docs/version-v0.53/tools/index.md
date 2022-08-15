@@ -20,7 +20,7 @@ Use **[$VEGA Token website](https://token.vega.xyz)** to stake your tokens to no
 The block explorer allows you to query transactions, network parameters, available assets (and their IDs) and more.
 
 * **[Block explorer for mainnet](https://explorer.vega.xyz/)**
-* **[Block explorer for fairground](https://explorer.fairground.wtf/)**
+* **[Block explorer](https://explorer.fairground.wtf/)**
 
 ### Vega Capsule
 Use **[Vega Capsule](https://github.com/vegaprotocol/vegacapsule)** to create an instance of the Vega network on your computer to experiment with using the protocol. 

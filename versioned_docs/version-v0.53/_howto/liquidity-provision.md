@@ -199,4 +199,4 @@ For full example code, please visit the [repo on GitHub](https://github.com/vega
 ## What's next?
 
  * What's the [Vega Time](time)?
- * Try the [Vega block explorer](https://explorer.fairground.wtf/)
+ * Try the [Vega block explorer](https://explorer.vega.xyz/)

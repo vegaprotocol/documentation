@@ -108,4 +108,4 @@ As mentioned earlier, the GraphQL API does not currently support streaming `BUS_
 ## What's next?
 
  * What's the [Vega Time](time.md)?
- * Try the [Vega block explorer](https://explorer.fairground.wtf/)
+ * Try the [Vega block explorer](https://explorer.vega.xyz/)

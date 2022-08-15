@@ -38,6 +38,8 @@ find 'docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/ethereum_ne
 
 ## Fix tutorials
 find 'versioned_docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/--network fairground/--network mainnet1/g' {} +
+## Explorer links
+find 'versioned_docs' -type f -name '*.mdx' -o -name '*.md' -exec gsed -i -E 's/https:\/\/explorer.fairground.wtf/https:\/\/explorer.vega.xyz/g' {} +
 
 
 # Tidy up any stray backup files from seds (non-gnused)
