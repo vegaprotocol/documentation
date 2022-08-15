@@ -90,7 +90,7 @@ When a tokenholder chooses a validator (or validators) to nominate with their to
 Read more: [Rewards for staking](#rewards)
 
 :::info
-VEGA tokenholders can use **[token.fairground.wtf](https://token.fairground.wtf)** to associate their tokens and nominate validators. A Vega Wallet and Ethereum wallet are both required. CoinList custodial users should confirm with CoinList how staking works for them.
+VEGA tokenholders can use **[token.vega.xyz](https://token.vega.xyz)** to associate their tokens and nominate validators. A Vega Wallet and Ethereum wallet are both required. CoinList custodial users should confirm with CoinList how staking works for them.
 :::
 
 ### Automatic nomination
@@ -123,7 +123,7 @@ Validators and nominators both receive incentives for securing the network. The 
 **To be considered for staking rewards, a tokenholder must associate VEGA to a Vega key and nominate one or more validators.**
 
 :::info
-Try out staking on **[token.fairground.wtf](https://token.fairground.wtf)** to try out associating testnet tokens and nominating validators. Staking rewards are paid into your Vega wallet after each epoch ends. 
+Stake on **[token.vega.xyz](https://token.vega.xyz)** to associate tokens and nominate validators. Staking rewards are paid into your Vega wallet after each epoch ends. 
 
 Staking rewards must be withdrawn to an Ethereum wallet, and then associated to a Vega wallet, before they can be staked.
 :::
