@@ -2,7 +2,7 @@
 title: Stake tokens
 hide_title: false
 vega_network: MAINNET
-ethereum_network: MAINNET
+ethereum_network: Mainnet
 ---
 import EthAddresses from '@site/src/components/EthAddresses';
 
