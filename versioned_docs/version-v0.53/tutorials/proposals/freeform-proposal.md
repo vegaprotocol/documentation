@@ -1,7 +1,7 @@
 ---
 title: Freeform proposal
 hide_title: false
-vega_network: TESTNET
+vega_network: MAINNET
 keywords:
 - proposal
 - governance

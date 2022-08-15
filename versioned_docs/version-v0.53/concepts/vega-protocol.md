@@ -1,5 +1,5 @@
 ---
-vega_network: TESTNET
+vega_network: MAINNET
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';

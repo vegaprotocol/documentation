@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 title: Vega Chain
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';

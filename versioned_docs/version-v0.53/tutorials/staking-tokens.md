@@ -1,7 +1,7 @@
 ---
 title: Stake tokens
 hide_title: false
-vega_network: TESTNET
+vega_network: MAINNET
 ethereum_network: Ropsten
 ---
 import EthAddresses from '@site/src/components/EthAddresses';
