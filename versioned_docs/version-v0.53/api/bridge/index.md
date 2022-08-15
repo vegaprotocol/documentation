@@ -1,7 +1,7 @@
 ---
 title: Overview
 vega_network: MAINNET
-ethereum_network: MAINNET
+ethereum_network: Mainnet
 sidebar_position: 1
 ---
 

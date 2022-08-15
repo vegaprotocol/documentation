@@ -30,8 +30,8 @@ find 'docs/grpc' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/grpc/\/docs\/t
 
 ## Ensure frontmatter for non-testnet docs is set to mainnets
 find 'versioned_docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/vega_network: TESTNET/vega_network: MAINNET/g' {} +
-find 'versioned_docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/ethereum_network: ROPSTEN/ethereum_network: MAINNET/g' {} +
-find 'versioned_docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/ethereum_network: Ropsten/ethereum_network: MAINNET/g' {} +
+find 'versioned_docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/ethereum_network: ROPSTEN/ethereum_network: Mainnet/g' {} +
+find 'versioned_docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/ethereum_network: Ropsten/ethereum_network: Mainnet/g' {} +
 
 ## Do the inverse, just in case
 find 'docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/vega_network: MAINNET/vega_network: TESTNET/g' {} +
