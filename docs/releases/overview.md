@@ -59,7 +59,7 @@ An issue was discovered using the [Market Simulator](https://github.com/vegaprot
 **Cannot unregister order causing core to crash in Market Simulator:**
 When using the [Market Simulator](https://github.com/vegaprotocol/vega-market-sim) it was found that a "cannot unregister order" error was thrown for pegged orders and caused the core to crash. This bug has been resolved in [5663](https://github.com/vegaprotocol/vega/issues/5663)
 
-**Entering an auction caused by pegged order causes the core to panic:**
+**Pegged orders not removed from list after repricing:**
 It was identified that during a markets life when it is not in an auction and a pegged order gets repriced the order was removed from the book, however, it remained in the pegged list. If the market then goes into an auction the pegged order list is used to try to get the order from the book, however in this case the order no longer exists, causing a panic. This bug has been resolved in [5825](https://github.com/vegaprotocol/vega/issues/5825)
 
 **Core**
