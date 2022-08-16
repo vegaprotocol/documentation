@@ -47,7 +47,7 @@ The `updateFrequency` within price monitoring is not being used by the core prot
 **Remove wallet support for launching a proxy in front of dApps:**
 Introducing the proxy was a way to navigate the browser security that prevents web apps from being able to talk to local web servers; this is now no longer required and therefore has been removed. This has been carried out in the issue [5601](https://github.com/vegaprotocol/vega/issues/5601)
 
-**Critical Bug Fixes**
+#### Critical Bug Fixes
 
 **Updating oracle termination caused the core to panic:**
 During a recent incentive on testnet it was found that when a user made the oracle termination conditions to be set to be ten seconds in the future and before the market could be enabled; when the network reached this time the core threw a panic.
