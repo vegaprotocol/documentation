@@ -2,13 +2,13 @@ import React from "react";
 import { EnvironmentConfig } from "@vegaprotocol/smart-contracts-sdk";
 
 const etherscanBase = {
-  Ropsten: "https://ropsten.etherscan.io/address/",
-  Mainnet: "https://etherscan.io/address/",
+  ropsten: "https://ropsten.etherscan.io/address/",
+  mainnet: "https://etherscan.io/address/",
 };
 
 // Budget version of frontend-monorepo's EtherscanLink
 function etherscanLink(contractAddress, network) {
-  const base = etherscanBase[network];
+  const base = etherscanBase[network.toLowerCase()];
   if (!base) {
     throw new Error("Unknown base address");
   }

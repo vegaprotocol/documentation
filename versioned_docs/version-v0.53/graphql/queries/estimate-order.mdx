@@ -1,0 +1,74 @@
+---
+id: estimate-order
+title: estimateOrder
+hide_table_of_contents: false
+---
+
+
+return an estimation of the potential cost for a new order
+
+```graphql
+estimateOrder(
+  marketId: ID!
+  partyId: ID!
+  price: String
+  size: String!
+  side: Side!
+  timeInForce: OrderTimeInForce!
+  expiration: String
+  type: OrderType!
+): OrderEstimate!
+```
+
+
+### Arguments
+
+#### [`marketId`](#) ([`ID!`](/docs/mainnet/graphql/scalars/id))
+
+ID of the market to place the order
+
+
+#### [`partyId`](#) ([`ID!`](/docs/mainnet/graphql/scalars/id))
+
+ID of the party placing the order
+
+
+#### [`price`](#) ([`String`](/docs/mainnet/graphql/scalars/string))
+
+Price of the asset
+
+
+#### [`size`](#) ([`String!`](/docs/mainnet/graphql/scalars/string))
+
+Size of the order
+
+
+#### [`side`](#) ([`Side!`](/docs/mainnet/graphql/enums/side))
+
+Side of the order (Buy or Sell)
+
+
+#### [`timeInForce`](#) ([`OrderTimeInForce!`](/docs/mainnet/graphql/enums/order-time-in-force))
+
+TimeInForce of the order
+
+
+#### [`expiration`](#) ([`String`](/docs/mainnet/graphql/scalars/string))
+
+expiration of the the order
+
+
+#### [`type`](#) ([`OrderType!`](/docs/mainnet/graphql/enums/order-type))
+
+type of the order
+
+
+### Type
+
+#### [`OrderEstimate`](/docs/mainnet/graphql/objects/order-estimate)
+
+An estimate of the fee to be paid by the order
+
+
+
+

@@ -1,0 +1,38 @@
+---
+id: offset-pagination
+title: OffsetPagination
+hide_table_of_contents: false
+---
+
+
+No description
+
+```graphql
+input OffsetPagination {
+  skip: Int!
+  limit: Int!
+  descending: Boolean!
+}
+```
+
+
+### Fields
+
+#### [`skip`](#) ([`Int!`](/docs/mainnet/graphql/scalars/int))
+
+Skip the number of records specified, default is 0
+
+
+#### [`limit`](#) ([`Int!`](/docs/mainnet/graphql/scalars/int))
+
+Limit the number of returned records to the value specified, default is 50
+
+
+#### [`descending`](#) ([`Boolean!`](/docs/mainnet/graphql/scalars/boolean))
+
+Descending reverses the order of the records returned
+default is true, if false the results will be returned in ascending order
+
+
+
+

@@ -1,0 +1,56 @@
+---
+id: order-time-in-force
+title: OrderTimeInForce
+hide_table_of_contents: false
+---
+
+
+Valid order types, these determine what happens when an order is added to the book
+
+```graphql
+enum OrderTimeInForce {
+  FOK
+  IOC
+  GTC
+  GTT
+  GFA
+  GFN
+}
+```
+
+
+### Values
+
+#### [`FOK`](#)
+
+The order either trades completely (remainingSize == 0 after adding) or not at all, does not remain on the book if it doesn't trade
+
+
+#### [`IOC`](#)
+
+The order trades any amount and as much as possible but does not remain on the book (whether it trades or not)
+
+
+#### [`GTC`](#)
+
+This order trades any amount and as much as possible and remains on the book until it either trades completely or is cancelled
+
+
+#### [`GTT`](#)
+
+This order type trades any amount and as much as possible and remains on the book until they either trade completely, are cancelled, or expires at a set time
+NOTE: this may in future be multiple types or have sub types for orders that provide different ways of specifying expiry
+
+
+#### [`GFA`](#)
+
+This order is only accepted during an auction period
+
+
+#### [`GFN`](#)
+
+This order is only accepted during normal trading (that can be continuous trading or frequent batched auctions)
+
+
+
+

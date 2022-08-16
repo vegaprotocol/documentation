@@ -1,0 +1,31 @@
+---
+id: transfer-response
+title: TransferResponse
+hide_table_of_contents: false
+---
+
+
+No description
+
+```graphql
+type TransferResponse {
+  transfers: [LedgerEntry!]
+  balances: [TransferBalance!]
+}
+```
+
+
+### Fields
+
+#### [`transfers`](#) ([`[LedgerEntry!]`](/docs/mainnet/graphql/objects/ledger-entry))
+
+the ledger entries and balances resulting from a transfer request
+
+
+#### [`balances`](#) ([`[TransferBalance!]`](/docs/mainnet/graphql/objects/transfer-balance))
+
+the balances of accounts involved in the transfer
+
+
+
+
