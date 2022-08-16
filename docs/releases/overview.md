@@ -49,7 +49,7 @@ Introducing the proxy was a way to navigate the browser security that prevents w
 
 **Critical Bug Fixes**
 
-**Updating oracle termination causes the core to panic:**
+**Updating oracle termination caused the core to panic:**
 During a recent incentive on testnet it was found that user updating the oracle termination conditions on an enacted continuous market caused the network to panic. The oracle termination condition was set to be ten seconds in the future; when the network reached this time the core threw a panic.
 This bug has been resolved in [5668](https://github.com/vegaprotocol/vega/pull/5668)
 
