@@ -62,7 +62,7 @@ When using the [Market Simulator](https://github.com/vegaprotocol/vega-market-si
 **Pegged orders not removed from list after repricing:**
 It was identified that during a market's life when it is not in an auction and a pegged order gets repriced, the order was removed from the book, however, it remained in the pegged orders list. If the market then goes into an auction the pegged order list is used to try to get the order from the book, but as the order no longer exists, it can't be done. This bug has been resolved in [5825](https://github.com/vegaprotocol/vega/issues/5825)
 
-**Core**
+#### Core
 
 **Asset proposal:**
 In order to complete the governance features, asset proposals have been implemented. This allows a user to propose and modify assets on the network via the governance process. This work was completed in [5242](https://github.com/vegaprotocol/vega/issues/5242) and [5851](https://github.com/vegaprotocol/vega/pull/5851)
