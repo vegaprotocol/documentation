@@ -70,7 +70,7 @@ In order to complete the governance features, asset proposals have been implemen
 **Tendermint:**
 During the development of this software version, the team upgraded Tendermint to 0.35. This change would have brought breaking changes with it, however, the Tendermint project team announced this version will be discontinued. To find out more please see [this blog post](https://interchain-io.medium.com/discontinuing-tendermint-v0-35-a-postmortem-on-the-new-networking-layer-3696c811dabc). In light of this, the upgrade has been rolled back and Vega 0.54 will use the tendermint version 0.34.20. This work was done in issue [5249](https://github.com/vegaprotocol/vega/issues/5249) and rolled back in issue [5804](https://github.com/vegaprotocol/vega/issues/5804)
 
-**Data Node**
+#### Data Node
 
 **Move data node into the core repository:**
 In order to simplify the  release process, running a node and manage dependencies across code repositories, the data node software has been incorporated into the core Vega repo. This work was done in issue [5613](https://github.com/vegaprotocol/vega/issues/5613).
