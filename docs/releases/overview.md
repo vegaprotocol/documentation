@@ -45,7 +45,7 @@ This work was all done in issue [5579](https://github.com/vegaprotocol/vega/issu
 The `updateFrequency` within price monitoring is not being used by the core protocol, therefore, this has now been replaced by the update frequency of the state var. This work was done in issue [5624](https://github.com/vegaprotocol/vega/issues/5624)
 
 **Remove wallet support for launching a proxy in front of dApps:**
-Introducing the proxy was a way to navigate the browser security that prevents webapps from being able to talk to local web servers; this is now no longer required and therefore has been removed. This has been carried out under the issue [5601](https://github.com/vegaprotocol/vega/issues/5601)
+Introducing the proxy was a way to navigate the browser security that prevents web apps from being able to talk to local web servers; this is now no longer required and therefore has been removed. This has been carried out in the issue [5601](https://github.com/vegaprotocol/vega/issues/5601)
 
 **Critical Bug Fixes**
 
