@@ -1,11 +1,18 @@
+<<<<<<< Updated upstream
 ---
 vega_network: TESTNET
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
+=======
+import Topic from '/docs/_topic-governance.mdx'
+>>>>>>> Stashed changes
 
 # Vega Protocol 
 ## Governance
+
+<Topic />
+
 Governance allows the Vega network to arrive at on-chain decisions, where tokenholders can create proposals that other tokenholders can vote to approve or reject. 
 
 Vega supports on-chain proposals for creating markets and assets, and changing network parameters, markets and assets. Vega also supports freeform proposals for community suggestions that will not be enacted on-chain. 
