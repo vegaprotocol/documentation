@@ -3,6 +3,8 @@ title: Vega software releases
 hide_title: false
 ---
 
+The Vega software is publicly available on [GitHub](https://github.com/vegaprotocol). Below find summaries of key released features and breaking changes, as well as links to release notes in GitHub. 
+
 [**Vega core software**](#vega-core-software) - Below, find a summary of each version's features and breaking changes.
 
 From 0.54.0 the core repository also holds the data node and CLI wallet code, therefore the following code is included in the releases:

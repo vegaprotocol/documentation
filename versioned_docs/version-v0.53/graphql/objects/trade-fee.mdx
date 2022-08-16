@@ -1,0 +1,37 @@
+---
+id: trade-fee
+title: TradeFee
+hide_table_of_contents: false
+---
+
+
+The fee paid by the party when a trade occurs
+
+```graphql
+type TradeFee {
+  makerFee: String!
+  infrastructureFee: String!
+  liquidityFee: String!
+}
+```
+
+
+### Fields
+
+#### [`makerFee`](#) ([`String!`](/docs/mainnet/graphql/scalars/string))
+
+The maker fee, aggressive party to the other party (the one who had an order in the book)
+
+
+#### [`infrastructureFee`](#) ([`String!`](/docs/mainnet/graphql/scalars/string))
+
+The infrastructure fee, a fee paid to the node runner to maintain the vega network
+
+
+#### [`liquidityFee`](#) ([`String!`](/docs/mainnet/graphql/scalars/string))
+
+The fee paid to the market makers to provide liquidity in the market
+
+
+
+

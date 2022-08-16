@@ -1,0 +1,37 @@
+---
+id: deposits-connection
+title: DepositsConnection
+hide_table_of_contents: false
+---
+
+
+No description
+
+```graphql
+type DepositsConnection {
+  totalCount: Int
+  edges: [DepositEdge]
+  pageInfo: PageInfo
+}
+```
+
+
+### Fields
+
+#### [`totalCount`](#) ([`Int`](/docs/mainnet/graphql/scalars/int))
+
+The total number of deposits available with this connection
+
+
+#### [`edges`](#) ([`[DepositEdge]`](/docs/mainnet/graphql/objects/deposit-edge))
+
+The deposits
+
+
+#### [`pageInfo`](#) ([`PageInfo`](/docs/mainnet/graphql/objects/page-info))
+
+The pagination information
+
+
+
+
