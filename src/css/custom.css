@@ -76,6 +76,65 @@ html[data-theme="dark"] .hero--primary {
   color: #fff; 
 }
 
+.hero--primary a.cta {
+  display: inline-block;
+  padding: 10px 15px;
+  border: 1px solid white;
+  border-radius: 8px;
+  color:  white;
+}
+
+.hero--primary a.cta:hover {
+  text-decoration: none;
+  background-color: white;
+  color: black;
+}
+
+#topics, #spotlight {
+  display: flex;
+  width:  100%;
+  padding: 40px;
+  flex-wrap: wrap;
+  max-width: var(--ifm-container-width-xl);
+  margin: 0 auto;
+}
+
+#topics article {
+  flex-basis: 0;
+  flex-grow: 1;
+  padding-right: 40px;
+}
+
+#spotlight h2 {
+  width: 100%;
+  margin-bottom: 1.5em;
+}
+
+#spotlight a {
+  flex-basis: 0;
+  flex-grow: 1;
+  padding: 20px;
+  margin-right: 20px;
+  border: 1px solid #eee;
+  color: var(--ifm-heading-color);
+  text-decoration: none;
+}
+
+.topic ul {
+  margin-top: 1em;
+}
+
+@media screen and (max-width: 996px) {
+  #topics, #spotlight {
+    display: block;
+  }
+
+  #topics article, #spotlight a {
+    margin-bottom: 20px;
+    margin-right: 0px;
+  }
+}
+
 /* Footer */
 .footer {
   --ifm-footer-link-hover-color: #fff;
