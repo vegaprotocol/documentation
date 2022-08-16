@@ -10,7 +10,7 @@ The Vega software is publicly available on [GitHub](https://github.com/vegaproto
 From 0.54.0 the core repository also holds the data node and CLI wallet code, therefore the following code is included in the releases:
 
 - The data node APIs allow for querying for historic information and for snapshots of the current state of the systems.
-- The code for the Vega Wallet CLI app is open source, and you can read about the contents of each release on the Vega Wallet repo.
+- The code for the Vega Wallet CLI app is now in the Vega repo, where a full list of changes can be found.
 
 See the full release notes on [GitHub](https://github.com/vegaprotocol/vega/releases).
 
