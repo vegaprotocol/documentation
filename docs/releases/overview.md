@@ -57,7 +57,7 @@ This bug has been resolved in [5668](https://github.com/vegaprotocol/vega/pull/5
 An issue was discovered using the [Market Simulator](https://github.com/vegaprotocol/vega-market-sim) when the governance parameter `governance.proposal.updateMarket.minProposerEquityLikeShare` is set to `0` in the `genesis.json`, this resulted in the node startup failing. The fix implemented in [5633](https://github.com/vegaprotocol/vega/issues/5633) addresses this and allows the value to be `0`.
 
 **Cannot unregister order causing core to crash in Market Simulator:**
-When using the [Market Simulator](https://github.com/vegaprotocol/vega-market-sim) it was found that a "cannot unregister order" error was thrown and caused the core to crash. This bug has been resolved in [5663](https://github.com/vegaprotocol/vega/issues/5663)
+When using the [Market Simulator](https://github.com/vegaprotocol/vega-market-sim) it was found that a "cannot unregister order" error was thrown for pegged orders and caused the core to crash. This bug has been resolved in [5663](https://github.com/vegaprotocol/vega/issues/5663)
 
 **Entering an auction caused by pegged order causes the core to panic:**
 It was identified that during a markets life when it is not in an auction and a pegged order gets repriced the order was removed from the book, however, it remained in the pegged list. If the market then goes into an auction the pegged order list is used to try to get the order from the book, however in this case the order no longer exists, causing a panic. This bug has been resolved in [5825](https://github.com/vegaprotocol/vega/issues/5825)
