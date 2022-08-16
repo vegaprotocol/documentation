@@ -8,8 +8,6 @@ hide_title: false
 
 ### Assets on Vega [WIP]
 
-### Accounts (general, margin, bond) and transfers, double entry accounting [WIP]
-
 ### Bridges used for assets [WIP]
 
 #### Ethereum [WIP]

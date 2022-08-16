@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-title: Liquidity
+title: Liquidity on Vega
 hide_title: false
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';

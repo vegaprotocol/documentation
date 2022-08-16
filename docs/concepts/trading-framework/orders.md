@@ -9,6 +9,11 @@ An order is an instruction to execute a trade that is long or short on a market'
 
 When an order is placed, it is uniquely identified to the Vega network by its order ID, the market ID - which is unique to each market, and party ID - which is owned by the signer of the transaction. 
 
+:::tip Query for data
+Want to see your order ID?
+Use the [GraphQL order query](../../graphql/objects/party#orders-order) to find orders you created with your party ID (public key)
+:::
+
 ## Order sizes
 Order sizes can be fractional, as long as the order is within the maximum number of decimal places allowable for the market. Any order containing more precision than this will be rejected. A market's decimal places are specified at the time of the market's proposal.
 
@@ -27,6 +32,12 @@ Orders that have not been filled can be amended using the APIs. Amendments that 
 
 Orders cannot be amended using Vega Console. Instead, an individual order should be cancelled and a new order placed. 
 
+### Amending pegged orders
+
+Read more: 
+* [Amend pegged order](#amend-pegged-orders)
+* Amending liquidity commitment orders
+
 ## Cancel an order
 Orders that have not been filled can be cancelled. 
 
@@ -41,9 +52,9 @@ When trading on Vega Console, a trader will only be able cancel individual order
 Cancelling the orders that are created from a liquiity commitment cannot be cancelled in the same way.
 
 Read more: 
-[Limit orders](#limit-order)
-[Market orders](#market-order)
-[Cancelling liquidity commitment orders](#cancel-liquidity-commitment-orders)
+* [Limit orders](#limit-order)
+* [Market orders](#market-order)
+* [Cancelling liquidity commitment orders](../liquidity#cancel-liquidity-commitment-orders)
 
 ## Order types
 There are three order types available to traders: limit orders, market orders, and pegged orders. One order type is automatically triggered to close out positions for distressed traders - that's called a network order.
@@ -69,23 +80,21 @@ A market order is an instruction to buy or sell at the best available price in t
 * **IOC**: An Immediate or Cancel order executes all or part of a trade immediately and cancels any unfilled portion of the order. 
 * **FOK**: A Fill or Kill order either trades completely until the remaining size is 0, or not at all, and does not remain on the book if it doesn't trade.
 
-### Network order
-A network order is triggered by the Vega network to close out a distressed trader, as part of position resolution. Network orders cannot be submitted by a party.
-
-Read more: [Position resolution](#position-resolution)
-
-#### Times in force used in network orders
-
-* **FOK**: A Fill or Kill order either trades completely until the remaining size is 0, or not at all, and does not remain on the book if it doesn't trade.
-
 ### Pegged order
 Pegged orders are orders that are a defined distance from a reference price (i.e. best bid, mid and best offer/ask), rather than at a specific price, and generate limit orders based on the set parameters. Currently, pegged orders can only use Good 'Til Cancelled and Good Til Time, but Immediate Or Cancel and Fill Or Kill will be available in a future release.
 
 A pegged order is not placed on the order book itself, but instead generates a limit order with the price generated based on the reference and offset value. As the price levels in the order book move around, the order's price on the order book also moves.
 
-The reference can only be positive and Vega applies it differently depending on if the order is a buy or sell.
+The reference can only be positive and Vega applies it differently depending on if the order is a buy or sell. If the order is a `buy`, then the offset is taken away from the reference price. If the order is a `sell` they the offset is added to the reference price.
 
-If we are a buy the offset is taken away from the reference price. If we are a sell they the offset is added to the reference price.
+#### Values available for pegged orders
+
+Pegged orders are restricted in what values can be used when they are created. Note: IOC and FOK are not currently available for pegged orders, but will be in a future release. 
+
+| Type (Time in Force)      | Side  |   Bid Peg   | Mid Peg |  Offer Peg  |
+|---------------------------|-------|-------------|---------|-------------|
+| Persistent (GTC, GTT)	    | Buy	  | <= 0        | < 0     | Not allowed |
+| Persistent (GTC, GTT)	    | Sell  | Not allowed | > 0     | >= 0        |
 
 ### Reference prices for pegged orders
 Rather than being set for a specific limit price, a pegged order is a defined distance from a reference price (such as the best bid, mid, or best offer/ask). That is the price against which the final order price is calculated. The reference price is based on the live market, and the final price is calculated and used to insert the new order. The distance is also known as the offset value, which is an absolute value that must be cleanly divisible by the tick size, and can be [negative or] positive. 
@@ -99,15 +108,15 @@ There are some situations in which pegged orders are parked, or moved off the or
 * When the reference price does not exist (e.g. no best bid)
 * The price moves to a value that means it would create an invalid order if the offset was applied
 
-Pegged orders are restricted in what values can be used when they are created, these can be defined by a list of rules each order must abide with. Note: IOC and FOK are not currently available for pegged orders, but will be in a future release. 
+### Network order
+A network order is triggered by the Vega network to close out a distressed trader, as part of position resolution. Network orders cannot be submitted by a party.
 
-| Type (Time in Force)      | Side  |   Bid Peg   | Mid Peg |  Offer Peg  |
-|---------------------------|-------|-------------|---------|-------------|
-| Persistent (GTC, GTT)	    | Buy	  | <= 0        | < 0     | Not allowed |
-| Persistent (GTC, GTT)	    | Sell  | Not allowed | > 0     | >= 0        |
-| Non persistent (IOC, FOK) |	Buy   | > 0         | > 0     | >= 0        |
-| Non persistent (IOC, FOK) |	Sell  | <= 0        | < 0	    | < 0         |
+Read more: [Position resolution](#position-resolution)
 
+#### Times in force used in network orders
+
+* **FOK**: A Fill or Kill order either trades completely until the remaining size is 0, or not at all, and does not remain on the book if it doesn't trade.
+* 
 ## Order status
 * Rejected: If you don't have enough collateral to fill the margin requirements on an order, it will show up as 'Rejected'
 * Cancelled:  If you cancel an order, the status will be listed as 'Cancelled'
