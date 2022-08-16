@@ -1,15 +1,15 @@
 
   ```bash
-vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --network mainnet1 "{
+vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --network fairground "{
  \"proposalSubmission\": {
   \"rationale\": {
-   \"description\": \"Add Bitcoin (Tether)\"
+   \"description\": \"Add XRP (XRP)\"
   },
   \"terms\": {
    \"newAsset\": {
     \"changes\": {
-     \"name\": \"Bitcoin\",
-     \"symbol\": \"Tether\",
+     \"name\": \"XRP\",
+     \"symbol\": \"XRP\",
      \"totalSupply\": \"19010568\",
      \"decimals\": \"5\",
      \"quantum\": \"1\",
@@ -18,8 +18,8 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
      }
     }
    },
-   \"closingTimestamp\": 1658846745,
-   \"enactmentTimestamp\": 1658933145
+   \"closingTimestamp\": 1662294730,
+   \"enactmentTimestamp\": 1662381130
   }
  }
 }"

@@ -2,13 +2,13 @@
   ```json
 {
   "rationale": {
-    "description": "Add Bitcoin (Tether)"
+    "description": "Add XRP (XRP)"
   },
   "terms": {
     "newAsset": {
       "changes": {
-        "name": "Bitcoin",
-        "symbol": "Tether",
+        "name": "XRP",
+        "symbol": "XRP",
         "totalSupply": "19010568",
         "decimals": "5",
         "quantum": "1",
@@ -17,8 +17,8 @@
         }
       }
     },
-    "closingTimestamp": 1658846745,
-    "enactmentTimestamp": 1658933145
+    "closingTimestamp": 1662294730,
+    "enactmentTimestamp": 1662381130
   }
 }
 ```
