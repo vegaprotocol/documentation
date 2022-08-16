@@ -80,8 +80,8 @@ html[data-theme="dark"] .hero--primary {
   display: inline-block;
   padding: 10px 15px;
   border: 1px solid white;
-  border-radius: 8px;
   color:  white;
+  text-transform: uppercase;
 }
 
 .hero--primary a.cta:hover {
@@ -105,6 +105,14 @@ html[data-theme="dark"] .hero--primary {
   padding-right: 40px;
 }
 
+#topics article:last-child {
+  padding-right: 0;
+}
+
+#spotlight {
+  margin-bottom: 100px;
+}
+
 #spotlight h2 {
   width: 100%;
   margin-bottom: 1.5em;
@@ -120,6 +128,10 @@ html[data-theme="dark"] .hero--primary {
   text-decoration: none;
 }
 
+#spotlight a:last-child {
+  padding-right: 0;
+}
+
 .topic ul {
   margin-top: 1em;
 }
@@ -129,7 +141,16 @@ html[data-theme="dark"] .hero--primary {
     display: block;
   }
 
-  #topics article, #spotlight a {
+  #topics article {
+    margin-bottom: 2em;
+    margin-right: 0px;
+  }
+
+  #topics article:last-child {
+    margin-bottom: 0;
+  }
+
+  #spotlight a {
     margin-bottom: 20px;
     margin-right: 0px;
   }
@@ -189,4 +210,10 @@ html[data-theme="dark"] .hero--primary {
 
 .networkparametericon {
   margin-right: 0.2em;
+}
+
+/* External links */
+
+a.external:after {
+  content: " ↗";
 }

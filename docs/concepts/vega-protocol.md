@@ -1,12 +1,10 @@
-<<<<<<< Updated upstream
 ---
 vega_network: TESTNET
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
-=======
 import Topic from '/docs/_topic-governance.mdx'
->>>>>>> Stashed changes
+
 
 # Vega Protocol 
 ## Governance

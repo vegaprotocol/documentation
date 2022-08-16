@@ -39,16 +39,16 @@ export default function Home() {
             <p>The network is improved through making and voting on proposals.</p>
             <ul>
               <li><a href="/docs/mainnet/concepts/vega-protocol#governance">Introduction to governance</a></li>
-              <li><a href="https://token.vega.xyz/governance" target="_blank">Governance dApp ↗</a></li>
               <li><a href="docs/mainnet/tutorials/proposals">Tutorials: Governance proposals</a></li>
+              <li><a class="external" href="https://token.vega.xyz/governance" target="_blank">Governance dApp</a></li>
             </ul>
           </article>
           <article>
             <h2>Trading</h2>
             <p>The official Vega testnet, Fairground, offers a risk-free trading environment.</p>
             <ul>
-              <li><a href="https://console.fairground.wtf/" target="_blank">Fairground trading console ↗</a></li>
-              <li><a href="https://docs.fairground.vega.xyz/" target="_blank">Fairground docs ↗</a></li>
+              <li><a class="external" href="https://console.fairground.wtf/" target="_blank">Fairground trading console</a></li>
+              <li><a class="external" href="https://docs.fairground.vega.xyz/" target="_blank">Fairground docs</a></li>
             </ul>
           </article>
         </section>
@@ -65,7 +65,7 @@ export default function Home() {
           </a>
           <a href="/docs/testnet/tools/vega-wallet/cli-wallet" class="card">
             <h3>Wallet CLI</h3>
-            <p>Step-by-step instructions to download Vega Wallet and create your wallet.</p>
+            <p>Step-by-step instructions to set up your first wallet.</p>
           </a>
           <a href="/docs/testnet/tutorials/staking-tokens" class="card">
             <h3>Staking tokens</h3>
