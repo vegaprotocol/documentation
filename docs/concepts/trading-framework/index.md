@@ -35,9 +35,9 @@ Collection will result in ledger entries being formulated. They adhere to double
  
 These transfers will debit from the market's market settlement account and be credited to the margin accounts of traders who have are due to receive an asset flow as a result of the settlement.
 
-Read more: 
+<!--Read more: 
 * [Insurance pools](/docs/testnet/concepts/trading-framework/market-protections#insurance-pools)
-* [Loss socialisation](/docs/testnet/concepts/trading-framework/market-protections#loss-socialisation)
+* [Loss socialisation](/docs/testnet/concepts/trading-framework/market-protections#loss-socialisation) -->
  
 ### Settlement at market expiry
 When a market reaches its maturity date and time, a final settlement is carried out. That settlement is based on a pre-defined oracle publishing data that triggers the market’s expiry.
