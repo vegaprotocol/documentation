@@ -15,7 +15,6 @@ Other pages in the trading framework section cover the concepts of:
 * [Trading modes](./trading-modes.md)
 * [Order types and times in force](./orders.md)
 * [Market protections](./market-protections.md)
-* [Liquidity on Vega markets](./liquidity.md)
 * [Trading fees and rewards](./fees-rewards.md)
 
 ## Trading lifecycle
@@ -111,12 +110,12 @@ The overall market status flow is shown in the diagram below. A market is create
 | Settled            |   No           | No trading          | Settlement triggered and completed as defined by product                                      | N/A                                            
 
 
-[1] Accepting LPs: it is possible to submit or amend [liquidity commitments](/docs/testnet/concepts/trading-framework/liquidity#submit-liquidity-commitment)
+[1] Accepting LPs: it is possible to submit or amend [liquidity commitments](/docs/testnet/concepts/liquidity#submit-liquidity-commitment)
 
 <!--![Life cycle flow diagram](./0043-market-lifecycle-flow-diagram.svg)-->
 
 ### Market status: Proposed
-All markets are first proposed permissionlessly via [governance](../vega-protocol.md). Once a valid market proposal is accepted the market is created and can accept [liquidity commitments](/docs/testnet/concepts/trading-framework/liquidity#submit-liquidity-commitment).
+All markets are first proposed permissionlessly via [governance](../vega-protocol.md). Once a valid market proposal is accepted the market is created and can accept [liquidity commitments](/docs/testnet/concepts/liquidity#submit-liquidity-commitment).
 
 Voting begins and its state is `proposed`.
 
