@@ -45,7 +45,7 @@ export default function Home() {
           </article>
           <article>
             <h2>Trading</h2>
-            <p>The official Vega testnet, Fairground, offers a risk-free trading environment.</p>
+            <p>Explore the risk-free Vega testnet, Fairground. Mainnet trading launching soon.</p>
             <ul>
               <li><a class="external" href="https://console.fairground.wtf/" target="_blank">Fairground trading console</a></li>
               <li><a class="external" href="https://docs.fairground.vega.xyz/" target="_blank">Fairground docs</a></li>
