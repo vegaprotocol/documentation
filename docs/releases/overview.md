@@ -81,7 +81,7 @@ Since the introduction of the PostgresQL database and work to stabilise this, th
 **API improvements:**
 In order to ensure API parity between the API types the gRPC endpoints have all been mapped to REST. Further work on the GraphQL APIs remains in progress and will be in the next version. This work was done in issue [5760](https://github.com/vegaprotocol/vega/issues/5760)
 
-**Wallet**
+#### Wallet
 
 The Vega Wallet API has been completely rewritten to support all authentication happening within the wallet apps, rather than on the UI-side. These changes have been implemented to provide better wallet security. The wallet has also had some updates in order to provide more meaningful responses when a transaction fails providing a better UX for wallet users. The implementation has been carried out in issues [5439](https://github.com/vegaprotocol/vega/issues/5439), [5541](https://github.com/vegaprotocol/vega/issues/5541) and [5503](https://github.com/vegaprotocol/vega/issues/5503). 
 
