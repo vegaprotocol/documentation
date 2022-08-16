@@ -30,7 +30,7 @@ This version was released to the Vega testnet on XX August, 2022.
 
 For full details see the vega core [0.54.0 release page](https://github.com/vegaprotocol/vega/releases/tag/v0.54.0)
 
-**Breaking Changes**
+#### Breaking Changes
 
 **Vega as a built-in application:**
 Vega is now a built-in application, this means that Tendermint does not need to be started separately, providing a simpler, streamlined user experience for node operators. This introduces some breaking changes to the commands used when running a node:
