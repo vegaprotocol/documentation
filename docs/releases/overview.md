@@ -56,7 +56,7 @@ This bug has been resolved in [5668](https://github.com/vegaprotocol/vega/pull/5
 **Network parameter set to `0` can cause node startup failure:**
 An issue was discovered using the [Market Simulator](https://github.com/vegaprotocol/vega-market-sim) when the governance parameter `governance.proposal.updateMarket.minProposerEquityLikeShare` is set to `0` in the `genesis.json`, this resulted in the node startup failing. The fix implemented in [5633](https://github.com/vegaprotocol/vega/issues/5633) addresses this and allows the value to be `0`.
 
-**Cannot unregister order causing core to crash in Market Simulator:**
+**Cannot unregister order caused core to crash in Market Simulator:**
 When using the [Market Simulator](https://github.com/vegaprotocol/vega-market-sim) it was found that a "cannot unregister order" error was thrown for pegged orders and caused the core to crash. This bug has been resolved in [5663](https://github.com/vegaprotocol/vega/issues/5663)
 
 **Pegged orders not removed from list after repricing:**
