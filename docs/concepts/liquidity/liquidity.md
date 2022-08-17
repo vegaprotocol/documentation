@@ -162,7 +162,7 @@ Liquidity providers who get into a market early benefit from helping to grow the
 
 This is known as the growth-adjusted liquidity provision share.
 
-:::note Further reading
+:::note Go deeper
 [Growth-adjusted LP share calculations](https://github.com/vegaprotocol/specs/blob/master/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#calculating-liquidity-provider-equity-like-share): See the variables that go into calculating a liquidity provider's share.
 :::
 

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 5
 title: Orders
 hide_title: false
 ---
@@ -22,8 +22,9 @@ If a market requires that orders are specified using integers, fractional order 
 ## Submit an order
 Orders can be submitted into any market that is active - i.e., not in a protective auction, or matured, expired, or settled. Orders will only be accepted if sufficient margin can be allocated from a trader's available collateral. 
 
-Read more:
+:::info Read more
 * [**Margin**](#margin): Find out how margin works in the Vega system. 
+:::
 
 If, during continuous trading, an order is going to be matched with another order on the book for the same party (also known as a wash trade), then execution of that order will be stopped and the order will be cancelled and removed, if it on the book. 
 
@@ -34,9 +35,10 @@ Orders cannot be amended using Vega Console. Instead, an individual order should
 
 ### Amending pegged orders
 
-Read more: 
+:::info Read more
 * [Amend pegged order](#amend-pegged-orders)
 * Amending liquidity commitment orders
+:::
 
 ## Cancel an order
 Orders that have not been filled can be cancelled. 
@@ -51,10 +53,11 @@ When trading on Vega Console, a trader will only be able cancel individual order
 
 Cancelling the orders that are created from a liquiity commitment cannot be cancelled in the same way.
 
-Read more: 
+:::info Read more
 * [Limit orders](#limit-order)
 * [Market orders](#market-order)
 * [Cancelling liquidity commitment orders](../liquidity#cancel-liquidity-commitment-orders)
+:::
 
 ## Order types
 There are three order types available to traders: limit orders, market orders, and pegged orders. One order type is automatically triggered to close out positions for distressed traders - that's called a network order.
@@ -111,7 +114,9 @@ There are some situations in which pegged orders are parked, or moved off the or
 ### Network order
 A network order is triggered by the Vega network to close out a distressed trader, as part of position resolution. Network orders cannot be submitted by a party.
 
-Read more: [Position resolution](#position-resolution)
+:::info Read more
+[Position resolution](#position-resolution)
+:::
 
 #### Times in force used in network orders
 

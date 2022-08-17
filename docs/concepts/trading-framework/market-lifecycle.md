@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 7
 title: Market lifecycle
 hide_title: false
 ---

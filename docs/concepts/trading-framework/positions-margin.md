@@ -1,10 +1,8 @@
 ---
 sidebar_position: 2
-title: Positions and margin
+title: Margin
 hide_title: false
 ---
-
-## Position management
 As markets and collateral are not managed through human intervention, markets must have certain automated processes that allow for well-functioning markets and assurance that the collateral required to manage positions is available when it's needed. 
 
 There are a few mechanisms that work differently to how they would on a centralised exchange, in order to keep the markets solvent. They include:
@@ -21,14 +19,16 @@ Settlement instructions are generated based on the change in market value of the
 
 Because the margin for a market is calculated dynamically based on the market conditions, the mark price also has an effect on how much collateral is set aside for margin.
 
-Read more: [Mark to market settlement](#mark-to-market-settlement)
+:::info Read more
+[Mark to market settlement](./trade-lifecycle#mark-to-market-settlement)
+:::
 
 ## Margin
 The margin calculation for a new order, and the amount deducted from collateral to cover margin, is based on all of a trader's open orders. A trader will need enough margin to keep a position open, whether it goes for or against the trader. The margin calculations ensure a trader does not enter a trade that will immediately need to be closed out.
 
 Vega's margining system implements automated cross margining. Cross margining, which means gains on one market can be released and used as margin on another, is supported between all markets that use the same settlement asset. 
 
-:::note Further reading
+:::note Go deeper
 **[Automated cross margining](https://vega.xyz/papers/vega-protocol-whitepaper.pdf#page21)** - Section 6 of the protocol whitepaper.
 :::
 
