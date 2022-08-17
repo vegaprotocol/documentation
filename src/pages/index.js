@@ -32,7 +32,7 @@ export default function Home() {
             <ul>
               <li><a href="/docs/mainnet/concepts/new-to-vega">Introduction to Vega</a></li>
               <li>Get a <a href="/docs/mainnet/tools/vega-wallet">Vega wallet</a>, on <a href="/docs/mainnet/tools/vega-wallet/desktop-app">desktop</a> or <a href="/docs/mainnet/tools/vega-wallet/cli-wallet">command line</a></li>
-              <li><a class="external" href="https://github.com/orgs/vegaprotocol/projects/114/views/4">Roadmap</a></li>
+              <li><a class="external" href="https://github.com/orgs/vegaprotocol/projects/114/views/4" target="_blank">Roadmap</a></li>
             </ul>
           </article>
           <article>

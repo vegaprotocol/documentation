@@ -5,7 +5,9 @@ vega_network: TESTNET
 ethereum_network: Ropsten
 ---
 import EthAddresses from '@site/src/components/EthAddresses';
+import Topic from '/docs/_topic-staking.mdx'
 
+<Topic />
 
 :::tip
 
