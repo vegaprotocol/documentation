@@ -2,24 +2,25 @@
   ```javascript
 {
  rationale: {
-  description: "Update Lorem Ipsum market"
+  title: "Update Lorem Ipsum market",
+  description: "A proposal to update Lorem Ipsum market"
  },
  terms: {
   updateMarket: {
-   // The market to update
+   // The identifier of the market to update
    marketId: "123",
    changes: {
     // Updated market instrument configuration
     instrument: {
-     // Instrument code
+     // Instrument code, human-readable shortcode used to describe the instrument
      code: "APPLES.22",
 
      // Future
      future: {
-      // Product quote name (string)
+      // Human-readable name/abbreviation of the quote name (string)
       quoteName: "tEuro",
 
-      // the number of decimal places implied by the settlement price emitted by the settlement oracle (int64 as integer)
+      // The number of decimal places implied by the settlement price emitted by the settlement oracle (int64 as integer)
       settlementPriceDecimals: 5,
 
       // The oracle spec describing the oracle data of settlement price (object)
@@ -145,7 +146,7 @@
        r: 0.016,
 
        // Sigma param (double as number) 
-       sigma: 0.3,
+       sigma: 1.25,
       }
      },
     },
@@ -153,11 +154,11 @@
 
    // Timestamp (Unix time in seconds) when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters (int64 as string) 
-   closingTimestamp: 1662294730,
+   closingTimestamp: 1662374250,
 
    // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
    // constrained by `minEnact` and `maxEnact` network parameters (int64 as string) 
-   enactmentTimestamp: 1662381130,
+   enactmentTimestamp: 1662460650,
   }
  }
 ```

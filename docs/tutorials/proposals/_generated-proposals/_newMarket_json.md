@@ -2,7 +2,8 @@
   ```json
 {
   "rationale": {
-    "description": "Add Lorem Ipsum market"
+    "title": "Add Lorem Ipsum market",
+    "description": "An example proposal to add Lorem Ipsum market"
   },
   "terms": {
     "newMarket": {
@@ -10,8 +11,8 @@
         "decimalPlaces": "18",
         "positionDecimalPlaces": "5",
         "instrument": {
-          "name": "Apples Yearly (2022)",
-          "code": "APPLES.22",
+          "name": "Oranges Daily",
+          "code": "ORANGES.24h",
           "future": {
             "settlementAsset": "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
             "quoteName": "tEuro",
@@ -61,9 +62,9 @@
           }
         },
         "metadata": [
-          "sector:food",
+          "sector:tech",
           "sector:energy",
-          "sector:health",
+          "sector:food",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -85,7 +86,7 @@
         },
         "logNormal": {
           "tau": 0.0001140771161,
-          "riskAversionParameter": 0.01,
+          "riskAversionParameter": 0.0001,
           "params": {
             "mu": 0,
             "r": 0.016,
@@ -94,46 +95,46 @@
         }
       },
       "liquidityCommitment": {
-        "commitmentAmount": "8066901",
-        "fee": "0.27",
+        "commitmentAmount": "1060019",
+        "fee": "0.79",
         "buys": [
           {
-            "offset": "78",
-            "proportion": 10,
+            "offset": "39",
+            "proportion": 8,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           },
           {
-            "offset": "77",
+            "offset": "73",
+            "proportion": 5,
+            "reference": "PEGGED_REFERENCE_BEST_BID"
+          },
+          {
+            "offset": "38",
             "proportion": 9,
-            "reference": "PEGGED_REFERENCE_BEST_BID"
-          },
-          {
-            "offset": "6",
-            "proportion": 3,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           }
         ],
         "sells": [
           {
-            "offset": "79",
-            "proportion": 3,
+            "offset": "66",
+            "proportion": 2,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           },
           {
-            "offset": "43",
-            "proportion": 5,
+            "offset": "66",
+            "proportion": 1,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           },
           {
-            "offset": "27",
-            "proportion": 6,
+            "offset": "4",
+            "proportion": 1,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           }
         ]
       }
     },
-    "closingTimestamp": 1662294730,
-    "enactmentTimestamp": 1662381130
+    "closingTimestamp": 1662374250,
+    "enactmentTimestamp": 1662460650
   }
 }
 ```

@@ -2,34 +2,35 @@
   ```javascript
  {
   rationale: {
-   description: "Add Lorem Ipsum market"
+   title: "Add Lorem Ipsum market",
+   description: "An example proposal to add Lorem Ipsum market"
   },
   terms: {
    newMarket: {
     changes: {
-     // Decimal places used for the new market (uint64 as string)
+     // Decimal places used for the new market, sets the smallest price increment on the book (uint64 as string)
      decimalPlaces: "18",
 
-     // Decimal places for order sizes (uint64 as string)
+     // Decimal places for order sizes, sets what size the smallest order / position on the market can be (uint64 as string)
      positionDecimalPlaces: "5",
 
      // New market instrument configuration
      instrument: {
       // Instrument name
-      name: "Apples Yearly (2022)",
+      name: "Oranges Daily",
 
-      // Instrument code
-      code: "APPLES.22",
+      // Instrument code, human-readable shortcode used to describe the instrument
+      code: "ORANGES.24h",
 
       // Future
       future: {
-       // Product settlement asset identifier (string)
+       // Asset ID for the product's settlement asset (string)
        settlementAsset: "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
 
        // Product quote name (string)
        quoteName: "tEuro",
 
-       // the number of decimal places implied by the settlement price emitted by the settlement oracle (int64 as integer)
+       // The number of decimal places implied by the settlement price emitted by the settlement oracle (int64 as integer)
        settlementPriceDecimals: 18,
 
        // The oracle spec describing the oracle data of settlement price (object)
@@ -121,9 +122,9 @@
 
       // Optional new market meta data, tags
       metadata: [
-       "sector:food",
+       "sector:tech",
        "sector:energy",
-       "sector:health",
+       "sector:food",
        "source:docs.vega.xyz"
       ],
 
@@ -171,7 +172,7 @@
       tau: 0.0001140771161,
 
       // Risk Aversion Parameter (double as number) 
-      riskAversionParameter: "0.01",
+      riskAversionParameter: "0.0001",
 
       // Risk model parameters for log normal
       params: {
@@ -190,31 +191,31 @@
     // The commitment from the party creating the NewMarket proposal
     liquidityCommitment: {
      // Specified as a unitless number that represents the amount of settlement asset of the market (string) 
-     commitmentAmount: "8066901",
+     commitmentAmount: "1060019",
 
      // Nominated liquidity fee factor, which is an input to the calculation of taker fees on the market, as per seeting fees and rewarding liquidity providers (undefined as string) 
-     fee: 0.27,
+     fee: 0.79,
 
      // A set of liquidity buy orders to meet the liquidity provision obligation
      buys: [
       {
        // The offset/amount of units away for the order (string) 
-       offset: "78",
+       offset: "39",
 
        // The relative proportion of the commitment to be allocated at a price level (int64 as integer) 
-       proportion: 10,
+       proportion: 8,
 
        // The pegged reference point for the order (string) 
        reference: "PEGGED_REFERENCE_BEST_BID",
       },
       {
-       offset: "77",
-       proportion: 9,
+       offset: "73",
+       proportion: 5,
        reference: "PEGGED_REFERENCE_BEST_BID",
       },
       {
-       offset: "6",
-       proportion: 3,
+       offset: "38",
+       proportion: 9,
        reference: "PEGGED_REFERENCE_BEST_BID",
       }
      ],
@@ -223,22 +224,22 @@
      sells: [
       {
        // The offset/amount of units away for the order (string) 
-       offset: "79",
+       offset: "66",
 
        // The relative proportion of the commitment to be allocated at a price level (int64 as integer) 
-       proportion: 3,
+       proportion: 2,
 
        // The pegged reference point for the order (string) 
        reference: "PEGGED_REFERENCE_BEST_ASK",
       },
       {
-       offset: "43",
-       proportion: 5,
+       offset: "66",
+       proportion: 1,
        reference: "PEGGED_REFERENCE_BEST_ASK",
       },
       {
-       offset: "27",
-       proportion: 6,
+       offset: "4",
+       proportion: 1,
        reference: "PEGGED_REFERENCE_BEST_ASK",
       }
      ],
@@ -248,11 +249,11 @@
 
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string) 
-  closingTimestamp: 1662294730,
+  closingTimestamp: 1662374250,
 
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string) 
-  enactmentTimestamp: 1662381130,
+  enactmentTimestamp: 1662460650,
  }
 }
 ```
