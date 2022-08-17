@@ -27,6 +27,14 @@ Read more:
 
 In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example, and command line examples for different operating systems, that you'll need to update with the relevant details before submitting.
 
+## ERC20 asset validation
+When adding an ERC20 asset to the bridge, the key details are compared to the smart contract on Ethereum. Specifically:
+- The **name** and **symbol** must match
+- The contract **must** be an ERC20 asset
+- There cannot be multiple assets on a Vega network for the same ERC20 asset
+ 
+Validation happens according to the `validationTimestamp` parameter. In most situations, this should be early on in the voting period so that any validation errors are caught before token holders start voting. However you could push the validation later if the contract is not yet deployed. 
+
 <Tabs groupId="newAssetProposal">
   <TabItem value="annotated" label="Annotated example">
     <NewAssetAnnotated />
