@@ -5,7 +5,7 @@ hide_table_of_contents: false
 ---
 
 
-An order in Vega, if active it will be on the OrderBook for the market
+An order in Vega, if active it will be on the order book for the market
 
 ```graphql
 type Order {
@@ -13,7 +13,7 @@ type Order {
   price: String!
   timeInForce: OrderTimeInForce!
   side: Side!
-  market: Market
+  market: Market!
   size: String!
   remaining: String!
   party: Party!
@@ -57,7 +57,7 @@ The timeInForce of order (determines how and if it executes, and whether it pers
 Whether the order is to buy or sell
 
 
-#### [`market`](#) ([`Market`](/docs/testnet/graphql/objects/market))
+#### [`market`](#) ([`Market!`](/docs/testnet/graphql/objects/market))
 
 The market the order is trading on (probably stored internally as a hash of the market details)
 

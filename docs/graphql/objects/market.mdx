@@ -32,6 +32,10 @@ type Market {
   accounts(
   partyId: ID
 ): [Account!]
+  accountsConnection(
+  partyId: ID
+  pagination: Pagination
+): AccountsConnection!
   trades(
   skip: Int
   first: Int
@@ -86,13 +90,13 @@ Fees related data
 
 #### [`tradableInstrument`](#) ([`TradableInstrument!`](/docs/testnet/graphql/objects/tradable-instrument))
 
-An instance of or reference to a tradable instrument.
+An instance of, or reference to, a tradable instrument.
 
 
 #### [`decimalPlaces`](#) ([`Int!`](/docs/testnet/graphql/scalars/int))
 
 decimalPlaces indicates the number of decimal places that an integer must be shifted by in order to get a correct
-number denominated in the currency of the Market. (uint64)
+number denominated in the currency of the market. (uint64)
 
 Examples:
 Currency     Balance  decimalPlaces  Real Balance
@@ -109,9 +113,10 @@ GBX (pence)        1              4       GBP   0.000001 (  0.0001p)
 
 #### [`positionDecimalPlaces`](#) ([`Int!`](/docs/testnet/graphql/scalars/int))
 
-positionDecimalPlaces indicated the number of decimal places that an integer must be shifted in order to get a correct size (uint64).
+positionDecimalPlaces indicates the number of decimal places that an integer must be shifted in order to get a correct size (uint64).
 i.e. 0 means there are no fractional orders for the market, and order sizes are always whole sizes.
 2 means sizes given as 10^2 * desired size, e.g. a desired size of 1.23 is represented as 123 in this market.
+This sets how big the smallest order / position on the market can be.
 
 
 #### [`openingAuction`](#) ([`AuctionDuration!`](/docs/testnet/graphql/objects/auction-duration))
@@ -142,7 +147,7 @@ Current state of the market
 
 #### [`proposal`](#) ([`Proposal`](/docs/testnet/graphql/objects/proposal))
 
-The proposal which initiated this market
+The proposal that initiated this market
 
 
 #### [`orders`](#) ([`[Order!]`](/docs/testnet/graphql/objects/order))
@@ -176,7 +181,20 @@ Pagination information
 Get account for a party or market
 - ##### [`partyId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
-Id of the party to get the margin account for
+ID of the party to get the margin account for
+
+
+#### [`accountsConnection`](#) ([`AccountsConnection!`](/docs/testnet/graphql/objects/accounts-connection))
+
+Get account for a party or market
+- ##### [`partyId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
+
+ID of the party to get the margin account for
+
+
+- ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+Pagination information
 
 
 #### [`trades`](#) ([`[Trade!]`](/docs/testnet/graphql/objects/trade))
@@ -215,7 +233,7 @@ Maximum market order book depth (returns whole order book if omitted)
 
 #### [`candles`](#) ([`[Candle]`](/docs/testnet/graphql/objects/candle))
 
-Candles on a market, for the 'last' n candles, at 'interval' seconds as specified by params
+Candles on a market, for the 'last' n candles, at 'interval' seconds as specified by parameters
 - ##### [`since`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 RFC3339Nano encoded time from when to get candles
@@ -228,7 +246,7 @@ Interval of the candles
 
 #### [`candlesConnection`](#) ([`CandleDataConnection!`](/docs/testnet/graphql/objects/candle-data-connection))
 
-Candles on a market, for the 'last' n candles, at 'interval' seconds as specified by params using cursor based pagination
+Candles on a market, for the 'last' n candles, at 'interval' seconds as specified by parameters using cursor based pagination
 - ##### [`since`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 RFC3339Nano encoded time to get candles from
@@ -256,18 +274,18 @@ marketData for the given market
 
 #### [`liquidityProvisions`](#) ([`[LiquidityProvision!]`](/docs/testnet/graphql/objects/liquidity-provision))
 
-The list of the liquidity provision commitment for this market
+The list of the liquidity provision commitments for this market
 - ##### [`party`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
-An optional party id
+An optional party ID
 
 
 #### [`liquidityProvisionsConnection`](#) ([`LiquidityProvisionsConnection!`](/docs/testnet/graphql/objects/liquidity-provisions-connection))
 
-The list of the liquidity provision commitment for this market
+The list of the liquidity provision commitments for this market
 - ##### [`party`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
-An optional party id
+An optional party ID
 
 
 - ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))

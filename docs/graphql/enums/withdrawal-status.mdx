@@ -9,28 +9,28 @@ The status of a withdrawal
 
 ```graphql
 enum WithdrawalStatus {
-  Open
-  Rejected
-  Finalized
+  STATUS_OPEN
+  STATUS_REJECTED
+  STATUS_FINALIZED
 }
 ```
 
 
 ### Values
 
-#### [`Open`](#)
+#### [`STATUS_OPEN`](#)
 
 The withdrawal is open and being processed by the network
 
 
-#### [`Rejected`](#)
+#### [`STATUS_REJECTED`](#)
 
 The withdrawal have been cancelled by the network, either because it expired, or something went wrong with the foreign chain
 
 
-#### [`Finalized`](#)
+#### [`STATUS_FINALIZED`](#)
 
-The withdrawal was finalized, it was first valid, the foreign chain have executed it and the network updated all accounts
+The withdrawal was finalised, it was valid, the foreign chain has executed it and the network updated all accounts
 
 
 

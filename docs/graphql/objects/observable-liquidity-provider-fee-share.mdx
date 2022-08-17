@@ -1,0 +1,37 @@
+---
+id: observable-liquidity-provider-fee-share
+title: ObservableLiquidityProviderFeeShare
+hide_table_of_contents: false
+---
+
+
+The equity like share of liquidity fee for each liquidity provider
+
+```graphql
+type ObservableLiquidityProviderFeeShare {
+  partyId: String!
+  equityLikeShare: String!
+  averageEntryValuation: String!
+}
+```
+
+
+### Fields
+
+#### [`partyId`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+
+The liquidity provider party ID
+
+
+#### [`equityLikeShare`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+
+The share owned by this liquidity provider (float)
+
+
+#### [`averageEntryValuation`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+
+The average entry valuation of the liquidity provider for the market
+
+
+
+
