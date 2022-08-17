@@ -19,7 +19,14 @@
    },
    // conditions are the conditions that should be matched by the data to be
    // considered of interest.
-   conditions: []
+   conditions: [
+    {
+     // comparator is the type of comparison to make on the value. (string)
+     operator: "OPERATOR_GREATER_THAN_OR_EQUAL",
+     // value is used by the comparator. (string)
+     value: "1648684800000000000",
+    }
+   ]
   }
  ]
 }

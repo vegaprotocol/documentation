@@ -1,6 +1,6 @@
 
   ```bash
-vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --network mainnet1 "{
+vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --network fairground "{
  \"proposalSubmission\": {
   \"rationale\": {
    \"description\": \"Add Lorem Ipsum market\"
@@ -11,8 +11,8 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
      \"decimalPlaces\": \"18\",
      \"positionDecimalPlaces\": \"5\",
      \"instrument\": {
-      \"name\": \"Oranges Daily\",
-      \"code\": \"ORANGES.24h\",
+      \"name\": \"Apples Yearly (2022)\",
+      \"code\": \"APPLES.22\",
       \"future\": {
        \"settlementAsset\": \"8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4\",
        \"quoteName\": \"tEuro\",
@@ -64,6 +64,7 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
      \"metadata\": [
       \"sector:food\",
       \"sector:energy\",
+      \"sector:health\",
       \"source:docs.vega.xyz\"
      ],
      \"priceMonitoringParameters\": {
@@ -85,7 +86,7 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
      },
      \"logNormal\": {
       \"tau\": 0.0001140771161,
-      \"riskAversionParameter\": 0.0001,
+      \"riskAversionParameter\": 0.01,
       \"params\": {
        \"mu\": 0,
        \"r\": 0.016,
@@ -94,46 +95,46 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
      }
     },
     \"liquidityCommitment\": {
-     \"commitmentAmount\": \"3109145\",
-     \"fee\": \"0.11\",
+     \"commitmentAmount\": \"8066901\",
+     \"fee\": \"0.27\",
      \"buys\": [
       {
-       \"offset\": \"37\",
-       \"proportion\": 6,
+       \"offset\": \"78\",
+       \"proportion\": 10,
        \"reference\": \"PEGGED_REFERENCE_BEST_BID\"
       },
       {
-       \"offset\": \"88\",
-       \"proportion\": 7,
+       \"offset\": \"77\",
+       \"proportion\": 9,
        \"reference\": \"PEGGED_REFERENCE_BEST_BID\"
       },
       {
-       \"offset\": \"20\",
-       \"proportion\": 8,
+       \"offset\": \"6\",
+       \"proportion\": 3,
        \"reference\": \"PEGGED_REFERENCE_BEST_BID\"
       }
      ],
      \"sells\": [
       {
-       \"offset\": \"41\",
-       \"proportion\": 6,
+       \"offset\": \"79\",
+       \"proportion\": 3,
        \"reference\": \"PEGGED_REFERENCE_BEST_ASK\"
       },
       {
-       \"offset\": \"100\",
-       \"proportion\": 8,
+       \"offset\": \"43\",
+       \"proportion\": 5,
        \"reference\": \"PEGGED_REFERENCE_BEST_ASK\"
       },
       {
-       \"offset\": \"41\",
+       \"offset\": \"27\",
        \"proportion\": 6,
        \"reference\": \"PEGGED_REFERENCE_BEST_ASK\"
       }
      ]
     }
    },
-   \"closingTimestamp\": 1658846745,
-   \"enactmentTimestamp\": 1658933145
+   \"closingTimestamp\": 1662294730,
+   \"enactmentTimestamp\": 1662381130
   }
  }
 }"
