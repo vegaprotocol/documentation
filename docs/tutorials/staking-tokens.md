@@ -5,11 +5,12 @@ vega_network: TESTNET
 ethereum_network: Ropsten
 ---
 import EthAddresses from '@site/src/components/EthAddresses';
+import ExtLink from '/src/components/ExternalLinks.js';
 
 
 :::tip
 
-This tutorial describes how to stake via APIs and smart contract integrations. If you're just looking to stake tokens, visit [token.vega.xyz](https://token.vega.xyz)
+This tutorial describes how to stake via APIs and smart contract integrations. If you're just looking to stake tokens, visit <ExtLink href="https://token.vega.xyz">token.vega.xyz</ExtLink>)
 
 :::
 
