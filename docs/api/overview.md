@@ -33,3 +33,9 @@ gRPC provides fast and efficient communication with Vega’s APIs. gRPC supports
 REST is the ubiquitous protocol for the web. Vega has four REST endpoints: two are served by core nodes, and two are served by data nodes. REST is fairly easy to get started with, and Vega supports nearly all the functionality provided by gRPC and GraphQL on the REST APIs. Note: REST does not support streaming.
 
 [REST overview](./rest/overview.md): Read more about data and core node APIs.
+
+## Vega Wallet API
+The Vega Wallet API uses JSON-RPC API with an HTTP wrapper. You can interact directly with the JSON-RPC, or interact via the HTTP layer.
+
+* [Getting started](./index.md): Set up a connection with the Vega Wallet server. 
+* [JSON-RPC playground]: See what the wallet endpoint can do. 
