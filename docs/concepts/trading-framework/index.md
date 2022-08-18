@@ -10,7 +10,7 @@ Participants that interact with a futures market created using Vega software can
 <div class="container">
   <div class="row">
     <div class="col col--6">
-      <a href="./positions-margin.md">
+      <a href="/docs/testnet/concepts/trading-framework/positions-margin">
         <div class="card">
           <div class="card__body">
             <h3>Margin</h3>          
@@ -20,7 +20,7 @@ Participants that interact with a futures market created using Vega software can
       </a>
     </div>
     <div class="col col--6">
-      <a href="./trade-lifecycle.md">
+      <a href="/docs/testnet/concepts/trading-framework/trade-lifecycle">
         <div class="card">
           <div class="card__body">
             <h3>Trading fees and rewards</h3>
@@ -35,7 +35,7 @@ Participants that interact with a futures market created using Vega software can
 <div class="container">
   <div class="row">
     <div class="col col--6">
-      <a href="./market-lifecycle.md">
+      <a href="/docs/testnet/concepts/trading-framework/market-lifecycle">
         <div class="card">
           <div class="card__body">
             <h3>Market lifecycle</h3>
@@ -45,7 +45,7 @@ Participants that interact with a futures market created using Vega software can
       </a>
     </div>
     <div class="col col--6">
-      <a href="./trade-lifecycle.md">
+      <a href="/docs/testnet/concepts/trading-framework/trade-lifecycle">
         <div class="card">
           <div class="card__body">
             <h3>Trade lifecycle</h3>
@@ -60,7 +60,7 @@ Participants that interact with a futures market created using Vega software can
 <div class="container">
   <div class="row">
     <div class="col col--6">
-      <a href="./trading-modes.md">
+      <a href="/docs/testnet/concepts/trading-framework/trading-modes">
         <div class="card">
           <div class="card__body">
             <h3>Trading modes</h3>
@@ -70,7 +70,7 @@ Participants that interact with a futures market created using Vega software can
       </a>
     </div>
     <div class="col col--6">
-      <a href="./orders.md">
+      <a href="/docs/testnet/concepts/trading-framework/orders">
         <div class="card">
           <div class="card__body">
             <h3>Order types and times in force</h3>
@@ -85,7 +85,7 @@ Participants that interact with a futures market created using Vega software can
 <div class="container">
   <div class="row">
     <div class="col col--6">
-      <a href="./market-protections.md">
+      <a href="/docs/testnet/concepts/trading-framework/market-protections">
         <div class="card">
           <div class="card__body">
             <h3>Market protections</h3>
@@ -95,7 +95,7 @@ Participants that interact with a futures market created using Vega software can
       </a>
     </div>
     <div class="col col--6">
-      <a href="./fees-rewards.md">
+      <a href="/docs/testnet/concepts/trading-framework/fees-rewards">
         <div class="card">
           <div class="card__body">
             <h3>Data sources</h3>
