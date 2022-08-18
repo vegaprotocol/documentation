@@ -38,4 +38,4 @@ REST is the ubiquitous protocol for the web. Vega has four REST endpoints: two a
 If you're looking to integrate a dApp or website with the Vega Wallet, you'll need the wallet API. It uses JSON-RPC with an HTTP wrapper. You can interact directly with the JSON-RPC, or more easily via the HTTP layer.
 
 * [Getting started](./vega-wallet/index.md): Set up a connection with the Vega Wallet server. 
-* [JSON-RPC playground]: See what the wallet endpoints can do.
+* [JSON-RPC playground  ↗](https://playground.open-rpc.org/?url=https://github.com/vegaprotocol/vega/blob/develop/wallet/api/openrpc.json): See what methods the wallet API calls.

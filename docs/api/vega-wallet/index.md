@@ -3,7 +3,9 @@ title: Getting started
 hide_title: true
 ---
 # Start using the Vega Wallet API
-Integrate with the Vega Wallet service by following the guide below to connect and set permissions. See a full list of methods that you can use in the JSON-RPC docs.
+Integrate with the Vega Wallet service by following the guide below to connect and set permissions. 
+
+The [JSON-RPC playground  ↗](https://playground.open-rpc.org/?url=https://github.com/vegaprotocol/vega/blob/develop/wallet/api/openrpc.json) has the full list of methods that you can call.
 
 :::caution Software compatibility
 The latest Vega Wallet API (v2) was released in the Vega software v.0.54. If you're interacting with a network on v0.54 or newer, you'll need to have a wallet that supports the new API. 
