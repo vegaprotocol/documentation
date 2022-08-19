@@ -48,7 +48,7 @@ Each market has a mark-to-market settlement account. Cashflows from mark-to-mark
 Every liquidity provider automatically transfers a certain amount of money to a bond account for each market that they're committed to. The liquidity provider chooses how much goes into the bond account, and that amount is locked up for the entire time that party commits liquidity to the market. It acts as a guarantee for the liquidity obligation, to assure that the commitment is firm and the protocol can rely on that liquidity in any market conditions.
 
 :::info Read more
-[How liquidity works on Vega](../concepts/liquidity/liquidity.md) 
+[How liquidity works on Vega](../concepts/liquidity) 
 :::
 
 ### Insurance pool accounts
@@ -59,8 +59,9 @@ The insurance pool holds funds that have been collected if a liquidity provider 
 Once a market settles and terminates, any amount left in a market's insurance pool is transferred to the asset insurance pool, which can then be drawn on by other markets that use the same settlement asset.
 
 :::info Read more
-* [Market lifecycle](./trading-framework/market-lifecycle.md)
-* [Market protections](./trading-framework/market-protections.md)
+* [Market lifecycle](./trading-framework/market-lifecycle)
+* [Market protections](./trading-framework/market-protections)
+:::
 
 ### Accounts for fees
 Fees that are collected from market participants are held in accounts before they're distributed to the relevant recipients. The funds used for paying fees are held in an account for each specific type of fee - not all market participants will pay the same fees. 
@@ -74,7 +75,7 @@ The revenue from other fees go into fee-specific accounts:
 * **Infrastructure fee pool**: per asset, to then be distributed to the consensus validators who run the network and thus provide the infrastructure
 
 :::info Read more
-[Fees](./trading-framework/fees-rewards.md)
+[Fees](./trading-framework/fees-rewards)
 :::
 
 ### Reward accounts 
