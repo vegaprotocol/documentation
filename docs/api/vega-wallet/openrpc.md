@@ -404,3 +404,6 @@ None required
 - **Network error** (1000): couldn't get information about the last block on the network
 
 
+## Playground
+
+<iframe width="100%" src="https://playground.open-rpc.org/?url=https://raw.githubusercontent.com/vegaprotocol/vega/develop/wallet/api/openrpc.json&uiSchema[appBar][ui:splitView]=false&uiSchema[appBar][ui:input]=false&uiSchema[appBar][ui:examplesDropdown]=false" height="700" />
