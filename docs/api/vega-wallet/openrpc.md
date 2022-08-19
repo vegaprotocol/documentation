@@ -1,8 +1,11 @@
 ---
     title: OpenRPC Wallet API
-    hide_title: true
+    hide_title: false
 ---
 
+:::tip Playground
+The [JSON-RPC playground  ↗](https://playground.open-rpc.org/?url=https://raw.githubusercontent.com/vegaprotocol/vega/develop/wallet/api/openrpc.json&uiSchema[appBar][ui:splitView]=false&uiSchema[appBar][ui:input]=false&uiSchema[appBar][ui:examplesDropdown]=false) has the full list of methods that you can call in an easy-to-use test environment.
+:::
 
 ## session.connect_wallet
 > Initiates a connection between a wallet and a third-party application.
