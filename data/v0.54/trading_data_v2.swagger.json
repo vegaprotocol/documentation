@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Vega data node APIs",
-    "version": "42.0"
+    "version": "0.54"
   },
   "tags": [
     {
