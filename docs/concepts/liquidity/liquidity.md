@@ -106,7 +106,7 @@ See a full list of applicable reference price levels in the [API documentation](
 #### Bond account
 The amount committed during the liquidity provision transaction is stored in a bond account (one per party, per market). The deposits and withdrawals for the account are governed by the protocol and cannot be manually triggered. 
 
-The funds are deposited as part of a successful liquidity provision transaction. They will remain in the bond account for as long as the liquidity provider is active, to act as a guarantee for the liquidity obligation taken on by the provider, to assure that the commitment is firm and the protocol can rely on that liquidity in any market conditions.
+When someone successfully commits liquidity, funds are deposited into that account as part of the transaction. They will remain in the bond account for as long as the liquidity provider is active. This is to act as a guarantee for the provider's liquidity obligation, to ensure that the commitment is firm and the protocol can rely on that liquidity in any market conditions.
 
 ### Amend liquidity commitment
 Liquidity commitment orders can be amended by providing a new set of liquidity provision orders in the liquidity provider transaction. 

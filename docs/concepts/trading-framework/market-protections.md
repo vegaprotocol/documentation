@@ -142,9 +142,9 @@ distribute_amount[trader] = mtm_gain[trader] * ( actual_collected_amount / targe
 ```
 
 ### Insurance pools
-Each market has its own insurance pool, and each asset has its own general insurance pool. 
+Each market has its own insurance pool, and each asset has its own general insurance pool. Insurance pools are available in case there are unreasonable market events, and traders are closed out and unable to cover their losses.
 
-When a market expires, the funds from that market's insurance pool go into the bigger asset insurance pool, which other markets that use the same currency can pull from. 
+When a market expires, the funds from that market's insurance pool go into a bigger asset insurance pool, which other markets that use the same settlement asset can pull from. 
 
 Insurance pools grow in two scenarios:
 * If a trader is closed out because they do not have enough collateral to support an open positions
