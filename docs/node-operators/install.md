@@ -100,4 +100,10 @@ This will print the version of the binary you just built.
 ### Data node requirement as of 0.53
 After building the data node, you will have to run a PostgreSQL server (starting with version 0.53). 
 
-There are several ways to do this, as described in the [data node readme](https://github.com/vegaprotocol/vega/blob/develop/datanode/README.md). The simplest and recommended way to do this is **[using docker](https://github.com/vegaprotocol/vega/blob/develop/datanode/README.md#using-docker)**, which is also described in the data node readme.
+There are several ways to do this:
+
+**For version 0.53.x:**
+- as described in the [data node readme](https://github.com/vegaprotocol/data-node/blob/develop/README.md). The simplest and recommended way to do this is [using docker](https://github.com/vegaprotocol/data-node#using-docker), which is also described in the data node readme.
+
+**From 0.54.x onwards:**
+- As described in the [data node readme](https://github.com/vegaprotocol/vega/blob/develop/datanode/README.md). The simplest and recommended way to do this is [using docker](https://github.com/vegaprotocol/vega/blob/develop/datanode/README.md#using-docker), which is also described in the data node readme.
