@@ -26,7 +26,7 @@ Then, on endpoint `POST /v2/requests`:
 4. If you don't have enough permission, for example if the host needs to read public keys, use `session.request_permissions`
 5. Before sending a transaction, use `session.list_keys`, as you'll need to know the public keys you have access to
 6. Send transaction using `session.send_transaction`
-7. See the full set of methods that you can use in the **[Open RPC documentation](./openrpc.md)**.
+7. See the full set of methods that you can use in the **[Open RPC documentation](./openrpc)**.
 
 :::tip New to JSON-RPC?
 Read the [JSON-RPC specification ↗](https://www.jsonrpc.org/specification) for the standards and conventions.
