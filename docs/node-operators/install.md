@@ -82,7 +82,7 @@ This will print the version of the binary you just built.
 
 
 ### Build the data node
-1. The data node is held in the same repository as the Vega core, if you have already cloned the Vega repository in [step 1]](#build-the-vega-node) above you do not need to repeat this action.
+1. The data node is held in the same repository as the Vega core, if you have already cloned the Vega repository in [step 1](#build-the-vega-node) above you do not need to repeat this action.
 
 2. Build the data node binary by running the following command from the root of the cloned repository:
 ```
