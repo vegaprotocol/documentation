@@ -13,50 +13,50 @@ Proposal can enter Failed state from any other state.
 
 ```graphql
 enum ProposalState {
-  Failed
-  Open
-  Passed
-  Declined
-  Rejected
-  Enacted
-  WaitingForNodeVote
+  STATE_FAILED
+  STATE_OPEN
+  STATE_PASSED
+  STATE_DECLINED
+  STATE_REJECTED
+  STATE_ENACTED
+  STATE_WAITING_FOR_NODE_VOTE
 }
 ```
 
 
 ### Values
 
-#### [`Failed`](#)
+#### [`STATE_FAILED`](#)
 
 Proposal became invalid and cannot be processed
 
 
-#### [`Open`](#)
+#### [`STATE_OPEN`](#)
 
 Proposal is open for voting
 
 
-#### [`Passed`](#)
+#### [`STATE_PASSED`](#)
 
 Proposal has gained enough support to be executed
 
 
-#### [`Declined`](#)
+#### [`STATE_DECLINED`](#)
 
 Proposal didn't get enough votes
 
 
-#### [`Rejected`](#)
+#### [`STATE_REJECTED`](#)
 
 Proposal could not gain enough support to be executed
 
 
-#### [`Enacted`](#)
+#### [`STATE_ENACTED`](#)
 
 Proposal has been executed and the changes under this proposal have now been applied
 
 
-#### [`WaitingForNodeVote`](#)
+#### [`STATE_WAITING_FOR_NODE_VOTE`](#)
 
 Proposal is waiting for the node to run validation
 

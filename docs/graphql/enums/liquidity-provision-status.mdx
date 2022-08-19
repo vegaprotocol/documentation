@@ -9,47 +9,47 @@ Status of a liquidity provision order
 
 ```graphql
 enum LiquidityProvisionStatus {
-  Active
-  Stopped
-  Cancelled
-  Rejected
-  Undeployed
-  Pending
+  STATUS_ACTIVE
+  STATUS_STOPPED
+  STATUS_CANCELLED
+  STATUS_REJECTED
+  STATUS_UNDEPLOYED
+  STATUS_PENDING
 }
 ```
 
 
 ### Values
 
-#### [`Active`](#)
+#### [`STATUS_ACTIVE`](#)
 
 An active liquidity provision
 
 
-#### [`Stopped`](#)
+#### [`STATUS_STOPPED`](#)
 
 A liquidity provision stopped by the network
 
 
-#### [`Cancelled`](#)
+#### [`STATUS_CANCELLED`](#)
 
-A Cancelled Liquidity provision
-
-
-#### [`Rejected`](#)
-
-A liquidity provision was invalid and got rejected
+A cancelled liquidity provision
 
 
-#### [`Undeployed`](#)
+#### [`STATUS_REJECTED`](#)
 
-The liquidity provision is valid and accepted by network, but orders aren't deployed
+Liquidity provision was invalid and got rejected
 
 
-#### [`Pending`](#)
+#### [`STATUS_UNDEPLOYED`](#)
 
-The liquidity provision is valid and accepted by network, but orders aren't deployed.
-but have never been deployed. I when it's possible to deploy them for the first time
+The liquidity provision is valid and accepted by the network, but orders aren't deployed
+
+
+#### [`STATUS_PENDING`](#)
+
+The liquidity provision is valid and accepted by the network, but orders aren't deployed and
+have never been deployed. If when it's possible to deploy them for the first time the
 margin check fails, then they will be cancelled without any penalties.
 
 

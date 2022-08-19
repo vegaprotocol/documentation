@@ -9,47 +9,47 @@ Valid order types, these determine what happens when an order is added to the bo
 
 ```graphql
 enum OrderTimeInForce {
-  FOK
-  IOC
-  GTC
-  GTT
-  GFA
-  GFN
+  TIME_IN_FORCE_FOK
+  TIME_IN_FORCE_IOC
+  TIME_IN_FORCE_GTC
+  TIME_IN_FORCE_GTT
+  TIME_IN_FORCE_GFA
+  TIME_IN_FORCE_GFN
 }
 ```
 
 
 ### Values
 
-#### [`FOK`](#)
+#### [`TIME_IN_FORCE_FOK`](#)
 
-The order either trades completely (remainingSize == 0 after adding) or not at all, does not remain on the book if it doesn't trade
-
-
-#### [`IOC`](#)
-
-The order trades any amount and as much as possible but does not remain on the book (whether it trades or not)
+Fill or Kill: The order either trades completely (remainingSize == 0 after adding) or not at all, does not remain on the book if it doesn't trade
 
 
-#### [`GTC`](#)
+#### [`TIME_IN_FORCE_IOC`](#)
 
-This order trades any amount and as much as possible and remains on the book until it either trades completely or is cancelled
+Immediate or Cancel: The order trades any amount and as much as possible but does not remain on the book (whether it trades or not)
 
 
-#### [`GTT`](#)
+#### [`TIME_IN_FORCE_GTC`](#)
 
-This order type trades any amount and as much as possible and remains on the book until they either trade completely, are cancelled, or expires at a set time
+Good 'til Cancelled: This order trades any amount and as much as possible and remains on the book until it either trades completely or is cancelled
+
+
+#### [`TIME_IN_FORCE_GTT`](#)
+
+Good 'til Time: This order type trades any amount and as much as possible and remains on the book until they either trade completely, are cancelled, or expires at a set time
 NOTE: this may in future be multiple types or have sub types for orders that provide different ways of specifying expiry
 
 
-#### [`GFA`](#)
+#### [`TIME_IN_FORCE_GFA`](#)
 
-This order is only accepted during an auction period
+Good for Auction: This order is only accepted during an auction period
 
 
-#### [`GFN`](#)
+#### [`TIME_IN_FORCE_GFN`](#)
 
-This order is only accepted during normal trading (that can be continuous trading or frequent batched auctions)
+Good for Normal: This order is only accepted during normal trading (continuous trading or frequent batched auctions)
 
 
 

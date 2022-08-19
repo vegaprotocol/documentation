@@ -14,11 +14,11 @@ See the full release notes on [GitHub](https://github.com/vegaprotocol/vega/rele
 
 [**Data node APIs on GitHub**](https://github.com/vegaprotocol/data-node/releases) - The data node APIs allow for querying for historic information and for snapshots of the current state of the systems.
 
-[**Vega Wallet on GitHub**](https://github.com/vegaprotocol/vega/releases) - The code for the Vega Wallet CLI app is open source, and you can read about the contents of each release on the Vega Wallet repo.
+[**Vega Wallet on GitHub**](https://github.com/vegaprotocol/vegawallet/releases) - The code for the Vega Wallet CLI app is open source, and you can read about the contents of each release on the Vega Wallet repo.
 
 [**Vega Desktop Wallet on GitHub**](https://github.com/vegaprotocol/vegawallet-desktop/releases) - The code for the Vega Wallet desktop app is open source, and you can read the contents of each release on the repo.
 
-[**Token dApp on GitHub**](https://github.com/vegaprotocol/token-frontend/releases) - The Token dApp, which provides an interface for interacting with VEGA tokens, is open-source and you can read the contents of each release on the Token Frontend repo.
+[**Token dApp on GitHub**](https://github.com/vegaprotocol/frontend-monorepo/releases) - The Token dApp, which provides an interface for interacting with VEGA tokens, is open-source and you can see the code in the frontend monorepo.
 
 [**Vega Capsule on GitHub**](https://github.com/vegaprotocol/vegacapsule/releases) - Vega Capsule, which lets you create an instance of the Vega network on your computer to experiment with using the protocol, is public and you can resad the contents of each release on GitHub.
 

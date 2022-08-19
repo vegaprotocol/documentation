@@ -7,9 +7,13 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-To download Vega Wallet and create your wallet, follow the step-by-step instructions below. This software a work-in-progress and is frequently updated. These instructions cover version 0.14 and newer.
+To download Vega Wallet and create your wallet, follow the step-by-step instructions below. This software a work-in-progress and is frequently updated. As of August 2022, the Vega Wallet software has moved from `vegawallet` to [`vega` ↗](https://github.com/vegaprotocol/vega/releases/) on GitHub, and the version numbers have changed. 
 
-Note: If you are looking for instructions for connecting your hardware wallet to MetaMask, see [MetaMask's guide](https://metamask.zendesk.com/hc/en-us/articles/360020394612-How-to-connect-a-Trezor-or-Ledger-Hardware-Wallet).
+:::caution
+These instructions cover version 0.54, which is only compatible with Vega network(s) that are also on 0.54.
+:::
+
+Note: If you are looking for instructions for connecting your hardware wallet to MetaMask, see [MetaMask's guide ↗](https://metamask.zendesk.com/hc/en-us/articles/360020394612-How-to-connect-a-Trezor-or-Ledger-Hardware-Wallet).
 
 Use the following instructions in command line. Below, you'll see commands in the code blocks for each operating system. Copy those instructions and paste them into your command line interface.
 
@@ -21,7 +25,7 @@ In your command line interface, you can view a list of available commands by run
 
 ### Download file
 
-**Download and save the zip file from [Vega Wallet software releases](https://github.com/vegaprotocol/vegawallet/releases/)**. Keep track of where you've saved the file, because that's where the command line interface will look for it.
+**Download and save the `vegawallet` zip file from [Vega software releases ↗](https://github.com/vegaprotocol/vega/releases/)**. Keep track of where you've saved the file, because that's where the command line interface will look for it.
 
 :::note You may need to change your system preferences to run the file. 
 
@@ -48,7 +52,7 @@ Click on the `(?)` help button, which will open a window that links you to the `
 
 You’ll need to go to `System Preferences` > `Security & Privacy` > `General`, and choose `Open Anyway`.
 
-[Apple also provides instructions for opening unsigned apps (Apple support)](https://support.apple.com/en-au/guide/mac-help/mh40616/mac)
+[Apple also provides instructions for opening unsigned apps ↗](https://support.apple.com/en-au/guide/mac-help/mh40616/mac)
 </TabItem>
 
 <TabItem value="linux" label="Linux">

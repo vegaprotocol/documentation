@@ -1,0 +1,37 @@
+---
+id: validator-status
+title: ValidatorStatus
+hide_table_of_contents: false
+---
+
+
+No description
+
+```graphql
+enum ValidatorStatus {
+  VALIDATOR_NODE_STATUS_TENDERMINT
+  VALIDATOR_NODE_STATUS_ERSATZ
+  VALIDATOR_NODE_STATUS_PENDING
+}
+```
+
+
+### Values
+
+#### [`VALIDATOR_NODE_STATUS_TENDERMINT`](#)
+
+The node is taking part in Tendermint consensus
+
+
+#### [`VALIDATOR_NODE_STATUS_ERSATZ`](#)
+
+The node is a candidate to become a Tendermint validator if a slot is made available
+
+
+#### [`VALIDATOR_NODE_STATUS_PENDING`](#)
+
+The node is pending to be promoted to Ersatz
+
+
+
+

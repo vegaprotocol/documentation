@@ -58,10 +58,15 @@ module.exports = {
         },
         {
           type: "link",
-          href: "/docs/testnet/api/rest/data-node/data",
-          label: "Data node",
+          href: "/docs/testnet/api/rest/data-node/data-v1",
+          label: "Data node (v1)",
         },
         {
+          type: "link",
+          href: "/docs/testnet/api/rest/data-node/data-v2",
+          label: "Data node (v2)",
+        },
+         {
           type: "link",
           href: "/docs/testnet/api/rest/core/core",
           label: "Core",

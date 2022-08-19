@@ -5,25 +5,25 @@ hide_table_of_contents: false
 ---
 
 
-Subscribe to the mark price changes, but get multiple updates at once
+Subscribe to the mark price changes
 
 ```graphql
 marketsData(
-  marketId: ID
-): [MarketData!]!
+  marketIds: [ID!]!
+): [ObservableMarketData!]!
 ```
 
 
 ### Arguments
 
-#### [`marketId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
+#### [`marketIds`](#) ([`[ID!]!`](/docs/testnet/graphql/scalars/id))
 
-id of the market we want to subscribe to the market data changes
+ID of the market for which you want to subscribe to the market data changes
 
 
 ### Type
 
-#### [`MarketData`](/docs/testnet/graphql/objects/market-data)
+#### [`ObservableMarketData`](/docs/testnet/graphql/objects/observable-market-data)
 
 Live data of a Market
 

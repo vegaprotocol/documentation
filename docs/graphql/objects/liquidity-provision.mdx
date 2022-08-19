@@ -49,7 +49,7 @@ RFC3339Nano time of when the liquidity provision was updated
 
 #### [`market`](#) ([`Market!`](/docs/testnet/graphql/objects/market))
 
-Market identifier for the order
+Market ID for the order
 
 
 #### [`commitmentAmount`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
@@ -59,17 +59,17 @@ Specified as a unit-less number that represents the amount of settlement asset o
 
 #### [`fee`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
-nominated liquidity fee factor, which is an input to the calculation of taker fees on the market, as per setting fees and rewarding liquidity providers.
+Nominated liquidity fee factor, which is an input to the calculation of maker fees on the market, as per setting fees and rewarding liquidity providers.
 
 
 #### [`sells`](#) ([`[LiquidityOrderReference!]!`](/docs/testnet/graphql/objects/liquidity-order-reference))
 
-a set of liquidity sell orders to meet the liquidity provision obligation, see MM orders spec.
+a set of liquidity sell orders to meet the liquidity provision obligation.
 
 
 #### [`buys`](#) ([`[LiquidityOrderReference!]!`](/docs/testnet/graphql/objects/liquidity-order-reference))
 
-a set of liquidity buy orders to meet the liquidity provision obligation, see MM orders spec.
+a set of liquidity buy orders to meet the liquidity provision obligation.
 
 
 #### [`version`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
