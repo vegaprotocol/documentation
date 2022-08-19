@@ -9,9 +9,9 @@ Vega uses accounts in various situations to ensure funds are never lost or doubl
 Accounts are used either to hold assets that you're in control of using -- such as collateral you deposit, or for setting money aside that only the network can manage -- to fulfil margin requirements, for example, or to store assets that are earmarked for rewards or paying out fees. This means that, for example, when your funds are allocated to margin to support a position you opened, or you submit a liquidity commitment and bond amount is reserved, those assets can't be used for anything else.
 
 ## General account
-The general account is managed by the party who controls the keys that account was created for.
+The *general account* is managed by the party who controls the keys that account was created for.
 
-Every public key has a *general account*, whether it has assets in it or not. The general account is the place where deposits go, where withdrawals come from, and where a participant can transfer assets from (or receive assets to).
+Every public key has a general account, whether it has assets in it or not. The general account is the place where deposits go, where withdrawals come from, and where a participant can transfer assets from (or receive assets to).
 
 The general account also holds VEGA when it's not associated to a Vega key and/or locked in a smart contract. Staking rewards, as well as trading rewards, are paid into the general account.
 
@@ -26,14 +26,18 @@ Otherwise use a [GraphQL query](./../graphql/objects/party#accounts-account) to 
 :::
 
 ## Accounts governed by the protocol
-Assets that are held in any other type of account other than the general account can't be moved by you, though they may be used to support your trades or liquidity provision. Your assets are still tied to your Vega public key, even if they are in an account you can't actively manage.
+Assets that are held in any other type of account other than the general account can't be moved by you, though they may be used to support your trades or liquidity commitments. Your assets are still tied to your Vega public key, even if they are in an account you can't actively manage.
 
-Some accounts are created only when they're needed, and cease to exist when they're no longer required.
+Some accounts are accessible only when they're needed, and cease to exist while they're no longer required.
 
 ### Margin accounts
 Margin accounts temporarily hold assets that support a participant's trades on a market. 
 
 Each party with open orders or positions on any market has a margin account. When you trade on a market, the required initial margin is allocated to that market from your general account, meaning that it can't be withdrawn or used as margin on another market while it is allocated to the first market.
+
+:::info Read more
+[Margin](./trading-framework/positions-margin)
+:::
 
 ### Mark-to-market settlement accounts
 This account type temporarily holds assets to be distributed based on the outcomes of trades and market movements.
