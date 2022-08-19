@@ -1,6 +1,7 @@
 ---
 title: Getting started
 hide_title: true
+sidebar_position: 2 
 ---
 
 # Start using the Vega Wallet API

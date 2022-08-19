@@ -1,10 +1,11 @@
 ---
-    title: OpenRPC Wallet API
-    hide_title: false
+title: OpenRPC Wallet API
+hide_title: false
+sidebar_position: 2 
 ---
 
 :::tip Playground
-The [JSON-RPC playground  ↗](https://playground.open-rpc.org/?url=https://raw.githubusercontent.com/vegaprotocol/vega/develop/wallet/api/openrpc.json&uiSchema[appBar][ui:splitView]=false&uiSchema[appBar][ui:input]=false&uiSchema[appBar][ui:examplesDropdown]=false) has the full list of methods that you can call in an easy-to-use test environment.
+The [JSON-RPC playground](./openrpc-playground) has the full list of methods that you can call in an easy-to-use test environment.
 :::
 
 ## session.connect_wallet
@@ -402,8 +403,3 @@ None required
 ### Errors
 - **Network error** (1000): no healthy node available
 - **Network error** (1000): couldn't get information about the last block on the network
-
-
-## Playground
-
-<iframe width="100%" src="https://playground.open-rpc.org/?url=https://raw.githubusercontent.com/vegaprotocol/vega/develop/wallet/api/openrpc.json&uiSchema[appBar][ui:splitView]=false&uiSchema[appBar][ui:input]=false&uiSchema[appBar][ui:examplesDropdown]=false" height="700" />
