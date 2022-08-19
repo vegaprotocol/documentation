@@ -5,7 +5,7 @@ sidebar_position: 2
 ---
 
 :::tip Playground
-The [JSON-RPC playground](./openrpc-playground) has the full list of methods that you can call in an easy-to-use test environment.
+The [JSON-RPC playground](./openrpc-api-playground) has the full list of methods that you can call in an easy-to-use test environment.
 :::
 
 ## session.connect_wallet
