@@ -2,6 +2,9 @@
 title: Vega software releases
 hide_title: false
 ---
+import Topic from '/versioned_docs/version-v0.50.2/_topic-development.mdx';
+
+<Topic />
 
 The Vega software is publicly available on [GitHub](https://github.com/vegaprotocol). Below find summaries of key released features and breaking changes, as well as links to release notes in GitHub. 
 

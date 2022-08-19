@@ -8,6 +8,10 @@ keywords:
 - newFreeform
 - updateNetworkParameter
 ---
+import Topic from '/versioned_docs/version-v0.50.2/_topic-governance.mdx'
+
+<Topic />
+
 Governance with tokenholder participation is essential on Vega.
 
 This section includes sample proposals that you can amend and submit via the command line.
