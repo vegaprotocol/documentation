@@ -89,7 +89,7 @@ This will print the version of the binary you just built.
 go build -v ./cmd/data-node
 ```
 
-This will result in a Data node binary built at the root of the repository. 
+This will result in a data node binary built at the root of the repository. 
 
 3. To ensure that the compilation was successful, run the following command:
 ```
