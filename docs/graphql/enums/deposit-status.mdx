@@ -9,28 +9,28 @@ The status of a deposit
 
 ```graphql
 enum DepositStatus {
-  Open
-  Cancelled
-  Finalized
+  STATUS_OPEN
+  STATUS_CANCELLED
+  STATUS_FINALIZED
 }
 ```
 
 
 ### Values
 
-#### [`Open`](#)
+#### [`STATUS_OPEN`](#)
 
 The deposit is open and being processed by the network
 
 
-#### [`Cancelled`](#)
+#### [`STATUS_CANCELLED`](#)
 
 The deposit have been cancelled by the network, either because it expired, or something went wrong with the foreign chain
 
 
-#### [`Finalized`](#)
+#### [`STATUS_FINALIZED`](#)
 
-The deposit was finalized, it was first valid, the foreign chain has executed it and the network updated all accounts
+The deposit was finalised, it was valid, the foreign chain has executed it and the network updated all accounts
 
 
 

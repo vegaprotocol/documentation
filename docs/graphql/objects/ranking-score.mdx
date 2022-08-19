@@ -9,8 +9,8 @@ No description
 
 ```graphql
 type RankingScore {
-  status: String!
-  previousStatus: String!
+  status: ValidatorStatus!
+  previousStatus: ValidatorStatus!
   rankingScore: String!
   stakeScore: String!
   performanceScore: String!
@@ -21,14 +21,14 @@ type RankingScore {
 
 ### Fields
 
-#### [`status`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [`status`](#) ([`ValidatorStatus!`](/docs/testnet/graphql/enums/validator-status))
 
 The current validation status of the validator
 
 
-#### [`previousStatus`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [`previousStatus`](#) ([`ValidatorStatus!`](/docs/testnet/graphql/enums/validator-status))
 
-The former validation status of teh validator
+The former validation status of the validator
 
 
 #### [`rankingScore`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
@@ -48,7 +48,7 @@ The performance score of the validator
 
 #### [`votingPower`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
-The tendermint voting power of the validator (uint32)
+The Tendermint voting power of the validator (uint32)
 
 
 

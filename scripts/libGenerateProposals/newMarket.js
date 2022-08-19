@@ -460,7 +460,8 @@ function newMarket(skeleton) {
 
   const result = {
     rationale: {
-      description: `Add Lorem Ipsum market`
+      title: `Add Lorem Ipsum market`,
+      description: `An example proposal to add Lorem Ipsum market`
     },
     terms: {
       newMarket: {

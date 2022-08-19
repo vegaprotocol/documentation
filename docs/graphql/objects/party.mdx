@@ -33,6 +33,12 @@ type Party {
   asset: String
   type: AccountType
 ): [Account!]
+  accountsConnection(
+  marketId: ID
+  asset: String
+  type: AccountType
+  pagination: Pagination
+): AccountsConnection!
   positions: [Position!]
   positionsConnection(
   market: ID
@@ -48,14 +54,23 @@ type Party {
   proposals(
   inState: ProposalState
 ): [Proposal]
+  proposalsConnection(
+  proposalType: ProposalType
+  inState: ProposalState
+  pagination: Pagination
+): ProposalsConnection!
   votes: [ProposalVote]
   votesConnection(
   pagination: Pagination
 ): ProposalVoteConnection!
   withdrawals: [Withdrawal!]
-  withdrawalsConnection: WithdrawalsConnection!
+  withdrawalsConnection(
+  pagination: Pagination
+): WithdrawalsConnection!
   deposits: [Deposit!]
-  depositsConnection: DepositsConnection!
+  depositsConnection(
+  pagination: Pagination
+): DepositsConnection!
   liquidityProvisions(
   market: String
   reference: String
@@ -71,7 +86,14 @@ type Party {
   first: Int
   last: Int
 ): [Delegation!]
+  delegationsConnection(
+  nodeId: String
+  pagination: Pagination
+): DelegationsConnection!
   stake: PartyStake!
+  stakingSummary(
+  pagination: Pagination
+): StakingSummary!
   rewards(
   asset: String
   skip: Int
@@ -86,6 +108,10 @@ type Party {
   asset: String
 ): [RewardSummary]
   rewardDetails: [RewardPerAssetDetail]
+  transfersConnection(
+  direction: TransferDirection
+  pagination: Pagination
+): TransferConnection!
 }
 ```
 
@@ -128,7 +154,7 @@ Pagination information
 Trades relating to a party (specifically where party is either buyer OR seller)
 - ##### [`marketId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
-ID of the market we want to get trades for
+ID of the market you want to get trades for
 
 
 - ##### [`skip`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
@@ -169,12 +195,35 @@ Market ID - specify what market accounts for the party to return
 
 - ##### [`asset`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
-Asset (USD, EUR etc)
+Asset (ETH, DAI etc)
 
 
 - ##### [`type`](#) ([`AccountType`](/docs/testnet/graphql/enums/account-type))
 
 Filter accounts by type (General account, margin account, etc...)
+
+
+#### [`accountsConnection`](#) ([`AccountsConnection!`](/docs/testnet/graphql/objects/accounts-connection))
+
+Collateral accounts relating to a party
+- ##### [`marketId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
+
+Market ID - specify what market accounts for the party to return
+
+
+- ##### [`asset`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+
+Asset (ETH, DAI etc)
+
+
+- ##### [`type`](#) ([`AccountType`](/docs/testnet/graphql/enums/account-type))
+
+Filter accounts by type (General account, margin account, etc...)
+
+
+- ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+Cursor pagination information
 
 
 #### [`positions`](#) ([`[Position!]`](/docs/testnet/graphql/objects/position))
@@ -200,15 +249,15 @@ Trading positions relating to a party
 marginLevels
 - ##### [`marketId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
-market id off the margin to get, nil if all markets
+market ID off the margin to get, nil if all markets
 
 
 #### [`marginsConnection`](#) ([`MarginConnection!`](/docs/testnet/graphql/objects/margin-connection))
 
-Margin level for a market
+Margin levels for a market
 - ##### [`marketId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
-market id off the margin to get, nil if all markets
+market ID for the requested margin levels, nil if all markets
 
 
 - ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
@@ -222,6 +271,24 @@ Pagination information
 - ##### [`inState`](#) ([`ProposalState`](/docs/testnet/graphql/enums/proposal-state))
 
 Select only proposals in the specified state. Leave out to get all proposals
+
+
+#### [`proposalsConnection`](#) ([`ProposalsConnection!`](/docs/testnet/graphql/objects/proposals-connection))
+
+All governance proposals in the VEGA network
+- ##### [`proposalType`](#) ([`ProposalType`](/docs/testnet/graphql/enums/proposal-type))
+
+Optional type of proposal to retrieve data for
+
+
+- ##### [`inState`](#) ([`ProposalState`](/docs/testnet/graphql/enums/proposal-state))
+
+Returns only proposals in the specified state. Leave out to get all proposals
+
+
+- ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+Optional Pagination information
 
 
 #### [`votes`](#) ([`[ProposalVote]`](/docs/testnet/graphql/objects/proposal-vote))
@@ -245,6 +312,9 @@ The list of all withdrawals initiated by the party
 #### [`withdrawalsConnection`](#) ([`WithdrawalsConnection!`](/docs/testnet/graphql/objects/withdrawals-connection))
 
 The list of all withdrawals initiated by the party
+- ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+
 
 
 #### [`deposits`](#) ([`[Deposit!]`](/docs/testnet/graphql/objects/deposit))
@@ -255,6 +325,9 @@ The list of all deposits for a party by the party
 #### [`depositsConnection`](#) ([`DepositsConnection!`](/docs/testnet/graphql/objects/deposits-connection))
 
 The list of all deposits for a party by the party
+- ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+
 
 
 #### [`liquidityProvisions`](#) ([`[LiquidityProvision!]`](/docs/testnet/graphql/objects/liquidity-provision))
@@ -275,7 +348,7 @@ An optional reference
 The list of the liquidity provision commitment for this party
 - ##### [`market`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
-An optional market id
+An optional market ID
 
 
 - ##### [`reference`](#) ([`String`](/docs/testnet/graphql/scalars/string))
@@ -311,14 +384,35 @@ Pagination first element
 Pagination last element
 
 
+#### [`delegationsConnection`](#) ([`DelegationsConnection!`](/docs/testnet/graphql/objects/delegations-connection))
+
+
+- ##### [`nodeId`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+
+Optional node
+
+
+- ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+Pagination information
+
+
 #### [`stake`](#) ([`PartyStake!`](/docs/testnet/graphql/objects/party-stake))
 
 The staking information for this Party
 
 
+#### [`stakingSummary`](#) ([`StakingSummary!`](/docs/testnet/graphql/objects/staking-summary))
+
+The staking information for this Party
+- ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+
+
+
 #### [`rewards`](#) ([`[Reward]`](/docs/testnet/graphql/objects/reward))
 
-return individual reward information
+Return individual reward information
 - ##### [`asset`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
 An optional asset
@@ -344,7 +438,7 @@ Pagination last element
 
 - ##### [`asset`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
-An optional asset
+An asset (optional)
 
 
 - ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
@@ -354,15 +448,28 @@ Cursor pagination information
 
 #### [`rewardSummaries`](#) ([`[RewardSummary]`](/docs/testnet/graphql/objects/reward-summary))
 
-return net reward information
+Return net reward information
 - ##### [`asset`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
-An optional asset
+An asset (optional)
 
 
 #### [`rewardDetails`](#) ([`[RewardPerAssetDetail]`](/docs/testnet/graphql/objects/reward-per-asset-detail))
 
 return reward information
+
+
+#### [`transfersConnection`](#) ([`TransferConnection!`](/docs/testnet/graphql/objects/transfer-connection))
+
+get a list of all transfers for a public key
+- ##### [`direction`](#) ([`TransferDirection`](/docs/testnet/graphql/enums/transfer-direction))
+
+direction of the transfer with respect to the public key
+
+
+- ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+Pagination information
 
 
 

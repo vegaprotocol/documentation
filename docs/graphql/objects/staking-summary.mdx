@@ -1,0 +1,38 @@
+---
+id: staking-summary
+title: StakingSummary
+hide_table_of_contents: false
+---
+
+
+All staking information related to a Party.
+Contains the current recognised balance by the network and
+all the StakeLink/Unlink seen by the network
+
+```graphql
+type StakingSummary {
+  currentStakeAvailable: String!
+  linkings(
+  pagination: Pagination
+): StakesConnection!
+}
+```
+
+
+### Fields
+
+#### [`currentStakeAvailable`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+
+The stake currently available for the party
+
+
+#### [`linkings`](#) ([`StakesConnection!`](/docs/testnet/graphql/objects/stakes-connection))
+
+The list of all stake link/unlink for the party
+- ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+
+
+
+
+

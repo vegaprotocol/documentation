@@ -159,7 +159,8 @@ function updateMarket(skeleton) {
 
   const result = {
     rationale: {
-      description: `Update Lorem Ipsum market`
+      title: `Update Lorem Ipsum market`,
+      description: `A proposal to update Lorem Ipsum market`
     },
     terms: {
       updateMarket: {

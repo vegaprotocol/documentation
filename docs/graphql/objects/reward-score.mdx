@@ -14,7 +14,7 @@ type RewardScore {
   multisigScore: String!
   validatorScore: String!
   normalisedScore: String!
-  validatorStatus: String!
+  validatorStatus: ValidatorStatus!
 }
 ```
 
@@ -46,7 +46,7 @@ The composite score of the validator
 The normalised score of the validator
 
 
-#### [`validatorStatus`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [`validatorStatus`](#) ([`ValidatorStatus!`](/docs/testnet/graphql/enums/validator-status))
 
 The status of the validator for this score
 
