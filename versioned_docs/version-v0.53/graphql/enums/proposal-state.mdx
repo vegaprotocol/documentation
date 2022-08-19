@@ -1,0 +1,65 @@
+---
+id: proposal-state
+title: ProposalState
+hide_table_of_contents: false
+---
+
+
+Various states a proposal can transition through:
+Open -&#x003E;
+- Passed -&#x003E; Enacted.
+- Rejected.
+Proposal can enter Failed state from any other state.
+
+```graphql
+enum ProposalState {
+  Failed
+  Open
+  Passed
+  Declined
+  Rejected
+  Enacted
+  WaitingForNodeVote
+}
+```
+
+
+### Values
+
+#### [`Failed`](#)
+
+Proposal became invalid and cannot be processed
+
+
+#### [`Open`](#)
+
+Proposal is open for voting
+
+
+#### [`Passed`](#)
+
+Proposal has gained enough support to be executed
+
+
+#### [`Declined`](#)
+
+Proposal didn't get enough votes
+
+
+#### [`Rejected`](#)
+
+Proposal could not gain enough support to be executed
+
+
+#### [`Enacted`](#)
+
+Proposal has been executed and the changes under this proposal have now been applied
+
+
+#### [`WaitingForNodeVote`](#)
+
+Proposal is waiting for the node to run validation
+
+
+
+

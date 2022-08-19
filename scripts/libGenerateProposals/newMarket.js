@@ -127,6 +127,12 @@ function generateTerminationOracleSpec(skeleton) {
                   // ${splitDescription[0]}
                   // ${splitDescription[1]}
                   conditions: [
+                    {
+                      // ${skeleton.properties.filters.items.properties.conditions.items.properties.operator.description} (${skeleton.properties.filters.items.properties.conditions.items.properties.operator.type})
+                      operator: "${spec.filters[0].conditions[0].operator}",
+                      // ${skeleton.properties.filters.items.properties.conditions.items.properties.value.description} (${skeleton.properties.filters.items.properties.conditions.items.properties.value.type})
+                      value: "${spec.filters[0].conditions[0].value}",
+                    }
                  ]
               }
           ]

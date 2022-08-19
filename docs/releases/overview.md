@@ -6,7 +6,7 @@ import Topic from '/docs/_topic-development.mdx'
 
 <Topic />
 
-While there are many open-source components to Vega software, not all of the code is open yet. Read on for links to release notes, some of which live in the open repositories on GitHub, and others which are published here. 
+The Vega software is publicly available on [GitHub](https://github.com/vegaprotocol). Below find summaries of key released features and breaking changes, as well as links to release notes in GitHub. 
 
 [**Vega core software**](#vega-core-software) - Below, find a summary of each version's features and breaking changes.
 

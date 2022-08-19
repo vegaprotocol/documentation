@@ -1,0 +1,43 @@
+---
+id: position-resolution
+title: PositionResolution
+hide_table_of_contents: false
+---
+
+
+No description
+
+```graphql
+type PositionResolution {
+  marketId: ID!
+  distressed: Int!
+  closed: Int!
+  markPrice: String!
+}
+```
+
+
+### Fields
+
+#### [`marketId`](#) ([`ID!`](/docs/mainnet/graphql/scalars/id))
+
+the market ID where position resolution happened
+
+
+#### [`distressed`](#) ([`Int!`](/docs/mainnet/graphql/scalars/int))
+
+number of distressed parties on market
+
+
+#### [`closed`](#) ([`Int!`](/docs/mainnet/graphql/scalars/int))
+
+number of parties closed out
+
+
+#### [`markPrice`](#) ([`String!`](/docs/mainnet/graphql/scalars/string))
+
+the mark price at which parties were distressed/closed out
+
+
+
+

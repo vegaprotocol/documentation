@@ -29,15 +29,13 @@ vega wallet key isolate --wallet="MY_WALLET_NAME" --pubkey="MY_PUBLIC_KEY"
 <TabItem value="mac" label="MacOS">
 
 ```bash
-./vega wallet key isolate --wallet="MY_WALLET_NAME" 
-/ --pubkey="MY_PUBLIC_KEY"
+./vega wallet key isolate --wallet="MY_WALLET_NAME" --pubkey="MY_PUBLIC_KEY"
 ```
 </TabItem>
 <TabItem value="linux" label="Linux">
 
 ```bash
-./vega wallet key isolate --wallet="MY_WALLET_NAME" 
-/ --pubkey="MY_PUBLIC_KEY"
+./vega wallet key isolate --wallet="MY_WALLET_NAME" --pubkey="MY_PUBLIC_KEY"
 ```
 </TabItem>
 </Tabs>
@@ -201,16 +199,14 @@ vega genesis new validator --country="XX" --info-url="VALIDATOR_URL" --name="NOD
 <TabItem value="mac" label="MacOS">
 
 ```bash
-./vega genesis new validator --country="XX" 
-/ --info-url="VALIDATOR_URL" --name="NODE_NAME"
+./vega genesis new validator --country="XX" --info-url="VALIDATOR_URL" --name="NODE_NAME"
 ```
 
 </TabItem>
 <TabItem value="linux" label="Linux">
 
 ```bash
-./vega genesis new validator --country="XX" 
-/ --info-url="VALIDATOR_URL" --name="NODE_NAME"
+./vega genesis new validator --country="XX" --info-url="VALIDATOR_URL" --name="NODE_NAME"
 ```
 
 </TabItem>
