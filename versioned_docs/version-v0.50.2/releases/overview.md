@@ -2,6 +2,9 @@
 title: Vega software releases
 hide_title: false
 ---
+import Topic from '/versioned_docs/version-v0.50.2/_topic-development.mdx';
+
+<Topic />
 
 While there are many open-source components to Vega software, not all of the code is open yet. Read on for links to release notes, some of which live in the open repositories on GitHub, and others which are published here. 
 

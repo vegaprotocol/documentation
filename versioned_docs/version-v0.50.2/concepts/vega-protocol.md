@@ -1,5 +1,11 @@
+
+import Topic from '/versioned_docs/version-v0.50.2/_topic-governance.mdx'
+
 # Vega Protocol 
 ## Governance
+
+<Topic />
+
 Governance allows the Vega network to arrive at on-chain decisions, where tokenholders can create proposals that other tokenholders can vote to approve or reject. 
 
 The restricted Vega mainnet supports on-chain proposals for changing network parameters. Vega also supports freeform proposals for community suggestions that will not be enacted on-chain.

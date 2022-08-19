@@ -1,4 +1,9 @@
+import Topic from '/versioned_docs/version-v0.50.2/_topic-development.mdx'
+
 # Using the APIs
+
+<Topic />
+
 There are a number of ways to interact with Vega through APIs and Ethereum bridge contracts, and below you can learn more about the reference documentation and tutorials that are currently available.
 
 As most of the APIs are designed to use for trading-related queries, the best place to try them out is on the testnet network, also known as Fairground. 
