@@ -1,5 +1,5 @@
 ---
-    title: Sample wallet API
+    title: OpenRPC Wallet API
 ---
 - [session.connect_wallet](#sessionconnect_wallet): Initiates a connection between a wallet and a third-party application.
 - [session.disconnect_wallet](#sessiondisconnect_wallet): Ends the connection between the third-party application and the wallet.
