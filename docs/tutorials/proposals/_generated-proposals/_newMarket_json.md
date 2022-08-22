@@ -62,10 +62,8 @@
           }
         },
         "metadata": [
+          "sector:materials",
           "sector:health",
-          "sector:energy",
-          "sector:food",
-          "sector:tech",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -87,55 +85,55 @@
         },
         "logNormal": {
           "tau": 0.0001140771161,
-          "riskAversionParameter": 0.01,
+          "riskAversionParameter": 0.0001,
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 0.8
+            "sigma": 1.25
           }
         }
       },
       "liquidityCommitment": {
-        "commitmentAmount": "4474674",
-        "fee": "0.71",
+        "commitmentAmount": "2856241",
+        "fee": "0.28",
         "buys": [
           {
-            "offset": "91",
-            "proportion": 3,
-            "reference": "PEGGED_REFERENCE_BEST_BID"
-          },
-          {
-            "offset": "83",
-            "proportion": 3,
-            "reference": "PEGGED_REFERENCE_BEST_BID"
-          },
-          {
-            "offset": "89",
+            "offset": "2",
             "proportion": 6,
+            "reference": "PEGGED_REFERENCE_BEST_BID"
+          },
+          {
+            "offset": "69",
+            "proportion": 3,
+            "reference": "PEGGED_REFERENCE_BEST_BID"
+          },
+          {
+            "offset": "4",
+            "proportion": 10,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           }
         ],
         "sells": [
           {
-            "offset": "15",
-            "proportion": 2,
+            "offset": "16",
+            "proportion": 4,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           },
           {
-            "offset": "96",
-            "proportion": 5,
+            "offset": "2",
+            "proportion": 6,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           },
           {
-            "offset": "33",
-            "proportion": 1,
+            "offset": "34",
+            "proportion": 7,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           }
         ]
       }
     },
-    "closingTimestamp": 1661685139,
-    "enactmentTimestamp": 1661771539
+    "closingTimestamp": 1662824601,
+    "enactmentTimestamp": 1662911001
   }
 }
 ```
