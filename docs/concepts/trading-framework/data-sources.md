@@ -3,11 +3,14 @@ sidebar_position: 8
 title: Data sources
 hide_title: false
 ---
-Data sources, which come from oracles, are essential to markets created on Vega.
+Data sources, which include oracles and data originating on the Vega network, are essential to markets created on Vega.
 
-Market settlement, risk models, and other features require a supplied price, or other data, which must come from somewhere, usually completely external to Vega. Specifically for settlement values, Vega requires external data.
+Market settlement, risk models, and other features require a supplied price, or other data, which must come from somewhere, usually completely external to Vega. Specifically for settlement values, Vega currently requires external data.
 
-Vega APIs and protocol capabilities support a wide range of data sourcing styles and standards, and Vega will not integrate directly with specific oracles / data providers at the protocol level. This framework is flexible to make it easy to create and combine oracles, and therefore to design markets on almost anything.
+The types of data sources that Vega can accept in the current implementation is limited to those listed below.
+
+However, the APIs and protocol are expected to support a wider range of data source standards in the future. 
+The framework is designed to be flexible to make it easy to create and combine oracles, and therefore to design markets on almost anything, and the software will grow to fulfil that goal. 
 
 The current implementation requires that a market proposal defines two data sources, and the price based on those sources is final.
 
@@ -76,7 +79,7 @@ An internal data source provides information that comes from within Vega, rather
 
 There is currently one type of data that can come from internal data sources: time-triggered.
 
-### Internal data source: Time triggered
+### Internal data source: Timestamp
 Vega provides a timestamp source, which can be used to terminate a futures market at a set date. `vegaprotocol.builtin.timestamp` provides a Unix timestamp of the Vega time, which is to say the time agreed via consensus. 
 
 As the name implies, a built in data source is generated inside Vega, and cannot be submitted by other keys.

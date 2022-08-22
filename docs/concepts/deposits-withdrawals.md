@@ -6,7 +6,7 @@ hide_title: false
 Assets used for trading, paying fees, funding rewards, and providing liquidity need to be deposited using a bridge contract, and can be withdrawn back into an Ethereum wallet if they are not being used for margin or liquidity commitment.
 
 :::tip Tools you'll need
-To deposit or withdraw, you'll need a [Vega Wallet](../tools/vega-wallet/index.md). 
+To deposit or withdraw, you'll need a [Vega Wallet](../tools/vega-wallet/index.md) and an Ethereum wallet, such as Metamask. 
 :::
 
 ### Deposits

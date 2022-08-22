@@ -11,7 +11,7 @@ Accounts are used either to hold assets that you're in control of using -- such 
 ## General account
 The *general account* is managed by the party who controls the keys that account was created for.
 
-Every public key has a general account, whether it has assets in it or not. The general account is the place where deposits go, where withdrawals come from, and where a participant can transfer assets from (or receive assets to).
+Every public key has a potential general account in every asset supported on the Vega network; it's created the first time assets are deposited or transferred to it. The general account is the place where deposits and rewards go, where withdrawals come from, and where a participant can transfer assets from (or receive assets to).
 
 The general account also holds VEGA when it's not associated to a Vega key and/or locked in a smart contract. Staking rewards, as well as trading rewards, are paid into the general account.
 
@@ -33,8 +33,9 @@ Some accounts are accessible only when they're needed, and cease to exist while 
 ### Margin accounts
 Margin accounts temporarily hold assets that support a participant's trades on a market. 
 
-Each party with open orders or positions on any market has a margin account. When you trade on a market, the required initial margin is allocated to that market from your general account, meaning that it can't be withdrawn or used as margin on another market while it is allocated to the first market.
+Each party with open orders or positions on any market has a margin account. When you trade on a market, the required initial margin is allocated to that market from your general account, meaning that it can't be withdrawn or used as margin on another market while it is allocated to the first market. Money may be periodically transferred into or out of your margin account from your general account if the balance becomes too low to support your trading, or if the gains on your position mean the account contains more funds than are needed.
 
+To move some or all of the money in your margin account back into your general account, you can try reducing the size of your position on the market, or closing it entirely. If your position size is zero and you have no active orders, your margin account will be empty and all the funds will be returned to your general account and be accessible by you once more.
 :::info Read more
 [Margin](./trading-framework/positions-margin)
 :::
@@ -43,6 +44,8 @@ Each party with open orders or positions on any market has a margin account. Whe
 This account type temporarily holds assets to be distributed based on the outcomes of trades and market movements.
 
 Each market has a mark-to-market settlement account. Cashflows from mark-to-market settlement are collected into that account and distributed from it every time there is a mark-to-market calculation. After each mark-to-market settlement, the account balance is back to zero. 
+
+Note that this happens instantaneously, so you will likely never observe a current balance in an account of this type. However, you may see transfers to and from this account and historic balances if you examine historic data. This can help you to understand how funds have moved between parties with active positions on a market.
 
 :::info Read more
 [Mark-to-market settlement](./trading-framework/trade-lifecycle#mark-to-market-settlement) 
@@ -85,7 +88,7 @@ The revenue from other fees go into fee-specific accounts:
 ### Reward accounts 
 Trading rewards are funded by community members that want to incentivise certain types of market activities. 
 
-Reward accounts can exist for each reward metric, per asset, and they come to exist when they are funded. The assets leave each account based on the reward transfer strategy that the funder(s) defined when they set up the rewards transfer. 
+Reward accounts can exist for each combination of reward metric, asset, and market, and they come to exist when they are funded by reward account transfers, which occur at the end of each epoch. The amount of assets entering each reward account depend on the amount transferred and the reward transfer strategy that the funder(s) defined when they set up the rewards transfer.
 
 :::info Read more
 [Trading rewards](./trading-framework/fees-rewards#trading-rewards)
