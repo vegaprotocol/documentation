@@ -2,7 +2,7 @@
 title: Vega software releases
 hide_title: false
 ---
-import Topic from '../_topic-development.mdx';
+import Topic from '../topics/_topic-development.mdx';
 
 <Topic />
 

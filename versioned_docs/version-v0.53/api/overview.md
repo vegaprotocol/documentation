@@ -1,4 +1,4 @@
-import Topic from '../_topic-development.mdx'
+import Topic from '../topics/_topic-development.mdx'
 
 # Using the APIs
 

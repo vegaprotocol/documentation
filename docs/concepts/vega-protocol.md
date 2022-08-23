@@ -6,7 +6,7 @@ hide_title: false
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
-import Topic from '/docs/_topic-governance.mdx'
+import Topic from '/docs/topics/_topic-governance.mdx'
 
 
 # Vega Protocol 

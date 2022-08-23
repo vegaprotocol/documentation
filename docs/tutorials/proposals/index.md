@@ -9,7 +9,7 @@ keywords:
 - updateNetworkParameter
 - newMarket
 ---
-import Topic from '/docs/_topic-governance.mdx'
+import Topic from '/docs/topics/_topic-governance.mdx'
 
 <Topic />
 

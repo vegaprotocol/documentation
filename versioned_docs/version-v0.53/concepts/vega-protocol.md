@@ -3,7 +3,7 @@ vega_network: MAINNET
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
-import Topic from '../_topic-governance.mdx'
+import Topic from '../topics/_topic-governance.mdx'
 
 # Vega Protocol 
 ## Governance

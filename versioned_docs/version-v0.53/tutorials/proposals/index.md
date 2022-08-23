@@ -8,7 +8,7 @@ keywords:
 - newFreeform
 - updateNetworkParameter
 ---
-import Topic from '../../_topic-governance.mdx'
+import Topic from '../../topics/_topic-governance.mdx'
 
 <Topic />
 

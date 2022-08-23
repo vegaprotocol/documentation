@@ -6,7 +6,7 @@ hide_title: false
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
-import Topic from '/docs/_topic-staking.mdx'
+import Topic from '/docs/topics/_topic-staking.mdx'
 
 Vega uses Tendermint as a consensus layer to form a blockchain. The rest of the information here informs on how that blockchain and its relevant components is comprised. 
 
