@@ -1,6 +1,7 @@
 ---
 title: Provide liquidity
 hide_title: false
+description: Commit liquidity onto a market and manage that commitment
 ---
 
 In this tutorial, you'll learn: 

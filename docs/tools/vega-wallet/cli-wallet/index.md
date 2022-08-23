@@ -6,7 +6,7 @@ hide_title: false
 The Vega Wallet is available to use as a command-line application.
 
 ## Wallet guides 
-* **[Create wallet with CLI wallet app](./latest/create-wallet.md)**: Instructions on how to set up you first wallet and keypair using the command line interface wallet app
+* **[Create wallet with CLI wallet app](./latest/create-wallet.md)**: Instructions on how to set up your first wallet and keypair using the command line interface wallet app
 * **[Restore a wallet](./latest/guides/restore-wallet.md)**: Restore a wallet using a recovery phrase, such as when you want to use the wallet on a different device
 * **[Manage networks](./latest/guides/manage-networks.md)**: Set up network details to connect your wallet, update network details, and list the available networks 
 * **[Customise key details](./latest/guides/customise-keys.md)**: Add metadata to your keys to help you identify each key pair

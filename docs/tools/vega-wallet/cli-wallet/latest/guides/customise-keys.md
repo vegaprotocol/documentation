@@ -2,6 +2,7 @@
 sidebar_position: 3
 title: Customise key details
 hide_title: false
+description: Add metadata to your keys to help you identify each key pair
 ---
 
 import Tabs from '@theme/Tabs';

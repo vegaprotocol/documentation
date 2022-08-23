@@ -1,6 +1,7 @@
 ---
 title: Transfer assets
 hide_title: false
+description: One-off or recurring asset transfers between Vega keys or asset pools
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

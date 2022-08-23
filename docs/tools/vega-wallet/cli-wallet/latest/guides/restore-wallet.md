@@ -2,6 +2,7 @@
 sidebar_position: 1
 title: Restore a wallet
 hide_title: false
+description: Restore a wallet using a recovery phrase, such as when you want to use the wallet on a different device
 ---
 
 import Tabs from '@theme/Tabs';

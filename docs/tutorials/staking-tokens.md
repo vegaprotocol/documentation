@@ -3,6 +3,7 @@ title: Stake tokens
 hide_title: false
 vega_network: TESTNET
 ethereum_network: Ropsten
+description: Stake unlocked tokens with Vega Wallet and smart contracts
 ---
 import EthAddresses from '@site/src/components/EthAddresses';
 

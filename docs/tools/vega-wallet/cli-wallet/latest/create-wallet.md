@@ -2,6 +2,7 @@
 sidebar_position: 1
 title: Create a wallet
 hide_title: false
+description: Set up your first wallet and keypair using the CLI wallet app
 ---
 
 import Tabs from '@theme/Tabs';
