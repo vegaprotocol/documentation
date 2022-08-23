@@ -1,9 +1,10 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 title: Vega Chain
 vega_network: TESTNET
 hide_title: false
 ---
+
 import NetworkParameter from '@site/src/components/NetworkParameter';
 import Topic from '/docs/_topic-staking.mdx'
 

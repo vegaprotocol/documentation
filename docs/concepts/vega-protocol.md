@@ -1,5 +1,8 @@
 ---
+sidebar_position: 4
+title: Vega Protocol
 vega_network: TESTNET
+hide_title: false
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
