@@ -31,13 +31,13 @@ export default function Home() {
             <p>Learn about the Vega framework and get set up to take part.</p>
             <ul>
               <li><a href="/docs/mainnet/concepts/new-to-vega">Introduction to Vega</a></li>
-              <li>Get a <a href="/docs/mainnet/tools/vega-wallet">Vega wallet</a>, on <a href="/docs/mainnet/tools/vega-wallet/desktop-app">desktop</a> or <a href="/docs/mainnet/tools/vega-wallet/cli-wallet">command line</a></li>
+              <li>Get a <a href="/docs/mainnet/tools/vega-wallet">Vega wallet</a>, on <a href="/docs/mainnet/tools/vega-wallet/desktop-app">desktop</a> or for <a href="/docs/mainnet/tools/vega-wallet/cli-wallet">command line</a></li>
               <li><a class="external" href="https://github.com/orgs/vegaprotocol/projects/114/views/4" target="_blank">Roadmap</a></li>
             </ul>
           </article>
           <article>
             <h2>Governance</h2>
-            <p>The network is improved through making and voting on proposals.</p>
+            <p>The network is governed by the community. Take part by voting on proposals and proposing changes.</p>
             <ul>
               <li><a href="/docs/mainnet/concepts/vega-protocol#governance">Introduction to governance</a></li>
               <li><a href="docs/mainnet/tutorials/proposals">Tutorials: Governance proposals</a></li>
@@ -61,16 +61,12 @@ export default function Home() {
             <p>Get guidance on how to maintain and upgrade a node.</p>
           </a>
           <a href="/docs/mainnet/releases/overview" class="card">
-            <h3>Releases</h3>
+            <h3>Release summaries</h3>
             <p>See the latest features and get ahead of breaking changes.</p>
           </a>
-          <a href="/docs/testnet/tools/vega-wallet/cli-wallet" class="card">
-            <h3>Wallet CLI</h3>
-            <p>Step-by-step instructions to set up your first wallet.</p>
-          </a>
-          <a href="/docs/testnet/tutorials/staking-tokens" class="card">
-            <h3>Staking tokens</h3>
-            <p>Using the Vega Wallet and smart contracts to stake unlocked tokens.</p>
+          <a href="/docs/mainnet/tools/vega-wallet/desktop-app" class="card">
+            <h3>Vega Wallet</h3>
+            <p>Step-by-step instructions to set up your Vega Wallet.</p>
           </a>
         </section>
       </main>
