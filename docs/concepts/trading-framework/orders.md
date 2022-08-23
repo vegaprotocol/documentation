@@ -22,7 +22,7 @@ If a market requires that orders are specified using integers, fractional order 
 ## Submit an order
 Orders can be submitted into any market that is active - i.e., not in a protective auction, or matured, expired, or settled. Orders will only be accepted if sufficient margin can be allocated from a trader's available collateral. 
 
-:::info Read more
+:::note Read more
 * [**Margin**](#margin): Find out how margin works in the Vega system. 
 :::
 
@@ -35,7 +35,7 @@ Orders cannot be amended using Vega Console. Instead, an individual order should
 
 ### Amending pegged orders
 
-:::info Read more
+:::note Read more
 * [Amend pegged order](#amend-pegged-orders)
 * Amending liquidity commitment orders
 :::
@@ -53,7 +53,7 @@ When trading on Vega Console, a trader will only be able cancel individual order
 
 Cancelling the orders that are created from a liquiity commitment cannot be cancelled in the same way.
 
-:::info Read more
+:::note Read more
 * [Limit orders](#limit-order)
 * [Market orders](#market-order)
 * [Cancelling liquidity commitment orders](../liquidity#cancel-liquidity-commitment-orders)
@@ -114,7 +114,7 @@ There are some situations in which pegged orders are parked, or moved off the or
 ### Network order
 A network order is triggered by the Vega network to close out a distressed trader, as part of position resolution. Network orders cannot be submitted by a party.
 
-:::info Read more
+:::note Read more
 [Position resolution](#position-resolution)
 :::
 

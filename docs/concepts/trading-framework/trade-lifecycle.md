@@ -37,7 +37,9 @@ For example: A cash-settled futures market reaches its expiry date and time. If 
 
 After all positions are closed at market expiry, they are ‘forgotten’ by the network.
 
-Read more: [Data sources](./data-sources.md)
+:::note Read more
+[Data sources](./data-sources.md)
+:::
 
 ### Mark to market settlement
 Settlement instructions are generated based on the change in market value of the open positions of a party.
@@ -46,7 +48,9 @@ When the mark price changes, the network calculates settlement cash flows for ea
 
 Each time the mark price for a given market changes, all the open positions and orders are marked to market, resulting in interim partial payments that are calculated by the network. Those payments go directly the relevant trader's collateral. 
 
-Read more: [Mark to market](/docs/testnet/concepts/trading-framework/market-protections#mark-to-market)
+:::note Read more
+[Mark to market](/docs/testnet/concepts/trading-framework/market-protections#mark-to-market)
+:::
 
 ### Settlement parameters defined through governance
 Data sources for settlement must be specified when a market is proposed. For cash-settled futures, this is the final price/value at the expiry of the instrument, and the expiry date/time.

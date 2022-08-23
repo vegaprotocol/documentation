@@ -11,12 +11,9 @@ Margin calculations take into account the probability of the liquidation value o
 
 Some of those measures include price monitoring, liqudity monitoring, and frequent mark to market calculations.
 
-:::info Read more
+:::note Read more
 * [Margin on Vega](./positions-margin#margin)
 * [Mark to market](./positions-margin#mark-to-market)
-* [Price monitoring](#price-monitoring)
-* [Liquidity monitoring](#liquidity-monitoring)
-* [Distressed traders](#distressed-traders)
 :::
 
 ## Price monitoring
@@ -99,7 +96,7 @@ A distressed trader has all their open orders on that market cancelled. The netw
 
 However, if the trader does not have sufficient collateral, they are added to list of traders that will then undergo position resolution to close out their positions.
 
-:::info Read more
+:::note Read more
 [Position resolution](#position-resolution)
 :::
 
@@ -110,7 +107,7 @@ The closeout process is a last resort for a position. If a trader's deployed mar
 
 The insurance pool is drawn from to make up the difference required to cover the mark to market loss amount. Should the funds in the insurance pool be insufficient for that, loss socialisation will be applied.
 
-:::info Read more
+:::note Read more
 * [Position resolution](#position-resolution)
 * [Loss socialisation](#loss-socialisation)
 :::
@@ -126,7 +123,7 @@ The network generates a set of trades with all the distressed traders, all at th
 
 All of the remaining collateral in each distressed trader's margin account for that market is confiscated to the market's insurance pool.
 
-:::info Read more
+:::note Read more
 [Insurance pools](#insurance-pools)
 :::
 
@@ -150,7 +147,7 @@ Insurance pools grow in two scenarios:
 * If a trader is closed out because they do not have enough collateral to support an open positions
 * If a liquidity provider pays a penalty for failing to provide their committed liquidity
 
-:::info Read more
+:::note Read more
 * [Closeouts](#closeouts)
 * [Liquidity provision penalties](#penalties)
 * [Loss socialisation](#loss-socialisation)

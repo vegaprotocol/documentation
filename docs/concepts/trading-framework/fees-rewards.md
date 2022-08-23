@@ -1,62 +1,69 @@
 ---
 sidebar_position: 3
-title: Fees and rewards
+title: Trading fees and rewards
 hide_title: false
 ---
-## Trading fees and rewards
-The Vega trading fee structure incentivises passive trading (placing orders on the order book), providing liquidity, and running the network infrastructure. 
+The Vega trading fee structure incentivises passive trading (placing orders on the order book), providing liquidity, and running the network infrastructure. The protocol does not charge gas fees for interacting with the network.
 
-Meanwhile, there is a mechanism that any participant can use to reward traders for their activity in a market, including those who 'take' prices off the order book. Those rewards only exist when a party is funding them, and can be set per market and per activity type (or metric). 
+In addition, any participant can fund accounts that reward traders for their activity in a market, including those who 'take' prices off the order book. Those rewards only exist when a party is funding them, and can be set per market and per activity type (or metric).
 
-Read more:
+:::note Read more
 * [Trading fees](#trading-fees)
 * [Trading rewards](#trading-rewards)
+:::
 
-### Trading fees
+## Trading fees
 The Vega protocol does not charge gas fees, but rather has a fee structure that rewards participants who fill essential roles for a decentralised trading infrastructure.
 
-Fees are incurred on every trade on a market in continuous trading, but it is the price taker who pays the fee. During a market's opening auction, no fees are collected.
+Fees are incurred on every trade on a market in continuous trading, but it is the price taker who pays the fee. The price taker is the party that traded using a market order, or placed a limit order that traded immediately. The price maker (the party whose passive order was on the book prior to the trade) receives some of the trading fees as a reward for providing liquidity.
 
-The price taker is the party that traded using a market order, or placed a limit order that traded immediately. The price maker (the party whose passive order was on the book prior to the trade) obtains part of the fee as a reward for providing liquidity.
+The amount a trader pays in fees for each order is the same regardless of how many trades it takes to fill the order. Even though, if an order crosses with more than one other order, multiple trades are created and multiple fees are incurred, in the end they would balance out. See an example calculation below.
 
-An order may cross with more than one other order, creating multiple trades, which incur fees for each. Because of how the trade value for fee purposes is calculated (see below), the amount you'll pay for each order is the same, regardless of how many trades it takes to fill the order.
+During a market's opening auction, no fees are collected.
 
-Fees are calculated and collected in the settlement currency of the market, and collected from your collateral. The fee is divided between the maker, the infrastructure provider, and the liquidity provider(s) for each market.
+### Fee distribution
+Fees are calculated when a trade is filled, and paid in the settlement currency of the market. The fees due are taken from the collateral in the trader's general account. The fee is divided between the maker, the infrastructure provider, and the liquidity provider(s) for each market.
 
-* Infrastructure portion of the fee, which is paid to validators as a reward for running the infrastructure of the network, is transferred to the infrastructure fee pool for that asset. It is then periodically distributed to the validators.
-* Maker portion of the fee is transferred to the non-aggressive, or passive party in the trade (the maker, as opposed to the taker).
-* Liquidity portion of the fee is paid to market makers for providing liquidity, and is transferred to the market-maker fee pool for the market.
+#### Maker fee
+The maker portion of the fee is transferred to the non-aggressive, or passive party in the trade (the maker, as opposed to the taker). This is done as soon as the trade settles.
 
-The trading fee is calculated using the following formulas:
+#### Infrastructure fee
+The infrastructure portion of the fee is paid to validators as a reward for running the network infrastructure, and transferred to the infrastructure fee pool for the market's settlement asset. It is then distributed to the validators at the end of each epoch, in proportion to the number of tokens they represent. Some of that fee portion also goes to the validators' nominators.
 
-* Total fee = (infrastructure fee factor + maker fee factor + liquidity fee factor) x Trade value for fee purposes
-* Trade value for fee purposes = notional value of the trade = size of trade x price of trade (This is true for futures, but may be calculated differently for other products.)
+#### Liquidity fee
+The liquidity portion of the fee is paid to participants who provide liquidity for the market. It's transferred to a liquidity fee account, and distributed to each liquidity provider's margin account at a defined time (based on network parameter `market.liquidity.providers.fee.distributionTimeStep`). 
 
-### Fees example
-If you were to place an order for 100 futures at USDC50, the trade value for fee purposes is 100 x USDC50 = USDC5000.
+### Fee calculations
+At a high level, the trading fee is calculated using the following formulas:
 
-In this example, each fee is 0.001, meaning total fee factor is 0.003.
-
-USDC5000 x 0.003 = USDC15
-
-The fee is the same irrespective of the number of transactions the order gets filled in, as long as they trade at the same price.
+* Total fee = (infrastructure fee factor + maker fee factor + liquidity fee factor) x trade value for fee purposes
+* Trade value for fee purposes = notional value of the trade = size of trade x price of trade (This is true for futures, but may be calculated differently for other products)
+  
+#### Fee calculation example
+* Trade value for fee purposes: If you were to place an order for 100 futures at USDC50, the trade value for fee purposes is: *100 x USDC50 = USDC5000*. 
+* Fee factor: For this example, each of the 3 fees is *0.001*, meaning total fee factor is *0.003*.
+* Trade value and fee factor: *USDC5000 x 0.003 = USDC15*
+* The fee is the same regardless of the number of transactions the order needs to be completely filled, as long as they trade at the same price.
 
 The fee factors are set through the following network parameters: `market.fee.factors.infrastructureFee`, `market.fee.factors.makerFee`, `market.fee.factors.liquidityFee`.
 
 ## Trading rewards 
-In addition to fees incentivising liquidity provision, passive orders, and infrastructure maintenance, participants can also fund rewards to incentivise certain trading activities on a market (or markets).
+In addition to fees incentivising liquidity provision, passive orders, and infrastructure support, participants can also fund and/or receive rewards to incentivise certain trading behaviours they want to see on a market (or markets). 
 
-Participants can choose to incentivise activity by choosing what type(s) of activity they want to reward, how much to reward those who take part, and for how long. 
+* Any party with an amount of a market's settlement asset can fund a reward pool to incentivise trading. 
+* Any party that trades on a market with a trading reward can be eligible to receive a portion of the rewards.
 
-### Trading rewards framework
-The reward framework provides a mechanism for defining, measuring and rewarding certain trading activities on the Vega network. Any Vega network participant with assets can use the rewards functionality to incentivise behaviours they would like to see in a market. 
+Trading rewards are defined by three things:
+* Type of activity to be rewarded (and how it's measured)
+* An amount to reward
+* How long a reward is offered
 
-Rewards are independent from fees, which are paid to validators, liquidity providers, and price makers on each trade. 
+Rewards are independent from fees, which are paid to validators, liquidity providers, and price makers on each trade.
 
 ### Trading rewards metrics
-As rewards are distributed based on certain criteria, those criteria need to be defined and measured. Each of the reward metrics is calculated per party, and once at the end of each epoch.
+As rewards are distributed based on certain criteria, they need to be defined and measured. Each reward metric is calculated per party, once at the end of each epoch.
 
-Rewards can be defined to pay out to those who receive fees (functioning like a ‘bonus’), or those who create markets.
+Rewards can be set up to pay those who receive fees (functioning like a 'bonus'), or those who create markets.
 
 #### Fee-based reward metrics
 Fee-based rewards metrics are designed to incentivise trading volume on a given market, and are dependent on how much a participant pays in fees.
@@ -74,16 +81,16 @@ When incentivising based on fees paid/received, any participant who, for example
 **Example**:
 Traders on Market X are eligible for rewards based on maker fees paid. 
 
-Party A, trading on Market X, has paid $100 in maker fees in one epoch. 
+Party A, trading on Market X, has paid *$100* in maker fees in one epoch. 
 
-The total maker fees paid by all parties in that market is $10,000. 
+The total maker fees paid by all parties in that market is *$10,000*. 
 
 Party A would receive $100 / $10,000 = 1% of the rewards for that epoch.
 
 #### Market creation reward metric 
-The market creation reward metric is designed to incentivise successful market creation.
+The market creation reward metric is designed to incentivise creating markets that attract good trading volume. Rewards are awarded to the proposers of any markets that meet a certain total trade value. 
 
-Rewards are awarded to the proposers of any markets that meet a certain total trade value in a given epoch.  The threshold required is set by the network parameter `market.liquidityProvision.minLpStakeQuantumMultiple`, and can be changed via governance vote.
+The threshold for what counts as 'enough' trading volume is a formula that takes into account the value of the network parameter `rewards.marketCreationQuantumMultiple`, as well as the settlement asset's quantum to assess the market's size.
 
 **Example**: 
 
@@ -91,8 +98,12 @@ In a given epoch, 4 markets all reach $10,000 total trade value, which is the th
 
 The proposers of each of those markets qualify for 25% of the market creation reward for that epoch.
 
+:::note Go deeper
+[Rewards spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0056-REWA-rewards_overview.md#market-creation-reward-metrics): See the full set of calculations that go into the market creation reward.
+:::
+
 ### Reward pools 
-Reward pools hold the funds that are used to pay out trading rewards,  and are funded by participants through transfers. 
+Reward pools hold the funds that are used to pay out trading rewards, and are funded by participants through transfers. 
 
 At the end of each epoch, all reward pools will be emptied and their funds allocated to users proportionally based on the reward metric defined for each pool. 
 
@@ -136,9 +147,9 @@ Now, any user that has been a price taker in this market will receive two reward
 ### Funding reward pools 
 Transfers are used to send assets to reward pools, and those transfers can be set up to transfer an asset just once, or for each epoch. 
 
-If a user wishes to provide a one-off reward in a single epoch only, they can do this by making a **single transfer** into the relevant reward pool. 
+To provide a one-off reward in a single epoch only, make a **single transfer** into the relevant reward pool.
 
-If a user wishes to fund a single reward pool over multiple epochs, they can do this by setting up a **recurring transfer to a single reward pool** to keep topping up the reward pool for each epoch.
+To fund a single reward pool over multiple epochs, set up a **recurring transfer to a single reward pool** that will keep topping up the reward pool for each epoch, as long as there are funds available in the party's general account.
 
 Another option is to regularly top up multiple reward pools across multiple markets, for a single metric and reward asset, by setting up a **recurring transfer to multiple reward pools**. 
 
@@ -166,5 +177,4 @@ The user sets up a recurring transfer for 10,000 VEGA into the three reward pool
 * Reward Pool 2 share: 100 / (200 + 100 + 700) = 0.1 x 10,000 = 1,000 VEGA
 * Reward Pool 3 share: 700 / (200 + 100 + 700) = 0.7 x 10,000 = 7,000 VEGA
 
-Each reward pool is then distributed to individual parties as per the logic described in the [Reward pools](#reward-pools) section.
-
+Each reward pool is then distributed to individual parties as described in the [Reward pools](#reward-pools) section.

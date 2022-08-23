@@ -19,7 +19,7 @@ Settlement instructions are generated based on the change in market value of the
 
 Because the margin for a market is calculated dynamically based on the market conditions, the mark price also has an effect on how much collateral is set aside for margin.
 
-:::info Read more
+:::note Read more
 [Mark to market settlement](./trade-lifecycle#mark-to-market-settlement)
 :::
 
@@ -82,7 +82,9 @@ If the margin account can be topped up, then the position stays open. If a marke
 
 Price monitoring should ensure that large swings only occur only due to genuine changes in market participants' view of the true average price of the traded instrument.
 
-Read more: [Price monitoring](#price-monitoring)
+:::note Read more
+[Price monitoring](#price-monitoring)
+:::
 
 If there is not enough collateral to provide the required margin, then the position will be closed out.
 
