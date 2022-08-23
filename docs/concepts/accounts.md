@@ -10,7 +10,7 @@ Vega uses accounts in various situations to ensure funds are never lost or doubl
 Accounts are used either to hold assets that you're in control of using — such as collateral you deposit, or for setting money aside that only the network can manage — to fulfil margin requirements, for example, or to store assets that are earmarked for rewards or paying out fees. This means that, for example, when your funds are allocated to margin to support a position you opened, or you submit a liquidity commitment and bond amount is reserved, those assets can't be used for anything else.
 
 :::tip Query for data
-You can see how much is allocated to the accounts for your public key in [Vega Console](https://console.fairground.wtf), the trading interface.
+You can see how much is allocated to the accounts for your public key in [Vega Console ↗](https://console.fairground.wtf), the trading interface.
 
 Otherwise use a [GraphQL query](./../graphql/objects/party#accounts-account) to check your public key for the accounts.
 :::
