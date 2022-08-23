@@ -1,9 +1,10 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 title: Vega Chain
 vega_network: TESTNET
 hide_title: false
 ---
+
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
 Vega uses Tendermint as a consensus layer to form a blockchain. The rest of the information here informs on how that blockchain and its relevant components is comprised. 
