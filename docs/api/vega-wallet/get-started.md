@@ -5,10 +5,10 @@ sidebar_position: 2
 ---
 
 # Start using the Vega Wallet API
-Build on and integrate with the Vega Wallet service using the JSON-RPC API. 
+Build on and integrate with the Vega Wallet service using the **JSON-RPC API** and its endpoint **`/v2/requests`**.
 
 * [Connect and set permissions](#connect-and-set-permissions): First, use the guide below to get set up
-* [API documentation](./openrpc): See the full documentation to build your integration with the Vega Wallet
+* [API documentation](./openrpc): See the full JSON-RPC documentation to build your integration with the Vega Wallet
 * [API playground](./openrpc-api-playground): Try it out and explore the potential results and errors
 
 ## Software compatibility
