@@ -2,7 +2,8 @@
   ```json
 {
   "rationale": {
-    "description": "Add Lorem Ipsum market"
+    "title": "Add Lorem Ipsum market",
+    "description": "An example proposal to add Lorem Ipsum market"
   },
   "terms": {
     "newMarket": {
@@ -61,8 +62,9 @@
           }
         },
         "metadata": [
-          "sector:food",
+          "sector:tech",
           "sector:energy",
+          "sector:food",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -93,46 +95,46 @@
         }
       },
       "liquidityCommitment": {
-        "commitmentAmount": "3109145",
-        "fee": "0.11",
+        "commitmentAmount": "1060019",
+        "fee": "0.79",
         "buys": [
           {
-            "offset": "37",
-            "proportion": 6,
-            "reference": "PEGGED_REFERENCE_BEST_BID"
-          },
-          {
-            "offset": "88",
-            "proportion": 7,
-            "reference": "PEGGED_REFERENCE_BEST_BID"
-          },
-          {
-            "offset": "20",
+            "offset": "39",
             "proportion": 8,
+            "reference": "PEGGED_REFERENCE_BEST_BID"
+          },
+          {
+            "offset": "73",
+            "proportion": 5,
+            "reference": "PEGGED_REFERENCE_BEST_BID"
+          },
+          {
+            "offset": "38",
+            "proportion": 9,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           }
         ],
         "sells": [
           {
-            "offset": "41",
-            "proportion": 6,
+            "offset": "66",
+            "proportion": 2,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           },
           {
-            "offset": "100",
-            "proportion": 8,
+            "offset": "66",
+            "proportion": 1,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           },
           {
-            "offset": "41",
-            "proportion": 6,
+            "offset": "4",
+            "proportion": 1,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           }
         ]
       }
     },
-    "closingTimestamp": 1658846745,
-    "enactmentTimestamp": 1658933145
+    "closingTimestamp": 1662374250,
+    "enactmentTimestamp": 1662460650
   }
 }
 ```

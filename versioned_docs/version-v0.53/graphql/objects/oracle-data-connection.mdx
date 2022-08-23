@@ -1,0 +1,37 @@
+---
+id: oracle-data-connection
+title: OracleDataConnection
+hide_table_of_contents: false
+---
+
+
+No description
+
+```graphql
+type OracleDataConnection {
+  totalCount: Int!
+  edges: [OracleDataEdge]
+  pageInfo: PageInfo!
+}
+```
+
+
+### Fields
+
+#### [`totalCount`](#) ([`Int!`](/docs/mainnet/graphql/scalars/int))
+
+The total number of oracle data items available with this connection
+
+
+#### [`edges`](#) ([`[OracleDataEdge]`](/docs/mainnet/graphql/objects/oracle-data-edge))
+
+The oracle data
+
+
+#### [`pageInfo`](#) ([`PageInfo!`](/docs/mainnet/graphql/objects/page-info))
+
+The pagination information
+
+
+
+

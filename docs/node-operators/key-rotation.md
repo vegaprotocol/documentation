@@ -19,7 +19,7 @@ Rotation to the new key is done in 4 steps:
 1. Import and reload the isolated wallet to run Vega validator node (with Vega binary)
 
 ### Prerequisites:
-1. Installed [Vega Wallet CLI](https://github.com/vegaprotocol/vegawallet)
+1. Installed [Vega Wallet CLI binary](https://github.com/vegaprotocol/vega/releases) (under `assets` for each software version)
 1. Running validator node with admin server enabled
 1. Access to wallet with current Vega and Master key (usually the original wallet that generated those keys)
 

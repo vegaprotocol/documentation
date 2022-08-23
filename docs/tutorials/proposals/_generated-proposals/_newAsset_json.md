@@ -2,23 +2,23 @@
   ```json
 {
   "rationale": {
-    "description": "Add Bitcoin (Tether)"
+    "title": "Add USDT Coin (USDT)",
+    "description": "Proposal to add USDT Coin (USDT) as an asset"
   },
   "terms": {
     "newAsset": {
       "changes": {
-        "name": "Bitcoin",
-        "symbol": "Tether",
-        "totalSupply": "19010568",
-        "decimals": "5",
+        "name": "USDT Coin",
+        "symbol": "USDT",
+        "decimals": "18",
         "quantum": "1",
         "erc20": {
-          "contractAddress": "0xcb84d72e61e383767c4dfeb2d8ff7f4fb89abc6e"
+          "contractAddress": "0xb404c51bbc10dcbe948077f18a4b8e553d160084"
         }
       }
     },
-    "closingTimestamp": 1658846745,
-    "enactmentTimestamp": 1658933145
+    "closingTimestamp": 1662374250,
+    "enactmentTimestamp": 1662460650
   }
 }
 ```

@@ -1,0 +1,44 @@
+---
+id: proposals-connection
+title: proposalsConnection
+hide_table_of_contents: false
+---
+
+
+All governance proposals in the Vega network
+
+```graphql
+proposalsConnection(
+  proposalType: ProposalType
+  inState: ProposalState
+  pagination: Pagination
+): ProposalsConnection!
+```
+
+
+### Arguments
+
+#### [`proposalType`](#) ([`ProposalType`](/docs/testnet/graphql/enums/proposal-type))
+
+Optional type of proposal to retrieve data for
+
+
+#### [`inState`](#) ([`ProposalState`](/docs/testnet/graphql/enums/proposal-state))
+
+Returns only proposals in the specified state. Leave out to get all proposals
+
+
+#### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+Optional Pagination information
+
+
+### Type
+
+#### [`ProposalsConnection`](/docs/testnet/graphql/objects/proposals-connection)
+
+
+
+
+
+

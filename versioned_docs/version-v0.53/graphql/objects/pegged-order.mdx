@@ -1,0 +1,31 @@
+---
+id: pegged-order
+title: PeggedOrder
+hide_table_of_contents: false
+---
+
+
+Create an order linked to an index rather than a price
+
+```graphql
+type PeggedOrder {
+  reference: PeggedReference!
+  offset: String!
+}
+```
+
+
+### Fields
+
+#### [`reference`](#) ([`PeggedReference!`](/docs/mainnet/graphql/enums/pegged-reference))
+
+Index to link this order to
+
+
+#### [`offset`](#) ([`String!`](/docs/mainnet/graphql/scalars/string))
+
+Price offset from the peg
+
+
+
+

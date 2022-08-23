@@ -4,18 +4,15 @@ const { inspect } = require('util');
 
 // Seed data: Some asset names
 const assetNames = [
-    { name: 'Ethereum', symbol: 'ETH' },
-    { name: 'Bitcoin', symbol: 'Tether' },
-    { name: 'BNB', symbol: 'BNB' },
-    { name: 'XRP', symbol: 'XRP' },
-    { name: 'Solana', symbol: 'SOL' }
+    { name: 'Wrapped Ether', symbol: 'WETH', contractAddress: '0xc778417e063141139fce010982780140aa0cd5ab' },
+    { name: 'Dai Stablecoin', symbol: 'DAI', contractAddress: '0x31f42841c2db5173425b5223809cf3a38fede360' },
+    { name: 'USDT Coin', symbol: 'USDT', contractAddress: '0xb404c51bbc10dcbe948077f18a4b8e553d160084' },
 ];
 
 function newAsset(skeleton) {
   assert.ok(skeleton.properties.changes);
   assert.ok(skeleton.properties.changes.properties.name);
   assert.ok(skeleton.properties.changes.properties.symbol);
-  assert.ok(skeleton.properties.changes.properties.totalSupply);
   assert.ok(skeleton.properties.changes.properties.decimals);
   assert.ok(skeleton.properties.changes.properties.quantum);
   assert.ok(skeleton.properties.changes.properties.erc20);
@@ -23,18 +20,18 @@ function newAsset(skeleton) {
   const asset = sample(assetNames);
   const result = {
     rationale: {
-      description: `Add ${asset.name} (${asset.symbol})`
+      title: `Add ${asset.name} (${asset.symbol})`,
+      description: `Proposal to add ${asset.name} (${asset.symbol}) as an asset`
     },
     terms: {
       newAsset: {
         changes: {
           name: asset.name,
           symbol: asset.symbol,
-          totalSupply: '19010568',
-          decimals: '5',
+          decimals: '18',
           quantum: '1',
           erc20: {
-            contractAddress: '0xcb84d72e61e383767c4dfeb2d8ff7f4fb89abc6e'
+            contractAddress: asset.contractAddress
           }
       }
     }
@@ -49,8 +46,6 @@ function newAsset(skeleton) {
             name: "${result.terms.newAsset.changes.name}",
             // ${skeleton.properties.changes.properties.symbol.title} (${skeleton.properties.changes.properties.symbol.type}) 
             symbol: "${result.terms.newAsset.changes.symbol}",
-            // ${skeleton.properties.changes.properties.totalSupply.title} (${skeleton.properties.changes.properties.totalSupply.type}) 
-            totalSupply: "${result.terms.newAsset.changes.totalSupply}",
             // ${skeleton.properties.changes.properties.decimals.title} (${skeleton.properties.changes.properties.decimals.type}) 
             decimals: "${result.terms.newAsset.changes.decimals}",
             // ${skeleton.properties.changes.properties.quantum.title} (${skeleton.properties.changes.properties.quantum.type}) 

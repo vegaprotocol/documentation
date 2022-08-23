@@ -12,7 +12,7 @@ type Node {
   id: String!
   pubkey: String!
   tmPubkey: String!
-  ethereumAdddress: String!
+  ethereumAddress: String!
   infoUrl: String!
   location: String!
   stakedByOperator: String!
@@ -27,6 +27,10 @@ type Node {
   first: Int
   last: Int
 ): [Delegation!]
+  delegationsConnection(
+  partyId: String
+  pagination: Pagination
+): DelegationsConnection!
   rewardScore: RewardScore
   rankingScore: RankingScore!
   name: String!
@@ -39,27 +43,27 @@ type Node {
 
 #### [`id`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
-The node url eg n01.vega.xyz
+The node URL eg n01.vega.xyz
 
 
 #### [`pubkey`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
-Pubkey of the node operator
+Public key of the node operator
 
 
 #### [`tmPubkey`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
-Public key of Tendermint
+Tendermint public key of the node
 
 
-#### [`ethereumAdddress`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [`ethereumAddress`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 Ethereum public key of the node
 
 
 #### [`infoUrl`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
-URL where I can find out more info on the node. Will this be possible?
+URL from which you can get more info about the node.
 
 
 #### [`location`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
@@ -69,7 +73,7 @@ Country code for the location of the node
 
 #### [`stakedByOperator`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
-The amount the node has put up themselves
+The amount of stake the node has put up themselves
 
 
 #### [`stakedByDelegates`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
@@ -118,6 +122,19 @@ Pagination first element
 - ##### [`last`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
 
 Pagination last element
+
+
+#### [`delegationsConnection`](#) ([`DelegationsConnection!`](/docs/testnet/graphql/objects/delegations-connection))
+
+
+- ##### [`partyId`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+
+
+
+
+- ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+
 
 
 #### [`rewardScore`](#) ([`RewardScore`](/docs/testnet/graphql/objects/reward-score))

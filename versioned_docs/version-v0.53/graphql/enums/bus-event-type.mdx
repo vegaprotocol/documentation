@@ -1,0 +1,175 @@
+---
+id: bus-event-type
+title: BusEventType
+hide_table_of_contents: false
+---
+
+
+No description
+
+```graphql
+enum BusEventType {
+  TimeUpdate
+  TransferResponses
+  PositionResolution
+  Order
+  Account
+  Party
+  Trade
+  MarginLevels
+  Proposal
+  Vote
+  MarketData
+  NodeSignature
+  LossSocialization
+  SettlePosition
+  SettleDistressed
+  MarketCreated
+  MarketUpdated
+  Asset
+  MarketTick
+  Auction
+  RiskFactor
+  LiquidityProvision
+  Deposit
+  Withdrawal
+  OracleSpec
+  Market
+}
+```
+
+
+### Values
+
+#### [`TimeUpdate`](#)
+
+Vega Time has changed
+
+
+#### [`TransferResponses`](#)
+
+A balance has been transferred between accounts
+
+
+#### [`PositionResolution`](#)
+
+A position resolution event has occurred
+
+
+#### [`Order`](#)
+
+An order has been created or updated
+
+
+#### [`Account`](#)
+
+An account has been updated
+
+
+#### [`Party`](#)
+
+A party has been updated
+
+
+#### [`Trade`](#)
+
+A trade has been created
+
+
+#### [`MarginLevels`](#)
+
+Margin levels have changed for a position
+
+
+#### [`Proposal`](#)
+
+A governance proposal has been created or updated
+
+
+#### [`Vote`](#)
+
+A vote has been placed on a governance proposal
+
+
+#### [`MarketData`](#)
+
+Market data has been updated
+
+
+#### [`NodeSignature`](#)
+
+Validator nodes signatures for an event
+
+
+#### [`LossSocialization`](#)
+
+A position has been closed without sufficient insurance pool balance to cover it
+
+
+#### [`SettlePosition`](#)
+
+A position has been settled
+
+
+#### [`SettleDistressed`](#)
+
+A distressed position has been settled
+
+
+#### [`MarketCreated`](#)
+
+A new market has been created
+
+
+#### [`MarketUpdated`](#)
+
+A market has been updated
+
+
+#### [`Asset`](#)
+
+An asset has been created or update
+
+
+#### [`MarketTick`](#)
+
+A market has progressed by one tick
+
+
+#### [`Auction`](#)
+
+A market has either entered or exited auction
+
+
+#### [`RiskFactor`](#)
+
+A risk factor adjustment was made
+
+
+#### [`LiquidityProvision`](#)
+
+A liquidity commitment change occurred
+
+
+#### [`Deposit`](#)
+
+Collateral has deposited in to this Vega network via the bridge
+
+
+#### [`Withdrawal`](#)
+
+Collateral has been withdrawn from this Vega network via the bridge
+
+
+#### [`OracleSpec`](#)
+
+An oracle spec has been registered
+
+
+#### [`Market`](#)
+
+constant for market events - mainly used for logging
+
+
+
+

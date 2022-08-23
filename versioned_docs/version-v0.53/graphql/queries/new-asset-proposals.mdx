@@ -1,0 +1,32 @@
+---
+id: new-asset-proposals
+title: newAssetProposals
+hide_table_of_contents: false
+---
+
+
+Governance proposals that aim to create new assets in Vega
+
+```graphql
+newAssetProposals(
+  inState: ProposalState
+): [Proposal!]
+```
+
+
+### Arguments
+
+#### [`inState`](#) ([`ProposalState`](/docs/mainnet/graphql/enums/proposal-state))
+
+Returns only proposals in the specified state. Leave out to get all proposals
+
+
+### Type
+
+#### [`Proposal`](/docs/mainnet/graphql/objects/proposal)
+
+
+
+
+
+

@@ -1,7 +1,10 @@
 ---
-title: Vega Wallet
+sidebar_position: 5
+title: Wallets and keys
+vega_network: TESTNET
 hide_title: false
 ---
+
 Vega Wallet is an app that lets you manage wallets and cryptographic key pairs. Key pairs are used to sign and send transactions in a secure way. 
 
 Read on to understand the basic concepts of wallets and keys, and how they work. 

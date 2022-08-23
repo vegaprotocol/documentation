@@ -1,0 +1,45 @@
+---
+id: proposal-change
+title: ProposalChange
+hide_table_of_contents: false
+---
+
+
+No description
+
+```graphql
+union ProposalChange = NewMarket | UpdateMarket | UpdateNetworkParameter | NewAsset | NewFreeform
+```
+
+
+### Possible types
+
+#### [`NewMarket`](/docs/mainnet/graphql/objects/new-market)
+
+
+
+
+#### [`UpdateMarket`](/docs/mainnet/graphql/objects/update-market)
+
+Incomplete change definition for governance proposal terms
+TODO: complete the type
+
+
+#### [`UpdateNetworkParameter`](/docs/mainnet/graphql/objects/update-network-parameter)
+
+Allows submitting a proposal for changing network parameters
+
+
+#### [`NewAsset`](/docs/mainnet/graphql/objects/new-asset)
+
+A new asset proposal change
+
+
+#### [`NewFreeform`](/docs/mainnet/graphql/objects/new-freeform)
+
+A new freeform proposal change. It has no properties on purpose. Use proposal
+rationale, instead.
+
+
+
+

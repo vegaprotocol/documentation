@@ -2,14 +2,15 @@
   ```json
 {
   "rationale": {
-    "description": "Update Lorem Ipsum market"
+    "title": "Update Lorem Ipsum market",
+    "description": "A proposal to update Lorem Ipsum market"
   },
   "terms": {
     "updateMarket": {
       "marketId": "123",
       "changes": {
         "instrument": {
-          "code": "ORANGES.24h",
+          "code": "APPLES.22",
           "future": {
             "quoteName": "tEuro",
             "settlementPriceDecimals": 5,
@@ -68,17 +69,17 @@
         },
         "logNormal": {
           "tau": 0.0001140771161,
-          "riskAversionParameter": 0.001,
+          "riskAversionParameter": 0.01,
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 0.8
+            "sigma": 1.25
           }
         }
       }
     },
-    "closingTimestamp": 1658846745,
-    "enactmentTimestamp": 1658933145
+    "closingTimestamp": 1662374250,
+    "enactmentTimestamp": 1662460650
   }
 }
 ```

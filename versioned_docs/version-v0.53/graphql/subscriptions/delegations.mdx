@@ -1,0 +1,38 @@
+---
+id: delegations
+title: delegations
+hide_table_of_contents: false
+---
+
+
+Subscribe to delegation data
+
+```graphql
+delegations(
+  party: ID
+  nodeID: ID
+): Delegation!
+```
+
+
+### Arguments
+
+#### [`party`](#) ([`ID`](/docs/mainnet/graphql/scalars/id))
+
+the party to subscribe for, empty if all
+
+
+#### [`nodeID`](#) ([`ID`](/docs/mainnet/graphql/scalars/id))
+
+the node to subscribe for, empty if all
+
+
+### Type
+
+#### [`Delegation`](/docs/mainnet/graphql/objects/delegation)
+
+
+
+
+
+

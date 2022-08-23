@@ -9,38 +9,38 @@ No description
 
 ```graphql
 enum AuctionTrigger {
-  Unspecified
-  Batch
-  Opening
-  Price
-  Liquidity
+  AUCTION_TRIGGER_UNSPECIFIED
+  AUCTION_TRIGGER_BATCH
+  AUCTION_TRIGGER_OPENING
+  AUCTION_TRIGGER_PRICE
+  AUCTION_TRIGGER_LIQUIDITY
 }
 ```
 
 
 ### Values
 
-#### [`Unspecified`](#)
+#### [`AUCTION_TRIGGER_UNSPECIFIED`](#)
 
 Invalid trigger (or no auction)
 
 
-#### [`Batch`](#)
+#### [`AUCTION_TRIGGER_BATCH`](#)
 
-Auction because market is trading FBA
+Auction because market has a frequent batch auction trading mode
 
 
-#### [`Opening`](#)
+#### [`AUCTION_TRIGGER_OPENING`](#)
 
 Opening auction
 
 
-#### [`Price`](#)
+#### [`AUCTION_TRIGGER_PRICE`](#)
 
 Price monitoring
 
 
-#### [`Liquidity`](#)
+#### [`AUCTION_TRIGGER_LIQUIDITY`](#)
 
 Liquidity monitoring
 
