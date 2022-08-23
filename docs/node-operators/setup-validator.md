@@ -1,23 +1,24 @@
 ---
 sidebar_position: 4
 title: Set up validating node
+vega_network: TESTNET
 hide_title: false
 ---
-
+import NetworkParameter from '@site/src/components/NetworkParameter';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This section will take your through all the steps to configure your node as a validator and join an existing network.
+This section will take your through all the steps to configure a Vega node to validate and approve transactions, and join an existing network.
 
-:::note
-All the following commands will use an optional --home flag. This flag allows you to specify a custom home for the configuration, state, and cache of your Vega node. The flag is not mandatory and a default path will be chosen if not specified (the XDG Base Directory standard is use to create the path, see: [XDG Base Directory spec](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html).
+:::note Optional flag
+All the following commands will use an optional --home flag. This flag allows you to specify a custom home for the configuration, state, and cache of your Vega node. 
+
+The flag is not mandatory and a default path will be chosen if not specified (the XDG Base Directory standard is use to create the path, see: [XDG Base Directory spec ↗](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html).
 :::
 
-:::info
-You can list all the path used by your Vega installation by using the following command:
-```
-vega paths list
-```
+:::tip
+You can list all the paths used by your Vega installation by using the following command:
+`vega paths list`
 :::
 
 ## Generate the configurations
@@ -90,9 +91,10 @@ Set the address of your clef instance in the Vega configuration (`path/to/home/c
     ClefAddress = "http://your.clef.instance.network:3334"
 ```
 
-:::note
-Alternatively you can run the following command and specify the flag: `--eth.clef-address="http://your.clef.instance.network:3334"`
-:::
+Alternatively you can run the following command and specify the flag: 
+```
+--eth.clef-address="http://your.clef.instance.network:3334"
+```
 
 Then run the following command:
 ```
@@ -192,17 +194,25 @@ Info to add in genesis file under `app_state.validators` key
   }
 ```
 
-Then add both section in the appropriates places in the genesis file.
+Then add both section in the appropriate places in the genesis file.
+
+### Stake to your validating node
+Once your Vega node is visible, you will need to provide your self-stake. Self-stake requires a minimum amount of Vega, an amount defined by a network parameter: <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={false} suffix="tokens" /> 
+
+The tokens that you want to use for self-staking must available on an Ethereum wallet, and then associated to a Vega key.
+
+Associate your tokens and nominate your node using the [token dApp ↗](https://token.fairground.wtf/staking).
 
 ### Create a new network
-A new network can be created using the following command:
-```
-vega genesis generate --home="path/to/home" --tm-home="path/to/tendermint"
- ```
-This will generate a new genesis file with a single validator (using information set up in the node wallet) and all default network parameters.
 
 :::warning
-This command will overwrite any genesis file in your Tendermint config (path/to/tendermint/config/genesis.json). 
+The following command will overwrite any genesis file in your Tendermint config (path/to/tendermint/config/genesis.json). 
 
 If you only want to see the output of the command without commiting to the change, use the `--dry-run` flag.
 :::
+
+A new network can be created using the following command:
+```
+vega genesis generate --home="path/to/home" --tm-home="path/to/tendermint"
+```
+This will generate a new genesis file with a single validator (using information set up in the node wallet) and all default network parameters.
