@@ -224,8 +224,8 @@ a.external:after {
 /* These styles are pinched from https://github.com/facebook/docusaurus/blob/main/packages/docusaurus-theme-classic/src/theme/DocCard/styles.module.css.
    Ideally we'd reuse the style rules from our theme, but that proved complicated,
    as Docusaurus appends stuff to the class names. When that problem is solved,
-   the following rules should be deleted. Note there are also some spacing rules
-   in front page section above, for spotlight links, that should be considered too.  */
+   the following rules should be deleted. Note there are also some 'spotlight a'
+   spacing rules in the front page section above that may be removed too. */
 
 .cardContainer {
   --ifm-link-color: var(--ifm-color-emphasis-800);
@@ -249,4 +249,16 @@ a.external:after {
 
 .cardDescription {
   font-size: 0.8rem;
+}
+
+/* Topic stubs */
+
+.stub [class*='details'] {
+  background: var( --ifm-color-secondary-contrast-background );
+  border-color: var(--ifm-color-secondary-dark);
+  --docusaurus-details-decoration-color: var(--ifm-color-secondary-darkest);
+}
+
+.stub [class*='details'] a {
+    text-decoration-color: var(--ifm-color-secondary-darkest);
 }
