@@ -6,6 +6,7 @@ hide_title: false
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
+import Topic from '/docs/topics/_topic-staking.mdx'
 
 Vega uses Tendermint as a consensus layer to form a blockchain. The rest of the information here informs on how that blockchain and its relevant components is comprised. 
 
@@ -76,6 +77,9 @@ There are several spam protections enabled to protect the Vega network.
 * A participant cannot send more than  <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.delegations" hideName={true} /> delegation transactions per day.
 
 ## Staking on Vega
+
+<Topic />
+
 Vega networks use the ERC20 token VEGA for staking. Staking requires the combined action of associating VEGA tokens (or fractions of a token) to the Vega staking bridge contract; and using those token(s) to nominate one or more validators. 
 
 #### Epochs

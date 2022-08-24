@@ -76,6 +76,87 @@ html[data-theme="dark"] .hero--primary {
   color: #fff; 
 }
 
+.hero--primary a.cta {
+  display: inline-block;
+  padding: 10px 15px;
+  border: 1px solid white;
+  color:  white;
+  text-transform: uppercase;
+}
+
+.hero--primary a.cta:hover {
+  text-decoration: none;
+  background-color: white;
+  color: black;
+}
+
+#topics, #spotlight {
+  display: flex;
+  width:  100%;
+  padding: 40px;
+  flex-wrap: wrap;
+  max-width: var(--ifm-container-width-xl);
+  margin: 0 auto;
+}
+
+#topics article {
+  flex-basis: 0;
+  flex-grow: 1;
+  margin-right: 40px;
+}
+
+#topics article:last-child {
+  margin-right: 0;
+}
+
+.topic ul {
+  margin-top: 1em;
+}
+
+#spotlight {
+  margin-bottom: 100px;
+}
+
+#spotlight h2 {
+  width: 100%;
+  margin-bottom: 1.5em;
+}
+
+#spotlight a {
+  flex-basis: 0;
+  flex-grow: 1;
+  padding: 32px;
+  margin-right: 32px;
+}
+
+#spotlight a p {
+  margin-bottom: 0;
+}
+
+#spotlight a:last-child {
+  margin-right: 0;
+}
+
+@media screen and (max-width: 996px) {
+  #topics, #spotlight {
+    display: block;
+  }
+
+  #topics article {
+    margin-bottom: 2em;
+    margin-right: 0px;
+  }
+
+  #topics article:last-child {
+    margin-bottom: 0;
+  }
+
+  #spotlight a {
+    margin-bottom: 32px;
+    margin-right: 0px;
+  }
+}
+
 /* Footer */
 .footer {
   --ifm-footer-link-hover-color: #fff;
@@ -131,4 +212,54 @@ html[data-theme="dark"] .hero--primary {
 .networkparametericon {
   display: inline-block;
   margin-right: 0.2em;
+}
+
+/* External links */
+
+a.external:after {
+  content: " ↗";
+}
+
+
+/* Cards */
+/* These styles are pinched from https://github.com/facebook/docusaurus/blob/main/packages/docusaurus-theme-classic/src/theme/DocCard/styles.module.css.
+   Ideally we'd reuse the style rules from our theme, but that proved complicated,
+   as Docusaurus appends stuff to the class names. When that problem is solved,
+   the following rules should be deleted. Note there are also some 'spotlight a'
+   spacing rules in the front page section above that may be removed too. */
+
+.cardContainer {
+  --ifm-link-color: var(--ifm-color-emphasis-800);
+  --ifm-link-hover-color: var(--ifm-color-emphasis-700);
+  --ifm-link-hover-decoration: none;
+
+  box-shadow: 0 1.5px 3px 0 rgb(0 0 0 / 15%);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  transition: all var(--ifm-transition-fast) ease;
+  transition-property: border, box-shadow;
+}
+
+.cardContainer:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 3px 6px 0 rgb(0 0 0 / 20%);
+}
+
+.cardTitle {
+  font-size: 1.2rem;
+}
+
+.cardDescription {
+  font-size: 0.8rem;
+}
+
+/* Topic stubs */
+
+.stub [class*='details'] {
+  background: var( --ifm-color-secondary-contrast-background );
+  border-color: var(--ifm-color-secondary-dark);
+  --docusaurus-details-decoration-color: var(--ifm-color-secondary-darkest);
+}
+
+.stub [class*='details'] a {
+    text-decoration-color: var(--ifm-color-secondary-darkest);
 }
