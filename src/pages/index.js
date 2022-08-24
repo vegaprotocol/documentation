@@ -56,17 +56,17 @@ export default function Home() {
         <hr/>
         <section id="spotlight">
           <h2>Spotlight</h2>
-          <a href="/docs/mainnet/node-operators" class="card">
-            <h3>Node operators: Overview</h3>
-            <p>Get guidance on how to maintain and upgrade a node.</p>
+          <a href="/docs/mainnet/node-operators" class="card cardContainer">
+            <h3 class="cardTitle">Node operators: Overview</h3>
+            <p class="cardDescription">Get guidance on how to maintain and upgrade a node.</p>
           </a>
-          <a href="/docs/mainnet/releases/overview" class="card">
-            <h3>Release summaries</h3>
-            <p>See the latest features and get ahead of breaking changes.</p>
+          <a href="/docs/mainnet/releases/overview" class="card cardContainer">
+            <h3 class="cardTitle">Release summaries</h3>
+            <p class="cardDescription">See the latest features and get ahead of breaking changes.</p>
           </a>
-          <a href="/docs/mainnet/tools/vega-wallet/desktop-app" class="card">
-            <h3>Vega Wallet</h3>
-            <p>Step-by-step instructions to set up your Vega Wallet.</p>
+          <a href="/docs/mainnet/tools/vega-wallet/desktop-app" class="card cardContainer">
+            <h3 class="cardTitle">Vega Wallet</h3>
+            <p class="cardDescription">Step-by-step instructions to set up your Vega Wallet.</p>
           </a>
         </section>
       </main>

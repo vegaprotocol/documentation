@@ -102,11 +102,15 @@ html[data-theme="dark"] .hero--primary {
 #topics article {
   flex-basis: 0;
   flex-grow: 1;
-  padding-right: 40px;
+  margin-right: 40px;
 }
 
 #topics article:last-child {
-  padding-right: 0;
+  margin-right: 0;
+}
+
+.topic ul {
+  margin-top: 1em;
 }
 
 #spotlight {
@@ -121,23 +125,16 @@ html[data-theme="dark"] .hero--primary {
 #spotlight a {
   flex-basis: 0;
   flex-grow: 1;
-  padding: 20px;
-  margin-right: 20px;
-  border: 1px solid #eee;
-  color: var(--ifm-heading-color);
-  text-decoration: none;
+  padding: 32px;
+  margin-right: 32px;
 }
 
-#spotlight a:hover {
-  color: var(--ifm-link-color);
+#spotlight a p {
+  margin-bottom: 0;
 }
 
 #spotlight a:last-child {
-  padding-right: 0;
-}
-
-.topic ul {
-  margin-top: 1em;
+  margin-right: 0;
 }
 
 @media screen and (max-width: 996px) {
@@ -155,7 +152,7 @@ html[data-theme="dark"] .hero--primary {
   }
 
   #spotlight a {
-    margin-bottom: 20px;
+    margin-bottom: 32px;
     margin-right: 0px;
   }
 }
@@ -220,4 +217,36 @@ html[data-theme="dark"] .hero--primary {
 
 a.external:after {
   content: " ↗";
+}
+
+
+/* Cards */
+/* These styles are pinched from https://github.com/facebook/docusaurus/blob/main/packages/docusaurus-theme-classic/src/theme/DocCard/styles.module.css.
+   Ideally we'd reuse the style rules from our theme, but that proved complicated,
+   as Docusaurus appends stuff to the class names. When that problem is solved,
+   the following rules should be deleted. Note there are also some spacing rules
+   in front page section above, for spotlight links, that should be considered too.  */
+
+.cardContainer {
+  --ifm-link-color: var(--ifm-color-emphasis-800);
+  --ifm-link-hover-color: var(--ifm-color-emphasis-700);
+  --ifm-link-hover-decoration: none;
+
+  box-shadow: 0 1.5px 3px 0 rgb(0 0 0 / 15%);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  transition: all var(--ifm-transition-fast) ease;
+  transition-property: border, box-shadow;
+}
+
+.cardContainer:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 3px 6px 0 rgb(0 0 0 / 20%);
+}
+
+.cardTitle {
+  font-size: 1.2rem;
+}
+
+.cardDescription {
+  font-size: 0.8rem;
 }
