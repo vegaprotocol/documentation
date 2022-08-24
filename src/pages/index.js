@@ -66,7 +66,7 @@ export default function Home() {
           </a>
           <a href="/docs/mainnet/tools/vega-wallet/desktop-app" class="card cardContainer">
             <h3 class="cardTitle">Vega Wallet</h3>
-            <p class="cardDescription">Step-by-step instructions to set up your Vega Wallet.</p>
+            <p class="cardDescription">Step-by-step instructions to set up your Vega Wallet using the desktop app.</p>
           </a>
         </section>
       </main>
