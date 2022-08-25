@@ -62,6 +62,8 @@ export default function NetworkParameter(props) {
       } else if (value === '0') {
         formattedValue = '0 or more'
         skipSuffixFix = true
+      } else {
+        formattedValue = props.formatter && formatters[props.formatter] ? formatters[props.formatter](value) : value
       }
     } else { 
       formattedValue = props.formatter && formatters[props.formatter] ? formatters[props.formatter](value) : value
