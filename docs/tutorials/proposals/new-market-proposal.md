@@ -32,7 +32,7 @@ Below you'll find:
 * Full annotated proposal for guidance
 * Command line proposal you can copy and amend to propose using a CLI
 * JSON proposal you can copy and amend to propose via the token dApp
-* 
+
 <!--[Update an existing market](#update-an-existing-market): change the details of a market that is already enacted.-->
 
 ## Anatomy of a market proposal
