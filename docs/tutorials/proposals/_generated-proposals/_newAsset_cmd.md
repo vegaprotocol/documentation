@@ -14,12 +14,15 @@
      "decimals": "18",
      "quantum": "1",
      "erc20": {
-      "contractAddress": "0xb404c51bbc10dcbe948077f18a4b8e553d160084"
+      "contractAddress": "0xb404c51bbc10dcbe948077f18a4b8e553d160084",
+      "withdrawThreshold": "10",
+      "lifetimeLimit": "10"
      }
     }
    },
-   "closingTimestamp": 1662374250,
-   "enactmentTimestamp": 1662460650
+   "closingTimestamp": 1662824601,
+   "enactmentTimestamp": 1662911001,
+   "validationTimestamp": 1662738201
   }
  }
 }'

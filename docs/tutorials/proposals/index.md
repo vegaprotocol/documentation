@@ -19,6 +19,7 @@ This section includes sample proposals that you can amend and submit via the com
 * [New market proposal](./new-market-proposal.md)
 * [Update market proposal](./update-market-proposal.md)
 * [Change network parameter proposal](./network-parameter-proposal.md)
+* [New asset proposal](./new-asset-proposal.md)
 * [New freeform proposal](./freeform-proposal.md)
 
 
