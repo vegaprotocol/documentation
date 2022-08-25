@@ -114,7 +114,6 @@ Tokenholders can propose new markets, which then need to be voted on by other to
 If the market proposal gets a majority of tokeholder support, then it will be enacted. The required majority is defined by the network parameter `governance.proposal.market.required.majority`.
 =======
 Tokenholders can propose new markets, which then need to be voted on by other tokenholders. If the market proposal gets a majority of tokeholder support, then it will be enacted. The required majority is <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" hideName={true} />.
->>>>>>> 50ada21 (WIP)
 
 A liquidity commitment is optional when proposing a market, but a market will not enter into continuous trading until its liquidity needs are met.
 
