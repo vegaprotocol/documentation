@@ -1,4 +1,5 @@
 ---
+sidebar_position: 6
 title: Freeform proposal
 hide_title: false
 vega_network: TESTNET

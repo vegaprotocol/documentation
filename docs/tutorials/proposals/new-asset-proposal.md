@@ -1,4 +1,5 @@
 ---
+sidebar_position: 4
 title: Propose new asset
 hide_title: false
 vega_network: TESTNET

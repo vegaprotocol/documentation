@@ -1,4 +1,5 @@
 ---
+sidebar_position: 1
 title: Propose a new market
 hide_title: false
 vega_network: TESTNET
