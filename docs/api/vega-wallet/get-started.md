@@ -22,7 +22,8 @@ Then, on endpoint `POST /v2/requests`:
 1. Get the chain ID of the network the wallet is connected to, to show data from the same network using `session.get_chain_id`.
 2. Connect to a wallet using `session.connect_wallet`. You’ll get a token back as a response, if the connection is successful.
 3. Verify you have the permissions you need using `session.get_permissions`
-4. If you don't have enough permission, for example if the host needs to read public keys, use `session.request_permissions`
+4. If you don't have enough permission, for example if the host needs to read public keys, use `session.request_permissions` 
+   * The available permissions are `none`, `read`, and (in a future release) `write` 
 5. Before sending a transaction, use `session.list_keys`, as you'll need to know the public keys you have access to
 6. Send transaction using `session.send_transaction`
 7. See the full set of methods that you can use in the **[Open RPC documentation](./openrpc)**.
