@@ -51,12 +51,18 @@ export default function NetworkParameter(props) {
     let skipSuffixFix = false
 
     const value = data[props.param]
+    console.log(value)
     let displayValue
     let formattedValue
-    if (props.formatter === 'governanceToken' && value === '1') {
+    // Special special case for 0 or 1 token values
+    if (props.formatter === 'governanceToken')
+    if (value === '1') {
       formattedValue = 'more than 0'
       skipSuffixFix = true
-    } else { 
+    } else if (value === '0') {
+      formattedValue = '0 or more'
+      skipSuffixFix = true
+     } else { 
       formattedValue = props.formatter && formatters[props.formatter] ? formatters[props.formatter](value) : value
     }
 
