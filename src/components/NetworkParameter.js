@@ -51,7 +51,6 @@ export default function NetworkParameter(props) {
     let skipSuffixFix = false
 
     const value = data[props.param]
-    console.log(value)
     let displayValue
     let formattedValue
     // Special special case for 0 or 1 token values
