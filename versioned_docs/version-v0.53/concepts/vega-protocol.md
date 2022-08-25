@@ -115,8 +115,8 @@ Consider a network parameter that specifies the proportion of fees that goes to 
 * <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.maxClose" />
 * <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minEnact" />
 * <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.maxEnact" />
-* <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.requiredParticipation" />
-* <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.requiredMajority" />
+* <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.requiredParticipation" formatter="percent" />
+* <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.requiredMajority" formatter="percent" />
 * <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minProposerBalance" formatter="governanceToken" suffix='tokens' />
 
 A proposal to change the <NetworkParameter frontMatter={frontMatter} param="transfer.fee.factor" />, would need to pass all of the thresholds listed above.

@@ -210,24 +210,27 @@ A network parameter is defined by:
 ### Thresholds for network parameters
 Some network parameters need to be more difficult to change than others. Therefore, the protocol needs to know for each network parameter what governance thresholds apply for ascertaining a proposal's ability to change the parameter's value. Specifically, those thresholds are:
 
-* `MinimumProposalPeriod`
-* `MinimumPreEnactmentPeriod`
-* `MinimumRequiredParticipation` 
-* `MinimumRequiredMajority`
+* `minClose`
+* `maxClose`
+* `minEnactment`
+* `maxEnactment`
+* `requiredParticipation` 
+* `requiredMajority` 
+* `minProposerBalance`
 
 There are groups of network parameters that will use the same values for the thresholds. Importantly, these `minimum` levels are themselves network parameters, and therefore subject to change.
 
-Consider a network parameter that specifies the proportion of fees that goes to validators (<NetworkParameter frontMatter={frontMatter} param="transfer.fee.factor" hideValue={true} />), with change thresholds:
+Consider a network parameter that specifies the proportion of fees that goes to validators (<NetworkParameter frontMatter={frontMatter} param="transfer.fee.factor" />), with change thresholds:
 
-* <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minClose" />
-* <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.maxClose" />
-* <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minEnact" />
-* <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.maxEnact" />
-* <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.requiredParticipation" />
-* <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.requiredMajority" />
-* <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minProposerBalance" formatter="governanceToken" suffix='tokens' />
+* <NetworkParameter frontMatter={frontMatter} name="Minimum length of voting period" param="governance.proposal.updateNetParam.minClose" />
+* <NetworkParameter frontMatter={frontMatter} name="Maximum length of voting period" param="governance.proposal.updateNetParam.maxClose" />
+* <NetworkParameter frontMatter={frontMatter} name="Minimum time to enactment" param="governance.proposal.updateNetParam.minEnact" />
+* <NetworkParameter frontMatter={frontMatter} name="Maximum time to enactment" param="governance.proposal.updateNetParam.maxEnact" />
+* <NetworkParameter frontMatter={frontMatter} name="Required participation" param="governance.proposal.updateNetParam.requiredParticipation" formatter="percent" />
+* <NetworkParameter frontMatter={frontMatter} name="Required majority" param="governance.proposal.updateNetParam.requiredMajority" formatter="percent" />
+* <NetworkParameter frontMatter={frontMatter} name="Propose must have" param="governance.proposal.updateNetParam.minProposerBalance" formatter="governanceToken" suffix='tokens' />
 
-A proposal to change the <NetworkParameter frontMatter={frontMatter} param="transfer.fee.factor" />, would need to pass all of the thresholds listed above.
+A proposal to change the <NetworkParameter frontMatter={frontMatter} hideValue={true} param="transfer.fee.factor" />, would need to pass all of the thresholds listed above.
 `
 <!--### Threshold and rules [WIP]-->
   

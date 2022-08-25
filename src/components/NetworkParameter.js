@@ -8,7 +8,8 @@ const explorerUrl = {
 
 const factor = Math.pow(10, 18)
 const formatters = {
-  'governanceToken': (value) => parseInt(value) / factor
+  'governanceToken': (value) => parseInt(value) / factor,
+  'percent': (value) => `${value * 100}%`
 }
 
 /**
@@ -47,13 +48,21 @@ export default function NetworkParameter(props) {
   }, [vega_network]);
 
   if (data) {
+    let skipSuffixFix = false
+
     const value = data[props.param]
     let displayValue
-    const formattedValue = props.formatter && formatters[props.formatter] ? formatters[props.formatter](value) : value
+    let formattedValue
+    if (props.formatter === 'governanceToken' && value === '1') {
+      formattedValue = 'more than 0'
+      skipSuffixFix = true
+    } else { 
+      formattedValue = props.formatter && formatters[props.formatter] ? formatters[props.formatter](value) : value
+    }
 
     if (suffix) {
       let suffixCorrected = suffix
-      if (suffix === 'tokens' && (value === '1' || formattedValue === 1)) {
+      if (!skipSuffixFix && suffix === 'tokens' && (value === '1' || formattedValue === 1)) {
         suffixCorrected = 'token'
       }
 
@@ -62,9 +71,11 @@ export default function NetworkParameter(props) {
       displayValue = <strong>{formattedValue}</strong>
     }
 
+    const name = props.name ? props.name : props.param 
+
     return (<a href={`${explorerUrl[vega_network]}#${props.param}`} className={`networkparameter networkparameter--${type}`} title={`Network parameter '${props.param}' is '${value}'`}>
       <span className="networkparametericon">👀</span>
-      {(hideName ? null : <span className="networkparametername">{props.param}</span>)}
+      {(hideName ? null : <span className="networkparametername">{name}</span>)}
       {(hideName || hideValue? '' : ': ')}
       {(hideValue ? null : <span className="networkparametervalue">{displayValue || `Could not find ${props.param}`}</span>)}
     </a>);
