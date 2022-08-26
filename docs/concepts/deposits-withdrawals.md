@@ -43,6 +43,11 @@ Once the transaction is verified, the Vega public key submitted in the transacti
 [ERC20 bridge logic API documentation](../api/bridge/contracts/ERC20_Bridge_Logic.md#deposit_asset)
 :::
 
+### Lifetime deposit limits 
+During alpha mainnet, the ERC-20 bridge smart contract limits how much can ever be deposited from an Ethereum address. This is done in an abundance of caution, to assure users in the face of recent bridge hacks that they would have only a small amount at risk at any point. 
+
+If, however, a user wanted to bypass those limits and understood the risks to their assets, they could run `exempt_depositor()` on the [ERC-20 bridge contract](./../api/bridge/contracts/ERC20.md) for each asset, after which transactions greater than deposit limit for the asset would be allowed.
+
 ### Diagram: Deposits
 ![Deposit diagram](/img/concept-diagrams/diagram-deposit.png)
 
@@ -53,7 +58,7 @@ When a participant decides they want to remove their assets from the Vega networ
 
 This request, if valid, will put through Vega consensus, wherein the validators will sign a multi-signature withdrawal order bundle, and assign an expiry. If the withdrawal is not completed by the participant before the expiry, the tokens are returned to their collateral account. 
 
-To move the assets into the participant's Ethereum wallet, they need to submit the bundle to the ERC20 bridge. The bridge validates the bundle and then releases the funds to the Ethereum wallet.
+To move the assets into the participant's Ethereum wallet, they need to submit the bundle to the ERC-20 bridge. The bridge validates the bundle and then releases the funds to the Ethereum wallet.
 
 Once a successful withdrawal transaction has occurred, the ERC20 bridge will emit an `Asset_Withdrawn` event, and confirms to the Vega network that the withdrawal has been completed.
 
