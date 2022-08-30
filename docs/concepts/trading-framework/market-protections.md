@@ -32,7 +32,7 @@ Price monitoring exists to determine the real price, in the case that price move
 
 Distinguishing between small and large moves can be highly subjective and market-dependent. The protocol relies on risk models to formalise this process.
 
-A market's risk model can be used to obtain the price projection at a future point in time, given the current price. A price monitoring auction trigger can be constructed using a projected fixed time horizon and probability level.
+A market's risk model can be used to obtain the price distribution at a future point in time, given the current price and the model parameter. A price monitoring auction trigger can be constructed using a projected fixed time horizon and probability level.
 
 Note: A market's risk model is defined within the market proposal.
 
