@@ -50,19 +50,19 @@ For now this will focus on using the data for settlement price - both examples b
 }
 ```
 
-The following oracle spec would make the market use the BTC value from the Open Oracle data submitted above:
+The following oracle spec would make the market use the BTC value from the Open Oracle data submitted below:
 
 ```javascript
    "oracleSpecForSettlementPrice": {
         "pubKeys": ["0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"],
         "filters": [{
             "key": {
-                "name": "price.BTC.value",
-                "type": "TYPE_INTEGER",
+                "name": "prices.BTC.timestamp",
+                "type": "TYPE_TIMESTAMP",
             },
             "conditions": [{
                 "operator": "OPERATOR_GREATER_THAN",
-                "value": "0",
+                "value": "1649265840",
             }]
         }]
     }
