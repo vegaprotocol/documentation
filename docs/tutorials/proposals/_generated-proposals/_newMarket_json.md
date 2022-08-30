@@ -63,7 +63,7 @@
         },
         "metadata": [
           "sector:health",
-          "sector:tech",
+          "sector:food",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -94,46 +94,46 @@
         }
       },
       "liquidityCommitment": {
-        "commitmentAmount": "5470444",
-        "fee": "0.74",
+        "commitmentAmount": "7568525",
+        "fee": "0.056",
         "buys": [
           {
-            "offset": "43",
-            "proportion": 4,
+            "offset": "86",
+            "proportion": 10,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           },
           {
-            "offset": "8",
-            "proportion": 3,
+            "offset": "23",
+            "proportion": 9,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           },
           {
-            "offset": "77",
-            "proportion": 3,
+            "offset": "62",
+            "proportion": 7,
             "reference": "PEGGED_REFERENCE_BEST_BID"
           }
         ],
         "sells": [
           {
-            "offset": "31",
-            "proportion": 2,
+            "offset": "7",
+            "proportion": 6,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           },
           {
-            "offset": "25",
-            "proportion": 4,
-            "reference": "PEGGED_REFERENCE_BEST_ASK"
-          },
-          {
-            "offset": "76",
+            "offset": "24",
             "proportion": 7,
+            "reference": "PEGGED_REFERENCE_BEST_ASK"
+          },
+          {
+            "offset": "92",
+            "proportion": 10,
             "reference": "PEGGED_REFERENCE_BEST_ASK"
           }
         ]
       }
     },
-    "closingTimestamp": 1663517075,
-    "enactmentTimestamp": 1663603475
+    "closingTimestamp": 1663517485,
+    "enactmentTimestamp": 1663603885
   }
 }
 ```

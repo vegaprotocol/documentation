@@ -2,26 +2,26 @@
   ```json
 {
   "rationale": {
-    "title": "Add USDT Coin (USDT)",
-    "description": "Proposal to add USDT Coin (USDT) as an asset"
+    "title": "Add Dai Stablecoin (DAI)",
+    "description": "Proposal to add Dai Stablecoin (DAI) as an asset"
   },
   "terms": {
     "newAsset": {
       "changes": {
-        "name": "USDT Coin",
-        "symbol": "USDT",
+        "name": "Dai Stablecoin",
+        "symbol": "DAI",
         "decimals": "18",
         "quantum": "1",
         "erc20": {
-          "contractAddress": "0xb404c51bbc10dcbe948077f18a4b8e553d160084",
+          "contractAddress": "0x31f42841c2db5173425b5223809cf3a38fede360",
           "withdrawThreshold": "10",
           "lifetimeLimit": "10"
         }
       }
     },
-    "closingTimestamp": 1663517075,
-    "enactmentTimestamp": 1663603475,
-    "validationTimestamp": 1663430675
+    "closingTimestamp": 1663517485,
+    "enactmentTimestamp": 1663603885,
+    "validationTimestamp": 1663431085
   }
 }
 ```

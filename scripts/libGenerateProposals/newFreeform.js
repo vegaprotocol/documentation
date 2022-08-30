@@ -23,7 +23,7 @@ function newFreeform(skeleton) {
   }
   result.rationale[inspect.custom]= () => {
       return `{
-    title: "${result.rationale.title}"
+    title: "${result.rationale.title}",
     description: "${result.rationale.description}"
   }
 }`

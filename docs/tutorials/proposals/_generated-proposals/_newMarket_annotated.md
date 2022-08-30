@@ -123,7 +123,7 @@
       // Optional new market meta data, tags
       metadata: [
        "sector:health",
-       "sector:tech",
+       "sector:food",
        "source:docs.vega.xyz"
       ],
 
@@ -190,31 +190,31 @@
     // The commitment from the party creating the NewMarket proposal
     liquidityCommitment: {
      // Specified as a unitless number that represents the amount of settlement asset of the market (string) 
-     commitmentAmount: "5470444",
+     commitmentAmount: "7568525",
 
      // Nominated liquidity fee factor, which is an input to the calculation of taker fees on the market, as per seeting fees and rewarding liquidity providers (undefined as string) 
-     fee: 0.74,
+     fee: 0.056,
 
      // A set of liquidity buy orders to meet the liquidity provision obligation
      buys: [
       {
        // The offset/amount of units away for the order (string) 
-       offset: "43",
+       offset: "86",
 
        // The relative proportion of the commitment to be allocated at a price level (int64 as integer) 
-       proportion: 4,
+       proportion: 10,
 
        // The pegged reference point for the order (string) 
        reference: "PEGGED_REFERENCE_BEST_BID",
       },
       {
-       offset: "8",
-       proportion: 3,
+       offset: "23",
+       proportion: 9,
        reference: "PEGGED_REFERENCE_BEST_BID",
       },
       {
-       offset: "77",
-       proportion: 3,
+       offset: "62",
+       proportion: 7,
        reference: "PEGGED_REFERENCE_BEST_BID",
       }
      ],
@@ -223,22 +223,22 @@
      sells: [
       {
        // The offset/amount of units away for the order (string) 
-       offset: "31",
+       offset: "7",
 
        // The relative proportion of the commitment to be allocated at a price level (int64 as integer) 
-       proportion: 2,
+       proportion: 6,
 
        // The pegged reference point for the order (string) 
        reference: "PEGGED_REFERENCE_BEST_ASK",
       },
       {
-       offset: "25",
-       proportion: 4,
+       offset: "24",
+       proportion: 7,
        reference: "PEGGED_REFERENCE_BEST_ASK",
       },
       {
-       offset: "76",
-       proportion: 7,
+       offset: "92",
+       proportion: 10,
        reference: "PEGGED_REFERENCE_BEST_ASK",
       }
      ],
@@ -248,11 +248,11 @@
 
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string) 
-  closingTimestamp: 1663517075,
+  closingTimestamp: 1663517485,
 
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string) 
-  enactmentTimestamp: 1663603475,
+  enactmentTimestamp: 1663603885,
  }
 }
 ```
