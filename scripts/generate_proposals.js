@@ -18,8 +18,8 @@ if (!process.env.VEGA_VERSION) {
 const version = process.env.VEGA_VERSION 
 
 // Config
-const url = `http://0.0.0.0:8000/corestate.swagger.json`
-// const url = `https://raw.githubusercontent.com/vegaprotocol/protos/${version}/swagger/vega/api/v1/corestate.swagger.json`;
+//const url = `http://0.0.0.0:8001/corestate.swagger.json`
+ const url = `https://raw.githubusercontent.com/vegaprotocol/protos/${version}/swagger/vega/api/v1/corestate.swagger.json`;
 console.info(`Using schema at: ${url}`)
 // Input: Fields to remove from a specific place in the Swagger file
 const notProposalTypes = ['closingTimestamp', 'enactmentTimestamp', 'validationTimestamp', 'title', 'type']

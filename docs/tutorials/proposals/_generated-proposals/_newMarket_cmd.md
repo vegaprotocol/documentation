@@ -63,8 +63,8 @@
       }
      },
      "metadata": [
-      "sector:materials",
       "sector:health",
+      "sector:tech",
       "source:docs.vega.xyz"
      ],
      "priceMonitoringParameters": {
@@ -90,51 +90,51 @@
       "params": {
        "mu": 0,
        "r": 0.016,
-       "sigma": 1.25
+       "sigma": 0.3
       }
      }
     },
     "liquidityCommitment": {
-     "commitmentAmount": "2856241",
-     "fee": "0.28",
+     "commitmentAmount": "5470444",
+     "fee": "0.74",
      "buys": [
       {
-       "offset": "2",
-       "proportion": 6,
+       "offset": "43",
+       "proportion": 4,
        "reference": "PEGGED_REFERENCE_BEST_BID"
       },
       {
-       "offset": "69",
+       "offset": "8",
        "proportion": 3,
        "reference": "PEGGED_REFERENCE_BEST_BID"
       },
       {
-       "offset": "4",
-       "proportion": 10,
+       "offset": "77",
+       "proportion": 3,
        "reference": "PEGGED_REFERENCE_BEST_BID"
       }
      ],
      "sells": [
       {
-       "offset": "16",
+       "offset": "31",
+       "proportion": 2,
+       "reference": "PEGGED_REFERENCE_BEST_ASK"
+      },
+      {
+       "offset": "25",
        "proportion": 4,
        "reference": "PEGGED_REFERENCE_BEST_ASK"
       },
       {
-       "offset": "2",
-       "proportion": 6,
-       "reference": "PEGGED_REFERENCE_BEST_ASK"
-      },
-      {
-       "offset": "34",
+       "offset": "76",
        "proportion": 7,
        "reference": "PEGGED_REFERENCE_BEST_ASK"
       }
      ]
     }
    },
-   "closingTimestamp": 1662824601,
-   "enactmentTimestamp": 1662911001
+   "closingTimestamp": 1663517075,
+   "enactmentTimestamp": 1663603475
   }
  }
 }'
