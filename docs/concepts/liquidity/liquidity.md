@@ -9,7 +9,7 @@ The Vega protocol allows liquidity to be priced individually for each market, a 
 
 **[Liquidity fees](#liquidity-fees)** are defined based on the commitments and proposed fee levels chosen by the providers, not by the protocol.
 
-Participants who want to **[commit liquidity](#liquidity-commitment-transaction)** to a market can enter their commitments as soon as a market proposal is submitted and accepted, or at any time during the market's lifecycle.
+Participants who want to **[commit liquidity](#liquidity-commitment-transaction)** to a market can enter their commitments as soon as a market proposal is submitted and accepted, even before the governance vote to create the market concludes, or at any time during the market's lifecycle.
 
 ## Liquidity providers
 Participants with sufficient collateral can provide liquidity for markets. Every market on Vega must have at least one committed liquidity provider. When a governance proposal to create a market is submitted, the proposal has to include liquidity provision commitment.
@@ -23,6 +23,15 @@ The market's liquidity requirement is derived from the maximum open interest obs
 
 This amount, called the target stake, is used by the protocol to calculate the market's liquidity fee level from liquidity commitments, and trigger liquidity monitoring auctions if there's an imbalance between it and the total stake (sum of all liquidity commitments).
 
+### Liquidity obligation calculations
+The liquidity obligation is calculated from the liquidity commitment amount using the stake_to_ccy_siskas network parameter as:
+
+`liquidity_obligation_in_ccy_siskas = stake_to_ccy_siskas ⨉ liquidity_commitment`
+
+Note here `ccy` stands for 'currency'. Liquidity measure units are 'currency siskas', e.g. ETH or USD siskas. This is because the calculation is basically `volume ⨉ probability of trading ⨉ price of the volume` and the price of the volume is in the said currency.
+
+Liquidity obligation is considered to be met when the `volume ⨉ probability of trading ⨉ price of orders` of all liquidity providers, per each order book side, measured separately, is at least `liquidity_obligation_in_ccy_siskas`.
+
 ## Liquidity rewards
 Liquidity providers receive rewards for providing liquidity, and penalties for not upholding their commitment. 
 
@@ -31,14 +40,15 @@ Rewards are calculated automatically from the market's fees, which are paid by p
 Note: During an auction uncrossing, liquidity providers are not required to supply any orders that offer liquidity or would cause trades. However, they must maintain their liquidity commitment, and their liquidity orders are placed back on the order book when normal trading resumes.
 
 ## Penalties for not fulfilling liquidity commitment
-If the liquidity provider's margin account doesn't have enough funds to support their orders, the protocol will search for funds in the general account for the relevant asset. If the general account doesn't have sufficient amount to provide margin to support the orders, then the protocol will transfer the remaining funds from the liquidity provider's bond account, and a penalty will be applied and funds transferred from the bond account to the market's insurance pool.
+**If a liquidity provider can't cover their commitment**: If the liquidity provider's margin account doesn't have enough funds to support their orders, the protocol will search for funds in the general account for the relevant asset. If the general account doesn't have sufficient amount to provide margin to support the orders, then the protocol will transfer the remaining funds from the liquidity provider's bond account, and a penalty will be applied and funds transferred from the bond account to the market's insurance pool.
 
 The liquidity obligation will remain unchanged and the protocol will periodically search the liquidity provider's general account and attempt to top up the bond account to the amount specified in liquidity commitment.
 
-Should the funds in the bond account drop to 0 as a result of a collateral search, the liquidity provider will be marked for closeout and the liquidity provision will be removed from the market. If there's an imbalance between total and target stake as a result, the market will go into liquidity auction.
+Should the funds in the bond account drop to 0 as a result of a collateral search, the liquidity provider will be marked for closeout and the liquidity provision will be removed from the market. If there's an imbalance between total and target stake (see below) as a result, the market will go into liquidity auction.
 
 If this happens while the market is transitioning from auction mode to continuous trading, a penalty will not be applied. 
 
+### Liquidity penalty calculation
 The penalty formula defines how much will be removed from the bond account:
 
 `bond penalty = market.liquidity.bondPenaltyParameter ⨉ shortfall`

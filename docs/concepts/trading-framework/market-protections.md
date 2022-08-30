@@ -16,7 +16,7 @@ Some of those measures include price monitoring, liqudity monitoring, and freque
 * [Mark to market](./positions-margin#mark-to-market)
 :::
 
-:::warn A note on risk
+:::warning A note on risk
 
 Derivatives markets are financially risky, by design. If a market has no liquidity, it won't be possible to get out of a position.
 
@@ -72,35 +72,24 @@ Now:
     * If after 1 minute has passed the indicative price of the auction is outside the `[95,105]`, the auction gets extended by 5 minutes, as concluding the auction at the 1 minute mark would breach the valid ranges implied by the second trigger. After the 5 minutes, trades (if any) are generated irrespective of their price, as there are no more active triggers, and the price monitoring auction concludes.
 
 ## Liquidity monitoring
-Besides the obvious appeal to traders, a liquid market also offers some risk management, particularly in a system that does not have a central counter-party. When a trader is distressed, their position can only be liquidated if there is enough volume on the order book to offload it.
+Besides the obvious appeal to traders, a liquid market also offers some risk management, particularly in a system that does not have a central counter-party. When a trader is distressed, their position can only be liquidated if there is enough volume on the order book to offload it. 
 
-In order to ensure there is enough liquidity to keep a market active and protect against insolvent parties, the network must be able to detect when the market's liquidity is too low. 
+In order to ensure there is enough liquidity to keep a market active and protect against insolvent parties, the network must be able to detect when the market's liquidity is too low.
 
-When a market's liquidity drops below the safe level, the market enters into a liquidity monitoring auction, and terminates the auction when the market liquidity level is back at a sufficiently high level. The liquidity mechanics of the Vega protocol mean there is an incentive (through fee-setting) to provide the necessary liquidity.
+The liquidity mechanics of the Vega protocol mean there is an incentive (through fee-setting) to provide the necessary liquidity.
+
+Another risk mitigation comes in how LPs commit liquidity. As long as there are static bid and ask orders on the book, the system deploys enough volume, at the specified offsets that are within price monitoring bounds, and that have at least the minimum probability of trading set by the network parameter `market.liquidity.minimum.probabilityOfTrading.lpOrders`.
+
+As a consequence, a market may only become illiquid in two cases: 
+* The total supplied stake by all liquidity providers is below the target stake (a multiple of the maximum open interest over a period of time set by the network parameter `market.stake.target.timeWindow`). 
+* The best static bid or best static ask prices are missing from the order book, meaning the volume implied by a liquidity provider's commitment cannot be deployed.
+
+When a market is illiquid, it enters into a liquidity monitoring auction, and terminates that auction when the market liquidity level is back at a sufficiently high level. 
 
 If a market enters into a liquidity auction and never again attracts enough liquidity to exit it, the market will stay in a liquidity auction until the market's settlement. Once the market's settlement price is emitted by the data source, then all market participants are settled based on their positions and account balances.
 
-There are two scenarios that can trigger liquidity monitoring mechanisms: 
-
-**If a market has too little liquidity**: Vega continuously calculates whether each market has a sufficient amount committed. When markets are deemed insufficiently liquid, they are placed into auction.
-
-**If a liquidity provider can't cover their commitment**: If the liquidity provider's margin account doesn't have enough funds to support their orders, the protocol will search for funds in the general account for the relevant asset. If the general account doesn't have sufficient amount to provide margin to support the orders, then the protocol will transfer the remaining funds from the liquidity provider's bond account, and a penalty will be applied and funds transferred from the bond account to the market's insurance pool.
-
-The liquidity obligation will remain unchanged and the protocol will periodically search the liquidity provider's general account and attempt to top up the bond account to the amount specified in liquidity commitment.
-
-Should the funds in the bond account drop to 0 as a result of a collateral search, the liquidity provider will be marked for closeout and the liquidity provision will be removed from the market. If there's an imbalance between total and target stake (see below) as a result, the market will go into liquidity auction.
-
-### Liquidity obligation calculations
-The liquidity obligation is calculated from the liquidity commitment amount using the stake_to_ccy_siskas network parameter as:
-
-`liquidity_obligation_in_ccy_siskas = stake_to_ccy_siskas ⨉ liquidity_commitment`
-
-Note here `ccy` stands for 'currency'. Liquidity measure units are 'currency siskas', e.g. ETH or USD siskas. This is because the calculation is basically `volume ⨉ probability of trading ⨉ price of the volume` and the price of the volume is in the said currency.
-
-Liquidity obligation is considered to be met when the `volume ⨉ probability of trading ⨉ price of orders` of all liquidity providers, per each order book side, measured separately, is at least `liquidity_obligation_in_ccy_siskas`.
-
 ## Distressed traders
-If a trader's available margin on a market is below the closeout level and cannot be rectified, that trader is considered to be distressed.
+If a trader's available margin on a market is below the closeout level and cannot be replenished, that trader is considered to be distressed.
 
 A distressed trader has all their open orders on that market cancelled. The network will then recalculate the margin requirement on the trader's remaining open position. If they then have sufficient collateral, they are no longer considered a distressed trader. 
 

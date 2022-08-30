@@ -20,7 +20,7 @@ The *general account* is managed by the party who controls the keys that account
 
 Every public key has a potential general account in every asset supported on the Vega network; it's created the first time assets are deposited or transferred to it. The general account is the place where deposits and rewards go, where withdrawals come from, and where a participant can transfer assets from (or receive assets to).
 
-The general account also holds VEGA when it's not associated to a Vega key and/or locked in a smart contract. Staking rewards, as well as trading rewards, are paid into the general account.
+The general account also holds VEGA tokens that have been deposited to the network (but not those associated to a Vega key via the Ethereum staking bridge and/or locked in a smart contract). Staking rewards, as well as trading rewards, are paid into the general account.
 
 Any assets that are in a general account can be withdrawn or transferred.
 
