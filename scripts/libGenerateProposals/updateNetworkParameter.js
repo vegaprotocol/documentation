@@ -13,7 +13,8 @@ function updateNetworkParameter(skeleton) {
   const keyToUpdate = sample(networkParameters)
   const result = {
     rationale: {
-      description: `Update ${keyToUpdate}`
+      title: `Update ${keyToUpdate}`,
+      description: `Proposal to update ${keyToUpdate} to 300}`
     },
     terms: {
       updateNetworkParameter: {
