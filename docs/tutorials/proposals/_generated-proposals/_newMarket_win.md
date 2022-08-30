@@ -64,8 +64,8 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
      }^
     },^
     \"metadata\": [^
-     \"sector:health\",^
-     \"sector:food\",^
+     \"sector:energy\",^
+     \"sector:tech\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -87,55 +87,17 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
     },^
     \"logNormal\": {^
      \"tau\": 0.0001140771161,^
-     \"riskAversionParameter\": 0.0001,^
+     \"riskAversionParameter\": 0.001,^
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
-      \"sigma\": 0.3^
+      \"sigma\": 1.25^
      }^
     }^
-   },^
-   \"liquidityCommitment\": {^
-    \"commitmentAmount\": \"7568525\",^
-    \"fee\": \"0.056\",^
-    \"buys\": [^
-     {^
-      \"offset\": \"86\",^
-      \"proportion\": 10,^
-      \"reference\": \"PEGGED_REFERENCE_BEST_BID\"^
-     },^
-     {^
-      \"offset\": \"23\",^
-      \"proportion\": 9,^
-      \"reference\": \"PEGGED_REFERENCE_BEST_BID\"^
-     },^
-     {^
-      \"offset\": \"62\",^
-      \"proportion\": 7,^
-      \"reference\": \"PEGGED_REFERENCE_BEST_BID\"^
-     }^
-    ],^
-    \"sells\": [^
-     {^
-      \"offset\": \"7\",^
-      \"proportion\": 6,^
-      \"reference\": \"PEGGED_REFERENCE_BEST_ASK\"^
-     },^
-     {^
-      \"offset\": \"24\",^
-      \"proportion\": 7,^
-      \"reference\": \"PEGGED_REFERENCE_BEST_ASK\"^
-     },^
-     {^
-      \"offset\": \"92\",^
-      \"proportion\": 10,^
-      \"reference\": \"PEGGED_REFERENCE_BEST_ASK\"^
-     }^
-    ]^
    }^
   },^
-  \"closingTimestamp\": 1663517485,^
-  \"enactmentTimestamp\": 1663603885^
+  \"closingTimestamp\": 1663517914,^
+  \"enactmentTimestamp\": 1663604314^
  }^
 }^
 }"
