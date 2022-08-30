@@ -1,6 +1,6 @@
 ---
 title: events.proto
-hide_title: true
+hide_title: false
 ---
 
 import { ProtoMessage, ProtoServiceMethod, ProtoEnum } from '@theme/ProtoFile';
@@ -90,7 +90,7 @@ _**package** vega.events.v1_
 
 
 ### `ProtocolUpgradeEvent`
-<ProtoMessage key={18} message={{"name":"ProtocolUpgradeEvent","longName":"ProtocolUpgradeEvent","fullName":"vega.events.v1.ProtocolUpgradeEvent","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"upgrade_block_height","description":"The block height at which to perform the upgrade","label":"","type":"uint64","longType":"uint64","fullType":"uint64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"vega_release_tag","description":"the release tag for the vega binary","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"data_node_release_tag","description":"the release tag for the data-node binary","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"approvers","description":"tendermint validators that have agreed to the upgrade","label":"repeated","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"status","description":"the status of the proposal","label":"","type":"ProtocolUpgradeProposalStatus","longType":"ProtocolUpgradeProposalStatus","fullType":"vega.events.v1.ProtocolUpgradeProposalStatus","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/docs/testnet/grpc/vega/events/v1/events.proto#protocolupgradeproposalstatus"}]}} />
+<ProtoMessage key={18} message={{"name":"ProtocolUpgradeEvent","longName":"ProtocolUpgradeEvent","fullName":"vega.events.v1.ProtocolUpgradeEvent","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"upgrade_block_height","description":"The block height at which to perform the upgrade","label":"","type":"uint64","longType":"uint64","fullType":"uint64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"vega_release_tag","description":"the release tag for the vega binary","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"approvers","description":"tendermint validators that have agreed to the upgrade","label":"repeated","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"status","description":"the status of the proposal","label":"","type":"ProtocolUpgradeProposalStatus","longType":"ProtocolUpgradeProposalStatus","fullType":"vega.events.v1.ProtocolUpgradeProposalStatus","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/docs/testnet/grpc/vega/events/v1/events.proto#protocolupgradeproposalstatus"}]}} />
 
 
 ### `RecurringTransfer`

@@ -130,24 +130,24 @@ When submitting the `OracleDataSubmission`, make sure to specify the `source` fi
 <Tabs groupId="submitOpenOracle">
   <TabItem value="cmd" label="Linux / OSX command line">
 
-    ```bash
-    vegawallet command send \
-        --wallet oracle-wallet \
-        --pubkey 123abc \
-        --network fairground \
-        '{"oracleDataSubmission": { "source": "ORACLE_SOURCE_OPEN_ORACLE", "payload":"INSERT_PAYLOAD_STRING" }}'
-    ```
+```bash
+vegawallet command send \
+    --wallet oracle-wallet \
+    --pubkey 123abc \
+    --network fairground \
+    '{"oracleDataSubmission": { "source": "ORACLE_SOURCE_OPEN_ORACLE", "payload":"INSERT_PAYLOAD_STRING" }}'
+```
 
   </TabItem>
   <TabItem value="win" label="Windows command line">
 
-    ```bash
-    vegawallet.exe command send \
-        --wallet oracle-wallet \
-        --pubkey 123abc \
-        --network fairground \
-        '{"oracleDataSubmission": { "source": "ORACLE_SOURCE_OPEN_ORACLE", "payload":"INSERT_PAYLOAD_STRING" }}'
-    ```
+```bash
+vegawallet.exe command send \
+    --wallet oracle-wallet \
+    --pubkey 123abc \
+    --network fairground \
+    '{"oracleDataSubmission": { "source": "ORACLE_SOURCE_OPEN_ORACLE", "payload":"INSERT_PAYLOAD_STRING" }}'
+```
 
   </TabItem>
 </Tabs>
@@ -373,7 +373,7 @@ It's possible to settle on any data source field - for instance checking if a `b
         },
         "conditions": [{
             "operator": "OPERATOR_GREATER_THAN_OR_EQUAL",
-            "value": "1648684800000000000",
+            "value": "1660826549",
         }]
     }]
 }

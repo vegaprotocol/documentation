@@ -10,7 +10,8 @@ The rationale behind the proposal
 ```graphql
 type ProposalTerms {
   closingDatetime: String!
-  enactmentDatetime: String!
+  enactmentDatetime: String
+  validationDatetime: String
   change: ProposalChange!
 }
 ```
@@ -24,10 +25,16 @@ RFC3339Nano time and date when voting closes for this proposal.
 Constrained by "minClose" and "maxClose" network parameters.
 
 
-#### [`enactmentDatetime`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [`enactmentDatetime`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
 RFC3339Nano time and date when this proposal is executed (if passed). Note that it has to be after closing date time.
 Constrained by "minEnactInSeconds" and "maxEnactInSeconds" network parameters.
+Note: Optional as free form proposals do not require it.
+
+
+#### [`validationDatetime`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+
+RFC3339Nano time and when node validation of the proposal stops, accepted only with new asset proposals
 
 
 #### [`change`](#) ([`ProposalChange!`](/docs/testnet/graphql/unions/proposal-change))

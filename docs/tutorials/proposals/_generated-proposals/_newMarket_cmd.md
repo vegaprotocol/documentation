@@ -3,7 +3,8 @@
 ./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{
  "proposalSubmission": {
   "rationale": {
-   "description": "Add Lorem Ipsum market"
+   "title": "Add Lorem Ipsum market",
+   "description": "An example proposal to add Lorem Ipsum market"
   },
   "terms": {
    "newMarket": {
@@ -62,8 +63,7 @@
       }
      },
      "metadata": [
-      "sector:food",
-      "sector:energy",
+      "sector:materials",
       "sector:health",
       "source:docs.vega.xyz"
      ],
@@ -86,55 +86,55 @@
      },
      "logNormal": {
       "tau": 0.0001140771161,
-      "riskAversionParameter": 0.01,
+      "riskAversionParameter": 0.0001,
       "params": {
        "mu": 0,
        "r": 0.016,
-       "sigma": 0.8
+       "sigma": 1.25
       }
      }
     },
     "liquidityCommitment": {
-     "commitmentAmount": "8066901",
-     "fee": "0.27",
+     "commitmentAmount": "2856241",
+     "fee": "0.28",
      "buys": [
       {
-       "offset": "78",
-       "proportion": 10,
+       "offset": "2",
+       "proportion": 6,
        "reference": "PEGGED_REFERENCE_BEST_BID"
       },
       {
-       "offset": "77",
-       "proportion": 9,
-       "reference": "PEGGED_REFERENCE_BEST_BID"
-      },
-      {
-       "offset": "6",
+       "offset": "69",
        "proportion": 3,
+       "reference": "PEGGED_REFERENCE_BEST_BID"
+      },
+      {
+       "offset": "4",
+       "proportion": 10,
        "reference": "PEGGED_REFERENCE_BEST_BID"
       }
      ],
      "sells": [
       {
-       "offset": "79",
-       "proportion": 3,
+       "offset": "16",
+       "proportion": 4,
        "reference": "PEGGED_REFERENCE_BEST_ASK"
       },
       {
-       "offset": "43",
-       "proportion": 5,
-       "reference": "PEGGED_REFERENCE_BEST_ASK"
-      },
-      {
-       "offset": "27",
+       "offset": "2",
        "proportion": 6,
+       "reference": "PEGGED_REFERENCE_BEST_ASK"
+      },
+      {
+       "offset": "34",
+       "proportion": 7,
        "reference": "PEGGED_REFERENCE_BEST_ASK"
       }
      ]
     }
    },
-   "closingTimestamp": 1662294730,
-   "enactmentTimestamp": 1662381130
+   "closingTimestamp": 1662824601,
+   "enactmentTimestamp": 1662911001
   }
  }
 }'

@@ -11,7 +11,6 @@ A new asset proposal change
 type NewAsset {
   name: String!
   symbol: String!
-  totalSupply: String!
   decimals: Int!
   minLpStake: String!
   source: AssetSource!
@@ -31,11 +30,6 @@ The full name of the asset (e.g: Great British Pound)
 The symbol of the asset (e.g: GBP)
 
 
-#### [`totalSupply`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-The total supply of the market
-
-
 #### [`decimals`](#) ([`Int!`](/docs/testnet/graphql/scalars/int))
 
 The precision of the asset
@@ -43,12 +37,12 @@ The precision of the asset
 
 #### [`minLpStake`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
-The min stake to become an lp for any market using this asset for settlement
+The minimum stake to become a liquidity provider for any market using this asset for settlement
 
 
 #### [`source`](#) ([`AssetSource!`](/docs/testnet/graphql/unions/asset-source))
 
-the source of the new Asset
+The source of the new asset
 
 
 

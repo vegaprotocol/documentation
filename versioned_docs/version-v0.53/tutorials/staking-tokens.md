@@ -5,6 +5,9 @@ vega_network: MAINNET
 ethereum_network: Mainnet
 ---
 import EthAddresses from '@site/src/components/EthAddresses';
+import Topic from '../topics/_topic-staking.mdx';
+
+<Topic />
 
 
 :::tip

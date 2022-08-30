@@ -1,8 +1,8 @@
 ---
+sidebar_position: 1
 title: Propose a new market
 hide_title: false
 vega_network: TESTNET
-toc: true
 keywords:
 - proposal
 - governance
@@ -25,39 +25,19 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 This page provides a tutorial for submitting a proposal for a new market. 
-<!--[Update an existing market](#update-an-existing-market): change the details of a market that is already enacted.-->
 
-1. The full annotated example is there to guide you through what is needed for each field in the proposal.
-2. Be sure to have your Vega wallet name and public key ready, and have your wallet connected when you submit.
-3. To submit a proposal you will need:
-   * At least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the market, and staked to a validator. Note, this amount is set through the network parameter `governance.proposal.market.minProposerBalance`.
-   * Enough of the settlement asset (testnet) available to fulfil your liquidity commitment, if you are submitting a liquidity commitment.
-
-:::info
-Learn about the full governance lifecycle, includng how to get voter support for your proposal, in the [governance concepts](../../concepts/vega-protocol#governance).
-:::
-
-### Submit using command line
-1. To create your own proposal and submit it using the command line, copy the command line example into a text editor and include the values you want for the market.
-2. Use the command line to submit your proposal.
-3. You can see your proposal on the [Fairground block explorer](https://explorer.fairground.wtf/governance).
-4. Your proposal will need enough voting weight to pass, so having community support of your proposal is essential.
-
-### Submit using token dApp
-1. To create your own proposal and submit with the token dApp, copy the JSON example into a text editor and include the values you want for the market.
-2. Use the token dApp's Governance page to submit your proposal. 
-3. You can see your proposal on the token dApp governance page.
-4. Your proposal will need enough voting weight to pass, so having community support of your proposal is essential.
-
-## Anatomy of a proposal
-The proposal for creating a new market has been divided up into sections to provide more details on what you need to submit.
-
-Below that you'll find:
-* Full annotated proposal
+Below you'll find:
+* Descriptions of the market proposal fields and requirements
+* What you need to submit a governance proposal
+* Full annotated proposal for guidance
 * Command line proposal you can copy and amend to propose using a CLI
 * JSON proposal you can copy and amend to propose via the token dApp
 
-### Overview
+<!--[Update an existing market](#update-an-existing-market): change the details of a market that is already enacted.-->
+
+## Anatomy of a market proposal
+The proposal for creating a new market has been divided up into sections to provide more details on what you need to submit.
+
 There are a number of fields required for proposing a market, to ensure that it has all the necessary details and research behind it to be a well-functioning market. 
 
 The general shape is as follows:
@@ -135,28 +115,34 @@ Price monitoring uses the following properties:
 * Probability: Price monitoring probability level p (set as >0 and <1)
 * Auction extension in seconds: Price monitoring auction extension duration in seconds should the price breach its theoretical level over the specified horizon at the specified probability level (set as >0)
 
-### Liquidity commitment (optional)
-There is an option to provide liquidity to the market you propose, but it is not required. Note that a market without enough liquidity will be stuck in a liquidity seeking auction until it gets the liquidity it needs. Once a market is proposed, it can accept liquidity commitments from any party, and those commitments can amended or removed.
-
+## Proposing: What you need to know
+1. The full annotated example is there to guide you through what is needed for each field in the proposal.
+2. Be sure to have your Vega wallet name and public key ready, and have your wallet connected when you submit.
+3. To submit a proposal you will need:
+   * At least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the market. Note, this amount is set through the network parameter `governance.proposal.market.minProposerBalance`.
+4. Before proposing, read about:
+   * [Governance lifecycle](../../concepts/vega-protocol#lifecycle-of-a-governance-proposal): Learn about the off-chain and on-chain steps for crafting, sharing, and submitting proposals.
+   * [Market governance](../../concepts/vega-protocol#market-governance): More details about market governance and the fields required.
 :::info
-Learn how to amend your liquidity commitment or add liquidity later in the [Providing Liquidity](../providing-liquidity.md) tutorial.
+Learn about the full governance lifecycle, includng how to get voter support for your proposal, in the [governance concepts](../../concepts/vega-protocol#governance).
 :::
 
-<NewMarketJSONLiquidityCommitment/>
+### Submit using command line
+1. To create your own proposal and submit it using the command line, copy the command line example into a text editor and include the values you want for the market.
+2. Use the command line to submit your proposal.
+3. You can see your proposal on the [Fairground block explorer](https://explorer.fairground.wtf/governance).
+4. Your proposal will need enough voting weight to pass, so having community support of your proposal is essential.
 
-New market commitment input: The liquidity commitment submitted with the new market, based on the parameters below.
-* Commitment amount: This number represents the amount of the settlement asset for the market, written without a decimal point but to 5 decimal places (for example 5.00011 should be expressed as 500011)
-* Fee: Your nominated liquidity fee factor, which is an input to the calculation of liquidity fees on the market
-* Liquidity order input - Sells: A set of liquidity sell orders to meet the liquidity provision obligation
-* Reference: The sell order’s reference point for its price level. (Examples: mid, best bid, best ask)
-* Proportion: The relative proportion of the commitment to be allocated at the reference price level, written as a positive integer
-* Offset: The number of units away from the reference to place orders. (Example: 2)
-* Liquidity order input - Buys: A set of liquidity buy orders to meet the liquidity provision obligation
-* Reference: The buy order’s reference point for its price level (Examples: mid, best bid, best ask)
-* Proportion: The relative proportion of the commitment to be allocated the reference price level, written as a positive integer
-* Offset: The number of units away from the reference to place orders (Example: 2)
+### Submit using token dApp
+1. To create your own proposal and submit with the token dApp, copy the JSON example into a text editor and include the values you want for the market.
+2. Use the token dApp's [Governance page](https://token.fairground.wtf/governance) to submit your proposal. 
+3. You can see your proposal on the token dApp governance page.
+4. Your proposal will need enough voting weight to pass, so having community support of your proposal is essential.
 
-## Full proposal example
+
+## Full proposal examples
+In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to submit on the token dApp, and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
+
 <Tabs groupId="newMarket">
   <TabItem value="annotated" label="Annotated example">
     <NewMarketAnnotated />

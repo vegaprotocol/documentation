@@ -3,13 +3,12 @@
 ./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{
  "proposalSubmission": {
   "rationale": {
-   "url": "https://dweb.link/ipfs/bafybeigwwctpv37xdcwacqxvekr6e4kaemqsrv34em6glkbiceo3fcy4si",
-   "hash": "bafybeigwwctpv37xdcwacqxvekr6e4kaemqsrv34em6glkbiceo3fcy4si",
-   "description": "Lorem ipsum dolor sit amet"
+   "title": "An example freeform proposal",
+   "description": "I propose that everyone evaluate the following IPFS document and vote Yes if they agree. [bafybeigwwctpv37xdcwacqxvekr6e4kaemqsrv34em6glkbiceo3fcy4si](https://dweb.link/ipfs/bafybeigwwctpv37xdcwacqxvekr6e4kaemqsrv34em6glkbiceo3fcy4si)"
   },
   "terms": {
    "newFreeform": {},
-   "closingTimestamp": 1662294730
+   "closingTimestamp": 1662824601
   }
  }
 }'

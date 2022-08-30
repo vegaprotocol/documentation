@@ -12,6 +12,9 @@ type Epoch {
   id: String!
   timestamps: EpochTimestamps!
   validators: [Node!]!
+  validatorsConnection(
+  pagination: Pagination
+): NodesConnection!
   delegations(
   partyId: String
   nodeId: String
@@ -19,6 +22,11 @@ type Epoch {
   first: Int
   last: Int
 ): [Delegation!]!
+  delegationsConnection(
+  partyId: String
+  nodeId: String
+  pagination: Pagination
+): DelegationsConnection!
 }
 ```
 
@@ -32,12 +40,20 @@ Presumably this is an integer or something. If there's no such thing, disregard
 
 #### [`timestamps`](#) ([`EpochTimestamps!`](/docs/testnet/graphql/objects/epoch-timestamps))
 
-Timestamps for start/end etc
+Timestamps for start and end of epochs
 
 
 #### [`validators`](#) ([`[Node!]!`](/docs/testnet/graphql/objects/node))
 
 Validators that participated in this epoch
+
+
+#### [`validatorsConnection`](#) ([`NodesConnection!`](/docs/testnet/graphql/objects/nodes-connection))
+
+Validators that participated in this epoch
+- ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+
 
 
 #### [`delegations`](#) ([`[Delegation!]!`](/docs/testnet/graphql/objects/delegation))
@@ -66,6 +82,24 @@ Pagination first element
 - ##### [`last`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
 
 Pagination last element
+
+
+#### [`delegationsConnection`](#) ([`DelegationsConnection!`](/docs/testnet/graphql/objects/delegations-connection))
+
+
+- ##### [`partyId`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+
+
+
+
+- ##### [`nodeId`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+
+
+
+
+- ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+Pagination information
 
 
 

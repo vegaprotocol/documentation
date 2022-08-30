@@ -2,7 +2,8 @@
   ```json
 {
   "rationale": {
-    "description": "Update Lorem Ipsum market"
+    "title": "Update Lorem Ipsum market",
+    "description": "A proposal to update Lorem Ipsum market"
   },
   "terms": {
     "updateMarket": {
@@ -72,13 +73,13 @@
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 0.3
+            "sigma": 0.5
           }
         }
       }
     },
-    "closingTimestamp": 1662294730,
-    "enactmentTimestamp": 1662381130
+    "closingTimestamp": 1662824601,
+    "enactmentTimestamp": 1662911001
   }
 }
 ```

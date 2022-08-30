@@ -6,9 +6,8 @@ function newFreeform(skeleton) {
 
   const result = {
    rationale: {
-      url: 'https://dweb.link/ipfs/bafybeigwwctpv37xdcwacqxvekr6e4kaemqsrv34em6glkbiceo3fcy4si',
-      hash: 'bafybeigwwctpv37xdcwacqxvekr6e4kaemqsrv34em6glkbiceo3fcy4si',
-      description: `Lorem ipsum dolor sit amet`,
+      title: `An example freeform proposal`,
+      description: 'I propose that everyone evaluate the following IPFS document and vote Yes if they agree. [bafybeigwwctpv37xdcwacqxvekr6e4kaemqsrv34em6glkbiceo3fcy4si](https://dweb.link/ipfs/bafybeigwwctpv37xdcwacqxvekr6e4kaemqsrv34em6glkbiceo3fcy4si)',
     },
     terms: {
       newFreeform: {
@@ -24,10 +23,7 @@ function newFreeform(skeleton) {
   }
   result.rationale[inspect.custom]= () => {
       return `{
-    url: "${result.rationale.url}",
-
-    hash: "${result.rationale.hash}",
-    
+    title: "${result.rationale.title}"
     description: "${result.rationale.description}"
   }
 }`

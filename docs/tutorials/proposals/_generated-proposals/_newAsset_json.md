@@ -2,23 +2,26 @@
   ```json
 {
   "rationale": {
-    "description": "Add XRP (XRP)"
+    "title": "Add USDT Coin (USDT)",
+    "description": "Proposal to add USDT Coin (USDT) as an asset"
   },
   "terms": {
     "newAsset": {
       "changes": {
-        "name": "XRP",
-        "symbol": "XRP",
-        "totalSupply": "19010568",
-        "decimals": "5",
+        "name": "USDT Coin",
+        "symbol": "USDT",
+        "decimals": "18",
         "quantum": "1",
         "erc20": {
-          "contractAddress": "0xcb84d72e61e383767c4dfeb2d8ff7f4fb89abc6e"
+          "contractAddress": "0xb404c51bbc10dcbe948077f18a4b8e553d160084",
+          "withdrawThreshold": "10",
+          "lifetimeLimit": "10"
         }
       }
     },
-    "closingTimestamp": 1662294730,
-    "enactmentTimestamp": 1662381130
+    "closingTimestamp": 1662824601,
+    "enactmentTimestamp": 1662911001,
+    "validationTimestamp": 1662738201
   }
 }
 ```

@@ -1,12 +1,19 @@
 ---
-sidebar_position: 4
-title: Accounts on Vega
+sidebar_position: 2
+title: Accounts
 hide_title: false
 ---
+
 ## Accounting system
 Vega uses accounts in various situations to ensure funds are never lost or double spent. The amounts in each account, as well as the transactions that added to and removed from those accounts, are all recorded and stored on-chain. Double entry accounting is maintained at all points.
 
-Accounts are used either to hold assets that you're in control of using -- such as collateral you deposit, or for setting money aside that only the network can manage -- to fulfil margin requirements, for example, or to store assets that are earmarked for rewards or paying out fees. This means that, for example, when your funds are allocated to margin to support a position you opened, or you submit a liquidity commitment and bond amount is reserved, those assets can't be used for anything else.
+Accounts are used either to hold assets that you're in control of using — such as collateral you deposit, or for setting money aside that only the network can manage — to fulfil margin requirements, for example, or to store assets that are earmarked for rewards or paying out fees. This means that, for example, when your funds are allocated to margin to support a position you opened, or you submit a liquidity commitment and bond amount is reserved, those assets can't be used for anything else.
+
+:::tip Query for data
+You can see how much is allocated to the accounts for your public key in [Vega Console ↗](https://console.fairground.wtf), the trading interface.
+
+Otherwise use a [GraphQL query](./../graphql/objects/party#accounts-account) to check your public key for the accounts.
+:::
 
 ## General account
 The *general account* is managed by the party who controls the keys that account was created for.
@@ -28,14 +35,13 @@ Otherwise use a [GraphQL query](./../graphql/objects/party#accounts-account) to 
 ## Accounts governed by the protocol
 Assets that are held in any other type of account other than the general account can't be moved by you, though they may be used to support your trades or liquidity commitments. Your assets are still tied to your Vega public key, even if they are in an account you can't actively manage.
 
-Some accounts are accessible only when they're needed, and cease to exist while they're no longer required.
-
 ### Margin accounts
 Margin accounts temporarily hold assets that support a participant's trades on a market. 
 
 Each party with open orders or positions on any market has a margin account. When you trade on a market, the required initial margin is allocated to that market from your general account, meaning that it can't be withdrawn or used as margin on another market while it is allocated to the first market. Money may be periodically transferred into or out of your margin account from your general account if the balance becomes too low to support your trading, or if the gains on your position mean the account contains more funds than are needed.
 
 To move some or all of the money in your margin account back into your general account, you can try reducing the size of your position on the market, or closing it entirely. If your position size is zero and you have no active orders, your margin account will be empty and all the funds will be returned to your general account and be accessible by you once more.
+
 :::info Read more
 [Margin](./trading-framework/positions-margin)
 :::
