@@ -9,7 +9,7 @@ The Vega protocol allows liquidity to be priced individually for each market, a 
 
 **[Liquidity fees](#liquidity-fees)** are defined based on the commitments and proposed fee levels chosen by the providers, not by the protocol.
 
-Participants who want to **[commit liquidity](#liquidity-commitment-transaction)** to a market can enter their commitments as soon as a market proposal is submitted and accepted, or at any time during the market's lifecycle. 
+Participants who want to **[commit liquidity](#liquidity-commitment-transaction)** to a market can enter their commitments as soon as a market proposal is submitted and accepted, or at any time during the market's lifecycle.
 
 ## Liquidity providers
 Participants with sufficient collateral can provide liquidity for markets. Every market on Vega must have at least one committed liquidity provider. When a governance proposal to create a market is submitted, the proposal has to include liquidity provision commitment.

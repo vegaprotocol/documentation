@@ -15,14 +15,16 @@ In addition, any participant can fund accounts that reward traders for their act
 ## Trading fees
 The Vega protocol does not charge gas fees, but rather has a fee structure that rewards participants who fill essential roles for a decentralised trading infrastructure.
 
-Fees are incurred on every trade on a market in continuous trading, but it is the price taker who pays the fee. The price taker is the party that traded using a market order, or placed a limit order that traded immediately. The price maker (the party whose passive order was on the book prior to the trade) receives some of the trading fees as a reward for providing liquidity.
+Fees are incurred on every trade on a market in continuous trading, but it's the price taker who pays the fee. The price taker is the party that traded using a market order, or placed a limit order that traded immediately. The price maker (the party whose passive order was on the book prior to the trade) receives some of the trading fees as a reward for providing liquidity.
 
-The amount a trader pays in fees for each order is the same regardless of how many trades it takes to fill the order. Even though, if an order crosses with more than one other order, multiple trades are created and multiple fees are incurred, in the end they would balance out. See an example calculation below.
+The amount a trader pays in fees for each order is the same regardless of how many trades it takes to fill the order. Even though, if an order crosses with more than one other order, multiple trades are created and multiple fees are incurred, in the end they would balance out. See an example fee calculation below.
 
 During a market's opening auction, no fees are collected.
 
 ### Fee distribution
-Fees are calculated when a trade is filled, and paid in the settlement currency of the market. The fees due are taken from the collateral in the trader's general account. The fee is divided between the maker, the infrastructure provider, and the liquidity provider(s) for each market.
+Fees are calculated when a trade is filled, and paid in the market's settlement currency. The fees due are taken from the collateral in the trader's general account. 
+
+The fee is divided between the maker for the trade, the infrastructure provider, and the liquidity provider(s) for each market.
 
 #### Maker fee
 The maker portion of the fee is transferred to the non-aggressive, or passive party in the trade (the maker, as opposed to the taker). This is done as soon as the trade settles.
@@ -60,6 +62,9 @@ Trading rewards are defined by three things:
 
 Rewards are independent from fees, which are paid to validators, liquidity providers, and price makers on each trade.
 
+:::info Read more
+:::
+
 ### Trading rewards metrics
 As rewards are distributed based on certain criteria, they need to be defined and measured. Each reward metric is calculated per party, once at the end of each epoch.
 
@@ -90,7 +95,9 @@ Party A would receive $100 / $10,000 = 1% of the rewards for that epoch.
 #### Market creation reward metric 
 The market creation reward metric is designed to incentivise creating markets that attract good trading volume. Rewards are awarded to the proposers of any markets that meet a certain total trade value. 
 
-The threshold for what counts as 'enough' trading volume is a formula that takes into account the value of the network parameter `rewards.marketCreationQuantumMultiple`, as well as the settlement asset's quantum to assess the market's size.
+The threshold for what counts as 'enough' trading volume is a formula that takes into account the value of the network parameter `rewards.marketCreationQuantumMultiple`, as well as the settlement asset's quantum to assess the market's size. 
+
+An asset's quantum is defined an approximation of the smallest 'meaningful' amount of that asset, generally expecting it to be the quantity of the asset valued at approximately the value of 1 USD. An asset's quantum is set in the governance proposal that enabled the asset for use on Vega.
 
 **Example**: 
 

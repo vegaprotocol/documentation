@@ -26,9 +26,6 @@ Most, but not all, order types and times in force are accepted during continuous
 \* IOC/FOK LIMIT orders never rest on the book, if they do not match immediately they are cancelled/stopped.<br/>
 \** IOC/FOK PEGGED orders are not currently supported as they will always result in the cancelled/stopped state. This may change in the future if pegged orders are allowed to have negative offsets that can result in an immediate match.
 
-
-Read more: Orders
-
 ## Auctions
 Auctions are a trading mode that collect orders during a set period, called an *auction call period*. 
 
@@ -37,7 +34,7 @@ The end of an auction call period is determined by the condition that the auctio
 Market conditions that could trigger an auction:
 * A market has opened for trading, which means it needs a defined price to start trading from 
 * Not enough liquidity on a market
-* Price swing on a market is perceived, based on risk models, to be extreme and unrealistic 
+* Price swing on a market is perceived, based on risk models, to be extreme and unrealistic
 
 ### Auction call period
 During the auction call period, no trades are created, but all orders are queued.
@@ -55,9 +52,9 @@ The trade is not generated, the orders that instigated that trade remain on the 
 Read more: price monitoring
 
 ### Auction type: Liquidity monitoring
-A market will go into a liquidity monitoring auction if the total commitment from liquidity providers (total stake) drops too low relative to the estimate of the market's liquidity demand (target stake), or if the best bid and/or best ask price implied by limit orders from market participants are not available
+A market will go into a liquidity monitoring auction if the total commitment from liquidity providers (total stake) drops too low relative to the estimate of the market's liquidity demand (target stake), or if the best bid and/or best ask price implied by limit orders from market participants are not available. 
 
-Read more: liquidity monitoring
+If a market enters into a liquidity auction and never again attracts enough liquidity to exit it, the market will stay in a liquidity auction until the market's settlement. Once the market's settlement price is emitted by the data source, then all market participants are settled based on their positions and account balances. 
 
 ### Orders accepted during auctions
 When a market is in an auction, only certain order types and times in force can be used. Market orders are not permitted.
@@ -80,8 +77,6 @@ When a market is in an auction, only certain order types and times in force can 
 * Pegged orders (all types, including liquidity commitment  orders) get reinstated in the order book they were originally submitted to
 * Limit orders stay on the book - unless they have a time in force of Good For Auction, in which case they're cancelled
 
-Read more: Orders
-
 ### Exiting an auction
 Auctions end, orders are uncrossed and resulting trades are created when:
 * The auction call period end time is reached (if such a time is set)
@@ -90,4 +85,3 @@ Auctions end, orders are uncrossed and resulting trades are created when:
 Auctions **do not end** if the resulting state would immediately cause another auction to begin. Instead, the current auction gets extended. 
 
 For example, if a liquidity monitoring auction would be triggered at the end of an opening auction, then the opening auction continues and the auction extension trigger is updated to account for the fact that the opening auction has been extended due to insufficent liquidity.
-

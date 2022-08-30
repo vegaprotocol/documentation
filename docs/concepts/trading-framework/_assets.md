@@ -8,6 +8,9 @@ hide_title: false
 
 ### Assets on Vega [WIP]
 
+#### Quantum
+details on the quantum
+
 ### Bridges used for assets [WIP]
 
 #### Ethereum [WIP]

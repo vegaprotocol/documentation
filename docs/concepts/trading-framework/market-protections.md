@@ -16,6 +16,13 @@ Some of those measures include price monitoring, liqudity monitoring, and freque
 * [Mark to market](./positions-margin#mark-to-market)
 :::
 
+:::warn A note on risk
+
+Derivatives markets are financially risky, by design. If a market has no liquidity, it won't be possible to get out of a position.
+
+Vega is not a retail or brokerage platform with third-parties to guarantee positions can always be exited. Vega provides a protocol for users to create markets that put traders directly in the market, with incentives built into the protocol to maximise the potential that a trader can get out of a position quickly. This, however, is not a guarantee.
+:::
+
 ## Price monitoring
 The dynamics of market price movements mean that prices don't always represent the participants' true average view of the price, but are instead artefacts of the market microstructure. 
 
@@ -69,7 +76,9 @@ Besides the obvious appeal to traders, a liquid market also offers some risk man
 
 In order to ensure there is enough liquidity to keep a market active and protect against insolvent parties, the network must be able to detect when the market's liquidity is too low. 
 
-When a market's liquidity drops below the safe level, the market enters into a liquidity monitoring auction, and terminates the auction when the market liquidity level is back at a sufficiently high level. The liquidity mechanics of the Vega protocol mean there is an incentive (through fee-setting) to provide the necessary liquidity. 
+When a market's liquidity drops below the safe level, the market enters into a liquidity monitoring auction, and terminates the auction when the market liquidity level is back at a sufficiently high level. The liquidity mechanics of the Vega protocol mean there is an incentive (through fee-setting) to provide the necessary liquidity.
+
+If a market enters into a liquidity auction and never again attracts enough liquidity to exit it, the market will stay in a liquidity auction until the market's settlement. Once the market's settlement price is emitted by the data source, then all market participants are settled based on their positions and account balances.
 
 There are two scenarios that can trigger liquidity monitoring mechanisms: 
 
@@ -81,6 +90,7 @@ The liquidity obligation will remain unchanged and the protocol will periodicall
 
 Should the funds in the bond account drop to 0 as a result of a collateral search, the liquidity provider will be marked for closeout and the liquidity provision will be removed from the market. If there's an imbalance between total and target stake (see below) as a result, the market will go into liquidity auction.
 
+### Liquidity obligation calculations
 The liquidity obligation is calculated from the liquidity commitment amount using the stake_to_ccy_siskas network parameter as:
 
 `liquidity_obligation_in_ccy_siskas = stake_to_ccy_siskas ⨉ liquidity_commitment`
