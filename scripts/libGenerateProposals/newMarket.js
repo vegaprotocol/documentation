@@ -473,8 +473,7 @@ function newMarket(skeleton) {
           priceMonitoringParameters: generatePriceMonitoringParameters(skeleton.properties.changes.properties.priceMonitoringParameters),
           liquidityMonitoringParameters: generateLiquidityMonitoringParameters(skeleton.properties.changes.properties.liquidityMonitoringParameters),
           logNormal: generateRiskModel(skeleton.properties.changes.properties.logNormal, 'logNormal')
-        },
-        liquidityCommitment: generateNewMarketCommitment(skeleton.properties.liquidityCommitment)
+        }
       }
     }
   };
@@ -498,9 +497,7 @@ function newMarket(skeleton) {
           liquidityMonitoringParameters: ${inspect(result.terms.newMarket.changes.liquidityMonitoringParameters, { depth: 19 })},
           // ${skeleton.properties.changes.properties.logNormal.title}
           logNormal: ${inspect(result.terms.newMarket.changes.logNormal, { depth: 19 })},
-        },
-        // ${skeleton.properties.liquidityCommitment.title}
-        liquidityCommitment: ${inspect(result.terms.newMarket.liquidityCommitment, { depth: 19 })},
+        }
     }`
   }
 
