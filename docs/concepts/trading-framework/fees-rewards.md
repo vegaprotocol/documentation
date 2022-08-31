@@ -62,7 +62,8 @@ Trading rewards are defined by three things:
 
 Rewards are independent from fees, which are paid to validators, liquidity providers, and price makers on each trade.
 
-:::info Read more
+:::info Try it out
+[Set up a reward transfer](../../tutorials/transferring-assets.md): Choose an activity to reward and set up a one-off or recurring transfer to fund it.
 :::
 
 ### Trading rewards metrics

@@ -27,34 +27,62 @@ Most, but not all, order types and times in force are accepted during continuous
 \** IOC/FOK PEGGED orders are not currently supported as they will always result in the cancelled/stopped state. This may change in the future if pegged orders are allowed to have negative offsets that can result in an immediate match.
 
 ## Auctions
-Auctions are a trading mode that collect orders during a set period, called an *auction call period*. 
+Auctions are a trading mode that collect orders during a set period, called an [auction call period](#auction-call-period). The end of an auction call period is determined by the condition that the auction aims to meet.
 
-The end of an auction call period is determined by the condition that the auction aims to meet. Auctions that are based on market conditions are triggered automatically.
+Auctions aggregate participation over time, up to a pre-set time when the market is uncrossed. The auction uncrossing generates trades at the conclusion of the auction, using an algorithm that processes, in price-time priority, the set of crossed orders that maximises traded volume. 
 
-Market conditions that could trigger an auction:
+Currently, all auctions are triggered automatically based on market conditions. Market conditions that could trigger an auction:
 * A market has opened for trading, which means it needs a defined price to start trading from 
-* Not enough liquidity on a market
 * Price swing on a market is perceived, based on risk models, to be extreme and unrealistic
+* Not enough liquidity on a market
+
+### Auction type: Opening
+Every continuous trading market opens with an auction. Their purpose is to calibrate a market and help with price discovery by determining a fair mid-price to start off continuous trading. 
+
+#### Entry into an opening auction 
+A new market’s opening auction begins at the proposal’s closing date.
+
+#### Exit from an opening auction
+A market’s opening auction ends at the market enactment time, unless an opening price can't be determined because no orders would uncross. In that case, the auction is extended by `market.auction.minimumDuration`. At the end of each extension time, the system looks for orders that would uncross.
+
+When a market leaves its opening auction, it will use the mid-price within the range of auction bids that would result in the highest trade volume for its normal trading mode. For example, if the volume maximising range is 98-102, the market would price all trades in the uncrossing at 100. The order book would then be uncrossed at that price and the trades follow the normal flow.
+
+### Auction type: Price monitoring
+Sometimes low liquidity and/or a large quantity of order volume can cause a market's price to diverge from the true price. The Vega protocol is designed to assume that relatively small moves are 'real' and that larger moves might not be. The market's risk model and price monitoring settings are used to determine what the boundaries are between small, acceptable moves and large, unrealistic ones.
+
+If a price move breaches the price monitoring bounds, a market will go into a price monitoring auction.
+
+#### Entry into price monitoring auction 
+A market will go into a price monitoring auction if generating a trade would result in a price that is larger than the theoretical bounds implied by the risk model, and the market's price monitoring settings. The trade is not generated, the orders that instigated that trade remain on the order book, and the market goes into an auction.
+
+#### Exit from price monitoring auction 
+A price monitoring auction's exit depends on how large the price move was, and relies on the market's risk model. For a relatively (contextually) small price move, it would be as long as `market.auction.minimumDuration`. The market's risk model informs  how many multiples of that time the auction would be extended by.
+
+If no one places orders in the price monitoring auction, the auction is exited and the original order is executed.  
+
+:::info Read more
+[Price monitoring](./market-protections#price-monitoring)
+:::
+
+### Auction type: Liquidity monitoring
+In order to ensure there is enough liquidity to keep a market active and protect against insolvent parties, the network will detect when the market's liquidity is too low, and if it is too low, will stop continuous trading and put the market into a liquidity monitoring auction. 
+
+#### Entry into liquidity monitoring auction 
+A market will go into a liquidity monitoring auction if the total commitment from liquidity providers (total stake) drops too low relative to the estimate of the market's liquidity demand (target stake), or if there are no best bid and/or best ask prices on the market.
+
+#### Exit from liquidity monitoring auction 
+Enough liquidity relative to the market's open interest, to get the market back above the target stake.
+
+If a market enters into a liquidity auction and never again attracts enough liquidity to exit it, the market will stay in a liquidity auction until the market's settlement. Once the market's settlement price is emitted by the data source, then all market participants are settled based on their positions and account balances.
+
+::: Read more
+[Liquidity monitoring](./market-protections#liquidity-monitoring)
+:::
 
 ### Auction call period
 During the auction call period, no trades are created, but all orders are queued.
 
 At the conclusion of the call period, trades are produced in a single action known as an auction uncrossing. During the uncrossing, auctions always try to maximise the traded volume, subject to the requirements of the orders placed.
-
-### Auction type: Opening
-Every continuous trading market opens with an auction. Their purpose is to calibrate a market and help with price discovery. 
-
-### Auction type: Price monitoring
-A market will go into a price monitoring auction if generating a trade would result in a price that is larger than the theoretical bounds implied by the risk model, and the market's price monitoring settings. 
-
-The trade is not generated, the orders that instigated that trade remain on the order book, and the market goes into an auction, the length of which is defined by price monitoring settings (chosen during the market proposal).
-
-Read more: price monitoring
-
-### Auction type: Liquidity monitoring
-A market will go into a liquidity monitoring auction if the total commitment from liquidity providers (total stake) drops too low relative to the estimate of the market's liquidity demand (target stake), or if the best bid and/or best ask price implied by limit orders from market participants are not available. 
-
-If a market enters into a liquidity auction and never again attracts enough liquidity to exit it, the market will stay in a liquidity auction until the market's settlement. Once the market's settlement price is emitted by the data source, then all market participants are settled based on their positions and account balances. 
 
 ### Orders accepted during auctions
 When a market is in an auction, only certain order types and times in force can be used. Market orders are not permitted.
@@ -74,14 +102,12 @@ When a market is in an auction, only certain order types and times in force can 
 * Non-persistent orders (Fill Or Kill and Immediate Or Cancel) are not accepted
 
 **Upon exiting an auction:**
-* Pegged orders (all types, including liquidity commitment  orders) get reinstated in the order book they were originally submitted to
+* Pegged orders (all types, including liquidity commitment orders) are reinstated to the order book 
 * Limit orders stay on the book - unless they have a time in force of Good For Auction, in which case they're cancelled
 
 ### Exiting an auction
 Auctions end, orders are uncrossed and resulting trades are created when:
 * The auction call period end time is reached (if such a time is set)
-* The triggers that end the particular auction are reached
+* The criteria that end the particular auction are reached
 
-Auctions **do not end** if the resulting state would immediately cause another auction to begin. Instead, the current auction gets extended. 
-
-For example, if a liquidity monitoring auction would be triggered at the end of an opening auction, then the opening auction continues and the auction extension trigger is updated to account for the fact that the opening auction has been extended due to insufficent liquidity.
+Auctions **do not end** if the resulting state would immediately cause another auction to begin. Instead, the current auction gets extended.

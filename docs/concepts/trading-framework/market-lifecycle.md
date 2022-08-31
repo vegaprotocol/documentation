@@ -66,7 +66,7 @@ When a market proposal is successful at the end of the voting period, the market
 
 #### Exits pending state
 - A market is no longer pending when any of the following occur:
-  - Enactment date is reached, the conditions for exiting an auction are met, and at least one trade will be generated when uncrossing the auction → Active (the auction is uncrossed during this transition)
+  - Enactment date is reached, the conditions for exiting the auction are met, and at least one trade will be generated when uncrossing the auction → Active (the auction is uncrossed during this transition)
   - Enactment date is passed and the product would trigger the `trading terminated` status  →  Cancelled (the market ceases to exist, auction orders are cancelled, and no uncrossing occurs)
   - Enactment date is passed by more than the `market.auction.maximumDuration` network parameter →  Cancelled (the market ceases to exist, auction orders are cancelled, and no uncrossing occurs)
 

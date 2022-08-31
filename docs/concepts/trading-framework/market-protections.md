@@ -30,7 +30,7 @@ Sometimes low liquidity and/or a large quantity of order volume can cause the pr
 
 Price monitoring exists to determine the real price, in the case that price moves are extreme and unrealistic. If the move is deemed to be large, the market's trading mode is temporarily changed into auction mode to get more information from market participants before any trades are generated.
 
-Distinguishing between small and large moves can be highly subjective and market-dependent. The protocol relies on risk models to formalise this process.
+Distinguishing between small and large moves can be highly subjective and market-dependent. The protocol relies on risk models and price monitoring triggers to formalise this process.
 
 A market's risk model can be used to obtain the price distribution at a future point in time, given the current price and the model parameter. A price monitoring auction trigger can be constructed using a projected fixed time horizon and probability level.
 
@@ -84,7 +84,7 @@ As a consequence, a market may only become illiquid in two cases:
 * The total supplied stake by all liquidity providers is below the target stake (a multiple of the maximum open interest over a period of time set by the network parameter `market.stake.target.timeWindow`). 
 * The best static bid or best static ask prices are missing from the order book, meaning the volume implied by a liquidity provider's commitment cannot be deployed.
 
-When a market is illiquid, it enters into a liquidity monitoring auction, and terminates that auction when the market liquidity level is back at a sufficiently high level. 
+When a market is illiquid, it enters into a liquidity monitoring auction, and terminates that auction when the market liquidity level is back at a sufficiently high level.
 
 If a market enters into a liquidity auction and never again attracts enough liquidity to exit it, the market will stay in a liquidity auction until the market's settlement. Once the market's settlement price is emitted by the data source, then all market participants are settled based on their positions and account balances.
 
