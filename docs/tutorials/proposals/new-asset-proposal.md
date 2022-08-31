@@ -42,7 +42,7 @@ Validation happens according to the `validationTimestamp` parameter. In most sit
 ## Proposing: What you need to know
 1. The full annotated example is there to guide you through what is needed for each field in the proposal.
 2. Be sure to have your Vega wallet name and public key ready, and have your wallet connected when you submit.
-3. To submit a proposal you will need at least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the asset. Note, this amount is set through the network parameter `governance.proposal.asset.minProposerBalance`.
+3. To submit a proposal you will need at least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the asset. Note, this amount is set through the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minProposerBalance" hideValue={true} />.
 4. Before proposing, read about:
    * [Governance lifecycle](../../concepts/vega-protocol#lifecycle-of-a-governance-proposal): Learn about the off-chain and on-chain steps for crafting, sharing, and submitting proposals.
    * [Assets at a protocol level](../../concepts/vega-protocol#assettoken-management)

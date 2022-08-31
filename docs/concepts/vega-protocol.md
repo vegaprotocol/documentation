@@ -108,11 +108,10 @@ Read more:
 * [Update market proposal](../tutorials/proposals/update-market-proposal.md): Guide to submitting a proposal to change a market using the command line
 
 ### Propose a new market
-<<<<<<< HEAD
-Tokenholders can propose new markets, which then need to be voted on by other tokenholders. The proposer will need to have at least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the market, and staked to a validator. Note, this amount is set through the network parameter `governance.proposal.market.minProposerBalance`.
+Tokenholders can propose new markets, which then need to be voted on by other tokenholders. The proposer will need to have at least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the market, and staked to a validator. Note, this amount is set through the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true} />.
 
-If the market proposal gets a majority of tokeholder support, then it will be enacted. The required majority is defined by the network parameter `governance.proposal.market.required.majority`.
-Tokenholders can propose new markets, which then need to be voted on by other tokenholders. If the market proposal gets a majority of tokeholder support, then it will be enacted. The required majority is <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" hideName={true} />.
+If the market proposal gets a <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" hideName={true} formatter="percent"/> majority of tokeholder support, then it will be enacted. The required majority is defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" hideValue={true} />.
+Tokenholders can propose new markets, which then need to be voted on by other tokenholders.
 
 A liquidity commitment is optional when proposing a market, but a market will not enter into continuous trading until its liquidity needs are met.
 
@@ -229,7 +228,7 @@ Consider a network parameter that specifies the proportion of fees that goes to 
 * <NetworkParameter frontMatter={frontMatter} name="Proposer must have" param="governance.proposal.updateNetParam.minProposerBalance" formatter="governanceToken" suffix='tokens' />
 
 A proposal to change the <NetworkParameter frontMatter={frontMatter} hideValue={true} param="transfer.fee.factor" />, would need to pass all of the thresholds listed above.
-`
+
 <!--### Threshold and rules [WIP]-->
   
 ## Asset/token management

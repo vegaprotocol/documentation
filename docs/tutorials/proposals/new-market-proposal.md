@@ -53,9 +53,9 @@ Decimal places need to be defined for both order sizes and the market.
 * `decimalPlaces` - sets the smallest price increment on the book
 * `positionDecimalPlaces` - sets how big the smallest order / position on the market can be
 
-Timestamps are required for ending the voting period, as well as enacting the market. The time between closing and enactment also defines how long an opening auction will be, which must be smaller than/equal to the difference between `maxClose` and `maxEnact`.
-* `closingTimestamp` - Time when voting closes for the proposal. It must be expressed in Unix time in seconds, and must be constrained by `minClose` and `maxClose` network parameters.
-* `enactmentTimestamp` - Time and date when the market will be enacted (ready for trading). It must be expressed in Unix time in seconds, and must be between the  `minEnact` and `maxEnact` network parameters.
+Timestamps are required for ending the voting period, as well as enacting the market. The time between closing and enactment also defines how long an opening auction will be, which must be smaller than/equal to the difference between  <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxClose" /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxEnact" />.
+* `closingTimestamp` - Time when voting closes for the proposal. It must be expressed in Unix time in seconds, and must be constrained by <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minClose" /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxClose" />.
+* `enactmentTimestamp` - Time and date when the market will be enacted (ready for trading). It must be expressed in Unix time in seconds, and must be between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minEnact" /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxEnact" />.
 
 ### Instrument
 The instrument shape is as follows, see below for a description of each property:
@@ -100,10 +100,10 @@ The liquidity monitoring settings detect when the market's liquidity drops below
 
 Liquidity monitoring uses the following properties: 
 * Target stake parameters: Target stake parameters are derived from open interest history over a time window to calculate the maximum open interest. 
-* Time window: Defines the length of time over which open interest is measured. If empty, this field defaults to the network parameter `market.stake.target.timeWindow` Example: 1h0m0s
-* Scaling factor: This must be set within the range defined by the network parameter `market.stake.target.scalingFactor`, and defines the scaling between the liquidity demand estimate, based on open interest and target stake. The scaling factor must be a number greater than zero and finite
-* Triggering ratio: Specifies the triggering ratio for entering liquidity auction. If empty, the network will default to the network parameter `market.liquidity.targetstake.triggering.ratio`
-* Auction extension: Specifies by how many seconds an auction should be extended if leaving the auction were to trigger a liquidity auction. If empty, the network will default to the network parameter `market.monitor.price.defaultParameters`
+* Time window: Defines the length of time over which open interest is measured. If empty, this field defaults to the network parameter <NetworkParameter frontMatter={frontMatter} param="market.stake.target.timeWindow" />.
+* Scaling factor: This must be set within the range defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.stake.target.scalingFactor" />, and defines the scaling between the liquidity demand estimate, based on open interest and target stake. The scaling factor must be a number greater than zero and finite.
+* Triggering ratio: Specifies the triggering ratio for entering liquidity auction. If empty, the network will default to the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.targetstake.triggering.ratio" />.
+* Auction extension: Specifies by how many seconds an auction should be extended if leaving the auction were to trigger a liquidity auction. If empty, the network will default to the network parameter  <NetworkParameter frontMatter={frontMatter} param="market.monitor.price.defaultParameters" hideValue={true} />.
 
 ### Price monitoring
 Price monitoring parameters are optional, and configure the acceptable price movement bounds for price monitoring. <!--If you leave these blank, they will default to whatever the network-wide parameters are set as.--> See below for more details on each field.
@@ -119,7 +119,7 @@ Price monitoring uses the following properties:
 1. The full annotated example is there to guide you through what is needed for each field in the proposal.
 2. Be sure to have your Vega wallet name and public key ready, and have your wallet connected when you submit.
 3. To submit a proposal you will need:
-   * At least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the market. Note, this amount is set through the network parameter `governance.proposal.market.minProposerBalance`.
+   * At least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the market. Note, this amount is set through the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true} />.
 4. Before proposing, read about:
    * [Governance lifecycle](../../concepts/vega-protocol#lifecycle-of-a-governance-proposal): Learn about the off-chain and on-chain steps for crafting, sharing, and submitting proposals.
    * [Market governance](../../concepts/vega-protocol#market-governance): More details about market governance and the fields required.
