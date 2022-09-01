@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-title: Trading fees and rewards
+title: Fees and trading rewards
 hide_title: false
 ---
 The Vega trading fee structure incentivises passive trading (placing orders on the order book), providing liquidity, and running the network infrastructure. The protocol does not charge gas fees for interacting with the network.
@@ -15,8 +15,6 @@ Fees are incurred on every trade on a market in continuous trading, but it's the
 The amount a trader pays in fees for each order is the same regardless of how many trades it takes to fill the order. Even though, if an order crosses with more than one other order, multiple trades are created and multiple fees are incurred, in the end they would balance out. See an example fee calculation below.
 
 During a market's opening auction, no fees are collected.
-
-TRANSFER FEES? 
 
 ### Fee distribution and breakdown
 Fees are calculated when a trade is filled, and paid in the market's settlement currency. The fees due are taken from the collateral in the trader's general account. 
@@ -49,6 +47,13 @@ At a high level, the trading fee is calculated using the following formulas:
 * The fee is the same regardless of the number of transactions the order needs to be completely filled, as long as they trade at the same price.
 
 The fee factors are set through the following network parameters: `market.fee.factors.infrastructureFee`, `market.fee.factors.makerFee`, `market.fee.factors.liquidityFee`.
+
+## Transfer fees
+When transferring assets, whether from one Vega key to another, or from a Vega key to a reward pool to fund trading rewards, the party that initiates the transfer needs to pay a fee. The fee amount is taken when the transfer is executed, on top of the total amount to be transferred. It's charged in the same asset that is being transferred.
+
+The fee goes to validators for providing the network infrastructure that supports transfers, and goes into the infrastructure fee pool.
+
+The fee is calculated by multiplying the transfer amount and the `transfer.fee.factor` network parameter.
 
 ## Trading rewards 
 Market participants can also receive rewards, in addition to fees incentivising liquidity provision, passive orders, and infrastructure support. Those rewards can be set up by anyone to incentivise certain trading behaviours they want to see on a market (or markets). 
@@ -120,7 +125,7 @@ At the end of each epoch, all reward pools will be emptied and their funds alloc
 
 It is up to individual users to transfer funds to the reward pools in order to finance the rewards they want to pay. If there is no balance in the reward pool at the end of the epoch, then no rewards will be paid.
 
-When transferring funds, providing the following information determines that your funds go into the correct reward pool:
+When setting up a reward, the following information determines that your funds go into the correct reward pool:
 * Reward asset: The asset in which the rewards will be paid
 * Market in scope: The Market ID of the market for which rewards will be calculated
 * Reward metric type: The metric type to be used to calculate the reward
@@ -155,9 +160,7 @@ Reward pool 3:
 Now, any user that has been a price taker in this market will receive two reward payments at the end of the epoch, once in VEGA and one in USDT, with both proportional to their overall share of maker fees paid in the market. 
 
 ### Funding reward pools 
-Transfers are used to send assets to reward pools, and those transfers can be set up to transfer an asset just once, or for each epoch. 
-
-To provide a one-off reward in a single epoch only, make a **single transfer** into the relevant reward pool.
+Transfers are used to send assets to reward pools. 
 
 To fund a single reward pool over multiple epochs, set up a **recurring transfer to a single reward pool** that will keep topping up the reward pool for each epoch, as long as there are funds available in the party's general account.
 
