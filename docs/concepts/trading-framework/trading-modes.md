@@ -4,7 +4,7 @@ title: Trading modes
 hide_title: false
 ---
 # Trading modes 
-A market's trading mode denotes the types of trading that can be done on it while the market is in that mode. A market can only have one trading mode at a time.  The Vega network currently supports futures markets.
+A market's trading mode denotes the types of trading that can be done on it while the market is in that mode. A market can only have one trading mode at a time.  
 
 The Vega software currently supports two trading modes: continuous trading (using a limit order book) and auctions.
 
@@ -17,7 +17,7 @@ Most, but not all, order types and times in force are accepted during continuous
 
 ### Orders accepted during continuous trading
 
-| Pricing method | GTT | GTC | IOC | FOK | GFA | GFN |
+| Order type  | GTT | GTC | IOC | FOK | GFA | GFN |
 | -------------- |:---:|:---:|:---:|:---:|:---:|:---:|
 | Limit          | Y   | Y   | Y*  | Y*  | N   | Y   |
 | Pegged         | Y   | Y   | N** | N** | N   | Y   |
@@ -34,7 +34,7 @@ Auctions aggregate participation over time, up to a pre-set time when the market
 Currently, all auctions are triggered automatically based on market conditions. Market conditions that could trigger an auction:
 * A market has opened for trading, which means it needs a defined price to start trading from 
 * Price swing on a market is perceived, based on risk models, to be extreme and unrealistic
-* Not enough liquidity on a market
+* Not enough liquidity on a market; this could also indicate missing best static bid / ask as without those liquidity provision orders cannot be deployed, even if liquidity providers have committed liquidity. 
 
 ### Auction type: Opening
 Every continuous trading market opens with an auction. Their purpose is to calibrate a market and help with price discovery by determining a fair mid-price to start off continuous trading. 
@@ -67,11 +67,13 @@ If no one places orders in the price monitoring auction, the auction is exited a
 ### Auction type: Liquidity monitoring
 In order to ensure there is enough liquidity to keep a market active and protect against insolvent parties, the network will detect when the market's liquidity is too low, and if it is too low, will stop continuous trading and put the market into a liquidity monitoring auction. 
 
+This also happens when best static bid / ask is not present after all transactions with the same timestamp have been processed, as without those liquidity provision orders cannot be deployed, even if liquidity providers have committed liquidity. 
+
 #### Entry into liquidity monitoring auction 
 A market will go into a liquidity monitoring auction if the total commitment from liquidity providers (total stake) drops too low relative to the estimate of the market's liquidity demand (target stake), or if there are no best bid and/or best ask prices on the market.
 
 #### Exit from liquidity monitoring auction 
-Enough liquidity relative to the market's open interest, to get the market back above the target stake.
+Enough liquidity relative to the market's open interest, to get the market back above the target stake and best static bid and best static ask which will stay on the book *after* the auction uncrossing (i.e. there is some volume on either side of the book which will not trade in the auction).
 
 If a market enters into a liquidity auction and never again attracts enough liquidity to exit it, the market will stay in a liquidity auction until the market's settlement. Once the market's settlement price is emitted by the data source, then all market participants are settled based on their positions and account balances.
 
