@@ -5,32 +5,30 @@ hide_title: true
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Transfer to a Vega key or to fund rewards
-You can send assets to **another Vega key** or to a **reward pool** using transfers. 
+# Transfers: Key-to-key and trading rewards
+You can use transfers to send assets to **another Vega key** or to a **reward pool** to fund trading rewards. 
 
-Key-to-key transfers can be one-off, or they can be set up to happen over and over again, at least while the key sending the assets has enough money to keep the transfers going and to pay the fees.
+Key-to-key transfers can be one-off, or they can be set up to send assets repeatedly, for as long as the key sending the assets has enough money to keep the transfers funded and to pay the fees.
 
 Transfers to fund reward pools can only be recurring, though they can be set up to limit for how long they supply a reward pool, or can be cancelled.
 
-When setting up a transfer, you'll need enough of the asset to transfer the nominated amount, as well as enough to pay the transfer fee, otherwise the transfer will be cancelled.
-
-### Key requirements
+### Requirements
 To set up a transfer, you'll need:
-* **Vega public key** that the assets are coming from
-* **Public key or [account type](../grpc/vega/vega.proto.mdx#accounttype)** (either the number or `ACCOUNT_TYPE_.."`) that the assets are going to
-* **[Asset ID](../graphql/queries/assets-connection.mdx)** for the asset you want to transfer. 
-* Use the **same key pair** to sign the transaction, because the funds have to come from a key you control
+* **Enough of the asset** to transfer the nominated amount and pay the transfer fee for each transfer, otherwise the transfer will be cancelled
+* **Vega public key** that the assets are coming from. You must use the **same key pair** to sign the transaction, because the funds have to come from a key you control
+* **Public key or [account type](../grpc/vega/vega.proto.mdx#accounttype)** (either the number or `ACCOUNT_TYPE_.."`) that the assets are going to)
+* **[Asset ID](../graphql/queries/assets-connection.mdx)** for the asset you want to transfer
 * **Transfer amount**, which must be written with no decimal point, but include all decimal places. The amount in the below examples is based on an 18 decimal point asset, and so these transfers would allot 1 tVEGA for transferring
 
 ## Key-to-key transfers
-A key-to-key transfer allows you to transfer assets between two keys. You'll need enough of the asset to transfer the nominated amount, as well as enough to pay the transfer fee.
+A key-to-key transfer allows you to transfer assets between two Vega keys. You'll need enough of the asset to transfer the nominated amount, as well as enough to pay the transfer fee.
 
 ### One-off transfer to Vega key
-A one-off transfer cannot be cancelled. 
-
-You can set a delivery date/time for when the transfer arrives with the recipient account. The `deliverOn` field sets whether the transfer is delivered immediately or at a predetermined date/time. 
+You can set a **delivery date/time** for when the transfer arrives with the recipient account. The `deliverOn` field sets whether the transfer is delivered immediately or at a predetermined date/time. 
 
 `deliverOn` only accepts Unix time in seconds. Setting it to 0 means the transfer will be completed immediately. Note: when you delay a transfer, the amount leaves your account but is not delivered until the date/time you chose.
+
+A one-off transfer cannot be cancelled, regardless of when the transfer is scheduled to arrive.
 
 <Tabs groupId="KeytoKeytransferOnce">
 <TabItem value="KeytoKeytransferOnceLinuxcmd" label="Linux / OSX command line example">
@@ -120,12 +118,11 @@ vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network f
 ## Funding trading rewards
 Trading rewards are funded using recurring transfers to a reward account, which holds the assets for reward pools. The assets move from your account to the nominated reward account at the end of each epoch.
 
-### Recurring transfer to reward pool
 You'll need the following information to set up a reward: 
 * `startEpoch`: The number of the epoch in which you want the first transfer to be made. It will initiate at the end of this epoch.
 * `factor`: Written as a decimal less than 1.0, this is the factor used to determine what portion of the full `amount` is transferred in each epoch. Think of it like a percentage, so the number you include, when multiplied by 100, will equal what percentage of the amount you have available will be transferred each time. 
 
-Recurring transfers can also set a [DispatchStrategy](../grpc/vega/vega.proto.mdx#dispatchstrategy), which can be used to distribute rewards based on [Dispatch Metrics](../grpc/vega/vega.proto.mdx#dispatchmetric) that are tracked by the system. The recurring reward pool transfer below would reward the public key that proposed the markets specified, depending on their value.
+Recurring transfers can also set a [dispatch strategy](../grpc/vega/vega.proto.mdx#dispatchstrategy), which can be used to distribute rewards based on [dispatch metrics](../grpc/vega/vega.proto.mdx#dispatchmetric) that are tracked by the system. The recurring reward pool transfer below would reward the public key that proposed the markets specified, depending on their value.
  
 <Tabs groupId="KeytoPooltransferRepeat">
 <TabItem value="KeytoPooltransferRepeatLinuxcmd" label="Linux / OSX command line">
@@ -177,15 +174,16 @@ vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network f
 </TabItem>
 </Tabs>
 
-## Cancelling transfers
+## Cancelling recurring transfers
 To cancel a recurring transfer, you'll need the transfer's ID. To see the ID for every transfer your public key makes, [run a transfers GraphQL query](../graphql/queries/transfers-connection.mdx) to see the ID for every transfer you make.
+
+One-off transfers cannot be cancelled.
 
 <Tabs groupId="canceltransfer">
 <TabItem value="canceltransferLinuxcmd" label="Linux / OSX command line">
 
 ```bash
-vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground\
-    '{ "cancelTransfer": { "transferId": "123" }}'
+vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{ "cancelTransfer": { "transferId": "123" }}'
 ```
 </TabItem>
 <TabItem value="canceltransferWincmd" label="Windows command line example">
