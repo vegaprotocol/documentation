@@ -10,7 +10,6 @@ The market lifecycle begins when a proposal for a new market is accepted, and is
 | Proposed           |   Yes          | No trading          | Governance proposal valid and accepted                                       | Governance proposal voting period ends
 | Rejected           |   No           | No trading          | Outcome of governance votes is to reject the market             | N/A                                                    
 | Pending            |   Yes          | Opening auction     | Governance vote passes                                     | Governance vote (to close) OR enactment date reached
-| Cancelled           |  No           | No trading          | Market triggers cancellation condition or governance votes to close before market becomes Active              | N/A                                                    
 | Active             |   Yes          | Normal trading      | Enactment date reached and usual auction exit checks pass       | Governance vote (to close) OR maturity of market      
 | Suspended          |   Yes          | Exceptional auction | Price monitoring or liquidity monitoring trigger, or product lifecycle trigger                | Exit conditions met per monitoring spec. that triggered it, no other monitoring triggered or governance vote if allowed (see below)
 | Trading Terminated |   No           | No trading          | Defined by the product (i.e. from a product parameter, specified in market definition, giving close date/time) | Settlement event commences                       
@@ -67,30 +66,11 @@ When a market proposal is successful at the end of the voting period, the market
 #### Exits pending state
 - A market is no longer pending when any of the following occur:
   - Enactment date is reached, the conditions for exiting the auction are met, and at least one trade will be generated when uncrossing the auction → Active (the auction is uncrossed during this transition)
-  - Enactment date is passed and the product would trigger the `trading terminated` status  →  Cancelled (the market ceases to exist, auction orders are cancelled, and no uncrossing occurs)
-  - Enactment date is passed by more than the `market.auction.maximumDuration` network parameter →  Cancelled (the market ceases to exist, auction orders are cancelled, and no uncrossing occurs)
-
-### Market status: Cancelled
-A market is `cancelled` when a market proposal is successful, but conditions are not met to transition the market to the `active` state, and one of the following applies:
-
-* The market reaches a time out for the length of time it's in the pending state
-* The instrument reaches its expiry
-
-#### Enters cancelled state
-- Enactment date is passed and expiry means it would enter trading terminated status  →  Cancelled (the market ceases to exist, auction orders are cancelled, and no uncrossing occurs)
-- Enactment date is passed by more than the `market.auction.maximumDuration` network parameter →  Cancelled (the market ceases to exist, auction orders are cancelled, and no uncrossing occurs)
-
-#### What is and isn't possible
-- Nothing can happen to a market with this status, it does not exist
-- Any collateral in the bond account for liquidity commitments is returned to the general accounts of the party or parties that submitted the liquidity commitment
-
-#### Exits cancelled state
-- No exit, as nothing more can be done with this market
 
 ### Market status: Active
 Once the enactment date is reached, the other conditions specified to exit the pending state are met, and the opening auction uncrosses, then the market becomes `active`.
 
-An active market status indicates it is trading with its normally configured trading mode, such as continuous trading.
+An active market status indicates it is in continuous trading.
 
 #### Enters active state
 - From `Pending`: enactment date reached and conditions to transition from pending to active are met
