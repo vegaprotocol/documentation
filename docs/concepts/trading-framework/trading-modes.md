@@ -4,9 +4,9 @@ title: Trading modes
 hide_title: false
 ---
 # Trading modes 
-A market's trading mode denotes the types of trading that can be done on it while the market is in that mode. A market can only have one trading mode at a time.
+A market's trading mode denotes the types of trading that can be done on it while the market is in that mode. A market can only have one trading mode at a time.  The Vega network currently supports futures markets.
 
-The Vega software currently supports two trading modes: continuous trading (using a limit order book) and auctions. 
+The Vega software currently supports two trading modes: continuous trading (using a limit order book) and auctions.
 
 ## Continuous trading
 On a market with continuous trading, the Vega network tries to execute an order as soon as it is received. 

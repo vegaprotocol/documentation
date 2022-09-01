@@ -7,39 +7,40 @@ The Vega trading fee structure incentivises passive trading (placing orders on t
 
 In addition, any participant can fund accounts that reward traders for their activity in a market, including those who 'take' prices off the order book. Those rewards only exist when a party is funding them, and can be set per market and per activity type (or metric).
 
-:::note Read more
-* [Trading fees](#trading-fees)
-* [Trading rewards](#trading-rewards)
-:::
-
 ## Trading fees
-The Vega protocol does not charge gas fees, but rather has a fee structure that rewards participants who fill essential roles for a decentralised trading infrastructure.
+The Vega protocol does not charge gas fees, but rather has a fee structure that rewards participants who fill essential roles in a decentralised system.
 
-Fees are incurred on every trade on a market in continuous trading, but it's the price taker who pays the fee. The price taker is the party that traded using a market order, or placed a limit order that traded immediately. The price maker (the party whose passive order was on the book prior to the trade) receives some of the trading fees as a reward for providing liquidity.
+Fees are incurred on every trade on a market in continuous trading, but it's the price taker who pays the fee. The price taker is the party that traded using a market order, or placed a limit order that traded immediately. The price maker (the party whose passive order was on the book prior to the trade) receives some of the trading fees as a reward for placing orders on the book.
 
 The amount a trader pays in fees for each order is the same regardless of how many trades it takes to fill the order. Even though, if an order crosses with more than one other order, multiple trades are created and multiple fees are incurred, in the end they would balance out. See an example fee calculation below.
 
 During a market's opening auction, no fees are collected.
 
-### Fee distribution
+TRANSFER FEES? 
+
+### Fee distribution and breakdown
 Fees are calculated when a trade is filled, and paid in the market's settlement currency. The fees due are taken from the collateral in the trader's general account. 
 
-The fee is divided between the maker for the trade, the infrastructure provider, and the liquidity provider(s) for each market.
+The fee is divided between the maker for the trade, the infrastructure providers, and the liquidity provider(s) for each market.
 
 #### Maker fee
 The maker portion of the fee is transferred to the non-aggressive, or passive party in the trade (the maker, as opposed to the taker). This is done as soon as the trade settles.
 
 #### Infrastructure fee
-The infrastructure portion of the fee is paid to validators as a reward for running the network infrastructure, and transferred to the infrastructure fee pool for the market's settlement asset. It is then distributed to the validators at the end of each epoch, in proportion to the number of tokens they represent. Some of that fee portion also goes to the validators' nominators.
+The infrastructure portion of the fee is paid to validators as a reward for running the network infrastructure, and transferred to the infrastructure fee pool for the market's settlement asset. It is then distributed to the validators at the end of each epoch, in proportion to the number of tokens they represent. 
+
+Some of the infrastructure fee paid to validators is then distributed to the validators' nominators.
 
 #### Liquidity fee
-The liquidity portion of the fee is paid to participants who provide liquidity for the market. It's transferred to a liquidity fee account, and distributed to each liquidity provider's margin account at a defined time (based on network parameter `market.liquidity.providers.fee.distributionTimeStep`). 
+The liquidity portion of the fee is paid to participants who commit liquidity to the market. It's transferred to a liquidity fee account, and distributed to each liquidity provider's margin account at a defined time (based on network parameter `market.liquidity.providers.fee.distributionTimeStep`), and depending on how much their liquidity commitments have contributed to the market.
+
+Read more: liquidity
 
 ### Fee calculations
 At a high level, the trading fee is calculated using the following formulas:
 
 * Total fee = (infrastructure fee factor + maker fee factor + liquidity fee factor) x trade value for fee purposes
-* Trade value for fee purposes = notional value of the trade = size of trade x price of trade (This is true for futures, but may be calculated differently for other products)
+* Trade value for fee purposes = notional value of the trade = size of trade x price of trade
   
 #### Fee calculation example
 * Trade value for fee purposes: If you were to place an order for 100 futures at USDC50, the trade value for fee purposes is: *100 x USDC50 = USDC5000*. 
@@ -50,10 +51,10 @@ At a high level, the trading fee is calculated using the following formulas:
 The fee factors are set through the following network parameters: `market.fee.factors.infrastructureFee`, `market.fee.factors.makerFee`, `market.fee.factors.liquidityFee`.
 
 ## Trading rewards 
-In addition to fees incentivising liquidity provision, passive orders, and infrastructure support, participants can also fund and/or receive rewards to incentivise certain trading behaviours they want to see on a market (or markets). 
+Market participants can also receive rewards, in addition to fees incentivising liquidity provision, passive orders, and infrastructure support. Those rewards can be set up by anyone to incentivise certain trading behaviours they want to see on a market (or markets). 
 
-* Any party with an amount of a market's settlement asset can fund a reward pool to incentivise trading. 
 * Any party that trades on a market with a trading reward can be eligible to receive a portion of the rewards.
+* Any party with an amount of a market's settlement asset can fund a reward pool to incentivise trading. 
 
 Trading rewards are defined by three things:
 * Type of activity to be rewarded (and how it's measured)
@@ -70,6 +71,8 @@ Rewards are independent from fees, which are paid to validators, liquidity provi
 As rewards are distributed based on certain criteria, they need to be defined and measured. Each reward metric is calculated per party, once at the end of each epoch.
 
 Rewards can be set up to pay those who receive fees (functioning like a 'bonus'), or those who create markets.
+
+Choosing a metric is a matter of transferring assets to the relevant account type, which then contributes to the reward pool for the metric.
 
 #### Fee-based reward metrics
 Fee-based rewards metrics are designed to incentivise trading volume on a given market, and are dependent on how much a participant pays in fees.
@@ -111,16 +114,15 @@ The proposers of each of those markets qualify for 25% of the market creation re
 :::
 
 ### Reward pools 
-Reward pools hold the funds that are used to pay out trading rewards, and are funded by participants through transfers. 
+Reward pools hold the funds that are used to pay out trading rewards, and are funded by participants through transfers. Choosing a metric is a matter of transferring assets to the relevant account type, which then contributes to the reward pool for the metric.
 
 At the end of each epoch, all reward pools will be emptied and their funds allocated to users proportionally based on the reward metric defined for each pool. 
 
 It is up to individual users to transfer funds to the reward pools in order to finance the rewards they want to pay. If there is no balance in the reward pool at the end of the epoch, then no rewards will be paid.
 
-When transferring funds, providing the following information determines that your funds go into the correct reward pool: 
-
+When transferring funds, providing the following information determines that your funds go into the correct reward pool:
 * Reward asset: The asset in which the rewards will be paid
-* Market in scope: The Market ID of the market for which rewards will be calculated 
+* Market in scope: The Market ID of the market for which rewards will be calculated
 * Reward metric type: The metric type to be used to calculate the reward
 
 **Examples**:
@@ -143,7 +145,7 @@ Reward Pool 2:
 
 This will provide an additional incentive for LPs to commit liquidity, since in addition to the liquidity fees they would already receive (in USDT, the settlement asset of the market), they would also receive VEGA proportional to the share of liquidity fees they received for the market.
 
-Finally, they may decide that they also want to provide a reward in the market’s settlement asset rather than solely reward in VEGA.  Therefore they transfer funds to an additional reward pool.
+Finally, they may decide that they also want to provide a reward in the market’s settlement asset rather than solely reward in VEGA. Therefore they transfer funds to an additional reward pool.
 
 Reward pool 3: 
 * Reward asset = USDT
