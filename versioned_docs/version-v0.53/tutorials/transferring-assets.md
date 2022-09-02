@@ -6,17 +6,16 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Transfer between keys
-You can send assets to **another Vega key** using transfers. 
+Send assets to **another Vega key** using transfers. 
 
-Key-to-key transfers can be one-off, or they can be set up to send assets repeatedly, for as long as the key sending the assets has enough money to keep the transfers funded and to pay the fees.
+Key-to-key transfers can be one-off, or they can be set up to send assets repeatedly, for as long as the key sending the assets has enough money to keep the transfers funded and fees paid.
 
 ### Requirements
-To set up a transfer, you'll need:
-* **Enough of the asset** to transfer the nominated amount and pay the transfer fee for each transfer, otherwise the transfer will be cancelled
-* **Vega public key** that the assets are coming from. You must use the **same key pair** to sign the transaction, because the funds have to come from a key you control
-* **Public key** that the assets are going to
-* **[Asset ID](../graphql/queries/assets-connection.mdx)** for the asset you want to transfer
-* **Transfer amount**, which must be written with no decimal point, but include all decimal places. The amount in the below examples is based on an 18 decimal point asset, and so these transfers would allot 1 tVEGA for transferring
+* **Enough of the asset** to transfer and pay the transfer fee each time
+* **Vega public key** the assets are sent from. The **same key pair** must sign the transaction
+* **Public key** the assets are going to
+* **[Asset ID](../graphql/queries/assets-connection.mdx)** for the asset to transfer
+* **Transfer amount**. It must be written with no decimal point, but include all decimal places. Note: The amount in the below examples is based on an 18 decimal point asset, and so these would transfer 1 tVEGA
 
 <!--## Key-to-key transfers
 A key-to-key transfer allows you to transfer assets between two Vega keys. You'll need enough of the asset to transfer the nominated amount, as well as enough to pay the transfer fee. -->
@@ -171,9 +170,12 @@ vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network f
 ```
 </TabItem>
 </Tabs>
+ -->
 
 ## Cancelling recurring transfers
-To cancel a recurring transfer, you'll need the transfer's ID. To see the ID for every transfer your public key makes, [run a transfers GraphQL query](../graphql/queries/transfers-connection.mdx) to see the ID for every transfer you make.
+To cancel a recurring transfer, you'll need the transfer's ID. To see the ID for every transfer your public key makes, [run a transfers GraphQL query](../graphql/queries/transfers-connection.mdx).
+
+One-off transfers cannot be cancelled.
 
 <Tabs groupId="canceltransfer">
 <TabItem value="canceltransferLinuxcmd" label="Linux / OSX command line">
@@ -189,4 +191,3 @@ vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network f
 ``` 
 </TabItem>
 </Tabs> 
- -->
