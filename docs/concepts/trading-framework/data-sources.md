@@ -9,7 +9,8 @@ Market settlement, risk models, and other features require a supplied price, or 
 
 The types of data sources that Vega can accept in the current implementation is limited to those listed below.
 
-However, the APIs and protocol are expected to support a wider range of data source standards in the future. 
+However, the APIs and protocol are expected to support a wider range of data source standards in the future.
+
 The framework is designed to be flexible to make it easy to create and combine oracles, and therefore to design markets on almost anything, and the software will grow to fulfil that goal. 
 
 The current implementation requires that a market proposal defines two data sources, and the price based on those sources is final.

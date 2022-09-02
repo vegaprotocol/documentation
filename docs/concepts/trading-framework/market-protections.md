@@ -150,4 +150,4 @@ Insurance pools grow in two scenarios:
 * [Closeouts](#closeouts)
 * [Liquidity provision penalties](#penalties)
 * [Loss socialisation](#loss-socialisation)
-* :::
+:::

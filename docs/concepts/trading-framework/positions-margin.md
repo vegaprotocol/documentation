@@ -6,14 +6,17 @@ hide_title: false
 As markets and collateral are not managed through human intervention, markets must have certain automated processes that allow for well-functioning markets and assurance that the collateral required to manage positions is available when it's needed. 
 
 There are a few mechanisms that work differently to how they would on a centralised exchange, in order to keep the markets solvent. They include:
-- Margin: Vega has implemented automated cross-margining. Margin is calculated automatically depending on the number of positions, the size, and the market movements so that there's enough collateral available to sustain a position and not put other market participants, or the market itself, under strain. 
-- Mark to market: Mark to market on Vega happens much more frequently than on a centralised exchange. Every time the market price moves, the mark to market price is recalculated
+- **Margin**: Vega has implemented automated cross-margining. Margin is calculated automatically depending on the number of positions, the size, and the market movements so that there's enough collateral available to sustain a position and not put other market participants, or the market itself, under strain
+- **Mark to market**: Mark to market on Vega happens much more frequently than on a centralised exchange. Every time the market price moves, the mark to market price is recalculated
+
+## Leverage [WIP]
+A market's leverage can be calcuated as one over the risk factor.
 
 ## Mark to market
 Marking to market refers to the settling of gains and losses due to changes in the market value of the underlying product. Marking to market aims to provide a realistic appraisal of of a position based on the current market conditions.
 
 If the value goes up, a trader that holds a long position receives money in their general account – equal to the underlying's change in value – from a trader that holds a short position, and conversely if the value goes down, the holder of the short position recieves money from the holder of the long position. 
-For a market created on Vega, the mark-to-market price is calculated every time the price moves. This is in contrast to traditional futures markets, for which marking to market occurs once per day. 
+For a market created on Vega, the mark-to-market price is calculated every time the price moves. This is in contrast to traditional futures markets, for which marking to market occurs once per day.
 
 Settlement instructions are generated based on the change in market value of the open positions of a party. When the mark price changes, the network calculates settlement cash flows for each party,  and the process is repeated each time the mark price changes until the maturity date for the market is reached.
 
@@ -50,13 +53,13 @@ Image to be uploaded - <img alt="Calculating margin on open orders" src="/images
 
 There is an open sell order of size 1 on the book. The risk factor for short positions is 0.074347011. The current mark price is 0.02690. So minimum margin = 0.2690 x 0.074347011 = 0.00200 (rounded to 5 decimal places).
 
-### Margin on open positions
+### Margin calculations on open positions
 The following calculation takes into account 'slippage', as seen on an order book.
 
 #### Example:
 <img alt="Calculating margin on an open positions" src="/images/3-margin-open-positions.png" width="500" />
 
-The trader has an open short position of size 1, and no open orders. 
+The trader has an open short position of size 1, and no open orders.
 
 The risk factor for short position is 0.074347011. 
 
@@ -90,4 +93,6 @@ If there is not enough collateral to provide the required margin, then the posit
 
 ### Margin: Releasing collateral
 Traders who have a margin account balance greater than the release level will have the excess assets released to their general collateral account, to the point where their new margin level is equal to the initial margin level.
+
+### Maintenance margin
 

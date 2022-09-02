@@ -20,7 +20,7 @@ The market lifecycle begins when a proposal for a new market is accepted, and is
 <!--![Life cycle flow diagram](./0043-market-lifecycle-flow-diagram.svg)-->
 
 ### Market status: Proposed
-All markets are first proposed permissionlessly via [governance](../vega-protocol.md). Once a valid market proposal is accepted, the market can accept [liquidity commitments](/docs/testnet/concepts/liquidity#submit-liquidity-commitment). 
+All markets must first be proposed by tokenholders by following the [governance process](../vega-protocol.md). Once a valid market proposal is accepted, the market can accept [liquidity commitments](/docs/testnet/concepts/liquidity#submit-liquidity-commitment). 
 
 Voting begins and its state is `proposed`. Not every market that is proposed (and accepts liquidity) is guaranteed to exist, as it must get enough votes in favour from tokenholders.
 
@@ -35,19 +35,20 @@ Voting begins and its state is `proposed`. Not every market that is proposed (an
 
 #### Exits proposed state
 - Market Proposal voting period ends
-  - Passed ('yes' votes win and thresholds met) → Pending
-  - Failed ('no' votes win or thresholds not met) → Rejected
+  - Passed ('yes' votes win and thresholds met) → [Pending](#market-status-pending)
+  - Failed ('no' votes win or thresholds not met) → [Rejected](#market-status-rejected)
 
 ### Market status: Rejected
-If a market proposal is not successful, i.e., does not get the required amount of 'yes' votes, its state is `rejected`.
+If a market proposal is not successful, i.e., does not get the required amount of 'yes' votes, its state is `rejected`. 
+
+Any collateral in the bond account for liquidity commitments is returned to the general accounts of the party/parties that submitted liquidity commitment orders.
 
 #### Enters rejected state
 - Voting period ends
-  - Failed ('no' votes win or thresholds not met) → Rejected
+  - Failed ('no' votes win or thresholds not met)
 
 #### What is and isn't possible
 - Nothing can happen to a market with this status, it does not exist. 
-- Any collateral in the bond account for liquidity commitments is returned to the general accounts of the party/parties that submitted liquidity commitment orders
 
 #### Exits rejected state
 - No exit, as nothing more can be done with this market
@@ -65,7 +66,7 @@ When a market proposal is successful at the end of the voting period, the market
 
 #### Exits pending state
 - A market is no longer pending when any of the following occur:
-  - Enactment date is reached, the conditions for exiting the auction are met, and at least one trade will be generated when uncrossing the auction → Active (the auction is uncrossed during this transition)
+- Enactment date is reached, the conditions for exiting the auction are met, and at least one trade will be generated when uncrossing the auction. The auction is uncrossed during this transition → [Active](#market-status-active) 
 
 ### Market status: Active
 Once the enactment date is reached, the other conditions specified to exit the pending state are met, and the opening auction uncrosses, then the market becomes `active`.
@@ -81,13 +82,11 @@ An active market status indicates it is in continuous trading.
 - Orders can be placed into the market, trading occurs according to normal trading mode rules
 - Market data is emitted
 - Positions and margins are managed
+- Changes to a market configuration can be enacted through governance
 
 #### Exits active state
-- Price, liquidity or other monitoring system triggers suspension → Suspended
-- Trading termination, settlement, or suspension is triggered by a product trigger (for futures, if the trading termination date, set by a market parameter, is reached) → Trading Terminated | Settled | Suspended
-
-(how does this fit in with active) The market will terminate trading according to a product trigger -- for futures, if the trading termination date is reached -- and can be temporarily suspended automatically by market protections such as [price monitoring](/docs/testnet/concepts/trading-framework/market-protections#price-monitoring), or [liquidity monitoring](/docs/testnet/concepts/trading-framework/market-protections#liquidity-monitoring).
-
+- Price or liquidity monitoring triggers suspension → [Suspended](#market-status-suspended)
+- Trading termination or settlement, triggered if the trading termination date or settlement price is reached → [Trading Terminated](#market-status-trading-terminated) | [Settled](#market-status-settled)
 
 ### Market status: Suspended
 A market is `suspended` when an active market is temporarily stopped from trading to protect the market or the network from a risk, when the system has determined it is either not safe or not reasonable to operate the market at that point, for example due to extremely low liquidity. No trades may be created while a market is suspended.
@@ -95,14 +94,15 @@ A market is `suspended` when an active market is temporarily stopped from tradin
 Suspended markets are in auction. Depending on the type of suspension, the auction call period may have a defined end (but can be extended) or may be indefinite until the required conditions are met. The auction is uncrossed as part of the transition back to the active state and normal trading.
 
 #### Enters suspended state
-- Price, liquidity or other monitoring system triggers suspension → Suspended
+- Price or liquidity monitoring triggers suspension
 
 #### What is and isn't possible
 - Liquidity providers can submit, amend, or cancel commitments 
 - Orders applicable to auctions are accepted
+- Changes to a market configuration can be enacted through governance
 
 #### Exits suspended state
-- Conditions specified in price monitoring and liquidity monitoring and end of auction checks are met → Active 
+- Conditions specified in price monitoring and liquidity monitoring and end of auction checks are met → [Active](#market-status-active) 
 
 ### Market status: Trading Terminated
 A market may enter `trading terminated` if the instrument expires or the market is otherwise configured to have a finite lifetime. 
@@ -117,32 +117,33 @@ This could happen instantly upon trading termination, though usually there will 
 - Triggered by the expiry for the market, which depends on the market's data source
 
 #### What is and isn't possible
-- Mark to market settlement, if required after termination is triggered, then never again
+- Mark to market settlement happens once if required after termination is triggered, then never again
 - A single set of market data may be emitted for the final settlement data (e.g. settlement mark price), after which no market data are emitted
-- During the transition out of this state:
-  - All final settlement cashflows are calculated and applied (settled) 
-  - Margins are transferred back to participants' collateral
-  - Insurance pool funds are redistributed
 - No trading occurs, no orders are accepted
 - No risk management or price/liquidity monitoring occurs
 
 #### Exits trading terminated state
+- During the transition out of this state:
+  - All final settlement cashflows are calculated and applied (settled) 
+  - Margins are transferred back to participants' collateral
+  - Insurance pool funds are redistributed
 - Settlement dependencies met (i.e. oracle data received) → Settled
 
 ### Market status: Settled
 A market is `settled` once the required data to calculate the settlement cashflows is provided by the market's data source. These cashflows are calculated and applied to all traders with an open position. Positions are then closed and all orders cancelled.
 
 #### Enters settled state
-- Trading is terminated
 - Triggered by product logic and inputs (i.e. required data is received)
-
-#### What is and isn't possible
 - During the transition into this state:
   - All final settlement cashflows are calculated and applied 
   - Money held in margin accounts is transferred back to traders' collateral
   - All insurance pool funds are redistributed or moved to a network wide insurance fund account
   - All fees are distributed
-- No trading occurs, no orders are accepted
+- Trading is terminated
+
+#### What is and isn't possible
+- No trading occurs
+- No orders are accepted
 
 #### Exits settled state
 - There is no way to exit this state, as nothing more can be done with this market
