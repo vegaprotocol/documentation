@@ -5,7 +5,15 @@ sidebar_position: 1
 ---
 The Vega network runs on a set of publicly maintained computers, or nodes, on the validator testnet. A Vega network needs validating nodes that take part in consensus, as well as data nodes that receive and store network events that can be queried.
 
-All nodes are running the same 'vega' codebase with the latest releases available on [GitHub](https://github.com/vegaprotocol/vega).
+The more people run validators, the more robust the network will be. This is however limited by scalability of the underlying consensus protocol, and also requires some diversity properties (e.g., not all validators using the same cloud provider).
+
+Setting up and running a validator can be broken down into three parts:
+
+1. Setting up the server and building the software.
+2. Configuring the components and getting it up and running.
+3. Joining the network and requesting to be added to the validator set.
+
+All nodes are running the same 'vega' codebase with the latest releases available on [GitHub ↗](https://github.com/vegaprotocol/vega).
 
 Find out how to maintain and upgrade a node by working through the instructions below.
 
