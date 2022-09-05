@@ -38,7 +38,7 @@ For example: A cash-settled futures market reaches its expiry date and time. If 
 After all positions are closed at market expiry, they are ‘forgotten’ by the network.
 
 :::note Read more
-[Data sources](./data-sources.md)
+[Data sources](./data-sources)
 :::
 
 ### Mark to market settlement

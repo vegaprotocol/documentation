@@ -71,6 +71,14 @@ Now:
     * If after 1 minute has passed there are no trades resulting from the auction or the indicative price of the auction, then if in the `[95,105]` the trades are generated and the price monitoring auction concludes.
     * If after 1 minute has passed the indicative price of the auction is outside the `[95,105]`, the auction gets extended by 5 minutes, as concluding the auction at the 1 minute mark would breach the valid ranges implied by the second trigger. After the 5 minutes, trades (if any) are generated irrespective of their price, as there are no more active triggers, and the price monitoring auction concludes.
 
+The images below show how according to the risk model, 90%, 95%, or 99% of the price moves from current price of 10 over the time horizon are in the green area under the density function. Anything outside the green area is considered unlikely and would trigger an auction.
+
+[Price monitoring notebook ↗](https://github.com/vegaprotocol/research/blob/master/notebooks/misc/Price%20monitroing%20bounds.ipynb): Try out different price monitoring bounds with a python notebook.
+
+![Price distribution graph 90% for price monitoring example](/img/concept-diagrams/price-distribution-monitoring-90.png)
+![Price distribution graph 95% for price monitoring example](/img/concept-diagrams/price-distribution-monitoring-95.png)
+![Price distribution graph 99% for price monitoring example](/img/concept-diagrams/price-distribution-monitoring-99.png)
+
 ## Liquidity monitoring
 Besides the obvious appeal to traders, a liquid market also offers some risk management, particularly in a system that does not have a central counter-party. When a trader is distressed, their position can only be liquidated if there is enough volume on the order book to offload it. 
 
