@@ -1,13 +1,15 @@
-
-
-Vega Wallet provides a built-in REST API service to allow programmatic access to signing and key management. This API service is used to sign transactions with a private and public key pair when submitting orders or other commands to a Vega node.
+---
+title: Wallet API v1
+hide_title: false
+sidebar_position: 1 
+---
+Vega Wallet uses a built-in REST API service to allow programmatic access to signing and key management. This API service is used to sign transactions with a private and public key pair when submitting orders or other commands to a Vega node.
 
 :::warning API deprecation
 This API is being deprecated, and will not be available once the [JSON-RPC Wallet API](openrpc.md) is out of alpha.
 :::
 
 ## Create a wallet
-
 Creating a wallet is done using a wallet name and passphrase. If a wallet already exists, the action is aborted. New wallets are marshalled, encrypted (using the passphrase) and saved to a file on the file system. A session and accompanying JWT is created, and the JWT is returned to the user.
 
 * Request:
