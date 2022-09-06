@@ -9,7 +9,6 @@ keywords:
 - updateNetworkParameter
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
-
 import UpdateNetworkParameterAnnotated from './_generated-proposals/_updateNetworkParameter_annotated.md';
 import UpdateNetworkParameterJSON from './_generated-proposals/_updateNetworkParameter_json.md';
 import UpdateNetworkParameterCMD from './_generated-proposals/_updateNetworkParameter_cmd.md';
@@ -21,13 +20,13 @@ Network parameters are a constant (or an array of constants) in the system, the 
 
 This page describes what you need to propose a change to a network parameter, and provides proposal templates that you will need to edit before submitting.
 
-## Proposing: What you need to know
-1. The full annotated example is there to guide you through what is needed for each field in the proposal.
-2. Be sure to have your Vega wallet name and public key ready, and have your wallet connected when you submit.
-3. To submit a proposal you will need at least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the asset. Note, this amount is set through the network parameter `governance.proposal.asset.minProposerBalance`.
-4. Before proposing, read about:
-   * [Governance lifecycle](../../concepts/vega-protocol#lifecycle-of-a-governance-proposal): Learn about the off-chain and on-chain steps for crafting, sharing, and submitting proposals.
-   * [Network parameter governance](../../concepts/vega-protocol#network-parameter-governance): More details about network parameter governance and the thresholds for changes.
+## Requirements
+
+You will need:
+
+- A connected [Vega wallet](/docs/tools/vega-wallet/index.md), with your wallet name and public key to hand
+- A minimum of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minProposerBalance" hideName={true} suffix="token"/> associated with that public key
+- Familiarity with [governance on Vega](../../concepts/vega-protocol.md#governance), particularly [network parameter governance](../../concepts/vega-protocol#network-parameter-governance)
 
 ### Submit using command line
 1. To create your own proposal and submit it using the command line, copy the command line example into a text editor and include the values you want for the market.
@@ -58,3 +57,11 @@ In the tabs below you'll see an annotated example, which describes what each fie
     <UpdateNetworkParameterWin />
   </TabItem>
 </Tabs>
+
+## Voting and enactment
+
+All proposals are voted on by the community. Community members need a minimum of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minVoterBalance" suffix="tokens" hideName={true} /> to vote. Your proposal will need participation of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential.
+
+Building support is down to you. Share your proposal in [the _Network Parameter Proposals_ forum](https://community.vega.xyz/c/fairground-testnet-governance/network-parameter-proposals-testnet/34) on Vega community, being sure to follow the [post guide](https://community.vega.xyz/t/guide-to-network-governance-on-fairground-testnet/4018). You may also wish to share on [Discord](https://vega.xyz/discord) and [Telegram](https://t.me/vegacommunity).
+
+Proposal owners who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.

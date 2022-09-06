@@ -24,18 +24,17 @@ import NewMarketWin from './_generated-proposals/_newMarket_win.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This page provides a tutorial for submitting a proposal for a new market. 
+## Requirements
 
-Below you'll find:
-* Descriptions of the market proposal fields and requirements
-* What you need to submit a governance proposal
-* Full annotated proposal for guidance
-* Command line proposal you can copy and amend to propose using a CLI
-* JSON proposal you can copy and amend to propose via the token dApp
+You will need:
+
+- A connected [Vega wallet](/docs/tools/vega-wallet/index.md), with your wallet name and public key to hand
+- A minimum of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens" /> associated with that public key
+- Familiarity with [governance on Vega](../../concepts/vega-protocol.md#governance), particularly [market governance](../../concepts/vega-protocol#market-governance)
 
 <!--[Update an existing market](#update-an-existing-market): change the details of a market that is already enacted.-->
 
-## Anatomy of a market proposal
+## Fields
 The proposal for creating a new market has been divided up into sections to provide more details on what you need to submit.
 
 There are a number of fields required for proposing a market, to ensure that it has all the necessary details and research behind it to be a well-functioning market. 
@@ -62,16 +61,19 @@ The instrument shape is as follows, see below for a description of each property
 <NewMarketJSONInstrument />
 
 An instrument contains the following properties:
-* Name: a string for the  market name. Best practice is to include a full and fairly descriptive name for the instrument. Example: BTC/USD DEC18
-* Instrument code: This is a shortcode used to easily describe the instrument (e.g: FX:BTCUSD/DEC18). The more information you add, the easier it is for people to know what the market offers 
-* Future is an object that provides details about the futures market to be proposed
-* Settlement asset: This requires the ID of the asset that the market will be margined in and settle in. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID
-* Quote name: The quote name is the human-readable name/abbreviation of the settlement asset. Example: In BTCUSD, USD is the quote
-* Settlement price decimals: The number of decimal places implied by the settlement price, emitted by the settlement oracle
-* Oracle spec for settlement price: This defines the data source that will be used to identify the settlement price when the market expires
-* Oracle spec for trading termination: The fields that define the oracle used for terminating trading on the market
-* Oracle spec binding: The fields describe how specific information provided by the oracle data is used. For example, they can identify the specific name of the settlement price output, or the specific name of the trading termination property
-*  
+
+| Field | Description | Example |
+| ----------- | ----------- | ----------- |
+| Name | A string for the market name. Best practice is to include a full and fairly descriptive name for the instrument. | BTC/USD DEC18. |
+| Instrument code | This is a shortcode used to easily describe the instrument. The more information you add, the easier it is for people to know what the market offers. | FX:BTCUSD/DEC18 |
+| Future | An object that provides details about the futures market to be proposed. |
+| Settlement asset | This requires the ID of the asset that the market will be margined in and settle in. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID. |
+| Quote name | The quote name is the human-readable name/abbreviation of the settlement asset. Example: In BTCUSD, USD is the quote. |
+| Settlement price decimals | The number of decimal places implied by the settlement price, emitted by the settlement oracle. |
+| Oracle spec for settlement price | This defines the data source that will be used to identify the settlement price when the market expires. |
+| Oracle spec for trading termination | The fields that define the oracle used for terminating trading on the market. |
+| Oracle spec binding | The fields describe how specific information provided by the oracle data is used. For example, they can identify the specific name of the settlement price output, or the specific name of the trading termination property. |
+
 For easy reading, the oracle filters are separated out - see [Oracle bindings](#oracle-bindings) below to see the fields for specifying oracle data.
 
 ### Oracle bindings
@@ -157,3 +159,11 @@ In the tabs below you'll see an annotated example, which describes what each fie
     <NewMarketWin />
   </TabItem>
 </Tabs>
+
+## Voting and enactment
+
+All proposals are voted on by the community. Community members need a minimum of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minVoterBalance" suffix="tokens" hideName={true} /> to vote. Your proposal will need participation of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential.
+
+Building support is down to you. Share your proposal in [the _New Market Proposals_ forum](https://community.vega.xyz/c/fairground-testnet-governance/new-market-proposals-testnet/33) on Vega community, being sure to follow the [post guide](https://community.vega.xyz/t/guide-to-new-market-proposals-on-fairground-testnet/4017). You may also wish to share on [Discord](https://vega.xyz/discord) and [Telegram](https://t.me/vegacommunity).
+
+Proposal owners who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.
