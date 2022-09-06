@@ -1,9 +1,8 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 
 module.exports = {
-  title: "Vega",
-  tagline:
-    "A protocol for creating and trading derivatives on a fully decentralised network",
+  title: "Vega Protocol",
+  tagline: "A protocol for creating and trading derivatives on a fully decentralised network",
   url: "https://docs.vega.xyz/",
   baseUrl: "/",
   trailingSlash: false,
