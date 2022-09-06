@@ -56,7 +56,12 @@ The market can still make a large move within the auction, as long as crossing o
 
 The purpose of price monitoring is to extract more information out of the market in the event of a large move, not to stop the market from making that move altogether.
 
-#### Price monitoring example
+### Price monitoring examples
+Use the [price monitoring python notebook ↗](https://github.com/vegaprotocol/research/blob/master/notebooks/misc/Price%20monitroing%20bounds.ipynb) to try out different price monitoring bounds, and see a worked example in the section below. 
+
+<details><summary>See a worked price monitoring example</summary>
+<p>
+
 * Assume the market is configured to have two price monitoring triggers, where horizon, probability and auction extension for the two triggers are:
   * trigger 1: `1h, 0.95, 1min`,
   * trigger 2: `2h, 0.99, 5min`.
@@ -73,11 +78,13 @@ Now:
 
 The images below show how according to the risk model, 90%, 95%, or 99% of the price moves from current price of 10 over the time horizon are in the green area under the density function. Anything outside the green area is considered unlikely and would trigger an auction.
 
-[Price monitoring notebook ↗](https://github.com/vegaprotocol/research/blob/master/notebooks/misc/Price%20monitroing%20bounds.ipynb): Try out different price monitoring bounds with a python notebook.
 
 ![Price distribution graph 90% for price monitoring example](/img/concept-diagrams/price-distribution-monitoring-90.png)
 ![Price distribution graph 95% for price monitoring example](/img/concept-diagrams/price-distribution-monitoring-95.png)
 ![Price distribution graph 99% for price monitoring example](/img/concept-diagrams/price-distribution-monitoring-99.png)
+
+</p>
+</details>
 
 ## Liquidity monitoring
 Besides the obvious appeal to traders, a liquid market also offers some risk management, particularly in a system that does not have a central counter-party. When a trader is distressed, their position can only be liquidated if there is enough volume on the order book to offload it. 
