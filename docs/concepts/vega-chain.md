@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
 title: Vega Chain
 vega_network: TESTNET
 hide_title: false

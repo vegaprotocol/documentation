@@ -2,6 +2,7 @@
 sidebar_position: 5
 title: Orders
 hide_title: false
+description: See the order types and when they're applicable for a market.
 ---
 
 # Orders
@@ -48,8 +49,8 @@ Pegged orders are restricted in what values can be used when they are created. N
 
 | Type (Time in Force)      | Side  |   Bid Peg   | Mid Peg |  Offer Peg  |
 |---------------------------|-------|-------------|---------|-------------|
-| Persistent (GTC, GTT)	    | Buy	  | <= 0      | < 0     | Not allowed |
-| Persistent (GTC, GTT)	    | Sell  | Not allowed | > 0     | >= 0        |
+| Persistent (GTC, GTT)	    | Buy	  | <= 0      | < 0     |  ❌ |
+| Persistent (GTC, GTT)	    | Sell  |  ❌ | > 0     | >= 0        |
 
 #### Reference prices for pegged orders
 Rather than being set for a specific limit price, a pegged order is a defined distance from a reference price (such as the best bid, mid, or best offer/ask). That is the price against which the final order price is calculated. 
@@ -92,8 +93,8 @@ Fill Or Kill (FOK): A non-persistent order that either trades all of its volume 
 
 | Time In Force | Filled | Resulting status |
 |---------------|--------|------------------|
-|      FOK      |   No   |      Stopped     |
-|      FOK      |   Yes  |      Filled      |
+|      FOK      |   ❌   |      Stopped     |
+|      FOK      |   ✅  |      Filled      |
 
 
 ### Immediate Or Cancel
@@ -101,9 +102,9 @@ Immediate Or Cancel (IOC): A non-persistent order that trades as much of its vol
 
 | Time In Force | Filled  | Resulting status       |
 |---------------|---------|------------------------|
-|      IOC      |    No   |  Stopped               |
+|      IOC      |    ❌   |  Stopped               |
 |      IOC      | Partial |  Partially Filled      |
-|      IOC      |   Yes   |  Filled                |
+|      IOC      |   ✅   |  Filled                |
 
 
 ### Good 'Til Cancelled
@@ -111,28 +112,28 @@ Good 'Til Cancelled (GTC): A persistent order that is valid indefinitely, until 
 
 | Time In Force | Filled  | Cancelled by user | Stopped by network | Resulting status |
 |---------------|---------|-------------------|--------------------|------------------|
-|      GTC      |    No   |         No        |         No         |      Active      |
-|      GTC      |    No   |         No        |        Yes         |      Stopped     |
-|      GTC      |    No   |        Yes        |         No         |     Cancelled    |
+|      GTC      |    ❌   |         No        |         No         |      Active      |
+|      GTC      |    ❌   |         No        |        Yes         |      Stopped     |
+|      GTC      |    ❌   |        Yes        |         No         |     Cancelled    |
 |      GTC      | Partial |         No        |         No         |      Active      |
 |      GTC      | Partial |        Yes        |         No         |     Cancelled    |
 |      GTC      | Partial |         No        |        Yes         |      Stopped     |
-|      GTC      |   Yes   |         No        |         No         |      Filled      |
+|      GTC      |   ✅   |         No        |         No         |      Filled      |
 
 ### Good 'Til Time
 Good 'Til Time (GTT): A persistent order that is valid until the trader's supplied expiry time. This can be an absolute date/time or a relative offset from the timestamp on the order.
 
 | Time In Force | Filled  | Expired | Cancelled by user | Stopped by network | Resulting status |
 |---------------|---------|---------|-------------------|--------------------|------------------|
-|      GTT      |    No   |    No   |         No        |         No         |      Active      |
-|      GTT      |    No   |   Yes   |         No        |         No         |      Expired     |
-|      GTT      |    No   |    No   |        Yes        |         No         |     Cancelled    |
-|      GTT      |    No   |    No   |         No        |        Yes         |      Stopped     |
+|      GTT      |    ❌   |    No   |         No        |         No         |      Active      |
+|      GTT      |    ❌   |   Yes   |         No        |         No         |      Expired     |
+|      GTT      |    ❌   |    No   |        Yes        |         No         |     Cancelled    |
+|      GTT      |    ❌   |    No   |         No        |        Yes         |      Stopped     |
 |      GTT      | Partial |    No   |         No        |         No         |      Active      |
 |      GTT      | Partial |   Yes   |         No        |         No         |      Expired     |
 |      GTT      | Partial |    No   |        Yes        |         No         |     Cancelled    |
 |      GTT      | Partial |    No   |         No        |        Yes         |      Stopped     |
-|      GTT      |   Yes   |    No   |         No        |         No         |      Filled      |
+|      GTT      |   ✅   |    No   |         No        |         No         |      Filled      |
 
 ### Good For Auction
 Good For Auction (GFA): This order is dependent on the market's state, and will only be accepted by the system if it arrives during an auction period, otherwise it will be rejected. The order can act like either a Good 'Til Cancelled or Good Til Time order depending on whether an expiry is set.

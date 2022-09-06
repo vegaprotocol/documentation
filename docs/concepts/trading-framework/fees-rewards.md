@@ -2,6 +2,7 @@
 sidebar_position: 3
 title: Fees and trading rewards
 hide_title: false
+description: Trades can incur fees as well as rewards.
 ---
 The Vega trading fee structure incentivises passive trading (placing orders on the order book), providing liquidity, and running the network infrastructure. The protocol does not charge gas fees for interacting with the network.
 
@@ -31,8 +32,6 @@ Some of the infrastructure fee paid to validators is then distributed to the val
 
 #### Liquidity fee
 The liquidity portion of the fee is paid to participants who commit liquidity to the market. It's transferred to a liquidity fee account, and distributed to each liquidity provider's margin account at a defined time (based on network parameter `market.liquidity.providers.fee.distributionTimeStep`), and depending on how much their liquidity commitments have contributed to the market.
-
-Read more: liquidity
 
 ### Fee calculations
 At a high level, the trading fee is calculated using the following formulas:
@@ -72,12 +71,12 @@ Rewards are independent from fees, which are paid to validators, liquidity provi
 [Set up a reward transfer](../../tutorials/transferring-assets.md): Choose an activity to reward and set up a one-off or recurring transfer to fund it.
 :::
 
-### Trading rewards metrics
-As rewards are distributed based on certain criteria, they need to be defined and measured. Each reward metric is calculated per party, once at the end of each epoch.
+### Trading rewards dispatch metrics
+As rewards are distributed based on certain criteria, they need to be defined and measured. Each reward dispatch metric is calculated per party, once at the end of each epoch.
 
 Rewards can be set up to pay those who receive fees (functioning like a 'bonus'), or those who create markets.
 
-Choosing a metric is a matter of transferring assets to the relevant account type, which then contributes to the reward pool for the metric.
+Choosing a dispatch metric is a matter of transferring assets to the relevant account type, which then contributes to the reward pool for the metric.
 
 #### Fee-based reward metrics
 Fee-based rewards metrics are designed to incentivise trading volume on a given market, and are dependent on how much a participant pays in fees.
@@ -102,7 +101,7 @@ The total maker fees paid by all parties in that market is *$10,000*.
 Party A would receive $100 / $10,000 = 1% of the rewards for that epoch.
 
 #### Market creation reward metric 
-The market creation reward metric is designed to incentivise creating markets that attract good trading volume. Rewards are awarded to the proposers of any markets that meet a certain total trade value. 
+The market creation reward dispatch metric is designed to incentivise creating markets that attract good trading volume. Rewards are awarded to the proposers of any markets that meet a certain total trade value. 
 
 The threshold for what counts as 'enough' trading volume is a formula that takes into account the value of the network parameter `rewards.marketCreationQuantumMultiple`, as well as the settlement asset's quantum to assess the market's size. 
 
@@ -119,7 +118,7 @@ The proposers of each of those markets qualify for 25% of the market creation re
 :::
 
 ### Reward pools 
-Reward pools hold the funds that are used to pay out trading rewards, and are funded by participants through transfers. Choosing a metric is a matter of transferring assets to the relevant account type, which then contributes to the reward pool for the metric.
+Reward pools hold the funds that are used to pay out trading rewards, and are funded by participants through transfers. Choosing a dispatch metric is a matter of transferring assets to the relevant account type, which then contributes to the reward pool for the metric.
 
 At the end of each epoch, all reward pools will be emptied and their funds allocated to users proportionally based on the reward metric defined for each pool. 
 
@@ -130,8 +129,11 @@ When setting up a reward, the following information determines that your funds g
 * Market in scope: The Market ID of the market for which rewards will be calculated
 * Reward metric type: The metric type to be used to calculate the reward
 
-**Examples**:
+#### Reward examples
+In the section below are descriptions of potential reward scenarios, including the scopes and dispatch metrics used. 
 
+<details><summary>See reward examples</summary>
+<p>
 An early liquidity provider who supports the ETH / USDT 1Y Future market wants to encourage people to trade on the market, and as an early adopter of Vega wants to incentivise people to hold VEGA too. That provider would transfer their chosen amount of funds to the relevant reward pool.
 
 Reward Pool 1: 
@@ -159,7 +161,10 @@ Reward pool 3:
 
 Now, any user that has been a price taker in this market will receive two reward payments at the end of the epoch, once in VEGA and one in USDT, with both proportional to their overall share of maker fees paid in the market. 
 
-### Funding reward pools 
+</p>
+</details>
+
+### Funding rewards 
 Transfers are used to send assets to reward pools. 
 
 To fund a single reward pool over multiple epochs, set up a **recurring transfer to a single reward pool** that will keep topping up the reward pool for each epoch, as long as there are funds available in the party's general account.
@@ -170,8 +175,10 @@ Each epoch, the funds will be paid into each reward pool proportionally based on
 
 Note: a multiple market recurring transfer can only be used for markets that settle in the same asset, since otherwise they cannot be compared. 
 
-**Example**:
-
+#### Funding examples
+In the dropdown below  you can read through examples of how funding reward pools works.
+<details><summary>See funding examples</summary>
+<p>
 A participant wants to incentivise trading on three new markets, all of which have the same settlement asset. They can create a transfer that will top up the reward pools for those markets that accept VEGA as a reward and that calculate based on the ‘maker fees paid’ metric.
 
 * Reward Pool 1:  Reward Asset = VEGA | Market ID = A | Metric Type = Maker fees paid 
@@ -190,4 +197,7 @@ The user sets up a recurring transfer for 10,000 VEGA into the three reward pool
 * Reward Pool 2 share: 100 / (200 + 100 + 700) = 0.1 x 10,000 = 1,000 VEGA
 * Reward Pool 3 share: 700 / (200 + 100 + 700) = 0.7 x 10,000 = 7,000 VEGA
 
-Each reward pool is then distributed to individual parties as described in the [Reward pools](#reward-pools) section.
+Each reward pool is then distributed to individual parties as described in the [Reward pools](#reward-pools) section. 
+
+</p>
+</details>

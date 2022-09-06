@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 3
 title: Wallets and keys
 vega_network: TESTNET
 hide_title: false

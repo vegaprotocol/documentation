@@ -2,6 +2,7 @@
 sidebar_position: 4
 title: Market protections
 hide_title: false
+description: Read about how markets can trade safely, pseudonymously.
 ---
 In a pseudonymous environment where counter-parties may be identified by no more than a public key, it's essential for the software to consider credit risk, given that the avenues available for traditional marketplaces aren't available. If a counterparty owes more in settlement than their posted collateral, there is no way to reclaim those assets.
 
@@ -10,12 +11,12 @@ The Vega protocol has been designed with rules to detect dangerous market condit
 Margin calculations take into account the probability of the liquidation value of a position falling short of the available capital. The network is also designed to frequently re-evaluate each individual's risk, and pre-emptively close positions.
 
 Some of those measures include price monitoring, liqudity monitoring, and frequent mark to market calculations.
-
+<!--
 :::note Read more
 * [Margin on Vega](./positions-margin#margin)
 * [Mark to market](./positions-margin#mark-to-market)
 :::
-
+-->
 :::warning A note on risk
 
 Derivatives markets are financially risky, by design. If a market has no liquidity, it won't be possible to get out of a position.
@@ -110,21 +111,12 @@ A distressed trader has all their open orders on that market cancelled. The netw
 
 However, if the trader does not have sufficient collateral, they are added to list of traders that will then undergo position resolution to close out their positions.
 
-:::note Read more
-[Position resolution](#position-resolution)
-:::
-
 ### Closeouts
 When a participant does not have enough collateral to hold their open positions, the protocol will automatically trigger a closeout.
 
 The closeout process is a last resort for a position. If a trader's deployed margin on the market is insufficient to cover a mark to market settlement liability, first Vega will search the trader's available balance of the settlement asset. If this search is unable to cover the full liability, the trader will be considered distressed and undergo position resolution. Any margin balance remaining after closeout is transferred to the market's insurance pool.
 
 The insurance pool is drawn from to make up the difference required to cover the mark to market loss amount. Should the funds in the insurance pool be insufficient for that, loss socialisation will be applied.
-
-:::note Read more
-* [Position resolution](#position-resolution)
-* [Loss socialisation](#loss-socialisation)
-:::
 
 ### Position resolution
 Position resolution is executed simultaneously, during a single event, for all traders on a market that have been determined to require it. Distressed trader(s) are ‘batched up’, and position resolution is run once the full set of traders is known for this event.
@@ -136,10 +128,6 @@ The outstanding liability is sourced from the market's order book via a single m
 The network generates a set of trades with all the distressed traders, all at the volume weighted average price of the network's (new) open position. At this point, neither the distressed traders nor the network will have any open positions. Note, network orders do not affect the market's mark price. 
 
 All of the remaining collateral in each distressed trader's margin account for that market is confiscated to the market's insurance pool.
-
-:::note Read more
-[Insurance pools](#insurance-pools)
-:::
 
 ### Loss socialisation 
 Loss socialisation occurs when there are traders that don't have sufficient collateral to handle the price moves of their open position(s), and the insurance pool cannot cover their shortfall. 
@@ -160,9 +148,3 @@ When a market expires, the funds from that market's insurance pool go into a big
 Insurance pools grow in two scenarios:
 * If a trader is closed out because they do not have enough collateral to support an open positions
 * If a liquidity provider pays a penalty for failing to provide their committed liquidity
-
-:::note Read more
-* [Closeouts](#closeouts)
-* [Liquidity provision penalties](#penalties)
-* [Loss socialisation](#loss-socialisation)
-:::

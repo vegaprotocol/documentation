@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 title: Accounts
 hide_title: false
 ---
@@ -8,12 +8,6 @@ hide_title: false
 Vega uses accounts in various situations to ensure funds are never lost or double spent. The amounts in each account, as well as the transactions that added to and removed from those accounts, are all recorded and stored on-chain. Double entry accounting is maintained at all points.
 
 Accounts are used either to hold assets that you're in control of using — such as collateral you deposit, or for setting money aside that only the network can manage — to fulfil margin requirements, for example, or to store assets that are earmarked for rewards or paying out fees. This means that, for example, when your funds are allocated to margin to support a position you opened, or you submit a liquidity commitment and bond amount is reserved, those assets can't be used for anything else.
-
-:::tip Query for data
-You can see how much is allocated to the accounts for your public key in [Vega Console ↗](https://console.fairground.wtf), the trading interface.
-
-Otherwise use a [GraphQL query](./../graphql/objects/party#accounts-account) to check your public key for the accounts.
-:::
 
 ## General account
 The *general account* is managed by the party who controls the keys that account was created for.
@@ -42,10 +36,11 @@ Each party with open orders or positions on any market has a margin account. Whe
 
 To move some or all of the money in your margin account back into your general account, you can try reducing the size of your position on the market, or closing it entirely. If your position size is zero and you have no active orders, your margin account will be empty and all the funds will be returned to your general account and be accessible by you once more.
 
-:::info Read more
+<!--
+:::note Read more
 [Margin](./trading-framework/positions-margin)
 :::
-
+-->
 ### Mark-to-market settlement accounts
 This account type temporarily holds assets to be distributed based on the outcomes of trades and market movements.
 
@@ -53,16 +48,18 @@ Each market has a mark-to-market settlement account. Cashflows from mark-to-mark
 
 Note that this happens instantaneously, so you will likely never observe a current balance in an account of this type. However, you may see transfers to and from this account and historic balances if you examine historic data. This can help you to understand how funds have moved between parties with active positions on a market.
 
-:::info Read more
+:::note Read more
 [Mark-to-market settlement](./trading-framework/trade-lifecycle#mark-to-market-settlement) 
 :::
 
 ### Liquidity bond accounts
 Every liquidity provider automatically transfers a certain amount of money to a bond account for each market that they're committed to. The liquidity provider chooses how much goes into the bond account, and that amount is locked up for the entire time that party commits liquidity to the market. It acts as a guarantee for the liquidity obligation, to assure that the commitment is firm and the protocol can rely on that liquidity in any market conditions.
 
-:::info Read more
+<!--
+:::note Read more
 [How liquidity works on Vega](../concepts/liquidity) 
 :::
+-->
 
 ### Insurance pool accounts
 There are insurance pool accounts per market and per asset. 
@@ -71,7 +68,7 @@ The insurance pool holds funds that have been collected if a liquidity provider 
 
 Once a market settles and terminates, any amount left in a market's insurance pool is transferred to the asset insurance pool, which can then be drawn on by other markets that use the same settlement asset.
 
-:::info Read more
+:::note Read more
 * [Market lifecycle](./trading-framework/market-lifecycle)
 * [Market protections](./trading-framework/market-protections)
 :::
@@ -87,7 +84,7 @@ The revenue from other fees go into fee-specific accounts:
 * **Liquidity fee pool**: per market, to then be distributed to the market's liquidity providers based on their share of the market
 * **Infrastructure fee pool**: per asset, to then be distributed to the consensus validators who run the network and thus provide the infrastructure
 
-:::info Read more
+:::note Read more
 [Fees](./trading-framework/fees-rewards)
 :::
 
@@ -96,7 +93,7 @@ Trading rewards are funded by community members that want to incentivise certain
 
 Reward accounts can exist for each combination of reward metric, asset, and market, and they come to exist when they are funded by reward account transfers, which occur at the end of each epoch. The amount of assets entering each reward account depend on the amount transferred and the reward transfer strategy that the funder(s) defined when they set up the rewards transfer.
 
-:::info Read more
+:::note Read more
 [Trading rewards](./trading-framework/fees-rewards#trading-rewards)
 :::
 

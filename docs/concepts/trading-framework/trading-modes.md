@@ -2,6 +2,7 @@
 sidebar_position: 1
 title: Trading modes
 hide_title: false
+description: Find out what trading modes the protocol supports.
 ---
 # Trading modes 
 A market's trading mode denotes the types of trading that can be done on it while the market is in that mode. A market can only have one trading mode at a time.  
@@ -19,12 +20,12 @@ Most, but not all, order types and times in force are accepted during continuous
 
 | Order type  | GTT | GTC | IOC | FOK | GFA | GFN |
 | -------------- |:---:|:---:|:---:|:---:|:---:|:---:|
-| Limit          | Y   | Y   | Y*  | Y*  | N   | Y   |
-| Pegged         | Y   | Y   | N** | N** | N   | Y   |
-| Market         | N   | N   | Y   | Y   | N   | N   |
+| Limit          |  ✅ | ✅  | ☑️  | ☑️  | ❌   | ✅   |
+| Pegged         |  ✅ | ✅  | 🛑   | 🛑 | ❌   | ✅   |
+| Market         | ❌  | ❌  | ✅   | ✅   | ❌   | ❌   |
 
-\* IOC/FOK LIMIT orders never rest on the book, if they do not match immediately they are cancelled/stopped.<br/>
-\** IOC/FOK PEGGED orders are not currently supported as they will always result in the cancelled/stopped state. This may change in the future if pegged orders are allowed to have negative offsets that can result in an immediate match.
+☑️ - IOC/FOK LIMIT orders never rest on the book, if they do not match immediately they are cancelled/stopped.<br/>
+🛑 - IOC/FOK PEGGED orders are not currently supported as they will always result in the cancelled/stopped state. This may change in the future if pegged orders are allowed to have negative offsets that can result in an immediate match.
 
 ## Auctions
 Auctions are a trading mode that collect orders during a set period, called an [auction call period](#auction-call-period). The end of an auction call period is determined by the condition that the auction aims to meet.
@@ -60,7 +61,7 @@ A price monitoring auction's exit depends on how large the price move was, and r
 
 If no one places orders in the price monitoring auction, the auction is exited and the original order is executed.  
 
-:::info Read more
+:::note Read more
 [Price monitoring](./market-protections#price-monitoring)
 :::
 
@@ -77,7 +78,7 @@ Enough liquidity relative to the market's open interest, to get the market back 
 
 If a market enters into a liquidity auction and never again attracts enough liquidity to exit it, the market will stay in a liquidity auction until the market's settlement. Once the market's settlement price is emitted by the data source, then all market participants are settled based on their positions and account balances.
 
-::: Read more
+:::note Read more
 [Liquidity monitoring](./market-protections#liquidity-monitoring)
 :::
 
@@ -91,12 +92,12 @@ When a market is in an auction, only certain order types and times in force can 
 
 
 | Pricing method | GTT | GTC | IOC | FOK | GFA | GFN |
-| -------------- |:---:|:---:|:---:|:----|:---:|:---:|
-| Limit          | Y   | Y   | N   | N   | Y   | N   |
-| Pegged         | Y*  | Y*  | N   | N   | Y*  | N   |
-| Market         | N   | N   | N   | N   | N   | N   |
+| -------------- |:---:|:---:|:---:|:----:|:---:|:---:|
+| Limit          | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ |
+| Pegged         | ☑️ | ☑️ | ❌ | ❌ | ☑️ | ❌ |
+| Market         | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
-\* Pegged orders will be [parked](./orders#parked-pegged-orders) if placed during an auction, with time priority preserved.
+☑️ - Pegged orders will be [parked](./orders#parked-pegged-orders) if placed during an auction, with time priority preserved.
 
 **Upon entering an auction:**
 * Pegged orders are parked

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 2
 title: Vega Protocol
 vega_network: TESTNET
 hide_title: false
