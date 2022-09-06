@@ -48,10 +48,6 @@ Each market has a mark-to-market settlement account. Cashflows from mark-to-mark
 
 Note that this happens instantaneously, so you will likely never observe a current balance in an account of this type. However, you may see transfers to and from this account and historic balances if you examine historic data. This can help you to understand how funds have moved between parties with active positions on a market.
 
-:::note Read more
-[Mark-to-market settlement](./trading-framework/trade-lifecycle#mark-to-market-settlement) 
-:::
-
 ### Liquidity bond accounts
 Every liquidity provider automatically transfers a certain amount of money to a bond account for each market that they're committed to. The liquidity provider chooses how much goes into the bond account, and that amount is locked up for the entire time that party commits liquidity to the market. It acts as a guarantee for the liquidity obligation, to assure that the commitment is firm and the protocol can rely on that liquidity in any market conditions.
 

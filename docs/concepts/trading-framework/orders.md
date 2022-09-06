@@ -148,7 +148,7 @@ Good for Normal orders are stopped if the market moves into an auction.
 ## Submitting, amending and cancelling orders
 This section is specific to market and limit orders. 
 
-See [pegged orders](#pegged-order) and [liquidity commitment orders](../liquidity#liquidity-commitment-order-type) for information on how to manage those order types.
+See [pegged orders](#pegged-order) and [liquidity commitment orders](./../../tutorials/providing-liquidity) for information on how to manage those order types.
 
 ### Submit an order 
 Orders can be submitted into any market that is active - not expired or settled. Orders will only be accepted if sufficient margin can be allocated from a trader's available collateral. Not all orders can be submitted in all trading modes. 

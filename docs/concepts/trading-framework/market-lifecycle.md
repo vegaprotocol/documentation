@@ -16,12 +16,12 @@ The market lifecycle begins when a proposal for a new market is accepted, and is
 | [Trading Terminated](#market-status-trading-terminated) |   ❌           | No trading          | Defined by the product (i.e. from a product parameter, specified in market definition, giving close date/time) | Settlement event commences                       
 | [Settled](#market-status-settled)            |   ❌           | No trading          | Settlement triggered and completed as defined by product                                      | N/A                                            
 
-[1] Accepting LPs: it is possible to submit or amend [liquidity commitments](/docs/testnet/concepts/liquidity#submit-liquidity-commitment)
+[1] Accepting LPs: it is possible to submit or amend liquidity commitments
 
 <!--![Life cycle flow diagram](./0043-market-lifecycle-flow-diagram.svg)-->
 
 ## Market status: Proposed
-All markets must first be proposed by tokenholders by following the [governance process](../vega-protocol.md). Once a valid market proposal is accepted, the market can accept [liquidity commitments](/docs/testnet/concepts/liquidity#submit-liquidity-commitment). 
+All markets must first be proposed by tokenholders by following the [governance process](../vega-protocol.md). Once a valid market proposal is accepted, the market can accept [liquidity commitments](./../../tutorials/providing-liquidity). 
 
 Voting begins and its state is `proposed`. Not every market that is proposed (and accepts liquidity) is guaranteed to exist, as it must get enough votes in favour from tokenholders.
 
