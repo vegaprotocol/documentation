@@ -63,7 +63,7 @@ In the tabs below you'll see an annotated example, which describes what each fie
 		<TerminalInstructions />
 		<NewAssetCMD />
   </TabItem>
-  <TabItem value="win" label="Command line (Windows)Voting and enacting">
+  <TabItem value="win" label="Command line (Windows)">
 		<TerminalInstructions />
 		<NewAssetWin />
   </TabItem>
