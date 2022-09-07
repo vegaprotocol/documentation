@@ -28,9 +28,10 @@ The **binding** tells the market which field contains the value. The **spec** de
 
 When it's time for a market to settle, someone needs to submit the data that matches the oracle spec defined in the market.
 
-Read more: 
+:::note Read more: 
 [Market governance concepts:](../concepts/vega-protocol.md)
 [Tutorial - proposing a market:](./proposals/new-market-proposal.md)
+:::
 
 ## Who can submit oracle data
 Any Vega keypair can submit oracle data to the chain. In the configuration for a market, an oracle specification field dictates which data feeds it is interested in. In effect, it works as a filter. This specification means that the creator of an instrument for a market will choose in advance a price source, and which data fields the market requires to settle and terminate.
