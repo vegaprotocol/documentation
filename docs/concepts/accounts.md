@@ -38,7 +38,7 @@ To move some or all of the money in your margin account back into your general a
 
 <!--
 :::note Read more
-[Margin](./trading-framework/positions-margin)
+[Margin](./trading-on-vega/positions-margin)
 :::
 -->
 ### Mark-to-market settlement accounts
@@ -65,8 +65,8 @@ The insurance pool holds funds that have been collected if a liquidity provider 
 Once a market settles and terminates, any amount left in a market's insurance pool is transferred to the asset insurance pool, which can then be drawn on by other markets that use the same settlement asset.
 
 :::note Read more
-* [Market lifecycle](./trading-framework/market-lifecycle)
-* [Market protections](./trading-framework/market-protections)
+* [Market lifecycle](./trading-on-vega/market-lifecycle)
+* [Market protections](./trading-on-vega/market-protections)
 :::
 
 ### Accounts for fees
@@ -81,7 +81,7 @@ The revenue from other fees go into fee-specific accounts:
 * **Infrastructure fee pool**: per asset, to then be distributed to the consensus validators who run the network and thus provide the infrastructure
 
 :::note Read more
-[Fees](./trading-framework/fees-rewards)
+[Fees](./trading-on-vega/fees-rewards)
 :::
 
 ### Reward accounts 
@@ -90,7 +90,7 @@ Trading rewards are funded by community members that want to incentivise certain
 Reward accounts can exist for each combination of reward metric, asset, and market, and they come to exist when they are funded by reward account transfers, which occur at the end of each epoch. The amount of assets entering each reward account depend on the amount transferred and the reward transfer strategy that the funder(s) defined when they set up the rewards transfer.
 
 :::note Read more
-[Trading rewards](./trading-framework/fees-rewards#trading-rewards)
+[Trading rewards](./trading-on-vega/fees-rewards#trading-rewards)
 :::
 
 <!--### Network treasury accounts
