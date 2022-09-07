@@ -1,15 +1,15 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 title: Deposits and withdrawals
 hide_title: false
 ---
 Assets used for trading, paying fees, funding rewards, and providing liquidity need to be deposited using a bridge contract, and can be withdrawn back into an Ethereum wallet if they are not being used for margin or liquidity commitment.
 
+Once an asset is deposited, it's available in your general account, from which it then may be held in other account types depending on what you use the assets for. 
+
 :::tip Tools you'll need
 To deposit or withdraw, you'll need a [Vega Wallet](../tools/vega-wallet/index.md) and an Ethereum wallet, such as MetaMask. 
 :::
-
-Once an asset is deposited, it's available in your general account, from which it then may be held in other account types depending on what you use the assets for. 
 
 :::note Read more 
 [Accounts](./accounts.md): Learn about different accounts that your assets can be held in. 
@@ -46,7 +46,7 @@ When a participant wants to deposit assets onto a Vega key, they need to call a 
 
 Once deposited, the assets are held in an asset pool for security and to make contract updates easier/less risky.
 
-:::info Go deeper
+:::note Go deeper
 Before running the deposit function, you must run the ERC20-standard approve function to authorise the bridge smart contract as a spender of the target token. This will only allow a specific amount of that token to be used by the bridge. This can be done directly or through a Vega app.
 
 Read about the ERC-20 token standard: [EIP-20: Token Standard proposal](https://eips.ethereum.org/EIPS/eip-20)
@@ -58,7 +58,7 @@ The transaction is recognised by the Vega event queue and packaged as an event, 
 
 Once the transaction is verified, the Vega public key submitted in the transaction will be credited with the deposited asset.
 
-:::info Read more
+:::note Read more
 [ERC20 bridge logic API documentation](../api/bridge/contracts/ERC20_Bridge_Logic.md#deposit_asset)
 :::
 
@@ -78,7 +78,7 @@ If the withdrawal is not completed by the participant before the expiry, the tok
 
 If it's successful withdrawal transaction, the ERC20 bridge will emit an `Asset_Withdrawn` event, and confirms to the Vega network that the withdrawal has been completed.
 
-:::info Read more
+:::note Read more
 [ERC20 bridge logic API documentation](../api/bridge/contracts/ERC20_Bridge_Logic.md#withdraw_asset)
 :::
 
@@ -94,6 +94,6 @@ Rewards accrued through staking are not associated automatically. To stake those
 Track and withdraw testnet staking rewards on the [Vega token withdrawals page for testnet](https://token.fairground.wtf/withdraw).
 :::
 
-:::info Read more
+:::note Read more
 [VEGA token](./vega-chain#vega-token) for more details about the VEGA token
 :::

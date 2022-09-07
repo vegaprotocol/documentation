@@ -49,7 +49,7 @@ Each market has a mark-to-market settlement account. Cashflows from mark-to-mark
 Note that this happens instantaneously, so you will likely never observe a current balance in an account of this type. However, you may see transfers to and from this account and historic balances if you examine historic data. This can help you to understand how funds have moved between parties with active positions on a market.
 
 :::info Read more
-[Mark-to-market settlement](./trading-framework/trade-lifecycle#mark-to-market-settlement) 
+[Mark-to-market settlement](./trading-on-vega/trade-lifecycle#mark-to-market-settlement) 
 :::
 
 ### Liquidity bond accounts

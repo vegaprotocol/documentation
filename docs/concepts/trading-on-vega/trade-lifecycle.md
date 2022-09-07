@@ -18,9 +18,9 @@ Collection will result in ledger entries being formulated. They adhere to double
  
 These transfers will debit from the market's market settlement account and be credited to the margin accounts of traders who have are due to receive an asset flow as a result of the settlement.
 
-<!--Read more: 
-* [Insurance pools](/docs/testnet/concepts/trading-framework/market-protections#insurance-pools)
-* [Loss socialisation](/docs/testnet/concepts/trading-framework/market-protections#loss-socialisation) -->
+Read more: 
+* [Insurance pools](/docs/testnet/concepts/trading-on-vega/market-protections#insurance-pools)
+* [Loss socialisation](/docs/testnet/concepts/trading-on-vega/market-protections#loss-socialisation)
  
 ### Settlement at market expiry
 When a market reaches its maturity date and time, a final settlement is carried out. That settlement is based on a pre-defined oracle publishing data that triggers the market’s expiry.
@@ -49,7 +49,7 @@ When the mark price changes, the network calculates settlement cash flows for ea
 Each time the mark price for a given market changes, all the open positions and orders are marked to market, resulting in interim partial payments that are calculated by the network. Those payments go directly the relevant trader's collateral. 
 
 :::note Read more
-[Mark to market](/docs/testnet/concepts/trading-framework/market-protections#mark-to-market)
+[Mark to market](/docs/testnet/concepts/trading-on-vega/market-protections#mark-to-market)
 :::
 
 ### Settlement parameters defined through governance
