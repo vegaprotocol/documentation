@@ -7,7 +7,7 @@ description: See every stage possible for a proposed or live market.
 The market lifecycle begins when a proposal for a new market is accepted, and is driven by the market's state. The table shows a high-level view of each part of a market's lifecycle, including when that stage is over and a new one begins. Below, learn more about each lifecycle stage.
 
 | Status              | Accepting LP[1]  | Trading Mode        | Condition for entry                                                           | Condition for exit                   
-| ------------------ | -------------- | ------------------- | --------------------------------------------------------------- | -----------------------------------------         
+| ------------------ |:--------------:| ------------------- | --------------------------------------------------------------- | -----------------------------------------         
 | [Proposed](#market-status-proposed)           |   ✅          | No trading          | Governance proposal valid and accepted                                       | Governance proposal voting period ends
 | [Rejected](#market-status-rejected)           |   ❌           | No trading          | Outcome of governance votes is to reject the market             | N/A                                                    
 | [Pending](#market-status-pending)            |   ✅          | Opening auction     | Governance vote passes                                     | Governance vote (to close) OR enactment date reached
