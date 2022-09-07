@@ -2,7 +2,7 @@
 sidebar_position: 3
 title: Fees and trading rewards
 hide_title: false
-description: Trades can incur fees as well as rewards.
+description: Trades can incur fees as well as get rewards.
 ---
 The Vega trading fee structure incentivises passive trading (placing orders on the order book), providing liquidity, and running the network infrastructure. The protocol does not charge gas fees for interacting with the network.
 
@@ -54,22 +54,29 @@ The fee goes to validators for providing the network infrastructure that support
 
 The fee is calculated by multiplying the transfer amount and the `transfer.fee.factor` network parameter.
 
-## Trading rewards 
-Market participants can also receive rewards, in addition to fees incentivising liquidity provision, passive orders, and infrastructure support. Those rewards can be set up by anyone to incentivise certain trading behaviours they want to see on a market (or markets). 
+## Trading rewards
+Market participants can also receive rewards for their trading, liquidity commitment, and market creation activity.
+
+Depending on the rewards available, traders can receive bonuses for placing market and/or limit orders that are filled. Liquidity providers can receive rewards for placing liquidity orders that are likely to match, and market proposers can receive rewards for proposing markets that draw in trading volume. 
+
+Reward proceeds are paid directly to the recipient's general account.
 
 * Any party that trades on a market with a trading reward can be eligible to receive a portion of the rewards.
 * Any party with an amount of a market's settlement asset can fund a reward pool to incentivise trading. 
-
-Trading rewards are defined by three things:
-* Type of activity to be rewarded (and how it's measured)
-* An amount to reward
-* How long a reward is offered
 
 Rewards are independent from fees, which are paid to validators, liquidity providers, and price makers on each trade.
 
 :::info Try it out
 [Set up a reward transfer](../../tutorials/transferring-assets.md): Choose an activity to reward and set up a one-off or recurring transfer to fund it.
 :::
+
+## Setting rewards
+Rewards can be set up by anyone to incentivise certain trading behaviours they want to see on a market (or markets). 
+
+Trading rewards are defined by three things:
+* Type of activity to be rewarded (and how it's measured)
+* An amount to reward
+* How long a reward is offered
 
 ### Trading rewards dispatch metrics
 As rewards are distributed based on certain criteria, they need to be defined and measured. Each reward dispatch metric is calculated per party, once at the end of each epoch.

@@ -27,6 +27,10 @@ Most, but not all, order types and times in force are accepted during continuous
 ☑️ - IOC/FOK LIMIT orders never rest on the book, if they do not match immediately they are cancelled/stopped.<br/>
 🛑 - IOC/FOK PEGGED orders are not currently supported as they will always result in the cancelled/stopped state. This may change in the future if pegged orders are allowed to have negative offsets that can result in an immediate match.
 
+:::note Read more
+**[Orders](./orders.md)**: Explore the available order types and their possible times in force.
+:::
+
 ## Auctions
 Auctions are a trading mode that collect orders during a set period, called an [auction call period](#auction-call-period). The end of an auction call period is determined by the condition that the auction aims to meet.
 

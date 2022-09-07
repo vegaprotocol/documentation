@@ -6,9 +6,42 @@ description: See the order types and when they're applicable for a market.
 ---
 
 # Orders
-An order is an instruction to execute a trade that is long or short on a market's price. Placing an order does not guarantee it gets filled. Orders stay on the order book until they are filled, expired or cancelled.
+An order is an instruction to buy or sell on specific market, and it can go long or short on the market's price. Placing an order does not guarantee it gets filled. 
+
+:::info Try it out
+Place orders on markets using [Vega Console ↗](https://console.fairground.wtf), configured to the Fairground network, which only uses testnet assets.
+:::
+
+## Order data
+The information needed by Vega to process an order:
+
+| Name           | Description                                                                    | How it's determined |
+|-----------|------------------------------------------------------------------------------------------|----------------|
+| [Price](#limit-order)|Price to buy or sell at, for a limit order. Market orders use the best available price|Chosen by user|
+| [Time in force](#times-in-force)	  | Instructions for how the order must behave                    |Chosen by user|
+| Side	  | Buy or sell                                                                               |Chosen by user|
+| Market	  | Name or ID of the market the order is placed in                                       | Chosen by user|
+| [Size](#order-sizes)	  | How much to buy or sell                                                   | Chosen by user|
+| Party	  | Vega public key of the party placing the order                                            | Chosen by user|
+| Expires at | If the order has a Good 'til Time TIF, the specific time the order will expire | Chosen by user|
+| [Type](#order-types)	  | Type of order (such as limit or market)                                   | Chosen by user|
+| [Pegged order](#pegged-order) | Details about a pegged order, if an order uses pegs                 |Chosen by user|
+| [Liquidity provision](./../../tutorials/providing-liquidity.md) | Provides details if an order is a liquidity commitment order   |Chosen by user|
+| Order ID | Unique deterministic ID, can be used to query but only exists after consensus      |Determined by network|
+| [Order status](#order-status)	  | Whether an order is filled, partially filled, stopped or cancelled |Determined by network|
+| Reference | Unique order reference, used to retrieve an order submitted through consensus |Determined by network|
+| Remaining	  | How many units of the order have not been filled, if any                        |Determined by network|
+| Created at  | Vega date and time the order was created at                                     |Determined by network|
+| Rejection reason | If an order is rejected, this describes why                     |Determined by network|
+| [Version](#amend-an-order) | If a user amends an order, this increases by 1. You can fetch previous versions |Determined by network|
+| [Updated at](#amend-an-order) | If an order has been amended, when it was amended    |Determined by network|
+| Batch ID  | Used to identify which batch an auction orders falls under |Determined by network|
 
 ## Order sizes
+The order size defines how much of a unit the user wants to buy or sell with their order. 
+
+Orders are filled if the price is achieved, and an order can fill partly, completely or not at all. This doesn't affect the original order size, but does effect the remaining order size. 
+
 Order sizes can be whole numbers or fractional, as long as the order is within the maximum number of decimal places allowable for the market. Any order containing more precision than this will be rejected. A market's decimal places are specified at the time of the market's proposal.
 
 If a market requires that orders are specified using integers, fractional order sizes do not apply and 1 is the smallest increment.
@@ -19,7 +52,9 @@ There are three order types available to traders: limit orders, market orders, a
 Orders can be persistent (stay on the order book) or non-persistent (never hit the order book). Some order types in Vega depend on the market state. 
 
 ### Limit order
-A limit order is an instruction that allows you to specify the minimum price at which you will sell, or the maximum at which you will buy. 
+A limit order is an instruction that allows you to specify the minimum price at which you will sell, or the maximum at which you will buy.
+
+Limit orders stay on the order book until they are filled, expired or cancelled, unless they use IOC or FOK times in force.
 
 #### Times in force available for limit orders
 * **GTC**: A Good 'til Cancelled order trades at a specific price until it is filled or cancelled. 
@@ -27,15 +62,14 @@ A limit order is an instruction that allows you to specify the minimum price at 
 * **GFN**: A Good for Normal order is an order that will only trade in a continuous market. The order can act like either a GTC or GTT order depending on whether the expiry field is set.
 * **GFA**: A Good for Auction order will only be accepted during an auction period, otherwise it will be rejected. The order can act like either a GTC or GTT order depending on whether an expiry is set.
 * **IOC**: An Immediate or Cancel order executes all or part of a trade immediately and cancels any unfilled portion of the order. 
-* **FOK**: A Fill or Kill order either trades completely until the remaining size is 0, or not at all, and does not remain on the book if it doesn't trade.
+* **FOK**: A Fill or Kill order either trades completely until the remaining size is 0, or not at all, and is not placed on the order book if it doesn't trade.
 
 ### Market order
-A market order is an instruction to buy or sell at the best available price in the market. 
+A market order is an instruction to buy or sell at the best available price in the market. Because market orders can only use IOC or FOK times in force, they are never placed on the order book.
 
-#### Times in force available for limit orders
-
-* **IOC**: An Immediate or Cancel order executes all or part of a trade immediately and cancels any unfilled portion of the order. 
-* **FOK**: A Fill or Kill order either trades completely until the remaining size is 0, or not at all, and does not remain on the book if it doesn't trade.
+#### Times in force available for market orders
+* **IOC**: An Immediate or Cancel order executes all or part of a trade immediately and cancels any unfilled portion of the order. An IOC order is never placed on the order book.
+* **FOK**: A Fill or Kill order either trades completely until the remaining size is 0, or not at all, and is never placed on the order book.
 
 ### Pegged order
 Pegged orders are orders that are a defined distance from a reference price (i.e. best bid, mid and best offer/ask), rather than at a specific price, and generate limit orders based on the set parameters.
@@ -45,7 +79,7 @@ A pegged order is not placed on the order book itself, but instead generates a l
 The reference can only be positive and Vega applies it differently depending on if the order is a buy or sell. If the order is a `buy`, then the offset is taken away from the reference price. If the order is a `sell` they the offset is added to the reference price.
 
 #### Values available for pegged orders
-Pegged orders are restricted in what values can be used when they are created. Note: IOC and FOK are not currently available for pegged orders, but will be in a future release. 
+Pegged orders are restricted in what values can be used when they are created, and only the times in force of Good 'til Cancelled and Good 'til Time can be used.
 
 | Type (Time in Force)      | Side  |   Bid Peg   | Mid Peg |  Offer Peg  |
 |---------------------------|-------|-------------|---------|-------------|
@@ -55,7 +89,7 @@ Pegged orders are restricted in what values can be used when they are created. N
 #### Reference prices for pegged orders
 Rather than being set for a specific limit price, a pegged order is a defined distance from a reference price (such as the best bid, mid, or best offer/ask). That is the price against which the final order price is calculated. 
 
-The reference price is based on the live market, and the final price is calculated and used to insert the new order. The distance is also known as the offset value, which is an absolute value that must be cleanly divisible by the tick size, and must be positive. 
+The reference price is based on the live market, and the final price is calculated and used to insert the new order. The distance is also known as the offset value, which is an absolute value that must be cleanly divisible by the tick size, and must be positive.
 
 #### Amend pegged orders
 Pegged orders can be amended like standard limit orders - their reference, offset and time in force values can all be amended. Amends must be done to the pegged order itself, not any limit orders derived from pegged orders. 
@@ -153,14 +187,26 @@ See [pegged orders](#pegged-order) and [liquidity commitment orders](./../../tut
 ### Submit an order 
 Orders can be submitted into any market that is active - not expired or settled. Orders will only be accepted if sufficient margin can be allocated from a trader's available collateral. Not all orders can be submitted in all trading modes. 
 
-If, during continuous trading, an order is going to be matched with another order on the book for the same party (also known as a wash trade), the order will be stopped, cancelled, and removed from the order book. 
+If, during continuous trading, an order is going to be matched with another order on the book for the same party (also known as a wash trade), the order will be stopped, cancelled, and removed from the order book.
+
+#### Opening auctions
+Liquidity commitment orders, and [Good For Auction](#good-for-auction) orders can be submitted to markets that are in a pending state, and thus in opening auction. 
+
+Pegged orders can also be placed, but will be parked until the market is out of auction. 
+
+:::note Read more
+**[Market status: pending](./market-lifecycle#market-status-pending)**
+**[Opening auctions](./trading-modes#auction-type-opening)**
+:::
 
 ### Amend an order
-Orders that have not been fully filled can be amended. 
+Orders that have not been fully filled can be amended.
 
 If your amendment will change the price you're seeking or increase the order size, it will cancel the existing order and replace it with a new one. The time priority will be lost, because, in effect, the original order was cancelled and removed from the book and a new order was submitted with the modified values.
 
 ### Cancel an order
-Orders that have not been fully filled can be cancelled. 
+Market, limit and pegged orders that have not been fully filled can be cancelled. 
+
+Liquidity commitment orders can be cancelled, but the cancellation will only be accepted if there's enough liquidity on the market without those committment orders.
 
 When trading using the APIs, a trader can cancel individual orders, all orders for their public key across all markets, or all orders for their public key on a single market.
