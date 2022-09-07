@@ -22,7 +22,7 @@ You must meet certain criteria before you can submit. Requirements may differ de
 You will typically need:
 
 - A connected [Vega wallet](/docs/tools/vega-wallet/index.md), with your wallet name and public key to hand
-- A minimum amount of Vega tokens
+- A minimum amount of Vega tokens associated with that public key
 - Familiarity with [governance on Vega](../../concepts/vega-protocol.md#governance)
 
 ## Proposal types

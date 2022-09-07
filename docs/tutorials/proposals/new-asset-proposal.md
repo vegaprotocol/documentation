@@ -9,7 +9,8 @@ keywords:
 - newAsset
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
-
+import JSONInstructions from './_json-instructions.md';
+import TerminalInstructions from './_terminal-instructions.md';
 import NewAssetAnnotated from './_generated-proposals/_newAsset_annotated.md';
 import NewAssetJSON from './_generated-proposals/_newAsset_json.md';
 import NewAssetCMD from './_generated-proposals/_newAsset_cmd.md';
@@ -47,45 +48,28 @@ When adding an ERC-20 asset to the bridge, the key details are compared to the s
 
 Validation happens according to the `validationTimestamp` parameter. In most situations, this should be early on in the voting period so that any validation errors are caught before token holders start voting. However you could push the validation later if the contract is not yet deployed.
 
-## Proposing: What you need to know
-1. The full annotated example is there to guide you through what is needed for each field in the proposal.
-2. Be sure to have your Vega wallet name and public key ready, and have your wallet connected when you submit.
-3. To submit a proposal you will need at least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the asset. Note, this amount is set through the network parameter `governance.proposal.asset.minProposerBalance`.
-4. Before proposing, read about:
-   * [Governance lifecycle](../../concepts/vega-protocol#lifecycle-of-a-governance-proposal): Learn about the off-chain and on-chain steps for crafting, sharing, and submitting proposals.
-   * [Assets at a protocol level](../../concepts/vega-protocol#assettoken-management)
-
-### Submit using command line
-1. To create your own proposal and submit it using the command line, copy the command line example into a text editor and include the values you want for the market.
-2. Use the command line to submit your proposal.
-3. You can see your proposal on the [Fairground block explorer](https://explorer.fairground.wtf/governance).
-4. Your proposal will need enough voting weight to pass, so having community support of your proposal is essential.
-
-### Submit using token dApp
-1. To create your own proposal and submit with the token dApp, copy the JSON example into a text editor and include the values you want for the market.
-2. Use the token dApp's [Governance page](https://token.fairground.wtf/governance) to submit your proposal. 
-3. You can see your proposal on the token dApp governance page.
-4. Your proposal will need enough voting weight to pass, so having community support of your proposal is essential.
-
-## Full proposal examples
+## Templates and submitting
 In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to submit on the token dApp, and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
 
 <Tabs groupId="newAssetProposal">
   <TabItem value="annotated" label="Annotated example">
     <NewAssetAnnotated />
   </TabItem>
-  <TabItem value="json" label="JSON example">
-    <NewAssetJSON />
+  <TabItem value="json" label="Token dApp (JSON)">
+		<JSONInstructions />
+		<NewAssetJSON />
   </TabItem>
-  <TabItem value="cmd" label="Linux / OSX command line">
-    <NewAssetCMD />
+  <TabItem value="cmd" label="Command line (Linux / OSX)">
+		<TerminalInstructions />
+		<NewAssetCMD />
   </TabItem>
-  <TabItem value="win" label="Windows command line">
-    <NewAssetWin />
+  <TabItem value="win" label="Command line (Windows)Voting and enacting">
+		<TerminalInstructions />
+		<NewAssetWin />
   </TabItem>
 </Tabs>
 
-## Voting and enactment
+## Voting and enacting
 
 All proposals are voted on by the community. Community members need a minimum of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minVoterBalance" suffix="tokens" hideName={true} /> to vote. Your proposal will need participation of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential.
 

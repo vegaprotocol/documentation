@@ -12,6 +12,8 @@ keywords:
 - newMarket
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
+import JSONInstructions from './_json-instructions.md';
+import TerminalInstructions from './_terminal-instructions.md';
 import NewFreeformAnnotated from './_generated-proposals/_newFreeform_annotated.md';
 import NewFreeformJSON from './_generated-proposals/_newFreeform_json.md';
 import NewFreeformCMD from './_generated-proposals/_newFreeform_cmd.md';
@@ -32,26 +34,29 @@ You will need:
 - A minimum of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.freeform.minProposerBalance" hideName={true} suffix="tokens"/> associated with that public key
 - Familiarity with [governance on Vega](../../concepts/vega-protocol.md#governance)
 
-## Templates
+## Templates and submitting
 
-You can submit your proposal via the command line, or via the token dApp in your web browser.
+In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to submit on the token dApp, and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
 
 <Tabs groupId="newFreeform">
   <TabItem value="annotated" label="Annotated example">
     <NewFreeformAnnotated />
   </TabItem>
   <TabItem value="json" label="Token dApp (JSON)">
-    <NewFreeformJSON />
+		<JSONInstructions />
+		<NewFreeformJSON />
   </TabItem>
   <TabItem value="cmd" label="Command line (Linux / OSX)">
-    <NewFreeformCMD />
+		<TerminalInstructions />
+		<NewFreeformCMD />
   </TabItem>
   <TabItem value="win" label="Command line (Windows)">
-    <NewFreeformWin />
+		<TerminalInstructions />
+		<NewFreeformWin />
   </TabItem>
 </Tabs>
 
-## Voting and enactment
+## Voting and enacting
 
 All proposals are voted on by the community. Community members need a minimum of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.freeform.minVoterBalance" suffix="tokens" hideName={true} /> to vote. Your proposal will need participation of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.freeform.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.freeform.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential.
 
