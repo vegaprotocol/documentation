@@ -3,7 +3,7 @@ title: Overview
 hide_title: false
 sidebar_position: 1
 ---
-Take a look at the tutorials for help with using Vega's APIs. 
+Take a look at the tutorials for help with using Vega's APIs.
 
 ## Governance proposals
 | Topic                                                                 |  Description                                                                                                        |
@@ -18,7 +18,7 @@ Take a look at the tutorials for help with using Vega's APIs.
 | Topic                                                                 |  Description                                                                                                        |
 | ----------------------------------------------------------------------| -------------------------------------------------------------------------------------------------------- |
 | [Create, amend, cancel liquidity commitment](./providing-liquidity.md) | This guide describes how to create a commit liquidity onto a market, as well as how to manage that commitment. |
-| [Use oracle data](./using-oracle-data.md) | This guide describes how to include oracle details in a proposal and how to submit the data to settle and terminate a market. |
+| [Use data sources](./using-data-sources.md) | This guide describes how to configure a market's data sources, and how to submit the data to settle and terminate a market. |
 
 
 ## Interacting with assets
