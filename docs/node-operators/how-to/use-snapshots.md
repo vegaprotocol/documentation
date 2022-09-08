@@ -1,10 +1,8 @@
 ---
 sidebar_position: 2
-title: Use node snapshots
-hide_title: false
+title: How to use node snapshots
+sidebar_label: Use node snapshots
 ---
-
-# How to use node snapshots
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

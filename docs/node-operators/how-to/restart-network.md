@@ -1,10 +1,8 @@
 ---
 sidebar_position: 1
-title: Restart a network using checkpoints
-hide_title: false
+title: How to restart a network using checkpoints
+sidebar_label: Restart a network using checkpoints
 ---
-
-# How to restart a network using checkpoints
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

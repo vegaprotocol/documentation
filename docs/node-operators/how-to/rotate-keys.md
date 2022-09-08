@@ -1,10 +1,8 @@
 ---
 sidebar_position: 3
-title: Rotate keys
-hide_title: false
+title: How to rotate keys
+sidebar_label: Rotate keys
 ---
-
-# How to rotate keys
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
