@@ -28,9 +28,10 @@ The **binding** tells the market which field contains the value. The **spec** de
 
 When it's time for a market to settle, someone needs to submit the data that matches the oracle spec defined in the market.
 
-Read more: 
+:::note Read more: 
 [Market governance concepts:](../concepts/vega-protocol.md)
 [Tutorial - proposing a market:](./proposals/new-market-proposal.md)
+:::
 
 ## Who can submit oracle data
 Any Vega keypair can submit oracle data to the chain. In the configuration for a market, an oracle specification field dictates which data feeds it is interested in. In effect, it works as a filter. This specification means that the creator of an instrument for a market will choose in advance a price source, and which data fields the market requires to settle and terminate.
@@ -50,19 +51,19 @@ For now this will focus on using the data for settlement price - both examples b
 }
 ```
 
-The following oracle spec would make the market use the BTC value from the Open Oracle data submitted above:
+The following oracle spec would make the market use the BTC value from the Open Oracle data submitted below:
 
 ```javascript
    "oracleSpecForSettlementPrice": {
         "pubKeys": ["0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"],
         "filters": [{
             "key": {
-                "name": "price.BTC.value",
-                "type": "TYPE_INTEGER",
+                "name": "prices.BTC.timestamp",
+                "type": "TYPE_TIMESTAMP",
             },
             "conditions": [{
                 "operator": "OPERATOR_GREATER_THAN",
-                "value": "0",
+                "value": "1649265840",
             }]
         }]
     }
@@ -357,7 +358,7 @@ Assuming someone submitted JSON oracle data, the result would be something like 
 ## Built-in data source
 Vega provides a timestamp source, which is useful for terminating a market at a set date. `vegaprotocol.builtin.timestamp` provides a Unix timestamp of the Vega time, which is to say the time agreed via consensus.
 
-As the name implies, a built in dat source is generated inside Vega, and cannot be submitted by other keys.
+As the name implies, a built in data source is generated inside Vega, and cannot be submitted by other keys.
 
 ### Using built-in oracle data for trading termination
 It's possible to settle on any data source field - for instance checking if a `boolean` is `true` - but time is a good starting point, and the [built-in time data source](#built-in-data-source) can be used for exactly that:

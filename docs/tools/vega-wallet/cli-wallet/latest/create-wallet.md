@@ -272,59 +272,6 @@ vegawallet service run --network "NETWORK_NAME"
 To terminate the process, if you want to run other commands in Vega Wallet for example, use `ctrl+c`.
 :::
 
-## 4a. Connect to Vega apps through the wallet 
-
-In some cases, you'll need to run a Vega app via the wallet service, instead of directly in your browser. 
-
-### Connect to Token dApp
-
-<Tabs groupId="operating-systems">
-<TabItem value="windows" label="Windows">
-
-```bash
-vegawallet service run --network "NETWORK_NAME" --with-token-dapp
-```
-</TabItem>
-<TabItem value="mac" label="MacOS">
-
-```bash
-./vegawallet service run --network "NETWORK_NAME" --with-token-dapp
-```
-
-</TabItem>
-<TabItem value="linux" label="Linux">
-
-```bash
-./vegawallet service run --network "NETWORK_NAME" --with-token-dapp
-```
-</TabItem>
-</Tabs>
-
-
-### Connect to Vega Console 
-
-<Tabs groupId="operating-systems">
-<TabItem value="windows" label="Windows">
-
-```bash
-vegawallet service run --network "NETWORK_NAME" --with-console
-```
-</TabItem>
-<TabItem value="mac" label="MacOS">
-
-```bash
-./vegawallet service run --network "NETWORK_NAME" --with-console
-```
-
-</TabItem>
-<TabItem value="linux" label="Linux">
-
-```bash
-./vegawallet service run --network "NETWORK_NAME" --with-console
-```
-</TabItem>
-</Tabs>
-
 ## 5. Approve transactions
 
 You will need to use your wallet to approve any transactions that you create for the Vega network. You might create those transactions through the token dApp or when using the APIs, for example. 
