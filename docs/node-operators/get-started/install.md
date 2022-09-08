@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Install node binaries
+title: 1. Install node binaries
 hide_title: false
 ---
 

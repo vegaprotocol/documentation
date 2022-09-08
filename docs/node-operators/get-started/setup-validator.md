@@ -1,6 +1,6 @@
 ---
-sidebar_position: 3
-title: Set up validating node
+sidebar_position: 2
+title: 2. Set up a validating node
 hide_title: false
 ---
 

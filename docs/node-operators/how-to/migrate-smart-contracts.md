@@ -1,8 +1,10 @@
 ---
-sidebar_position: 9
-title: Smart contracts migration
+sidebar_position: 4
+title: Migrate smart contracts
 hide_title: false
 ---
+
+# How to migrate smart contracts
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
