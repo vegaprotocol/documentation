@@ -43,7 +43,7 @@ For now this will focus on using the data for settlement price - both examples b
 }
 ```
 
-The following oracle spec would make the market use the BTC value from the [Coinbase Price Oracle](https://blog.coinbase.com/introducing-the-coinbase-price-oracle-6d1ee22c7068) data that is submitted in a subsequent example:
+The following spec would make the market use the BTC value from the [Coinbase Price Oracle](https://blog.coinbase.com/introducing-the-coinbase-price-oracle-6d1ee22c7068) data that is submitted in a subsequent example:
 
 ```javascript
    "oracleSpecForSettlementPrice": {
