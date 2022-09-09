@@ -1,6 +1,6 @@
 ---
-title: Overview
 sidebar_position: 1
+title: Overview
 ---
 
 # Node operators
@@ -9,14 +9,17 @@ This section offers guidance on how to launch, maintain, and upgrade a node, and
 
 ## Become a validator
 
-1. Start a Vega validating node, including the associated infrastructure (see below)
-2. Submit a transaction using their keys, announcing they want to validate, and receive a response that the network has verified key ownership (see below)
-3. Self-stake to their validator Vega key at least 👀3000 tokens
-4. Wait for others to nominate them. It would be worth announcing to the community that you have started a node and are looking for stake)
+### The validator lifecycle
 
-## Set up a new node
-Follow the [tutorial to set up and run a validating node](get-started).
+All validators begin as candidates, and can be promoted for high performance. Promotion comes with rewards and higher performance expectations. Learn about [the requirements of the three validator types](node-operators/requirements).
+
+### How performance is assessed
+
+Validators are ranked by their validator score, and their position in the ranking determines which type of validator they are. The score is influenced by factors like delegated stake amount and performance. Learn more about [how validators are assessed](/node-operators/ranking).
+
+### Set up a new node
+When you're acquainted with the validator lifecycle, requirements, and performance criteria, follow the [tutorial to set up and run a validating node](node-operators/get-started).
 
 ## Maintain an existing node
 
-Our [how-to guides](how-to) detail common node maintenance activities.
+The [how-to guides](node-operators/how-to) detail common node maintenance activities.

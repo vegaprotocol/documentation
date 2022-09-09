@@ -1,18 +1,66 @@
 ---
-sidebar_position: 4
-title: Validator score
+sidebar_position: 3
+title: Ranking
 ---
+import NetworkParameter from '@site/src/components/NetworkParameter';
+
+## Ranking logic
+At the end of each epoch, the Vega network will calculate validator score. The consensus validators during that epoch will have their validator scores scaled by (1 + <NetworkParameter frontMatter={frontMatter} param="network.validators.incumbentBonus" hideName={true} />). This number combines self-stake and nominated stake with the performance score (which measures basic node performance).
 
 A validating node’s performance is calculated based on three factors:
 
 * Ranking, whether it is a consensus or standby validator
-* Voting power based on the performance, which defines the performance score
-* Stake, which defines the validator score
+* Voting power based on the performance, which defines the [performance score](#performance-score)
+* Stake, which defines the [validator score](#validator-score)
 
-### Validator score
+Vega sorts all current consensus validators from the highest performance score to the lowest. All of those who submit a transaction expressing intent to be a validator are then sorted by their validator score, highest to lowest.
+
+* If there are already empty consensus validator slots, then the non-consensus validators who have the top scores are moved in to be consensus validators, starting in the next epoch.
+* If a potential validator has a higher score than the lowest incumbent consensus validator, then in the next epoch the higher-scoring validator becomes a consensus validator, and the lowest scoring incumbent becomes a standby validator.
+* If two validators have the same performance score, then the network places higher the one who's been validator for longer, and if two validators who joined at the same time have the same score, the priority goes to the one who submitted the transaction to become validator first.
+
+:::caution
+A node that has a ranking score of 0 (meaning they have no stake and a performance score of 0) for longer than 10 epochs is removed from Vega and will have to resubmit their request to become a validator.
+:::
+
+## Performance score
+
+### Standby validators
+
+The performance score for *new* standby validators is set to 0. The performance score of a standby validator is calculated based on them successfully submitting transactions.
+
+Validator candidates that have submitted a transaction to become consensus validating nodes will need to send a hash of block number `b`, separately signed by the three required keys and submitted, during each epoch and every set number of blocks (`numBlocks`). 
+
+`numBlocks` = the higher of (the lower of (50 and the epoch duration in seconds) and (epoch duration in seconds x 0.01)
+
+The message with the signed block hash must be in blocks `b+numBlocks` to `b+numBlocks` to count as successfully delivered.
+
+The network will verify this to confirm that the validator owns the keys. 
+
+`b` is defined as: 
+* The first time, it is the block number in which the joining transaction was included
+* Subsequent times, it is incremented by `numBlocks`
+
+The network will keep track of the last 10 times a standby validator was meant to submit the transactions, and the performance score is the number of times this has been verified, divided by 10.
+
+### Consensus validators
+For each block, the proposer is selected deterministically and the number of times each consensus validator is selected is roughly proportional to their voting power.
+
+A validator’s performance is calculated as follows:
+
+let `p` be the number of times the validator proposed blocks in the previous epoch 
+let `b` be the number of blocks in the previous epoch 
+let `v` be the voting power of the validator in the previous epoch 
+let `t` be the total voting power in the previous epoch
+let expected = `v*b/t` the number of blocks the validator is expected to propose. 
+Then `validator_performance = max(0.05, min((p/expected, 1))`
+
+## Validator score
 The validator score is calculated for each epoch, based on how much stake a validator has as well as other factors including the total number of validators and the optimal stake. This is true for both consensus and standby validators. 
 
 If, at the end of an epoch, a validator does not have sufficient stake self-nominated or has overall too much stake, then their validator score will be lowered. This can impact the rewards a validator and its nominators receive. 
+
+### Factors
 
 Below are the two factors that can lower a validator's score, and why. 
 
@@ -34,7 +82,7 @@ An over-staked validator has more stake than is ideal for a healthy and function
 As of version 0.47.5, the Vega network does not prevent tokenholders from nominating stake that would cause a node to be over-nominated. Tokenholders must actively manage their stake and keep track of the nodes they support.
 :::
 
-#### Validator score calculations
+#### Other
 The validator score takes into account a number of factors, including the total stake, optimal stake, minimum number of validators required, actual number of validators, and more. See below for how the validator score is calculated. 
 
 Factors that affect the validator score:
@@ -57,11 +105,13 @@ Factors that affect the validator score:
 >
 > `higher_penalty` = the greater of 0, OR (`validator_stake` - `optimal_stake_multiplier` * `optimal_stake`)
 
+### Calculation
+
 The validator score is calculated as follows:
 
 `validator_score` = (`validator_stake_i` - `flat_penalty` - `higher_penalty`) / `total_stake`
 
-**Example:**
+#### Example
 
 Assuming the available reward pool is 1000, and there are 3 validators:
 - Validator 1 is heavily over-staked and they are given a validator score of 0

@@ -7,6 +7,6 @@ title: Get started
 import DocCardList from '@theme/DocCardList';
 import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
 
-Before getting started, you should understand [how validating nodes work on Vega](../concepts/vega-chain#validating-nodes), the [hardware requirements](../concepts/vega-chain#infrastructure-guidelines), and [how validators are chosen](lifecycle).
+Before getting started, you must understand the [validator requirements](requirements) and [how validators are assessed](ranking).
 
 <DocCardList items={useCurrentSidebarCategory().items}/>
