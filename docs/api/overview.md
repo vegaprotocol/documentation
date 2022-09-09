@@ -32,7 +32,7 @@ gRPC provides fast and efficient communication with Vega’s APIs. gRPC supports
 ## REST
 REST is the ubiquitous protocol for the web. Vega has four REST endpoints: two are served by core nodes, and two are served by data nodes. REST is fairly easy to get started with, and Vega supports nearly all the functionality provided by gRPC and GraphQL on the REST APIs. Note: REST does not support streaming.
 
-[REST overview](./rest/overview.md): Read more about data and core node APIs.
+[REST overview](./rest/overview): Read more about data and core node APIs.
 
 ## Vega Wallet API
 If you're looking to integrate a dApp or website with the Vega Wallet, you'll need to use a wallet API. 
@@ -41,10 +41,10 @@ For now, there are 2 wallet APIs:
 **V1**, which uses REST. The V1 API will not be supported once the V2 API is out of alpha.
 The V1 API (in deprecation) uses REST.
 
-* [V1 REST documentation](./vega-wallet/v1-api/index.md)
+* [V1 REST documentation](./vega-wallet/v1-api)
 
 The **V2 API** (in alpha) uses JSON-RPC with an HTTP wrapper. You can interact directly with the JSON-RPC, or more easily via the HTTP layer.
 
-* [Getting started](./vega-wallet/v2-api/get-started.md): Set up a connection with the Vega Wallet server. 
-* [OpenRPC Wallet API](./vega-wallet/openrpc.md): An overview of the API
-* [JSON-RPC playground](./vega-wallet/openrpc-api-playground.md): See what methods the wallet API calls.
+* [Getting started](./vega-wallet/v2-api/get-started): Set up a connection with the Vega Wallet server. 
+* [OpenRPC Wallet API](./vega-wallet/openrpc): An overview of the API
+* [JSON-RPC playground](./vega-wallet/openrpc-api-playground): See what methods the wallet API calls.
