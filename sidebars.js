@@ -67,22 +67,22 @@ module.exports = {
         },
         {
           type: 'link',
-          href: '/docs/testnet/api/rest/data-node/data-v1',
+          href: '/docs/testnet/api/rest/data-v1/trading-data-service',
           label: 'Data node (v1)'
         },
         {
           type: 'link',
-          href: '/docs/testnet/api/rest/data-node/data-v2',
+          href: '/docs/testnet/api/rest/data-v2/trading-data-service',
           label: 'Data node (v2)'
         },
         {
           type: 'link',
-          href: '/docs/testnet/api/rest/core/core',
+          href: '/docs/testnet/api/rest/core/core-service',
           label: 'Core'
         },
         {
           type: 'link',
-          href: '/docs/testnet/api/rest/core/state',
+          href: '/docs/testnet/api/rest/state/core-state-service',
           label: 'Core state'
         }
       ]
