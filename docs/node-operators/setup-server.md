@@ -55,7 +55,7 @@ vegawallet version
 ```
 
 ### Windows (10 and 11)
-All commands should be run from a command prompt in the home folder of the current user (C:\Users\<username>)
+All commands should be run from a command prompt in the home folder of the current user `(C:\Users\<username>)`
 
 Make sure your system is up to date by applying all Windows updates
 
