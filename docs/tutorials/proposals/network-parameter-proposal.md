@@ -51,10 +51,10 @@ Voting and enacting
   </TabItem>
 </Tabs>
 
-## Voting and enacting
+## Voting and enactment
 
-All proposals are voted on by the community. Community members need a minimum of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minVoterBalance" suffix="tokens" hideName={true} /> to vote. Your proposal will need participation of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential.
+All proposals are voted on by the community. Community members need a minimum of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minVoterBalance" suffix="tokens" hideName={true} /> to vote. Your proposal will need [participation](../../concepts/vega-protocol#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential. If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
 
-Building support is down to you. Share your proposal in [the _Network Parameter Proposals_ forum](https://community.vega.xyz/c/fairground-testnet-governance/network-parameter-proposals-testnet/34) on Vega community, being sure to follow the [post guide](https://community.vega.xyz/t/guide-to-network-governance-on-fairground-testnet/4018). You may also wish to share on [Discord](https://vega.xyz/discord) and [Telegram](https://t.me/vegacommunity).
+Building support is down to you. Share your proposal in [the _Network Parameter Proposals_ forum](https://community.vega.xyz/c/fairground-testnet-governance/network-parameter-proposals-testnet/34) on Vega community, being sure to follow the [post guide](https://community.vega.xyz/t/guide-to-network-governance-on-fairground-testnet/4018). You may also wish to share on [Discord](https://vega.xyz/discord).
 
 Proposal owners who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.

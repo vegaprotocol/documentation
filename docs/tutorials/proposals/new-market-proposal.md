@@ -37,7 +37,7 @@ You will need:
 
 <!--[Update an existing market](#update-an-existing-market): change the details of a market that is already enacted.-->
 
-## Fields
+## Anatomy of a market proposal
 In this section, the [full proposal template](#templates) has been divided into sections to provide more details on what you need to submit.
 
 There are a number of fields required for proposing a market, to ensure that it has all the necessary details and research behind it to be a well-functioning market. 
@@ -156,10 +156,10 @@ In the tabs below you'll see an annotated example, which describes what each fie
   </TabItem>
 </Tabs>
 
-## Voting and enacting
+## Voting and enactment
 
-All proposals are voted on by the community. Community members need a minimum of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minVoterBalance" suffix="tokens" hideName={true} /> to vote. Your proposal will need participation of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential.
+All proposals are voted on by the community. Community members need a minimum of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minVoterBalance" suffix="tokens" hideName={true} /> to vote. Your proposal will need [participation](../../concepts/vega-protocol#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential. If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
 
-Building support is down to you. Share your proposal in [the _New Market Proposals_ forum](https://community.vega.xyz/c/fairground-testnet-governance/new-market-proposals-testnet/33) on Vega community, being sure to follow the [post guide](https://community.vega.xyz/t/guide-to-new-market-proposals-on-fairground-testnet/4017). You may also wish to share on [Discord](https://vega.xyz/discord) and [Telegram](https://t.me/vegacommunity).
+Building support is down to you. Share your proposal in [the _New Market Proposals_ forum](https://community.vega.xyz/c/fairground-testnet-governance/new-market-proposals-testnet/33) on Vega community, being sure to follow the [post guide](https://community.vega.xyz/t/guide-to-new-market-proposals-on-fairground-testnet/4017). You may also wish to share on [Discord](https://vega.xyz/discord).
 
 Proposal owners who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.
