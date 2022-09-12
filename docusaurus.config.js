@@ -2,7 +2,8 @@
 
 module.exports = {
   title: 'Vega Protocol',
-  tagline: 'A protocol for creating and trading derivatives on a fully decentralised network',
+  tagline:
+    'A protocol for creating and trading derivatives on a fully decentralised network',
   url: 'https://docs.vega.xyz/',
   baseUrl: '/',
   trailingSlash: false,
@@ -187,14 +188,16 @@ module.exports = {
         id: 'apiDocs',
         docsPluginId: 'classic',
         config: {
-          tradingv1v054: { // Note: petstore key is treated as the <id> and can be used to specify an API doc instance when using CLI commands
+          tradingv1v054: {
+            // Note: petstore key is treated as the <id> and can be used to specify an API doc instance when using CLI commands
             specPath: './data/v0.54/trading_data_v1.swagger.json', // Path to designated spec file
             outputDir: 'docs/api/rest/data-v1', // Output directory for generated .mdx docs
             sidebarOptions: {
               groupPathsBy: 'tag'
             }
           },
-          tradingv2v054: { // Note: petstore key is treated as the <id> and can be used to specify an API doc instance when using CLI commands
+          tradingv2v054: {
+            // Note: petstore key is treated as the <id> and can be used to specify an API doc instance when using CLI commands
             specPath: './data/v0.54/trading_data_v2.swagger.json', // Path to designated spec file
             outputDir: 'docs/api/rest/data-v2', // Output directory for generated .mdx docs
             sidebarOptions: {
@@ -231,7 +234,7 @@ module.exports = {
           disableVersioning: false,
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/vegaprotocol/documentation/edit/main/',
-          lastVersion: 'current',
+          lastVersion: 'v0.53',
           docLayoutComponent: '@theme/DocPage',
           docItemComponent: '@theme/ApiItem',
           versions: {
@@ -304,5 +307,8 @@ module.exports = {
       }
     ]
   ],
-  themes: ['docusaurus-theme-openapi-docs', '@vegaprotocol/docusaurus-theme-github-codeblock']
+  themes: [
+    'docusaurus-theme-openapi-docs',
+    '@vegaprotocol/docusaurus-theme-github-codeblock'
+  ]
 }
