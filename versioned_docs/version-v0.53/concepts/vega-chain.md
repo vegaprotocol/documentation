@@ -65,8 +65,8 @@ Whether tokens are unlocked or locked, the bridge events let the Vega network kn
 
 All events (including the above, plus stake per validator and others) are only registered after a certain number of block confirmations, as defined by the network parameter `blockchains.ethereumConfig`. 
 
-:::note Further reading
-**[Staking Bridge contracts](https://github.com/vegaprotocol/Staking_Bridge)** - on Vega's staking bridge GitHub repository.
+:::note Go deeper
+See the [Staking Bridge contracts](https://github.com/vegaprotocol/Staking_Bridge) on Vega's staking bridge GitHub repository.
 :::
 
 ### Spam protection
@@ -142,7 +142,7 @@ At the end of each epoch, reward payments are calculated per active validator, a
 
 Read more: [Risks of over-staked validators](#too-much-stake)
  
-:::note Further reading
+:::note Go deeper
 **[Staking rewards spec](https://github.com/vegaprotocol/specs/blob/master/protocol/0061-REWP-pos_rewards.md)** - more detail on how rewards are calculated and will be in future iterations. 
 :::
 

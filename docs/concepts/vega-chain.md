@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 1
 title: Vega Chain
 vega_network: TESTNET
 hide_title: false
@@ -43,7 +43,7 @@ A VEGA token (or fraction) can be either dissociated or associated with a Vega k
 
 Read more: [Governance of Vega](#governance)
 
-:::info
+:::tip
 A user's VEGA tokens must first be associated with a Vega key before they can be used for governance and staking.
 :::
 
@@ -66,7 +66,7 @@ Whether tokens are unlocked or locked, the bridge events let the Vega network kn
 
 All events (including the above, plus stake per validator and others) are only registered after a certain number of block confirmations, as defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="blockchains.ethereumConfig" hideValue={true} />. 
 
-:::note Further reading
+:::note Go deeper
 **[Staking Bridge contracts](https://github.com/vegaprotocol/Staking_Bridge)** - on Vega's staking bridge GitHub repository.
 :::
 
@@ -94,7 +94,7 @@ When a tokenholder chooses a validator (or validators) to nominate with their to
 
 Read more: [Rewards for staking](#rewards)
 
-:::info
+:::info Try it out
 VEGA tokenholders can use **[token.fairground.wtf](https://token.fairground.wtf)** to associate their tokens and nominate validators. A Vega Wallet and Ethereum wallet are both required. CoinList custodial users should confirm with CoinList how staking works for them.
 :::
 
@@ -127,7 +127,7 @@ Validators and nominators both receive incentives for securing the network. The 
 
 **To be considered for staking rewards, a tokenholder must associate VEGA to a Vega key and nominate one or more validators.**
 
-:::info
+:::info Try it out
 Try out staking on **[token.fairground.wtf](https://token.fairground.wtf)** to try out associating testnet tokens and nominating validators. Staking rewards are paid into your Vega wallet after each epoch ends. 
 
 Staking rewards must be withdrawn to an Ethereum wallet, and then associated to a Vega wallet, before they can be staked.
@@ -143,7 +143,7 @@ At the end of each epoch, reward payments are calculated per active validator, a
 
 Read more: [Risks of over-staked validators](#too-much-stake)
  
-:::note Further reading
+:::note Go deeper
 **[Staking rewards spec](https://github.com/vegaprotocol/specs/blob/master/protocol/0061-REWP-pos_rewards.md)** - more detail on how rewards are calculated and will be in future iterations. 
 :::
 
@@ -262,7 +262,7 @@ An over-staked validator has more stake than is ideal for a healthy and function
 * **Validator score**: A node that is over-staked is given a lower validator score - the more over-staked it is, the lower the score 
 * **Reward impact**: If a validator is too far from optimal stake, the validator and tokenholders who nominated that validator **will not receive rewards** for every epoch the node is heavily over-staked
 
-:::info 
+:::caution 
 As of version 0.47.5, the Vega network does not prevent tokenholders from nominating stake that would cause a node to be over-nominated. Tokenholders must actively manage their stake and keep track of the nodes they support.
 :::
 
