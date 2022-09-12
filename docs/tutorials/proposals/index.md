@@ -11,6 +11,9 @@ keywords:
 ---
 import DocCardList from '@theme/DocCardList';
 import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
+import Topic from '/docs/topics/_topic-governance.mdx'
+
+<Topic />
 
 Governance with tokenholder participation is essential on Vega. Markets and assets can only be added through governance, and network parameters, markets and assets all must be amended through governance as well.
 

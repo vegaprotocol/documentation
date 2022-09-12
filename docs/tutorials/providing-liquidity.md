@@ -18,6 +18,10 @@ The Vega protocol allows liquidity to be priced individually for each market, so
 
 Supplying liquidity to a market keeps open orders resting on the order book, to keep a relatively balanced set of orders available. Those orders are not defined by actual numerical prices or sizes, but by liquidity shapes, which are dependent on a reference price level the provider chooses and the liquidity commitment amount. The order price follows the reference price level as the market moves.
 
+:::caution
+Providing liquidity means you'll need to actively manage your commitment. While there is a way to amend or cancel your liquidity commitment order, they'll only be possible to do if the market can function without your liquidity commitment.
+:::
+
 ### Liquidity fees
 Participants who provide liquidity earn from liquidity fees, which are paid by the *price takers* on each trade. Liquidity fees are defined based on the commitments and proposed fee levels chosen by the providers, not by the protocol.
 

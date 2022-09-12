@@ -18,8 +18,9 @@ if (!process.env.VEGA_VERSION) {
 const version = process.env.VEGA_VERSION 
 
 // Config
+//const url = `http://0.0.0.0:8001/corestate.swagger.json`
 const url = `https://raw.githubusercontent.com/vegaprotocol/protos/${version}/swagger/vega/api/v1/corestate.swagger.json`;
-
+console.info(`Using schema at: ${url}`)
 // Input: Fields to remove from a specific place in the Swagger file
 const notProposalTypes = ['closingTimestamp', 'enactmentTimestamp', 'validationTimestamp', 'title', 'type']
 const excludeUnimplementedTypes = [];
@@ -53,8 +54,24 @@ function addTermsAnnotator(skeleton, terms, type) {
     }
   }
 
+  const splitEnactmentTitle = skeleton.properties.enactmentTimestamp.title.split('\n')
+  // Note: ValidationTimestamp is not currently required by core, but defaults incorrectly. Let's populate it anyway.
+  if (type === 'newAsset') {
+    return () => `{
+     ${type}:  ${inspect(terms[type], { depth: 20 })},
+      // ${splitClosingTitle[0]}
+      // ${splitClosingTitle[1]} (${skeleton.properties.closingTimestamp.format} as ${skeleton.properties.closingTimestamp.type})
+      closingTimestamp: ${terms.closingTimestamp},
+      // ${splitEnactmentTitle[0]}
+      // ${splitEnactmentTitle[1]} (${skeleton.properties.enactmentTimestamp.format} as ${skeleton.properties.enactmentTimestamp.type})
+      enactmentTimestamp: ${terms.enactmentTimestamp},
+      // ${skeleton.properties.validationTimestamp.title} (${skeleton.properties.validationTimestamp.format} as ${skeleton.properties.validationTimestamp.type})
+      validationTimestamp: ${terms.validationTimestamp}
+   }`
+
+  }
+
   return () => {
-    const splitEnactmentTitle = skeleton.properties.enactmentTimestamp.title.split('\n')
     return `{
      ${type}:  ${inspect(terms[type], { depth: 20 })},
       // ${splitClosingTitle[0]}
@@ -89,6 +106,9 @@ function newProposal(p, skeleton, type) {
   if (type !== 'newFreeform'){
     proposal.terms.enactmentTimestamp = daysInTheFuture(20)
   }
+  if (type === 'newAsset'){
+    proposal.terms.validationTimestamp = daysInTheFuture(18)
+  }
   proposal.terms[inspect.custom] = addTermsAnnotator(skeleton, proposal.terms, type)
 
 
@@ -113,7 +133,7 @@ ${'```'}
   `
   const win = `
   ${'```bash'}
-vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --network fairground "${JSON.stringify({"proposalSubmission": proposal }, null, ' ').replace(/"/g, '\\"')}"
+vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --network fairground ^\n"${JSON.stringify({"proposalSubmission": proposal }, null, ' ').replace(/^\s/gm, '').replace(/"/g, '\\"').replace(/\n/g, '^\n')}"
 ${'```'}
   `
 

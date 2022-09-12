@@ -6,7 +6,9 @@ ethereum_network: Ropsten
 description: Stake unlocked tokens with Vega Wallet and smart contracts
 ---
 import EthAddresses from '@site/src/components/EthAddresses';
+import Topic from '/docs/topics/_topic-staking.mdx'
 
+<Topic />
 
 :::tip
 

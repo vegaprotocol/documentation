@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-title: Breaking change when upgrading to 0.14
+title: Breaking change from 0.14
 hide_title: false
 ---
 

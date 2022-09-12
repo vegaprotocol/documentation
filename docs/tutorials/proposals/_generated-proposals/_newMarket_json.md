@@ -11,8 +11,8 @@
         "decimalPlaces": "18",
         "positionDecimalPlaces": "5",
         "instrument": {
-          "name": "Oranges Daily",
-          "code": "ORANGES.24h",
+          "name": "Apples Yearly (2022)",
+          "code": "APPLES.22",
           "future": {
             "settlementAsset": "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
             "quoteName": "tEuro",
@@ -62,9 +62,8 @@
           }
         },
         "metadata": [
-          "sector:tech",
           "sector:energy",
-          "sector:food",
+          "sector:tech",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -86,55 +85,17 @@
         },
         "logNormal": {
           "tau": 0.0001140771161,
-          "riskAversionParameter": 0.0001,
+          "riskAversionParameter": 0.001,
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 0.8
+            "sigma": 1.25
           }
         }
-      },
-      "liquidityCommitment": {
-        "commitmentAmount": "1060019",
-        "fee": "0.79",
-        "buys": [
-          {
-            "offset": "39",
-            "proportion": 8,
-            "reference": "PEGGED_REFERENCE_BEST_BID"
-          },
-          {
-            "offset": "73",
-            "proportion": 5,
-            "reference": "PEGGED_REFERENCE_BEST_BID"
-          },
-          {
-            "offset": "38",
-            "proportion": 9,
-            "reference": "PEGGED_REFERENCE_BEST_BID"
-          }
-        ],
-        "sells": [
-          {
-            "offset": "66",
-            "proportion": 2,
-            "reference": "PEGGED_REFERENCE_BEST_ASK"
-          },
-          {
-            "offset": "66",
-            "proportion": 1,
-            "reference": "PEGGED_REFERENCE_BEST_ASK"
-          },
-          {
-            "offset": "4",
-            "proportion": 1,
-            "reference": "PEGGED_REFERENCE_BEST_ASK"
-          }
-        ]
       }
     },
-    "closingTimestamp": 1662374250,
-    "enactmentTimestamp": 1662460650
+    "closingTimestamp": 1663517914,
+    "enactmentTimestamp": 1663604314
   }
 }
 ```

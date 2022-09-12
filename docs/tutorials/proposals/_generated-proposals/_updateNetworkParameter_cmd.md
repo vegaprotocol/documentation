@@ -3,17 +3,18 @@
 ./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{
  "proposalSubmission": {
   "rationale": {
-   "description": "Update governance.proposal.asset.requiredMajority"
+   "title": "Update market.fee.factors.infrastructureFee",
+   "description": "Proposal to update market.fee.factors.infrastructureFee to 300}"
   },
   "terms": {
    "updateNetworkParameter": {
     "changes": {
-     "key": "governance.proposal.asset.requiredMajority",
+     "key": "market.fee.factors.infrastructureFee",
      "value": "300"
     }
    },
-   "closingTimestamp": 1662374250,
-   "enactmentTimestamp": 1662460650
+   "closingTimestamp": 1663517914,
+   "enactmentTimestamp": 1663604314
   }
  }
 }'

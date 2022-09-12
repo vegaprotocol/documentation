@@ -5,6 +5,7 @@ vega_network: MAINNET
 hide_title: false
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
+import Topic from '../topics/_topic-staking.mdx'
 
 Vega uses Tendermint as a consensus layer to form a blockchain. The rest of the information here informs on how that blockchain and its relevant components is comprised. 
 
@@ -64,21 +65,24 @@ Whether tokens are unlocked or locked, the bridge events let the Vega network kn
 
 All events (including the above, plus stake per validator and others) are only registered after a certain number of block confirmations, as defined by the network parameter `blockchains.ethereumConfig`. 
 
-:::note Further reading
-**[Staking Bridge contracts](https://github.com/vegaprotocol/Staking_Bridge)** - on Vega's staking bridge GitHub repository.
+:::note Go deeper
+See the [Staking Bridge contracts](https://github.com/vegaprotocol/Staking_Bridge) on Vega's staking bridge GitHub repository.
 :::
 
 ### Spam protection
 There are several spam protections enabled to protect the Vega network. 
 
 * A participant who wants to submit a delegation (nomination) transaction, needs to have a balance of at least the minimum defined by the network parameter `spam.protection.delegation.min.tokens` to be able to submit the transaction
-* A participant cannot send more delegation transactions per day than the max set by the <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.delegations" hideName={false} /> network parameter
+* A participant cannot send more delegation transactions per day than the max set by the <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.delegations" /> network parameter
 
 ## Staking on Vega
+
+<Topic />
+
 Vega networks use the ERC20 token VEGA for staking. Staking requires the combined action of associating VEGA tokens (or fractions of a token) to the Vega staking bridge contract; and using those token(s) to nominate one or more validators. 
 
 #### Epochs
-An epoch is a time period during which staking changes can be announced and then implemented. Changes that are announced in one epoch will only be executed in the following epoch (excepting ['un-nominate now'](#un-nominate-now)). The length of an epoch is set by the network parameter `validators.epoch.length`. 
+An epoch is a time period during which staking changes can be announced and then implemented. Changes that are announced in one epoch will only be executed in the following epoch (excepting ['un-nominate now'](#un-nominate-now)). The length of an epoch is <NetworkParameter frontMatter={frontMatter} param="validators.epoch.length" hideName={true} />.
 
 ### Nominating validators
 Using tokens to nominate validators keeps the decentralised network functioning. 
@@ -138,7 +142,7 @@ At the end of each epoch, reward payments are calculated per active validator, a
 
 Read more: [Risks of over-staked validators](#too-much-stake)
  
-:::note Further reading
+:::note Go deeper
 **[Staking rewards spec](https://github.com/vegaprotocol/specs/blob/master/protocol/0061-REWP-pos_rewards.md)** - more detail on how rewards are calculated and will be in future iterations. 
 :::
 
@@ -177,7 +181,7 @@ Standby (also called ersatz) validators do not contribute to the chain, but are 
 
 As with the consensus validators, standby validators need to have a certain amount of self-stake and nominated stake.
 
-Standby validators, and the tokenholders who stake them, receive a share of rewards. The rewards for standby validators are calculated and penalised in the same way as consensus validators, except scaled down based on the stake they have. How much they are scaled is based on the network parameter `network.validators.ersatz.rewardFactor`.
+Standby validators, and the tokenholders who stake them, receive a share of rewards. The rewards for standby validators are calculated and penalised in the same way as consensus validators, except scaled down based on the stake they have. How much they are scaled is based on the network parameter <NetworkParameter frontMatter={frontMatter} param="network.validators.ersatz.rewardFactor" />.
 
 :::info 
 The network is set to not allow any standby validators for alpha mainnet, and the number of validators will be increased via governance as early alpha mainnet progresses.
@@ -197,7 +201,7 @@ Read more: [Becoming a validator](#becoming-a-validator)
 A standby validator that wants to be in line for promotion to become a consensus validator needs to do the following: 
 
 1. Run a validating node
-2. Have enough self-stake, (as defined by the network parameter `reward.staking.delegation.minimumValidatorStake`) 
+2. Have enough self-stake: <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" formatter="governanceToken" suffix="tokens" hideName={true} /> 
 3. Forward the relevant Ethereum events
 
 ## Validating node performance
@@ -244,10 +248,10 @@ If, at the end of an epoch, a validator does not have sufficient stake self-nomi
 Below are the two factors that can lower a validator's score, and why. 
 
 #### Not enough self-nominated stake
-Self-nominated stake refers to the amount of VEGA a validator has staked to their own node.  The minimum stake amount required is defined by the network parameter `reward.staking.delegation.minimumValidatorStake`. Not having enough self-nominated stake can have an impact on rewards. 
+Self-nominated stake refers to the amount of VEGA a validator has staked to their own node.  The minimum stake amount required is <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" formatter="governanceToken" suffix="tokens" hideName={true} />.  Not having enough self-nominated stake can have an impact on rewards. 
 
 * **Network risk**: A validator who has not committed enough stake to meet the minimum is a risk to the network because they may not be invested in keeping the network running
-* **Validator score**: If a validator does not meet the `reward.staking.delegation.minimumValidatorStake`, the validator is given a lower score, which can affect their reward
+* **Validator score**: If a validator does not have <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={true} formatter="governanceToken" suffix="tokens" />, the validator is given a lower score, which can affect their reward
 * **Reward impact**: A validator with too little self-stake forfeits their share of the rewards for each epoch they are below the threshold. However tokenholders who nominated that validator will still receive rewards
 
 #### Too much stake
@@ -307,7 +311,7 @@ A node operator that wants to express interest in running a validating node for 
 
 1. Start a Vega validating node, including the associated infrastructure (see below)
 2. Submit a transaction using their keys, announcing they want to validate, and receive a response that the network has verified key ownership (see below)
-3. Self-stake to their validator Vega key at least as much as the amount defined by the reward.staking.delegation.minimumValidatorStake network parameter
+3. Self-stake to their validator Vega key at least <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" formatter="governanceToken" suffix="tokens" hideName={true} /> 
 4. Wait for others to nominate them. It would be worth announcing to the community that you have started a node and are looking for stake)
 
 ### Infrastructure guidelines
@@ -326,7 +330,7 @@ The impact of using fewer cores than recommended is that the critical parts (dat
 The impact of having slower cores than recommended (or older cores that have a reduced IPC rate compared to modern Zen3 cores) is that the maximum throughput will be reduced due to the bottlenecks being single threaded.
 
 ### How candidate validators are ranked
-At the end of each epoch, the Vega network will calculate validator score. The consensus validators during that epoch will have their validator scores scaled by (1 + `network.validators.incumbentBonus`). This number combines self-stake and nominated stake with the performance score (which measures basic node performance).
+At the end of each epoch, the Vega network will calculate validator score. The consensus validators during that epoch will have their validator scores scaled by (1 +  <NetworkParameter frontMatter={frontMatter} param="network.validators.incumbentBonus" hideName={true} />). This number combines self-stake and nominated stake with the performance score (which measures basic node performance).
 
 Vega sorts all current consensus validators from the highest performance score to the lowest. All of those who submit a transaction expressing intent to be a validator are then sorted by their validator score, highest to lowest.
 
