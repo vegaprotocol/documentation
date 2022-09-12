@@ -2,7 +2,7 @@ module.exports = {
   protodocs: [
     {
       type: 'category',
-      label: 'Files',
+      label: 'GRPC',
       items: [
         {
           type: 'category',

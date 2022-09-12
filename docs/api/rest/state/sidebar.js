@@ -1,10 +1,10 @@
 module.exports = [
   {
     type: 'category',
-    label: 'REST: Core State',
+    label: 'Core State',
     link: {
       type: 'generated-index',
-      title: 'REST: Core State',
+      title: 'Core State',
       slug: '/category/api/rest/state/core-state-service'
     },
     items: [
