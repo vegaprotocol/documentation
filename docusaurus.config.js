@@ -142,15 +142,14 @@ module.exports = {
       // markdown files inside the docs folder, so these are included in the versioned docs.
       require.resolve('@edno/docusaurus2-graphql-doc-generator'),
       {
-        // https://github.com/edno/graphql-markdown#options
-        loaders: {
-          UrlLoader: '@graphql-tools/url-loader'
-        },
         schema: './schema.graphql',
         rootPath: 'docs',
         baseURL: 'graphql',
         linkRoot: '/docs/testnet/',
-        diffMethod: 'SCHEMA-DIFF'
+        diffMethod: 'SCHEMA-DIFF',
+        docOptions: {
+          index: true
+        }
       }
     ],
     [
@@ -232,7 +231,7 @@ module.exports = {
           disableVersioning: false,
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/vegaprotocol/documentation/edit/main/',
-          lastVersion: 'v0.53',
+          lastVersion: 'current',
           docLayoutComponent: '@theme/DocPage',
           docItemComponent: '@theme/ApiItem',
           versions: {
