@@ -33,6 +33,8 @@ You will need:
 ## Anatomy of an update market proposal
 The `updateMarket` proposal is similar to the `newMarket` proposal, but most fields are not required. See the descriptions in the [new market proposal tutorial](new-market-proposal.md#fields) for more on each field.
 
+You must include all existing parameters from the original `newMarket` proposal, even if they are not being changed.
+
 ### Locked fields
 
 The following fields are immutable and cannot be changed.
