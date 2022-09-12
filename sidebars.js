@@ -101,8 +101,8 @@ module.exports = {
       label: "Wallet API",
       collapsed: true,
       link: {
-        type: 'generated-index',
-        description: 'The VEGA Wallet is also accessible via API.',
+        type: 'doc',
+        id: 'api/vega-wallet/index',
       },
       items: [
         {
