@@ -234,7 +234,7 @@ module.exports = {
           disableVersioning: false,
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl: 'https://github.com/vegaprotocol/documentation/edit/main/',
-          lastVersion: 'current',
+          lastVersion: 'v0.53',
           docLayoutComponent: '@theme/DocPage',
           docItemComponent: '@theme/ApiItem',
           versions: {
