@@ -27,13 +27,13 @@ You will need:
 
 - A connected [Vega wallet](/docs/tools/vega-wallet/index.md), with your wallet name and public key to hand
 - A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minProposerBalance" hideName={true} suffix="tokens"/> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} suffix="tokens"/>
-- A minimum equity-like share of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minProposerEquityLikeShare" hideName={true} />
+- A minimum equity-like share in the market of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minProposerEquityLikeShare" hideName={true} />
 - Familiarity with [governance on Vega](../../concepts/vega-protocol.md#governance), particularly off-chain activities
 
 ## Anatomy of an update market proposal
-The `updateMarket` proposal is similar to the `newMarket` proposal, but most fields are not required. See the descriptions in the [new market proposal tutorial](new-market-proposal.md#fields) for more on each field.
+The `updateMarket` proposal requires the same fields as a `newMarket` proposal. See the descriptions in the [new market proposal tutorial](new-market-proposal.md#fields) for more on each field.
 
-You must include all existing parameters from the original `newMarket` proposal, even if they are not being changed.
+In addition to the parameters you want to change, you must include all existing parameters from the original `newMarket` proposal, even if they are not being changed.
 
 ### Locked fields
 
