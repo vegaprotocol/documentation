@@ -18,18 +18,14 @@ mainnet_network_parameters=https://api.token.vega.xyz/network/parameters
 
 # set -e
 
-doc_version=v0.53.0
-doc_org=vegaprotocol
+version=v0.54.0
 
-grpc_doc_repo=protos
-graphql_doc_repo=data-node
-
-# https://raw.githubusercontent.com/vegaprotocol/protos/v0.53.0/generated/proto.json
+# This should be using /specs/vxxx but those versions are not yet build correctly
 echo "Fetching grpc..."
-curl "https://raw.githubusercontent.com/${doc_org}/${grpc_doc_repo}/${doc_version}/generated/proto.json" -o "proto.json" -s
+cp "./data/${doc_version}/proto.json" ./proto.json
 
 echo "Fetching graphql..."
-curl "https://raw.githubusercontent.com/${doc_org}/${graphql_doc_repo}/${doc_version}/gateway/graphql/schema.graphql" -o "schema.graphql" -s
+cp "./data/${doc_version}/schema.graphql" ./schema.graphql
 
 echo "Fetching latest network parameters as placeholders for NetworkParameter.js"
 rm data/testnet_network_parameters.json 2> /dev/null
@@ -42,6 +38,7 @@ echo "Regenerating docs..."
 yarn install
 mkdir -p ./docs/grpc
 yarn run generate-grpc
+yarn run generate-rest
 yarn run generate-graphql
 
 # This var is used in GraphQL tidyup
@@ -53,11 +50,9 @@ sed -i -E 's/Schema Documentation/GraphQL Schema/g' docs/graphql/generated.md
 # GRPC tidyup
 echo "GRPC: Do not hide titles"
 find . -type f -name '*.mdx' -exec sed -i -E 's/hide_title: true/hide_title: false/g' {} +
-echo "GRPC: Fix sidebar links"
-sed -i 's/vega\//grpc\/vega\//g' docs/grpc/sidebar.js
-sed -i 's/data-node\//grpc\/data-node\//g' docs/grpc/sidebar.js
 
-./scripts/version-switch.sh
+# Fix up sidebars for all APIs
+./scripts/build-sidebars.sh
 yarn run build
 
 echo "Tidying up..."
@@ -66,5 +61,5 @@ echo "Tidying up..."
 rm proto.json
 rm schema.graphql
 
-echo "Done! Now check if you need to run the versioning script"
+echo "Done! Now check if you need to run the versioning script (./scripts/version.sh)"
 
