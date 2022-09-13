@@ -9,7 +9,7 @@
   "terms": {
    "newMarket": {
     "changes": {
-     "decimalPlaces": "18",
+     "decimalPlaces": "5",
      "positionDecimalPlaces": "5",
      "instrument": {
       "name": "Apples Yearly (2022)",
@@ -17,7 +17,7 @@
       "future": {
        "settlementAsset": "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
        "quoteName": "tEuro",
-       "settlementPriceDecimals": 18,
+       "settlementPriceDecimals": 5,
        "oracleSpecForSettlementPrice": {
         "pubKeys": [
          "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
@@ -63,8 +63,9 @@
       }
      },
      "metadata": [
-      "sector:energy",
+      "sector:materials",
       "sector:tech",
+      "sector:health",
       "source:docs.vega.xyz"
      ],
      "priceMonitoringParameters": {
@@ -86,17 +87,17 @@
      },
      "logNormal": {
       "tau": 0.0001140771161,
-      "riskAversionParameter": 0.001,
+      "riskAversionParameter": 0.0001,
       "params": {
        "mu": 0,
        "r": 0.016,
-       "sigma": 1.25
+       "sigma": 0.3
       }
      }
     }
    },
-   "closingTimestamp": 1663517914,
-   "enactmentTimestamp": 1663604314
+   "closingTimestamp": 1664728340,
+   "enactmentTimestamp": 1664814740
   }
  }
 }'

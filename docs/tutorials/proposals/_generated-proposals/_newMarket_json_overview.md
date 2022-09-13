@@ -8,7 +8,7 @@
   newMarket: {
    changes: {
     // Decimal places used for the new market, sets the smallest price increment on the book (uint64 as string)
-    decimalPlaces: "18",
+    decimalPlaces: "5",
     // Decimal places for order sizes, sets what size the smallest order / position on the market can be (uint64 as string)
     positionDecimalPlaces: "5",
     // New market instrument configuration
@@ -24,11 +24,11 @@
    }
   },
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
-  // constrained by `minClose` and `maxClose` network parameters (int64 as string) 
-  closingTimestamp: 1663517914,
+  // constrained by `minClose` and `maxClose` network parameters (int64 as string)
+  closingTimestamp: 1664728340,
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
-  // constrained by `minEnact` and `maxEnact` network parameters (int64 as string) 
-  enactmentTimestamp: 1663604314,
+  // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
+  enactmentTimestamp: 1664814740,
  }
 }
 ```
