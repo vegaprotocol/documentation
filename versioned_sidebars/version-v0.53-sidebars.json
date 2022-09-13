@@ -34,17 +34,17 @@
         },
         {
           "type": "link",
-          "href": "/docs/mainnet/api/rest/data-node/data",
+          "href": "/docs/mainnet/api/rest/data-v1/trading-data-service",
           "label": "Data node"
         },
         {
           "type": "link",
-          "href": "/docs/mainnet/api/rest/core/core",
+          "href": "/docs/mainnet/api/rest/core/core-service",
           "label": "Core"
         },
         {
           "type": "link",
-          "href": "/docs/mainnet/api/rest/core/state",
+          "href": "/docs/mainnet/api/rest/state/core-state-service",
           "label": "Core state"
         }
       ]
