@@ -23,7 +23,7 @@ Settlement instructions are generated based on the change in market value of the
 Because the margin for a market is calculated dynamically based on the market conditions, the mark price also has an effect on how much collateral is set aside for margin.
 
 :::note Read more
-[Mark to market settlement](./trade-lifecycle#mark-to-market-settlement)
+[Mark to market settlement](./settlement#mark-to-market-settlement)
 :::
 
 ## Margin
