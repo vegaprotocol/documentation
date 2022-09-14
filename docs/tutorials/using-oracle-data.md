@@ -1,6 +1,7 @@
 ---
 title: Use oracle data
 hide_title: false
+description: Include oracle details in a proposal and submit data to settle and terminate a market
 ---
 
 import Tabs from '@theme/Tabs';

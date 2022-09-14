@@ -15,7 +15,7 @@ As most of the APIs are designed to use for trading-related queries, the best pl
 ## Tutorials
 Tutorials provide the information you'll need about the protocol to understand and use the guide, as well as instructions on how to interact with scripts, API calls, or other code. 
 
-[Tutorials](../tutorials/index.md): See the tutorial(s) currently available for this network.
+[Tutorials](../tutorials): See the tutorial(s) currently available for this network.
 
 ## Ethereum bridges
 You can also interact with the Ethereum smart contracts, which allow for bridging between Vega and Ethereum.

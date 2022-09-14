@@ -2,6 +2,7 @@
 sidebar_position: 4
 title: Isolate keys
 hide_title: false
+description: Move a key pair from a standard wallet into a wallet that can only sign and verify transactions
 ---
 
 import Tabs from '@theme/Tabs';

@@ -2,6 +2,7 @@
 sidebar_position: 4
 title: Build and send commands
 hide_title: false
+description: Build a Vega command to include in a transaction
 ---
 
 import Tabs from '@theme/Tabs';
