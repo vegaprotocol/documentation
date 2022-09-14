@@ -79,27 +79,49 @@ This will read the Tendermint keys from the configuration path, and set up your 
 Vega supports two types of Ethereum wallet: you can either register a wallet available from a clef instance or import a keystore file (e.g: create with `geth account`).
 
 #### Using clef
-To set up your clef instance please refer to the [clef documentation ↗](https://geth.ethereum.org/docs/clef/tutorial).
+Clef is a tool for signing transactions and data in a secure local environment. It will help to improve the security of stored keys. Please refer to the [clef documentation ↗](https://geth.ethereum.org/docs/clef/tutorial) to learn more.
 
-Set the address of your clef instance in the Vega configuration (`path/to/home/config/node/config.toml`):
-```Toml
-[NodeWallet]
-  Level = "Info"
-  [NodeWallet.ETH]
-    Level = "Info"
-    Address = ""
-    ClefAddress = "http://your.clef.instance.network:3334"
+#### Required Clef setup
+Unfortunately, the Vega team have been forced to fork Clef to make it work with the Vega network. Clef has not allowed signing any arbitrary data without prefixing them - this would not work with the [Ethereum bridge](./../api/bridge/index.md) as the bridge expects data to be signed without any prefixes. More about the change can be seen on [GitHub ↗](https://github.com/vegaprotocol/go-ethereum/pull/2/files).
+
+#### Installation
+Installation requires building Clef from source, therefore installing Golang is required (version 1.18 or later).
+
+1. `git clone https://github.com/vegaprotocol/go-ethereum`
+2. `cd go-ethereum`
+3. Build binary
+   a. Globally on machine: `go install ./cmd/clef`
+   b. To a specific path: `go build -o your-path/clef ./cmd/clef`
+
+Clef could be also built inside as a Docker image.
+
+#### Setup
+All the steps below are required for a functional setup. This is the minimum required setup, please refer to the [clef documentation ↗](https://geth.ethereum.org/docs/clef/tutorial) for a more comprehensive setup.
+
+It is mandatory to provide [rules to Clef ↗](https://geth.ethereum.org/docs/clef/rules) for automatically approving certain operations that are otherwise required to be approved manually. The required rules are `ApproveListing` and `ApproveSignData`.
+
+The simplest possible implementation (though not recommended for production):
+
+```
+function ApproveListing() { return "Approve" }
+function ApproveSignData() { return "Approve" }
 ```
 
-Alternatively you can run the following command and specify the flag: 
-```
---eth.clef-address="http://your.clef.instance.network:3334"
-```
+The code should be saved to a file called `rules.js`.
 
-Then run the following command:
-```
-vega nodewallet import --chain=ethereum --home=path/to/home --clef-account-address="0xYOUR_WALLET_ADDRESS"
-```
+:::warn 
+For production use of clef it is recommended to add more refined rules. Please refer to the [Rule Implementation section  ↗](https://geth.ethereum.org/docs/clef/rules) in the clef docs.
+:::
+
+1. Initiate clef
+  a. clef init
+2. Create accounts in Clef
+  a. clef newaccount
+  b. Copy generated account
+3. Create the `rules.js` file with required rules `ApproveListing` and `ApproveSignData`
+4. Attest the rules file to Clef: `clef attest rules.js`
+5. Set password for automatic approvals: `clef setpw GENERATED_ACCOUNT`
+6. Start Clef `clef --chainid $CHAINID --http --http.addr 0.0.0.0 --http.port 8550 --rules rules.js --nousb`
 
 #### Using a keystore account file
 You can either import an existing keystore or create a new one. (Learn how to create a keystore [using geth ↗](https://geth.ethereum.org/docs/getting-started)) 
