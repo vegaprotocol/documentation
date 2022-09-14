@@ -7,6 +7,6 @@ title: Get started
 import DocCardList from '@theme/DocCardList';
 import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
 
-Before getting started, you must understand the [validator requirements](requirements) and [how validators are assessed](ranking).
+Before getting started, you should understand [the validator journey](../node-operators#the-validator-journey), [performance criteria](../concepts/vega-chain#validating-node-performance), and [infrastructure guidelines](../concepts/vega-chain#infrastructure-guidelines).
 
 <DocCardList items={useCurrentSidebarCategory().items}/>
