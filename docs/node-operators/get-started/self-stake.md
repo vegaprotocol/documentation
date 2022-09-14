@@ -5,7 +5,7 @@ hide_title: false
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-You must stake at least <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={true} formatter="governanceToken" suffix="tokens"/> that you own.
+You must stake at least <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={true} formatter="governanceToken" suffix="tokens"/> that you own, via the [Fairground staking interface ↗](https://token.fairground.wtf/staking).
 
 When staking, you must use the same key you used to set up the node.
 

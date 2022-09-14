@@ -2,23 +2,23 @@
 sidebar_position: 1
 title: Overview
 ---
+import NetworkParameter from '@site/src/components/NetworkParameter';
 
 # Node operators
 
 This section offers guidance on how to launch, maintain, and upgrade a node, and how to earn promotion to standby or consensus status for greater rewards.
 
-## Become a validator
+## The validator journey
 
-### The validator lifecycle
+All validators begin as candidates, and can be promoted to [standby](concepts/vega-chain#standby-validators) and then [consensus](concepts/vega-chain#consensus-validator-nodes) status. There are some limits on the number of places available: <NetworkParameter frontMatter={frontMatter} param="network.validators.multisig.numberOfSigners" hideName={true} /> for consensus validators, and <NetworkParameter frontMatter={frontMatter} param="network.validators.ersatz.multipleOfTendermintValidators" hideName={true} suffix="×" /> that number for standby validators. There is no limit on the number of candidate validators. Places are assigned based on [performance](concepts/vega-chain#validating-node-performance).
 
-All validators begin as candidates, and can be promoted for high performance. Promotion comes with rewards and higher performance expectations. Learn about [the requirements of the three validator types](node-operators/requirements).
+## Set up a new node
+When you're acquainted with the validator lifecycle, performance criteria, and [infrastructure guidelines](concepts/vega-chain#infrastructure-guidelines), follow the [tutorial to set up and run a validating node](node-operators/get-started):
 
-### How performance is assessed
-
-Validators are ranked by their validator score, and their position in the ranking determines which type of validator they are. The score is influenced by factors like delegated stake amount and performance. Learn more about [how validators are assessed](/node-operators/ranking).
-
-### Set up a new node
-When you're acquainted with the validator lifecycle, requirements, and performance criteria, follow the [tutorial to set up and run a validating node](node-operators/get-started).
+1. [Install node binaries](node-operators/get-started/install)
+2. [Set up a validating node](node-operators/get-started/setup-validator)
+3. [Self-stake](node-operators/get-started/self-stake)
+4. [Announce to the community](node-operators/get-started/announce)
 
 ## Maintain an existing node
 
