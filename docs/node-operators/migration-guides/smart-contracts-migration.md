@@ -116,7 +116,7 @@ The `--new-address` and  `--nonce` details will be shared prior to the upgrade.
 
 
 ## Restart the network
-At this point, all preparatory work has been done and the following step will need to happen during the network restart, after the current version is shut down, and before the upgraded version is started. See [network checkpoint restarts](../network-restarts.md) for more info.
+At this point, all preparatory work has been done and the following step will need to happen during the network restart, after the current version is shut down, and before the upgraded version is started. See [network checkpoint restarts](../how-to/restart-network.md) for more info.
 
 The validators will stop the network at this point.
 
