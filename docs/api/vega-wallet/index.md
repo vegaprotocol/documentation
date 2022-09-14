@@ -3,7 +3,7 @@ title: Intro to Vega Wallet APIs
 hide_title: false
 sidebar_position: 1
 ---
-Build on and integrate with the Vega Wallet service using the available APIs. 
+Build on and integrate with the Vega Wallet service using the available APIs.
 
 ## V2 API
 The **JSON-RPC API** and its endpoint **`/v2/requests`** is in the alpha phase, and will be replacing the v1 REST API. If you discover any issues, please raise them on the [feedback board ↗](https://github.com/vegaprotocol/feedback/discussions).
