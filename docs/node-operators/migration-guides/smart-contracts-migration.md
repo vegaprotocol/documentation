@@ -83,7 +83,7 @@ At this point, all the new contracts will have been deployed. Validators will ne
 :::
 
 ## Prepare the signature bundles
-To apply the smart contracts, a [checkpoint upgrade](../network-restarts.md) of the network will be required. After the current Vega network is stopped and the upgraded network is started, the asset pool will need to be switched from the previous multisig control and collateral bridge to the new ones.
+To apply the smart contracts, a [checkpoint upgrade](../how-to/restart-network.md) of the network will be required. After the current Vega network is stopped and the upgraded network is started, the asset pool will need to be switched from the previous multisig control and collateral bridge to the new ones.
 
 Before the network is stopped, validators will need to provide the required signature so the Vega team can call the contract as soon as possible, in order to minimise downtime.
 
