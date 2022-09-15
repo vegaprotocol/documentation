@@ -30,10 +30,9 @@ Propose a market on any underlying.
 ## Requirements
 
 You will need:
-
-- A connected [Vega wallet](/docs/tools/vega-wallet/index.md), with your wallet name and public key to hand
-- A minimum of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens" /> associated with that public key
-- Familiarity with [governance on Vega](../../concepts/vega-protocol.md#governance), particularly [market governance](../../concepts/vega-protocol#market-governance)
+* A connected [Vega wallet](/docs/tools/vega-wallet/index.md), with your wallet name and public key to hand
+* A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens"/> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>
+* Familiarity with [governance on Vega](../../concepts/vega-protocol.md#governance), particularly [market governance](../../concepts/vega-protocol#market-governance)
 
 <!--[Update an existing market](#update-an-existing-market): change the details of a market that is already enacted.-->
 
@@ -157,8 +156,9 @@ In the tabs below you'll see an annotated example, which describes what each fie
 </Tabs>
 
 ## Voting and enactment
+All proposals are voted on by the community. To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minVoterBalance" suffix="tokens" hideName={true} />, or <NetworkParameter frontMatter={frontMatter} param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated with their Vega key.
 
-All proposals are voted on by the community. Community members need a minimum of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minVoterBalance" suffix="tokens" hideName={true} /> to vote. Your proposal will need [participation](../../concepts/vega-protocol#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential. If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
+Your proposal will need [participation](../../concepts/vega-protocol#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential. If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
 
 Building support is down to you. Share your proposal in [the _New Market Proposals_ forum](https://community.vega.xyz/c/fairground-testnet-governance/new-market-proposals-testnet/33) on Vega community, being sure to follow the [post guide](https://community.vega.xyz/t/guide-to-new-market-proposals-on-fairground-testnet/4017). You may also wish to share on [Discord](https://vega.xyz/discord).
 

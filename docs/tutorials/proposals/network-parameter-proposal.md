@@ -25,10 +25,9 @@ This page describes what you need to propose a change to a network parameter, an
 ## Requirements
 
 You will need:
-
-- A connected [Vega wallet](/docs/tools/vega-wallet/index.md), with your wallet name and public key to hand
-- A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minProposerBalance" hideName={true} suffix="tokens"/> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} suffix="tokens"/>
-- Familiarity with [governance on Vega](../../concepts/vega-protocol.md#governance), particularly [network parameter governance](../../concepts/vega-protocol#network-parameter-governance)
+* A connected [Vega wallet](/docs/tools/vega-wallet/index.md), with your wallet name and public key to hand
+* A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minProposerBalance" hideName={true} suffix="tokens"/> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens"  formatter="governanceToken" hideName={true} suffix="tokens"/>
+* Familiarity with [governance on Vega](../../concepts/vega-protocol.md#governance), particularly [network parameter governance](../../concepts/vega-protocol#network-parameter-governance)
 
 ## Templates and submitting
 In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to submit on the token dApp, and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
@@ -52,8 +51,7 @@ Voting and enacting
 </Tabs>
 
 ## Voting and enactment
-
-All proposals are voted on by the community. To vote, community members need, at a minimum, the larger of  <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minVoterBalance" suffix="tokens" hideName={true} />, or <NetworkParameter frontMatter={frontMatter} param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} associated with their Vega key. 
+All proposals are voted on by the community. To vote, community members need, at a minimum, the larger of  <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minVoterBalance" suffix="tokens" hideName={true} />, or <NetworkParameter frontMatter={frontMatter} param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated with their Vega key. 
 
 Your proposal will need [participation](../../concepts/vega-protocol#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential. If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
 
