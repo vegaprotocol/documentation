@@ -25,7 +25,7 @@ import NewMarketWin from './_generated-proposals/_newMarket_win.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Create a market on any underlying.
+Propose a market on any underlying.
 
 ## Requirements
 
@@ -40,7 +40,7 @@ You will need:
 ## Anatomy of a market proposal
 In this section, the [full proposal template](#templates) has been divided into sections to provide more details on what you need to submit.
 
-There are a number of fields required for proposing a market, to ensure that it has all the necessary details and research behind it to be a well-functioning market. 
+There are a number of fields required for proposing a market to ensure that it has all the necessary details and research behind it to be a well-functioning market. 
 
 The general shape is as follows:
 <NewMarketJSONOverview />
@@ -73,15 +73,15 @@ An instrument contains the following properties:
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
-| Name | A string for the market name. Best practice is to include a full and fairly descriptive name for the instrument. | BTC/USD DEC18. |
-| Instrument code | This is a shortcode used to easily describe the instrument. The more information you add, the easier it is for people to know what the market offers. | FX:BTCUSD/DEC18 |
-| Future | An object that provides details about the futures market to be proposed. |
-| Settlement asset | This requires the ID of the asset that the market will be margined in and settle in. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID. |  |
-| Quote name | The quote name is the human-readable name/abbreviation of the settlement asset. Example: In BTCUSD, USD is the quote. | tEuro |
-| Settlement price decimals | The number of decimal places implied by the settlement price, emitted by the settlement oracle. | 18 |
-| Oracle spec for settlement price | This defines the data source that will be used to identify the settlement price when the market expires. | prices.BTC.value |
-| Oracle spec for trading termination | The fields that define the oracle used for terminating trading on the market. | vegaprotocol.builtin.timestamp |
-| Oracle spec binding | The fields describe how specific information provided by the oracle data is used. For example, they can identify the specific name of the settlement price output, or the specific name of the trading termination property. |
+| `name` | A string for the market name. Best practice is to include a full and fairly descriptive name for the instrument. | BTC/USD DEC18. |
+| `code'  (instrument) | This is a shortcode used to easily describe the instrument. The more information you add, the easier it is for people to know what the market offers. | FX:BTCUSD/DEC18 |
+| `future` | An object that provides details about the futures market to be proposed. |
+| `settlementAsset` | Settlement asset requires the ID of the asset that the market will be margined in and settle in. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID. |  |
+| `quoteName` | The quote name is the human-readable name/abbreviation of the settlement asset. Example: In BTCUSD, USD is the quote. | tEuro |
+| `settlementPriceDecimals` | The number of decimal places implied by the settlement price, emitted by the settlement oracle. | 18 |
+| `oracleSpecForSettlementPrice` | This defines the data source that will be used to identify the settlement price when the market expires. | prices.BTC.value |
+| `oracleSpecForTradingTermination` | The fields that define the oracle used for terminating trading on the market. | vegaprotocol.builtin.timestamp |
+| `oracleSpecBinding` | The fields describe how specific information provided by the oracle data is used. For example, they can identify the specific name of the settlement price output, or the specific name of the trading termination property. |
 
 For easy reading, the oracle filters are separated out - see [Oracle bindings](#oracle-bindings) below to see the fields for specifying oracle data.
 
@@ -94,14 +94,14 @@ Oracle bindings require the following properties:
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
-| Pub keys | Public key(s) that can sign and submit values for this oracle | 0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC |
-| Filters | Filters define which oracle data is of importance for the purposes of the type of governance proposal |
-| Key | Defines the specific type of information the oracle provides that are is relevant to the proposed market. Example: If an oracle provides a list of prices for various markets, focus only on the specific relevant price for the market |
-| Name | Specific name of the information that the filter provides. | prices.ETH.value |
-| Type | Specifies the data type that is emitted. For example, for the `prices.ETH.value`, the type is an integer, as it is output as a non-fractional number | TYPE_TIMESTAMP |
-| Conditions | A filter for the oracle data. The conditions that should to be matched by the data to be considered. This is an optional set of fields. For example you could use an operator and a value to denote that a price should be greater than zero |
-| Operator | This adds a constraint to the value, such as LESS_THAN, GREATER_THAN. For example if you wanted to ensure that the price would always be above zero, you would set the operator to ‘GREATER_THAN’ and the Value to be ‘0’ | GREATER_THAN |
-| Value | A number that is constrained by the operator | 0 |
+| `pubKeys` | Public key(s) that can sign and submit values for this oracle | 0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC |
+| `filters` | Filters define which oracle data is of importance for the purposes of the type of governance proposal |
+| `key` | Defines the specific type of information the oracle provides that are is relevant to the proposed market. Example: If an oracle provides a list of prices for various markets, focus only on the specific relevant price for the market |
+| `name` | Specific name of the information that the filter provides. | prices.ETH.value |
+| `type` | Specifies the data type that is emitted. For example, for the `prices.ETH.value`, the type is an integer, as it is output as a non-fractional number | TYPE_TIMESTAMP |
+| `conditions` | A filter for the oracle data. The conditions that should to be matched by the data to be considered. This is an optional set of fields. For example you could use an operator and a value to denote that a price should be greater than zero |
+| `operator` | This adds a constraint to the value, such as LESS_THAN, GREATER_THAN. For example if you wanted to ensure that the price would always be above zero, you would set the operator to ‘GREATER_THAN’ and the Value to be ‘0’ | GREATER_THAN |
+| `value` | A number that is constrained by the operator | 0 |
 
 :::info Submitting oracle data
 Learn how to find and submit oracle data in the [submitting oracles tutorial](../using-oracle-data.md).
@@ -116,11 +116,11 @@ Liquidity monitoring uses the following properties:
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
-| Target stake parameters | Target stake parameters are derived from open interest history over a time window to calculate the maximum open interest. |
-| Time window | Defines the length of time over which open interest is measured. If empty, this field defaults to <NetworkParameter frontMatter={frontMatter} param="market.stake.target.timeWindow" hideName={true} />. | 3600 |
-| Scaling factor | This must be set within the range defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.stake.target.scalingFactor" hideValue={true} />, and defines the scaling between the liquidity demand estimate, based on open interest and target stake. The scaling factor must be a number greater than zero and finite | 10 |
-| Triggering ratio | Specifies the triggering ratio for entering liquidity auction. If empty, the network will default to <NetworkParameter frontMatter={frontMatter} param="market.liquidity.targetstake.triggering.ratio" hideName={true} /> | 0.7 |
-| Auction extension | Specifies by how many seconds an auction should be extended if leaving the auction were to trigger a liquidity auction. If empty, the network will default to the network parameter <NetworkParameter frontMatter={frontMatter} param="market.monitor.price.defaultParameters" hideValue={true} /> | 1 |
+| `targetStakeParameters` | Target stake parameters are derived from open interest history over a time window to calculate the maximum open interest. |
+| `timeWindow` | Defines the length of time (in seconds) over which open interest is measured. If empty, this field defaults to <NetworkParameter frontMatter={frontMatter} param="market.stake.target.timeWindow" hideName={true} />. | 3600 |
+| `scalingFactor` | This must be set within the range defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.stake.target.scalingFactor" hideValue={true} />, and defines the scaling between the liquidity demand estimate, based on open interest and target stake. The scaling factor must be a number greater than zero and finite | 10 |
+| `triggeringRatio` | Specifies the triggering ratio for entering liquidity auction. If empty, the network will default to <NetworkParameter frontMatter={frontMatter} param="market.liquidity.targetstake.triggering.ratio" hideName={true} /> | 0.7 |
+| `auctionExtension` | Specifies by how many seconds an auction should be extended if leaving the auction were to trigger a liquidity auction. If empty, the network will default to the network parameter <NetworkParameter frontMatter={frontMatter} param="market.monitor.price.defaultParameters" hideValue={true} /> | 1 |
 
 ### Price monitoring
 Price monitoring parameters are optional, and configure the acceptable price movement bounds for price monitoring. <!--If you leave these blank, they will default to whatever the network-wide parameters are set as.--> See below for more details on each field.
@@ -131,9 +131,9 @@ Price monitoring uses the following properties:
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
-| Horizon | Price monitoring projection horizon τ in seconds (set as >0) | 43200 |
-| Probability | Price monitoring probability level p (set as >0 and <1) | 0.9999999 |
-| Auction extension in seconds | Price monitoring auction extension duration in seconds should the price breach its theoretical level over the specified horizon at the specified probability level (set as >0) | 600 |
+| `horizon` | Price monitoring projection horizon τ in seconds (set as >0) | 43200 |
+| `probability` | Price monitoring probability level p (set as >0 and <1) | 0.9999999 |
+| `auctionExtension` | Price monitoring auction extension duration (in seconds) should the price breach its theoretical level over the specified horizon at the specified probability level (set as >0) | 600 |
 
 ## Templates and submitting
 In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to submit on the token dApp, and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
