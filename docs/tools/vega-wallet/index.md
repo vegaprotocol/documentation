@@ -2,8 +2,7 @@
 title: Vega Wallet
 hide_title: false
 ---
-
-Vega Wallet allows you to manage wallets and key pairs, and sign transactions.
+A Vega Wallet is essential for interacting with Vega, whether it's for staking or trading. The Vega Wallet apps allow you to manage wallets and key pairs, deposit and withdraw assets, stake and sign transactions.
 
 You can interact with a Vega wallet and its keys through two different apps:
 

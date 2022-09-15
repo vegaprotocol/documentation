@@ -10,10 +10,6 @@ Welcome to Vega! This is a work-in-progress documentation site.
 
 If you have questions, join our community on [Discord](https://vega.xyz/discord)! We're keen to help.
 
-:::info
-This documentation version has up-to-date API reference docs for Fairground, Vega's testnet. However, for information on trading, refer to the [Fairground docs](https://docs.fairground.vega.xyz) site while this site is under construction.
-:::
-
 ## What is Vega?​
 Vega is a protocol for creating and trading derivatives on a fully decentralised network. 
 

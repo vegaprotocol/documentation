@@ -190,7 +190,7 @@ function generateInstrument(skeleton) {
     future: {
       settlementAsset: idForAnExistingVegaAsset,
       quoteName: 'tEuro',
-      settlementPriceDecimals: 18,
+      settlementPriceDecimals: 5,
       oracleSpecForSettlementPrice: generateSettlementOracleSpec(skeleton.properties.future.properties.oracleSpecForSettlementPrice),
       oracleSpecForTradingTermination: generateTerminationOracleSpec(skeleton.properties.future.properties.oracleSpecForTradingTermination),
       oracleSpecBinding: generateOracleSpecBinding(skeleton.properties.future.properties.oracleSpecBinding)
@@ -466,7 +466,7 @@ function newMarket(skeleton) {
     terms: {
       newMarket: {
         changes: {
-          decimalPlaces: "18",
+          decimalPlaces: "5",
           positionDecimalPlaces: "5",
           instrument: generateInstrument(skeleton.properties.changes.properties.instrument),
           metadata: generateMetadata(skeleton.properties.changes.properties.metadata),

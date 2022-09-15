@@ -11,7 +11,7 @@
   // Product quote name (string)
   quoteName: "tEuro",
   // The number of decimal places implied by the settlement price emitted by the settlement oracle (int64 as integer)
-  settlementPriceDecimals: 18,
+  settlementPriceDecimals: 5,
   // The oracle spec describing the oracle data of settlement price (object)
   oracleSpecForSettlementPrice: {},
   // The oracle spec describing the oracle data of trading termination (object)
