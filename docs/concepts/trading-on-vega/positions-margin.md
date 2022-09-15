@@ -1,24 +1,48 @@
 ---
 sidebar_position: 2
-title: Margin
+title: Margin [WIP]
 hide_title: false
 ---
-As markets and collateral are not managed through human intervention, markets must have certain automated processes that allow for well-functioning markets and assurance that the collateral required to manage positions is available when it's needed. 
+Derivatives allow you to place leveraged trades, meaning you ony need some of the notional value to trade on a market on Vega.
+
+The exact margin requirements of open orders and positions are determined by the market's risk model and market conditions. The larger the position and the more volatile the market, the greater the amount of margin that will be set aside. the  volatility is driven by the risk model. 
+
+
+margin is the collateral required to keep your open positions and orders funded. 
+
+
+difference between mark price and entry price (all you'd need to cover) for futures. 
+
+
+As markets and collateral are not managed through human intervention, markets must have certain automated processes that allow for well-functioning markets and assurance that the collateral required to manage positions is available when it's needed.
 
 There are a few mechanisms that work differently to how they would on a centralised exchange, in order to keep the markets solvent. They include:
 - **Margin**: Vega has implemented automated cross-margining. Margin is calculated automatically depending on the number of positions, the size, and the market movements so that there's enough collateral available to sustain a position and not put other market participants, or the market itself, under strain
 - **Mark to market**: Mark to market on Vega happens much more frequently than on a centralised exchange. Every time the market price moves, the mark to market price is recalculated
 
+Vega's margining system implements automated cross margining. Cross margining, which means gains on one market can be released and used as margin on another, is supported between all markets that use the same settlement asset. (introduce isolated margin: default is cross-marginging, but it's easy to create keys and move moeny between keys. if you want to control how much is risked on a position, you can replicate the effect of isolated margin by using one party/public key per market you trade on)
+
+## Positions [WIP]
+Margin is calculated on your position. Your position is your open volume and your orders. Orders that increase your risk require margin
+
+given party on vega (others are 'one key, one user'), when they open position, minimum money required to open that position, put into margin account. expectation that over the course of position's lifetime you expect margin to be topped up. 
+
+Fully filled positions:
+Partially filled positions:
+
 ## Leverage [WIP]
 A market's leverage can be calcuated as one over the risk factor.
 
+You can determine the leverage of an individual position by comparing how much margin that position is holding onto, compared to the size of the position. Each position that you have may have a different leverage level.
+
 ## Mark to market
-Marking to market refers to the settling of gains and losses due to changes in the market value of the underlying product. Marking to market aims to provide a realistic appraisal of of a position based on the current market conditions.
+Marking to market refers to the settling of gains and losses due to changes in the market value of the underlying product. Marking to market aims to provide a realistic appraisal of a position based on the current market conditions.
 
-If the value goes up, a trader that holds a long position receives money in their general account – equal to the underlying's change in value – from a trader that holds a short position, and conversely if the value goes down, the holder of the short position recieves money from the holder of the long position. 
-For a market created on Vega, the mark-to-market price is calculated every time the price moves. This is in contrast to traditional futures markets, for which marking to market occurs once per day.
+If the value goes up, a trader that holds a long position receives money in their margin account – equal to the underlying's change in value – from a trader that holds a short position, and conversely if the value goes down, the holder of the short position recieves money from the holder of the long position.
 
-Settlement instructions are generated based on the change in market value of the open positions of a party. When the mark price changes, the network calculates settlement cash flows for each party,  and the process is repeated each time the mark price changes until the maturity date for the market is reached.
+For a futures market created on Vega, the mark-to-market price is calculated every time the price moves, and is based on the last traded price. This is in contrast to traditional futures markets, for which marking to market occurs once per day. One exception is when the market settles at expiry, at which point the mark to market price comes from the data source's final settlement price.
+
+Settlement instructions are generated based on the change in market value of the open positions of a party. When the mark price changes, the network calculates settlement cash flows for each party, and the process is repeated each time the mark price changes until the maturity date for the market is reached.
 
 Because the margin for a market is calculated dynamically based on the market conditions, the mark price also has an effect on how much collateral is set aside for margin.
 
@@ -27,16 +51,19 @@ Because the margin for a market is calculated dynamically based on the market co
 :::
 
 ## Margin
-The margin calculation for a new order, and the amount deducted from collateral to cover margin, is based on all of a trader's open orders. A trader will need enough margin to keep a position open, whether it goes for or against the trader. The margin calculations ensure a trader does not enter a trade that will immediately need to be closed out.
+Margin is the amount of collateral required to keep your position open. It can change depending on how your position is impacted by your own actions and market movement. 
 
-Vega's margining system implements automated cross margining. Cross margining, which means gains on one market can be released and used as margin on another, is supported between all markets that use the same settlement asset. 
+
+The margin calculation for a new position, and the amount deducted from collateral to cover margin, is based on all of a trader's open orders. A trader will need enough margin to keep a position open, whether it goes for or against the trader. The margin calculations ensure a trader does not enter a trade that will immediately need to be closed out.
 
 :::note Go deeper
 **[Automated cross margining](https://vega.xyz/papers/vega-protocol-whitepaper.pdf#page21)** - Section 6 of the protocol whitepaper.
 :::
 
+let's say you go long, and go to reduce the position, margin doesn't change. actual position and the exposure that dictates what the required margin will be
+
 ### Basic margin calculations
-Vega calculates four margin levels:
+The Vega protocol calculates four margin levels:
 * **Initial level**: The amount that will be transferred from your collateral to be used as margin when an order is placed or trade executed. To avoid a margin search as soon as position is open, the initial margin level is set above the search level:
   * m<sup>initial</sup> := α<sup>initial</sup> * m<sup>maintenance</sup>, where α<sup>initial</sup> is a constant and α<sup>initial</sup> > α<sup>search</sup>.
 * **Search level**: When the margin balance drops below the search level -- but is still above the maintenance level -- the network will try to allocate an additional amount (up to the current initial margin level) from a trader's collateral, if possible, to be used for margin:

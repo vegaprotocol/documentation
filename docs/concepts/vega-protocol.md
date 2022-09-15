@@ -135,7 +135,7 @@ Read more:
 -->
 
 ### Risk models and parameters
-When proposing a market, the market proposer will need to choose the risk parameters associated with the risk model that's appropriate for the instrument. The risk model is essential for calculating margins on the market. 
+When proposing a market, the market proposer will need to choose the risk parameters associated with the risk model that's appropriate for the instrument. The acceptable amount of volatility on a market is driven by its risk model. The risk model is essential for calculating margins on the market. 
 
 The [log-normal risk model](#log-normal-risk-model) is the only one currently supported. While the model is pre-defined, you'll need to choose the individual parameters.
 
