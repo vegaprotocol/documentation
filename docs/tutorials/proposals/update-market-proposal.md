@@ -37,9 +37,8 @@ In addition to the parameters you want to change, you must include all existing 
 
 ### Locked fields
 
-The following fields are immutable and cannot be changed.
+The following fields, which you might recognise from `newMarket` proposals, are immutable and cannot be changed. They are not included in the [proposal templates](#templates-and-submitting).
 
-- `marketId`
 - `decimalPlaces`
 - `positionDecimalPlaces`
 - `name`
