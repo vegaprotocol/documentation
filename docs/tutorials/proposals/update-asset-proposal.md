@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-title: Propose asset update
+title: Update an asset
 hide_title: false
 vega_network: TESTNET
 keywords:
@@ -24,9 +24,7 @@ import TabItem from '@theme/TabItem';
 
 # Propose an update to an asset
 
-Some of the properties of an asset can be changed through governance. Those fields are: withdrawal and deposit limits, and the asset's quantum.
-
-The underlying contract, asset name and symbol cannot be changed.
+Some of the properties on an asset can be changed through governance. Important fields such as the underlying contract, name and symbol cannot be changed.
 
 ## Requirements
 
@@ -35,7 +33,6 @@ You will need:
 - A connected [Vega wallet](/docs/tools/vega-wallet/index.md), with your wallet name and public key to hand
 - A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minProposerBalance" hideName={true} suffix="tokens"/> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true}  formatter="governanceToken" suffix="tokens"/>
 - Familiarity with [governance on Vega](../../concepts/vega-protocol.md#governance), particularly [assets at a protocol level](../../concepts/vega-protocol#assettoken-management)
-- After an asset update vote passes, the change has to be submitted to the [asset bridge](../../api/bridge/interfaces/IERC20_Bridge_Logic) on Ethereum.
 
 ## Overview
 
@@ -63,7 +60,7 @@ In the tabs below you'll see an annotated example, which describes what each fie
 
 ## Voting and enactment
 
-All proposals are voted on by the community. To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minVoterBalance" suffix="tokens" hideName={true} formatter="governanceToken" /> or <NetworkParameter frontMatter={frontMatter} formatter="governanceToken" param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated with their Vega key.
+All proposals are voted on by the community. To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minVoterBalance" suffix="tokens" hideName={true} /> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated with their Vega key.
 
 Your proposal will need [participation](../../concepts/vega-protocol#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential. If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
 

@@ -15,7 +15,7 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
      \"code\": \"APPLES.22\",^
      \"future\": {^
       \"quoteName\": \"tEuro\",^
-      \"settlementDataDecimals\": 5,^
+      \"settlementPriceDecimals\": 5,^
       \"oracleSpecForSettlementPrice\": {^
        \"pubKeys\": [^
         \"0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC\"^
@@ -61,8 +61,7 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
      }^
     },^
     \"metadata\": [^
-     \"sector:energy\",^
-     \"sector:food\",^
+     \"sector:tech\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -76,7 +75,7 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
     },^
     \"logNormal\": {^
      \"tau\": 0.0001140771161,^
-     \"riskAversionParameter\": 0.001,^
+     \"riskAversionParameter\": 0.0001,^
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
@@ -85,8 +84,8 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
     }^
    }^
   },^
-  \"closingTimestamp\": 1666044439,^
-  \"enactmentTimestamp\": 1666130839^
+  \"closingTimestamp\": 1664964291,^
+  \"enactmentTimestamp\": 1665050691^
  }^
 }^
 }"

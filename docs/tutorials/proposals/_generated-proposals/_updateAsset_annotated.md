@@ -8,10 +8,8 @@
  terms: {
   updateAsset: {
    changes: {
-    // The minimum economically meaningful amount in the asset (string)
-    quantum: "1",
     erc20: {
-     // The maximum allowed per withdraw.
+     // The lifetime limits deposit per address.
      // This is will be interpreted against the asset decimals. (string)
      withdrawThreshold: "10",
 
@@ -24,11 +22,11 @@
 
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-  closingTimestamp: 1666044439,
+  closingTimestamp: 1664964291,
 
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-  enactmentTimestamp: 1666130839,
+  enactmentTimestamp: 1665050691,
  }
 }
 ```
