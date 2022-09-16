@@ -4,6 +4,8 @@ title: Market protections
 hide_title: false
 description: Read about how markets can trade safely, pseudonymously.
 ---
+import NetworkParameter from '@site/src/components/NetworkParameter';
+
 In a pseudonymous environment where counter-parties may be identified by no more than a public key, it's essential for the software to consider credit risk, given that the avenues available for traditional marketplaces aren't available. If a counterparty owes more in settlement than their posted collateral, there is no way to reclaim those assets.
 
 The Vega protocol has been designed with rules to detect dangerous market conditions and apply protective measures, and to constantly maintain effective collateralisation for all positions.
@@ -45,7 +47,7 @@ Each trigger contains:
 * *Probability*: The probability level for price projection. For example, a value of 0.95 will result in a price range such that over the specified horizon, the prices observed in the market should be in that range 95% of the time
 * *Auction extension*: Auction extension duration in seconds. Should the price breach its theoretical level over the specified horizon at the specified probability level, the market will continue in auction for the time specified
 
-If the market did not have any triggers specified in its market proposal, then the default triggers will be used (defined by the network parameter `market.monitor.price.defaultParameters`). If the triggers are set to an empty array, either explicitly or if they are omitted and that's what the network parameter is set to, then price monitoring is effectively switched off, and the market will never go into price monitoring auction.
+If the market did not have any triggers specified in its market proposal, then the default triggers will be used (defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.monitor.price.defaultParameters" hideValue="true" />). If the triggers are set to an empty array, either explicitly or if they are omitted and that's what the network parameter is set to, then price monitoring is effectively switched off, and the market will never go into price monitoring auction.
 
 In case of multiple monitoring triggers, each trigger is checked separately and the resulting price monitoring auction length will be the sum of auction durations from all the triggers that were breached.
 
@@ -94,10 +96,10 @@ In order to ensure there is enough liquidity to keep a market active and protect
 
 The liquidity mechanics of the Vega protocol mean there is an incentive (through fee-setting) to provide the necessary liquidity.
 
-Another risk mitigation comes in how LPs commit liquidity. As long as there are static bid and ask orders on the book, the system deploys enough volume, at the specified offsets that are within price monitoring bounds, and that have at least the minimum probability of trading set by the network parameter `market.liquidity.minimum.probabilityOfTrading.lpOrders`.
+Another risk mitigation comes in how LPs commit liquidity. As long as there are static bid and ask orders on the book, the system deploys enough volume, at the specified offsets that are within price monitoring bounds, and that have at least the minimum probability of trading set by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.minimum.probabilityOfTrading.lpOrders" />.
 
 As a consequence, a market may only become illiquid in two cases: 
-* The total supplied stake by all liquidity providers is below the target stake (a multiple of the maximum open interest over a period of time set by the network parameter `market.stake.target.timeWindow`). 
+* The total supplied stake by all liquidity providers is below the target stake (a multiple of the maximum open interest over a period of time set by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.stake.target.timeWindow" />). 
 * The best static bid or best static ask prices are missing from the order book, meaning the volume implied by a liquidity provider's commitment cannot be deployed.
 
 When a market is illiquid, it enters into a liquidity monitoring auction, and terminates that auction when the market liquidity level is back at a sufficiently high level.

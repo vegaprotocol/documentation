@@ -4,6 +4,8 @@ title: Fees and trading rewards
 hide_title: false
 description: Trades can incur fees as well as get rewards.
 ---
+import NetworkParameter from '@site/src/components/NetworkParameter';
+
 The Vega trading fee structure incentivises passive trading (placing orders on the order book), providing liquidity, and running the network infrastructure. The protocol does not charge gas fees for interacting with the network.
 
 In addition, any participant can fund accounts that reward traders for their activity in a market, including those who 'take' prices off the order book. Those rewards only exist when a party is funding them, and can be set per market and per activity type (or metric).
@@ -31,7 +33,7 @@ The infrastructure portion of the fee is paid to validators as a reward for runn
 Some of the infrastructure fee paid to validators is then distributed to the validators' nominators.
 
 #### Liquidity fee
-The liquidity portion of the fee is paid to participants who commit liquidity to the market. It's transferred to a liquidity fee account, and distributed to each liquidity provider's margin account at a defined time (based on network parameter `market.liquidity.providers.fee.distributionTimeStep`), and depending on how much their liquidity commitments have contributed to the market.
+The liquidity portion of the fee is paid to participants who commit liquidity to the market. It's transferred to a liquidity fee account, and distributed to each liquidity provider's margin account at a defined time (based on network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providers.fee.distributionTimeStep" />), and depending on how much their liquidity commitments have contributed to the market.
 
 ### Fee calculations
 At a high level, the trading fee is calculated using the following formulas:
@@ -45,14 +47,18 @@ At a high level, the trading fee is calculated using the following formulas:
 * Trade value and fee factor: *USDC5000 x 0.003 = USDC15*
 * The fee is the same regardless of the number of transactions the order needs to be completely filled, as long as they trade at the same price.
 
-The fee factors are set through the following network parameters: `market.fee.factors.infrastructureFee`, `market.fee.factors.makerFee`, `market.fee.factors.liquidityFee`.
+The fee factors are set through the following network parameters: <NetworkParameter frontMatter={frontMatter} param="market.fee.factors.infrastructureFee" />, <NetworkParameter frontMatter={frontMatter} param="market.fee.factors.makerFee" />, <NetworkParameter frontMatter={frontMatter} param="market.fee.factors.liquidityFee" />.
+
+:::danger
+`market.fee.factors.liquidityFee` doesn't exist
+:::
 
 ## Transfer fees
 When transferring assets, whether from one Vega key to another, or from a Vega key to a reward pool to fund trading rewards, the party that initiates the transfer needs to pay a fee. The fee amount is taken when the transfer is executed, on top of the total amount to be transferred. It's charged in the same asset that is being transferred.
 
 The fee goes to validators for providing the network infrastructure that supports transfers, and goes into the infrastructure fee pool.
 
-The fee is calculated by multiplying the transfer amount and the `transfer.fee.factor` network parameter.
+The fee is calculated by multiplying the transfer amount and the <NetworkParameter frontMatter={frontMatter} param="transfer.fee.factor" /> network parameter.
 
 ## Trading rewards
 Market participants can also receive rewards for their trading, liquidity commitment, and market creation activity.
@@ -110,7 +116,7 @@ Party A would receive $100 / $10,000 = 1% of the rewards for that epoch.
 #### Market creation reward metric 
 The market creation reward dispatch metric is designed to incentivise creating markets that attract good trading volume. Rewards are awarded to the proposers of any markets that meet a certain total trade value. 
 
-The threshold for what counts as 'enough' trading volume is a formula that takes into account the value of the network parameter `rewards.marketCreationQuantumMultiple`, as well as the settlement asset's quantum to assess the market's size. 
+The threshold for what counts as 'enough' trading volume is a formula that takes into account the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="rewards.marketCreationQuantumMultiple" />, as well as the settlement asset's quantum to assess the market's size. 
 
 An asset's quantum is defined an approximation of the smallest 'meaningful' amount of that asset, generally expecting it to be the quantity of the asset valued at approximately the value of 1 USD. An asset's quantum is set in the governance proposal that enabled the asset for use on Vega.
 
