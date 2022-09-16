@@ -1,44 +1,50 @@
-const assert = require('assert').strict
-const { inspect } = require('util')
+const assert = require("assert").strict;
+const { inspect } = require("util");
 
-function updateAsset (skeleton) {
-  assert.ok(skeleton.properties.changes)
-  assert.ok(skeleton.properties.changes.properties.erc20)
+function updateAsset(skeleton) {
+  assert.ok(skeleton.properties.changes);
+  assert.ok(skeleton.properties.changes.properties.erc20);
   assert.ok(
     skeleton.properties.changes.properties.erc20.properties.withdrawThreshold
-  )
+  );
   assert.ok(
     skeleton.properties.changes.properties.erc20.properties.lifetimeLimit
-  )
+  );
 
   const result = {
     rationale: {
-      title: 'Update asset',
-      description: 'Proposal to change withdrawal threshold for asset'
+      title: "Update asset",
+      description: "Proposal to change withdrawal threshold for asset",
     },
     terms: {
       updateAsset: {
+        assetId:
+          "ebcd94151ae1f0d39a4bde3b21a9c7ae81a80ea4352fb075a92e07608d9c953d",
         changes: {
+          quantum: "1",
           erc20: {
-            withdrawThreshold: '10',
-            lifetimeLimit: '10'
-          }
-        }
-      }
-    }
-  }
+            withdrawThreshold: "10",
+            lifetimeLimit: "10",
+          },
+        },
+      },
+    },
+  };
 
   result.terms.updateAsset[inspect.custom] = () => {
     const withdrawThresholdSplit =
       skeleton.properties.changes.properties.erc20.properties.lifetimeLimit.title.split(
-        '\n'
-      )
+        "\n"
+      );
     const lifetimeLimitSplit =
       skeleton.properties.changes.properties.erc20.properties.lifetimeLimit.title.split(
-        '\n'
-      )
+        "\n"
+      );
     return `{
           changes: {
+            // ${skeleton.properties.changes.properties.quantum.title} (${skeleton.properties.changes.properties.quantum.type})
+            quantum: "1",
+
             erc20: {
               // ${withdrawThresholdSplit[0]}
               // ${withdrawThresholdSplit[1]} (${skeleton.properties.changes.properties.erc20.properties.withdrawThreshold.type})
@@ -48,9 +54,9 @@ function updateAsset (skeleton) {
               lifetimeLimit: "${result.terms.updateAsset.changes.erc20.lifetimeLimit}",
               }
         }
-    }`
-  }
-  return result
+    }`;
+  };
+  return result;
 }
 
-module.exports = { updateAsset }
+module.exports = { updateAsset };
