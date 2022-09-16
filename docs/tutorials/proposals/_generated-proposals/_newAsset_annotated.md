@@ -2,17 +2,17 @@
   ```javascript
 {
  rationale: {
-  title: "Add Wrapped Ether (WETH)",
-  description: "Proposal to add Wrapped Ether (WETH) as an asset"
+  title: "Add Dai Stablecoin (DAI)",
+  description: "Proposal to add Dai Stablecoin (DAI) as an asset"
  },
  terms: {
   newAsset: {
    changes: {
     // Name of the asset (e.g: Great British Pound) (string) 
-    name: "Wrapped Ether",
+    name: "Dai Stablecoin",
 
     // Symbol of the asset (e.g: GBP) (string) 
-    symbol: "WETH",
+    symbol: "DAI",
 
     // Number of decimal / precision handled by this asset (string) 
     decimals: "18",
@@ -23,7 +23,7 @@
     // An Ethereum ERC20 asset
     erc20: {
      // The address of the contract for the token, on the ethereum network (string)
-     contractAddress: "0xc778417e063141139fce010982780140aa0cd5ab",
+     contractAddress: "0x31f42841c2db5173425b5223809cf3a38fede360",
 
      // The lifetime limits deposit per address
      // note: this is a temporary measure for restricted mainnet (string)
@@ -38,14 +38,14 @@
 
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-  closingTimestamp: 1664728340,
+  closingTimestamp: 1664964291,
 
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-  enactmentTimestamp: 1664814740,
+  enactmentTimestamp: 1665050691,
 
   // Validation timestamp (Unix time in seconds) (int64 as string)
-  validationTimestamp: 1664641940
+  validationTimestamp: 1664877891
  }
 }
 ```

@@ -4,14 +4,16 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
 "{^
 \"proposalSubmission\": {^
  \"rationale\": {^
-  \"title\": \"Update market.fee.factors.infrastructureFee\",^
-  \"description\": \"Proposal to update market.fee.factors.infrastructureFee to 300}\"^
+  \"title\": \"Update asset\",^
+  \"description\": \"Proposal to change withdrawal threshold for asset\"^
  },^
  \"terms\": {^
-  \"updateNetworkParameter\": {^
+  \"updateAsset\": {^
    \"changes\": {^
-    \"key\": \"market.fee.factors.infrastructureFee\",^
-    \"value\": \"300\"^
+    \"erc20\": {^
+     \"withdrawThreshold\": \"10\",^
+     \"lifetimeLimit\": \"10\"^
+    }^
    }^
   },^
   \"closingTimestamp\": 1664964291,^

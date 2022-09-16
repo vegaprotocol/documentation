@@ -2,17 +2,21 @@
   ```javascript
 {
  rationale: {
-  title: "Update market.fee.factors.infrastructureFee",
-  description: "Proposal to update market.fee.factors.infrastructureFee to 300}"
+  title: "Update asset",
+  description: "Proposal to change withdrawal threshold for asset"
  },
  terms: {
-  updateNetworkParameter: {
+  updateAsset: {
    changes: {
-    // The unique key (string) 
-    key: "market.fee.factors.infrastructureFee",
+    erc20: {
+     // The lifetime limits deposit per address.
+     // This is will be interpreted against the asset decimals. (string)
+     withdrawThreshold: "10",
 
-    // The value for the network parameter (string) 
-    value: "300"
+     // The lifetime limits deposit per address.
+     // This is will be interpreted against the asset decimals. (string)
+     lifetimeLimit: "10",
+    }
    }
   },
 
