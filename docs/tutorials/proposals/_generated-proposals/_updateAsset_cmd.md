@@ -8,15 +8,17 @@
   },
   "terms": {
    "updateAsset": {
+    "assetId": "ebcd94151ae1f0d39a4bde3b21a9c7ae81a80ea4352fb075a92e07608d9c953d",
     "changes": {
+     "quantum": "1",
      "erc20": {
       "withdrawThreshold": "10",
       "lifetimeLimit": "10"
      }
     }
    },
-   "closingTimestamp": 1664964291,
-   "enactmentTimestamp": 1665050691
+   "closingTimestamp": 1664982989,
+   "enactmentTimestamp": 1665069389
   }
  }
 }'
