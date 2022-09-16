@@ -28,4 +28,4 @@ Find out how to maintain and upgrade a node by working through the instructions 
 | [Set up a validator](./setup-validator.md)                               | This guide takes your through all the steps to configure your node as a validator and join an existing network. |
 | [Network restarts](./network-restarts.md)                               | This guide walks you through how to manage network restarts. |
 | [Snapshots](./snapshots.md)                               | This guide will take you through using the state snapshots. |
-| [Rotating Vega keys](./key-rotation.md)                               | This guide will take you through rotating your Vega key for security purposes. |
+| [Rotating Vega keys](./vega-key-rotation.md)                               | This guide will take you through rotating your Vega key for security purposes. |
