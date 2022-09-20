@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-title: Update an asset
+title: Propose asset update
 hide_title: false
 vega_network: TESTNET
 keywords:
@@ -24,7 +24,9 @@ import TabItem from '@theme/TabItem';
 
 # Propose an update to an asset
 
-Some of the properties on an asset can be changed through governance. Important fields such as the underlying contract, name and symbol cannot be changed.
+Some of the properties of an asset can be changed through governance. Those fields are: withdrawal and deposit limits, and the asset's quantum.
+
+The underlying contract, asset name and symbol cannot be changed.
 
 ## Requirements
 
