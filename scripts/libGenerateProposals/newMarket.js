@@ -394,7 +394,6 @@ function generateMetadata(skeleton) {
   return [...sampleSize(metadata, random(1,3)) ,'source:docs.vega.xyz'] 
 }
 
-
 function generateRiskModel(skeleton, riskModelType) {
   if (riskModelType !== 'logNormal') {
     throw 'Not implemented'
