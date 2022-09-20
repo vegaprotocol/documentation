@@ -75,7 +75,7 @@ vega wallet command send --wallet $WALLET_NAME --node-address $NODE_RPC_ADDR --p
 ## 3. Reload Ethereum wallet in Vega validator node
 When the current block height is getting closer to $TARGET_BLOCK Vega is signalled to use the $ETH_NEW_ADDR. Note: the target block needs to chosen far enough in advance that you can complete the steps before that block height is reached by the chain. 
 
-:::warn 
+:::warning
 **PLEASE NOTE**: Reload the wallet approximately 5 blocks before $TARGET_BLOCK. It must be done before $TARGET_BLOCK). This is because the network will produce at the time of the rotation a new signature bundle to add a new signer to [MultisigControl bridge](./../api/bridge/interfaces/IMultisigControl) and it **must** signed with the $ETH_NEW_ADDR key.
 :::
 
