@@ -27,7 +27,7 @@ You will need:
 * A connected [Vega wallet](/docs/tools/vega-wallet/index.md), with your wallet name and public key to hand
 * A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minProposerBalance" hideName={true} suffix="tokens"/> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true}  formatter="governanceToken" suffix="tokens"/>
 * Familiarity with [governance on Vega](../../concepts/vega-protocol.md#governance), particularly [assets at a protocol level](../../concepts/vega-protocol#assettoken-management)
-- After a new asset vote passes, the change has to be submitted to the [asset bridge](../../api/bridge/interfaces/IERC20_Bridge_Logic) on Ethereum. Until it has been submitted, no one can start depositing that asset.
+- After a new asset vote passes, the change has to be submitted to the [asset bridge](../../concepts/vega-protocol#assettoken-management) on Ethereum. Until it has been submitted, no one can start depositing that asset.
 
 ## Overview
 Vega currently supports adding [ERC-20 assets ↗](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/#top). ERC-20 assets that pass a governance vote can be enabled [via the Vega bridge](../../api/bridge/index.md) - which is to say that they are deposited from and withdrawn to Ethereum. More token standards and chains are on the roadmap.
