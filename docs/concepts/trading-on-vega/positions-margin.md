@@ -22,7 +22,7 @@ Over the course of the position's lifetime, the margin requirements will likely 
 As markets and collateral are not managed through human intervention, markets must have certain automated processes that allow for well-functioning markets and assurance that the collateral required to manage positions is available when it's needed.
 
 There are a few mechanisms that work differently to how they would on a centralised exchange, in order to keep the markets solvent. They include:
-- [**Mark to market**](#mark-to-market): Mark to market on Vega happens much more frequently than on a centralised exchange. Every time the market price moves, the mark to market price is recalculated
+- [**Mark to market**](#mark-to-market): Mark to market on Vega happens much more frequently than on an exchange where counter parties are not pseudonymous. Every time the market price moves, the mark to market price could be recalculated
 - [**Margin**](#margin): Vega has implemented automated [cross-margining](#cross-margining). Margin is calculated automatically depending on the number of positions, the size, and the market movements so that there's enough collateral available to sustain a position and not put other market participants, or the market itself, under strain
 
 ## Mark to market
