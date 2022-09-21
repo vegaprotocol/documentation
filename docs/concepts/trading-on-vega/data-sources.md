@@ -27,10 +27,10 @@ Data sources must be able to emit the following data types:
 * Date/Time - to compare against in filters
 * Structured data records - such as a set of key value pairs (inputs to filters)
 
-## Signed message data source [WIP]
-Signed message data sources are the first externally verifiable data source to be supported on Vega, and can be used for settling and terminating a market. They introduce a Vega transaction that represents a data result that is validated by ensuring the signed message is provided by the Ethereum public key provided in the market’s proposal.
+## Signed Message Data Source
+Signed message data sources are a source of off-chain price data, and can be used for settling and terminating a market. They introduce a Vega transaction that represents a data result that is validated by ensuring the signed message is provided by the Ethereum public key provided in the market’s proposal.
 
-Data sources available on the Ethereum network must be 'copied' over to the Vega network manually, but as Open Oracle signed messages include signatures, the data can still be verified against its source. In future, this will be able to happen automatically through the Ethereum bridge.
+Specifically, Signed Message Data Sources are equivalent to Posters in [Compound’s Open Price Feed](https://medium.com/compound-finance/announcing-compound-open-oracle-development-cff36f06aad3), taking signed price reports and posting them to the Vega chain. As Open Oracle reports include signatures, the data can still be verified against its source. 
 
 A signed message data source must include:
 * Public keys that can sign and submit values for this oracle, as well as the key algorithm to be used, if required
@@ -76,8 +76,8 @@ For example, a single timestamp event will appear as follows. Note: the precise 
 ]
 ```
 
-### Signed JSON message [WIP]
-JSON messages. What they lack is the same verification path as the signed message data source. Data from these types is only as reliable as the Vega public key that publishes the data, whereas signed message data sources have signed data. The advantage is that the format is less rigid than signed messages. Any properties can be specified.
+### Signed JSON message
+Signed JSON messages are an alternative to using Signed Message Data Sources, which are best used for off-chain prices. Some markets need data other than prices, and for that flexibility Vega also supports arbitrary JSON messages, signed by a Vega key. Data from these types is only as reliable as the Vega public key that publishes the data, whereas signed message data sources have signed data. The advantage is that the format is less rigid than signed messages: any properties can be specified, including strings, booleans or non-price numbers.
 
 The data sourcing framework takes in these JSON messages and presents them similarly to the other data formats:
 
