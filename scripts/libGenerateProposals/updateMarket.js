@@ -1,4 +1,6 @@
 const sample = require('lodash/sample');
+const random = require('lodash/random');
+const sampleSize = require('lodash/sampleSize');
 const { generateSettlementOracleSpec, generateTerminationOracleSpec, generateOracleSpecBinding } = require('./newMarket')
 const assert = require('assert').strict;
 const { inspect } = require('util');
@@ -8,6 +10,9 @@ const instruments = [
     { name: 'Apples Yearly (2022)', code: 'APPLES.22' },
     { name: 'Oranges Daily', code: 'ORANGES.24h' }
 ];
+
+// Seed data: some example metadata for a market
+const metadata = ['sector:energy', 'sector:tech', 'sector:materials', 'sector:health', 'sector:food']
 
 // This is slightly smaller than the one in newMarket
 function generateInstrument(skeleton) {
@@ -97,6 +102,12 @@ function generatePriceMonitoringParameters(skeleton) {
 
 }
 
+function generateMetadata(skeleton) {
+  assert.equal(skeleton.type, 'array', 'Market metadata type used to be an array')
+  assert.equal(skeleton.items.type, 'string', 'Market metadata type used to be an array of strings')
+  return [...sampleSize(metadata, random(1,3)) ,'source:docs.vega.xyz'] 
+}
+
 function generateRiskModel(skeleton, riskModelType) {
   if (riskModelType !== 'logNormal') {
     throw 'Not implemented'
@@ -167,6 +178,7 @@ function updateMarket(skeleton) {
         marketId: '123',
         changes: {
           instrument: generateInstrument(skeleton.properties.changes.properties.instrument),
+          metadata: generateMetadata(skeleton.properties.changes.properties.metadata),
           priceMonitoringParameters: generatePriceMonitoringParameters(skeleton.properties.changes.properties.priceMonitoringParameters),
           logNormal: generateRiskModel(skeleton.properties.changes.properties.logNormal, 'logNormal')
         },
@@ -183,7 +195,9 @@ function updateMarket(skeleton) {
         changes: {
           // ${skeleton.properties.changes.properties.instrument.title}
           instrument: ${inspect(result.terms.updateMarket.changes.instrument, { depth: 19 })},
-          // ${skeleton.properties.changes.properties.priceMonitoringParameters.title}
+          // ${skeleton.properties.changes.properties.metadata.title}
+          metadata: ${JSON.stringify(result.terms.updateMarket.changes.metadata)},
+           // ${skeleton.properties.changes.properties.priceMonitoringParameters.title}
           priceMonitoringParameters: ${inspect(result.terms.updateMarket.changes.priceMonitoringParameters, { depth: 19 })},
           // ${skeleton.properties.changes.properties.logNormal.title}
           logNormal: ${inspect(result.terms.updateMarket.changes.logNormal, { depth: 19 })},

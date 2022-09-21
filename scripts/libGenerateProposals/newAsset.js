@@ -44,7 +44,7 @@ function newAsset(skeleton) {
 
  
  result.terms.newAsset[inspect.custom]= () => {
-      const withdrawThresholdSplit = skeleton.properties.changes.properties.erc20.properties.lifetimeLimit.title.split('\n')
+      const withdrawThresholdSplit = skeleton.properties.changes.properties.erc20.properties.withdrawThreshold.title.split('\n')
       const lifetimeLimitSplit = skeleton.properties.changes.properties.erc20.properties.lifetimeLimit.title.split('\n')
       return `{
           changes: {

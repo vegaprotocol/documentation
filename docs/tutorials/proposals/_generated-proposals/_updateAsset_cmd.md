@@ -3,26 +3,22 @@
 ./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{
  "proposalSubmission": {
   "rationale": {
-   "title": "Add Wrapped Ether (WETH)",
-   "description": "Proposal to add Wrapped Ether (WETH) as an asset"
+   "title": "Update asset",
+   "description": "Proposal to change withdrawal threshold for asset"
   },
   "terms": {
-   "newAsset": {
+   "updateAsset": {
+    "assetId": "ebcd94151ae1f0d39a4bde3b21a9c7ae81a80ea4352fb075a92e07608d9c953d",
     "changes": {
-     "name": "Wrapped Ether",
-     "symbol": "WETH",
-     "decimals": "18",
      "quantum": "1",
      "erc20": {
-      "contractAddress": "0xc778417e063141139fce010982780140aa0cd5ab",
       "withdrawThreshold": "10",
       "lifetimeLimit": "10"
      }
     }
    },
    "closingTimestamp": 1665413138,
-   "enactmentTimestamp": 1665499538,
-   "validationTimestamp": 1665326738
+   "enactmentTimestamp": 1665499538
   }
  }
 }'
