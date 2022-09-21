@@ -27,7 +27,7 @@ Data sources must be able to emit the following data types:
 * Date/Time - to compare against in filters
 * Structured data records - such as a set of key value pairs (inputs to filters)
 
-## Signed Message Data Source
+## Signed message data source
 Signed message data sources are a source of off-chain price data, and can be used for settling and terminating a market. They introduce a Vega transaction that represents a data result that is validated by ensuring the signed message is provided by the Ethereum public key provided in the market’s proposal.
 
 Specifically, Signed Message Data Sources are equivalent to Posters in [Compound’s Open Price Feed](https://medium.com/compound-finance/announcing-compound-open-oracle-development-cff36f06aad3), taking signed price reports and posting them to the Vega chain. As Open Oracle reports include signatures, the data can still be verified against its source. 
@@ -60,7 +60,7 @@ For example, a [message taken from Coinbase's Price Oracle](https://blog.coinbas
 ]
 ```
 
-### Internal data source
+## Internal data source
 Vega provides a timestamp source, which can be used to trigger a market event (such as trading termination or final settlement) at a set date and time. The `vegaprotocol.builtin.timestamp` is used by the market proposer to provide a Unix timestamp in seconds of the Vega time, which is to say the time agreed via consensus. 
 
 As the name implies, an internal data source is generated inside Vega and is submitted automatically when the time is reached.
@@ -76,8 +76,8 @@ For example, a single timestamp event will appear as follows. Note: the precise 
 ]
 ```
 
-### Signed JSON message
-Signed JSON messages are an alternative to using Signed Message Data Sources, which are best used for off-chain prices. Some markets need data other than prices, and for that flexibility Vega also supports arbitrary JSON messages, signed by a Vega key. Data from these types is only as reliable as the Vega public key that publishes the data, whereas signed message data sources have signed data. The advantage is that the format is less rigid than signed messages: any properties can be specified, including strings, booleans or non-price numbers.
+## Signed JSON message
+Signed JSON messages are an alternative to using *signed message data sources*, which are best used for off-chain prices. Some markets need data other than prices, and for that flexibility Vega also supports arbitrary JSON messages, signed by a Vega key. Data from these types is only as reliable as the Vega public key that publishes the data, whereas signed message data sources have signed data. The advantage is that the format is less rigid than signed messages: any properties can be specified, including strings, booleans or non-price numbers.
 
 The data sourcing framework takes in these JSON messages and presents them similarly to the other data formats:
 
@@ -95,7 +95,9 @@ The data sourcing framework takes in these JSON messages and presents them simil
 
 ```
 
+:::note Read more
 For a more thorough example of how to produce, sign and submit data in this format, see [Tutorials: Using data sources](./../../tutorials/using-data-sources.md)
+:::
 
 ## Using a data source: Filtering
 Data source filters allow the market proposer to specify which data sources it is listening for, and which of their messages are relevant.
