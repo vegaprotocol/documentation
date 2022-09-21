@@ -23,7 +23,7 @@ As markets and collateral are not managed through human intervention, markets mu
 
 There are a few mechanisms that work differently to how they would on a centralised exchange, in order to keep the markets solvent. They include:
 - [**Mark to market**](#mark-to-market): Mark to market on Vega happens much more frequently than on an exchange where counter parties are not pseudonymous. Every time the market price moves, the mark to market price could be recalculated
-- [**Margin**](#margin): Vega has implemented automated [cross-margining](#cross-margining). Margin is calculated automatically depending on the number of positions, the size, and the market movements so that there's enough collateral available to sustain a position and not put other market participants, or the market itself, under strain
+- [**Margin**](#margin): When a party opens a position: the *initial margin* requirement is calculated automatically depending on the market's risk model. If the market moves against the party, and the margn towards the *maintenance level*, Vega will *search* for more collateral in the general account, to avoid liquidating the position. Margin can also be *released* if the position is in sufficient profit. Other positions in markets with the same settlement asset may also interact with the same general account. Therefore, Vega is a cross-margin based system by default.
 
 ## Mark to market
 Marking to market refers to settling gains and losses due to changes in the market value of the underlying product. Marking to market aims to provide a realistic appraisal of a position based on the current market conditions.
@@ -43,11 +43,14 @@ Because the margin for a market is calculated dynamically based on the market mo
 :::
 
 ## Margin
-Margin is the amount of collateral required to keep your position open. It can change depending on how your position is impacted by your own actions and market movement. The margin calculations ensure a trader does not enter a trade that will immediately need to be closed out.
+Margin is the amount of collateral required to keep your position open. It can change depending on how your position is impacted by your own actions and market movement.
 
-The calculation for a new position, and the amount deducted from collateral to cover margin, is based on all of a trader's open orders. A trader will need enough margin to keep a position open, whether it goes for or against the trader.
+The margin calculations ensure a trader does not enter a trade that will immediately need to be closed out.
 
-The margin set aside for a given position is dictated by the specifics of the position and its exposure. For example, if a trader has a long position on a market, and then reduces the position - their margin requirement doesn't get larger.
+When placing a key's first order on a market: the protocol will calculate the initial margin required. If there is not a sufficient balance in the general account to fund this, the order will be rejected. If there is, these funds will be moved into a margin account for that market.  
+
+
+Orders that increase your open volume will increase the required margin. Orders that decrease it should not increase your margin requirements (unless you end up opening a position in the opposite direction).
 
 ### Cross-margining
 Vega's margining system provides automated cross margining. Cross margining, which means gains on one market can be released and used as margin on another, is supported between all markets that use the same settlement asset.
