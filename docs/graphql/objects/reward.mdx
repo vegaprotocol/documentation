@@ -1,7 +1,9 @@
 ---
 id: reward
 title: Reward
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -10,7 +12,7 @@ Reward information for a single party
 ```graphql
 type Reward {
   asset: Asset!
-  marketID: String!
+  marketId: ID!
   rewardType: AccountType!
   party: Party!
   epoch: Epoch!
@@ -28,9 +30,9 @@ type Reward {
 The asset this reward is paid in
 
 
-#### [`marketID`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [`marketId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
 
-The market for which this reward is paid if any
+The market ID for which this reward is paid if any
 
 
 #### [`rewardType`](#) ([`AccountType!`](/docs/testnet/graphql/enums/account-type))

@@ -1,7 +1,9 @@
 ---
 id: delegations
 title: delegations
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -9,20 +11,20 @@ Subscribe to delegation data
 
 ```graphql
 delegations(
-  party: ID
-  nodeID: ID
+  partyId: ID
+  nodeId: ID
 ): Delegation!
 ```
 
 
 ### Arguments
 
-#### [`party`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
+#### [`partyId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
 the party to subscribe for, empty if all
 
 
-#### [`nodeID`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
+#### [`nodeId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
 the node to subscribe for, empty if all
 

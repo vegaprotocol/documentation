@@ -1,7 +1,9 @@
 ---
 id: order
 title: Order
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -23,8 +25,9 @@ type Order {
   reference: String!
   trades: [Trade!]
   tradesConnection(
+  dateRange: DateRange
   pagination: Pagination
-): TradeConnection!
+): TradeConnection
   type: OrderType
   rejectionReason: OrderRejectionReason
   version: String!
@@ -64,17 +67,17 @@ The market the order is trading on (probably stored internally as a hash of the 
 
 #### [`size`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
-Total number of contracts that may be bought or sold (immutable) (uint64)
+Total number of units that may be bought or sold (immutable) (uint64)
 
 
 #### [`remaining`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
-Number of contracts remaining of the total that have not yet been bought or sold (uint64)
+Number of units remaining of the total that have not yet been bought or sold (uint64)
 
 
 #### [`party`](#) ([`Party!`](/docs/testnet/graphql/objects/party))
 
-The party who place the order (probably stored internally as the party's public key)
+The party that placed the order (probably stored internally as the party's public key)
 
 
 #### [`createdAt`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
@@ -102,9 +105,14 @@ The external reference (if available) for the order
 Trades relating to this order
 
 
-#### [`tradesConnection`](#) ([`TradeConnection!`](/docs/testnet/graphql/objects/trade-connection))
+#### [`tradesConnection`](#) ([`TradeConnection`](/docs/testnet/graphql/objects/trade-connection))
 
 Trades relating to this order
+- ##### [`dateRange`](#) ([`DateRange`](/docs/testnet/graphql/inputs/date-range))
+
+Date range to retrieve trades from/to. Start and end time should be expressed as an integer value of nano-seconds past the Unix epoch
+
+
 - ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
 
 
@@ -112,12 +120,12 @@ Trades relating to this order
 
 #### [`type`](#) ([`OrderType`](/docs/testnet/graphql/enums/order-type))
 
-Type the order type (defaults to PARTY)
+The order type
 
 
 #### [`rejectionReason`](#) ([`OrderRejectionReason`](/docs/testnet/graphql/enums/order-rejection-reason))
 
-Reason for the order to be rejected
+Why the order was rejected
 
 
 #### [`version`](#) ([`String!`](/docs/testnet/graphql/scalars/string))

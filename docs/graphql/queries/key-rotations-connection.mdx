@@ -1,7 +1,9 @@
 ---
 id: key-rotations-connection
 title: keyRotationsConnection
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -9,7 +11,7 @@ query for historic key rotations
 
 ```graphql
 keyRotationsConnection(
-  id: String
+  id: ID
   pagination: Pagination
 ): KeyRotationConnection!
 ```
@@ -17,7 +19,7 @@ keyRotationsConnection(
 
 ### Arguments
 
-#### [`id`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`id`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
 
 

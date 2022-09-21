@@ -1,7 +1,9 @@
 ---
 id: transfers-connection
 title: transfersConnection
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -9,16 +11,16 @@ get a list of all transfers for a public key
 
 ```graphql
 transfersConnection(
-  partyId: String
+  partyId: ID
   direction: TransferDirection
   pagination: Pagination
-): TransferConnection!
+): TransferConnection
 ```
 
 
 ### Arguments
 
-#### [`partyId`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`partyId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
 the public key to look for
 

@@ -1,0 +1,33 @@
+---
+id: erc20-multi-sig-signer-removed-connection
+title: ERC20MultiSigSignerRemovedConnection
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+Response for the signature bundle to remove a particular validator from the signer list of the multisig contract
+
+```graphql
+type ERC20MultiSigSignerRemovedConnection {
+  edges: [ERC20MultiSigSignerRemovedBundleEdge]
+  pageInfo: PageInfo
+}
+```
+
+
+### Fields
+
+#### [`edges`](#) ([`[ERC20MultiSigSignerRemovedBundleEdge]`](/docs/testnet/graphql/objects/erc20-multi-sig-signer-removed-bundle-edge))
+
+The list of signer bundles for that validator
+
+
+#### [`pageInfo`](#) ([`PageInfo`](/docs/testnet/graphql/objects/page-info))
+
+The pagination information
+
+
+
+

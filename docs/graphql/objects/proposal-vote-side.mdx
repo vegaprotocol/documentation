@@ -1,7 +1,9 @@
 ---
 id: proposal-vote-side
 title: ProposalVoteSide
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -13,6 +15,7 @@ type ProposalVoteSide {
   totalNumber: String!
   totalWeight: String!
   totalTokens: String!
+  totalEquityLikeShareWeight: String!
 }
 ```
 
@@ -37,6 +40,11 @@ Total weight of governance token from the votes cast for this side
 #### [`totalTokens`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 Total number of governance tokens from the votes cast for this side
+
+
+#### [`totalEquityLikeShareWeight`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+
+Total equity like share weight for this side (only for UpdateMarket Proposals)
 
 
 

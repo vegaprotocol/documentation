@@ -1,7 +1,9 @@
 ---
 id: future
 title: Future
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -14,6 +16,7 @@ type Future {
   oracleSpecForSettlementPrice: OracleSpec!
   oracleSpecForTradingTermination: OracleSpec!
   oracleSpecBinding: OracleSpecToFutureBinding!
+  settlementPriceDecimals: Int!
 }
 ```
 
@@ -43,6 +46,11 @@ The oracle spec describing the oracle data of interest for trading termination.
 #### [`oracleSpecBinding`](#) ([`OracleSpecToFutureBinding!`](/docs/testnet/graphql/objects/oracle-spec-to-future-binding))
 
 The binding between the oracle spec and the settlement price
+
+
+#### [`settlementPriceDecimals`](#) ([`Int!`](/docs/testnet/graphql/scalars/int))
+
+The number of decimal places implied by the settlement price emitted by the settlement oracle
 
 
 

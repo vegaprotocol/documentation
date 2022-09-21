@@ -1,7 +1,9 @@
 ---
 id: proposal
 title: Proposal
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -19,6 +21,10 @@ type Proposal {
   votes: ProposalVotes!
   rejectionReason: ProposalRejectionReason
   errorDetails: String
+  requiredMajority: String!
+  requiredParticipation: String!
+  requiredLpMajority: String
+  requiredLpParticipation: String
 }
 ```
 
@@ -73,6 +79,26 @@ Reason for the proposal to be rejected by the core
 #### [`errorDetails`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
 Error details of the rejectionReason
+
+
+#### [`requiredMajority`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+
+Required majority for this proposal to succeed
+
+
+#### [`requiredParticipation`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+
+Required participation for this proposal to succeed
+
+
+#### [`requiredLpMajority`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+
+Required liquidity provider equity like share majority for this proposal to succeed
+
+
+#### [`requiredLpParticipation`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+
+Required liquidity provider equity like share participation for this proposal to succeed
 
 
 

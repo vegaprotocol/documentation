@@ -1,2 +1,5 @@
 label: Queries
-link: null
+link: 
+  type: generated-index
+  title: 'Queries overview'
+

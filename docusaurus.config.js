@@ -1,24 +1,24 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 
 module.exports = {
-  title: 'Vega Protocol',
+  title: "Vega Protocol",
   tagline:
-    'A protocol for creating and trading derivatives on a fully decentralised network',
-  url: 'https://docs.vega.xyz/',
-  baseUrl: '/',
+    "A protocol for creating and trading derivatives on a fully decentralised network",
+  url: "https://docs.vega.xyz/",
+  baseUrl: "/",
   trailingSlash: false,
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
-  organizationName: 'vegaprotocol',
-  projectName: 'documentation',
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
+  favicon: "img/favicon.ico",
+  organizationName: "vegaprotocol",
+  projectName: "documentation",
   themeConfig: {
-    image: 'img/logo-y.png',
+    image: "img/logo-y.png",
     navbar: {
-      title: 'Vega documentation',
+      title: "Vega documentation",
       logo: {
-        alt: 'Vega Protocol Logo',
-        src: 'img/logo-y.png'
+        alt: "Vega Protocol Logo",
+        src: "img/logo-y.png",
       },
       items: [
         /*        {
@@ -31,138 +31,138 @@ module.exports = {
           href: '#'
         }, */
         {
-          href: 'https://github.com/vegaprotocol/documentation',
-          label: 'GitHub',
-          position: 'right'
+          href: "https://github.com/vegaprotocol/documentation",
+          label: "GitHub",
+          position: "right",
         },
         {
-          type: 'doc',
-          docId: 'concepts/new-to-vega',
-          label: 'Concepts',
-          position: 'left'
+          type: "doc",
+          docId: "concepts/new-to-vega",
+          label: "Concepts",
+          position: "left",
         },
         {
-          type: 'doc',
-          docId: 'api/overview',
-          label: 'APIs',
-          position: 'left'
+          type: "doc",
+          docId: "api/overview",
+          label: "APIs",
+          position: "left",
         },
         {
-          type: 'doc',
-          docId: 'tools/index',
-          label: 'Apps and Tools',
-          position: 'left'
+          type: "doc",
+          docId: "tools/index",
+          label: "Apps and Tools",
+          position: "left",
         },
         {
-          type: 'doc',
-          docId: 'releases/overview',
-          label: 'Releases',
-          position: 'left'
+          type: "doc",
+          docId: "releases/overview",
+          label: "Releases",
+          position: "left",
         },
         {
-          type: 'doc',
-          docId: 'node-operators/index',
-          label: 'Node operators',
-          position: 'left'
-        }
-      ]
+          type: "doc",
+          docId: "node-operators/index",
+          label: "Node operators",
+          position: "left",
+        },
+      ],
     },
     footer: {
-      style: 'dark',
+      style: "dark",
       links: [
         {
-          title: 'Vega Protocol',
+          title: "Vega Protocol",
           items: [
             {
-              label: 'Website',
-              to: 'http://vega.xyz/'
+              label: "Website",
+              to: "http://vega.xyz/",
             },
             {
-              label: 'GitHub',
-              to: 'https://github.com/vegaprotocol'
+              label: "GitHub",
+              to: "https://github.com/vegaprotocol",
             },
             {
-              label: 'Blog',
-              to: 'https://blog.vega.xyz'
+              label: "Blog",
+              to: "https://blog.vega.xyz",
             },
             {
-              label: 'Twitch',
-              to: 'https://www.twitch.tv/vegaprotocol'
+              label: "Twitch",
+              to: "https://www.twitch.tv/vegaprotocol",
             },
             {
-              label: 'YouTube',
-              to: 'https://www.youtube.com/vegaprotocol'
-            }
-          ]
+              label: "YouTube",
+              to: "https://www.youtube.com/vegaprotocol",
+            },
+          ],
         },
         {
-          title: 'Community',
+          title: "Community",
           items: [
             {
-              label: 'Discord',
-              to: 'https://vega.xyz/discord'
+              label: "Discord",
+              to: "https://vega.xyz/discord",
             },
             {
-              label: 'Twitter',
-              to: 'https://twitter.com/vegaprotocol'
+              label: "Twitter",
+              to: "https://twitter.com/vegaprotocol",
             },
             {
-              label: 'Forum',
-              to: 'https://community.vega.xyz/'
+              label: "Forum",
+              to: "https://community.vega.xyz/",
             },
             {
-              label: 'Telegram',
-              to: 'https://t.me/vegacommunity'
-            }
-          ]
+              label: "Telegram",
+              to: "https://t.me/vegacommunity",
+            },
+          ],
         },
         {
-          title: 'Fairground',
+          title: "Fairground",
           items: [
             {
-              label: 'Home',
-              to: 'https://fairground.wtf/'
+              label: "Home",
+              to: "https://fairground.wtf/",
             },
             {
-              label: 'Docs',
-              to: 'https://docs.fairground.vega.xyz/'
+              label: "Docs",
+              to: "https://docs.fairground.vega.xyz/",
             },
             {
-              label: 'Vega Console',
-              to: 'https://console.fairground.wtf/'
-            }
-          ]
-        }
+              label: "Vega Console",
+              to: "https://console.fairground.wtf/",
+            },
+          ],
+        },
       ],
-      copyright: `Copyright ©2018-${new Date().getFullYear()} Gobalsky Labs Limited, registered in Gibraltar`
-    }
+      copyright: `Copyright ©2018-${new Date().getFullYear()} Gobalsky Labs Limited, registered in Gibraltar`,
+    },
   },
   plugins: [
     [
       // This plugin extends the CLI to give us a generator that takes in our schema and produces
       // markdown files inside the docs folder, so these are included in the versioned docs.
-      require.resolve('@edno/docusaurus2-graphql-doc-generator'),
+      require.resolve("@edno/docusaurus2-graphql-doc-generator"),
       {
-        schema: './schema.graphql',
-        rootPath: 'docs',
-        baseURL: 'graphql',
-        linkRoot: '/docs/testnet/',
-        diffMethod: 'SCHEMA-DIFF',
+        schema: "./schema.graphql",
+        rootPath: "docs",
+        baseURL: "graphql",
+        linkRoot: "/docs/testnet/",
+        diffMethod: "SCHEMA-DIFF",
         docOptions: {
-          index: true
-        }
-      }
+          index: true,
+        },
+      },
     ],
     [
       // An alternative to algolia
-      require.resolve('@easyops-cn/docusaurus-search-local'),
+      require.resolve("@easyops-cn/docusaurus-search-local"),
       {
-        language: ['en'],
+        language: ["en"],
         hashed: true,
         explicitSearchResultPath: true,
         indexBlog: false,
-        docsRouteBasePath: ['/docs']
-      }
+        docsRouteBasePath: ["/docs"],
+      },
     ],
     [
       // docusaurus-protobuffet as a preset is the standard approach. However, we want the GRPC docs to be
@@ -173,77 +173,77 @@ module.exports = {
       //
       // The weird thing this causes is that the React components in ProtoFile are provided by the theme, which
       // is no long available - so that component has been 'swizzled' out of the theme and in to ./src/theme
-      require.resolve('docusaurus-protobuffet-plugin'),
+      require.resolve("docusaurus-protobuffet-plugin"),
       {
-        routeBasePath: '/docs/testnet/grpc',
-        fileDescriptorsPath: './proto.json',
-        protoDocsPath: './docs/grpc',
-        sidebarPath: './docs/grpc/sidebar.js'
-      }
+        routeBasePath: "/docs/testnet/grpc",
+        fileDescriptorsPath: "./proto.json",
+        protoDocsPath: "./docs/grpc",
+        sidebarPath: "./docs/grpc/sidebar.js",
+      },
     ],
 
     [
-      'docusaurus-plugin-openapi-docs',
+      "docusaurus-plugin-openapi-docs",
       {
-        id: 'apiDocs',
-        docsPluginId: 'classic',
+        id: "apiDocs",
+        docsPluginId: "classic",
         config: {
           tradingv1v054: {
-            specPath: './data/v0.54/trading_data_v1.swagger.json',
-            outputDir: 'docs/api/rest/data-v1',
+            specPath: "./data/v0.54/trading_data_v1.swagger.json",
+            outputDir: "docs/api/rest/data-v1",
             sidebarOptions: {
-              groupPathsBy: 'tag'
-            }
+              groupPathsBy: "tag",
+            },
           },
           tradingv2v054: {
-            specPath: './data/v0.54/trading_data_v2.swagger.json',
-            outputDir: 'docs/api/rest/data-v2',
+            specPath: "./data/v0.54/trading_data_v2.swagger.json",
+            outputDir: "docs/api/rest/data-v2",
             sidebarOptions: {
-              groupPathsBy: 'tag'
-            }
+              groupPathsBy: "tag",
+            },
           },
           corev054: {
-            specPath: './data/v0.54/core.swagger.json',
-            outputDir: 'docs/api/rest/core',
+            specPath: "./data/v0.54/core.swagger.json",
+            outputDir: "docs/api/rest/core",
             sidebarOptions: {
-              groupPathsBy: 'tag'
-            }
+              groupPathsBy: "tag",
+            },
           },
           statev054: {
-            specPath: './data/v0.54/corestate.swagger.json',
-            outputDir: 'docs/api/rest/state',
+            specPath: "./data/v0.54/corestate.swagger.json",
+            outputDir: "docs/api/rest/state",
             sidebarOptions: {
-              groupPathsBy: 'tag'
-            }
+              groupPathsBy: "tag",
+            },
           },
           statev053: {
-            specPath: './data/v0.53/corestate.swagger.json',
-            outputDir: './versioned_docs/version-v0.53/api/rest/state',
+            specPath: "./data/v0.53/corestate.swagger.json",
+            outputDir: "./versioned_docs/version-v0.53/api/rest/state",
             sidebarOptions: {
-              groupPathsBy: 'tag'
-            }
+              groupPathsBy: "tag",
+            },
           },
           corev053: {
-            specPath: './data/v0.53/core.swagger.json',
-            outputDir: './versioned_docs/version-v0.53/api/rest/core',
+            specPath: "./data/v0.53/core.swagger.json",
+            outputDir: "./versioned_docs/version-v0.53/api/rest/core",
             sidebarOptions: {
-              groupPathsBy: 'tag'
-            }
+              groupPathsBy: "tag",
+            },
           },
           tradingv1v053: {
-            specPath: './data/v0.53/trading_data.swagger.json',
-            outputDir: './versioned_docs/version-v0.53/api/rest/data-v1',
+            specPath: "./data/v0.53/trading_data.swagger.json",
+            outputDir: "./versioned_docs/version-v0.53/api/rest/data-v1",
             sidebarOptions: {
-              groupPathsBy: 'tag'
-            }
-          }
-        }
-      }
-    ]
+              groupPathsBy: "tag",
+            },
+          },
+        },
+      },
+    ],
   ],
   presets: [
     [
-      '@docusaurus/preset-classic',
+      "@docusaurus/preset-classic",
       {
         debug: undefined,
         // We don't have a '/blog/' section on the site, so disable this section
@@ -251,33 +251,33 @@ module.exports = {
         // Configuration for the '/docs/' section of the site
         docs: {
           disableVersioning: false,
-          sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/vegaprotocol/documentation/edit/main/',
-          lastVersion: 'v0.53',
-          docLayoutComponent: '@theme/DocPage',
-          docItemComponent: '@theme/ApiItem',
+          sidebarPath: require.resolve("./sidebars.js"),
+          editUrl: "https://github.com/vegaprotocol/documentation/edit/main/",
+          lastVersion: "v0.53",
+          docLayoutComponent: "@theme/DocPage",
+          docItemComponent: "@theme/ApiItem",
           versions: {
             current: {
-              banner: 'unreleased',
-              label: 'testnet (v0.54)',
-              path: 'testnet'
+              banner: "unreleased",
+              label: "testnet (v0.55)",
+              path: "testnet",
             },
-            'v0.53': {
-              banner: 'none',
-              label: 'mainnet (v0.53)',
-              path: 'mainnet'
-            }
-          }
+            "v0.53": {
+              banner: "none",
+              label: "mainnet (v0.53)",
+              path: "mainnet",
+            },
+          },
         },
         // Vega specific theme overrides go here
         theme: {
-          customCss: require.resolve('./src/css/custom.css')
-        }
-      }
-    ]
+          customCss: require.resolve("./src/css/custom.css"),
+        },
+      },
+    ],
   ],
   themes: [
-    'docusaurus-theme-openapi-docs',
-    '@vegaprotocol/docusaurus-theme-github-codeblock'
-  ]
-}
+    "docusaurus-theme-openapi-docs",
+    "@vegaprotocol/docusaurus-theme-github-codeblock",
+  ],
+};

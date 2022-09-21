@@ -1,2 +1,5 @@
 label: Directives
-link: null
+link: 
+  type: generated-index
+  title: 'Directives overview'
+

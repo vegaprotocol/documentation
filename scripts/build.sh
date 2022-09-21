@@ -13,12 +13,11 @@ rm schema.graphql 2> /dev/null
 rm -rf docs/graphql/ 2> /dev/null
 rm -rf docs/grpc 2> /dev/null
  
-testnet_network_parameters=https://lb.testnet.vega.xyz/network/parameters
-mainnet_network_parameters=https://api.token.vega.xyz/network/parameters
+testnet_network_parameters=https://api.n07.testnet.vega.xyz/network/parameters
+mainnet_network_parameters=https://api.vega.xyz/network/parameters
 
-# set -e
-
-version=v0.54.0
+set -e
+doc_version=v0.55
 
 # This should be using /specs/vxxx but those versions are not yet build correctly
 echo "Fetching grpc..."
@@ -36,10 +35,9 @@ curl ${mainnet_network_parameters} -o "data/mainnet_network_parameters.json"
 # Create an empty folder to keep the tools happy
 echo "Regenerating docs..."
 yarn install
-mkdir -p ./docs/grpc
 yarn run generate-grpc
 yarn run generate-rest
-yarn run generate-graphql
+yarn run generate-graphql --force
 
 # This var is used in GraphQL tidyup
 echo "GraphQL: Removing generated on date..."

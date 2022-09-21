@@ -1,0 +1,70 @@
+---
+id: margin-levels-update
+title: MarginLevelsUpdate
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+Margins for a given a party
+
+```graphql
+type MarginLevelsUpdate {
+  marketId: ID!
+  asset: ID!
+  partyId: ID!
+  maintenanceLevel: String!
+  searchLevel: String!
+  initialLevel: String!
+  collateralReleaseLevel: String!
+  timestamp: String!
+}
+```
+
+
+### Fields
+
+#### [`marketId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+
+market in which the margin is required for this party
+
+
+#### [`asset`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+
+asset for the current margins
+
+
+#### [`partyId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+
+The party for this margin
+
+
+#### [`maintenanceLevel`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+
+minimal margin for the position to be maintained in the network (unsigned integer)
+
+
+#### [`searchLevel`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+
+if the margin is between maintenance and search, the network will initiate a collateral search (unsigned integer)
+
+
+#### [`initialLevel`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+
+this is the minimum margin required for a party to place a new order on the network (unsigned integer)
+
+
+#### [`collateralReleaseLevel`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+
+If the margin of the party is greater than this level, then collateral will be released from the margin account into
+the general account of the party for the given asset.
+
+
+#### [`timestamp`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+
+RFC3339Nano time from at which this margin level was relevant
+
+
+
+
