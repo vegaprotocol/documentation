@@ -13,7 +13,7 @@
     // Updated market instrument configuration
     instrument: {
      // Instrument code, human-readable shortcode used to describe the instrument
-     code: "APPLES.22",
+     code: "ORANGES.24h",
 
      // Future
      future: {
@@ -135,7 +135,7 @@
       tau: 0.0001140771161,
 
       // Risk Aversion Parameter (double as number) 
-      riskAversionParameter: "0.001",
+      riskAversionParameter: "0.01",
 
       // Risk model parameters for log normal
       params: {
@@ -146,7 +146,7 @@
        r: 0.016,
 
        // Sigma param (double as number) 
-       sigma: 0.8,
+       sigma: 0.5,
       }
      },
     },
@@ -154,11 +154,11 @@
 
    // Timestamp (Unix time in seconds) when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-   closingTimestamp: 1664728340,
+   closingTimestamp: 1665313779,
 
    // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
    // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-   enactmentTimestamp: 1664814740,
+   enactmentTimestamp: 1665400179,
   }
  }
 ```

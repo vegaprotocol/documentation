@@ -3,26 +3,22 @@
 ./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{
  "proposalSubmission": {
   "rationale": {
-   "title": "Add USDT Coin (USDT)",
-   "description": "Proposal to add USDT Coin (USDT) as an asset"
+   "title": "Update asset",
+   "description": "Proposal to change withdrawal threshold for asset"
   },
   "terms": {
-   "newAsset": {
+   "updateAsset": {
+    "assetId": "ebcd94151ae1f0d39a4bde3b21a9c7ae81a80ea4352fb075a92e07608d9c953d",
     "changes": {
-     "name": "USDT Coin",
-     "symbol": "USDT",
-     "decimals": "18",
      "quantum": "1",
      "erc20": {
-      "contractAddress": "0xb404c51bbc10dcbe948077f18a4b8e553d160084",
       "withdrawThreshold": "10",
       "lifetimeLimit": "10"
      }
     }
    },
    "closingTimestamp": 1665313779,
-   "enactmentTimestamp": 1665400179,
-   "validationTimestamp": 1665227379
+   "enactmentTimestamp": 1665400179
   }
  }
 }'

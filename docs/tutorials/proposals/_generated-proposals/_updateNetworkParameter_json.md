@@ -12,8 +12,8 @@
         "value": "300"
       }
     },
-    "closingTimestamp": 1664728340,
-    "enactmentTimestamp": 1664814740
+    "closingTimestamp": 1665313779,
+    "enactmentTimestamp": 1665400179
   }
 }
 ```
