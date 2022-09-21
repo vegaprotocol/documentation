@@ -1,7 +1,9 @@
 ---
 id: get-market-data-history-connection-by-id
 title: getMarketDataHistoryConnectionByID
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -9,17 +11,17 @@ get market data history for a specific market. If no dates are given, the latest
 
 ```graphql
 getMarketDataHistoryConnectionByID(
-  id: String!
+  id: ID!
   start: Int
   end: Int
   pagination: Pagination
-): MarketDataConnection!
+): MarketDataConnection
 ```
 
 
 ### Arguments
 
-#### [`id`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [`id`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
 
 
 

@@ -1,2 +1,5 @@
 label: Subscriptions
-link: null
+link: 
+  type: generated-index
+  title: 'Subscriptions overview'
+

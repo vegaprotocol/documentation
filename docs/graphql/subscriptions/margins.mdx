@@ -1,7 +1,9 @@
 ---
 id: margins
 title: margins
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -11,7 +13,7 @@ Subscribe to the margin changes
 margins(
   partyId: ID!
   marketId: ID
-): MarginLevels!
+): MarginLevelsUpdate!
 ```
 
 
@@ -29,7 +31,7 @@ ID of the market you want to listen to for margin updates (nil if you want updat
 
 ### Type
 
-#### [`MarginLevels`](/docs/testnet/graphql/objects/margin-levels)
+#### [`MarginLevelsUpdate`](/docs/testnet/graphql/objects/margin-levels-update)
 
 Margins for a given a party
 

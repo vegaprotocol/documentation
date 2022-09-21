@@ -1,0 +1,36 @@
+---
+id: date-range
+title: DateRange
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+Range of dates to retrieve information for.
+If start and end are provided, data will be returned within the specified range (exclusive).
+If start is provided without end, the end date will be the latest time available in the data set.
+If end is provided without start, the start time will be the earliest time available in the data set.
+
+```graphql
+input DateRange {
+  start: Timestamp
+  end: Timestamp
+}
+```
+
+
+### Fields
+
+#### [`start`](#) ([`Timestamp`](/docs/testnet/graphql/scalars/timestamp))
+
+
+
+
+#### [`end`](#) ([`Timestamp`](/docs/testnet/graphql/scalars/timestamp))
+
+
+
+
+
+

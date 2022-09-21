@@ -1,7 +1,9 @@
 ---
 id: key-rotation
 title: KeyRotation
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -9,7 +11,7 @@ No description
 
 ```graphql
 type KeyRotation {
-  nodeId: String!
+  nodeId: ID!
   oldPubKey: String!
   newPubKey: String!
   blockHeight: String!
@@ -19,7 +21,7 @@ type KeyRotation {
 
 ### Fields
 
-#### [`nodeId`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [`nodeId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
 
 ID of node where rotation took place
 

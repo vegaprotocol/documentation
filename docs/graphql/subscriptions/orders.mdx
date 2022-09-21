@@ -1,7 +1,9 @@
 ---
 id: orders
 title: orders
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -11,7 +13,7 @@ Subscribe to orders updates
 orders(
   marketId: ID
   partyId: ID
-): [Order!]
+): [OrderUpdate!]
 ```
 
 
@@ -29,9 +31,9 @@ ID of the party from which you want orders updates
 
 ### Type
 
-#### [`Order`](/docs/testnet/graphql/objects/order)
+#### [`OrderUpdate`](/docs/testnet/graphql/objects/order-update)
 
-An order in Vega, if active it will be on the order book for the market
+An order update in Vega, if active it will be on the order book for the market
 
 
 
