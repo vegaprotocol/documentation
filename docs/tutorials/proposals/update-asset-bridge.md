@@ -26,3 +26,7 @@ You will need:
 ## Overview
 
 When the validators have created a multisig bundle, it is available for anyone to submit to the bridge to complete the up
+
+## 1. Get the ID of the new/changing asset
+## 2. Fetch the signature bundle for the change
+## 3. Submit the update to Ethereum
