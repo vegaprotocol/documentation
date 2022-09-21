@@ -13,12 +13,12 @@ rm schema.graphql 2> /dev/null
 rm -rf docs/graphql/ 2> /dev/null
 rm -rf docs/grpc 2> /dev/null
  
-testnet_network_parameters=https://lb.testnet.vega.xyz/network/parameters
-mainnet_network_parameters=https://api.token.vega.xyz/network/parameters
+testnet_network_parameters=https://api.n10.testnet.vega.xyz/network/parameters
+mainnet_network_parameters=https://api.vega.xyz/network/parameters
 
 # set -e
 
-version=v0.54.0
+version=v0.55.0
 
 # This should be using /specs/vxxx but those versions are not yet build correctly
 echo "Fetching grpc..."
