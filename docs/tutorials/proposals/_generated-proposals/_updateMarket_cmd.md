@@ -11,7 +11,7 @@
     "marketId": "123",
     "changes": {
      "instrument": {
-      "code": "ORANGES.24h",
+      "code": "APPLES.22",
       "future": {
        "quoteName": "tEuro",
        "settlementPriceDecimals": 5,
@@ -59,6 +59,12 @@
        }
       }
      },
+     "metadata": [
+      "sector:materials",
+      "sector:energy",
+      "sector:health",
+      "source:docs.vega.xyz"
+     ],
      "priceMonitoringParameters": {
       "triggers": [
        {
@@ -74,13 +80,13 @@
       "params": {
        "mu": 0,
        "r": 0.016,
-       "sigma": 0.5
+       "sigma": 0.3
       }
      }
     }
    },
-   "closingTimestamp": 1665313779,
-   "enactmentTimestamp": 1665400179
+   "closingTimestamp": 1665413138,
+   "enactmentTimestamp": 1665499538
   }
  }
 }'

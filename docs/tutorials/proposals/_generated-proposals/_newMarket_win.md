@@ -65,7 +65,7 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
     },^
     \"metadata\": [^
      \"sector:food\",^
-     \"sector:energy\",^
+     \"sector:materials\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -91,13 +91,13 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
-      \"sigma\": 0.8^
+      \"sigma\": 0.3^
      }^
     }^
    }^
   },^
-  \"closingTimestamp\": 1665313779,^
-  \"enactmentTimestamp\": 1665400179^
+  \"closingTimestamp\": 1665413138,^
+  \"enactmentTimestamp\": 1665499538^
  }^
 }^
 }"
