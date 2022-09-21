@@ -25,5 +25,4 @@ You will need:
 
 ## Overview
 
-When the validators have created a multisig bundle, it is available for anyone to submit to the bridge to complete the update. 
-
+When the validators have created a multisig bundle, it is available for anyone to submit to the bridge to complete the up
