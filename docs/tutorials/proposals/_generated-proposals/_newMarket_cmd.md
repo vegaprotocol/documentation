@@ -63,7 +63,7 @@
       }
      },
      "metadata": [
-      "sector:tech",
+      "sector:food",
       "sector:energy",
       "source:docs.vega.xyz"
      ],
@@ -90,13 +90,13 @@
       "params": {
        "mu": 0,
        "r": 0.016,
-       "sigma": 0.5
+       "sigma": 0.8
       }
      }
     }
    },
-   "closingTimestamp": 1665310783,
-   "enactmentTimestamp": 1665397183
+   "closingTimestamp": 1665313779,
+   "enactmentTimestamp": 1665400179
   }
  }
 }'
