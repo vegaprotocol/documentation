@@ -8,6 +8,7 @@ const {
   produceOverview,
   produceInstrument
 } = require('./libGenerateProposals/newMarket')
+const { updateAsset } = require('./libGenerateProposals/updateAsset')
 const { updateMarket } = require('./libGenerateProposals/updateMarket')
 const { newFreeform } = require('./libGenerateProposals/newFreeform')
 const { newAsset } = require('./libGenerateProposals/newAsset')
@@ -248,7 +249,8 @@ const ProposalGenerator = new Map([
   ['updateNetworkParameter', updateNetworkParameter],
   ['newAsset', newAsset],
   ['newMarket', newMarket],
-  ['updateMarket', updateMarket]
+  ['updateMarket', updateMarket],
+  ['updateAsset', updateAsset]
 ])
 
 function parse (api) {
