@@ -9,7 +9,8 @@ keywords:
 - newAsset
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
-
+import JSONInstructions from './_json-instructions.md';
+import TerminalInstructions from './_terminal-instructions.md';
 import NewAssetAnnotated from './_generated-proposals/_newAsset_annotated.md';
 import NewAssetJSON from './_generated-proposals/_newAsset_json.md';
 import NewAssetCMD from './_generated-proposals/_newAsset_cmd.md';
@@ -19,6 +20,14 @@ import TabItem from '@theme/TabItem';
 
 # Propose a new asset
 This page provides a tutorial for submitting a proposal for a new ERC-20 asset to be used as collateral. It describes what can be proposed, what you need to propose a new asset, and provides proposal templates that you will need to edit before submitting.
+
+## Requirements
+
+You will need:
+* A connected [Vega wallet](/docs/tools/vega-wallet/index.md), with your wallet name and public key to hand
+* A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minProposerBalance" hideName={true} suffix="tokens"/> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true}  formatter="governanceToken" suffix="tokens"/>
+* Familiarity with [governance on Vega](../../concepts/vega-protocol.md#governance), particularly [assets at a protocol level](../../concepts/vega-protocol#assettoken-management)
+- After a new asset vote passes, the change has to be submitted to the [asset bridge](../../api/bridge/interfaces/IERC20_Bridge_Logic) on Ethereum. Until it has been submitted, no one can start depositing that asset.
 
 ## Overview
 Vega currently supports adding [ERC-20 assets ↗](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/#top). ERC-20 assets that pass a governance vote can be enabled [via the Vega bridge](../../api/bridge/index.md) - which is to say that they are deposited from and withdrawn to Ethereum. More token standards and chains are on the roadmap.
@@ -39,40 +48,32 @@ When adding an ERC-20 asset to the bridge, the key details are compared to the s
 
 Validation happens according to the `validationTimestamp` parameter. In most situations, this should be early on in the voting period so that any validation errors are caught before token holders start voting. However you could push the validation later if the contract is not yet deployed.
 
-## Proposing: What you need to know
-1. The full annotated example is there to guide you through what is needed for each field in the proposal.
-2. Be sure to have your Vega wallet name and public key ready, and have your wallet connected when you submit.
-3. To submit a proposal you will need at least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the asset. Note, this amount is set through the network parameter `governance.proposal.asset.minProposerBalance`.
-4. Before proposing, read about:
-   * [Governance lifecycle](../../concepts/vega-protocol#lifecycle-of-a-governance-proposal): Learn about the off-chain and on-chain steps for crafting, sharing, and submitting proposals.
-   * [Assets at a protocol level](../../concepts/vega-protocol#assettoken-management)
-
-### Submit using command line
-1. To create your own proposal and submit it using the command line, copy the command line example into a text editor and include the values you want for the market.
-2. Use the command line to submit your proposal.
-3. You can see your proposal on the [Fairground block explorer](https://explorer.fairground.wtf/governance).
-4. Your proposal will need enough voting weight to pass, so having community support of your proposal is essential.
-
-### Submit using token dApp
-1. To create your own proposal and submit with the token dApp, copy the JSON example into a text editor and include the values you want for the market.
-2. Use the token dApp's [Governance page](https://token.fairground.wtf/governance) to submit your proposal. 
-3. You can see your proposal on the token dApp governance page.
-4. Your proposal will need enough voting weight to pass, so having community support of your proposal is essential.
-
-## Full proposal examples
+## Templates and submitting
 In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to submit on the token dApp, and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
 
 <Tabs groupId="newAssetProposal">
   <TabItem value="annotated" label="Annotated example">
     <NewAssetAnnotated />
   </TabItem>
-  <TabItem value="json" label="JSON example">
-    <NewAssetJSON />
+  <TabItem value="json" label="Token dApp (JSON)">
+		<JSONInstructions />
+		<NewAssetJSON />
   </TabItem>
-  <TabItem value="cmd" label="Linux / OSX command line">
-    <NewAssetCMD />
+  <TabItem value="cmd" label="Command line (Linux / OSX)">
+		<TerminalInstructions />
+		<NewAssetCMD />
   </TabItem>
-  <TabItem value="win" label="Windows command line">
-    <NewAssetWin />
+  <TabItem value="win" label="Command line (Windows)">
+		<TerminalInstructions />
+		<NewAssetWin />
   </TabItem>
 </Tabs>
+
+## Voting and enactment
+All proposals are voted on by the community. To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minVoterBalance" suffix="tokens" hideName={true} /> or <NetworkParameter frontMatter={frontMatter} formatter="governanceToken" param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated with their Vega key. 
+
+Your proposal will need [participation](../../concepts/vega-protocol#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential. If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
+
+Building support is down to you. Share your proposal in [the Fairground governance forum](https://community.vega.xyz/c/fairground-testnet-governance/32) on Vega community. You may also wish to share on [Discord](https://vega.xyz/discord).
+
+Proposal owners who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.

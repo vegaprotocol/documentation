@@ -1,7 +1,9 @@
 ---
 id: order-by-id
 title: orderByID
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -9,7 +11,7 @@ An order in the Vega network found by orderID
 
 ```graphql
 orderByID(
-  orderId: ID!
+  id: ID!
   version: Int
 ): Order!
 ```
@@ -17,7 +19,7 @@ orderByID(
 
 ### Arguments
 
-#### [`orderId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+#### [`id`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
 
 ID for an order
 

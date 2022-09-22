@@ -4,26 +4,26 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
 "{^
 \"proposalSubmission\": {^
  \"rationale\": {^
-  \"title\": \"Add Wrapped Ether (WETH)\",^
-  \"description\": \"Proposal to add Wrapped Ether (WETH) as an asset\"^
+  \"title\": \"Add USDT Coin (USDT)\",^
+  \"description\": \"Proposal to add USDT Coin (USDT) as an asset\"^
  },^
  \"terms\": {^
   \"newAsset\": {^
    \"changes\": {^
-    \"name\": \"Wrapped Ether\",^
-    \"symbol\": \"WETH\",^
+    \"name\": \"USDT Coin\",^
+    \"symbol\": \"USDT\",^
     \"decimals\": \"18\",^
     \"quantum\": \"1\",^
     \"erc20\": {^
-     \"contractAddress\": \"0xc778417e063141139fce010982780140aa0cd5ab\",^
+     \"contractAddress\": \"0xb404c51bbc10dcbe948077f18a4b8e553d160084\",^
      \"withdrawThreshold\": \"10\",^
      \"lifetimeLimit\": \"10\"^
     }^
    }^
   },^
-  \"closingTimestamp\": 1664728340,^
-  \"enactmentTimestamp\": 1664814740,^
-  \"validationTimestamp\": 1664641940^
+  \"closingTimestamp\": 1665423449,^
+  \"enactmentTimestamp\": 1665509849,^
+  \"validationTimestamp\": 1665337049^
  }^
 }^
 }"

@@ -1,6 +1,6 @@
 {
   "name": "vega-documentation",
-  "version": "0.53.0",
+  "version": "0.55.0",
   "license": "MIT",
   "engines": {
     "node": ">=16.14"

@@ -1,7 +1,9 @@
 ---
 id: reward-per-asset-detail
 title: RewardPerAssetDetail
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -10,7 +12,7 @@ RewardPerAssetDetail is deprecated, use RewardSummmary instead
 ```graphql
 type RewardPerAssetDetail {
   asset: Asset!
-  assetId: String!
+  assetId: ID!
   rewards: [Reward]
   totalAmount: String!
 }
@@ -24,9 +26,9 @@ type RewardPerAssetDetail {
 Asset in which the reward was paid
 
 
-#### [`assetId`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [`assetId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
 
-Id of asset in which the reward was paid
+ID of asset in which the reward was paid
 
 
 #### [`rewards`](#) ([`[Reward]`](/docs/testnet/graphql/objects/reward))

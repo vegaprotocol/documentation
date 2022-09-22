@@ -1,7 +1,9 @@
 ---
 id: new-asset
 title: NewAsset
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -12,7 +14,7 @@ type NewAsset {
   name: String!
   symbol: String!
   decimals: Int!
-  minLpStake: String!
+  quantum: String!
   source: AssetSource!
 }
 ```
@@ -35,9 +37,9 @@ The symbol of the asset (e.g: GBP)
 The precision of the asset
 
 
-#### [`minLpStake`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [`quantum`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
-The minimum stake to become a liquidity provider for any market using this asset for settlement
+The minimum economically meaningful amount of this specific asset
 
 
 #### [`source`](#) ([`AssetSource!`](/docs/testnet/graphql/unions/asset-source))

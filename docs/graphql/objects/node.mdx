@@ -1,7 +1,9 @@
 ---
 id: node
 title: Node
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -9,7 +11,7 @@ No description
 
 ```graphql
 type Node {
-  id: String!
+  id: ID!
   pubkey: String!
   tmPubkey: String!
   ethereumAddress: String!
@@ -22,15 +24,15 @@ type Node {
   epochData: EpochData
   status: NodeStatus!
   delegations(
-  partyId: String
+  partyId: ID
   skip: Int
   first: Int
   last: Int
 ): [Delegation!]
   delegationsConnection(
-  partyId: String
+  partyId: ID
   pagination: Pagination
-): DelegationsConnection!
+): DelegationsConnection
   rewardScore: RewardScore
   rankingScore: RankingScore!
   name: String!
@@ -41,7 +43,7 @@ type Node {
 
 ### Fields
 
-#### [`id`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [`id`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
 
 The node URL eg n01.vega.xyz
 
@@ -104,7 +106,7 @@ Amount of stake on the next epoch
 #### [`delegations`](#) ([`[Delegation!]`](/docs/testnet/graphql/objects/delegation))
 
 
-- ##### [`partyId`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+- ##### [`partyId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
 
 
@@ -124,10 +126,10 @@ Pagination first element
 Pagination last element
 
 
-#### [`delegationsConnection`](#) ([`DelegationsConnection!`](/docs/testnet/graphql/objects/delegations-connection))
+#### [`delegationsConnection`](#) ([`DelegationsConnection`](/docs/testnet/graphql/objects/delegations-connection))
 
 
-- ##### [`partyId`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+- ##### [`partyId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
 
 

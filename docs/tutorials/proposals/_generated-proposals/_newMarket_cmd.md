@@ -63,9 +63,7 @@
       }
      },
      "metadata": [
-      "sector:materials",
       "sector:tech",
-      "sector:health",
       "source:docs.vega.xyz"
      ],
      "priceMonitoringParameters": {
@@ -91,13 +89,13 @@
       "params": {
        "mu": 0,
        "r": 0.016,
-       "sigma": 0.3
+       "sigma": 0.5
       }
      }
     }
    },
-   "closingTimestamp": 1664728340,
-   "enactmentTimestamp": 1664814740
+   "closingTimestamp": 1665423449,
+   "enactmentTimestamp": 1665509849
   }
  }
 }'

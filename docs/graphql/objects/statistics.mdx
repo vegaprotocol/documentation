@@ -1,7 +1,9 @@
 ---
 id: statistics
 title: Statistics
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -33,7 +35,7 @@ type Statistics {
   appVersion: String!
   chainVersion: String!
   blockDuration: String!
-  chainId: String!
+  chainId: ID!
 }
 ```
 
@@ -160,7 +162,7 @@ Version of the chain (semver)
 Duration of the last block, in nanoseconds
 
 
-#### [`chainId`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [`chainId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
 
 Current chain ID
 

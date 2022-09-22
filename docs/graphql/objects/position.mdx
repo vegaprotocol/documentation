@@ -1,7 +1,9 @@
 ---
 id: position
 title: Position
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -21,7 +23,7 @@ type Position {
   margins: [MarginLevels!]
   marginsConnection(
   pagination: Pagination
-): MarginConnection!
+): MarginConnection
   updatedAt: String
 }
 ```
@@ -64,7 +66,7 @@ Average entry price for this position
 Margins of the party for the given position
 
 
-#### [`marginsConnection`](#) ([`MarginConnection!`](/docs/testnet/graphql/objects/margin-connection))
+#### [`marginsConnection`](#) ([`MarginConnection`](/docs/testnet/graphql/objects/margin-connection))
 
 Margins of the party for the given position
 - ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))

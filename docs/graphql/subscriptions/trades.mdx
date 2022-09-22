@@ -1,7 +1,9 @@
 ---
 id: trades
 title: trades
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -11,7 +13,7 @@ Subscribe to the trades updates
 trades(
   marketId: ID
   partyId: ID
-): [Trade!]
+): [TradeUpdate!]
 ```
 
 
@@ -29,7 +31,7 @@ ID of the party from which you want trades updates
 
 ### Type
 
-#### [`Trade`](/docs/testnet/graphql/objects/trade)
+#### [`TradeUpdate`](/docs/testnet/graphql/objects/trade-update)
 
 A trade on Vega, the result of two orders being 'matched' in the market
 

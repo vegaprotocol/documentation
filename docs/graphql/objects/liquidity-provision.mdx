@@ -1,7 +1,9 @@
 ---
 id: liquidity-provision
 title: LiquidityProvision
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -34,7 +36,7 @@ Unique identifier for the order (set by the system after consensus)
 
 #### [`party`](#) ([`Party!`](/docs/testnet/graphql/objects/party))
 
-The Id of the party making this commitment
+The party making this commitment
 
 
 #### [`createdAt`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
@@ -49,7 +51,7 @@ RFC3339Nano time of when the liquidity provision was updated
 
 #### [`market`](#) ([`Market!`](/docs/testnet/graphql/objects/market))
 
-Market ID for the order
+Market for the order
 
 
 #### [`commitmentAmount`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
@@ -59,7 +61,7 @@ Specified as a unit-less number that represents the amount of settlement asset o
 
 #### [`fee`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
-Nominated liquidity fee factor, which is an input to the calculation of maker fees on the market, as per setting fees and rewarding liquidity providers.
+Nominated liquidity fee factor, which is an input to the calculation of liquidity fees on the market, as per setting fees and rewarding liquidity providers.
 
 
 #### [`sells`](#) ([`[LiquidityOrderReference!]!`](/docs/testnet/graphql/objects/liquidity-order-reference))
@@ -74,7 +76,7 @@ a set of liquidity buy orders to meet the liquidity provision obligation.
 
 #### [`version`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
-The version of this LiquidityProvision
+The version of this liquidity provision
 
 
 #### [`status`](#) ([`LiquidityProvisionStatus!`](/docs/testnet/graphql/enums/liquidity-provision-status))
@@ -84,7 +86,7 @@ The current status of this liquidity provision
 
 #### [`reference`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
-A reference for the orders created out of this Liquidity provision
+A reference for the orders created out of this liquidity provision
 
 
 

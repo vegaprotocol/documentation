@@ -2,17 +2,17 @@
   ```javascript
 {
  rationale: {
-  title: "Add Wrapped Ether (WETH)",
-  description: "Proposal to add Wrapped Ether (WETH) as an asset"
+  title: "Add USDT Coin (USDT)",
+  description: "Proposal to add USDT Coin (USDT) as an asset"
  },
  terms: {
   newAsset: {
    changes: {
     // Name of the asset (e.g: Great British Pound) (string) 
-    name: "Wrapped Ether",
+    name: "USDT Coin",
 
     // Symbol of the asset (e.g: GBP) (string) 
-    symbol: "WETH",
+    symbol: "USDT",
 
     // Number of decimal / precision handled by this asset (string) 
     decimals: "18",
@@ -23,9 +23,9 @@
     // An Ethereum ERC20 asset
     erc20: {
      // The address of the contract for the token, on the ethereum network (string)
-     contractAddress: "0xc778417e063141139fce010982780140aa0cd5ab",
+     contractAddress: "0xb404c51bbc10dcbe948077f18a4b8e553d160084",
 
-     // The lifetime limits deposit per address
+     // The maximum allowed per withdraw
      // note: this is a temporary measure for restricted mainnet (string)
      withdrawThreshold: "10",
 
@@ -38,14 +38,14 @@
 
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-  closingTimestamp: 1664728340,
+  closingTimestamp: 1665423449,
 
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-  enactmentTimestamp: 1664814740,
+  enactmentTimestamp: 1665509849,
 
   // Validation timestamp (Unix time in seconds) (int64 as string)
-  validationTimestamp: 1664641940
+  validationTimestamp: 1665337049
  }
 }
 ```

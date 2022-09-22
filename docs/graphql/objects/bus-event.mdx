@@ -1,7 +1,9 @@
 ---
 id: bus-event
 title: BusEvent
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -9,7 +11,7 @@ No description
 
 ```graphql
 type BusEvent {
-  eventId: ID!
+  id: ID!
   block: String!
   type: BusEventType!
   event: Event!
@@ -19,7 +21,7 @@ type BusEvent {
 
 ### Fields
 
-#### [`eventId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+#### [`id`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
 
 the ID for this event
 

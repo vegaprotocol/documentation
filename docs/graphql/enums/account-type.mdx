@@ -1,7 +1,9 @@
 ---
 id: account-type
 title: AccountType
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -21,7 +23,7 @@ enum AccountType {
   ACCOUNT_TYPE_EXTERNAL
   ACCOUNT_TYPE_GLOBAL_REWARD
   ACCOUNT_TYPE_PENDING_TRANSFERS
-  ACCOUNT_TYPE_REWARD_TAKER_PAID_FEES
+  ACCOUNT_TYPE_REWARD_MAKER_PAID_FEES
   ACCOUNT_TYPE_REWARD_MAKER_RECEIVED_FEES
   ACCOUNT_TYPE_REWARD_LP_RECEIVED_FEES
   ACCOUNT_TYPE_REWARD_MARKET_PROPOSERS
@@ -96,9 +98,9 @@ GlobalReward - a global account for the reward pool
 PendingTransfers - a global account for the pending transfers pool
 
 
-#### [`ACCOUNT_TYPE_REWARD_TAKER_PAID_FEES`](#)
+#### [`ACCOUNT_TYPE_REWARD_MAKER_PAID_FEES`](#)
 
-RewardTakerPaidFees - an account holding rewards for taker paid fees
+RewardMakerPaidFees - an account holding rewards for taker paid fees
 
 
 #### [`ACCOUNT_TYPE_REWARD_MAKER_RECEIVED_FEES`](#)

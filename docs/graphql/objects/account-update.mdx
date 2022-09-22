@@ -1,0 +1,45 @@
+---
+id: account-update
+title: AccountUpdate
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+An account record used for subscriptions
+
+```graphql
+type AccountUpdate {
+  balance: String!
+  assetId: ID!
+  type: AccountType!
+  marketId: ID
+}
+```
+
+
+### Fields
+
+#### [`balance`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+
+Balance as string - current account balance (approx. as balances can be updated several times per second)
+
+
+#### [`assetId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+
+Asset id, the 'currency'
+
+
+#### [`type`](#) ([`AccountType!`](/docs/testnet/graphql/enums/account-type))
+
+Account type (General, Margin, etc)
+
+
+#### [`marketId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
+
+Market id (only relevant to margin accounts)
+
+
+
+

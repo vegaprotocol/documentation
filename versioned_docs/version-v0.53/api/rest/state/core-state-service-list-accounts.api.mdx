@@ -1,7 +1,7 @@
 ---
 id: core-state-service-list-accounts
 sidebar_label: CoreStateService_ListAccounts
-hide_title: true
+hide_title: false
 hide_table_of_contents: true
 api: {"operationId":"CoreStateService_ListAccounts","responses":{"200":{"description":"A successful response.","content":{"application/json":{"schema":{"type":"object","properties":{"accounts":{"type":"array","items":{"type":"object","properties":{"party":{"type":"string"},"market":{"type":"string"},"balance":{"type":"string"},"asset":{"type":"string"},"type":{"type":"string"}}}}}}}}},"default":{"description":"An unexpected error response.","content":{"application/json":{"schema":{"type":"object","properties":{"code":{"type":"integer","format":"int32"},"message":{"type":"string"},"details":{"type":"array","items":{"type":"object","properties":{"@type":{"type":"string"}},"additionalProperties":{}}}}}}}}},"parameters":[{"name":"party","in":"query","required":false,"schema":{"type":"string"}},{"name":"market","in":"query","required":false,"schema":{"type":"string"}}],"tags":["CoreStateService"],"description":"CoreStateService_ListAccounts","method":"get","path":"/accounts","info":{"title":"vega/api/v1/corestate.proto","version":"version not set"},"postman":{"name":"Core State Service List Accounts","description":{"type":"text/plain"},"url":{"path":["accounts"],"host":["{{baseUrl}}"],"query":[{"disabled":false,"key":"party","value":""},{"disabled":false,"key":"market","value":""}],"variable":[]},"header":[{"key":"Accept","value":"application/json"}],"method":"GET"}}
 sidebar_class_name: "get api-method"

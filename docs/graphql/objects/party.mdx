@@ -1,7 +1,9 @@
 ---
 id: party
 title: Party
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -16,8 +18,9 @@ type Party {
   last: Int
 ): [Order!]
   ordersConnection(
+  dateRange: DateRange
   pagination: Pagination
-): OrderConnection!
+): OrderConnection
   trades(
   marketId: ID
   skip: Int
@@ -26,31 +29,32 @@ type Party {
 ): [Trade!]
   tradesConnection(
   marketId: ID
+  dataRange: DateRange
   pagination: Pagination
-): TradeConnection!
+): TradeConnection
   accounts(
   marketId: ID
-  asset: String
+  assetId: ID
   type: AccountType
 ): [Account!]
   accountsConnection(
   marketId: ID
-  asset: String
+  assetId: ID
   type: AccountType
   pagination: Pagination
-): AccountsConnection!
+): AccountsConnection
   positions: [Position!]
   positionsConnection(
   market: ID
   pagination: Pagination
-): PositionConnection!
+): PositionConnection
   margins(
   marketId: ID
 ): [MarginLevels!]
   marginsConnection(
   marketId: ID
   pagination: Pagination
-): MarginConnection!
+): MarginConnection
   proposals(
   inState: ProposalState
 ): [Proposal]
@@ -58,60 +62,62 @@ type Party {
   proposalType: ProposalType
   inState: ProposalState
   pagination: Pagination
-): ProposalsConnection!
+): ProposalsConnection
   votes: [ProposalVote]
   votesConnection(
   pagination: Pagination
-): ProposalVoteConnection!
+): ProposalVoteConnection
   withdrawals: [Withdrawal!]
   withdrawalsConnection(
+  dateRange: DateRange
   pagination: Pagination
-): WithdrawalsConnection!
+): WithdrawalsConnection
   deposits: [Deposit!]
   depositsConnection(
+  dateRange: DateRange
   pagination: Pagination
-): DepositsConnection!
+): DepositsConnection
   liquidityProvisions(
   market: String
   reference: String
 ): [LiquidityProvision!]
   liquidityProvisionsConnection(
-  market: String
+  marketId: ID
   reference: String
   pagination: Pagination
-): LiquidityProvisionsConnection!
+): LiquidityProvisionsConnection
   delegations(
-  nodeId: String
+  nodeId: ID
   skip: Int
   first: Int
   last: Int
 ): [Delegation!]
   delegationsConnection(
-  nodeId: String
+  nodeId: ID
   pagination: Pagination
-): DelegationsConnection!
+): DelegationsConnection
   stake: PartyStake!
   stakingSummary(
   pagination: Pagination
 ): StakingSummary!
   rewards(
-  asset: String
+  assetId: ID
   skip: Int
   first: Int
   last: Int
 ): [Reward]
   rewardsConnection(
-  asset: String
+  assetId: ID
   pagination: Pagination
 ): RewardsConnection
   rewardSummaries(
-  asset: String
+  assetId: ID
 ): [RewardSummary]
   rewardDetails: [RewardPerAssetDetail]
   transfersConnection(
   direction: TransferDirection
   pagination: Pagination
-): TransferConnection!
+): TransferConnection
 }
 ```
 
@@ -141,9 +147,14 @@ Pagination first element
 Pagination last element
 
 
-#### [`ordersConnection`](#) ([`OrderConnection!`](/docs/testnet/graphql/objects/order-connection))
+#### [`ordersConnection`](#) ([`OrderConnection`](/docs/testnet/graphql/objects/order-connection))
 
 Orders relating to a party
+- ##### [`dateRange`](#) ([`DateRange`](/docs/testnet/graphql/inputs/date-range))
+
+Date range to retrieve orders from/to. Start and end time should be expressed as an integer value of nano-seconds past the Unix epoch
+
+
 - ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
 
 Pagination information
@@ -172,17 +183,22 @@ Pagination first element
 Pagination last element
 
 
-#### [`tradesConnection`](#) ([`TradeConnection!`](/docs/testnet/graphql/objects/trade-connection))
+#### [`tradesConnection`](#) ([`TradeConnection`](/docs/testnet/graphql/objects/trade-connection))
 
 
 - ##### [`marketId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
+ID of the market you want to get trades for
 
+
+- ##### [`dataRange`](#) ([`DateRange`](/docs/testnet/graphql/inputs/date-range))
+
+Date range to retrieve trades from/to. Start and end time should be expressed as an integer value of nano-seconds past the Unix epoch
 
 
 - ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
 
-
+Pagination information
 
 
 #### [`accounts`](#) ([`[Account!]`](/docs/testnet/graphql/objects/account))
@@ -193,9 +209,9 @@ Collateral accounts relating to a party
 Market ID - specify what market accounts for the party to return
 
 
-- ##### [`asset`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+- ##### [`assetId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
-Asset (ETH, DAI etc)
+Asset ID
 
 
 - ##### [`type`](#) ([`AccountType`](/docs/testnet/graphql/enums/account-type))
@@ -203,7 +219,7 @@ Asset (ETH, DAI etc)
 Filter accounts by type (General account, margin account, etc...)
 
 
-#### [`accountsConnection`](#) ([`AccountsConnection!`](/docs/testnet/graphql/objects/accounts-connection))
+#### [`accountsConnection`](#) ([`AccountsConnection`](/docs/testnet/graphql/objects/accounts-connection))
 
 Collateral accounts relating to a party
 - ##### [`marketId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
@@ -211,9 +227,9 @@ Collateral accounts relating to a party
 Market ID - specify what market accounts for the party to return
 
 
-- ##### [`asset`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+- ##### [`assetId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
-Asset (ETH, DAI etc)
+Asset ID
 
 
 - ##### [`type`](#) ([`AccountType`](/docs/testnet/graphql/enums/account-type))
@@ -231,7 +247,7 @@ Cursor pagination information
 Trading positions relating to a party
 
 
-#### [`positionsConnection`](#) ([`PositionConnection!`](/docs/testnet/graphql/objects/position-connection))
+#### [`positionsConnection`](#) ([`PositionConnection`](/docs/testnet/graphql/objects/position-connection))
 
 Trading positions relating to a party
 - ##### [`market`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
@@ -252,7 +268,7 @@ marginLevels
 market ID off the margin to get, nil if all markets
 
 
-#### [`marginsConnection`](#) ([`MarginConnection!`](/docs/testnet/graphql/objects/margin-connection))
+#### [`marginsConnection`](#) ([`MarginConnection`](/docs/testnet/graphql/objects/margin-connection))
 
 Margin levels for a market
 - ##### [`marketId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
@@ -273,7 +289,7 @@ Pagination information
 Select only proposals in the specified state. Leave out to get all proposals
 
 
-#### [`proposalsConnection`](#) ([`ProposalsConnection!`](/docs/testnet/graphql/objects/proposals-connection))
+#### [`proposalsConnection`](#) ([`ProposalsConnection`](/docs/testnet/graphql/objects/proposals-connection))
 
 All governance proposals in the VEGA network
 - ##### [`proposalType`](#) ([`ProposalType`](/docs/testnet/graphql/enums/proposal-type))
@@ -296,7 +312,7 @@ Optional Pagination information
 
 
 
-#### [`votesConnection`](#) ([`ProposalVoteConnection!`](/docs/testnet/graphql/objects/proposal-vote-connection))
+#### [`votesConnection`](#) ([`ProposalVoteConnection`](/docs/testnet/graphql/objects/proposal-vote-connection))
 
 
 - ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
@@ -309,9 +325,14 @@ Optional Pagination information
 The list of all withdrawals initiated by the party
 
 
-#### [`withdrawalsConnection`](#) ([`WithdrawalsConnection!`](/docs/testnet/graphql/objects/withdrawals-connection))
+#### [`withdrawalsConnection`](#) ([`WithdrawalsConnection`](/docs/testnet/graphql/objects/withdrawals-connection))
 
 The list of all withdrawals initiated by the party
+- ##### [`dateRange`](#) ([`DateRange`](/docs/testnet/graphql/inputs/date-range))
+
+Date range to retrieve withdrawals from/to. Start and end time should be expressed as an integer value of nano-seconds past the Unix epoch
+
+
 - ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
 
 
@@ -322,9 +343,14 @@ The list of all withdrawals initiated by the party
 The list of all deposits for a party by the party
 
 
-#### [`depositsConnection`](#) ([`DepositsConnection!`](/docs/testnet/graphql/objects/deposits-connection))
+#### [`depositsConnection`](#) ([`DepositsConnection`](/docs/testnet/graphql/objects/deposits-connection))
 
 The list of all deposits for a party by the party
+- ##### [`dateRange`](#) ([`DateRange`](/docs/testnet/graphql/inputs/date-range))
+
+Date range to retrieve deposits from/to. Start and end time should be expressed as an integer value of nano-seconds past the Unix epoch
+
+
 - ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
 
 
@@ -335,7 +361,7 @@ The list of all deposits for a party by the party
 The list of the liquidity provision commitment from this party
 - ##### [`market`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
-An optional market id
+An optional market
 
 
 - ##### [`reference`](#) ([`String`](/docs/testnet/graphql/scalars/string))
@@ -343,10 +369,10 @@ An optional market id
 An optional reference
 
 
-#### [`liquidityProvisionsConnection`](#) ([`LiquidityProvisionsConnection!`](/docs/testnet/graphql/objects/liquidity-provisions-connection))
+#### [`liquidityProvisionsConnection`](#) ([`LiquidityProvisionsConnection`](/docs/testnet/graphql/objects/liquidity-provisions-connection))
 
 The list of the liquidity provision commitment for this party
-- ##### [`market`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+- ##### [`marketId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
 An optional market ID
 
@@ -364,9 +390,9 @@ Pagination information
 #### [`delegations`](#) ([`[Delegation!]`](/docs/testnet/graphql/objects/delegation))
 
 
-- ##### [`nodeId`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+- ##### [`nodeId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
-Optional node
+Optional node ID
 
 
 - ##### [`skip`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
@@ -384,12 +410,12 @@ Pagination first element
 Pagination last element
 
 
-#### [`delegationsConnection`](#) ([`DelegationsConnection!`](/docs/testnet/graphql/objects/delegations-connection))
+#### [`delegationsConnection`](#) ([`DelegationsConnection`](/docs/testnet/graphql/objects/delegations-connection))
 
 
-- ##### [`nodeId`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+- ##### [`nodeId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
-Optional node
+Optional node ID
 
 
 - ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
@@ -413,9 +439,9 @@ The staking information for this Party
 #### [`rewards`](#) ([`[Reward]`](/docs/testnet/graphql/objects/reward))
 
 Return individual reward information
-- ##### [`asset`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+- ##### [`assetId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
-An optional asset
+An optional asset ID
 
 
 - ##### [`skip`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
@@ -436,9 +462,9 @@ Pagination last element
 #### [`rewardsConnection`](#) ([`RewardsConnection`](/docs/testnet/graphql/objects/rewards-connection))
 
 
-- ##### [`asset`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+- ##### [`assetId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
-An asset (optional)
+An asset ID (optional)
 
 
 - ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
@@ -449,9 +475,9 @@ Cursor pagination information
 #### [`rewardSummaries`](#) ([`[RewardSummary]`](/docs/testnet/graphql/objects/reward-summary))
 
 Return net reward information
-- ##### [`asset`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+- ##### [`assetId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
-An asset (optional)
+An asset ID (optional)
 
 
 #### [`rewardDetails`](#) ([`[RewardPerAssetDetail]`](/docs/testnet/graphql/objects/reward-per-asset-detail))
@@ -459,7 +485,7 @@ An asset (optional)
 return reward information
 
 
-#### [`transfersConnection`](#) ([`TransferConnection!`](/docs/testnet/graphql/objects/transfer-connection))
+#### [`transfersConnection`](#) ([`TransferConnection`](/docs/testnet/graphql/objects/transfer-connection))
 
 get a list of all transfers for a public key
 - ##### [`direction`](#) ([`TransferDirection`](/docs/testnet/graphql/enums/transfer-direction))
