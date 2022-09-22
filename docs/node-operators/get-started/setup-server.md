@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-title: Set up server
+title: 1. Set up server
 hide_title: false
 ---
 import Tabs from '@theme/Tabs';

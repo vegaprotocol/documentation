@@ -1,6 +1,7 @@
 ---
 sidebar_position: 6
-title: Network restart (checkpoints)
+title: How to restart a network using checkpoints
+sidebar_label: Restart a network using checkpoints
 hide_title: false
 ---
 

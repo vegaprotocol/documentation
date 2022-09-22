@@ -1,8 +1,10 @@
 ---
-sidebar_position: 2
-title: Configure and run
+sidebar_position: 3
+title: 2. Configure and run
 hide_title: false
 ---
+import NetworkParameter from '@site/src/components/NetworkParameter';
+
 ## Configuring the components and getting it up and running
 Once you have all the executables you need, you must configure them to run correctly and to connect to the existing network.
 
@@ -124,8 +126,8 @@ You can now start the your node by running the following command:
 `vega node`
 
 ### Stake to your validating node
-Once your Vega node is visible, you will need to provide your self-stake. Self-stake requires a minimum amount of Vega, an amount defined by a network parameter: <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={false} suffix="tokens" /> 
+Once your Vega node is visible, you will need to provide your self-stake. Self-stake requires a minimum amount of <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={true} formatter="governanceToken" suffix="tokens"/>.
 
-The tokens that you want to use for self-staking must available on an Ethereum wallet, and then associated to a Vega key.
+The tokens that you want to use for self-staking must available on an Ethereum wallet, and then associated to the same Vega key you used to set up the node.
 
 Associate your tokens and nominate your node using the [token dApp ↗](https://token.fairground.wtf/staking).
