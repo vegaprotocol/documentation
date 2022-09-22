@@ -14,16 +14,18 @@ The exact margin requirements of open orders and positions are determined by the
 ## Positions
 A trader's position on a market is their open volume and orders. Margin requirements are calculated based on the position, and recalculated based on market movements and changes to the position. Orders that the increase your risk level of your position will require more margin.
 
-When a party on Vega opens a position, the minimum amount of money required to open that position is put into a margin account for that party in that market. 
+When a party on Vega opens a position, the minimum amount of assets required to open that position is put into a margin account for that party in that market. 
 
-Over the course of the position's lifetime, the margin requirements will likely change - the margin account may be topped up, and/or some margin is released back to collateral. If that party is trading on more than one market that uses the same asset, the collective positions on those markets will inform how much is set aside for margin. 
+Over the course of the position's lifetime, the margin requirements will likely change - the margin account may be topped up, and/or some margin is released back to collateral. If that party is trading on more than one market that uses the same asset, the collective positions on those markets will inform how much is set aside for margin. Margin balances are also affected by unrealised profit and loss. 
+
+`[margin account balance] = [initial margin requirement] + [unrealised profit] OR - [unrealised losses]`
 
 ## Automated market mechanisms 
 As markets and collateral are not managed through human intervention, markets must have certain automated processes that allow for well-functioning markets and assurance that the collateral required to manage positions is available when it's needed.
 
 There are a few mechanisms that work differently to how they would on a centralised exchange, in order to keep the markets solvent. They include:
-- [**Mark to market**](#mark-to-market): Mark to market on Vega happens much more frequently than on an exchange where counter parties are not pseudonymous. Every time the market price moves, the mark to market price could be recalculated
 - [**Margin**](#margin): When a party opens a position: the *initial margin* requirement is calculated automatically depending on the market's risk model. If the market moves against the party, and the margn towards the *maintenance level*, Vega will *search* for more collateral in the general account, to avoid liquidating the position. Margin can also be *released* if the position is in sufficient profit. Other positions in markets with the same settlement asset may also interact with the same general account. Therefore, Vega is a cross-margin based system by default.
+- [**Mark to market**](#mark-to-market): Mark to market on Vega happens much more frequently than on an exchange where counter parties are not pseudonymous. Every time the market price moves, the mark to market price could be recalculated. Mark to market is used to move assets into your margin account (from someone else's) if you are in profit, or out of your margin account if not.
 
 ## Mark to market
 Marking to market refers to settling gains and losses due to changes in the market value of the underlying product. Marking to market aims to provide a realistic appraisal of a position based on the current market conditions.
@@ -32,7 +34,7 @@ When marking to market, the protocol takes the current market price and recalcul
 
 If the market price goes up, a trader that holds a long position receives money in their margin account – equal to the underlying's change in value – from a trader that holds a short position, and conversely if the value goes down, the holder of the short position recieves money from the holder of the long position.
 
-For a futures market created on Vega, the mark-to-market price is calculated every time the price moves, and is based on the last traded price. This is in contrast to traditional futures markets, for which marking to market occurs once per day. One exception is when the market settles at expiry, at which point the mark to market price comes from the data source's final settlement price.
+For a futures market created on Vega, the mark-to-market price is calculated every time the price moves, and is based on the last traded price. This is in contrast to traditional futures markets, for which marking to market may occur once per day. One exception is when the market settles at expiry, at which point the mark to market price comes from the data source's final settlement price.
 
 Settlement instructions are generated based on the change in market value of the open positions of a party. When the mark price changes, the network calculates settlement cash flows for each party, and the process is repeated each time the mark price changes until the maturity date for the market is reached.
 
@@ -83,7 +85,7 @@ The *initial margin level* is the amount that will be transferred from the trade
 
 The initial margin is scaled from the *maintenance margin* amount. It's calculated by multiplying the maintenance margin amount by the `initial_margin` scaling factor, which is set by the network parameter `market.margin.scalingFactors`.
 
-`initial margin level = maintenance margin x initial_margin scaling factor`
+`[initial margin level] = [maintenance margin] x [initial_margin scaling factor]`
 
 The initial margin level being higher than the *margin search level* (which itself is higher than the *maintenance margin level*) ensures that a small negative price move won't lead to a situation where the network has to attempt to allocate more collateral immediately after a trade has been entered into.
 
@@ -94,7 +96,7 @@ If the margin account can be topped up, then the position stays open. If a marke
 
 The search level is scaled from the *maintenance margin* amount. It's calculated by multiplying the maintenance margin amount by the `search_level` scaling factor, which is set by the network parameter `market.margin.scalingFactors`.
 
-`search level = maintenance margin x search_level scaling factor`
+`[search level] = [maintenance margin] x [search_level scaling factor]`
 
 :::note Read more
 [Closeouts](./market-protections#closeouts)
@@ -109,7 +111,7 @@ Those gains can then be withdrawn, or used to fund other trades.
 
 The release level is scaled from the *maintenance margin* amount. It's calculated by multiplying the maintenance margin amount by the `collateral_release` scaling factor, which is set by the network parameter `market.margin.scalingFactors`.
 
-`release level = maintenance margin x collateral_release scaling factor`
+`[release level] = [maintenance margin] x [collateral_release scaling factor]`
 
 <!-- 
 ### Calculating the margin on open orders

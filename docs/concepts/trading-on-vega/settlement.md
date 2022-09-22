@@ -34,7 +34,7 @@ After a market reaches its maturity date and time, a final settlement is carried
 
 The trigger will cause the market to enter into a 'trading terminated' state. Markets in this state no longer accept trading, but retain the positions and margin balances that were in place after processing the market’s maturity trigger. Termination occurs just prior to settlement, so that no trading can occur after the settlement result can be known by participants.
 
-As positions are regularly mark to market settled, the final settlement is, in effect, a final mark to market settlement using the data source price.
+As positions are regularly mark to market settled, the final settlement is, in effect, a final mark to market settlement using the data source quote.
 
 Once a market settles:
 * All open positions in that market are closed based on the final price
@@ -53,11 +53,11 @@ A cash-settled futures market reaches its expiry date and time. If the last mark
 -->
 
 ## Mark to market settlement
-Settlement instructions are generated based on the change in market value of the open positions of a party. ...to maintain lower margins requirements.
+Settlement instructions are generated based on the change in market value of the open positions of a party. 
 
 When the mark price changes, the protocol calculates settlement cash flows for each party.
 
-Each time the mark price for a given market changes, all the open positions and orders are marked to market, resulting in interim partial payments that are calculated by the protocol. Those payments go directly the relevant trader's collateral. 
+Each time the mark price for a given market changes, all the open positions are marked to market, resulting in interim partial payments that are calculated by the protocol. Those payments go directly the relevant trader's margin account. 
 
 <!--
 :::note Read more
