@@ -2,8 +2,7 @@
 
 module.exports = {
   title: "Vega Protocol",
-  tagline:
-    "A protocol for creating and trading derivatives on a fully decentralised network",
+  tagline: "A protocol for creating and trading derivatives on a fully decentralised network",
   url: "https://docs.vega.xyz/",
   baseUrl: "/",
   trailingSlash: false,
