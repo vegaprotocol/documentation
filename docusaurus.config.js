@@ -189,49 +189,49 @@ module.exports = {
         docsPluginId: "classic",
         config: {
           tradingv1v055: {
-            specPath: "./data/v0.55/trading_data_v1.swagger.json",
+            specPath: "./specs/v0.55.0/trading_data_v1.swagger.json",
             outputDir: "docs/api/rest/data-v1",
             sidebarOptions: {
               groupPathsBy: "tag",
             },
           },
           tradingv2v055: {
-            specPath: "./data/v0.55/trading_data_v2.swagger.json",
+            specPath: "./specs/v0.55.0/trading_data_v2.swagger.json",
             outputDir: "docs/api/rest/data-v2",
             sidebarOptions: {
               groupPathsBy: "tag",
             },
           },
           corev055: {
-            specPath: "./data/v0.55/core.swagger.json",
+            specPath: "./specs/v0.55.0/core.swagger.json",
             outputDir: "docs/api/rest/core",
             sidebarOptions: {
               groupPathsBy: "tag",
             },
           },
           statev055: {
-            specPath: "./data/v0.55/corestate.swagger.json",
+            specPath: "./specs/v0.55.0/corestate.swagger.json",
             outputDir: "docs/api/rest/state",
             sidebarOptions: {
               groupPathsBy: "tag",
             },
           },
           statev053: {
-            specPath: "./data/v0.53/corestate.swagger.json",
+            specPath: "./specs/v0.53.0/corestate.swagger.json",
             outputDir: "./versioned_docs/version-v0.53/api/rest/state",
             sidebarOptions: {
               groupPathsBy: "tag",
             },
           },
           corev053: {
-            specPath: "./data/v0.53/core.swagger.json",
+            specPath: "./specs/v0.53.0/core.swagger.json",
             outputDir: "./versioned_docs/version-v0.53/api/rest/core",
             sidebarOptions: {
               groupPathsBy: "tag",
             },
           },
           tradingv1v053: {
-            specPath: "./data/v0.53/trading_data.swagger.json",
+            specPath: "./specs/v0.53.0/trading_data.swagger.json",
             outputDir: "./versioned_docs/version-v0.53/api/rest/data-v1",
             sidebarOptions: {
               groupPathsBy: "tag",

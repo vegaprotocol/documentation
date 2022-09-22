@@ -17,20 +17,20 @@ testnet_network_parameters=https://api.n07.testnet.vega.xyz/network/parameters
 mainnet_network_parameters=https://api.vega.xyz/network/parameters
 
 set -e
-doc_version=v0.55
+doc_version=v0.55.0
 
 # This should be using /specs/vxxx but those versions are not yet build correctly
 echo "Fetching grpc..."
-cp "./data/${doc_version}/proto.json" ./proto.json
+cp "./specs/${doc_version}/proto.json" ./proto.json
 
 echo "Fetching graphql..."
-cp "./data/${doc_version}/schema.graphql" ./schema.graphql
+cp "./specs/${doc_version}/schema.graphql" ./schema.graphql
 
 echo "Fetching latest network parameters as placeholders for NetworkParameter.js"
-rm data/testnet_network_parameters.json 2> /dev/null
-curl ${testnet_network_parameters} -o "data/testnet_network_parameters.json" 
-rm data/mainnet_network_parameters.json 2> /dev/null
-curl ${mainnet_network_parameters} -o "data/mainnet_network_parameters.json" 
+rm specs/testnet_network_parameters.json 2> /dev/null
+curl ${testnet_network_parameters} -o "specs/testnet_network_parameters.json"
+rm specs/mainnet_network_parameters.json 2> /dev/null
+curl ${mainnet_network_parameters} -o "specs/mainnet_network_parameters.json"
 
 # Create an empty folder to keep the tools happy
 echo "Regenerating docs..."
