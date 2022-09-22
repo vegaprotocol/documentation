@@ -51,7 +51,7 @@ find './grpc/' -type f -name '*.mdx' -exec sed -i -E 's/hide_title: true/hide_ti
 
 # GRPC tidyup
 echo "REST: Hide titles"
-find './docs/api/rest' -type f -name '*.mdx' -exec sed -i -E 's/hide_title: true/hide_title: false/g' {} +
+find './docs/api/rest' -type f -name '*.mdx' -exec sed -i -E 's/hide_title: false/hide_title: true/g' {} +
 
 
 # Fix up sidebars for all APIs
