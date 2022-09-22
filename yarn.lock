@@ -2212,6 +2212,38 @@
   resolved "https://registry.yarnpkg.com/@jsdevtools/ono/-/ono-7.1.3.tgz#9df03bbd7c696a5c58885c34aa06da41c8543796"
   integrity sha512-4JQNk+3mVzK3xh2rqd6RB4J46qUR19azEHBneZyTZM+c456qOrbbM/5xcR8huNCCcbVt7+UmizG6GuUvPvKUYg==
 
+"@json-schema-spec/json-pointer@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@json-schema-spec/json-pointer/-/json-pointer-0.1.2.tgz#5153d5d01b94134015ee829deca5a970cf0406fd"
+  integrity sha512-BYY7IavBjwsWWSmVcMz2A9mKiDD9RvacnsItgmy1xV8cmgbtxFfKmKMtkVpD7pYtkx4mIW4800yZBXueVFIWPw==
+
+"@json-schema-tools/dereferencer@1.5.4":
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/@json-schema-tools/dereferencer/-/dereferencer-1.5.4.tgz#2a1830ab84e81c56ab14be68a10df6d3274bc40e"
+  integrity sha512-4cmEdRPIG7WrcSWGRV6HBDCLXEOXGkaOZnopqBxoG24mKYuCHWg4M6N9nioTQyNfKqlPkOPvT4lStQqkPnhLgA==
+  dependencies:
+    "@json-schema-tools/reference-resolver" "^1.2.4"
+    "@json-schema-tools/traverse" "^1.7.8"
+    fast-safe-stringify "^2.0.7"
+
+"@json-schema-tools/meta-schema@1.6.19":
+  version "1.6.19"
+  resolved "https://registry.yarnpkg.com/@json-schema-tools/meta-schema/-/meta-schema-1.6.19.tgz#295301c2d4a0c01eb2eafbf605aca8ebc0dfbbb6"
+  integrity sha512-55zuWFW7tr4tf/G5AYmybcPdGOkVAreQbt2JdnogX4I2r/zkxZiimYPJESDf5je9BI2oRveak2p296HzDppeaA==
+
+"@json-schema-tools/reference-resolver@1.2.4", "@json-schema-tools/reference-resolver@^1.2.4":
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@json-schema-tools/reference-resolver/-/reference-resolver-1.2.4.tgz#ace48726f4e3026301d50efa09a4f1a942fa9d3c"
+  integrity sha512-Oag20zDuapO6nBQp00k8Rd5sDTb8Gfz9uH43Tf7dHKNx7nHDK/WdeTe7OxkOmLQCL6aS+mCJx1Zv+fZBCD+tzQ==
+  dependencies:
+    "@json-schema-spec/json-pointer" "^0.1.2"
+    isomorphic-fetch "^3.0.0"
+
+"@json-schema-tools/traverse@^1.7.8":
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/@json-schema-tools/traverse/-/traverse-1.8.1.tgz#b89580e69fa1c115dc8a305fcbce2106641d8e2c"
+  integrity sha512-y1Tw+r6fgLWp1b264Sva0YhElLwNuG/uPV0ihInWPSpH8qdRQIIu4YM6DBh6UIvwEujYSqrJh2Hfk13hDwJgIw==
+
 "@leichtgewicht/ip-codec@^2.0.1":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
@@ -2361,6 +2393,27 @@
   dependencies:
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
+
+"@open-rpc/meta-schema@1.14.2":
+  version "1.14.2"
+  resolved "https://registry.yarnpkg.com/@open-rpc/meta-schema/-/meta-schema-1.14.2.tgz#1af0b1ea77e50b5076ae31267e97efcb9ff352f8"
+  integrity sha512-vD4Nbkrb7wYFRcSQf+j228LwOy1C6/KKpy5NADlpMElGrAWPRxhTa2yTi6xG+x88OHzg2+cydQ0GAD6o40KUcg==
+
+"@open-rpc/schema-utils-js@^1.16.1":
+  version "1.16.1"
+  resolved "https://registry.yarnpkg.com/@open-rpc/schema-utils-js/-/schema-utils-js-1.16.1.tgz#3e9f09561dec67ec751e6ce8146d94abb0caa5f4"
+  integrity sha512-8D4OgBnHDAv7JeaYZ5v7SL4yR0YLLO4WLTWtdR8vmqSqvX3SvPzSsGYv06zqm9z1Lhm563MAcuearrc8g9eJ4w==
+  dependencies:
+    "@json-schema-tools/dereferencer" "1.5.4"
+    "@json-schema-tools/meta-schema" "1.6.19"
+    "@json-schema-tools/reference-resolver" "1.2.4"
+    "@open-rpc/meta-schema" "1.14.2"
+    ajv "^6.10.0"
+    detect-node "^2.0.4"
+    fast-safe-stringify "^2.0.7"
+    fs-extra "^9.0.0"
+    is-url "^1.2.4"
+    isomorphic-fetch "^3.0.0"
 
 "@paloaltonetworks/openapi-to-postmanv2@3.1.0-hotfix.1":
   version "3.1.0-hotfix.1"
@@ -2902,6 +2955,13 @@
   resolved "https://registry.yarnpkg.com/@vegaprotocol/docusaurus-theme-github-codeblock/-/docusaurus-theme-github-codeblock-0.1.8.tgz#a8ae69b0e9db969c004432fef7cfce5479aebf7c"
   integrity sha512-12v5O5PsdZ8lmdeuT/TpJZSnZXkbhndb+2U1ElxqMKkygPxurXGae5ERoR8bhPlwSXuzSktrwUSOuRN/+NNZAw==
 
+"@vegaprotocol/openrpc-md@1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@vegaprotocol/openrpc-md/-/openrpc-md-1.2.2.tgz#df878e31299807694b40498cd8c2d54695d7c016"
+  integrity sha512-pC1Rz6mcLMttso7R+PU8BS0YrJbP7J7vAuEuJ5yyjhTmkYtEwpC60CjgBoMfS0Asy6SYCjiIVBtxG26aC/aYNw==
+  dependencies:
+    "@open-rpc/schema-utils-js" "^1.16.1"
+
 "@vegaprotocol/smart-contracts-sdk@^1.6.0":
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/@vegaprotocol/smart-contracts-sdk/-/smart-contracts-sdk-1.6.0.tgz#c689d5928148113dddbe39ed963c74817f432d5e"
@@ -3139,7 +3199,7 @@ ajv@8.1.0:
     require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
-ajv@^6.12.2, ajv@^6.12.4, ajv@^6.12.5:
+ajv@^6.10.0, ajv@^6.12.2, ajv@^6.12.4, ajv@^6.12.5:
   version "6.12.6"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.6.tgz#baf5a62e802b07d977034586f8c3baf5adf26df4"
   integrity sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==
@@ -5957,6 +6017,11 @@ is-typedarray@^1.0.0:
   resolved "https://registry.yarnpkg.com/is-typedarray/-/is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a"
   integrity sha512-cyA56iCMHAh5CdzjJIa4aohJyeO1YbwLi3Jc35MmRU6poroFjIGZzUzupGiRPOjgHg9TLu43xbpwXk523fMxKA==
 
+is-url@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/is-url/-/is-url-1.2.4.tgz#04a4df46d28c4cff3d73d01ff06abeb318a1aa52"
+  integrity sha512-ITvGim8FhRiYe4IQ5uHSkj7pVaPDrCTkNd3yq3cV7iZAcJdHTUMPMEHcqSOy9xZ9qFenQCvi+2wjH9a1nXqHww==
+
 is-whitespace-character@^1.0.0:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/is-whitespace-character/-/is-whitespace-character-1.0.4.tgz#0858edd94a95594c7c9dd0b5c174ec6e45ee4aa7"
@@ -5998,6 +6063,14 @@ isobject@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
   integrity sha512-WhB9zCku7EGTj/HQQRz5aUQEUeoQZH2bWcltRErOpymJ4boYE6wL9Tbr23krRPSZ+C5zqNSrSw+Cc7sZZ4b7vg==
+
+isomorphic-fetch@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/isomorphic-fetch/-/isomorphic-fetch-3.0.0.tgz#0267b005049046d2421207215d45d6a262b8b8b4"
+  integrity sha512-qvUtwJ3j6qwsF3jLxkZ72qCgjMysPzDfeV240JHiGZsANBYd+EEuu35v7dfrJ9Up0Ak07D7GGSkGhCHTqg/5wA==
+  dependencies:
+    node-fetch "^2.6.1"
+    whatwg-fetch "^3.4.1"
 
 isomorphic-ws@^5.0.0:
   version "5.0.0"
@@ -9787,6 +9860,11 @@ websocket-extensions@>=0.1.1:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.4.tgz#7f8473bc839dfd87608adb95d7eb075211578a42"
   integrity sha512-OqedPIGOfsDlo31UNwYbCFMSaO9m9G/0faIHj5/dZFDMFqPTcx6UwqyOy3COEaEOg/9VsGIpdqn62W5KhoKSpg==
+
+whatwg-fetch@^3.4.1:
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-3.6.2.tgz#dced24f37f2624ed0281725d51d0e2e3fe677f8c"
+  integrity sha512-bJlen0FcuU/0EMLrdbJ7zOnW6ITZLrZMIarMUVmdKtsGvZna8vxKYaexICWPfZ8qwf9fzNq+UEIZrnSaApt6RA==
 
 whatwg-url@^5.0.0:
   version "5.0.0"

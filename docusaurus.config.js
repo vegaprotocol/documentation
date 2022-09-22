@@ -1,5 +1,11 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 
+let version = process.env.npm_package_version
+
+if (!version) {
+  version = require('./package.json').version
+}
+
 module.exports = {
   title: "Vega Protocol",
   tagline: "A protocol for creating and trading derivatives on a fully decentralised network",
@@ -142,11 +148,11 @@ module.exports = {
       // markdown files inside the docs folder, so these are included in the versioned docs.
       require.resolve("@edno/docusaurus2-graphql-doc-generator"),
       {
-        schema: "./schema.graphql",
+        schema: `./specs/v${version}/schema.graphql`,
         rootPath: "docs",
         baseURL: "graphql",
         linkRoot: "/docs/testnet/",
-        diffMethod: "SCHEMA-DIFF",
+        diffMethod: "none",
         docOptions: {
           index: true,
         },
@@ -175,7 +181,7 @@ module.exports = {
       require.resolve("docusaurus-protobuffet-plugin"),
       {
         routeBasePath: "/docs/testnet/grpc",
-        fileDescriptorsPath: "./proto.json",
+        fileDescriptorsPath: `./specs/v${version}/proto.json`,
         protoDocsPath: "./docs/grpc",
         sidebarPath: "./docs/grpc/sidebar.js",
       },
@@ -258,7 +264,7 @@ module.exports = {
           versions: {
             current: {
               banner: "unreleased",
-              label: "testnet (v0.55)",
+              label: `testnet (v${version})`,
               path: "testnet",
             },
             "v0.53": {

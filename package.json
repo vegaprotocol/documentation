@@ -15,6 +15,8 @@
     "generate-rest": "docusaurus gen-api-docs all",
     "generate-proposals": "node scripts/generate_proposals.js output",
     "generate-proposals:debug": "node scripts/generate_proposals.js",
+    "generate-openrpc": "node scripts/generate_openrpc.js",
+    "generate-netparams": "node --no-warnings --experimental-fetch scripts/generate_netparams.js",
     "start": "docusaurus start",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
@@ -34,6 +36,7 @@
     "@mdx-js/react": "^1.6.22",
     "@svgr/webpack": "6.3.1",
     "@vegaprotocol/docusaurus-theme-github-codeblock": "^0.1.8",
+    "@vegaprotocol/openrpc-md": "1.2.2",
     "@vegaprotocol/smart-contracts-sdk": "^1.6.0",
     "bignumber.js": "^9.0.2",
     "clsx": "^1.2.1",
@@ -66,3 +69,4 @@
     ]
   }
 }
+
