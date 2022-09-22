@@ -1,7 +1,7 @@
 ---
 sidebar_position: 9
-title:  How to rotate ethereum keys
-sidebar_label: Rotate ethereum keys
+title:  How to rotate Ethereum keys
+sidebar_label: Rotate Ethereum keys
 hide_title: false
 ---
 
