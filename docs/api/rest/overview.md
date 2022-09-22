@@ -9,8 +9,8 @@ There are 4 REST endpoints that serve different needs, 2 of which are served by 
 
 Core nodes run the network. They are responsible for ensuring the consensus rules are met and that a consistent view of the network is seen. They present endpoints that give access to the state of the network (block time, block height etc), allow transactions to be submitted to the network and to subscribe to event streams so that changes of internal state can be seen.
 
-- [Network state](./core/core-service): Get basic information about the network, such as 'block height' and 'Vega time'.
-- [Core state](./state/core-state-service): Get lists of state about the internal Vega system, such as 'list accounts', 'list parties.
+- [Network state](../../category/api/rest/core/core-service): Get basic information about the network, such as 'block height' and 'Vega time'.
+- [Core state](../../category/api/rest/state/core-state-service): Get lists of state about the internal Vega system, such as 'list accounts', 'list parties.
 
 ## Data nodes
 
