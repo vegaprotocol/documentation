@@ -1,5 +1,4 @@
-Note: Files in this repository are committed automatically on tag. Due to an issue with the process that creates
-those files, the ones in ./data/v0.xx are used instead. This is true for:
+From v0.56 onwards, this folder will replace ../data/[version]
 
 - v0.52 (No longer built)
 - v0.53

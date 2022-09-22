@@ -15,7 +15,2192 @@
   "produces": [
     "application/json"
   ],
-  "paths": {},
+  "paths": {
+    "/assets": {
+      "get": {
+        "summary": "Get a list of all assets on Vega",
+        "operationId": "TradingDataService_Assets",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AssetsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/assets/{asset}/globalRewardPoolAccount": {
+      "get": {
+        "summary": "Get a list of accounts holding reward pools\nCan be filtered by asset, there will be 1 reward pool account per\nasset in the network.",
+        "operationId": "TradingDataService_GlobalRewardPoolAccounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GlobalRewardPoolAccountsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "asset",
+            "description": "Asset identifier, required field\n- Set to an empty string to return all accounts\n- Set to an asset ID to return a single global reward pool account for a given asset",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/assets/{asset}/infrastructureFeeAccount": {
+      "get": {
+        "summary": "Get a list of accounts holding infrastructure fees.\nCan be filtered by asset, there will be 1 infrastructure fee account per\nasset in the network.",
+        "operationId": "TradingDataService_FeeInfrastructureAccounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1FeeInfrastructureAccountsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "asset",
+            "description": "Asset identifier, required field\n- Set to an empty string to return all accounts\n- Set to an asset ID to return a single infrastructure fee account for a given asset",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/assets/{id}": {
+      "get": {
+        "summary": "Get an asset by its identifier",
+        "operationId": "TradingDataService_AssetByID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1AssetByIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Asset identifier, required field",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/delegations": {
+      "get": {
+        "summary": "Get delegation data",
+        "operationId": "TradingDataService_Delegations",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DelegationsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "party",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "nodeId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "epochSeq",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pagination.skip",
+            "description": "Skip the number of records specified, default is 0.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "pagination.limit",
+            "description": "Limit the number of returned records to the value specified, default is 50.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "pagination.descending",
+            "description": "Descending reverses the order of the records returned,\ndefault is true, if false the results will be returned in ascending order.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/deposits/{id}": {
+      "get": {
+        "summary": "Get a deposit by its identifier",
+        "operationId": "TradingDataService_Deposit",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DepositResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "The identifier of the deposit",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/epochs": {
+      "get": {
+        "summary": "Get data for a specific epoch, if id omitted it gets the current epoch",
+        "operationId": "TradingDataService_GetEpoch2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetEpochResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Optional - if id omitted it gets the current epoch.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/epochs/{id}": {
+      "get": {
+        "summary": "Get data for a specific epoch, if id omitted it gets the current epoch",
+        "operationId": "TradingDataService_GetEpoch",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetEpochResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Optional - if id omitted it gets the current epoch",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/governance/asset/proposals": {
+      "get": {
+        "summary": "Get governance data (proposals and votes) for proposals aiming to create new assets",
+        "operationId": "TradingDataService_GetNewAssetProposals",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetNewAssetProposalsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "selectInState",
+            "description": "Optional proposal state.\n\n - STATE_UNSPECIFIED: Default value, always invalid\n - STATE_FAILED: Proposal enactment has failed - even though proposal has passed, its execution could not be performed\n - STATE_OPEN: Proposal is open for voting\n - STATE_PASSED: Proposal has gained enough support to be executed\n - STATE_REJECTED: Proposal wasn't accepted (proposal terms failed validation due to wrong configuration or failing to meet network requirements)\n - STATE_DECLINED: Proposal didn't get enough votes (either failing to gain required participation or majority level)\n - STATE_ENACTED: Proposal enacted\n - STATE_WAITING_FOR_NODE_VOTE: Waiting for node validation of the proposal",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "STATE_UNSPECIFIED",
+              "STATE_FAILED",
+              "STATE_OPEN",
+              "STATE_PASSED",
+              "STATE_REJECTED",
+              "STATE_DECLINED",
+              "STATE_ENACTED",
+              "STATE_WAITING_FOR_NODE_VOTE"
+            ],
+            "default": "STATE_UNSPECIFIED"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/governance/market/proposals": {
+      "get": {
+        "summary": "Get governance data (proposals and votes) for proposals that aim creating new markets",
+        "operationId": "TradingDataService_GetNewMarketProposals",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetNewMarketProposalsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "selectInState",
+            "description": "Optional proposal state.\n\n - STATE_UNSPECIFIED: Default value, always invalid\n - STATE_FAILED: Proposal enactment has failed - even though proposal has passed, its execution could not be performed\n - STATE_OPEN: Proposal is open for voting\n - STATE_PASSED: Proposal has gained enough support to be executed\n - STATE_REJECTED: Proposal wasn't accepted (proposal terms failed validation due to wrong configuration or failing to meet network requirements)\n - STATE_DECLINED: Proposal didn't get enough votes (either failing to gain required participation or majority level)\n - STATE_ENACTED: Proposal enacted\n - STATE_WAITING_FOR_NODE_VOTE: Waiting for node validation of the proposal",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "STATE_UNSPECIFIED",
+              "STATE_FAILED",
+              "STATE_OPEN",
+              "STATE_PASSED",
+              "STATE_REJECTED",
+              "STATE_DECLINED",
+              "STATE_ENACTED",
+              "STATE_WAITING_FOR_NODE_VOTE"
+            ],
+            "default": "STATE_UNSPECIFIED"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/governance/proposal/reference/{reference}": {
+      "get": {
+        "summary": "Get governance data (proposals and votes) for a proposal located by reference",
+        "operationId": "TradingDataService_GetProposalByReference",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetProposalByReferenceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "reference",
+            "description": "Proposal reference. Required field",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/governance/proposal/{proposalId}": {
+      "get": {
+        "summary": "Get governance data (proposals and votes) for a proposal located by ID",
+        "operationId": "TradingDataService_GetProposalByID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetProposalByIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "proposalId",
+            "description": "Proposal identifier, required field",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/governance/proposals": {
+      "get": {
+        "summary": "Get governance data (proposals and votes) for all proposals",
+        "operationId": "TradingDataService_GetProposals",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetProposalsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "selectInState",
+            "description": "Optional proposal state.\n\n - STATE_UNSPECIFIED: Default value, always invalid\n - STATE_FAILED: Proposal enactment has failed - even though proposal has passed, its execution could not be performed\n - STATE_OPEN: Proposal is open for voting\n - STATE_PASSED: Proposal has gained enough support to be executed\n - STATE_REJECTED: Proposal wasn't accepted (proposal terms failed validation due to wrong configuration or failing to meet network requirements)\n - STATE_DECLINED: Proposal didn't get enough votes (either failing to gain required participation or majority level)\n - STATE_ENACTED: Proposal enacted\n - STATE_WAITING_FOR_NODE_VOTE: Waiting for node validation of the proposal",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "STATE_UNSPECIFIED",
+              "STATE_FAILED",
+              "STATE_OPEN",
+              "STATE_PASSED",
+              "STATE_REJECTED",
+              "STATE_DECLINED",
+              "STATE_ENACTED",
+              "STATE_WAITING_FOR_NODE_VOTE"
+            ],
+            "default": "STATE_UNSPECIFIED"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/key-rotations": {
+      "get": {
+        "summary": "Get all key rotations",
+        "operationId": "TradingDataService_GetKeyRotations",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetKeyRotationsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/liquidity-provisions/market/{market}": {
+      "get": {
+        "summary": "Get the liquidity provision orders",
+        "operationId": "TradingDataService_LiquidityProvisions2",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LiquidityProvisionsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "market",
+            "description": "The target market for the liquidity provision orders",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "party",
+            "description": "The party which submitted the liquidity provision orders.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/liquidity-provisions/party/{party}/market/{market}": {
+      "get": {
+        "summary": "Get the liquidity provision orders",
+        "operationId": "TradingDataService_LiquidityProvisions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LiquidityProvisionsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "party",
+            "description": "The party which submitted the liquidity provision orders",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "market",
+            "description": "The target market for the liquidity provision orders",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/markets": {
+      "get": {
+        "summary": "Get a list of Markets",
+        "operationId": "TradingDataService_Markets",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1MarketsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/markets-data": {
+      "get": {
+        "summary": "Get a list of Market Data",
+        "operationId": "TradingDataService_MarketsData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1MarketsDataResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/markets-data/{marketId}": {
+      "get": {
+        "summary": "Get Market Data by Market ID",
+        "operationId": "TradingDataService_MarketDataByID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1MarketDataByIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "marketId",
+            "description": "Market identifier",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/markets/{marketId}": {
+      "get": {
+        "summary": "Get a Market by ID",
+        "operationId": "TradingDataService_MarketByID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1MarketByIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "marketId",
+            "description": "Market identifier, required field",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/markets/{marketId}/accounts": {
+      "get": {
+        "summary": "Get a list of Accounts by Market",
+        "operationId": "TradingDataService_MarketAccounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1MarketAccountsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "marketId",
+            "description": "Market identifier",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "asset",
+            "description": "Asset identifier.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/markets/{marketId}/candles": {
+      "get": {
+        "summary": "Get a list of Candles by Market",
+        "operationId": "TradingDataService_Candles",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1CandlesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "marketId",
+            "description": "Market identifier, required field.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "sinceTimestamp",
+            "description": "Timestamp to retrieve candles since, in nanoseconds since the epoch,\nrequired field - See [`VegaTimeResponse`](#api.VegaTimeResponse).`timestamp`.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "interval",
+            "description": "Time interval for the candles, required field.\n\n - INTERVAL_UNSPECIFIED: Default value, always invalid\n - INTERVAL_I1M: 1 minute.\n - INTERVAL_I5M: 5 minutes.\n - INTERVAL_I15M: 15 minutes.\n - INTERVAL_I1H: 1 hour.\n - INTERVAL_I6H: 6 hours.\n - INTERVAL_I1D: 1 day.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "INTERVAL_UNSPECIFIED",
+              "INTERVAL_I1M",
+              "INTERVAL_I5M",
+              "INTERVAL_I15M",
+              "INTERVAL_I1H",
+              "INTERVAL_I6H",
+              "INTERVAL_I1D"
+            ],
+            "default": "INTERVAL_UNSPECIFIED"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/markets/{marketId}/depth": {
+      "get": {
+        "summary": "Get Market Depth",
+        "operationId": "TradingDataService_MarketDepth",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1MarketDepthResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "marketId",
+            "description": "Market identifier, required field",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "maxDepth",
+            "description": "Max depth limits the number of levels returned. Default is 0, which returns all levels.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/markets/{marketId}/orders": {
+      "get": {
+        "summary": "Get a list of Orders by Market",
+        "operationId": "TradingDataService_OrdersByMarket",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1OrdersByMarketResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "marketId",
+            "description": "Market identifier, required field",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "pagination.skip",
+            "description": "Skip the number of records specified, default is 0.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "pagination.limit",
+            "description": "Limit the number of returned records to the value specified, default is 50.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "pagination.descending",
+            "description": "Descending reverses the order of the records returned,\ndefault is true, if false the results will be returned in ascending order.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/markets/{marketId}/orders/{orderId}": {
+      "get": {
+        "summary": "Get an Order by Market and Order ID",
+        "operationId": "TradingDataService_OrderByMarketAndID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1OrderByMarketAndIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "marketId",
+            "description": "Market identifier, required field",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "orderId",
+            "description": "Order identifier, required field",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/markets/{marketId}/trades": {
+      "get": {
+        "summary": "Get a list of Trades by Market",
+        "operationId": "TradingDataService_TradesByMarket",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TradesByMarketResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "marketId",
+            "description": "Market identifier, required field",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "pagination.skip",
+            "description": "Skip the number of records specified, default is 0.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "pagination.limit",
+            "description": "Limit the number of returned records to the value specified, default is 50.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "pagination.descending",
+            "description": "Descending reverses the order of the records returned,\ndefault is true, if false the results will be returned in ascending order.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/markets/{marketId}/trades/latest": {
+      "get": {
+        "summary": "Get latest Trade",
+        "operationId": "TradingDataService_LastTrade",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1LastTradeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "marketId",
+            "description": "Market identifier, required field",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/network/parameters": {
+      "get": {
+        "summary": "Get the network parameters",
+        "operationId": "TradingDataService_NetworkParameters",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1NetworkParametersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/nodes": {
+      "get": {
+        "summary": "List all known network nodes",
+        "operationId": "TradingDataService_GetNodes",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetNodesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/nodes-data": {
+      "get": {
+        "summary": "Get data of current node",
+        "operationId": "TradingDataService_GetNodeData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetNodeDataResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/nodes/{id}": {
+      "get": {
+        "summary": "Get a specific node by ID",
+        "operationId": "TradingDataService_GetNodeByID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetNodeByIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Required id of node",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/oracle-data": {
+      "get": {
+        "summary": "Get all oracle data",
+        "operationId": "TradingDataService_ListOracleData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListOracleDataResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "pagination.skip",
+            "description": "Skip the number of records specified, default is 0.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "pagination.limit",
+            "description": "Limit the number of returned records to the value specified, default is 50.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "pagination.descending",
+            "description": "Descending reverses the order of the records returned,\ndefault is true, if false the results will be returned in ascending order.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/oracle-specs": {
+      "get": {
+        "summary": "Get the oracle specs",
+        "operationId": "TradingDataService_OracleSpecs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1OracleSpecsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "pagination.skip",
+            "description": "Skip the number of records specified, default is 0.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "pagination.limit",
+            "description": "Limit the number of returned records to the value specified, default is 50.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "pagination.descending",
+            "description": "Descending reverses the order of the records returned,\ndefault is true, if false the results will be returned in ascending order.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/oracle-specs/{id}": {
+      "get": {
+        "summary": "Get an oracle spec by ID.",
+        "operationId": "TradingDataService_OracleSpec",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1OracleSpecResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "The id to get the oracle spec for",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "pagination.skip",
+            "description": "Skip the number of records specified, default is 0.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "pagination.limit",
+            "description": "Limit the number of returned records to the value specified, default is 50.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "pagination.descending",
+            "description": "Descending reverses the order of the records returned,\ndefault is true, if false the results will be returned in ascending order.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/oracle-specs/{id}/oracle-data": {
+      "get": {
+        "summary": "Get oracle data that matched the given spec",
+        "operationId": "TradingDataService_OracleDataBySpec",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1OracleDataBySpecResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "The id to get the oracle spec for",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "pagination.skip",
+            "description": "Skip the number of records specified, default is 0.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "pagination.limit",
+            "description": "Limit the number of returned records to the value specified, default is 50.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "pagination.descending",
+            "description": "Descending reverses the order of the records returned,\ndefault is true, if false the results will be returned in ascending order.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/orders/fee/estimate": {
+      "post": {
+        "summary": "Get an estimate for the fee to be paid for a given order",
+        "operationId": "TradingDataService_EstimateFee",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1EstimateFeeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1EstimateFeeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/orders/margins/estimate": {
+      "post": {
+        "summary": "Get an estimate for the margin required for a new order",
+        "operationId": "TradingDataService_EstimateMargin",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1EstimateMarginResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1EstimateMarginRequest"
+            }
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/orders/{orderId}/trades": {
+      "get": {
+        "summary": "Get a list of Trades by Order",
+        "operationId": "TradingDataService_TradesByOrder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TradesByOrderResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orderId",
+            "description": "Order identifier, required field",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/orders/{orderId}/versions": {
+      "get": {
+        "summary": "Get all versions of the order by its orderID",
+        "operationId": "TradingDataService_OrderVersionsByID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1OrderVersionsByIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "orderId",
+            "description": "Order identifier, required field",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "pagination.skip",
+            "description": "Skip the number of records specified, default is 0.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "pagination.limit",
+            "description": "Limit the number of returned records to the value specified, default is 50.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "pagination.descending",
+            "description": "Descending reverses the order of the records returned,\ndefault is true, if false the results will be returned in ascending order.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/orders/{reference}": {
+      "get": {
+        "summary": "Get an Order by Pending Order reference (UUID)",
+        "operationId": "TradingDataService_OrderByReference",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1OrderByReferenceResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "reference",
+            "description": "Unique reference, required field",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/parties": {
+      "get": {
+        "summary": "Get a list of Parties",
+        "operationId": "TradingDataService_Parties",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1PartiesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/parties/{partyId}": {
+      "get": {
+        "summary": "Get a Party by ID",
+        "operationId": "TradingDataService_PartyByID",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1PartyByIDResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "partyId",
+            "description": "Party identifier, required field",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/parties/{partyId}/accounts": {
+      "get": {
+        "summary": "Get a list of Accounts by Party",
+        "operationId": "TradingDataService_PartyAccounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1PartyAccountsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "partyId",
+            "description": "Party identifier",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "marketId",
+            "description": "Market identifier.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "description": "Account type, required field.\n\n - ACCOUNT_TYPE_UNSPECIFIED: Default value\n - ACCOUNT_TYPE_INSURANCE: Insurance pool accounts contain insurance pool funds for a market\n - ACCOUNT_TYPE_SETTLEMENT: Settlement accounts exist only during settlement or mark-to-market\n - ACCOUNT_TYPE_MARGIN: Margin accounts contain funds set aside for the margin needed to support a party's open positions.\nEach party will have a margin account for each market they have traded in.\nThe required initial margin is allocated to each market from your general account.\nCollateral in the margin account can't be withdrawn or used as margin on another market until\nit is released back to the general account.\nThe Vega protocol uses an internal accounting system to segregate funds held as\nmargin from other funds to ensure they are never lost or 'double spent'\n\nMargin account funds will vary as margin requirements on positions change\n - ACCOUNT_TYPE_GENERAL: General accounts contain the collateral for a party that is not otherwise allocated. A party will\nhave multiple general accounts, one for each asset they want\nto trade with\n\nGeneral accounts are where funds are initially deposited or withdrawn from,\nit is also the account where funds are taken to fulfil fees and initial margin requirements\n - ACCOUNT_TYPE_FEES_INFRASTRUCTURE: Infrastructure accounts contain fees earned by providing infrastructure on Vega\n - ACCOUNT_TYPE_FEES_LIQUIDITY: Liquidity accounts contain fees earned by providing liquidity on Vega markets\n - ACCOUNT_TYPE_FEES_MAKER: This account is created to hold fees earned by placing orders that sit on the book\nand are then matched with an incoming order to create a trade - These fees reward parties\nwho provide the best priced liquidity that actually allows trading to take place\n - ACCOUNT_TYPE_BOND: This account is created to maintain liquidity providers funds commitments\n - ACCOUNT_TYPE_EXTERNAL: External account represents an external source (deposit/withdrawal)\n - ACCOUNT_TYPE_GLOBAL_INSURANCE: Global insurance account for the asset\n - ACCOUNT_TYPE_GLOBAL_REWARD: Global reward account for the asset\n - ACCOUNT_TYPE_PENDING_TRANSFERS: Per asset account used to store pending transfers (if any)\n - ACCOUNT_TYPE_REWARD_MAKER_PAID_FEES: Per asset reward account for fees paid to makers\n - ACCOUNT_TYPE_REWARD_MAKER_RECEIVED_FEES: Per asset reward account for fees received by makers\n - ACCOUNT_TYPE_REWARD_LP_RECEIVED_FEES: Per asset reward account for fees received by liquidity providers\n - ACCOUNT_TYPE_REWARD_MARKET_PROPOSERS: Per asset reward account for market proposers when the market goes above some trading threshold",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "ACCOUNT_TYPE_UNSPECIFIED",
+              "ACCOUNT_TYPE_INSURANCE",
+              "ACCOUNT_TYPE_SETTLEMENT",
+              "ACCOUNT_TYPE_MARGIN",
+              "ACCOUNT_TYPE_GENERAL",
+              "ACCOUNT_TYPE_FEES_INFRASTRUCTURE",
+              "ACCOUNT_TYPE_FEES_LIQUIDITY",
+              "ACCOUNT_TYPE_FEES_MAKER",
+              "ACCOUNT_TYPE_BOND",
+              "ACCOUNT_TYPE_EXTERNAL",
+              "ACCOUNT_TYPE_GLOBAL_INSURANCE",
+              "ACCOUNT_TYPE_GLOBAL_REWARD",
+              "ACCOUNT_TYPE_PENDING_TRANSFERS",
+              "ACCOUNT_TYPE_REWARD_MAKER_PAID_FEES",
+              "ACCOUNT_TYPE_REWARD_MAKER_RECEIVED_FEES",
+              "ACCOUNT_TYPE_REWARD_LP_RECEIVED_FEES",
+              "ACCOUNT_TYPE_REWARD_MARKET_PROPOSERS"
+            ],
+            "default": "ACCOUNT_TYPE_UNSPECIFIED"
+          },
+          {
+            "name": "asset",
+            "description": "Asset identifier.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/parties/{partyId}/deposits": {
+      "get": {
+        "summary": "Get deposits for a party",
+        "operationId": "TradingDataService_Deposits",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1DepositsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "partyId",
+            "description": "The party to get the deposits for",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/parties/{partyId}/markets/{marketId}/margin": {
+      "get": {
+        "summary": "Get Margin Levels by Party ID",
+        "operationId": "TradingDataService_MarginLevels",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1MarginLevelsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "partyId",
+            "description": "Party identifier, required field",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "marketId",
+            "description": "Market identifier",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/parties/{partyId}/orders": {
+      "get": {
+        "summary": "Get a list of Orders by Party",
+        "operationId": "TradingDataService_OrdersByParty",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1OrdersByPartyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "partyId",
+            "description": "Party identifier, required field",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "pagination.skip",
+            "description": "Skip the number of records specified, default is 0.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "pagination.limit",
+            "description": "Limit the number of returned records to the value specified, default is 50.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "pagination.descending",
+            "description": "Descending reverses the order of the records returned,\ndefault is true, if false the results will be returned in ascending order.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/parties/{partyId}/positions": {
+      "get": {
+        "summary": "Get a list of Positions by Party",
+        "operationId": "TradingDataService_PositionsByParty",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1PositionsByPartyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "partyId",
+            "description": "Party identifier, required field",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "marketId",
+            "description": "Market identifier.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/parties/{partyId}/proposals": {
+      "get": {
+        "summary": "Get governance data (proposals and votes) for proposals by party authoring them",
+        "operationId": "TradingDataService_GetProposalsByParty",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetProposalsByPartyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "partyId",
+            "description": "Party identifier, required field",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "selectInState",
+            "description": "Optional proposal state.\n\n - STATE_UNSPECIFIED: Default value, always invalid\n - STATE_FAILED: Proposal enactment has failed - even though proposal has passed, its execution could not be performed\n - STATE_OPEN: Proposal is open for voting\n - STATE_PASSED: Proposal has gained enough support to be executed\n - STATE_REJECTED: Proposal wasn't accepted (proposal terms failed validation due to wrong configuration or failing to meet network requirements)\n - STATE_DECLINED: Proposal didn't get enough votes (either failing to gain required participation or majority level)\n - STATE_ENACTED: Proposal enacted\n - STATE_WAITING_FOR_NODE_VOTE: Waiting for node validation of the proposal",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "STATE_UNSPECIFIED",
+              "STATE_FAILED",
+              "STATE_OPEN",
+              "STATE_PASSED",
+              "STATE_REJECTED",
+              "STATE_DECLINED",
+              "STATE_ENACTED",
+              "STATE_WAITING_FOR_NODE_VOTE"
+            ],
+            "default": "STATE_UNSPECIFIED"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/parties/{partyId}/rewards": {
+      "get": {
+        "summary": "Get rewards",
+        "operationId": "TradingDataService_GetRewards",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetRewardsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "partyId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "assetId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pagination.skip",
+            "description": "Skip the number of records specified, default is 0.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "pagination.limit",
+            "description": "Limit the number of returned records to the value specified, default is 50.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "pagination.descending",
+            "description": "Descending reverses the order of the records returned,\ndefault is true, if false the results will be returned in ascending order.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/parties/{partyId}/trades": {
+      "get": {
+        "summary": "Get a list of Trades by Party",
+        "operationId": "TradingDataService_TradesByParty",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TradesByPartyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "partyId",
+            "description": "Party identifier. Required field",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "marketId",
+            "description": "Market identifier.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pagination.skip",
+            "description": "Skip the number of records specified, default is 0.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "pagination.limit",
+            "description": "Limit the number of returned records to the value specified, default is 50.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "pagination.descending",
+            "description": "Descending reverses the order of the records returned,\ndefault is true, if false the results will be returned in ascending order.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/parties/{partyId}/votes": {
+      "get": {
+        "summary": "Get votes by party casting them",
+        "operationId": "TradingDataService_GetVotesByParty",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetVotesByPartyResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "partyId",
+            "description": "Party identifier, required field",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/parties/{party}/stake": {
+      "get": {
+        "operationId": "TradingDataService_PartyStake",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1PartyStakeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "party",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/time": {
+      "get": {
+        "summary": "Get Time",
+        "operationId": "TradingDataService_GetVegaTime",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1GetVegaTimeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/transfers": {
+      "get": {
+        "operationId": "TradingDataService_Transfers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1TransfersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "pubkey",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "isFrom",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "isTo",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/withdrawals/party/{partyId}": {
+      "get": {
+        "summary": "Get withdrawals for a party",
+        "operationId": "TradingDataService_Withdrawals",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1WithdrawalsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "partyId",
+            "description": "The party to get the withdrawals for",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/withdrawals/{id}": {
+      "get": {
+        "summary": "Get a withdrawal by its identifier",
+        "operationId": "TradingDataService_Withdrawal",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1WithdrawalResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "The identifier of the withdrawal",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    },
+    "/withdrawals/{withdrawalId}/approval/erc20": {
+      "get": {
+        "summary": "Get the bundle approval for an ERC20 withdrawal,\nthese data are being used to bundle the call to the smart contract on the ethereum bridge",
+        "operationId": "TradingDataService_ERC20WithdrawalApproval",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ERC20WithdrawalApprovalResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "withdrawalId",
+            "description": "The identifier of the withdrawal",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "TradingDataService"
+        ]
+      }
+    }
+  },
   "definitions": {
     "ConditionOperator": {
       "type": "string",
@@ -288,7 +2473,24 @@
           "title": "A list of order submissions to be processed sequentially"
         }
       },
-      "title": "A batch of order instructions.\nThis command accept only the following batches of commands\nand will be processed in the following order:\n- OrderCancellation\n- OrderAmendment\n- OrderSubmission\nThe total amount of commands in the batch accros all three list of\ninstructions is restricted by the following network paramter:\n\"spam.rotection.max.batchSize\""
+      "title": "A batch of order instructions.\nThis command accepts only the following batches of commands\nand will be processed in the following order:\n- OrderCancellation\n- OrderAmendment\n- OrderSubmission\nThe total amount of commands in the batch across all three lists of\ninstructions is restricted by the following network parameter:\n\"spam.protection.max.batchSize\""
+    },
+    "v1BeginBlock": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "int64"
+        },
+        "hash": {
+          "type": "string"
+        }
+      },
+      "title": "BeginBlock"
     },
     "v1BusEvent": {
       "type": "object",
@@ -309,8 +2511,8 @@
           "$ref": "#/definitions/v1TimeUpdate",
           "title": "Time update events - See [TimeUpdate](#vega.TimeUpdate)"
         },
-        "transferResponses": {
-          "$ref": "#/definitions/v1TransferResponses",
+        "ledgerMovements": {
+          "$ref": "#/definitions/v1LedgerMovements",
           "title": "Transfer responses update events - See [TransferResponses](#vega.TransferResponses)"
         },
         "positionResolution": {
@@ -489,6 +2691,18 @@
           "$ref": "#/definitions/v1ProtocolUpgradeEvent",
           "title": "Protocol upgrade proposal updates"
         },
+        "beginBlock": {
+          "$ref": "#/definitions/v1BeginBlock",
+          "title": "The core is starting to process a new block"
+        },
+        "endBlock": {
+          "$ref": "#/definitions/v1EndBlock",
+          "title": "The core finished to process a block"
+        },
+        "protocolUpgradeStarted": {
+          "$ref": "#/definitions/v1ProtocolUpgradeStarted",
+          "title": "The core is starting a protocol upgrade"
+        },
         "market": {
           "$ref": "#/definitions/v1MarketEvent",
           "title": "Market tick events - See [MarketEvent](#vega.MarketEvent)"
@@ -517,7 +2731,7 @@
         "BUS_EVENT_TYPE_UNSPECIFIED",
         "BUS_EVENT_TYPE_ALL",
         "BUS_EVENT_TYPE_TIME_UPDATE",
-        "BUS_EVENT_TYPE_TRANSFER_RESPONSES",
+        "BUS_EVENT_TYPE_LEDGER_MOVEMENTS",
         "BUS_EVENT_TYPE_POSITION_RESOLUTION",
         "BUS_EVENT_TYPE_ORDER",
         "BUS_EVENT_TYPE_ACCOUNT",
@@ -563,11 +2777,14 @@
         "BUS_EVENT_TYPE_POSITION_STATE",
         "BUS_EVENT_TYPE_ETHEREUM_KEY_ROTATION",
         "BUS_EVENT_TYPE_PROTOCOL_UPGRADE_PROPOSAL",
+        "BUS_EVENT_TYPE_BEGIN_BLOCK",
+        "BUS_EVENT_TYPE_END_BLOCK",
+        "BUS_EVENT_TYPE_PROTOCOL_UPGRADE_STARTED",
         "BUS_EVENT_TYPE_MARKET",
         "BUS_EVENT_TYPE_TX_ERROR"
       ],
       "default": "BUS_EVENT_TYPE_UNSPECIFIED",
-      "description": "- BUS_EVENT_TYPE_UNSPECIFIED: Default value, always invalid\n - BUS_EVENT_TYPE_ALL: Events of ALL event types, used when filtering stream from event bus\n - BUS_EVENT_TYPE_TIME_UPDATE: Event for blockchain time updates\n - BUS_EVENT_TYPE_TRANSFER_RESPONSES: Event for when a transfer happens internally, contains the transfer information\n - BUS_EVENT_TYPE_POSITION_RESOLUTION: Event indicating position resolution has occurred\n - BUS_EVENT_TYPE_ORDER: Event for order updates, both new and existing orders\n - BUS_EVENT_TYPE_ACCOUNT: Event for account updates\n - BUS_EVENT_TYPE_PARTY: Event for party updates\n - BUS_EVENT_TYPE_TRADE: Event indicating a new trade has occurred\n - BUS_EVENT_TYPE_MARGIN_LEVELS: Event indicating margin levels have changed for a party\n - BUS_EVENT_TYPE_PROPOSAL: Event for proposal updates (for governance)\n - BUS_EVENT_TYPE_VOTE: Event indicating a new vote has occurred (for governance)\n - BUS_EVENT_TYPE_MARKET_DATA: Event for market data updates\n - BUS_EVENT_TYPE_NODE_SIGNATURE: Event for a new signature for a Vega node\n - BUS_EVENT_TYPE_LOSS_SOCIALIZATION: Event indicating loss socialisation occurred for a party\n - BUS_EVENT_TYPE_SETTLE_POSITION: Event for when a position is being settled\n - BUS_EVENT_TYPE_SETTLE_DISTRESSED: Event for when a position is distressed\n - BUS_EVENT_TYPE_MARKET_CREATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ASSET: Event for when an asset is added to Vega\n - BUS_EVENT_TYPE_MARKET_TICK: Event indicating a market tick event\n - BUS_EVENT_TYPE_WITHDRAWAL: Event for when a withdrawal occurs\n - BUS_EVENT_TYPE_DEPOSIT: Event for when a deposit occurs\n - BUS_EVENT_TYPE_AUCTION: Event indicating a change in auction state, for example starting or ending an auction\n - BUS_EVENT_TYPE_RISK_FACTOR: Event indicating a risk factor has been updated\n - BUS_EVENT_TYPE_NETWORK_PARAMETER: Event indicating a network parameter has been added or updated\n - BUS_EVENT_TYPE_LIQUIDITY_PROVISION: Event indicating a liquidity provision has been created or updated\n - BUS_EVENT_TYPE_MARKET_UPDATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ORACLE_SPEC: Event indicating an oracle spec has been created or updated\n - BUS_EVENT_TYPE_ORACLE_DATA: Event indicating that an oracle data has been broadcast\n - BUS_EVENT_TYPE_DELEGATION_BALANCE: Event indicating that an delegation balance of a party to a node for current epoch has changed\n - BUS_EVENT_TYPE_VALIDATOR_SCORE: Event indicating the validator score for the given epoch\n - BUS_EVENT_TYPE_EPOCH_UPDATE: Event indicating the start or end of an epoch\n - BUS_EVENT_TYPE_VALIDATOR_UPDATE: Event indicating that validator node has been updated\n - BUS_EVENT_TYPE_STAKE_LINKING: Event indicating a new staking event have been processed by the network\n - BUS_EVENT_TYPE_REWARD_PAYOUT_EVENT: Event indicating the payout of a reward has been initiated\n - BUS_EVENT_TYPE_CHECKPOINT: Event indicating a new checkpoint was created\n - BUS_EVENT_TYPE_STREAM_START: Event indicating stream is starting\n - BUS_EVENT_TYPE_KEY_ROTATION: Event indicating key rotation took place\n - BUS_EVENT_TYPE_STATE_VAR: Event indicating state transitions in state variable consensus\n - BUS_EVENT_TYPE_NETWORK_LIMITS: Event indicating network limits set or updated\n - BUS_EVENT_TYPE_TRANSFER: Event indicating a update for a transfert\n - BUS_EVENT_TYPE_VALIDATOR_RANKING: Event indicating the ranking of validator and their status in vega\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_EVENT: Event indicating a new multi sig signer event have been processed\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SET_THRESHOLD: Event indicating the erc20 multi sig threshold have been updated\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_ADDED: Event indicating a new signer has been added to the erc20 multisig\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_REMOVED: Event indicating a signer has been removed from the erc20 multisig\n - BUS_EVENT_TYPE_POSITION_STATE: Event indicting that a party's position has changed\n - BUS_EVENT_TYPE_ETHEREUM_KEY_ROTATION: Event indicating Ethereum key rotation took place\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_PROPOSAL: Event indicating protocol upgrade proposal updates\n - BUS_EVENT_TYPE_MARKET: Event indicating a market related event, for example when a market opens\n - BUS_EVENT_TYPE_TX_ERROR: Event used to report failed transactions back to a user, this is excluded from the ALL type",
+      "description": "- BUS_EVENT_TYPE_UNSPECIFIED: Default value, always invalid\n - BUS_EVENT_TYPE_ALL: Events of ALL event types, used when filtering stream from event bus\n - BUS_EVENT_TYPE_TIME_UPDATE: Event for blockchain time updates\n - BUS_EVENT_TYPE_LEDGER_MOVEMENTS: Event for when a transfer happens internally, contains the transfer information\n - BUS_EVENT_TYPE_POSITION_RESOLUTION: Event indicating position resolution has occurred\n - BUS_EVENT_TYPE_ORDER: Event for order updates, both new and existing orders\n - BUS_EVENT_TYPE_ACCOUNT: Event for account updates\n - BUS_EVENT_TYPE_PARTY: Event for party updates\n - BUS_EVENT_TYPE_TRADE: Event indicating a new trade has occurred\n - BUS_EVENT_TYPE_MARGIN_LEVELS: Event indicating margin levels have changed for a party\n - BUS_EVENT_TYPE_PROPOSAL: Event for proposal updates (for governance)\n - BUS_EVENT_TYPE_VOTE: Event indicating a new vote has occurred (for governance)\n - BUS_EVENT_TYPE_MARKET_DATA: Event for market data updates\n - BUS_EVENT_TYPE_NODE_SIGNATURE: Event for a new signature for a Vega node\n - BUS_EVENT_TYPE_LOSS_SOCIALIZATION: Event indicating loss socialisation occurred for a party\n - BUS_EVENT_TYPE_SETTLE_POSITION: Event for when a position is being settled\n - BUS_EVENT_TYPE_SETTLE_DISTRESSED: Event for when a position is distressed\n - BUS_EVENT_TYPE_MARKET_CREATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ASSET: Event for when an asset is added to Vega\n - BUS_EVENT_TYPE_MARKET_TICK: Event indicating a market tick event\n - BUS_EVENT_TYPE_WITHDRAWAL: Event for when a withdrawal occurs\n - BUS_EVENT_TYPE_DEPOSIT: Event for when a deposit occurs\n - BUS_EVENT_TYPE_AUCTION: Event indicating a change in auction state, for example starting or ending an auction\n - BUS_EVENT_TYPE_RISK_FACTOR: Event indicating a risk factor has been updated\n - BUS_EVENT_TYPE_NETWORK_PARAMETER: Event indicating a network parameter has been added or updated\n - BUS_EVENT_TYPE_LIQUIDITY_PROVISION: Event indicating a liquidity provision has been created or updated\n - BUS_EVENT_TYPE_MARKET_UPDATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ORACLE_SPEC: Event indicating an oracle spec has been created or updated\n - BUS_EVENT_TYPE_ORACLE_DATA: Event indicating that an oracle data has been broadcast\n - BUS_EVENT_TYPE_DELEGATION_BALANCE: Event indicating that an delegation balance of a party to a node for current epoch has changed\n - BUS_EVENT_TYPE_VALIDATOR_SCORE: Event indicating the validator score for the given epoch\n - BUS_EVENT_TYPE_EPOCH_UPDATE: Event indicating the start or end of an epoch\n - BUS_EVENT_TYPE_VALIDATOR_UPDATE: Event indicating that validator node has been updated\n - BUS_EVENT_TYPE_STAKE_LINKING: Event indicating a new staking event have been processed by the network\n - BUS_EVENT_TYPE_REWARD_PAYOUT_EVENT: Event indicating the payout of a reward has been initiated\n - BUS_EVENT_TYPE_CHECKPOINT: Event indicating a new checkpoint was created\n - BUS_EVENT_TYPE_STREAM_START: Event indicating stream is starting\n - BUS_EVENT_TYPE_KEY_ROTATION: Event indicating key rotation took place\n - BUS_EVENT_TYPE_STATE_VAR: Event indicating state transitions in state variable consensus\n - BUS_EVENT_TYPE_NETWORK_LIMITS: Event indicating network limits set or updated\n - BUS_EVENT_TYPE_TRANSFER: Event indicating a update for a transfert\n - BUS_EVENT_TYPE_VALIDATOR_RANKING: Event indicating the ranking of validator and their status in vega\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_EVENT: Event indicating a new multi sig signer event have been processed\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SET_THRESHOLD: Event indicating the erc20 multi sig threshold have been updated\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_ADDED: Event indicating a new signer has been added to the erc20 multisig\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_REMOVED: Event indicating a signer has been removed from the erc20 multisig\n - BUS_EVENT_TYPE_POSITION_STATE: Event indicting that a party's position has changed\n - BUS_EVENT_TYPE_ETHEREUM_KEY_ROTATION: Event indicating Ethereum key rotation took place\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_PROPOSAL: Event indicating protocol upgrade proposal updates\n - BUS_EVENT_TYPE_BEGIN_BLOCK: The core is starting to process a new block\n - BUS_EVENT_TYPE_END_BLOCK: The core finished to process a block\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_STARTED: The core is starting a protocol upgrade\n - BUS_EVENT_TYPE_MARKET: Event indicating a market related event, for example when a market opens\n - BUS_EVENT_TYPE_TX_ERROR: Event used to report failed transactions back to a user, this is excluded from the ALL type",
       "title": "An (event) bus event type is used to specify a type of event\nIt has 2 styles of event:\nSingle values (e.g. BUS_EVENT_TYPE_ORDER) where they represent one data item\nGroup values (e.g. BUS_EVENT_TYPE_AUCTION) where they represent a group of data items"
     },
     "v1CancelTransfer": {
@@ -911,6 +3128,16 @@
       },
       "title": "The response with all information required to bundle the call to finalise the withdrawal on the erc20 bridge\nfunction withdraw_asset(address asset_source, uint256 asset_id, uint256 amount, uint256 expiry, uint256 nonce, bytes memory signatures)"
     },
+    "v1EndBlock": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "string",
+          "format": "uint64"
+        }
+      },
+      "title": "EndBlock"
+    },
     "v1EpochEvent": {
       "type": "object",
       "properties": {
@@ -941,6 +3168,16 @@
       },
       "title": "Epoch details"
     },
+    "v1EstimateFeeRequest": {
+      "type": "object",
+      "properties": {
+        "order": {
+          "$ref": "#/definitions/vegaOrder",
+          "title": "Order to estimate fees for\nthe following fields in the order are required:\nMarketID (used to specify the fee factors)\nPrice (the price at which the order could trade)\nSize (the size at which the order could eventually trade)"
+        }
+      },
+      "title": "Request to fetch the estimated fee if an order were to trade immediately"
+    },
     "v1EstimateFeeResponse": {
       "type": "object",
       "properties": {
@@ -950,6 +3187,16 @@
         }
       },
       "title": "Response to a EstimateFeeRequest, containing the estimated fees for a given order"
+    },
+    "v1EstimateMarginRequest": {
+      "type": "object",
+      "properties": {
+        "order": {
+          "$ref": "#/definitions/vegaOrder",
+          "title": "Order to estimate fees for"
+        }
+      },
+      "title": "Request to fetch the estimated MarginLevels if an order were to trade immediately"
     },
     "v1EstimateMarginResponse": {
       "type": "object",
@@ -1295,6 +3542,27 @@
         }
       },
       "title": "Response for the latest trade that occurred on Vega for a given market"
+    },
+    "v1LedgerMovements": {
+      "type": "object",
+      "properties": {
+        "ledgerMovements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/vegaLedgerMovement"
+          },
+          "title": "One or more entries containing internal transfer information"
+        }
+      },
+      "title": "A transfer responses event contains a collection of transfer information"
+    },
+    "v1LedgerMovementsSubscribeResponse": {
+      "type": "object",
+      "properties": {
+        "ledgerMovement": {
+          "$ref": "#/definitions/vegaLedgerMovement"
+        }
+      }
     },
     "v1LiquidityProvisionAmendment": {
       "type": "object",
@@ -1937,7 +4205,7 @@
         "size": {
           "type": "string",
           "format": "uint64",
-          "title": "Size for the order, for example, in a futures market the size equals the number of contracts, cannot be negative"
+          "title": "Size for the order, for example, in a futures market the size equals the number of units, cannot be negative"
         },
         "side": {
           "$ref": "#/definitions/vegaSide",
@@ -2279,6 +4547,16 @@
       "default": "PROTOCOL_UPGRADE_PROPOSAL_STATUS_UNSPECIFIED",
       "title": "- PROTOCOL_UPGRADE_PROPOSAL_STATUS_PENDING: The proposal is pending\n - PROTOCOL_UPGRADE_PROPOSAL_STATUS_APPROVED: The proposal is approved\n - PROTOCOL_UPGRADE_PROPOSAL_STATUS_REJECTED: The proposal is rejected"
     },
+    "v1ProtocolUpgradeStarted": {
+      "type": "object",
+      "properties": {
+        "lastBlockHeight": {
+          "type": "string",
+          "format": "uint64"
+        }
+      },
+      "title": "The core is starting a protocol upgrade"
+    },
     "v1RewardPayoutEvent": {
       "type": "object",
       "properties": {
@@ -2555,27 +4833,6 @@
         }
       },
       "title": "A stream of trades"
-    },
-    "v1TransferResponses": {
-      "type": "object",
-      "properties": {
-        "responses": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/vegaTransferResponse"
-          },
-          "title": "One or more entries containing internal transfer information"
-        }
-      },
-      "title": "A transfer responses event contains a collection of transfer information"
-    },
-    "v1TransferResponsesSubscribeResponse": {
-      "type": "object",
-      "properties": {
-        "response": {
-          "$ref": "#/definitions/vegaTransferResponse"
-        }
-      }
     },
     "v1TransferStatus": {
       "type": "string",
@@ -2891,6 +5148,25 @@
         }
       },
       "title": "Represents an account for an asset on Vega for a particular owner or party"
+    },
+    "vegaAccountDetails": {
+      "type": "object",
+      "properties": {
+        "assetId": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/vegaAccountType"
+        },
+        "owner": {
+          "type": "string",
+          "title": "not specified if network account"
+        },
+        "marketId": {
+          "type": "string",
+          "title": "not specified is account is not related to a market"
+        }
+      }
     },
     "vegaAccountType": {
       "type": "string",
@@ -3376,10 +5652,10 @@
           "$ref": "#/definitions/vegaOracleSpecToFutureBinding",
           "title": "The binding between the oracle spec and the oracle data"
         },
-        "settlementPriceDecimals": {
+        "settlementDataDecimals": {
           "type": "integer",
           "format": "int64",
-          "title": "the number of decimal places implied by the settlement price emitted by the settlement oracle"
+          "title": "The number of decimal places implied by the settlement data (such as price) emitted by the settlement oracle"
         }
       },
       "title": "Future product definition"
@@ -3407,10 +5683,10 @@
           "$ref": "#/definitions/vegaOracleSpecToFutureBinding",
           "title": "The binding between the oracle spec and the settlement price"
         },
-        "settlementPriceDecimals": {
+        "settlementDataDecimals": {
           "type": "integer",
           "format": "int64",
-          "title": "The number of decimal places implied by the settlement price emitted by the settlement oracle"
+          "title": "The number of decimal places implied by the settlement data (such as price) emitted by the settlement oracle"
         }
       },
       "title": "Future product configuration"
@@ -3529,32 +5805,45 @@
       "type": "object",
       "properties": {
         "fromAccount": {
-          "type": "string",
+          "$ref": "#/definitions/vegaAccountDetails",
           "title": "One or more accounts to transfer from"
         },
         "toAccount": {
-          "type": "string",
+          "$ref": "#/definitions/vegaAccountDetails",
           "title": "One or more accounts to transfer to"
         },
         "amount": {
           "type": "string",
           "title": "An amount to transfer"
         },
-        "reference": {
-          "type": "string",
-          "title": "A reference for auditing purposes"
-        },
         "type": {
-          "type": "string",
-          "title": "Type of ledger entry"
+          "$ref": "#/definitions/vegaTransferType",
+          "title": "Transfer type for this entry"
         },
         "timestamp": {
           "type": "string",
           "format": "int64",
-          "title": "Timestamp for the time the ledger entry was created, in nanoseconds since the epoch\n- See [`VegaTimeResponse`](#api.VegaTimeResponse).`timestamp`"
+          "title": "Timestamps"
         }
       },
       "title": "Represents a ledger entry on Vega"
+    },
+    "vegaLedgerMovement": {
+      "type": "object",
+      "properties": {
+        "entries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/vegaLedgerEntry"
+          }
+        },
+        "balances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/vegaPostTransferBalance"
+          }
+        }
+      }
     },
     "vegaLiquidityMonitoringParameters": {
       "type": "object",
@@ -4587,6 +6876,20 @@
       },
       "title": "Represents position data for a party on the specified market on Vega"
     },
+    "vegaPostTransferBalance": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/vegaAccountDetails",
+          "title": "The account relating to the transfer"
+        },
+        "balance": {
+          "type": "string",
+          "title": "The balance relating to the transfer"
+        }
+      },
+      "title": "Represents the balance for an account during a transfer"
+    },
     "vegaPriceLevel": {
       "type": "object",
       "properties": {
@@ -5166,39 +7469,39 @@
       "description": "- TYPE_UNSPECIFIED: Default value, always invalid\n - TYPE_DEFAULT: Normal trading between two parties\n - TYPE_NETWORK_CLOSE_OUT_GOOD: Trading initiated by the network with another party on the book,\nwhich helps to zero-out the positions of one or more distressed parties\n - TYPE_NETWORK_CLOSE_OUT_BAD: Trading initiated by the network with another party off the book,\nwith a distressed party in order to zero-out the position of the party",
       "title": "Type values for a trade"
     },
-    "vegaTransferBalance": {
-      "type": "object",
-      "properties": {
-        "account": {
-          "$ref": "#/definitions/vegaAccount",
-          "title": "The account relating to the transfer"
-        },
-        "balance": {
-          "type": "string",
-          "title": "The balance relating to the transfer"
-        }
-      },
-      "title": "Represents the balance for an account during a transfer"
-    },
-    "vegaTransferResponse": {
-      "type": "object",
-      "properties": {
-        "transfers": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/vegaLedgerEntry"
-          },
-          "title": "One or more ledger entries representing the transfers"
-        },
-        "balances": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/vegaTransferBalance"
-          },
-          "title": "One or more account balances"
-        }
-      },
-      "title": "Represents the response from a transfer"
+    "vegaTransferType": {
+      "type": "string",
+      "enum": [
+        "TRANSFER_TYPE_UNSPECIFIED",
+        "TRANSFER_TYPE_LOSS",
+        "TRANSFER_TYPE_WIN",
+        "TRANSFER_TYPE_CLOSE",
+        "TRANSFER_TYPE_MTM_LOSS",
+        "TRANSFER_TYPE_MTM_WIN",
+        "TRANSFER_TYPE_MARGIN_LOW",
+        "TRANSFER_TYPE_MARGIN_HIGH",
+        "TRANSFER_TYPE_MARGIN_CONFISCATED",
+        "TRANSFER_TYPE_MAKER_FEE_PAY",
+        "TRANSFER_TYPE_MAKER_FEE_RECEIVE",
+        "TRANSFER_TYPE_INFRASTRUCTURE_FEE_PAY",
+        "TRANSFER_TYPE_INFRASTRUCTURE_FEE_DISTRIBUTE",
+        "TRANSFER_TYPE_LIQUIDITY_FEE_PAY",
+        "TRANSFER_TYPE_LIQUIDITY_FEE_DISTRIBUTE",
+        "TRANSFER_TYPE_BOND_LOW",
+        "TRANSFER_TYPE_BOND_HIGH",
+        "TRANSFER_TYPE_WITHDRAW_LOCK",
+        "TRANSFER_TYPE_WITHDRAW",
+        "TRANSFER_TYPE_DEPOSIT",
+        "TRANSFER_TYPE_BOND_SLASHING",
+        "TRANSFER_TYPE_STAKE_REWARD",
+        "TRANSFER_TYPE_TRANSFER_FUNDS_SEND",
+        "TRANSFER_TYPE_TRANSFER_FUNDS_DISTRIBUTE",
+        "TRANSFER_TYPE_CLEAR_ACCOUNT",
+        "TRANSFER_TYPE_CHECKPOINT_BALANCE_RESTORE"
+      ],
+      "default": "TRANSFER_TYPE_UNSPECIFIED",
+      "description": "- TRANSFER_TYPE_UNSPECIFIED: Default value, always invalid\n - TRANSFER_TYPE_LOSS: Loss\n - TRANSFER_TYPE_WIN: Win\n - TRANSFER_TYPE_CLOSE: Close\n - TRANSFER_TYPE_MTM_LOSS: Mark to market loss\n - TRANSFER_TYPE_MTM_WIN: Mark to market win\n - TRANSFER_TYPE_MARGIN_LOW: Margin too low\n - TRANSFER_TYPE_MARGIN_HIGH: Margin too high\n - TRANSFER_TYPE_MARGIN_CONFISCATED: Margin was confiscated\n - TRANSFER_TYPE_MAKER_FEE_PAY: Pay maker fee\n - TRANSFER_TYPE_MAKER_FEE_RECEIVE: Receive maker fee\n - TRANSFER_TYPE_INFRASTRUCTURE_FEE_PAY: Pay infrastructure fee\n - TRANSFER_TYPE_INFRASTRUCTURE_FEE_DISTRIBUTE: Receive infrastructure fee\n - TRANSFER_TYPE_LIQUIDITY_FEE_PAY: Pay liquidity fee\n - TRANSFER_TYPE_LIQUIDITY_FEE_DISTRIBUTE: Receive liquidity fee\n - TRANSFER_TYPE_BOND_LOW: Bond too low\n - TRANSFER_TYPE_BOND_HIGH: Bond too high\n - TRANSFER_TYPE_WITHDRAW_LOCK: Lock amount for withdraw\n - TRANSFER_TYPE_WITHDRAW: Actual withdraw from system\n - TRANSFER_TYPE_DEPOSIT: Deposit funds\n - TRANSFER_TYPE_BOND_SLASHING: Bond slashing\n - TRANSFER_TYPE_STAKE_REWARD: Stake reward\n - TRANSFER_TYPE_TRANSFER_FUNDS_SEND: Transfer funds\n - TRANSFER_TYPE_TRANSFER_FUNDS_DISTRIBUTE: Transfer funds\n - TRANSFER_TYPE_CLEAR_ACCOUNT: Market is closed, accounts are cleared\n - TRANSFER_TYPE_CHECKPOINT_BALANCE_RESTORE: Restore a balance from a checkpoint",
+      "title": "Transfers can occur between parties on Vega, these are the types that indicate why a transfer took place"
     },
     "vegaUpdateAsset": {
       "type": "object",
@@ -5233,10 +7536,10 @@
           "$ref": "#/definitions/vegaOracleSpecToFutureBinding",
           "title": "The binding between the oracle spec and the settlement price"
         },
-        "settlementPriceDecimals": {
+        "settlementDataDecimals": {
           "type": "integer",
           "format": "int64",
-          "title": "The number of decimal places implied by the settlement price emitted by the settlement oracle"
+          "title": "The number of decimal places implied by the settlement data (such as price) emitted by the settlement oracle"
         }
       },
       "title": "Future product configuration"

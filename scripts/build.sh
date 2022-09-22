@@ -17,20 +17,20 @@ testnet_network_parameters=https://api.n07.testnet.vega.xyz/network/parameters
 mainnet_network_parameters=https://api.vega.xyz/network/parameters
 
 set -e
-doc_version=v0.55
+doc_version=v0.55.0
 
 # This should be using /specs/vxxx but those versions are not yet build correctly
 echo "Fetching grpc..."
-cp "./data/${doc_version}/proto.json" ./proto.json
+cp "./specs/${doc_version}/proto.json" ./proto.json
 
 echo "Fetching graphql..."
-cp "./data/${doc_version}/schema.graphql" ./schema.graphql
+cp "./specs/${doc_version}/schema.graphql" ./schema.graphql
 
 echo "Fetching latest network parameters as placeholders for NetworkParameter.js"
-rm data/testnet_network_parameters.json 2> /dev/null
-curl ${testnet_network_parameters} -o "data/testnet_network_parameters.json" 
-rm data/mainnet_network_parameters.json 2> /dev/null
-curl ${mainnet_network_parameters} -o "data/mainnet_network_parameters.json" 
+rm specs/testnet_network_parameters.json 2> /dev/null
+curl ${testnet_network_parameters} -o "specs/testnet_network_parameters.json"
+rm specs/mainnet_network_parameters.json 2> /dev/null
+curl ${mainnet_network_parameters} -o "specs/mainnet_network_parameters.json"
 
 # Create an empty folder to keep the tools happy
 echo "Regenerating docs..."
@@ -47,7 +47,12 @@ sed -i -E 's/Schema Documentation/GraphQL Schema/g' docs/graphql/generated.md
 
 # GRPC tidyup
 echo "GRPC: Do not hide titles"
-find . -type f -name '*.mdx' -exec sed -i -E 's/hide_title: true/hide_title: false/g' {} +
+find './grpc/' -type f -name '*.mdx' -exec sed -i -E 's/hide_title: true/hide_title: false/g' {} +
+
+# GRPC tidyup
+echo "REST: Hide titles"
+find './docs/api/rest' -type f -name '*.mdx' -exec sed -i -E 's/hide_title: false/hide_title: true/g' {} +
+
 
 # Fix up sidebars for all APIs
 ./scripts/build-sidebars.sh
@@ -58,6 +63,10 @@ echo "Tidying up..."
 # GRPC tidyup
 rm proto.json
 rm schema.graphql
+
+# Mac SED workaround - delete remnant files (not required with gsed)
+find . -name "*-E" -exec rm -rf {} +
+
 
 echo "Done! Now check if you need to run the versioning script (./scripts/version.sh)"
 
