@@ -1,6 +1,7 @@
 ---
 sidebar_position: 7
-title: Using snapshots
+title: How to use snapshots
+sidebar_label: Use snapshots
 hide_title: false
 ---
 

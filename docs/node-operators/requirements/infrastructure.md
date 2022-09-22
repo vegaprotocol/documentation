@@ -1,6 +1,7 @@
 ---
-sidebar_position: 1
-title: Requirements
+sidebar_position: 2
+title: Validator infrastructure requirements
+sidebar_label: Infrastructure
 vega_network: TESTNET
 hide_title: false
 ---

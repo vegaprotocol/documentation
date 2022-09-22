@@ -1,6 +1,7 @@
 ---
 sidebar_position: 9
-title: Key rotation
+title: How to rotate keys
+sidebar_label: Rotate keys
 hide_title: false
 ---
 
