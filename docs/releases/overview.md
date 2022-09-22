@@ -46,7 +46,7 @@ The release of [0.55 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.5
 Before the deployment of 0.55 liquidity commitment was optional on a market proposal. This change removes the option for any liquidity commitment completely from the market proposal. This work was done in issue [5989 ↗](https://github.com/vegaprotocol/vega/issues/5989).
 
 #### Remove market name from GraphQL market type
-The [market framework specification ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0001-MKTF-market_framework.md) does not mention having the market `name` field at the top level definition of a market. This has been fixed such that the name and code is at the instrument level as per the specification. This work was done in issue [6031 ↗](https://github.com/vegaprotocol/vega/issues/6031).
+The [market framework specification ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0001-MKTF-market_framework.md) does not mention having the market `name` field at the top level definition of a market. This has been fixed such that the `name` and `code` fields are at the instrument level as per the specification. This work was done in issue [6031 ↗](https://github.com/vegaprotocol/vega/issues/6031).
 
 #### Rename rewards from taker fee to maker fee
 In order to correct and clean up names in the APIs, the following account types and dispatch metrics names have been changed to match existing fee names:
@@ -55,7 +55,7 @@ In order to correct and clean up names in the APIs, the following account types 
 This work was done in issue [6095 ↗](https://github.com/vegaprotocol/vega/issues/6095).
 
 #### Use the latest local snapshot as default behaviour when restarting a node
-The best experience for restarting a node is to load from the highest possible block before the node was stopped. This is most important when a node was started using state-sync and the tendermint block store does not contain enough history to replay the chain from zero. To avoid any issues with not being able to reply from block zero, the default behaviour is now to always start from the most recent local snapshot. This work was done in issue [5442 ↗](https://github.com/vegaprotocol/vega/issues/5442).
+The best experience for restarting a node is to load from the highest possible block before the node was stopped. This is most important when a node was started using state-sync and the tendermint block store does not contain enough history to replay the chain from block zero. To avoid any issues with not being able to reply from block zero, the default behaviour is now to always start from the most recent local snapshot. This work was done in issue [5442 ↗](https://github.com/vegaprotocol/vega/issues/5442).
 
 #### Return the key on `session.list_keys` endpoint on wallet API version 2
 With the introduction of the [V2 wallet API](../api/vega-wallet/v2-api/get-started) there is now added security in order for a dApp to request metadata that can be used by the user to label a key in wallet and dApp, thus preventing data being leaked unintentionally. This work was done in issue [6139 ↗](https://github.com/vegaprotocol/vega/issues/6139).
