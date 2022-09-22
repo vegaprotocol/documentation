@@ -25,7 +25,6 @@ Find out how to maintain and upgrade a node by working through the instructions 
 
 | Topic                                                                 |  Description                                                                                                        |
 | ----------------------------------------------------------------------| -------------------------------------------------------------------------------------------------------- |
-| [System requirements](./system-requirements.md)                               | Find out what hardware and software you need to run a validating node for the Vega network. |
 | [Network restarts](how-to/restart-network.md)                               | This guide walks you through how to manage network restarts. |
 | [Snapshots](how-to/snapshots.md)                               | This guide will take you through using the state snapshots. |
 | [Rotating Ethereum keys](how-to/rotate-ethereum-keys.md) | This guide will take you through rotating your Vega key for security purposes. |
