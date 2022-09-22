@@ -1,7 +1,7 @@
 ---
 sidebar_position: 9
-title: How to rotate keys
-sidebar_label: Rotate keys
+title: How to rotate Vega keys
+sidebar_label: Rotate Vega keys
 hide_title: false
 ---
 
