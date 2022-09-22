@@ -57,7 +57,7 @@ Settlement instructions are generated based on the change in market value of the
 
 When the mark price changes, the protocol calculates settlement cash flows for each party.
 
-Each time the mark price for a given market changes, all the open positions are marked to market, resulting in interim partial payments that are calculated by the protocol. Those payments go directly the relevant trader's margin account. 
+Each time the mark price for a given market changes, all the open positions are marked to market, resulting in interim partial payments that are calculated by the protocol. Those payments go directly to the relevant trader's margin account. 
 
 <!--
 :::note Read more
