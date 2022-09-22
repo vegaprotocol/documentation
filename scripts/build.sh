@@ -47,7 +47,12 @@ sed -i -E 's/Schema Documentation/GraphQL Schema/g' docs/graphql/generated.md
 
 # GRPC tidyup
 echo "GRPC: Do not hide titles"
-find . -type f -name '*.mdx' -exec sed -i -E 's/hide_title: true/hide_title: false/g' {} +
+find './grpc/' -type f -name '*.mdx' -exec sed -i -E 's/hide_title: true/hide_title: false/g' {} +
+
+# GRPC tidyup
+echo "REST: Hide titles"
+find './docs/api/rest' -type f -name '*.mdx' -exec sed -i -E 's/hide_title: true/hide_title: false/g' {} +
+
 
 # Fix up sidebars for all APIs
 ./scripts/build-sidebars.sh
@@ -58,6 +63,10 @@ echo "Tidying up..."
 # GRPC tidyup
 rm proto.json
 rm schema.graphql
+
+# Mac SED workaround - delete remnant files (not required with gsed)
+find . -name "*-E" -exec rm -rf {} +
+
 
 echo "Done! Now check if you need to run the versioning script (./scripts/version.sh)"
 

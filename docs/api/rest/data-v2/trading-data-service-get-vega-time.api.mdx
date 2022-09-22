@@ -1,7 +1,7 @@
 ---
 id: trading-data-service-get-vega-time
 sidebar_label: Vega Time
-hide_title: false
+hide_title: true
 hide_table_of_contents: true
 api: {"description":"Get the current time of the network","operationId":"TradingDataService_GetVegaTime","responses":{"200":{"description":"A successful response.","content":{"application/json":{"schema":{"type":"object","properties":{"timestamp":{"type":"string","format":"int64","title":"Timestamp representation of current VegaTime as represented in\nNanoseconds since the epoch, for example `1580473859111222333` corresponds to `2020-01-31T12:30:59.111222333Z`"}},"title":"Response for the current consensus coordinated time on the Vega network, referred to as \"VegaTime\""}}}},"default":{"description":"An unexpected error response.","content":{"application/json":{"schema":{"type":"object","properties":{"code":{"type":"integer","format":"int32"},"message":{"type":"string"},"details":{"type":"array","items":{"type":"object","properties":{"@type":{"type":"string"}},"additionalProperties":{}}}}}}}}},"tags":["TradingDataService"],"method":"get","path":"/api/v2/vega/time","servers":[{"url":"http://lb.testnet.vega.xyz/datanode/rest"},{"url":"https://lb.testnet.vega.xyz/datanode/rest"}],"info":{"title":"Vega data node APIs","version":"0.55.0"},"postman":{"name":"Vega Time","description":{"content":"Get the current time of the network","type":"text/plain"},"url":{"path":["api","v2","vega","time"],"host":["{{baseUrl}}"],"query":[],"variable":[]},"header":[{"key":"Accept","value":"application/json"}],"method":"GET"}}
 sidebar_class_name: "get api-method"
