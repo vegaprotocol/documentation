@@ -188,29 +188,29 @@ module.exports = {
         id: "apiDocs",
         docsPluginId: "classic",
         config: {
-          tradingv1v054: {
-            specPath: "./data/v0.54/trading_data_v1.swagger.json",
+          tradingv1v055: {
+            specPath: "./data/v0.55/trading_data_v1.swagger.json",
             outputDir: "docs/api/rest/data-v1",
             sidebarOptions: {
               groupPathsBy: "tag",
             },
           },
-          tradingv2v054: {
-            specPath: "./data/v0.54/trading_data_v2.swagger.json",
+          tradingv2v055: {
+            specPath: "./data/v0.55/trading_data_v2.swagger.json",
             outputDir: "docs/api/rest/data-v2",
             sidebarOptions: {
               groupPathsBy: "tag",
             },
           },
-          corev054: {
-            specPath: "./data/v0.54/core.swagger.json",
+          corev055: {
+            specPath: "./data/v0.55/core.swagger.json",
             outputDir: "docs/api/rest/core",
             sidebarOptions: {
               groupPathsBy: "tag",
             },
           },
-          statev054: {
-            specPath: "./data/v0.54/corestate.swagger.json",
+          statev055: {
+            specPath: "./data/v0.55/corestate.swagger.json",
             outputDir: "docs/api/rest/state",
             sidebarOptions: {
               groupPathsBy: "tag",
