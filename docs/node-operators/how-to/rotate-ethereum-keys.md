@@ -16,7 +16,7 @@ Rotating to the new Ethereum key is done in the following steps:
 1. [Generate a new key](#1-generate-a-new-key---either-by-using-node-wallet-or-clef) - either by using node wallet or Clef (uses Vega node wallet CLI and Clef)
 2. [Create and submit Ethereum key rotation transaction](#2-create-and-submit-ethereum-key-rotation-transaction-to-the-network) to the network (uses Vega Wallet CLI)
 3. [Reload Ethereum wallet](#3-reload-ethereum-wallet-in-vega-validator-node) in Vega validator node (uses Vega node wallet CLI)
-4. [Fetch add/remove key signature](#4-fetch-addremove-key-signature-for-and-submit-them-to-the-network) and submit them to the [MultisigControl bridge](./../api/bridge/interfaces/IMultisigControl)
+4. [Fetch add/remove key signature](#4-fetch-addremove-key-signature-for-and-submit-them-to-the-network) and submit them to the [MultisigControl bridge](./../../api/bridge/interfaces/IMultisigControl)
 
 ## Prerequisites:
 * Installed [Vega binary ↗](https://github.com/vegaprotocol/vega)
@@ -31,7 +31,7 @@ Rotating to the new Ethereum key is done in the following steps:
 * **ETH_NEW_ADDR** - Newly generated Ethereum address to rotate to
 * **TARGET_BLOCK** - The block in which the Ethereum key rotation will take place
 * **WALLET_NAME** - Name of wallet that to submit the transaction with
-* **SUBMITTER_ADDR** - Ethereum address of the submitter of produced signatures for [MultisigControl bridge](./../api/bridge/interfaces/IMultisigControl). This needs to be an Ethereum account with some Ethereum to pay gas
+* **SUBMITTER_ADDR** - Ethereum address of the submitter of produced signatures for [MultisigControl bridge](./../../api/bridge/interfaces/IMultisigControl). This needs to be an Ethereum account with some Ethereum to pay gas
 * **NODE_RPC_ADDR** - RPC address of any validator node in network (example: host-address:3002)
 * **NODE_REST_ADDR** - REST API address of any validator node in network (example: host-address:3003)
 * **DATA_NODE_REST_ADDR** - REST API address of any data node (example: host-address:3009)
@@ -77,7 +77,7 @@ vega wallet command send --wallet $WALLET_NAME --node-address $NODE_RPC_ADDR --p
 When the current block height is getting closer to $TARGET_BLOCK Vega is signalled to use the $ETH_NEW_ADDR. Note: the target block needs to chosen far enough in advance that you can complete the steps before that block height is reached by the chain. 
 
 :::warning
-**PLEASE NOTE**: Reload the wallet approximately 5 blocks before $TARGET_BLOCK. It must be done before $TARGET_BLOCK). This is because the network will produce at the time of the rotation a new signature bundle to add a new signer to [MultisigControl bridge](./../api/bridge/interfaces/IMultisigControl) and it **must** signed with the $ETH_NEW_ADDR key.
+**PLEASE NOTE**: Reload the wallet approximately 5 blocks before $TARGET_BLOCK. It must be done before $TARGET_BLOCK). This is because the network will produce at the time of the rotation a new signature bundle to add a new signer to [MultisigControl bridge](./../../api/bridge/interfaces/IMultisigControl) and it **must** signed with the $ETH_NEW_ADDR key.
 :::
 
 Check the currect block height using `curl -s $NODE_REST_ADDR/statistics`.
@@ -87,7 +87,7 @@ vega nodewallet reload -c ethereum
 ```
 
 ## 4. Fetch add/remove key signature and submit them to the network
-Once the Ethereum key rotation inside of Vega network has been done, you need to notify the [MultisigControl bridge](./../api/bridge/interfaces/IMultisigControl) about the change.
+Once the Ethereum key rotation inside of Vega network has been done, you need to notify the [MultisigControl bridge](./../../api/bridge/interfaces/IMultisigControl) about the change.
 
 First, validate that the key was actually rotated by calling: `curl -s $NODE_REST_ADDR/validators`. The Ethereum key rotation history can be also accessed via data node by calling: `curl -s $DATA_NODE_REST_ADDR/api/v2/vega/keys/ethereum/rotations`.
 
