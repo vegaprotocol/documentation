@@ -1,0 +1,34 @@
+---
+id: erc-20-set-asset-limits-bundle
+title: erc20SetAssetLimitsBundle
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+get the signature bundle to update the token limits (maxLifetimeDeposit and withdrawThreshold) for a given ERC20 token (already allowlisted) in the collateral bridge
+
+```graphql
+erc20SetAssetLimitsBundle(
+  proposalId: ID!
+): ERC20SetAssetLimitsBundle!
+```
+
+
+### Arguments
+
+#### [`proposalId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+
+ID of the proposal to update an asset
+
+
+### Type
+
+#### [`ERC20SetAssetLimitsBundle`](/docs/testnet/graphql/objects/erc20-set-asset-limits-bundle)
+
+Response for the signature bundle to update the token limits (maxLifetimeDeposit and withdrawThreshold) for a given ERC20 token (already allowlisted) in the collateral bridge
+
+
+
+

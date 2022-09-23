@@ -58,6 +58,10 @@
             }
           }
         },
+        "metadata": [
+          "sector:tech",
+          "source:docs.vega.xyz"
+        ],
         "priceMonitoringParameters": {
           "triggers": [
             {
@@ -78,8 +82,8 @@
         }
       }
     },
-    "closingTimestamp": 1663517914,
-    "enactmentTimestamp": 1663604314
+    "closingTimestamp": 1665423449,
+    "enactmentTimestamp": 1665509849
   }
 }
 ```

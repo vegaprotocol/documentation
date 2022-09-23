@@ -60,6 +60,10 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
       }^
      }^
     },^
+    \"metadata\": [^
+     \"sector:tech\",^
+     \"source:docs.vega.xyz\"^
+    ],^
     \"priceMonitoringParameters\": {^
      \"triggers\": [^
       {^
@@ -80,8 +84,8 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
     }^
    }^
   },^
-  \"closingTimestamp\": 1663517914,^
-  \"enactmentTimestamp\": 1663604314^
+  \"closingTimestamp\": 1665423449,^
+  \"enactmentTimestamp\": 1665509849^
  }^
 }^
 }"

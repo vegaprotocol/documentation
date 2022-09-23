@@ -1,7 +1,9 @@
 ---
 id: instrument
 title: Instrument
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -9,7 +11,7 @@ Describes something that can be traded on Vega
 
 ```graphql
 type Instrument {
-  id: String!
+  id: ID!
   code: String!
   name: String!
   metadata: InstrumentMetadata!
@@ -20,7 +22,7 @@ type Instrument {
 
 ### Fields
 
-#### [`id`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [`id`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
 
 Uniquely identify an instrument across all instruments available on Vega (string)
 

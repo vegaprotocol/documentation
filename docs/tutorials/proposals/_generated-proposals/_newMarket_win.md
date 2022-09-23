@@ -10,7 +10,7 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
  \"terms\": {^
   \"newMarket\": {^
    \"changes\": {^
-    \"decimalPlaces\": \"18\",^
+    \"decimalPlaces\": \"5\",^
     \"positionDecimalPlaces\": \"5\",^
     \"instrument\": {^
      \"name\": \"Apples Yearly (2022)\",^
@@ -18,7 +18,7 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
      \"future\": {^
       \"settlementAsset\": \"8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4\",^
       \"quoteName\": \"tEuro\",^
-      \"settlementPriceDecimals\": 18,^
+      \"settlementPriceDecimals\": 5,^
       \"oracleSpecForSettlementPrice\": {^
        \"pubKeys\": [^
         \"0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC\"^
@@ -64,7 +64,6 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
      }^
     },^
     \"metadata\": [^
-     \"sector:energy\",^
      \"sector:tech\",^
      \"source:docs.vega.xyz\"^
     ],^
@@ -87,17 +86,17 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
     },^
     \"logNormal\": {^
      \"tau\": 0.0001140771161,^
-     \"riskAversionParameter\": 0.001,^
+     \"riskAversionParameter\": 0.0001,^
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
-      \"sigma\": 1.25^
+      \"sigma\": 0.5^
      }^
     }^
    }^
   },^
-  \"closingTimestamp\": 1663517914,^
-  \"enactmentTimestamp\": 1663604314^
+  \"closingTimestamp\": 1665423449,^
+  \"enactmentTimestamp\": 1665509849^
  }^
 }^
 }"

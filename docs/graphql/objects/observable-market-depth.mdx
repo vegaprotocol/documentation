@@ -1,7 +1,9 @@
 ---
 id: observable-market-depth
 title: ObservableMarketDepth
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -10,7 +12,7 @@ The depth of market measure provides an indication of the liquidity and depth fo
 
 ```graphql
 type ObservableMarketDepth {
-  marketId: String!
+  marketId: ID!
   buy: [PriceLevel!]
   sell: [PriceLevel!]
   lastTrade: MarketDepthTrade!
@@ -21,7 +23,7 @@ type ObservableMarketDepth {
 
 ### Fields
 
-#### [`marketId`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [`marketId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
 
 Market ID
 

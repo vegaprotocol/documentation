@@ -1,7 +1,9 @@
 ---
 id: observable-market-data
 title: ObservableMarketData
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -9,7 +11,7 @@ Live data of a Market
 
 ```graphql
 type ObservableMarketData {
-  marketId: String!
+  marketId: ID!
   markPrice: String!
   bestBidPrice: String!
   bestBidVolume: String!
@@ -28,6 +30,7 @@ type ObservableMarketData {
   indicativePrice: String!
   indicativeVolume: String!
   marketTradingMode: MarketTradingMode!
+  marketState: MarketState!
   trigger: AuctionTrigger!
   extensionTrigger: AuctionTrigger!
   targetStake: String
@@ -41,7 +44,7 @@ type ObservableMarketData {
 
 ### Fields
 
-#### [`marketId`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [`marketId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
 
 market ID of the associated mark price
 
@@ -133,7 +136,12 @@ indicative volume if the auction ended now, 0 if not in auction mode
 
 #### [`marketTradingMode`](#) ([`MarketTradingMode!`](/docs/testnet/graphql/enums/market-trading-mode))
 
-what state the market is in (auction, continuous etc)
+what mode the market is in (auction, continuous etc)
+
+
+#### [`marketState`](#) ([`MarketState!`](/docs/testnet/graphql/enums/market-state))
+
+current state of the market
 
 
 #### [`trigger`](#) ([`AuctionTrigger!`](/docs/testnet/graphql/enums/auction-trigger))

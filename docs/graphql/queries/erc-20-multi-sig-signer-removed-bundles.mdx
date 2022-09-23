@@ -1,0 +1,52 @@
+---
+id: erc-20-multi-sig-signer-removed-bundles
+title: erc20MultiSigSignerRemovedBundles
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+get the signatures bundle to remove a particular validator from signer list of the multisig contract
+
+```graphql
+erc20MultiSigSignerRemovedBundles(
+  nodeId: ID!
+  submitter: String
+  epochSeq: String
+  pagination: Pagination
+): ERC20MultiSigSignerRemovedConnection!
+```
+
+
+### Arguments
+
+#### [`nodeId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+
+The node ID of the validator of which a signature bundle is required
+
+
+#### [`submitter`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+
+The ethereum address of the validator that will submit the bundle
+
+
+#### [`epochSeq`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+
+The epoch that generated the bundle i.e the epoch in which the node was demoted from a tendermint validator
+
+
+#### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+Pagination
+
+
+### Type
+
+#### [`ERC20MultiSigSignerRemovedConnection`](/docs/testnet/graphql/objects/erc20-multi-sig-signer-removed-connection)
+
+Response for the signature bundle to remove a particular validator from the signer list of the multisig contract
+
+
+
+

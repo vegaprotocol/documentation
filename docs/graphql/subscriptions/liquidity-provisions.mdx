@@ -1,0 +1,40 @@
+---
+id: liquidity-provisions
+title: liquidityProvisions
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+Subscribe to liquidity provisioning data
+
+```graphql
+liquidityProvisions(
+  partyId: ID
+  marketId: ID
+): [LiquidityProvisionUpdate!]
+```
+
+
+### Arguments
+
+#### [`partyId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
+
+the party ID to subscribe for, empty if all
+
+
+#### [`marketId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
+
+the market ID to subscribe for, empty if all
+
+
+### Type
+
+#### [`LiquidityProvisionUpdate`](/docs/testnet/graphql/objects/liquidity-provision-update)
+
+The command to be sent to the chain for a liquidity provision submission
+
+
+
+

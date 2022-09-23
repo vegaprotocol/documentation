@@ -1,7 +1,9 @@
 ---
 id: observable-market-depth-update
 title: ObservableMarketDepthUpdate
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -10,7 +12,7 @@ market depth structure to keep it correct
 
 ```graphql
 type ObservableMarketDepthUpdate {
-  marketId: String!
+  marketId: ID!
   buy: [PriceLevel!]
   sell: [PriceLevel!]
   sequenceNumber: String!
@@ -21,9 +23,9 @@ type ObservableMarketDepthUpdate {
 
 ### Fields
 
-#### [`marketId`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [`marketId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
 
-Market id
+Market ID
 
 
 #### [`buy`](#) ([`[PriceLevel!]`](/docs/testnet/graphql/objects/price-level))

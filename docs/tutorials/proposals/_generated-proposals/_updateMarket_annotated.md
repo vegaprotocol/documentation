@@ -110,6 +110,12 @@
       }
      },
 
+     // Optional market metadata, tags
+     metadata: [
+      "sector:tech",
+      "source:docs.vega.xyz"
+     ],
+
      // Price monitoring parameters
      priceMonitoringParameters: {
       // PriceMonitoringTrigger holds together price projection horizon τ, probability level p, and auction extension duration
@@ -153,12 +159,12 @@
    },
 
    // Timestamp (Unix time in seconds) when voting closes for this proposal,
-   // constrained by `minClose` and `maxClose` network parameters (int64 as string) 
-   closingTimestamp: 1663517914,
+   // constrained by `minClose` and `maxClose` network parameters (int64 as string)
+   closingTimestamp: 1665423449,
 
    // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
-   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string) 
-   enactmentTimestamp: 1663604314,
+   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
+   enactmentTimestamp: 1665509849,
   }
  }
 ```

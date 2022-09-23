@@ -41,15 +41,15 @@ To move some or all of the money in your margin account back into your general a
 [Margin](./trading-on-vega/positions-margin)
 :::
 -->
-### Mark-to-market settlement accounts
+### Settlement accounts
 This account type temporarily holds assets to be distributed based on the outcomes of trades and market movements.
 
-Each market has a mark-to-market settlement account. Cashflows from mark-to-market settlement are collected into that account and distributed from it every time there is a mark-to-market calculation. After each mark-to-market settlement, the account balance is back to zero. 
+Each market has its own settlement account. Cashflows from mark-to-market settlement are collected into that account and distributed from it every time there is a mark-to-market calculation. After each mark-to-market settlement, the account balance is back to zero. 
 
 Note that this happens instantaneously, so you will likely never observe a current balance in an account of this type. However, you may see transfers to and from this account and historic balances if you examine historic data. This can help you to understand how funds have moved between parties with active positions on a market.
 
 :::info Read more
-[Mark-to-market settlement](./trading-on-vega/trade-lifecycle#mark-to-market-settlement) 
+[Mark-to-market settlement](./trading-on-vega/settlement#mark-to-market-settlement) 
 :::
 
 ### Liquidity bond accounts

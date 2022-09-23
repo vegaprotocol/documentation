@@ -1,7 +1,9 @@
 ---
 id: ethereum-event
 title: EthereumEvent
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -9,7 +11,7 @@ An Ethereum oracle
 
 ```graphql
 type EthereumEvent {
-  contractId: String!
+  contractId: ID!
   event: String!
 }
 ```
@@ -17,7 +19,7 @@ type EthereumEvent {
 
 ### Fields
 
-#### [`contractId`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [`contractId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
 
 The ID of the ethereum contract to use (string)
 

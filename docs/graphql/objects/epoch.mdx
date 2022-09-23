@@ -1,7 +1,9 @@
 ---
 id: epoch
 title: Epoch
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -9,31 +11,31 @@ No description
 
 ```graphql
 type Epoch {
-  id: String!
+  id: ID!
   timestamps: EpochTimestamps!
   validators: [Node!]!
   validatorsConnection(
   pagination: Pagination
-): NodesConnection!
+): NodesConnection
   delegations(
-  partyId: String
-  nodeId: String
+  partyId: ID
+  nodeId: ID
   skip: Int
   first: Int
   last: Int
 ): [Delegation!]!
   delegationsConnection(
-  partyId: String
-  nodeId: String
+  partyId: ID
+  nodeId: ID
   pagination: Pagination
-): DelegationsConnection!
+): DelegationsConnection
 }
 ```
 
 
 ### Fields
 
-#### [`id`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [`id`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
 
 Presumably this is an integer or something. If there's no such thing, disregard
 
@@ -48,7 +50,7 @@ Timestamps for start and end of epochs
 Validators that participated in this epoch
 
 
-#### [`validatorsConnection`](#) ([`NodesConnection!`](/docs/testnet/graphql/objects/nodes-connection))
+#### [`validatorsConnection`](#) ([`NodesConnection`](/docs/testnet/graphql/objects/nodes-connection))
 
 Validators that participated in this epoch
 - ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
@@ -59,12 +61,12 @@ Validators that participated in this epoch
 #### [`delegations`](#) ([`[Delegation!]!`](/docs/testnet/graphql/objects/delegation))
 
 
-- ##### [`partyId`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+- ##### [`partyId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
 
 
 
-- ##### [`nodeId`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+- ##### [`nodeId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
 
 
@@ -84,15 +86,15 @@ Pagination first element
 Pagination last element
 
 
-#### [`delegationsConnection`](#) ([`DelegationsConnection!`](/docs/testnet/graphql/objects/delegations-connection))
+#### [`delegationsConnection`](#) ([`DelegationsConnection`](/docs/testnet/graphql/objects/delegations-connection))
 
 
-- ##### [`partyId`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+- ##### [`partyId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
 
 
 
-- ##### [`nodeId`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+- ##### [`nodeId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
 
 

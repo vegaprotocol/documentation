@@ -25,7 +25,7 @@
      // The address of the contract for the token, on the ethereum network (string)
      contractAddress: "0xb404c51bbc10dcbe948077f18a4b8e553d160084",
 
-     // The lifetime limits deposit per address
+     // The maximum allowed per withdraw
      // note: this is a temporary measure for restricted mainnet (string)
      withdrawThreshold: "10",
 
@@ -38,14 +38,14 @@
 
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-  closingTimestamp: 1663517914,
+  closingTimestamp: 1665423449,
 
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-  enactmentTimestamp: 1663604314,
+  enactmentTimestamp: 1665509849,
 
   // Validation timestamp (Unix time in seconds) (int64 as string)
-  validationTimestamp: 1663431514
+  validationTimestamp: 1665337049
  }
 }
 ```
