@@ -1,7 +1,9 @@
 ---
 id: aggregated-balance
 title: AggregatedBalance
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -11,10 +13,10 @@ No description
 type AggregatedBalance {
   timestamp: Timestamp!
   balance: String!
-  accountId: String
-  partyId: String
-  assetId: String
-  marketId: String
+  accountId: ID
+  partyId: ID
+  assetId: ID
+  marketId: ID
   accountType: AccountType
 }
 ```
@@ -32,22 +34,22 @@ RFC3339Nano time from at which this balance was relevant
 Net balance of the accounts specified in the filter at this time
 
 
-#### [`accountId`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`accountId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
 Account identifier, if query was grouped by account - else null
 
 
-#### [`partyId`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`partyId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
 Party identifier, if query was grouped by party - else null
 
 
-#### [`assetId`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`assetId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
 Asset identifier, if query was grouped by asset - else null
 
 
-#### [`marketId`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`marketId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
 Market identifier, if query was grouped by market - else null
 

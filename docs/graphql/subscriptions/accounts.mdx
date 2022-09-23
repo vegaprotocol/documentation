@@ -1,7 +1,9 @@
 ---
 id: accounts
 title: accounts
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -11,9 +13,9 @@ Subscribe to the accounts updates
 accounts(
   marketId: ID
   partyId: ID
-  asset: String
+  assetId: ID
   type: AccountType
-): Account!
+): [AccountUpdate!]!
 ```
 
 
@@ -29,7 +31,7 @@ ID of the market from which to receive accounts updates for
 ID of the party from which to receive accounts updates for
 
 
-#### [`asset`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+#### [`assetId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
 Asset code
 
@@ -41,9 +43,9 @@ Type of the account
 
 ### Type
 
-#### [`Account`](/docs/testnet/graphql/objects/account)
+#### [`AccountUpdate`](/docs/testnet/graphql/objects/account-update)
 
-An account record
+An account record used for subscriptions
 
 
 

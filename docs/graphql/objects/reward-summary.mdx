@@ -1,7 +1,9 @@
 ---
 id: reward-summary
 title: RewardSummary
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -17,7 +19,7 @@ type RewardSummary {
   last: Int
 ): [Reward]
   rewardsConnection(
-  asset: String
+  assetId: ID
   pagination: Pagination
 ): RewardsConnection
 }
@@ -57,9 +59,9 @@ Pagination last element
 #### [`rewardsConnection`](#) ([`RewardsConnection`](/docs/testnet/graphql/objects/rewards-connection))
 
 List of individual reward payouts, ordered by epoch
-- ##### [`asset`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+- ##### [`assetId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
-An optional asset
+An optional asset ID
 
 
 - ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))

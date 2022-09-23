@@ -1,7 +1,9 @@
 ---
 id: node
 title: node
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -9,16 +11,16 @@ specific node in network
 
 ```graphql
 node(
-  id: String!
+  id: ID!
 ): Node
 ```
 
 
 ### Arguments
 
-#### [`id`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [`id`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
 
-required id of node
+required ID of node
 
 
 ### Type

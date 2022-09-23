@@ -1,7 +1,9 @@
 ---
 id: vote
 title: Vote
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -15,6 +17,7 @@ type Vote {
   proposalId: ID!
   governanceTokenBalance: String!
   governanceTokenWeight: String!
+  equityLikeShareWeight: String!
 }
 ```
 
@@ -49,6 +52,11 @@ Total number of governance tokens for the party that cast the vote
 #### [`governanceTokenWeight`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
 The weight of this vote based on the total of governance token
+
+
+#### [`equityLikeShareWeight`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+
+The weight of this vote based on the total equity like share
 
 
 

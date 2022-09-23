@@ -1,7 +1,9 @@
 ---
 id: historic-balances
 title: historicBalances
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -11,7 +13,9 @@ No description
 historicBalances(
   filter: AccountFilter
   groupBy: [AccountField]
-): [AggregatedBalance!]!
+  dateRange: DateRange
+  pagination: Pagination
+): AggregatedBalanceConnection!
 ```
 
 
@@ -27,9 +31,19 @@ historicBalances(
 
 
 
+#### [`dateRange`](#) ([`DateRange`](/docs/testnet/graphql/inputs/date-range))
+
+Date range to retrieve historical balances from/to. Start and end time should be expressed as an integer value of nano-seconds past the Unix epoch
+
+
+#### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+
+
+
+
 ### Type
 
-#### [`AggregatedBalance`](/docs/testnet/graphql/objects/aggregated-balance)
+#### [`AggregatedBalanceConnection`](/docs/testnet/graphql/objects/aggregated-balance-connection)
 
 
 

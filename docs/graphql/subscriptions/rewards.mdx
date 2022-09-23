@@ -1,7 +1,9 @@
 ---
 id: rewards
 title: rewards
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -10,7 +12,7 @@ Subscribe to reward details data
 ```graphql
 rewards(
   assetId: ID
-  party: ID
+  partyId: ID
 ): Reward!
 ```
 
@@ -22,9 +24,9 @@ rewards(
 the asset to subscribe for, empty if all
 
 
-#### [`party`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
+#### [`partyId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
 
-the party to subscribe for, empty if all
+the party ID to subscribe for, empty if all
 
 
 ### Type

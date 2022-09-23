@@ -1,0 +1,93 @@
+---
+id: liquidity-provision-update
+title: LiquidityProvisionUpdate
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
+---
+
+
+The command to be sent to the chain for a liquidity provision submission
+
+```graphql
+type LiquidityProvisionUpdate {
+  id: ID
+  partyID: ID!
+  createdAt: String!
+  updatedAt: String
+  marketID: ID!
+  commitmentAmount: String!
+  fee: String!
+  sells: [LiquidityOrderReference!]!
+  buys: [LiquidityOrderReference!]!
+  version: String!
+  status: LiquidityProvisionStatus!
+  reference: String
+}
+```
+
+
+### Fields
+
+#### [`id`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
+
+Unique identifier for the order (set by the system after consensus)
+
+
+#### [`partyID`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+
+The party making this commitment
+
+
+#### [`createdAt`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+
+When the liquidity provision was initially created (formatted RFC3339)
+
+
+#### [`updatedAt`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+
+RFC3339Nano time of when the liquidity provision was updated
+
+
+#### [`marketID`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+
+Market for the order
+
+
+#### [`commitmentAmount`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+
+Specified as a unit-less number that represents the amount of settlement asset of the market.
+
+
+#### [`fee`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+
+Nominated liquidity fee factor, which is an input to the calculation of liquidity fees on the market, as per setting fees and rewarding liquidity providers.
+
+
+#### [`sells`](#) ([`[LiquidityOrderReference!]!`](/docs/testnet/graphql/objects/liquidity-order-reference))
+
+a set of liquidity sell orders to meet the liquidity provision obligation.
+
+
+#### [`buys`](#) ([`[LiquidityOrderReference!]!`](/docs/testnet/graphql/objects/liquidity-order-reference))
+
+a set of liquidity buy orders to meet the liquidity provision obligation.
+
+
+#### [`version`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+
+The version of this liquidity provision
+
+
+#### [`status`](#) ([`LiquidityProvisionStatus!`](/docs/testnet/graphql/enums/liquidity-provision-status))
+
+The current status of this liquidity provision
+
+
+#### [`reference`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+
+A reference for the orders created out of this liquidity provision
+
+
+
+

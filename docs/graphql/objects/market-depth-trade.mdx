@@ -1,7 +1,9 @@
 ---
 id: market-depth-trade
 title: MarketDepthTrade
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -9,7 +11,7 @@ No description
 
 ```graphql
 type MarketDepthTrade {
-  id: String!
+  id: ID!
   price: String!
   size: String!
 }
@@ -18,7 +20,7 @@ type MarketDepthTrade {
 
 ### Fields
 
-#### [`id`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [`id`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
 
 ID of the trade for the given market (if available)
 

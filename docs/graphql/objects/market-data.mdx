@@ -1,7 +1,9 @@
 ---
 id: market-data
 title: MarketData
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -28,6 +30,7 @@ type MarketData {
   indicativePrice: String!
   indicativeVolume: String!
   marketTradingMode: MarketTradingMode!
+  marketState: MarketState!
   trigger: AuctionTrigger!
   extensionTrigger: AuctionTrigger!
   targetStake: String
@@ -44,7 +47,7 @@ type MarketData {
 
 #### [`market`](#) ([`Market!`](/docs/testnet/graphql/objects/market))
 
-market ID of the associated mark price
+market of the associated mark price
 
 
 #### [`markPrice`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
@@ -134,7 +137,12 @@ indicative volume if the auction ended now, 0 if not in auction mode
 
 #### [`marketTradingMode`](#) ([`MarketTradingMode!`](/docs/testnet/graphql/enums/market-trading-mode))
 
-what state the market is in (auction, continuous, etc)
+what mode the market is in (auction, continuous, etc)
+
+
+#### [`marketState`](#) ([`MarketState!`](/docs/testnet/graphql/enums/market-state))
+
+current state of the market
 
 
 #### [`trigger`](#) ([`AuctionTrigger!`](/docs/testnet/graphql/enums/auction-trigger))

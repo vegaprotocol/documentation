@@ -1,7 +1,9 @@
 ---
 id: future-product
 title: FutureProduct
-hide_table_of_contents: false
+hide_table_of_contents: true
+pagination_next: null
+pagination_prev: null
 ---
 
 
@@ -14,6 +16,7 @@ type FutureProduct {
   oracleSpecForSettlementPrice: OracleSpecConfiguration!
   oracleSpecForTradingTermination: OracleSpecConfiguration!
   oracleSpecBinding: OracleSpecToFutureBinding!
+  settlementPriceDecimals: Int!
 }
 ```
 
@@ -22,7 +25,7 @@ type FutureProduct {
 
 #### [`settlementAsset`](#) ([`Asset!`](/docs/testnet/graphql/objects/asset))
 
-Product asset ID
+Product asset
 
 
 #### [`quoteName`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
@@ -44,6 +47,11 @@ Describes the oracle data that an instrument wants to get from the oracle engine
 
 OracleSpecToFutureBinding tells on which property oracle data should be
 used as settlement price.
+
+
+#### [`settlementPriceDecimals`](#) ([`Int!`](/docs/testnet/graphql/scalars/int))
+
+The number of decimal places implied by the settlement price emitted by the settlement oracle
 
 
 
