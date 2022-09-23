@@ -49,7 +49,7 @@ Once deposited, the assets are held in an asset pool for security and to make co
 :::note Go deeper
 Before running the deposit function, you must run the ERC20-standard approve function to authorise the bridge smart contract as a spender of the target token. This will only allow a specific amount of that token to be used by the bridge. This can be done directly or through a Vega app.
 
-Read about the ERC-20 token standard: [EIP-20: Token Standard proposal](https://eips.ethereum.org/EIPS/eip-20)
+Read about the ERC-20 token standard: [EIP-20: Token Standard proposal ↗](https://eips.ethereum.org/EIPS/eip-20)
 :::
 
 After a successful deposit transaction, wheter done directly or through Vega Console, the `Asset_Deposited` event will be emitted for use by the Vega event queue.
@@ -94,7 +94,7 @@ If you choose an amount to withdraw that is higher than the withdrawal threshold
 Once the delay time has passed, and the bundle is valid, **the withdrawal must be completed by the party**, such as by using Vega Console.
 
 ::: Query for data
-You can see the withdrawal threshold and delay in [Vega Console](https://console.fairground.wtf).
+You can see the withdrawal threshold and delay in [Vega Console ↗](https://console.fairground.wtf).
 
 Alternativelyl, see the withdraw threshold using a GraphQL query for the asset, and its asset source [ERC20](../graphql/objects/erc20).
 :::
@@ -108,7 +108,7 @@ VEGA (an ERC20 token) used for staking is associated with a Vega key. To withdra
 Rewards accrued through staking are not associated automatically. To stake those tokens or transfer them, they need to be withdrawn from the Vega key that the rewards are credited to, and sent to an Ethereum wallet.
 
 :::tip Try it
-Track and withdraw testnet staking rewards on the [Vega token withdrawals page for testnet](https://token.fairground.wtf/withdraw).
+Track and withdraw testnet staking rewards on the [Vega token withdrawals page for testnet ↗](https://token.fairground.wtf/withdraw).
 :::
 
 :::note Read more
