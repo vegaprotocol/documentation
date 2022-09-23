@@ -64,7 +64,7 @@ First, you must have the change approved by the network through governance, usin
 
 ### 2. Fetch the signature bundle for the change
 * REST: [Set asset limit bundle](../../api/rest/data-v2/trading-data-service-get-erc-20-set-asset-limits-bundle)
-* GRPC: [Set asset limit bundle](../..//grpc/data-node/api/v2/trading_data.proto#geterc20setassetlimitsbundlerequest)
+* GRPC: [Set asset limit bundle](../../grpc/data-node/api/v2/trading_data.proto#geterc20setassetlimitsbundlerequest)
 
 Use one of the API calls to fetch the signature bundle from the network. This string contains the approval of the validator nodes of the network for the changes, and is checked by the bridge smart contract. Take a note of the signature bundle and the `nonce`, both of which we will submit to the contract.
 
