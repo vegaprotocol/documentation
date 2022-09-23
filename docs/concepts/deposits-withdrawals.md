@@ -15,7 +15,7 @@ To deposit or withdraw, you'll need a [Vega Wallet](../tools/vega-wallet/index.m
 [Accounts](./accounts.md): Learn about different accounts that your assets can be held in. 
 :::
 
-### Deposits
+## Deposits
 Only assets that have been proposed and enacted through governance can be used on the Vega network.
 
 To use assets on the Vega network, for example to take part in markets, you'll need to deposit it: 
