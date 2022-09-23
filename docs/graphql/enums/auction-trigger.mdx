@@ -1,10 +1,16 @@
 ---
 id: auction-trigger
 title: AuctionTrigger
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 No description
@@ -22,30 +28,31 @@ enum AuctionTrigger {
 
 ### Values
 
-#### [`AUCTION_TRIGGER_UNSPECIFIED`](#)
+#### [<code style={{ fontWeight: 'normal' }}>AuctionTrigger.<b>AUCTION_TRIGGER_UNSPECIFIED</b></code>](#) 
+> Invalid trigger (or no auction)
+> 
 
-Invalid trigger (or no auction)
+#### [<code style={{ fontWeight: 'normal' }}>AuctionTrigger.<b>AUCTION_TRIGGER_BATCH</b></code>](#) 
+> Auction because market has a frequent batch auction trading mode
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AuctionTrigger.<b>AUCTION_TRIGGER_OPENING</b></code>](#) 
+> Opening auction
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AuctionTrigger.<b>AUCTION_TRIGGER_PRICE</b></code>](#) 
+> Price monitoring
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AuctionTrigger.<b>AUCTION_TRIGGER_LIQUIDITY</b></code>](#) 
+> Liquidity monitoring
+> 
 
 
-#### [`AUCTION_TRIGGER_BATCH`](#)
 
-Auction because market has a frequent batch auction trading mode
+### Member of
 
-
-#### [`AUCTION_TRIGGER_OPENING`](#)
-
-Opening auction
-
-
-#### [`AUCTION_TRIGGER_PRICE`](#)
-
-Price monitoring
-
-
-#### [`AUCTION_TRIGGER_LIQUIDITY`](#)
-
-Liquidity monitoring
-
+[`AuctionEvent`](/docs/testnet/graphql/objects/auction-event)  <Badge class="secondary" text="object"/><Bullet />[`MarketData`](/docs/testnet/graphql/objects/market-data)  <Badge class="secondary" text="object"/><Bullet />[`ObservableMarketData`](/docs/testnet/graphql/objects/observable-market-data)  <Badge class="secondary" text="object"/>
 
 
 

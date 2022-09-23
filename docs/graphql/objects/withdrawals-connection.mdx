@@ -1,10 +1,16 @@
 ---
 id: withdrawals-connection
 title: WithdrawalsConnection
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 No description
@@ -19,15 +25,19 @@ type WithdrawalsConnection {
 
 ### Fields
 
-#### [`edges`](#) ([`[WithdrawalEdge]`](/docs/testnet/graphql/objects/withdrawal-edge))
+#### [<code style={{ fontWeight: 'normal' }}>WithdrawalsConnection.<b>edges</b></code>](#)<Bullet />[`[WithdrawalEdge]`](/docs/testnet/graphql/objects/withdrawal-edge) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> The withdrawals
+> 
 
-The withdrawals
+#### [<code style={{ fontWeight: 'normal' }}>WithdrawalsConnection.<b>pageInfo</b></code>](#)<Bullet />[`PageInfo`](/docs/testnet/graphql/objects/page-info) <Badge class="secondary" text="object"/>
+> The pagination information
+> 
 
 
-#### [`pageInfo`](#) ([`PageInfo`](/docs/testnet/graphql/objects/page-info))
 
-The pagination information
+### Member of
 
+[`Party`](/docs/testnet/graphql/objects/party)  <Badge class="secondary" text="object"/>
 
 
 

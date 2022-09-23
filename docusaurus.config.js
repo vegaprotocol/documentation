@@ -154,9 +154,11 @@ module.exports = {
         linkRoot: "/docs/testnet/",
         diffMethod: "none",
         docOptions: {
-          index: true,
-        },
-      },
+          toc: true,
+          pagination: true,
+          index: true
+        }
+      }
     ],
     [
       // An alternative to algolia

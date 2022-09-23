@@ -1,10 +1,16 @@
 ---
 id: epoch
 title: Epoch
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 No description
@@ -35,74 +41,69 @@ type Epoch {
 
 ### Fields
 
-#### [`id`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+#### [<code style={{ fontWeight: 'normal' }}>Epoch.<b>id</b></code>](#)<Bullet />[`ID!`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Presumably this is an integer or something. If there's no such thing, disregard
+> 
 
-Presumably this is an integer or something. If there's no such thing, disregard
+#### [<code style={{ fontWeight: 'normal' }}>Epoch.<b>timestamps</b></code>](#)<Bullet />[`EpochTimestamps!`](/docs/testnet/graphql/objects/epoch-timestamps) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Timestamps for start and end of epochs
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>Epoch.<b>validators</b></code>](#)<Bullet />[`[Node!]!`](/docs/testnet/graphql/objects/node) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Validators that participated in this epoch
+> 
 
-#### [`timestamps`](#) ([`EpochTimestamps!`](/docs/testnet/graphql/objects/epoch-timestamps))
+#### [<code style={{ fontWeight: 'normal' }}>Epoch.<b>validatorsConnection</b></code>](#)<Bullet />[`NodesConnection`](/docs/testnet/graphql/objects/nodes-connection) <Badge class="secondary" text="object"/>
+> Validators that participated in this epoch
+> ##### [<code style={{ fontWeight: 'normal' }}>Epoch.validatorsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/docs/testnet/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> 
+> 
 
-Timestamps for start and end of epochs
+#### [<code style={{ fontWeight: 'normal' }}>Epoch.<b>delegations</b></code>](#)<Bullet />[`[Delegation!]!`](/docs/testnet/graphql/objects/delegation) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> 
+> ##### [<code style={{ fontWeight: 'normal' }}>Epoch.delegations.<b>partyId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> 
+> 
 
+##### [<code style={{ fontWeight: 'normal' }}>Epoch.delegations.<b>nodeId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> 
+> 
 
-#### [`validators`](#) ([`[Node!]!`](/docs/testnet/graphql/objects/node))
+##### [<code style={{ fontWeight: 'normal' }}>Epoch.delegations.<b>skip</b></code>](#)<Bullet />[`Int`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
+> Pagination skip
+> 
 
-Validators that participated in this epoch
+##### [<code style={{ fontWeight: 'normal' }}>Epoch.delegations.<b>first</b></code>](#)<Bullet />[`Int`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
+> Pagination first element
+> 
 
+##### [<code style={{ fontWeight: 'normal' }}>Epoch.delegations.<b>last</b></code>](#)<Bullet />[`Int`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
+> Pagination last element
+> 
 
-#### [`validatorsConnection`](#) ([`NodesConnection`](/docs/testnet/graphql/objects/nodes-connection))
+#### [<code style={{ fontWeight: 'normal' }}>Epoch.<b>delegationsConnection</b></code>](#)<Bullet />[`DelegationsConnection`](/docs/testnet/graphql/objects/delegations-connection) <Badge class="secondary" text="object"/>
+> 
+> ##### [<code style={{ fontWeight: 'normal' }}>Epoch.delegationsConnection.<b>partyId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> 
+> 
 
-Validators that participated in this epoch
-- ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+##### [<code style={{ fontWeight: 'normal' }}>Epoch.delegationsConnection.<b>nodeId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> 
+> 
 
-
-
-
-#### [`delegations`](#) ([`[Delegation!]!`](/docs/testnet/graphql/objects/delegation))
-
-
-- ##### [`partyId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
-
-
-
-
-- ##### [`nodeId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
-
-
-
-
-- ##### [`skip`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
-
-Pagination skip
-
-
-- ##### [`first`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
-
-Pagination first element
-
-
-- ##### [`last`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
-
-Pagination last element
-
-
-#### [`delegationsConnection`](#) ([`DelegationsConnection`](/docs/testnet/graphql/objects/delegations-connection))
-
-
-- ##### [`partyId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
+##### [<code style={{ fontWeight: 'normal' }}>Epoch.delegationsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/docs/testnet/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Pagination information
+> 
 
 
 
+### Returned by
 
-- ##### [`nodeId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
+[`epoch`](/docs/testnet/graphql/queries/epoch)  <Badge class="secondary" text="query"/>
 
+### Member of
 
-
-
-- ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
-
-Pagination information
-
+[`EpochParticipation`](/docs/testnet/graphql/objects/epoch-participation)  <Badge class="secondary" text="object"/><Bullet />[`Reward`](/docs/testnet/graphql/objects/reward)  <Badge class="secondary" text="object"/>
 
 
 

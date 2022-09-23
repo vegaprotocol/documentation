@@ -1,10 +1,16 @@
 ---
 id: ledger-entry
 title: LedgerEntry
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 No description
@@ -23,35 +29,35 @@ type LedgerEntry {
 
 ### Fields
 
-#### [`fromAccount`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>fromAccount</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Account from which the asset was taken
+> 
 
-Account from which the asset was taken
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>toAccount</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Account to which the balance was transferred
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>amount</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The amount transferred
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>reference</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The transfer reference
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>type</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Type of ledger entry
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>timestamp</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano time at which the transfer was made
+> 
 
 
-#### [`toAccount`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
-Account to which the balance was transferred
+### Member of
 
-
-#### [`amount`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-The amount transferred
-
-
-#### [`reference`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-The transfer reference
-
-
-#### [`type`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Type of ledger entry
-
-
-#### [`timestamp`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-RFC3339Nano time at which the transfer was made
-
+[`TransferResponse`](/docs/testnet/graphql/objects/transfer-response)  <Badge class="secondary" text="object"/>
 
 
 

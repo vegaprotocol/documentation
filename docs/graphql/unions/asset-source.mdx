@@ -1,10 +1,16 @@
 ---
 id: asset-source
 title: AssetSource
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 One of the possible asset sources
@@ -16,15 +22,19 @@ union AssetSource = BuiltinAsset | ERC20
 
 ### Possible types
 
-#### [`BuiltinAsset`](/docs/testnet/graphql/objects/builtin-asset)
+#### [`BuiltinAsset`](/docs/testnet/graphql/objects/builtin-asset) <Badge class="secondary" text="object"/>
+> A Vega builtin asset, mostly for testing purpose
+> 
 
-A Vega builtin asset, mostly for testing purpose
+#### [`ERC20`](/docs/testnet/graphql/objects/erc20) <Badge class="secondary" text="object"/>
+> An asset originated from an Ethereum ERC20 Token
+> 
 
 
-#### [`ERC20`](/docs/testnet/graphql/objects/erc20)
 
-An asset originated from an Ethereum ERC20 Token
+### Member of
 
+[`Asset`](/docs/testnet/graphql/objects/asset)  <Badge class="secondary" text="object"/><Bullet />[`NewAsset`](/docs/testnet/graphql/objects/new-asset)  <Badge class="secondary" text="object"/>
 
 
 

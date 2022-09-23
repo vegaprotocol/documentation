@@ -1,10 +1,16 @@
 ---
 id: position
 title: Position
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 An individual party at any point in time is considered net long or net short. This refers to their Open Volume,
@@ -31,53 +37,53 @@ type Position {
 
 ### Fields
 
-#### [`market`](#) ([`Market!`](/docs/testnet/graphql/objects/market))
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>market</b></code>](#)<Bullet />[`Market!`](/docs/testnet/graphql/objects/market) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Market relating to this position
+> 
 
-Market relating to this position
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>party</b></code>](#)<Bullet />[`Party!`](/docs/testnet/graphql/objects/party) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The party holding this position
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>openVolume</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Open volume (uint64)
+> 
 
-#### [`party`](#) ([`Party!`](/docs/testnet/graphql/objects/party))
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>realisedPNL</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Realised Profit and Loss (int64)
+> 
 
-The party holding this position
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>unrealisedPNL</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Unrealised Profit and Loss (int64)
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>averageEntryPrice</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Average entry price for this position
+> 
 
-#### [`openVolume`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>margins</b></code>](#)<Bullet />[`[MarginLevels!]`](/docs/testnet/graphql/objects/margin-levels) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> Margins of the party for the given position
+> 
 
-Open volume (uint64)
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>marginsConnection</b></code>](#)<Bullet />[`MarginConnection`](/docs/testnet/graphql/objects/margin-connection) <Badge class="secondary" text="object"/>
+> Margins of the party for the given position
+> ##### [<code style={{ fontWeight: 'normal' }}>Position.marginsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/docs/testnet/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> 
+> 
 
-
-#### [`realisedPNL`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Realised Profit and Loss (int64)
-
-
-#### [`unrealisedPNL`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Unrealised Profit and Loss (int64)
-
-
-#### [`averageEntryPrice`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Average entry price for this position
-
-
-#### [`margins`](#) ([`[MarginLevels!]`](/docs/testnet/graphql/objects/margin-levels))
-
-Margins of the party for the given position
-
-
-#### [`marginsConnection`](#) ([`MarginConnection`](/docs/testnet/graphql/objects/margin-connection))
-
-Margins of the party for the given position
-- ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>updatedAt</b></code>](#)<Bullet />[`String`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> RFC3339Nano time the position was updated
+> 
 
 
 
+### Returned by
 
-#### [`updatedAt`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+[`positions`](/docs/testnet/graphql/subscriptions/positions)  <Badge class="secondary" text="subscription"/>
 
-RFC3339Nano time the position was updated
+### Member of
 
+[`Party`](/docs/testnet/graphql/objects/party)  <Badge class="secondary" text="object"/><Bullet />[`PositionEdge`](/docs/testnet/graphql/objects/position-edge)  <Badge class="secondary" text="object"/>
 
 
 

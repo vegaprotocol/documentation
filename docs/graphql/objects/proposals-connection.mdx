@@ -1,10 +1,16 @@
 ---
 id: proposals-connection
 title: ProposalsConnection
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 No description
@@ -19,15 +25,23 @@ type ProposalsConnection {
 
 ### Fields
 
-#### [`edges`](#) ([`[ProposalEdge]`](/docs/testnet/graphql/objects/proposal-edge))
+#### [<code style={{ fontWeight: 'normal' }}>ProposalsConnection.<b>edges</b></code>](#)<Bullet />[`[ProposalEdge]`](/docs/testnet/graphql/objects/proposal-edge) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of proposals available for the connection
+> 
 
-List of proposals available for the connection
+#### [<code style={{ fontWeight: 'normal' }}>ProposalsConnection.<b>pageInfo</b></code>](#)<Bullet />[`PageInfo!`](/docs/testnet/graphql/objects/page-info) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Page information for the connection
+> 
 
 
-#### [`pageInfo`](#) ([`PageInfo!`](/docs/testnet/graphql/objects/page-info))
 
-Page information for the connection
+### Returned by
 
+[`proposalsConnection`](/docs/testnet/graphql/queries/proposals-connection)  <Badge class="secondary" text="query"/>
+
+### Member of
+
+[`Party`](/docs/testnet/graphql/objects/party)  <Badge class="secondary" text="object"/>
 
 
 

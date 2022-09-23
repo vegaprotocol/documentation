@@ -1,10 +1,16 @@
 ---
 id: rewards
 title: rewards
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 Subscribe to reward details data
@@ -19,21 +25,20 @@ rewards(
 
 ### Arguments
 
-#### [`assetId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
+#### [<code style={{ fontWeight: 'normal' }}>rewards.<b>assetId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> the asset to subscribe for, empty if all
+> 
 
-the asset to subscribe for, empty if all
-
-
-#### [`partyId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
-
-the party ID to subscribe for, empty if all
-
+#### [<code style={{ fontWeight: 'normal' }}>rewards.<b>partyId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> the party ID to subscribe for, empty if all
+> 
 
 ### Type
 
-#### [`Reward`](/docs/testnet/graphql/objects/reward)
+#### [`Reward`](/docs/testnet/graphql/objects/reward) <Badge class="secondary" text="object"/>
+> Reward information for a single party
+> 
 
-Reward information for a single party
 
 
 

@@ -1,10 +1,16 @@
 ---
 id: liquidity-provision-status
 title: LiquidityProvisionStatus
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 Status of a liquidity provision order
@@ -23,37 +29,37 @@ enum LiquidityProvisionStatus {
 
 ### Values
 
-#### [`STATUS_ACTIVE`](#)
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvisionStatus.<b>STATUS_ACTIVE</b></code>](#) 
+> An active liquidity provision
+> 
 
-An active liquidity provision
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvisionStatus.<b>STATUS_STOPPED</b></code>](#) 
+> A liquidity provision stopped by the network
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvisionStatus.<b>STATUS_CANCELLED</b></code>](#) 
+> A cancelled liquidity provision
+> 
 
-#### [`STATUS_STOPPED`](#)
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvisionStatus.<b>STATUS_REJECTED</b></code>](#) 
+> Liquidity provision was invalid and got rejected
+> 
 
-A liquidity provision stopped by the network
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvisionStatus.<b>STATUS_UNDEPLOYED</b></code>](#) 
+> The liquidity provision is valid and accepted by the network, but orders aren't deployed
+> 
 
-
-#### [`STATUS_CANCELLED`](#)
-
-A cancelled liquidity provision
-
-
-#### [`STATUS_REJECTED`](#)
-
-Liquidity provision was invalid and got rejected
-
-
-#### [`STATUS_UNDEPLOYED`](#)
-
-The liquidity provision is valid and accepted by the network, but orders aren't deployed
-
-
-#### [`STATUS_PENDING`](#)
-
-The liquidity provision is valid and accepted by the network, but orders aren't deployed and
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvisionStatus.<b>STATUS_PENDING</b></code>](#) 
+> The liquidity provision is valid and accepted by the network, but orders aren't deployed and
 have never been deployed. If when it's possible to deploy them for the first time the
 margin check fails, then they will be cancelled without any penalties.
+> 
 
+
+
+### Member of
+
+[`LiquidityProvision`](/docs/testnet/graphql/objects/liquidity-provision)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProvisionUpdate`](/docs/testnet/graphql/objects/liquidity-provision-update)  <Badge class="secondary" text="object"/>
 
 
 

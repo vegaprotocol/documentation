@@ -1,10 +1,16 @@
 ---
 id: liquidity-provision
 title: LiquidityProvision
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 The command to be sent to the chain for a liquidity provision submission
@@ -29,65 +35,63 @@ type LiquidityProvision {
 
 ### Fields
 
-#### [`id`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvision.<b>id</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> Unique identifier for the order (set by the system after consensus)
+> 
 
-Unique identifier for the order (set by the system after consensus)
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvision.<b>party</b></code>](#)<Bullet />[`Party!`](/docs/testnet/graphql/objects/party) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The party making this commitment
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvision.<b>createdAt</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> When the liquidity provision was initially created (formatted RFC3339)
+> 
 
-#### [`party`](#) ([`Party!`](/docs/testnet/graphql/objects/party))
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvision.<b>updatedAt</b></code>](#)<Bullet />[`String`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> RFC3339Nano time of when the liquidity provision was updated
+> 
 
-The party making this commitment
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvision.<b>market</b></code>](#)<Bullet />[`Market!`](/docs/testnet/graphql/objects/market) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Market for the order
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvision.<b>commitmentAmount</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Specified as a unit-less number that represents the amount of settlement asset of the market.
+> 
 
-#### [`createdAt`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvision.<b>fee</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Nominated liquidity fee factor, which is an input to the calculation of liquidity fees on the market, as per setting fees and rewarding liquidity providers.
+> 
 
-When the liquidity provision was initially created (formatted RFC3339)
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvision.<b>sells</b></code>](#)<Bullet />[`[LiquidityOrderReference!]!`](/docs/testnet/graphql/objects/liquidity-order-reference) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> a set of liquidity sell orders to meet the liquidity provision obligation.
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvision.<b>buys</b></code>](#)<Bullet />[`[LiquidityOrderReference!]!`](/docs/testnet/graphql/objects/liquidity-order-reference) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> a set of liquidity buy orders to meet the liquidity provision obligation.
+> 
 
-#### [`updatedAt`](#) ([`String`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvision.<b>version</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The version of this liquidity provision
+> 
 
-RFC3339Nano time of when the liquidity provision was updated
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvision.<b>status</b></code>](#)<Bullet />[`LiquidityProvisionStatus!`](/docs/testnet/graphql/enums/liquidity-provision-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The current status of this liquidity provision
+> 
 
-
-#### [`market`](#) ([`Market!`](/docs/testnet/graphql/objects/market))
-
-Market for the order
-
-
-#### [`commitmentAmount`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Specified as a unit-less number that represents the amount of settlement asset of the market.
-
-
-#### [`fee`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Nominated liquidity fee factor, which is an input to the calculation of liquidity fees on the market, as per setting fees and rewarding liquidity providers.
-
-
-#### [`sells`](#) ([`[LiquidityOrderReference!]!`](/docs/testnet/graphql/objects/liquidity-order-reference))
-
-a set of liquidity sell orders to meet the liquidity provision obligation.
-
-
-#### [`buys`](#) ([`[LiquidityOrderReference!]!`](/docs/testnet/graphql/objects/liquidity-order-reference))
-
-a set of liquidity buy orders to meet the liquidity provision obligation.
-
-
-#### [`version`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-The version of this liquidity provision
-
-
-#### [`status`](#) ([`LiquidityProvisionStatus!`](/docs/testnet/graphql/enums/liquidity-provision-status))
-
-The current status of this liquidity provision
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvision.<b>reference</b></code>](#)<Bullet />[`String`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> A reference for the orders created out of this liquidity provision
+> 
 
 
-#### [`reference`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
-A reference for the orders created out of this liquidity provision
+### Member of
 
+[`LiquidityProvisionsEdge`](/docs/testnet/graphql/objects/liquidity-provisions-edge)  <Badge class="secondary" text="object"/><Bullet />[`Market`](/docs/testnet/graphql/objects/market)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/docs/testnet/graphql/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`Party`](/docs/testnet/graphql/objects/party)  <Badge class="secondary" text="object"/>
+
+### Implemented by
+
+[`Event`](/docs/testnet/graphql/unions/event)  <Badge class="secondary" text="union"/>
 
 
 

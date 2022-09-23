@@ -1,10 +1,16 @@
 ---
 id: filter
 title: Filter
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 Filter describes the conditions under which oracle data is considered of
@@ -20,16 +26,20 @@ type Filter {
 
 ### Fields
 
-#### [`key`](#) ([`PropertyKey!`](/docs/testnet/graphql/objects/property-key))
+#### [<code style={{ fontWeight: 'normal' }}>Filter.<b>key</b></code>](#)<Bullet />[`PropertyKey!`](/docs/testnet/graphql/objects/property-key) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> key is the oracle data property key targeted by the filter.
+> 
 
-key is the oracle data property key targeted by the filter.
-
-
-#### [`conditions`](#) ([`[Condition!]`](/docs/testnet/graphql/objects/condition))
-
-conditions are the conditions that should be matched by the data to be
+#### [<code style={{ fontWeight: 'normal' }}>Filter.<b>conditions</b></code>](#)<Bullet />[`[Condition!]`](/docs/testnet/graphql/objects/condition) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> conditions are the conditions that should be matched by the data to be
 considered of interest.
+> 
 
+
+
+### Member of
+
+[`OracleSpec`](/docs/testnet/graphql/objects/oracle-spec)  <Badge class="secondary" text="object"/><Bullet />[`OracleSpecConfiguration`](/docs/testnet/graphql/objects/oracle-spec-configuration)  <Badge class="secondary" text="object"/>
 
 
 

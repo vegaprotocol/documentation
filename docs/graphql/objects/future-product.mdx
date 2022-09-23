@@ -1,10 +1,16 @@
 ---
 id: future-product
 title: FutureProduct
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 No description
@@ -23,36 +29,36 @@ type FutureProduct {
 
 ### Fields
 
-#### [`settlementAsset`](#) ([`Asset!`](/docs/testnet/graphql/objects/asset))
+#### [<code style={{ fontWeight: 'normal' }}>FutureProduct.<b>settlementAsset</b></code>](#)<Bullet />[`Asset!`](/docs/testnet/graphql/objects/asset) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Product asset
+> 
 
-Product asset
+#### [<code style={{ fontWeight: 'normal' }}>FutureProduct.<b>quoteName</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> String representing the quote (e.g. BTCUSD -&#x003E; USD is quote)
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>FutureProduct.<b>oracleSpecForSettlementPrice</b></code>](#)<Bullet />[`OracleSpecConfiguration!`](/docs/testnet/graphql/objects/oracle-spec-configuration) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Describes the oracle data that an instrument wants to get from the oracle engine for settlement price.
+> 
 
-#### [`quoteName`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>FutureProduct.<b>oracleSpecForTradingTermination</b></code>](#)<Bullet />[`OracleSpecConfiguration!`](/docs/testnet/graphql/objects/oracle-spec-configuration) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Describes the oracle data that an instrument wants to get from the oracle engine for trading termination.
+> 
 
-String representing the quote (e.g. BTCUSD -&#x003E; USD is quote)
-
-
-#### [`oracleSpecForSettlementPrice`](#) ([`OracleSpecConfiguration!`](/docs/testnet/graphql/objects/oracle-spec-configuration))
-
-Describes the oracle data that an instrument wants to get from the oracle engine for settlement price.
-
-
-#### [`oracleSpecForTradingTermination`](#) ([`OracleSpecConfiguration!`](/docs/testnet/graphql/objects/oracle-spec-configuration))
-
-Describes the oracle data that an instrument wants to get from the oracle engine for trading termination.
-
-
-#### [`oracleSpecBinding`](#) ([`OracleSpecToFutureBinding!`](/docs/testnet/graphql/objects/oracle-spec-to-future-binding))
-
-OracleSpecToFutureBinding tells on which property oracle data should be
+#### [<code style={{ fontWeight: 'normal' }}>FutureProduct.<b>oracleSpecBinding</b></code>](#)<Bullet />[`OracleSpecToFutureBinding!`](/docs/testnet/graphql/objects/oracle-spec-to-future-binding) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> OracleSpecToFutureBinding tells on which property oracle data should be
 used as settlement price.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>FutureProduct.<b>settlementPriceDecimals</b></code>](#)<Bullet />[`Int!`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The number of decimal places implied by the settlement price emitted by the settlement oracle
+> 
 
 
-#### [`settlementPriceDecimals`](#) ([`Int!`](/docs/testnet/graphql/scalars/int))
 
-The number of decimal places implied by the settlement price emitted by the settlement oracle
+### Member of
 
+[`InstrumentConfiguration`](/docs/testnet/graphql/objects/instrument-configuration)  <Badge class="secondary" text="object"/>
 
 
 

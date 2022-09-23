@@ -1,10 +1,16 @@
 ---
 id: epoch-data
 title: EpochData
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 No description
@@ -20,20 +26,23 @@ type EpochData {
 
 ### Fields
 
-#### [`total`](#) ([`Int!`](/docs/testnet/graphql/scalars/int))
+#### [<code style={{ fontWeight: 'normal' }}>EpochData.<b>total</b></code>](#)<Bullet />[`Int!`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Total number of epochs since node was created
+> 
 
-Total number of epochs since node was created
+#### [<code style={{ fontWeight: 'normal' }}>EpochData.<b>offline</b></code>](#)<Bullet />[`Int!`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Total number of offline epochs since node was created
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>EpochData.<b>online</b></code>](#)<Bullet />[`Int!`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Total number of online epochs since node was created
+> 
 
 
-#### [`offline`](#) ([`Int!`](/docs/testnet/graphql/scalars/int))
 
-Total number of offline epochs since node was created
+### Member of
 
-
-#### [`online`](#) ([`Int!`](/docs/testnet/graphql/scalars/int))
-
-Total number of online epochs since node was created
-
+[`Node`](/docs/testnet/graphql/objects/node)  <Badge class="secondary" text="object"/>
 
 
 

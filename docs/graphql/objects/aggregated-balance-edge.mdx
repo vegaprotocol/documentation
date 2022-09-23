@@ -1,10 +1,16 @@
 ---
 id: aggregated-balance-edge
 title: AggregatedBalanceEdge
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 No description
@@ -19,15 +25,19 @@ type AggregatedBalanceEdge {
 
 ### Fields
 
-#### [`node`](#) ([`AggregatedBalance!`](/docs/testnet/graphql/objects/aggregated-balance))
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedBalanceEdge.<b>node</b></code>](#)<Bullet />[`AggregatedBalance!`](/docs/testnet/graphql/objects/aggregated-balance) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The aggregated balance
+> 
 
-The aggregated balance
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedBalanceEdge.<b>cursor</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
 
 
-#### [`cursor`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
+### Member of
 
-
+[`AggregatedBalanceConnection`](/docs/testnet/graphql/objects/aggregated-balance-connection)  <Badge class="secondary" text="object"/>
 
 
 

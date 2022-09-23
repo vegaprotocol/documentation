@@ -1,10 +1,16 @@
 ---
 id: epoch
 title: epoch
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 get data for a specific epoch, if ID omitted it gets the current epoch. If the string is 'next', fetch the next epoch
@@ -18,15 +24,15 @@ epoch(
 
 ### Arguments
 
-#### [`id`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
-
-
-
+#### [<code style={{ fontWeight: 'normal' }}>epoch.<b>id</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> 
+> 
 
 ### Type
 
-#### [`Epoch`](/docs/testnet/graphql/objects/epoch)
-
+#### [`Epoch`](/docs/testnet/graphql/objects/epoch) <Badge class="secondary" text="object"/>
+> 
+> 
 
 
 

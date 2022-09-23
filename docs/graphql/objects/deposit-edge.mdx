@@ -1,10 +1,16 @@
 ---
 id: deposit-edge
 title: DepositEdge
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 No description
@@ -19,15 +25,19 @@ type DepositEdge {
 
 ### Fields
 
-#### [`node`](#) ([`Deposit!`](/docs/testnet/graphql/objects/deposit))
+#### [<code style={{ fontWeight: 'normal' }}>DepositEdge.<b>node</b></code>](#)<Bullet />[`Deposit!`](/docs/testnet/graphql/objects/deposit) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DepositEdge.<b>cursor</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
 
 
 
+### Member of
 
-#### [`cursor`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-
-
+[`DepositsConnection`](/docs/testnet/graphql/objects/deposits-connection)  <Badge class="secondary" text="object"/>
 
 
 

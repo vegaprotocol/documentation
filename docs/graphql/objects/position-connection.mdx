@@ -1,10 +1,16 @@
 ---
 id: position-connection
 title: PositionConnection
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 No description
@@ -19,15 +25,19 @@ type PositionConnection {
 
 ### Fields
 
-#### [`edges`](#) ([`[PositionEdge!]`](/docs/testnet/graphql/objects/position-edge))
+#### [<code style={{ fontWeight: 'normal' }}>PositionConnection.<b>edges</b></code>](#)<Bullet />[`[PositionEdge!]`](/docs/testnet/graphql/objects/position-edge) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> The positions in this connection
+> 
 
-The positions in this connection
+#### [<code style={{ fontWeight: 'normal' }}>PositionConnection.<b>pageInfo</b></code>](#)<Bullet />[`PageInfo`](/docs/testnet/graphql/objects/page-info) <Badge class="secondary" text="object"/>
+> The pagination information
+> 
 
 
-#### [`pageInfo`](#) ([`PageInfo`](/docs/testnet/graphql/objects/page-info))
 
-The pagination information
+### Member of
 
+[`Party`](/docs/testnet/graphql/objects/party)  <Badge class="secondary" text="object"/>
 
 
 

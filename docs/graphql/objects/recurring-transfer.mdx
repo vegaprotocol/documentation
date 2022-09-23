@@ -1,10 +1,16 @@
 ---
 id: recurring-transfer
 title: RecurringTransfer
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 The specific details for a recurring transfer
@@ -21,25 +27,27 @@ type RecurringTransfer {
 
 ### Fields
 
-#### [`startEpoch`](#) ([`Int!`](/docs/testnet/graphql/scalars/int))
+#### [<code style={{ fontWeight: 'normal' }}>RecurringTransfer.<b>startEpoch</b></code>](#)<Bullet />[`Int!`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The epoch at which this recurring transfer will start
+> 
 
-The epoch at which this recurring transfer will start
+#### [<code style={{ fontWeight: 'normal' }}>RecurringTransfer.<b>endEpoch</b></code>](#)<Bullet />[`Int`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
+> An optional epoch at which this transfer will stop
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>RecurringTransfer.<b>factor</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The factor of the initial amount to be distributed
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>RecurringTransfer.<b>dispatchStrategy</b></code>](#)<Bullet />[`DispatchStrategy`](/docs/testnet/graphql/objects/dispatch-strategy) <Badge class="secondary" text="object"/>
+> An optional dispatch strategy for the recurring transfer
+> 
 
 
-#### [`endEpoch`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
 
-An optional epoch at which this transfer will stop
+### Implemented by
 
-
-#### [`factor`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-The factor of the initial amount to be distributed
-
-
-#### [`dispatchStrategy`](#) ([`DispatchStrategy`](/docs/testnet/graphql/objects/dispatch-strategy))
-
-An optional dispatch strategy for the recurring transfer
-
+[`TransferKind`](/docs/testnet/graphql/unions/transfer-kind)  <Badge class="secondary" text="union"/>
 
 
 
