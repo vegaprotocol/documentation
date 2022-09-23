@@ -3,6 +3,7 @@ sidebar_position: 4
 title: Asset bridge updates
 hide_title: false
 vega_network: TESTNET
+ethereum_network: Ropsten
 keywords:
   - proposal
   - governance
