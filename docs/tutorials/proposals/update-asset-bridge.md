@@ -50,8 +50,7 @@ Now that you have all the details required, they need to be submitted to the sma
 
 <EthAddresses frontMatter={frontMatter} show={["erc20Bridge"]} />
 
-* For listing an asset (with the signature bundle from a New Asset proposal), the correct method is [`list_asset`](../../api/bridge/contracts/ERC20_Bridge_Logic#list_asset)
-* For updating an asset, the correct method is  [`set_asset_limits`](../../api/bridge/contracts/ERC20_Bridge_Logic#set_asset_limits)
+* For listing an asset the correct method is [`list_asset`](../../api/bridge/contracts/ERC20_Bridge_Logic#list_asset)
 
 These values you submit here must match the values that were voted on, or the transaction will fail. When the update transaction is finalised on Ethereum, the changes go in to effect. This means that users will be able to deposit the new asset.
 
