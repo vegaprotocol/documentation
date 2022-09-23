@@ -93,10 +93,10 @@ If you choose an amount to withdraw that is higher than the withdrawal threshold
 
 Once the delay time has passed, and the bundle is valid, **the withdrawal must be completed by the party**, such as by using Vega Console.
 
-::: Query for data
-You can see the withdrawal threshold and delay in [Vega Console ↗](https://console.fairground.wtf).
+:::tip Query for data
+You can see the threshold and delay for withdrawals in [Vega Console ↗](https://console.fairground.wtf).
 
-Alternativelyl, see the withdraw threshold using a GraphQL query for the asset, and its asset source [ERC20](../graphql/objects/erc20).
+Alternatively, see the withdraw threshold using a GraphQL query for the asset, and its asset source [ERC20](../graphql/objects/erc20).
 :::
 
 ### Diagram: Withdrawals
