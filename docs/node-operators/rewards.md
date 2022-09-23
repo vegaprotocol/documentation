@@ -11,7 +11,7 @@ Each type of validating node is entitled to a different rate of rewards.
 - **Standby** nodes are ready to step up to consensus node status, so earn rewards at **a rate of <NetworkParameter frontMatter={frontMatter} param="network.validators.ersatz.rewardFactor" hideName={true} formatter="percent" />** 
 - **Candidate** nodes are ready to step up to standby status, and earn **no rewards**
 
-Parties who meet the [requirements](requirements) and correctly [set up and run a node](getting-started) will become a candidate validator node. They can be promoted to standby then consensus status by meeting performance and staking requirements.
+Parties who meet the [requirements](requirements) and correctly [set up and run a node](get-started) will become a candidate validator node. They can be promoted to standby then consensus status by meeting performance and staking requirements.
 
 ## Earn standby validator rewards
 
@@ -45,4 +45,4 @@ If a standby validator has a better validator score (which includes performance 
 
 ## How rewards work
 
-Rewards are calculated based on multiple factors, including the type of validating node and staked amount. [Read more about rewards](../concepts/vega-chain#staking-rewards--penalties).
+Rewards are calculated based on multiple factors, including the type of validating node and staked amount. [Read more about rewards](../concepts/vega-chain#rewards).
