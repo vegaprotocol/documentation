@@ -8,19 +8,20 @@ description: Set up your first wallet and keypair using the CLI wallet app
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-To download Vega Wallet and create your wallet, follow the step-by-step instructions below. This software a work-in-progress and is frequently updated. As of August 2022, the Vega Wallet software has moved from `vegawallet` to [`vega` ↗](https://github.com/vegaprotocol/vega/releases/) on GitHub, and the version numbers have changed. 
+To download Vega Wallet and create your wallet, follow the step-by-step instructions below. 
+
+This software is frequently updated. As of August 2022, the Vega Wallet software has moved from `vegawallet` to [`vega` ↗](https://github.com/vegaprotocol/vega/releases/) on GitHub, and the version numbers have changed. 
 
 :::caution
-These instructions cover version 0.54, which is only compatible with Vega network(s) that are also on 0.54.
+These instructions cover Vega Wallet version 0.55, which is only compatible with Vega network(s) that are also on v0.55. If  you need a Vega Wallet for mainnet, see [Create a wallet (mainnet)](https://docs.vega.xyz/docs/mainnet/tools/vega-wallet/cli-wallet/latest/create-wallet).
 :::
 
 Note: If you are looking for instructions for connecting your hardware wallet to MetaMask, see [MetaMask's guide ↗](https://metamask.zendesk.com/hc/en-us/articles/360020394612-How-to-connect-a-Trezor-or-Ledger-Hardware-Wallet).
 
+## Command line guidance
 Use the following instructions in command line. Below, you'll see commands in the code blocks for each operating system. Copy those instructions and paste them into your command line interface.
 
-:::info 
 In your command line interface, you can view a list of available commands by running `./vegawallet -h` on MacOS and Linux, or `vegawallet -h` on Windows. Help is also available for every command, for example: `vegawallet create -h` will provide information about the `create` command.
-:::
 
 ## 1. Install and run Vega Wallet
 
