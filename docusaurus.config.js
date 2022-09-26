@@ -6,6 +6,14 @@ if (!version) {
   version = require('./package.json').version
 }
 
+if (!version.match(/^(?:(\d+)\.)?(?:(\d+)\.)?(\*|\d+)$/)) {
+  throw new Error('Version incorrectly formatted') 
+} else {
+}
+
+const vVersion = 'v' + version
+const shortVersion = version.split('.').slice(0,2).join('.')
+
 module.exports = {
   title: "Vega Protocol",
   tagline: "A protocol for creating and trading derivatives on a fully decentralised network",
@@ -266,14 +274,18 @@ module.exports = {
           versions: {
             current: {
               banner: "unreleased",
-              label: `testnet (v${version})`,
+              label: `testnet (v${shortVersion})`,
               path: "testnet",
+              // Hacky: Classname used for full version number, v prefix. Used for OpenrpcPlayground
+              className: `${vVersion}`
             },
             "v0.53": {
               banner: "none",
               label: "mainnet (v0.53)",
               path: "mainnet",
-            },
+              // Hacky: Classname used for full version number, v prefix. Used for OpenrpcPlayground
+              className: "v0.53.0"
+            }
           },
         },
         // Vega specific theme overrides go here
