@@ -10,7 +10,7 @@ The Vega software is publicly available on [GitHub ↗](https://github.com/vegap
 
 [**Vega core software**](#vega-core-software) - Below, find a summary of each version's features and breaking changes.
 
-From 0.54.0 the core repository also holds the data node and CLI wallet code, therefore the following code is included in the releases:
+From 0.54.0 the [core repository](https://github.com/vegaprotocol/vega) also holds the data node and CLI wallet code, therefore the following code is included in the releases:
 
 - The data node APIs allow for querying for historic information and for snapshots of the current state of the systems.
 - The code for the Vega Wallet CLI app is now in the Vega repo, where a full list of changes can be found.
@@ -26,9 +26,6 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-
-
-
 ### Version 0.56.0 | 2022-09-26
 This version was released to the Vega testnet on 26 September, 2022.
 
@@ -37,7 +34,7 @@ For full details see the vega core [0.56.0 release page ↗](https://github.com/
 The primary focus of this release has been to resolve a number of critical bugs that have caused stability issues.
 
 :::warning API deprecations
-**Data node**: The v2 APIs ([REST](./../api/rest/overview) and [gRPC](./../grpc/data-node/api/v2/trading_data.proto)) for the data node will be replace V1, which will soon be removed. Therefore anyone building apps on to of Vega should start to use the V2 APIs from this release (0.55) onwards.
+**Data node**: The v2 APIs ([REST](./../api/rest/overview) and [gRPC](./../grpc/data-node/api/v2/trading_data.proto)) for the data node will be replace V1, which will soon be removed. Therefore anyone building apps on to of Vega should start to use the v2 APIs from release 0.55 onwards.
 
 **Vega Wallet**: For most use cases, the v2 [wallet API](./../api/vega-wallet) will soon be the only one available for interacting with the Vega Wallet. V1 will continue to be used for the testnet-only hosted wallet for testing and incentives, for slightly longer.
 :::
@@ -65,12 +62,23 @@ During testing of the wallet key rotation feature, the wallet sends a rotation t
 #### Clef wallet use affecting validator heartbeats
 When a clef wallet was used with a validator node the validator heartbeats sent out, signed by the clef wallet, could not be verified when received by the network. This was being caused by the message being hashed before signing when using clef for validator heartbeats. This issue was fixed under issue [6187](https://github.com/vegaprotocol/vega/issues/6187)
 
+#### Snapshots
+It was found that when stopping a node core was being stopped before tendermint. This meant that the snapshot engine would close its connection to the snapshot database, however, as tendermint was still running it would try to commit a block and save a new snapshot even though the core had stopped. This issue was resolved in issue [6183 ↗](https://github.com/vegaprotocol/vega/issues/6183)
 
+#### New features: Core
+As the Ethereum configuration network parameter `BlockchainsEthereumConfig` has core code dependencies it should not be changed via a normal governance proposal and enactment. This change ensures that if this parameter is tried to be changed it will be rejected. The fix was implemented in issue [6254 ↗](https://github.com/vegaprotocol/vega/issues/6254)
 
+#### New features: Data node
+To further enhance the GraphQL API user experience, newly added API endpoints have been documented and the schema (query and subscription types) has been ordered alphabetically. This work was done in [6221 ↗](https://github.com/vegaprotocol/vega/issues/6221) and [6170 ↗](https://github.com/vegaprotocol/vega/issues/6170) respectively.
 
+#### New features: Wallet
+The focus of the wallet work in this release is to migrate the remaining wallet capabilities to the v2 API so that any wallet front ends can cease to use the v1 ready for deprecation and removal. This work was done in [5600 ↗](https://github.com/vegaprotocol/vega/issues/5600)
 
+#### Add proof-of-work to transaction when using vegawallet command sign
+Proof-of-work is now attached to the return transaction from vegawallet command sign either by specifying a network which will be used to call `LastBlockHeightAndHash` or by passing in the `LastBlockData` manually. This work and information on using these instructions is detailed in issue [6077 ↗](https://github.com/vegaprotocol/vega/issues/6077)
 
-
+#### Automatic consent for transactions
+The permission and connection requests for consent are the last layer of protection when using the Vega wallet, however, in some cases users may require automatic consent. The command line flag `--automatic-consent` has been added to override the default security. This has been implemented in issue [6203 ↗](https://github.com/vegaprotocol/vega/issues/6203)
 
 ### Version 0.55.0 | 2022-09-20
 This version was released to the Vega testnet on 20 September, 2022.
@@ -80,7 +88,7 @@ For full details see the vega core [0.55.0 release page ↗](https://github.com/
 The primary focus of this release has been to progress work on the data node ensuring there is a scalable data store with historical data, resolve any bugs found and to improve the node operator experience.
 
 :::warning API deprecations
-**Data node**: The v2 APIs ([REST](./../api/rest/overview) and [gRPC](./../grpc/data-node/api/v2/trading_data.proto)) for the data node will be replace V1, which will soon be removed. Therefore anyone building apps on to of Vega should start to use the V2 APIs from this release (0.55) onwards.
+**Data node**: The v2 APIs ([REST](./../api/rest/overview) and [gRPC](./../grpc/data-node/api/v2/trading_data.proto)) for the data node will be replace v1, which will soon be removed. Therefore anyone building apps on to of Vega should start to use the v2 APIs from this release (0.55) onwards.
 
 **Vega Wallet**: For most use cases, the v2 [wallet API](./../api/vega-wallet) will soon be the only one available for interacting with the Vega Wallet. V1 will continue to be used for the testnet-only hosted wallet for testing and incentives, for slightly longer.
 :::
