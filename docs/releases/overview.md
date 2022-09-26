@@ -26,6 +26,52 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+
+
+
+### Version 0.56.0 | 2022-09-26
+This version was released to the Vega testnet on 26 September, 2022.
+
+For full details see the vega core [0.56.0 release page ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.56.0).
+
+The primary focus of this release has been to resolve a number of critical bugs that have caused stability issues.
+
+:::warning API deprecations
+**Data node**: The v2 APIs ([REST](./../api/rest/overview) and [gRPC](./../grpc/data-node/api/v2/trading_data.proto)) for the data node will be replace V1, which will soon be removed. Therefore anyone building apps on to of Vega should start to use the V2 APIs from this release (0.55) onwards.
+
+**Vega Wallet**: For most use cases, the v2 [wallet API](./../api/vega-wallet) will soon be the only one available for interacting with the Vega Wallet. V1 will continue to be used for the testnet-only hosted wallet for testing and incentives, for slightly longer.
+:::
+
+#### Breaking Changes
+The release of [0.56 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.56.0) brings with it a small number of breaking changes. 
+
+#### Clean up unused network parameters
+During recent development a number of network parameters have been replaced or are no longer required. In order to have clean code the unused network parameters have been removed. This work was done under issue [6196 ↗](https://github.com/vegaprotocol/vega/issues/6196)
+
+#### Wallet V2 API field name change
+In order to make the wallet API clearer to understand the field `Client` has been renamed to `User` in the wallet v2 API. This work was implemented in issue [6155 ↗](https://github.com/vegaprotocol/vega/issues/6155)
+
+#### Data-node API field name change
+To ensure that the API field name can scale to non-cash products, for example, where settlement data is not necessarily a price. The API field name has been changed from `SettlementPriceDecimals` to `SettlementDataDecimals`. This change was made under [5641 ↗](https://github.com/vegaprotocol/vega/issues/5641)
+
+#### Critical Bug fixes
+
+#### Equity like share
+The equity like share feature applied the market growth scaling factor to the virtual stakes every block, instead of every market window. This resulted in the core spending an increasing amount of time carrying out calculations. These calculations resulted in having to serialise larger and larger decimals values and having to marshall and store each bit of data. This resulted in the snapshot engine being unable to process correctly and causing the network instabilities. The fix for this bug was carried out as part of [6245 ↗](https://github.com/vegaprotocol/vega/issues/6245)
+
+#### Wallet key rotation
+During testing of the wallet key rotation feature, the wallet sends a rotation transaction, when this transaction was sent and the event passed to the data-node it was causing the datanode to crash on update. This bug was resolved in issue [6175 ↗](https://github.com/vegaprotocol/vega/issues/6175)
+
+#### Clef wallet use affecting validator heartbeats
+When a clef wallet was used with a validator node the validator heartbeats sent out, signed by the clef wallet, could not be verified when received by the network. This was being caused by the message being hashed before signing when using clef for validator heartbeats. This issue was fixed under issue [6187](https://github.com/vegaprotocol/vega/issues/6187)
+
+
+
+
+
+
+
+
 ### Version 0.55.0 | 2022-09-20
 This version was released to the Vega testnet on 20 September, 2022.
 
@@ -88,7 +134,7 @@ Without Vega Visor, upgrading the protocol is near impossible when major changes
 The implementation of batch order instructions adds a transaction type that allows a user to submit multiple market instructions (e.g. submit order, cancel order, amend order) in a single transaction. This decreases the complexity of client integrations, and furthermore, reduces the computational and network load on both validators and clients. It will also make Vega's functionality and APIs closer to parity with those of traditional centralised exchanges.
 The work for this feature was carried out under issue [5961 ↗](https://github.com/vegaprotocol/vega/issues/5961) to the following [specification ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0074-BTCH-batch-market-instructions.md).
 
-#### Add some Vega tools into the Vega repo 
+#### Add some Vega tools into the Vega repo
 The `vegatools` repo contains a number of useful tools to aid development and investigations of the protocol. The tools that integrate most closely with the core software have been brought into the Vega repo, meaning these are exposed through the CLI and can be run in a terminal alongside the Vega binary. Specifically, tools to help investigate and debug streams, snapshots and checkpoints have been integrated. The work was carried out under the issue [5807 ↗](https://github.com/vegaprotocol/vega/issues/5807).
 
 #### New features: Data node
