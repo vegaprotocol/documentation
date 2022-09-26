@@ -35,6 +35,11 @@ echo " 🛠  The main bit"
 echo "==========================="
 echo ""
 
+# Unnest important files, delete the rest
+./scripts/build-pre-flatten.sh
+# Fix things that are easier fixed in the specs than the output
+./scripts/build-pre-fix-specs.sh
+
 export NO_UPDATE_NOTIFIER="true"
 
 yarn run generate-netparams
@@ -52,15 +57,9 @@ echo "==========================="
 echo ""
 
 # Fix unconfigurable things from generated docs
-./scripts/build-fixup-generated.sh
+./scripts/build-post-fix-generated.sh
 # Fix up sidebars for all APIs
-./scripts/build-fixup-sidebars.sh
-
-echo ""
-echo " 🛠  Build"
-echo "==========================="
-echo ""
-
+./scripts/build-post-fix-sidebars.sh
 
 if [ -z ${SKIP_BUILD+x} ]; then yarn run build; else echo "Docusaurus build skipped"; fi
 
