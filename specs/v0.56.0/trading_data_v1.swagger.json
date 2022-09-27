@@ -9,6 +9,11 @@
       "name": "Trading Data Service (v1)"
     }
   ],
+  "host": "api.n10.vega.xyz",
+  "schemes": [
+    "http",
+    "https"
+  ],
   "consumes": [
     "application/json"
   ],
