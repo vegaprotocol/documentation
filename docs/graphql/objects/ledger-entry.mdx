@@ -17,10 +17,9 @@ No description
 
 ```graphql
 type LedgerEntry {
-  fromAccount: String!
-  toAccount: String!
+  fromAccount: AccountDetails!
+  toAccount: AccountDetails!
   amount: String!
-  reference: String!
   type: String!
   timestamp: String!
 }
@@ -29,20 +28,16 @@ type LedgerEntry {
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>fromAccount</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>fromAccount</b></code>](#)<Bullet />[`AccountDetails!`](/docs/testnet/graphql/objects/account-details) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > Account from which the asset was taken
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>toAccount</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>toAccount</b></code>](#)<Bullet />[`AccountDetails!`](/docs/testnet/graphql/objects/account-details) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > Account to which the balance was transferred
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>amount</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > The amount transferred
-> 
-
-#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>reference</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> The transfer reference
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>type</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>

@@ -13,7 +13,7 @@ export const SpecifiedBy = (props) => <>Specification<a className="link" style={
 export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
-No description
+Information available for a node
 
 ```graphql
 type Node {
@@ -90,15 +90,15 @@ type Node {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Node.<b>epochData</b></code>](#)<Bullet />[`EpochData`](/docs/testnet/graphql/objects/epoch-data) <Badge class="secondary" text="object"/>
-> 
+> Summary of epoch data across all nodes
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Node.<b>status</b></code>](#)<Bullet />[`NodeStatus!`](/docs/testnet/graphql/enums/node-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
-> 
+> Validator status of the node
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Node.<b>delegations</b></code>](#)<Bullet />[`[Delegation!]`](/docs/testnet/graphql/objects/delegation) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
-> 
+> All delegation for a node by a given party if specified, or all delegations.
 > ##### [<code style={{ fontWeight: 'normal' }}>Node.delegations.<b>partyId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > 
 > 
@@ -116,7 +116,7 @@ type Node {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Node.<b>delegationsConnection</b></code>](#)<Bullet />[`DelegationsConnection`](/docs/testnet/graphql/objects/delegations-connection) <Badge class="secondary" text="object"/>
-> 
+> All delegation for a node by a given party if specified, or all delegations.
 > ##### [<code style={{ fontWeight: 'normal' }}>Node.delegationsConnection.<b>partyId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > 
 > 

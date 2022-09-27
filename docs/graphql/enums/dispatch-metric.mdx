@@ -13,7 +13,7 @@ export const SpecifiedBy = (props) => <>Specification<a className="link" style={
 export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
-No description
+The type of metric to use for a reward dispatch strategy
 
 ```graphql
 enum DispatchMetric {
@@ -28,19 +28,19 @@ enum DispatchMetric {
 ### Values
 
 #### [<code style={{ fontWeight: 'normal' }}>DispatchMetric.<b>DISPATCH_METRIC_MAKER_FEES_PAID</b></code>](#) 
-> 
+> Dispatch metric that uses the total maker fees paid in the market
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>DispatchMetric.<b>DISPATCH_METRIC_MAKER_FEES_RECEIVED</b></code>](#) 
-> 
+> Dispatch metric that uses the total maker fees received in the market
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>DispatchMetric.<b>DISPATCH_METRIC_LP_FEES_RECEIVED</b></code>](#) 
-> 
+> Dispatch metric that uses the total LP fees received in the market
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>DispatchMetric.<b>DISPATCH_METRIC_MARKET_VALUE</b></code>](#) 
-> 
+> Dispatch metric that uses the total value of the market if above the required threshold and not paid given proposer bonus yet
 > 
 
 

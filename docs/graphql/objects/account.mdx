@@ -21,6 +21,7 @@ type Account {
   asset: Asset!
   type: AccountType!
   market: Market
+  party: Party
 }
 ```
 
@@ -43,11 +44,15 @@ type Account {
 > Market (only relevant to margin accounts)
 > 
 
+#### [<code style={{ fontWeight: 'normal' }}>Account.<b>party</b></code>](#)<Bullet />[`Party`](/docs/testnet/graphql/objects/party) <Badge class="secondary" text="object"/>
+> Owner of the account
+> 
+
 
 
 ### Member of
 
-[`AccountEdge`](/docs/testnet/graphql/objects/account-edge)  <Badge class="secondary" text="object"/><Bullet />[`Asset`](/docs/testnet/graphql/objects/asset)  <Badge class="secondary" text="object"/><Bullet />[`Market`](/docs/testnet/graphql/objects/market)  <Badge class="secondary" text="object"/><Bullet />[`Party`](/docs/testnet/graphql/objects/party)  <Badge class="secondary" text="object"/><Bullet />[`TransferBalance`](/docs/testnet/graphql/objects/transfer-balance)  <Badge class="secondary" text="object"/>
+[`AccountEdge`](/docs/testnet/graphql/objects/account-edge)  <Badge class="secondary" text="object"/><Bullet />[`Asset`](/docs/testnet/graphql/objects/asset)  <Badge class="secondary" text="object"/><Bullet />[`Market`](/docs/testnet/graphql/objects/market)  <Badge class="secondary" text="object"/><Bullet />[`Party`](/docs/testnet/graphql/objects/party)  <Badge class="secondary" text="object"/>
 
 ### Implemented by
 

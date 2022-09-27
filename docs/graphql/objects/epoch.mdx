@@ -13,7 +13,7 @@ export const SpecifiedBy = (props) => <>Specification<a className="link" style={
 export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
-No description
+Epoch describes a specific period of time in the Vega network
 
 ```graphql
 type Epoch {
@@ -42,7 +42,7 @@ type Epoch {
 ### Fields
 
 #### [<code style={{ fontWeight: 'normal' }}>Epoch.<b>id</b></code>](#)<Bullet />[`ID!`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> Presumably this is an integer or something. If there's no such thing, disregard
+> Numeric sequence number used to identify the epoch
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Epoch.<b>timestamps</b></code>](#)<Bullet />[`EpochTimestamps!`](/docs/testnet/graphql/objects/epoch-timestamps) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
@@ -60,13 +60,13 @@ type Epoch {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Epoch.<b>delegations</b></code>](#)<Bullet />[`[Delegation!]!`](/docs/testnet/graphql/objects/delegation) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
-> 
+> Delegations data for this epoch
 > ##### [<code style={{ fontWeight: 'normal' }}>Epoch.delegations.<b>partyId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
-> 
+> Optional party ID to filter on
 > 
 
 ##### [<code style={{ fontWeight: 'normal' }}>Epoch.delegations.<b>nodeId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
-> 
+> Optional node ID to filter on
 > 
 
 ##### [<code style={{ fontWeight: 'normal' }}>Epoch.delegations.<b>skip</b></code>](#)<Bullet />[`Int`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
@@ -82,13 +82,13 @@ type Epoch {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Epoch.<b>delegationsConnection</b></code>](#)<Bullet />[`DelegationsConnection`](/docs/testnet/graphql/objects/delegations-connection) <Badge class="secondary" text="object"/>
-> 
+> Delegations data for this epoch
 > ##### [<code style={{ fontWeight: 'normal' }}>Epoch.delegationsConnection.<b>partyId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
-> 
+> Optional party ID to filter on
 > 
 
 ##### [<code style={{ fontWeight: 'normal' }}>Epoch.delegationsConnection.<b>nodeId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
-> 
+> Optional node ID to filter on
 > 
 
 ##### [<code style={{ fontWeight: 'normal' }}>Epoch.delegationsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/docs/testnet/graphql/inputs/pagination) <Badge class="secondary" text="input"/>

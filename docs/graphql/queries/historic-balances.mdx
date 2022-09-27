@@ -13,7 +13,7 @@ export const SpecifiedBy = (props) => <>Specification<a className="link" style={
 export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
-No description
+Get historical balances for an account or specific asset within the given date range.
 
 ```graphql
 historicBalances(
@@ -28,11 +28,11 @@ historicBalances(
 ### Arguments
 
 #### [<code style={{ fontWeight: 'normal' }}>historicBalances.<b>filter</b></code>](#)<Bullet />[`AccountFilter`](/docs/testnet/graphql/inputs/account-filter) <Badge class="secondary" text="input"/>
-> 
+> Optional filter to restrict the result to a specific account or asset
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>historicBalances.<b>groupBy</b></code>](#)<Bullet />[`[AccountField]`](/docs/testnet/graphql/enums/account-field) <Badge class="secondary" text="list"/> <Badge class="secondary" text="enum"/>
-> 
+> Optional grouping clause for the results
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>historicBalances.<b>dateRange</b></code>](#)<Bullet />[`DateRange`](/docs/testnet/graphql/inputs/date-range) <Badge class="secondary" text="input"/>
@@ -40,7 +40,7 @@ historicBalances(
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>historicBalances.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/docs/testnet/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
-> 
+> Optional pagination information
 > 
 
 ### Type

@@ -13,11 +13,11 @@ export const SpecifiedBy = (props) => <>Specification<a className="link" style={
 export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
-No description
+Connection type for retrieving cursor-based paginated node signature information
 
 ```graphql
 type NodeSignaturesConnection {
-  edges: [NodeSignatureEdge]
+  edges: [NodeSignatureEdge!]!
   pageInfo: PageInfo!
 }
 ```
@@ -25,7 +25,7 @@ type NodeSignaturesConnection {
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>NodeSignaturesConnection.<b>edges</b></code>](#)<Bullet />[`[NodeSignatureEdge]`](/docs/testnet/graphql/objects/node-signature-edge) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>NodeSignaturesConnection.<b>edges</b></code>](#)<Bullet />[`[NodeSignatureEdge!]!`](/docs/testnet/graphql/objects/node-signature-edge) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > List of node signatures available for the connection
 > 
 

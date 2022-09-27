@@ -237,7 +237,7 @@ type Party {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Party.<b>margins</b></code>](#)<Bullet />[`[MarginLevels!]`](/docs/testnet/graphql/objects/margin-levels) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
-> marginLevels
+> Margin Levels
 > ##### [<code style={{ fontWeight: 'normal' }}>Party.margins.<b>marketId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > market ID off the margin to get, nil if all markets
 > 
@@ -249,7 +249,7 @@ type Party {
 > 
 
 ##### [<code style={{ fontWeight: 'normal' }}>Party.marginsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/docs/testnet/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
-> Pagination information
+> Optional Pagination information
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Party.<b>proposals</b></code>](#)<Bullet />[`[Proposal]`](/docs/testnet/graphql/objects/proposal) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
@@ -259,7 +259,7 @@ type Party {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Party.<b>proposalsConnection</b></code>](#)<Bullet />[`ProposalsConnection`](/docs/testnet/graphql/objects/proposals-connection) <Badge class="secondary" text="object"/>
-> All governance proposals in the VEGA network
+> All governance proposals in the Vega network
 > ##### [<code style={{ fontWeight: 'normal' }}>Party.proposalsConnection.<b>proposalType</b></code>](#)<Bullet />[`ProposalType`](/docs/testnet/graphql/enums/proposal-type) <Badge class="secondary" text="enum"/>
 > Optional type of proposal to retrieve data for
 > 
@@ -277,9 +277,9 @@ type Party {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Party.<b>votesConnection</b></code>](#)<Bullet />[`ProposalVoteConnection`](/docs/testnet/graphql/objects/proposal-vote-connection) <Badge class="secondary" text="object"/>
-> 
+> All votes on proposals in the Vega network by the given party
 > ##### [<code style={{ fontWeight: 'normal' }}>Party.votesConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/docs/testnet/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
-> 
+> Optional Pagination information
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Party.<b>withdrawals</b></code>](#)<Bullet />[`[Withdrawal!]`](/docs/testnet/graphql/objects/withdrawal) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
@@ -293,7 +293,7 @@ type Party {
 > 
 
 ##### [<code style={{ fontWeight: 'normal' }}>Party.withdrawalsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/docs/testnet/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
-> 
+> Optional Pagination information
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Party.<b>deposits</b></code>](#)<Bullet />[`[Deposit!]`](/docs/testnet/graphql/objects/deposit) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
@@ -307,7 +307,7 @@ type Party {
 > 
 
 ##### [<code style={{ fontWeight: 'normal' }}>Party.depositsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/docs/testnet/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
-> 
+> Optional Pagination information
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Party.<b>liquidityProvisions</b></code>](#)<Bullet />[`[LiquidityProvision!]`](/docs/testnet/graphql/objects/liquidity-provision) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
@@ -331,7 +331,7 @@ type Party {
 > 
 
 ##### [<code style={{ fontWeight: 'normal' }}>Party.liquidityProvisionsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/docs/testnet/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
-> Pagination information
+> Optional Pagination information
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Party.<b>delegations</b></code>](#)<Bullet />[`[Delegation!]`](/docs/testnet/graphql/objects/delegation) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
@@ -391,13 +391,13 @@ type Party {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Party.<b>rewardsConnection</b></code>](#)<Bullet />[`RewardsConnection`](/docs/testnet/graphql/objects/rewards-connection) <Badge class="secondary" text="object"/>
-> 
+> Rewards information for the party
 > ##### [<code style={{ fontWeight: 'normal' }}>Party.rewardsConnection.<b>assetId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > An asset ID (optional)
 > 
 
 ##### [<code style={{ fontWeight: 'normal' }}>Party.rewardsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/docs/testnet/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
-> Cursor pagination information
+> Optional pagination information
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Party.<b>rewardSummaries</b></code>](#)<Bullet />[`[RewardSummary]`](/docs/testnet/graphql/objects/reward-summary) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
@@ -407,11 +407,11 @@ type Party {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Party.<b>rewardDetails</b></code>](#)<Bullet />[`[RewardPerAssetDetail]`](/docs/testnet/graphql/objects/reward-per-asset-detail) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
-> return reward information
+> Return reward information
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Party.<b>transfersConnection</b></code>](#)<Bullet />[`TransferConnection`](/docs/testnet/graphql/objects/transfer-connection) <Badge class="secondary" text="object"/>
-> get a list of all transfers for a public key
+> All transfers for a public key
 > ##### [<code style={{ fontWeight: 'normal' }}>Party.transfersConnection.<b>direction</b></code>](#)<Bullet />[`TransferDirection`](/docs/testnet/graphql/enums/transfer-direction) <Badge class="secondary" text="enum"/>
 > direction of the transfer with respect to the public key
 > 
@@ -428,7 +428,7 @@ type Party {
 
 ### Member of
 
-[`Delegation`](/docs/testnet/graphql/objects/delegation)  <Badge class="secondary" text="object"/><Bullet />[`Deposit`](/docs/testnet/graphql/objects/deposit)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProviderFeeShare`](/docs/testnet/graphql/objects/liquidity-provider-fee-share)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProvision`](/docs/testnet/graphql/objects/liquidity-provision)  <Badge class="secondary" text="object"/><Bullet />[`MarginLevels`](/docs/testnet/graphql/objects/margin-levels)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/docs/testnet/graphql/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`PartyEdge`](/docs/testnet/graphql/objects/party-edge)  <Badge class="secondary" text="object"/><Bullet />[`Position`](/docs/testnet/graphql/objects/position)  <Badge class="secondary" text="object"/><Bullet />[`Proposal`](/docs/testnet/graphql/objects/proposal)  <Badge class="secondary" text="object"/><Bullet />[`Reward`](/docs/testnet/graphql/objects/reward)  <Badge class="secondary" text="object"/><Bullet />[`StakeLinking`](/docs/testnet/graphql/objects/stake-linking)  <Badge class="secondary" text="object"/><Bullet />[`Trade`](/docs/testnet/graphql/objects/trade)  <Badge class="secondary" text="object"/><Bullet />[`Vote`](/docs/testnet/graphql/objects/vote)  <Badge class="secondary" text="object"/><Bullet />[`Withdrawal`](/docs/testnet/graphql/objects/withdrawal)  <Badge class="secondary" text="object"/>
+[`Account`](/docs/testnet/graphql/objects/account)  <Badge class="secondary" text="object"/><Bullet />[`Delegation`](/docs/testnet/graphql/objects/delegation)  <Badge class="secondary" text="object"/><Bullet />[`Deposit`](/docs/testnet/graphql/objects/deposit)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProviderFeeShare`](/docs/testnet/graphql/objects/liquidity-provider-fee-share)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProvision`](/docs/testnet/graphql/objects/liquidity-provision)  <Badge class="secondary" text="object"/><Bullet />[`MarginLevels`](/docs/testnet/graphql/objects/margin-levels)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/docs/testnet/graphql/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`PartyEdge`](/docs/testnet/graphql/objects/party-edge)  <Badge class="secondary" text="object"/><Bullet />[`Position`](/docs/testnet/graphql/objects/position)  <Badge class="secondary" text="object"/><Bullet />[`Proposal`](/docs/testnet/graphql/objects/proposal)  <Badge class="secondary" text="object"/><Bullet />[`Reward`](/docs/testnet/graphql/objects/reward)  <Badge class="secondary" text="object"/><Bullet />[`StakeLinking`](/docs/testnet/graphql/objects/stake-linking)  <Badge class="secondary" text="object"/><Bullet />[`Trade`](/docs/testnet/graphql/objects/trade)  <Badge class="secondary" text="object"/><Bullet />[`Vote`](/docs/testnet/graphql/objects/vote)  <Badge class="secondary" text="object"/><Bullet />[`Withdrawal`](/docs/testnet/graphql/objects/withdrawal)  <Badge class="secondary" text="object"/>
 
 ### Implemented by
 

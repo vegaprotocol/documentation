@@ -51,51 +51,51 @@ type ObservableMarketData {
 ### Fields
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>marketId</b></code>](#)<Bullet />[`ID!`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> market ID of the associated mark price
+> Market ID of the associated mark price
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>markPrice</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> the mark price (an unsigned integer)
+> The mark price (an unsigned integer)
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>bestBidPrice</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> the highest price level on an order book for buy orders.
+> The highest price level on an order book for buy orders.
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>bestBidVolume</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> the aggregated volume being bid at the best bid price.
+> The aggregated volume being bid at the best bid price.
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>bestOfferPrice</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> the lowest price level on an order book for offer orders.
+> The lowest price level on an order book for offer orders.
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>bestOfferVolume</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> the aggregated volume being offered at the best offer price.
+> The aggregated volume being offered at the best offer price.
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>bestStaticBidPrice</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> the highest price level on an order book for buy orders not including pegged orders.
+> The highest price level on an order book for buy orders not including pegged orders.
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>bestStaticBidVolume</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> the aggregated volume being offered at the best static bid price, excluding pegged orders
+> The aggregated volume being offered at the best static bid price, excluding pegged orders
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>bestStaticOfferPrice</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> the lowest price level on an order book for offer orders not including pegged orders
+> The lowest price level on an order book for offer orders not including pegged orders
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>bestStaticOfferVolume</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> the aggregated volume being offered at the best static offer price, excluding pegged orders
+> The aggregated volume being offered at the best static offer price, excluding pegged orders
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>midPrice</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> the arithmetic average of the best bid price and best offer price
+> The arithmetic average of the best bid price and best offer price
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>staticMidPrice</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> the arithmetic average of the best static bid price and best static offer price
+> The arithmetic average of the best static bid price and best static offer price
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>timestamp</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
@@ -103,7 +103,7 @@ type ObservableMarketData {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>openInterest</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> the sum of the size of all positions greater than 0
+> The sum of the size of all positions greater than 0
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>auctionEnd</b></code>](#)<Bullet />[`String`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
@@ -115,35 +115,35 @@ type ObservableMarketData {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>indicativePrice</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> indicative price if the auction ended now, 0 if not in auction mode
+> Indicative price if the auction ended now, 0 if not in auction mode
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>indicativeVolume</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> indicative volume if the auction ended now, 0 if not in auction mode
+> Indicative volume if the auction ended now, 0 if not in auction mode
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>marketTradingMode</b></code>](#)<Bullet />[`MarketTradingMode!`](/docs/testnet/graphql/enums/market-trading-mode) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
-> what mode the market is in (auction, continuous etc)
+> What mode the market is in (auction, continuous etc)
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>marketState</b></code>](#)<Bullet />[`MarketState!`](/docs/testnet/graphql/enums/market-state) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
-> current state of the market
+> Current state of the market
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>trigger</b></code>](#)<Bullet />[`AuctionTrigger!`](/docs/testnet/graphql/enums/auction-trigger) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
-> what triggered an auction (if an auction was started)
+> What triggered an auction (if an auction was started)
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>extensionTrigger</b></code>](#)<Bullet />[`AuctionTrigger!`](/docs/testnet/graphql/enums/auction-trigger) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
-> what extended the ongoing auction (if an auction was extended)
+> What extended the ongoing auction (if an auction was extended)
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>targetStake</b></code>](#)<Bullet />[`String`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
-> the amount of stake targeted for this market
+> The amount of stake targeted for this market
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>suppliedStake</b></code>](#)<Bullet />[`String`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
-> the supplied stake for the market
+> The supplied stake for the market
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>priceMonitoringBounds</b></code>](#)<Bullet />[`[PriceMonitoringBounds!]`](/docs/testnet/graphql/objects/price-monitoring-bounds) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
@@ -151,11 +151,11 @@ type ObservableMarketData {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>marketValueProxy</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> the market value proxy
+> The market value proxy
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>liquidityProviderFeeShare</b></code>](#)<Bullet />[`[ObservableLiquidityProviderFeeShare!]`](/docs/testnet/graphql/objects/observable-liquidity-provider-fee-share) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
-> the equity like share of liquidity fee for each liquidity provider
+> The equity like share of liquidity fee for each liquidity provider
 > 
 
 

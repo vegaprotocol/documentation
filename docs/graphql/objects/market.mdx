@@ -56,10 +56,6 @@ type Market {
   depth(
   maxDepth: Int
 ): MarketDepth!
-  candles(
-  since: String!
-  interval: Interval!
-): [Candle]
   candlesConnection(
   since: String!
   to: String
@@ -95,7 +91,7 @@ type Market {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Market.<b>decimalPlaces</b></code>](#)<Bullet />[`Int!`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> decimalPlaces indicates the number of decimal places that an integer must be shifted by in order to get a correct
+> The number of decimal places that an integer must be shifted by in order to get a correct
 number denominated in the currency of the market. (uint64)
 
 Examples:
@@ -112,7 +108,7 @@ GBX (pence)        1              4       GBP   0.000001 (  0.0001p)
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Market.<b>positionDecimalPlaces</b></code>](#)<Bullet />[`Int!`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> positionDecimalPlaces indicates the number of decimal places that an integer must be shifted in order to get a correct size (uint64).
+> The number of decimal places that an integer must be shifted in order to get a correct size (uint64).
 i.e. 0 means there are no fractional orders for the market, and order sizes are always whole sizes.
 2 means sizes given as 10^2 * desired size, e.g. a desired size of 1.23 is represented as 123 in this market.
 This sets how big the smallest order / position on the market can be.
@@ -204,23 +200,13 @@ duration and optionally a minimum traded volume).
 > 
 
 ##### [<code style={{ fontWeight: 'normal' }}>Market.tradesConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/docs/testnet/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
-> 
+> Pagination information
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Market.<b>depth</b></code>](#)<Bullet />[`MarketDepth!`](/docs/testnet/graphql/objects/market-depth) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > Current depth on the order book for this market
 > ##### [<code style={{ fontWeight: 'normal' }}>Market.depth.<b>maxDepth</b></code>](#)<Bullet />[`Int`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
 > Maximum market order book depth (returns whole order book if omitted)
-> 
-
-#### [<code style={{ fontWeight: 'normal' }}>Market.<b>candles</b></code>](#)<Bullet />[`[Candle]`](/docs/testnet/graphql/objects/candle) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
-> Candles on a market, for the 'last' n candles, at 'interval' seconds as specified by parameters
-> ##### [<code style={{ fontWeight: 'normal' }}>Market.candles.<b>since</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> RFC3339Nano encoded time from when to get candles
-> 
-
-##### [<code style={{ fontWeight: 'normal' }}>Market.candles.<b>interval</b></code>](#)<Bullet />[`Interval!`](/docs/testnet/graphql/enums/interval) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
-> Interval of the candles
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Market.<b>candlesConnection</b></code>](#)<Bullet />[`CandleDataConnection`](/docs/testnet/graphql/objects/candle-data-connection) <Badge class="secondary" text="object"/>
@@ -262,11 +248,11 @@ duration and optionally a minimum traded volume).
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Market.<b>marketTimestamps</b></code>](#)<Bullet />[`MarketTimestamps!`](/docs/testnet/graphql/objects/market-timestamps) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
-> timestamps for state changes in the market
+> Timestamps for state changes in the market
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Market.<b>riskFactors</b></code>](#)<Bullet />[`RiskFactor`](/docs/testnet/graphql/objects/risk-factor) <Badge class="secondary" text="object"/>
-> risk factors for the market
+> Risk factors for the market
 > 
 
 

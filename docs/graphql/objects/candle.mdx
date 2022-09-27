@@ -17,26 +17,25 @@ Candle stick representation of trading
 
 ```graphql
 type Candle {
-  timestamp: String!
-  datetime: String!
+  periodStart: String!
+  lastUpdateInPeriod: String!
   high: String!
   low: String!
   open: String!
   close: String!
   volume: String!
-  interval: Interval!
 }
 ```
 
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>Candle.<b>timestamp</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> Unix epoch+nanoseconds for when the candle occurred
+#### [<code style={{ fontWeight: 'normal' }}>Candle.<b>periodStart</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano formatted date and time for the candle start time
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Candle.<b>datetime</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> RFC3339Nano formatted date and time for the candle
+#### [<code style={{ fontWeight: 'normal' }}>Candle.<b>lastUpdateInPeriod</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano formatted date and time for the candle end time, or last updated time if the candle is still open
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Candle.<b>high</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
@@ -59,10 +58,6 @@ type Candle {
 > Volume price (uint64)
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Candle.<b>interval</b></code>](#)<Bullet />[`Interval!`](/docs/testnet/graphql/enums/interval) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
-> Interval price (string)
-> 
-
 
 
 ### Returned by
@@ -71,7 +66,7 @@ type Candle {
 
 ### Member of
 
-[`Market`](/docs/testnet/graphql/objects/market)  <Badge class="secondary" text="object"/>
+[`CandleEdge`](/docs/testnet/graphql/objects/candle-edge)  <Badge class="secondary" text="object"/>
 
 
 

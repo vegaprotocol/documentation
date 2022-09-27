@@ -13,7 +13,7 @@ export const SpecifiedBy = (props) => <>Specification<a className="link" style={
 export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
-get a list of all transfers for a public key
+Get a list of all transfers for a public key
 
 ```graphql
 transfersConnection(
@@ -27,11 +27,11 @@ transfersConnection(
 ### Arguments
 
 #### [<code style={{ fontWeight: 'normal' }}>transfersConnection.<b>partyId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
-> the public key to look for
+> The public key to look for
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>transfersConnection.<b>direction</b></code>](#)<Bullet />[`TransferDirection`](/docs/testnet/graphql/enums/transfer-direction) <Badge class="secondary" text="enum"/>
-> direction of the transfer with respect to the public key
+> Direction of the transfer with respect to the public key
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>transfersConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/docs/testnet/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
@@ -41,7 +41,7 @@ transfersConnection(
 ### Type
 
 #### [`TransferConnection`](/docs/testnet/graphql/objects/transfer-connection) <Badge class="secondary" text="object"/>
-> 
+> Connection type for retrieving cursor-based paginated transfers information
 > 
 
 

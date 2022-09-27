@@ -19,7 +19,7 @@ Subscribe to the positions updates
 positions(
   partyId: ID
   marketId: ID
-): [Position!]!
+): [PositionUpdate!]!
 ```
 
 
@@ -35,7 +35,7 @@ positions(
 
 ### Type
 
-#### [`Position`](/docs/testnet/graphql/objects/position) <Badge class="secondary" text="object"/>
+#### [`PositionUpdate`](/docs/testnet/graphql/objects/position-update) <Badge class="secondary" text="object"/>
 > An individual party at any point in time is considered net long or net short. This refers to their Open Volume,
 calculated using FIFO. This volume is signed as either negative for LONG positions and positive for SHORT positions. A
 single trade may end up "splitting" with some of its volume matched into closed volume and some of its volume

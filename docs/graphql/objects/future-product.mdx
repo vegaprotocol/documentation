@@ -22,7 +22,7 @@ type FutureProduct {
   oracleSpecForSettlementPrice: OracleSpecConfiguration!
   oracleSpecForTradingTermination: OracleSpecConfiguration!
   oracleSpecBinding: OracleSpecToFutureBinding!
-  settlementPriceDecimals: Int!
+  settlementDataDecimals: Int!
 }
 ```
 
@@ -50,8 +50,8 @@ type FutureProduct {
 used as settlement price.
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>FutureProduct.<b>settlementPriceDecimals</b></code>](#)<Bullet />[`Int!`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> The number of decimal places implied by the settlement price emitted by the settlement oracle
+#### [<code style={{ fontWeight: 'normal' }}>FutureProduct.<b>settlementDataDecimals</b></code>](#)<Bullet />[`Int!`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The number of decimal places implied by the settlement data (such as price) emitted by the settlement oracle
 > 
 
 
