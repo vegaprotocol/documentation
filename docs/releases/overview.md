@@ -51,8 +51,10 @@ During recent development, a number of network parameters have been replaced or 
 #### Wallet v2 API field name change
 To make the wallet API v2 clearer to understand, the field `Client` has been renamed to `User`. This work was implemented in issue [6155 ↗](https://github.com/vegaprotocol/vega/issues/6155)
 
-#### Data-node API field name change
+#### Data-node API field name changes
 To ensure that the settlement API field name can scale to non-cash products, for example, where settlement data is not necessarily a price, the API field name has been changed from `SettlementPriceDecimals` to `SettlementDataDecimals`. This change was made under [5641 ↗](https://github.com/vegaprotocol/vega/issues/5641)
+
+To ensure clarity of the positions subscription API the field name `Position` has been updated to `PositionUpdate`. This change was made under [6162 ↗](https://github.com/vegaprotocol/vega/issues/6162)
 
 #### Critical Bug fixes
 
@@ -74,7 +76,7 @@ To enhance the GraphQL API user experience, newly added API endpoints have been 
 #### New features: Wallet
 The focus of the wallet work in this release is to migrate the remaining wallet capabilities to the v2 API. Any wallet UIs can stop using the soon-to-be-deprecated v1 APIs without loss of functionality. This work was done in [5600 ↗](https://github.com/vegaprotocol/vega/issues/5600)
 
-#### Add proof-of-work to transaction when using `vegawallet command sign`
+#### Add proof-of-work to transaction when using vegawallet command `sign`
 Proof-of-work is now attached to the Vega Wallet return transaction command `sign`. This is done either by specifying a network which will be used to call `LastBlockHeightAndHash` or by passing in the `LastBlockData` manually. This work and information on using these instructions is detailed in issue [6077 ↗](https://github.com/vegaprotocol/vega/issues/6077)
 
 #### Automatic consent for transactions
@@ -112,7 +114,7 @@ This work was done in issue [6095 ↗](https://github.com/vegaprotocol/vega/issu
 The best experience for restarting a node is to load from the highest possible block before the node was stopped. This is most important when a node was started using state-sync and the tendermint block store does not contain enough history to replay the chain from block zero. To avoid any issues with not being able to reply from block zero, the default behaviour is now to always start from the most recent local snapshot. This work was done in issue [5442 ↗](https://github.com/vegaprotocol/vega/issues/5442).
 
 #### Return the key on `session.list_keys` endpoint on wallet API version 2
-With the introduction of the [V2 wallet API](../api/vega-wallet/v2-api/get-started) there is now added security in order for a dApp to request metadata that can be used by the user to label a key in wallet and dApp, thus preventing data being leaked unintentionally. This work was done in issue [6139 ↗](https://github.com/vegaprotocol/vega/issues/6139).
+With the introduction of the [v2 wallet API](../api/vega-wallet/v2-api/get-started) there is now added security in order for a dApp to request metadata that can be used by the user to label a key in wallet and dApp, thus preventing data being leaked unintentionally. This work was done in issue [6139 ↗](https://github.com/vegaprotocol/vega/issues/6139).
 
 #### Critical Bug fixes
 
