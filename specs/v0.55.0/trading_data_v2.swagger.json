@@ -9,7 +9,7 @@
       "name": "Trading Data Service (v2)"
     }
   ],
-  "host": "lb.testnet.vega.xyz/datanode/rest",
+  "host": "api.n10.vega.xyz",
   "schemes": [
     "http",
     "https"
