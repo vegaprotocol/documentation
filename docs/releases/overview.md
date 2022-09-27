@@ -10,7 +10,7 @@ The Vega software is publicly available on [GitHub ↗](https://github.com/vegap
 
 [**Vega core software**](#vega-core-software) - Below, find a summary of each version's features and breaking changes.
 
-From 0.54.0 the [core repository](https://github.com/vegaprotocol/vega) also holds the data node and CLI wallet code, therefore the following code is included in the releases:
+From 0.54.0 the [core repository ↗](https://github.com/vegaprotocol/vega) also holds the data node and CLI wallet code, therefore the following code is included in the releases:
 
 - The data node APIs allow for querying for historic information and for snapshots of the current state of the systems.
 - The code for the Vega Wallet CLI app is now in the Vega repo, where a full list of changes can be found.
@@ -42,43 +42,43 @@ The primary focus of this release has been to resolve a number of critical bugs 
 #### Breaking Changes
 The release of [0.56 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.56.0) brings with it a small number of breaking changes. 
 
+#### Clef wallet signatures not readable by network
+When a clef wallet was used with a validator node, the validator heartbeats sent out, signed by the clef wallet, could not be verified when received by the network. This was being caused by the message being hashed clef before signing when using clef for validator heartbeats. The Vega team has created a fork of the Clef software to resolve this issue. This was done under issue [6187 ↗](https://github.com/vegaprotocol/vega/issues/6187)
+
 #### Clean up unused network parameters
-During recent development a number of network parameters have been replaced or are no longer required. In order to have clean code the unused network parameters have been removed. This work was done under issue [6196 ↗](https://github.com/vegaprotocol/vega/issues/6196)
+During recent development, a number of network parameters have been replaced or are no longer required. In order to have clean code, the unused network parameters have been removed. This work was done under issue [6196 ↗](https://github.com/vegaprotocol/vega/issues/6196)
 
 #### Wallet v2 API field name change
-In order to make the wallet API clearer to understand the field `Client` has been renamed to `User` in the wallet v2 API. This work was implemented in issue [6155 ↗](https://github.com/vegaprotocol/vega/issues/6155)
+To make the wallet API v2 clearer to understand, the field `Client` has been renamed to `User`. This work was implemented in issue [6155 ↗](https://github.com/vegaprotocol/vega/issues/6155)
 
 #### Data-node API field name change
-To ensure that the settlement API field name can scale to non-cash products, for example, where settlement data is not necessarily a price. The API field name has been changed from `SettlementPriceDecimals` to `SettlementDataDecimals`. This change was made under [5641 ↗](https://github.com/vegaprotocol/vega/issues/5641)
+To ensure that the settlement API field name can scale to non-cash products, for example, where settlement data is not necessarily a price, the API field name has been changed from `SettlementPriceDecimals` to `SettlementDataDecimals`. This change was made under [5641 ↗](https://github.com/vegaprotocol/vega/issues/5641)
 
 #### Critical Bug fixes
 
 #### Equity like share calculations
-The equity like share feature applied the market growth scaling factor to the virtual stakes every block, instead of every market window. This resulted in the core spending an increasing amount of time carrying out calculations. These calculations resulted in having to serialise larger and larger decimals values and having to marshall and store each bit of data. This resulted in the snapshot engine being unable to process correctly and causing the network instabilities. The fix for this bug was carried out as part of [6245 ↗](https://github.com/vegaprotocol/vega/issues/6245)
+The equity like share feature applied the market growth scaling factor to the virtual stakes every block, instead of every market window. This resulted in the core spending an increasing amount of time carrying out calculations, thus having to serialise larger and larger decimals values and marshall and store each bit of data. The snapshot engine was unable to process correctly and caused network instability. The fix for this bug was carried out as part of [6245 ↗](https://github.com/vegaprotocol/vega/issues/6245)
 
-#### Wallet key rotation event
-During testing of the wallet key rotation feature, the wallet sends a rotation transaction, when this transaction was sent and the event passed to the data-node it was causing the datanode to crash on update. This bug was resolved in issue [6175 ↗](https://github.com/vegaprotocol/vega/issues/6175)
-
-#### Validator heartbeats with clef wallet
-When a clef wallet was used with a validator node the validator heartbeats sent out, signed by the clef wallet, could not be verified when received by the network. This was being caused by the message being hashed before signing when using clef for validator heartbeats. This issue was fixed under issue [6187](https://github.com/vegaprotocol/vega/issues/6187)
+#### Data-node failed to process key rotation
+During testing of the wallet key rotation feature, the wallet rotation transaction was not processed correctly by the data-node software, causing the data-node to crash on update. This bug was resolved in issue [6175 ↗](https://github.com/vegaprotocol/vega/issues/6175)
 
 #### Snapshot creation
 It was found that when stopping a node core was being stopped before tendermint. This meant that the snapshot engine would close its connection to the snapshot database, however, as tendermint was still running it would try to commit a block and save a new snapshot even though the core had stopped. This issue was resolved in issue [6183 ↗](https://github.com/vegaprotocol/vega/issues/6183)
 
 #### New features: Core
-As the `BlockchainsEthereumConfig` network parameter has core code dependencies it should not be changed via the normal governance proposal and enactment process. This change ensures that if this parameter is tried to be changed it will be rejected. Adding this parameter to the `updateDisallowed` list in issue [6254 ↗](https://github.com/vegaprotocol/vega/issues/6254) ensures this parameter can only be considered for change through a freeform governance proposal.
+As the `BlockchainsEthereumConfig` network parameter has core code dependencies it should not be changed via the normal governance proposal and enactment process. This change ensures that a change to this via network parameter governance will be rejected. Adding this parameter to the `updateDisallowed` list in issue [6254 ↗](https://github.com/vegaprotocol/vega/issues/6254) ensures this parameter can only be considered for change through a freeform governance proposal.
 
 #### New features: Data node
-To further enhance the GraphQL API user experience, newly added API endpoints have been documented and the schema (query and subscription types) have been ordered alphabetically. This work was done in [6221 ↗](https://github.com/vegaprotocol/vega/issues/6221) and [6170 ↗](https://github.com/vegaprotocol/vega/issues/6170) respectively.
+To enhance the GraphQL API user experience, newly added API endpoints have been documented and the schema (query and subscription types) have been ordered alphabetically. This work was done in [6221 ↗](https://github.com/vegaprotocol/vega/issues/6221) and [6170 ↗](https://github.com/vegaprotocol/vega/issues/6170) respectively.
 
 #### New features: Wallet
-The focus of the wallet work in this release is to migrate the remaining wallet capabilities to the v2 API. Any wallet front ends can stop using the soon-to-be-deprecated v1 APIs without loss of functionallity. This work was done in [5600 ↗](https://github.com/vegaprotocol/vega/issues/5600)
+The focus of the wallet work in this release is to migrate the remaining wallet capabilities to the v2 API. Any wallet UIs can stop using the soon-to-be-deprecated v1 APIs without loss of functionality. This work was done in [5600 ↗](https://github.com/vegaprotocol/vega/issues/5600)
 
-#### Add proof-of-work to transaction when using vegawallet command sign
-Proof-of-work is now attached to the vegawallet return transaction command `sign`. This is done either by specifying a network which will be used to call `LastBlockHeightAndHash` or by passing in the `LastBlockData` manually. This work and information on using these instructions is detailed in issue [6077 ↗](https://github.com/vegaprotocol/vega/issues/6077)
+#### Add proof-of-work to transaction when using `vegawallet command sign`
+Proof-of-work is now attached to the Vega Wallet return transaction command `sign`. This is done either by specifying a network which will be used to call `LastBlockHeightAndHash` or by passing in the `LastBlockData` manually. This work and information on using these instructions is detailed in issue [6077 ↗](https://github.com/vegaprotocol/vega/issues/6077)
 
 #### Automatic consent for transactions
-The permission and connection requests for consent are the last layer of protection when using the vegawallet, however, in some cases users may require these requests have automatic consent. The command line flag `--automatic-consent` has been added to override the default security. This has been implemented in issue [6203 ↗](https://github.com/vegaprotocol/vega/issues/6203)
+The permission and connection requests for consent are the last layer of protection when using the Vega Wallet, however, in some cases users may require these requests have automatic consent. The command line flag `--automatic-consent` has been added to wallet API v2 to override the default security, which brings this v1 feature into the new API. This has been implemented in issue [6203 ↗](https://github.com/vegaprotocol/vega/issues/6203)
 
 ### Version 0.55.0 | 2022-09-20
 This version was released to the Vega testnet on 20 September, 2022.
