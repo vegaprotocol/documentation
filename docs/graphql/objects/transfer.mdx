@@ -1,10 +1,16 @@
 ---
 id: transfer
 title: Transfer
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 A user initiated transfer
@@ -28,60 +34,59 @@ type Transfer {
 
 ### Fields
 
-#### [`id`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>id</b></code>](#)<Bullet />[`ID!`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> ID of this transfer
+> 
 
-ID of this transfer
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>from</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The public key of the sender in this transfer
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>fromAccountType</b></code>](#)<Bullet />[`AccountType!`](/docs/testnet/graphql/enums/account-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The account type from which funds have been sent
+> 
 
-#### [`from`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>to</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The public key of the recipient of the funds
+> 
 
-The public key of the sender in this transfer
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>toAccountType</b></code>](#)<Bullet />[`AccountType!`](/docs/testnet/graphql/enums/account-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The account type that has received the funds
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>asset</b></code>](#)<Bullet />[`Asset`](/docs/testnet/graphql/objects/asset) <Badge class="secondary" text="object"/>
+> The asset
+> 
 
-#### [`fromAccountType`](#) ([`AccountType!`](/docs/testnet/graphql/enums/account-type))
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>amount</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The amount sent
+> 
 
-The account type from which funds have been sent
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>reference</b></code>](#)<Bullet />[`String`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> An optional reference
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>status</b></code>](#)<Bullet />[`TransferStatus!`](/docs/testnet/graphql/enums/transfer-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The status of this transfer
+> 
 
-#### [`to`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>timestamp</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The time at which the transfer was submitted
+> 
 
-The public key of the recipient of the funds
-
-
-#### [`toAccountType`](#) ([`AccountType!`](/docs/testnet/graphql/enums/account-type))
-
-The account type that has received the funds
-
-
-#### [`asset`](#) ([`Asset`](/docs/testnet/graphql/objects/asset))
-
-The asset
-
-
-#### [`amount`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-The amount sent
-
-
-#### [`reference`](#) ([`String`](/docs/testnet/graphql/scalars/string))
-
-An optional reference
-
-
-#### [`status`](#) ([`TransferStatus!`](/docs/testnet/graphql/enums/transfer-status))
-
-The status of this transfer
-
-
-#### [`timestamp`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-The time at which the transfer was submitted
-
-
-#### [`kind`](#) ([`TransferKind!`](/docs/testnet/graphql/unions/transfer-kind))
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>kind</b></code>](#)<Bullet />[`TransferKind!`](/docs/testnet/graphql/unions/transfer-kind) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="union"/>
+> The type of transfer being made, i.e. a one-off or recurring transfer
+> 
 
 
 
+### Returned by
+
+[`transfers`](/docs/testnet/graphql/queries/transfers)  <Badge class="secondary" text="query"/>
+
+### Member of
+
+[`TransferEdge`](/docs/testnet/graphql/objects/transfer-edge)  <Badge class="secondary" text="object"/>
 
 
 

@@ -1,10 +1,16 @@
 ---
 id: offset-pagination
 title: OffsetPagination
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 No description
@@ -20,21 +26,24 @@ input OffsetPagination {
 
 ### Fields
 
-#### [`skip`](#) ([`Int!`](/docs/testnet/graphql/scalars/int))
+#### [<code style={{ fontWeight: 'normal' }}>OffsetPagination.<b>skip</b></code>](#)<Bullet />[`Int!`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Skip the number of records specified, default is 0
+> 
 
-Skip the number of records specified, default is 0
+#### [<code style={{ fontWeight: 'normal' }}>OffsetPagination.<b>limit</b></code>](#)<Bullet />[`Int!`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Limit the number of returned records to the value specified, default is 50
+> 
 
-
-#### [`limit`](#) ([`Int!`](/docs/testnet/graphql/scalars/int))
-
-Limit the number of returned records to the value specified, default is 50
-
-
-#### [`descending`](#) ([`Boolean!`](/docs/testnet/graphql/scalars/boolean))
-
-Descending reverses the order of the records returned
+#### [<code style={{ fontWeight: 'normal' }}>OffsetPagination.<b>descending</b></code>](#)<Bullet />[`Boolean!`](/docs/testnet/graphql/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Descending reverses the order of the records returned
 default is true, if false the results will be returned in ascending order
+> 
 
+
+
+### Member of
+
+[`oracleData`](/docs/testnet/graphql/queries/oracle-data)  <Badge class="secondary" text="query"/><Bullet />[`oracleDataBySpec`](/docs/testnet/graphql/queries/oracle-data-by-spec)  <Badge class="secondary" text="query"/><Bullet />[`oracleSpecs`](/docs/testnet/graphql/queries/oracle-specs)  <Badge class="secondary" text="query"/>
 
 
 

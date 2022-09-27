@@ -280,13 +280,13 @@ function generateInstrument(skeleton) {
   );
 
   assert.ok(
-    skeleton.properties.future.properties.settlementPriceDecimals,
-    "Instrument property settlementPriceDecimals used to exist"
+    skeleton.properties.future.properties.settlementDataDecimals,
+    "Instrument property settlementDataDecimals used to exist"
   );
   assert.equal(
-    skeleton.properties.future.properties.settlementPriceDecimals.type,
+    skeleton.properties.future.properties.settlementDataDecimals.type,
     "integer",
-    "Instrument property settlementPriceDecimals used to be an integer"
+    "Instrument property settlementDataDecimals used to be an integer"
   );
   assert.ok(
     skeleton.properties.future.properties.oracleSpecForSettlementPrice,
@@ -307,7 +307,7 @@ function generateInstrument(skeleton) {
     future: {
       settlementAsset: idForAnExistingVegaAsset,
       quoteName: "tEuro",
-      settlementPriceDecimals: 5,
+      settlementDataDecimals: 5,
       oracleSpecForSettlementPrice: generateSettlementOracleSpec(
         skeleton.properties.future.properties.oracleSpecForSettlementPrice
       ),
@@ -337,11 +337,11 @@ function generateInstrument(skeleton) {
     })
           quoteName: "${instrument.future.quoteName}",
           // ${
-            skeleton.properties.future.properties.settlementPriceDecimals.title
+            skeleton.properties.future.properties.settlementDataDecimals.title
           } (${
-      skeleton.properties.future.properties.settlementPriceDecimals.format
-    } as ${skeleton.properties.future.properties.settlementPriceDecimals.type})
-          settlementPriceDecimals: ${instrument.future.settlementPriceDecimals},
+      skeleton.properties.future.properties.settlementDataDecimals.format
+    } as ${skeleton.properties.future.properties.settlementDataDecimals.type})
+          settlementDataDecimals: ${instrument.future.settlementDataDecimals},
           // ${
             skeleton.properties.future.properties.oracleSpecForSettlementPrice
               .title

@@ -1,10 +1,16 @@
 ---
 id: new-freeform
 title: NewFreeform
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 A new freeform proposal change. It has no properties on purpose. Use proposal
@@ -19,10 +25,15 @@ type NewFreeform {
 
 ### Fields
 
-#### [`_doNotUse`](#) ([`Boolean`](/docs/testnet/graphql/scalars/boolean))
+#### [<code style={{ fontWeight: 'normal' }}>NewFreeform.<b>_doNotUse</b></code>](#)<Bullet />[`Boolean`](/docs/testnet/graphql/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> A placeholder to please graphQL
+> 
 
-A placeholder to please graphQL
 
+
+### Implemented by
+
+[`ProposalChange`](/docs/testnet/graphql/unions/proposal-change)  <Badge class="secondary" text="union"/>
 
 
 

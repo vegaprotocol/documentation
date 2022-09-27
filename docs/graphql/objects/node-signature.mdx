@@ -1,10 +1,16 @@
 ---
 id: node-signature
 title: NodeSignature
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 Represents a signature for the approval of a resource from a validator
@@ -20,20 +26,31 @@ type NodeSignature {
 
 ### Fields
 
-#### [`id`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+#### [<code style={{ fontWeight: 'normal' }}>NodeSignature.<b>id</b></code>](#)<Bullet />[`ID!`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The ID of the resource being signed for
+> 
 
-The ID of the resource being signed for
+#### [<code style={{ fontWeight: 'normal' }}>NodeSignature.<b>signature</b></code>](#)<Bullet />[`String`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> The signature, as base64 encoding
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NodeSignature.<b>kind</b></code>](#)<Bullet />[`NodeSignatureKind`](/docs/testnet/graphql/enums/node-signature-kind) <Badge class="secondary" text="enum"/>
+> The kind of signature this is (e.g: withdrawal, new asset, etc)
+> 
 
 
-#### [`signature`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
-The signature, as base64 encoding
+### Returned by
 
+[`nodeSignatures`](/docs/testnet/graphql/queries/node-signatures)  <Badge class="secondary" text="query"/>
 
-#### [`kind`](#) ([`NodeSignatureKind`](/docs/testnet/graphql/enums/node-signature-kind))
+### Member of
 
-The kind of signature this is (e.g: withdrawal, new asset, etc)
+[`NodeSignatureEdge`](/docs/testnet/graphql/objects/node-signature-edge)  <Badge class="secondary" text="object"/>
 
+### Implemented by
+
+[`Event`](/docs/testnet/graphql/unions/event)  <Badge class="secondary" text="union"/>
 
 
 

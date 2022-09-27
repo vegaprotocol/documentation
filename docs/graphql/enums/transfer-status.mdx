@@ -1,13 +1,19 @@
 ---
 id: transfer-status
 title: TransferStatus
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
 
 
-No description
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+All the states a transfer can transition between
 
 ```graphql
 enum TransferStatus {
@@ -22,31 +28,32 @@ enum TransferStatus {
 
 ### Values
 
-#### [`STATUS_PENDING`](#)
+#### [<code style={{ fontWeight: 'normal' }}>TransferStatus.<b>STATUS_PENDING</b></code>](#) 
+> Indicates a transfer still being processed
+> 
 
-Indicates a transfer still being processed
+#### [<code style={{ fontWeight: 'normal' }}>TransferStatus.<b>STATUS_DONE</b></code>](#) 
+> Indicates a transfer accepted by the Vega network
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>TransferStatus.<b>STATUS_REJECTED</b></code>](#) 
+> Indicates a transfer rejected by the Vega network
+> 
 
-#### [`STATUS_DONE`](#)
-
-Indicates a transfer accepted by the Vega network
-
-
-#### [`STATUS_REJECTED`](#)
-
-Indicates a transfer rejected by the Vega network
-
-
-#### [`STATUS_STOPPED`](#)
-
-Indicates a transfer stopped by the Vega network
+#### [<code style={{ fontWeight: 'normal' }}>TransferStatus.<b>STATUS_STOPPED</b></code>](#) 
+> Indicates a transfer stopped by the Vega network
 e.g: no funds left to cover the transfer
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TransferStatus.<b>STATUS_CANCELLED</b></code>](#) 
+> Indication of a transfer cancelled by the user
+> 
 
 
-#### [`STATUS_CANCELLED`](#)
 
-Indication of a transfer cancelled by the user
+### Member of
 
+[`Transfer`](/docs/testnet/graphql/objects/transfer)  <Badge class="secondary" text="object"/>
 
 
 

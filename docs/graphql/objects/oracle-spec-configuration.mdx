@@ -1,10 +1,16 @@
 ---
 id: oracle-spec-configuration
 title: OracleSpecConfiguration
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 An oracle spec describe the oracle data that an instrument wants to get from the
@@ -20,18 +26,22 @@ type OracleSpecConfiguration {
 
 ### Fields
 
-#### [`pubKeys`](#) ([`[String!]`](/docs/testnet/graphql/scalars/string))
-
-pubKeys is the list of authorised public keys that signed the data for this
+#### [<code style={{ fontWeight: 'normal' }}>OracleSpecConfiguration.<b>pubKeys</b></code>](#)<Bullet />[`[String!]`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> The list of authorised public keys that signed the data for this
 oracle. All the public keys in the oracle data should be contained in these
 public keys.
+> 
 
-
-#### [`filters`](#) ([`[Filter!]`](/docs/testnet/graphql/objects/filter))
-
-filters describes which oracle data are considered of interest or not for
+#### [<code style={{ fontWeight: 'normal' }}>OracleSpecConfiguration.<b>filters</b></code>](#)<Bullet />[`[Filter!]`](/docs/testnet/graphql/objects/filter) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> Filters describes which oracle data are considered of interest or not for
 the product (or the risk model).
+> 
 
+
+
+### Member of
+
+[`FutureProduct`](/docs/testnet/graphql/objects/future-product)  <Badge class="secondary" text="object"/><Bullet />[`UpdateFutureProduct`](/docs/testnet/graphql/objects/update-future-product)  <Badge class="secondary" text="object"/>
 
 
 

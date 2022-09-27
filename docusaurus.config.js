@@ -1,5 +1,18 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 
+let version = process.env.npm_package_version
+
+if (!version) {
+  version = require('./package.json').version
+}
+
+if (!version.match(/^(?:(\d+)\.)?(?:(\d+)\.)?(\*|\d+)$/)) {
+  throw new Error('Version incorrectly formatted')
+}
+
+const vVersion = 'v' + version
+const shortVersion = version.split('.').slice(0, 2).join('.')
+
 module.exports = {
   title: "Vega Protocol",
   tagline: "A protocol for creating and trading derivatives on a fully decentralised network",
@@ -135,6 +148,28 @@ module.exports = {
       ],
       copyright: `Copyright ©2018-${new Date().getFullYear()} Gobalsky Labs Limited, registered in Gibraltar`,
     },
+    languageTabs: [
+      {
+        highlight: "bash",
+        language: "curl",
+        logoClass: "bash",
+      },
+      {
+        highlight: "python",
+        language: "python",
+        logoClass: "python",
+      },
+      {
+        highlight: "go",
+        language: "go",
+        logoClass: "go",
+      },
+      {
+        highlight: "javascript",
+        language: "nodejs",
+        logoClass: "nodejs",
+      }
+    ],
   },
   plugins: [
     [
@@ -142,15 +177,17 @@ module.exports = {
       // markdown files inside the docs folder, so these are included in the versioned docs.
       require.resolve("@edno/docusaurus2-graphql-doc-generator"),
       {
-        schema: "./schema.graphql",
+        schema: `./specs/v${version}/schema.graphql`,
         rootPath: "docs",
         baseURL: "graphql",
         linkRoot: "/docs/testnet/",
-        diffMethod: "SCHEMA-DIFF",
+        diffMethod: "none",
         docOptions: {
-          index: true,
-        },
-      },
+          toc: true,
+          pagination: true,
+          index: true
+        }
+      }
     ],
     [
       // An alternative to algolia
@@ -175,7 +212,7 @@ module.exports = {
       require.resolve("docusaurus-protobuffet-plugin"),
       {
         routeBasePath: "/docs/testnet/grpc",
-        fileDescriptorsPath: "./proto.json",
+        fileDescriptorsPath: `./specs/v${version}/proto.json`,
         protoDocsPath: "./docs/grpc",
         sidebarPath: "./docs/grpc/sidebar.js",
       },
@@ -187,29 +224,29 @@ module.exports = {
         id: "apiDocs",
         docsPluginId: "classic",
         config: {
-          tradingv1v055: {
-            specPath: "./specs/v0.55.0/trading_data_v1.swagger.json",
+          tradingv1v056: {
+            specPath: "./specs/v0.56.0/trading_data_v1.swagger.json",
             outputDir: "docs/api/rest/data-v1",
             sidebarOptions: {
               groupPathsBy: "tag",
             },
           },
-          tradingv2v055: {
-            specPath: "./specs/v0.55.0/trading_data_v2.swagger.json",
+          tradingv2v056: {
+            specPath: "./specs/v0.56.0/trading_data_v2.swagger.json",
             outputDir: "docs/api/rest/data-v2",
             sidebarOptions: {
               groupPathsBy: "tag",
             },
           },
-          corev055: {
-            specPath: "./specs/v0.55.0/core.swagger.json",
+          corev056: {
+            specPath: "./specs/v0.56.0/core.swagger.json",
             outputDir: "docs/api/rest/core",
             sidebarOptions: {
               groupPathsBy: "tag",
             },
           },
-          statev055: {
-            specPath: "./specs/v0.55.0/corestate.swagger.json",
+          statev056: {
+            specPath: "./specs/v0.56.0/corestate.swagger.json",
             outputDir: "docs/api/rest/state",
             sidebarOptions: {
               groupPathsBy: "tag",
@@ -258,14 +295,18 @@ module.exports = {
           versions: {
             current: {
               banner: "unreleased",
-              label: "testnet (v0.55)",
+              label: `testnet (v${shortVersion})`,
               path: "testnet",
+              // Hacky: Classname used for full version number, v prefix. Used for OpenrpcPlayground
+              className: `${vVersion}`
             },
             "v0.53": {
               banner: "none",
               label: "mainnet (v0.53)",
               path: "mainnet",
-            },
+              // Hacky: Classname used for full version number, v prefix. Used for OpenrpcPlayground
+              className: "v0.53.0"
+            }
           },
         },
         // Vega specific theme overrides go here

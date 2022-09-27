@@ -7,66 +7,62 @@
 #
 # Additionally, a script is called to generate proposal documentation. It's not a docusaurus plugin.
 
+
+doc_version="v$(cat package.json | jq .version -r)"
+echo "Building: v${doc_version}"
+
+
+echo " 🛠  Tidy up"
+echo "==========================="
+
 # Removing old versions
 rm proto.json 2> /dev/null
 rm schema.graphql 2> /dev/null
 rm -rf docs/graphql/ 2> /dev/null
 rm -rf docs/grpc 2> /dev/null
  
-testnet_network_parameters=https://api.n07.testnet.vega.xyz/network/parameters
-mainnet_network_parameters=https://api.vega.xyz/network/parameters
+echo ""
+echo " 🛠  Install deps"
+echo "==========================="
+echo ""
+
+yarn install
 
 set -e
-doc_version=v0.55.0
 
-# This should be using /specs/vxxx but those versions are not yet build correctly
-echo "Fetching grpc..."
-cp "./specs/${doc_version}/proto.json" ./proto.json
+echo ""
+echo " 🛠  The main bit"
+echo "==========================="
+echo ""
 
-echo "Fetching graphql..."
-cp "./specs/${doc_version}/schema.graphql" ./schema.graphql
+# Unnest important files, delete the rest
+./scripts/build-pre-flatten.sh
+# Fix things that are easier fixed in the specs than the output
+./scripts/build-pre-fix-specs.sh
 
-echo "Fetching latest network parameters as placeholders for NetworkParameter.js"
-rm specs/testnet_network_parameters.json 2> /dev/null
-curl ${testnet_network_parameters} -o "specs/testnet_network_parameters.json"
-rm specs/mainnet_network_parameters.json 2> /dev/null
-curl ${mainnet_network_parameters} -o "specs/mainnet_network_parameters.json"
+export NO_UPDATE_NOTIFIER="true"
 
-# Create an empty folder to keep the tools happy
-echo "Regenerating docs..."
-yarn install
+yarn run generate-netparams
+
 yarn run generate-grpc
+yarn run generate-graphql
+yarn run docusaurus clean-api-docs all
 yarn run generate-rest
-yarn run generate-graphql --force
 
-# This var is used in GraphQL tidyup
-echo "GraphQL: Removing generated on date..."
-sed -i -E '/Generated on/d' docs/graphql/generated.md
-echo "GraphQL: Updating generated title on date..."
-sed -i -E 's/Schema Documentation/GraphQL Schema/g' docs/graphql/generated.md
+yarn run generate-proposals
+yarn run generate-openrpc
 
-# GRPC tidyup
-echo "GRPC: Do not hide titles"
-find './grpc/' -type f -name '*.mdx' -exec sed -i -E 's/hide_title: true/hide_title: false/g' {} +
+echo ""
+echo " 🛠  Fix ups"
+echo "==========================="
+echo ""
 
-# GRPC tidyup
-echo "REST: Hide titles"
-find './docs/api/rest' -type f -name '*.mdx' -exec sed -i -E 's/hide_title: false/hide_title: true/g' {} +
-
-
+# Fix unconfigurable things from generated docs
+./scripts/build-post-fix-generated.sh
 # Fix up sidebars for all APIs
-./scripts/build-sidebars.sh
-yarn run build
+./scripts/build-post-fix-sidebars.sh
 
-echo "Tidying up..."
-
-# GRPC tidyup
-rm proto.json
-rm schema.graphql
-
-# Mac SED workaround - delete remnant files (not required with gsed)
-find . -name "*-E" -exec rm -rf {} +
-
+if [ -z ${SKIP_BUILD+x} ]; then yarn run build; else echo "Docusaurus build skipped"; fi
 
 echo "Done! Now check if you need to run the versioning script (./scripts/version.sh)"
 

@@ -1,10 +1,16 @@
 ---
 id: withdrawal-status
 title: WithdrawalStatus
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 The status of a withdrawal
@@ -20,20 +26,23 @@ enum WithdrawalStatus {
 
 ### Values
 
-#### [`STATUS_OPEN`](#)
+#### [<code style={{ fontWeight: 'normal' }}>WithdrawalStatus.<b>STATUS_OPEN</b></code>](#) 
+> The withdrawal is open and being processed by the network
+> 
 
-The withdrawal is open and being processed by the network
+#### [<code style={{ fontWeight: 'normal' }}>WithdrawalStatus.<b>STATUS_REJECTED</b></code>](#) 
+> The withdrawal have been cancelled by the network, either because it expired, or something went wrong with the foreign chain
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>WithdrawalStatus.<b>STATUS_FINALIZED</b></code>](#) 
+> The withdrawal was finalised, it was valid, the foreign chain has executed it and the network updated all accounts
+> 
 
 
-#### [`STATUS_REJECTED`](#)
 
-The withdrawal have been cancelled by the network, either because it expired, or something went wrong with the foreign chain
+### Member of
 
-
-#### [`STATUS_FINALIZED`](#)
-
-The withdrawal was finalised, it was valid, the foreign chain has executed it and the network updated all accounts
-
+[`Withdrawal`](/docs/testnet/graphql/objects/withdrawal)  <Badge class="secondary" text="object"/>
 
 
 

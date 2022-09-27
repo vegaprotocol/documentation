@@ -1,10 +1,16 @@
 ---
 id: ethereum-event
 title: EthereumEvent
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 An Ethereum oracle
@@ -19,15 +25,19 @@ type EthereumEvent {
 
 ### Fields
 
-#### [`contractId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+#### [<code style={{ fontWeight: 'normal' }}>EthereumEvent.<b>contractId</b></code>](#)<Bullet />[`ID!`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The ID of the ethereum contract to use (string)
+> 
 
-The ID of the ethereum contract to use (string)
+#### [<code style={{ fontWeight: 'normal' }}>EthereumEvent.<b>event</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Name of the Ethereum event to listen to. (string)
+> 
 
 
-#### [`event`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
-Name of the Ethereum event to listen to. (string)
+### Implemented by
 
+[`Oracle`](/docs/testnet/graphql/unions/oracle)  <Badge class="secondary" text="union"/>
 
 
 

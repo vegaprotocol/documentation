@@ -1,10 +1,16 @@
 ---
 id: market-depth-trade
 title: MarketDepthTrade
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 No description
@@ -20,20 +26,23 @@ type MarketDepthTrade {
 
 ### Fields
 
-#### [`id`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+#### [<code style={{ fontWeight: 'normal' }}>MarketDepthTrade.<b>id</b></code>](#)<Bullet />[`ID!`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> ID of the trade for the given market (if available)
+> 
 
-ID of the trade for the given market (if available)
+#### [<code style={{ fontWeight: 'normal' }}>MarketDepthTrade.<b>price</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Price of the trade
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MarketDepthTrade.<b>size</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Size of the trade
+> 
 
 
-#### [`price`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
-Price of the trade
+### Member of
 
-
-#### [`size`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Size of the trade
-
+[`ObservableMarketDepth`](/docs/testnet/graphql/objects/observable-market-depth)  <Badge class="secondary" text="object"/>
 
 
 

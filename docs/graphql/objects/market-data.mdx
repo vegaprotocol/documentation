@@ -1,10 +1,16 @@
 ---
 id: market-data
 title: MarketData
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 Live data of a Market
@@ -45,145 +51,131 @@ type MarketData {
 
 ### Fields
 
-#### [`market`](#) ([`Market!`](/docs/testnet/graphql/objects/market))
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>market</b></code>](#)<Bullet />[`Market!`](/docs/testnet/graphql/objects/market) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Market of the associated mark price
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>markPrice</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The mark price (an unsigned integer)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>bestBidPrice</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The highest price level on an order book for buy orders.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>bestBidVolume</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The aggregated volume being bid at the best bid price.
+> 
 
-market of the associated mark price
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>bestOfferPrice</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The lowest price level on an order book for offer orders.
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>bestOfferVolume</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The aggregated volume being offered at the best offer price.
+> 
 
-#### [`markPrice`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>bestStaticBidPrice</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The highest price level on an order book for buy orders not including pegged orders.
+> 
 
-the mark price (an unsigned integer)
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>bestStaticBidVolume</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The aggregated volume being offered at the best static bid price, excluding pegged orders
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>bestStaticOfferPrice</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The lowest price level on an order book for offer orders not including pegged orders.
+> 
 
-#### [`bestBidPrice`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>bestStaticOfferVolume</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The aggregated volume being offered at the best static offer price, excluding pegged orders.
+> 
 
-the highest price level on an order book for buy orders.
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>midPrice</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The arithmetic average of the best bid price and best offer price.
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>staticMidPrice</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The arithmetic average of the best static bid price and best static offer price
+> 
 
-#### [`bestBidVolume`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>timestamp</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano time at which this market price was relevant
+> 
 
-the aggregated volume being bid at the best bid price.
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>openInterest</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The sum of the size of all positions greater than 0.
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>auctionEnd</b></code>](#)<Bullet />[`String`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> RFC3339Nano time at which the auction will stop (null if not in auction mode)
+> 
 
-#### [`bestOfferPrice`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>auctionStart</b></code>](#)<Bullet />[`String`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> RFC3339Nano time at which the next auction will start (null if none is scheduled)
+> 
 
-the lowest price level on an order book for offer orders.
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>indicativePrice</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Indicative price if the auction ended now, 0 if not in auction mode
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>indicativeVolume</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Indicative volume if the auction ended now, 0 if not in auction mode
+> 
 
-#### [`bestOfferVolume`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>marketTradingMode</b></code>](#)<Bullet />[`MarketTradingMode!`](/docs/testnet/graphql/enums/market-trading-mode) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> What mode the market is in (auction, continuous, etc)
+> 
 
-the aggregated volume being offered at the best offer price.
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>marketState</b></code>](#)<Bullet />[`MarketState!`](/docs/testnet/graphql/enums/market-state) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Current state of the market
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>trigger</b></code>](#)<Bullet />[`AuctionTrigger!`](/docs/testnet/graphql/enums/auction-trigger) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> What triggered an auction (if an auction was started)
+> 
 
-#### [`bestStaticBidPrice`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>extensionTrigger</b></code>](#)<Bullet />[`AuctionTrigger!`](/docs/testnet/graphql/enums/auction-trigger) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> What extended the ongoing auction (if an auction was extended)
+> 
 
-the highest price level on an order book for buy orders not including pegged orders.
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>targetStake</b></code>](#)<Bullet />[`String`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> The amount of stake targeted for this market
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>suppliedStake</b></code>](#)<Bullet />[`String`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> The supplied stake for the market
+> 
 
-#### [`bestStaticBidVolume`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>commitments</b></code>](#)<Bullet />[`MarketDataCommitments!`](/docs/testnet/graphql/objects/market-data-commitments) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The liquidity commitments for a given market
+> 
 
-the aggregated volume being offered at the best static bid price, excluding pegged orders
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>priceMonitoringBounds</b></code>](#)<Bullet />[`[PriceMonitoringBounds!]`](/docs/testnet/graphql/objects/price-monitoring-bounds) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> A list of valid price ranges per associated trigger
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>marketValueProxy</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The market value proxy
+> 
 
-#### [`bestStaticOfferPrice`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>liquidityProviderFeeShare</b></code>](#)<Bullet />[`[LiquidityProviderFeeShare!]`](/docs/testnet/graphql/objects/liquidity-provider-fee-share) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> The equity like share of liquidity fee for each liquidity provider
+> 
 
-the lowest price level on an order book for offer orders not including pegged orders.
 
 
-#### [`bestStaticOfferVolume`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+### Returned by
 
-the aggregated volume being offered at the best static offer price, excluding pegged orders.
+[`getMarketDataHistoryByID`](/docs/testnet/graphql/queries/get-market-data-history-by-id)  <Badge class="secondary" text="query"/>
 
+### Member of
 
-#### [`midPrice`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+[`Market`](/docs/testnet/graphql/objects/market)  <Badge class="secondary" text="object"/><Bullet />[`MarketDataEdge`](/docs/testnet/graphql/objects/market-data-edge)  <Badge class="secondary" text="object"/>
 
-the arithmetic average of the best bid price and best offer price.
+### Implemented by
 
-
-#### [`staticMidPrice`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-the arithmetic average of the best static bid price and best static offer price
-
-
-#### [`timestamp`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-RFC3339Nano time at which this market price was relevant
-
-
-#### [`openInterest`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-the sum of the size of all positions greater than 0.
-
-
-#### [`auctionEnd`](#) ([`String`](/docs/testnet/graphql/scalars/string))
-
-RFC3339Nano time at which the auction will stop (null if not in auction mode)
-
-
-#### [`auctionStart`](#) ([`String`](/docs/testnet/graphql/scalars/string))
-
-RFC3339Nano time at which the next auction will start (null if none is scheduled)
-
-
-#### [`indicativePrice`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-indicative price if the auction ended now, 0 if not in auction mode
-
-
-#### [`indicativeVolume`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-indicative volume if the auction ended now, 0 if not in auction mode
-
-
-#### [`marketTradingMode`](#) ([`MarketTradingMode!`](/docs/testnet/graphql/enums/market-trading-mode))
-
-what mode the market is in (auction, continuous, etc)
-
-
-#### [`marketState`](#) ([`MarketState!`](/docs/testnet/graphql/enums/market-state))
-
-current state of the market
-
-
-#### [`trigger`](#) ([`AuctionTrigger!`](/docs/testnet/graphql/enums/auction-trigger))
-
-what triggered an auction (if an auction was started)
-
-
-#### [`extensionTrigger`](#) ([`AuctionTrigger!`](/docs/testnet/graphql/enums/auction-trigger))
-
-what extended the ongoing auction (if an auction was extended)
-
-
-#### [`targetStake`](#) ([`String`](/docs/testnet/graphql/scalars/string))
-
-the amount of stake targeted for this market
-
-
-#### [`suppliedStake`](#) ([`String`](/docs/testnet/graphql/scalars/string))
-
-the supplied stake for the market
-
-
-#### [`commitments`](#) ([`MarketDataCommitments!`](/docs/testnet/graphql/objects/market-data-commitments))
-
-the liquidity commitments for a given market
-
-
-#### [`priceMonitoringBounds`](#) ([`[PriceMonitoringBounds!]`](/docs/testnet/graphql/objects/price-monitoring-bounds))
-
-a list of valid price ranges per associated trigger
-
-
-#### [`marketValueProxy`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-the market value proxy
-
-
-#### [`liquidityProviderFeeShare`](#) ([`[LiquidityProviderFeeShare!]`](/docs/testnet/graphql/objects/liquidity-provider-fee-share))
-
-the equity like share of liquidity fee for each liquidity provider
-
+[`Event`](/docs/testnet/graphql/unions/event)  <Badge class="secondary" text="union"/>
 
 
 

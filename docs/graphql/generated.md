@@ -1,7 +1,7 @@
 ---
 id: schema
 slug: /graphql
-title: GraphQL Schema
+title: Schema Documentation
 sidebar_position: 1
 hide_table_of_contents: true
 pagination_next: null
@@ -16,3 +16,4 @@ Use the docs in the sidebar to find out how to use the schema:
 - **Allowed operations**: queries and mutations.
 - **Schema-defined types**: scalars, objects, enums, interfaces, unions, and input objects.
 
+<small><i>Generated on 27/09/2022, 12:00:53.</i></small>

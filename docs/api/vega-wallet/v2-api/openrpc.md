@@ -1,11 +1,11 @@
 ---
-    title: OpenRPC Wallet API
+    title: OpenRPC
 ---
 - [session.connect_wallet](#sessionconnect_wallet): Initiates a connection between a wallet and a third-party application.
 - [session.disconnect_wallet](#sessiondisconnect_wallet): Ends the connection between the third-party application and the wallet.
 - [session.get_permissions](#sessionget_permissions): Returns the permissions set on the wallet for the third-party application.
 - [session.request_permissions](#sessionrequest_permissions): Requests permissions update for the third-party application.
-- [session.list_keys](#sessionlist_keys): Returns the keys the client has allowed the third-party application to have access to.
+- [session.list_keys](#sessionlist_keys): Returns the keys the user has allowed the third-party application to have access to.
 - [session.sign_transaction](#sessionsign_transaction): Sign a transaction without sending it.
 - [session.send_transaction](#sessionsend_transaction): Send a transaction to the network.
 - [session.get_chain_id](#sessionget_chain_id): Returns the chain ID of the network in use.
@@ -13,9 +13,10 @@
 - [admin.import_wallet](#adminimport_wallet): Import a wallet with its first key-pair with a recovery phrase and a version.
 - [admin.describe_wallet](#admindescribe_wallet): Returns the wallet base information.
 - [admin.list_wallets](#adminlist_wallets): Returns the list of the wallets present on the computer.
-- [admin.remove_network](#adminremove_network): Removes a network from the computer.
 - [admin.list_networks](#adminlist_networks): Returns the list of all registered networks.
 - [admin.describe_network](#admindescribe_network): Returns the network information.
+- [admin.update_network](#adminupdate_network): Update an existing network.
+- [admin.remove_network](#adminremove_network): Removes a network from the computer.
 - [admin.import_network](#adminimport_network): Import a network configuration from a file or an URL.
 - [admin.remove_wallet](#adminremove_wallet): Removes a wallet from the computer.
 - [admin.generate_key](#admingenerate_key): Generates a key on the specified wallet.
@@ -31,6 +32,10 @@
 - [admin.update_permissions](#adminupdate_permissions): Updates the permissions for the specified wallet and hostname.
 - [admin.revoke_permissions](#adminrevoke_permissions): Revokes the permissions set in the specified hostname.
 - [admin.purge_permissions](#adminpurge_permissions): Purges all the permissions set for all hostname.
+- [admin.sign_transaction](#adminsign_transaction): Sign a command using the specified wallet and public key.
+- [admin.sign_message](#adminsign_message): Sign any arbitrary message
+- [admin.verify_message](#adminverify_message): Verify any arbitrary signature
+- [admin.send_transaction](#adminsend_transaction): Send a signed transaction to a network
 
 ---
 
@@ -40,7 +45,7 @@
 
 This method initiates a connection between a wallet and a third-party application.
 
-The client has to review the request, and, if they accept it, select the wallet they want to use for this connection.
+The user has to review the request, and, if they accept it, select the wallet they want to use for this connection.
 
 A connection token is generated and returned to the third-party application. This token is meant to be used in protected methods.
 
@@ -61,13 +66,13 @@ This method should be the entry point of every third-party application. Once con
 ### Result: `token`
 
 ### Errors
-- **Client error** (3000): the client closed the connection
-- **Client error** (3001): the client rejected the request
+- **Client error** (3000): the user closed the connection
+- **Client error** (3001): the user rejected the request
 - **Server error** (-32001): the request has been interrupted
 
 ### Examples
 #### Accepting a connection from "vega.xyz"
-The third-party application "vega.xyz" requests a connection to a wallet and the client accepts.
+The third-party application "vega.xyz" requests a connection to a wallet and the user accepts.
 
 ##### Parameters
 ```json
@@ -189,7 +194,7 @@ This method allows a third-party application to request new permissions to acces
 
 All permissions the third-party relies on have to be specified. If a permission is omitted, it will be considered as no longer required and, as a result, be automatically revoked.
 
-The client has to review the permissions.
+The user has to review the permissions.
 
 ### Parameters
 | Parameter name  |  Type  |  Description |
@@ -203,13 +208,13 @@ The client has to review the permissions.
 | public_keys | string | The different access modes a permission can have. | The different access modes a permission can have.} |
 
 ### Errors
-- **Client error** (3000): the client closed the connection
-- **Client error** (3001): the client rejected the request
+- **Client error** (3000): the user closed the connection
+- **Client error** (3001): the user rejected the request
 - **Server error** (-32001): the request has been interrupted
 
 ### Examples
 #### Updating permissions for "vega.xyz"
-The third-party application "vega.xyz" requests an update of its permissions and the client accepts.
+The third-party application "vega.xyz" requests an update of its permissions and the user accepts.
 
 ##### Parameters
 ```json
@@ -240,7 +245,7 @@ The third-party application "vega.xyz" requests an update of its permissions and
 
 
 #### Updating permissions for "vega.xyz" with omitted permission
-The third-party application "vega.xyz" omits a permission during the update and the client accepts. This automatically marks the omitted permission as revoked.
+The third-party application "vega.xyz" omits a permission during the update and the user accepts. This automatically marks the omitted permission as revoked.
 
 ##### Parameters
 ```json
@@ -272,7 +277,7 @@ The third-party application "vega.xyz" omits a permission during the update and 
 
 ## `session.list_keys`
 
-This method returns the keys the client has allowed the third-party application to have access to.
+This method returns the keys the user has allowed the third-party application to have access to.
 
 It requires a `read` access on `public_keys`.
 
@@ -328,7 +333,7 @@ The third-party application "vega.xyz" wants to list the public keys it has acce
 
 This method signs a transaction and returns it to the third-party application, without sending it to the network. What happens with the transaction is up to the third-party application.
 
-The client has to review the transaction.
+The user has to review the transaction.
 
 ### Parameters
 | Parameter name  |  Type  |  Description |
@@ -346,13 +351,13 @@ The client has to review the transaction.
 - **Network error** (1000): no healthy node available
 - **Network error** (1000): could not get information about the last block on the network
 - **Application error** (2000): the public key is not allowed to be used
-- **Client error** (3000): the client closed the connection
-- **Client error** (3001): the client rejected the request
+- **Client error** (3000): the user closed the connection
+- **Client error** (3001): the user rejected the request
 - **Server error** (-32001): the request has been interrupted
 
 ### Examples
 #### Signing a transaction for "vega.xyz"
-The third-party application "vega.xyz" requests to sign a transaction and the client accepts.
+The third-party application "vega.xyz" requests to sign a transaction and the user accepts.
 
 ##### Parameters
 ```json
@@ -388,7 +393,7 @@ The third-party application "vega.xyz" requests to sign a transaction and the cl
 
 This method sends a transaction to the network.
 
-The client has to review the transaction.
+The user has to review the transaction.
 
 ### Parameters
 | Parameter name  |  Type  |  Description |
@@ -411,13 +416,13 @@ The client has to review the transaction.
 - **Network error** (1000): could not get information about the last block on the network
 - **Network error** (1000): the transaction failed
 - **Application error** (2000): the public key is not allowed to be used
-- **Client error** (3000): the client closed the connection
-- **Client error** (3001): the client rejected the request
+- **Client error** (3000): the user closed the connection
+- **Client error** (3001): the user rejected the request
 - **Server error** (-32001): the request has been interrupted
 
 ### Examples
 #### Sending a transaction for "vega.xyz"
-The third-party application "vega.xyz" requests to send a transaction and the client accepts.
+The third-party application "vega.xyz" requests to send a transaction and the user accepts.
 
 ##### Parameters
 ```json
@@ -733,46 +738,6 @@ undefined
 ---
 
 
-## `admin.remove_network`
-
-This method removes a network from the computer.
-
-### Parameters
-| Parameter name  |  Type  |  Description |
-|------------------|--------|--------|
-| **network** | string | - |
-
-### Result: `Success`
-
-
-
-### Examples
-#### Remove a network
-undefined
-
-##### Parameters
-```json
-{
-    "id": 1,
-    "jsonrpc": "2.0",
-    "method": "admin.remove_network",
-    "params": {
-        "network": "fairground"
-    }
-}
-```
-
-##### Result
-```json
-{
-    "name": "Success",
-    "value": {}
-}
-```
-
----
-
-
 ## `admin.list_networks`
 
 This method returns the list of the registered networks.
@@ -829,7 +794,7 @@ This method returns the network information.
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
 | name | string | - | -} |
-| level | number | - | -} |
+| logLevel | string | - | -} |
 | tokenExpiry | string | - | -} |
 | port | integer | - | -} |
 | host | string | - | -} |
@@ -882,6 +847,113 @@ undefined
             }
         }
     }
+}
+```
+
+---
+
+
+## `admin.update_network`
+
+This method updates the network configuration.
+
+### Parameters
+| Parameter name  |  Type  |  Description |
+|------------------|--------|--------|
+| **name** | string | - |
+| **logLevel** | string | - |
+| **tokenExpiry** | string | - |
+| **port** | integer | - |
+| **host** | string | - |
+| **api** | object | The API configuration for the network.<br /><br /><br /><br /> |
+
+### Result: `Success`
+
+
+
+### Examples
+#### Update a network
+undefined
+
+##### Parameters
+```json
+{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "admin.update_network",
+    "params": {
+        "name": "local-network",
+        "level": "info",
+        "tokenExpiry": "168h0m0s",
+        "port": "1789",
+        "host": "localhost",
+        "api": {
+            "grpcConfig": {
+                "hosts": [
+                    "localhost:3028"
+                ],
+                "retries": 5
+            },
+            "graphQLConfig": {
+                "hosts": [
+                    "localhost:3028"
+                ]
+            },
+            "restConfig": {
+                "hosts": [
+                    "localhost:3029"
+                ]
+            }
+        }
+    }
+}
+```
+
+##### Result
+```json
+{
+    "name": "Success",
+    "value": {}
+}
+```
+
+---
+
+
+## `admin.remove_network`
+
+This method removes a network from the computer.
+
+### Parameters
+| Parameter name  |  Type  |  Description |
+|------------------|--------|--------|
+| **network** | string | - |
+
+### Result: `Success`
+
+
+
+### Examples
+#### Remove a network
+undefined
+
+##### Parameters
+```json
+{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "admin.remove_network",
+    "params": {
+        "network": "fairground"
+    }
+}
+```
+
+##### Result
+```json
+{
+    "name": "Success",
+    "value": {}
 }
 ```
 
@@ -1359,6 +1431,8 @@ undefined
 
 This method marks the specified public key as tainted. It makes it unusable for transaction signing.
 
+When a key is tainted, it is automatically removed from the restricted keys if specified. If the key is the only one to be set, the permission to access the public keys is revoked. If no restricted key is specified, but all keys in the wallet are tainted, the permission of the public keys is revoked as well.
+
 ### Parameters
 | Parameter name  |  Type  |  Description |
 |------------------|--------|--------|
@@ -1700,5 +1774,99 @@ undefined
     "value": null
 }
 ```
+
+---
+
+
+## `admin.sign_transaction`
+
+This method signs a transaction returning a base64-encoded transaction that can be sent using the method `admin.send_transaction`
+
+### Parameters
+| Parameter name  |  Type  |  Description |
+|------------------|--------|--------|
+| **wallet** | string | - |
+| **passphrase** | string | - |
+| **pubKey** | string | - |
+| **chainId** | string | - |
+| **blockHeight** | integer | - |
+| network _(Optional)_ | integer | - |
+| **encodedCommand** | string | - |
+
+### Result: `Success`
+| Result key  |  Type  |  Description | Example |
+|------------------|--------|--------|---------|
+| encodedTransaction | string | - | -} |
+
+
+
+---
+
+
+## `admin.sign_message`
+
+This method signs any given message with a Vega public-key
+
+### Parameters
+| Parameter name  |  Type  |  Description |
+|------------------|--------|--------|
+| **wallet** | string | - |
+| **passphrase** | string | - |
+| **pubKey** | string | - |
+| **encodedMessage** | string | The message to sign encoded using base-64. |
+
+### Result: `Success`
+| Result key  |  Type  |  Description | Example |
+|------------------|--------|--------|---------|
+| encodedSignature | string | - | -} |
+
+
+
+---
+
+
+## `admin.verify_message`
+
+This method verifies any given signature with a Vega public-key
+
+### Parameters
+| Parameter name  |  Type  |  Description |
+|------------------|--------|--------|
+| **pubKey** | string | - |
+| **encodedMessage** | string | The message use to create the signature, encoded using base-64. |
+| **encodedSignature** | string | The signature to verify, encoded using base-64. |
+
+### Result: `Success`
+| Result key  |  Type  |  Description | Example |
+|------------------|--------|--------|---------|
+| isValid | string | - | -} |
+
+
+
+---
+
+
+## `admin.send_transaction`
+
+This method sends a transaction that was signed using admin.sign_transaction into a network
+
+### Parameters
+| Parameter name  |  Type  |  Description |
+|------------------|--------|--------|
+| **encodedTransaction** | string | The signed transaction to be sent, encoded using base-64. |
+| **network** | string | The network to send the transaction to. |
+| **nodeAddress** | string | The node address to send the transaction to. |
+| **retries** | integer | the number of times sending the transaction should be attempted if it fails |
+| **sendingMode** | string | The chosen mode to send the transaction:<br />- `TYPE_SYNC` returns the result of running the transaction.<br />- `TYPE_ASYNC` returns right away without waiting to hear if the transaction is even valid.<br />- `TYPE_COMMIT` waits until the transaction is committed in a block or until some timeout is reached or returns return right away if the transaction is not valid. |
+
+### Result: `Success`
+| Result key  |  Type  |  Description | Example |
+|------------------|--------|--------|---------|
+| receivedAt | string | The date when the API received the request to send the transaction.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. | The date when the API received the request to send the transaction.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present.} |
+| sentAt | string | The date when the transaction has been sent to the network.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. | The date when the transaction has been sent to the network.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present.} |
+| transactionHash | string | The hash of the transaction. It's used to uniquely identify the transaction and can be used in the block explorer to retrieve it. | The hash of the transaction. It's used to uniquely identify the transaction and can be used in the block explorer to retrieve it.} |
+| transaction | object | A transaction that has been signed by the wallet. | A transaction that has been signed by the wallet.} |
+
+
 
 

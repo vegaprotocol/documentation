@@ -1,10 +1,16 @@
 ---
 id: reward
 title: Reward
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 Reward information for a single party
@@ -25,45 +31,47 @@ type Reward {
 
 ### Fields
 
-#### [`asset`](#) ([`Asset!`](/docs/testnet/graphql/objects/asset))
+#### [<code style={{ fontWeight: 'normal' }}>Reward.<b>asset</b></code>](#)<Bullet />[`Asset!`](/docs/testnet/graphql/objects/asset) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The asset this reward is paid in
+> 
 
-The asset this reward is paid in
+#### [<code style={{ fontWeight: 'normal' }}>Reward.<b>marketId</b></code>](#)<Bullet />[`ID!`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The market ID for which this reward is paid if any
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>Reward.<b>rewardType</b></code>](#)<Bullet />[`AccountType!`](/docs/testnet/graphql/enums/account-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The type of reward
+> 
 
-#### [`marketId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+#### [<code style={{ fontWeight: 'normal' }}>Reward.<b>party</b></code>](#)<Bullet />[`Party!`](/docs/testnet/graphql/objects/party) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Party receiving the reward
+> 
 
-The market ID for which this reward is paid if any
+#### [<code style={{ fontWeight: 'normal' }}>Reward.<b>epoch</b></code>](#)<Bullet />[`Epoch!`](/docs/testnet/graphql/objects/epoch) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Epoch for which this reward was distributed
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>Reward.<b>amount</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Amount received for this reward
+> 
 
-#### [`rewardType`](#) ([`AccountType!`](/docs/testnet/graphql/enums/account-type))
+#### [<code style={{ fontWeight: 'normal' }}>Reward.<b>percentageOfTotal</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Percentage out of the total distributed reward
+> 
 
-The type of reward
-
-
-#### [`party`](#) ([`Party!`](/docs/testnet/graphql/objects/party))
-
-Party receiving the reward
-
-
-#### [`epoch`](#) ([`Epoch!`](/docs/testnet/graphql/objects/epoch))
-
-Epoch for which this reward was distributed
-
-
-#### [`amount`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Amount received for this reward
-
-
-#### [`percentageOfTotal`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Percentage out of the total distributed reward
+#### [<code style={{ fontWeight: 'normal' }}>Reward.<b>receivedAt</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Time at which the rewards was received
+> 
 
 
-#### [`receivedAt`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
-Time at which the rewards was received
+### Returned by
 
+[`rewards`](/docs/testnet/graphql/subscriptions/rewards)  <Badge class="secondary" text="subscription"/>
+
+### Member of
+
+[`Party`](/docs/testnet/graphql/objects/party)  <Badge class="secondary" text="object"/><Bullet />[`RewardEdge`](/docs/testnet/graphql/objects/reward-edge)  <Badge class="secondary" text="object"/><Bullet />[`RewardPerAssetDetail`](/docs/testnet/graphql/objects/reward-per-asset-detail)  <Badge class="secondary" text="object"/><Bullet />[`RewardSummary`](/docs/testnet/graphql/objects/reward-summary)  <Badge class="secondary" text="object"/>
 
 
 

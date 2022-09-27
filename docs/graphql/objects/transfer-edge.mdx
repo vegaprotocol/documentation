@@ -1,13 +1,19 @@
 ---
 id: transfer-edge
 title: TransferEdge
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
 
 
-No description
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Edge type containing the transfer and cursor information returned by a TransferConnection
 
 ```graphql
 type TransferEdge {
@@ -19,15 +25,19 @@ type TransferEdge {
 
 ### Fields
 
-#### [`node`](#) ([`Transfer!`](/docs/testnet/graphql/objects/transfer))
+#### [<code style={{ fontWeight: 'normal' }}>TransferEdge.<b>node</b></code>](#)<Bullet />[`Transfer!`](/docs/testnet/graphql/objects/transfer) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TransferEdge.<b>cursor</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
 
 
 
+### Member of
 
-#### [`cursor`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-
-
+[`TransferConnection`](/docs/testnet/graphql/objects/transfer-connection)  <Badge class="secondary" text="object"/>
 
 
 

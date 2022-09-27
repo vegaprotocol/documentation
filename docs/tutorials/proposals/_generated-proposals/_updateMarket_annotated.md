@@ -20,8 +20,8 @@
       // Human-readable name/abbreviation of the quote name (string)
       quoteName: "tEuro",
 
-      // The number of decimal places implied by the settlement price emitted by the settlement oracle (int64 as integer)
-      settlementPriceDecimals: 5,
+      // The number of decimal places implied by the settlement data (such as price) emitted by the settlement oracle (int64 as integer)
+      settlementDataDecimals: 5,
 
       // The oracle spec describing the oracle data of settlement price (object)
       oracleSpecForSettlementPrice: {
@@ -112,7 +112,9 @@
 
      // Optional market metadata, tags
      metadata: [
-      "sector:tech",
+      "sector:materials",
+      "sector:health",
+      "sector:food",
       "source:docs.vega.xyz"
      ],
 
@@ -141,7 +143,7 @@
       tau: 0.0001140771161,
 
       // Risk Aversion Parameter (double as number) 
-      riskAversionParameter: "0.0001",
+      riskAversionParameter: "0.01",
 
       // Risk model parameters for log normal
       params: {
@@ -160,11 +162,11 @@
 
    // Timestamp (Unix time in seconds) when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-   closingTimestamp: 1665423449,
+   closingTimestamp: 1665918056,
 
    // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
    // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-   enactmentTimestamp: 1665509849,
+   enactmentTimestamp: 1666004456,
   }
  }
 ```

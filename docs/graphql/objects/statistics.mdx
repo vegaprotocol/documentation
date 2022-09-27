@@ -1,10 +1,16 @@
 ---
 id: statistics
 title: Statistics
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 Statistics about the node
@@ -42,130 +48,111 @@ type Statistics {
 
 ### Fields
 
-#### [`blockHeight`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>blockHeight</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Current block number
+> 
 
-Current block number
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>blockHash</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Current block hash
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>backlogLength</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Number of items in the backlog
+> 
 
-#### [`blockHash`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>totalPeers</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Total number of peers on the Vega network
+> 
 
-Current block hash
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>genesisTime</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano genesis time of the chain
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>currentTime</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano current time (real)
+> 
 
-#### [`backlogLength`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>upTime</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano uptime of the node
+> 
 
-Number of items in the backlog
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>vegaTime</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano current time of the chain (decided through consensus)
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>status</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Status of the Vega application connection with the chain
+> 
 
-#### [`totalPeers`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>txPerBlock</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Number of transaction processed per block
+> 
 
-Total number of peers on the Vega network
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>averageTxBytes</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Average size of the transactions
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>averageOrdersPerBlock</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Average number of orders added per blocks
+> 
 
-#### [`genesisTime`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>tradesPerSecond</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Number of the trades per seconds
+> 
 
-RFC3339Nano genesis time of the chain
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>ordersPerSecond</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Number of orders per seconds
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>totalMarkets</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Total number of markets
+> 
 
-#### [`currentTime`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>totalAmendOrder</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Total number of amended orders
+> 
 
-RFC3339Nano current time (real)
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>totalCancelOrder</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Total number of cancelled orders
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>totalCreateOrder</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Total number of orders created
+> 
 
-#### [`upTime`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>totalOrders</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Total number of orders
+> 
 
-RFC3339Nano uptime of the node
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>totalTrades</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Total number of trades
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>appVersionHash</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Version commit hash of the Vega node
+> 
 
-#### [`vegaTime`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>appVersion</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Version of the Vega node (semver)
+> 
 
-RFC3339Nano current time of the chain (decided through consensus)
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>chainVersion</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Version of the chain (semver)
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>blockDuration</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Duration of the last block, in nanoseconds
+> 
 
-#### [`status`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>chainId</b></code>](#)<Bullet />[`ID!`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Current chain ID
+> 
 
-Status of the Vega application connection with the chain
 
 
-#### [`txPerBlock`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+### Returned by
 
-Number of transaction processed per block
-
-
-#### [`averageTxBytes`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Average size of the transactions
-
-
-#### [`averageOrdersPerBlock`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Average number of orders added per blocks
-
-
-#### [`tradesPerSecond`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Number of the trades per seconds
-
-
-#### [`ordersPerSecond`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Number of orders per seconds
-
-
-#### [`totalMarkets`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Total number of markets
-
-
-#### [`totalAmendOrder`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Total number of amended orders
-
-
-#### [`totalCancelOrder`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Total number of cancelled orders
-
-
-#### [`totalCreateOrder`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Total number of orders created
-
-
-#### [`totalOrders`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Total number of orders
-
-
-#### [`totalTrades`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Total number of trades
-
-
-#### [`appVersionHash`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Version commit hash of the Vega node
-
-
-#### [`appVersion`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Version of the Vega node (semver)
-
-
-#### [`chainVersion`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Version of the chain (semver)
-
-
-#### [`blockDuration`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Duration of the last block, in nanoseconds
-
-
-#### [`chainId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
-
-Current chain ID
-
+[`statistics`](/docs/testnet/graphql/queries/statistics)  <Badge class="secondary" text="query"/>
 
 
 

@@ -1,10 +1,16 @@
 ---
 id: oracle-data
 title: OracleData
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 An oracle data contains the data sent by an oracle
@@ -21,28 +27,34 @@ type OracleData {
 
 ### Fields
 
-#### [`pubKeys`](#) ([`[String!]`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>OracleData.<b>pubKeys</b></code>](#)<Bullet />[`[String!]`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> The list of public keys that signed the data
+> 
 
-pubKeys is the list of public keys that signed the data
+#### [<code style={{ fontWeight: 'normal' }}>OracleData.<b>data</b></code>](#)<Bullet />[`[Property!]`](/docs/testnet/graphql/objects/property) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> All the properties sent by an oracle
+> 
 
-
-#### [`data`](#) ([`[Property!]`](/docs/testnet/graphql/objects/property))
-
-data contains all the properties send by an oracle
-
-
-#### [`matchedSpecIds`](#) ([`[ID!]`](/docs/testnet/graphql/scalars/id))
-
-lists all the oracle specs that matched this oracle data.
+#### [<code style={{ fontWeight: 'normal' }}>OracleData.<b>matchedSpecIds</b></code>](#)<Bullet />[`[ID!]`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> Lists of all the oracle specs that matched this oracle data.
 When the array is empty, it means no oracle spec matched this oracle data.
+> 
 
-
-#### [`broadcastAt`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-RFC3339Nano formatted date and time for when the data was broadcast to the markets
+#### [<code style={{ fontWeight: 'normal' }}>OracleData.<b>broadcastAt</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano formatted date and time for when the data was broadcast to the markets
 with a matching oracle spec.
 It has no value when the oracle date does not match any oracle spec.
+> 
 
+
+
+### Returned by
+
+[`oracleData`](/docs/testnet/graphql/queries/oracle-data)  <Badge class="secondary" text="query"/><Bullet />[`oracleDataBySpec`](/docs/testnet/graphql/queries/oracle-data-by-spec)  <Badge class="secondary" text="query"/>
+
+### Member of
+
+[`OracleDataEdge`](/docs/testnet/graphql/objects/oracle-data-edge)  <Badge class="secondary" text="object"/><Bullet />[`OracleSpec`](/docs/testnet/graphql/objects/oracle-spec)  <Badge class="secondary" text="object"/>
 
 
 

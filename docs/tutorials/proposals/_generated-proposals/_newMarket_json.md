@@ -16,7 +16,7 @@
           "future": {
             "settlementAsset": "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
             "quoteName": "tEuro",
-            "settlementPriceDecimals": 5,
+            "settlementDataDecimals": 5,
             "oracleSpecForSettlementPrice": {
               "pubKeys": [
                 "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
@@ -62,7 +62,8 @@
           }
         },
         "metadata": [
-          "sector:tech",
+          "sector:energy",
+          "sector:health",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -84,17 +85,17 @@
         },
         "logNormal": {
           "tau": 0.0001140771161,
-          "riskAversionParameter": 0.0001,
+          "riskAversionParameter": 0.001,
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 0.5
+            "sigma": 1.25
           }
         }
       }
     },
-    "closingTimestamp": 1665423449,
-    "enactmentTimestamp": 1665509849
+    "closingTimestamp": 1665918056,
+    "enactmentTimestamp": 1666004456
   }
 }
 ```

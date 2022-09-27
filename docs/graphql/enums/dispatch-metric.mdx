@@ -1,13 +1,19 @@
 ---
 id: dispatch-metric
 title: DispatchMetric
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
 
 
-No description
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The type of metric to use for a reward dispatch strategy
 
 ```graphql
 enum DispatchMetric {
@@ -21,25 +27,27 @@ enum DispatchMetric {
 
 ### Values
 
-#### [`DISPATCH_METRIC_MAKER_FEES_PAID`](#)
+#### [<code style={{ fontWeight: 'normal' }}>DispatchMetric.<b>DISPATCH_METRIC_MAKER_FEES_PAID</b></code>](#) 
+> Dispatch metric that uses the total maker fees paid in the market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DispatchMetric.<b>DISPATCH_METRIC_MAKER_FEES_RECEIVED</b></code>](#) 
+> Dispatch metric that uses the total maker fees received in the market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DispatchMetric.<b>DISPATCH_METRIC_LP_FEES_RECEIVED</b></code>](#) 
+> Dispatch metric that uses the total LP fees received in the market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DispatchMetric.<b>DISPATCH_METRIC_MARKET_VALUE</b></code>](#) 
+> Dispatch metric that uses the total value of the market if above the required threshold and not paid given proposer bonus yet
+> 
 
 
 
+### Member of
 
-#### [`DISPATCH_METRIC_MAKER_FEES_RECEIVED`](#)
-
-
-
-
-#### [`DISPATCH_METRIC_LP_FEES_RECEIVED`](#)
-
-
-
-
-#### [`DISPATCH_METRIC_MARKET_VALUE`](#)
-
-
-
+[`DispatchStrategy`](/docs/testnet/graphql/objects/dispatch-strategy)  <Badge class="secondary" text="object"/>
 
 
 

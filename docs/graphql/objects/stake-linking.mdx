@@ -1,10 +1,16 @@
 ---
 id: stake-linking
 title: StakeLinking
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 A stake linking represent the intent from a party to deposit / remove stake on their account
@@ -25,45 +31,43 @@ type StakeLinking {
 
 ### Fields
 
-#### [`id`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>id</b></code>](#)<Bullet />[`ID!`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>type</b></code>](#)<Bullet />[`StakeLinkingType!`](/docs/testnet/graphql/enums/stake-linking-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Type of linking: link|unlink
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>timestamp</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The time at which the request happened on ethereum
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>party</b></code>](#)<Bullet />[`Party!`](/docs/testnet/graphql/objects/party) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The party initiating the stake linking
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>amount</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The amount linked or unlinked
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>status</b></code>](#)<Bullet />[`StakeLinkingStatus!`](/docs/testnet/graphql/enums/stake-linking-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The status of the linking
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>finalizedAt</b></code>](#)<Bullet />[`String`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> The time at which the stake linking was fully processed by the Vega network, null until defined
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>txHash</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The transaction hash (ethereum) which initiated the link/unlink
+> 
 
 
 
+### Member of
 
-#### [`type`](#) ([`StakeLinkingType!`](/docs/testnet/graphql/enums/stake-linking-type))
-
-Type of linking: link|unlink
-
-
-#### [`timestamp`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-The time at which the request happened on ethereum
-
-
-#### [`party`](#) ([`Party!`](/docs/testnet/graphql/objects/party))
-
-The party initiating the stake linking
-
-
-#### [`amount`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-The amount linked or unlinked
-
-
-#### [`status`](#) ([`StakeLinkingStatus!`](/docs/testnet/graphql/enums/stake-linking-status))
-
-The status of the linking
-
-
-#### [`finalizedAt`](#) ([`String`](/docs/testnet/graphql/scalars/string))
-
-The time at which the stake linking was fully processed by the Vega network, null until defined
-
-
-#### [`txHash`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-The transaction hash (ethereum) which initiated the link/unlink
-
+[`PartyStake`](/docs/testnet/graphql/objects/party-stake)  <Badge class="secondary" text="object"/><Bullet />[`StakeLinkingEdge`](/docs/testnet/graphql/objects/stake-linking-edge)  <Badge class="secondary" text="object"/>
 
 
 

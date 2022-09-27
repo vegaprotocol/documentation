@@ -1,10 +1,16 @@
 ---
 id: aggregated-balance
 title: AggregatedBalance
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 No description
@@ -24,40 +30,39 @@ type AggregatedBalance {
 
 ### Fields
 
-#### [`timestamp`](#) ([`Timestamp!`](/docs/testnet/graphql/scalars/timestamp))
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedBalance.<b>timestamp</b></code>](#)<Bullet />[`Timestamp!`](/docs/testnet/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano time from at which this balance was relevant
+> 
 
-RFC3339Nano time from at which this balance was relevant
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedBalance.<b>balance</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Net balance of the accounts specified in the filter at this time
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedBalance.<b>accountId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> Account identifier, if query was grouped by account - else null
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedBalance.<b>partyId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> Party identifier, if query was grouped by party - else null
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedBalance.<b>assetId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> Asset identifier, if query was grouped by asset - else null
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedBalance.<b>marketId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> Market identifier, if query was grouped by market - else null
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedBalance.<b>accountType</b></code>](#)<Bullet />[`AccountType`](/docs/testnet/graphql/enums/account-type) <Badge class="secondary" text="enum"/>
+> Account type, if query was grouped by account type - else null
+> 
 
 
-#### [`balance`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
-Net balance of the accounts specified in the filter at this time
+### Member of
 
-
-#### [`accountId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
-
-Account identifier, if query was grouped by account - else null
-
-
-#### [`partyId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
-
-Party identifier, if query was grouped by party - else null
-
-
-#### [`assetId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
-
-Asset identifier, if query was grouped by asset - else null
-
-
-#### [`marketId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
-
-Market identifier, if query was grouped by market - else null
-
-
-#### [`accountType`](#) ([`AccountType`](/docs/testnet/graphql/enums/account-type))
-
-Account type, if query was grouped by account type - else null
-
+[`AggregatedBalanceEdge`](/docs/testnet/graphql/objects/aggregated-balance-edge)  <Badge class="secondary" text="object"/>
 
 
 

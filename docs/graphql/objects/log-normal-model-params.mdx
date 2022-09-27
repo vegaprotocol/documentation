@@ -1,10 +1,16 @@
 ---
 id: log-normal-model-params
 title: LogNormalModelParams
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 Parameters for the log normal risk model
@@ -20,20 +26,23 @@ type LogNormalModelParams {
 
 ### Fields
 
-#### [`mu`](#) ([`Float!`](/docs/testnet/graphql/scalars/float))
+#### [<code style={{ fontWeight: 'normal' }}>LogNormalModelParams.<b>mu</b></code>](#)<Bullet />[`Float!`](/docs/testnet/graphql/scalars/float) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Mu parameter, annualised growth rate of the underlying asset
+> 
 
-mu parameter, annualised growth rate of the underlying asset
+#### [<code style={{ fontWeight: 'normal' }}>LogNormalModelParams.<b>r</b></code>](#)<Bullet />[`Float!`](/docs/testnet/graphql/scalars/float) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> R parameter
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LogNormalModelParams.<b>sigma</b></code>](#)<Bullet />[`Float!`](/docs/testnet/graphql/scalars/float) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Sigma parameter, annualised volatility of the underlying asset, must be a strictly non-negative real number
+> 
 
 
-#### [`r`](#) ([`Float!`](/docs/testnet/graphql/scalars/float))
 
-r parameter
+### Member of
 
-
-#### [`sigma`](#) ([`Float!`](/docs/testnet/graphql/scalars/float))
-
-sigma parameter, annualised volatility of the underlying asset, must be a strictly non-negative real number
-
+[`LogNormalRiskModel`](/docs/testnet/graphql/objects/log-normal-risk-model)  <Badge class="secondary" text="object"/>
 
 
 

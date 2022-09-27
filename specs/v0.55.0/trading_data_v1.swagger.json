@@ -2,11 +2,11 @@
   "swagger": "2.0",
   "info": {
     "title": "data-node/api/v1/trading_data.proto",
-    "version": "version not set"
+    "version": "0.56.0"
   },
   "tags": [
     {
-      "name": "TradingDataService"
+      "name": "Trading Data Service (v1)"
     }
   ],
   "consumes": [
@@ -19,7 +19,7 @@
     "/assets": {
       "get": {
         "summary": "Get a list of all assets on Vega",
-        "operationId": "TradingDataService_Assets",
+        "operationId": "Trading Data Service (v1)_Assets",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -35,14 +35,14 @@
           }
         },
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/assets/{asset}/globalRewardPoolAccount": {
       "get": {
-        "summary": "Get a list of accounts holding reward pools\nCan be filtered by asset, there will be 1 reward pool account per\nasset in the network.",
-        "operationId": "TradingDataService_GlobalRewardPoolAccounts",
+        "summary": "Get a list of accounts holding reward pools",
+        "operationId": "Trading Data Service (v1)_GlobalRewardPoolAccounts",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -67,14 +67,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/assets/{asset}/infrastructureFeeAccount": {
       "get": {
-        "summary": "Get a list of accounts holding infrastructure fees.\nCan be filtered by asset, there will be 1 infrastructure fee account per\nasset in the network.",
-        "operationId": "TradingDataService_FeeInfrastructureAccounts",
+        "summary": "Get a list of accounts holding infrastructure fees",
+        "operationId": "Trading Data Service (v1)_FeeInfrastructureAccounts",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -99,14 +99,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/assets/{id}": {
       "get": {
         "summary": "Get an asset by its identifier",
-        "operationId": "TradingDataService_AssetByID",
+        "operationId": "Trading Data Service (v1)_AssetByID",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -131,14 +131,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/delegations": {
       "get": {
         "summary": "Get delegation data",
-        "operationId": "TradingDataService_Delegations",
+        "operationId": "Trading Data Service (v1)_Delegations",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -197,14 +197,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/deposits/{id}": {
       "get": {
         "summary": "Get a deposit by its identifier",
-        "operationId": "TradingDataService_Deposit",
+        "operationId": "Trading Data Service (v1)_Deposit",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -229,14 +229,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/epochs": {
       "get": {
         "summary": "Get data for a specific epoch, if id omitted it gets the current epoch",
-        "operationId": "TradingDataService_GetEpoch2",
+        "operationId": "Trading Data Service (v1)_GetEpoch2",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -262,14 +262,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/epochs/{id}": {
       "get": {
         "summary": "Get data for a specific epoch, if id omitted it gets the current epoch",
-        "operationId": "TradingDataService_GetEpoch",
+        "operationId": "Trading Data Service (v1)_GetEpoch",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -295,14 +295,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/governance/asset/proposals": {
       "get": {
         "summary": "Get governance data (proposals and votes) for proposals aiming to create new assets",
-        "operationId": "TradingDataService_GetNewAssetProposals",
+        "operationId": "Trading Data Service (v1)_GetNewAssetProposals",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -338,14 +338,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/governance/market/proposals": {
       "get": {
         "summary": "Get governance data (proposals and votes) for proposals that aim creating new markets",
-        "operationId": "TradingDataService_GetNewMarketProposals",
+        "operationId": "Trading Data Service (v1)_GetNewMarketProposals",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -381,14 +381,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/governance/proposal/reference/{reference}": {
       "get": {
         "summary": "Get governance data (proposals and votes) for a proposal located by reference",
-        "operationId": "TradingDataService_GetProposalByReference",
+        "operationId": "Trading Data Service (v1)_GetProposalByReference",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -413,14 +413,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/governance/proposal/{proposalId}": {
       "get": {
         "summary": "Get governance data (proposals and votes) for a proposal located by ID",
-        "operationId": "TradingDataService_GetProposalByID",
+        "operationId": "Trading Data Service (v1)_GetProposalByID",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -445,14 +445,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/governance/proposals": {
       "get": {
         "summary": "Get governance data (proposals and votes) for all proposals",
-        "operationId": "TradingDataService_GetProposals",
+        "operationId": "Trading Data Service (v1)_GetProposals",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -488,14 +488,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/key-rotations": {
       "get": {
         "summary": "Get all key rotations",
-        "operationId": "TradingDataService_GetKeyRotations",
+        "operationId": "Trading Data Service (v1)_GetKeyRotations",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -511,14 +511,14 @@
           }
         },
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/liquidity-provisions/market/{market}": {
       "get": {
         "summary": "Get the liquidity provision orders",
-        "operationId": "TradingDataService_LiquidityProvisions2",
+        "operationId": "Trading Data Service (v1)_LiquidityProvisions2",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -550,14 +550,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/liquidity-provisions/party/{party}/market/{market}": {
       "get": {
         "summary": "Get the liquidity provision orders",
-        "operationId": "TradingDataService_LiquidityProvisions",
+        "operationId": "Trading Data Service (v1)_LiquidityProvisions",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -589,14 +589,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/markets": {
       "get": {
         "summary": "Get a list of Markets",
-        "operationId": "TradingDataService_Markets",
+        "operationId": "Trading Data Service (v1)_Markets",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -612,14 +612,14 @@
           }
         },
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/markets-data": {
       "get": {
         "summary": "Get a list of Market Data",
-        "operationId": "TradingDataService_MarketsData",
+        "operationId": "Trading Data Service (v1)_MarketsData",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -635,14 +635,14 @@
           }
         },
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/markets-data/{marketId}": {
       "get": {
         "summary": "Get Market Data by Market ID",
-        "operationId": "TradingDataService_MarketDataByID",
+        "operationId": "Trading Data Service (v1)_MarketDataByID",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -667,14 +667,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/markets/{marketId}": {
       "get": {
         "summary": "Get a Market by ID",
-        "operationId": "TradingDataService_MarketByID",
+        "operationId": "Trading Data Service (v1)_MarketByID",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -699,14 +699,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/markets/{marketId}/accounts": {
       "get": {
         "summary": "Get a list of Accounts by Market",
-        "operationId": "TradingDataService_MarketAccounts",
+        "operationId": "Trading Data Service (v1)_MarketAccounts",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -738,14 +738,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/markets/{marketId}/candles": {
       "get": {
         "summary": "Get a list of Candles by Market",
-        "operationId": "TradingDataService_Candles",
+        "operationId": "Trading Data Service (v1)_Candles",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -795,14 +795,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/markets/{marketId}/depth": {
       "get": {
         "summary": "Get Market Depth",
-        "operationId": "TradingDataService_MarketDepth",
+        "operationId": "Trading Data Service (v1)_MarketDepth",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -835,14 +835,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/markets/{marketId}/orders": {
       "get": {
         "summary": "Get a list of Orders by Market",
-        "operationId": "TradingDataService_OrdersByMarket",
+        "operationId": "Trading Data Service (v1)_OrdersByMarket",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -890,14 +890,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/markets/{marketId}/orders/{orderId}": {
       "get": {
         "summary": "Get an Order by Market and Order ID",
-        "operationId": "TradingDataService_OrderByMarketAndID",
+        "operationId": "Trading Data Service (v1)_OrderByMarketAndID",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -929,14 +929,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/markets/{marketId}/trades": {
       "get": {
         "summary": "Get a list of Trades by Market",
-        "operationId": "TradingDataService_TradesByMarket",
+        "operationId": "Trading Data Service (v1)_TradesByMarket",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -984,14 +984,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/markets/{marketId}/trades/latest": {
       "get": {
         "summary": "Get latest Trade",
-        "operationId": "TradingDataService_LastTrade",
+        "operationId": "Trading Data Service (v1)_LastTrade",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1016,14 +1016,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/network/parameters": {
       "get": {
         "summary": "Get the network parameters",
-        "operationId": "TradingDataService_NetworkParameters",
+        "operationId": "Trading Data Service (v1)_NetworkParameters",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1039,14 +1039,14 @@
           }
         },
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/nodes": {
       "get": {
         "summary": "List all known network nodes",
-        "operationId": "TradingDataService_GetNodes",
+        "operationId": "Trading Data Service (v1)_GetNodes",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1062,14 +1062,14 @@
           }
         },
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/nodes-data": {
       "get": {
         "summary": "Get data of current node",
-        "operationId": "TradingDataService_GetNodeData",
+        "operationId": "Trading Data Service (v1)_GetNodeData",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1085,14 +1085,14 @@
           }
         },
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/nodes/{id}": {
       "get": {
         "summary": "Get a specific node by ID",
-        "operationId": "TradingDataService_GetNodeByID",
+        "operationId": "Trading Data Service (v1)_GetNodeByID",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1117,14 +1117,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/oracle-data": {
       "get": {
         "summary": "Get all oracle data",
-        "operationId": "TradingDataService_ListOracleData",
+        "operationId": "Trading Data Service (v1)_ListOracleData",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1165,14 +1165,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/oracle-specs": {
       "get": {
         "summary": "Get the oracle specs",
-        "operationId": "TradingDataService_OracleSpecs",
+        "operationId": "Trading Data Service (v1)_OracleSpecs",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1213,14 +1213,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/oracle-specs/{id}": {
       "get": {
-        "summary": "Get an oracle spec by ID.",
-        "operationId": "TradingDataService_OracleSpec",
+        "summary": "Get an oracle spec by ID",
+        "operationId": "Trading Data Service (v1)_OracleSpec",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1268,14 +1268,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/oracle-specs/{id}/oracle-data": {
       "get": {
         "summary": "Get oracle data that matched the given spec",
-        "operationId": "TradingDataService_OracleDataBySpec",
+        "operationId": "Trading Data Service (v1)_OracleDataBySpec",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1323,14 +1323,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/orders/fee/estimate": {
       "post": {
         "summary": "Get an estimate for the fee to be paid for a given order",
-        "operationId": "TradingDataService_EstimateFee",
+        "operationId": "Trading Data Service (v1)_EstimateFee",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1356,14 +1356,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/orders/margins/estimate": {
       "post": {
         "summary": "Get an estimate for the margin required for a new order",
-        "operationId": "TradingDataService_EstimateMargin",
+        "operationId": "Trading Data Service (v1)_EstimateMargin",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1389,14 +1389,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/orders/{orderId}/trades": {
       "get": {
         "summary": "Get a list of Trades by Order",
-        "operationId": "TradingDataService_TradesByOrder",
+        "operationId": "Trading Data Service (v1)_TradesByOrder",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1421,14 +1421,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/orders/{orderId}/versions": {
       "get": {
         "summary": "Get all versions of the order by its orderID",
-        "operationId": "TradingDataService_OrderVersionsByID",
+        "operationId": "Trading Data Service (v1)_OrderVersionsByID",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1476,14 +1476,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/orders/{reference}": {
       "get": {
         "summary": "Get an Order by Pending Order reference (UUID)",
-        "operationId": "TradingDataService_OrderByReference",
+        "operationId": "Trading Data Service (v1)_OrderByReference",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1508,14 +1508,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/parties": {
       "get": {
         "summary": "Get a list of Parties",
-        "operationId": "TradingDataService_Parties",
+        "operationId": "Trading Data Service (v1)_Parties",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1531,14 +1531,14 @@
           }
         },
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/parties/{partyId}": {
       "get": {
         "summary": "Get a Party by ID",
-        "operationId": "TradingDataService_PartyByID",
+        "operationId": "Trading Data Service (v1)_PartyByID",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1563,14 +1563,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/parties/{partyId}/accounts": {
       "get": {
         "summary": "Get a list of Accounts by Party",
-        "operationId": "TradingDataService_PartyAccounts",
+        "operationId": "Trading Data Service (v1)_PartyAccounts",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1636,14 +1636,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/parties/{partyId}/deposits": {
       "get": {
         "summary": "Get deposits for a party",
-        "operationId": "TradingDataService_Deposits",
+        "operationId": "Trading Data Service (v1)_Deposits",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1668,14 +1668,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/parties/{partyId}/markets/{marketId}/margin": {
       "get": {
         "summary": "Get Margin Levels by Party ID",
-        "operationId": "TradingDataService_MarginLevels",
+        "operationId": "Trading Data Service (v1)_MarginLevels",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1707,14 +1707,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/parties/{partyId}/orders": {
       "get": {
         "summary": "Get a list of Orders by Party",
-        "operationId": "TradingDataService_OrdersByParty",
+        "operationId": "Trading Data Service (v1)_OrdersByParty",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1762,14 +1762,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/parties/{partyId}/positions": {
       "get": {
         "summary": "Get a list of Positions by Party",
-        "operationId": "TradingDataService_PositionsByParty",
+        "operationId": "Trading Data Service (v1)_PositionsByParty",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1801,14 +1801,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/parties/{partyId}/proposals": {
       "get": {
         "summary": "Get governance data (proposals and votes) for proposals by party authoring them",
-        "operationId": "TradingDataService_GetProposalsByParty",
+        "operationId": "Trading Data Service (v1)_GetProposalsByParty",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1851,14 +1851,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/parties/{partyId}/rewards": {
       "get": {
         "summary": "Get rewards",
-        "operationId": "TradingDataService_GetRewards",
+        "operationId": "Trading Data Service (v1)_GetRewards",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1911,14 +1911,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/parties/{partyId}/trades": {
       "get": {
         "summary": "Get a list of Trades by Party",
-        "operationId": "TradingDataService_TradesByParty",
+        "operationId": "Trading Data Service (v1)_TradesByParty",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1973,14 +1973,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/parties/{partyId}/votes": {
       "get": {
         "summary": "Get votes by party casting them",
-        "operationId": "TradingDataService_GetVotesByParty",
+        "operationId": "Trading Data Service (v1)_GetVotesByParty",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -2005,13 +2005,13 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/parties/{party}/stake": {
       "get": {
-        "operationId": "TradingDataService_PartyStake",
+        "operationId": "Trading Data Service (v1)_PartyStake",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -2035,14 +2035,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/time": {
       "get": {
         "summary": "Get Time",
-        "operationId": "TradingDataService_GetVegaTime",
+        "operationId": "Trading Data Service (v1)_GetVegaTime",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -2058,13 +2058,13 @@
           }
         },
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/transfers": {
       "get": {
-        "operationId": "TradingDataService_Transfers",
+        "operationId": "Trading Data Service (v1)_Transfers",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -2100,14 +2100,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/withdrawals/party/{partyId}": {
       "get": {
         "summary": "Get withdrawals for a party",
-        "operationId": "TradingDataService_Withdrawals",
+        "operationId": "Trading Data Service (v1)_Withdrawals",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -2132,14 +2132,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/withdrawals/{id}": {
       "get": {
         "summary": "Get a withdrawal by its identifier",
-        "operationId": "TradingDataService_Withdrawal",
+        "operationId": "Trading Data Service (v1)_Withdrawal",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -2164,14 +2164,14 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     },
     "/withdrawals/{withdrawalId}/approval/erc20": {
       "get": {
-        "summary": "Get the bundle approval for an ERC20 withdrawal,\nthese data are being used to bundle the call to the smart contract on the ethereum bridge",
-        "operationId": "TradingDataService_ERC20WithdrawalApproval",
+        "summary": "Get the bundle approval for an ERC20 withdrawal",
+        "operationId": "Trading Data Service (v1)_ERC20WithdrawalApproval",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -2196,7 +2196,7 @@
           }
         ],
         "tags": [
-          "TradingDataService"
+          "Trading Data Service (v1)"
         ]
       }
     }

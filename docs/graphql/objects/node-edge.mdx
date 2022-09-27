@@ -1,13 +1,19 @@
 ---
 id: node-edge
 title: NodeEdge
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
 
 
-No description
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Edge type containing the node and cursor information returned by a NodesConnection
 
 ```graphql
 type NodeEdge {
@@ -19,15 +25,19 @@ type NodeEdge {
 
 ### Fields
 
-#### [`node`](#) ([`Node!`](/docs/testnet/graphql/objects/node))
+#### [<code style={{ fontWeight: 'normal' }}>NodeEdge.<b>node</b></code>](#)<Bullet />[`Node!`](/docs/testnet/graphql/objects/node) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The node
+> 
 
-The node
+#### [<code style={{ fontWeight: 'normal' }}>NodeEdge.<b>cursor</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Cursor identifying the node
+> 
 
 
-#### [`cursor`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
-Cursor identifying the node
+### Member of
 
+[`NodesConnection`](/docs/testnet/graphql/objects/nodes-connection)  <Badge class="secondary" text="object"/>
 
 
 

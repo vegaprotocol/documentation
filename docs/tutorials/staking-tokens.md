@@ -35,18 +35,18 @@ Tokens are associated by calling [`stake` on the Vega staking bridge](../api/bri
 * `vega_public_key` - the public key of the address that will perform staking on Vega
 * `amount` - the amount of stake being associated with the Vega key
 
-Deposits will take ~50 block confirmations to arrive on Vega. You can check using [REST](../api/rest/data-v2/trading-data-service-get-stake), [GraphQL](../graphql/objects/party#operation/TradingDataService_ERC20WithdrawalApproval) or [GRPC](../grpc/vega/vega.proto#vegaproto) to know when the staking balance has been credited.
+Deposits will take ~50 block confirmations to arrive on Vega. You can check using [REST](../api/rest/data-v2/trading-data-service-v-2-get-stake), [GraphQL](../graphql/objects/party#operation/TradingDataService_ERC20WithdrawalApproval) or [GRPC](../grpc/vega/vega.proto#vegaproto) to know when the staking balance has been credited.
 
 ## 2. Nominating to a validator
 Now that the staking balance is available, you'll want to choose a validator to stake to.
 
 ## 3. Waiting for the next epoch
-A nomination to a validator occurs in one epoch, [and takes effect in the subsequent epoch](../concepts/vega-chain#operation/ERC20WithdrawalApproval). That means that during the first period in which you nominate, no rewards will be received. For each subsequent epoch, rewards will be deposited to the Vega key, in the form of Vega tokens. Specific reward payouts can be queried via the API ([REST](../api/rest/data-v2/trading-data-service-list-reward-summaries), [GraphQL](../graphql/objects/reward-summary-connection)).
+A nomination to a validator occurs in one epoch, [and takes effect in the subsequent epoch](../concepts/vega-chain#operation/ERC20WithdrawalApproval). That means that during the first period in which you nominate, no rewards will be received. For each subsequent epoch, rewards will be deposited to the Vega key, in the form of Vega tokens. Specific reward payouts can be queried via the API ([REST](../api/rest/data-v2/trading-data-service-v-2-list-reward-summaries), [GraphQL](../graphql/objects/reward-summary-connection)).
 
 ## 4. Withdrawing rewards
 Now that rewards have been paid in to your account, you will want to request a withdrawal. This involves preparing a withdrawal request, which the validators will confirm and sign in order for you to be able to request the withdrawal on Ethereum. The funds will immediately be locked on Vega, to allow for you to withdraw them through the Ethereum bridge.
 
-Your withdrawal should be confirmed within a few seconds, and using the APIs ([REST](../api/rest/data-v2/trading-data-service-list-withdrawals),  [GraphQL](../graphql/objects/party#withdrawals-withdrawal)) you can retrieve the signature bundle, which you will submit to the ERC20 bridge in the next step.
+Your withdrawal should be confirmed within a few seconds, and using the APIs ([REST](../api/rest/data-v2/trading-data-service-v-2-list-withdrawals),  [GraphQL](../graphql/objects/party#withdrawals-withdrawal)) you can retrieve the signature bundle, which you will submit to the ERC20 bridge in the next step.
 
 ## 5. Submit withdrawal
 With the signature bundle fetched in step 4, the final step is to submit that withdrawal to the staking bridge. This can be done via the [`withdraw_asset` function on the Ethereum bridge](../api/bridge/interfaces/IERC20_Bridge_Logic#withdraw_asset).
