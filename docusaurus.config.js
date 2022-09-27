@@ -8,7 +8,6 @@ if (!version) {
 
 if (!version.match(/^(?:(\d+)\.)?(?:(\d+)\.)?(\*|\d+)$/)) {
   throw new Error('Version incorrectly formatted')
-} else {
 }
 
 const vVersion = 'v' + version
