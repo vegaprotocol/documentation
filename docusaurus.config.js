@@ -7,12 +7,12 @@ if (!version) {
 }
 
 if (!version.match(/^(?:(\d+)\.)?(?:(\d+)\.)?(\*|\d+)$/)) {
-  throw new Error('Version incorrectly formatted') 
+  throw new Error('Version incorrectly formatted')
 } else {
 }
 
 const vVersion = 'v' + version
-const shortVersion = version.split('.').slice(0,2).join('.')
+const shortVersion = version.split('.').slice(0, 2).join('.')
 
 module.exports = {
   title: "Vega Protocol",
@@ -225,29 +225,29 @@ module.exports = {
         id: "apiDocs",
         docsPluginId: "classic",
         config: {
-          tradingv1v055: {
-            specPath: "./specs/v0.55.0/trading_data_v1.swagger.json",
+          tradingv1v056: {
+            specPath: "./specs/v0.56.0/trading_data_v1.swagger.json",
             outputDir: "docs/api/rest/data-v1",
             sidebarOptions: {
               groupPathsBy: "tag",
             },
           },
-          tradingv2v055: {
-            specPath: "./specs/v0.55.0/trading_data_v2.swagger.json",
+          tradingv2v056: {
+            specPath: "./specs/v0.56.0/trading_data_v2.swagger.json",
             outputDir: "docs/api/rest/data-v2",
             sidebarOptions: {
               groupPathsBy: "tag",
             },
           },
-          corev055: {
-            specPath: "./specs/v0.55.0/core.swagger.json",
+          corev056: {
+            specPath: "./specs/v0.56.0/core.swagger.json",
             outputDir: "docs/api/rest/core",
             sidebarOptions: {
               groupPathsBy: "tag",
             },
           },
-          statev055: {
-            specPath: "./specs/v0.55.0/corestate.swagger.json",
+          statev056: {
+            specPath: "./specs/v0.56.0/corestate.swagger.json",
             outputDir: "docs/api/rest/state",
             sidebarOptions: {
               groupPathsBy: "tag",

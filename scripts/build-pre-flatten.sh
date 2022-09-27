@@ -18,11 +18,11 @@ echo "flattening: ${doc_version}"
 cd "specs/$doc_version"
 
 trading_data_swagger1="./data-node/swagger/data-node/api/v1/trading_data.swagger.json"
-trading_data_swagger1_dest="./trading_data_swagger_v1.json"
+trading_data_swagger1_dest="./trading_data_v1.swagger.json"
 movePlease "$trading_data_swagger1" "$trading_data_swagger1_dest"
 
 trading_data_swagger2="./data-node/swagger/data-node/api/v2/trading_data.swagger.json"
-trading_data_swagger2_dest="./trading_data_swagger_v2.json"
+trading_data_swagger2_dest="./trading_data_v2.swagger.json"
 movePlease "$trading_data_swagger2" "$trading_data_swagger2_dest"
 
 core_swagger="./vega/swagger/vega/api/v1/core.swagger.json"

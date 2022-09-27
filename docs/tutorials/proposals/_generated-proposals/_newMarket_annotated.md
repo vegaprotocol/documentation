@@ -122,9 +122,8 @@
 
      // Optional new market meta data, tags
      metadata: [
-      "sector:food",
+      "sector:energy",
       "sector:health",
-      "sector:tech",
       "source:docs.vega.xyz"
      ],
 
@@ -183,7 +182,7 @@
       r: 0.016,
 
       // Sigma param (double as number) 
-      sigma: 0.5,
+      sigma: 1.25,
      }
     },
    }
@@ -191,11 +190,11 @@
 
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-  closingTimestamp: 1665909815,
+  closingTimestamp: 1665918056,
 
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-  enactmentTimestamp: 1665996215,
+  enactmentTimestamp: 1666004456,
  }
 }
 ```
