@@ -9,6 +9,10 @@
       "name": "CoreStateService"
     }
   ],
+  "host": "api.vega.xyz",
+  "schemes": [
+    "https"
+  ],
   "consumes": [
     "application/json"
   ],
