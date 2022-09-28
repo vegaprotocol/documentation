@@ -9,6 +9,10 @@
       "name": "BlockExplorerService"
     }
   ],
+  "host": "api.n10.testnet.vega.xyz",
+  "schemes": [
+    "https"
+  ],
   "consumes": [
     "application/json"
   ],
