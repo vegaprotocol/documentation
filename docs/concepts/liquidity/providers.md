@@ -6,13 +6,13 @@ hide_title: false
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-The Vega protocol allows liquidity to be priced individually for each market, a design decision that allows for liquidity providers to earn more on markets with little liquidity competition, and drives down fees on markets where there are many participants committing liquidity. 
+The Vega protocol allows liquidity to be priced individually for each market, a design decision that allows liquidity providers to earn more on markets with little liquidity competition, and drives down fees on markets where there are many participants committing liquidity.
 
-Participants who place limit orders on a market are also providing liquidity, and are rewarded by receiving a portion of the maker fee. However, this section focuses on the liquidity provision trading strategy, which involves keeping a series of orders active and funded on a market by using liquidity commitment orders.
+Participants who place limit orders on a market are also supplying liquidity, and are rewarded by receiving a portion of the maker fee. However, this section focuses on the liquidity provision trading strategy, which involves keeping a series of orders active and funded on a market by using liquidity commitment orders.
 
 **[Liquidity fees](#liquidity-fees)** are defined based on the commitments and proposed fee levels chosen by the providers, not by the protocol.
 
-Participants who want to **[commit liquidity](#liquidity-commitment-transaction)** to a market can enter their commitments as soon as a market proposal is submitted and accepted, even before the governance vote to create the market concludes, or at any time while the market is trading.
+Participants who want to **[commit liquidity](#liquidity-commitment-transaction)** to a market can enter their commitments as soon as a market proposal is submitted and accepted, even before the governance vote to create the market concludes, as well as at any time while the market is trading. Committing earlier in a market's lifecycle leads to a higher equity-like share in that market.
 
 ## Liquidity providers
 Participants with sufficient collateral can provide liquidity for markets through liquidity commitment orders. 
@@ -22,15 +22,18 @@ A liquidity provision commitment is made up of a series of orders that sit on th
 **Liquidity providers will need to actively manage their commitment.** Amending and cancelling commitments is possible, but only if the market can function without that liquidity commitment by meeting its target stake. It is not possible to cancel the individual limit orders that are created from a liquidity commitment.
 
 ### Target stake for a market
-The market's liquidity requirement, or its target stake, is derived from the maximum open interest observed over a rolling time window.
+The market's liquidity requirement, or its target stake, is the measurement of how much stake is the ideal committed to a market, relative to what is on the market at the time. It is derived from the maximum open interest observed over a rolling time window. 
 
-Target stake is used by the protocol to calculate the market's liquidity fee level from liquidity commitments, and trigger liquidity monitoring auctions if there's an imbalance between it and the total stake (sum of all liquidity commitments).
+Target stake is used by the protocol to: 
+* Calculate the market's liquidity fee level from liquidity commitments 
+* Trigger a liquidity monitoring auction if there's an imbalance between target stake and total stake (sum of all liquidity commitments)
 
-### Liquidity obligation calculations
+### Calculations: Liquidity obligation
 The liquidity obligation is calculated from the liquidity commitment amount using the `stake_to_ccy_siskas` network parameter as:
 
 `liquidity_obligation_in_ccy_siskas = stake_to_ccy_siskas ⨉ liquidity_commitment`
 
+Here, `ccy` stands for 'currency'. Liquidity measure units are 'currency siskas', e.g. ETH or USD siskas. This is because the calculation is basically `volume ⨉ probability of trading ⨉ price of the volume` and the price of the volume is in the said currency.
 
 Liquidity obligation is considered to be met when the `volume ⨉ probability of trading ⨉ price of orders` of all liquidity providers, per each order book side, measured separately, is at least `liquidity_obligation_in_ccy_siskas`.
 
