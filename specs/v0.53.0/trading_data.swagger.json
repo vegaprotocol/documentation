@@ -9,7 +9,7 @@
       "name": "Trading Data Service (v1)"
     }
   ],
-  "host": "api.api.vega.xyz",
+  "host": "api.vega.xyz",
   "schemes": [
     "https"
   ],
