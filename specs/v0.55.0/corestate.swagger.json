@@ -9,9 +9,8 @@
       "name": "CoreStateService"
     }
   ],
-  "host": "api.n10.vega.xyz",
+  "host": "api.n10.token.vega.xyz",
   "schemes": [
-    "http",
     "https"
   ],
   "consumes": [

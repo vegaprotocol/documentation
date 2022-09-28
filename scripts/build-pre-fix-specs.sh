@@ -25,7 +25,7 @@ echo "Swagger: Give TradingDataService v2 a distinct name"
 sed -i -E 's/TradingDataService/Trading Data Service (v2)/' "specs/$doc_version/trading_data_v2.swagger.json"
 
 echo "Swagger: Fix servers"
-sed -i -E 's/lb.testnet.vega.xyz/api.n10.vega.xyz/g' specs/$doc_version/*.swagger.json
+sed -i -E 's/lb.testnet.vega.xyz/api.n10.testnet.vega.xyz/g' specs/$doc_version/*.swagger.json
 sed -i -E 's/\/datanode\/rest//g' specs/$doc_version/*.swagger.json
 
 # Mac SED workaround - delete remnant files (not required with gsed)
