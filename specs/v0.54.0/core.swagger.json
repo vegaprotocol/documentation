@@ -9,7 +9,7 @@
       "name": "CoreService"
     }
   ],
-  "host": "api.n10.testnet.vega.xyz",
+  "host": "api.vega.xyz",
   "schemes": [
     "https"
   ],

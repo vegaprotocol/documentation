@@ -13,8 +13,8 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
     \"decimalPlaces\": \"5\",^
     \"positionDecimalPlaces\": \"5\",^
     \"instrument\": {^
-     \"name\": \"Oranges Daily\",^
-     \"code\": \"ORANGES.24h\",^
+     \"name\": \"Apples Yearly (2022)\",^
+     \"code\": \"APPLES.22\",^
      \"future\": {^
       \"settlementAsset\": \"8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4\",^
       \"quoteName\": \"tEuro\",^
@@ -90,13 +90,13 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
-      \"sigma\": 1.25^
+      \"sigma\": 0.8^
      }^
     }^
    }^
   },^
-  \"closingTimestamp\": 1666016251,^
-  \"enactmentTimestamp\": 1666102651^
+  \"closingTimestamp\": 1666017896,^
+  \"enactmentTimestamp\": 1666104296^
  }^
 }^
 }"

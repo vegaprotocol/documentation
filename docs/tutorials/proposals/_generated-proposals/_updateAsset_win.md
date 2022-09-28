@@ -18,8 +18,8 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
     }^
    }^
   },^
-  \"closingTimestamp\": 1666016251,^
-  \"enactmentTimestamp\": 1666102651^
+  \"closingTimestamp\": 1666017896,^
+  \"enactmentTimestamp\": 1666104296^
  }^
 }^
 }"
