@@ -41,7 +41,7 @@
     },
     "/assets/{asset}/globalRewardPoolAccount": {
       "get": {
-        "summary": "Get a list of accounts holding reward pools\nCan be filtered by asset, there will be 1 reward pool account per",
+        "summary": "Get a list of accounts holding reward pools",
         "operationId": "Trading Data Service (v1)_GlobalRewardPoolAccounts",
         "responses": {
           "200": {
@@ -73,7 +73,7 @@
     },
     "/assets/{asset}/infrastructureFeeAccount": {
       "get": {
-        "summary": "Get a list of accounts holding infrastructure fees.\nCan be filtered by asset, there will be 1 infrastructure fee account per",
+        "summary": "Get a list of accounts holding infrastructure fees",
         "operationId": "Trading Data Service (v1)_FeeInfrastructureAccounts",
         "responses": {
           "200": {

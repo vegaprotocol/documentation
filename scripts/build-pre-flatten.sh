@@ -3,6 +3,7 @@
 movePlease () {
     if test -e "$1"; then
         mv "$1" "$2"
+        echo "$1 moved (from $2)"
     else
         if test -f "$2"; then
             echo "$2 already exists"
@@ -33,6 +34,10 @@ corestate_swagger="./vega/swagger/vega/api/v1/corestate.swagger.json"
 corestate_swagger_dest="./corestate.swagger.json"
 movePlease "$corestate_swagger" "$corestate_swagger_dest"
 
+blocks_swagger="./blockexplorer/swagger/blockexplorer/blockexplorer.swagger.json"
+blocks_swagger_dest="./blockexplorer.swagger.json"
+movePlease "$blocks_swagger" "$blocks_swagger_dest"
+
 proto="./grpc/proto.json"
 proto_dest="./proto.json"
 movePlease "$proto" "$proto_dest"
@@ -41,6 +46,7 @@ movePlease "./datanode-schema.graphql" "./schema.graphql"
 
 movePlease "./wallet/api/openrpc.json" "./openrpc.json"
 
+rm -rf blockexplorer
 rm -rf data-node
 rm -rf grpc
 rm -rf vega
