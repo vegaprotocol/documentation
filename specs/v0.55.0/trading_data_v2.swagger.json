@@ -9,9 +9,9 @@
       "name": "Trading Data Service (v2)"
     }
   ],
-  "host": "api.vega.xyz",
+  "host": "nodes-guru.mainnet.vega.community:3009",
   "schemes": [
-    "https"
+    "http"
   ],
   "consumes": [
     "application/json"
