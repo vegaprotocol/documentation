@@ -1,14 +1,14 @@
 ---
     title: OpenRPC
 ---
-- [session.connect_wallet](#sessionconnect_wallet): Initiates a connection between a wallet and a third-party application.
-- [session.disconnect_wallet](#sessiondisconnect_wallet): Ends the connection between the third-party application and the wallet.
-- [session.get_permissions](#sessionget_permissions): Returns the permissions set on the wallet for the third-party application.
-- [session.request_permissions](#sessionrequest_permissions): Requests permissions update for the third-party application.
-- [session.list_keys](#sessionlist_keys): Returns the keys the user has allowed the third-party application to have access to.
-- [session.sign_transaction](#sessionsign_transaction): Sign a transaction without sending it.
-- [session.send_transaction](#sessionsend_transaction): Send a transaction to the network.
-- [session.get_chain_id](#sessionget_chain_id): Returns the chain ID of the network in use.
+- [client.connect_wallet](#clientconnect_wallet): Initiates a connection between a wallet and a third-party application.
+- [client.disconnect_wallet](#clientdisconnect_wallet): Ends the connection between the third-party application and the wallet.
+- [client.get_permissions](#clientget_permissions): Returns the permissions set on the wallet for the third-party application.
+- [client.request_permissions](#clientrequest_permissions): Requests permissions update for the third-party application.
+- [client.list_keys](#clientlist_keys): Returns the keys the user has allowed the third-party application to have access to.
+- [client.sign_transaction](#clientsign_transaction): Sign a transaction without sending it.
+- [client.send_transaction](#clientsend_transaction): Send a transaction to the network.
+- [client.get_chain_id](#clientget_chain_id): Returns the chain ID of the network in use.
 - [admin.create_wallet](#admincreate_wallet): Creates a wallet with its first key-pair.
 - [admin.import_wallet](#adminimport_wallet): Import a wallet with its first key-pair with a recovery phrase and a version.
 - [admin.describe_wallet](#admindescribe_wallet): Returns the wallet base information.
@@ -41,7 +41,7 @@
 
 
 
-## `session.connect_wallet`
+## `client.connect_wallet`
 
 This method initiates a connection between a wallet and a third-party application.
 
@@ -79,7 +79,7 @@ The third-party application "vega.xyz" requests a connection to a wallet and the
 {
     "id": 1,
     "jsonrpc": "2.0",
-    "method": "session.connect_wallet",
+    "method": "client.connect_wallet",
     "params": {
         "hostname": "vega.xyz"
     }
@@ -99,7 +99,7 @@ The third-party application "vega.xyz" requests a connection to a wallet and the
 ---
 
 
-## `session.disconnect_wallet`
+## `client.disconnect_wallet`
 
 This method ends the connection between the third-party application and the wallet. The token is, then, no longer valid.
 
@@ -123,7 +123,7 @@ The third-party application "vega.xyz" requests a disconnection to a wallet usin
 {
     "id": 1,
     "jsonrpc": "2.0",
-    "method": "session.disconnect_wallet",
+    "method": "client.disconnect_wallet",
     "params": {
         "token": "hZKSx0snBvikp2NGMJdKPHU5qvloSeqpqbJg6BsMwCcqX4iZvvy99BV2l13oeyEG"
     }
@@ -141,7 +141,7 @@ The third-party application "vega.xyz" requests a disconnection to a wallet usin
 ---
 
 
-## `session.get_permissions`
+## `client.get_permissions`
 
 This method returns the permissions set on the wallet for the third-party application.
 
@@ -168,7 +168,7 @@ The third-party application "vega.xyz" wants to know the permissions that have b
 {
     "id": 1,
     "jsonrpc": "2.0",
-    "method": "session.get_permissions",
+    "method": "client.get_permissions",
     "params": {
         "token": "hZKSx0snBvikp2NGMJdKPHU5qvloSeqpqbJg6BsMwCcqX4iZvvy99BV2l13oeyEG"
     }
@@ -188,7 +188,7 @@ The third-party application "vega.xyz" wants to know the permissions that have b
 ---
 
 
-## `session.request_permissions`
+## `client.request_permissions`
 
 This method allows a third-party application to request new permissions to access the methods it requires.
 
@@ -221,7 +221,7 @@ The third-party application "vega.xyz" requests an update of its permissions and
 {
     "id": 1,
     "jsonrpc": "2.0",
-    "method": "session.request_permissions",
+    "method": "client.request_permissions",
     "params": {
         "token": "hZKSx0snBvikp2NGMJdKPHU5qvloSeqpqbJg6BsMwCcqX4iZvvy99BV2l13oeyEG",
         "requestedPermissions": {
@@ -252,7 +252,7 @@ The third-party application "vega.xyz" omits a permission during the update and 
 {
     "id": 1,
     "jsonrpc": "2.0",
-    "method": "session.request_permissions",
+    "method": "client.request_permissions",
     "params": {
         "token": "hZKSx0snBvikp2NGMJdKPHU5qvloSeqpqbJg6BsMwCcqX4iZvvy99BV2l13oeyEG",
         "requestedPermissions": {}
@@ -275,7 +275,7 @@ The third-party application "vega.xyz" omits a permission during the update and 
 ---
 
 
-## `session.list_keys`
+## `client.list_keys`
 
 This method returns the keys the user has allowed the third-party application to have access to.
 
@@ -300,7 +300,7 @@ The third-party application "vega.xyz" wants to list the public keys it has acce
 {
     "id": 1,
     "jsonrpc": "2.0",
-    "method": "session.list_keys",
+    "method": "client.list_keys",
     "params": {
         "token": "hZKSx0snBvikp2NGMJdKPHU5qvloSeqpqbJg6BsMwCcqX4iZvvy99BV2l13oeyEG"
     }
@@ -329,7 +329,7 @@ The third-party application "vega.xyz" wants to list the public keys it has acce
 ---
 
 
-## `session.sign_transaction`
+## `client.sign_transaction`
 
 This method signs a transaction and returns it to the third-party application, without sending it to the network. What happens with the transaction is up to the third-party application.
 
@@ -364,7 +364,7 @@ The third-party application "vega.xyz" requests to sign a transaction and the us
 {
     "id": 1,
     "jsonrpc": "2.0",
-    "method": "session.sign_transaction",
+    "method": "client.sign_transaction",
     "params": {
         "token": "hZKSx0snBvikp2NGMJdKPHU5qvloSeqpqbJg6BsMwCcqX4iZvvy99BV2l13oeyEG",
         "publicKey": "3fd42fd5ceb22d99ac45086f1d82d516118a5cb7ad9a2e096cd78ca2c8960c80",
@@ -389,7 +389,7 @@ The third-party application "vega.xyz" requests to sign a transaction and the us
 ---
 
 
-## `session.send_transaction`
+## `client.send_transaction`
 
 This method sends a transaction to the network.
 
@@ -429,7 +429,7 @@ The third-party application "vega.xyz" requests to send a transaction and the us
 {
     "id": 1,
     "jsonrpc": "2.0",
-    "method": "session.send_transaction",
+    "method": "client.send_transaction",
     "params": {
         "token": "hZKSx0snBvikp2NGMJdKPHU5qvloSeqpqbJg6BsMwCcqX4iZvvy99BV2l13oeyEG",
         "publicKey": "3fd42fd5ceb22d99ac45086f1d82d516118a5cb7ad9a2e096cd78ca2c8960c80",
@@ -454,7 +454,7 @@ The third-party application "vega.xyz" requests to send a transaction and the us
 ---
 
 
-## `session.get_chain_id`
+## `client.get_chain_id`
 
 This method returns the chain ID of the network in use.
 
@@ -482,7 +482,7 @@ An example of requesting the chain's ID
 {
     "id": 1,
     "jsonrpc": "2.0",
-    "method": "session.get_chain_id",
+    "method": "client.get_chain_id",
     "params": []
 }
 ```
