@@ -13,7 +13,7 @@
     // Updated market instrument configuration
     instrument: {
      // Instrument code, human-readable shortcode used to describe the instrument
-     code: "APPLES.22",
+     code: "ORANGES.24h",
 
      // Future
      future: {
@@ -113,6 +113,7 @@
      // Optional market metadata, tags
      metadata: [
       "sector:health",
+      "sector:energy",
       "sector:tech",
       "source:docs.vega.xyz"
      ],
@@ -161,11 +162,11 @@
 
    // Timestamp (Unix time in seconds) when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-   closingTimestamp: 1666019882,
+   closingTimestamp: 1666024013,
 
    // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
    // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-   enactmentTimestamp: 1666106282,
+   enactmentTimestamp: 1666110413,
   }
  }
 ```

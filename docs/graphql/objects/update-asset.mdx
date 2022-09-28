@@ -19,6 +19,7 @@ A proposal to update an asset's details
 type UpdateAsset {
   quantum: String!
   source: UpdateAssetSource!
+  assetId: ID!
 }
 ```
 
@@ -31,6 +32,10 @@ type UpdateAsset {
 
 #### [<code style={{ fontWeight: 'normal' }}>UpdateAsset.<b>source</b></code>](#)<Bullet />[`UpdateAssetSource!`](/docs/testnet/graphql/unions/update-asset-source) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="union"/>
 > The source of the updated asset
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>UpdateAsset.<b>assetId</b></code>](#)<Bullet />[`ID!`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The asset to update
 > 
 
 
