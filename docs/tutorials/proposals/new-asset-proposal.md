@@ -33,12 +33,12 @@ You will need:
 Vega currently supports adding [ERC-20 assets ↗](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/#top). ERC-20 assets that pass a governance vote can be enabled [via the Vega bridge](../../api/bridge/index.md) - which is to say that they are deposited from and withdrawn to Ethereum. More token standards and chains are on the roadmap.
 
 :::tip Query for data
-You can see all of the currently supported assets [using the REST endpoint](../../api/rest/data-v2/trading-data-service-v-2-list-assets) or [the 'assets' GraphQL query](../../graphql/queries/assets).
+You can see all of the currently supported assets [using the REST endpoint](../../api/rest/data-v2/trading-data-service-2-list-assets) or [the 'assets' GraphQL query](../../graphql/queries/assets).
 :::
 
 If an asset that you would like to see on the network is not already available, a governance proposal can be made to list the asset. 
 
-If the vote passes, the network validators will then enable the asset on the [bridge contract](../../api/bridge/contracts/ERC20_Bridge_Logic#tag/TradingDataService/operation/TradingDataService_ERC20WithdrawalApproval) which will enable deposits and withdrawals for that token.
+If the vote passes, the network validators will then enable the asset on the [bridge contract](../../api/bridge/contracts/ERC20_Bridge_Logic#tag/TradingDataService/operation/TradingDataService1_ERC20WithdrawalApproval) which will enable deposits and withdrawals for that token.
 
 ## ERC-20 asset validation
 When adding an ERC-20 asset to the bridge, the key details are compared to the smart contract on Ethereum. Specifically:
