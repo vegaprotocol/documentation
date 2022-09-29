@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "vega/api/v1/corestate.proto",
-    "version": "version not set"
+    "version": "0.53.0"
   },
   "tags": [
     {

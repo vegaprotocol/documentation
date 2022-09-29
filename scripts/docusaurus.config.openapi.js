@@ -96,8 +96,8 @@ function generateRestDocument (version, specPath, isMainnet) {
  * To disable cleaning/regenerating mainnet docs, remove the mainnet parts of this function
  **/
 function generateRestDocuments (testnetVersion, mainnetVersion) {
-  const testnetFiles = glob.sync(`./specs/v${testnetVersion}/*.swagger.json`)
-  const mainnetFiles = glob.sync(`./specs/v${mainnetVersion}/*.swagger.json`)
+  const testnetFiles = glob.sync(`./specs/v${testnetVersion}/*.openapi.json`)
+  const mainnetFiles = glob.sync(`./specs/v${mainnetVersion}/*.openapi.json`)
 
   const main = mainnetFiles.map(f => generateRestDocument(mainnetVersion, f, true))
   const test = testnetFiles.map(f => generateRestDocument(testnetVersion, f, false))
