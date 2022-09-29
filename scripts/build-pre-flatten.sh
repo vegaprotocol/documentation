@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# This file does some tidyup, and probably shouldn't really exist.
+# It could be run automatically when a new PR
+# to the spec folder comes in. Or the PR could run the equivalent of this
+# script. Or even... openapi docs could be generated from the start.
+#
+# This script lets us pretend it is, and also keeps compatibility with vegaprotocol/docs
+
 # Moves a file only if it exists, explains why it doesn't if it doesn't
 # Also produces an OpenAPI equivalent to the swagger
 # Only OpenAPI is required for this repo, but vegaprotocol/docs depends on
@@ -30,6 +37,7 @@ movePlease () {
     fi
 }
 
+# Select which version to run against based on package.json version
 doc_version="v$(cat package.json | jq .version -r)"
 
 echo "flattening: ${doc_version}"
@@ -61,7 +69,9 @@ blocks_swagger_dest="blockexplorer.swagger.json"
 blocks_openapi_dest="blockexplorer.openapi.json"
 movePlease "$blocks_swagger" "$blocks_swagger_dest" "$blocks_openapi_dest"
 
-# Non-swagger/openapi
+#
+# Non-swagger/openapi - omits the third param to movePlease so no openapi stuff is done
+#
 proto="./grpc/proto.json"
 proto_dest="./proto.json"
 movePlease "$proto" "$proto_dest"
@@ -70,6 +80,9 @@ movePlease "./datanode-schema.graphql" "./schema.graphql"
 
 movePlease "./wallet/api/openrpc.json" "./openrpc.json"
 
+#
+# Delete the messy folders full of files we no longer need
+#
 rm -rf blockexplorer
 rm -rf data-node
 rm -rf grpc
