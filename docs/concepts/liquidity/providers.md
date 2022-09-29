@@ -12,7 +12,7 @@ Participants who place limit orders on a market are also supplying liquidity, an
 
 **[Liquidity fees](#liquidity-fees)** are defined based on the commitments and proposed fee levels chosen by the providers, not by the protocol.
 
-Participants who want to **[commit liquidity](#liquidity-commitment-transaction)** to a market can enter their commitments as soon as a market proposal is submitted and accepted, even before the governance vote to create the market concludes, as well as at any time while the market is trading. Committing earlier in a market's lifecycle leads to a higher equity-like share in that market.
+Participants who want to **[commit liquidity](#liquidity-commitment-transaction)** to a market can enter their commitments as soon as a market proposal is submitted and accepted, even before the governance vote to create the market concludes, as well as at any time while the market is trading. Committing earlier in a market's lifecycle leads to a higher equity-like share in that market, assuming the trading volume on the market increases with time.
 
 ## Liquidity providers
 Participants with sufficient collateral can provide liquidity for markets through liquidity commitment orders. 
@@ -67,10 +67,12 @@ The penalty formula defines how much will be removed from the bond account:
 * `market.liquidity.bondPenaltyParameter` is a network parameter
 * shortfall refers to the absolute value of the funds that either the liquidity provider was unable to cover through their margin and general accounts, are needed for settlement (mark to market or product driven), or are needed to meet their margin requirements
 
-## Liquidity commitment transaction
+## Liquidity commitment transaction [WIP]
 Participants can commit liquidity by submitting a liquidity submission transaction to the network. 
 
-The buy and sell orders that are part of a liquidity commitment transaction are used to make up the remainder of the liquidity obligation if the liquidity supplied by the manually maintained orders falls short of it. (??)
+The buy and sell "shapes" that are part of a liquidity commitment transaction are used to make up the remainder of the liquidity obligation if the liquidity supplied by the manually maintained orders falls short of it. These place the desired proportion of the missing liquidity commitment at the desired offset from the reference price (best_bid, best_ask or midprice).
+
+Typically liquidity providers should aim to meet their liquidity obligation through standard limit orders as that provides them with the best control over their strategy. The batch transaction **(xxx add link xxx)** is designed to enable this efficiently. The buy and sell shapes submitted as part of the liquidity commitment are then only used to provide the shortfall of the committed liquidity. 
 
 A liquidity commitment transaction must include:
 * Market ID for a market that is in a state that accepts liquidity commitments
@@ -78,16 +80,16 @@ A liquidity commitment transaction must include:
 * Proposed liquidity fee level
 * A set of liquidity buy and sell orders
  
-**Liquidity providers will need to actively manage their commitment.** Amending and cancelling commitments is possible, but only if the market can function without that liquidity commitment by meeting its target stake. It is not possible to cancel the individual limit orders that are created from a liquidity commitment.
+**Liquidity providers will need to actively manage their commitment.** Reducing and cancelling commitments is possible, but only if the market can function without that liquidity commitment by meeting its target stake. It is always possible to increase the commitment or change the liquidity fee bid. It is not possible to cancel the individual limit orders that are created from a liquidity commitment but it is always possible to change the "shape" i.e. the [reference, offset, proportion] lists for each book side that form part of the liquidity provision order.
 
 ### Liquidity commitment order type
-In essence, liquidity commitment orders are sets of pegged orders grouped by order book size, with a proportion set for each order within the order 'shape'. The overall volume depends on the remaining liquidity obligation, the mid-price, and the risk model parameters, but the sizes of orders relative to each other can still be controlled.
+In essence, liquidity commitment orders are sets of pegged orders grouped by order book size, with a proportion set for each order within the order 'shape'. The overall volume that Vega will imply and automatically place on the order book from this depends on the remaining liquidity obligation, the best bid / ask prices, the price monitoring bounds, and the risk model parameters, but the reference, offsets and proportion at the reference / offset can always be amended.
 
-Those orders use a special batch order type that automatically updates price and size as needed to meet the commitment, and automatically refreshes its volume after trading to ensure continuous liquidity provision.
+Those orders use a special order type that automatically updates price and size as needed to meet the commitment, and automatically refreshes its volume after trading to ensure continuous liquidity provision.
 
 A liquidity commitment order type has a specific set of features that set it apart from a standard order: 
-* *Submitted as a batch order*: A liquidity commitment order allows simultaneously specifying multiple orders in one message/transaction
-* *Sits on the order book*: The orders are always priced limit orders that sit on the order book, and do not trade on entry
+* *Submitted as a special transaction*: A liquidity commitment order allows simultaneously specifying multiple orders in one message/transaction
+* *Sits on the order book*: The orders are always priced limit orders that sit on the order book (unless the market is in auction), and do not trade on entry
 * *Returns to the order book after being filled*: The order is always refreshed after it trades, based on the above requirements so that the full commitment is always supplied
 
 ### Submit liquidity commitment
