@@ -1,17 +1,6 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 
-let version = process.env.npm_package_version
-
-if (!version) {
-  version = require('./package.json').version
-}
-
-if (!version.match(/^(?:(\d+)\.)?(?:(\d+)\.)?(\*|\d+)$/)) {
-  throw new Error('Version incorrectly formatted')
-}
-
-const vVersion = 'v' + version
-const shortVersion = version.split('.').slice(0, 2).join('.')
+const { shortenVersion, openApiConfig, version, mainnetVersion } = require('./scripts/docusaurus.config.openapi.js')
 
 module.exports = {
   title: "Vega Protocol",
@@ -219,61 +208,15 @@ module.exports = {
     ],
 
     [
+      // See ./scripts/docusaurus.config.openapi.js for how this is generated, but in short it takes the
+      // current 'mainnet' vresion and the current 'testnet' version from package.json, iterates over the
+      // ./specs/[version number] folder to get all the swagger files, then generates them in a predictable
+      // way
       "docusaurus-plugin-openapi-docs",
       {
         id: "apiDocs",
         docsPluginId: "classic",
-        config: {
-          tradingv1v056: {
-            specPath: "./specs/v0.56.0/trading_data_v1.swagger.json",
-            outputDir: "docs/api/rest/data-v1",
-            sidebarOptions: {
-              groupPathsBy: "tag",
-            },
-          },
-          tradingv2v056: {
-            specPath: "./specs/v0.56.0/trading_data_v2.swagger.json",
-            outputDir: "docs/api/rest/data-v2",
-            sidebarOptions: {
-              groupPathsBy: "tag",
-            },
-          },
-          corev056: {
-            specPath: "./specs/v0.56.0/core.swagger.json",
-            outputDir: "docs/api/rest/core",
-            sidebarOptions: {
-              groupPathsBy: "tag",
-            },
-          },
-          statev056: {
-            specPath: "./specs/v0.56.0/corestate.swagger.json",
-            outputDir: "docs/api/rest/state",
-            sidebarOptions: {
-              groupPathsBy: "tag",
-            },
-          },
-          statev053: {
-            specPath: "./specs/v0.53.0/corestate.swagger.json",
-            outputDir: "./versioned_docs/version-v0.53/api/rest/state",
-            sidebarOptions: {
-              groupPathsBy: "tag",
-            },
-          },
-          corev053: {
-            specPath: "./specs/v0.53.0/core.swagger.json",
-            outputDir: "./versioned_docs/version-v0.53/api/rest/core",
-            sidebarOptions: {
-              groupPathsBy: "tag",
-            },
-          },
-          tradingv1v053: {
-            specPath: "./specs/v0.53.0/trading_data.swagger.json",
-            outputDir: "./versioned_docs/version-v0.53/api/rest/data-v1",
-            sidebarOptions: {
-              groupPathsBy: "tag",
-            },
-          },
-        },
+        config:  openApiConfig
       },
     ],
   ],
@@ -289,23 +232,23 @@ module.exports = {
           disableVersioning: false,
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/vegaprotocol/documentation/edit/main/",
-          lastVersion: "v0.53",
+          lastVersion: `v${shortenVersion(mainnetVersion)}`,
           docLayoutComponent: "@theme/DocPage",
           docItemComponent: "@theme/ApiItem",
           versions: {
             current: {
               banner: "unreleased",
-              label: `testnet (v${shortVersion})`,
+              label: `testnet (v${shortenVersion(version)})`,
               path: "testnet",
               // Hacky: Classname used for full version number, v prefix. Used for OpenrpcPlayground
-              className: `${vVersion}`
+              className: `v${version}`
             },
             "v0.53": {
               banner: "none",
-              label: "mainnet (v0.53)",
+              label: `mainnet (v${shortenVersion(mainnetVersion)})`,
               path: "mainnet",
               // Hacky: Classname used for full version number, v prefix. Used for OpenrpcPlayground
-              className: "v0.53.0"
+              className: `v${mainnetVersion}`
             }
           },
         },
@@ -321,3 +264,4 @@ module.exports = {
     "@vegaprotocol/docusaurus-theme-github-codeblock",
   ],
 };
+

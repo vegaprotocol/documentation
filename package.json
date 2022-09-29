@@ -1,6 +1,7 @@
 {
   "name": "vega-documentation",
   "version": "0.57.0",
+  "mainnetVersion": "0.53.0",
   "license": "MIT",
   "engines": {
     "node": ">=16.14"
@@ -45,6 +46,7 @@
     "docusaurus-protobuffet": "0.3.2",
     "docusaurus-theme-openapi-docs": "^1.2.0",
     "file-loader": "6.2.0",
+    "glob": "^8.0.3",
     "graphql": "^16.5.0",
     "prettier": "2.7.1",
     "pretty-js": "^0.2.2",
