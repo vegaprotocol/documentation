@@ -61,8 +61,11 @@ echo ""
 ./scripts/build-post-fix-generated.sh
 # Fix up sidebars for all APIs
 ./scripts/build-post-fix-sidebars.sh
+# Inject more testnet servers for testnet
+node --no-warnings --experimental-fetch scripts/build-post-openapi-servers.js
 
 if [ -z ${SKIP_BUILD+x} ]; then yarn run build; else echo "Docusaurus build skipped"; fi
 
 echo "Done! Now check if you need to run the versioning script (./scripts/version.sh)"
+
 

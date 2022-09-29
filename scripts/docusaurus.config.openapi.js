@@ -6,20 +6,7 @@
  */
 
 const glob = require('glob')
-
-// This version is used as the 'testnet' version
-let version = process.env.npm_package_version
-if (!version) {
-  version = require('../package.json').version
-}
-
-if (!version.match(/^(?:(\d+)\.)?(?:(\d+)\.)?(\*|\d+)$/)) {
-  throw new Error('Version incorrectly formatted')
-}
-
-function shortenVersion (version) {
-  return version.split('.').slice(0, 2).join('.')
-}
+const { version, mainnetVersion, shortenVersion } = require('./lib/version.js')
 
 /**
  * Mainnet version is also taken from package.json, but only
@@ -30,7 +17,6 @@ function shortenVersion (version) {
  * for mainnet, which would ensure that the versioned_docs folder is untouched
  * after a version is tagged.
  */
-let mainnetVersion = require('../package.json').mainnetVersion
 
 /**
  * Generates the config object for each spec for OpenApi plugin
