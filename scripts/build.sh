@@ -61,7 +61,14 @@ echo ""
 ./scripts/build-post-fix-generated.sh
 # Fix up sidebars for all APIs
 ./scripts/build-post-fix-sidebars.sh
+
 # Inject more testnet servers for testnet
+## Run vaguer and store the output
+# rm ./specs/vaguer.mainnet.json
+# JSON=true npx github:vegaprotocol/vaguer mainnet1 --silent > "./specs/vaguer.mainnet.json"
+# rm ./specs/vaguer.testnet.json
+# JSON=true npx github:vegaprotocol/vaguer fairground --silent > "./specs/vaguer.testnet.json"
+## Now inject servers
 node --no-warnings --experimental-fetch scripts/build-post-openapi-servers.js
 
 if [ -z ${SKIP_BUILD+x} ]; then yarn run build; else echo "Docusaurus build skipped"; fi
