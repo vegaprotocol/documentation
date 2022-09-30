@@ -90,7 +90,7 @@ const filter = getVaguerFilters(generateForMainnet)
 // Get files we're going to update
 const specs = glob.sync(`./specs/v${v}/*.openapi.json`)
 
-// Fetch server list, write in to files
+// Fetch server list, filter it by vaguer output *and also require HTTPS, add a description
 serversForNetwork(generateForMainnet).then(servers => {
   const openApiServers = servers.API.REST.Hosts.filter(h => {
     let base = url.parse(h).hostname
@@ -99,11 +99,19 @@ serversForNetwork(generateForMainnet).then(servers => {
     }
     return filter.indexOf(base) !== -1
   }).map(h => {
+    // Manual fix: two servers in mainnet1.toml have https, but not enabled. Override those
+    if (h.indexOf('chorus.one') !== -1 || h.indexOf('xprv') !== -1) {
+      h = h.replace('http:', 'https:')
+    }
+
     return {
       url: h,
       description: descriptionForServer(h, generateForMainnet)
     }
+  }).filter(h => {
+    return (h.url.indexOf('https') !== -1)
   })
+
   if (openApiServers.length === 0) {
     console.error('No good servers after vaguer filter')
     throw new Error('Bail out')
@@ -126,4 +134,3 @@ serversForNetwork(generateForMainnet).then(servers => {
     console.groupEnd()
   })
 })
-
