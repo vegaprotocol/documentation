@@ -26,18 +26,56 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-### Version 0.56.0 | 2022-09-26
+### Pre-release Version 0.57.0 | 2022-09-28
+This version was released to the Vega testnet on 28 September, 2022.
+
+For full details see the vega core [0.57.0 release page ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.57.0).
+
+The primary focus of this release has been to add a number of improvements aroun the stability of the network and to add functionality for better exploring the blockchain and implementing datanode snapshots ahead of this feature being used for protocol upgrades and new nodes joining the network.
+
+:::warning API deprecations
+**Data node**: The v2 APIs ([REST ↗](./../api/rest/overview) and [gRPC ↗](./../grpc/data-node/api/v2/trading_data.proto)) for the data node will be replace V1, which will soon be removed. Therefore anyone building apps on to of Vega should start to use the v2 APIs from release 0.55 onwards.
+
+**Vega Wallet**: For most use cases, the v2 [wallet API ↗](./../api/vega-wallet) will soon be the only one available for interacting with the Vega Wallet. V1 will continue to be used for the testnet-only hosted wallet for testing and incentives, for slightly longer.
+:::
+
+#### Breaking Changes
+The release of [0.57 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.57.0) brings with it a small number of breaking changes. 
+
+#### Changing clef address now requires re-importing config
+The Nodewallet.ETH section of the config has been removed, and as a consequence some CLI arguments have changed when using clef. Before, when starting a Vega node with a clef wallet, Vega would read whatever clef address was in nodewallet.ETH, whereas after this change, the network only ever uses the value set for the clef address when the key was imported/generated. This work was done under issue [6291 ↗](https://github.com/vegaprotocol/vega/issues/6291)
+
+#### Wallet v2 API `session` renamed
+To add more clarity to what the wallet API does, the `session` namespace has been renamed to `client`. This work was done under issue [6314 ↗](https://github.com/vegaprotocol/vega/issues/6314)
+
+#### New features: Core
+
+#### Block explorer APIs
+In order to support the block explorer being able to list transactions and provide a good user experience around searching with transaction ids, a service and new APIs have been implemented. Using the Postgres Tendermint indexer was resulting in datanode stability issues and in some cases affecting core node stability. This new service and APIs will allow good user experiences to be built in front end block explorer applications. This work was carried out in [6163 ↗](https://github.com/vegaprotocol/vega/issues/6163)
+
+#### New features: Data node
+
+#### Datanode snapshots
+As part of the protocol upgrade process and when new nodes join the network, the nodes need to ensure the datanode data is correct. Datanode snapshots will be used for these use cases. This initial implementation allows creation of deterministic delta snapshots and the loading up a datanode from the snapshot data. This is an ongoing in-development feature, this part was implemented in 
+
+#### Update ssset proposal to include the asset ID being updated in GraphQL
+In order to ensure GraphQL users understand which asset is being updated the field `assetId` has been added into the `UpdateAsset` proposals response. This work was done under issue [6296 ↗](https://github.com/vegaprotocol/vega/issues/6296)
+
+#### Add rate limiter for GraphQL
+During testing it was identified that GraphQL subscriptions were able to cause overloading on the datanode. To avoid this a rate limiter has been implemented for GraphQL subscriptions. This work was implemented under [6334 ↗](https://github.com/vegaprotocol/vega/pull/6334)
+
+#### New features: Wallet
+
+#### Add commit hash to verison if is development version
+To avoid version confusion by developers and builders due to the wallet not raising compatibility issues between different development versions of the software. The version check has been enhanced to add the commit hash (first 8 characters) behind the +dev build tag. This work was carried out in issue [6283 ↗](https://github.com/vegaprotocol/vega/issues/6283)
+
+
+### Pre-release Version 0.56.0 | 2022-09-26
 This version was released to the Vega testnet on 26 September, 2022.
 
 For full details see the vega core [0.56.0 release page ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.56.0).
 
 The primary focus of this release has been to resolve a number of critical bugs that have caused stability issues.
-
-:::warning API deprecations
-**Data node**: The v2 APIs ([REST](./../api/rest/overview) and [gRPC](./../grpc/data-node/api/v2/trading_data.proto)) for the data node will be replace V1, which will soon be removed. Therefore anyone building apps on to of Vega should start to use the v2 APIs from release 0.55 onwards.
-
-**Vega Wallet**: For most use cases, the v2 [wallet API](./../api/vega-wallet) will soon be the only one available for interacting with the Vega Wallet. V1 will continue to be used for the testnet-only hosted wallet for testing and incentives, for slightly longer.
-:::
 
 #### Breaking Changes
 The release of [0.56 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.56.0) brings with it a small number of breaking changes. 
@@ -82,7 +120,7 @@ Proof-of-work is now attached to the Vega Wallet return transaction command `sig
 #### Automatic consent for transactions
 The permission and connection requests for consent are the last layer of protection when using the Vega Wallet, however, in some cases users may require these requests have automatic consent. The command line flag `--automatic-consent` has been added to wallet API v2 to override the default security, which brings this v1 feature into the new API. This has been implemented in issue [6203 ↗](https://github.com/vegaprotocol/vega/issues/6203)
 
-### Version 0.55.0 | 2022-09-20
+### Pre-release Version 0.55.0 | 2022-09-20
 This version was released to the Vega testnet on 20 September, 2022.
 
 For full details see the vega core [0.55.0 release page ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.55.0).
@@ -90,9 +128,9 @@ For full details see the vega core [0.55.0 release page ↗](https://github.com/
 The primary focus of this release has been to progress work on the data node ensuring there is a scalable data store with historical data, resolve any bugs found and to improve the node operator experience.
 
 :::warning API deprecations
-**Data node**: The v2 APIs ([REST](./../api/rest/overview) and [gRPC](./../grpc/data-node/api/v2/trading_data.proto)) for the data node will be replace v1, which will soon be removed. Therefore anyone building apps on to of Vega should start to use the v2 APIs from this release (0.55) onwards.
+**Data node**: The v2 APIs ([REST ↗](./../api/rest/overview) and [gRPC ↗](./../grpc/data-node/api/v2/trading_data.proto)) for the data node will be replace v1, which will soon be removed. Therefore anyone building apps on to of Vega should start to use the v2 APIs from this release (0.55) onwards.
 
-**Vega Wallet**: For most use cases, the v2 [wallet API](./../api/vega-wallet) will soon be the only one available for interacting with the Vega Wallet. V1 will continue to be used for the testnet-only hosted wallet for testing and incentives, for slightly longer.
+**Vega Wallet**: For most use cases, the v2 [wallet API ↗](./../api/vega-wallet) will soon be the only one available for interacting with the Vega Wallet. V1 will continue to be used for the testnet-only hosted wallet for testing and incentives, for slightly longer.
 :::
 
 #### Breaking Changes
@@ -174,7 +212,7 @@ As development progresses both on the protocol and the wallet, it is important t
 
 
 
-### Version 0.54.0 | 2022-08-19
+### Pre-release Version 0.54.0 | 2022-08-19
 This version was released to the Vega testnet on 19 August, 2022.
 
 For full details see the vega core [0.54.0 release page ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.54.0)
