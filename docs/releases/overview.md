@@ -62,7 +62,7 @@ As part of the protocol upgrade process and when new nodes join the network, the
 In order to ensure GraphQL users understand which asset is being updated the field `assetId` has been added into the `UpdateAsset` proposals response. This work was done under issue [6296 ↗](https://github.com/vegaprotocol/vega/issues/6296)
 
 #### Add rate limiter for GraphQL
-During testing it was identified that GraphQL subscriptions were able to cause overloading on the datanode. To avoid this a rate limiter has been implemented for GraphQL subscriptions. This work was implemented under [6334 ↗](https://github.com/vegaprotocol/vega/pull/6334)
+During testing it was identified that GraphQL subscriptions could cause overloading on the data node. A rate limiter has been implemented for GraphQL subscriptions. This work was implemented under [6334 ↗](https://github.com/vegaprotocol/vega/pull/6334)
 
 #### New features: Wallet
 
