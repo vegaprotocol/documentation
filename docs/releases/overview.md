@@ -130,7 +130,7 @@ The primary focus of this release has been to progress work on the data node ens
 :::warning API deprecations
 **Data node**: The v2 APIs ([REST ↗](./../api/rest/overview) and [gRPC ↗](./../grpc/data-node/api/v2/trading_data.proto)) for the data node will be replace v1, which will soon be removed. Therefore anyone building apps on to of Vega should start to use the v2 APIs from this release (0.55) onwards.
 
-**Vega Wallet**: For most use cases, the v2 [wallet API ↗](./../api/vega-wallet) will soon be the only one available for interacting with the Vega Wallet. V1 will continue to be used for the testnet-only hosted wallet for testing and incentives, for slightly longer.
+**Vega Wallet**: For most use cases, the v2 [wallet API](./../api/vega-wallet) will soon be the only one available for interacting with the Vega Wallet. V1 will continue to be used for the testnet-only hosted wallet for testing and incentives, for slightly longer.
 :::
 
 #### Breaking Changes
