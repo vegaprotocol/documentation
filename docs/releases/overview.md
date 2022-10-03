@@ -66,7 +66,7 @@ During testing it was identified that GraphQL subscriptions could cause overload
 
 #### New features: Wallet
 
-#### Add commit hash to verison if is development version
+#### Add commit hash to version if development version
 To avoid version confusion by developers and builders due to the wallet not raising compatibility issues between different development versions of the software, the version check has been enhanced to add the commit hash (first 8 characters) behind the +dev build tag. This work was carried out in issue [6283 ↗](https://github.com/vegaprotocol/vega/issues/6283)
 
 
