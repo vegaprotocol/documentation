@@ -55,7 +55,7 @@ To support the block explorer to list transactions and provide a good user exper
 
 #### New features: Data node
 
-#### Datanode snapshots
+#### Data node snapshots
 As part of the protocol upgrade process and when new nodes join the network, the nodes need to ensure the datanode data is correct. Datanode snapshots will be used for these use cases. This initial implementation allows creation of deterministic delta snapshots and the loading up a datanode from the snapshot data. This is an ongoing in-development feature, this part was implemented in 
 
 #### Update ssset proposal to include the asset ID being updated in GraphQL
