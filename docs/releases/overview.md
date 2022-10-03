@@ -51,7 +51,7 @@ To add more clarity to what the wallet API does, the `session` namespace has bee
 #### New features: Core
 
 #### Block explorer APIs
-In order to support the block explorer being able to list transactions and provide a good user experience around searching with transaction ids, a service and new APIs have been implemented. Using the Postgres Tendermint indexer was resulting in datanode stability issues and in some cases affecting core node stability. This new service and APIs will allow good user experiences to be built in front end block explorer applications. This work was carried out in [6163 ↗](https://github.com/vegaprotocol/vega/issues/6163)
+To support the block explorer to list transactions and provide a good user experience, a service and new APIs have been implemented. This work was carried out in [6163 ↗](https://github.com/vegaprotocol/vega/issues/6163)
 
 #### New features: Data node
 
