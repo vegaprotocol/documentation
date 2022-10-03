@@ -56,7 +56,7 @@ To support the block explorer to list transactions and provide a good user exper
 #### New features: Data node
 
 #### Data node snapshots
-As part of the protocol upgrade process and when new nodes join the network, the nodes need to ensure the datanode data is correct. Datanode snapshots will be used for these use cases. This initial implementation allows creation of deterministic delta snapshots and the loading up a datanode from the snapshot data. This is an ongoing in-development feature, this part was implemented in 
+As part of the protocol upgrade process and when new nodes join the network, the nodes need to ensure the data node data is correct. Data node snapshots will be used for these use cases. This is an ongoing in-development feature, this part was implemented in 
 
 #### Update asset proposal to include the asset ID in GraphQL response
 In order to ensure GraphQL users understand which asset is being updated the field `assetId` has been added into the `UpdateAsset` proposals response. This work was done under issue [6296 ↗](https://github.com/vegaprotocol/vega/issues/6296)
