@@ -31,7 +31,7 @@ This version was released to the Vega testnet on 28 September, 2022.
 
 For full details see the vega core [0.57.0 release page ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.57.0).
 
-The primary focus of this release has been to add a number of improvements aroun the stability of the network and to add functionality for better exploring the blockchain and implementing datanode snapshots ahead of this feature being used for protocol upgrades and new nodes joining the network.
+The primary focus of this release has been to improve the stability of the network, add functionality for better exploring the blockchain, and implement data node snapshots ahead of this feature being used for protocol upgrades and new nodes joining the network.
 
 :::warning API deprecations
 **Data node**: The v2 APIs ([REST ↗](./../api/rest/overview) and [gRPC ↗](./../grpc/data-node/api/v2/trading_data.proto)) for the data node will be replace V1, which will soon be removed. Therefore anyone building apps on to of Vega should start to use the v2 APIs from release 0.55 onwards.
