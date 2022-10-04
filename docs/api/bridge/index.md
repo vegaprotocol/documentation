@@ -22,7 +22,7 @@ For an introduction to staking on Vega, [check out our Concepts section](../../c
 Used for depositing ERC20 tokens in to a Vega network.
 
 
-To read more about how the bridge works, [see this blog post](https://blog.vega.xyz/vega-erc20-bridge-331a5235efa2). If you're looking for a way to deposit tokens from Ropsten on to the Fairground testnet, head over to [Fairground Console](https://console.fairground.wtf).
+To read more about how the bridge works, [see this blog post](https://blog.vega.xyz/vega-erc20-bridge-331a5235efa2). If you're looking for a way to deposit tokens from Sepolia on to the Fairground testnet, head over to [Fairground Console](https://console.fairground.wtf).
 
 ## [Multisig Control](./interfaces/IMultisigControl.md)
 Used to control the ownership of bridge contracts, allowing the validators of a Vega network to control which assets can be used with the bridge, and approve asset withdrawals.
