@@ -30,8 +30,8 @@
       // Product quote name (string)
       quoteName: "tEuro",
 
-      // The number of decimal places implied by the settlement price emitted by the settlement oracle (int64 as integer)
-      settlementPriceDecimals: 5,
+      // The number of decimal places implied by the settlement data (such as price) emitted by the settlement oracle (int64 as integer)
+      settlementDataDecimals: 5,
 
       // The oracle spec describing the oracle data of settlement price (object)
       oracleSpecForSettlementPrice: {
@@ -122,8 +122,8 @@
 
      // Optional new market meta data, tags
      metadata: [
+      "sector:tech",
       "sector:food",
-      "sector:energy",
       "source:docs.vega.xyz"
      ],
 
@@ -182,7 +182,7 @@
       r: 0.016,
 
       // Sigma param (double as number) 
-      sigma: 0.8,
+      sigma: 1.25,
      }
     },
    }
@@ -190,11 +190,11 @@
 
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-  closingTimestamp: 1665313779,
+  closingTimestamp: 1666539201,
 
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-  enactmentTimestamp: 1665400179,
+  enactmentTimestamp: 1666625601,
  }
 }
 ```
