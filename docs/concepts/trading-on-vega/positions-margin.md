@@ -25,20 +25,20 @@ As markets and collateral are not managed through human intervention, markets mu
 
 There are a few mechanisms that work differently to how they would on a centralised exchange, in order to keep the markets solvent. They include:
 - [**Margin**](#margin): When a party opens a position: the *initial margin* requirement is calculated automatically depending on the market's risk model. If the market moves against the party, and the margn towards the *maintenance level*, Vega will *search* for more collateral in the general account, to avoid liquidating the position. Margin can also be *released* if the position is in sufficient profit. Other positions in markets with the same settlement asset may also interact with the same general account. Therefore, Vega is a cross-margin based system by default.
-- [**Mark to market**](#mark-to-market): Mark to market on Vega happens much more frequently than on an exchange where counter parties are not pseudonymous. Every time the market price moves, the mark to market price could be recalculated. Mark to market is used to move assets into your margin account (from someone else's) if you are in profit, or out of your margin account if not.
+- [**Mark to market**](#mark-to-market): Mark to market on Vega happens much more frequently than on an exchange where counter parties are not pseudonymous. Every time a trade happens and moves the last traded price, the mark to market price is recalculated. Mark to market is used to move assets into your margin account (from someone else's) if you are in profit, or out of your margin account if not.
 
 ## Mark to market
 Marking to market refers to settling gains and losses due to changes in the market value of the underlying product. Marking to market aims to provide a realistic appraisal of a position based on the current market conditions.
 
 When marking to market, the protocol takes the current market price and recalculates traders' margin requirements based on how their position is affected by price moves.
 
-If the market price goes up, a trader that holds a long position receives money in their margin account – equal to the underlying's change in value – from a trader that holds a short position, and conversely if the value goes down, the holder of the short position recieves money from the holder of the long position.
+If the market price goes up, a trader that holds a long position receives money in their margin account – equal to the underlying's change in value – from a trader that holds a short position, and conversely if the value goes down, the holder of the short position recives money from the holder of the long position.
 
 For a futures market created on Vega, the mark-to-market price is calculated every time the price moves, and is based on the last traded price. This is in contrast to traditional futures markets, for which marking to market may occur once per day. One exception is when the market settles at expiry, at which point the mark to market price comes from the data source's final settlement price.
 
-Settlement instructions are generated based on the change in market value of the open positions of a party. When the mark price changes, the network calculates settlement cash flows for each party, and the process is repeated each time the mark price changes until the maturity date for the market is reached.
+Mark to market settlement are generated based on the change in market value of the open positions of a party. When the mark price changes, the network calculates settlement cash flows for each party, and the process is repeated each time the mark price changes until the maturity date for the market is reached.
 
-Because the margin for a market is calculated dynamically based on the market movements, the mark price also has an effect on how much collateral is set aside for margin.
+Because the margin is calculated dynamically based on the market movements, the mark price also has an effect on how much collateral is set aside for margin.
 
 :::note Read more
 [Mark to market settlement](./settlement#mark-to-market-settlement)
@@ -47,7 +47,7 @@ Because the margin for a market is calculated dynamically based on the market mo
 ## Margin
 Margin is the amount of collateral required to keep your position open. It can change depending on how your position is impacted by your own actions and market movement.
 
-The margin calculations ensure a trader does not enter a trade that will immediately need to be closed out.
+The margin levels try to assure that a trader does not enter a trade that will immediately need to be closed out.
 
 When placing a key's first order on a market: the protocol will calculate the initial margin required. If there is not a sufficient balance in the general account to fund this, the order will be rejected. If there is, these funds will be moved into a margin account for that market.  
 
@@ -92,7 +92,9 @@ The initial margin level being higher than the *margin search level* (which itse
 ### Margin level: Searching for collateral
 If the balance available in a trader's margin account is less than their position's *margin search level*, but is still above the maintenance level -- the network will try to allocate more money (up to the current initial margin level) from a trader's general account to be used for margin.
 
-If the margin account can be topped up, then the position stays open. If a market's swing is bigger than a user's margin is can cover, then money is pulled from the collateral to cover the requirement. In most cases, the allocated margin should cover market swings.
+If the margin account can be topped up, then the position stays open. If that's not possible as there are no sufficient funds in trader's collateral account and the market keeps moving against the trader so that the margin account balance drops below the current maintenance  level a closeout procedure is initiated. The first step is to cancel all of trader's open orders and revaluate the margin requirements. If the margin account balance is now higher than the maintenance margin level trader's position remains open, otherwise the protocol will attempt a liquidation.
+
+In most cases, the allocated margin should cover market swings so that collateral search is attempted first as described above, however in extreme cases the market move could be so large as to immediately proceed to the liquidation step.
 
 The search level is scaled from the *maintenance margin* amount. It's calculated by multiplying the maintenance margin amount by the `search_level` scaling factor, which is set by the network parameter `market.margin.scalingFactors`.
 
