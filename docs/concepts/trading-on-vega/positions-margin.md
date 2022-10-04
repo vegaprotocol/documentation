@@ -36,7 +36,7 @@ If the market price goes up, a trader that holds a long position receives money 
 
 For a futures market created on Vega, the mark-to-market price is calculated every time the price moves, and is based on the last traded price. This is in contrast to traditional futures markets, for which marking to market may occur once per day. One exception is when the market settles at expiry, at which point the mark to market price comes from the data source's final settlement price.
 
-Mark to market settlement are generated based on the change in market value of the open positions of a party. When the mark price changes, the network calculates settlement cash flows for each party, and the process is repeated each time the mark price changes until the maturity date for the market is reached.
+Mark to market settlement instructions are generated based on the change in market value of the open positions of a party. When the mark price changes, the network calculates settlement cash flows for each party, and the process is repeated each time the mark price changes until the maturity date for the market is reached.
 
 Because the margin is calculated dynamically based on the market movements, the mark price also has an effect on how much collateral is set aside for margin.
 
