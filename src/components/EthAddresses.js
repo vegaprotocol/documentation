@@ -24,7 +24,7 @@ function etherscanLink(contractAddress, network) {
 
 const contractNames = {
   MultisigControl: "Multisig Control",
-  ERC20AssetPool: "ERC20 Aasset pool", 
+  ERC20AssetPool: "ERC20 Asset pool", 
   VegaToken: "Vega token",
   VestingBridge: "Token vesting",
   StakingBridge: "Staking bridge",
