@@ -38,7 +38,6 @@
     "@svgr/webpack": "6.3.1",
     "@vegaprotocol/docusaurus-theme-github-codeblock": "^0.1.8",
     "@vegaprotocol/openrpc-md": "1.2.2",
-    "@vegaprotocol/smart-contracts-sdk": "^1.6.0",
     "bignumber.js": "^9.0.2",
     "clsx": "^1.2.1",
     "date-fns": "^2.29.1",
