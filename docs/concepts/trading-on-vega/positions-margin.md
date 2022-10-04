@@ -49,27 +49,41 @@ Vega calculates four margin levels:
 The network calculates the overall long / short position including the submitted order. Depending on which one is larger a long or short risk factor is used for margin calculation. The maintenance margin (for futures) is then a product of the largest position, the coresponding risk factor and the `mark price`. These capture the outcome of probabilistic distribution of future market moves, and are market specific.
 
 #### Example 
-Image to be uploaded - <img alt="Calculating margin on open orders" src="/images/2-calculate-margin-open-orders.png" width="500" />
+<img alt="Calculating margin on open orders (graphQL)" src="/img/concept-diagrams/calculate-margin-open-orders-graphQL.png" width="500"/>
 
-There is an open sell order of size 1 on the book. The risk factor for short positions is 0.074347011. The current mark price is 0.02690. So minimum margin = 0.2690 x 0.074347011 = 0.00200 (rounded to 5 decimal places).
+Trader posts a sell order of size 1 that doesn't trade on submission and ends up being added to the order book.
+
+The short risk factor is 0.05421518.
+
+The current mark price is 100.00.
+
+So maintenance margin = 1 x 100 x 0.05421518 = 5.42152 (rounded up to 5 decimal places). 
+
+The initial margin scaling factor for the market (α<sup>initial</sup>) is 1.2 so the amount of collateral that gets moved to the trader's margin account for the market is 1.2 x 5.42152 = 6.50582.
+
+<img alt="Calculating margin on open orders (Console)" src="static/img/concept-diagrams/calculate-margin-open-orders-console.png" width="500"/>
 
 ### Margin calculations on open positions
 The following calculation takes into account 'slippage', as seen on an order book.
 
 #### Example:
-<img alt="Calculating margin on an open positions" src="/images/3-margin-open-positions.png" width="500" />
+<img alt="Calculating margin on open orders (graphQL)" src="static/img/concept-diagrams/calculate-margin-open-positions-graphQL.png" width="500"/>
 
 The trader has an open short position of size 1, and no open orders.
 
-The risk factor for short position is 0.074347011. 
+The short risk factor is 0.05421518.
 
-The current mark price is 0.02672. 
+The current mark price is 100.10.
 
-The best offer price is 0.02676 and it has enough volume so that theoretically the position could be closed-out at that price. 
+The best offer price is 100.20 and it has enough volume so that theoretically the position could be closed-out at that price.
 
-maintenance margin = 0.02672 x 0.074347011 + max (0, 0.02676 - 0.02672) = 0.00203 (rounded to 5 decimal places), where the second term in the sum is the 'slippage' component. 
+maintenance margin = 1 x (100.10 x 0.05421518 + max (0, 100.20 - 100.10)) = 5.52695 (rounded up to 5 decimal places), where the second term in the sum is the 'slippage' component.
 
 Other margin levels are derived from the maintenance margin using the scaling factors that form part of the market configuration.
+
+Since the amount charged to trader's margin account upon order submission (6.50582 - see previous example) is still above the current (after the order gets filled and trader ends up with a short position of size 1) search level of 6.07964 = 1.1 x 5.52695, no further margin account balance changes are initiated.
+
+<img alt="Calculating margin on open orders (graphQL)" src="static/img/concept-diagrams/calculate-margin-open-positions-console.png" width="500"/>
 
 ### Initial margin calculation
 The initial margin is the minimum amount of collateral required to post a new order.
