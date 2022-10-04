@@ -6,7 +6,7 @@ original_id: ERC20_Bridge_Logic
 
 # ERC20 Bridge Logic (ERC20_Bridge_Logic.sol)
 
-View Source: [contracts/ERC20_Bridge_Logic.sol](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/ERC20_Bridge_Logic.sol)
+View Source: [contracts/ERC20_Bridge_Logic.sol](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/ERC20_Bridge_Logic_Restricted.sol)
 
 **↗ Extends: [IERC20_Bridge_Logic](../interfaces/IERC20_Bridge_Logic.md)**
 
