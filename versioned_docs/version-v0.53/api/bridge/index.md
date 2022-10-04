@@ -1,7 +1,6 @@
 ---
 title: Overview
 vega_network: MAINNET
-ethereum_network: Mainnet
 sidebar_position: 1
 ---
 
@@ -11,14 +10,14 @@ There are three main components to the Vega <-> Ethereum bridge
 
 ## [Staking bridge](./interfaces/IStake.md)
 
-<EthAddresses frontMatter={frontMatter} show={["stakingBridge"]} />
+<EthAddresses frontMatter={frontMatter} show={["StakingBridge"]} />
 
 Allows users to stake locked or unlocked Vega tokens.
 
 For an introduction to staking on Vega, [check out our Concepts section](../../concepts/vega-chain.md#bridges-used-for-staking) or for a higher level overview [see this blog post](https://blog.vega.xyz/staking-on-vega-17f22113e3df).
 
 ## [ERC20 asset bridge](./interfaces/IERC20_Bridge_Logic.md)
-<EthAddresses frontMatter={frontMatter} show={["erc20Bridge"]} />
+<EthAddresses frontMatter={frontMatter} show={["ERC20Bridge"]} />
 
 Used for depositing ERC20 tokens in to a Vega network.
 
