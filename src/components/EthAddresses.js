@@ -50,7 +50,7 @@ export default function EthAddresses({ frontMatter, show }) {
   let showOnly = show ? show : showOnlyDefault;
 
   if (!vega_network) {
-    throw new Error("Missing vega_networ");
+    throw new Error("Missing vega_network");
   }
 
   const addresses = vega_network.toLowerCase() === 'mainnet' ? mainnetContracts : testnetContracts
