@@ -8,7 +8,7 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Vega-Key-Rotation is a safety related feature specifically for validators to manage their Vega keys. Every validator node in the network needs three keys needs three keys: Ethereum, Tendermint and Vega. This section related to how to dynamically change a node's Vega key.
+Vega key rotation is a safety related feature specifically for validators to manage their Vega keys. Every validator node in the network needs three keys: Ethereum, Tendermint and Vega. This section related to how to dynamically change a node's Vega key.
 
 In the case that the Vega key is compromised, or the validator decides to switch to a new key, there is a mechanism available in Vega to perform a key rotation.
 

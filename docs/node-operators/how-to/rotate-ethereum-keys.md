@@ -8,21 +8,21 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Ethereum-Key-Rotation is a safety feature that allows validator nodes to manage their Ethereum keys. Every validator node in the network needs three keys: Ethereum, Tendermint and Vega. This section described to how to dynamically rotate a node's Ethereum key.
+Ethereum key rotation is a safety feature that allows validator nodes to manage their Ethereum keys. Every validator node in the network needs three keys: Ethereum, Tendermint and Vega. This section described to how to dynamically rotate a node's Ethereum key.
 
-Key-rotation is a cryptographic best practise that allows a current in-use key to be replaced by a new, different key. It is an activity that should be performed regularly to guard against an in-use key being unknowingly compromised.
+Key rotation is a cryptographic best practise that allows a current in-use key to be replaced by a new, different key. It is an activity that should be performed regularly to guard against an in-use key being unknowingly compromised.
 
 Rotating a Node's Ethereum Key can be done by following the below steps:
 1. [Generate a new Ethereum key](#generate-a-new-ethereum-key)
-2. [Submit a Ethereum key rotation transaction to the network](#submit-ethereum-key-rotation-transaction-to-the-network)
+2. [Submit an Ethereum key rotation transaction to the network](#submit-ethereum-key-rotation-transaction-to-the-network)
 3. [Reload the node's Ethereum wallet](#reload-ethereum-wallet-in-vega-validator-node)
-4. [Confirm the key rotation with a datanode](#confirm-a-successful-key-rotation)
+4. [Confirm the key rotation with a data node](#confirm-a-successful-key-rotation)
 5. [Resolve the key rotation on the MultisigControl Bridge](#resolve-the-key-rotation-on-the-multisig-control-bridge)
 
 ## Prerequisites:
 * An installed [Vega binary ↗](https://github.com/vegaprotocol/vega)
 * A running validator node with its admin server enabled
-* The nodewallet passphrases
+* The node wallet passphrases
 
 ## Terminology:
 
@@ -86,12 +86,12 @@ vega nodewallet reload -c ethereum
 ```
 
 :::warning
-Whereas it is not necessary to reload the nodewallet exactly at **TARGET_BLOCK** doing so significantly early or significantly late may affect the nodes performance scores and therefore the reward payout to that node
+Whereas it is not necessary to reload the nodewallet exactly at `TARGET_BLOCK` doing so significantly early or significantly late may affect the node's performance scores and therefore the reward payout to that node.
 :::
 
 ## Confirm a successful key rotation
 
-To confirm that the key rotation occurred and to see that **ETH_NEW_ADDR** is now acknowledged by the network as the node's new Ethereum key, there are two end-points on a datanode that can be used:
+To confirm that the key rotation occurred and to see that **ETH_NEW_ADDR** is now acknowledged by the network as the node's new Ethereum key, there are two end-points on a data node that can be used:
 
 ```
 # this will show the details of all key rotations that have happened
@@ -101,16 +101,16 @@ $DATA_NODE_REST_ADDR/api/v2/vega/keys/ethereum/rotations`
 $DATA_NODE_REST_ADDR/api/v2/nodes`
 ```
 
-Now that the Ethereuem key rotation is complete the node will produce signatures bundles using the new Ethereum Key from the new Ethereum nodewallet. 
+Now that the Ethereuem key rotation is complete the node will produce signature bundles using the new Ethereum key from the new Ethereum nodewallet. 
 
 ## Resolve the key-rotation on the MultisigControl bridge
 
-This section only applies if you are a Consensus Validator and your original Ethereum key is listed as a signer on the MultisigControl contract.
+This section only applies if you are a consensus validator and your original Ethereum key is listed as a signer on the MultisigControl contract.
 
 As a result of the key rotation process the network emits signature bundles that can be used to update the keys on the MultisigControl bridge. You need to notify the [MultisigControl Bridge](./../../api/bridge/interfaces/IMultisigControl) about the change by submitting signature bundles to remove **ETH_ADDR** and add **ETH_NEW_ADDR**
 
 :::warning
-Failure to remove **ETH_ADDR** or add **ETH_NEW_ADDR** before the end of the epoch will result in no reward payout for the node
+Failure to remove **ETH_ADDR** or add **ETH_NEW_ADDR** before the end of the epoch will result in no reward payout for the node.
 :::
 
 ### Retrieving the signature bundles from a datanode
