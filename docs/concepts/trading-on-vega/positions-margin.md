@@ -32,7 +32,7 @@ Marking to market refers to settling gains and losses due to changes in the mark
 
 When marking to market, the protocol takes the current market price and recalculates traders' margin requirements based on how their position is affected by price moves.
 
-If the market price goes up, a trader that holds a long position receives money in their margin account – equal to the underlying's change in value – from a trader that holds a short position, and conversely if the value goes down, the holder of the short position recives money from the holder of the long position.
+If the market price goes up, a trader that holds a long position receives money in their margin account – equal to the underlying's change in value – from a trader that holds a short position, and conversely if the value goes down, the holder of the short position receives money from the holder of the long position.
 
 For a futures market created on Vega, the mark-to-market price is calculated every time the price moves, and is based on the last traded price. This is in contrast to traditional futures markets, for which marking to market may occur once per day. One exception is when the market settles at expiry, at which point the mark to market price comes from the data source's final settlement price.
 
