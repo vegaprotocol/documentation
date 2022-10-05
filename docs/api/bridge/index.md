@@ -19,7 +19,7 @@ For an introduction to staking on Vega, [check out our Concepts section](../../c
 ## [ERC20 asset bridge](./interfaces/IERC20_Bridge_Logic.md)
 <EthAddresses frontMatter={frontMatter} show={["ERC20Bridge"]} />
 
-Used for depositing ERC20 tokens in to a Vega network.
+Used for depositing ERC-20 tokens in to a Vega network.
 
 
 To read more about how the bridge works, [see this blog post](https://blog.vega.xyz/vega-erc20-bridge-331a5235efa2). If you're looking for a way to deposit tokens from Sepolia on to the Fairground testnet, head over to [Fairground Console](https://console.fairground.wtf).
