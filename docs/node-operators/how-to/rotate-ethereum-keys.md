@@ -47,15 +47,15 @@ vega nodewallet generate --chain ethereum --force
 
 It will prompt for both the nodewallet's passphrase and the blockchain wallet's passphrase. The output from this command will look as follows:
 ```
+ethereumAddress:
+0xf0Ace753655495304d5e9794A96eD9791C51e091
 walletFilePath:
-VEGA_HOME/node/wallets/ethereum/UTC--2022-09-30T13-38-37.768971000Z--0a2f0f6d4c1daad69193b5816aa6c3ba2ea5d483
+VEGA_HOME/node/wallets/ethereum/UTC--2022-09-30T13-38-37.768971000Z--f0ace753655495304d5e9794a96ed9791c51e091
 registryFilePath:
 VEGA_HOME/node/wallets.encrypted
 ```
 
-**ETH_NEW_ADDR** can be inferred from the `walletFilePath`. 
-
-For example the above case the new Ethereum address will be `0x0a2f0f6d4c1daad69193b5816aa6c3ba2ea5d483`
+In this case **ETH_NEW_ADDR** will be `0xf0Ace753655495304d5e9794A96eD9791C51e091`.
 
 
 ### Using a Clef Wallet
