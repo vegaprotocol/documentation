@@ -327,3 +327,23 @@ a.external:after {
   color: var(--ifm-color-secondary-contrast-foreground);
   border-color: var(--ifm-color-secondary-dark);
 } 
+
+/* Fix for details element style override in openapi docs */
+.row .col.col--12 details {
+  --docusaurus-details-decoration-color: var(--ifm-alert-border-color) !important;
+  --docusaurus-details-transition: transform var(--ifm-transition-fast) ease !important;
+  background-color: var(--ifm-alert-background-color);
+  border: var(--ifm-alert-border-width) solid var(--ifm-alert-border-color);
+  border-left-width: var(--ifm-alert-border-left-width);
+  margin: 0 0 var(--ifm-spacing-vertical) !important;
+  box-shadow: var(--ifm-alert-shadow);
+  color: var(--ifm-alert-foreground-color);
+  padding: var(--ifm-alert-padding-vertical) var(--ifm-alert-padding-horizontal);
+}
+
+/* Fix for details element style override in openapi docs */
+.row .col.col--12 details > div {
+  margin-top: 1rem;
+  border-top: 1px solid var(--docusaurus-details-decoration-color);
+  padding-top: 1rem; 
+}
