@@ -47,7 +47,7 @@ At a high level, the trading fee is calculated using the following formulas:
 * Trade value and fee factor: *USDC5000 x 0.003 = USDC15*
 * The fee is the same regardless of the number of transactions the order needs to be completely filled, as long as they trade at the same price.
 
-Two of the three fee factors are set through network parameters: <NetworkParameter frontMatter={frontMatter} param="market.fee.factors.infrastructureFee" />, <NetworkParameter frontMatter={frontMatter} param="market.fee.factors.makerFee" />. The liquidity fee is set by the liquidity providers on the maret.
+Two of the three fee factors are set through network parameters: <NetworkParameter frontMatter={frontMatter} param="market.fee.factors.infrastructureFee" />, <NetworkParameter frontMatter={frontMatter} param="market.fee.factors.makerFee" />. The liquidity fee is set by the liquidity providers on the market.
 
 ## Transfer fees
 When transferring assets, whether from one Vega key to another, or from a Vega key to a reward pool to fund trading rewards, the party that initiates the transfer needs to pay a fee. The fee amount is taken when the transfer is executed, on top of the total amount to be transferred. It's charged in the same asset that is being transferred.
