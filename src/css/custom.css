@@ -254,13 +254,13 @@ a.external:after {
 
 /* Topic stubs */
 
-.stub [class*='details'] {
-  background: var( --ifm-color-secondary-contrast-background );
-  border-color: var(--ifm-color-secondary-dark);
-  --docusaurus-details-decoration-color: var(--ifm-color-secondary-darkest);
+.col--12 .stub [class*='details'] {
+  background: var( --ifm-color-secondary-contrast-background ) !important;
+  border-color: var(--ifm-color-secondary-dark) !important;
+  --docusaurus-details-decoration-color: var(--ifm-color-secondary-darkest) !important;
 }
 
-.stub [class*='details'] a {
+.col--12 .stub [class*='details'] a {
     text-decoration-color: var(--ifm-color-secondary-darkest);
 }
 
@@ -329,7 +329,7 @@ a.external:after {
 } 
 
 /* Fix for details element style override in openapi docs */
-.row .col.col--12 details {
+.row .col--12 details {
   --docusaurus-details-decoration-color: var(--ifm-alert-border-color) !important;
   --docusaurus-details-transition: transform var(--ifm-transition-fast) ease !important;
   background-color: var(--ifm-alert-background-color);
