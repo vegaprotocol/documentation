@@ -14,7 +14,7 @@ const { version, mainnetVersion } = require('./lib/version.js')
  */
 async function serversForNetwork (isMainnet = false) {
   const knownConfigUrls = {
-    fairground: 'https://raw.githubusercontent.com/vegaprotocol/networks/master/fairground/fairground.toml',
+    fairground: 'https://raw.githubusercontent.com/vegaprotocol/networks-internal/main/fairground/vegawallet-fairground.toml',
     mainnet1: 'https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml'
   }
 
@@ -23,8 +23,13 @@ async function serversForNetwork (isMainnet = false) {
   try {
     const configRaw = await fetch(configUrl)
     const configText = await configRaw.text()
+    const network = await toml.parse(configText)
 
-    return await toml.parse(configText)
+    // Store the output for later
+    const tomlOutput = isMainnet ? './specs/mainnet_network.json' : './specs/testnet_network.json'
+    fs.writeFileSync(tomlOutput, JSON.stringify(network), 'utf-8')
+
+    return network
   } catch (e) {
     console.error(`Failed to fetch config from ${configUrl}`)
   }
@@ -40,7 +45,7 @@ async function serversForNetwork (isMainnet = false) {
  */
 function getVaguerFilters (isMainnet) {
   const isGoodServer = '🥇'
-  const vaguer = isMainnet ? './specs/vaguer.mainnet.json' : './specs/vaguer.testnet.json'
+  const vaguer = isMainnet ? './specs/mainnet_vaguer.json' : './specs/testnet_vaguer.json'
   const vaguerOutput = JSON.parse(fs.readFileSync(vaguer, 'utf-8'))
 
   const filter = vaguerOutput.filter(s => {
