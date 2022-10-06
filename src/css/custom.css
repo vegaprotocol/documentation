@@ -347,3 +347,7 @@ a.external:after {
   border-top: 1px solid var(--docusaurus-details-decoration-color);
   padding-top: 1rem; 
 }
+
+.DataNodeList p {
+  font-size: 0.8em;
+}

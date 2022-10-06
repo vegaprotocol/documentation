@@ -1,4 +1,8 @@
+---
+vega_network: TESTNET
+---
 import Topic from '/docs/topics/_topic-development.mdx'
+import DataNodes from '@site/src/components/DataNodes';
 
 # Using the APIs
 
@@ -11,6 +15,8 @@ As most of the APIs are designed to use for trading-related queries, the best pl
 :::info 
 [Vega Fairground documentation](https://docs.fairground.vega.xyz/) includes [how-to guides](https://docs.fairground.vega.xyz/docs/api-howtos/) and a Gitpod environment to try out Vega Fairground. 
 :::
+
+<DataNodes frontMatter={frontMatter} />
 
 ## Tutorials
 Tutorials provide the information you'll need about the protocol to understand and use the guide, as well as instructions on how to interact with scripts, API calls, or other code. 
