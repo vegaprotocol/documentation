@@ -27,14 +27,14 @@ Each validator node requires two cryptographic wallets to operate properly:
 * Ethereum wallet: Used to sign transactions going through the ERC20 bridge
 * Vega wallet: Used to sign transaction sent by validators in the Vega network
 
-The public key of the Tendermint node also needs to be saved in the node wallet. 
+The public key of the Tendermint node also needs to be saved in the node wallet.
 
 All this information needs to be checked in properly before starting the node. When the network starts or a node is added to the validator set, this information will be checked against the transaction used to register the node on the network. Any incorrect set-up will stop the node from joining the network.
 
 You need to generate or import the wallet information for tendermint, vega and Ethereum. See below for [Ethereum wallet instructions](#ethereum-wallet).
 
 :::note
-You will be asked for a passphrase for your node wallet, which you created when you initialised Vega. Make sure to save this passphrase in a text file, somewhere secure, as it allows you to unlock the node wallet. 
+You will be asked for a passphrase for your node wallet, which you created when you initialised Vega. Make sure to save this passphrase in a text file, somewhere secure, as it allows you to unlock the node wallet.
 
 The following command should output the path of the main configuration file. Feel free to open and change settings if needed.
 :::
@@ -77,7 +77,7 @@ Set the address of your clef instance in the Vega configuration (`path/to/home/c
     ClefAddress = "http://your.clef.instance.network:3334"
 ```
 
-Alternatively you can run the following command and specify the flag: 
+Alternatively you can run the following command and specify the flag:
 ```
 --eth.clef-address="http://your.clef.instance.network:3334"
 ```
@@ -88,7 +88,7 @@ vega nodewallet import --chain=ethereum --home=path/to/home --clef-account-addre
 ```
 
 #### Using a keystore account file
-You can either import an existing keystore or create a new one. (Learn how to create a keystore [using geth ↗](https://geth.ethereum.org/docs/getting-started)) 
+You can either import an existing keystore or create a new one. (Learn how to create a keystore [using geth ↗](https://geth.ethereum.org/docs/getting-started))
 
 Import an existing keystore using the following command:
 ```
@@ -101,7 +101,7 @@ vega nodewallet generate --chain=ethereum --home="path/to/home" --wallet-passphr
 ```
 
 ### Ethereum node
-Next you need either a local Ethereum node or an infura account. 
+Next you need either a local Ethereum node or an infura account.
 
 Setting up an infura account can be achieved with the following steps:
 
@@ -111,23 +111,41 @@ Setting up an infura account can be achieved with the following steps:
 
 Enter anything as the Name and press “CREATE”.
 
-Under the Ethereum section there is a drop down from which you can select “Ropsten” for testnet or "Mainnet". 
+Under the Ethereum section there is a drop down from which you can select “Ropsten” for testnet or "Mainnet".
 
 The URL shown is the address you need for the next change.
 
 Insert the URL into the [Ethereum] -> RPCEndpoint key in `~/.config/vega/node/config.toml`
 
-## This needs to be replaced by Jeremy [WIP]
-You now need to get the copy of the network genesis file from one of the existing validator nodes. This is a manual process and requires talking to an existing validator. Once you have that, copy it over your version in `~/.tendermint/config/genesis.json`
+### Tendermint configuration and genesis
+To start successfully, tendermint needs the genesis file from the network you will be trying to join. This file need to be located in `~/.tendermit/config/genesis.toml`. You can find genesis files for network supported by the community in the following [git repository](https://github.com/vegaprotocol/networks). For example to join mainnet you will need the following [genesis file](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json).
 
-Next you need the tendermint ID and connection details for one or more validators on the network you are trying to join. This step has to be done manually and relies on existing validators publishing these details. Once you have them, enter them into the `persistent_peers` section in the file `~/.tendermint/config/config.toml`.
+:::note
+You could also just set a genesis file when starting the node with the following command, e.g for mainnet:
+```
+vega start --network=mainnet1
+```
+:::
 
-You can now start the your node by running the following command:
-`vega node`
+Vega being a decentralised network, you will need an entrypoint to join it, this is done by connecting to one or more node in the network when you start your node.
+This step needs to be done manually, you will first need to reach out to another node operator in the network to get their node ID and the address of their node.
+Once you have these information you need then to update the tendermint config located at `~/.tendermint/config/config.toml` and set the `persisten_peers` field under the `[p2p]` section.
+
+Here's an example:
+```
+[p2p]
+persistent_peers = "55b8ac477ddd6c0c9bae411dfa6ebfb46e7b4022@veganodeoperator.com:26656,2d1bbf1229bd7f8e57e89c61346ab6928d61881b@127.0.0.1:26656"
+```
+
+The persistent_peers field is a list of node id and address of node separated by a `@` character.
+
+
+You can now start your node by running the following command:
+```vega start```
 
 ### Stake to your validating node
 Once your Vega node is visible, you will need to provide your self-stake. Self-stake requires a minimum amount of <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={true} formatter="governanceToken" suffix="tokens"/>.
 
-The tokens that you want to use for self-staking must available on an Ethereum wallet, and then associated to the same Vega key you used to set up the node.
+The tokens that you want to use for self-staking must be available on an Ethereum wallet, and then associated to the same Vega key you used to set up the node.
 
 Associate your tokens and nominate your node using the [token dApp ↗](https://token.fairground.wtf/staking).
