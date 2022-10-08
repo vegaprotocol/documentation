@@ -6,6 +6,7 @@ hide_title: false
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import NetworkConfigAddress from '@site/src/components/NetworkConfigAddress';
 
 You'll need to import and choose a network to use your wallet to interact with Vega. This page explains the network-related commands within Vega Wallet, and how to use them. 
 
@@ -16,8 +17,8 @@ You can see a list of available commands by running `./vegawallet -h` on MacOS a
 ## Network URLs
 You can use the following network URLs to connect to the mainnet or fairground network through your wallet: 
 
-* **Mainnet** network (run by validators): [`mainnet1.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml)
-* **Fairground** network: [`fairground.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/fairground/fairground.toml)
+* **Mainnet** network (run by validators): <NetworkConfigAddress frontMatter={frontMatter} label="mainnet1.toml" network="mainnet"/>
+* **Fairground** network: <NetworkConfigAddress frontMatter={frontMatter} label="fairground.toml" network="fairground"/>
 
 ## Update networks
 At times you may need to force the wallet to update the list of available networks. Below, choose between forcing an update via URL or file. 

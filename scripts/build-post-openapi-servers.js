@@ -13,11 +13,7 @@ const { version, mainnetVersion } = require('./lib/version.js')
  * @return Object the parsed TOML file
  */
 async function serversForNetwork (isMainnet = false) {
-  const knownConfigUrls = {
-    fairground: 'https://raw.githubusercontent.com/vegaprotocol/networks-internal/main/fairground/vegawallet-fairground.toml',
-    mainnet1: 'https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml'
-  }
-
+  const knownConfigUrls = require(`${appDir}/package.json`).specs.networks
   const configUrl = isMainnet ? knownConfigUrls.mainnet1 : knownConfigUrls.fairground
 
   try {

@@ -7,6 +7,7 @@ description: Set up your first wallet and keypair using the CLI wallet app
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import NetworkConfigAddress from '@site/src/components/NetworkConfigAddress';
 
 To download Vega Wallet and create your wallet, follow the step-by-step instructions below. 
 
@@ -150,8 +151,8 @@ If you want to interact with the Token dApp or Vega Console, you'll need to impo
 
 Import the following network configurations: 
 
-* **Mainnet** network (run by validators): [`mainnet1.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml)
-* **Fairground** network: [`fairground.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/fairground/fairground.toml)
+* **Mainnet** network (run by validators): <NetworkConfigAddress frontMatter={frontMatter} label="mainnet1.toml" network="mainnet"/>
+* **Fairground** network: <NetworkConfigAddress frontMatter={frontMatter} label="fairground.toml" network="fairground"/>
 
 :::info
 To update your networks list, see [manage networks](/docs/testnet/tools/vega-wallet/cli-wallet/latest/guides/manage-networks#update-networks) for instructions.
