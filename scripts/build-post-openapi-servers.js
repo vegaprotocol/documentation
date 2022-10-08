@@ -13,7 +13,7 @@ const { version, mainnetVersion } = require('./lib/version.js')
  * @return Object the parsed TOML file
  */
 async function serversForNetwork (isMainnet = false) {
-  const knownConfigUrls = require(`${appDir}/package.json`).specs.networks
+  const knownConfigUrls = require(`../package.json`).specs.networks
   const configUrl = isMainnet ? knownConfigUrls.mainnet1 : knownConfigUrls.fairground
 
   try {
