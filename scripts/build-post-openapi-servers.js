@@ -14,7 +14,7 @@ const { version, mainnetVersion } = require('./lib/version.js')
  */
 async function serversForNetwork (isMainnet = false) {
   const knownConfigUrls = {
-    fairground: 'https://raw.githubusercontent.com/vegaprotocol/networks/master/fairground/fairground.toml',
+    fairground: 'https://raw.githubusercontent.com/vegaprotocol/networks-internal/main/fairground/vegawallet-fairground.toml',
     mainnet1: 'https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml'
   }
 
