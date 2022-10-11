@@ -49,7 +49,7 @@ function TableForNodes(listOfNodes, vaguerResult) {
         <tr>
           <th>Name</th>
           <th>Address</th>
-          <th>Availability</th>
+          <th>Connectivity</th>
         </tr>
       </thead>
       <tbody>
