@@ -2,11 +2,13 @@
 sidebar_position: 1
 title: Create a wallet
 hide_title: false
+vega_network: MAINNET
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import NetworkConfigAddress from '@site/src/components/NetworkConfigAddress';
+import { NetworkConfigAddress, NetworkConfigAddressText } from '@site/src/components/NetworkConfigAddress';
+import CodeBlock from '@theme/CodeBlock';
 
 To download Vega Wallet and create your wallet, follow the step-by-step instructions below.
 
@@ -164,23 +166,26 @@ Use the following command to import from URL.
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
 
-```bash
-vegawallet network import --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
-```
+<CodeBlock language="bash">
+vegawallet network import --from-url {NetworkConfigAddressText(frontMatter.vega_network)}
+</CodeBlock>
+
 </TabItem>
 <TabItem value="mac" label="MacOS">
 
-```bash
-./vegawallet network import \
-    --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
-```
+<CodeBlock language="bash">
+./vegawallet network import \{'\n'}
+&nbsp;&nbsp;--from-url {NetworkConfigAddressText(frontMatter.vega_network)}
+</CodeBlock>
+
 </TabItem>
 <TabItem value="linux" label="Linux">
+<CodeBlock language="bash">
+./vegawallet network import \{'\n'}
+&nbsp;&nbsp;--from-url {NetworkConfigAddressText(frontMatter.vega_network)}
+</CodeBlock>
 
-```bash
-./vegawallet network import \
-     --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
-```
+
 </TabItem>
 </Tabs>
 
