@@ -25,7 +25,7 @@ The impact of using fewer cores than recommended is that the critical parts (dat
 The impact of having slower cores than recommended (or older cores that have a reduced IPC rate compared to modern Zen3 cores) is that the maximum throughput will be reduced due to the bottlenecks being single threaded.
 
 ## Token requirements
-To run a validator node, the node operator must have a minimum amount of Vega available to stake to that node: <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={false} suffix="tokens" />
+To run a validator node, the node operator must have a minimum amount of Vega available to stake to that node: <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={false} formatter="governanceToken" suffix="tokens" />
 
 ## Software requirements
 
