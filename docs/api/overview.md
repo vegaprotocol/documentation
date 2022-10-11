@@ -15,7 +15,7 @@ As most of the APIs are designed to use for trading-related queries, the best pl
 :::info 
 [Vega Fairground documentation](https://docs.fairground.vega.xyz/) includes [how-to guides](https://docs.fairground.vega.xyz/docs/api-howtos/) and a Gitpod environment to try out Vega Fairground. 
 :::
-
+## Node API endpoints
 <DataNodes frontMatter={frontMatter} />
 
 ## Tutorials
