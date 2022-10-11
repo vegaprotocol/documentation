@@ -15,10 +15,10 @@ export function NetworkConfigAddress({ label, network, frontMatter }) {
   if (!vega_network && !network) {
     throw new Error("Missing vega_network");
   } else {
-    if (vega_network) {
-        useNetwork = vega_network
-    } else if (network) {
-        useNetwork = network
+    if (network) {
+      useNetwork = network
+    } else if (vega_network) {
+      useNetwork = vega_network
     }
   } 
 
