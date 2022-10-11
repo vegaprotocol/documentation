@@ -151,7 +151,7 @@ If you want to interact with the Token dApp or Vega Console, you'll need to impo
 Import the following network configurations: 
 
 * **Mainnet** network (run by validators): [`mainnet1.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml)
-* **Fairground** network: [`fairground.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/fairground/fairground.toml)
+* **Fairground** network: [`vegawallet-fairground.toml`](https://raw.githubusercontent.com/vegaprotocol/networks-internal/main/fairground/vegawallet-fairground.toml)
 
 :::info
 To update your networks list, see [manage networks](/docs/testnet/tools/vega-wallet/cli-wallet/latest/guides/manage-networks#update-networks) for instructions.

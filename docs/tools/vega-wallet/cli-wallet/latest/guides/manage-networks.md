@@ -18,7 +18,7 @@ You can see a list of available commands by running `./vegawallet -h` on MacOS a
 You can use the following network URLs to connect to the mainnet or fairground network through your wallet: 
 
 * **Mainnet** network (run by validators): [`mainnet1.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml)
-* **Fairground** network: [`fairground.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/fairground/fairground.toml)
+* **Fairground** network: [`vegawallet-fairground.toml`](https://raw.githubusercontent.com/vegaprotocol/networks-internal/main/fairground/vegawallet-fairground.toml)
 
 ## Update networks
 At times you may need to force the wallet to update the list of available networks. Below, choose between forcing an update via URL or file. 
