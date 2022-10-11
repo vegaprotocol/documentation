@@ -1,5 +1,5 @@
 import React from "react";
-import { specs } from "../../package.json";
+import pkg from "../../package.json";
 
 /**
  * Display ETH addresses without having to hardcode them
@@ -38,12 +38,12 @@ export function NetworkConfigAddress({ label, network, frontMatter }) {
 }
 
 /**
- * Produces the plain text version of the URL
+ * Produces the plain text version of the URL to the network config
  * 
  * @param {String} vega_network 
  * @returns string Address of the config
  */
 export function NetworkConfigAddressText(vega_network) {
   const ismainnet = vega_network.toLowerCase() === 'mainnet'  
-  return ismainnet ? specs.networks.mainnet1 : specs.networks.fairground
+  return ismainnet ? pkg.specs.networks.mainnet1 : pkg.specs.networks.fairground
 }

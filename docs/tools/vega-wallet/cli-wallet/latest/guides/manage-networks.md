@@ -3,11 +3,13 @@ sidebar_position: 2
 title: Manage networks
 hide_title: false
 description: Set up network details to connect your wallet, update network details, and list the available networks
+vega_network: TESTNET
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import NetworkConfigAddress from '@site/src/components/NetworkConfigAddress';
+import { NetworkConfigAddress, NetworkConfigAddressText } from '@site/src/components/NetworkConfigAddress';
+import CodeBlock from '@theme/CodeBlock';
 
 You'll need to import and choose a network to use your wallet to interact with Vega. This page explains the network-related commands within Vega Wallet, and how to use them. 
 
@@ -30,23 +32,24 @@ Run the following `--force` command to update to the latest available from your 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
 
-```bash
-vegawallet network import --force --from-url "URL_OF_TOML_FILE"
-```
+<CodeBlock language="bash">
+vegawallet network import --force --from-url "{NetworkConfigAddressText(frontMatter.vega_network)}"
+</CodeBlock>
+
 </TabItem>
 <TabItem value="mac" label="MacOS">
 
-```bash
-./vegawallet network import --force \
-    --from-url "URL_OF_TOML_FILE"
-```
+<CodeBlock language="bash">
+./vegawallet network import --force \{'\n'}
+&nbsp;&nbsp;--from-url "{NetworkConfigAddressText(frontMatter.vega_network)}"
+</CodeBlock>
 </TabItem>
 <TabItem value="linux" label="Linux">
 
-```bash
-./vegawallet network import --force \
-     --from-url "URL_OF_TOML_FILE"
-```
+<CodeBlock language="bash">
+./vegawallet network import --force \{'\n'}
+&nbsp;&nbsp;--from-url "{NetworkConfigAddressText(frontMatter.vega_network)}"
+</CodeBlock>
 </TabItem>
 </Tabs>
 
