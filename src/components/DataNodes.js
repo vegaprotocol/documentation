@@ -96,8 +96,8 @@ export default function DataNodes({ frontMatter }) {
   return (
     <div className="DataNodeList">
         <Tabs>
-            <TabItem value="grpc" label="GRPC endpoints">{TableForNodes(addresses.GRPC.Hosts, vaguer)}</TabItem>
-            <TabItem value="graphql" label="GraphQL endpoints">{TableForNodes(addresses.GraphQL.Hosts, vaguer)}</TabItem>
+            <TabItem value="grpc" label="GRPC">{TableForNodes(addresses.GRPC.Hosts, vaguer)}</TabItem>
+            <TabItem value="graphql" label="GraphQL">{TableForNodes(addresses.GraphQL.Hosts, vaguer)}</TabItem>
             <TabItem value="rest" label="REST">{TableForNodes(addresses.REST.Hosts, vaguer)}</TabItem>
         </Tabs>
         <p>Source: <a href={source} className="external" target="_blank" rel="noopener nofollow">{source.replace('https://', '')}</a></p>
