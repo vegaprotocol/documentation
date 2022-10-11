@@ -7,6 +7,12 @@
     "node": ">=16.14"
   },
   "private": true,
+  "specs": {
+    "networks": {
+      "fairground": "https://raw.githubusercontent.com/vegaprotocol/networks-internal/main/fairground/vegawallet-fairground.toml",
+      "mainnet1": "https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml"
+    }
+  },
   "scripts": {
     "postinstall": "touch proto.json",
     "prettier": "prettier --write '*.js' 'src/**/*.js'",

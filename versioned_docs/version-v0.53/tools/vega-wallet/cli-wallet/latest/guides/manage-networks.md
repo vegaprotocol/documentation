@@ -2,10 +2,13 @@
 sidebar_position: 2
 title: Manage networks
 hide_title: false
+vega_network: MAINNET
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import { NetworkConfigAddress, NetworkConfigAddressText } from '@site/src/components/NetworkConfigAddress';
+import CodeBlock from '@theme/CodeBlock';
 
 You'll need to import and choose a network to use your wallet to interact with Vega. This page explains the network-related commands within Vega Wallet, and how to use them. 
 
@@ -16,8 +19,8 @@ You can see a list of available commands by running `./vegawallet -h` on MacOS a
 ## Network URLs
 You can use the following network URLs to connect to the mainnet or fairground network through your wallet: 
 
-* **Mainnet** network (run by validators): [`mainnet1.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml)
-* **Fairground** network: [`vegawallet-fairground.toml`](https://raw.githubusercontent.com/vegaprotocol/networks-internal/main/fairground/vegawallet-fairground.toml)
+* **Mainnet** network (run by validators): <NetworkConfigAddress frontMatter={frontMatter} label="mainnet1.toml" network="mainnet"/>
+* **Fairground** network: <NetworkConfigAddress frontMatter={frontMatter} label="fairground.toml" network="fairground"/>
 
 ## Update networks
 At times you may need to force the wallet to update the list of available networks. Below, choose between forcing an update via URL or file. 
@@ -28,23 +31,24 @@ Run the following `--force` command to update to the latest available from your 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
 
-```bash
-vegawallet network import --force --from-url "URL_OF_TOML_FILE"
-```
+<CodeBlock language="bash">
+vegawallet network import --force --from-url "{NetworkConfigAddressText(frontMatter.vega_network)}"
+</CodeBlock>
+
 </TabItem>
 <TabItem value="mac" label="MacOS">
 
-```bash
-./vegawallet network import --force \
-    --from-url "URL_OF_TOML_FILE"
-```
+<CodeBlock language="bash">
+./vegawallet network import --force \{'\n'}
+&nbsp;&nbsp;--from-url "{NetworkConfigAddressText(frontMatter.vega_network)}"
+</CodeBlock>
 </TabItem>
 <TabItem value="linux" label="Linux">
 
-```bash
-./vegawallet network import --force \
-     --from-url "URL_OF_TOML_FILE"
-```
+<CodeBlock language="bash">
+./vegawallet network import --force \{'\n'}
+&nbsp;&nbsp;--from-url "{NetworkConfigAddressText(frontMatter.vega_network)}"
+</CodeBlock>
 </TabItem>
 </Tabs>
 
