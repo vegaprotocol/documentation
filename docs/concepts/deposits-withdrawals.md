@@ -37,7 +37,7 @@ Note: Associated and deposited are not equivalent, as deposited tokens are held 
 ### Lifetime deposit limits 
 During alpha mainnet, the ERC-20 bridge smart contract limits how much can ever be deposited from an Ethereum address. This is done in an abundance of caution, to assure users in the face of recent bridge hacks that they would have only a small amount at risk at any point. 
 
-If, however, a user wanted to bypass those limits and understood the risks to their assets, they could run `exempt_depositor()` on the [ERC-20 bridge contract](./../api/bridge/contracts/ERC20.md) for each asset, after which transactions greater than deposit limit for the asset would be allowed.
+If, however, a user wanted to bypass those limits and understood the risks to their assets, they could run `exempt_depositor()` on the [ERC-20 bridge contract](./../api/bridge/contracts/ERC20_Bridge_Logic) for each asset, after which transactions greater than deposit limit for the asset would be allowed.
 
 ### Depositing ERC-20 assets
 Deposits go through the ERC0-20 bridge smart contract. Every type of asset supported by and voted into Vega will have a bridge, but for the time being there is only an ERC-20 bridge.
