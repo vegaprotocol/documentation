@@ -78,7 +78,7 @@ An instrument contains the following properties:
 | `settlementAsset` | Settlement asset requires the ID of the asset that the market will be margined in and settle in. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID. |  |
 | `quoteName` | The quote name is the human-readable name/abbreviation of the settlement asset. Example: In BTCUSD, USD is the quote. | tEuro |
 | `settlementDataDecimals` | The number of decimal places implied by the settlement data, emitted by the settlement oracle. | 18 |
-| `oracleSpecForSettlementPrice` | This defines the data source that will be used to identify the settlement price when the market expires. | prices.BTC.value |
+| `oracleSpecForSettlementData` | This defines the data source that will be used to identify the settlement price when the market expires. | prices.BTC.value |
 | `oracleSpecForTradingTermination` | The fields that define the oracle used for terminating trading on the market. | vegaprotocol.builtin.timestamp |
 | `oracleSpecBinding` | The fields describe how specific information provided by the oracle data is used. For example, they can identify the specific name of the settlement price output, or the specific name of the trading termination property. |
 
