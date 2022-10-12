@@ -55,6 +55,7 @@ enum ProposalRejectionReason {
   PROPOSAL_ERROR_UNKNOWN_TYPE
   PROPOSAL_ERROR_UNKNOWN_RISK_PARAMETER_TYPE
   PROPOSAL_ERROR_INVALID_FREEFORM
+  PROPOSAL_ERROR_ERC20_ADDRESS_ALREADY_IN_USE
 }
 ```
 
@@ -211,6 +212,10 @@ enum ProposalRejectionReason {
 
 #### [<code style={{ fontWeight: 'normal' }}>ProposalRejectionReason.<b>PROPOSAL_ERROR_INVALID_FREEFORM</b></code>](#) 
 > Freeform proposal is invalid
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProposalRejectionReason.<b>PROPOSAL_ERROR_ERC20_ADDRESS_ALREADY_IN_USE</b></code>](#) 
+> The erc20 address specified by this proposal is alread in use by another asset
 > 
 
 

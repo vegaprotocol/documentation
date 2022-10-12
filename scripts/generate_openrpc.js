@@ -20,8 +20,9 @@ const title = 'OpenRPC Wallet API'
 const url = `./specs/v${version}/openrpc.json`
 const dest = './docs/api/vega-wallet/v2-api/openrpc.md'
 console.info(`Using schema at: ${url}`)
-
-exec(`npx openrpc-md ${url} ${title} > ${dest}`, (error, stdout, stderr) => {
+const cmd = `npx openrpc-md ${url} ${title} > ${dest}`
+console.info(`Running: "${cmd}"`)
+exec(cmd, (error, stdout, stderr) => {
   if (error) {
     console.error(`error: ${error.message}`)
     return

@@ -17,8 +17,8 @@ No description
 
 ```graphql
 type LedgerEntry {
-  fromAccount: AccountDetails!
-  toAccount: AccountDetails!
+  accountFromId: AccountDetails!
+  accountToId: AccountDetails!
   amount: String!
   type: String!
   timestamp: String!
@@ -28,11 +28,11 @@ type LedgerEntry {
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>fromAccount</b></code>](#)<Bullet />[`AccountDetails!`](/docs/testnet/graphql/objects/account-details) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>accountFromId</b></code>](#)<Bullet />[`AccountDetails!`](/docs/testnet/graphql/objects/account-details) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > Account from which the asset was taken
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>toAccount</b></code>](#)<Bullet />[`AccountDetails!`](/docs/testnet/graphql/objects/account-details) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>accountToId</b></code>](#)<Bullet />[`AccountDetails!`](/docs/testnet/graphql/objects/account-details) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > Account to which the balance was transferred
 > 
 

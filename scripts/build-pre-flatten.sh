@@ -28,11 +28,11 @@ movePlease () {
         # Only try to generate if a third parameter is passed, which is an openapi filename
         if [ -n "$3" ]; then
             if test -f "$3"; then
-              echo "  $3 already exists.."
+              echo "  $3 already exists, regenerating.."
             else
               echo "  Generating openapi from swagger ($2 to $3).."
-              npx api-spec-converter --from=swagger_2 --to=openapi_3 "$2" > "$3"
             fi
+            npx api-spec-converter --from=swagger_2 --to=openapi_3 "$2" > "$3"
         fi
     fi
 }

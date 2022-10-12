@@ -4,26 +4,26 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
 "{^
 \"proposalSubmission\": {^
  \"rationale\": {^
-  \"title\": \"Add tDAI TEST (tDAI)\",^
-  \"description\": \"Proposal to add tDAI TEST (tDAI) as an asset\"^
+  \"title\": \"Add USDT Coin (USDT)\",^
+  \"description\": \"Proposal to add USDT Coin (USDT) as an asset\"^
  },^
  \"terms\": {^
   \"newAsset\": {^
    \"changes\": {^
-    \"name\": \"tDAI TEST\",^
-    \"symbol\": \"tDAI\",^
+    \"name\": \"USDT Coin\",^
+    \"symbol\": \"USDT\",^
     \"decimals\": \"18\",^
     \"quantum\": \"1\",^
     \"erc20\": {^
-     \"contractAddress\": \"0x26223f9C67871CFcEa329975f7BC0C9cB8FBDb9b\",^
+     \"contractAddress\": \"0xb404c51bbc10dcbe948077f18a4b8e553d160084\",^
      \"withdrawThreshold\": \"10\",^
      \"lifetimeLimit\": \"10\"^
     }^
    }^
   },^
-  \"closingTimestamp\": 1667407789,^
-  \"enactmentTimestamp\": 1667494189,^
-  \"validationTimestamp\": 1667321389^
+  \"closingTimestamp\": 1667217473,^
+  \"enactmentTimestamp\": 1667303873,^
+  \"validationTimestamp\": 1667131073^
  }^
 }^
 }"
