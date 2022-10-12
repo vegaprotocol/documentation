@@ -34,7 +34,7 @@ As an alternative to making the transaction yourself, Etherscan provides a simpl
 When the validators have created a multisig bundle, it is available for anyone to submit to the bridge to complete the update. 
 
 ### 1. Confirm asset proposal has passed
-First, you must have the change approved by the network through governance, using a ([new asset proposal](./new-asset-proposal.md)
+First, you must have the change approved by the network through governance, using a [new asset proposal](./new-asset-proposal.md)
 
 ### 2. Get the ID of the new asset
 The asset for a new ID will be the same as the ID of the proposal that created it.
@@ -48,7 +48,7 @@ Use one of the API calls to fetch the signature bundle from the network. This st
 ### 4. Submit the update to Ethereum
 Once you have all the details required, they need to be submitted to the smart contract to enact the changes:
 
-<EthAddresses frontMatter={frontMatter} show={["erc20Bridge"]} />
+<EthAddresses frontMatter={frontMatter} show={["ERC20Bridge"]} />
 
 * For listing an asset the correct method is [`list_asset`](../../api/bridge/contracts/ERC20_Bridge_Logic#list_asset)
 
@@ -69,7 +69,7 @@ Use one of the API calls to fetch the signature bundle from the network. This st
 ### 3. Submit the update to Ethereum
 Now that you have all the details required, they need to be submitted to the smart contract to enact the changes:
 
-<EthAddresses frontMatter={frontMatter} show={["erc20Bridge"]} />
+<EthAddresses frontMatter={frontMatter} show={["ERC20Bridge"]} />
 
 The correct method for updating the asset is  [`set_asset_limits`](../../api/bridge/contracts/ERC20_Bridge_Logic#set_asset_limits)
 
