@@ -1,0 +1,53 @@
+---
+id: asset-status
+title: AssetStatus
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+enum AssetStatus {
+  STATUS_PROPOSED
+  STATUS_REJECTED
+  STATUS_PENDING_LISTING
+  STATUS_ENABLED
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>AssetStatus.<b>STATUS_PROPOSED</b></code>](#) 
+> Asset is proposed to be added to the network
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AssetStatus.<b>STATUS_REJECTED</b></code>](#) 
+> Asset has been rejected
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AssetStatus.<b>STATUS_PENDING_LISTING</b></code>](#) 
+> Asset is pending listing on the ethereum bridge
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AssetStatus.<b>STATUS_ENABLED</b></code>](#) 
+> Asset can be used on the Vega network
+> 
+
+
+
+### Member of
+
+[`Asset`](/testnet/api/graphql/objects/asset)  <Badge class="secondary" text="object"/>
+
+
+

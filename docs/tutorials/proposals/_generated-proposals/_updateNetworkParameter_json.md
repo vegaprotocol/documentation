@@ -2,18 +2,18 @@
   ```json
 {
   "rationale": {
-    "title": "Update market.fee.factors.infrastructureFee",
-    "description": "Proposal to update market.fee.factors.infrastructureFee to 300}"
+    "title": "Update governance.proposal.freeform.minVoterBalance",
+    "description": "Proposal to update governance.proposal.freeform.minVoterBalance to 300}"
   },
   "terms": {
     "updateNetworkParameter": {
       "changes": {
-        "key": "market.fee.factors.infrastructureFee",
+        "key": "governance.proposal.freeform.minVoterBalance",
         "value": "300"
       }
     },
-    "closingTimestamp": 1666539201,
-    "enactmentTimestamp": 1666625601
+    "closingTimestamp": 1667239858,
+    "enactmentTimestamp": 1667326258
   }
 }
 ```

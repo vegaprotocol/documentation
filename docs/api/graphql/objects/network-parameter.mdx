@@ -1,0 +1,47 @@
+---
+id: network-parameter
+title: NetworkParameter
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Representation of a network parameter
+
+```graphql
+type NetworkParameter {
+  key: String!
+  value: String!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>NetworkParameter.<b>key</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The name of the network parameter
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NetworkParameter.<b>value</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The value of the network parameter
+> 
+
+
+
+### Returned by
+
+[`networkParameter`](/testnet/api/graphql/queries/network-parameter)  <Badge class="secondary" text="query"/><Bullet />[`networkParameters`](/testnet/api/graphql/queries/network-parameters)  <Badge class="secondary" text="query"/>
+
+### Member of
+
+[`NetworkParameterEdge`](/testnet/api/graphql/objects/network-parameter-edge)  <Badge class="secondary" text="object"/><Bullet />[`UpdateNetworkParameter`](/testnet/api/graphql/objects/update-network-parameter)  <Badge class="secondary" text="object"/>
+
+
+

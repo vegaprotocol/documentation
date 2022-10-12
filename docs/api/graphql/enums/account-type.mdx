@@ -1,0 +1,118 @@
+---
+id: account-type
+title: AccountType
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The various account types in Vega (used by collateral)
+
+```graphql
+enum AccountType {
+  ACCOUNT_TYPE_INSURANCE
+  ACCOUNT_TYPE_GLOBAL_INSURANCE
+  ACCOUNT_TYPE_SETTLEMENT
+  ACCOUNT_TYPE_MARGIN
+  ACCOUNT_TYPE_GENERAL
+  ACCOUNT_TYPE_FEES_INFRASTRUCTURE
+  ACCOUNT_TYPE_FEES_LIQUIDITY
+  ACCOUNT_TYPE_FEES_MAKER
+  ACCOUNT_TYPE_BOND
+  ACCOUNT_TYPE_EXTERNAL
+  ACCOUNT_TYPE_GLOBAL_REWARD
+  ACCOUNT_TYPE_PENDING_TRANSFERS
+  ACCOUNT_TYPE_REWARD_MAKER_PAID_FEES
+  ACCOUNT_TYPE_REWARD_MAKER_RECEIVED_FEES
+  ACCOUNT_TYPE_REWARD_LP_RECEIVED_FEES
+  ACCOUNT_TYPE_REWARD_MARKET_PROPOSERS
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_INSURANCE</b></code>](#) 
+> Insurance pool account - only for 'system' party
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_GLOBAL_INSURANCE</b></code>](#) 
+> Global insurance pool account for an asset
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_SETTLEMENT</b></code>](#) 
+> Settlement - only for 'system' party
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_MARGIN</b></code>](#) 
+> Margin - The leverage account for parties, contains funds set aside for the margin needed to support
+a party's open positions. Each party will have a margin account for each market they have traded in.
+The required initial margin is allocated to each market from the general account, and it cannot be withdrawn
+or used as margin on another market until it's released back into the general account.
+The protocol uses an internal accounting system to segregate funds held as margin from other funds
+to ensure they are never lost or 'double spent'
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_GENERAL</b></code>](#) 
+> General account - the account containing 'unused' collateral for parties
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_FEES_INFRASTRUCTURE</b></code>](#) 
+> Infrastructure fee account - the account where all infrastructure fees are collected
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_FEES_LIQUIDITY</b></code>](#) 
+> Liquidity fee account - the account contains fees earned by providing liquidity
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_FEES_MAKER</b></code>](#) 
+> Market maker fee account - holds fees paid to the passive side when a trade matches
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_BOND</b></code>](#) 
+> Bond - an account use to maintain liquidity commitments
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_EXTERNAL</b></code>](#) 
+> External - an account use to refer to external account
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_GLOBAL_REWARD</b></code>](#) 
+> GlobalReward - a global account for the reward pool
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_PENDING_TRANSFERS</b></code>](#) 
+> PendingTransfers - a global account for the pending transfers pool
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_REWARD_MAKER_PAID_FEES</b></code>](#) 
+> RewardMakerPaidFees - an account holding rewards for maker paid fees
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_REWARD_MAKER_RECEIVED_FEES</b></code>](#) 
+> RewardMakerReceivedFees - an account holding rewards for maker received fees
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_REWARD_LP_RECEIVED_FEES</b></code>](#) 
+> RewardLpReceivedFees - an account holding rewards for a liquidity provider's received fees
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_REWARD_MARKET_PROPOSERS</b></code>](#) 
+> RewardMarketProposers - an account holding rewards for market proposers
+> 
+
+
+
+### Member of
+
+[`Account`](/testnet/api/graphql/objects/account)  <Badge class="secondary" text="object"/><Bullet />[`AccountDetails`](/testnet/api/graphql/objects/account-details)  <Badge class="secondary" text="object"/><Bullet />[`AccountFilter`](/testnet/api/graphql/inputs/account-filter)  <Badge class="secondary" text="input"/><Bullet />[`accounts`](/testnet/api/graphql/subscriptions/accounts)  <Badge class="secondary" text="subscription"/><Bullet />[`AccountUpdate`](/testnet/api/graphql/objects/account-update)  <Badge class="secondary" text="object"/><Bullet />[`AggregatedBalance`](/testnet/api/graphql/objects/aggregated-balance)  <Badge class="secondary" text="object"/><Bullet />[`Reward`](/testnet/api/graphql/objects/reward)  <Badge class="secondary" text="object"/><Bullet />[`Transfer`](/testnet/api/graphql/objects/transfer)  <Badge class="secondary" text="object"/>
+
+
+

@@ -1,0 +1,53 @@
+---
+id: new-market
+title: NewMarket
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+type NewMarket {
+  instrument: InstrumentConfiguration!
+  decimalPlaces: Int!
+  riskParameters: RiskModel!
+  metadata: [String!]
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>instrument</b></code>](#)<Bullet />[`InstrumentConfiguration!`](/testnet/api/graphql/objects/instrument-configuration) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> New market instrument configuration
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>decimalPlaces</b></code>](#)<Bullet />[`Int!`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Decimal places used for the new market, sets the smallest price increment on the book
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>riskParameters</b></code>](#)<Bullet />[`RiskModel!`](/testnet/api/graphql/unions/risk-model) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="union"/>
+> New market risk configuration
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>metadata</b></code>](#)<Bullet />[`[String!]`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> Metadata for this instrument, tags
+> 
+
+
+
+### Implemented by
+
+[`ProposalChange`](/testnet/api/graphql/unions/proposal-change)  <Badge class="secondary" text="union"/>
+
+
+
