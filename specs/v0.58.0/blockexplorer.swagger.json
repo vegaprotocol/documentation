@@ -9,9 +9,8 @@
       "name": "Block Explorer"
     }
   ],
-  "host": "api.n13.testnet.vega.xyz",
+  "host": "n13.testnet.vega.xyz/api",
   "schemes": [
-    "http",
     "https"
   ],
   "consumes": [

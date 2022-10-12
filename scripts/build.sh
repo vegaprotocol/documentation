@@ -64,10 +64,7 @@ echo ""
 
 # Inject more testnet servers for testnet
 ## Run vaguer and store the output
-# rm ./specs/vaguer.mainnet.json
-# JSON=true npx github:vegaprotocol/vaguer mainnet1 --silent > "./specs/mainnet_network.json"
-# rm ./specs/vaguer.testnet.json
-# JSON=true npx github:vegaprotocol/vaguer fairground --silent > "./specs/testnet_network.json"
+#./scripts/build-post-vaguer.sh
 ## Now inject servers
 node --no-warnings --experimental-fetch scripts/build-post-openapi-servers.js
 

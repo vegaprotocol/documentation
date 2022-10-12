@@ -12,7 +12,7 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
    \"marketId\": \"123\",^
    \"changes\": {^
     \"instrument\": {^
-     \"code\": \"ORANGES.24h\",^
+     \"code\": \"APPLES.22\",^
      \"future\": {^
       \"quoteName\": \"tEuro\",^
       \"settlementDataDecimals\": 5,^
@@ -61,7 +61,9 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
      }^
     },^
     \"metadata\": [^
+     \"sector:energy\",^
      \"sector:health\",^
+     \"sector:tech\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -75,7 +77,7 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
     },^
     \"logNormal\": {^
      \"tau\": 0.0001140771161,^
-     \"riskAversionParameter\": 0.0001,^
+     \"riskAversionParameter\": 0.001,^
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
@@ -84,8 +86,8 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
     }^
    }^
   },^
-  \"closingTimestamp\": 1667220730,^
-  \"enactmentTimestamp\": 1667307130^
+  \"closingTimestamp\": 1667227854,^
+  \"enactmentTimestamp\": 1667314254^
  }^
 }^
 }"

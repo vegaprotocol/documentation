@@ -1404,10 +1404,12 @@
         {
           "name": "metadata",
           "required": true,
-          "type": "array",
-          "items": {
-            "schema": {
-              "$ref": "#/components/schemas/metadata"
+          "schema": {
+            "type": "array",
+            "items": {
+              "schema": {
+                "$ref": "#/components/schemas/metadata"
+              }
             }
           }
         }
@@ -1686,9 +1688,11 @@
         {
           "name": "metadata",
           "required": true,
-          "type": "array",
-          "items": {
-            "$ref": "#/components/schemas/metadata"
+           "schema": {
+             "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/metadata"
+            }
           }
         }
       ],
