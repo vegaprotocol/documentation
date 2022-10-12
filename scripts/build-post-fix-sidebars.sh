@@ -15,7 +15,7 @@ echo "GRPC: Rename root ('Files' is not useful)"
 sed -i -E 's/Files/GRPC/g' docs/grpc/sidebar.js
 
 echo "GRPC: Fix explorer links"
-#sed -i -E 's/blockexplorer\/blockexplorer.proto/grpc\/blockexplorer\/blockexplorer.proto/g' docs/grpc/sidebar.js
+sed -i -E 's/"blockexplorer\/blockexplorer.proto"/"grpc\/blockexplorer\/blockexplorer.proto"/g' docs/grpc/sidebar.js
 
 echo "GRPC: Fix sidebar links (fixes incorrect path mappings for the versioned world)"
 sed -i -E 's/vega\//grpc\/vega\//g' docs/grpc/sidebar.js

@@ -1,0 +1,2178 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Vega core state APIs",
+    "version": "0.58.0"
+  },
+  "tags": [
+    {
+      "name": "CoreStateService"
+    }
+  ],
+  "host": "api.n10.testnet.vega.xyz",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/accounts": {
+      "get": {
+        "summary": "Accounts list",
+        "description": "Return a list of accounts",
+        "operationId": "CoreStateService_ListAccounts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListAccountsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "party",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "market",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CoreStateService"
+        ]
+      }
+    },
+    "/assets": {
+      "get": {
+        "summary": "Assets list",
+        "description": "Return a list of assets",
+        "operationId": "CoreStateService_ListAssets",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListAssetsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "asset",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CoreStateService"
+        ]
+      }
+    },
+    "/delegations": {
+      "get": {
+        "summary": "Delegations list",
+        "description": "Return a list of delegations",
+        "operationId": "CoreStateService_ListDelegations",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListDelegationsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "party",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "node",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "epochSeq",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CoreStateService"
+        ]
+      }
+    },
+    "/markets": {
+      "get": {
+        "summary": "Markets list",
+        "description": "Return a list of markets",
+        "operationId": "CoreStateService_ListMarkets",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListMarketsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "market",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CoreStateService"
+        ]
+      }
+    },
+    "/markets/data": {
+      "get": {
+        "summary": "Markets data list",
+        "description": "Return a list of markets data",
+        "operationId": "CoreStateService_ListMarketsData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListMarketsDataResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "market",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CoreStateService"
+        ]
+      }
+    },
+    "/network/limits": {
+      "get": {
+        "summary": "Network limits list",
+        "description": "Return a list of network limits",
+        "operationId": "CoreStateService_ListNetworkLimits",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListNetworkLimitsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CoreStateService"
+        ]
+      }
+    },
+    "/network/parameters": {
+      "get": {
+        "summary": "Network parameters list",
+        "description": "Return a list of network paramters",
+        "operationId": "CoreStateService_ListNetworkParameters",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListNetworkParametersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "networkParameterKey",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CoreStateService"
+        ]
+      }
+    },
+    "/parties": {
+      "get": {
+        "summary": "Parties list",
+        "description": "Return a list of parties",
+        "operationId": "CoreStateService_ListParties",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListPartiesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CoreStateService"
+        ]
+      }
+    },
+    "/parties/stake": {
+      "get": {
+        "summary": "Parties stake list",
+        "description": "Return a list of parties stake",
+        "operationId": "CoreStateService_ListPartiesStake",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListPartiesStakeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "party",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CoreStateService"
+        ]
+      }
+    },
+    "/proposals": {
+      "get": {
+        "summary": "Proposals list",
+        "description": "Return a list of proposals",
+        "operationId": "CoreStateService_ListProposals",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListProposalsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "proposal",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "proposer",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CoreStateService"
+        ]
+      }
+    },
+    "/validators": {
+      "get": {
+        "summary": "Validators list",
+        "description": "Return a list of validators",
+        "operationId": "CoreStateService_ListValidators",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListValidatorsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "CoreStateService"
+        ]
+      }
+    },
+    "/votes": {
+      "get": {
+        "summary": "Votes list",
+        "description": "Return a list of votes",
+        "operationId": "CoreStateService_ListVotes",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1ListVotesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "proposal",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "party",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CoreStateService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "ConditionOperator": {
+      "type": "string",
+      "enum": [
+        "OPERATOR_UNSPECIFIED",
+        "OPERATOR_EQUALS",
+        "OPERATOR_GREATER_THAN",
+        "OPERATOR_GREATER_THAN_OR_EQUAL",
+        "OPERATOR_LESS_THAN",
+        "OPERATOR_LESS_THAN_OR_EQUAL"
+      ],
+      "default": "OPERATOR_UNSPECIFIED",
+      "description": "Comparator describes the type of comparison.\n\n - OPERATOR_UNSPECIFIED: The default value\n - OPERATOR_EQUALS: Verify if the property values are strictly equal or not.\n - OPERATOR_GREATER_THAN: Verify if the oracle data value is greater than the Condition value.\n - OPERATOR_GREATER_THAN_OR_EQUAL: Verify if the oracle data value is greater than or equal to the Condition\nvalue.\n - OPERATOR_LESS_THAN: Verify if the oracle data value is less than the Condition value.\n - OPERATOR_LESS_THAN_OR_EQUAL: Verify if the oracle data value is less or equal to than the Condition\nvalue."
+    },
+    "MarketTradingMode": {
+      "type": "string",
+      "enum": [
+        "TRADING_MODE_UNSPECIFIED",
+        "TRADING_MODE_CONTINUOUS",
+        "TRADING_MODE_BATCH_AUCTION",
+        "TRADING_MODE_OPENING_AUCTION",
+        "TRADING_MODE_MONITORING_AUCTION",
+        "TRADING_MODE_NO_TRADING"
+      ],
+      "default": "TRADING_MODE_UNSPECIFIED",
+      "description": "- TRADING_MODE_UNSPECIFIED: Default value, this is invalid\n - TRADING_MODE_CONTINUOUS: Normal trading\n - TRADING_MODE_BATCH_AUCTION: Auction trading (FBA)\n - TRADING_MODE_OPENING_AUCTION: Opening auction\n - TRADING_MODE_MONITORING_AUCTION: Auction triggered by monitoring\n - TRADING_MODE_NO_TRADING: Not trading is allowed",
+      "title": "The trading mode the market is currently running, also referred to as 'market state'"
+    },
+    "apiv1Account": {
+      "type": "object",
+      "properties": {
+        "party": {
+          "type": "string"
+        },
+        "market": {
+          "type": "string"
+        },
+        "balance": {
+          "type": "string"
+        },
+        "asset": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "googlerpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "v1Condition": {
+      "type": "object",
+      "properties": {
+        "operator": {
+          "$ref": "#/definitions/ConditionOperator",
+          "description": "comparator is the type of comparison to make on the value."
+        },
+        "value": {
+          "type": "string",
+          "description": "value is used by the comparator."
+        }
+      },
+      "title": "Condition describes the condition that must be validated by the"
+    },
+    "v1Filter": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "$ref": "#/definitions/v1PropertyKey",
+          "description": "key is the oracle data property key targeted by the filter."
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Condition"
+          },
+          "description": "conditions are the conditions that should be matched by the data to be\nconsidered of interest."
+        }
+      },
+      "description": "Filter describes the conditions under which an oracle data is considered of\ninterest or not."
+    },
+    "v1ListAccountsResponse": {
+      "type": "object",
+      "properties": {
+        "accounts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/apiv1Account"
+          }
+        }
+      }
+    },
+    "v1ListAssetsResponse": {
+      "type": "object",
+      "properties": {
+        "assets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/vegaAsset"
+          }
+        }
+      }
+    },
+    "v1ListDelegationsResponse": {
+      "type": "object",
+      "properties": {
+        "delegations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/vegaDelegation"
+          }
+        }
+      }
+    },
+    "v1ListMarketsDataResponse": {
+      "type": "object",
+      "properties": {
+        "marketsData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/vegaMarketData"
+          }
+        }
+      }
+    },
+    "v1ListMarketsResponse": {
+      "type": "object",
+      "properties": {
+        "markets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/vegaMarket"
+          }
+        }
+      }
+    },
+    "v1ListNetworkLimitsResponse": {
+      "type": "object",
+      "properties": {
+        "networkLimits": {
+          "$ref": "#/definitions/vegaNetworkLimits"
+        }
+      }
+    },
+    "v1ListNetworkParametersResponse": {
+      "type": "object",
+      "properties": {
+        "networkParameters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/vegaNetworkParameter"
+          }
+        }
+      }
+    },
+    "v1ListPartiesResponse": {
+      "type": "object",
+      "properties": {
+        "parties": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/vegaParty"
+          }
+        }
+      }
+    },
+    "v1ListPartiesStakeResponse": {
+      "type": "object",
+      "properties": {
+        "partiesStake": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PartyStake"
+          }
+        }
+      }
+    },
+    "v1ListProposalsResponse": {
+      "type": "object",
+      "properties": {
+        "proposals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/vegaProposal"
+          }
+        }
+      }
+    },
+    "v1ListValidatorsResponse": {
+      "type": "object",
+      "properties": {
+        "validators": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ValidatorUpdate"
+          }
+        }
+      }
+    },
+    "v1ListVotesResponse": {
+      "type": "object",
+      "properties": {
+        "votes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/vegaVote"
+          }
+        }
+      }
+    },
+    "v1OracleSpec": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "id is a hash generated from the OracleSpec data."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "int64",
+          "title": "Creation Date time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "int64",
+          "title": "Last Updated timestamp"
+        },
+        "pubKeys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "pubKeys is the list of authorized public keys that signed the data for this\noracle. All the public keys in the oracle data should be contained in these\npublic keys."
+        },
+        "filters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Filter"
+          },
+          "description": "filters describes which oracle data are considered of interest or not for\nthe product (or the risk model)."
+        },
+        "status": {
+          "$ref": "#/definitions/v1OracleSpecStatus",
+          "title": "status describes the status of the oracle spec"
+        }
+      },
+      "description": "An oracle spec describe the oracle data that a product (or a risk model)\nwants to get from the oracle engine.\nThis message contains additional information used by the API."
+    },
+    "v1OracleSpecConfiguration": {
+      "type": "object",
+      "properties": {
+        "pubKeys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "pubKeys is the list of authorized public keys that signed the data for this\noracle. All the public keys in the oracle data should be contained in these\npublic keys."
+        },
+        "filters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1Filter"
+          },
+          "description": "filters describes which oracle data are considered of interest or not for\nthe product (or the risk model)."
+        }
+      },
+      "description": "An oracle spec describe the oracle data that a product (or a risk model)\nwants to get from the oracle engine."
+    },
+    "v1OracleSpecStatus": {
+      "type": "string",
+      "enum": [
+        "STATUS_UNSPECIFIED",
+        "STATUS_ACTIVE",
+        "STATUS_DEACTIVATED"
+      ],
+      "default": "STATUS_UNSPECIFIED",
+      "description": "- STATUS_UNSPECIFIED: The default value.\n - STATUS_ACTIVE: STATUS_ACTIVE describes an active oracle spec.\n - STATUS_DEACTIVATED: STATUS_DEACTIVATED describes an oracle spec that is not listening to data\nanymore.",
+      "title": "Status describe the status of the oracle spec"
+    },
+    "v1PartyStake": {
+      "type": "object",
+      "properties": {
+        "party": {
+          "type": "string"
+        },
+        "currentStakeAvailable": {
+          "type": "string"
+        },
+        "stakeLinkings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1StakeLinking"
+          }
+        }
+      }
+    },
+    "v1PropertyKey": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "name is the name of the property."
+        },
+        "type": {
+          "$ref": "#/definitions/v1PropertyKeyType",
+          "description": "type is the type of the property."
+        }
+      },
+      "description": "PropertyKey describes the property key contained in an oracle data."
+    },
+    "v1PropertyKeyType": {
+      "type": "string",
+      "enum": [
+        "TYPE_UNSPECIFIED",
+        "TYPE_EMPTY",
+        "TYPE_INTEGER",
+        "TYPE_STRING",
+        "TYPE_BOOLEAN",
+        "TYPE_DECIMAL",
+        "TYPE_TIMESTAMP"
+      ],
+      "default": "TYPE_UNSPECIFIED",
+      "description": "Type describes the type of properties that are supported by the oracle\nengine.\n\n - TYPE_UNSPECIFIED: The default value.\n - TYPE_EMPTY: Any type.\n - TYPE_INTEGER: Integer type.\n - TYPE_STRING: String type.\n - TYPE_BOOLEAN: Boolean type.\n - TYPE_DECIMAL: Any floating point decimal type.\n - TYPE_TIMESTAMP: Timestamp date type."
+    },
+    "v1StakeLinking": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "The internal ID for this staking event"
+        },
+        "type": {
+          "$ref": "#/definitions/v1StakeLinkingType",
+          "title": "The type of event"
+        },
+        "ts": {
+          "type": "string",
+          "format": "int64",
+          "title": "The timestamps at which the event was emitted by ethereum"
+        },
+        "party": {
+          "type": "string",
+          "description": "The party to whom the event is directed at."
+        },
+        "amount": {
+          "type": "string",
+          "title": "The amount of stake deposited or removed"
+        },
+        "status": {
+          "$ref": "#/definitions/v1StakeLinkingStatus",
+          "title": "The status of the event"
+        },
+        "finalizedAt": {
+          "type": "string",
+          "format": "int64",
+          "title": "The time at which the vega network finalized the state of the event"
+        },
+        "txHash": {
+          "type": "string",
+          "title": "The hash of the transaction from which the events happen"
+        },
+        "blockHeight": {
+          "type": "string",
+          "format": "uint64",
+          "title": "The block when the event happened"
+        },
+        "blockTime": {
+          "type": "string",
+          "format": "int64",
+          "title": "The block time"
+        },
+        "logIndex": {
+          "type": "string",
+          "format": "uint64",
+          "title": "The log index"
+        },
+        "ethereumAddress": {
+          "type": "string",
+          "title": "the ethereum address from which the stake link was iniated"
+        }
+      },
+      "title": "StakeLinking - an event notifying of stake being deposited or removed for a given party\nThese events are emitted for every Staking deposit or removed accepted by the network"
+    },
+    "v1StakeLinkingStatus": {
+      "type": "string",
+      "enum": [
+        "STATUS_UNSPECIFIED",
+        "STATUS_PENDING",
+        "STATUS_ACCEPTED",
+        "STATUS_REJECTED"
+      ],
+      "default": "STATUS_UNSPECIFIED",
+      "title": "- STATUS_UNSPECIFIED: Default value\n - STATUS_PENDING: Indicate an event waiting for confirmation from the vega network\n - STATUS_ACCEPTED: Indicate of an event accepted by the vega network\n - STATUS_REJECTED: Indaicate of an event rejected by the vega network"
+    },
+    "v1StakeLinkingType": {
+      "type": "string",
+      "enum": [
+        "TYPE_UNSPECIFIED",
+        "TYPE_LINK",
+        "TYPE_UNLINK"
+      ],
+      "default": "TYPE_UNSPECIFIED",
+      "title": "- TYPE_UNSPECIFIED: Default value\n - TYPE_LINK: Indicate of a stake deposit instruction\n - TYPE_UNLINK: Indicate of a stake remove instruction"
+    },
+    "v1ValidatorUpdate": {
+      "type": "object",
+      "properties": {
+        "nodeId": {
+          "type": "string",
+          "title": "Node id of the node"
+        },
+        "vegaPubKey": {
+          "type": "string",
+          "title": "Vega public key of validator node"
+        },
+        "ethereumAddress": {
+          "type": "string",
+          "title": "Ethereum public key of validator node"
+        },
+        "tmPubKey": {
+          "type": "string",
+          "title": "Public key of Tendermint"
+        },
+        "infoUrl": {
+          "type": "string",
+          "title": "URL with more info on the node"
+        },
+        "country": {
+          "type": "string",
+          "title": "Country code (ISO 3166-1 alpha-2) for the location of the node"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name of the validator"
+        },
+        "avatarUrl": {
+          "type": "string",
+          "title": "AvatarURL of the validator"
+        },
+        "vegaPubKeyIndex": {
+          "type": "integer",
+          "format": "int64",
+          "title": "Vega public key derivation index"
+        },
+        "added": {
+          "type": "boolean",
+          "title": "Flag indicating if the validator has been added to or removed from vega"
+        },
+        "fromEpoch": {
+          "type": "string",
+          "format": "uint64",
+          "title": "The epoch from which the validator was added or removed"
+        },
+        "submitterAddress": {
+          "type": "string",
+          "title": "Ethereum public key being used as the submitter to allow automatic signature generation"
+        }
+      },
+      "title": "A validator update event contains information about validator node"
+    },
+    "vegaAsset": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Internal identifier of the asset"
+        },
+        "details": {
+          "$ref": "#/definitions/vegaAssetDetails",
+          "title": "The definition of the external source for this asset"
+        },
+        "status": {
+          "$ref": "#/definitions/vegaAssetStatus",
+          "title": "Status of the asset"
+        }
+      },
+      "title": "The Vega representation of an external asset"
+    },
+    "vegaAssetDetails": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name of the asset (e.g: Great British Pound)"
+        },
+        "symbol": {
+          "type": "string",
+          "title": "Symbol of the asset (e.g: GBP)"
+        },
+        "decimals": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Number of decimal / precision handled by this asset"
+        },
+        "quantum": {
+          "type": "string",
+          "title": "The minimum economically meaningful amount in the asset"
+        },
+        "builtinAsset": {
+          "$ref": "#/definitions/vegaBuiltinAsset",
+          "title": "A built-in asset"
+        },
+        "erc20": {
+          "$ref": "#/definitions/vegaERC20",
+          "title": "An Ethereum ERC20 asset"
+        }
+      },
+      "title": "The Vega representation of an external asset"
+    },
+    "vegaAssetDetailsUpdate": {
+      "type": "object",
+      "properties": {
+        "quantum": {
+          "type": "string",
+          "title": "The minimum economically meaningful amount in the asset"
+        },
+        "erc20": {
+          "$ref": "#/definitions/vegaERC20Update",
+          "title": "An Ethereum ERC20 asset"
+        }
+      },
+      "description": "The changes to apply on an existing asset."
+    },
+    "vegaAssetStatus": {
+      "type": "string",
+      "enum": [
+        "STATUS_UNSPECIFIED",
+        "STATUS_PROPOSED",
+        "STATUS_REJECTED",
+        "STATUS_PENDING_LISTING",
+        "STATUS_ENABLED"
+      ],
+      "default": "STATUS_UNSPECIFIED",
+      "title": "- STATUS_UNSPECIFIED: Default value, always invalid\n - STATUS_PROPOSED: Asset is proposed and under vote\n - STATUS_REJECTED: Asset has been rejected from governance\n - STATUS_PENDING_LISTING: Asset is pending listing from the bridge\n - STATUS_ENABLED: Asset is fully usable in the network"
+    },
+    "vegaAuctionDuration": {
+      "type": "object",
+      "properties": {
+        "duration": {
+          "type": "string",
+          "format": "int64",
+          "title": "Duration of the auction in seconds"
+        },
+        "volume": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Target uncrossing trading volume"
+        }
+      },
+      "title": "An auction duration is used to configure 3 auction periods:\n1. `duration \u003e 0`, `volume == 0`:\n  The auction will last for at least N seconds\n2. `duration == 0`, `volume \u003e 0`:\n  The auction will end once the given volume will match at uncrossing\n3. `duration \u003e 0`, `volume \u003e 0`:\n  The auction will take at least N seconds, but can end sooner if the market can trade a certain volume"
+    },
+    "vegaAuctionTrigger": {
+      "type": "string",
+      "enum": [
+        "AUCTION_TRIGGER_UNSPECIFIED",
+        "AUCTION_TRIGGER_BATCH",
+        "AUCTION_TRIGGER_OPENING",
+        "AUCTION_TRIGGER_PRICE",
+        "AUCTION_TRIGGER_LIQUIDITY"
+      ],
+      "default": "AUCTION_TRIGGER_UNSPECIFIED",
+      "description": "- AUCTION_TRIGGER_UNSPECIFIED: Default value for AuctionTrigger, no auction triggered\n - AUCTION_TRIGGER_BATCH: Batch auction\n - AUCTION_TRIGGER_OPENING: Opening auction\n - AUCTION_TRIGGER_PRICE: Price monitoring trigger\n - AUCTION_TRIGGER_LIQUIDITY: Liquidity monitoring trigger",
+      "title": "Auction triggers indicate what condition triggered an auction (if market is in auction mode)"
+    },
+    "vegaBuiltinAsset": {
+      "type": "object",
+      "properties": {
+        "maxFaucetAmountMint": {
+          "type": "string",
+          "title": "Maximum amount that can be requested by a party through the built-in asset faucet at a time"
+        }
+      },
+      "title": "A Vega internal asset"
+    },
+    "vegaDelegation": {
+      "type": "object",
+      "properties": {
+        "party": {
+          "type": "string",
+          "title": "Party which is delegating"
+        },
+        "nodeId": {
+          "type": "string",
+          "title": "Node ID"
+        },
+        "amount": {
+          "type": "string",
+          "title": "Amount delegated"
+        },
+        "epochSeq": {
+          "type": "string",
+          "title": "Epoch of delegation"
+        }
+      }
+    },
+    "vegaERC20": {
+      "type": "object",
+      "properties": {
+        "contractAddress": {
+          "type": "string",
+          "title": "The address of the contract for the token, on the ethereum network"
+        },
+        "lifetimeLimit": {
+          "type": "string",
+          "title": "The lifetime limits deposit per address\nnote: this is a temporary measure for restricted mainnet"
+        },
+        "withdrawThreshold": {
+          "type": "string",
+          "title": "The maximum allowed per withdraw\nnote: this is a temporary measure for restricted mainnet"
+        }
+      },
+      "title": "An ERC20 token based asset, living on the ethereum network"
+    },
+    "vegaERC20Update": {
+      "type": "object",
+      "properties": {
+        "lifetimeLimit": {
+          "type": "string",
+          "title": "The lifetime limits deposit per address.\nThis is will be interpreted against the asset decimals.\nnote: this is a temporary measure for restricted mainnet"
+        },
+        "withdrawThreshold": {
+          "type": "string",
+          "title": "The maximum allowed per withdraw.\nThis is will be interpreted against the asset decimals.\nnote: this is a temporary measure for restricted mainnet"
+        }
+      }
+    },
+    "vegaFeeFactors": {
+      "type": "object",
+      "properties": {
+        "makerFee": {
+          "type": "string",
+          "title": "Maker fee"
+        },
+        "infrastructureFee": {
+          "type": "string",
+          "title": "Infrastructure fee"
+        },
+        "liquidityFee": {
+          "type": "string",
+          "title": "Liquidity fee"
+        }
+      },
+      "title": "Fee factors definition"
+    },
+    "vegaFees": {
+      "type": "object",
+      "properties": {
+        "factors": {
+          "$ref": "#/definitions/vegaFeeFactors",
+          "title": "Fee factors"
+        }
+      },
+      "title": "Fees definition"
+    },
+    "vegaFuture": {
+      "type": "object",
+      "properties": {
+        "settlementAsset": {
+          "type": "string",
+          "title": "The asset for the future"
+        },
+        "quoteName": {
+          "type": "string",
+          "title": "Quote name of the instrument"
+        },
+        "oracleSpecForSettlementData": {
+          "$ref": "#/definitions/v1OracleSpec",
+          "title": "The oracle spec describing the settlement data oracle filter"
+        },
+        "oracleSpecForTradingTermination": {
+          "$ref": "#/definitions/v1OracleSpec",
+          "title": "the oracle spec describing the trading termination oracle filter"
+        },
+        "oracleSpecBinding": {
+          "$ref": "#/definitions/vegaOracleSpecToFutureBinding",
+          "title": "The binding between the oracle spec and the oracle data"
+        },
+        "settlementDataDecimals": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The number of decimal places implied by the settlement data (such as price) emitted by the settlement oracle"
+        }
+      },
+      "title": "Future product definition"
+    },
+    "vegaFutureProduct": {
+      "type": "object",
+      "properties": {
+        "settlementAsset": {
+          "type": "string",
+          "title": "Asset ID for the product's settlement asset"
+        },
+        "quoteName": {
+          "type": "string",
+          "title": "Product quote name"
+        },
+        "oracleSpecForSettlementData": {
+          "$ref": "#/definitions/v1OracleSpecConfiguration",
+          "title": "The oracle spec describing the oracle data for settlement"
+        },
+        "oracleSpecForTradingTermination": {
+          "$ref": "#/definitions/v1OracleSpecConfiguration",
+          "title": "The oracle spec describing the oracle data of trading termination"
+        },
+        "oracleSpecBinding": {
+          "$ref": "#/definitions/vegaOracleSpecToFutureBinding",
+          "title": "The binding between the oracle spec and the settlement data"
+        },
+        "settlementDataDecimals": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The number of decimal places implied by the settlement data (such as price) emitted by the settlement oracle"
+        }
+      },
+      "title": "Future product configuration"
+    },
+    "vegaInstrument": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Instrument identifier"
+        },
+        "code": {
+          "type": "string",
+          "title": "Code for the instrument"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name of the instrument"
+        },
+        "metadata": {
+          "$ref": "#/definitions/vegaInstrumentMetadata",
+          "title": "A collection of instrument meta-data"
+        },
+        "future": {
+          "$ref": "#/definitions/vegaFuture",
+          "title": "Future"
+        }
+      },
+      "title": "Instrument definition"
+    },
+    "vegaInstrumentConfiguration": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Instrument name"
+        },
+        "code": {
+          "type": "string",
+          "title": "Instrument code, human-readable shortcode used to describe the instrument"
+        },
+        "future": {
+          "$ref": "#/definitions/vegaFutureProduct",
+          "title": "Future"
+        }
+      },
+      "title": "Instrument configuration"
+    },
+    "vegaInstrumentMetadata": {
+      "type": "object",
+      "properties": {
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "A list of 0 or more tags"
+        }
+      },
+      "title": "Instrument metadata definition"
+    },
+    "vegaLiquidityMonitoringParameters": {
+      "type": "object",
+      "properties": {
+        "targetStakeParameters": {
+          "$ref": "#/definitions/vegaTargetStakeParameters",
+          "title": "Specifies parameters related to target stake calculation"
+        },
+        "triggeringRatio": {
+          "type": "number",
+          "format": "double",
+          "title": "Specifies the triggering ratio for entering liquidity auction"
+        },
+        "auctionExtension": {
+          "type": "string",
+          "format": "int64",
+          "title": "Specifies by how many seconds an auction should be extended if leaving the auction were to trigger a liquidity auction"
+        }
+      },
+      "title": "LiquidityMonitoringParameters contains settings used for liquidity monitoring"
+    },
+    "vegaLiquidityProviderFeeShare": {
+      "type": "object",
+      "properties": {
+        "party": {
+          "type": "string",
+          "title": "The liquidity provider party id"
+        },
+        "equityLikeShare": {
+          "type": "string",
+          "title": "The share own by this liquidity provider (float)"
+        },
+        "averageEntryValuation": {
+          "type": "string",
+          "title": "The average entry valuation of the liquidity provider for the market"
+        }
+      },
+      "title": "The equity like share of liquidity fee for each liquidity provider"
+    },
+    "vegaLogNormalModelParams": {
+      "type": "object",
+      "properties": {
+        "mu": {
+          "type": "number",
+          "format": "double",
+          "title": "Mu param"
+        },
+        "r": {
+          "type": "number",
+          "format": "double",
+          "title": "R param"
+        },
+        "sigma": {
+          "type": "number",
+          "format": "double",
+          "title": "Sigma param"
+        }
+      },
+      "title": "Risk model parameters for log normal"
+    },
+    "vegaLogNormalRiskModel": {
+      "type": "object",
+      "properties": {
+        "riskAversionParameter": {
+          "type": "number",
+          "format": "double",
+          "title": "Risk Aversion Parameter"
+        },
+        "tau": {
+          "type": "number",
+          "format": "double",
+          "title": "Tau"
+        },
+        "params": {
+          "$ref": "#/definitions/vegaLogNormalModelParams",
+          "title": "Risk model parameters for log normal"
+        }
+      },
+      "title": "Risk model for log normal"
+    },
+    "vegaMarginCalculator": {
+      "type": "object",
+      "properties": {
+        "scalingFactors": {
+          "$ref": "#/definitions/vegaScalingFactors",
+          "title": "Scaling factors for margin calculation"
+        }
+      },
+      "title": "Margin Calculator definition"
+    },
+    "vegaMarket": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Unique identifier"
+        },
+        "tradableInstrument": {
+          "$ref": "#/definitions/vegaTradableInstrument",
+          "title": "Tradable instrument configuration"
+        },
+        "decimalPlaces": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Number of decimal places that a price must be shifted by in order to get a\ncorrect price denominated in the currency of the market, for example:\n`realPrice = price / 10^decimalPlaces`"
+        },
+        "fees": {
+          "$ref": "#/definitions/vegaFees",
+          "title": "Fees configuration"
+        },
+        "openingAuction": {
+          "$ref": "#/definitions/vegaAuctionDuration",
+          "title": "Auction duration specifies how long the opening auction will run (minimum\nduration and optionally a minimum traded volume)"
+        },
+        "priceMonitoringSettings": {
+          "$ref": "#/definitions/vegaPriceMonitoringSettings",
+          "title": "PriceMonitoringSettings for the market"
+        },
+        "liquidityMonitoringParameters": {
+          "$ref": "#/definitions/vegaLiquidityMonitoringParameters",
+          "title": "LiquidityMonitoringParameters for the market"
+        },
+        "tradingMode": {
+          "$ref": "#/definitions/MarketTradingMode",
+          "title": "Current mode of execution of the market"
+        },
+        "state": {
+          "$ref": "#/definitions/vegaMarketState",
+          "title": "Current state of the market"
+        },
+        "marketTimestamps": {
+          "$ref": "#/definitions/vegaMarketTimestamps",
+          "title": "Timestamps for when the market stay changes"
+        },
+        "positionDecimalPlaces": {
+          "type": "string",
+          "format": "uint64",
+          "title": "The number of decimal places for position"
+        }
+      },
+      "title": "Market definition"
+    },
+    "vegaMarketData": {
+      "type": "object",
+      "properties": {
+        "markPrice": {
+          "type": "string",
+          "title": "Mark price, as an integer, for example `123456` is a correctly\nformatted price of `1.23456` assuming market configured to 5 decimal places"
+        },
+        "bestBidPrice": {
+          "type": "string",
+          "title": "Highest price level on an order book for buy orders, as an integer, for example `123456` is a correctly\nformatted price of `1.23456` assuming market configured to 5 decimal places"
+        },
+        "bestBidVolume": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Aggregated volume being bid at the best bid price"
+        },
+        "bestOfferPrice": {
+          "type": "string",
+          "title": "Lowest price level on an order book for offer orders"
+        },
+        "bestOfferVolume": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Aggregated volume being offered at the best offer price, as an integer, for example `123456` is a correctly\n // formatted price of `1.23456` assuming market configured to 5 decimal places"
+        },
+        "bestStaticBidPrice": {
+          "type": "string",
+          "title": "Highest price on the order book for buy orders not including pegged orders"
+        },
+        "bestStaticBidVolume": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Total volume at the best static bid price excluding pegged orders"
+        },
+        "bestStaticOfferPrice": {
+          "type": "string",
+          "title": "Lowest price on the order book for sell orders not including pegged orders"
+        },
+        "bestStaticOfferVolume": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Total volume at the best static offer price excluding pegged orders"
+        },
+        "midPrice": {
+          "type": "string",
+          "title": "Arithmetic average of the best bid price and best offer price, as an integer, for example `123456` is a correctly\nformatted price of `1.23456` assuming market configured to 5 decimal places"
+        },
+        "staticMidPrice": {
+          "type": "string",
+          "title": "Arithmetic average of the best static bid price and best static offer price"
+        },
+        "market": {
+          "type": "string",
+          "title": "Market identifier for the data"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "int64",
+          "title": "Timestamp at which this mark price was relevant, in nanoseconds since the epoch\n- See [`VegaTimeResponse`](#api.VegaTimeResponse).`timestamp`"
+        },
+        "openInterest": {
+          "type": "string",
+          "format": "uint64",
+          "title": "The sum of the size of all positions greater than 0 on the market"
+        },
+        "auctionEnd": {
+          "type": "string",
+          "format": "int64",
+          "title": "Time in seconds until the end of the auction (0 if currently not in auction period)"
+        },
+        "auctionStart": {
+          "type": "string",
+          "format": "int64",
+          "title": "Time until next auction, or start time of the current auction if market is in auction period"
+        },
+        "indicativePrice": {
+          "type": "string",
+          "title": "Indicative price (zero if not in auction)"
+        },
+        "indicativeVolume": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Indicative volume (zero if not in auction)"
+        },
+        "marketTradingMode": {
+          "$ref": "#/definitions/MarketTradingMode",
+          "title": "The current trading mode for the market"
+        },
+        "trigger": {
+          "$ref": "#/definitions/vegaAuctionTrigger",
+          "title": "When a market is in an auction trading mode, this field indicates what triggered the auction"
+        },
+        "extensionTrigger": {
+          "$ref": "#/definitions/vegaAuctionTrigger",
+          "title": "When a market auction is extended, this field indicates what caused the extension"
+        },
+        "targetStake": {
+          "type": "string",
+          "title": "Targeted stake for the given market"
+        },
+        "suppliedStake": {
+          "type": "string",
+          "title": "Available stake for the given market"
+        },
+        "priceMonitoringBounds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/vegaPriceMonitoringBounds"
+          },
+          "title": "One or more price monitoring bounds for the current timestamp"
+        },
+        "marketValueProxy": {
+          "type": "string",
+          "title": "the market value proxy"
+        },
+        "liquidityProviderFeeShare": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/vegaLiquidityProviderFeeShare"
+          },
+          "title": "the equity like share of liquidity fee for each liquidity provider"
+        },
+        "marketState": {
+          "$ref": "#/definitions/vegaMarketState",
+          "title": "The current state of the market"
+        }
+      },
+      "title": "Represents data generated by a market when open"
+    },
+    "vegaMarketState": {
+      "type": "string",
+      "enum": [
+        "STATE_UNSPECIFIED",
+        "STATE_PROPOSED",
+        "STATE_REJECTED",
+        "STATE_PENDING",
+        "STATE_CANCELLED",
+        "STATE_ACTIVE",
+        "STATE_SUSPENDED",
+        "STATE_CLOSED",
+        "STATE_TRADING_TERMINATED",
+        "STATE_SETTLED"
+      ],
+      "default": "STATE_UNSPECIFIED",
+      "description": "- STATE_UNSPECIFIED: Default value, invalid\n - STATE_PROPOSED: The Governance proposal valid and accepted\n - STATE_REJECTED: Outcome of governance votes is to reject the market\n - STATE_PENDING: Governance vote passes/wins\n - STATE_CANCELLED: Market triggers cancellation condition or governance\nvotes to close before market becomes Active\n - STATE_ACTIVE: Enactment date reached and usual auction exit checks pass\n - STATE_SUSPENDED: Price monitoring or liquidity monitoring trigger\n - STATE_CLOSED: Governance vote (to close)\n - STATE_TRADING_TERMINATED: Defined by the product (i.e. from a product parameter,\nspecified in market definition, giving close date/time)\n - STATE_SETTLED: Settlement triggered and completed as defined by product",
+      "title": "The current state of the Market"
+    },
+    "vegaMarketTimestamps": {
+      "type": "object",
+      "properties": {
+        "proposed": {
+          "type": "string",
+          "format": "int64",
+          "title": "Time when the market is first proposed"
+        },
+        "pending": {
+          "type": "string",
+          "format": "int64",
+          "title": "Time when the market has been voted in and is created into an opening auction"
+        },
+        "open": {
+          "type": "string",
+          "format": "int64",
+          "title": "Time when the market has left the opening auction and is ready to accept trades"
+        },
+        "close": {
+          "type": "string",
+          "format": "int64",
+          "title": "Time when the market is closed"
+        }
+      },
+      "title": "Time stamps for important times about creating, enacting etc the market"
+    },
+    "vegaNetworkLimits": {
+      "type": "object",
+      "properties": {
+        "canProposeMarket": {
+          "type": "boolean",
+          "title": "Are market proposals allowed at this point in time"
+        },
+        "canProposeAsset": {
+          "type": "boolean",
+          "title": "Are asset proposals allowed at this point in time"
+        },
+        "bootstrapFinished": {
+          "type": "boolean",
+          "title": "True once block count \u003e bootstrapBlockCount"
+        },
+        "proposeMarketEnabled": {
+          "type": "boolean",
+          "title": "Are market proposals enabled on this chain"
+        },
+        "proposeAssetEnabled": {
+          "type": "boolean",
+          "title": "Are asset proposals enabled on this chain"
+        },
+        "bootstrapBlockCount": {
+          "type": "integer",
+          "format": "int64",
+          "title": "How many blocks before the chain comes out of bootstrap mode"
+        },
+        "genesisLoaded": {
+          "type": "boolean",
+          "title": "True once the genesis file is loaded"
+        },
+        "proposeMarketEnabledFrom": {
+          "type": "string",
+          "format": "int64",
+          "title": "The date/timestamp in unix nanoseconds at which market proposals will be enabled (0 indicates not set)"
+        },
+        "proposeAssetEnabledFrom": {
+          "type": "string",
+          "format": "int64",
+          "title": "The date/timestamp in unix nanoseconds at which asset proposals will be enabled (0 indicates not set)"
+        }
+      },
+      "title": "Network limits, defined in the genesis file"
+    },
+    "vegaNetworkParameter": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "title": "The unique key"
+        },
+        "value": {
+          "type": "string",
+          "title": "The value for the network parameter"
+        }
+      },
+      "title": "Represents a network parameter on Vega"
+    },
+    "vegaNewAsset": {
+      "type": "object",
+      "properties": {
+        "changes": {
+          "$ref": "#/definitions/vegaAssetDetails",
+          "title": "The configuration of the new asset"
+        }
+      },
+      "title": "New asset on Vega"
+    },
+    "vegaNewFreeform": {
+      "type": "object",
+      "description": "Freeform proposal\nThis message is just used as a placeholder to sort out the nature of the\nproposal once parsed."
+    },
+    "vegaNewMarket": {
+      "type": "object",
+      "properties": {
+        "changes": {
+          "$ref": "#/definitions/vegaNewMarketConfiguration",
+          "title": "The configuration of the new market"
+        }
+      },
+      "title": "New market on Vega"
+    },
+    "vegaNewMarketConfiguration": {
+      "type": "object",
+      "properties": {
+        "instrument": {
+          "$ref": "#/definitions/vegaInstrumentConfiguration",
+          "title": "New market instrument configuration"
+        },
+        "decimalPlaces": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Decimal places used for the new market, sets the smallest price increment on the book"
+        },
+        "metadata": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional new market meta data, tags"
+        },
+        "priceMonitoringParameters": {
+          "$ref": "#/definitions/vegaPriceMonitoringParameters",
+          "title": "Price monitoring parameters"
+        },
+        "liquidityMonitoringParameters": {
+          "$ref": "#/definitions/vegaLiquidityMonitoringParameters",
+          "title": "Liquidity monitoring parameters"
+        },
+        "simple": {
+          "$ref": "#/definitions/vegaSimpleModelParams",
+          "title": "Simple risk model parameters, valid only if MODEL_SIMPLE is selected"
+        },
+        "logNormal": {
+          "$ref": "#/definitions/vegaLogNormalRiskModel",
+          "title": "Log normal risk model parameters, valid only if MODEL_LOG_NORMAL is selected"
+        },
+        "positionDecimalPlaces": {
+          "type": "string",
+          "format": "uint64",
+          "title": "Decimal places for order sizes, sets what size the smallest order / position on the market can be"
+        }
+      },
+      "title": "Configuration for a new market on Vega"
+    },
+    "vegaOracleSpecToFutureBinding": {
+      "type": "object",
+      "properties": {
+        "settlementDataProperty": {
+          "type": "string",
+          "description": "settlement_data_property holds the name of the property in the oracle data\nthat should be used as settlement data.\nIf it is set to \"prices.BTC.value\", then the Future will use the value of\nthis property as settlement data."
+        },
+        "tradingTerminationProperty": {
+          "type": "string",
+          "title": "the name of the property in the oracle data that signals termination of trading"
+        }
+      },
+      "title": "OracleSpecToFutureBinding tells on which property oracle data should be\nused as settlement data and which to use the trading terminated trigger"
+    },
+    "vegaParty": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "A unique identifier for the party, typically represented by a public key"
+        }
+      },
+      "title": "A party represents an entity who wishes to trade on or query a Vega network"
+    },
+    "vegaPriceMonitoringBounds": {
+      "type": "object",
+      "properties": {
+        "minValidPrice": {
+          "type": "string",
+          "title": "Minimum price that isn't currently breaching the specified price monitoring trigger"
+        },
+        "maxValidPrice": {
+          "type": "string",
+          "title": "Maximum price that isn't currently breaching the specified price monitoring trigger"
+        },
+        "trigger": {
+          "$ref": "#/definitions/vegaPriceMonitoringTrigger",
+          "title": "Price monitoring trigger associated with the bounds"
+        },
+        "referencePrice": {
+          "type": "string",
+          "title": "Reference price used to calculate the valid price range"
+        }
+      },
+      "title": "Represents a list of valid (at the current timestamp) price ranges per associated trigger"
+    },
+    "vegaPriceMonitoringParameters": {
+      "type": "object",
+      "properties": {
+        "triggers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/vegaPriceMonitoringTrigger"
+          }
+        }
+      },
+      "title": "PriceMonitoringParameters contains a collection of triggers to be used for a given market"
+    },
+    "vegaPriceMonitoringSettings": {
+      "type": "object",
+      "properties": {
+        "parameters": {
+          "$ref": "#/definitions/vegaPriceMonitoringParameters",
+          "title": "Specifies price monitoring parameters to be used for price monitoring purposes"
+        }
+      },
+      "title": "PriceMonitoringSettings contains the settings for price monitoring"
+    },
+    "vegaPriceMonitoringTrigger": {
+      "type": "object",
+      "properties": {
+        "horizon": {
+          "type": "string",
+          "format": "int64",
+          "title": "Price monitoring projection horizon τ in seconds"
+        },
+        "probability": {
+          "type": "string",
+          "title": "Price monitoring probability level p"
+        },
+        "auctionExtension": {
+          "type": "string",
+          "format": "int64",
+          "title": "Price monitoring auction extension duration in seconds should the price\nbreach it's theoretical level over the specified horizon at the specified\nprobability level"
+        }
+      },
+      "title": "PriceMonitoringTrigger holds together price projection horizon τ, probability level p, and auction extension duration"
+    },
+    "vegaProposal": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "Unique proposal identifier"
+        },
+        "reference": {
+          "type": "string",
+          "title": "Proposal reference"
+        },
+        "partyId": {
+          "type": "string",
+          "title": "Party identifier (public key) of the author (the party submitting the proposal)"
+        },
+        "state": {
+          "$ref": "#/definitions/vegaProposalState",
+          "title": "Proposal state - See (Proposal.State)[#vega.Proposal.State] definition"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "int64",
+          "title": "Proposal timestamp for date and time (in nanoseconds) when proposal was submitted to the network"
+        },
+        "terms": {
+          "$ref": "#/definitions/vegaProposalTerms",
+          "title": "Proposal configuration and the actual change that is meant to be executed when proposal is enacted"
+        },
+        "reason": {
+          "$ref": "#/definitions/vegaProposalError",
+          "title": "A reason for the current state of the proposal, this may be set in case of REJECTED and FAILED statuses"
+        },
+        "errorDetails": {
+          "type": "string",
+          "title": "The detailed error associated to the reason"
+        },
+        "rationale": {
+          "$ref": "#/definitions/vegaProposalRationale",
+          "title": "The rationale behind a proposal"
+        },
+        "requiredParticipation": {
+          "type": "string",
+          "title": "The required vote participation for this proposal"
+        },
+        "requiredMajority": {
+          "type": "string",
+          "title": "The required majority for this proposal"
+        },
+        "requiredLiquidityProviderParticipation": {
+          "type": "string",
+          "title": "The required participation from liquidity providers, optional (required for market update proposal)"
+        },
+        "requiredLiquidityProviderMajority": {
+          "type": "string",
+          "title": "The require majority from liquidity providers, optional (required for market update proposal)"
+        }
+      },
+      "title": "Governance proposal"
+    },
+    "vegaProposalError": {
+      "type": "string",
+      "enum": [
+        "PROPOSAL_ERROR_UNSPECIFIED",
+        "PROPOSAL_ERROR_CLOSE_TIME_TOO_SOON",
+        "PROPOSAL_ERROR_CLOSE_TIME_TOO_LATE",
+        "PROPOSAL_ERROR_ENACT_TIME_TOO_SOON",
+        "PROPOSAL_ERROR_ENACT_TIME_TOO_LATE",
+        "PROPOSAL_ERROR_INSUFFICIENT_TOKENS",
+        "PROPOSAL_ERROR_INVALID_INSTRUMENT_SECURITY",
+        "PROPOSAL_ERROR_NO_PRODUCT",
+        "PROPOSAL_ERROR_UNSUPPORTED_PRODUCT",
+        "PROPOSAL_ERROR_NO_TRADING_MODE",
+        "PROPOSAL_ERROR_UNSUPPORTED_TRADING_MODE",
+        "PROPOSAL_ERROR_NODE_VALIDATION_FAILED",
+        "PROPOSAL_ERROR_MISSING_BUILTIN_ASSET_FIELD",
+        "PROPOSAL_ERROR_MISSING_ERC20_CONTRACT_ADDRESS",
+        "PROPOSAL_ERROR_INVALID_ASSET",
+        "PROPOSAL_ERROR_INCOMPATIBLE_TIMESTAMPS",
+        "PROPOSAL_ERROR_NO_RISK_PARAMETERS",
+        "PROPOSAL_ERROR_NETWORK_PARAMETER_INVALID_KEY",
+        "PROPOSAL_ERROR_NETWORK_PARAMETER_INVALID_VALUE",
+        "PROPOSAL_ERROR_NETWORK_PARAMETER_VALIDATION_FAILED",
+        "PROPOSAL_ERROR_OPENING_AUCTION_DURATION_TOO_SMALL",
+        "PROPOSAL_ERROR_OPENING_AUCTION_DURATION_TOO_LARGE",
+        "PROPOSAL_ERROR_COULD_NOT_INSTANTIATE_MARKET",
+        "PROPOSAL_ERROR_INVALID_FUTURE_PRODUCT",
+        "PROPOSAL_ERROR_INVALID_RISK_PARAMETER",
+        "PROPOSAL_ERROR_MAJORITY_THRESHOLD_NOT_REACHED",
+        "PROPOSAL_ERROR_PARTICIPATION_THRESHOLD_NOT_REACHED",
+        "PROPOSAL_ERROR_INVALID_ASSET_DETAILS",
+        "PROPOSAL_ERROR_UNKNOWN_TYPE",
+        "PROPOSAL_ERROR_UNKNOWN_RISK_PARAMETER_TYPE",
+        "PROPOSAL_ERROR_INVALID_FREEFORM",
+        "PROPOSAL_ERROR_INSUFFICIENT_EQUITY_LIKE_SHARE",
+        "PROPOSAL_ERROR_INVALID_MARKET",
+        "PROPOSAL_ERROR_TOO_MANY_MARKET_DECIMAL_PLACES",
+        "PROPOSAL_ERROR_TOO_MANY_PRICE_MONITORING_TRIGGERS",
+        "PROPOSAL_ERROR_ERC20_ADDRESS_ALREADY_IN_USE"
+      ],
+      "default": "PROPOSAL_ERROR_UNSPECIFIED",
+      "description": "- PROPOSAL_ERROR_UNSPECIFIED: Default value\n - PROPOSAL_ERROR_CLOSE_TIME_TOO_SOON: The specified close time is too early based on network parameters\n - PROPOSAL_ERROR_CLOSE_TIME_TOO_LATE: The specified close time is too late based on network parameters\n - PROPOSAL_ERROR_ENACT_TIME_TOO_SOON: The specified enactment time is too early based on network parameters\n - PROPOSAL_ERROR_ENACT_TIME_TOO_LATE: The specified enactment time is too late based on network parameters\n - PROPOSAL_ERROR_INSUFFICIENT_TOKENS: The proposer for this proposal has insufficient tokens\n - PROPOSAL_ERROR_INVALID_INSTRUMENT_SECURITY: The instrument quote name and base name were the same\n - PROPOSAL_ERROR_NO_PRODUCT: The proposal has no product\n - PROPOSAL_ERROR_UNSUPPORTED_PRODUCT: The specified product is not supported\n - PROPOSAL_ERROR_NO_TRADING_MODE: The proposal has no trading mode\n - PROPOSAL_ERROR_UNSUPPORTED_TRADING_MODE: The proposal has an unsupported trading mode\n - PROPOSAL_ERROR_NODE_VALIDATION_FAILED: The proposal failed node validation\n - PROPOSAL_ERROR_MISSING_BUILTIN_ASSET_FIELD: A field is missing in a builtin asset source\n - PROPOSAL_ERROR_MISSING_ERC20_CONTRACT_ADDRESS: The contract address is missing in the ERC20 asset source\n - PROPOSAL_ERROR_INVALID_ASSET: The asset ID is invalid or does not exist on the Vega network\n - PROPOSAL_ERROR_INCOMPATIBLE_TIMESTAMPS: Proposal terms timestamps are not compatible (Validation \u003c Closing \u003c Enactment)\n - PROPOSAL_ERROR_NO_RISK_PARAMETERS: No risk parameters were specified\n - PROPOSAL_ERROR_NETWORK_PARAMETER_INVALID_KEY: Invalid key in update network parameter proposal\n - PROPOSAL_ERROR_NETWORK_PARAMETER_INVALID_VALUE: Invalid value in update network parameter proposal\n - PROPOSAL_ERROR_NETWORK_PARAMETER_VALIDATION_FAILED: Validation failed for network parameter proposal\n - PROPOSAL_ERROR_OPENING_AUCTION_DURATION_TOO_SMALL: Opening auction duration is less than the network minimum opening auction time\n - PROPOSAL_ERROR_OPENING_AUCTION_DURATION_TOO_LARGE: Opening auction duration is more than the network minimum opening auction time\n - PROPOSAL_ERROR_COULD_NOT_INSTANTIATE_MARKET: Market proposal market could not be instantiated in execution\n - PROPOSAL_ERROR_INVALID_FUTURE_PRODUCT: Market proposal market contained invalid product definition\n - PROPOSAL_ERROR_INVALID_RISK_PARAMETER: Market proposal has invalid risk parameter\n - PROPOSAL_ERROR_MAJORITY_THRESHOLD_NOT_REACHED: Proposal was declined because vote didn't reach the majority threshold required\n - PROPOSAL_ERROR_PARTICIPATION_THRESHOLD_NOT_REACHED: Proposal declined because the participation threshold was not reached\n - PROPOSAL_ERROR_INVALID_ASSET_DETAILS: Asset proposal has invalid asset details\n - PROPOSAL_ERROR_UNKNOWN_TYPE: Proposal is an unknown type\n - PROPOSAL_ERROR_UNKNOWN_RISK_PARAMETER_TYPE: Proposal has an unknown risk parameter type\n - PROPOSAL_ERROR_INVALID_FREEFORM: Validation failed for freeform proposal\n - PROPOSAL_ERROR_INSUFFICIENT_EQUITY_LIKE_SHARE: The party doesn't have enough equity-like share to propose an update on the market\ntargeted by the proposal\n - PROPOSAL_ERROR_INVALID_MARKET: The market targeted by the proposal does not exist or is not eligible for modification\n - PROPOSAL_ERROR_TOO_MANY_MARKET_DECIMAL_PLACES: The market proposal decimal place is higher than the market settlement asset decimal places\n - PROPOSAL_ERROR_TOO_MANY_PRICE_MONITORING_TRIGGERS: The market proposal contains too many price monitoring triggers\n - PROPOSAL_ERROR_ERC20_ADDRESS_ALREADY_IN_USE: The market proposal contains too many price monitoring triggers",
+      "title": "A list of possible errors that can cause a proposal to be in state rejected or failed"
+    },
+    "vegaProposalRationale": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Description to show a short title / something in case the link goes offline.\nThis is to be between 0 and 20k unicode characters.\nThis is mandatory for all proposals."
+        },
+        "title": {
+          "type": "string",
+          "description": "Title to be used to give a short description of the proposal in lists.\nThis is to be between 0 and 100 unicode characters.\nThis is mandatory for all proposals."
+        }
+      },
+      "description": "The rationale behind a proposal."
+    },
+    "vegaProposalState": {
+      "type": "string",
+      "enum": [
+        "STATE_UNSPECIFIED",
+        "STATE_FAILED",
+        "STATE_OPEN",
+        "STATE_PASSED",
+        "STATE_REJECTED",
+        "STATE_DECLINED",
+        "STATE_ENACTED",
+        "STATE_WAITING_FOR_NODE_VOTE"
+      ],
+      "default": "STATE_UNSPECIFIED",
+      "description": "- STATE_UNSPECIFIED: Default value, always invalid\n - STATE_FAILED: Proposal enactment has failed - even though proposal has passed, its execution could not be performed\n - STATE_OPEN: Proposal is open for voting\n - STATE_PASSED: Proposal has gained enough support to be executed\n - STATE_REJECTED: Proposal wasn't accepted (proposal terms failed validation due to wrong configuration or failing to meet network requirements)\n - STATE_DECLINED: Proposal didn't get enough votes (either failing to gain required participation or majority level)\n - STATE_ENACTED: Proposal enacted\n - STATE_WAITING_FOR_NODE_VOTE: Waiting for node validation of the proposal",
+      "title": "Proposal state transition:\nOpen -\u003e\n  - Passed -\u003e Enacted.\n  - Passed -\u003e Failed.\n  - Declined\nRejected\nProposal can enter Failed state from any other state"
+    },
+    "vegaProposalTerms": {
+      "type": "object",
+      "properties": {
+        "closingTimestamp": {
+          "type": "string",
+          "format": "int64",
+          "title": "Timestamp (Unix time in seconds) when voting closes for this proposal,\nconstrained by `minClose` and `maxClose` network parameters"
+        },
+        "enactmentTimestamp": {
+          "type": "string",
+          "format": "int64",
+          "title": "Timestamp (Unix time in seconds) when proposal gets enacted (if passed),\nconstrained by `minEnact` and `maxEnact` network parameters"
+        },
+        "validationTimestamp": {
+          "type": "string",
+          "format": "int64",
+          "title": "Validation timestamp (Unix time in seconds)"
+        },
+        "updateMarket": {
+          "$ref": "#/definitions/vegaUpdateMarket",
+          "title": "Proposal change for modifying an existing market on Vega"
+        },
+        "newMarket": {
+          "$ref": "#/definitions/vegaNewMarket",
+          "title": "Proposal change for creating new market on Vega"
+        },
+        "updateNetworkParameter": {
+          "$ref": "#/definitions/vegaUpdateNetworkParameter",
+          "title": "Proposal change for updating Vega network parameters"
+        },
+        "newAsset": {
+          "$ref": "#/definitions/vegaNewAsset",
+          "title": "Proposal change for creating new assets on Vega"
+        },
+        "newFreeform": {
+          "$ref": "#/definitions/vegaNewFreeform",
+          "title": "Proposal change for a freeform request, which can be voted on but does not change the behaviour of the system,\nand can be used to gauge community sentiment"
+        },
+        "updateAsset": {
+          "$ref": "#/definitions/vegaUpdateAsset",
+          "title": "Proposal change for updating an asset"
+        }
+      },
+      "title": "Terms for a governance proposal on Vega"
+    },
+    "vegaScalingFactors": {
+      "type": "object",
+      "properties": {
+        "searchLevel": {
+          "type": "number",
+          "format": "double",
+          "title": "Search level"
+        },
+        "initialMargin": {
+          "type": "number",
+          "format": "double",
+          "title": "Initial margin level"
+        },
+        "collateralRelease": {
+          "type": "number",
+          "format": "double",
+          "title": "Collateral release level"
+        }
+      },
+      "title": "Scaling Factors (for use in margin calculation)"
+    },
+    "vegaSimpleModelParams": {
+      "type": "object",
+      "properties": {
+        "factorLong": {
+          "type": "number",
+          "format": "double",
+          "title": "Pre-defined risk factor value for long"
+        },
+        "factorShort": {
+          "type": "number",
+          "format": "double",
+          "title": "Pre-defined risk factor value for short"
+        },
+        "maxMoveUp": {
+          "type": "number",
+          "format": "double",
+          "title": "Pre-defined maximum price move up that the model considers as valid"
+        },
+        "minMoveDown": {
+          "type": "number",
+          "format": "double",
+          "title": "Pre-defined minimum price move down that the model considers as valid"
+        },
+        "probabilityOfTrading": {
+          "type": "number",
+          "format": "double",
+          "title": "Pre-defined constant probability of trading"
+        }
+      },
+      "title": "Risk model parameters for simple modelling"
+    },
+    "vegaSimpleRiskModel": {
+      "type": "object",
+      "properties": {
+        "params": {
+          "$ref": "#/definitions/vegaSimpleModelParams",
+          "title": "Risk model params for simple modelling"
+        }
+      },
+      "title": "Risk model for simple modelling"
+    },
+    "vegaTargetStakeParameters": {
+      "type": "object",
+      "properties": {
+        "timeWindow": {
+          "type": "string",
+          "format": "int64",
+          "title": "Specifies length of time window expressed in seconds for target stake calculation"
+        },
+        "scalingFactor": {
+          "type": "number",
+          "format": "double",
+          "title": "Specifies scaling factors used in target stake calculation"
+        }
+      },
+      "title": "TargetStakeParameters contains parameters used in target stake calculation"
+    },
+    "vegaTradableInstrument": {
+      "type": "object",
+      "properties": {
+        "instrument": {
+          "$ref": "#/definitions/vegaInstrument",
+          "title": "Instrument details"
+        },
+        "marginCalculator": {
+          "$ref": "#/definitions/vegaMarginCalculator",
+          "title": "Margin calculator for the instrument"
+        },
+        "logNormalRiskModel": {
+          "$ref": "#/definitions/vegaLogNormalRiskModel",
+          "title": "Log normal"
+        },
+        "simpleRiskModel": {
+          "$ref": "#/definitions/vegaSimpleRiskModel",
+          "title": "Simple"
+        }
+      },
+      "title": "Tradable Instrument definition"
+    },
+    "vegaUpdateAsset": {
+      "type": "object",
+      "properties": {
+        "assetId": {
+          "type": "string",
+          "title": "The ID of the asset to be updated"
+        },
+        "changes": {
+          "$ref": "#/definitions/vegaAssetDetailsUpdate",
+          "title": "The changes to apply on an existing asset"
+        }
+      },
+      "title": "Update an existing asset on Vega"
+    },
+    "vegaUpdateFutureProduct": {
+      "type": "object",
+      "properties": {
+        "quoteName": {
+          "type": "string",
+          "title": "Human-readable name/abbreviation of the quote name"
+        },
+        "oracleSpecForSettlementData": {
+          "$ref": "#/definitions/v1OracleSpecConfiguration",
+          "title": "The oracle spec describing the oracle data of settlement data"
+        },
+        "oracleSpecForTradingTermination": {
+          "$ref": "#/definitions/v1OracleSpecConfiguration",
+          "title": "The oracle spec describing the oracle data of trading termination"
+        },
+        "oracleSpecBinding": {
+          "$ref": "#/definitions/vegaOracleSpecToFutureBinding",
+          "title": "The binding between the oracle spec and the settlement data"
+        },
+        "settlementDataDecimals": {
+          "type": "integer",
+          "format": "int64",
+          "title": "The number of decimal places implied by the settlement data (such as price) emitted by the settlement oracle"
+        }
+      },
+      "title": "Future product configuration"
+    },
+    "vegaUpdateInstrumentConfiguration": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "title": "Instrument code, human-readable shortcode used to describe the instrument"
+        },
+        "future": {
+          "$ref": "#/definitions/vegaUpdateFutureProduct",
+          "title": "Future"
+        }
+      },
+      "title": "Instrument configuration"
+    },
+    "vegaUpdateMarket": {
+      "type": "object",
+      "properties": {
+        "marketId": {
+          "type": "string",
+          "title": "The identifier of the market to update"
+        },
+        "changes": {
+          "$ref": "#/definitions/vegaUpdateMarketConfiguration",
+          "title": "The updated configuration of the market"
+        }
+      },
+      "title": "Update an existing market on Vega"
+    },
+    "vegaUpdateMarketConfiguration": {
+      "type": "object",
+      "properties": {
+        "instrument": {
+          "$ref": "#/definitions/vegaUpdateInstrumentConfiguration",
+          "title": "Updated market instrument configuration"
+        },
+        "metadata": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional market metadata, tags"
+        },
+        "priceMonitoringParameters": {
+          "$ref": "#/definitions/vegaPriceMonitoringParameters",
+          "title": "Price monitoring parameters"
+        },
+        "liquidityMonitoringParameters": {
+          "$ref": "#/definitions/vegaLiquidityMonitoringParameters",
+          "title": "Liquidity monitoring parameters"
+        },
+        "simple": {
+          "$ref": "#/definitions/vegaSimpleModelParams",
+          "title": "Simple risk model parameters, valid only if MODEL_SIMPLE is selected"
+        },
+        "logNormal": {
+          "$ref": "#/definitions/vegaLogNormalRiskModel",
+          "title": "Log normal risk model parameters, valid only if MODEL_LOG_NORMAL is selected"
+        }
+      },
+      "title": "Configuration to update a market on Vega"
+    },
+    "vegaUpdateNetworkParameter": {
+      "type": "object",
+      "properties": {
+        "changes": {
+          "$ref": "#/definitions/vegaNetworkParameter",
+          "title": "The network parameter to update"
+        }
+      },
+      "title": "Update network configuration on Vega"
+    },
+    "vegaVote": {
+      "type": "object",
+      "properties": {
+        "partyId": {
+          "type": "string",
+          "title": "Voter's party identifier"
+        },
+        "value": {
+          "$ref": "#/definitions/vegaVoteValue",
+          "title": "Actual vote"
+        },
+        "proposalId": {
+          "type": "string",
+          "title": "Identifier of the proposal being voted on"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "int64",
+          "title": "Vote timestamp for date and time (in nanoseconds) when vote was submitted to the network"
+        },
+        "totalGovernanceTokenBalance": {
+          "type": "string",
+          "title": "Total number of governance token for the party that casted the vote"
+        },
+        "totalGovernanceTokenWeight": {
+          "type": "string",
+          "title": "The weight of this vote based on the total of governance token"
+        },
+        "totalEquityLikeShareWeight": {
+          "type": "string",
+          "description": "The weight of the vote compared to the total number of equity-like share on the market."
+        }
+      },
+      "title": "Governance vote"
+    },
+    "vegaVoteValue": {
+      "type": "string",
+      "enum": [
+        "VALUE_UNSPECIFIED",
+        "VALUE_NO",
+        "VALUE_YES"
+      ],
+      "default": "VALUE_UNSPECIFIED",
+      "description": "- VALUE_UNSPECIFIED: Default value, always invalid\n - VALUE_NO: A vote against the proposal\n - VALUE_YES: A vote in favour of the proposal",
+      "title": "Vote value"
+    }
+  }
+}
