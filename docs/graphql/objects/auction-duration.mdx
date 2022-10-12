@@ -1,10 +1,16 @@
 ---
 id: auction-duration
 title: AuctionDuration
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 An auction duration is used to configure 3 auction periods:
@@ -25,15 +31,19 @@ type AuctionDuration {
 
 ### Fields
 
-#### [`durationSecs`](#) ([`Int!`](/docs/testnet/graphql/scalars/int))
+#### [<code style={{ fontWeight: 'normal' }}>AuctionDuration.<b>durationSecs</b></code>](#)<Bullet />[`Int!`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Duration of the auction in seconds
+> 
 
-Duration of the auction in seconds
+#### [<code style={{ fontWeight: 'normal' }}>AuctionDuration.<b>volume</b></code>](#)<Bullet />[`Int!`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Target uncrossing trading volume
+> 
 
 
-#### [`volume`](#) ([`Int!`](/docs/testnet/graphql/scalars/int))
 
-Target uncrossing trading volume
+### Member of
 
+[`Market`](/docs/testnet/graphql/objects/market)  <Badge class="secondary" text="object"/>
 
 
 

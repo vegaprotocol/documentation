@@ -1,10 +1,16 @@
 ---
 id: transfer-response
 title: TransferResponse
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 No description
@@ -19,15 +25,19 @@ type TransferResponse {
 
 ### Fields
 
-#### [`transfers`](#) ([`[LedgerEntry!]`](/docs/testnet/graphql/objects/ledger-entry))
+#### [<code style={{ fontWeight: 'normal' }}>TransferResponse.<b>transfers</b></code>](#)<Bullet />[`[LedgerEntry!]`](/docs/testnet/graphql/objects/ledger-entry) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> The ledger entries and balances resulting from a transfer request
+> 
 
-The ledger entries and balances resulting from a transfer request
+#### [<code style={{ fontWeight: 'normal' }}>TransferResponse.<b>balances</b></code>](#)<Bullet />[`[TransferBalance!]`](/docs/testnet/graphql/objects/transfer-balance) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> The balances of accounts involved in the transfer
+> 
 
 
-#### [`balances`](#) ([`[TransferBalance!]`](/docs/testnet/graphql/objects/transfer-balance))
 
-The balances of accounts involved in the transfer
+### Member of
 
+[`TransferResponses`](/docs/testnet/graphql/objects/transfer-responses)  <Badge class="secondary" text="object"/>
 
 
 

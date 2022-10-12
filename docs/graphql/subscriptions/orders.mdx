@@ -1,10 +1,16 @@
 ---
 id: orders
 title: orders
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 Subscribe to orders updates
@@ -19,21 +25,20 @@ orders(
 
 ### Arguments
 
-#### [`marketId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
+#### [<code style={{ fontWeight: 'normal' }}>orders.<b>marketId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> ID of the market from which you want orders updates
+> 
 
-ID of the market from which you want orders updates
-
-
-#### [`partyId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
-
-ID of the party from which you want orders updates
-
+#### [<code style={{ fontWeight: 'normal' }}>orders.<b>partyId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> ID of the party from which you want orders updates
+> 
 
 ### Type
 
-#### [`OrderUpdate`](/docs/testnet/graphql/objects/order-update)
+#### [`OrderUpdate`](/docs/testnet/graphql/objects/order-update) <Badge class="secondary" text="object"/>
+> An order update in Vega, if active it will be on the order book for the market
+> 
 
-An order update in Vega, if active it will be on the order book for the market
 
 
 

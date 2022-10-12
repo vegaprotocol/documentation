@@ -1,10 +1,16 @@
 ---
 id: order-status
 title: OrderStatus
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 Valid order statuses, these determine several states for an order that cannot be expressed with other fields in Order.
@@ -25,46 +31,44 @@ enum OrderStatus {
 
 ### Values
 
-#### [`STATUS_ACTIVE`](#)
-
-The order is active and not cancelled or expired, it could be unfilled, partially filled or fully filled.
+#### [<code style={{ fontWeight: 'normal' }}>OrderStatus.<b>STATUS_ACTIVE</b></code>](#) 
+> The order is active and not cancelled or expired, it could be unfilled, partially filled or fully filled.
 Active does not necessarily mean it's still on the order book.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderStatus.<b>STATUS_EXPIRED</b></code>](#) 
+> This order trades any amount and as much as possible and remains on the book until it either trades completely or expires.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderStatus.<b>STATUS_CANCELLED</b></code>](#) 
+> The order is cancelled, the order could be partially filled or unfilled before it was cancelled. It is not possible to cancel an order with 0 remaining.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderStatus.<b>STATUS_STOPPED</b></code>](#) 
+> This order was of type IOC or FOK and could not be processed by the matching engine due to lack of liquidity.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderStatus.<b>STATUS_FILLED</b></code>](#) 
+> This order is fully filled with remaining equalling zero.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderStatus.<b>STATUS_REJECTED</b></code>](#) 
+> This order was rejected while being processed.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderStatus.<b>STATUS_PARTIALLY_FILLED</b></code>](#) 
+> This order was partially filled.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderStatus.<b>STATUS_PARKED</b></code>](#) 
+> This order has been removed from the order book because the market is in auction, the reference price doesn't exist, or the order needs to be repriced and can't. Applies to pegged orders only
+> 
 
 
-#### [`STATUS_EXPIRED`](#)
 
-This order trades any amount and as much as possible and remains on the book until it either trades completely or expires.
+### Member of
 
-
-#### [`STATUS_CANCELLED`](#)
-
-The order is cancelled, the order could be partially filled or unfilled before it was cancelled. It is not possible to cancel an order with 0 remaining.
-
-
-#### [`STATUS_STOPPED`](#)
-
-This order was of type IOC or FOK and could not be processed by the matching engine due to lack of liquidity.
-
-
-#### [`STATUS_FILLED`](#)
-
-This order is fully filled with remaining equalling zero.
-
-
-#### [`STATUS_REJECTED`](#)
-
-This order was rejected while being processed.
-
-
-#### [`STATUS_PARTIALLY_FILLED`](#)
-
-This order was partially filled.
-
-
-#### [`STATUS_PARKED`](#)
-
-This order has been removed from the order book because the market is in auction, the reference price doesn't exist, or the order needs to be repriced and can't. Applies to pegged orders only
-
+[`Order`](/docs/testnet/graphql/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`OrderUpdate`](/docs/testnet/graphql/objects/order-update)  <Badge class="secondary" text="object"/>
 
 
 

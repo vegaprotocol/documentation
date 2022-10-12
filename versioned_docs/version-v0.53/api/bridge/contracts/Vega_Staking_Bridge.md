@@ -6,7 +6,7 @@ original_id: Vega_Staking_Bridge
 
 # ERC20 Staking Bridge (Vega_Staking_Bridge.sol)
 
-View Source: [contracts/tests/Vega_Staking_Bridge.sol](https://github.com/vegaprotocol/Staking_Bridge/blob/main/contracts/Vega_Staking_Bridge.sol)
+View Source: [contracts/Vega_Staking_Bridge.sol](https://github.com/vegaprotocol/Staking_Bridge/blob/main/contracts/Vega_Staking_Bridge.sol)
 
 **↗ Extends: [IStake](../interfaces/IStake)**
 

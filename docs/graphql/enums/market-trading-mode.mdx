@@ -1,10 +1,16 @@
 ---
 id: market-trading-mode
 title: MarketTradingMode
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 What market trading mode is the market in
@@ -22,30 +28,31 @@ enum MarketTradingMode {
 
 ### Values
 
-#### [`TRADING_MODE_CONTINUOUS`](#)
+#### [<code style={{ fontWeight: 'normal' }}>MarketTradingMode.<b>TRADING_MODE_CONTINUOUS</b></code>](#) 
+> Continuous trading where orders are processed and potentially matched on arrival
+> 
 
-Continuous trading where orders are processed and potentially matched on arrival
+#### [<code style={{ fontWeight: 'normal' }}>MarketTradingMode.<b>TRADING_MODE_OPENING_AUCTION</b></code>](#) 
+> Auction trading where orders are uncrossed at the end of the opening auction period
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MarketTradingMode.<b>TRADING_MODE_BATCH_AUCTION</b></code>](#) 
+> Auction as normal trading mode for the market, where orders are uncrossed periodically
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MarketTradingMode.<b>TRADING_MODE_MONITORING_AUCTION</b></code>](#) 
+> Auction triggered by price/liquidity monitoring
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MarketTradingMode.<b>TRADING_MODE_NO_TRADING</b></code>](#) 
+> No trading allowed
+> 
 
 
-#### [`TRADING_MODE_OPENING_AUCTION`](#)
 
-Auction trading where orders are uncrossed at the end of the opening auction period
+### Member of
 
-
-#### [`TRADING_MODE_BATCH_AUCTION`](#)
-
-Auction as normal trading mode for the market, where orders are uncrossed periodically
-
-
-#### [`TRADING_MODE_MONITORING_AUCTION`](#)
-
-Auction triggered by price/liquidity monitoring
-
-
-#### [`TRADING_MODE_NO_TRADING`](#)
-
-No trading allowed
-
+[`Market`](/docs/testnet/graphql/objects/market)  <Badge class="secondary" text="object"/><Bullet />[`MarketData`](/docs/testnet/graphql/objects/market-data)  <Badge class="secondary" text="object"/><Bullet />[`ObservableMarketData`](/docs/testnet/graphql/objects/observable-market-data)  <Badge class="secondary" text="object"/>
 
 
 

@@ -1,13 +1,19 @@
 ---
 id: withdrawal-edge
 title: WithdrawalEdge
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
 
 
-No description
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Edge type containing the withdrawal and cursor information returned by a WithdrawalsConnection
 
 ```graphql
 type WithdrawalEdge {
@@ -19,15 +25,19 @@ type WithdrawalEdge {
 
 ### Fields
 
-#### [`node`](#) ([`Withdrawal!`](/docs/testnet/graphql/objects/withdrawal))
+#### [<code style={{ fontWeight: 'normal' }}>WithdrawalEdge.<b>node</b></code>](#)<Bullet />[`Withdrawal!`](/docs/testnet/graphql/objects/withdrawal) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The withdrawal
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>WithdrawalEdge.<b>cursor</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The cursor for the withdrawal
+> 
 
 
 
+### Member of
 
-#### [`cursor`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-
-
+[`WithdrawalsConnection`](/docs/testnet/graphql/objects/withdrawals-connection)  <Badge class="secondary" text="object"/>
 
 
 

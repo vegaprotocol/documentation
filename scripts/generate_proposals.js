@@ -17,18 +17,18 @@ const {
 } = require('./libGenerateProposals/updateNetworkParameter')
 const { writeFileSync } = require('fs')
 const prettyJs = require('pretty-js')
-if (!process.env.VEGA_VERSION) {
-  console.error(
-    'Please set an environment variable VEGA_VERSION (e.g. VEGA_VERSION=v0.50.1'
-  )
-  process.exit(1)
+
+let version = process.env.npm_package_version
+
+if (process.argv[3]) {
+  version = process.argv[3]
 }
 
-const version = process.env.VEGA_VERSION
-
+if (!version) {
+  version = require('../package.json').version
+}
 // Config
-const url = 'http://0.0.0.0:8000/corestate.swagger.json'
-// const url = `https://raw.githubusercontent.com/vegaprotocol/protos/${version}/swagger/vega/api/v1/corestate.swagger.json`;
+const url = `./specs/v${version}/corestate.swagger.json`
 console.info(`Using schema at: ${url}`)
 // Input: Fields to remove from a specific place in the Swagger file
 const notProposalTypes = [
@@ -318,3 +318,4 @@ function output (partial, title) {
 }
 
 SwaggerParser.dereference(url).then(parse)
+

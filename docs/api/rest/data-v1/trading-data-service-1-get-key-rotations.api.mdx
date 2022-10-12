@@ -1,0 +1,37 @@
+---
+id: trading-data-service-1-get-key-rotations
+title: "Get all key rotations"
+description: "Get all key rotations"
+sidebar_label: Get all key rotations
+hide_title: true
+hide_table_of_contents: true
+api: {"responses":{"200":{"content":{"application/json":{"schema":{"properties":{"rotations":{"items":{"properties":{"blockHeight":{"format":"uint64","type":"string"},"newPubKey":{"type":"string"},"nodeId":{"type":"string"},"oldPubKey":{"type":"string"}},"type":"object"},"type":"array"}},"title":"Response with all key rotations","type":"object"}}},"description":"A successful response."},"default":{"content":{"application/json":{"schema":{"properties":{"code":{"format":"int32","type":"integer"},"details":{"items":{"additionalProperties":{},"properties":{"@type":{"type":"string"}},"type":"object"},"type":"array"},"message":{"type":"string"}},"type":"object"}}},"description":"An unexpected error response."}},"tags":["Trading Data Service (v1)"],"operationId":"TradingDataService1_GetKeyRotations","description":"Get all key rotations","method":"get","path":"/key-rotations","servers":[{"url":"https://api.n06.testnet.vega.xyz","description":"n06 (data node)"},{"url":"https://api.n07.testnet.vega.xyz","description":"n07 (data node)"},{"url":"https://api.n09.testnet.vega.xyz","description":"n09 (data node)"}],"info":{"title":"data-node/api/v1/trading_data.proto","version":"0.56.0"},"postman":{"name":"Get all key rotations","description":{"type":"text/plain"},"url":{"path":["key-rotations"],"host":["{{baseUrl}}"],"query":[],"variable":[]},"header":[{"key":"Accept","value":"application/json"}],"method":"GET"}}
+sidebar_class_name: "get api-method"
+info_path: docs/api/rest/data-v1/data-node-api-v-1-trading-data-proto
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem"
+import SchemaTabs from "@theme/SchemaTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import TabItem from "@theme/TabItem";
+
+## Get all key rotations
+
+
+
+Get all key rotations
+
+<div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+A successful response.
+
+</div><div><MimeTabs groupId={"mime-type"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs groupId={"schema-tabs"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}}><summary style={{}}><strong>rotations</strong><span style={{"opacity":"0.6"}}> object[]</span></summary><div style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"blockHeight"} required={false} schemaDescription={undefined} schemaName={"uint64"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"newPubKey"} required={false} schemaDescription={undefined} schemaName={"string"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"nodeId"} required={false} schemaDescription={undefined} schemaName={"string"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"oldPubKey"} required={false} schemaDescription={undefined} schemaName={"string"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem></div></details></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"rotations\": [\n    {\n      \"blockHeight\": \"string\",\n      \"newPubKey\": \"string\",\n      \"nodeId\": \"string\",\n      \"oldPubKey\": \"string\"\n    }\n  ]\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"default"} value={"default"}><div>
+
+An unexpected error response.
+
+</div><div><MimeTabs groupId={"mime-type"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs groupId={"schema-tabs"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"code"} required={false} schemaDescription={undefined} schemaName={"int32"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}}><summary style={{}}><strong>details</strong><span style={{"opacity":"0.6"}}> object[]</span></summary><div style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"@type"} required={false} schemaDescription={undefined} schemaName={"string"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem></div></details></SchemaItem><SchemaItem collapsible={false} name={"message"} required={false} schemaDescription={undefined} schemaName={"string"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"code\": 0,\n  \"details\": [\n    {\n      \"@type\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div>
+      

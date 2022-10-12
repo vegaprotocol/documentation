@@ -1,13 +1,19 @@
 ---
 id: node-data
 title: nodeData
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
 
 
-returns information about nodes
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Returns information about nodes
 
 ```graphql
 nodeData: NodeData
@@ -16,8 +22,9 @@ nodeData: NodeData
 
 ### Type
 
-#### [`NodeData`](/docs/testnet/graphql/objects/node-data)
-
+#### [`NodeData`](/docs/testnet/graphql/objects/node-data) <Badge class="secondary" text="object"/>
+> Summary of data across all nodes
+> 
 
 
 

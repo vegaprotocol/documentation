@@ -140,8 +140,8 @@ vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairg
             "factor": "3",
             "dispatchStrategy": {
                 "assetForMetric": "123",
-                "dispatchMetric": "DISPATCH_METRIC_MARKET_VALUE",
-                "marketIdsInScope": ["marketid"]
+                "metric": "DISPATCH_METRIC_MARKET_VALUE",
+                "markets": ["marketid"]
             }
         }
     }
@@ -164,8 +164,8 @@ vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network f
             \"startEpoch\": 1, ^
             \"factor\": \"3\", ^
             \"dispatchStrategy\": { ^
-                \"dispatchMetric\": \"DISPATCH_METRIC_MARKET_VALUE\", ^
-                \"marketIdsInScope\": [\"marketid\"] ^
+                \"metric\": \"DISPATCH_METRIC_MARKET_VALUE\", ^
+                \"markets\": [\"marketid\"] ^
             } ^
         } ^
     } ^

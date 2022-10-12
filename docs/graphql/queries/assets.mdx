@@ -1,10 +1,16 @@
 ---
 id: assets
 title: assets
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 The list of all assets in use in the Vega network
@@ -16,9 +22,10 @@ assets: [Asset!]
 
 ### Type
 
-#### [`Asset`](/docs/testnet/graphql/objects/asset)
+#### [`Asset`](/docs/testnet/graphql/objects/asset) <Badge class="secondary" text="object"/>
+> Represents an asset in Vega
+> 
 
-Represents an asset in Vega
 
 
 

@@ -1,10 +1,16 @@
 ---
 id: deposit
 title: Deposit
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 The details of a deposit processed by Vega
@@ -25,45 +31,51 @@ type Deposit {
 
 ### Fields
 
-#### [`id`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+#### [<code style={{ fontWeight: 'normal' }}>Deposit.<b>id</b></code>](#)<Bullet />[`ID!`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The Vega internal ID of the deposit
+> 
 
-The Vega internal ID of the deposit
+#### [<code style={{ fontWeight: 'normal' }}>Deposit.<b>party</b></code>](#)<Bullet />[`Party!`](/docs/testnet/graphql/objects/party) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The Party initiating the deposit
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>Deposit.<b>amount</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The amount to be withdrawn
+> 
 
-#### [`party`](#) ([`Party!`](/docs/testnet/graphql/objects/party))
+#### [<code style={{ fontWeight: 'normal' }}>Deposit.<b>asset</b></code>](#)<Bullet />[`Asset!`](/docs/testnet/graphql/objects/asset) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The asset to be withdrawn
+> 
 
-The Party initiating the deposit
+#### [<code style={{ fontWeight: 'normal' }}>Deposit.<b>status</b></code>](#)<Bullet />[`DepositStatus!`](/docs/testnet/graphql/enums/deposit-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The current status of the deposit
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>Deposit.<b>createdTimestamp</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano time at which the deposit was created
+> 
 
-#### [`amount`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>Deposit.<b>creditedTimestamp</b></code>](#)<Bullet />[`String`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> RFC3339Nano time at which the deposit was finalised
+> 
 
-The amount to be withdrawn
-
-
-#### [`asset`](#) ([`Asset!`](/docs/testnet/graphql/objects/asset))
-
-The asset to be withdrawn
-
-
-#### [`status`](#) ([`DepositStatus!`](/docs/testnet/graphql/enums/deposit-status))
-
-The current status of the deposit
-
-
-#### [`createdTimestamp`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-RFC3339Nano time at which the deposit was created
-
-
-#### [`creditedTimestamp`](#) ([`String`](/docs/testnet/graphql/scalars/string))
-
-RFC3339Nano time at which the deposit was finalised
+#### [<code style={{ fontWeight: 'normal' }}>Deposit.<b>txHash</b></code>](#)<Bullet />[`String`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> Hash of the transaction on the foreign chain
+> 
 
 
-#### [`txHash`](#) ([`String`](/docs/testnet/graphql/scalars/string))
 
-Hash of the transaction on the foreign chain
+### Returned by
 
+[`deposit`](/docs/testnet/graphql/queries/deposit)  <Badge class="secondary" text="query"/>
+
+### Member of
+
+[`DepositEdge`](/docs/testnet/graphql/objects/deposit-edge)  <Badge class="secondary" text="object"/><Bullet />[`Party`](/docs/testnet/graphql/objects/party)  <Badge class="secondary" text="object"/>
+
+### Implemented by
+
+[`Event`](/docs/testnet/graphql/unions/event)  <Badge class="secondary" text="union"/>
 
 
 

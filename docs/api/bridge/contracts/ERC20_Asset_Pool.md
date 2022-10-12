@@ -6,7 +6,7 @@ original_id: ERC20_Asset_Pool
 
 # ERC20 Asset Pool (ERC20_Asset_Pool.sol)
 
-View Source: [contracts/ERC20_Asset_Pool.sol](https://github.com/vegaprotocol/MultisigControl/blob/solidoc/docs/ERC20_Asset_Pool)
+View Source: [contracts/ERC20_Asset_Pool.sol](https://github.com/vegaprotocol/MultisigControl/blob/develop/contracts/ERC20_Asset_Pool.sol)
 
 **ERC20_Asset_Pool**
 

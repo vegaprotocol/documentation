@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-title: Propose asset update
+title: Propose updates to an asset
 hide_title: false
 vega_network: TESTNET
 keywords:
@@ -35,7 +35,7 @@ You will need:
 - A connected [Vega wallet](/docs/tools/vega-wallet/index.md), with your wallet name and public key to hand
 - A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minProposerBalance" hideName={true} suffix="tokens"/> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true}  formatter="governanceToken" suffix="tokens"/>
 - Familiarity with [governance on Vega](../../concepts/vega-protocol.md#governance), particularly [assets at a protocol level](../../concepts/vega-protocol#assettoken-management)
-- After an asset update vote passes, the change has to be submitted to the [asset bridge](../../api/bridge/interfaces/IERC20_Bridge_Logic) on Ethereum.
+- After an asset update vote passes, the change has to be submitted to the [asset bridge](../../concepts/vega-protocol#assettoken-management) on Ethereum.
 
 ## Overview
 

@@ -1,10 +1,16 @@
 ---
 id: accounts
 title: accounts
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 Subscribe to the accounts updates
@@ -21,31 +27,28 @@ accounts(
 
 ### Arguments
 
-#### [`marketId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
+#### [<code style={{ fontWeight: 'normal' }}>accounts.<b>marketId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> ID of the market from which to receive accounts updates for
+> 
 
-ID of the market from which to receive accounts updates for
+#### [<code style={{ fontWeight: 'normal' }}>accounts.<b>partyId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> ID of the party from which to receive accounts updates for
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>accounts.<b>assetId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> Asset code
+> 
 
-#### [`partyId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
-
-ID of the party from which to receive accounts updates for
-
-
-#### [`assetId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
-
-Asset code
-
-
-#### [`type`](#) ([`AccountType`](/docs/testnet/graphql/enums/account-type))
-
-Type of the account
-
+#### [<code style={{ fontWeight: 'normal' }}>accounts.<b>type</b></code>](#)<Bullet />[`AccountType`](/docs/testnet/graphql/enums/account-type) <Badge class="secondary" text="enum"/>
+> Type of the account
+> 
 
 ### Type
 
-#### [`AccountUpdate`](/docs/testnet/graphql/objects/account-update)
+#### [`AccountUpdate`](/docs/testnet/graphql/objects/account-update) <Badge class="secondary" text="object"/>
+> An account record used for subscriptions
+> 
 
-An account record used for subscriptions
 
 
 

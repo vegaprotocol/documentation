@@ -1,10 +1,16 @@
 ---
 id: trade-update
 title: TradeUpdate
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 A trade on Vega, the result of two orders being 'matched' in the market
@@ -32,80 +38,71 @@ type TradeUpdate {
 
 ### Fields
 
-#### [`id`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+#### [<code style={{ fontWeight: 'normal' }}>TradeUpdate.<b>id</b></code>](#)<Bullet />[`ID!`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The hash of the trade data
+> 
 
-The hash of the trade data
+#### [<code style={{ fontWeight: 'normal' }}>TradeUpdate.<b>marketId</b></code>](#)<Bullet />[`ID!`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The market the trade occurred on
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>TradeUpdate.<b>buyOrder</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The order that bought
+> 
 
-#### [`marketId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+#### [<code style={{ fontWeight: 'normal' }}>TradeUpdate.<b>sellOrder</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The order that sold
+> 
 
-The market the trade occurred on
+#### [<code style={{ fontWeight: 'normal' }}>TradeUpdate.<b>buyerId</b></code>](#)<Bullet />[`ID!`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The party that bought
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>TradeUpdate.<b>sellerId</b></code>](#)<Bullet />[`ID!`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The party that sold
+> 
 
-#### [`buyOrder`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>TradeUpdate.<b>aggressor</b></code>](#)<Bullet />[`Side!`](/docs/testnet/graphql/enums/side) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The aggressor indicates whether this trade was related to a BUY or SELL
+> 
 
-The order that bought
+#### [<code style={{ fontWeight: 'normal' }}>TradeUpdate.<b>price</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The price of the trade (probably initially the passive order price, other determination algorithms are possible though) (uint64)
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>TradeUpdate.<b>size</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The number of units traded, will always be &#x003C;= the remaining size of both orders immediately before the trade (uint64)
+> 
 
-#### [`sellOrder`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>TradeUpdate.<b>createdAt</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano time for when the trade occurred
+> 
 
-The order that sold
+#### [<code style={{ fontWeight: 'normal' }}>TradeUpdate.<b>type</b></code>](#)<Bullet />[`TradeType!`](/docs/testnet/graphql/enums/trade-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The type of trade
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>TradeUpdate.<b>buyerFee</b></code>](#)<Bullet />[`TradeFee!`](/docs/testnet/graphql/objects/trade-fee) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The fee paid by the buyer side of the trade
+> 
 
-#### [`buyerId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+#### [<code style={{ fontWeight: 'normal' }}>TradeUpdate.<b>sellerFee</b></code>](#)<Bullet />[`TradeFee!`](/docs/testnet/graphql/objects/trade-fee) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The fee paid by the seller side of the trade
+> 
 
-The party that bought
+#### [<code style={{ fontWeight: 'normal' }}>TradeUpdate.<b>buyerAuctionBatch</b></code>](#)<Bullet />[`Int`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
+> The batch in which the buyer order was submitted (applies only for auction modes)
+> 
 
-
-#### [`sellerId`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
-
-The party that sold
-
-
-#### [`aggressor`](#) ([`Side!`](/docs/testnet/graphql/enums/side))
-
-The aggressor indicates whether this trade was related to a BUY or SELL
-
-
-#### [`price`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-The price of the trade (probably initially the passive order price, other determination algorithms are possible though) (uint64)
-
-
-#### [`size`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-The number of units traded, will always be &#x003C;= the remaining size of both orders immediately before the trade (uint64)
-
-
-#### [`createdAt`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-RFC3339Nano time for when the trade occurred
-
-
-#### [`type`](#) ([`TradeType!`](/docs/testnet/graphql/enums/trade-type))
-
-The type of trade
-
-
-#### [`buyerFee`](#) ([`TradeFee!`](/docs/testnet/graphql/objects/trade-fee))
-
-The fee paid by the buyer side of the trade
-
-
-#### [`sellerFee`](#) ([`TradeFee!`](/docs/testnet/graphql/objects/trade-fee))
-
-The fee paid by the seller side of the trade
+#### [<code style={{ fontWeight: 'normal' }}>TradeUpdate.<b>sellerAuctionBatch</b></code>](#)<Bullet />[`Int`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
+> The batch in which the seller order was submitted (applies only for auction modes)
+> 
 
 
-#### [`buyerAuctionBatch`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
 
-The batch in which the buyer order was submitted (applies only for auction modes)
+### Returned by
 
-
-#### [`sellerAuctionBatch`](#) ([`Int`](/docs/testnet/graphql/scalars/int))
-
-The batch in which the seller order was submitted (applies only for auction modes)
-
+[`trades`](/docs/testnet/graphql/subscriptions/trades)  <Badge class="secondary" text="subscription"/>
 
 
 

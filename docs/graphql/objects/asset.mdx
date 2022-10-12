@@ -1,10 +1,16 @@
 ---
 id: asset
 title: Asset
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 Represents an asset in Vega
@@ -30,70 +36,71 @@ type Asset {
 
 ### Fields
 
-#### [`id`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>id</b></code>](#)<Bullet />[`ID!`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The ID of the asset
+> 
 
-The ID of the asset
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>name</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The full name of the asset (e.g: Great British Pound)
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>symbol</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The symbol of the asset (e.g: GBP)
+> 
 
-#### [`name`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>decimals</b></code>](#)<Bullet />[`Int!`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The precision of the asset. Should match the decimal precision of the asset on its native chain, e.g: for ERC20 assets, it is often 18
+> 
 
-The full name of the asset (e.g: Great British Pound)
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>quantum</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The minimum economically meaningful amount in the asset
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>source</b></code>](#)<Bullet />[`AssetSource!`](/docs/testnet/graphql/unions/asset-source) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="union"/>
+> The origin source of the asset (e.g: an ERC20 asset)
+> 
 
-#### [`symbol`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>status</b></code>](#)<Bullet />[`AssetStatus!`](/docs/testnet/graphql/enums/asset-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The status of the asset in the Vega network
+> 
 
-The symbol of the asset (e.g: GBP)
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>infrastructureFeeAccount</b></code>](#)<Bullet />[`Account!`](/docs/testnet/graphql/objects/account) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The infrastructure fee account for this asset
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>globalRewardPoolAccount</b></code>](#)<Bullet />[`Account`](/docs/testnet/graphql/objects/account) <Badge class="secondary" text="object"/>
+> The global reward pool account for this asset
+> 
 
-#### [`decimals`](#) ([`Int!`](/docs/testnet/graphql/scalars/int))
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>takerFeeRewardAccount</b></code>](#)<Bullet />[`Account`](/docs/testnet/graphql/objects/account) <Badge class="secondary" text="object"/>
+> The taker fee reward account for this asset
+> 
 
-The precision of the asset. Should match the decimal precision of the asset on its native chain, e.g: for ERC20 assets, it is often 18
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>makerFeeRewardAccount</b></code>](#)<Bullet />[`Account`](/docs/testnet/graphql/objects/account) <Badge class="secondary" text="object"/>
+> The maker fee reward account for this asset
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>lpFeeRewardAccount</b></code>](#)<Bullet />[`Account`](/docs/testnet/graphql/objects/account) <Badge class="secondary" text="object"/>
+> The liquidity provision reward account for this asset
+> 
 
-#### [`quantum`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-The minimum economically meaningful amount in the asset
-
-
-#### [`source`](#) ([`AssetSource!`](/docs/testnet/graphql/unions/asset-source))
-
-The origin source of the asset (e.g: an ERC20 asset)
-
-
-#### [`status`](#) ([`AssetStatus!`](/docs/testnet/graphql/enums/asset-status))
-
-The status of the asset in the Vega network
-
-
-#### [`infrastructureFeeAccount`](#) ([`Account!`](/docs/testnet/graphql/objects/account))
-
-The infrastructure fee account for this asset
-
-
-#### [`globalRewardPoolAccount`](#) ([`Account`](/docs/testnet/graphql/objects/account))
-
-The global reward pool account for this asset
-
-
-#### [`takerFeeRewardAccount`](#) ([`Account`](/docs/testnet/graphql/objects/account))
-
-The taker fee reward account for this asset
-
-
-#### [`makerFeeRewardAccount`](#) ([`Account`](/docs/testnet/graphql/objects/account))
-
-The maker fee reward account for this asset
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>marketProposerRewardAccount</b></code>](#)<Bullet />[`Account`](/docs/testnet/graphql/objects/account) <Badge class="secondary" text="object"/>
+> The market proposer reward account for this asset
+> 
 
 
-#### [`lpFeeRewardAccount`](#) ([`Account`](/docs/testnet/graphql/objects/account))
 
-The liquidity provision reward account for this asset
+### Returned by
 
+[`asset`](/docs/testnet/graphql/queries/asset)  <Badge class="secondary" text="query"/><Bullet />[`assets`](/docs/testnet/graphql/queries/assets)  <Badge class="secondary" text="query"/>
 
-#### [`marketProposerRewardAccount`](#) ([`Account`](/docs/testnet/graphql/objects/account))
+### Member of
 
-The market proposer reward account for this asset
+[`Account`](/docs/testnet/graphql/objects/account)  <Badge class="secondary" text="object"/><Bullet />[`AssetEdge`](/docs/testnet/graphql/objects/asset-edge)  <Badge class="secondary" text="object"/><Bullet />[`Deposit`](/docs/testnet/graphql/objects/deposit)  <Badge class="secondary" text="object"/><Bullet />[`Future`](/docs/testnet/graphql/objects/future)  <Badge class="secondary" text="object"/><Bullet />[`FutureProduct`](/docs/testnet/graphql/objects/future-product)  <Badge class="secondary" text="object"/><Bullet />[`MarginLevels`](/docs/testnet/graphql/objects/margin-levels)  <Badge class="secondary" text="object"/><Bullet />[`Reward`](/docs/testnet/graphql/objects/reward)  <Badge class="secondary" text="object"/><Bullet />[`RewardPerAssetDetail`](/docs/testnet/graphql/objects/reward-per-asset-detail)  <Badge class="secondary" text="object"/><Bullet />[`RewardSummary`](/docs/testnet/graphql/objects/reward-summary)  <Badge class="secondary" text="object"/><Bullet />[`Transfer`](/docs/testnet/graphql/objects/transfer)  <Badge class="secondary" text="object"/><Bullet />[`Withdrawal`](/docs/testnet/graphql/objects/withdrawal)  <Badge class="secondary" text="object"/>
 
+### Implemented by
+
+[`Event`](/docs/testnet/graphql/unions/event)  <Badge class="secondary" text="union"/>
 
 
 

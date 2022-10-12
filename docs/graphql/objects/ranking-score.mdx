@@ -1,10 +1,16 @@
 ---
 id: ranking-score
 title: RankingScore
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 No description
@@ -23,35 +29,35 @@ type RankingScore {
 
 ### Fields
 
-#### [`status`](#) ([`ValidatorStatus!`](/docs/testnet/graphql/enums/validator-status))
+#### [<code style={{ fontWeight: 'normal' }}>RankingScore.<b>status</b></code>](#)<Bullet />[`ValidatorStatus!`](/docs/testnet/graphql/enums/validator-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The current validation status of the validator
+> 
 
-The current validation status of the validator
+#### [<code style={{ fontWeight: 'normal' }}>RankingScore.<b>previousStatus</b></code>](#)<Bullet />[`ValidatorStatus!`](/docs/testnet/graphql/enums/validator-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The former validation status of the validator
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>RankingScore.<b>rankingScore</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The ranking score of the validator
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>RankingScore.<b>stakeScore</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The stake based score of the validator (no anti-whaling)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>RankingScore.<b>performanceScore</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The performance score of the validator
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>RankingScore.<b>votingPower</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The Tendermint voting power of the validator (uint32)
+> 
 
 
-#### [`previousStatus`](#) ([`ValidatorStatus!`](/docs/testnet/graphql/enums/validator-status))
 
-The former validation status of the validator
+### Member of
 
-
-#### [`rankingScore`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-The ranking score of the validator
-
-
-#### [`stakeScore`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-The stake based score of the validator (no anti-whaling)
-
-
-#### [`performanceScore`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-The performance score of the validator
-
-
-#### [`votingPower`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-The Tendermint voting power of the validator (uint32)
-
+[`Node`](/docs/testnet/graphql/objects/node)  <Badge class="secondary" text="object"/>
 
 
 

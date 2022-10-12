@@ -1,13 +1,19 @@
 ---
 id: assets-connection
 title: AssetsConnection
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
 
 
-No description
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Connection type for retrieving cursor-based paginated assets information
 
 ```graphql
 type AssetsConnection {
@@ -19,15 +25,19 @@ type AssetsConnection {
 
 ### Fields
 
-#### [`edges`](#) ([`[AssetEdge]`](/docs/testnet/graphql/objects/asset-edge))
+#### [<code style={{ fontWeight: 'normal' }}>AssetsConnection.<b>edges</b></code>](#)<Bullet />[`[AssetEdge]`](/docs/testnet/graphql/objects/asset-edge) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> The assets
+> 
 
-The assets
+#### [<code style={{ fontWeight: 'normal' }}>AssetsConnection.<b>pageInfo</b></code>](#)<Bullet />[`PageInfo`](/docs/testnet/graphql/objects/page-info) <Badge class="secondary" text="object"/>
+> The pagination information
+> 
 
 
-#### [`pageInfo`](#) ([`PageInfo`](/docs/testnet/graphql/objects/page-info))
 
-The pagination information
+### Returned by
 
+[`assetsConnection`](/docs/testnet/graphql/queries/assets-connection)  <Badge class="secondary" text="query"/>
 
 
 

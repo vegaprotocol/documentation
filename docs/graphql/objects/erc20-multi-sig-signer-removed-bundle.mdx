@@ -1,10 +1,16 @@
 ---
 id: erc20-multi-sig-signer-removed-bundle
 title: ERC20MultiSigSignerRemovedBundle
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 No description
@@ -23,35 +29,35 @@ type ERC20MultiSigSignerRemovedBundle {
 
 ### Fields
 
-#### [`oldSigner`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>ERC20MultiSigSignerRemovedBundle.<b>oldSigner</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The ethereum address of the signer to be removed
+> 
 
-The ethereum address of the signer to be removed
+#### [<code style={{ fontWeight: 'normal' }}>ERC20MultiSigSignerRemovedBundle.<b>submitter</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The ethereum address of the submitter
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ERC20MultiSigSignerRemovedBundle.<b>nonce</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The nonce used in the signing operation
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ERC20MultiSigSignerRemovedBundle.<b>timestamp</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Unix-nano timestamp for when the validator was added
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ERC20MultiSigSignerRemovedBundle.<b>signatures</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The bundle of signatures from current validators to sign in the new signer
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ERC20MultiSigSignerRemovedBundle.<b>epochSeq</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The epoch in which the validator was removed
+> 
 
 
-#### [`submitter`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
-The ethereum address of the submitter
+### Member of
 
-
-#### [`nonce`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-The nonce used in the signing operation
-
-
-#### [`timestamp`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Unix-nano timestamp for when the validator was added
-
-
-#### [`signatures`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-The bundle of signatures from current validators to sign in the new signer
-
-
-#### [`epochSeq`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-The epoch in which the validator was removed
-
+[`ERC20MultiSigSignerRemovedBundleEdge`](/docs/testnet/graphql/objects/erc20-multi-sig-signer-removed-bundle-edge)  <Badge class="secondary" text="object"/>
 
 
 

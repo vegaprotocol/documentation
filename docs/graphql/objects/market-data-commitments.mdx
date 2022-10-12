@@ -1,10 +1,16 @@
 ---
 id: market-data-commitments
 title: MarketDataCommitments
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 The liquidity commitments for this market
@@ -19,15 +25,19 @@ type MarketDataCommitments {
 
 ### Fields
 
-#### [`sells`](#) ([`[LiquidityOrderReference!]`](/docs/testnet/graphql/objects/liquidity-order-reference))
+#### [<code style={{ fontWeight: 'normal' }}>MarketDataCommitments.<b>sells</b></code>](#)<Bullet />[`[LiquidityOrderReference!]`](/docs/testnet/graphql/objects/liquidity-order-reference) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> A set of liquidity sell orders to meet the liquidity provision obligation.
+> 
 
-a set of liquidity sell orders to meet the liquidity provision obligation.
+#### [<code style={{ fontWeight: 'normal' }}>MarketDataCommitments.<b>buys</b></code>](#)<Bullet />[`[LiquidityOrderReference!]`](/docs/testnet/graphql/objects/liquidity-order-reference) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> A set of liquidity buy orders to meet the liquidity provision obligation.
+> 
 
 
-#### [`buys`](#) ([`[LiquidityOrderReference!]`](/docs/testnet/graphql/objects/liquidity-order-reference))
 
-a set of liquidity buy orders to meet the liquidity provision obligation.
+### Member of
 
+[`MarketData`](/docs/testnet/graphql/objects/market-data)  <Badge class="secondary" text="object"/>
 
 
 

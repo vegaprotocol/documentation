@@ -1,10 +1,16 @@
 ---
 id: network-limits
 title: NetworkLimits
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 Information about whether proposals are enabled, if the markets are still bootstrapping etc..
@@ -26,50 +32,47 @@ type NetworkLimits {
 
 ### Fields
 
-#### [`canProposeMarket`](#) ([`Boolean!`](/docs/testnet/graphql/scalars/boolean))
+#### [<code style={{ fontWeight: 'normal' }}>NetworkLimits.<b>canProposeMarket</b></code>](#)<Bullet />[`Boolean!`](/docs/testnet/graphql/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Are market proposals allowed at this point in time
+> 
 
-Are market proposals allowed at this point in time
+#### [<code style={{ fontWeight: 'normal' }}>NetworkLimits.<b>canProposeAsset</b></code>](#)<Bullet />[`Boolean!`](/docs/testnet/graphql/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Are asset proposals allowed at this point in time
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>NetworkLimits.<b>bootstrapFinished</b></code>](#)<Bullet />[`Boolean!`](/docs/testnet/graphql/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> True once block count &#x003E; bootstrapBlockCount
+> 
 
-#### [`canProposeAsset`](#) ([`Boolean!`](/docs/testnet/graphql/scalars/boolean))
+#### [<code style={{ fontWeight: 'normal' }}>NetworkLimits.<b>proposeMarketEnabled</b></code>](#)<Bullet />[`Boolean!`](/docs/testnet/graphql/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Are market proposals enabled on this chain
+> 
 
-Are asset proposals allowed at this point in time
+#### [<code style={{ fontWeight: 'normal' }}>NetworkLimits.<b>proposeAssetEnabled</b></code>](#)<Bullet />[`Boolean!`](/docs/testnet/graphql/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Are asset proposals enabled on this chain
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>NetworkLimits.<b>bootstrapBlockCount</b></code>](#)<Bullet />[`Int!`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> How many blocks before the chain comes out of bootstrap mode
+> 
 
-#### [`bootstrapFinished`](#) ([`Boolean!`](/docs/testnet/graphql/scalars/boolean))
+#### [<code style={{ fontWeight: 'normal' }}>NetworkLimits.<b>genesisLoaded</b></code>](#)<Bullet />[`Boolean!`](/docs/testnet/graphql/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> True once the genesis file is loaded
+> 
 
-True once block count &#x003E; bootstrapBlockCount
+#### [<code style={{ fontWeight: 'normal' }}>NetworkLimits.<b>proposeMarketEnabledFrom</b></code>](#)<Bullet />[`Timestamp!`](/docs/testnet/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The date/timestamp in unix nanoseconds at which market proposals will be enabled (0 indicates not set)
+> 
 
-
-#### [`proposeMarketEnabled`](#) ([`Boolean!`](/docs/testnet/graphql/scalars/boolean))
-
-Are market proposals enabled on this chain
-
-
-#### [`proposeAssetEnabled`](#) ([`Boolean!`](/docs/testnet/graphql/scalars/boolean))
-
-Are asset proposals enabled on this chain
-
-
-#### [`bootstrapBlockCount`](#) ([`Int!`](/docs/testnet/graphql/scalars/int))
-
-How many blocks before the chain comes out of bootstrap mode
-
-
-#### [`genesisLoaded`](#) ([`Boolean!`](/docs/testnet/graphql/scalars/boolean))
-
-True once the genesis file is loaded
-
-
-#### [`proposeMarketEnabledFrom`](#) ([`Timestamp!`](/docs/testnet/graphql/scalars/timestamp))
-
-The date/timestamp in unix nanoseconds at which market proposals will be enabled (0 indicates not set)
+#### [<code style={{ fontWeight: 'normal' }}>NetworkLimits.<b>proposeAssetEnabledFrom</b></code>](#)<Bullet />[`Timestamp!`](/docs/testnet/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The date/timestamp in unix nanoseconds at which asset proposals will be enabled (0 indicates not set)
+> 
 
 
-#### [`proposeAssetEnabledFrom`](#) ([`Timestamp!`](/docs/testnet/graphql/scalars/timestamp))
 
-The date/timestamp in unix nanoseconds at which asset proposals will be enabled (0 indicates not set)
+### Returned by
 
+[`networkLimits`](/docs/testnet/graphql/queries/network-limits)  <Badge class="secondary" text="query"/>
 
 
 

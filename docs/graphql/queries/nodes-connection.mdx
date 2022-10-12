@@ -1,13 +1,19 @@
 ---
 id: nodes-connection
 title: nodesConnection
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
 
 
-all known network nodes
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+All known network nodes
 
 ```graphql
 nodesConnection(
@@ -18,15 +24,15 @@ nodesConnection(
 
 ### Arguments
 
-#### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
-
-
-
+#### [<code style={{ fontWeight: 'normal' }}>nodesConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/docs/testnet/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> 
+> 
 
 ### Type
 
-#### [`NodesConnection`](/docs/testnet/graphql/objects/nodes-connection)
-
+#### [`NodesConnection`](/docs/testnet/graphql/objects/nodes-connection) <Badge class="secondary" text="object"/>
+> Connection type for retrieving cursor-based paginated node information
+> 
 
 
 

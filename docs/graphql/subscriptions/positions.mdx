@@ -1,10 +1,16 @@
 ---
 id: positions
 title: positions
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 Subscribe to the positions updates
@@ -13,30 +19,29 @@ Subscribe to the positions updates
 positions(
   partyId: ID
   marketId: ID
-): [Position!]!
+): [PositionUpdate!]!
 ```
 
 
 ### Arguments
 
-#### [`partyId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
+#### [<code style={{ fontWeight: 'normal' }}>positions.<b>partyId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> ID of the party from you want updates for
+> 
 
-ID of the party from you want updates for
-
-
-#### [`marketId`](#) ([`ID`](/docs/testnet/graphql/scalars/id))
-
-ID of the market from which you want position updates
-
+#### [<code style={{ fontWeight: 'normal' }}>positions.<b>marketId</b></code>](#)<Bullet />[`ID`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> ID of the market from which you want position updates
+> 
 
 ### Type
 
-#### [`Position`](/docs/testnet/graphql/objects/position)
-
-An individual party at any point in time is considered net long or net short. This refers to their Open Volume,
+#### [`PositionUpdate`](/docs/testnet/graphql/objects/position-update) <Badge class="secondary" text="object"/>
+> An individual party at any point in time is considered net long or net short. This refers to their Open Volume,
 calculated using FIFO. This volume is signed as either negative for LONG positions and positive for SHORT positions. A
 single trade may end up "splitting" with some of its volume matched into closed volume and some of its volume
 remaining as open volume. This is why we don't refer to positions being comprised of trades, rather of volume.
+> 
+
 
 
 

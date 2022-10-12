@@ -1,10 +1,16 @@
 ---
 id: market-state
 title: MarketState
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 The current state of a market
@@ -26,52 +32,49 @@ enum MarketState {
 
 ### Values
 
-#### [`STATE_PROPOSED`](#)
+#### [<code style={{ fontWeight: 'normal' }}>MarketState.<b>STATE_PROPOSED</b></code>](#) 
+> The governance proposal valid and accepted
+> 
 
-The governance proposal valid and accepted
+#### [<code style={{ fontWeight: 'normal' }}>MarketState.<b>STATE_REJECTED</b></code>](#) 
+> Outcome of governance votes is to reject the market
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>MarketState.<b>STATE_PENDING</b></code>](#) 
+> Governance vote passes/wins
+> 
 
-#### [`STATE_REJECTED`](#)
-
-Outcome of governance votes is to reject the market
-
-
-#### [`STATE_PENDING`](#)
-
-Governance vote passes/wins
-
-
-#### [`STATE_CANCELLED`](#)
-
-Market triggers cancellation condition or governance
+#### [<code style={{ fontWeight: 'normal' }}>MarketState.<b>STATE_CANCELLED</b></code>](#) 
+> Market triggers cancellation condition or governance
 votes to close before market becomes Active
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>MarketState.<b>STATE_ACTIVE</b></code>](#) 
+> Enactment date reached and usual auction exit checks pass
+> 
 
-#### [`STATE_ACTIVE`](#)
+#### [<code style={{ fontWeight: 'normal' }}>MarketState.<b>STATE_SUSPENDED</b></code>](#) 
+> Price monitoring or liquidity monitoring trigger
+> 
 
-Enactment date reached and usual auction exit checks pass
+#### [<code style={{ fontWeight: 'normal' }}>MarketState.<b>STATE_CLOSED</b></code>](#) 
+> Governance vote (to close)
+> 
 
-
-#### [`STATE_SUSPENDED`](#)
-
-Price monitoring or liquidity monitoring trigger
-
-
-#### [`STATE_CLOSED`](#)
-
-Governance vote (to close)
-
-
-#### [`STATE_TRADING_TERMINATED`](#)
-
-Defined by the product (i.e. from a product parameter,
+#### [<code style={{ fontWeight: 'normal' }}>MarketState.<b>STATE_TRADING_TERMINATED</b></code>](#) 
+> Defined by the product (i.e. from a product parameter,
 specified in market definition, giving close date/time)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MarketState.<b>STATE_SETTLED</b></code>](#) 
+> Settlement triggered and completed as defined by product
+> 
 
 
-#### [`STATE_SETTLED`](#)
 
-Settlement triggered and completed as defined by product
+### Member of
 
+[`Market`](/docs/testnet/graphql/objects/market)  <Badge class="secondary" text="object"/><Bullet />[`MarketData`](/docs/testnet/graphql/objects/market-data)  <Badge class="secondary" text="object"/><Bullet />[`ObservableMarketData`](/docs/testnet/graphql/objects/observable-market-data)  <Badge class="secondary" text="object"/>
 
 
 

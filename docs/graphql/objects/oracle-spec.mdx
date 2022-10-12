@@ -1,10 +1,16 @@
 ---
 id: oracle-spec
 title: OracleSpec
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 An oracle spec describe the oracle data that a product (or a risk model)
@@ -28,51 +34,56 @@ type OracleSpec {
 
 ### Fields
 
-#### [`id`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+#### [<code style={{ fontWeight: 'normal' }}>OracleSpec.<b>id</b></code>](#)<Bullet />[`ID!`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> ID is a hash generated from the OracleSpec data.
+> 
 
-ID is a hash generated from the OracleSpec data.
+#### [<code style={{ fontWeight: 'normal' }}>OracleSpec.<b>createdAt</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano creation date time
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>OracleSpec.<b>updatedAt</b></code>](#)<Bullet />[`String`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> RFC3339Nano last updated timestamp
+> 
 
-#### [`createdAt`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-RFC3339Nano creation date time
-
-
-#### [`updatedAt`](#) ([`String`](/docs/testnet/graphql/scalars/string))
-
-RFC3339Nano last updated timestamp
-
-
-#### [`pubKeys`](#) ([`[String!]`](/docs/testnet/graphql/scalars/string))
-
-pubKeys is the list of authorized public keys that signed the data for this
+#### [<code style={{ fontWeight: 'normal' }}>OracleSpec.<b>pubKeys</b></code>](#)<Bullet />[`[String!]`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> The list of authorized public keys that signed the data for this
 oracle. All the public keys in the oracle data should be contained in these
 public keys.
+> 
 
-
-#### [`filters`](#) ([`[Filter!]`](/docs/testnet/graphql/objects/filter))
-
-filters describes which oracle data are considered of interest or not for
+#### [<code style={{ fontWeight: 'normal' }}>OracleSpec.<b>filters</b></code>](#)<Bullet />[`[Filter!]`](/docs/testnet/graphql/objects/filter) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> Filters describes which oracle data are considered of interest or not for
 the product (or the risk model).
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OracleSpec.<b>status</b></code>](#)<Bullet />[`OracleSpecStatus!`](/docs/testnet/graphql/enums/oracle-spec-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Status describes the status of the oracle spec
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OracleSpec.<b>data</b></code>](#)<Bullet />[`[OracleData!]!`](/docs/testnet/graphql/objects/oracle-data) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Data list all the oracle data broadcast to this spec
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OracleSpec.<b>dataConnection</b></code>](#)<Bullet />[`OracleDataConnection!`](/docs/testnet/graphql/objects/oracle-data-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Data list all the oracle data broadcast to this spec
+> ##### [<code style={{ fontWeight: 'normal' }}>OracleSpec.dataConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/docs/testnet/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> 
+> 
 
 
-#### [`status`](#) ([`OracleSpecStatus!`](/docs/testnet/graphql/enums/oracle-spec-status))
 
-status describes the status of the oracle spec
+### Returned by
 
+[`oracleSpec`](/docs/testnet/graphql/queries/oracle-spec)  <Badge class="secondary" text="query"/><Bullet />[`oracleSpecs`](/docs/testnet/graphql/queries/oracle-specs)  <Badge class="secondary" text="query"/>
 
-#### [`data`](#) ([`[OracleData!]!`](/docs/testnet/graphql/objects/oracle-data))
+### Member of
 
-data list all the oracle data broadcast to this spec
+[`Future`](/docs/testnet/graphql/objects/future)  <Badge class="secondary" text="object"/><Bullet />[`OracleSpecEdge`](/docs/testnet/graphql/objects/oracle-spec-edge)  <Badge class="secondary" text="object"/>
 
+### Implemented by
 
-#### [`dataConnection`](#) ([`OracleDataConnection!`](/docs/testnet/graphql/objects/oracle-data-connection))
-
-data list all the oracle data broadcast to this spec
-- ##### [`pagination`](#) ([`Pagination`](/docs/testnet/graphql/inputs/pagination))
-
-
-
+[`Event`](/docs/testnet/graphql/unions/event)  <Badge class="secondary" text="union"/>
 
 
 
