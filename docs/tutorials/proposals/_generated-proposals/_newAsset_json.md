@@ -2,26 +2,26 @@
   ```json
 {
   "rationale": {
-    "title": "Add USDT Coin (USDT)",
-    "description": "Proposal to add USDT Coin (USDT) as an asset"
+    "title": "Add Wrapped Ether (WETH)",
+    "description": "Proposal to add Wrapped Ether (WETH) as an asset"
   },
   "terms": {
     "newAsset": {
       "changes": {
-        "name": "USDT Coin",
-        "symbol": "USDT",
+        "name": "Wrapped Ether",
+        "symbol": "WETH",
         "decimals": "18",
         "quantum": "1",
         "erc20": {
-          "contractAddress": "0xb404c51bbc10dcbe948077f18a4b8e553d160084",
+          "contractAddress": "0xc778417e063141139fce010982780140aa0cd5ab",
           "withdrawThreshold": "10",
           "lifetimeLimit": "10"
         }
       }
     },
-    "closingTimestamp": 1667217473,
-    "enactmentTimestamp": 1667303873,
-    "validationTimestamp": 1667131073
+    "closingTimestamp": 1667220730,
+    "enactmentTimestamp": 1667307130,
+    "validationTimestamp": 1667134330
   }
 }
 ```

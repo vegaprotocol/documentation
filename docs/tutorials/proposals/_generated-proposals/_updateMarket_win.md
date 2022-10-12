@@ -75,17 +75,17 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
     },^
     \"logNormal\": {^
      \"tau\": 0.0001140771161,^
-     \"riskAversionParameter\": 0.001,^
+     \"riskAversionParameter\": 0.0001,^
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
-      \"sigma\": 0.3^
+      \"sigma\": 1.25^
      }^
     }^
    }^
   },^
-  \"closingTimestamp\": 1667217473,^
-  \"enactmentTimestamp\": 1667303873^
+  \"closingTimestamp\": 1667220730,^
+  \"enactmentTimestamp\": 1667307130^
  }^
 }^
 }"

@@ -6,8 +6,13 @@
   },
   "tags": [
     {
-      "name": "BlockExplorerService"
+      "name": "Block Explorer"
     }
+  ],
+  "host": "api.n13.testnet.vega.xyz",
+  "schemes": [
+    "http",
+    "https"
   ],
   "consumes": [
     "application/json"
@@ -18,7 +23,7 @@
   "paths": {
     "/transactions": {
       "get": {
-        "operationId": "BlockExplorerService_ListTransactions",
+        "operationId": "BlockExplorer_ListTransactions",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -55,13 +60,13 @@
           }
         ],
         "tags": [
-          "BlockExplorerService"
+          "BlockExplorer"
         ]
       }
     },
     "/transactions/{hash}": {
       "get": {
-        "operationId": "BlockExplorerService_GetTransaction",
+        "operationId": "BlockExplorer_GetTransaction",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -85,7 +90,7 @@
           }
         ],
         "tags": [
-          "BlockExplorerService"
+          "BlockExplorer"
         ]
       }
     }
