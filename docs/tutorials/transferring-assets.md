@@ -73,7 +73,8 @@ You'll need the following information to set up a recurring transfer:
 * `startEpoch`: The number of the epoch in which you want the first transfer to be made. It will initiate at the end of that epoch.
 * `factor`: Written as a decimal less than 1.0. Factor is used to determine what portion of the full `amount` is transferred in each epoch. Think of it like a percentage, so the number you include, when multiplied by 100, will equal what percentage of the amount will be transferred each time. 
 
-If you do not have enough to cover each transfer and its fee, the transfer will automatically be cancelled.
+If you do not have enough to cover each transfer and its fee, the transfer will automatically be cancelled. The transfer will repeated indefinitely, unless you add the optional parameter to end the recurring transfer:
+* `endEpoch`: The number of the epoch in which you want the last transfer to be made.
 
 <Tabs groupId="KeytoKeytransferRepeat">
 <TabItem value="KeytoKeytransferRepeatLinuxcmd" label="Linux / OSX command line">
@@ -88,6 +89,7 @@ vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairg
         "amount": "10000000000000000000",
         "recurring": {
             "startEpoch": 1,
+            "endEpoch": 10,
             "factor": "2"
         }
     }
@@ -107,6 +109,7 @@ vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network f
         \"amount\":\"10000000000000000000\", ^
         \"recurring\":{ ^
             \"startEpoch\": 1, ^
+            \"startEpoch\": 10, ^
             \"factor\": \"3\" ^
         } ^
     } ^
@@ -123,6 +126,9 @@ You'll need the following information to set up a reward:
 * `factor`: Written as a decimal less than 1.0. Factor is used to determine what portion of the full `amount` is transferred in each epoch. Think of it like a percentage, so the number you include, when multiplied by 100, will equal what percentage of the amount will be transferred each time. 
 
 Recurring transfers can also set a [dispatch strategy](../grpc/vega/vega.proto.mdx#dispatchstrategy) to distribute rewards based on [dispatch metrics](../grpc/vega/vega.proto.mdx#dispatchmetric) that are tracked by the system. The recurring reward transfer below would reward the public key that proposed the markets specified, depending on their value.
+
+The transfer will run indefinitely, unless you add the optional paramter to specify when to stop:
+* `endEpoch`: The number of the epoch in which you want the last transfer to be made.
  
 <Tabs groupId="KeytoPooltransferRepeat">
 <TabItem value="KeytoPooltransferRepeatLinuxcmd" label="Linux / OSX command line">
@@ -137,6 +143,7 @@ vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairg
         "amount":"10000000000000000000",
         "recurring":{
             "startEpoch": 1,
+            "endEpoch": 10,
             "factor": "3",
             "dispatchStrategy": {
                 "assetForMetric": "123",
@@ -162,6 +169,7 @@ vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network f
         \"reference\":\"reward\", ^
         \"recurring\":{ ^
             \"startEpoch\": 1, ^
+            \"endEpoch\": 10, ^
             \"factor\": \"3\", ^
             \"dispatchStrategy\": { ^
                 \"metric\": \"DISPATCH_METRIC_MARKET_VALUE\", ^
