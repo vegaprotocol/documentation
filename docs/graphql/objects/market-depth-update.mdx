@@ -1,10 +1,16 @@
 ---
 id: market-depth-update
 title: MarketDepthUpdate
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 Market Depth Update is a delta to the current market depth which can be used to update the
@@ -23,29 +29,26 @@ type MarketDepthUpdate {
 
 ### Fields
 
-#### [`market`](#) ([`Market!`](/docs/testnet/graphql/objects/market))
+#### [<code style={{ fontWeight: 'normal' }}>MarketDepthUpdate.<b>market</b></code>](#)<Bullet />[`Market!`](/docs/testnet/graphql/objects/market) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Market
+> 
 
-Market
+#### [<code style={{ fontWeight: 'normal' }}>MarketDepthUpdate.<b>buy</b></code>](#)<Bullet />[`[PriceLevel!]`](/docs/testnet/graphql/objects/price-level) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> Buy side price levels (if available)
+> 
 
+#### [<code style={{ fontWeight: 'normal' }}>MarketDepthUpdate.<b>sell</b></code>](#)<Bullet />[`[PriceLevel!]`](/docs/testnet/graphql/objects/price-level) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> Sell side price levels (if available)
+> 
 
-#### [`buy`](#) ([`[PriceLevel!]`](/docs/testnet/graphql/objects/price-level))
+#### [<code style={{ fontWeight: 'normal' }}>MarketDepthUpdate.<b>sequenceNumber</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Sequence number for the current snapshot of the market depth. It is always increasing but not monotonic.
+> 
 
-Buy side price levels (if available)
+#### [<code style={{ fontWeight: 'normal' }}>MarketDepthUpdate.<b>previousSequenceNumber</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Sequence number of the last update sent; useful for checking that no updates were missed.
+> 
 
-
-#### [`sell`](#) ([`[PriceLevel!]`](/docs/testnet/graphql/objects/price-level))
-
-Sell side price levels (if available)
-
-
-#### [`sequenceNumber`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Sequence number for the current snapshot of the market depth. It is always increasing but not monotonic.
-
-
-#### [`previousSequenceNumber`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Sequence number of the last update sent; useful for checking that no updates were missed.
 
 
 

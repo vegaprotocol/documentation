@@ -1,0 +1,67 @@
+---
+title: blockexplorer.proto
+hide_title: true
+---
+
+import { ProtoMessage, ProtoServiceMethod, ProtoEnum } from '@theme/ProtoFile';
+
+## `blockexplorer.proto`
+_**path** blockexplorer/blockexplorer.proto_
+
+_**package** blockexplorer.api.v1_
+
+
+
+---
+
+## Messages
+
+
+### `Event`
+<ProtoMessage key={0} message={{"name":"Event","longName":"Event","fullName":"blockexplorer.api.v1.Event","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"type","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"attributes","description":"","label":"repeated","type":"EventAttribute","longType":"EventAttribute","fullType":"blockexplorer.api.v1.EventAttribute","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/docs/testnet/grpc/blockexplorer/blockexplorer.proto#eventattribute"}]}} />
+
+
+### `EventAttribute`
+<ProtoMessage key={1} message={{"name":"EventAttribute","longName":"EventAttribute","fullName":"blockexplorer.api.v1.EventAttribute","description":"EventAttribute is a single key-value pair, associated with an event.","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"key","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"value","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"index","description":"nondeterministic","label":"","type":"bool","longType":"bool","fullType":"bool","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `ListTransactionsRequest`
+<ProtoMessage key={2} message={{"name":"ListTransactionsRequest","longName":"ListTransactionsRequest","fullName":"blockexplorer.api.v1.ListTransactionsRequest","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"limit","description":"","label":"","type":"uint32","longType":"uint32","fullType":"uint32","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"before","description":"","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_before","defaultValue":""},{"name":"after","description":"","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_after","defaultValue":""},{"name":"filters","description":"","label":"repeated","type":"FiltersEntry","longType":"ListTransactionsRequest.FiltersEntry","fullType":"blockexplorer.api.v1.ListTransactionsRequest.FiltersEntry","ismap":true,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/docs/testnet/grpc/blockexplorer/blockexplorer.proto#listtransactionsrequestfiltersentry"}]}} />
+
+
+### `ListTransactionsRequest.FiltersEntry`
+<ProtoMessage key={3} message={{"name":"FiltersEntry","longName":"ListTransactionsRequest.FiltersEntry","fullName":"blockexplorer.api.v1.ListTransactionsRequest.FiltersEntry","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"key","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"value","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `ListTransactionsResponse`
+<ProtoMessage key={4} message={{"name":"ListTransactionsResponse","longName":"ListTransactionsResponse","fullName":"blockexplorer.api.v1.ListTransactionsResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"transactions","description":"","label":"repeated","type":"Transaction","longType":"Transaction","fullType":"blockexplorer.api.v1.Transaction","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/docs/testnet/grpc/blockexplorer/blockexplorer.proto#transaction"}]}} />
+
+
+### `ResponseDeliverTx`
+<ProtoMessage key={5} message={{"name":"ResponseDeliverTx","longName":"ResponseDeliverTx","fullName":"blockexplorer.api.v1.ResponseDeliverTx","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"code","description":"","label":"","type":"uint32","longType":"uint32","fullType":"uint32","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"data","description":"","label":"","type":"bytes","longType":"bytes","fullType":"bytes","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"log","description":"nondeterministic","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"info","description":"nondeterministic","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"gas_wanted","description":"","label":"","type":"int64","longType":"int64","fullType":"int64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"gas_used","description":"","label":"","type":"int64","longType":"int64","fullType":"int64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"events","description":"nondeterministic","label":"repeated","type":"Event","longType":"Event","fullType":"blockexplorer.api.v1.Event","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/docs/testnet/grpc/blockexplorer/blockexplorer.proto#event"},{"name":"codespace","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `Transaction`
+<ProtoMessage key={6} message={{"name":"Transaction","longName":"Transaction","fullName":"blockexplorer.api.v1.Transaction","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"block","description":"","label":"","type":"uint64","longType":"uint64","fullType":"uint64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"index","description":"","label":"","type":"uint32","longType":"uint32","fullType":"uint32","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"hash","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"submitter","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"type","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"code","description":"","label":"","type":"uint32","longType":"uint32","fullType":"uint32","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"command","description":"","label":"","type":"InputData","longType":"vega.commands.v1.InputData","fullType":"vega.commands.v1.InputData","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/docs/testnet/grpc/vega/commands/v1/transaction.proto#inputdata"}]}} />
+
+
+### `TxResult`
+<ProtoMessage key={7} message={{"name":"TxResult","longName":"TxResult","fullName":"blockexplorer.api.v1.TxResult","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"height","description":"","label":"","type":"int64","longType":"int64","fullType":"int64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"index","description":"","label":"","type":"uint32","longType":"uint32","fullType":"uint32","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"tx","description":"","label":"","type":"bytes","longType":"bytes","fullType":"bytes","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"result","description":"","label":"","type":"ResponseDeliverTx","longType":"ResponseDeliverTx","fullType":"blockexplorer.api.v1.ResponseDeliverTx","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/docs/testnet/grpc/blockexplorer/blockexplorer.proto#responsedelivertx"}]}} />
+
+---
+## Services
+
+
+### `BlockExplorerService`
+
+
+
+
+#### `ListTransactions`
+<ProtoServiceMethod key={'ListTransactions-0'} method={{"name":"ListTransactions","description":"","requestType":"ListTransactionsRequest","requestLongType":"ListTransactionsRequest","requestFullType":"blockexplorer.api.v1.ListTransactionsRequest","requestStreaming":false,"responseType":"ListTransactionsResponse","responseLongType":"ListTransactionsResponse","responseFullType":"blockexplorer.api.v1.ListTransactionsResponse","responseStreaming":false,"requestTypeLink":"/docs/testnet/grpc/blockexplorer/blockexplorer.proto#listtransactionsrequest","responseTypeLink":"/docs/testnet/grpc/blockexplorer/blockexplorer.proto#listtransactionsresponse"}} />
+
+
+---
+
+
+  

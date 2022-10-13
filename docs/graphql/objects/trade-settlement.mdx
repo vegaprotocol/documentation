@@ -1,10 +1,16 @@
 ---
 id: trade-settlement
 title: TradeSettlement
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 No description
@@ -19,15 +25,19 @@ type TradeSettlement {
 
 ### Fields
 
-#### [`size`](#) ([`Int!`](/docs/testnet/graphql/scalars/int))
+#### [<code style={{ fontWeight: 'normal' }}>TradeSettlement.<b>size</b></code>](#)<Bullet />[`Int!`](/docs/testnet/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The size of the trade
+> 
 
-the size of the trade
+#### [<code style={{ fontWeight: 'normal' }}>TradeSettlement.<b>price</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The price of the trade
+> 
 
 
-#### [`price`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
-the price of the trade
+### Member of
 
+[`SettlePosition`](/docs/testnet/graphql/objects/settle-position)  <Badge class="secondary" text="object"/>
 
 
 

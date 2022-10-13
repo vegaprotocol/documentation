@@ -1,13 +1,19 @@
 ---
 id: accounts-connection
 title: AccountsConnection
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
 
 
-No description
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Connection type for retrieving cursor-based paginated list of account
 
 ```graphql
 type AccountsConnection {
@@ -19,15 +25,19 @@ type AccountsConnection {
 
 ### Fields
 
-#### [`edges`](#) ([`[AccountEdge]`](/docs/testnet/graphql/objects/account-edge))
+#### [<code style={{ fontWeight: 'normal' }}>AccountsConnection.<b>edges</b></code>](#)<Bullet />[`[AccountEdge]`](/docs/testnet/graphql/objects/account-edge) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of accounts available for the connection
+> 
 
-List of accounts available for the connection
+#### [<code style={{ fontWeight: 'normal' }}>AccountsConnection.<b>pageInfo</b></code>](#)<Bullet />[`PageInfo!`](/docs/testnet/graphql/objects/page-info) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Page information for the connection
+> 
 
 
-#### [`pageInfo`](#) ([`PageInfo!`](/docs/testnet/graphql/objects/page-info))
 
-Page information for the connection
+### Member of
 
+[`Market`](/docs/testnet/graphql/objects/market)  <Badge class="secondary" text="object"/><Bullet />[`Party`](/docs/testnet/graphql/objects/party)  <Badge class="secondary" text="object"/>
 
 
 

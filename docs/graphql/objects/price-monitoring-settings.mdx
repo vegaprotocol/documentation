@@ -1,10 +1,16 @@
 ---
 id: price-monitoring-settings
 title: PriceMonitoringSettings
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 Configuration of a market price monitoring auctions triggers
@@ -18,10 +24,15 @@ type PriceMonitoringSettings {
 
 ### Fields
 
-#### [`parameters`](#) ([`PriceMonitoringParameters`](/docs/testnet/graphql/objects/price-monitoring-parameters))
+#### [<code style={{ fontWeight: 'normal' }}>PriceMonitoringSettings.<b>parameters</b></code>](#)<Bullet />[`PriceMonitoringParameters`](/docs/testnet/graphql/objects/price-monitoring-parameters) <Badge class="secondary" text="object"/>
+> Specified a set of PriceMonitoringParameters to be use for price monitoring purposes
+> 
 
-Specified a set of PriceMonitoringParameters to be use for price monitoring purposes
 
+
+### Member of
+
+[`Market`](/docs/testnet/graphql/objects/market)  <Badge class="secondary" text="object"/>
 
 
 

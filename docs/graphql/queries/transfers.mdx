@@ -1,13 +1,19 @@
 ---
 id: transfers
 title: transfers
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
 
 
-get a list of all transfers for a public key
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Get a list of all transfers for a public key
 
 ```graphql
 transfers(
@@ -20,26 +26,24 @@ transfers(
 
 ### Arguments
 
-#### [`pubkey`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>transfers.<b>pubkey</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The pubkey to look for
+> 
 
-the pubkey to look for
+#### [<code style={{ fontWeight: 'normal' }}>transfers.<b>isFrom</b></code>](#)<Bullet />[`Boolean`](/docs/testnet/graphql/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> Is the pubkey on the sending part of the transfer
+> 
 
-
-#### [`isFrom`](#) ([`Boolean`](/docs/testnet/graphql/scalars/boolean))
-
-is the pubkey on the sending part of the transfer
-
-
-#### [`isTo`](#) ([`Boolean`](/docs/testnet/graphql/scalars/boolean))
-
-is the pubkey in the receiving part of the transfer
-
+#### [<code style={{ fontWeight: 'normal' }}>transfers.<b>isTo</b></code>](#)<Bullet />[`Boolean`](/docs/testnet/graphql/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> Is the pubkey in the receiving part of the transfer
+> 
 
 ### Type
 
-#### [`Transfer`](/docs/testnet/graphql/objects/transfer)
+#### [`Transfer`](/docs/testnet/graphql/objects/transfer) <Badge class="secondary" text="object"/>
+> A user initiated transfer
+> 
 
-A user initiated transfer
 
 
 

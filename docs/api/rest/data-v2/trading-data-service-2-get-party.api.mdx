@@ -1,0 +1,37 @@
+---
+id: trading-data-service-2-get-party
+title: "Party"
+description: "Get a single party"
+sidebar_label: Party
+hide_title: true
+hide_table_of_contents: true
+api: {"parameters":[{"in":"path","name":"partyId","required":true,"schema":{"type":"string"}}],"responses":{"200":{"content":{"application/json":{"schema":{"properties":{"party":{"properties":{"id":{"title":"A unique identifier for the party, typically represented by a public key","type":"string"}},"title":"A party represents an entity who wishes to trade on or query a Vega network","type":"object"}},"type":"object"}}},"description":"A successful response."},"default":{"content":{"application/json":{"schema":{"properties":{"code":{"format":"int32","type":"integer"},"details":{"items":{"additionalProperties":{},"properties":{"@type":{"type":"string"}},"type":"object"},"type":"array"},"message":{"type":"string"}},"type":"object"}}},"description":"An unexpected error response."}},"tags":["Trading Data Service (v2)"],"description":"Get a single party","operationId":"TradingDataService2_GetParty","method":"get","path":"/api/v2/party/{partyId}","servers":[{"url":"https://api.n06.testnet.vega.xyz","description":"n06 (data node)"},{"url":"https://api.n07.testnet.vega.xyz","description":"n07 (data node)"},{"url":"https://api.n09.testnet.vega.xyz","description":"n09 (data node)"}],"info":{"title":"Vega data node APIs","version":"0.55.0"},"postman":{"name":"Party","description":{"content":"Get a single party","type":"text/plain"},"url":{"path":["api","v2","party",":partyId"],"host":["{{baseUrl}}"],"query":[],"variable":[{"disabled":false,"description":{"content":"(Required) ","type":"text/plain"},"type":"any","value":"","key":"partyId"}]},"header":[{"key":"Accept","value":"application/json"}],"method":"GET"}}
+sidebar_class_name: "get api-method"
+info_path: docs/api/rest/data-v2/vega-data-node-ap-is
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem"
+import SchemaTabs from "@theme/SchemaTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import TabItem from "@theme/TabItem";
+
+## Party
+
+
+
+Get a single party
+
+<details style={{"marginBottom":"1rem"}} data-collapsed={false} open={true}><summary style={{}}><strong>Path Parameters</strong></summary><div><ul><ParamsItem className={"paramsItem"} param={{"in":"path","name":"partyId","required":true,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+A successful response.
+
+</div><div><MimeTabs groupId={"mime-type"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs groupId={"schema-tabs"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}}><summary style={{}}><strong>party</strong><span style={{"opacity":"0.6"}}> object</span></summary><div style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"id"} required={false} schemaDescription={undefined} schemaName={"A unique identifier for the party, typically represented by a public key"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem></div></details></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"party\": {\n    \"id\": \"string\"\n  }\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"default"} value={"default"}><div>
+
+An unexpected error response.
+
+</div><div><MimeTabs groupId={"mime-type"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs groupId={"schema-tabs"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"code"} required={false} schemaDescription={undefined} schemaName={"int32"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}}><summary style={{}}><strong>details</strong><span style={{"opacity":"0.6"}}> object[]</span></summary><div style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"@type"} required={false} schemaDescription={undefined} schemaName={"string"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem></div></details></SchemaItem><SchemaItem collapsible={false} name={"message"} required={false} schemaDescription={undefined} schemaName={"string"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"code\": 0,\n  \"details\": [\n    {\n      \"@type\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div>
+      

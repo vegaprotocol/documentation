@@ -1,5 +1,7 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 
+const { shortenVersion, openApiConfig, version, mainnetVersion } = require('./scripts/docusaurus.config.openapi.js')
+
 module.exports = {
   title: "Vega Protocol",
   tagline: "A protocol for creating and trading derivatives on a fully decentralised network",
@@ -135,6 +137,28 @@ module.exports = {
       ],
       copyright: `Copyright ©2018-${new Date().getFullYear()} Gobalsky Labs Limited, registered in Gibraltar`,
     },
+    languageTabs: [
+      {
+        highlight: "bash",
+        language: "curl",
+        logoClass: "bash",
+      },
+      {
+        highlight: "python",
+        language: "python",
+        logoClass: "python",
+      },
+      {
+        highlight: "go",
+        language: "go",
+        logoClass: "go",
+      },
+      {
+        highlight: "javascript",
+        language: "nodejs",
+        logoClass: "nodejs",
+      }
+    ],
   },
   plugins: [
     [
@@ -142,15 +166,17 @@ module.exports = {
       // markdown files inside the docs folder, so these are included in the versioned docs.
       require.resolve("@edno/docusaurus2-graphql-doc-generator"),
       {
-        schema: "./schema.graphql",
+        schema: `./specs/v${version}/schema.graphql`,
         rootPath: "docs",
         baseURL: "graphql",
         linkRoot: "/docs/testnet/",
-        diffMethod: "SCHEMA-DIFF",
+        diffMethod: "none",
         docOptions: {
-          index: true,
-        },
-      },
+          toc: true,
+          pagination: true,
+          index: true
+        }
+      }
     ],
     [
       // An alternative to algolia
@@ -175,68 +201,22 @@ module.exports = {
       require.resolve("docusaurus-protobuffet-plugin"),
       {
         routeBasePath: "/docs/testnet/grpc",
-        fileDescriptorsPath: "./proto.json",
+        fileDescriptorsPath: `./specs/v${version}/proto.json`,
         protoDocsPath: "./docs/grpc",
         sidebarPath: "./docs/grpc/sidebar.js",
       },
     ],
 
     [
+      // See ./scripts/docusaurus.config.openapi.js for how this is generated, but in short it takes the
+      // current 'mainnet' vresion and the current 'testnet' version from package.json, iterates over the
+      // ./specs/[version number] folder to get all the swagger files, then generates them in a predictable
+      // way
       "docusaurus-plugin-openapi-docs",
       {
         id: "apiDocs",
         docsPluginId: "classic",
-        config: {
-          tradingv1v055: {
-            specPath: "./specs/v0.55.0/trading_data_v1.swagger.json",
-            outputDir: "docs/api/rest/data-v1",
-            sidebarOptions: {
-              groupPathsBy: "tag",
-            },
-          },
-          tradingv2v055: {
-            specPath: "./specs/v0.55.0/trading_data_v2.swagger.json",
-            outputDir: "docs/api/rest/data-v2",
-            sidebarOptions: {
-              groupPathsBy: "tag",
-            },
-          },
-          corev055: {
-            specPath: "./specs/v0.55.0/core.swagger.json",
-            outputDir: "docs/api/rest/core",
-            sidebarOptions: {
-              groupPathsBy: "tag",
-            },
-          },
-          statev055: {
-            specPath: "./specs/v0.55.0/corestate.swagger.json",
-            outputDir: "docs/api/rest/state",
-            sidebarOptions: {
-              groupPathsBy: "tag",
-            },
-          },
-          statev053: {
-            specPath: "./specs/v0.53.0/corestate.swagger.json",
-            outputDir: "./versioned_docs/version-v0.53/api/rest/state",
-            sidebarOptions: {
-              groupPathsBy: "tag",
-            },
-          },
-          corev053: {
-            specPath: "./specs/v0.53.0/core.swagger.json",
-            outputDir: "./versioned_docs/version-v0.53/api/rest/core",
-            sidebarOptions: {
-              groupPathsBy: "tag",
-            },
-          },
-          tradingv1v053: {
-            specPath: "./specs/v0.53.0/trading_data.swagger.json",
-            outputDir: "./versioned_docs/version-v0.53/api/rest/data-v1",
-            sidebarOptions: {
-              groupPathsBy: "tag",
-            },
-          },
-        },
+        config:  openApiConfig
       },
     ],
   ],
@@ -252,20 +232,24 @@ module.exports = {
           disableVersioning: false,
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/vegaprotocol/documentation/edit/main/",
-          lastVersion: "v0.53",
+          lastVersion: `v${shortenVersion(mainnetVersion)}`,
           docLayoutComponent: "@theme/DocPage",
           docItemComponent: "@theme/ApiItem",
           versions: {
             current: {
               banner: "unreleased",
-              label: "testnet (v0.55)",
+              label: `testnet (v${shortenVersion(version)})`,
               path: "testnet",
+              // Hacky: Classname used for full version number, v prefix. Used for OpenrpcPlayground
+              className: `v${version}`
             },
             "v0.53": {
               banner: "none",
-              label: "mainnet (v0.53)",
+              label: `mainnet (v${shortenVersion(mainnetVersion)})`,
               path: "mainnet",
-            },
+              // Hacky: Classname used for full version number, v prefix. Used for OpenrpcPlayground
+              className: `v${mainnetVersion}`
+            }
           },
         },
         // Vega specific theme overrides go here
@@ -280,3 +264,4 @@ module.exports = {
     "@vegaprotocol/docusaurus-theme-github-codeblock",
   ],
 };
+

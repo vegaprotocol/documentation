@@ -1,10 +1,16 @@
 ---
 id: instrument
 title: Instrument
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 Describes something that can be traded on Vega
@@ -22,30 +28,31 @@ type Instrument {
 
 ### Fields
 
-#### [`id`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+#### [<code style={{ fontWeight: 'normal' }}>Instrument.<b>id</b></code>](#)<Bullet />[`ID!`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Uniquely identify an instrument across all instruments available on Vega (string)
+> 
 
-Uniquely identify an instrument across all instruments available on Vega (string)
+#### [<code style={{ fontWeight: 'normal' }}>Instrument.<b>code</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A short non necessarily unique code used to easily describe the instrument (e.g: FX:BTCUSD/DEC18) (string)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Instrument.<b>name</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Full and fairly descriptive name for the instrument
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Instrument.<b>metadata</b></code>](#)<Bullet />[`InstrumentMetadata!`](/docs/testnet/graphql/objects/instrument-metadata) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Metadata for this instrument
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Instrument.<b>product</b></code>](#)<Bullet />[`Product!`](/docs/testnet/graphql/unions/product) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="union"/>
+> A reference to or instance of a fully specified product, including all required product parameters for that product (Product union)
+> 
 
 
-#### [`code`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
-A short non necessarily unique code used to easily describe the instrument (e.g: FX:BTCUSD/DEC18) (string)
+### Member of
 
-
-#### [`name`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
-
-Full and fairly descriptive name for the instrument
-
-
-#### [`metadata`](#) ([`InstrumentMetadata!`](/docs/testnet/graphql/objects/instrument-metadata))
-
-Metadata for this instrument
-
-
-#### [`product`](#) ([`Product!`](/docs/testnet/graphql/unions/product))
-
-A reference to or instance of a fully specified product, including all required product parameters for that product (Product union)
-
+[`TradableInstrument`](/docs/testnet/graphql/objects/tradable-instrument)  <Badge class="secondary" text="object"/>
 
 
 

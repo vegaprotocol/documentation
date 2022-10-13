@@ -2,12 +2,16 @@
   "swagger": "2.0",
   "info": {
     "title": "vega/api/v1/core.proto",
-    "version": "version not set"
+    "version": "0.53.0"
   },
   "tags": [
     {
       "name": "CoreService"
     }
+  ],
+  "host": "http://nodes-guru.mainnet.vega.community:3009/assets",
+  "schemes": [
+    "http"
   ],
   "consumes": [
     "application/json"

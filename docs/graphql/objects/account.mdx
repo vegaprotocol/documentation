@@ -1,10 +1,16 @@
 ---
 id: account
 title: Account
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 An account record
@@ -15,31 +21,42 @@ type Account {
   asset: Asset!
   type: AccountType!
   market: Market
+  party: Party
 }
 ```
 
 
 ### Fields
 
-#### [`balance`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
+#### [<code style={{ fontWeight: 'normal' }}>Account.<b>balance</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Balance as string - current account balance (approx. as balances can be updated several times per second)
+> 
 
-Balance as string - current account balance (approx. as balances can be updated several times per second)
+#### [<code style={{ fontWeight: 'normal' }}>Account.<b>asset</b></code>](#)<Bullet />[`Asset!`](/docs/testnet/graphql/objects/asset) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Asset, the 'currency'
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Account.<b>type</b></code>](#)<Bullet />[`AccountType!`](/docs/testnet/graphql/enums/account-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Account type (General, Margin, etc)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Account.<b>market</b></code>](#)<Bullet />[`Market`](/docs/testnet/graphql/objects/market) <Badge class="secondary" text="object"/>
+> Market (only relevant to margin accounts)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Account.<b>party</b></code>](#)<Bullet />[`Party`](/docs/testnet/graphql/objects/party) <Badge class="secondary" text="object"/>
+> Owner of the account
+> 
 
 
-#### [`asset`](#) ([`Asset!`](/docs/testnet/graphql/objects/asset))
 
-Asset, the 'currency'
+### Member of
 
+[`AccountEdge`](/docs/testnet/graphql/objects/account-edge)  <Badge class="secondary" text="object"/><Bullet />[`Asset`](/docs/testnet/graphql/objects/asset)  <Badge class="secondary" text="object"/><Bullet />[`Market`](/docs/testnet/graphql/objects/market)  <Badge class="secondary" text="object"/><Bullet />[`Party`](/docs/testnet/graphql/objects/party)  <Badge class="secondary" text="object"/>
 
-#### [`type`](#) ([`AccountType!`](/docs/testnet/graphql/enums/account-type))
+### Implemented by
 
-Account type (General, Margin, etc)
-
-
-#### [`market`](#) ([`Market`](/docs/testnet/graphql/objects/market))
-
-Market (only relevant to margin accounts)
-
+[`Event`](/docs/testnet/graphql/unions/event)  <Badge class="secondary" text="union"/>
 
 
 

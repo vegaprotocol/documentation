@@ -1,10 +1,16 @@
 ---
 id: stake-linking-status
 title: StakeLinkingStatus
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 The status of the stake linking
@@ -20,22 +26,25 @@ enum StakeLinkingStatus {
 
 ### Values
 
-#### [`STATUS_PENDING`](#)
-
-The stake linking is pending in the Vega network. This means that
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinkingStatus.<b>STATUS_PENDING</b></code>](#) 
+> The stake linking is pending in the Vega network. This means that
 the Vega network have seen a stake linking, but is still to confirm
 it's valid on the ethereum chain and accepted by all nodes of the network
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinkingStatus.<b>STATUS_ACCEPTED</b></code>](#) 
+> The stake linking has been accepted and processed fully (balance updated) by the network
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinkingStatus.<b>STATUS_REJECTED</b></code>](#) 
+> The Vega network has rejected this stake linking
+> 
 
 
-#### [`STATUS_ACCEPTED`](#)
 
-The stake linking has been accepted and processed fully (balance updated) by the network
+### Member of
 
-
-#### [`STATUS_REJECTED`](#)
-
-The Vega network has rejected this stake linking
-
+[`StakeLinking`](/docs/testnet/graphql/objects/stake-linking)  <Badge class="secondary" text="object"/>
 
 
 

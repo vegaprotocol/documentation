@@ -1,10 +1,16 @@
 ---
 id: bus-event
 title: BusEvent
-hide_table_of_contents: true
-pagination_next: null
-pagination_prev: null
+hide_table_of_contents: false
 ---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
 No description
@@ -21,25 +27,27 @@ type BusEvent {
 
 ### Fields
 
-#### [`id`](#) ([`ID!`](/docs/testnet/graphql/scalars/id))
+#### [<code style={{ fontWeight: 'normal' }}>BusEvent.<b>id</b></code>](#)<Bullet />[`ID!`](/docs/testnet/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The ID for this event
+> 
 
-the ID for this event
+#### [<code style={{ fontWeight: 'normal' }}>BusEvent.<b>block</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The block hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEvent.<b>type</b></code>](#)<Bullet />[`BusEventType!`](/docs/testnet/graphql/enums/bus-event-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The type of event
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEvent.<b>event</b></code>](#)<Bullet />[`Event!`](/docs/testnet/graphql/unions/event) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="union"/>
+> The payload - the wrapped event
+> 
 
 
-#### [`block`](#) ([`String!`](/docs/testnet/graphql/scalars/string))
 
-the block hash
+### Returned by
 
-
-#### [`type`](#) ([`BusEventType!`](/docs/testnet/graphql/enums/bus-event-type))
-
-the type of event
-
-
-#### [`event`](#) ([`Event!`](/docs/testnet/graphql/unions/event))
-
-the payload - the wrapped event
-
+[`busEvents`](/docs/testnet/graphql/subscriptions/bus-events)  <Badge class="secondary" text="subscription"/>
 
 
 

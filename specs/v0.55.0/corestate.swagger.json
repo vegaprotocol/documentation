@@ -9,10 +9,9 @@
       "name": "CoreStateService"
     }
   ],
-  "host": "lb.testnet.vega.xyz",
+  "host": "nodes-guru.mainnet.vega.community:3009",
   "schemes": [
-    "http",
-    "https"
+    "http"
   ],
   "consumes": [
     "application/json"

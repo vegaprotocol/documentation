@@ -1,8 +1,10 @@
 import React from "react";
-import { EnvironmentConfig } from "@vegaprotocol/smart-contracts-sdk";
+import mainnetContracts from "../../specs/mainnet_contracts.json";
+import testnetContracts from "../../specs/testnet_contracts.json";
 
 const etherscanBase = {
   ropsten: "https://ropsten.etherscan.io/address/",
+  sepolia: "https://sepolia.etherscan.io/address/",
   mainnet: "https://etherscan.io/address/",
 };
 
@@ -21,19 +23,19 @@ function etherscanLink(contractAddress, network) {
 }
 
 const contractNames = {
-  vegaTokenAddress: "Vega token",
-  claimAddress: "Token claim addres",
-  lockedAddress: "Locked token proxy",
-  vestingAddress: "Token vesting",
-  stakingBridge: "Staking bridge",
-  erc20Bridge: "ERC20 Bridge",
+  MultisigControl: "Multisig Control",
+  ERC20AssetPool: "ERC20 Asset pool", 
+  VegaToken: "Vega token",
+  VestingBridge: "Token vesting",
+  StakingBridge: "Staking bridge",
+  ERC20Bridge: "ERC20 Bridge",
 };
 
 const showOnlyDefault = [
-  "vegaTokenAddress",
-  "vestingAddress",
-  "stakingBridge",
-  "erc20Bridge",
+  "VegaToken",
+  "VestingBridge",
+  "StakingBridge",
+  "ERC20Bridge",
 ];
 
 /**
@@ -44,16 +46,18 @@ const showOnlyDefault = [
  * @returns
  */
 export default function EthAddresses({ frontMatter, show }) {
-  const { vega_network, ethereum_network } = frontMatter;
+  const { vega_network } = frontMatter;
   let showOnly = show ? show : showOnlyDefault;
 
-  if (!vega_network || !ethereum_network) {
-    throw new Error("Missing vega_network or ethereum_network");
+  if (!vega_network) {
+    throw new Error("Missing vega_network");
   }
 
-  const addresses = EnvironmentConfig[vega_network];
+  const addresses = vega_network.toLowerCase() === 'mainnet' ? mainnetContracts : testnetContracts
+  const ethereum_network = addresses.network
+
   if (!addresses) {
-    throw new Error("Missing vega_network or ethereum_network");
+    throw new Error("Could not load addresses");
   }
 
   return (
@@ -68,7 +72,9 @@ export default function EthAddresses({ frontMatter, show }) {
       <tbody>
         {Object.keys(addresses)
           .filter(
-            (key) => addresses[key].length > 8 && showOnly.indexOf(key) !== -1
+            (key) => {
+              return showOnly.indexOf(key) !== -1
+            }
           )
           .map((key) => {
             return (
@@ -77,8 +83,8 @@ export default function EthAddresses({ frontMatter, show }) {
                   <strong>{contractNames[key]}</strong>
                 </td>
                 <td>
-                  <code>{addresses[key]}</code>{" "}
-                  {etherscanLink(addresses[key], ethereum_network)}
+                  <code>{addresses[key].address}</code>{" "}
+                  {etherscanLink(addresses[key].address, ethereum_network)}
                 </td>
                 <td align="center">{ethereum_network}</td>
               </tr>
