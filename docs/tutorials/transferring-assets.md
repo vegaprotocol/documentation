@@ -49,8 +49,8 @@ vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairg
 <TabItem value="KeytoKeytransferOnceWincmd" label="Windows command line example">
 
 ```bash
-vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground^
-"{\"transfer\":^
+vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground ^
+"{\"transfer\": ^
     { ^
         \"fromAccountType\":\"ACCOUNT_TYPE_GENERAL\", ^
         \"toAccountType\":\"ACCOUNT_TYPE_GENERAL\", ^
@@ -97,7 +97,7 @@ vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairg
 <TabItem value="KeytoKeytransferRepeatcmdWin" label="Windows command line example">
 
 ```bash
-vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground^
+vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground ^
 "{\"transfer\": ^
     { ^
         \"fromAccountType\": \"ACCOUNT_TYPE_GENERAL\", ^
