@@ -7,7 +7,7 @@ Trading margined derivatives (such as futures) allows you to create leveraged po
 
 Leverage is, in effect, the inverse of the initial margin that the protocol takes from your collateral when you place a trade. 
 
-Margin is the amount of assets required to keep your positions open and orders funded. You can think of margin as the 'down payment' to open a position. Leverage, meanwhile, describes how many times larger in value than your margin you can have as a position. (For example, if you need 20DAI to open a position worth 100DAI: Your leverage is 5x and your initial margin is 20% of the full value.)
+Margin is the amount of assets required to keep your positions open and orders funded. You can think of margin as the 'down payment' to open a position. Leverage, meanwhile, describes how many times larger in value than the margin you can have dedicated to a position. (For example, if you need 20DAI to open a position worth 100DAI: Your leverage is 5x and your initial margin is 20% of the full value.)
 
 The exact margin requirements of open orders and positions are determined by the market's risk model and market conditions. The larger the position and the more volatile the market, the greater the amount of margin that will be set aside. The volatility tolerance of the market is driven by the risk model.
 
@@ -24,8 +24,8 @@ Over the course of the position's lifetime, the margin requirements will likely 
 As markets and collateral are not managed through human intervention, markets must have certain automated processes that allow for well-functioning markets and assurance that the collateral required to manage positions is available when it's needed.
 
 There are a few mechanisms that work differently to how they would on a centralised exchange, in order to keep the markets solvent. They include:
-- [**Margin**](#margin): When a party opens a position: the *initial margin* requirement is calculated automatically depending on the market's risk model. If the market moves against the party, and the margn towards the *maintenance level*, Vega will *search* for more collateral in the general account, to avoid liquidating the position. Margin can also be *released* if the position is in sufficient profit. Other positions in markets with the same settlement asset may also interact with the same general account. Therefore, Vega is a cross-margin based system by default.
-- [**Mark to market**](#mark-to-market): Mark to market on Vega happens much more frequently than on an exchange where counter parties are not pseudonymous. Every time a trade happens and moves the last traded price, the mark to market price is recalculated. Mark to market is used to move assets into your margin account (from someone else's) if you are in profit, or out of your margin account if not.
+- [**Margin**](#margin): When a party opens a position: the *initial margin* requirement is calculated automatically depending on the market's risk model. If the market moves against the party, and the margin towards the *maintenance level*, Vega will *search* for more collateral in the general account, to avoid liquidating the position. Margin can also be *released* if the position is in sufficient profit. Other positions in markets with the same settlement asset may also interact with the same general account. Therefore, Vega is a cross-margin based system by default.
+- [**Mark to market**](#mark-to-market): Mark to market on Vega happens much more frequently than on an exchange where counterparties are not pseudonymous. Every time a trade happens and moves the last traded price, the mark to market price is recalculated. Mark to market is used to move assets into your margin account (from someone else's) if you are in profit, or out of your margin account if not.
 
 ## Mark to market
 Marking to market refers to settling gains and losses due to changes in the market value of the underlying product. Marking to market aims to provide a realistic appraisal of a position based on the current market conditions.
@@ -34,7 +34,7 @@ When marking to market, the protocol takes the current market price and recalcul
 
 If the market price goes up, a trader that holds a long position receives money in their margin account – equal to the underlying's change in value – from a trader that holds a short position, and conversely if the value goes down, the holder of the short position receives money from the holder of the long position.
 
-For a futures market created on Vega, the mark-to-market price is calculated every time the price moves, and is based on the last traded price. This is in contrast to traditional futures markets, for which marking to market may occur once per day. One exception is when the market settles at expiry, at which point the mark to market price comes from the data source's final settlement price.
+For a futures market created on Vega, the mark-to-market price is calculated every time the price moves, and is based on the last traded price. This is in contrast to traditional futures markets, for which marking to market may occur once per day. One exception is when the market settles at expiry, at which point the mark to market price comes from the market data source's final settlement price.
 
 Mark to market settlement instructions are generated based on the change in market value of the open positions of a party. When the mark price changes, the network calculates settlement cash flows for each party, and the process is repeated each time the mark price changes until the maturity date for the market is reached.
 
@@ -47,12 +47,11 @@ Because the margin is calculated dynamically based on the market movements, the 
 ## Margin
 Margin is the amount of collateral required to keep your position open. It can change depending on how your position is impacted by your own actions and market movement.
 
-The margin levels try to assure that a trader does not enter a trade that will immediately need to be closed out.
+The margin levels try to ensure that a trader does not enter a trade that will immediately need to be closed out.
 
-When placing a key's first order on a market: the protocol will calculate the initial margin required. If there is not a sufficient balance in the general account to fund this, the order will be rejected. If there is, these funds will be moved into a margin account for that market.  
+When placing a party's (public key's) first order on a market: the protocol will calculate the initial margin required. If there is not a sufficient balance in the general account to fund this, the order will be rejected. If there is, these funds will be moved into a margin account for that market.  
 
-
-Orders that increase your open volume will increase the required margin. Orders that decrease it should not increase your margin requirements (unless you end up opening a position in the opposite direction).
+Orders that increase your open volume will increase the required margin. Orders that decrease it should not increase your margin requirements - unless you end up opening a position in the opposite direction.
 
 ### Cross-margining
 Vega's margining system provides automated cross margining. Cross margining, which means gains on one market can be released and used as margin on another, is supported between all markets that use the same settlement asset.
@@ -116,7 +115,7 @@ The release level is scaled from the *maintenance margin* amount. It's calculate
 `[release level] = [maintenance margin] x [collateral_release scaling factor]`
 
 ### Calculating the margin on open orders
-The network calculates the overall long / short position including the submitted order. Depending on which one is larger a long or short risk factor is used for margin calculation. The maintenance margin (for futures) is then a product of the largest position, the coresponding risk factor and the `mark price`. These capture the outcome of probabilistic distribution of future market moves, and are market specific.
+The network calculates the overall long / short position including the submitted order. Depending on which one is larger a long or short risk factor is used for margin calculation. The maintenance margin (for futures) is then a product of the largest position, the corresponding risk factor and the `mark price`. These capture the outcome of the probabilistic distribution of future market moves, and are market specific.
 
 #### Example
 
