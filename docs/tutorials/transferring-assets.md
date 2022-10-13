@@ -90,7 +90,7 @@ vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairg
         "recurring": {
             "startEpoch": 1,
             "endEpoch": 10,
-            "factor": "2"
+            "factor": "1"
         }
     }
 }'
@@ -109,8 +109,8 @@ vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network f
         \"amount\":\"10000000000000000000\", ^
         \"recurring\":{ ^
             \"startEpoch\": 1, ^
-            \"startEpoch\": 10, ^
-            \"factor\": \"3\" ^
+            \"endEpoch\": 10, ^
+            \"factor\": \"1\" ^
         } ^
     } ^
 }"
@@ -144,9 +144,9 @@ vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairg
         "recurring":{
             "startEpoch": 1,
             "endEpoch": 10,
-            "factor": "3",
+            "factor": "1",
             "dispatchStrategy": {
-                "assetForMetric": "123",
+                "assetForMetric": "fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55",
                 "metric": "DISPATCH_METRIC_MARKET_VALUE",
                 "markets": ["marketid"]
             }
@@ -165,12 +165,12 @@ vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network f
         \"toAccountType\": \"ACCOUNT_TYPE_REWARD_MARKET_PROPOSERS\", ^
         \"to\":\"0000000000000000000000000000000000000000000000000000000000000000\", ^
         \"asset\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\", ^
-        \"amount\":\"10000000000000000000\", ^
+        \"amount\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\", ^
         \"reference\":\"reward\", ^
         \"recurring\":{ ^
             \"startEpoch\": 1, ^
             \"endEpoch\": 10, ^
-            \"factor\": \"3\", ^
+            \"factor\": \"1\", ^
             \"dispatchStrategy\": { ^
                 \"metric\": \"DISPATCH_METRIC_MARKET_VALUE\", ^
                 \"markets\": [\"marketid\"] ^
