@@ -72,7 +72,7 @@ You'll need the following information to set up a recurring transfer:
 * `startEpoch`: The number of the epoch in which you want the first transfer to be made. It will initiate at the end of this epoch.
 * `factor`: Written as a decimal less than 1.0, this is the factor used to determine what portion of the full `amount` is transferred in each epoch. Think of it like a percentage, so the number you include, when multiplied by 100, will equal what percentage of the amount you have available will be transferred each time. 
 
-If you do not have enough to cover each transfer and its fee, the transfer will automatically be cancelled. The transfer will repeated indefinitely, unless you add the optional parameter to end the recurring transfer:
+If you do not have enough to cover each transfer and its fee, the transfer will automatically be cancelled. Otherwise, the transfer will repeated indefinitely, unless you add the optional parameter to end the recurring transfer:
 * `endEpoch`: The number of the epoch in which you want the last transfer to be made
 
 <Tabs groupId="KeytoKeytransferRepeat">
