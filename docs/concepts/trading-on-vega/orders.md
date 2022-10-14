@@ -112,6 +112,29 @@ A network order is triggered by the Vega network to close out a distressed trade
 [Position resolution](#position-resolution)
 :::
 
+## Batch orders [WIP]
+Order instructions (such as submit, cancel, and/or amend orders) can be batched together in a single transaction, which allows traders to regularly place and maintain the price and size of multiple orders.
+<!--
+    The batch contains three lists of instructions to be performed. Any of these lists may be empty but at least one of the lists must be non-empty (contain at least one instruction):
+
+        Cancellations: this is a list (repeated field) of Cancel Order instructions
+
+        Amendments: this is a list (repeated field) of Amend Order instructions
+
+        Submissions: this is a list (repeated field) of Submit Order instructions
+
+    The total number of instructions across all three lists (i.e. sum of the lengths of the lists) must be less than or equal to the current value of the network parameter network.spam_protection.max.batch.size.
+
+Processing a batch
+    The batches are processed in the order: all cancellations, then all amendments, then all submissions. 
+Auction behaviour
+
+    Processing each instruction within a batch must behave the same way regarding auction triggers as if it were a standalone transaction:
+
+        Entry to or exit from auctions happens immediately before continuing processing the rest of the batch if that is what would happen were the transactions in the batch submitted individually outside of a batch.
+
+-->
+
 ## Order status
 * **Filled**: Orders can be fully or partially filled. If the entire order amount has traded, it's `fully filled`. If only some of the order has traded, it's `partially filled`
 * **Rejected**: If you don't have enough collateral to fill the margin requirements on an order, it will show up as `rejected`
