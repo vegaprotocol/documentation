@@ -8,7 +8,7 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 
 The Vega protocol allows liquidity to be priced individually for each market, a design decision that rewards liquidity providers for taking a bigger risk on markets with little liquidity competition by allowing them to earn more per trade, and drives down fees on markets where there are many participants committing liquidity.
 
-Providing liquidity on a market can be done using a combination of two tactics: standard [limit orders](./trading-on-vega/orders#limit-orders) and a [liquidity commitment]().
+Providing liquidity on a market can be done using a combination of two tactics: standard [limit orders](./trading-on-vega/orders#limit-orders) and a [liquidity commitment](#liquidity-commitments).
 
 Participants who place limit orders on a market are, by default, supplying liquidity, and are rewarded by receiving a portion of the maker fee. Typically liquidity providers would aim to meet some of their liquidity obligation using standard limit orders, which give them the most control over their strategy. The [batch orders transaction](./trading-on-vega/orders#batch-orders) is designed to enable this efficiently. 
 
