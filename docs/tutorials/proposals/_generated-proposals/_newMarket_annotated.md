@@ -122,8 +122,8 @@
 
      // Optional new market meta data, tags
      metadata: [
-      "sector:tech",
-      "sector:food",
+      "sector:energy",
+      "sector:health",
       "source:docs.vega.xyz"
      ],
 
@@ -171,7 +171,7 @@
      tau: 0.0001140771161,
 
      // Risk Aversion Parameter (double as number) 
-     riskAversionParameter: "0.0001",
+     riskAversionParameter: "0.01",
 
      // Risk model parameters for log normal
      params: {
@@ -190,11 +190,11 @@
 
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-  closingTimestamp: 1666539201,
+  closingTimestamp: 1667407789,
 
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-  enactmentTimestamp: 1666625601,
+  enactmentTimestamp: 1667494189,
  }
 }
 ```

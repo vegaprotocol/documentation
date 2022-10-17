@@ -2,26 +2,26 @@
   ```json
 {
   "rationale": {
-    "title": "Add Wrapped Ether (WETH)",
-    "description": "Proposal to add Wrapped Ether (WETH) as an asset"
+    "title": "Add tDAI TEST (tDAI)",
+    "description": "Proposal to add tDAI TEST (tDAI) as an asset"
   },
   "terms": {
     "newAsset": {
       "changes": {
-        "name": "Wrapped Ether",
-        "symbol": "WETH",
+        "name": "tDAI TEST",
+        "symbol": "tDAI",
         "decimals": "18",
         "quantum": "1",
         "erc20": {
-          "contractAddress": "0xc778417e063141139fce010982780140aa0cd5ab",
+          "contractAddress": "0x26223f9C67871CFcEa329975f7BC0C9cB8FBDb9b",
           "withdrawThreshold": "10",
           "lifetimeLimit": "10"
         }
       }
     },
-    "closingTimestamp": 1666539201,
-    "enactmentTimestamp": 1666625601,
-    "validationTimestamp": 1666452801
+    "closingTimestamp": 1667407789,
+    "enactmentTimestamp": 1667494189,
+    "validationTimestamp": 1667321389
   }
 }
 ```
