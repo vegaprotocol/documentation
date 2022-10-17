@@ -11,13 +11,13 @@
         "decimalPlaces": "5",
         "positionDecimalPlaces": "5",
         "instrument": {
-          "name": "Oranges Daily",
-          "code": "ORANGES.24h",
+          "name": "Apples Yearly (2022)",
+          "code": "APPLES.22",
           "future": {
             "settlementAsset": "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
             "quoteName": "tEuro",
             "settlementDataDecimals": 5,
-            "oracleSpecForSettlementPrice": {
+            "oracleSpecForSettlementData": {
               "pubKeys": [
                 "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
               ],
@@ -56,14 +56,15 @@
               ]
             },
             "oracleSpecBinding": {
-              "settlementPriceProperty": "prices.BTC.value",
+              "settlementDataProperty": "prices.BTC.value",
               "tradingTerminationProperty": "vegaprotocol.builtin.timestamp"
             }
           }
         },
         "metadata": [
-          "sector:energy",
           "sector:health",
+          "sector:food",
+          "sector:tech",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -85,17 +86,17 @@
         },
         "logNormal": {
           "tau": 0.0001140771161,
-          "riskAversionParameter": 0.01,
+          "riskAversionParameter": 0.001,
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 1.25
+            "sigma": 0.5
           }
         }
       }
     },
-    "closingTimestamp": 1667407789,
-    "enactmentTimestamp": 1667494189
+    "closingTimestamp": 1667671102,
+    "enactmentTimestamp": 1667757502
   }
 }
 ```

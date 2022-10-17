@@ -122,10 +122,17 @@ serversForNetwork(generateForMainnet).then(servers => {
   console.dir(openApiServers)
   console.groupEnd()
 
+  
+
   specs.forEach(s => {
     console.group(`Opening ${s}`)
     const spec = JSON.parse(fs.readFileSync(s, 'utf-8'))
-    spec.servers = openApiServers
+    if (!!s.match('blockexplorer')) {
+      console.log('**SPECIAL CASE FOR BLOCK EXPLORER: n13**')
+      spec.servers = [ { url: 'https://n13.testnet.vega.xyz/rest', description: 'n13: Experimental node' }]
+    } else {
+      spec.servers = openApiServers
+    }
 
     console.log('Updated server list')
 

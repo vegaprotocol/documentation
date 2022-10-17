@@ -13,7 +13,7 @@
     // Updated market instrument configuration
     instrument: {
      // Instrument code, human-readable shortcode used to describe the instrument
-     code: "APPLES.22",
+     code: "ORANGES.24h",
 
      // Future
      future: {
@@ -23,8 +23,8 @@
       // The number of decimal places implied by the settlement data (such as price) emitted by the settlement oracle (int64 as integer)
       settlementDataDecimals: 5,
 
-      // The oracle spec describing the oracle data of settlement price (object)
-      oracleSpecForSettlementPrice: {
+      // The oracle spec describing the oracle data of settlement data (object)
+      oracleSpecForSettlementData: {
        // pubKeys is the list of authorized public keys that signed the data for this
        // oracle. All the public keys in the oracle data should be contained in these
        // public keys. (array of strings)
@@ -97,13 +97,13 @@
        ]
       },
 
-      // The binding between the oracle spec and the settlement price (object)
+      // The binding between the oracle spec and the settlement data (object)
       oracleSpecBinding: {
-       // settlement_price_property holds the name of the property in the oracle data
-       // that should be used as settlement price.
+       // settlement_data_property holds the name of the property in the oracle data
+       // that should be used as settlement data.
        // If it is set to "prices.BTC.value", then the Future will use the value of
-       // this property as settlement price. (string) 
-       settlementPriceProperty: "prices.BTC.value",
+       // this property as settlement data. (string) 
+       settlementDataProperty: "prices.BTC.value",
 
        // the name of the property in the oracle data that signals termination of trading (string) 
        tradingTerminationProperty: "vegaprotocol.builtin.timestamp"
@@ -112,8 +112,9 @@
 
      // Optional market metadata, tags
      metadata: [
+      "sector:tech",
+      "sector:health",
       "sector:food",
-      "sector:materials",
       "source:docs.vega.xyz"
      ],
 
@@ -142,7 +143,7 @@
       tau: 0.0001140771161,
 
       // Risk Aversion Parameter (double as number) 
-      riskAversionParameter: "0.01",
+      riskAversionParameter: "0.001",
 
       // Risk model parameters for log normal
       params: {
@@ -153,7 +154,7 @@
        r: 0.016,
 
        // Sigma param (double as number) 
-       sigma: 1.25,
+       sigma: 0.8,
       }
      },
     },
@@ -161,11 +162,11 @@
 
    // Timestamp (Unix time in seconds) when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-   closingTimestamp: 1667407789,
+   closingTimestamp: 1667671102,
 
    // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
    // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-   enactmentTimestamp: 1667494189,
+   enactmentTimestamp: 1667757502,
   }
  }
 ```
