@@ -69,23 +69,40 @@ During testing of the protocol using the Vega Market Simulator it was found that
 During testing of the protocol using the Vega Market Simulator it was found that a panic was raised at the end of final market settlement if the settlement balance is not zero. To resolve this in most cases, if there is one unit left over at the end of final market settlement, the balance will be transferred to the network treasury. Should there be more than one unit remaining the protocol will log all transfers and panic.  [6434 ↗](https://github.com/vegaprotocol/vega/issues/6434)
 
 #### Wallet selection selection fails when wallet has a capitalized name
-When the wallet name is capitalised, the wallet selection fails saying that is is not a valid option. This is because the verification formats the name to lowercase to ensure the user input is not a problem. This change removes the lowercase formatting during the verification and therefore requires that the user respects the case of the wallet name. This work was done in [6359](https://github.com/vegaprotocol/vega/issues/6395)
-
-
+When the wallet name is capitalised, the wallet selection fails saying that is is not a valid option. This is because the verification formats the name to lowercase to ensure the user input is not a problem. This change removes the lowercase formatting during the verification and therefore requires that the user respects the case of the wallet name. This work was done in [6359 ↗](https://github.com/vegaprotocol/vega/issues/6395)
 
 #### New features: Core
 
+#### Add `GetTransaction` API call for block explorer
+In release 0.57 the new Block Explorer service code and APIs were created. This has now been enhanced to include the  `GetTransaction` API call. This work was done in [6435 ↗](https://github.com/vegaprotocol/vega/issues/6435). 
 
-
+:::info
+The service to be able to interact with the block explorer API will be deployed to testnet before 0.59. Details on configuring and running will also part of the validator deployment instructions for the next mainnet release
+:::
 
 #### New features: Data node
 
+#### Add maximum lifetime to postgres connections
+Before the release of 0.58 postgres connections in the pool were never closed. This created a risk whereby any memory leaks, in any of the postgres worker processes, will result in that memory never being reclaimed. The addition of having `pgxpool` as a config option with default values means connections will be closed after a certain time, with functionality to avoid starving the pool all at once. This work was done in [6461 ↗](https://github.com/vegaprotocol/vega/issues/6461).
+
+#### Handle BeginBlock and EndBlock events
+In order for the datanode snapshots feature to work in alignment with core and the blockchain the datanode will use begin and end block events. This will allow the datanode to know which block to stop processing data from and which to start again from. This will provide seamless data during protocol upgrades. This work was implemented in [6211](https://github.com/vegaprotocol/vega/issues/6211).
+
+
+#### Add Ledger Entry API
+This change introduces an API to query the LedgerEntry schema. LedgerEntry objects can be filtered by asset_id, market_id, party_id for sending and receiving account, as well as on transfer types. This API was implemented under issue [6368](https://github.com/vegaprotocol/vega/issues/6368).
 
 
 
 #### New features: Wallet
 
-
+6308 - Support parallel requests in wallet API version 2
+6426 - Add a name field on interaction to know what they are when JSON
+6427 - Improve interactions documentation
+6431 - Pass a human-readable input data in Transaction Succeeded and Failed notifications
+6448 - Improve wallet interaction JSON conversion
+6458 - Return a context aware message in RequestSuccessful interaction
+6451 - Improve interaction error message
 
 
 
