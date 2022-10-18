@@ -26,18 +26,80 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-### Pre-release Version 0.57.0 | 2022-09-28
-This version was released to the Vega testnet on 28 September, 2022.
+### Pre-release Version 0.58.0 | 2022-10-17
+This version was released to the Vega testnet on 17 October, 2022.
 
-For full details see the vega core [0.57.0 release page ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.57.0).
+For full details see the vega core [0.58.0 release page ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.58.0).
 
-The primary focus of this release has been to improve the stability of the network, add functionality for better exploring the blockchain, and implement data node snapshots ahead of this feature being used for protocol upgrades and new nodes joining the network.
+The primary focus of this release has been to add general bug fixes and improvements, improve the stability of the network and continue to implement data node snapshots ahead of this feature being used for protocol upgrades and new nodes joining the network.
 
 :::warning API deprecations
 **Data node**: The v2 APIs ([REST](./../api/rest/overview) and [gRPC](./../grpc/data-node/api/v2/trading_data.proto)) for the data node will be replace V1, which will soon be removed. Therefore anyone building apps on to of Vega should start to use the v2 APIs from release 0.55 onwards.
 
 **Vega Wallet**: For most use cases, the v2 [wallet API](./../api/vega-wallet) will soon be the only one available for interacting with the Vega Wallet. V1 will continue to be used for the testnet-only hosted wallet for testing and incentives, for slightly longer.
 :::
+
+#### Breaking Changes
+
+#### Data-node API field name changes
+The market proposal (data source) field `settlementPriceDecimals` was changed to `settlementDataDecimals`, in version 0.56, to be future-proofed for when settlement data isn’t just driven by prices. To ensure consistency throughout the APIs the field `oracleSpecForSettlementPrice` has now also been changed to `oracleSpecForSettlementData` This work was done under issue [6367 ↗](https://github.com/vegaprotocol/vega/issues/6367)
+
+#### Require signature from new Ethereum key to validate key rotation submission.
+To ensure that a compromised old key cannot validate a key rotation a new CLI command has been introduced which can be used to send in an ethereum key rotation submission which contains a signature generated with the new ethereum key. The work was completed in issue [6316 ↗](https://github.com/vegaprotocol/vega/pull/6316) where you can also see the new flow.
+
+#### Improve the estimate fee and margin APIs
+The changes implemented to improve the estimate fee and margin APIs now mean that you only have to pass in the actual parameters required for the estimation calculation. This change also makes the parameters required mandatory. This work was done in [6420 ↗](https://github.com/vegaprotocol/vega/pull/6402)
+
+#### Wallet improvements
+As of today users can only temporarily approve or reject a wallet connection using a boolean. In the future support will be required for other options, such as, permanently approve or reject a hostname. The interaction has been updated to accept a "mode" instead of a simple boolean. The boolean changes from `yes` | `no` to mode `APPROVED_ONLY_THIS_TIME` | `REJECTED_ONLY_THIS_TIME` and was implemented in [6428 ↗](https://github.com/vegaprotocol/vega/issues/6428)
+
+Whatever the state of the sent transaction the `TransactionStatus` is updated with an `error` field filled on error, and a transaction hash field filled on success. To create a better developer experience this has been split in two distinct notifications: `TransactionFailed` with the `error` field, and `TransactionSucceeded` with `txHash` field. This work was implemented in [6430 ↗](https://github.com/vegaprotocol/vega/issues/6430)
+
+The final breaking change for the wallet in 0.58 is related to the improvement of the wallet interactions framework. In order to make the framework more clear to its use the name `pipeline` has been updated to `interactor`. The work was implemented under[6309 ↗](https://github.com/vegaprotocol/vega/pull/6309) where you can see all the API changes.
+
+#### Critical Bug fixes
+
+#### Error if the same node is announced twice
+During testing it was found that there was no error should a single node be announced to the network more than once. The core was not flagging the second announced (duplicate) node as added. The work completed in [6444 ↗](https://github.com/vegaprotocol/vega/issues/6444) ensures that the core will return error if adding a node fails. 
+
+#### Failed to extract orders as not enough volume within price limits
+During testing of the protocol using the Vega Market Simulator it was found that a panic was raised in `cumlativeVolumeAndPrice` with the error "Failed to extract orders as not enough volume within price limits'". To resolve this issue the protocol resets `minPrice` and `maxPrice` once the cumulative volume is built if it is recalculated. This work was done in [6406 ↗](https://github.com/vegaprotocol/vega/issues/6406)
+
+#### Failed to extract orders as not enough volume within price limits
+During testing of the protocol using the Vega Market Simulator it was found that a panic was raised at the end of final market settlement if the settlement balance is not zero. To resolve this in most cases, if there is one unit left over at the end of final market settlement, the balance will be transferred to the network treasury. Should there be more than one unit remaining the protocol will log all transfers and panic.  [6434 ↗](https://github.com/vegaprotocol/vega/issues/6434)
+
+#### Wallet selection selection fails when wallet has a capitalized name
+When the wallet name is capitalised, the wallet selection fails saying that is is not a valid option. This is because the verification formats the name to lowercase to ensure the user input is not a problem. This change removes the lowercase formatting during the verification and therefore requires that the user respects the case of the wallet name. This work was done in [6359](https://github.com/vegaprotocol/vega/issues/6395)
+
+
+
+#### New features: Core
+
+
+
+
+#### New features: Data node
+
+
+
+
+#### New features: Wallet
+
+
+
+
+
+
+
+
+
+
+### Pre-release Version 0.57.0 | 2022-09-28
+This version was released to the Vega testnet on 28 September, 2022.
+
+For full details see the vega core [0.57.0 release page ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.57.0).
+
+The primary focus of this release has been to improve the stability of the network, add functionality for better exploring the blockchain, and implement data node snapshots ahead of this feature being used for protocol upgrades and new nodes joining the network.
 
 #### Breaking Changes
 The release of [0.57 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.57.0) brings with it a small number of breaking changes. 
