@@ -77,7 +77,7 @@ When the wallet name is capitalised, the wallet would fail saying that is is not
 In release 0.57 the new Block Explorer service code and APIs were created. This has now been enhanced to include the `GetTransaction` API call. This work was done in [6435 ↗](https://github.com/vegaprotocol/vega/issues/6435). 
 
 :::info
-The service to be able to interact with the block explorer API will be deployed to testnet before 0.59. Details on configuring and running will also part of the validator deployment instructions for mainnet, when it is applicable.
+The service to be able to interact with the block explorer API will be enabled in testnet before 0.59. Details on configuring and running will also part of the validator deployment instructions for mainnet, when it is applicable.
 :::
 
 #### New features: Data node
