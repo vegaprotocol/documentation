@@ -42,65 +42,63 @@ The primary focus of this release has been to add general bug fixes and improvem
 #### Breaking Changes
 
 #### Data-node API field name changes
-The market proposal (data source) field `settlementPriceDecimals` was changed to `settlementDataDecimals`, in version 0.56, to be future-proofed for when settlement data isn’t just driven by prices. To ensure consistency throughout the APIs the field `oracleSpecForSettlementPrice` has now also been changed to `oracleSpecForSettlementData` This work was done under issue [6367 ↗](https://github.com/vegaprotocol/vega/issues/6367)
+The market proposal (data source) field `settlementPriceDecimals` was changed to `settlementDataDecimals`, in version 0.56, to be future-proofed for when settlement data isn’t just driven by prices. To ensure consistency throughout the APIs the field `oracleSpecForSettlementPrice` has now also been changed to `oracleSpecForSettlementData` This work was done under issue [6367 ↗](https://github.com/vegaprotocol/vega/issues/6367).
 
 #### Require signature from new Ethereum key to validate key rotation submission.
-To ensure that a compromised old key cannot validate a key rotation a new CLI command has been introduced which can be used to send in an ethereum key rotation submission which contains a signature generated with the new ethereum key. The work was completed in issue [6316 ↗](https://github.com/vegaprotocol/vega/pull/6316) where you can also see the new flow.
+To ensure that a compromised old key cannot validate a key rotation, a new CLI command has been introduced to send in an Ethereum key rotation submission that contains a signature generated with the new Ethereum key. The work was completed in issue [6316 ↗](https://github.com/vegaprotocol/vega/pull/6316) where you can also see the new flow.
 
 #### Improve the estimate fee and margin APIs
-The changes implemented to improve the estimate fee and margin APIs now mean that you only have to pass in the actual parameters required for the estimation calculation. This change also makes the parameters required mandatory. This work was done in [6420 ↗](https://github.com/vegaprotocol/vega/pull/6402)
+The changes implemented to improve the estimate fee and margin APIs now mean that you only have to pass in the actual parameters required for the estimation calculation. This change also makes the required parameters mandatory. This work was done in [6420 ↗](https://github.com/vegaprotocol/vega/pull/6402).
 
 #### Wallet improvements
-As of today users can only temporarily approve or reject a wallet connection using a boolean. In the future support will be required for other options, such as, permanently approve or reject a hostname. The interaction has been updated to accept a "mode" instead of a simple boolean. The boolean changes from `yes` | `no` to mode `APPROVED_ONLY_THIS_TIME` | `REJECTED_ONLY_THIS_TIME` and was implemented in [6428 ↗](https://github.com/vegaprotocol/vega/issues/6428)
+As of today users can only temporarily approve or reject a wallet connection using a boolean. In the future, support will be required for other options, such as permanently approve or reject a host name. The interaction has been updated to accept a "mode" instead of a simple boolean. The boolean changes from `yes` | `no` to mode `APPROVED_ONLY_THIS_TIME` | `REJECTED_ONLY_THIS_TIME` and was implemented in [6428 ↗](https://github.com/vegaprotocol/vega/issues/6428).
 
-Whatever the state of the sent transaction the `TransactionStatus` is updated with an `error` field filled on error, and a transaction hash field filled on success. To create a better developer experience this has been split in two distinct notifications: `TransactionFailed` with the `error` field, and `TransactionSucceeded` with `txHash` field. This work was implemented in [6430 ↗](https://github.com/vegaprotocol/vega/issues/6430)
+Whatever the state of the sent transaction, the `TransactionStatus` was updated with an `error` field that was filled on error, and a transaction hash field that was filled on success. To create a better developer experience this has been split in two distinct notifications: `TransactionFailed` with the `error` field, and `TransactionSucceeded` with `txHash` field. This work was implemented in [6430 ↗](https://github.com/vegaprotocol/vega/issues/6430).
 
-The final breaking change for the wallet in 0.58 is related to the improvement of the wallet interactions framework. In order to make the framework more clear to its use the name `pipeline` has been updated to `interactor`. The work was implemented under[6309 ↗](https://github.com/vegaprotocol/vega/pull/6309) where you can see all the API changes.
+The final breaking change for the wallet in 0.58 improves the wallet interactions framework. To make the framework clearer, the name `pipeline` has been updated to `interactor`. The work was implemented under[6309 ↗](https://github.com/vegaprotocol/vega/pull/6309) where you can see all the API changes.
 
 #### Critical Bug fixes
 
 #### Error if the same node is announced twice
-During testing it was found that there was no error should a single node be announced to the network more than once. The core was not flagging the second announced (duplicate) node as added. The work completed in [6444 ↗](https://github.com/vegaprotocol/vega/issues/6444) ensures that the core will return error if adding a node fails. 
+During testing it was found that there was no error should a single node be announced to the network more than once. The core was not flagging the second announced (duplicate) node as added. The work completed in [6444 ↗](https://github.com/vegaprotocol/vega/issues/6444) ensures that the core will return an error if adding a node fails. 
 
 #### Failed to extract orders as not enough volume within price limits
-During testing of the protocol using the Vega Market Simulator it was found that a panic was raised in `cumlativeVolumeAndPrice` with the error "Failed to extract orders as not enough volume within price limits'". To resolve this issue the protocol resets `minPrice` and `maxPrice` once the cumulative volume is built if it is recalculated. This work was done in [6406 ↗](https://github.com/vegaprotocol/vega/issues/6406)
+During testing, `cumlativeVolumeAndPrice` caused a panic with the error "Failed to extract orders as not enough volume within price limits". To resolve this, the protocol resets `minPrice` and `maxPrice` once the cumulative volume is built if it is recalculated. This work was done in [6406 ↗](https://github.com/vegaprotocol/vega/issues/6406).
 
 #### Failed to extract orders as not enough volume within price limits
-During testing of the protocol using the Vega Market Simulator it was found that a panic was raised at the end of final market settlement if the settlement balance is not zero. To resolve this in most cases, if there is one unit left over at the end of final market settlement, the balance will be transferred to the network treasury. Should there be more than one unit remaining the protocol will log all transfers and panic.  [6434 ↗](https://github.com/vegaprotocol/vega/issues/6434)
+At the end of final market settlement, there was a panic if the settlement balance is not zero. To resolve this in most cases, if there is one unit left over at the end of final market settlement, the balance will be transferred to the network treasury. Should there be more than one unit remaining the protocol will log all transfers and panic. [6434 ↗](https://github.com/vegaprotocol/vega/issues/6434).
 
-#### Wallet selection selection fails when wallet has a capitalized name
-When the wallet name is capitalised, the wallet selection fails saying that is is not a valid option. This is because the verification formats the name to lowercase to ensure the user input is not a problem. This change removes the lowercase formatting during the verification and therefore requires that the user respects the case of the wallet name. This work was done in [6359 ↗](https://github.com/vegaprotocol/vega/issues/6395)
+#### Wallet selection selection fails when wallet has a capitalised name
+When the wallet name is capitalised, the wallet would fail saying that is is not a valid option. This is because the verification formats the name to lowercase to ensure the user input is not a problem. This change removes the lowercase formatting during the verification and therefore requires that the user respects the case of the wallet name. This work was done in [6359 ↗](https://github.com/vegaprotocol/vega/issues/6395).
 
 #### New features: Core
 
 #### Add `GetTransaction` API call for block explorer
-In release 0.57 the new Block Explorer service code and APIs were created. This has now been enhanced to include the  `GetTransaction` API call. This work was done in [6435 ↗](https://github.com/vegaprotocol/vega/issues/6435). 
+In release 0.57 the new Block Explorer service code and APIs were created. This has now been enhanced to include the `GetTransaction` API call. This work was done in [6435 ↗](https://github.com/vegaprotocol/vega/issues/6435). 
 
 :::info
-The service to be able to interact with the block explorer API will be deployed to testnet before 0.59. Details on configuring and running will also part of the validator deployment instructions for the next mainnet release
+The service to be able to interact with the block explorer API will be deployed to testnet before 0.59. Details on configuring and running will also part of the validator deployment instructions for mainnet, when it is applicable.
 :::
 
 #### New features: Data node
 
 #### Add maximum lifetime to postgres connections
-Before the release of 0.58 postgres connections in the pool were never closed. This created a risk whereby any memory leaks, in any of the postgres worker processes, will result in that memory never being reclaimed. The addition of having `pgxpool` as a config option with default values means connections will be closed after a certain time, with functionality to avoid starving the pool all at once. This work was done in [6461 ↗](https://github.com/vegaprotocol/vega/issues/6461).
+Before the release of 0.58, postgres connections in the pool were never closed. This created a risk whereby any memory leaks, in any of the postgres worker processes, would result in that memory never being reclaimed. The addition of `pgxpool` as a config option with default values means connections will be closed after a certain time, with functionality to avoid starving the pool all at once. This work was done in [6461 ↗](https://github.com/vegaprotocol/vega/issues/6461).
 
 #### Handle `BeginBlock` and `EndBlock` events
-In order for the datanode snapshots feature to work in alignment with core and the blockchain the datanode will use `BeginBlock` and `EndBlock` events. This will allow the datanode to know which block to stop processing data from, and which to start again from. This will provide seamless data during protocol upgrades. This work was implemented in [6211 ↗](https://github.com/vegaprotocol/vega/issues/6211).
+In order for the data node snapshots feature to work in alignment with core and the blockchain, the data node will use `BeginBlock` and `EndBlock` events. This will allow the datanode to know which block to stop processing data from, and which to start again from. This will provide seamless data during protocol upgrades. This work was implemented in [6211 ↗](https://github.com/vegaprotocol/vega/issues/6211).
 
 #### Add Ledger Entry API
-This change introduces an API to query the LedgerEntry schema. LedgerEntry objects can be filtered by asset_id, market_id, party_id for sending and receiving account, as well as on transfer types. This API was implemented under issue [6368 ↗](https://github.com/vegaprotocol/vega/issues/6368).
-
+This change introduces an API to query the `LedgerEntry` schema. `LedgerEntry` objects can be filtered by asset ID, market ID, or party ID for sending and receiving accounts, as well as on transfer types. This API was implemented under issue [6368 ↗](https://github.com/vegaprotocol/vega/issues/6368).
 
 #### New features: Wallet
-Version 0.58 brings with it a number of improvements to the wallet both for the end user as developers that will use the wallet APIs. The full list of wallet changes and improvements can be seen in the [0.58.0 release page ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.58.0) issues that are also labeled with `wallet`. 
+Version 0.58 brings with it a number of improvements to the wallet both for the end user and developers that will use the wallet APIs. The full list of wallet changes and improvements can be seen in the [0.58.0 release page ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.58.0) issues that are also labeled with `wallet`. 
 
 #### Support parallel requests in wallet API version 2
-This change brings with it the ability to support parallel requests, which from a CLI application point of view is ok, however may limit UX with the desktop-wallet and any future UI based wallets. The work done to implement this improvement was done in [6308 ↗](https://github.com/vegaprotocol/vega/issues/6308)
+This change brings with it the ability to support parallel requests, which from a CLI application point of view is ok, however may limit UX with the desktop wallet and any future UI based wallets. The work done to implement this improvement was done in [6308 ↗](https://github.com/vegaprotocol/vega/issues/6308).
 
 #### Improve interactions documentation
-With a large amount of the improvements in this version being based around the wallet interactions this change updates existing and creates new documentation on the interactions. This will help speed up the lead times for developers to integrate with the existing service. The documentation improvements were made under [6427 ↗](https://github.com/vegaprotocol/vega/issues/6427)
-
+With a large amount of the improvements in this version focusing on the wallet interactions, this change updates existing and creates new documentation about the interactions. This will help speed up the lead times for developers to integrate with the existing service. The documentation improvements were made under [6427 ↗](https://github.com/vegaprotocol/vega/issues/6427).
 
 ### Pre-release Version 0.57.0 | 2022-09-28
 This version was released to the Vega testnet on 28 September, 2022.
