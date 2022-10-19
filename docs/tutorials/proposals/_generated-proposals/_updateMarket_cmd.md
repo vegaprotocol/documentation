@@ -61,7 +61,7 @@
      },
      "metadata": [
       "sector:energy",
-      "sector:health",
+      "sector:food",
       "source:docs.vega.xyz"
      ],
      "priceMonitoringParameters": {
@@ -84,8 +84,8 @@
      }
     }
    },
-   "closingTimestamp": 1667831778,
-   "enactmentTimestamp": 1667918178
+   "closingTimestamp": 1667843647,
+   "enactmentTimestamp": 1667930047
   }
  }
 }'

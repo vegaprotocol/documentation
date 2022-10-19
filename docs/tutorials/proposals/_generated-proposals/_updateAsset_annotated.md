@@ -7,6 +7,8 @@
  },
  terms: {
   updateAsset: {
+   // The ID of the asset to be updated (string)
+   assetId: "ebcd94151ae1f0d39a4bde3b21a9c7ae81a80ea4352fb075a92e07608d9c953d",
    changes: {
     // The minimum economically meaningful amount in the asset (string)
     quantum: "1",
@@ -24,11 +26,11 @@
 
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-  closingTimestamp: 1667831778,
+  closingTimestamp: 1667843647,
 
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-  enactmentTimestamp: 1667918178,
+  enactmentTimestamp: 1667930047,
  }
 }
 ```
