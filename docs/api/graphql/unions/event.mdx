@@ -16,7 +16,7 @@ export const Badge = (props) => <><span class={'badge badge--' + props.class}>{p
 Union type for wrapped events in stream PROPOSAL is mapped to governance data, something to keep in mind
 
 ```graphql
-union Event = TimeUpdate | MarketEvent | TransferResponses | PositionResolution | Order | Trade | Account | Party | MarginLevels | Proposal | Vote | MarketData | NodeSignature | LossSocialization | SettlePosition | Market | Asset | MarketTick | SettleDistressed | AuctionEvent | RiskFactor | Deposit | Withdrawal | OracleSpec | LiquidityProvision
+union Event = TimeUpdate | MarketEvent | TransferResponses | PositionResolution | Order | Trade | Account | Party | MarginLevels | Proposal | Vote | MarketData | NodeSignature | LossSocialization | SettlePosition | Market | Asset | MarketTick | SettleDistressed | AuctionEvent | RiskFactor | Deposit | Withdrawal | OracleSpec | LiquidityProvision | TransactionResult
 ```
 
 
@@ -121,6 +121,10 @@ wants to get from the oracle engine.
 
 #### [`LiquidityProvision`](/testnet/api/graphql/objects/liquidity-provision) <Badge class="secondary" text="object"/>
 > The command to be sent to the chain for a liquidity provision submission
+> 
+
+#### [`TransactionResult`](/testnet/api/graphql/objects/transaction-result) <Badge class="secondary" text="object"/>
+> The result from processing a transaction
 > 
 
 

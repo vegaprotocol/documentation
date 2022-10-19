@@ -125,7 +125,7 @@ You'll need the following information to set up a reward:
 * `startEpoch`: The number of the epoch in which you want the first transfer to be made. It will initiate at the end of that epoch.
 * `factor`: Written as a decimal less than 1.0. Factor is used to determine what portion of the full `amount` is transferred in each epoch. Think of it like a percentage, so the number you include, when multiplied by 100, will equal what percentage of the amount will be transferred each time. 
 
-Recurring transfers can also set a [dispatch strategy](../grpc/vega/vega.proto.mdx#dispatchstrategy) to distribute rewards based on [dispatch metrics](../grpc/vega/vega.proto.mdx#dispatchmetric) that are tracked by the system. The recurring reward transfer below would reward the public key that proposed the markets specified, depending on their value.
+Recurring transfers can also set a [dispatch strategy](../api/grpc/vega/vega.proto.mdx#dispatchstrategy) to distribute rewards based on [dispatch metrics](../api/grpc/vega/vega.proto.mdx#dispatchmetric) that are tracked by the system. The recurring reward transfer below would reward the public key that proposed the markets specified, depending on their value.
 
 The transfer will run indefinitely, unless you add the optional paramter to specify when to stop:
 * `endEpoch`: The number of the epoch in which you want the last transfer to be made.

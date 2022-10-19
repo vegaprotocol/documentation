@@ -39,7 +39,7 @@ Tokens are associated by calling [`stake` on the Vega staking bridge](../api/bri
 - `vega_public_key` - the public key of the address that will perform staking on Vega
 - `amount` - the amount of stake being associated with the Vega key
 
-Deposits will take ~50 block confirmations to arrive on Vega. You can check using [REST](../api/rest/data-v1/trading-data-service-party-stake), [GraphQL](../graphql/objects/party#operation/TradingDataService_ERC20WithdrawalApproval) or [GRPC](../grpc/vega/vega.proto#vegaproto) to know when the staking balance has been credited.
+Deposits will take ~50 block confirmations to arrive on Vega. You can check using [REST](../api/rest/data-v1/trading-data-service-party-stake), [GraphQL](../api/graphql/objects/party#operation/TradingDataService_ERC20WithdrawalApproval) or [GRPC](../api/grpc/vega/vega.proto#vegaproto) to know when the staking balance has been credited.
 
 ## 2. Nominating to a validator
 
@@ -53,7 +53,7 @@ A nomination to a validator occurs in one epoch, [and takes effect in the subseq
 
 Now that rewards have been paid in to your account, you will want to request a withdrawal. This involves preparing a withdrawal request, which the validators will confirm and sign in order for you to be able to request the withdrawal on Ethereum. The funds will immediately be locked on Vega, to allow for you to withdraw them through the Ethereum bridge.
 
-Your withdrawal should be confirmed within a few seconds, and using the APIs ([REST](../api/rest/data-v1/trading-data-service-withdrawals), [GraphQL](../graphql/objects/party#withdrawals-withdrawal)) you can retrieve the signature bundle, which you will submit to the ERC20 bridge in the next step.
+Your withdrawal should be confirmed within a few seconds, and using the APIs ([REST](../api/rest/data-v1/trading-data-service-withdrawals), [GraphQL](../api/graphql/objects/party#withdrawals-withdrawal)) you can retrieve the signature bundle, which you will submit to the ERC20 bridge in the next step.
 
 ## 5. Submit withdrawal
 
