@@ -1,0 +1,37 @@
+---
+id: candle-data-connection
+title: CandleDataConnection
+hide_table_of_contents: false
+---
+
+
+No description
+
+```graphql
+type CandleDataConnection {
+  totalCount: Int
+  edges: [CandleEdge]
+  pageInfo: PageInfo
+}
+```
+
+
+### Fields
+
+#### [`totalCount`](#) ([`Int`](/mainnet/api/graphql/scalars/int))
+
+The total number of candles available with this connection
+
+
+#### [`edges`](#) ([`[CandleEdge]`](/mainnet/api/graphql/objects/candle-edge))
+
+The candles
+
+
+#### [`pageInfo`](#) ([`PageInfo`](/mainnet/api/graphql/objects/page-info))
+
+The pagination information
+
+
+
+

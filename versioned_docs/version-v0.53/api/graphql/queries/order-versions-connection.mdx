@@ -1,0 +1,38 @@
+---
+id: order-versions-connection
+title: orderVersionsConnection
+hide_table_of_contents: false
+---
+
+
+Order versions (created via amendments if any) found by orderID
+
+```graphql
+orderVersionsConnection(
+  orderId: ID
+  pagination: Pagination
+): OrderConnection!
+```
+
+
+### Arguments
+
+#### [`orderId`](#) ([`ID`](/mainnet/api/graphql/scalars/id))
+
+ID for an order
+
+
+#### [`pagination`](#) ([`Pagination`](/mainnet/api/graphql/inputs/pagination))
+
+Pagination information
+
+
+### Type
+
+#### [`OrderConnection`](/mainnet/api/graphql/objects/order-connection)
+
+
+
+
+
+
