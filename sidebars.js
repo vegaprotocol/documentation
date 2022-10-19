@@ -14,6 +14,7 @@ const datav2 = require('./docs/api/rest/data-v2/sidebar.js')
 const datav1 = require('./docs/api/rest/data-v1/sidebar.js')
 const core = require('./docs/api/rest/core/sidebar.js')
 const state = require('./docs/api/rest/state/sidebar.js')
+const explorer = require('./docs/api/rest/explorer/sidebar.js')
 
 module.exports = {
   api: [
@@ -62,6 +63,7 @@ module.exports = {
         },
         datav2,
         datav1,
+        explorer,
         core,
         state
         /*        {

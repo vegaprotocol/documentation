@@ -19,7 +19,7 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
       \"settlementAsset\": \"8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4\",^
       \"quoteName\": \"tEuro\",^
       \"settlementDataDecimals\": 5,^
-      \"oracleSpecForSettlementPrice\": {^
+      \"oracleSpecForSettlementData\": {^
        \"pubKeys\": [^
         \"0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC\"^
        ],^
@@ -58,13 +58,14 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
        ]^
       },^
       \"oracleSpecBinding\": {^
-       \"settlementPriceProperty\": \"prices.BTC.value\",^
+       \"settlementDataProperty\": \"prices.BTC.value\",^
        \"tradingTerminationProperty\": \"vegaprotocol.builtin.timestamp\"^
       }^
      }^
     },^
     \"metadata\": [^
      \"sector:health\",^
+     \"sector:food\",^
      \"sector:tech\",^
      \"source:docs.vega.xyz\"^
     ],^
@@ -91,13 +92,13 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
-      \"sigma\": 0.3^
+      \"sigma\": 0.5^
      }^
     }^
    }^
   },^
-  \"closingTimestamp\": 1667828287,^
-  \"enactmentTimestamp\": 1667914687^
+  \"closingTimestamp\": 1667671102,^
+  \"enactmentTimestamp\": 1667757502^
  }^
 }^
 }"

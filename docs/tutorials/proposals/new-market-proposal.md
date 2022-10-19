@@ -62,7 +62,7 @@ Timestamps are required for ending the voting period, as well as enacting the ma
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
 | `closingTimestamp` | Timestamp (Unix time in seconds) when voting closes for this proposal. The chosen time must be between <NetworkParameter frontMatter={frontMatter}param="governance.proposal.market.minClose" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxClose" hideName={true} /> after the proposal submission time. (int64 as string) | 1663517914 |
-| `enactmentTimestamp ` | Timestamp (Unix time in seconds) hen the market will be enacted, ready for trading. The chosen time must be between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minEnact" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxEnact" hideName={true} /> after `closingTimestamp`. (int64 as string) | 1663604314 |
+| `enactmentTimestamp ` | Timestamp (Unix time in seconds) when the market will be enacted, ready for trading. The chosen time must be between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minEnact" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxEnact" hideName={true} /> after `closingTimestamp`. (int64 as string) | 1663604314 |
 
 ### Instrument
 The instrument shape is as follows, see below for a description of each property:
@@ -78,7 +78,7 @@ An instrument contains the following properties:
 | `settlementAsset` | Settlement asset requires the ID of the asset that the market will be margined in and settle in. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID. |  |
 | `quoteName` | The quote name is the human-readable name/abbreviation of the settlement asset. Example: In BTCUSD, USD is the quote. | tEuro |
 | `settlementDataDecimals` | The number of decimal places implied by the settlement data, emitted by the settlement oracle. | 18 |
-| `oracleSpecForSettlementPrice` | This defines the data source that will be used to identify the settlement price when the market expires. | prices.BTC.value |
+| `oracleSpecForSettlementData` | This defines the data source that will be used to identify the settlement price when the market expires. | prices.BTC.value |
 | `oracleSpecForTradingTermination` | The fields that define the oracle used for terminating trading on the market. | vegaprotocol.builtin.timestamp |
 | `oracleSpecBinding` | The fields describe how specific information provided by the oracle data is used. For example, they can identify the specific name of the settlement price output, or the specific name of the trading termination property. |
 

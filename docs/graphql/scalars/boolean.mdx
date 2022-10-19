@@ -1,0 +1,30 @@
+---
+id: boolean
+title: Boolean
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The `Boolean` scalar type represents `true` or `false`.
+
+```graphql
+scalar Boolean
+```
+
+
+
+
+### Member of
+
+[`AuctionEvent`](/docs/testnet/graphql/objects/auction-event)  <Badge class="secondary" text="object"/><Bullet />[`include`](/docs/testnet/graphql/directives/include)  <Badge class="secondary" text="directive"/><Bullet />[`LedgerEntryFilter`](/docs/testnet/graphql/inputs/ledger-entry-filter)  <Badge class="secondary" text="input"/><Bullet />[`NetworkLimits`](/docs/testnet/graphql/objects/network-limits)  <Badge class="secondary" text="object"/><Bullet />[`NewFreeform`](/docs/testnet/graphql/objects/new-freeform)  <Badge class="secondary" text="object"/><Bullet />[`OffsetPagination`](/docs/testnet/graphql/inputs/offset-pagination)  <Badge class="secondary" text="input"/><Bullet />[`PageInfo`](/docs/testnet/graphql/objects/page-info)  <Badge class="secondary" text="object"/><Bullet />[`skip`](/docs/testnet/graphql/directives/skip)  <Badge class="secondary" text="directive"/><Bullet />[`TransactionResult`](/docs/testnet/graphql/objects/transaction-result)  <Badge class="secondary" text="object"/><Bullet />[`TransactionSubmitted`](/docs/testnet/graphql/objects/transaction-submitted)  <Badge class="secondary" text="object"/><Bullet />[`transfers`](/docs/testnet/graphql/queries/transfers)  <Badge class="secondary" text="query"/>
+
+
+

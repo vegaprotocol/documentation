@@ -12,11 +12,11 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
    \"marketId\": \"123\",^
    \"changes\": {^
     \"instrument\": {^
-     \"code\": \"APPLES.22\",^
+     \"code\": \"ORANGES.24h\",^
      \"future\": {^
       \"quoteName\": \"tEuro\",^
       \"settlementDataDecimals\": 5,^
-      \"oracleSpecForSettlementPrice\": {^
+      \"oracleSpecForSettlementData\": {^
        \"pubKeys\": [^
         \"0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC\"^
        ],^
@@ -55,15 +55,15 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
        ]^
       },^
       \"oracleSpecBinding\": {^
-       \"settlementPriceProperty\": \"prices.BTC.value\",^
+       \"settlementDataProperty\": \"prices.BTC.value\",^
        \"tradingTerminationProperty\": \"vegaprotocol.builtin.timestamp\"^
       }^
      }^
     },^
     \"metadata\": [^
+     \"sector:tech\",^
      \"sector:health\",^
-     \"sector:energy\",^
-     \"sector:materials\",^
+     \"sector:food\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -77,7 +77,7 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
     },^
     \"logNormal\": {^
      \"tau\": 0.0001140771161,^
-     \"riskAversionParameter\": 0.01,^
+     \"riskAversionParameter\": 0.001,^
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
@@ -86,8 +86,8 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
     }^
    }^
   },^
-  \"closingTimestamp\": 1667828287,^
-  \"enactmentTimestamp\": 1667914687^
+  \"closingTimestamp\": 1667671102,^
+  \"enactmentTimestamp\": 1667757502^
  }^
 }^
 }"

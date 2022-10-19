@@ -1,0 +1,53 @@
+---
+id: page-info
+title: PageInfo
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Paging information returned with each page of a connection
+
+```graphql
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String!
+  endCursor: String!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>PageInfo.<b>hasNextPage</b></code>](#)<Bullet />[`Boolean!`](/docs/testnet/graphql/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The connection has more pages to fetch when traversing forward through the connection
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>PageInfo.<b>hasPreviousPage</b></code>](#)<Bullet />[`Boolean!`](/docs/testnet/graphql/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The connection has more pages to fetch when traversing backward through the connection
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>PageInfo.<b>startCursor</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The first cursor in the current page
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>PageInfo.<b>endCursor</b></code>](#)<Bullet />[`String!`](/docs/testnet/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The last cursor in the current page
+> 
+
+
+
+### Member of
+
+[`AccountsConnection`](/docs/testnet/graphql/objects/accounts-connection)  <Badge class="secondary" text="object"/><Bullet />[`AggregatedBalanceConnection`](/docs/testnet/graphql/objects/aggregated-balance-connection)  <Badge class="secondary" text="object"/><Bullet />[`AggregatedLedgerEntriesConnection`](/docs/testnet/graphql/objects/aggregated-ledger-entries-connection)  <Badge class="secondary" text="object"/><Bullet />[`AssetsConnection`](/docs/testnet/graphql/objects/assets-connection)  <Badge class="secondary" text="object"/><Bullet />[`CandleDataConnection`](/docs/testnet/graphql/objects/candle-data-connection)  <Badge class="secondary" text="object"/><Bullet />[`DelegationsConnection`](/docs/testnet/graphql/objects/delegations-connection)  <Badge class="secondary" text="object"/><Bullet />[`DepositsConnection`](/docs/testnet/graphql/objects/deposits-connection)  <Badge class="secondary" text="object"/><Bullet />[`ERC20MultiSigSignerAddedConnection`](/docs/testnet/graphql/objects/erc20-multi-sig-signer-added-connection)  <Badge class="secondary" text="object"/><Bullet />[`ERC20MultiSigSignerRemovedConnection`](/docs/testnet/graphql/objects/erc20-multi-sig-signer-removed-connection)  <Badge class="secondary" text="object"/><Bullet />[`EthereumKeyRotationsConnection`](/docs/testnet/graphql/objects/ethereum-key-rotations-connection)  <Badge class="secondary" text="object"/><Bullet />[`KeyRotationConnection`](/docs/testnet/graphql/objects/key-rotation-connection)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProvisionsConnection`](/docs/testnet/graphql/objects/liquidity-provisions-connection)  <Badge class="secondary" text="object"/><Bullet />[`MarginConnection`](/docs/testnet/graphql/objects/margin-connection)  <Badge class="secondary" text="object"/><Bullet />[`MarketConnection`](/docs/testnet/graphql/objects/market-connection)  <Badge class="secondary" text="object"/><Bullet />[`MarketDataConnection`](/docs/testnet/graphql/objects/market-data-connection)  <Badge class="secondary" text="object"/><Bullet />[`NetworkParametersConnection`](/docs/testnet/graphql/objects/network-parameters-connection)  <Badge class="secondary" text="object"/><Bullet />[`NodesConnection`](/docs/testnet/graphql/objects/nodes-connection)  <Badge class="secondary" text="object"/><Bullet />[`NodeSignaturesConnection`](/docs/testnet/graphql/objects/node-signatures-connection)  <Badge class="secondary" text="object"/><Bullet />[`OracleDataConnection`](/docs/testnet/graphql/objects/oracle-data-connection)  <Badge class="secondary" text="object"/><Bullet />[`OracleSpecsConnection`](/docs/testnet/graphql/objects/oracle-specs-connection)  <Badge class="secondary" text="object"/><Bullet />[`OrderConnection`](/docs/testnet/graphql/objects/order-connection)  <Badge class="secondary" text="object"/><Bullet />[`PartyConnection`](/docs/testnet/graphql/objects/party-connection)  <Badge class="secondary" text="object"/><Bullet />[`PositionConnection`](/docs/testnet/graphql/objects/position-connection)  <Badge class="secondary" text="object"/><Bullet />[`ProposalsConnection`](/docs/testnet/graphql/objects/proposals-connection)  <Badge class="secondary" text="object"/><Bullet />[`ProposalVoteConnection`](/docs/testnet/graphql/objects/proposal-vote-connection)  <Badge class="secondary" text="object"/><Bullet />[`RewardsConnection`](/docs/testnet/graphql/objects/rewards-connection)  <Badge class="secondary" text="object"/><Bullet />[`RewardSummaryConnection`](/docs/testnet/graphql/objects/reward-summary-connection)  <Badge class="secondary" text="object"/><Bullet />[`StakesConnection`](/docs/testnet/graphql/objects/stakes-connection)  <Badge class="secondary" text="object"/><Bullet />[`TradeConnection`](/docs/testnet/graphql/objects/trade-connection)  <Badge class="secondary" text="object"/><Bullet />[`TransferConnection`](/docs/testnet/graphql/objects/transfer-connection)  <Badge class="secondary" text="object"/><Bullet />[`VoteConnection`](/docs/testnet/graphql/objects/vote-connection)  <Badge class="secondary" text="object"/><Bullet />[`WithdrawalsConnection`](/docs/testnet/graphql/objects/withdrawals-connection)  <Badge class="secondary" text="object"/>
+
+
+

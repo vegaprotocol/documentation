@@ -4,26 +4,26 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
 "{^
 \"proposalSubmission\": {^
  \"rationale\": {^
-  \"title\": \"Add Wrapped Ether (WETH)\",^
-  \"description\": \"Proposal to add Wrapped Ether (WETH) as an asset\"^
+  \"title\": \"Add tUSDC TEST (tUSDC)\",^
+  \"description\": \"Proposal to add tUSDC TEST (tUSDC) as an asset\"^
  },^
  \"terms\": {^
   \"newAsset\": {^
    \"changes\": {^
-    \"name\": \"Wrapped Ether\",^
-    \"symbol\": \"WETH\",^
+    \"name\": \"tUSDC TEST\",^
+    \"symbol\": \"tUSDC\",^
     \"decimals\": \"18\",^
     \"quantum\": \"1\",^
     \"erc20\": {^
-     \"contractAddress\": \"0xc778417e063141139fce010982780140aa0cd5ab\",^
+     \"contractAddress\": \"0xB404c51BBC10dcBE948077F18a4B8E553D160084\",^
      \"withdrawThreshold\": \"10\",^
      \"lifetimeLimit\": \"10\"^
     }^
    }^
   },^
-  \"closingTimestamp\": 1667828287,^
-  \"enactmentTimestamp\": 1667914687,^
-  \"validationTimestamp\": 1667741887^
+  \"closingTimestamp\": 1667671102,^
+  \"enactmentTimestamp\": 1667757502,^
+  \"validationTimestamp\": 1667584702^
  }^
 }^
 }"

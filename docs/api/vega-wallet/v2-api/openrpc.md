@@ -705,6 +705,9 @@ This method returns the list of the wallets present on the computer. It is alpha
 None required
 
 ### Result: `Success`
+| Result key  |  Type  |  Description | Example |
+|------------------|--------|--------|---------|
+| wallets | array | - | -} |
 
 
 
@@ -747,6 +750,9 @@ This method returns the list of the registered networks.
 None required
 
 ### Result: `Success`
+| Result key  |  Type  |  Description | Example |
+|------------------|--------|--------|---------|
+| networks | array | - | -} |
 
 
 
@@ -1064,14 +1070,14 @@ A special metadata `name` can be provided to name the key. If no `name` is provi
 |------------------|--------|--------|
 | **wallet** | string | - |
 | **passphrase** | string | - |
-| **metadata** | object | The key's metadata.<br /><br /><br /> |
+| **metadata** | array | - |
 
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
 | publicKey | string | The Vega public key to use. | The Vega public key to use.} |
 | algorithm | object | The algorithm used to generate the key. | The algorithm used to generate the key.} |
-| metadata | object | The key's metadata. | The key's metadata.} |
+| metadata | array | - | -} |
 
 
 
@@ -1143,7 +1149,7 @@ It doesn't return the private key for security reasons.  If you need something t
 |------------------|--------|--------|---------|
 | publicKey | string | The Vega public key to use. | The Vega public key to use.} |
 | algorithm | object | The algorithm used to generate the key. | The algorithm used to generate the key.} |
-| metadata | object | The key's metadata. | The key's metadata.} |
+| metadata | array | - | -} |
 | isTainted | boolean | Tells if the key is tainted or not. A tainted key cannot be used for signing and sending transaction, for example. | Tells if the key is tainted or not. A tainted key cannot be used for signing and sending transaction, for example.} |
 
 
@@ -1259,13 +1265,13 @@ This method **replaces** the existing metadata by the specified ones. It does **
 |------------------|--------|--------|
 | **wallet** | string | - |
 | **passphrase** | string | - |
-| **public_key** | string | The Vega public key to use. |
-| **metadata** | object | The key's metadata.<br /><br /><br /> |
+| **publicKey** | string | The Vega public key to use. |
+| **metadata** | array | - |
 
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| metadata | object | The key's metadata. | The key's metadata.} |
+| metadata | array | - | -} |
 
 
 

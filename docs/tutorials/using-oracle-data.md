@@ -47,7 +47,7 @@ For now this will focus on using the data for settlement price - both examples b
 
 ```javascript
 "oracleSpecBinding": {
-  "settlementPriceProperty": "prices.BTC.value",
+  "settlementDataProperty": "prices.BTC.value",
   "tradingTerminationProperty": "vegaprotocol.builtin.timestamp"
 }
 ```
@@ -55,7 +55,7 @@ For now this will focus on using the data for settlement price - both examples b
 The following oracle spec would make the market use the BTC value from the Open Oracle data submitted below:
 
 ```javascript
-   "oracleSpecForSettlementPrice": {
+   "oracleSpecForSettlementData": {
         "pubKeys": ["0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"],
         "filters": [{
             "key": {
@@ -212,7 +212,7 @@ For the binding, use the `name` field of the data. In the case of our example ab
 
 ```javascript
 "oracleSpecBinding": {
-  "settlementPriceProperty": "moonwalkers",
+  "settlementDataProperty": "moonwalkers",
   "tradingTerminationProperty": "vegaprotocol.builtin.timestamp"
 }
 ```
@@ -220,7 +220,7 @@ For the binding, use the `name` field of the data. In the case of our example ab
 The Oracle Specification that would bind to the `moonwalkers` property would be as follows:
 
 ```javascript
-   "oracleSpecForSettlementPrice": {
+   "oracleSpecForSettlementData": {
         "pubKeys": ["123abc"],
         "filters": [{
             "key": {
