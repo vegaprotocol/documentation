@@ -11,7 +11,6 @@
   ],
   "host": "api.n10.testnet.vega.xyz",
   "schemes": [
-    "http",
     "https"
   ],
   "consumes": [
