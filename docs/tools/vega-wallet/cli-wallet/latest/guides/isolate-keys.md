@@ -40,9 +40,9 @@ vega wallet key isolate --wallet="MY_WALLET_NAME" --pubkey="MY_PUBLIC_KEY"
 </TabItem>
 </Tabs>
 
-### 2. Enter passphrase
+### 2. Enter passphrases
 
-You will be prompted to enter the passphrase for your wallet.
+You will be prompted to enter the passphrase for your wallet, as well as a new passphrase for the new isolated wallet.
 
 ### 3. Wait for response with wallet location
 
@@ -53,15 +53,11 @@ Once your key has been isolated in a new wallet, you'll receive the following re
 ✓ Key isolation succeeded
 ```
 
-:::info 
-The new wallet will use the same passphrase as your original wallet.
-:::
-
 ### 4. Confirm wallet has been created 
 
 To confirm the new isolated wallet has been created and that both wallets have the same validator ID (if relevant), use the following commands for each wallet. 
 
-You'll be asked to enter your wallet passphrase again. 
+You'll be asked to enter the isolated wallet passphrase again. 
 
 #### For your new isolated wallet:
 

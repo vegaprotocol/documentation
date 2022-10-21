@@ -139,12 +139,10 @@ Each Vega validator node needs to be connected to an Ethereum node. This allows 
 
 Set the Ethereum node address in the Vega configuration (`path/to/home/config/node/config.toml`):
 ```Toml
-[NodeWallet]
+[Ethereum]
   Level = "Info"
-  [NodeWallet.ETH]
-    Level = "Info"
-    Address = "http://ethereum.node.com/rpc"
-    ClefAddress = ""
+  RPCEndpoint = "http://ethereum.node.com/rpc"
+  RetryDelay = "15s"
 ```
 
 
