@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-title: 2. Configure and run
+title: Set up node
 hide_title: false
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
@@ -41,8 +41,8 @@ You will be asked for a passphrase for your node wallet, which you created when 
 The following command should output the path of the main configuration file. Feel free to open and change settings if needed.
 :::
 
-### Vega wallet
-We recommend you use an isolated key. Read the guide on how to isolate Vega wallet keys: [Isolate keys](../tools/vega-wallet/cli-wallet/latest/guides/isolate-keys.md)
+### Set up the Vega wallet
+We recommend you use an isolated key. Read the guide on how to isolate Vega wallet keys: [Isolate keys](../../tools/vega-wallet/cli-wallet/latest/guides/isolate-keys.md)
 
 Give the node access to the key using the following command: 
 ```
@@ -61,7 +61,7 @@ vega nodewallet --home="path/to/home/" show
 ```
 :::
 
-### Tendermint public key
+### Save your Tendermint public key
 To save the Tendermint public key in your node wallet, look in your tendermint config `TENDERMINT-HOME-PATH/config/priv_validator_key.json` for your tendermint public key, and import it.
 
 ```
@@ -78,7 +78,7 @@ vega nodewallet import --chain=tendermint --home=path/to/home --tendermint-home=
 This will read the Tendermint keys from the configuration path, and set up your node wallet properly.
 :::
 
-### Ethereum wallet
+### Set up your Ethereum wallet
 Vega supports two types of Ethereum wallet: you can either register a wallet available from a clef instance or import a keystore file (e.g: create with `geth account`).
 
 #### Using clef
@@ -117,7 +117,7 @@ Or use the following command to create a new keystore and save it in the node wa
 vega nodewallet generate --chain=ethereum --home="path/to/home" --wallet-passphrase-file="file/containing/account/passphrase"
 ```
 
-### Ethereum node
+## Set up Ethereum node
 In order to validate events happening on the Ethereum bridge, the Vega node needs to be connected to an Ethereum node. 
 
 The Ethereum node address for the RPC endpoint needs to be set up in the configuration. Once you have an Ethereum node, insert the URL in `YOUR_VEGA_HOME/vega/node/config.toml`, in the section:
@@ -129,7 +129,7 @@ The Ethereum node address for the RPC endpoint needs to be set up in the configu
     RetryDelay = "15s"
 ```
 
-### Tendermint configuration
+## Configure Tendermint
 Vega being a decentralised network, you will need an entrypoint to join it, this is done by connecting to one or more node in the network when you start your node.
 
 This step needs to be done manually, you will first need to reach out to another node operator in the network to get their node ID and the address of their node.
@@ -146,11 +146,21 @@ The persistent_peers field is a list of node id and address of node separated by
 
 Then ensure the `max_packet_msg_payload_size` is at least 16384.
 
-### Tendermint genesis
-Option 1: 
-To start successfully, tendermint needs the genesis file from the network you will be trying to join. This file need to be located in `YOUR_VEGA_HOME/.tendermit/config/genesis.json`. You can find genesis files for network supported by the community in the following [git repository](https://github.com/vegaprotocol/networks). For example to join mainnet you will need the following [genesis file](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json).
+### Save Tendermint genesis
+To start successfully, tendermint needs the genesis file from the network you will be trying to join. This file need to be located in `YOUR_VEGA_HOME/.tendermit/config/genesis.json`. 
 
-#### Replay from genesis
+You can find genesis files for network supported by the community in the [networks repository](https://github.com/vegaprotocol/networks). 
+
+For example, to join mainnet you will need the following [genesis file](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json).
+
+## Synchronise your node
+
+### Start node from a snapshot
+[Snapshots](../how-to/use-snapshots.md): Use a recent network snapshot to start your node without having to replay the entire chain.
+
+Once you start from a snapshot, you'll need to self-stake, and then announce the node to the network and then the community.
+
+### Replay from genesis
 To replay all history from genesis: 
 
 You can set a genesis file when starting the node with the following command, e.g for mainnet:
@@ -161,29 +171,24 @@ vega start --network=mainnet1
 You can now start your node by running the following command:
 ```vega start```
 
-### Start node from a snapshot
-See the snapshot instructions: Link. 
-
-Once you start from a snapshot, you'll need to self-stake, and then announce the node to the network.
-
-### Associate tokens to your Vega key
+## Associate tokens to your Vega key
 Before you announce your node, you will need to have <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={true} formatter="governanceToken" suffix="tokens"/> Vega associated to your Vega key.
 
 The tokens that you want to use for self-staking must be available on an Ethereum wallet, and then associated to the same Vega key you used to set up the node.
 
 Associate your tokens and nominate your node using the [token dApp ↗](https://sandbox.token.vega.xyz/staking/).
 
-### Announce your node
+## Announce node on-chain
 Use your Ethereum key to announce your node to the network:
 
 ```
 vega announce_node --home=HOME_PATH --info-url="YOUR_VALIDATOR_URL" --country="UK" -- name="NODE_NAME" --from-epoch="NEXT_EPOCH" --submitter-address="YOUR_ETHEREUM_KEY"
 ```
 
-### Nominate your node
+## Nominate your node
 Associate your tokens and nominate your node using the [token dApp ↗](https://sandbox.token.vega.xyz/staking/).
 
-### Signature bundle
+## Signature bundle
 In the epoch after you announced your node, the network will build a signature bundle: proof from the network that your node can be added to the multisigControl signers.
 
 Use the 'add signer' tool on [sandbox.tools.vega.xyz ↗](https://sandbox.tools.vega.xyz/) to submit the signature bundle. 
@@ -191,5 +196,10 @@ Use the 'add signer' tool on [sandbox.tools.vega.xyz ↗](https://sandbox.tools.
 Once the signature bundle is accepted, your node will be able to emit signatures to control withdrawals from the bridge. 
 
 :::caution
-If you do not add your node as a signer by the end of the epoch that the signature is emitted in, the node will be removed.
-::: 
+You need to add your node as a signer by the end of the epoch that the signature is emitted in. If you do not, the node will be demoted and removed from the signer set.
+:::
+
+## Announce node off-chain
+[Create a validator profile on the forum ↗](https://community.vega.xyz/c/mainnet-validator-candidates/23) describing the experience you have, security practices and policies, how you will ensure maximum uptime, how you'll meet suitable performance standards, your communication channels for questions and the role you intend to take in Vega's governance.
+
+Share your profile with the community, for example in [the Validators Discord channel ↗](https://discord.com/channels/720571334798737489/869236034116943903), to attract staker delegation.
