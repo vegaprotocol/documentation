@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 title: Running a secure validator
 sidebar_label: Security
 hide_title: false
@@ -27,9 +27,8 @@ Such ideas include:
 ## Hardening the operating system
 By default the initial installations of server operating systems do not give the user the most secure set of options. This is true for self hosted servers as well as VM running in the cloud. Following good online guides for the particular OS you are using is a good first step to reduce the attack surface of your server.
 
-Linux: https://www.cyberciti.biz/tips/linux-security.html
-Windows: https://www.socinvestigation.com/windows-server-security-best-practices
-
+[Linux](https://www.cyberciti.biz/tips/linux-security.html)
+[Windows](https://www.socinvestigation.com/windows-server-security-best-practices)
 
 ## Monitoring the server and software
 Once everything is up and running it is important to monitor the server to make sure everything is acting as expected. The node software will consume resources on the server and checking metrics for things like disk, RAM and CPU usage will indicate if the machine needs to be upgraded or reconfigured. Using software such as prometheus and grafana can allow a user to display in real time the state of a server and running processes. 
