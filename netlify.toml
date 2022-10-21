@@ -8,6 +8,26 @@
   YARN_VERSION = "1.22.10"
 
 [[redirects]]
+  from = "/docs/testnet/grpc/*"
+  to = "/testnet/api/grpc/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/docs/mainnet/grpc/*"
+  to = "/mainnet/api/grpc/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/docs/testnet/graphql/*"
+  to = "/testnet/api/graphql/:splat"
+  status = 301
+
+[[redirects]]
+  from = "/docs/mainnet/graphql/*"
+  to = "/mainnet/api/graphql/:splat"
+  status = 301
+
+[[redirects]]
   from = "/docs/*"
   to = "/:splat"
   status = 301
