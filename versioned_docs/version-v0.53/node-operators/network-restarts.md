@@ -20,7 +20,7 @@ In a recent version of the Vega core, validation has been added at runtime to en
 
 Do this by by running the following command:
 ```
-vega genesis new validator --tm-home="/path/to/tendermint/home" --home="/path/to/vega/home" --country="any" --info-url="any" --name="any"
+vega genesis new validator --tm-home="YOUR_TENDERMINT_HOME" --home="YOUR_VEGA_HOME" --country="any" --info-url="any" --name="any"
 ```
 
 :::note
@@ -67,7 +67,7 @@ You can prepare your configuration but you may not want to update your mainnet n
 ### Add the Tendermint public key to your node wallet
 The node wallet now requires your Tendermint public key. You can save this key by running the following Vega command:
 ```
-vega nodewallet --home="/path/to/vega/home" import --chain=tendermint --tendermint-pubkey="YOUR_TENDERMINT_PUBKEY"
+vega nodewallet --home="YOUR_VEGA_HOME" import --chain=tendermint --tendermint-pubkey="YOUR_TENDERMINT_PUBKEY"
 ```
 
 ### Update the Vega configuration
@@ -122,15 +122,15 @@ Wait for a new checkpoint file to be produced, then stop all the nodes of the ne
 Save the selected checkpoint file in a safe location. You will need to reuse it later.
 
 :::info
-You can locate all your nodes' checkpoint files under: `/path/to/vega/home/vega/node/checkpoints`
+You can locate all your nodes' checkpoint files under: `/YOUR_VEGA_HOME/vega/node/checkpoints`
 You can also get a list of all paths used by your node using `vega paths list`. The checkpoints folder path is `CheckpointStateHome` within this list.
 :::
 
 You can now remove all previous states of the chain by running:
 ```
-vega unsafe_reset_all --home="/path/to/vega/home"
-vega tm unsafe_reset_all --home="/path/to/tendermint/home"
-rm -rf "/path/to/data-node/home/vega/data-node/storage/"
+vega unsafe_reset_all --home="YOUR_VEGA_HOME_PATH"
+vega tm unsafe_reset_all --home="YOUR_TENDERMINT_HOME_PATH"
+rm -rf "YOUR_DATANODE_HOME/vega/data-node/storage/"
 ```
 
 :::info
@@ -157,8 +157,7 @@ This is done during the bootstrapping period, which happens during the first `N`
 
 During the bootstrapping no transactions from users can be emitted other than the transaction to submit the checkpoint. This should be done only once by **one** of the validators using the following command:
 ```
-vega checkpoint restore --home="/path/to/vega/home" --passphrase-file="YOUR_NODEWALLET_PASSPHRASE_FILE" --checkpoint-file="/path/tothe/
-checkpoint/file"
+vega checkpoint restore --home="YOUR_VEGA_HOME" --passphrase-file="YOUR_NODEWALLET_PASSPHRASE_FILE" --checkpoint-file="YOUR_CHECKPOINT_FILEPATH"
 ```
 
 Once this is done, you will need to monitor the network to make sure all delegation are recovered properly by the end of the bootstraping period.

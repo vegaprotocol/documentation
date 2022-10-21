@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
-title: Set up validating node
 vega_network: MAINNET
+title: Set up validator node
 hide_title: false
 ---
 

@@ -18,16 +18,16 @@ Both nodes are built using bare Go and should run on most mainstream platforms (
 The instructions below guide you on how to build from source code.
 
 :::tip Setting home folder
-The following commands use the default path for your operating system. You can list all the paths used by your Vega installation with the following command:
+The following commands use the `--home` flag, to allow you to specify a custom home for the configuration, state, and cache of your Vega node. Remove it to use the default path.
+
+ You can list all the paths used by your Vega installation with the following command:
 `vega paths list`
-
-If you want to change the home folder, use the `--home` flag and specify a custom home for the configuration, state, and cache of your Vega node.
-
-The XDG Base Directory standard is use to create the path, see: [XDG Base Directory spec ↗](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html).
 :::
 
-## Operating system 
-For production use, we recommend using the Linux binary on Ubuntu as this is the platform used by nodes on Fairground, the Vega testnet, and is the most widely tested so far. 
+## OS and software
+For production use, we recommend using the Linux binary on Ubuntu as this is the platform used by nodes on Fairground, the Vega testnet, and is the most widely tested so far.
+
+See the [infrastructure requirements](../requirements/infrastructure.md) page for a full list of what you need to run various parts of the Vega toolchain.
 
 ## Use the pre-built binaries
 One way to set up a Vega node or data node is to use the pre-built binaries. 
@@ -41,13 +41,16 @@ If the pre-built binaries don't work or are unavailable for your system, you wil
 This section will walk you through compiling the Vega toolchain yourself from the source code.
 
 :::info
-Before starting you will need both Git and Go 1.19+ installed on your system. Git should be available using the default package manager of your system, which you can check at [git-scm.com](https://git-scm.com/). Download Go from the [official website](https://go.dev/dl/).
+Before starting you will need both Git and Go 1.19+ installed on your system. 
+
+Git should be available using the default package manager of your system, which you can check at [git-scm.com](https://git-scm.com/). 
+Download Go from the [official website](https://go.dev/dl/).
 :::
 
 ### Environment set-up
 Set up the environment variables required to build both node binaries.
 
-Linux is the operating system we are compiling the node for in this example.
+Linux is the operating system used to complie the node in this example.
 
 ```Shell
 export GOOS=linux 
@@ -58,8 +61,7 @@ Amd64 is the architecture targeted.
 export GOARCH=amd64
 ```
 :::note
-
-The previous step assumes that you are building on linux/amd64. A full list of compatible GOOS/GOARCH pairs is available when running the following command, make sure to use the one required for your system:
+A full list of compatible GOOS/GOARCH pairs is available when running the following command, make sure to use the one required for your system:
 ```
 go tool dist list
 ```
@@ -88,8 +90,3 @@ To ensure that the compilation was successful run the following command:
 ./vega version
 ```
 This will print the version of the binary you just built.
-
-## Software requirements
-See the requirements page for a full list of what you need to run various parts of the Vega toolchain.
-
-[link]
