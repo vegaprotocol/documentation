@@ -6,20 +6,22 @@ hide_title: false
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
 ## Configuring the components and getting it up and running
-Once you have all the executables you need, you must configure them to run correctly and to connect to the existing network.
+Once you have all the executables you need, you must configure them to run correctly and to connect to the existing network. 
+
+This will also initiate the node wallet software, which you'll be prompted to create a password for. You'll need to set another passphrase for the wallet itself, in the next section.
 
 First, generate the default configuration files for Vega and Tendermint. You can then alter those to the specific requirements.
 
-The below command creates files in your `~/.config/vega/node folder`
+The below command will generate the configuration in your home path. 
 
 ```
-vega init validator
+vega init --home=YOUR_HOME_PATH --tendermint-home=YOUR_TENDERMINT_HOME_PATH validator
 ```
 
-The following command creates tendermint configuration files in your `~/.tendermint folder`
+To update your node configuration, such as to set up ports for the APIs, edit the config file:
 
 ```
-vega tm init validator
+YOUR_HOME_PATH/config/node/config.toml
 ```
 
 ## Set up the node wallet
@@ -31,7 +33,7 @@ The public key of the Tendermint node also needs to be saved in the node wallet.
 
 All this information needs to be checked in properly before starting the node. When the network starts or a node is added to the validator set, this information will be checked against the transaction used to register the node on the network. Any incorrect set-up will stop the node from joining the network.
 
-You need to generate or import the wallet information for tendermint, vega and Ethereum. See below for [Ethereum wallet instructions](#ethereum-wallet).
+You need to generate or import the wallet information for tendermint, Vega and Ethereum. See below for [Ethereum wallet instructions](#ethereum-wallet).
 
 :::note
 You will be asked for a passphrase for your node wallet, which you created when you initialised Vega. Make sure to save this passphrase in a text file, somewhere secure, as it allows you to unlock the node wallet.
@@ -39,13 +41,28 @@ You will be asked for a passphrase for your node wallet, which you created when 
 The following command should output the path of the main configuration file. Feel free to open and change settings if needed.
 :::
 
+### Vega wallet
+We recommend you use an isolated key. Read the guide on how to isolate Vega wallet keys: [Isolate keys](../tools/vega-wallet/cli-wallet/latest/guides/isolate-keys.md)
+
+Give the node access to the key using the following command: 
 ```
-echo “yourpassword” > ~/password.txt
-vega nodewallet generate --chain=vega --wallet-passphrase-file="password.txt"
+vega nodewallet import --chain=vega --home="path/to/home" --wallet-passphrase-file="file/containing/account/passphrase" --wallet-path="path/to/wallet"
 ```
 
+Alternatively you can create a new Vega wallet and save it in the node wallet:
+```
+vega nodewallet generate --chain=vega --home="path/to/home" --wallet-passphrase-file="file/containing/account/passphrase"
+```
+
+:::info
+You can verify the information saved in your node wallet using the following command:
+```
+vega nodewallet --home="path/to/home/" show 
+```
+:::
+
 ### Tendermint public key
-To save the Tendermint public key in your node wallet, look in your tendermint config `~/.tendermint/config/priv_validator_key.json` for your tendermint public key, and import it.
+To save the Tendermint public key in your node wallet, look in your tendermint config `TENDERMINT-HOME-PATH/config/priv_validator_key.json` for your tendermint public key, and import it.
 
 ```
 vega nodewallet import --chain=tendermint --tendermint-pubkey="YOUR_TENDERMINT_PUBKEY"
@@ -101,35 +118,23 @@ vega nodewallet generate --chain=ethereum --home="path/to/home" --wallet-passphr
 ```
 
 ### Ethereum node
-Next you need either a local Ethereum node or an infura account.
+In order to validate events happening on the Ethereum bridge, the Vega node needs to be connected to an Ethereum node. 
 
-Setting up an infura account can be achieved with the following steps:
+The Ethereum node address for the RPC endpoint needs to be set up in the configuration. Once you have an Ethereum node, insert the URL in `YOUR_VEGA_HOME/vega/node/config.toml`, in the section:
 
-1. Login to infura and go to the dashboard (create an account first if you need one)
-2. Select the orange “CREATE NEW KEY” button from the top right of the page
-3. Select the network as `Web3 API`
-
-Enter anything as the Name and press “CREATE”.
-
-Under the Ethereum section there is a drop down from which you can select “Ropsten” for testnet or "Mainnet".
-
-The URL shown is the address you need for the next change.
-
-Insert the URL into the [Ethereum] -> RPCEndpoint key in `~/.config/vega/node/config.toml`
-
-### Tendermint configuration and genesis
-To start successfully, tendermint needs the genesis file from the network you will be trying to join. This file need to be located in `~/.tendermit/config/genesis.toml`. You can find genesis files for network supported by the community in the following [git repository](https://github.com/vegaprotocol/networks). For example to join mainnet you will need the following [genesis file](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json).
-
-:::note
-You could also just set a genesis file when starting the node with the following command, e.g for mainnet:
 ```
-vega start --network=mainnet1
+[Ethereum]
+    Level = "Info"
+    RPCEndpoint = "INSERT_URL_HERE"
+    RetryDelay = "15s"
 ```
-:::
 
+### Tendermint configuration
 Vega being a decentralised network, you will need an entrypoint to join it, this is done by connecting to one or more node in the network when you start your node.
+
 This step needs to be done manually, you will first need to reach out to another node operator in the network to get their node ID and the address of their node.
-Once you have these information you need then to update the tendermint config located at `~/.tendermint/config/config.toml` and set the `persisten_peers` field under the `[p2p]` section.
+
+Once you have these information you need then to update the tendermint config located at `YOUR_VEGA_HOME/.tendermint/config/config.toml` and set the `persistent_peers` field under the `[p2p]` section.
 
 Here's an example:
 ```
@@ -139,13 +144,52 @@ persistent_peers = "55b8ac477ddd6c0c9bae411dfa6ebfb46e7b4022@veganodeoperator.co
 
 The persistent_peers field is a list of node id and address of node separated by a `@` character.
 
+Then ensure the `max_packet_msg_payload_size` is at least 16384.
+
+### Tendermint genesis
+Option 1: 
+To start successfully, tendermint needs the genesis file from the network you will be trying to join. This file need to be located in `YOUR_VEGA_HOME/.tendermit/config/genesis.json`. You can find genesis files for network supported by the community in the following [git repository](https://github.com/vegaprotocol/networks). For example to join mainnet you will need the following [genesis file](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json).
+
+#### Replay from genesis
+To replay all history from genesis: 
+
+You can set a genesis file when starting the node with the following command, e.g for mainnet:
+```
+vega start --network=mainnet1
+```
 
 You can now start your node by running the following command:
 ```vega start```
 
-### Stake to your validating node
-Once your Vega node is visible, you will need to provide your self-stake. Self-stake requires a minimum amount of <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={true} formatter="governanceToken" suffix="tokens"/>.
+### Start node from a snapshot
+See the snapshot instructions: Link. 
+
+Once you start from a snapshot, you'll need to self-stake, and then announce the node to the network.
+
+### Associate tokens to your Vega key
+Before you announce your node, you will need to have <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={true} formatter="governanceToken" suffix="tokens"/> Vega associated to your Vega key.
 
 The tokens that you want to use for self-staking must be available on an Ethereum wallet, and then associated to the same Vega key you used to set up the node.
 
-Associate your tokens and nominate your node using the [token dApp ↗](https://token.fairground.wtf/staking).
+Associate your tokens and nominate your node using the [token dApp ↗](https://sandbox.token.vega.xyz/staking/).
+
+### Announce your node
+Use your Ethereum key to announce your node to the network:
+
+```
+vega announce_node --home=HOME_PATH --info-url="YOUR_VALIDATOR_URL" --country="UK" -- name="NODE_NAME" --from-epoch="NEXT_EPOCH" --submitter-address="YOUR_ETHEREUM_KEY"
+```
+
+### Nominate your node
+Associate your tokens and nominate your node using the [token dApp ↗](https://sandbox.token.vega.xyz/staking/).
+
+### Signature bundle
+In the epoch after you announced your node, the network will build a signature bundle: proof from the network that your node can be added to the multisigControl signers.
+
+Use the 'add signer' tool on [sandbox.tools.vega.xyz ↗](https://sandbox.tools.vega.xyz/) to submit the signature bundle. 
+
+Once the signature bundle is accepted, your node will be able to emit signatures to control withdrawals from the bridge. 
+
+:::caution
+If you do not add your node as a signer by the end of the epoch that the signature is emitted in, the node will be removed.
+::: 
