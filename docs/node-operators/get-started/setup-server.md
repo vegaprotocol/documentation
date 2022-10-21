@@ -11,6 +11,8 @@ The Vega node is the implementation of the Vega protocol. It secures the network
 
 The data node offers a set of APIs to query the state of the network. It works as a pair with a Vega node (started in non-validator mode) to reconcile the state of the application and serve rich APIs.
 
+The Vega toolchain, which you'll install below, is the binary that provides everything you need to set up a Vega node, data node, Vega Wallet, block explorer, and tools for interacting with the protocol.
+
 Both nodes are built using bare Go and should run on most mainstream platforms (MacOS, Windows and Linux). 
 
 The instructions below guide you on how to build from source code.
@@ -24,129 +26,70 @@ If you want to change the home folder, use the `--home` flag and specify a custo
 The XDG Base Directory standard is use to create the path, see: [XDG Base Directory spec ↗](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html).
 :::
 
-## MacOS (need macos instructions) [WIP]
+## Operating system 
+For production use, we recommend using the Linux binary on Ubuntu as this is the platform used by nodes on Fairground, the Vega testnet, and is the most widely tested so far. 
 
-## Linux (ubuntu 22.04)
+## Use the pre-built binaries
+One way to set up a Vega node or data node is to use the pre-built binaries. 
 
-First make sure your system is up to date
-```
-sudo apt update && sudo apt upgrade -y
-```
+* [Vega core releases](https://github.com/vegaprotocol/vega/releases)
+* [Data node releases](https://github.com/vegaprotocol/data-node/releases)
 
-Install git so you can pull down the source code
-```
-sudo apt install git -y
-```
+If the pre-built binaries don't work or are unavailable for your system, you will need to [**build the binaries from sources**](#build-from-sources).
 
-Install golang so you can build the source code
+## Build from sources 
+This section will walk you through compiling the Vega toolchain yourself from the source code.
 
-Fetch go 1.19
-```
-wget https://go.dev/dl/go1.19.linux-amd64.tar.gz
-```
+:::info
+Before starting you will need both Git and Go 1.19+ installed on your system. Git should be available using the default package manager of your system, which you can check at [git-scm.com](https://git-scm.com/). Download Go from the [official website](https://go.dev/dl/).
+:::
 
-Remove any existing installation
-```
-sudo rm -rf /usr/local/go
-```
+### Environment set-up
+Set up the environment variables required to build both node binaries.
 
-Extract go 1.19
-```
-sudo tar -C /usr/local -xzf go1.19.linux-amd64.tar.gz
-```
+Linux is the operating system we are compiling the node for in this example.
 
-Make a bin folder
+```Shell
+export GOOS=linux 
 ```
-mkdir -p ~/bin
+Amd64 is the architecture targeted. 
+
+```Shell
+export GOARCH=amd64
 ```
+:::note
 
-### Environment set-up: Linux
-Set up the environment either directly in the command line or add to ~/.bashrc and source it with `source ~/.bashrc`. 
+The previous step assumes that you are building on linux/amd64. A full list of compatible GOOS/GOARCH pairs is available when running the following command, make sure to use the one required for your system:
+```
+go tool dist list
+```
+:::
 
-All binaries can be built without the CGO support. In the following command, it is disabled.
-
-```bash
-export GOROOT=/usr/local/go
+Both binaries can be built without the CGO support. Disable it with the following command:
+```
 export CGO_ENABLED=0
-export GOBIN=~/bin
-export PATH=$PATH:$GOROOT/bin:$GOBIN
 ```
 
-Clone the Vega source code
-```
-git clone -b v0.54.0 https://github.com/vegaprotocol/vega.git
-```
-
-Move into the vega folder and build everything
-```bash
-cd vega
-go install ./…
+### Build the Vega node
+1. Clone the Vega repository:
+```Shell
+git clone https://github.com/vegaprotocol/vega
 ```
 
-Check everything has been built and is available by running
-```bash
-vega version
-vegawallet version
+2. Build the Vega binary by running the following command from the root of the cloned repository:
+```
+go build -v ./cmd/vega
 ```
 
-## Windows (10 and 11)
-All commands should be run from a command prompt in the home folder of the current user `(C:\Users\<username>)`
+This should result in a Vega binary built at the root of the repository. 
 
-Make sure your system is up to date by applying all Windows updates
-
-Install git from [Git - Downloading Package (git-scm.com) ↗](https://git-scm.com/download/win)
-Test by running `git version`
-
-Install golang from [Downloads - The Go Programming Language ↗](https://go.dev/dl/)
-
-Test by running `go version`
-
-Create a folder for the executables to be installed to
+To ensure that the compilation was successful run the following command:
 ```
-mkdir c:\Users\<username>\bin
+./vega version
 ```
+This will print the version of the binary you just built.
 
-### Environment set-up: Windows
-Set up the environment either by either using the `set` command on the command line (this only persists for the lifetime of the command line) or by going to the “Environment Variables…” settings in the control panel where there values will be permanent.
+## Software requirements
+See the requirements page for a full list of what you need to run various parts of the Vega toolchain.
 
-```bash
-set CGO_ENABLED=0
-set GOBIN=%USERPROFILE%\bin
-set PATH=%PATH%:%GOBIN%
-```
-
-Check this has worked by running `set` and looking at the output
-
-Get the Vega source code: 
-
-```
-git clone -b “v0.54.0” https://github.com/vegaprotocol/vega.git
-```
-
-Move into the source folder and build the applications (these commands build vega, data-node and wallet at the same time).
-
-```bash
-cd vega
-go install ./…
-```
-
-Check that everything was built correctly using the following command:
-
-```bash
-vega version
-vegawallet version
-data-node version
-```
-
-## Data node PostgreSQL requirement
-After building, to run your data node, you will have to run a PostgreSQL server (as of software v0.53).
-
-There are several ways to do this:
-**From 0.54.x onwards:**
-- As described in the [data node readme](https://github.com/vegaprotocol/vega/blob/develop/datanode/README.md). The simplest and recommended way to do this is [using docker](https://github.com/vegaprotocol/vega/blob/develop/datanode/README.md#using-docker), which is also described in the data node readme.
-
-## Firewall advice
-If you are running behind a firewall or other NAT based device you will need to set up some port forwarding from your router to the server. The 2 sets of ports you will need to forward are:
-
-* For Vega ports, allowlist: TCP 3000-3010
-* For Tendermint ports, allowlist: TCP 26656-26658
+[link]

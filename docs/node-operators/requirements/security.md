@@ -36,7 +36,8 @@ Once everything is up and running it is important to monitor the server to make 
 
 Over time a user will be able to understand when things are running inside normal parameters and when things are behaving differently at which point further investigation can take place to ensure the system remains up and functioning.
 
+## Best practices for Tendermint
+Read about the best practices for using Tendermint with your node. 
 
-
-
-
+* [Running tendermint in production](https://docs.tendermint.com/v0.34/tendermint-core/running-in-production.html)
+* [Guidance on how to set up a tendermint validator](https://docs.tendermint.com/v0.34/tendermint-core/validators.html)

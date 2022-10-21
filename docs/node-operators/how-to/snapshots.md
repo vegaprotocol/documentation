@@ -18,7 +18,7 @@ All node of the network will be taking a snapshot of the state at the same block
 ```Json
 {
   "snapshot.interval.length": "10000",
-}
+
 ```
 As of now the snapshots are configured to be taken every 10000 blocks on mainnet.
 
@@ -46,12 +46,14 @@ Using the `vega snapshots` command line we can get a list of all snapshots avail
 
 You can then start your node using a snapshot either directly from the command line or with the configuration file by specifying the block height.
 
+If you don't specify a block height it will load from the latest local snapshot.
+
 From the command line:
 ```
 vega node --home=/path/to/vega/home --snapshot.load-from-block-height=901
 ```
 
-From the configuration file in the Snapshot section:
+Alternatively, add the block height in the configuration file in the Snapshot section:
 ```
 [Snapshot]
   ...
@@ -59,21 +61,24 @@ From the configuration file in the Snapshot section:
   ...
 ```
 
-## Snapshots from the network
+## Snapshots from the network [WIP]
 
 :::note
-When loading snapshots from the network, the steps described previously to load them locally are not necessary. You will need to get the snapshots information from another
-node runner in the network (e.g, at which block height a snapshot was taken).
+When loading snapshots from the network, the steps described previously to load them locally are not necessary. You will need to get the snapshots information from another node runner in the network (e.g, at which block height a snapshot was taken).
 :::
 
-Tendermint offers the possibility to gossip about snapshots taken by other nodes. This can be enabled via the tendermint configuration. You will also need the hash of the block at the height you want to load the snapshot, but also a list of trusted tendermint RPC servers (the default port on the node should be 26657).
+Tendermint offers the possibility to gossip about snapshots taken by other nodes. This can be enabled via the tendermint configuration. 
+
+You will also need the hash of the block at the height you want to load the snapshot, but also a list of trusted tendermint RPC servers (the default port on the node should be 26657).
+
+To get the current trust height and trust hash, you'll need to join the Vega validator Discord channel, and ask the validator community.(link)
 
 Update the following Tendermint configuration section:
 ```Toml
 [statesync]
 enable = true # this default to false, set it to true
 rpc_servers = "n01.testnet.vega.xyz:26657,n02.testnet.vega.xyz:26657" # a comma separated list of tendermint rpc
-trust_height = 901 # the height of the block we want to join at
+trust_height = 901 # the height of the block you want to join at
 trust_hash = "5E1501B89463A9F23C454A58DB92913D960E47DCA76D1FC1EA03988A6C6D0C30" # the hash of the block
 ```
 
@@ -83,13 +88,26 @@ The previous example uses addresses from the Vega testnet (fairground) make sure
 
 Other settings are available to configure snapshots, however, those described in this documentation are the only ones required to start the node from a given block. You can get more details on snapshots from the [Tendermint documentation](https://docs.tendermint.com/master/spec/abci/apps.html#state-sync).
 
-## Inspect snapshots data using vegatools
+Once you update the Tendermint config, restart the node by running:
 
+```
+vega start --home=/path/to/vega/home --tendermint-home=/path/to/tendermint/home --network-url=NETWORK_URL
+```
+If you need to reset the Tendermint and Vega nodes, use the following commands. They will remove all chain-related data and keep node wallets, private keys and saved config:
+
+```
+vega tendermint --home=/path/to/tendermint/home unsafe_reset_all
+vega --home=/path/to/vega/home unsafe_reset_all
+
+```
+
+## Inspect snapshots data using vegatools
+ 
 :::note
-This is not required to deploy / use the snapshots. This section shows how to use vegatools to inspect the data stored in the snapshot.
+This is not required to deploy / use the snapshots. This section shows how to use `vega tools` to inspect the data stored in the snapshot.
 :::
 
-Vegatools offer basic utilities to read the data from a snapshots and dump it into json format.
+Vega tools offer basic utilities to read the data from a snapshots and dump it into json format.
 
 If you have `go` and `git` configured on your environment you can install vegatools like so:
 ```
@@ -98,7 +116,7 @@ git clone git@github.com:vegaprotocol/vegatools.git && cd vegatools && go instal
 
 Then using the vegatools command line you can inspect the state of the snapshot at a given height:
 ```
-vegatools snapshotdb --db-path=/path/to/the/snapshot.db --block-height=901
+vega tools snapshotdb --db-path=/path/to/the/snapshot.db --block-height=901
 ```
 
 :::note
