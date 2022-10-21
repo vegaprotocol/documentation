@@ -1,0 +1,144 @@
+---
+id: order
+title: Order
+hide_table_of_contents: false
+---
+
+
+An order in Vega, if active it will be on the OrderBook for the market
+
+```graphql
+type Order {
+  id: ID!
+  price: String!
+  timeInForce: OrderTimeInForce!
+  side: Side!
+  market: Market
+  size: String!
+  remaining: String!
+  party: Party!
+  createdAt: String!
+  expiresAt: String
+  status: OrderStatus!
+  reference: String!
+  trades: [Trade!]
+  tradesConnection(
+  pagination: Pagination
+): TradeConnection!
+  type: OrderType
+  rejectionReason: OrderRejectionReason
+  version: String!
+  updatedAt: String
+  peggedOrder: PeggedOrder
+  liquidityProvision: LiquidityProvision
+}
+```
+
+
+### Fields
+
+#### [`id`](#) ([`ID!`](/mainnet/api/graphql/scalars/id))
+
+Hash of the order data
+
+
+#### [`price`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+The worst price the order will trade at (e.g. buy for price or less, sell for price or more) (uint64)
+
+
+#### [`timeInForce`](#) ([`OrderTimeInForce!`](/mainnet/api/graphql/enums/order-time-in-force))
+
+The timeInForce of order (determines how and if it executes, and whether it persists on the book)
+
+
+#### [`side`](#) ([`Side!`](/mainnet/api/graphql/enums/side))
+
+Whether the order is to buy or sell
+
+
+#### [`market`](#) ([`Market`](/mainnet/api/graphql/objects/market))
+
+The market the order is trading on (probably stored internally as a hash of the market details)
+
+
+#### [`size`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+Total number of contracts that may be bought or sold (immutable) (uint64)
+
+
+#### [`remaining`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+Number of contracts remaining of the total that have not yet been bought or sold (uint64)
+
+
+#### [`party`](#) ([`Party!`](/mainnet/api/graphql/objects/party))
+
+The party who place the order (probably stored internally as the party's public key)
+
+
+#### [`createdAt`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+RFC3339Nano formatted date and time for when the order was created (timestamp)
+
+
+#### [`expiresAt`](#) ([`String`](/mainnet/api/graphql/scalars/string))
+
+Expiration time of this order (ISO-8601 RFC3339+Nano formatted date)
+
+
+#### [`status`](#) ([`OrderStatus!`](/mainnet/api/graphql/enums/order-status))
+
+The status of an order, for example 'Active'
+
+
+#### [`reference`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+The external reference (if available) for the order
+
+
+#### [`trades`](#) ([`[Trade!]`](/mainnet/api/graphql/objects/trade))
+
+Trades relating to this order
+
+
+#### [`tradesConnection`](#) ([`TradeConnection!`](/mainnet/api/graphql/objects/trade-connection))
+
+Trades relating to this order
+- ##### [`pagination`](#) ([`Pagination`](/mainnet/api/graphql/inputs/pagination))
+
+
+
+
+#### [`type`](#) ([`OrderType`](/mainnet/api/graphql/enums/order-type))
+
+Type the order type (defaults to PARTY)
+
+
+#### [`rejectionReason`](#) ([`OrderRejectionReason`](/mainnet/api/graphql/enums/order-rejection-reason))
+
+Reason for the order to be rejected
+
+
+#### [`version`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+Version of this order, counts the number of amends
+
+
+#### [`updatedAt`](#) ([`String`](/mainnet/api/graphql/scalars/string))
+
+RFC3339Nano time the order was altered
+
+
+#### [`peggedOrder`](#) ([`PeggedOrder`](/mainnet/api/graphql/objects/pegged-order))
+
+PeggedOrder contains the details about a pegged order
+
+
+#### [`liquidityProvision`](#) ([`LiquidityProvision`](/mainnet/api/graphql/objects/liquidity-provision))
+
+The liquidity provision this order was created from
+
+
+
+

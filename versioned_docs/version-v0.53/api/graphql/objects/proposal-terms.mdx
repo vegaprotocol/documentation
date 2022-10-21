@@ -1,0 +1,39 @@
+---
+id: proposal-terms
+title: ProposalTerms
+hide_table_of_contents: false
+---
+
+
+The rationale behind the proposal
+
+```graphql
+type ProposalTerms {
+  closingDatetime: String!
+  enactmentDatetime: String!
+  change: ProposalChange!
+}
+```
+
+
+### Fields
+
+#### [`closingDatetime`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+RFC3339Nano time and date when voting closes for this proposal.
+Constrained by "minClose" and "maxClose" network parameters.
+
+
+#### [`enactmentDatetime`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+RFC3339Nano time and date when this proposal is executed (if passed). Note that it has to be after closing date time.
+Constrained by "minEnactInSeconds" and "maxEnactInSeconds" network parameters.
+
+
+#### [`change`](#) ([`ProposalChange!`](/mainnet/api/graphql/unions/proposal-change))
+
+Actual change being introduced by the proposal - action the proposal triggers if passed and enacted.
+
+
+
+

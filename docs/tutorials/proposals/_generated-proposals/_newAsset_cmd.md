@@ -20,9 +20,9 @@
      }
     }
    },
-   "closingTimestamp": 1667671102,
-   "enactmentTimestamp": 1667757502,
-   "validationTimestamp": 1667584702
+   "closingTimestamp": 1667843647,
+   "enactmentTimestamp": 1667930047,
+   "validationTimestamp": 1667757247
   }
  }
 }'

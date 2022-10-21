@@ -29,7 +29,7 @@ At enactment time, no changes are effected on the system, but the record of how 
 ## Requirements
 
 You will need:
-* A connected [Vega wallet](/docs/tools/vega-wallet/index.md), with your wallet name and public key to hand
+* A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
 * A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.freeform.minProposerBalance" hideName={true} suffix="tokens"/> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" formatter="governanceToken" hideName={true} suffix="tokens"/>
 * Familiarity with [governance on Vega](../../concepts/vega-protocol.md#governance)
 

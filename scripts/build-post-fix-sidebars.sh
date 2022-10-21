@@ -18,8 +18,8 @@ echo "GRPC: Fix explorer links"
 sed -i -E 's/"blockexplorer\/blockexplorer.proto"/"grpc\/blockexplorer\/blockexplorer.proto"/g' docs/grpc/sidebar.js
 
 echo "GRPC: Fix sidebar links (fixes incorrect path mappings for the versioned world)"
-sed -i -E 's/vega\//grpc\/vega\//g' docs/grpc/sidebar.js
-sed -i -E 's/data-node\//grpc\/data-node\//g' docs/grpc/sidebar.js
+sed -i -E 's/"vega/"api\/grpc\/vega/g' docs/api/grpc/sidebar.js
+sed -i -E 's/"data-node/"api\/grpc\/data-node/g' docs/api/grpc/sidebar.js
 
 # Mac SED workaround - delete remnant files (not required with gsed)
 find . -name "*-E" -exec rm -rf {} +

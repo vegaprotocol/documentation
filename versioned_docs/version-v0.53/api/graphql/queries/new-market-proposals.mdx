@@ -1,0 +1,32 @@
+---
+id: new-market-proposals
+title: newMarketProposals
+hide_table_of_contents: false
+---
+
+
+Governance proposals that aim to create new markets
+
+```graphql
+newMarketProposals(
+  inState: ProposalState
+): [Proposal!]
+```
+
+
+### Arguments
+
+#### [`inState`](#) ([`ProposalState`](/mainnet/api/graphql/enums/proposal-state))
+
+Returns only proposals in the specified state. Leave out to get all proposals
+
+
+### Type
+
+#### [`Proposal`](/mainnet/api/graphql/objects/proposal)
+
+
+
+
+
+

@@ -41,6 +41,8 @@ function updateAsset(skeleton) {
         "\n"
       );
     return `{
+          // ${skeleton.properties.assetId.title} (${skeleton.properties.assetId.type})
+          assetId: "${result.terms.updateAsset.assetId}",
           changes: {
             // ${skeleton.properties.changes.properties.quantum.title} (${skeleton.properties.changes.properties.quantum.type})
             quantum: "1",

@@ -154,7 +154,7 @@ Import the following network configurations:
 * **Fairground** network: <NetworkConfigAddress frontMatter={frontMatter} label="fairground.toml" network="fairground"/>
 
 :::info
-To update your networks list, see [manage networks](/docs/testnet/tools/vega-wallet/cli-wallet/latest/guides/manage-networks#update-networks) for instructions.
+To update your networks list, see [manage networks](/mainnet/tools/vega-wallet/cli-wallet/latest/guides/manage-networks#update-networks) for instructions.
 ::: 
 
 #### Import networks from URL

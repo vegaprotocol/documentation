@@ -79,7 +79,7 @@ When collateral is collected, ledger entries that adhere to double-entry account
 If all the requested amounts are succesfully transferred to the settlement account, then the amount collected will match the amount to be distributed and the participants whose moves were positive receive what they're owed in their margin accounts. 
 
 :::note Read more 
-* [Insurance pools](/docs/testnet/concepts/trading-on-vega/market-protections#insurance-pools)
-* [Loss socialisation](/docs/testnet/concepts/trading-on-vega/market-protections#loss-socialisation)
+* [Insurance pools](/testnet/concepts/trading-on-vega/market-protections#insurance-pools)
+* [Loss socialisation](/testnet/concepts/trading-on-vega/market-protections#loss-socialisation)
 * [Settlement account](./../accounts#settlement-accounts)
 :::

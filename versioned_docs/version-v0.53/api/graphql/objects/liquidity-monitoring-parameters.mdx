@@ -1,0 +1,31 @@
+---
+id: liquidity-monitoring-parameters
+title: LiquidityMonitoringParameters
+hide_table_of_contents: false
+---
+
+
+Configuration of a market liquidity monitoring parameters
+
+```graphql
+type LiquidityMonitoringParameters {
+  targetStakeParameters: TargetStakeParameters!
+  triggeringRatio: Float!
+}
+```
+
+
+### Fields
+
+#### [`targetStakeParameters`](#) ([`TargetStakeParameters!`](/mainnet/api/graphql/objects/target-stake-parameters))
+
+Specifies parameters related to target stake calculation
+
+
+#### [`triggeringRatio`](#) ([`Float!`](/mainnet/api/graphql/scalars/float))
+
+Specifies the triggering ratio for entering liquidity auction
+
+
+
+

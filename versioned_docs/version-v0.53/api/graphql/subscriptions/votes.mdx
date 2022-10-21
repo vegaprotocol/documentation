@@ -1,0 +1,38 @@
+---
+id: votes
+title: votes
+hide_table_of_contents: false
+---
+
+
+Subscribe to votes, either by proposal id or party id
+
+```graphql
+votes(
+  proposalId: ID
+  partyId: ID
+): ProposalVote!
+```
+
+
+### Arguments
+
+#### [`proposalId`](#) ([`ID`](/mainnet/api/graphql/scalars/id))
+
+Optional proposal id which votes are to be streamed
+
+
+#### [`partyId`](#) ([`ID`](/mainnet/api/graphql/scalars/id))
+
+Optional party id whose votes are to be streamed
+
+
+### Type
+
+#### [`ProposalVote`](/mainnet/api/graphql/objects/proposal-vote)
+
+
+
+
+
+

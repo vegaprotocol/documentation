@@ -1,0 +1,48 @@
+---
+id: transfer-direction
+title: TransferDirection
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Filter type for specifying the types of transfers to filter for
+
+```graphql
+enum TransferDirection {
+  To
+  From
+  ToOrFrom
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>TransferDirection.<b>To</b></code>](#) 
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TransferDirection.<b>From</b></code>](#) 
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TransferDirection.<b>ToOrFrom</b></code>](#) 
+> 
+> 
+
+
+
+### Member of
+
+[`transfersConnection`](/testnet/api/graphql/queries/transfers-connection)  <Badge class="secondary" text="query"/>
+
+
+
