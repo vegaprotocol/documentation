@@ -5,7 +5,7 @@ sidebar_label: Rewards
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-Each type of validating node is entitled to a different rate of rewards. 
+Each type of validator node is entitled to a different rate of rewards. 
 
 - **Consensus** nodes keep the network and transactions running, so earn **maximum rewards**
 - **Standby** nodes are ready to step up to consensus node status, so earn rewards at **a rate of <NetworkParameter frontMatter={frontMatter} param="network.validators.ersatz.rewardFactor" hideName={true} formatter="percent" />** 
@@ -16,9 +16,9 @@ Parties who meet the [requirements](requirements) and correctly [set up and run 
 ## Earn standby validator rewards
 
 ### Conditions
-1. Run a validating node
+1. Run a validator node
 2. Self-stake at least <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" formatter="governanceToken" suffix="tokens" hideName={true} /> with the key used to set up the node
-3. Maintain a [validator score](../concepts/vega-chain#validating-node-performance) better than the lowest scoring standby validator
+3. Maintain a [validator score](../concepts/vega-chain#validator-node-performance) better than the lowest scoring standby validator
 
 ### How standby validators are chosen
 
@@ -32,10 +32,10 @@ If a node that submits the transaction to join has a higher score than the lowes
 
 ### Conditions
 
-1. Run a validating node
+1. Run a validator node
 2. Self-stake at least <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" formatter="governanceToken" suffix="tokens" hideName={true} /> with the key used to set up the node
 3. Forward the relevant Ethereum events
-3. Maintain a [validator score](../concepts/vega-chain#validating-node-performance) better than the lowest scoring consensus validator
+3. Maintain a [validator score](../concepts/vega-chain#validator-node-performance) better than the lowest scoring consensus validator
 
 ### How consensus validators are chosen
 
@@ -45,4 +45,4 @@ If a standby validator has a better validator score (which includes performance 
 
 ## How rewards work
 
-Rewards are calculated based on multiple factors, including the type of validating node and staked amount. [Read more about rewards](../concepts/vega-chain#rewards).
+Rewards are calculated based on multiple factors, including the type of validator node and staked amount. [Read more about rewards](../concepts/vega-chain#rewards).

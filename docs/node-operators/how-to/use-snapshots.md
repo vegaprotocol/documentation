@@ -8,24 +8,20 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import NetworkParameter from '@site/src/components/NetworkParameter';
+
 This section will take you through using the state snapshots. These allow a node to be started without having to replay the whole chain in order to catch up with the current block height of the network.
 
 A node can be started by using a local snapshot (state of the chain built by the current node). This can be useful when the node has been running with the network, has built their own state locally, but had to shutdown for maintenance or upgrade for example.
 
 The snapshots can also be retrieved from the network without any previous local state. This would be useful when a node is joining the network after the bootstrap of the network.
 
-All node of the network will be taking a snapshot of the state at the same block height, this is configured globally using the following network parameter:
-```Json
-{
-  "snapshot.interval.length": "10000",
-
-```
-As of now the snapshots are configured to be taken every 10000 blocks on mainnet.
+All of the network's nodes will take a snapshot of the state at the same block height. This is configured globally using the following network parameter: <NetworkParameter frontMatter={frontMatter} param="snapshot.interval.length" hideValue={false} />
 
 ## List available snapshots
 The vega toolchain offers a subcommand to list all snapshots available locally. Once your node has been running for a while, you should be able to see them using the following command:
 ```
-vega snapshots --home=/path/to/vega/home
+vega snapshots --home=YOUR_VEGA_HOME
 Snapshots available: 2
 	Height 901, version: 4, size 92, hash: 562414bb5be3ccc8403fbd030d06eebc799bfef5ca25b02ad360fec349cb4bc8
 	Height 601, version: 3, size 92, hash: 72a2edd960cf3340ae94bf092991f923850738144789959124590675798fefd9
@@ -50,7 +46,7 @@ If you don't specify a block height it will load from the latest local snapshot.
 
 From the command line:
 ```
-vega node --home=/path/to/vega/home --snapshot.load-from-block-height=901
+vega node --home=YOUR_VEGA_HOME --snapshot.load-from-block-height=901
 ```
 
 Alternatively, add the block height in the configuration file in the Snapshot section:
@@ -91,13 +87,13 @@ Other settings are available to configure snapshots, however, those described in
 Once you update the Tendermint config, restart the node by running:
 
 ```
-vega start --home=/path/to/vega/home --tendermint-home=/path/to/tendermint/home --network-url=NETWORK_URL
+vega start --home="YOUR_VEGA_HOME" --tendermint-home="YOUR_TENDERMINT_HOME" --network-url="NETWORK_URL"
 ```
 If you need to reset the Tendermint and Vega nodes, use the following commands. They will remove all chain-related data and keep node wallets, private keys and saved config:
 
 ```
-vega tendermint --home=/path/to/tendermint/home unsafe_reset_all
-vega --home=/path/to/vega/home unsafe_reset_all
+vega tendermint --home="YOUR_TENDERMINT_HOME" unsafe_reset_all
+vega --home="YOUR_VEGA_HOME" unsafe_reset_all
 
 ```
 
@@ -120,7 +116,7 @@ vega tools snapshotdb --db-path=/path/to/the/snapshot.db --block-height=901
 ```
 
 :::note
-In the previous example you will find the node snapshot database at the following path `/path/to/vega/home/state/node/snapshots/`
+In the previous example you will find the node snapshot database at the following path `YOUR_VEGA_HOME/state/node/snapshots/`
 :::
 
 ## Example configuration
