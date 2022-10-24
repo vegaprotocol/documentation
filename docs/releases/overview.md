@@ -26,18 +26,66 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-### Pre-release Version 0.58.0 | 2022-10-17
-This version was released to the Vega testnet on 17 October, 2022.
+### Pre-release Version 0.59.0 | 2022-10-24
+This version was released to the Vega testnet on 24 October, 2022.
 
-For full details see the vega core [0.58.0 release page ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.58.0).
+For full details see the vega core [0.59.0 release page ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.59.0).
 
-The primary focus of this release has been to add general bug fixes and improvements, improve the stability of the network and continue to implement data node snapshots ahead of this feature being used for protocol upgrades and new nodes joining the network.
+The primary focus of this release has been to add general bug fixes and improvements, improve the stability of the network and implement data node snapshots to be used for protocol upgrades and new nodes joining the network. This feature is now in testing.
 
 :::warning API deprecations
 **Data node**: The v2 APIs ([REST](./../api/rest/overview) and [gRPC](./../grpc/data-node/api/v2/trading_data.proto)) for the data node will be replace V1, which will soon be removed. Therefore anyone building apps on to of Vega should start to use the v2 APIs from release 0.55 onwards.
 
 **Vega Wallet**: For most use cases, the v2 [wallet API](./../api/vega-wallet) will soon be the only one available for interacting with the Vega Wallet. V1 will continue to be used for the testnet-only hosted wallet for testing and incentives, for slightly longer.
 :::
+
+#### Breaking Changes
+
+#### Allow negative position decimal places for market
+In order to maintain spam protection, a market with a price of 10^-3 should only allow the smallest position of something like 10000 so the position decimal places would equal -4 meaning an order size of 1 => 10000. This work was done under the issue [6505 ↗](https://github.com/vegaprotocol/vega/issues/6505).
+
+#### Allow the user to specify a different passphrase when isolating a key
+To harden the security of Vega key management for node operators, a different passphrase can be used to protect an isolated wallet. This ensures that the risk of the "full" wallet's passphrase being exposed is minimised. Before this change, when isolating a wallet, its passphrase was inherited from the original wallet, and there was no option to choose a different one. This work was done under the issue [6477 ↗](https://github.com/vegaprotocol/vega/issues/6477).
+
+#### Output from nodewallet reload is now more useful JSON
+The output from `vega nodewallet reload --output=json` was not structured in a manner that was easily used. This change creates a better UX for anyone interacting with the JSON output of the command. This work was done under the issue [6549 ↗](https://github.com/vegaprotocol/vega/issues/6549).
+
+#### Rename get bundles API function `GetMultiSigSigner` to `ListMultiSigSigner`
+In order to be consistent with v2 APIs and return context aware results the get bundles API function name has been changed from `GetMultiSigSigner` to `ListMultiSigSigner`. This work was done under the issue [6458 ↗](https://github.com/vegaprotocol/vega/issues/6458).
+
+#### Swap places of PID and date in log files in the wallet service
+Before the implementation of this change wallet log files were named with the PID first e.g. `47060-2022-10-13-19-49-02.log`. This makes log files easy to search for if you have the PID but less so if you do not. In order to be able to easily sort the log files by date the file format name has been changed to start with the date e.g. `2022-10-13-19-49-02-47060.log`. This work was done under the issue [6506 ↗](https://github.com/vegaprotocol/vega/issues/6506).
+
+#### Refactor datanode API for getting balance history
+The API field `GetBalanceHistory` has been renamed to `ListBalanceHistory` and has had improvements in the documentation to help users understand APIs the 'grouping' feature. This change aslo fixes an issue with leaking account IDs. This work was done under the issue [6513 ↗](https://github.com/vegaprotocol/vega/issues/6513).
+
+#### Critical Bug fixes
+
+#### Price monitoring price-range cache restored incorrectly
+When restoring the `pricemontior` for a market from a snapshot, the integer-representation from the `wrappedDecimcal`'s used for the price-range cache are derived from the decimal representation. This is slightly different to how they are created in the normal, non-snapshot code path. This causes markets to act differently after a snapshot restore, and eventually the node falls out of consensus. This fix was implemented under issue [6525](https://github.com/vegaprotocol/vega/issues/6525).
+
+#### New features: Core
+
+#### Add reason to stopped or rejected transfer events
+In order to know why a transfer event has been stopped or rejected the transfer rejection error reason has now been exposed in `BUS_EVENT_TYPE_TRANSFER` events. This work was done under the issue [6529 ↗](https://github.com/vegaprotocol/vega/issues/6529)
+
+#### Update Tendermint to v0.34.22
+To keep Tendermint up-to-date with all of the latest bug fixes it has been upgraded to v0.34.22. To find out more about the changes please see the [Tendermint changelog](https://github.com/tendermint/tendermint/blob/v0.34.22/CHANGELOG.md#v03422). This work was done under the issue [6548 ↗](https://github.com/vegaprotocol/vega/issues/6548).
+
+#### New features: Datanode
+
+#### Data-node handles upgrade block and ensures data is persisted before upgrade
+In order to ensure that the whole state of the data-node is matching that of the validator nodes, the data-node should ensure that it processes all blocks up to the block height of a scheduled upgrade before shutting down. Respectively the core node shouldn't shutdown until the data-node has consumed all the blocks in the broker queue. This work was done under the issue [6080 ↗](https://github.com/vegaprotocol/vega/issues/6080).
+
+#### Add last-block sub-command to datanode CLI
+To make the Vega Visor UX easier to restart a node on the network, a command has been added to the datanode that will return the height of the last block committed, this will make it easier for Visor to figure at what snapshot height it should start the core. This work was done under the issue [6527 ↗](https://github.com/vegaprotocol/vega/issues/6527).
+
+### Pre-release Version 0.58.0 | 2022-10-17
+This version was released to the Vega testnet on 17 October, 2022.
+
+For full details see the vega core [0.58.0 release page ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.58.0).
+
+The primary focus of this release has been to add general bug fixes and improvements, improve the stability of the network and continue to implement data node snapshots ahead of this feature being used for protocol upgrades and new nodes joining the network.
 
 #### Breaking Changes
 
