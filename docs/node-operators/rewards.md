@@ -1,11 +1,11 @@
 ---
 sidebar_position: 1
 title: Earning validator rewards
-sidebar_label: Rewards
+sidebar_label: Validator rewards
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-Each type of validator node is entitled to a different rate of rewards. 
+Each type of validator node is entitled to a different rate of rewards. Non-validator nodes (such as data nodes) are not currently eligible for any rewards.
 
 - **Consensus** nodes keep the network and transactions running, so earn **maximum rewards**
 - **Standby** nodes are ready to step up to consensus node status, so earn rewards at **a rate of <NetworkParameter frontMatter={frontMatter} param="network.validators.ersatz.rewardFactor" hideName={true} formatter="percent" />** 
