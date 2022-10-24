@@ -61,7 +61,7 @@ In order to maintain spam protection, a market with a price of 10^-3 should only
 #### Critical Bug fixes
 
 #### Price monitoring price-range cache restored incorrectly
-When restoring the `pricemonitor` for a market from a snapshot, the integer-representation from the `wrappedDecimal`s used for the price-range cache are derived from the decimal representation. This is slightly different to how they are created in the normal, non-snapshot code path. This causes markets to act differently after a snapshot restore, and eventually the restored node falls out of consensus. This fix was implemented under issue [6525](https://github.com/vegaprotocol/vega/issues/6525).
+When restoring the `pricemonitor` for a market from a snapshot, the integer-representation from the `wrappedDecimal`s used for the price-range cache are derived from the decimal representation. This is slightly different to how they are created in the normal, non-snapshot code path. This causes markets to act differently after a snapshot restore, and eventually the restored node falls out of consensus. This fix was implemented under issue [6525 ↗](https://github.com/vegaprotocol/vega/issues/6525).
 
 #### New features: Core
 
