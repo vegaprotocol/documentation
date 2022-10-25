@@ -30,7 +30,7 @@ The below steps are then carried out from the Validator nodes's machine:
 1. Installed [Vega Wallet CLI binary ↗](https://github.com/vegaprotocol/vega/releases) (under `assets` for each software version)
 2. Running validator node with admin server enabled
 3. The node wallet passphrases
-4. Access to wallet with current Vega and Master key (usually the original wallet that generated those keys)
+4. Access to wallet with current Vega and master key (usually the original wallet that generated those keys)
 5. Removable media for transporting an isolated wallet
 
 ## Terminology:
@@ -44,7 +44,7 @@ The below steps are then carried out from the Validator nodes's machine:
 
 ## Preparing a Key Rotation Transaction and an Isolated Wallet
 
-The following steps should be executed on the machine containing the Vega wallet. This machine which should be seen as containiing more sensitive data that the machine running the Validator node.
+The following steps should be executed on the machine containing the Vega wallet. This machine which should be seen as containing more sensitive data that the machine running the validator node.
 
 ### Confirm that the Vega wallet is the correct wallet
 
@@ -128,7 +128,7 @@ vegawallet --home WALLET_HOME key rotate
            --chain-id=CHAINID
 ```
 
-where `TX_HEIGHT` is the approximate heigh at which the transaction will be sent to the network, and `TARGET_HEIGHT` is the block height at which the key-rotation will take place. The latter should be chosen such that it is far enough into the future that the rest of the process can be completed.
+where `TX_HEIGHT` is the approximate height at which the transaction will be sent to the network, and `TARGET_HEIGHT` is the block height at which the key-rotation will take place. The latter should be chosen such that it is far enough into the future that the rest of the process can be completed.
 
 The response from this command is `ENCODED_TRANSACTION`, a base64 encoded transaction that will later be sent to the network,
 
@@ -155,7 +155,7 @@ It is advised to choose `TARGET_HEIGHT` to be away from an epoch boundary to all
 
 ## Transfering the Artefacts
 
-The isolated wallet file and the encoded transaction will need to be transported to the machine that is running the Validator node. This is so that the isolated wallet file can be imported and the key rotation transaction can be sent to the network.
+The isolated wallet file and the encoded transaction will need to be transported to the machine that is running the validator node. This is so that the isolated wallet file can be imported and the key rotation transaction can be sent to the network.
 
 How this is done is dependent on the hardware and networking available to you.
 
@@ -165,19 +165,19 @@ The following steps should be executed on the machine running the Validator node
 
 ### Send the Vega key rotation transaction to the network
 
-The pre-signed `ENCODED_TRANSACTION` can be sent to the network via the running Validator node using the following command:
+The pre-signed `ENCODED_TRANSACTION` can be sent to the network via the running validator node using the following command:
 
 ```
 vega wallet tx send ----node-address NODE_ADDRESS BASE64_TRANSACTION
 ```
 
-where `NODE_ADDRESS` is the address of the gRPC endpoint for the running Validator node. This will stage the key rotation to take place at the previously chosen block height.
+where `NODE_ADDRESS` is the address of the gRPC endpoint for the running validator node. This will stage the key rotation to take place at the previously chosen block height.
 
 This command will tell the network to stage the key rotation to occur at the `TARGET_HEIGHT` chosen earlier.
 
 ### Import and Load the Isolated Wallet
 
-The isolated wallet containing `NEW_VEGA_PUB_KEY` can be imported into the running Validator node using the following command
+The isolated wallet containing `NEW_VEGA_PUB_KEY` can be imported into the running validator node using the following command
 
 ```
 vega nodewallet import --wallet-path ISOLATED_WALLET_PATH -c vega --force
@@ -191,7 +191,7 @@ registryFilePath:
 VEGA_HOME/node/wallets.encrypted
 ```
 
-This will position the wallet such that it is ready to be used by the Validator node upon reloading of the node's wallet.
+This will position the wallet such that it is ready to be used by the validator node upon reloading of the node's wallet.
 
 Once the network reaches `TARGET_BLOCK` it will rotate the keys associating `NEW_VEGA_PUB_KEY` with the node. It is at this time that the following command needs to be run to rotate the key on the node itself:
 

@@ -26,12 +26,12 @@ Rotating a Node's Ethereum Key can be done by following the below steps:
 
 ## Terminology:
 
-* **ETH_ADDR** - The Ethereum address being rotated from
-* **ETH_NEW_ADDR** - The Ethereum address being rotated to
-* **TARGET_BLOCK** - The block in which the Ethereum key rotation will take place
-* **SUBMITTER_ADDR** - An Ethereum address that will submit signatures to the [MultisigControl Bridge](./../../api/bridge/interfaces/IMultisigControl)
-* **DATA_NODE_REST_ADDR** - The REST API address of any data node
-* **CLEF_ADDR** - If rotating to a Clef Wallet, the address of the custom Clef instance
+* `ETH_ADDR` - The Ethereum address being rotated from
+* `ETH_NEW_ADDR` - The Ethereum address being rotated to
+* `TARGET_BLOCK` - The block in which the Ethereum key rotation will take place
+* `SUBMITTER_ADDR` - An Ethereum address that will submit signatures to the [MultisigControl Bridge](./../../api/bridge/interfaces/IMultisigControl)
+* `DATA_NODE_REST_ADDR` - The REST API address of any data node
+* `CLEF_ADDR` - If rotating to a Clef Wallet, the address of the custom Clef instance
 
 ## Generate a new Ethereum key
 
@@ -55,7 +55,7 @@ registryFilePath:
 VEGA_HOME/node/wallets.encrypted
 ```
 
-In this case **ETH_NEW_ADDR** will be `0xf0Ace753655495304d5e9794A96eD9791C51e091`.
+In this case `ETH_NEW_ADDR` will be `0xf0Ace753655495304d5e9794A96eD9791C51e091`.
 
 
 ### Using a Clef Wallet
@@ -64,7 +64,7 @@ The below command will generate a new Ethereum key inside a clef instance:
  ```bash
  clef newaccount
  ```
-The output of the command will print **ETH_NEW_ADDR**. This wallet and key can then be imported into the nodewallet using the below command:
+The output of the command will print `ETH_NEW_ADDR`. This wallet and key can then be imported into the nodewallet using the below command:
 
  ```bash
  vega nodewallet import -c ethereum --ethereum-clef-address http://$CLEF_ADDR  --ethereum-clef-account $ETH_NEW_ADDR --force
@@ -78,9 +78,9 @@ The below command will send an Ethereum Key Rotation transaction into the networ
 vega rotate_eth_key --target-block=$TARGET_BLOCK --submitter=$SUBMITTER_ADDR --rotate-from=$ETH_ADDR
 ```
 
-**TARGET_BLOCK** is the block-height at which the key-rotation will occur in the Vega network and must be a block in the future. It is advised to choose a block-height that will be at a time where the below steps can be completed, and one that will not be close to an epoch boundary.
+`TARGET_BLOCK` is the block-height at which the key-rotation will occur in the Vega network and must be a block in the future. It is advised to choose a block-height that will be at a time where the below steps can be completed, and one that will not be close to an epoch boundary.
 ## Reload Ethereum wallet in Vega validator node
-Once the network reaches **TARGET_BLOCK** it will rotate the keys associating **ETH_NEW_ADDR** with the node. It is at this time that the following command needs to be run to rotate the key on the node itself:
+Once the network reaches `TARGET_BLOCK` it will rotate the keys associating `ETH_NEW_ADDR` with the node. It is at this time that the following command needs to be run to rotate the key on the node itself:
 ```
 vega nodewallet reload -c ethereum
 ```
@@ -91,7 +91,7 @@ Whereas it is not necessary to reload the nodewallet exactly at `TARGET_BLOCK` d
 
 ## Confirm a successful key rotation
 
-To confirm that the key rotation occurred and to see that **ETH_NEW_ADDR** is now acknowledged by the network as the node's new Ethereum key, there are two end-points on a data node that can be used:
+To confirm that the key rotation occurred and to see that `ETH_NEW_ADDR` is now acknowledged by the network as the node's new Ethereum key, there are two end-points on a data node that can be used:
 
 ```
 # this will show the details of all key rotations that have happened
@@ -107,26 +107,26 @@ Now that the Ethereuem key rotation is complete the node will produce signature 
 
 This section only applies if you are a consensus validator and your original Ethereum key is listed as a signer on the MultisigControl contract.
 
-As a result of the key rotation process the network emits signature bundles that can be used to update the keys on the MultisigControl bridge. You need to notify the [MultisigControl Bridge](./../../api/bridge/interfaces/IMultisigControl) about the change by submitting signature bundles to remove **ETH_ADDR** and add **ETH_NEW_ADDR**
+As a result of the key rotation process the network emits signature bundles that can be used to update the keys on the MultisigControl bridge. You need to notify the [MultisigControl Bridge](./../../api/bridge/interfaces/IMultisigControl) about the change by submitting signature bundles to remove `ETH_ADDR` and add `ETH_NEW_ADDR`
 
 :::warning
-Failure to remove **ETH_ADDR** or add **ETH_NEW_ADDR** before the end of the epoch will result in no reward payout for the node.
+Failure to remove `ETH_ADDR` or add `ETH_NEW_ADDR` before the end of the epoch will result in no reward payout for the node.
 :::
 
 ### Retrieving the signature bundles from a datanode
 
-The below two commands will return a signature bundle that will remove **ETH_ADDR** from the bridge and add **NEW_ETH_ADDR**, respectively:
+The below two commands will return a signature bundle that will remove `ETH_ADDR` from the bridge and add `NEW_ETH_ADDR`, respectively:
 ```
 curl -s $DATA_NODE_REST_ADDR/api/v2/erc20/multisigcontrol/signer/removed/bundles?submitter=$SUBMITTER_ADDR
 
 curl -s $DATA_NODE_REST_ADDR/api/v2/erc20/multisigcontrol/signer/added/bundles?submitter=$SUBMITTER_ADDR
 ```
 
-These signature bundles must be submitted to the MultisigControl bridge, and are cryptographically tied to **SUBMITTER_ADDR**. They can only be submitted to the contract using **SUBMITTER_ADDR**.
+These signature bundles must be submitted to the MultisigControl bridge, and are cryptographically tied to `SUBMITTER_ADDR`. They can only be submitted to the contract using `SUBMITTER_ADDR`.
 
 ### Requesting new signature bundles
 
-If there is a reason that the signature bundles emitted for **SUBMITTER_ADDR** cannot be used, for example the wallet containing **SUBMITTER_ADDR** has been lost, it is possible to request from the network more signature bundles for a different **SUBMITTER_ADDR**.
+If there is a reason that the signature bundles emitted for `SUBMITTER_ADDR` cannot be used, for example the wallet containing `SUBMITTER_ADDR` has been lost, it is possible to request from the network more signature bundles for a different `SUBMITTER_ADDR`.
 
 Using the node's Vega wallet, the below command can be sent to the network to prompt the generation of new signature bundles: 
 ```
