@@ -26,10 +26,10 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-### Pre-release Version 0.59.0 | 2022-10-24
-This version was released to the Vega testnet on 24 October, 2022.
+### Pre-release Versions 0.59.0 and 0.60.0 combined | 2022-10-25
+This version was released to the Vega testnet on 25 October, 2022.
 
-For full details see the vega core [0.59.0 release page ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.59.0).
+For full details see the vega core [0.59.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.59.0) and  [0.60.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.60.0) release pages.
 
 The primary focus of this release has been to add general bug fixes and improvements, improve the stability of the network and implement data node snapshots to be used for protocol upgrades and new nodes joining the network. This feature is now in testing.
 
@@ -40,6 +40,9 @@ The primary focus of this release has been to add general bug fixes and improvem
 :::
 
 #### Breaking Changes
+
+#### Data node `init` requires the `ChainID` parameter
+To share data across the network all data nodes for a given network (chain) will be part of the same IPFS Swarm, the IPFS Swarm key is generated using the nodes chain id. Therefore when initialising the data node it is a requirement that the `ChainID` parameter is passed in the command. To find out more about the feature please read the [Decentralised History readme file](https://github.com/vegaprotocol/vega/tree/develop/datanode/dehistory). This work was done under the issue [6227 ↗](https://github.com/vegaprotocol/vega/issues/6227).
 
 #### Allow the user to specify a different passphrase when isolating a key
 To harden the security of Vega key management for node operators, a different passphrase can be used to protect an isolated wallet. This ensures that the risk of the "full" wallet's passphrase being exposed is minimised. Before this change, when isolating a wallet, its passphrase was inherited from the original wallet, and there was no option to choose a different one. This work was done under the issue [6477 ↗](https://github.com/vegaprotocol/vega/issues/6477).
@@ -78,6 +81,12 @@ In order to ensure that the whole state of the data node matches that of the val
 
 #### Add last-block sub-command to data node CLI
 To make the Vega Visor UX easier to restart a node on the network, a command has been added to the data node software that will return the height of the last block committed. This will make it easier for Visor to know at what snapshot height it should start the core. This work was done under the issue [6527 ↗](https://github.com/vegaprotocol/vega/issues/6527).
+
+#### New features: Wallet
+
+#### Add new wallet commands
+In order to further improve the UX on the wallets two new commands have been added. These commands allow both the name and the passphrase of a wallet to be updated. These changes have been implemented in [6530 ↗](https://github.com/vegaprotocol/vega/issues/6530) and [6531 ↗](https://github.com/vegaprotocol/vega/issues/6531) respectively.
+
 
 ### Pre-release Version 0.58.0 | 2022-10-17
 This version was released to the Vega testnet on 17 October, 2022.
