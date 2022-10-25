@@ -42,7 +42,7 @@ The primary focus of this release has been to add general bug fixes and improvem
 #### Breaking Changes
 
 #### Data node `init` requires the `ChainID` parameter
-To share data across the network all data nodes for a given network (chain) will be part of the same IPFS Swarm, the IPFS Swarm key is generated using the nodes chain id. Therefore when initialising the data node it is a requirement that the `ChainID` parameter is passed in the command. To find out more about the feature please read the [Decentralised History readme file](https://github.com/vegaprotocol/vega/tree/develop/datanode/dehistory). This work was done under the issue [6227 ↗](https://github.com/vegaprotocol/vega/issues/6227).
+To share data across the network, all data nodes for a given network (chain) will be part of the same IPFS Swarm. The IPFS Swarm key is generated using the node's chain ID. Therefore, when initialising the data node, it is a requirement that the `ChainID` parameter is passed in the command. To find out more about the feature please read the [Decentralised History readme file](https://github.com/vegaprotocol/vega/tree/develop/datanode/dehistory). This work was done under the issue [6227 ↗](https://github.com/vegaprotocol/vega/issues/6227).
 
 #### Allow the user to specify a different passphrase when isolating a key
 To harden the security of Vega key management for node operators, a different passphrase can be used to protect an isolated wallet. This ensures that the risk of the "full" wallet's passphrase being exposed is minimised. Before this change, when isolating a wallet, its passphrase was inherited from the original wallet, and there was no option to choose a different one. This work was done under the issue [6477 ↗](https://github.com/vegaprotocol/vega/issues/6477).
@@ -61,6 +61,7 @@ The API field `GetBalanceHistory` has been renamed to `ListBalanceHistory` and h
 
 #### Allow negative position decimal places for market
 In order to maintain spam protection, a market with a price of 10^-3 should only allow the smallest position of something like 10000 so the position decimal places would equal -4 meaning an order size of 1 => 10000. This work was done under the issue [6505 ↗](https://github.com/vegaprotocol/vega/issues/6505).
+
 #### Critical Bug fixes
 
 #### Price monitoring price-range cache restored incorrectly
@@ -85,7 +86,7 @@ To make the Vega Visor UX easier to restart a node on the network, a command has
 #### New features: Wallet
 
 #### Add new wallet commands
-In order to further improve the UX on the wallets two new commands have been added. These commands allow both the name and the passphrase of a wallet to be updated. These changes have been implemented in [6530 ↗](https://github.com/vegaprotocol/vega/issues/6530) and [6531 ↗](https://github.com/vegaprotocol/vega/issues/6531) respectively.
+In order to further improve the UX on the wallets, two new commands have been added. These commands allow both the name and the passphrase of a wallet to be updated. These changes have been implemented in [6530 ↗](https://github.com/vegaprotocol/vega/issues/6530) and [6531 ↗](https://github.com/vegaprotocol/vega/issues/6531) respectively.
 
 
 ### Pre-release Version 0.58.0 | 2022-10-17
