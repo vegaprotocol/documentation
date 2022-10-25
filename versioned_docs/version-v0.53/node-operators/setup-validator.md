@@ -148,12 +148,10 @@ Each Vega validator node needs to be connected to an Ethereum archive node (rath
 Modify the following config in `path/to/home/config/node/config.toml`:
 
 ```Toml
-[NodeWallet]
+[Ethereum]
   Level = "Info"
-  [NodeWallet.ETH]
-    Level = "Info"
-    Address = "http://ethereum.node.com/rpc"
-    ClefAddress = ""
+  RPCEndpoint = "http://ethereum.node.com/rpc"
+  RetryDelay = "15s"
 ```
 
 ### Modify tendermint config.toml
