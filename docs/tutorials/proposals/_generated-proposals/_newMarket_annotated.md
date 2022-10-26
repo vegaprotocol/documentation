@@ -11,16 +11,16 @@
     // Decimal places used for the new market, sets the smallest price increment on the book (uint64 as string)
     decimalPlaces: "5",
 
-    // Decimal places for order sizes, sets what size the smallest order / position on the market can be (uint64 as string)
+    // Decimal places for order sizes, sets what size the smallest order / position on the market can be (int64 as string)
     positionDecimalPlaces: "5",
 
     // New market instrument configuration
     instrument: {
      // Instrument name
-     name: "Oranges Daily",
+     name: "Apples Yearly (2022)",
 
      // Instrument code, human-readable shortcode used to describe the instrument
-     code: "ORANGES.24h",
+     code: "APPLES.22",
 
      // Future
      future: {
@@ -123,7 +123,7 @@
      // Optional new market meta data, tags
      metadata: [
       "sector:food",
-      "sector:materials",
+      "sector:health",
       "source:docs.vega.xyz"
      ],
 
@@ -182,7 +182,7 @@
       r: 0.016,
 
       // Sigma param (double as number) 
-      sigma: 0.3,
+      sigma: 0.8,
      }
     },
    }
@@ -190,11 +190,11 @@
 
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-  closingTimestamp: 1667843647,
+  closingTimestamp: 1668419318,
 
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-  enactmentTimestamp: 1667930047,
+  enactmentTimestamp: 1668505718,
  }
 }
 ```

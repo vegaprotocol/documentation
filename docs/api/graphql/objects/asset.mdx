@@ -24,12 +24,12 @@ type Asset {
   quantum: String!
   source: AssetSource!
   status: AssetStatus!
-  infrastructureFeeAccount: Account!
-  globalRewardPoolAccount: Account
-  takerFeeRewardAccount: Account
-  makerFeeRewardAccount: Account
-  lpFeeRewardAccount: Account
-  marketProposerRewardAccount: Account
+  infrastructureFeeAccount: AccountBalance
+  globalRewardPoolAccount: AccountBalance
+  takerFeeRewardAccount: AccountBalance
+  makerFeeRewardAccount: AccountBalance
+  lpFeeRewardAccount: AccountBalance
+  marketProposerRewardAccount: AccountBalance
 }
 ```
 
@@ -64,27 +64,27 @@ type Asset {
 > The status of the asset in the Vega network
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>infrastructureFeeAccount</b></code>](#)<Bullet />[`Account!`](/testnet/api/graphql/objects/account) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>infrastructureFeeAccount</b></code>](#)<Bullet />[`AccountBalance`](/testnet/api/graphql/objects/account-balance) <Badge class="secondary" text="object"/>
 > The infrastructure fee account for this asset
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>globalRewardPoolAccount</b></code>](#)<Bullet />[`Account`](/testnet/api/graphql/objects/account) <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>globalRewardPoolAccount</b></code>](#)<Bullet />[`AccountBalance`](/testnet/api/graphql/objects/account-balance) <Badge class="secondary" text="object"/>
 > The global reward pool account for this asset
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>takerFeeRewardAccount</b></code>](#)<Bullet />[`Account`](/testnet/api/graphql/objects/account) <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>takerFeeRewardAccount</b></code>](#)<Bullet />[`AccountBalance`](/testnet/api/graphql/objects/account-balance) <Badge class="secondary" text="object"/>
 > The taker fee reward account for this asset
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>makerFeeRewardAccount</b></code>](#)<Bullet />[`Account`](/testnet/api/graphql/objects/account) <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>makerFeeRewardAccount</b></code>](#)<Bullet />[`AccountBalance`](/testnet/api/graphql/objects/account-balance) <Badge class="secondary" text="object"/>
 > The maker fee reward account for this asset
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>lpFeeRewardAccount</b></code>](#)<Bullet />[`Account`](/testnet/api/graphql/objects/account) <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>lpFeeRewardAccount</b></code>](#)<Bullet />[`AccountBalance`](/testnet/api/graphql/objects/account-balance) <Badge class="secondary" text="object"/>
 > The liquidity provision reward account for this asset
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>marketProposerRewardAccount</b></code>](#)<Bullet />[`Account`](/testnet/api/graphql/objects/account) <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>marketProposerRewardAccount</b></code>](#)<Bullet />[`AccountBalance`](/testnet/api/graphql/objects/account-balance) <Badge class="secondary" text="object"/>
 > The market proposer reward account for this asset
 > 
 
@@ -96,7 +96,7 @@ type Asset {
 
 ### Member of
 
-[`Account`](/testnet/api/graphql/objects/account)  <Badge class="secondary" text="object"/><Bullet />[`AssetEdge`](/testnet/api/graphql/objects/asset-edge)  <Badge class="secondary" text="object"/><Bullet />[`Deposit`](/testnet/api/graphql/objects/deposit)  <Badge class="secondary" text="object"/><Bullet />[`Future`](/testnet/api/graphql/objects/future)  <Badge class="secondary" text="object"/><Bullet />[`FutureProduct`](/testnet/api/graphql/objects/future-product)  <Badge class="secondary" text="object"/><Bullet />[`MarginLevels`](/testnet/api/graphql/objects/margin-levels)  <Badge class="secondary" text="object"/><Bullet />[`Reward`](/testnet/api/graphql/objects/reward)  <Badge class="secondary" text="object"/><Bullet />[`RewardPerAssetDetail`](/testnet/api/graphql/objects/reward-per-asset-detail)  <Badge class="secondary" text="object"/><Bullet />[`RewardSummary`](/testnet/api/graphql/objects/reward-summary)  <Badge class="secondary" text="object"/><Bullet />[`Transfer`](/testnet/api/graphql/objects/transfer)  <Badge class="secondary" text="object"/><Bullet />[`Withdrawal`](/testnet/api/graphql/objects/withdrawal)  <Badge class="secondary" text="object"/>
+[`AccountBalance`](/testnet/api/graphql/objects/account-balance)  <Badge class="secondary" text="object"/><Bullet />[`AccountEvent`](/testnet/api/graphql/objects/account-event)  <Badge class="secondary" text="object"/><Bullet />[`AssetEdge`](/testnet/api/graphql/objects/asset-edge)  <Badge class="secondary" text="object"/><Bullet />[`Deposit`](/testnet/api/graphql/objects/deposit)  <Badge class="secondary" text="object"/><Bullet />[`Future`](/testnet/api/graphql/objects/future)  <Badge class="secondary" text="object"/><Bullet />[`FutureProduct`](/testnet/api/graphql/objects/future-product)  <Badge class="secondary" text="object"/><Bullet />[`MarginLevels`](/testnet/api/graphql/objects/margin-levels)  <Badge class="secondary" text="object"/><Bullet />[`Reward`](/testnet/api/graphql/objects/reward)  <Badge class="secondary" text="object"/><Bullet />[`RewardPerAssetDetail`](/testnet/api/graphql/objects/reward-per-asset-detail)  <Badge class="secondary" text="object"/><Bullet />[`RewardSummary`](/testnet/api/graphql/objects/reward-summary)  <Badge class="secondary" text="object"/><Bullet />[`Transfer`](/testnet/api/graphql/objects/transfer)  <Badge class="secondary" text="object"/><Bullet />[`Withdrawal`](/testnet/api/graphql/objects/withdrawal)  <Badge class="secondary" text="object"/>
 
 ### Implemented by
 

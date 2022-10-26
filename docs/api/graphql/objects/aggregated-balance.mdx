@@ -19,7 +19,6 @@ No description
 type AggregatedBalance {
   timestamp: Timestamp!
   balance: String!
-  accountId: ID
   partyId: ID
   assetId: ID
   marketId: ID
@@ -38,12 +37,8 @@ type AggregatedBalance {
 > Net balance of the accounts specified in the filter at this time
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AggregatedBalance.<b>accountId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
-> Account identifier, if query was grouped by account - else null
-> 
-
 #### [<code style={{ fontWeight: 'normal' }}>AggregatedBalance.<b>partyId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
-> Party identifier, if query was grouped by party - else null
+> Account identifier, if query was grouped by account - else null
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>AggregatedBalance.<b>assetId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>

@@ -42,7 +42,7 @@ type Party {
   marketId: ID
   assetId: ID
   type: AccountType
-): [Account!]
+): [AccountBalance!]
   accountsConnection(
   marketId: ID
   assetId: ID
@@ -190,7 +190,7 @@ type Party {
 > Pagination information
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Party.<b>accounts</b></code>](#)<Bullet />[`[Account!]`](/testnet/api/graphql/objects/account) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Party.<b>accounts</b></code>](#)<Bullet />[`[AccountBalance!]`](/testnet/api/graphql/objects/account-balance) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
 > Collateral accounts relating to a party
 > ##### [<code style={{ fontWeight: 'normal' }}>Party.accounts.<b>marketId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > Market ID - specify what market accounts for the party to return
@@ -428,7 +428,7 @@ type Party {
 
 ### Member of
 
-[`Account`](/testnet/api/graphql/objects/account)  <Badge class="secondary" text="object"/><Bullet />[`Delegation`](/testnet/api/graphql/objects/delegation)  <Badge class="secondary" text="object"/><Bullet />[`Deposit`](/testnet/api/graphql/objects/deposit)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProviderFeeShare`](/testnet/api/graphql/objects/liquidity-provider-fee-share)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProvision`](/testnet/api/graphql/objects/liquidity-provision)  <Badge class="secondary" text="object"/><Bullet />[`MarginLevels`](/testnet/api/graphql/objects/margin-levels)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/testnet/api/graphql/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`PartyEdge`](/testnet/api/graphql/objects/party-edge)  <Badge class="secondary" text="object"/><Bullet />[`Position`](/testnet/api/graphql/objects/position)  <Badge class="secondary" text="object"/><Bullet />[`Proposal`](/testnet/api/graphql/objects/proposal)  <Badge class="secondary" text="object"/><Bullet />[`Reward`](/testnet/api/graphql/objects/reward)  <Badge class="secondary" text="object"/><Bullet />[`StakeLinking`](/testnet/api/graphql/objects/stake-linking)  <Badge class="secondary" text="object"/><Bullet />[`Trade`](/testnet/api/graphql/objects/trade)  <Badge class="secondary" text="object"/><Bullet />[`Vote`](/testnet/api/graphql/objects/vote)  <Badge class="secondary" text="object"/><Bullet />[`Withdrawal`](/testnet/api/graphql/objects/withdrawal)  <Badge class="secondary" text="object"/>
+[`AccountBalance`](/testnet/api/graphql/objects/account-balance)  <Badge class="secondary" text="object"/><Bullet />[`AccountEvent`](/testnet/api/graphql/objects/account-event)  <Badge class="secondary" text="object"/><Bullet />[`Delegation`](/testnet/api/graphql/objects/delegation)  <Badge class="secondary" text="object"/><Bullet />[`Deposit`](/testnet/api/graphql/objects/deposit)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProviderFeeShare`](/testnet/api/graphql/objects/liquidity-provider-fee-share)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProvision`](/testnet/api/graphql/objects/liquidity-provision)  <Badge class="secondary" text="object"/><Bullet />[`MarginLevels`](/testnet/api/graphql/objects/margin-levels)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/testnet/api/graphql/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`PartyEdge`](/testnet/api/graphql/objects/party-edge)  <Badge class="secondary" text="object"/><Bullet />[`Position`](/testnet/api/graphql/objects/position)  <Badge class="secondary" text="object"/><Bullet />[`Proposal`](/testnet/api/graphql/objects/proposal)  <Badge class="secondary" text="object"/><Bullet />[`Reward`](/testnet/api/graphql/objects/reward)  <Badge class="secondary" text="object"/><Bullet />[`StakeLinking`](/testnet/api/graphql/objects/stake-linking)  <Badge class="secondary" text="object"/><Bullet />[`Trade`](/testnet/api/graphql/objects/trade)  <Badge class="secondary" text="object"/><Bullet />[`Vote`](/testnet/api/graphql/objects/vote)  <Badge class="secondary" text="object"/><Bullet />[`Withdrawal`](/testnet/api/graphql/objects/withdrawal)  <Badge class="secondary" text="object"/>
 
 ### Implemented by
 

@@ -13,12 +13,13 @@
 - [admin.import_wallet](#adminimport_wallet): Import a wallet with its first key-pair with a recovery phrase and a version.
 - [admin.describe_wallet](#admindescribe_wallet): Returns the wallet base information.
 - [admin.list_wallets](#adminlist_wallets): Returns the list of the wallets present on the computer.
+- [admin.rename_wallet](#adminrename_wallet): Renames a wallet
+- [admin.remove_wallet](#adminremove_wallet): Removes a wallet from the computer.
 - [admin.list_networks](#adminlist_networks): Returns the list of all registered networks.
 - [admin.describe_network](#admindescribe_network): Returns the network information.
 - [admin.update_network](#adminupdate_network): Update an existing network.
 - [admin.remove_network](#adminremove_network): Removes a network from the computer.
 - [admin.import_network](#adminimport_network): Import a network configuration from a file or an URL.
-- [admin.remove_wallet](#adminremove_wallet): Removes a wallet from the computer.
 - [admin.generate_key](#admingenerate_key): Generates a key on the specified wallet.
 - [admin.describe_key](#admindescribe_key): Returns key's information.
 - [admin.list_keys](#adminlist_keys): Returns all generated key of the specified wallet.
@@ -63,7 +64,10 @@ This method should be the entry point of every third-party application. Once con
 |------------------|--------|--------|
 | **hostname** | string | The name of the third-party application initiating the connection. |
 
-### Result: `token`
+### Result: `Success`
+| Result key  |  Type  |  Description | Example |
+|------------------|--------|--------|---------|
+| token | string | A unique connection token randomly generated for each new connection. It's used to access the protected methods. | A unique connection token randomly generated for each new connection. It's used to access the protected methods.} |
 
 ### Errors
 - **Client error** (3000): the user closed the connection
@@ -110,7 +114,7 @@ Calling this method with an invalid token doesn't fail.
 |------------------|--------|--------|
 | **token** | string | A unique connection token randomly generated for each new connection. It's used to access the protected methods. |
 
-### Result: `No result`
+
 
 
 
@@ -155,7 +159,7 @@ This method should be called, by the third-party application, right after it suc
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| public_keys | string | The different access modes a permission can have. | The different access modes a permission can have.} |
+| permissions | object | The description of the permissions a third-party application has. | The description of the permissions a third-party application has.} |
 
 
 
@@ -205,7 +209,7 @@ The user has to review the permissions.
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| public_keys | string | The different access modes a permission can have. | The different access modes a permission can have.} |
+| permissions | object | The description of the permissions a third-party application has. | The description of the permissions a third-party application has.} |
 
 ### Errors
 - **Client error** (3000): the user closed the connection
@@ -287,6 +291,9 @@ It requires a `read` access on `public_keys`.
 | **token** | string | A unique connection token randomly generated for each new connection. It's used to access the protected methods. |
 
 ### Result: `Success`
+| Result key  |  Type  |  Description | Example |
+|------------------|--------|--------|---------|
+| keys | array | - | -} |
 
 ### Errors
 - **Application error** (2000): a "read" access on public keys is required
@@ -741,6 +748,92 @@ undefined
 ---
 
 
+## `admin.rename_wallet`
+
+This method renames a wallet in-place.
+
+If the new name matches an existing wallet, it fails.
+
+### Parameters
+| Parameter name  |  Type  |  Description |
+|------------------|--------|--------|
+| **wallet** | string | - |
+| **newName** | string | - |
+| **passphrase** | string | - |
+
+### Result: `Success`
+
+
+
+### Examples
+#### Rename a wallet
+undefined
+
+##### Parameters
+```json
+{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "admin.rename_wallet",
+    "params": {
+        "wallet": "my-wallet",
+        "newWallet": "my-new-wallet-name",
+        "passphrase": "this-is-not-a-good-passphrase"
+    }
+}
+```
+
+##### Result
+```json
+{
+    "name": "Success",
+    "value": {}
+}
+```
+
+---
+
+
+## `admin.remove_wallet`
+
+This method removes a wallet from the computer.
+
+### Parameters
+| Parameter name  |  Type  |  Description |
+|------------------|--------|--------|
+| **wallet** | string | - |
+
+### Result: `Success`
+
+
+
+### Examples
+#### Remove a wallet
+undefined
+
+##### Parameters
+```json
+{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "admin.remove_wallet",
+    "params": {
+        "wallet": "my-wallet"
+    }
+}
+```
+
+##### Result
+```json
+{
+    "name": "Success",
+    "value": {}
+}
+```
+
+---
+
+
 ## `admin.list_networks`
 
 This method returns the list of the registered networks.
@@ -1017,46 +1110,6 @@ undefined
 ---
 
 
-## `admin.remove_wallet`
-
-This method removes a wallet from the computer.
-
-### Parameters
-| Parameter name  |  Type  |  Description |
-|------------------|--------|--------|
-| **wallet** | string | - |
-
-### Result: `Success`
-
-
-
-### Examples
-#### Remove a wallet
-undefined
-
-##### Parameters
-```json
-{
-    "id": 1,
-    "jsonrpc": "2.0",
-    "method": "admin.remove_wallet",
-    "params": {
-        "wallet": "my-wallet"
-    }
-}
-```
-
-##### Result
-```json
-{
-    "name": "Success",
-    "value": {}
-}
-```
-
----
-
-
 ## `admin.generate_key`
 
 This method generates a key on the specified wallet.
@@ -1288,7 +1341,7 @@ undefined
     "params": {
         "wallet": "my-wallet",
         "passphrase": "this-is-not-a-good-passphrase",
-        "public_key": "b5fd9d3c4ad553cb3196303b6e6df7f484cf7f5331a572a45031239fd71ad8a0",
+        "publicKey": "b5fd9d3c4ad553cb3196303b6e6df7f484cf7f5331a572a45031239fd71ad8a0",
         "metadata": [
             {
                 "name": "portfolio",
@@ -1332,7 +1385,8 @@ This is a security feature that **lowers** the impact of having a wallet stolen.
 |------------------|--------|--------|
 | **wallet** | string | - |
 | **passphrase** | string | - |
-| **public_key** | string | The Vega public key to use. |
+| **isolatedWalletPassphrase** | string | - |
+| **publicKey** | string | The Vega public key to use. |
 
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
@@ -1355,6 +1409,7 @@ undefined
     "params": {
         "wallet": "my-wallet",
         "passphrase": "this-is-not-a-good-passphrase",
+        "isolatedWalletPassphrase": "this-is-also-not-a-good-passphrase",
         "publicKey": "b5fd9d3c4ad553cb3196303b6e6df7f484cf7f5331a572a45031239fd71ad8a0"
     }
 }

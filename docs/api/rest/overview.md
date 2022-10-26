@@ -16,3 +16,4 @@ Data nodes aggregate the outputs from core nodes and produce more meaningful API
 
 - [Data node (legacy API)](../../category/api/rest/data-v1/trading-data-service): Get limited historical information, such as 'governance data for all proposals'. This API version will be deprecated in a future version, and does not cover the system as comprehensively as v2.
 - [Data node (v2)](../../category/api/rest/data-v2/trading-data-service): Get historic information and cumulative data, such as 'governance data for all proposals'. v2 is receiving active development.
+- [Block explorer](../../category/api/rest/explorer/block-explorer): Get information about blocks created on the Vega network.

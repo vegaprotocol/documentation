@@ -28,6 +28,7 @@ type Transfer {
   status: TransferStatus!
   timestamp: String!
   kind: TransferKind!
+  reason: String
 }
 ```
 
@@ -76,6 +77,10 @@ type Transfer {
 
 #### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>kind</b></code>](#)<Bullet />[`TransferKind!`](/testnet/api/graphql/unions/transfer-kind) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="union"/>
 > The type of transfer being made, i.e. a one-off or recurring transfer
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>reason</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> An optional reason explaining the status of the transfer
 > 
 
 
