@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-title: Liquidity providers
+title: Committing liquidity
 hide_title: false
 ---
 
@@ -8,7 +8,7 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 
 The Vega protocol allows liquidity to be priced individually for each market, a design decision that rewards liquidity providers for taking a bigger risk on markets with little liquidity competition by allowing them to earn more per trade, and drives down fees on markets where there are many participants committing liquidity.
 
-Providing liquidity on a market can be done using a combination of two tactics: standard [limit orders](./../trading-on-vega/orders#limit-orders) and a [liquidity commitment](#liquidity-commitments).
+Providing liquidity on a market can be done using a combination of two tactics: standard [limit orders](./../trading-on-vega/orders#limit-order) and a [liquidity commitment](#liquidity-commitments).
 
 Participants who place limit orders on a market are, by default, supplying liquidity, and are rewarded by receiving a portion of the maker fee. Typically liquidity providers would aim to meet some of their liquidity obligation using standard limit orders, which give them the most control over their strategy. The [batch orders transaction](./../trading-on-vega/orders#batch-orders) is designed to enable this efficiently.
 
@@ -21,57 +21,47 @@ Participants who want to **[commit liquidity](#liquidity-commitment-transaction)
 ## Liquidity commitments
 Participants with sufficient collateral can provide liquidity for markets through a liquidity commitment submission.
 
-A liquidity commitment is made up of a series of orders that sit on the order book to be filled. Liquidity providers need to be able to support their liquidsity commitment - their available collateral must be able to meet the size of the nominated commitment amount and the margins required to support the orders generated from that commitment. Providers will also set aside a bond to cover their liquidity commitment, which is used if their collateral cannot cover it.
+A liquidity commitment, which is made up of a commitment amount and order shapes then informs the creation of a series of orders that sit on the order book to be filled. Liquidity providers need to be able to support their liquidity commitment - their available collateral must be able to meet the size of the nominated commitment amount and the margins required to support the orders generated from that commitment. Providers will also set aside a bond to cover their liquidity commitment, which is used if their collateral cannot cover it.
 
-**Liquidity providers will need to actively manage their commitment.** Amending and cancelling commitments is possible, but only if the market can function without that liquidity commitment by meeting its target stake. It is not possible to cancel the individual limit orders that are created from a liquidity commitment.
+Liquidity providers using liquidity commitments never submit their own orders and therefore don't control the volume of the orders. The volume is determined based on the [liquidity obligation calculation](#calculating-liquidity-obligation).
 
-### Target stake for a market
-The market's liquidity requirement, or its target stake, is the measurement of how much stake is the ideal committed to a market, relative to what is on the market at the time. It is derived from the maximum open interest observed over a rolling time window. 
-
-Target stake is used by the protocol to: 
-* Calculate the market's liquidity fee level from liquidity commitments 
-* Potentially trigger a liquidity monitoring auction if there's an imbalance between target stake and total stake (sum of all liquidity commitments)
-  * This can depend on the value of the `market.liquidity.targetstake.triggering.ratio` network parameter, which defines how sensitive the auction trigger is
+**Liquidity providers will need to actively manage their commitment.** Amending and cancelling commitments is possible, but only if the market can function without that liquidity commitment by meeting its target stake. It is not possible to cancel the individual pegged limit orders that are created from a liquidity commitment. Liquidity commitments are funded through assets in the general account and then the margin account, so market moves can have a dramatic impact on collateral.
 
 ### Liquidity bond
 When a provider commits liquidity, the amount of their commitment is set aside as bond, and the orders created by their commitment are funded by their unbonded collateral. Bond functions like an extra margin requirement to back up the provider's commitment to stay with the market, whether it's well supplied or under-supplied with liquidity. In return for that commitment, liquidity providers are rewarded with fees paid by traders that are not available to other market participants. 
 
-The amount committed during the liquidity commitment transaction is stored in a bond account (one per party, per market). The deposits and withdrawals for the account are governed by the protocol and cannot be manually triggered. 
+The amount committed during the liquidity commitment transaction is stored in a bond account (one per party, per market). The deposits and withdrawals for the account are governed by the protocol and cannot be manually triggered.
 
 When someone successfully commits liquidity, the commitment amount (in the market's settlement asset) is deposited into the bond account as part of the transaction. The bond total will remain in the bond account for as long as the liquidity provider is active. This is to act as a guarantee for the provider's liquidity obligation, to ensure that the commitment is firm and the protocol can rely on that liquidity in any market conditions, even if the provider's margin and general accounts have been depleted.
 
-## Liquidity obligation
-Once a liquidity commitment is submitted and accepted, it's used by the protocol to determine the provider's liquidity obligation, measured in a unit called siskas. This obligation is then what the provider needs to meet, unless they choose (and are able) to amend or cancel their commitment. It is calculated based on the volume, probability of trading and the price of orders on the market.
+### Target stake for a market [WIP]
+The market's liquidity requirement, or its target stake, is the measurement of how much stake is the ideal committed to a market, relative to what is on the market at the time. It is calculated using the maximum open interest observed over a rolling time window and a reference price, and scaled by a factor (set through a network parameter.)
 
-Standard limit orders placed by liquidity providers also contribute to meeting their obligation.
+Target stake is used by the protocol to: 
+* Calculate the market's liquidity fee level from liquidity commitments 
+* Potentially trigger a [liquidity monitoring auction] if there's an imbalance between target stake and total stake (sum of all liquidity commitments)
+  * This can depend on the value of the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.targetstake.triggering.ratio" hideValue={true} /> network parameter, which defines how sensitive the auction trigger is
 
-### Calculations: Liquidity obligation [WIP]
-The liquidity obligation is calculated from the liquidity commitment amount using the `stake_to_ccy_siskas` network parameter, which provides a value as:
+:::tip Query for data
+[Market data](../../api/rest/data-v2/trading-data-service-2-get-latest-market-data): Use the market data REST endpoint to see a market's target stake.
+:::
 
-`liquidity_obligation_in_ccy_siskas = stake_to_ccy_siskas ⨉ liquidity_commitment`
+The target stake formula uses the following network parameters to determine a market's target stake:
+* Rolling time window: <NetworkParameter frontMatter={frontMatter} param="market.stake.target.timeWindow" />
+* Scaling factor: <NetworkParameter frontMatter={frontMatter} param="market.stake.target.scalingFactor" />
 
-[**Confirm**] Here, `ccy` stands for 'currency'. For the purposes of calculations across markets using the same asset, liquidity on Vega is measured in units called 'currency siskas', e.g. ETH or USD siskas. This is because the calculation is basically `volume ⨉ probability of trading ⨉ price of the volume` and the price of the volume is in the said currency.
+:::Note Go deeper
+[Target stake calculations](https://github.com/vegaprotocol/specs/blob/master/protocol/0041-TSTK-target_stake.md): Read the spec for details on how target stake is calculated by the protocol.
+:::
 
-Liquidity obligation is considered to be met when the `volume ⨉ probability of trading ⨉ price of orders` of all liquidity providers, per each order book side, measured separately, is at least `liquidity_obligation_in_ccy_siskas`.
-
-converting the currency you staked into something that can be used to 
-
-say stake to ccy (defines how much liquidity gets deployed  - larger stake to ccy, the more that gets deployed, and the larger the orders for the LPs, leverage the LPs, have larger  order volumes without commtting more money, bigger liquidity with smaller stakes, higher risk of them getting closed) is hgh, only commited 1000 - if  they looked at obl, could be 10min, which would look crazy, but if you express obligation in terms of eth-siskas, obligations)
-
-eth siskas, is that multiplied by the value of eth
-
-shares a role with tau scaling - also modifies lp but charlie can't get into more detail 
-
-list of parameters for examples  to be able to link to (easiest are network parameters) (charlie working on toolkit for market parameters)
-
-## Liquidity rewards
-Liquidity providers receive rewards for providing liquidity, and penalties for not upholding their commitment through their available collateral. 
-
-Rewards are calculated automatically from the market's fees, which are paid by price takers, and distributed to the market's liquidity providers according to their relative commitments and how early in the market’s lifecycle they committed.
+## Rewarding liquidity providers
+Liquidity providers earn from the fees paid by takers on the market. How much providers are paid is calculated automatically and distributed according to the how the liquidity was provided (through limit orders or a liquidity commitment), based on a provider's relative commitment and how early in the market’s lifecycle they committed.
 
 Note: During an auction uncrossing, orders derived from a liquidity providers' commitments will not need to provide liquidity or enable trades. However, providers must maintain their liquidity commitment, and their liquidity orders are placed back on the order book when normal trading resumes.
 
 ## Penalties for not fulfilling liquidity commitment
+Not being able to support the orders created from your liquidity commitment with funds in your general and/or margin accounts will put you at risk of closeout, and can put the market into a situation where there is not enough liquidity.
+
 **If a liquidity provider can't cover their commitment**: If the liquidity provider's margin account doesn't have enough funds to support the orders that are derived from their commitment, the protocol will search for funds in the general account for the relevant asset. 
 
 If the general account doesn't have enough collateral to provide the margin to support the orders, then the protocol will transfer the remaining required amount from the liquidity provider's bond account, a penalty will be applied, and funds to cover the shortfall and pay the penalty will be transferred from the provider’s bond account to the market's insurance pool.
@@ -91,7 +81,7 @@ The penalty formula defines how much will be removed from the bond account:
 
 `bond penalty = market.liquidity.bondPenaltyParameter ⨉ shortfall`
 
-* `market.liquidity.bondPenaltyParameter` is a network parameter
+* <NetworkParameter frontMatter={frontMatter} param="market.liquidity.bondPenaltyParameter" hideName={false} hideValue={true} /> can be changed through governance
 * shortfall refers to the absolute value of the funds that either the liquidity provider was unable to cover through their margin and general accounts, are needed for settlement, or are needed to meet their margin requirements
 
 ## Liquidity commitment transaction
@@ -105,9 +95,9 @@ A liquidity commitment transaction must include:
 * Proposed liquidity fee level
 * A set of liquidity buy and sell orders
  
-**Liquidity providers will need to actively manage their commitment.** Reducing and cancelling commitments is possible, but only if the market can function without that liquidity commitment by meeting its target stake. It is always possible to increase the commitment or change the liquidity fee bid. It is not possible to cancel the individual limit orders that are created from a liquidity commitment but it is always possible to change the "shape" i.e. the [reference, offset, proportion] lists for each book side that form part of the liquidity provision order.
+**Liquidity providers will need to actively manage their commitment.** Reducing and cancelling commitments is possible, but only if the market can function without that liquidity commitment by meeting its target stake. It is always possible to increase the commitment or change the liquidity fee bid. It is not possible to cancel the individual limit orders that are created from a liquidity commitment but it is always possible to change the "shape", i.e. the [reference, offset, proportion] lists for each book side that form part of the liquidity provision commitment.
 
-### Liquidity commitment order type
+### Orders created from commitment
 In essence, liquidity commitment orders are sets of pegged orders grouped by order book size, with a proportion set for each order within the order 'shape'. The overall volume that Vega will imply and automatically place on the order book from this depends on the remaining liquidity obligation, the best bid / ask prices, the price monitoring bounds, and the risk model parameters, but the reference, offsets and proportion at the reference / offset can always be amended.
 
 Those orders use a special order type that automatically updates price and size as needed to meet the commitment, and automatically refreshes its volume after trading to ensure continuous liquidity provision.
@@ -128,7 +118,10 @@ Vega then calculates the size of the liquidity order placed at each price level 
 
 The shape of the orders placed for a liquidity provision can influence how likely they are to get matched with incoming orders. Orders closer to the best bid/ask price are more likely to be filled than orders further away.
 
-### Buy and sell shape example
+<details><summary>Buy and sell shape example</summary>
+<p>
+Below see how a buy and sell shape are constructed:
+
 ```
 *Buy shape*: {
   buy-entry-1: [liquidity-proportion-1, [price-peg-reference-1, number-of-units-from-reference-1]],
@@ -147,35 +140,32 @@ The shape of the orders placed for a liquidity provision can influence how likel
   sell-entry-2: [5, [best-ask, 9]],
 }
 ```
+</p>
+</details>
 
-### Submit liquidity commitment
-To use the liquidity commitment order type, a provider must submit a valid set of orders. That set must include a *buy shape* and a *sell shape*. 
+### Order volume
+Once a liquidity commitment is submitted and accepted, the committed amount, shapes submitted and the party’s other limit orders on the book are used by the protocol to determine the limit order volume that will be posted on the book to ensure the party meets its obligation.
 
-The network will translate these shapes into order book volume by creating an order set. 
+It is possible to meet the entire liquidity obligation with limit orders; indeed this should be the aim of most LP strategies as this gives the best control. The missing amount of the liquidity obligation is posted by the system. If the shape specifies large offset from best bid / ask then the system will place more volume on the book for the LP party. All other things being equal, higher committed stake means more volume is posted on the book.
 
-Each commitment submission must specify:
-* **Public key**: The Vega public key being used to place the liquidity commitment
-* The **market’s unique ID**, denoted as `marketId`: The market must be in a state to accept liquidity commitment. It cannot be a rejected market, has not had trading terminated, or has not been settled 
-* **Liquidity commitment amount**: The amount of funds to allocate to providing liquidity. The amount will be moved into a [bond account](#bond-account) during the duration of the liquidity commitment, denoted as `commitmentAmount`
-* **Proposed liquidity fee level**: The scaling factor for the fee the submitter is bidding to receive when the order is matched, on a scale between 0 and 1. For example, a fee level of 0.01 would mean `0.01 * total trade amount` is charged. [Learn how all proposed fee levels influence the market's fees](#how-the-fee-is-derived)). Denoted as `fee`
-* A set of liquidity **buy and sell order shapes** (denoted as `buys` and `sells`), which include:
-    * **Offset**: How many ticks away from the reference price you want your orders to be. The tick size is the smallest decimal place the market allows for orders. There is a tradeoff between larger offsets, which have higher margin cost but less position risk, versus smaller offsets, which have smaller margin cost but more postion risk
-    * **Proportion**: The proportion of your committed collateral allocated to this order, as a weight
-    * **Reference price**: The price that you want the order offset to reference. You can choose from the market’s mid price, best bid price, or the best ask price. In the examples below, the reference price is pegged to the mid-price, which means as the mid-price moves, so do the LP orders. This would be useful if, for example, you wanted to always provide a spread of 10 ticks, then you could peg your first orders 5 ticks from the mid price on each side.
-  * **Propagate**: Is true or false. Propogate is used to define if you want the liquidity commitment sent to the nodes for processing immediately (true), or if you want to manually submit the orders in a transaction (false). Note: If you choose to manually submit, it must be within the block tolerance level or it will be rejected
- 
-:::tip Query for data
-See a full list of applicable reference price levels in the [API documentation](./../../grpc/vega/vega.proto#peggedreference), denoted as `reference`.
+The obligation is higher if the offsets are further away from the best bid/ask, and lower the closer the offsets are to the bid/ask. A higher obligation results in larger orders being deployed. The protocol assigns more value to volume that is close to best bid / ask, and less to volume further out. Each unit of volume counts for less the further they are from the best bid / ask. 
+
+:::note Go deeper
+Explore liquidity calculations in more depth in the [liquidity mechanics spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0044-LIME-lp_mechanics.md).
 :::
 
-### Amend liquidity commitment
-Liquidity commitment orders can be amended by providing a new set of liquidity provision orders in the liquidity provider transaction. 
+### Liquidity commitment transactions
+A liquidity commitment makes it to the network once a participant submits it. Liquidity providers can also, depending on the commitment and the market state, amend and cancel their commitment. 
+
+Only one commitment for a market can exist per provider, so adding to it or changing it must be done by amending the existing commitment.
+
+#### Amending and cancelling a liquidity commitment
+Liquidity commitments can be amended by providing a new set of liquidity provision orders in the liquidity provider transaction. 
 
 When amending a liquidity commitment, the network will always allow the submitter to provide more liquidity. However, reducing the liquidity commitment will depend on the maximum amount that the market can reduce by given the current liquidity demand in the market. If the submitter were to reduce their commitment to the point where the market would drop below its required stake threshold, then the amendment would not be accepted.
 
 Submitting an amendment replaces the entire set of orders with the ones in the amendment transaction. To keep any of the existing order shapes, they'll need to added into the amendment.
 
-### Cancel liquidity commitment
 Cancelling a liquidity commitment, in effect, requests that the liquidity provision orders are amended to zero. Once the orders are cancelled, the bond amount is returned back into the submitter's general account.
 
 If cancelling a commitment would leave a market without enough liquidity, then the cancellation will not be accepted. 
@@ -183,14 +173,20 @@ If cancelling a commitment would leave a market without enough liquidity, then t
 If there are any open positions that were created from the liquidity orders, they will not be cancelled when a liquidity commitment is cancelled.
 
 ## Liquidity fees
+Liquidity providers receive a cut of the fees paid by price takers. 
+   
+The amount each liquidity provider receives depends on:
+* The market's liquidity fee, or the percentage of a trade's value which is collected from the price taker for every trade, and combined in a pool 
+* Their equity-like share of the market, which is based on the relative size of their commitment amount, and when they committed liquidity to the market
+   
+The fee percentage determines how much money goes into the pool. How much a provider receives in fees is dependent on when they began to commit liquidity on the market, as liquidity providers who commit to a market early benefit from helping to grow the market (also known as the 'equity-like share').
+
 As part of the liquidity commitment transaction, a liquidity provider submits their desired liquidity fee factor, as a number between 0 and 1. That number is converted to a percentage, and fees are paid on each trade.
    
-The proposed fees are used to calculate the actual fee each participant will pay on a trade in that market. Once the fee for the market is set, all liquidity orders charge that fee, regardless of whether the provider's submitted fee was higher or lower.
+The proposed fees are used to calculate the actual fee each participant will pay on a trade in that market. Once the fee for the market is set, all liquidity orders charge that fee, regardless of whether the provider's submitted fee was higher or lower, and whatever the proposed fee factor, whoever submits the commitment is a liquidity provider.
 
 This fee can change as the market's target stake changes, and / or as liquidity providers change their commitment or stop providing liquidity altogether. 
 
-How much a provider receives in fees is also dependent on when they began to commit liquidity on the market, as liquidity providers who commit to a market early benefit from helping to grow the market (also known as the 'equity-like share').
- 
 ### How the fee is derived
 The liquidity orders submitted are sorted into increasing fee order so that the lowest fee percentage bid is at the top, and the highest is at the bottom. 
 
@@ -200,7 +196,8 @@ Initially, before a market opens for trading, the target stake is zero, as it's 
 
 Once the market opens and its opening auction begins, a clock starts ticking. The protocol calculates the target stake, and the fee is continuously re-evaluated.
 
-#### Liquidity fee example
+<details><summary>Liquidity fee example</summary>
+<p>
 In the example below, there are 3 liquidity providers all bidding for their chosen fee level, with the lowest fee bid at the top, and the highest at the bottom. 
 
 * [LP 1 stake = 120 ETH, LP 1 liquidity-fee-factor = 0.5%]
@@ -210,6 +207,9 @@ In the example below, there are 3 liquidity providers all bidding for their chos
 * If the target stake = 119 then the needed liquidity is given by LP 1, thus market's liquidity-fee-factor is the LP 1 fee: 0.5%.
 * If the target stake = 123 then the needed liquidity is given by the combination of LP 1 and LP 2, and so the market's liquidity-fee-factor is LP 2 fee: 0.75%.
 * If the target stake = 240 then all the liquidity supplied above does not meet the estimated market liquidity demand, and thus the market's liquidity-fee-factor is set to the highest, LP 3's fee: 3.75%.
+
+</p>
+</details>
 
 ### How liquidity fees are split
 By committing liquidity, a liquidity provider gets a share of the market's fees that depends on how trading has grown on the market. This is known as the equity-like share. Liquidity providers who get into a market early benefit from helping to grow the market by earning a larger share of the market's trading fees than their actual commitment would imply. 
@@ -227,8 +227,9 @@ The liquidity fee amount is collected from traders on every trade, and held in a
 
 How often fees are distributed is defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providers.fee.distributionTimeStep" hideName={false} />. Starting with the end of the market's opening auction, every time the time-step has been hit, the balance in the account is transferred to each liquidity provider's margin account for the market, depending on their share at the time.
 
-#### Fee distribution example
-A market have 4 LPs with equity-like shares:
+<details><summary>Fee distribution example</summary>
+<p>
+A market has 4 LPs with equity-like share:
 
 * LP 1 share = 0.65
 * LP 2 share = 0.25
@@ -241,3 +242,6 @@ Thus, the following amounts are then transferred to each LP's margin account onc
 * LP 1 receives: 0.65 x 103.5 = 67.275 ETH
 * LP 2 receives: 0.25 x 103.5 = 25.875 ETH
 * LP 3 receives: 0.10 x 103.5 = 10.350 ETH
+
+</p>
+</details>
