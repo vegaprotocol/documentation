@@ -13,8 +13,8 @@
     // The minimum economically meaningful amount in the asset (string)
     quantum: "1",
     erc20: {
-     // The maximum allowed per withdraw.
-     // This is will be interpreted against the asset decimals. (string)
+     // The maximum you can withdraw instantly. All withdrawals over the threshold will be delayed by the withdrawal delay.
+     // There’s no limit on the size of a withdrawal (string)
      withdrawThreshold: "10",
 
      // The lifetime limits deposit per address.
@@ -26,11 +26,11 @@
 
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-  closingTimestamp: 1667843647,
+  closingTimestamp: 1668419318,
 
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-  enactmentTimestamp: 1667930047,
+  enactmentTimestamp: 1668505718,
  }
 }
 ```

@@ -45,7 +45,9 @@ echo ""
 ./scripts/build-pre-flatten.sh
 # Fix things that are easier fixed in the specs than the output
 ./scripts/build-pre-fix-specs.sh
-
+# Generate OpenAPI from swagger 
+./scripts/build-pre-openapi.sh
+# 
 export NO_UPDATE_NOTIFIER="true"
 
 yarn run generate-netparams

@@ -45,8 +45,8 @@ enum OrderRejectionReason {
   ORDER_ERROR_CANNOT_AMEND_TO_FOK_OR_IOC
   ORDER_ERROR_CANNOT_AMEND_TO_GFA_OR_GFN
   ORDER_ERROR_CANNOT_AMEND_FROM_GFA_OR_GFN
-  ORDER_ERROR_GFN_ORDER_DURING_AN_AUCTION
-  ORDER_ERROR_GFA_ORDER_DURING_CONTINUOUS_TRADING
+  ORDER_ERROR_CANNOT_SEND_GFN_ORDER_DURING_AN_AUCTION
+  ORDER_ERROR_GFA_CANNOT_SEND_ORDER_DURING_CONTINUOUS_TRADING
   ORDER_ERROR_CANNOT_SEND_IOC_ORDER_DURING_AUCTION
   ORDER_ERROR_CANNOT_SEND_FOK_ORDER_DURING_AUCTION
   ORDER_ERROR_MUST_BE_LIMIT_ORDER
@@ -179,11 +179,11 @@ enum OrderRejectionReason {
 > Amending from Good for Auction or Good for Normal is invalid
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_GFN_ORDER_DURING_AN_AUCTION</b></code>](#) 
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_CANNOT_SEND_GFN_ORDER_DURING_AN_AUCTION</b></code>](#) 
 > Good for Normal order received during an auction
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_GFA_ORDER_DURING_CONTINUOUS_TRADING</b></code>](#) 
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_GFA_CANNOT_SEND_ORDER_DURING_CONTINUOUS_TRADING</b></code>](#) 
 > Good for Auction order received during continuous trading
 > 
 
