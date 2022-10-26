@@ -11,7 +11,7 @@ The Vega node is the implementation of the Vega protocol. It secures the network
 
 The data node offers a set of APIs to query the state of the network. It works as a pair with a Vega node (started in non-validator mode) to reconcile the state of the application and serve rich APIs.
 
-The Vega toolchain, which you'll install below, is the binary that provides everything you need to set up a Vega node, data node, Vega Wallet, block explorer, and tools for interacting with the protocol.
+The Vega toolchain, which you'll install below, is the binary that provides everything you need to set up a Vega node, data node, Vega Wallet, block explorer, and tools for interacting with the protocol, and includes the Tendermint version compatible with the Vega software.
 
 Both nodes are built using bare Go and should run on most mainstream platforms (MacOS, Windows and Linux). 
 
@@ -30,12 +30,13 @@ For production use, we recommend using the Linux binary on Ubuntu as this is the
 See the [infrastructure requirements](../requirements/infrastructure.md) page for a full list of what you need to run various parts of the Vega toolchain.
 
 ## Use the pre-built binaries
-One way to set up a Vega node or data node is to use the pre-built binaries. 
+One way to set up a Vega node is to use the pre-built binaries. 
 
-* [Vega core releases](https://github.com/vegaprotocol/vega/releases)
-* [Data node releases](https://github.com/vegaprotocol/data-node/releases)
+Find them under [Vega core releases](https://github.com/vegaprotocol/vega/releases).
 
 If the pre-built binaries don't work or are unavailable for your system, you will need to [**build the binaries from sources**](#build-from-sources).
+
+Note: If you use the pre-built binaries and are using Linux or MacOS, you may need to prepend `./` to the commands in the instructions.
 
 ## Build from sources 
 This section will walk you through compiling the Vega toolchain yourself from the source code.
@@ -87,6 +88,6 @@ This should result in a Vega binary built at the root of the repository.
 
 To ensure that the compilation was successful run the following command:
 ```
-./vega version
+vega version
 ```
 This will print the version of the binary you just built.
