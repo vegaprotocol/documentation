@@ -21,14 +21,14 @@ All of the network's nodes will take a snapshot of the state at the same block h
 ## List available snapshots
 The vega toolchain offers a subcommand to list all snapshots available locally. Once your node has been running for a while, you should be able to see them using the following command:
 ```
-vega snapshots --home=YOUR_VEGA_HOME
+vega tools snapshotdb --show=list --home="YOUR_VEGA_HOME"
 Snapshots available: 2
 	Height 901, version: 4, size 92, hash: 562414bb5be3ccc8403fbd030d06eebc799bfef5ca25b02ad360fec349cb4bc8
 	Height 601, version: 3, size 92, hash: 72a2edd960cf3340ae94bf092991f923850738144789959124590675798fefd9
 ```
 Here we can see that our node took two snapshots, at the block 901 and 601.
 
-You can set how many blocks you want the note to retain through the vega configuration:
+You can set how many blocks you want the note to retain through the Vega configuration:
 ```Toml
 [Snapshot]
   ...
@@ -57,17 +57,17 @@ Alternatively, add the block height in the configuration file in the Snapshot se
   ...
 ```
 
-## Snapshots from the network [WIP]
+## Snapshots from the network
 
 :::note
-When loading snapshots from the network, the steps described previously to load them locally are not necessary. You will need to get the snapshots information from another node runner in the network (e.g, at which block height a snapshot was taken).
+When loading snapshots from the network, the steps described previously to load them locally are not necessary. You will need to get the snapshots information from another node operator in the network (e.g, at which block height a snapshot was taken).
 :::
 
 Tendermint offers the possibility to gossip about snapshots taken by other nodes. This can be enabled via the tendermint configuration. 
 
 You will also need the hash of the block at the height you want to load the snapshot, but also a list of trusted tendermint RPC servers (the default port on the node should be 26657).
 
-To get the current trust height and trust hash, you'll need to join the Vega validator Discord channel, and ask the validator community.(link)
+To get the current trust height and trust hash, you'll need to ask the validator community. See the [community page](./../requirements/community.md) for guidance.
 
 Update the following Tendermint configuration section:
 ```Toml
@@ -92,9 +92,8 @@ vega start --home="YOUR_VEGA_HOME" --tendermint-home="YOUR_TENDERMINT_HOME" --ne
 If you need to reset the Tendermint and Vega nodes, use the following commands. They will remove all chain-related data and keep node wallets, private keys and saved config:
 
 ```
-vega tendermint --home="YOUR_TENDERMINT_HOME" unsafe_reset_all
-vega --home="YOUR_VEGA_HOME" unsafe_reset_all
-
+vega tendermint unsafe_reset_all --home="YOUR_TENDERMINT_HOME"
+vega unsafe_reset_all --home="YOUR_VEGA_HOME"
 ```
 
 ## Inspect snapshots data using vegatools

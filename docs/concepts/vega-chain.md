@@ -224,6 +224,11 @@ let `t` be the total voting power in the previous epoch
 let expected = `v*b/t` the number of blocks the validator is expected to propose. 
 Then `validator_performance = max(0.05, min((p/expected, 1))`
 
+<!--
+voting power calc based on other scores. when a block is proposed, and other validators vote, this number tells you relative to oterhs how much each validator's vote is worth. requires 2/3+1 of total voting power to sign off on a block. 
+ ? divided by the sum of all the validators' voting power: how much/ what percentage of the voting power each validator has
+your voting power takes into account stake as well as performance. 
+-->
 ### Performance score: Standby validators
 The performance score for *new* standby validators is set to 0. The performance score of a standby validator is calculated based on them successfully submitting transactions.
 

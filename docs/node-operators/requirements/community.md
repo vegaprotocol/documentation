@@ -17,9 +17,11 @@ Minimum self-stake, set by network parameter: <NetworkParameter frontMatter={fro
 ## Community
 Vega will communicate with node operators, and node operators should communicate with the community using the channels below. If you are running a Vega node, sign up to the following channels.
 
-**Validators Discord**: To finalise setting up your validator node, you will need to join the Vega validators Discord channel. This channel is also where important information is shared between node operators, and where validator votes, and new software availability are announced.
+<!-- confirm for mainnet: **Validators Discord**: To finalise setting up your validator node, you will need to join the Vega validators Discord channel. This channel is also where important information is shared between node operators, and where validator votes, and new software availability are announced. -->
 
 **[Vega community Discord](https://vega.xyz/discord)**: Use the Vega community Discord to introduce yourself, communicate network updates with tokenholders and community members, and keep on top of community news.
+
+**Sandbox channel**: To finalise setting up your validator node, you will need to join the sandbox support channel in the Vega Discord server. This channel is also where important information is shared between node operators, and where validator votes, and new software availability are announced.
 
 **[Vega community forum](https://community.vega.xyz)**: Introduce your node operation, and keep track of governance proposals and other discussions on the Vega forum.
 
