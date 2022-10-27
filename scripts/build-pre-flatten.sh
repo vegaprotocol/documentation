@@ -11,13 +11,13 @@
 movePlease () {
     if test -e "$1"; then
         mv "$1" "$2"
-        echo "$1 moved (from $2)"
+        echo " - $1 moved (from $2)"
     else
         if test -f "$2"; then
-            echo "$2 already exists"
+            echo " - $2 already exists"
 
         else
-            echo "$1 missing"
+            echo " - $1 missing"
         fi
     fi
 }
