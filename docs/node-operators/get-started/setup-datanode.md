@@ -122,7 +122,6 @@ While it's possible to run the data node and Vega node on separate machines, it'
 ## Data Node
 
 ### Database configuration
-
 Data node database configuration is defined under the `[SQLStore.ConnectionConfig]` section of the data node configuration file `YOUR_DATA_NODE_HOME_PATH/config/data-node/config.toml`:
 
 ```toml
@@ -139,7 +138,6 @@ Data node database configuration is defined under the `[SQLStore.ConnectionConfi
 You should ensure the database configuration matches those of the database you created in the pre-requisite steps.
 
 ### Wipe on startup
-
 :::warning Database wipe
 The following will wipe the database on startup, so use with caution.
 
@@ -154,7 +152,6 @@ If you want to wipe the database on startup, you can set the `WipeOnStartup` fla
 ```
 
 ### Embedded Postgres
-
 :::warning
 This is not recommended for use in production, but you can use it to test or learn about the system.
 :::
@@ -169,6 +166,19 @@ If you do not have access to, or do not want to use a PostgreSQL database server
 ```
 
 This will cause data node to download a specially prepared Postgresql package which is extracted to your local machine if it doesn't exist. A separate Postgresql process will be spawned by data node using the credentials you specified in the database configuration section. Once data node is stopped, the child Postgresql process will be stopped automatically.
+
+You can launch Postgresql in its own separate process using the data node embedded postgresql binaries by running the following command:
+
+```shell
+vega datanode postgres run --home=YOUR_DATA_NODE_HOME_PATH
+```
+
+In either case, the files for the database will be stored in the data node `state` folder located at `YOUR_DATA_NODE_HOME_PATH/state.data-node/storage/sqlstore`.
+
+### Using a cloud database provider
+While this hasn't been tested, it should be possible to use a cloud database provider such as AWS RDS or Azure Database for PostgreSQL. You will need to ensure that the database is accessible from the machine you are running the data node on. Bare in mind however that the volume of data that will be transferred between the Vega node and the data node will be significant.
+
+Also note that if you are restoring from a snapshot, the data-node event source will need to be buffered to disk as a remote hosted database will not be able to keep up given the volume of data that will need to be transferred and the possible network latency, stability issues.
 
 ### Buffered event source
 When a data-node is restarted from snapshots, it is possible for the event queue to become flooded causing the Vega core to panic when the event queue is full and stop both the Vega core and data node.
@@ -196,3 +206,120 @@ To start Vega, run the following command:
 ```shell
 vega start --home=YOUR_VEGA_HOME_PATH --tendermint-home=YOUR_TENDERMINT_HOME_PATH
 ```
+
+### Configuring Data Node APIs
+In order for clients to communicate with data nodes, we expose a set of APIs and methods for reading data.
+
+There are currently three protocols to communicate with the data node APIs:
+
+#### gRPC
+gRPC is an open source remote procedure call (RPC) system initially developed at Google. In data node the gRPC API features streaming of events in addition to standard procedure calls.
+
+The default port (configurable) for the gRPC API is `3007` and matches the [gRPC protobuf definition](https://github.com/vegaprotocol/protos).
+
+gRPC configurations are defined under the `[Gateway.Node]` section of the data node configuration file `YOUR_DATA_NODE_HOME_PATH/config/data-node/config.toml`:
+
+```toml
+  [Gateway.Node]
+    Port = 3007
+    IP = "0.0.0.0"
+```
+
+#### GraphQL
+[GraphQL](https://graphql.org/) is an open-source data query and manipulation language for APIs, and a runtime for fulfilling queries with existing data, originally developed at Facebook. The [Console](https://github.com/vegaprotocol/console) uses the GraphQL API to retrieve data including streaming of events.
+
+The GraphQL API is defined by a [schema](gateway/graphql/schema.graphql). External clients will use this schema to communicate with Vega.
+
+Queries can be tested using the GraphQL playground app which is bundled with a node. The default port (configurable) for the playground app is `3008` accessing this in a web browser will show a web app for testing custom queries, mutations and subscriptions.
+
+The GraphQL default port and other configuration options can be found in the data-node configuration file `YOUR_DATA_NODE_HOME_PATH/config/data-node/config.toml` under the `Gateway.GraphQL` section:
+
+```toml
+  [Gateway.GraphQL]
+    Port = 3008
+    IP = "0.0.0.0"
+    Enabled = true
+    ComplexityLimit = 0
+    HTTPSEnabled = false
+    AutoCertDomain = ""
+    CertificateFile = ""
+    KeyFile = ""
+    Endpoint = "/graphql"
+```
+
+##### GraphQL SSL
+**GraphQL subscriptions do not work properly unless the HTTPS is enabled**.
+
+To enable TLS on the GraphQL port, set
+
+```toml
+  [Gateway.GraphQL]
+    HTTPSEnabled = true
+```
+
+You will need your data node to be reachable over the internet with a proper fully qualified domain name, and a matching certificate. If you already have a certificate and corresponding private key file, you can specify them as follows:
+
+```toml
+  [Gateway.GraphQL]
+    CertificateFile = "/path/to/certificate/file"
+    KeyFile = "/path/to/key/file"
+```
+
+If you prefer, the data node can manage this for you by automatically generating a certificate and using `LetsEncrypt` to sign it for you.
+
+```toml
+  [Gateway.GraphQL]
+    HTTPSEnabled = true
+    AutoCertDomain = "my.lovely.domain.com"
+```
+
+However, it is a requirement of the `LetsEncrypt` validation process that the the server answering its challenge is running on the standard HTTPS port (443). This means you must either
+
+- Forward port 443 on your machine to the GraphQL port (3008 by default) using `iptables` or similar
+- Directly use port 443 for the GraphQL server in data-node by specifying
+
+```toml
+  [Gateway.GraphQL]
+    Port = 443
+```
+
+Note that Linux systems generally require processes listening on ports under 1024 to either
+
+- run as root, or
+- be specifically granted permission, e.g. by launching with
+
+```shell
+setcap cap_net_bind_service=ep vega datanode run
+```
+
+##### GraphQL Complexity
+Currently the GraphQL complexity limit is globally set to 3750.
+This setting is theoretic at the moment and will be refined and have different levels for different queries/resolvers in the future.
+
+The intention behind this limit is to prevent the VEGA system from being abused by heavy queries (DOS). The complexity level is mostly affected by the number of objects a query contains. So the heaviest ones we currently have in the system are:
+
+| Query | Items | Complexity |
+| ----- | ----- | ---------- |
+| SimpleMarkets (embedded candles) | 1 candle | 151 |
+| SimpleMarkets (embedded candles) | 91 candle | 788 |
+| MarketInfo (embedded candles) | 1 candle | 399 |
+| MarketInfo (embedded candles) | 91 candles | 1036 |
+| Orders (embedded orders) | 1 order | 163 |
+| Orders (embedded orders) | 80 orders | 4003 |
+| Trades (embedded trades) | 1 trades | 118 |
+| Trades (embedded trades) | 75 trades | 1393 |
+| Positions (embedded positions) | 1 position | 129 |
+| Positions (embedded positions) | 40 positions | 2500 |
+
+The approximate number of positions queries by customers is 40.
+
+The GraphQL will return error for queries that have complexity above the set limit: "GraphQL error: Query is too complex to execute" and will not proceed with execution.
+
+#### REST
+REST provides a standard between computer systems on the web, making it easier for systems to communicate with each other. It is arguably simpler to work with than gRPC and GraphQL. In Vega the REST API is a reverse proxy to the gRPC API, however it does not support streaming.
+
+The default port (configurable) for the REST API is `3009` and we use a reverse proxy to the gRPC API to deliver the REST API implementation.
+
+## Further reading
+
+For more information about data-node and developing on data-node please see the data-node [README](https://github.com/vegaprotocol/vega/blob/develop/datanode/README.md)
