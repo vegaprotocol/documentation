@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "data-node/api/v1/trading_data.proto",
-    "version": "version not set"
+    "version": "0.60.0"
   },
   "tags": [
     {

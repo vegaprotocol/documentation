@@ -50,13 +50,13 @@ echo ""
 # Inject more testnet servers for testnet
 ## Run vaguer and store the output
 ./scripts/build-pre-vaguer.sh
-## Now inject servers
-node --no-warnings --experimental-fetch scripts/build-pre-openapi-servers.js
 
 
 # Generate OpenAPI from swagger 
 ./scripts/build-pre-openapi.sh
-# 
+# Now inject servers
+node --no-warnings --experimental-fetch scripts/build-pre-openapi-servers.js
+
 export NO_UPDATE_NOTIFIER="true"
 
 yarn run generate-netparams

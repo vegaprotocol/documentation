@@ -132,9 +132,9 @@ serversForNetwork(generateForMainnet).then(servers => {
       spec.servers = [ { url: 'https://n13.testnet.vega.xyz/rest', description: 'n13: Experimental node' }]
     } else {
       spec.servers = openApiServers
+      console.log(`Updating ${s} with`)
+      console.dir(openApiServers)
     }
-
-    console.log('Updated server list')
 
     console.log('Writing server list...')
     fs.writeFileSync(s, JSON.stringify(spec), 'utf-8')
