@@ -88,7 +88,13 @@ export CGO_ENABLED=0
     cd vega
     ```
 
-3. Build the Vega binary by running the following command from the root of the cloned repository:
+3. Check out the release tag you want to build:
+
+    ```Shell
+    git checkout v0.60.0
+    ```
+
+4. Build the Vega binary by running the following command from the root of the cloned repository:
 
     ```shell
     go build -v ./cmd/vega
