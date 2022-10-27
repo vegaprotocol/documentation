@@ -91,7 +91,7 @@ export CGO_ENABLED=0
 3. Check out the release tag you want to build:
 
     ```Shell
-    git checkout v0.60.0
+    git checkout vX.XX ##Use the software version for the network you're using
     ```
 
 4. Build the Vega binary by running the following command from the root of the cloned repository:
@@ -120,4 +120,4 @@ For instructions on how to set up a Vega node as a validator, see the [validator
 
 #### Setting up a data node
 
-For instructions for setting up datanode can be found on the [data node setup guide](setup-datanode.md) page.
+For instructions for setting up data node can be found on the [data node setup guide](setup-datanode.md) page.
