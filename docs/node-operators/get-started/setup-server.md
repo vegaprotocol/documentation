@@ -36,7 +36,8 @@ Find them under [Vega core releases](https://github.com/vegaprotocol/vega/releas
 
 If the pre-built binaries don't work or are unavailable for your system, you will need to [**build the binaries from sources**](#build-from-sources).
 
-Note: If you use the pre-built binaries and are using Linux or MacOS, you may need to prepend `./` to the commands in the instructions.
+:::note If you use the pre-built binaries and are using Linux or MacOS, you may need to prepend `./` to the commands in the instructions.
+:::
 
 ## Build from sources 
 This section will walk you through compiling the Vega toolchain yourself from the source code.
@@ -74,20 +75,43 @@ export CGO_ENABLED=0
 ```
 
 ### Build the Vega node
+
 1. Clone the Vega repository:
-```Shell
-git clone https://github.com/vegaprotocol/vega
-```
 
-2. Build the Vega binary by running the following command from the root of the cloned repository:
-```
-go build -v ./cmd/vega
-```
+    ```Shell
+    git clone https://github.com/vegaprotocol/vega
+    ```
 
-This should result in a Vega binary built at the root of the repository. 
+2. Navigate to the vega folder you just cloned:
+
+    ```Shell
+    cd vega
+    ```
+
+3. Build the Vega binary by running the following command from the root of the cloned repository:
+
+    ```shell
+    go build -v ./cmd/vega
+    ```
+
+This should result in a Vega binary built at the root of the repository.
 
 To ensure that the compilation was successful run the following command:
+
+```shell
+./vega version
 ```
-vega version
-```
+
 This will print the version of the binary you just built.
+
+:::note In order to run the `vega` command from any folder you should move the binary to a folder that is in your PATH.
+
+### Next Steps
+
+#### Setting up a validator node
+
+For instructions on how to set up a Vega node as a validator, see the [validator setup guide](setup-validator.md).
+
+#### Setting up a data node
+
+For instructions for setting up datanode can be found on the [data node setup guide](setup-datanode.md) page.
