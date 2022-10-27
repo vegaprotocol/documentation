@@ -1,78 +1,58 @@
 ---
 sidebar_position: 2
-title: Set up server
+title: Set up data node
 hide_title: false
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## Setting up a data node
-
-To setup a data node, you must have followed the guide to setup and install a Vega node.
+To set up a data node, you must first have followed the guide to [install and set up a Vega node](setup-server.md).
 
 A data node must be run in conjunction with a Vega node. The Vega node will send the events it receives from the network and the events it creates to the data node, which will then store them in a database. An API is provided to query the data stored by the data node.
 
-The database used by the data node is a Postgresql database with the Timescale extension installed. The database can be a dedicated database server, a docker container, or an embedded version of Postgresql with Timescale installed that is provided by Vega.
+The database used by the data node is a PostgreSQL database with the Timescale extension installed. The database can be a dedicated database server, a docker container, or an embedded version of PostgreSql with Timescale installed that is provided by Vega.
 
-:::Note: The following instructions assume you are installing on a Ubuntu Linux machine as explained in the [server setup guide](setup-server.md).
+:::note Operating system 
+The following instructions assume you are installing on a Ubuntu Linux machine as explained in the [server setup guide](setup-server#os-and-software).
+:::
 
-### Pre-requisites
+## Pre-requisites
 
-#### Vega core
+### Vega core
 
-Please following instructions in the [server setup guide](setup-server.md) to install Vega.
+Please follow the instructions in the [server setup guide](setup-server.md) to install Vega.
 
-#### Postgresql and TimescaleDB full installation
+### PostgreSQL and TimescaleDB full installation
 
-We have tested and recommend using version 2.8.0 of the TimescaleDB plugin with Postgres 14. The installation instructions can be found in [Timescales Documentation](https://docs.timescale.com/install/latest/self-hosted/installation-debian/).
+We have tested and recommend using version 2.8.0 of the TimescaleDB plugin with Postgres 14. 
 
-To ensure you install the correct version of TimescaleDB, you can use the following command, as detailed in the notes at the bottom of the `Installing self-hosted TimescaleDB on Debian-based systems`:
+The installation instructions can be found in [Timescales Documentation](https://docs.timescale.com/install/latest/self-hosted/installation-debian/).
 
-```Shell
-apt-get install timescaledb-2-postgresql-14='2.8.0*' timescaledb-2-loader-postgresql-14='2.8.0*'
-```
+Refer to the [PostgreSQL documentation](https://www.postgresql.org/docs/14/index.html) for more detailed information on setting up a PostgreSQL database.
 
-##### Adding a role and database for the data node
+:::note Linux users
+To ensure you install the correct version of TimescaleDB, you can use the notes at the bottom of the [Timescales Documentation for Debian](https://docs.timescale.com/install/latest/self-hosted/installation-debian/).
 
-1. If the a user does not already exist for the database, you will need to create one.
+MacOS users
+To ensure you install the correct version of TimescaleDB, you can use the notes at the bottom of the [Timescales Documentation for Mac](https://docs.timescale.com/install/latest/self-hosted/installation-macos/). 
+:::
 
-    ```Shell
-    sudo adduser <database_user>
-    ```
+### PostgreSQL and TimescaleDB docker installation
+If you prefer to run PostgreSQL and TimescaleDB in a docker container, you can use the following command to start a Postgresql docker container with TimescaleDB installed:
 
-    Follow the prompts to create the user and set a password.
-
-2. Create a new role in postgres for your database user
-
-    ```shell
-    sudo -u postgres createuser --interactive
-    ```
-
-    Follow the prompts to create the role for your database user.
-
-3. Create a new database for the database user
-
-    ```shell
-    sudo -u postgres createdb <database_name>
-    ```
-
-    Follow the prompts to create the database for your database user.
-
-#### Postgresql and TimescaleDB docker installation
-
-If you prefer to run Postgresql and TimescaleDB in a docker container, you can use the following command to start a Postgresql docker container with TimescaleDB installed:
-
-:::note This guide assumes you already have Docker installed on your system. For full installation guide consult Docker's [documentation](https://docs.docker.com/engine/install/ubuntu/).
+:::note 
+This guide assumes you already have Docker installed on your system. For full installation guide consult Docker's [documentation](https://docs.docker.com/engine/install/ubuntu/).
 :::
 
 ```Shell
 docker run -d \
     --rm \
     --name data-node-db \
-    -e POSTGRES_USER=<database_user> \
-    -e POSTGRES_PASSWORD=<database_password> \
-    -e POSTGRES_DB=<database_name> \
-    -p <localdb_port>:5432
+    -e POSTGRES_USER=DATABASE_USER \
+    -e POSTGRES_PASSWORD=DATABASE_PASSWORD \
+    -e POSTGRES_DB=DATABASE_NAME \
+    -p LOCALDB_PORT:5432
     -v /host_path/to/snapshotsCopyTo:/snapshotsCopyTo:z \
     -v /host_path/to/snapshotsCopyFrom:/snapshotsCopyFrom:z \
     timescale/timescaledb:2.8.0-pg14
@@ -87,22 +67,16 @@ Where:
 - `/host_path/to/snapshotsCopyTo` is the path on your host machine where you want to store the snapshots that are generated by data-node. Snapshots allow you to restore the database to a previous state.
 - `/host_path/to/snapshotsCopyFrom` is the path on your host machine where you want to store the snapshots that are retrieved from IPFS and can be used to rebuild a data-node database from another data-node.
 
-### Generating configuration files
+## Generating configuration files
 
 #### Vega and Tendermint configuration
-
-Before you can use vega, you need to generate the default configuration files for Vega and Tendermint. You can then alter those to the specific requirements.
+Before you can use Vega, you need to generate the default configuration files for Vega and Tendermint. You can then alter those to the specific requirements.
 
 The below command will create home paths (if they don't already exist) and generate the configuration in the paths you chose.
 
 ```shell
-vega init --home=YOUR_VEGA_HOME_PATH --tendermint-home=YOUR_TENDERMINT_HOME_PATH [NODE_MODE]
+vega init --home=YOUR_VEGA_HOME_PATH --tendermint-home=YOUR_TENDERMINT_HOME_PATH full
 ```
-
-Where `NODE_MODE` can be:
-
-- `validator` if you are setting up a validator node (default), or
-- `full` if you are setting up a non-validator node
 
 To update your node configuration, such as to set up ports for the APIs, edit the config file:
 
@@ -113,41 +87,26 @@ YOUR_VEGA_HOME_PATH/config/node/config.toml
 :::note For more information about setting up a validator node, see the [validator node setup guide](setup-validator.md).
 :::
 
-#### Data Node configuration
-
+#### Data node configuration
 To generate the configuration files you need for the data node, you can use the following command:
 
 ```shell
-vega data-node init --home=YOUR_DATA_NODE_HOME_PATH
+vega datanode init --home=YOUR_DATA_NODE_HOME_PATH CHAIN_ID
 ```
+Find the `CHAIN_ID` by going to the relevant network genesis file in the relevant networks repo. 
 
-To update your data node configuration, such as to set up ports for the APIs or database credentials etc., edit the config file:
+Visit [networks](https://github.com/vegaprotocol/networks/) for mainnet or [networks-internal](https://github.com/vegaprotocol/networks-internal) for a testnet network. 
+
+To update your data node configuration, such as to set up ports for the APIs or database credentials, edit the config file:
 
 ```shell
 YOUR_DATA_NODE_HOME_PATH/config/data-node/config.toml
 ```
 
-### Configuration
+## Configuration
 
-#### Vega
-
-To configure your Vega node to work with a data-node you need to update the `[Broker.Socket]` section of the Vega configuration file `YOUR_VEGA_HOME_PATH/config/node/config.toml` from:
-
-```toml
-  [Broker.Socket]
-    DialTimeout = "2m0s"
-    DialRetryInterval = "5s"
-    SocketQueueTimeout = "3s"
-    EventChannelBufferSize = 10000000
-    SocketChannelBufferSize = 1000000
-    MaxSendTimeouts = 10
-    Address = "127.0.0.1"
-    Port = 3005
-    Enabled = false
-    Transport = "tcp"
-```
-
-to:
+### Vega
+To configure your Vega node to work with a data node you need to update the `[Broker.Socket]` section of the Vega configuration file `YOUR_VEGA_HOME_PATH/config/node/config.toml` from false to:
 
 ```toml
   [Broker.Socket]
@@ -156,13 +115,13 @@ to:
     ...
 ```
 
-:::note While it's possible to run the data node and Vega node on separate machines, it's not recommended given the volume of
-data that will be transferred between the two.
+:::note 
+While it's possible to run the data node and Vega node on separate machines, it's not recommended given the volume of data that will be transferred between the two.
 :::
 
-#### Data Node
+## Data Node
 
-##### Database configuration
+### Database configuration
 
 Data node database configuration is defined under the `[SQLStore.ConnectionConfig]` section of the data node configuration file `YOUR_DATA_NODE_HOME_PATH/config/data-node/config.toml`:
 
@@ -179,7 +138,13 @@ Data node database configuration is defined under the `[SQLStore.ConnectionConfi
 
 You should ensure the database configuration matches those of the database you created in the pre-requisite steps.
 
-##### Wipe On Startup
+### Wipe on startup
+
+:::warning Database wipe
+The following will wipe the database on startup, so use with caution.
+
+Once the database has been wiped, data-node will reconstruct the database tables and will allow you to repopulate the data from the network chain, however this can take a long time depending on the size of the chain.
+:::
 
 If you want to wipe the database on startup, you can set the `WipeOnStartup` flag to `true` in the data node configuration file `YOUR_DATA_NODE_HOME_PATH/config/data-node/config.toml`:
 
@@ -188,14 +153,13 @@ If you want to wipe the database on startup, you can set the `WipeOnStartup` fla
   WipeOnStartup = true
 ```
 
-:::warning This will wipe the database on startup, so use with caution.
+### Embedded Postgres
 
-Once the database has been wiped, data-node will reconstruct the database tables and will allow you to repopulate the data from the network chain, however this can take a long time depending on the size of the chain.
+:::warning
+This is not recommended for use in production, but you can use it to test or learn about the system.
 :::
 
-##### Embedded Postgres
-
-If you do not have access to. or do not want to use a Postgresql database server, or a Postgres Docker container, it is possible to run a data node with an embedded version of Postgres. You can enable this by setting the flag:
+If you do not have access to, or do not want to use a PostgreSQL database server, or a Postgres Docker container, it is possible to run a data node with an embedded version of Postgres. You can enable this by setting the flag:
 
 ```toml
 [SQLStore]
@@ -206,11 +170,10 @@ If you do not have access to. or do not want to use a Postgresql database server
 
 This will cause data node to download a specially prepared Postgresql package which is extracted to your local machine if it doesn't exist. A separate Postgresql process will be spawned by data node using the credentials you specified in the database configuration section. Once data node is stopped, the child Postgresql process will be stopped automatically.
 
-##### Buffered event source
-
+### Buffered event source
 When a data-node is restarted from snapshots, it is possible for the event queue to become flooded causing the Vega core to panic when the event queue is full and stop both the Vega core and data node.
 
-To prevent this, you can enable the buffered event source by setting the flag:
+To prevent this, the buffered event source flag is set to true by default. You can confirm this by looking at the following config section:
 
 ```toml
 [Broker]
@@ -219,14 +182,13 @@ To prevent this, you can enable the buffered event source by setting the flag:
   ...
 ```
 
-### Running Vega and Data Node
-
+### Running Vega and data node
 It is recommended to start the data node before starting the Vega node. By default if the `Broker.Socket.Enabled` flag is set to true, the Vega node will attempt to connect to the data node on startup. It will continue to try and connect for one minute before giving up.
 
 To start the data node, run the following command:
 
 ```shell
-vega data-node start --home=YOUR_DATA_NODE_HOME_PATH
+vega datanode start --home=YOUR_DATA_NODE_HOME_PATH
 ```
 
 To start Vega, run the following command:
