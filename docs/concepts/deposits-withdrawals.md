@@ -44,7 +44,7 @@ Deposits go through the ERC0-20 bridge smart contract. Every type of asset suppo
 
 When a participant wants to deposit assets onto a Vega key, they need to call a deposit function on the ERC20 bridge specifying the Vega public key to deposit to, and the quantity of the specified asset that the Vega key should receive. For this to succeed, the briodge contract must be [approved](https://docs.openzeppelin.com/contracts/2.x/api/token/erc20#IERC20-approve-address-uint256-) for at least the amount of the deposit.
 
-Once deposited, the assets are held in the [asset pool smart contract](../api/bridge/index#erc20-asset-bridge) for security, as the bridge can be disconnected by a quroum of validators to prevent it accessing funds if a bug is found and withdrawals need to be stopped temporarily. This also makes contract updates easier and less risky.
+Once deposited, the assets are held in the [asset pool smart contract](../api/bridge/index.md#erc20-asset-bridge) for security, as the bridge can be disconnected by a quroum of validators to prevent it accessing funds if a bug is found and withdrawals need to be stopped temporarily. This also makes contract updates easier and less risky.
 
 :::note Go deeper
 Before running the deposit function, you must run the ERC20-standard approve function to authorise the bridge smart contract as a spender of the target token. This will only allow a specific amount of that token to be used by the bridge. This can be done directly or through a Vega app.
