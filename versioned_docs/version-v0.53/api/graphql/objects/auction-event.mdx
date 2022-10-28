@@ -1,0 +1,61 @@
+---
+id: auction-event
+title: AuctionEvent
+hide_table_of_contents: false
+---
+
+
+No description
+
+```graphql
+type AuctionEvent {
+  marketId: ID!
+  leave: Boolean!
+  openingAuction: Boolean!
+  auctionStart: String!
+  auctionEnd: String!
+  trigger: AuctionTrigger!
+  extensionTrigger: AuctionTrigger
+}
+```
+
+
+### Fields
+
+#### [`marketId`](#) ([`ID!`](/mainnet/api/graphql/scalars/id))
+
+the market ID
+
+
+#### [`leave`](#) ([`Boolean!`](/mainnet/api/graphql/scalars/boolean))
+
+event fired because of auction end
+
+
+#### [`openingAuction`](#) ([`Boolean!`](/mainnet/api/graphql/scalars/boolean))
+
+event related to opening auction
+
+
+#### [`auctionStart`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+RFC3339Nano start time of auction
+
+
+#### [`auctionEnd`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+RFC3339Nano optional end time of auction
+
+
+#### [`trigger`](#) ([`AuctionTrigger!`](/mainnet/api/graphql/enums/auction-trigger))
+
+What triggered the auction
+
+
+#### [`extensionTrigger`](#) ([`AuctionTrigger`](/mainnet/api/graphql/enums/auction-trigger))
+
+What, if anything, extended the ongoing auction
+
+
+
+

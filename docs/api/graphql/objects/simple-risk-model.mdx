@@ -1,0 +1,38 @@
+---
+id: simple-risk-model
+title: SimpleRiskModel
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A type of simple/dummy risk model where you can specify the risk factor long and short in params
+
+```graphql
+type SimpleRiskModel {
+  params: SimpleRiskModelParams!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>SimpleRiskModel.<b>params</b></code>](#)<Bullet />[`SimpleRiskModelParams!`](/testnet/api/graphql/objects/simple-risk-model-params) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Params for the simple risk model
+> 
+
+
+
+### Implemented by
+
+[`RiskModel`](/testnet/api/graphql/unions/risk-model)  <Badge class="secondary" text="union"/>
+
+
+

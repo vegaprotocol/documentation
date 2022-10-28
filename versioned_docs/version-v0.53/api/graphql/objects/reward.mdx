@@ -1,0 +1,67 @@
+---
+id: reward
+title: Reward
+hide_table_of_contents: false
+---
+
+
+Reward information for a single party
+
+```graphql
+type Reward {
+  asset: Asset!
+  marketID: String!
+  rewardType: AccountType!
+  party: Party!
+  epoch: Epoch!
+  amount: String!
+  percentageOfTotal: String!
+  receivedAt: String!
+}
+```
+
+
+### Fields
+
+#### [`asset`](#) ([`Asset!`](/mainnet/api/graphql/objects/asset))
+
+The asset this reward is paid in
+
+
+#### [`marketID`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+The market for which this reward is paid if any
+
+
+#### [`rewardType`](#) ([`AccountType!`](/mainnet/api/graphql/enums/account-type))
+
+The type of reward
+
+
+#### [`party`](#) ([`Party!`](/mainnet/api/graphql/objects/party))
+
+Party receiving the reward
+
+
+#### [`epoch`](#) ([`Epoch!`](/mainnet/api/graphql/objects/epoch))
+
+Epoch for which this reward was distributed
+
+
+#### [`amount`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+Amount received for this reward
+
+
+#### [`percentageOfTotal`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+Percentage out of the total distributed reward
+
+
+#### [`receivedAt`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+Time at which the rewards was received
+
+
+
+

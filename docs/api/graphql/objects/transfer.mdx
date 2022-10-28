@@ -1,0 +1,97 @@
+---
+id: transfer
+title: Transfer
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A user initiated transfer
+
+```graphql
+type Transfer {
+  id: ID!
+  from: String!
+  fromAccountType: AccountType!
+  to: String!
+  toAccountType: AccountType!
+  asset: Asset
+  amount: String!
+  reference: String
+  status: TransferStatus!
+  timestamp: String!
+  kind: TransferKind!
+  reason: String
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>id</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> ID of this transfer
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>from</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The public key of the sender in this transfer
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>fromAccountType</b></code>](#)<Bullet />[`AccountType!`](/testnet/api/graphql/enums/account-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The account type from which funds have been sent
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>to</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The public key of the recipient of the funds
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>toAccountType</b></code>](#)<Bullet />[`AccountType!`](/testnet/api/graphql/enums/account-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The account type that has received the funds
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>asset</b></code>](#)<Bullet />[`Asset`](/testnet/api/graphql/objects/asset) <Badge class="secondary" text="object"/>
+> The asset
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>amount</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The amount sent
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>reference</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> An optional reference
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>status</b></code>](#)<Bullet />[`TransferStatus!`](/testnet/api/graphql/enums/transfer-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The status of this transfer
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>timestamp</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The time at which the transfer was submitted
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>kind</b></code>](#)<Bullet />[`TransferKind!`](/testnet/api/graphql/unions/transfer-kind) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="union"/>
+> The type of transfer being made, i.e. a one-off or recurring transfer
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>reason</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> An optional reason explaining the status of the transfer
+> 
+
+
+
+### Returned by
+
+[`transfers`](/testnet/api/graphql/queries/transfers)  <Badge class="secondary" text="query"/>
+
+### Member of
+
+[`TransferEdge`](/testnet/api/graphql/objects/transfer-edge)  <Badge class="secondary" text="object"/>
+
+
+

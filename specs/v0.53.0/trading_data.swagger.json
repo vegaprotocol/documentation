@@ -2,12 +2,16 @@
   "swagger": "2.0",
   "info": {
     "title": "data-node/api/v1/trading_data.proto",
-    "version": "version not set"
+    "version": "0.53.0"
   },
   "tags": [
     {
-      "name": "TradingDataService"
+      "name": "Trading Data Service (v1)"
     }
+  ],
+  "host": "nodes-guru.mainnet.vega.community:3009",
+  "schemes": [
+    "https"
   ],
   "consumes": [
     "application/json"
@@ -41,7 +45,7 @@
     },
     "/assets/{asset}/globalRewardPoolAccount": {
       "get": {
-        "summary": "Get a list of accounts holding reward pools\nCan be filtered by asset, there will be 1 reward pool account per\nasset in the network.",
+        "summary": "Get a list of accounts holding reward pools",
         "operationId": "TradingDataService_GlobalRewardPoolAccounts",
         "responses": {
           "200": {
@@ -73,7 +77,7 @@
     },
     "/assets/{asset}/infrastructureFeeAccount": {
       "get": {
-        "summary": "Get a list of accounts holding infrastructure fees.\nCan be filtered by asset, there will be 1 infrastructure fee account per\nasset in the network.",
+        "summary": "Get a list of accounts holding infrastructure fees",
         "operationId": "TradingDataService_FeeInfrastructureAccounts",
         "responses": {
           "200": {
@@ -1219,7 +1223,7 @@
     },
     "/oracle-specs/{id}": {
       "get": {
-        "summary": "Get an oracle spec by ID.",
+        "summary": "Get an oracle spec by ID",
         "operationId": "TradingDataService_OracleSpec",
         "responses": {
           "200": {
@@ -2171,7 +2175,7 @@
     },
     "/withdrawals/{withdrawalId}/approval/erc20": {
       "get": {
-        "summary": "Get the bundle approval for an ERC20 withdrawal,\nthese data are being used to bundle the call to the smart contract on the ethereum bridge",
+        "summary": "Get the bundle approval for an ERC20 withdrawal",
         "operationId": "TradingDataService_ERC20WithdrawalApproval",
         "responses": {
           "200": {

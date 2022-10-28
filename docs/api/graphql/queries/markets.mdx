@@ -1,0 +1,40 @@
+---
+id: markets
+title: markets
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+One or more instruments that are trading on the VEGA network
+
+```graphql
+markets(
+  id: ID
+): [Market!]
+```
+
+
+### Arguments
+
+#### [<code style={{ fontWeight: 'normal' }}>markets.<b>id</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> ID of the market
+> 
+
+### Type
+
+#### [`Market`](/testnet/api/graphql/objects/market) <Badge class="secondary" text="object"/>
+> Represents a product & associated parameters that can be traded on Vega, has an associated OrderBook and Trade history
+> 
+
+
+
+
+

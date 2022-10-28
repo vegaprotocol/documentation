@@ -1,0 +1,44 @@
+---
+id: oracle-spec-status
+title: OracleSpecStatus
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Status describe the status of the oracle spec
+
+```graphql
+enum OracleSpecStatus {
+  STATUS_ACTIVE
+  STATUS_DEACTIVATED
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>OracleSpecStatus.<b>STATUS_ACTIVE</b></code>](#) 
+> Describes an active oracle spec.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OracleSpecStatus.<b>STATUS_DEACTIVATED</b></code>](#) 
+> Describes an oracle spec that is not listening to data
+anymore.
+> 
+
+
+
+### Member of
+
+[`OracleSpec`](/testnet/api/graphql/objects/oracle-spec)  <Badge class="secondary" text="object"/>
+
+
+

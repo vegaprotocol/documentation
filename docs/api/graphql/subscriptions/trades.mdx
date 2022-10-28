@@ -1,0 +1,45 @@
+---
+id: trades
+title: trades
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Subscribe to the trades updates
+
+```graphql
+trades(
+  marketId: ID
+  partyId: ID
+): [TradeUpdate!]
+```
+
+
+### Arguments
+
+#### [<code style={{ fontWeight: 'normal' }}>trades.<b>marketId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> ID of the market from which you want trades updates
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>trades.<b>partyId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> ID of the party from which you want trades updates
+> 
+
+### Type
+
+#### [`TradeUpdate`](/testnet/api/graphql/objects/trade-update) <Badge class="secondary" text="object"/>
+> A trade on Vega, the result of two orders being 'matched' in the market
+> 
+
+
+
+
+

@@ -1,0 +1,33 @@
+{
+	"network": "sepolia",
+	"MultisigControl": {
+		"address": "0x6eBc32d66277D94DB8FF2ccF86E36f37F29a52D3",
+		"version": "v2"
+	},
+	"ERC20Bridge": {
+		"address": "0x7fe27d970bc8Afc3B11Cc8d9737bfB66B1efd799",
+		"version": "v2"
+	},
+	"ERC20AssetPool": {
+		"address": "0x2Fe022FFcF16B515A13077e53B0a19b3e3447855",
+		"version": "v1"
+	},
+	"StakingBridge": {
+		"address": "0xFFb0A0d4806502ceF491aF1141f66669A1Bd0D03",
+		"version": "v1"
+	},
+	"VestingBridge": {
+		"address": "0x680fF88252FA7071CAce7398e77872d54D781d0B",
+		"version": "v1"
+	},
+	"VegaToken": {
+		"address": "0xdf1B0F223cb8c7aB3Ef8469e529fe81E73089BD9",
+		"version": "TokenBase",
+		"minter": "0x3c9BCb0B5BE9D1c4D75024BAA0d5D55aD354fa77"
+	},
+	"V1Token": {
+		"address": "0xB6943f22FfeB615C420911B38561b27718C91845",
+		"version": "TokenBase",
+		"minter": "0x3c9BCb0B5BE9D1c4D75024BAA0d5D55aD354fa77"
+	}
+}

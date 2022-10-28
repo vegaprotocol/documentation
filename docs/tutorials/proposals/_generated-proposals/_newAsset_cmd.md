@@ -3,26 +3,26 @@
 ./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{
  "proposalSubmission": {
   "rationale": {
-   "title": "Add USDT Coin (USDT)",
-   "description": "Proposal to add USDT Coin (USDT) as an asset"
+   "title": "Add tDAI TEST (tDAI)",
+   "description": "Proposal to add tDAI TEST (tDAI) as an asset"
   },
   "terms": {
    "newAsset": {
     "changes": {
-     "name": "USDT Coin",
-     "symbol": "USDT",
+     "name": "tDAI TEST",
+     "symbol": "tDAI",
      "decimals": "18",
      "quantum": "1",
      "erc20": {
-      "contractAddress": "0xb404c51bbc10dcbe948077f18a4b8e553d160084",
+      "contractAddress": "0x26223f9C67871CFcEa329975f7BC0C9cB8FBDb9b",
       "withdrawThreshold": "10",
       "lifetimeLimit": "10"
      }
     }
    },
-   "closingTimestamp": 1665423449,
-   "enactmentTimestamp": 1665509849,
-   "validationTimestamp": 1665337049
+   "closingTimestamp": 1668528151,
+   "enactmentTimestamp": 1668614551,
+   "validationTimestamp": 1668441751
   }
  }
 }'

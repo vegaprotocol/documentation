@@ -13,8 +13,8 @@
           "code": "APPLES.22",
           "future": {
             "quoteName": "tEuro",
-            "settlementPriceDecimals": 5,
-            "oracleSpecForSettlementPrice": {
+            "settlementDataDecimals": 5,
+            "oracleSpecForSettlementData": {
               "pubKeys": [
                 "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
               ],
@@ -53,13 +53,14 @@
               ]
             },
             "oracleSpecBinding": {
-              "settlementPriceProperty": "prices.BTC.value",
+              "settlementDataProperty": "prices.BTC.value",
               "tradingTerminationProperty": "vegaprotocol.builtin.timestamp"
             }
           }
         },
         "metadata": [
-          "sector:tech",
+          "sector:energy",
+          "sector:materials",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -73,7 +74,7 @@
         },
         "logNormal": {
           "tau": 0.0001140771161,
-          "riskAversionParameter": 0.0001,
+          "riskAversionParameter": 0.01,
           "params": {
             "mu": 0,
             "r": 0.016,
@@ -82,8 +83,8 @@
         }
       }
     },
-    "closingTimestamp": 1665423449,
-    "enactmentTimestamp": 1665509849
+    "closingTimestamp": 1668528151,
+    "enactmentTimestamp": 1668614551
   }
 }
 ```

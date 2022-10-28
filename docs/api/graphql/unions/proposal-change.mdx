@@ -1,0 +1,58 @@
+---
+id: proposal-change
+title: ProposalChange
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+union ProposalChange = NewMarket | UpdateMarket | UpdateNetworkParameter | NewAsset | UpdateAsset | NewFreeform
+```
+
+
+### Possible types
+
+#### [`NewMarket`](/testnet/api/graphql/objects/new-market) <Badge class="secondary" text="object"/>
+> 
+> 
+
+#### [`UpdateMarket`](/testnet/api/graphql/objects/update-market) <Badge class="secondary" text="object"/>
+> Incomplete change definition for governance proposal terms
+TODO: complete the type
+> 
+
+#### [`UpdateNetworkParameter`](/testnet/api/graphql/objects/update-network-parameter) <Badge class="secondary" text="object"/>
+> Allows submitting a proposal for changing network parameters
+> 
+
+#### [`NewAsset`](/testnet/api/graphql/objects/new-asset) <Badge class="secondary" text="object"/>
+> A new asset proposal change
+> 
+
+#### [`UpdateAsset`](/testnet/api/graphql/objects/update-asset) <Badge class="secondary" text="object"/>
+> A proposal to update an asset's details
+> 
+
+#### [`NewFreeform`](/testnet/api/graphql/objects/new-freeform) <Badge class="secondary" text="object"/>
+> A new freeform proposal change. It has no properties on purpose. Use proposal
+rationale, instead.
+> 
+
+
+
+### Member of
+
+[`ProposalTerms`](/testnet/api/graphql/objects/proposal-terms)  <Badge class="secondary" text="object"/>
+
+
+

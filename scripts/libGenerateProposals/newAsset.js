@@ -4,9 +4,9 @@ const { inspect } = require('util');
 
 // Seed data: Some asset names
 const assetNames = [
-    { name: 'Wrapped Ether', symbol: 'WETH', contractAddress: '0xc778417e063141139fce010982780140aa0cd5ab' },
-    { name: 'Dai Stablecoin', symbol: 'DAI', contractAddress: '0x31f42841c2db5173425b5223809cf3a38fede360' },
-    { name: 'USDT Coin', symbol: 'USDT', contractAddress: '0xb404c51bbc10dcbe948077f18a4b8e553d160084' },
+    { name: 'tEuro', symbol: 'tEURO', contractAddress: '0x0158031158Bb4dF2AD02eAA31e8963E84EA978a4' },
+    { name: 'tDAI TEST', symbol: 'tDAI', contractAddress: '0x26223f9C67871CFcEa329975f7BC0C9cB8FBDb9b' },
+    { name: 'tUSDC TEST', symbol: 'tUSDC', contractAddress: '0xB404c51BBC10dcBE948077F18a4B8E553D160084' },
 ];
 
 function newAsset(skeleton) {

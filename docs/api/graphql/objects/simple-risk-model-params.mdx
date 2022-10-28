@@ -1,0 +1,43 @@
+---
+id: simple-risk-model-params
+title: SimpleRiskModelParams
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Parameters for the simple risk model
+
+```graphql
+type SimpleRiskModelParams {
+  factorLong: Float!
+  factorShort: Float!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>SimpleRiskModelParams.<b>factorLong</b></code>](#)<Bullet />[`Float!`](/testnet/api/graphql/scalars/float) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Risk factor for long
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>SimpleRiskModelParams.<b>factorShort</b></code>](#)<Bullet />[`Float!`](/testnet/api/graphql/scalars/float) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Risk factor for short
+> 
+
+
+
+### Member of
+
+[`SimpleRiskModel`](/testnet/api/graphql/objects/simple-risk-model)  <Badge class="secondary" text="object"/><Bullet />[`UpdateMarketSimpleRiskModel`](/testnet/api/graphql/objects/update-market-simple-risk-model)  <Badge class="secondary" text="object"/>
+
+
+

@@ -1,0 +1,53 @@
+---
+id: reward-per-asset-detail
+title: RewardPerAssetDetail
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+RewardPerAssetDetail is deprecated, use RewardSummmary instead 
+
+```graphql
+type RewardPerAssetDetail {
+  asset: Asset!
+  assetId: ID!
+  rewards: [Reward]
+  totalAmount: String!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>RewardPerAssetDetail.<b>asset</b></code>](#)<Bullet />[`Asset!`](/testnet/api/graphql/objects/asset) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Asset in which the reward was paid
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>RewardPerAssetDetail.<b>assetId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> ID of asset in which the reward was paid
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>RewardPerAssetDetail.<b>rewards</b></code>](#)<Bullet />[`[Reward]`](/testnet/api/graphql/objects/reward) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> A list of rewards received for this asset
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>RewardPerAssetDetail.<b>totalAmount</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The total amount of rewards received for this asset.
+> 
+
+
+
+### Member of
+
+[`Party`](/testnet/api/graphql/objects/party)  <Badge class="secondary" text="object"/>
+
+
+

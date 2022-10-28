@@ -1,0 +1,60 @@
+---
+id: condition-operator
+title: ConditionOperator
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Comparator describes the type of comparison.
+
+```graphql
+enum ConditionOperator {
+  OPERATOR_EQUALS
+  OPERATOR_GREATER_THAN
+  OPERATOR_GREATER_THAN_OR_EQUAL
+  OPERATOR_LESS_THAN
+  OPERATOR_LESS_THAN_OR_EQUAL
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>ConditionOperator.<b>OPERATOR_EQUALS</b></code>](#) 
+> Verify if the property values are strictly equal or not.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ConditionOperator.<b>OPERATOR_GREATER_THAN</b></code>](#) 
+> Verify if the oracle data value is greater than the Condition value.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ConditionOperator.<b>OPERATOR_GREATER_THAN_OR_EQUAL</b></code>](#) 
+> Verify if the oracle data value is greater than or equal to the Condition
+value.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ConditionOperator.<b>OPERATOR_LESS_THAN</b></code>](#) 
+>  Verify if the oracle data value is less than the Condition value.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ConditionOperator.<b>OPERATOR_LESS_THAN_OR_EQUAL</b></code>](#) 
+> Verify if the oracle data value is less or equal to than the Condition
+value.
+> 
+
+
+
+### Member of
+
+[`Condition`](/testnet/api/graphql/objects/condition)  <Badge class="secondary" text="object"/>
+
+
+

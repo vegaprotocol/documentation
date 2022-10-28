@@ -13,13 +13,13 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
     \"decimalPlaces\": \"5\",^
     \"positionDecimalPlaces\": \"5\",^
     \"instrument\": {^
-     \"name\": \"Apples Yearly (2022)\",^
-     \"code\": \"APPLES.22\",^
+     \"name\": \"Oranges Daily\",^
+     \"code\": \"ORANGES.24h\",^
      \"future\": {^
       \"settlementAsset\": \"8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4\",^
       \"quoteName\": \"tEuro\",^
-      \"settlementPriceDecimals\": 5,^
-      \"oracleSpecForSettlementPrice\": {^
+      \"settlementDataDecimals\": 5,^
+      \"oracleSpecForSettlementData\": {^
        \"pubKeys\": [^
         \"0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC\"^
        ],^
@@ -58,13 +58,14 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
        ]^
       },^
       \"oracleSpecBinding\": {^
-       \"settlementPriceProperty\": \"prices.BTC.value\",^
+       \"settlementDataProperty\": \"prices.BTC.value\",^
        \"tradingTerminationProperty\": \"vegaprotocol.builtin.timestamp\"^
       }^
      }^
     },^
     \"metadata\": [^
-     \"sector:tech\",^
+     \"sector:health\",^
+     \"sector:food\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -86,17 +87,17 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
     },^
     \"logNormal\": {^
      \"tau\": 0.0001140771161,^
-     \"riskAversionParameter\": 0.0001,^
+     \"riskAversionParameter\": 0.01,^
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
-      \"sigma\": 0.5^
+      \"sigma\": 0.3^
      }^
     }^
    }^
   },^
-  \"closingTimestamp\": 1665423449,^
-  \"enactmentTimestamp\": 1665509849^
+  \"closingTimestamp\": 1668528151,^
+  \"enactmentTimestamp\": 1668614551^
  }^
 }^
 }"
