@@ -112,12 +112,10 @@ This will print the version of the binary you just built.
 
 :::note In order to run the `vega` command from any folder you should move the binary to a folder that is in your PATH.
 
-### Next Steps
+## Next Steps
 
 #### Setting up a validator node
-
 For instructions on how to set up a Vega node as a validator, see the [validator setup guide](setup-validator.md).
 
 #### Setting up a data node
-
-For instructions for setting up data node can be found on the [data node setup guide](setup-datanode.md) page.
+Instructions for setting up a data node can be found on the [data node setup guide](setup-datanode.md) page.

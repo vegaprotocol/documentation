@@ -79,17 +79,17 @@ The configuration must specify if a node is running as a validator or not. If yo
 NodeMode = "validator"
 ```
 
-#### Update the data-node configuration
-For the Vega configuration, new fields have been added in the data-node configuration. We recommend you generate a default one to compare with what you used.
+#### Update the data node configuration
+For the Vega configuration, new fields have been added in the data node configuration. We recommend you generate a default one to compare with what you used.
 
-The Vega node connected to the data-node should add the following line to its config:
+The Vega node connected to the data node should add the following line to its config:
 ```
 NodeMode = "full"
 ```
 
-The data-node configuration supports SSL for the HTTP connection. It is highly recommended that SSL is setup on the data-node as this enables GraphQL subscriptions, which are used by frontend dApps.
+The data node configuration supports SSL for the HTTP connection. It is highly recommended that SSL is setup on the data node as this enables GraphQL subscriptions, which are used by frontend dApps.
 
-This can be set up in the following section of the data-node:
+This can be set up in the following section of the data node:
 ```
 [Gateway]
   Level = "Info"
@@ -115,10 +115,10 @@ This can be set up in the following section of the data-node:
     APMEnabled = true
 ```
 
-If you do not want to enable SSL, ensure `HTTPSEnabled` is set to false or the data-node will not start properly.
+If you do not want to enable SSL, ensure `HTTPSEnabled` is set to false or the data node will not start properly.
 
 ### Step 1: Stop the network
-Wait for a new checkpoint file to be produced, then stop all the nodes of the network (Vega, data-node and Tendermint). Once stopped, back up all Tendermint chain data and Vega data.
+Wait for a new checkpoint file to be produced, then stop all the nodes of the network (Vega, data node and Tendermint). Once stopped, back up all Tendermint chain data and Vega data.
 
 Save the selected checkpoint file in a safe location. You will need to reuse it later.
 
@@ -135,7 +135,7 @@ rm -rf "YOUR_DATANODE_HOME/vega/data-node/storage/"
 ```
 
 :::info
-The exact path of the data-node folder to remove can be found using `vega paths list`. The required path is `DataNodeStorageHome` in the list.
+The exact path of the data node folder to remove can be found using `vega paths list`. The required path is `DataNodeStorageHome` in the list.
 :::
 
 ### Step 2: Update the genesis file
