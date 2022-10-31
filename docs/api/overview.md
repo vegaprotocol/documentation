@@ -52,7 +52,7 @@ REST is the ubiquitous protocol for the web. Vega has four REST endpoints: two a
 - [Core state](rest/state/core-state-service): Get lists of state about the internal Vega system, such as 'list accounts', 'list parties.
 - [Data node (legacy API)](rest/data-v1/trading-data-service): Get limited historical information, such as 'governance data for all proposals'. This API version will be deprecated in a future version, and does not cover the system as comprehensively as v2.
 - [Data node (v2)](rest/data-v2/trading-data-service): Get historic information and cumulative data, such as 'governance data for all proposals'. v2 is receiving active development.
-- [Block explorer](rest/explorer/block-explorer): Get information about blocks created on the Vega network.
+- [Block explorer](/testnet/category/api/rest/explorer/block-explorer): Get information about blocks created on the Vega network.
 
 ## Vega Wallet API
 If you're looking to integrate a dApp or website with the Vega Wallet, you'll need to use a wallet API. 
