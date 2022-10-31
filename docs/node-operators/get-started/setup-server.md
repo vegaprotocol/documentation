@@ -88,10 +88,10 @@ export CGO_ENABLED=0
     cd vega
     ```
 
-3. Check out the release tag you want to build:
+3. Check out the release tag you want to build. Use the software version that's relevant for the network you're interacting with:
 
     ```Shell
-    git checkout vX.XX ##Use the software version for the network you're using
+    git checkout vX.XX 
     ```
 
 4. Build the Vega binary by running the following command from the root of the cloned repository:
