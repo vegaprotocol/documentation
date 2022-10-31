@@ -49,7 +49,14 @@ module.exports = {
     {
       type: 'category',
       label: 'GRPC',
-      items: [protodocs[0].items]
+      items: [
+        {
+          type: 'doc',
+          label: 'Overview',
+          id: 'api/grpc/overview'
+        },
+        ...protodocs[0].items
+      ]
     },
     {
       type: 'category',

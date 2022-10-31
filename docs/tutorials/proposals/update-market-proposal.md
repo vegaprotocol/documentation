@@ -56,7 +56,7 @@ Note that some network parameters may differ, such as the limits on how long the
 
 ## Templates and submitting
 
-In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to submit on the token dApp, and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
+In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to [submit on the token dApp ↗](https://token.fairground.wtf/governance/propose/update-market), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
 
 <Tabs groupId="updateMarket">
   <TabItem value="annotated" label="Annotated example">
@@ -81,6 +81,6 @@ All proposals are voted on by the community. To vote, community members need, at
 
 Your proposal will need [participation](../../concepts/vega-protocol#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential. If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
 
-Building support is down to you. Share your proposal in [the _Update Market Proposals_ forum](https://community.vega.xyz/c/fairground-testnet-governance/update-market-proposals-testnet/38) on Vega community, being sure to follow the [post guide](https://community.vega.xyz/t/guide-to-update-market-proposals/4178). You may also wish to share on [Discord](https://vega.xyz/discord).
+Building support is down to you. Share your proposal in [the _Update Market Proposals_ forum ↗](https://community.vega.xyz/c/fairground-testnet-governance/update-market-proposals-testnet/38) on Vega community, being sure to follow the [post guide ↗](https://community.vega.xyz/t/guide-to-update-market-proposals/4178). You may also wish to share on [Discord ↗](https://vega.xyz/discord).
 
-Proposal owners who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.
+Proposers who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.
