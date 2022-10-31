@@ -186,7 +186,7 @@ module.exports = {
         hashed: true,
         explicitSearchResultPath: true,
         indexBlog: false,
-        docsRouteBasePath: ["/docs"],
+        docsRouteBasePath: ["/"],
       },
     ],
     [

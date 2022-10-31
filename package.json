@@ -37,7 +37,7 @@
     "@apidevtools/swagger-parser": "^10.1.0",
     "@docusaurus/core": "^2.1.0",
     "@docusaurus/preset-classic": "^2.1.0",
-    "@easyops-cn/docusaurus-search-local": "0.32.0",
+    "@easyops-cn/docusaurus-search-local": "0.33.5",
     "@edno/docusaurus2-graphql-doc-generator": "^1.13.1",
     "@graphql-tools/url-loader": "^7.13.3",
     "@mdx-js/react": "^1.6.22",
