@@ -39,7 +39,7 @@ The supported commands can be found here:
 
 * [Trading commands](/testnet/api/grpc/vega/commands/v1/commands.proto)
 * [Validator commands](/testnet/api/grpc/vega/commands/v1/validator_commands.proto)
-* [Oracle commands](/testnet/api/grpc/vega/commands/v1/oracles.proto)
+* [Data Source commands](/testnet/api/grpc/vega/commands/v1/data.proto)
 
 ### Command format
 

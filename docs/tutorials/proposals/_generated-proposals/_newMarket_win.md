@@ -13,15 +13,19 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
     \"decimalPlaces\": \"5\",^
     \"positionDecimalPlaces\": \"5\",^
     \"instrument\": {^
-     \"name\": \"Oranges Daily\",^
-     \"code\": \"ORANGES.24h\",^
+     \"name\": \"Apples Yearly (2022)\",^
+     \"code\": \"APPLES.22\",^
      \"future\": {^
       \"settlementAsset\": \"8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4\",^
       \"quoteName\": \"tEuro\",^
       \"settlementDataDecimals\": 5,^
-      \"oracleSpecForSettlementData\": {^
-       \"pubKeys\": [^
-        \"0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC\"^
+      \"dataSourceSpecForSettlementData\": {^
+       \"signers\": [^
+        {^
+         \"ethAddress\": {^
+          \"address\": \"0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC\"^
+         }^
+        }^
        ],^
        \"filters\": [^
         {^
@@ -35,13 +39,23 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
            \"value\": \"0\"^
           }^
          ]^
+        },^
+        {^
+         \"key\": {^
+          \"name\": \"prices.BTC.timestamp\",^
+          \"type\": \"TYPE_TIMESTAMP\"^
+         },^
+         \"conditions\": [^
+          {^
+           \"operator\": \"OPERATOR_GREATER_THAN\",^
+           \"value\": \"1648684800000000000\"^
+          }^
+         ]^
         }^
        ]^
       },^
-      \"oracleSpecForTradingTermination\": {^
-       \"pubKeys\": [^
-        \"0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC\"^
-       ],^
+      \"dataSourceSpecForTradingTermination\": {^
+       \"signers\": [],^
        \"filters\": [^
         {^
          \"key\": {^
@@ -57,15 +71,14 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
         }^
        ]^
       },^
-      \"oracleSpecBinding\": {^
+      \"dataSourceSpecBinding\": {^
        \"settlementDataProperty\": \"prices.BTC.value\",^
        \"tradingTerminationProperty\": \"vegaprotocol.builtin.timestamp\"^
       }^
      }^
     },^
     \"metadata\": [^
-     \"sector:health\",^
-     \"sector:food\",^
+     \"sector:tech\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -91,13 +104,13 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
-      \"sigma\": 0.3^
+      \"sigma\": 0.8^
      }^
     }^
    }^
   },^
-  \"closingTimestamp\": 1668528151,^
-  \"enactmentTimestamp\": 1668614551^
+  \"closingTimestamp\": 1668875777,^
+  \"enactmentTimestamp\": 1668962177^
  }^
 }^
 }"
