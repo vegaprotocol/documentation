@@ -13,6 +13,9 @@ There are two apps available to interact with a Vega Wallet:
 * **[CLI wallet app](./vega-wallet/cli-wallet/index.md)**
 * **[Desktop wallet app](./vega-wallet/desktop-app/index.md)**
 
+### Console
+Use **[Vega Console](https://console.fairground.wtf)** to try trading on a testnet trading interface. The Fairground network is set up to provide a fairly realistic experience where you can place orders, provide liquidity, and see how the market mechanics work.
+
 ### $VEGA Token website
 Use **[$VEGA Token website](https://token.vega.xyz)** to stake your tokens to nominate the validators that run the network, participate in network goveranance, and earn and claim rewards.
 

@@ -16,7 +16,7 @@ Vega supports on-chain proposals for creating markets and assets, and changing n
 
 Taking part in governance by voting, or by proposing additions/changes with community support, is a way for tokenholders and community members to contribute to improve the network, and to add value for other network participants.
 
-:::info Try it out 
+:::tip Try it out 
 Try out proposing markets using [Fairground ↗](https://fairground.wtf), Vega's testnet. 
 :::
 
@@ -46,7 +46,7 @@ A proposal is immutable once entered.
 
 Once a proposal is submitted and accepted, rally the community to vote on the proposal by announcing it on the [forum ↗](https://community.vega.xyz/), [Discord ↗](https://vega.xyz/discord), and through your own networks to vote on the proposal.
 
-:::info 
+:::tip Try it out 
 Read the **[proposals guides](../tutorials/proposals/)** to see what information needs to be in a proposal, and how to submit them using the command line. 
 :::
 
@@ -76,7 +76,7 @@ The network will also calculate:
 * The LP participation rate, which is the sum of the equity like share of all LPs who cast a vote - `LP participation rate = SUM (equity like share of all LPs who cast a vote)`
 * The rate of 'for' votes cast by liquidity providers, calculated as the sum of all who voted 'for', divided by the LP participation rate - `LP for rate = SUM (all who voted for) / LP participation rate`
     
-:::info Try it out
+:::tip Try it out
 Vote on active proposals on the **[Vega token dApp ↗](https://token.fairground.wtf/governance)**.
 :::
 
@@ -85,8 +85,48 @@ If a proposal receives enough token weight in favour within the enactment period
 
 Note the enactment date must be at least the minimum enactment period for the proposal type/subtype (specified by a network parameter for each proposal type) after voting closes. See the network parameters and their values on the [Vega block explorer ↗](https://explorer.fairground.wtf/network-parameters).
 
+### Thresholds set by network parameters
+Governance requires that certain parameters need to be within a defined range, but offer some flexibility.
+
+When validating a governance proposal, the values chosen in the proposal will be checked to ensure they fit within the thresholds defined by the network parameters.
+
+Each type of governance proposal can have different thresholds, though they fit into broader categories. Those categories include:
+
+* `minProposerBalance`: minimum amount of VEGA that a proposer needs to have associated with their Vega key to have the proposal accepted for a tokenholder vote
+* `minClose`: minimum amount of time before a proposal can be closed for voting 
+* `maxClose`: maximum amount of time a proposal can be open for voting 
+* `minEnactment`: minimum time allowed between vote closing on a proposal and the proposal's change being enacted on the network
+* `maxEnactment`: maximum time allowed between vote closing on a proposal and the proposal's change being enacted on the network
+* `requiredParticipation`: minimum number of tokens that must vote for a proposal to pass 
+* `requiredMajority`: minimum majority that a proposal's 'yes' votes must reach for it to be enacted 
+  
+Importantly, these `minimum` levels are themselves network parameters, and therefore can be changed through governance.
+
+:::tip Query for data
+See the current values (in some cases, different per network) on the [block explorer](https://explorer.fairground.wtf). 
+
+Otherwise, [use REST](../api/rest/state/core-state-service-list-network-parameters.api.mdx) to see the network parameters and their values.
+:::
+
+#### Example
+Consider a network parameter that specifies the proportion of fees that goes to validators (<NetworkParameter frontMatter={frontMatter} param="transfer.fee.factor" />), with change thresholds:
+
+* <NetworkParameter frontMatter={frontMatter} name="Minimum length of voting period" param="governance.proposal.updateNetParam.minClose" />
+* <NetworkParameter frontMatter={frontMatter} name="Maximum length of voting period" param="governance.proposal.updateNetParam.maxClose" />
+* <NetworkParameter frontMatter={frontMatter} name="Minimum time to enactment" param="governance.proposal.updateNetParam.minEnact" />
+* <NetworkParameter frontMatter={frontMatter} name="Maximum time to enactment" param="governance.proposal.updateNetParam.maxEnact" />
+* <NetworkParameter frontMatter={frontMatter} name="Required participation" param="governance.proposal.updateNetParam.requiredParticipation" formatter="percent" />
+* <NetworkParameter frontMatter={frontMatter} name="Required majority" param="governance.proposal.updateNetParam.requiredMajority" formatter="percent" />
+* <NetworkParameter frontMatter={frontMatter} name="Proposer must have" param="governance.proposal.updateNetParam.minProposerBalance" formatter="governanceToken" suffix='tokens' />
+
+A proposal to change the <NetworkParameter frontMatter={frontMatter} hideValue={true} param="transfer.fee.factor" />, would need to pass all of the thresholds listed above.
+
 ## Asset governance
 Details on asset governance to come. 
+
+See the proposal tutorials to: 
+* [Propose a new asset](../tutorials/proposals/new-asset-proposal.md)
+* [Propose an update to an asset](../tutorials/proposals/update-asset-proposal.md)
 
 <!--
 ### New asset proposal [WIP]
@@ -105,9 +145,9 @@ Read more:
 * [Update market proposal ↗](../tutorials/proposals/update-market-proposal.md): Guide to submitting a proposal to change a market using the command line
 
 ### Propose a new market
-Tokenholders can propose new markets, which then need to be voted on by other tokenholders. The proposer will need to have at least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the market, and staked to a validator. Note, this amount is set through the network parameter `governance.proposal.market.minProposerBalance`.
+Tokenholders can propose new markets, which then need to be voted on by other tokenholders. The proposer will need to have at least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the market, and staked to a validator. Note, this amount is set through the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true} />.
 
-If the market proposal gets a majority of tokeholder support, then it will be enacted. The required majority is defined by the network parameter `governance.proposal.market.required.majority`.
+If the market proposal gets a <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" hideName={true} formatter="percent"/> majority of tokeholder support, then it will be enacted. The required majority is defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" hideValue={true} />.
 
 To propose a market, you'll need to provide the details required for the market to begin trading right away. While some of the fields are free-text, others are constrained by a range set through network parameters, to ensure that the values provided are fit for purpose.
 
@@ -124,9 +164,10 @@ Optional fields include:
 * Liquidity commitment: the amount committed, proposed fee level, and the buy and sell order shapes. Note: Once a market is proposed, it can accept liquidity commitments from any party
 * Price monitoring parameters, including the triggers covering the horizon, probability and auction extension time. If left blank these parameters will default to the values set in the network parameters
 
-Read more:
+:::note Read more
 * [Risk models and parameters](#risk-models-and-parameters)
-* [New market proposal](../tutorials/proposals/new-market-proposal.md): Guide to submitting a proposal for a new market using the command line
+* [New market proposal](../tutorials/proposals/new-market-proposal.md)
+:::
 
 <!--
 * [Data sources]
@@ -174,8 +215,6 @@ Another paramerer is
 
 <!--### Changing models [WIP]
 
-### Thresholds and rules [WIP]-->
-
 ### Propose changes to a market
 Details on proposing changes to market to come.
 
@@ -197,33 +236,6 @@ A network parameter is defined by:
 * Governance update policy
 
 **Read more:** [Guide to submitting a network parameter proposal using the command line](../tutorials/proposals/network-parameter-proposal.md)
-
-### Thresholds for network parameters
-Some network parameters need to be more difficult to change than others. Therefore, the protocol needs to know for each network parameter what governance thresholds apply for ascertaining a proposal's ability to change the parameter's value. Specifically, those thresholds are:
-
-* `minClose`
-* `maxClose`
-* `minEnactment`
-* `maxEnactment`
-* `requiredParticipation` 
-* `requiredMajority` 
-* `minProposerBalance`
-
-There are groups of network parameters that will use the same values for the thresholds. Importantly, these `minimum` levels are themselves network parameters, and therefore subject to change.
-
-Consider a network parameter that specifies the proportion of fees that goes to validators (<NetworkParameter frontMatter={frontMatter} param="transfer.fee.factor" />), with change thresholds:
-
-* <NetworkParameter frontMatter={frontMatter} name="Minimum length of voting period" param="governance.proposal.updateNetParam.minClose" />
-* <NetworkParameter frontMatter={frontMatter} name="Maximum length of voting period" param="governance.proposal.updateNetParam.maxClose" />
-* <NetworkParameter frontMatter={frontMatter} name="Minimum time to enactment" param="governance.proposal.updateNetParam.minEnact" />
-* <NetworkParameter frontMatter={frontMatter} name="Maximum time to enactment" param="governance.proposal.updateNetParam.maxEnact" />
-* <NetworkParameter frontMatter={frontMatter} name="Required participation" param="governance.proposal.updateNetParam.requiredParticipation" formatter="percent" />
-* <NetworkParameter frontMatter={frontMatter} name="Required majority" param="governance.proposal.updateNetParam.requiredMajority" formatter="percent" />
-* <NetworkParameter frontMatter={frontMatter} name="Proposer must have" param="governance.proposal.updateNetParam.minProposerBalance" formatter="governanceToken" suffix='tokens' />
-
-A proposal to change the <NetworkParameter frontMatter={frontMatter} hideValue={true} param="transfer.fee.factor" />, would need to pass all of the thresholds listed above.
-`
-<!--### Threshold and rules [WIP]-->
   
 ## Asset/token management
 
@@ -239,7 +251,7 @@ Anyone with a Vega public key and assets (such as the VEGA token) can set up a t
 
 Transfers can be set up to happen only once, or can happen repeatedly.
 
-:::info
+:::tip Try it out
 Set up transfers with your Vega wallet using the command line. Find out how in the **[transfers guide](../tutorials/transferring-assets.md)**.
 :::
 
