@@ -64,8 +64,8 @@ Once the transaction is verified, the Vega public key submitted in the transacti
 
 ### Diagram: Deposits
 
-#### How a user interacts with withdrawals
-![User centric deposit diagram](/static/img/concept-diagrams/user-centric-withdraw-dark.png)
+#### How a user interacts with deposits
+![User centric deposit diagram](/img/concept-diagrams/user-centric-deposit-dark.png)
 
 #### How Ethereum and Vega interact in withdrawals
 ![Deposit diagram](/img/concept-diagrams/diagram-deposit.png)
@@ -106,7 +106,7 @@ Alternatively, see the withdraw threshold using a GraphQL query for the asset, a
 
 ### Diagrams: Withdrawals
 #### How a user interacts with withdrawals
-![User-centric withdrawal diagram](img/../../../static/img/concept-diagrams/user-centric-withdraw-dark.png)
+![User-centric withdrawal diagram](/img/concept-diagrams/user-centric-withdraw-dark.png)
 
 #### How Ethereum and Vega interact in withdrawals
 ![Withdrawal diagram](/img/concept-diagrams/diagram-withdraw.png)
