@@ -35,7 +35,7 @@ You will need:
 
 ## Templates and submitting
 
-In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to submit on the token dApp, and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
+In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to [submit on the token dApp](https://token.fairground.wtf/governance/propose/freeform), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
 
 <Tabs groupId="newFreeform">
   <TabItem value="annotated" label="Annotated example">
@@ -60,6 +60,6 @@ All proposals are voted on by the community. To vote, community members need, at
 
 Your proposal will need [participation](../../concepts/vega-protocol#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.freeform.requiredParticipation" formatter="percent" hideName={true} /> and a voting majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.freeform.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential.
 
-Building support is down to you. Share your proposal in [the _Free Form Proposals_ forum](https://community.vega.xyz/c/fairground-testnet-governance/free-form-proposals-testnet/36) on Vega community. You may also wish to share on [Discord](https://vega.xyz/discord).
+Building support is down to you. Share your proposal in [the _Free Form Proposals_ forum ↗](https://community.vega.xyz/c/fairground-testnet-governance/free-form-proposals-testnet/36) on Vega community. You may also wish to share on [Discord ↗](https://vega.xyz/discord).
 
-Proposal owners who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.
+Proposers who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.

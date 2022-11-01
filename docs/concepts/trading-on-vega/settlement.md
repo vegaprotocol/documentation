@@ -3,6 +3,8 @@ sidebar_position: 6
 title: Settlement
 hide_title: false
 ---
+Vega can be used to create cash-settled futures markets, meaning they are margined and settled in a single asset, as opposed to being settled in the actual (physical) underlying asset.
+
 Settlement is the process of moving collateral between accounts when a position is closed, when the market's mark price changes, and when the market expires. Vega operates as a decentralised 'central counterparty' that facilitates settlement.
 
 More specifically, settlement on markets occurs when:
@@ -14,9 +16,7 @@ More specifically, settlement on markets occurs when:
 Market proposals define the fundamental details about a market, including its settlement asset and how it can terminate and be settled.
 
 ### Settlement asset
-Vega can be used to create cash-settled futures markets, meaning they are margined and settled in a single asset. 
-
-On those markets, settlement occurs in the settlement asset of the market, which is defined in the governance proposal that led to the market's creation. The settlement asset **does not** need to be the same asset as the ‘quote unit’ (i.e. ETH on a BTC/ETH December 2028 market).
+On the cash-settled futures markets created on Vega, settlement occurs in the settlement asset of the market, which is defined in the governance proposal that led to the market's creation. The settlement asset **does not** need to be the same asset as the ‘quote unit’ (i.e. ETH on a BTC/ETH December 2028 market).
 
 ### Data for settlement trigger
 In addition to the settlement asset, a market's proposal also specifies the data sources that determine settlement triggers for the end of a market's lifecycle. The data sources defined, and the filters applied to them, must be able to provide the market's expiry date/time and its final price/value at expiry. 

@@ -38,12 +38,21 @@ If you’re writing a web app, GraphQL is flexible and allows efficient data ret
 ## gRPC
 gRPC provides fast and efficient communication with Vega’s APIs. gRPC supports near real time streaming of updates from Vega. gRPC/Protobuf is the transport of choice for many web3 apps.
 
-[gRPC](./grpc/vega/vega.proto): Explore the gRPC reference documentation.
-
+[gRPC](grpc/vega/vega.proto): Explore the gRPC reference documentation.
+- [Core](grpc/vega/api/v1/core.proto.mdx): Get information about the network, such as 'block height' and 'Vega time'.
+- [Core state](grpc/vega/api/v1/corestate.proto): Get lists of state about the internal Vega system, such as 'list accounts', 'list parties.
+- [Commands](grpc/vega/commands/v1/commands.proto): Get all transaction types you can submit to the network.
+- [Data](grpc/data-node/api/v2/trading_data.proto.mdx): Interact with all data that the data nodes store, including trading data, interactions between the network and Ethereum, and governance.
+- 
 ## REST
 REST is the ubiquitous protocol for the web. Vega has four REST endpoints: two are served by core nodes, and two are served by data nodes. REST is fairly easy to get started with, and Vega supports nearly all the functionality provided by gRPC and GraphQL on the REST APIs. Note: REST does not support streaming.
 
-[REST overview](./rest/overview): Read more about data and core node APIs.
+[REST overview](rest/overview.md): Read more about data and core node APIs.
+- [Core network state](rest/core/core-service.mdx): Get basic information about the network, such as 'block height' and 'Vega time'.
+- [Core state](rest/state/core-state-service): Get lists of state about the internal Vega system, such as 'list accounts', 'list parties.
+- [Data node (legacy API)](rest/data-v1/trading-data-service): Get limited historical information, such as 'governance data for all proposals'. This API version will be deprecated in a future version, and does not cover the system as comprehensively as v2.
+- [Data node (v2)](rest/data-v2/trading-data-service): Get historic information and cumulative data, such as 'governance data for all proposals'. v2 is receiving active development.
+- [Block explorer](/testnet/category/api/rest/explorer/block-explorer): Get information about blocks created on the Vega network.
 
 ## Vega Wallet API
 If you're looking to integrate a dApp or website with the Vega Wallet, you'll need to use a wallet API. 
