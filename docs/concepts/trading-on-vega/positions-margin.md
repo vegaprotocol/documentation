@@ -28,7 +28,7 @@ There are a few mechanisms that work differently to how they would on a centrali
 ## Mark to market
 Marking to market refers to settling gains and losses due to changes in the market value. Marking to market aims to provide a realistic appraisal of a position based on the current market conditions.
 
-If the market price goes up, traders that hold a long positions receive money into their margin account – equal to the change in the notional value of their positions – from traders that hold short positions, and conversely if the value goes down, the holders of the short positions receive money from the holders of long positions.
+If the market price goes up, traders that hold long positions receive money into their margin account – equal to the change in the notional value of their positions – from traders that hold short positions, and conversely if the value goes down, the holders of short positions receive money from the holders of long positions.
 
 For a futures market created on Vega, marking to market is carried out every time the price moves, and is based on the last traded price. This is in contrast to traditional futures markets, for which marking to market may occur only once per day. One exception is when the market settles at expiry, at which point the mark to market price comes from the market data source's final settlement price.
 
