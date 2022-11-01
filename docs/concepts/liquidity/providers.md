@@ -109,7 +109,7 @@ Each commitment submission must specify:
   * **Propagate**: Is true or false. Propogate is used to define if you want the liquidity commitment sent to the nodes for processing immediately (true), or if you want to manually submit the orders in a transaction (false). Note: If you choose to manually submit, it must be within the block tolerance level or it will be rejected
  
 :::tip Query for data
-See a full list of applicable reference price levels in the [API documentation](./../../grpc/vega/vega.proto#peggedreference), denoted as `reference`.
+See a full list of applicable reference price levels in the [API documentation](../../api/grpc/vega/vega.proto.mdx#peggedreference), denoted as `reference`.
 :::
 
 ### Buy and sell shape example
