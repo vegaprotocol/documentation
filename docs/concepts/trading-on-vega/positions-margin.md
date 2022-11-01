@@ -112,7 +112,7 @@ The release level is scaled from the *maintenance margin* amount. It's calculate
 `[release level] = [maintenance margin] x [collateral_release scaling factor]`
 
 ### Calculating the margin on open orders
-The network calculates the overall long / short position including the submitted order. Depending on which one is larger a long or short risk factor is used for margin calculation. The maintenance margin (for futures) is then a product of the largest position, the corresponding risk factor and the `mark price`. Risk factirs capture the outcome of the probabilistic distribution of future market moves, and are market specific.
+The network calculates the overall long / short position including the submitted order. Depending on which one is larger a long or short risk factor is used for margin calculation. The maintenance margin (for futures) is then a product of the largest position, the corresponding risk factor and the `mark price`. Risk factors capture the outcome of the probabilistic distribution of future market moves, and are market specific.
 
 #### Example
 
