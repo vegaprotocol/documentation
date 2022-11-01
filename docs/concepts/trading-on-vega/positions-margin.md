@@ -14,7 +14,7 @@ A trader's margin requirements in a given market are driven by their open volume
 
 When a party on Vega opens a position, the minimum amount of assets required to open that position is put into a margin account for that party in that market. 
 
-Over the course of the position's lifetime, the margin requirements will likely change - the margin account may be topped up, and/or some margin is released back to collateral. If that party is trading on more than one market that uses the same asset, the collective positions on those markets will inform how much is set aside for margin. Margin balances are also affected by the price movements in the market where the position is being held. These hypothetical changes in position's value are called  unrealised profit and loss. 
+Over the course of the position's lifetime, the margin requirements will likely change - the margin account may be topped up, and/or some margin is released back to collateral. If that party is trading on more than one market that uses the same asset, the collective positions on those markets will inform how much is set aside for margin. Margin balances are also affected by the price movements in the market where the position is being held. These hypothetical changes in a position's value are called unrealised profit and loss. 
 
 `[margin account balance] = [initial margin requirement] + [unrealised profit] OR - [unrealised losses]`
 
