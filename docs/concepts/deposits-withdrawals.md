@@ -63,6 +63,11 @@ Once the transaction is verified, the Vega public key submitted in the transacti
 :::
 
 ### Diagram: Deposits
+
+#### How a user interacts with deposits
+![User centric deposit diagram](/img/concept-diagrams/user-centric-deposit-dark.png)
+
+#### How Ethereum and Vega interact in withdrawals
 ![Deposit diagram](/img/concept-diagrams/diagram-deposit.png)
 
 ## Withdrawing assets
@@ -99,7 +104,11 @@ You can see the threshold and delay for withdrawals in [Vega Console ↗](https:
 Alternatively, see the withdraw threshold using a GraphQL query for the asset, and its asset source [ERC20](../api/graphql/objects/erc20.mdx).
 :::
 
-### Diagram: Withdrawals
+### Diagrams: Withdrawals
+#### How a user interacts with withdrawals
+![User-centric withdrawal diagram](/img/concept-diagrams/user-centric-withdraw-dark.png)
+
+#### How Ethereum and Vega interact in withdrawals
 ![Withdrawal diagram](/img/concept-diagrams/diagram-withdraw.png)
 
 ### Withdrawing staked (unlocked) VEGA
