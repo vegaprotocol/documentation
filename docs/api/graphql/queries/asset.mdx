@@ -1,0 +1,40 @@
+---
+id: asset
+title: asset
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+An asset which is used in the vega network
+
+```graphql
+asset(
+  id: ID!
+): Asset
+```
+
+
+### Arguments
+
+#### [<code style={{ fontWeight: 'normal' }}>asset.<b>id</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> ID of the asset
+> 
+
+### Type
+
+#### [`Asset`](/testnet/api/graphql/objects/asset) <Badge class="secondary" text="object"/>
+> Represents an asset in Vega
+> 
+
+
+
+
+

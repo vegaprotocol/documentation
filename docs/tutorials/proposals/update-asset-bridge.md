@@ -34,21 +34,21 @@ As an alternative to making the transaction yourself, Etherscan provides a simpl
 When the validators have created a multisig bundle, it is available for anyone to submit to the bridge to complete the update. 
 
 ### 1. Confirm asset proposal has passed
-First, you must have the change approved by the network through governance, using a ([new asset proposal](./new-asset-proposal.md)
+First, you must have the change approved by the network through governance, using a [new asset proposal](./new-asset-proposal.md)
 
 ### 2. Get the ID of the new asset
 The asset for a new ID will be the same as the ID of the proposal that created it.
 
 ### 3. Fetch the signature bundle for the change
-* REST: [List asset bundles](../../api/rest/data-v2/trading-data-service-2-get-erc-20-list-asset-bundle)
-* GRPC: [List asset bundles](../../grpc/data-node/api/v2/trading_data.proto#geterc20listassetbundlerequest)
+* REST: [List asset bundles](../../api/rest/data-v2/trading-data-service-get-erc-20-list-asset-bundle)
+* GRPC: [List asset bundles](../../api/grpc/data-node/api/v2/trading_data.proto#geterc20listassetbundlerequest)
 
 Use one of the API calls to fetch the signature bundle from the network. This string contains the approval of the validator nodes of the network for the changes, and is checked by the bridge smart contract. Take a note of the signature bundle and the `nonce`, both of which you will submit to the contract.
 
 ### 4. Submit the update to Ethereum
 Once you have all the details required, they need to be submitted to the smart contract to enact the changes:
 
-<EthAddresses frontMatter={frontMatter} show={["erc20Bridge"]} />
+<EthAddresses frontMatter={frontMatter} show={["ERC20Bridge"]} />
 
 * For listing an asset the correct method is [`list_asset`](../../api/bridge/contracts/ERC20_Bridge_Logic#list_asset)
 
@@ -61,15 +61,15 @@ Most properties on an asset cannot be changed at creation. There are two limits 
 First, you must have the change approved by the network through governance, using an ([update asset proposal](./update-asset-proposal.md). Unlike New Asset proposals, the asset ID doesn't change as a result, so you already have the asset ID you need in step 3.
 
 ### 2. Fetch the signature bundle for the change
-* REST: [Set asset limit bundle](../../api/rest/data-v2/trading-data-service-2-get-erc-20-set-asset-limits-bundle)
-* GRPC: [Set asset limit bundle](../../grpc/data-node/api/v2/trading_data.proto#geterc20setassetlimitsbundlerequest)
+* REST: [Set asset limit bundle](../../api/rest/data-v2/trading-data-service-get-erc-20-set-asset-limits-bundle)
+* GRPC: [Set asset limit bundle](../../api/grpc/data-node/api/v2/trading_data.proto#geterc20setassetlimitsbundlerequest)
 
 Use one of the API calls to fetch the signature bundle from the network. This string contains the approval of the validator nodes of the network for the changes, and is checked by the bridge smart contract. Take a note of the signature bundle and the `nonce`, both of which we will submit to the contract.
 
 ### 3. Submit the update to Ethereum
 Now that you have all the details required, they need to be submitted to the smart contract to enact the changes:
 
-<EthAddresses frontMatter={frontMatter} show={["erc20Bridge"]} />
+<EthAddresses frontMatter={frontMatter} show={["ERC20Bridge"]} />
 
 The correct method for updating the asset is  [`set_asset_limits`](../../api/bridge/contracts/ERC20_Bridge_Logic#set_asset_limits)
 

@@ -18,8 +18,14 @@ echo "==========================="
 # Removing old versions
 rm proto.json 2> /dev/null
 rm schema.graphql 2> /dev/null
-rm -rf docs/graphql/ 2> /dev/null
+rm -rf docs/api/graphql 2> /dev/null
+rm -rf docs/api/grpc 2> /dev/null
+## Back compat: Remove former GRPC docs path
+rm -rf docs/graphql 2> /dev/null
+rm -rf versioned_docs/version-v0.53.0/graphql 2> /dev/null
+## Back compat: Remove former GRPC docs path
 rm -rf docs/grpc 2> /dev/null
+rm -rf versioned_docs/version-v0.53.0/grpc 2> /dev/null
  
 echo ""
 echo " 🛠  Install deps"
@@ -39,6 +45,17 @@ echo ""
 ./scripts/build-pre-flatten.sh
 # Fix things that are easier fixed in the specs than the output
 ./scripts/build-pre-fix-specs.sh
+
+
+# Inject more testnet servers for testnet
+## Run vaguer and store the output
+./scripts/build-pre-vaguer.sh
+
+
+# Generate OpenAPI from swagger 
+./scripts/build-pre-openapi.sh
+# Now inject servers
+node --no-warnings --experimental-fetch scripts/build-pre-openapi-servers.js
 
 export NO_UPDATE_NOTIFIER="true"
 
@@ -61,15 +78,6 @@ echo ""
 ./scripts/build-post-fix-generated.sh
 # Fix up sidebars for all APIs
 ./scripts/build-post-fix-sidebars.sh
-
-# Inject more testnet servers for testnet
-## Run vaguer and store the output
-# rm ./specs/vaguer.mainnet.json
-# JSON=true npx github:vegaprotocol/vaguer mainnet1 --silent > "./specs/mainnet_network.json"
-# rm ./specs/vaguer.testnet.json
-# JSON=true npx github:vegaprotocol/vaguer fairground --silent > "./specs/testnet_network.json"
-## Now inject servers
-node --no-warnings --experimental-fetch scripts/build-post-openapi-servers.js
 
 if [ -z ${SKIP_BUILD+x} ]; then yarn run build; else echo "Docusaurus build skipped"; fi
 

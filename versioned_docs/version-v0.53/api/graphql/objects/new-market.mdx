@@ -1,0 +1,49 @@
+---
+id: new-market
+title: NewMarket
+hide_table_of_contents: false
+---
+
+
+No description
+
+```graphql
+type NewMarket {
+  instrument: InstrumentConfiguration!
+  decimalPlaces: Int!
+  riskParameters: RiskModel!
+  metadata: [String!]
+  commitment: NewMarketCommitment
+}
+```
+
+
+### Fields
+
+#### [`instrument`](#) ([`InstrumentConfiguration!`](/mainnet/api/graphql/objects/instrument-configuration))
+
+New market instrument configuration
+
+
+#### [`decimalPlaces`](#) ([`Int!`](/mainnet/api/graphql/scalars/int))
+
+Decimal places used for the new market
+
+
+#### [`riskParameters`](#) ([`RiskModel!`](/mainnet/api/graphql/unions/risk-model))
+
+New market risk configuration
+
+
+#### [`metadata`](#) ([`[String!]`](/mainnet/api/graphql/scalars/string))
+
+Metadata for this instrument, tags
+
+
+#### [`commitment`](#) ([`NewMarketCommitment`](/mainnet/api/graphql/objects/new-market-commitment))
+
+The liquidity commitment submitted with the new market
+
+
+
+

@@ -1,0 +1,53 @@
+---
+id: ledger-entry-filter
+title: LedgerEntryFilter
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Filter for historical entry ledger queries
+
+```graphql
+input LedgerEntryFilter {
+  CloseOnAccountFilters: Boolean
+  AccountFromFilter: AccountFilter
+  AccountToFilter: AccountFilter
+  TransferTypes: [TransferType]
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntryFilter.<b>CloseOnAccountFilters</b></code>](#)<Bullet />[`Boolean`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntryFilter.<b>AccountFromFilter</b></code>](#)<Bullet />[`AccountFilter`](/testnet/api/graphql/inputs/account-filter) <Badge class="secondary" text="input"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntryFilter.<b>AccountToFilter</b></code>](#)<Bullet />[`AccountFilter`](/testnet/api/graphql/inputs/account-filter) <Badge class="secondary" text="input"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntryFilter.<b>TransferTypes</b></code>](#)<Bullet />[`[TransferType]`](/testnet/api/graphql/enums/transfer-type) <Badge class="secondary" text="list"/> <Badge class="secondary" text="enum"/>
+> 
+> 
+
+
+
+### Member of
+
+[`ledgerEntries`](/testnet/api/graphql/queries/ledger-entries)  <Badge class="secondary" text="query"/>
+
+
+

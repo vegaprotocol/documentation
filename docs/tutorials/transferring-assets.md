@@ -16,8 +16,8 @@ Transfers to fund reward pools can only be recurring, though they can be set up 
 ### Requirements
 * **Enough of the asset** to transfer and pay the transfer fee each time
 * **Vega public key** the assets are sent from. The **same key pair** must sign the transaction
-* **Public key or [account type](../grpc/vega/vega.proto.mdx#accounttype)** the assets are going to. (Either the number or `ACCOUNT_TYPE_.."`)
-* **[Asset ID](../graphql/queries/assets-connection.mdx)** for the asset to transfer
+* **Public key or [account type](../api/grpc/vega/vega.proto.mdx#accounttype)** the assets are going to. (Either the number or `ACCOUNT_TYPE_.."`)
+* **[Asset ID](../api/graphql/queries/assets-connection.mdx)** for the asset to transfer
 * **Transfer amount**. It must be written with no decimal point, but include all decimal places. Note: The amount in the below examples is based on an 18 decimal point asset, and so these would transfer 1 tVEGA
 
 ## Key-to-key transfers
@@ -49,8 +49,8 @@ vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairg
 <TabItem value="KeytoKeytransferOnceWincmd" label="Windows command line example">
 
 ```bash
-vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground^
-"{\"transfer\":^
+vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground ^
+"{\"transfer\": ^
     { ^
         \"fromAccountType\":\"ACCOUNT_TYPE_GENERAL\", ^
         \"toAccountType\":\"ACCOUNT_TYPE_GENERAL\", ^
@@ -73,7 +73,8 @@ You'll need the following information to set up a recurring transfer:
 * `startEpoch`: The number of the epoch in which you want the first transfer to be made. It will initiate at the end of that epoch.
 * `factor`: Written as a decimal less than 1.0. Factor is used to determine what portion of the full `amount` is transferred in each epoch. Think of it like a percentage, so the number you include, when multiplied by 100, will equal what percentage of the amount will be transferred each time. 
 
-If you do not have enough to cover each transfer and its fee, the transfer will automatically be cancelled.
+If you do not have enough to cover each transfer and its fee, the transfer will automatically be cancelled. Otherwise, the transfer will repeated indefinitely, unless you add the optional parameter to end the recurring transfer:
+* `endEpoch`: The number of the epoch in which you want the last transfer to be made.
 
 <Tabs groupId="KeytoKeytransferRepeat">
 <TabItem value="KeytoKeytransferRepeatLinuxcmd" label="Linux / OSX command line">
@@ -88,7 +89,8 @@ vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairg
         "amount": "10000000000000000000",
         "recurring": {
             "startEpoch": 1,
-            "factor": "2"
+            "endEpoch": 10,
+            "factor": "1"
         }
     }
 }'
@@ -97,7 +99,7 @@ vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairg
 <TabItem value="KeytoKeytransferRepeatcmdWin" label="Windows command line example">
 
 ```bash
-vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground^
+vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network fairground ^
 "{\"transfer\": ^
     { ^
         \"fromAccountType\": \"ACCOUNT_TYPE_GENERAL\", ^
@@ -107,7 +109,8 @@ vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network f
         \"amount\":\"10000000000000000000\", ^
         \"recurring\":{ ^
             \"startEpoch\": 1, ^
-            \"factor\": \"3\" ^
+            \"endEpoch\": 10, ^
+            \"factor\": \"1\" ^
         } ^
     } ^
 }"
@@ -122,7 +125,10 @@ You'll need the following information to set up a reward:
 * `startEpoch`: The number of the epoch in which you want the first transfer to be made. It will initiate at the end of that epoch.
 * `factor`: Written as a decimal less than 1.0. Factor is used to determine what portion of the full `amount` is transferred in each epoch. Think of it like a percentage, so the number you include, when multiplied by 100, will equal what percentage of the amount will be transferred each time. 
 
-Recurring transfers can also set a [dispatch strategy](../grpc/vega/vega.proto.mdx#dispatchstrategy) to distribute rewards based on [dispatch metrics](../grpc/vega/vega.proto.mdx#dispatchmetric) that are tracked by the system. The recurring reward transfer below would reward the public key that proposed the markets specified, depending on their value.
+Recurring transfers can also set a [dispatch strategy](../api/grpc/vega/vega.proto.mdx#dispatchstrategy) to distribute rewards based on [dispatch metrics](../api/grpc/vega/vega.proto.mdx#dispatchmetric) that are tracked by the system. The recurring reward transfer below would reward the public key that proposed the markets specified, depending on their value.
+
+The transfer will run indefinitely, unless you add the optional paramter to specify when to stop:
+* `endEpoch`: The number of the epoch in which you want the last transfer to be made.
  
 <Tabs groupId="KeytoPooltransferRepeat">
 <TabItem value="KeytoPooltransferRepeatLinuxcmd" label="Linux / OSX command line">
@@ -137,9 +143,10 @@ vegawallet command send --wallet "wallet-name" --pubkey "pubkey" --network fairg
         "amount":"10000000000000000000",
         "recurring":{
             "startEpoch": 1,
-            "factor": "3",
+            "endEpoch": 10,
+            "factor": "1",
             "dispatchStrategy": {
-                "assetForMetric": "123",
+                "assetForMetric": "fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55",
                 "metric": "DISPATCH_METRIC_MARKET_VALUE",
                 "markets": ["marketid"]
             }
@@ -158,11 +165,12 @@ vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network f
         \"toAccountType\": \"ACCOUNT_TYPE_REWARD_MARKET_PROPOSERS\", ^
         \"to\":\"0000000000000000000000000000000000000000000000000000000000000000\", ^
         \"asset\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\", ^
-        \"amount\":\"10000000000000000000\", ^
+        \"amount\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\", ^
         \"reference\":\"reward\", ^
         \"recurring\":{ ^
             \"startEpoch\": 1, ^
-            \"factor\": \"3\", ^
+            \"endEpoch\": 10, ^
+            \"factor\": \"1\", ^
             \"dispatchStrategy\": { ^
                 \"metric\": \"DISPATCH_METRIC_MARKET_VALUE\", ^
                 \"markets\": [\"marketid\"] ^
@@ -175,7 +183,7 @@ vegawallet.exe command send --wallet "wallet-name" --pubkey "pubkey" --network f
 </Tabs>
 
 ## Cancelling recurring transfers
-To cancel a recurring transfer, you'll need the transfer's ID. To see the ID for every transfer your public key makes, [run a transfers GraphQL query](../graphql/queries/transfers-connection.mdx).
+To cancel a recurring transfer, you'll need the transfer's ID. To see the ID for every transfer your public key makes, [run a transfers GraphQL query](../api/graphql/queries/transfers-connection.mdx).
 
 One-off transfers cannot be cancelled.
 

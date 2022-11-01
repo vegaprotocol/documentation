@@ -8,41 +8,26 @@
   YARN_VERSION = "1.22.10"
 
 [[redirects]]
-  from = "/docs/tools/vega-wallet/cli-wallet/create-wallet"
-  to = "/docs/mainnet/tools/vega-wallet/cli-wallet/latest/create-wallet"
+  from = "/docs/testnet/grpc/*"
+  to = "/testnet/api/grpc/:splat"
   status = 301
 
 [[redirects]]
-  from = "/docs/tools/vega-wallet/CLI-wallet/*"
-  to = "/docs/mainnet/tools/vega-wallet/cli-wallet/:splat"
+  from = "/docs/mainnet/grpc/*"
+  to = "/mainnet/api/grpc/:splat"
   status = 301
 
 [[redirects]]
- from = "/docs/tools/vega-wallet/concepts"
- to = "/docs/mainnet/concepts/vega-wallet"
- status = 301
-
-[[redirects]]
-  from = "/docs/tools/vega-wallet/cli-wallet/latest/create-wallet"
-  to = "/docs/mainnet/tools/vega-wallet/cli-wallet/latest/create-wallet"
+  from = "/docs/testnet/graphql/*"
+  to = "/testnet/api/graphql/:splat"
   status = 301
 
 [[redirects]]
-  from = "/docs/tools/vega-wallet"
-  to = "/docs/mainnet/tools/vega-wallet"
+  from = "/docs/mainnet/graphql/*"
+  to = "/mainnet/api/graphql/:splat"
   status = 301
 
 [[redirects]]
-  from = "/docs/tools/vega-wallet/desktop-app/latest/getting-started"
-  to = "/docs/mainnet/tools/vega-wallet/desktop-app/latest/getting-started"
-  status = 301
-
-[[redirects]]
-  from = "/docs/concepts/new-to-vega"
-  to = "/docs/mainnet/concepts/new-to-vega"
-  status = 301
-
-[[redirects]]
-  from = "/docs/releases/core/release-notes"
-  to = "/docs/mainnet/releases/core/release-notes"
+  from = "/docs/*"
+  to = "/:splat"
   status = 301

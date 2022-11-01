@@ -1,0 +1,41 @@
+---
+id: markets-depth
+title: marketsDepth
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Subscribe to the market depths update
+
+```graphql
+marketsDepth(
+  marketIds: [ID!]!
+): [ObservableMarketDepth!]!
+```
+
+
+### Arguments
+
+#### [<code style={{ fontWeight: 'normal' }}>marketsDepth.<b>marketIds</b></code>](#)<Bullet />[`[ID!]!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> ID of the market you want to receive market depth updates for
+> 
+
+### Type
+
+#### [`ObservableMarketDepth`](/testnet/api/graphql/objects/observable-market-depth) <Badge class="secondary" text="object"/>
+> Market Depth is a measure of the number of open buy and sell orders for a security or currency at different prices.
+The depth of market measure provides an indication of the liquidity and depth for the instrument.
+> 
+
+
+
+
+

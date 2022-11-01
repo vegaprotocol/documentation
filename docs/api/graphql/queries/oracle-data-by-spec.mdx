@@ -1,0 +1,45 @@
+---
+id: oracle-data-by-spec
+title: oracleDataBySpec
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+All oracle data for a given oracle spec ID
+
+```graphql
+oracleDataBySpec(
+  oracleSpecId: ID!
+  pagination: OffsetPagination
+): [OracleData!]
+```
+
+
+### Arguments
+
+#### [<code style={{ fontWeight: 'normal' }}>oracleDataBySpec.<b>oracleSpecId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> ID for an oracle spec
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>oracleDataBySpec.<b>pagination</b></code>](#)<Bullet />[`OffsetPagination`](/testnet/api/graphql/inputs/offset-pagination) <Badge class="secondary" text="input"/>
+> Pagination
+> 
+
+### Type
+
+#### [`OracleData`](/testnet/api/graphql/objects/oracle-data) <Badge class="secondary" text="object"/>
+> An oracle data contains the data sent by an oracle
+> 
+
+
+
+
+

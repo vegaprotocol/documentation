@@ -7,7 +7,7 @@ const latestVersion = "mainnet";
 const FeatureList = [
   {
     title: "Vega concepts",
-    href: `./docs/${latestVersion}/concepts/new-to-vega`,
+    href: `./${latestVersion}/concepts/new-to-vega`,
     description: (
       <>
         Restricted mainnet is a decentralised network run by a set of
@@ -18,7 +18,7 @@ const FeatureList = [
   },
   {
     title: "API references",
-    href: `./docs/${latestVersion}/api/overview`,
+    href: `./${latestVersion}/api/overview`,
     description: (
       <>
         GraphQL, gRPC and REST APIs are available to programmatically interact
@@ -29,7 +29,7 @@ const FeatureList = [
   },
   {
     title: "Tools for using Vega",
-    href: `./docs/${latestVersion}/tools`,
+    href: `./${latestVersion}/tools`,
     description: (
       <>
         Several tools are available for interacting with the functionality Vega
@@ -40,7 +40,7 @@ const FeatureList = [
   },
   {
     title: "Vega Wallet",
-    href: `./docs/${latestVersion}/tools/vega-wallet/desktop-app`,
+    href: `./${latestVersion}/tools/vega-wallet/desktop-app`,
     description: (
       <>
         Download the{" "}

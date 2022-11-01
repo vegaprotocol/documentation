@@ -1,0 +1,64 @@
+---
+id: order-time-in-force
+title: OrderTimeInForce
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Valid order types, these determine what happens when an order is added to the book
+
+```graphql
+enum OrderTimeInForce {
+  TIME_IN_FORCE_FOK
+  TIME_IN_FORCE_IOC
+  TIME_IN_FORCE_GTC
+  TIME_IN_FORCE_GTT
+  TIME_IN_FORCE_GFA
+  TIME_IN_FORCE_GFN
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTimeInForce.<b>TIME_IN_FORCE_FOK</b></code>](#) 
+> Fill or Kill: The order either trades completely (remainingSize == 0 after adding) or not at all, does not remain on the book if it doesn't trade
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTimeInForce.<b>TIME_IN_FORCE_IOC</b></code>](#) 
+> Immediate or Cancel: The order trades any amount and as much as possible but does not remain on the book (whether it trades or not)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTimeInForce.<b>TIME_IN_FORCE_GTC</b></code>](#) 
+> Good 'til Cancelled: This order trades any amount and as much as possible and remains on the book until it either trades completely or is cancelled
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTimeInForce.<b>TIME_IN_FORCE_GTT</b></code>](#) 
+> Good 'til Time: This order type trades any amount and as much as possible and remains on the book until they either trade completely, are cancelled, or expires at a set time
+NOTE: this may in future be multiple types or have sub types for orders that provide different ways of specifying expiry
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTimeInForce.<b>TIME_IN_FORCE_GFA</b></code>](#) 
+> Good for Auction: This order is only accepted during an auction period
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderTimeInForce.<b>TIME_IN_FORCE_GFN</b></code>](#) 
+> Good for Normal: This order is only accepted during normal trading (continuous trading or frequent batched auctions)
+> 
+
+
+
+### Member of
+
+[`estimateOrder`](/testnet/api/graphql/queries/estimate-order)  <Badge class="secondary" text="query"/><Bullet />[`Order`](/testnet/api/graphql/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`OrderUpdate`](/testnet/api/graphql/objects/order-update)  <Badge class="secondary" text="object"/>
+
+
+

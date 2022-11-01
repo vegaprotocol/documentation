@@ -1,0 +1,45 @@
+---
+id: margins
+title: margins
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Subscribe to the margin changes
+
+```graphql
+margins(
+  partyId: ID!
+  marketId: ID
+): MarginLevelsUpdate!
+```
+
+
+### Arguments
+
+#### [<code style={{ fontWeight: 'normal' }}>margins.<b>partyId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> ID of the party you want to subscribe to for margin updates
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>margins.<b>marketId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> ID of the market you want to listen to for margin updates (nil if you want updates for all markets)
+> 
+
+### Type
+
+#### [`MarginLevelsUpdate`](/testnet/api/graphql/objects/margin-levels-update) <Badge class="secondary" text="object"/>
+> Margins for a given a party
+> 
+
+
+
+
+

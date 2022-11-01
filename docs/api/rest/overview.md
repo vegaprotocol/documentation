@@ -14,5 +14,6 @@ Core nodes run the network. They are responsible for ensuring the consensus rule
 ## Data nodes
 Data nodes aggregate the outputs from core nodes and produce more meaningful APIs. They are stateful and build up a bigger view of the system from the events emitted from the core nodes. The data nodes give the end user a way to query historic information without the need to be always connected to the network. The data node also builds cumulative data which allows the end user to get a snapshot of the current state of a part of the system.
 
-- [Data node (legacy API)](../../category/api/rest/data-v1/trading-data-service-v-1): Get limited historical information, such as 'governance data for all proposals'. This API version will be deprecated in a future version, and does not cover the system as comprehensively as v2.
-- [Data node (v2)](../../category/api/rest/data-v2/trading-data-service-v-2): Get historic information and cumulative data, such as 'governance data for all proposals'. v2 is receiving active development.
+- [Data node (legacy API)](../../category/api/rest/data-v1/trading-data-service): Get limited historical information, such as 'governance data for all proposals'. This API version will be deprecated in a future version, and does not cover the system as comprehensively as v2.
+- [Data node (v2)](../../category/api/rest/data-v2/trading-data-service): Get historic information and cumulative data, such as 'governance data for all proposals'. v2 is receiving active development.
+- [Block explorer](../../category/api/rest/explorer/block-explorer): Get information about blocks created on the Vega network.

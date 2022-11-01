@@ -226,11 +226,12 @@ function generateTerminationOracleSpec(skeleton) {
 
   return spec;
 }
+
 function generateOracleSpecBinding(skeleton) {
   assert.equal(
-    skeleton.properties.settlementPriceProperty.type,
+    skeleton.properties.settlementDataProperty.type,
     "string",
-    "Oracle spec binding: settlement price property changed format"
+    "Oracle spec binding: settlement data property changed format"
   );
   assert.equal(
     skeleton.properties.tradingTerminationProperty.type,
@@ -239,20 +240,20 @@ function generateOracleSpecBinding(skeleton) {
   );
 
   const binding = {
-    settlementPriceProperty: "prices.BTC.value",
+    settlementDataProperty: "prices.BTC.value",
     tradingTerminationProperty: "vegaprotocol.builtin.timestamp",
   };
 
   binding[inspect.custom] = () => {
     // Brittle
     const splitSettle =
-      skeleton.properties.settlementPriceProperty.description.split("\n");
+      skeleton.properties.settlementDataProperty.description.split("\n");
     return `{
             // ${splitSettle[0]}
             // ${splitSettle[1]}
             // ${splitSettle[2]}
-            // ${splitSettle[3]} (${skeleton.properties.settlementPriceProperty.type}) 
-            settlementPriceProperty: "${binding.settlementPriceProperty}",
+            // ${splitSettle[3]} (${skeleton.properties.settlementDataProperty.type}) 
+            settlementDataProperty: "${binding.settlementDataProperty}",
             // ${skeleton.properties.tradingTerminationProperty.title} (${skeleton.properties.tradingTerminationProperty.type}) 
             tradingTerminationProperty: "${binding.tradingTerminationProperty}"
           }`;
@@ -289,8 +290,8 @@ function generateInstrument(skeleton) {
     "Instrument property settlementDataDecimals used to be an integer"
   );
   assert.ok(
-    skeleton.properties.future.properties.oracleSpecForSettlementPrice,
-    "OracleSpecForSettlementPrice used to exist"
+    skeleton.properties.future.properties.oracleSpecForSettlementData,
+    "OracleSpecForSettlementData used to exist"
   );
   assert.ok(
     skeleton.properties.future.properties.oracleSpecForTradingTermination,
@@ -308,8 +309,8 @@ function generateInstrument(skeleton) {
       settlementAsset: idForAnExistingVegaAsset,
       quoteName: "tEuro",
       settlementDataDecimals: 5,
-      oracleSpecForSettlementPrice: generateSettlementOracleSpec(
-        skeleton.properties.future.properties.oracleSpecForSettlementPrice
+      oracleSpecForSettlementData: generateSettlementOracleSpec(
+        skeleton.properties.future.properties.oracleSpecForSettlementData
       ),
       oracleSpecForTradingTermination: generateTerminationOracleSpec(
         skeleton.properties.future.properties.oracleSpecForTradingTermination
@@ -343,13 +344,13 @@ function generateInstrument(skeleton) {
     } as ${skeleton.properties.future.properties.settlementDataDecimals.type})
           settlementDataDecimals: ${instrument.future.settlementDataDecimals},
           // ${
-            skeleton.properties.future.properties.oracleSpecForSettlementPrice
+            skeleton.properties.future.properties.oracleSpecForSettlementData
               .title
           } (${
-      skeleton.properties.future.properties.oracleSpecForSettlementPrice.type
+      skeleton.properties.future.properties.oracleSpecForSettlementData.type
     })
-          oracleSpecForSettlementPrice: ${inspect(
-            instrument.future.oracleSpecForSettlementPrice,
+          oracleSpecForSettlementData: ${inspect(
+            instrument.future.oracleSpecForSettlementData,
             { depth: 5 }
           )},
           // ${
