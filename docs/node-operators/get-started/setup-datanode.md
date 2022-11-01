@@ -1,6 +1,6 @@
 ---
-sidebar_position: 2
-title: Set up data node
+sidebar_position: 3
+title: Set up a data node
 hide_title: false
 ---
 import Tabs from '@theme/Tabs';
@@ -31,15 +31,16 @@ Refer to the [PostgreSQL documentation](https://www.postgresql.org/docs/14/index
 <Tabs groupId="operating-systems">
 <TabItem value="linux" label="Linux">
 
-**Linux users**
+### Linux users
 To ensure you install the correct version of TimescaleDB, you can use the notes at the bottom of the [Timescales Documentation for Debian](https://docs.timescale.com/install/latest/self-hosted/installation-debian/).
 
 </TabItem>
 <TabItem value="mac" label="MacOS">
 
-**MacOS users**
+### MacOS users
 To ensure you install the correct version of TimescaleDB, you can use the notes at the bottom of the [Timescales Documentation for Mac](https://docs.timescale.com/install/latest/self-hosted/installation-macos/). 
 </TabItem>
+</Tabs>
 :::
 
 ### PostgreSQL and TimescaleDB docker installation

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 title: Set up your node
 hide_title: false
 ---
@@ -189,11 +189,11 @@ Use your Ethereum key to announce your node to the network.
 You'll need to know the [current epoch ↗](https://sandbox.token.vega.xyz/staking), and have the following data to hand: the URL for your validator website, and URL for the avatar that will show up on the token dApp next to your node name.
 
 ```shell
-vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" --avatar-url="YOUR_AVATAR_URL" --country="UK" -- name="YOUR_NODE_NAME" --from-epoch="NEXT_EPOCH" --submitter-address="YOUR_ETHEREUM_KEY"
+vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" --avatar-url="YOUR_AVATAR_URL" --country="UK" -- name="YOUR_NODE_NAME" --from-epoch="CURRENT_EPOCH" --submitter-address="YOUR_ETHEREUM_KEY"
 ```
 
 ## Nominate your node
-Associate your tokens and nominate your node using the [token dApp ↗](https://sandbox.token.vega.xyz/staking/).
+To move on to self-staking, wait to see your node on the node list. Then, associate your tokens and nominate your node using the [token dApp ↗](https://sandbox.token.vega.xyz/staking/) or by interacting directly with the smart contract.
 
 ## Submit signature bundle
 In the epoch after you announced your node, the network will build a signature bundle: proof from the network that your node can be added to the multisigControl signers.
