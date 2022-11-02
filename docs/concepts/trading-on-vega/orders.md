@@ -4,8 +4,6 @@ title: Orders
 hide_title: false
 description: See the order types and when they're applicable for a market.
 ---
-
-# Orders
 An order is an instruction to buy or sell on specific market, and it can go long or short on the market's price. Placing an order does not guarantee it gets filled. 
 
 :::info Try it out
@@ -112,28 +110,21 @@ A network order is triggered by the Vega network to close out a distressed trade
 [Position resolution](#position-resolution)
 :::
 
-## Batch orders [WIP]
-Order instructions (such as submit, cancel, and/or amend orders) can be batched together in a single transaction, which allows traders to regularly place and maintain the price and size of multiple orders.
-<!--
-    The batch contains three lists of instructions to be performed. Any of these lists may be empty but at least one of the lists must be non-empty (contain at least one instruction):
+## Batch order [WIP]
+Order instructions (such as submit, cancel, and/or amend orders) can be batched together in a single transaction, which allows traders to regularly place and maintain the price and size of multiple orders without needing to wait for each order instruction to be processed by the network individually. 
 
-        Cancellations: this is a list (repeated field) of Cancel Order instructions
+To prevent spamming, the total number of instructions in a batch order can be no more than the number set with the network parameter: <NetworkParameter frontMatter={frontMatter} param="network.spam_protection.max.batch.size" />
 
-        Amendments: this is a list (repeated field) of Amend Order instructions
+Batches are processed in the following order: all cancellations, then all amendments, then all submissions. 
 
-        Submissions: this is a list (repeated field) of Submit Order instructions
+They are also processed as if they were standalone order instructions in terms of market behaviour. For example, if an instruction, had it been submitted individually, would trigger entry into or exit from an auction, then the order instruction would set off the auction trigger before the rest of the batch is processed.
 
-    The total number of instructions across all three lists (i.e. sum of the lengths of the lists) must be less than or equal to the current value of the network parameter network.spam_protection.max.batch.size.
+Batch order instructions can be used in a liquidity provision strategy to help providers manage their limit orders (and their risk) more efficiently.
 
-Processing a batch
-    The batches are processed in the order: all cancellations, then all amendments, then all submissions. 
-Auction behaviour
-
-    Processing each instruction within a batch must behave the same way regarding auction triggers as if it were a standalone transaction:
-
-        Entry to or exit from auctions happens immediately before continuing processing the rest of the batch if that is what would happen were the transactions in the batch submitted individually outside of a batch.
-
--->
+:::note Read more
+* [Auctions](trading-modes.md#auctions)
+* [Providing liquidity]
+:::
 
 ## Order status
 * **Filled**: Orders can be fully or partially filled. If the entire order amount has traded, it's `fully filled`. If only some of the order has traded, it's `partially filled`
