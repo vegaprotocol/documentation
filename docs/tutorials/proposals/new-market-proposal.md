@@ -12,6 +12,7 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 import JSONInstructions from './_json-instructions.md';
 import TerminalInstructions from './_terminal-instructions.md';
 import NewMarketJSONInstrument from './_generated-proposals/_newMarket_json_instrument.md';
+import NewMarketJSONRisk from './_generated-proposals/_newMarket_json_risk.md';
 import NewMarketJSONLiquidityMonitoring from './_generated-proposals/_newMarket_json_liqparams.md';
 import NewMarketJSONPriceMonitoring from './_generated-proposals/_newMarket_json_priceparams.md';
 import NewMarketJSONOracle from './_generated-proposals/_newMarket_json_oracle.md';
@@ -133,6 +134,10 @@ Price monitoring uses the following properties:
 | `horizon` | Price monitoring projection horizon τ in seconds (set as >0) | 43200 |
 | `probability` | Price monitoring probability level p (set as >0 and <1) | 0.9999999 |
 | `auctionExtension` | Price monitoring auction extension duration (in seconds) should the price breach its theoretical level over the specified horizon at the specified probability level (set as >0) | 600 |
+
+### Risk model
+This is the configuration for the logNormal risk model:
+<NewMarketJSONRisk />
 
 ## Templates and submitting
 In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to [submit on the token dApp ↗](https://token.fairground.wtf/governance/propose/new-market), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**

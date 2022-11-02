@@ -2,18 +2,18 @@
   ```json
 {
   "rationale": {
-    "title": "Update governance.proposal.asset.requiredMajority",
-    "description": "Proposal to update governance.proposal.asset.requiredMajority to 300}"
+    "title": "Update market.fee.factors.infrastructureFee",
+    "description": "Proposal to update market.fee.factors.infrastructureFee to 300}"
   },
   "terms": {
     "updateNetworkParameter": {
       "changes": {
-        "key": "governance.proposal.asset.requiredMajority",
+        "key": "market.fee.factors.infrastructureFee",
         "value": "300"
       }
     },
-    "closingTimestamp": 1669204865,
-    "enactmentTimestamp": 1669291265
+    "closingTimestamp": 1669048765,
+    "enactmentTimestamp": 1669135165
   }
 }
 ```
