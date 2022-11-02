@@ -229,9 +229,9 @@ gRPC configurations are defined under the `[Gateway.Node]` section of the data n
 ```
 
 ### GraphQL
-[GraphQL](https://graphql.org/) is an open-source data query and manipulation language for APIs, and a runtime for fulfilling queries with existing data, originally developed at Facebook. The [Console](https://github.com/vegaprotocol/console) uses the GraphQL API to retrieve data including streaming of events.
+[GraphQL ↗](https://graphql.org/) is an open-source data query and manipulation language for APIs, and a runtime for fulfilling queries with existing data, originally developed at Facebook. The [Console ↗](https://github.com/vegaprotocol/frontend-monorepo/tree/develop/apps/trading) uses the GraphQL API to retrieve data including streams of events.
 
-The GraphQL API is defined by a [schema](gateway/graphql/schema.graphql). External clients will use this schema to communicate with Vega.
+The GraphQL API is defined by a [schema ↗](https://github.com/vegaprotocol/vega/blob/master/datanode/gateway/graphql/schema.graphql). External clients will use this schema to communicate with Vega.
 
 Queries can be tested using the GraphQL playground app which is bundled with a node. The default port (configurable) for the playground app is `3008` accessing this in a web browser will show a web app for testing custom queries, mutations and subscriptions.
 
@@ -325,4 +325,4 @@ REST provides a standard between computer systems on the web, making it easier f
 The default port (configurable) for the REST API is `3009` and we use a reverse proxy to the gRPC API to deliver the REST API implementation.
 
 ## Further reading
-For more information about data node and developing on data node please see the data node [README](https://github.com/vegaprotocol/vega/blob/develop/datanode/README.md)
+For more information about data node and developing on data node please see the data node [README](https://github.com/vegaprotocol/vega/blob/master/datanode/README.md)
