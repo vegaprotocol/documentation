@@ -8,12 +8,18 @@ hide_title: false
 NOTE: This page has duplicate content. Reviewers refer to the main page - all changes there will be reflected here before this page is made visible.
 
 ## Intro (remove subhead) [WIP]
-Liquidity providers receive rewards for providing liquidity, and penalties for not upholding their commitment with their available collateral. 
+Liquidity providers receive [rewards](#rewarding-liquidity-providers), through fees, for providing liquidity. Providers who don't uphold their liquidity commitment through their available capital are [penalised](#penalties-for-not-fulfilling-liquidity-commitment).
+
+:::info Read more
+[Liquidity provision](provision.md): Liquidity providers can use two tactics to provide liquidity for a market: placing limit orders and committing liquidity.
+:::
 
 ## Rewarding liquidity providers
-Liquidity providers earn from the fees paid by takers on the market. How much providers are paid is calculated automatically and distributed according to the how the liquidity was provided (through limit orders or a liquidity commitment), based on a provider's relative commitment and how early in the market’s lifecycle they committed.
+Liquidity providers earn from the fees paid by takers on the market. How much providers are paid is calculated automatically and distributed according to the how the liquidity was provided (through limit orders or a liquidity commitment), based on a provider's relative commitment and how early in the market’s lifecycle they committed. Once a provider meets their obligation, whether through a combination of limit orders and their liquidity commitment or solely through a commitment, they are eligible to receive their portion of the liquidity fee.
 
-### Liquidity fees
+Note: During an auction uncrossing, orders derived from a liquidity providers' commitments will not need to provide liquidity or enable trades. However, providers must maintain their liquidity commitment, and their liquidity orders are placed back on the order book when normal trading resumes.
+
+## Liquidity fees
 Liquidity providers receive a cut of the fees paid by price takers. 
    
 The amount each liquidity provider receives depends on:
@@ -24,7 +30,7 @@ The fee percentage determines how much money goes into the pool. How much a prov
 
 As part of the liquidity commitment transaction, a liquidity provider submits their desired liquidity fee factor, as a number between 0 and 1. That number is converted to a percentage, and fees are paid on each trade.
    
-The proposed fees are used to calculate the actual fee each participant will pay on a trade in that market. Once the fee for the market is set, all liquidity orders charge that fee, regardless of whether the provider's submitted fee was higher or lower, and whatever the proposed fee factor, whoever submits the commitment is a liquidity provider.
+The proposed fees are used to calculate the actual fee each participant will pay on a trade in that market. Once the fee for the market is set, all liquidity orders charge that fee, regardless of whether the provider's submitted fee was higher or lower, and whatever the proposed fee factor. Anyone who submits a commitment becomes a liquidity provider. A provider receives a cut of the fees once, and for as long as, they meet their liquidity obligation.
 
 This fee can change as the market's target stake changes, and / or as liquidity providers change their commitment or stop providing liquidity altogether. 
 
@@ -37,7 +43,8 @@ Initially, before a market opens for trading, the target stake is zero, as it's 
 
 Once the market opens and its opening auction begins, a clock starts ticking. The protocol calculates the target stake, and the fee is continuously re-evaluated.
 
-#### Liquidity fee example
+<details><summary>Liquidity fee example</summary>
+<p>
 In the example below, there are 3 liquidity providers all bidding for their chosen fee level, with the lowest fee bid at the top, and the highest at the bottom. 
 
 * [LP 1 stake = 120 ETH, LP 1 liquidity-fee-factor = 0.5%]
@@ -47,6 +54,9 @@ In the example below, there are 3 liquidity providers all bidding for their chos
 * If the target stake = 119 then the needed liquidity is given by LP 1, thus market's liquidity-fee-factor is the LP 1 fee: 0.5%.
 * If the target stake = 123 then the needed liquidity is given by the combination of LP 1 and LP 2, and so the market's liquidity-fee-factor is LP 2 fee: 0.75%.
 * If the target stake = 240 then all the liquidity supplied above does not meet the estimated market liquidity demand, and thus the market's liquidity-fee-factor is set to the highest, LP 3's fee: 3.75%.
+
+</p>
+</details>
 
 ### How liquidity fees are split
 By committing liquidity, a liquidity provider gets a share of the market's fees that depends on how trading has grown on the market. This is known as the equity-like share. Liquidity providers who get into a market early benefit from helping to grow the market by earning a larger share of the market's trading fees than their actual commitment would imply. 
@@ -64,8 +74,9 @@ The liquidity fee amount is collected from traders on every trade, and held in a
 
 How often fees are distributed is defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providers.fee.distributionTimeStep" hideName={false} />. Starting with the end of the market's opening auction, every time the time-step has been hit, the balance in the account is transferred to each liquidity provider's margin account for the market, depending on their share at the time.
 
-#### Fee distribution example
-A market have 4 LPs with equity-like shares:
+<details><summary>Fee distribution example</summary>
+<p>
+A market has 4 LPs with equity-like share:
 
 * LP 1 share = 0.65
 * LP 2 share = 0.25
@@ -79,10 +90,11 @@ Thus, the following amounts are then transferred to each LP's margin account onc
 * LP 2 receives: 0.25 x 103.5 = 25.875 ETH
 * LP 3 receives: 0.10 x 103.5 = 10.350 ETH
 
+</p>
+</details>
+
 ## Penalties for not fulfilling liquidity commitment
 Not being able to support the orders created from your liquidity commitment with funds in your general and/or margin accounts will put you at risk of closeout, and can put the market into a situation where there is not enough liquidity.
-
-During an auction uncrossing, orders derived from a liquidity providers' commitments will not need to provide liquidity or enable trades. However, providers must maintain their liquidity commitment, and their liquidity orders are placed back on the order book when normal trading resumes.
 
 **If a liquidity provider can't cover their commitment**: If the liquidity provider's margin account doesn't have enough funds to support the orders that are derived from their commitment, the protocol will search for funds in the general account for the relevant asset. 
 

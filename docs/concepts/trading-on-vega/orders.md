@@ -103,14 +103,7 @@ Unparked pegged orders will be rejected:
 * If the reference price no longer exists (e.g. no best bid)
 * If the price moves to a value that means it would create an invalid order if the offset was applied
 
-### Network order
-A network order is triggered by the Vega network to close out a distressed trader, as part of position resolution. Network orders cannot be submitted by a party.
-
-:::note Read more
-[Position resolution](#position-resolution)
-:::
-
-## Batch order [WIP]
+## Batch order
 Order instructions (such as submit, cancel, and/or amend orders) can be batched together in a single transaction, which allows traders to regularly place and maintain the price and size of multiple orders without needing to wait for each order instruction to be processed by the network individually. 
 
 To prevent spamming, the total number of instructions in a batch order can be no more than the number set with the network parameter: <NetworkParameter frontMatter={frontMatter} param="network.spam_protection.max.batch.size" />
@@ -123,7 +116,14 @@ Batch order instructions can be used in a liquidity provision strategy to help p
 
 :::note Read more
 * [Auctions](trading-modes.md#auctions)
-* [Providing liquidity]
+* [Providing liquidity](../liquidity/provision.md)
+:::
+
+### Network order
+A network order is triggered by the Vega network to close out a distressed trader, as part of position resolution. Network orders cannot be submitted by a party.
+
+:::note Read more
+[Position resolution](#position-resolution)
 :::
 
 ## Order status
