@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-title: Set up your node
+title: Set up validator node
 hide_title: false
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
@@ -148,6 +148,8 @@ The persistent_peers field is a list of node id and address of node separated by
 
 Then ensure the `max_packet_msg_payload_size` is at least 16384.
 
+Under `Mempool Configuration Option`, ensure that `broadcast = true`.
+
 ### Save Tendermint genesis
 To start successfully, tendermint needs the genesis file from the network you will be trying to join. This file need to be located in `YOUR_TENDERMINT_HOME/config/genesis.json`. 
 
@@ -193,7 +195,9 @@ vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" 
 ```
 
 ## Nominate your node
-To move on to self-staking, wait to see your node on the node list. Then, associate your tokens and nominate your node using the [token dApp ↗](https://sandbox.token.vega.xyz/staking/) or by interacting directly with the smart contract.
+To move on to self-staking, wait until the next epoch to see your node on the node list. 
+
+Then, associate your tokens and nominate your node using the [token dApp ↗](https://sandbox.token.vega.xyz/staking/) or by interacting directly with the smart contract.
 
 ## Submit signature bundle
 In the epoch after you announced your node, the network will build a signature bundle: proof from the network that your node can be added to the multisigControl signers.
