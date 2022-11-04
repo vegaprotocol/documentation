@@ -26,14 +26,17 @@ The orders created from a liquidity commitment are not defined by actual numeric
 Providing liquidity means you'll need to actively manage your commitment. While there is a way to amend or cancel your liquidity commitment order, they'll only be possible to do if the market can function without your liquidity commitment.
 :::
 
-### Rewarding liquidity providers [WIP]
+### Rewarding liquidity providers
 Participants who provide liquidity earn from liquidity fees, which are paid by the *price takers* on each trade.
 
 In your liquidity commitment submission, you need to propose a fee factor, as a decimalised number that is converted to perecentage. Your proposed fee factor is used, with other proposed fee factors, to determine the market's liquidity fee. Once the fee for the market is set, all liquidity orders charge that fee, regardless of whether the provider's submitted fee was higher or lower, and whether you propose a higher (or lower) factor, you are still a liquidity provider. The proposed fees are used to calculate the actual fee each participant will pay on a trade in that market.
 
-Read more: [Liquidity rewards]
+:::note
+Read more 
+[Liquidity rewards](./../concepts/liquidity/rewards-penalties.md)
+:::
 
-### Shapes for commitment [WIP]
+### Shapes for commitment
 In essence, a liquidity commitment submission is a set of pegged orders grouped by order book size, with a proportion set for each order within an order 'shape'. The order automatically updates the price and size as needed to meet an LP's commitment, and automatically refreshes the volume after trading to ensure continuous liquidity provision.
 
 You define the order placement on the book using two shapes: buy shape and sell shape. The script example below shows how to set up your shapes by defining what proportion of orders each price level will have, and the distances (offset) for the price levels where the orders will be placed, based on the reference price level you choose to peg to (`PEGGED_REFERENCE_BEST_BID`, `PEGGED_REFERENCE_MID` or `PEGGED_REFERENCE_BEST_ASK`).
@@ -42,8 +45,8 @@ You can influence how likely the specific orders within the liquidity commitment
 
 Vega then calculates the size of the liquidity order placed at each price level. As the prices on the order book move, the protocol will recalculate the order sizes and prices, and update the orders.
 
-:::note Go deeper [WIP]
-Order shapes: See details on how volume and size are calculated for liquidity commitment orders. 
+:::note Read more
+[Order shapes](./../concepts/liquidity/provision.md#order-shapes): See details on how volume and size are calculated for liquidity commitment orders. 
 :::
 
 ### Balancing position risk with margin cost
@@ -78,7 +81,7 @@ You'll need  to identify which market you want to supply liquidity to, and add t
 python3 get-markets-and-market-data/get-markets-and-marketdata.py
 ```
 
-## Creating a liquidity commitment [WIP]
+## Creating a liquidity commitment
 This tutorial describes how to create, amend or cancel, and send a liquidity commitment submission, using Python. Note: There are also scripts available for Bash.
 
 **The liquidity provision submission must include**:
@@ -91,7 +94,7 @@ This tutorial describes how to create, amend or cancel, and send a liquidity com
     * **Proportion**: The proportion of your committed collateral allocated to this order, as a weight
     * **Reference price**: The price that you want the order offset to reference. You can choose from the market’s mid price, best bid price, or the best ask price. In the examples below, the reference price is pegged to the mid-price, which means as the mid-price moves, so do the LP orders. This would be useful if, for example, you wanted to always provide a spread of 10 ticks, then you could peg your first orders 5 ticks from the mid price on each side.
     
-    (See a full list of applicable reference price levels in the [API documentation](https://docs.vega.xyz/protodocs/vega/vega.proto#peggedreference)), denoted as `reference`
+    (See a full list of applicable reference price levels in the [API documentation](./../grpc/vega/vega.proto.mdx#PeggedReference)), denoted as `reference`
 
 **To submit the liquidity provision message, you'll also need**: 
 
@@ -156,8 +159,8 @@ To run the script with your own values, you will need to edit the file, save it 
 python3 submit-create-liquidity-provision/submit-create-liquidity-provision-order.py
 ```
 
-## Amending a liquidity commitment [WIP]
-When amending a liquidity commitment, the network will always allow you to provide more liquidity. However, reducing your liquidity commitment will depend on the maximum amount that the market can reduce by given the current liquidity demand in the market. If you were to reduce your commitment to the point where the market would drop below its required [target stake], then your amendment would not be accepted.
+## Amending a liquidity commitment
+When amending a liquidity commitment, the network will always allow you to provide more liquidity. However, reducing your liquidity commitment will depend on the maximum amount that the market can reduce by given the current liquidity demand in the market. If you were to reduce your commitment to the point where the market would drop below its required [target stake](./../concepts/liquidity/provision.md#target-stake), then your amendment would not be accepted.
 
 The protocol does not take into account your current position when it creates the orders from your liquidity provision shape. Regardless of if you are already long or short, the orders created will be the same, so you will need to actively manage your orders as your position changes. For example, if you create a shape that is more likely to result in a long position, then over time you are likely to become longer. As you are required to have enough margin to cover you position, this puts more strain on your margin account as your position grows.
 

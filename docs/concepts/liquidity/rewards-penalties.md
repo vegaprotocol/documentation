@@ -4,10 +4,8 @@ title: Rewards and penalties (dupe)
 hide_title: false
 ---
 
-## Duplicate content [WIP]
-NOTE: This page has duplicate content. Reviewers refer to the main page - all changes there will be reflected here before this page is made visible.
+import NetworkParameter from '@site/src/components/NetworkParameter';
 
-## Intro (remove subhead) [WIP]
 Liquidity providers receive [rewards](#rewarding-liquidity-providers), through fees, for providing liquidity. Providers who don't uphold their liquidity commitment through their available capital are [penalised](#penalties-for-not-fulfilling-liquidity-commitment).
 
 :::info Read more

@@ -134,7 +134,7 @@ The obligation is higher if the offsets are further away from the best bid/ask, 
 Explore liquidity calculations in more depth in the [liquidity mechanics spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0044-LIME-lp_mechanics.md).
 :::
 
-#### Amending and cancelling a liquidity commitment [WIP]
+#### Amending and cancelling a liquidity commitment
 Liquidity providers can also, depending on the commitment and the market state, amend and cancel their commitment. 
 
 Only one commitment for a market can exist per provider, so adding to it or changing it must be done by amending the existing commitment.
@@ -146,7 +146,7 @@ When amending or cancelling a liquidity commitment, the network will always allo
 :::caution
 If a market doesn't have enough liquidity, or is perpetually in a liqudity monitoring auction, you may not be able to reduce or cancel your commitment, and you will need to continue to support your commitment until there is enough liquidity or the market is settled.
 
-You can [submit a governance proposal] to update the market's settlement date, and vote with the weight of your equity-like share.
+You can [submit a governance proposal](../../../tutorials/proposals/update-market-proposal.md) to update the market's settlement date, and vote with the weight of your equity-like share.
 :::
 
 Submitting an amendment replaces the entire set of orders with the ones in the amendment transaction. To keep any of the existing order shapes, they'll need to added into the amendment.
