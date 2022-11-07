@@ -1,0 +1,168 @@
+---
+id: bus-event-type
+title: BusEventType
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+enum BusEventType {
+  TimeUpdate
+  TransferResponses
+  PositionResolution
+  Order
+  Account
+  Party
+  Trade
+  MarginLevels
+  Proposal
+  Vote
+  MarketData
+  NodeSignature
+  LossSocialization
+  SettlePosition
+  SettleDistressed
+  MarketCreated
+  MarketUpdated
+  Asset
+  MarketTick
+  Auction
+  RiskFactor
+  LiquidityProvision
+  Deposit
+  Withdrawal
+  OracleSpec
+  Market
+  TransactionResult
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>TimeUpdate</b></code>](#) 
+> Vega Time has changed
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>TransferResponses</b></code>](#) 
+> A balance has been transferred between accounts
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>PositionResolution</b></code>](#) 
+> A position resolution event has occurred
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>Order</b></code>](#) 
+> An order has been created or updated
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>Account</b></code>](#) 
+> An account has been updated
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>Party</b></code>](#) 
+> A party has been updated
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>Trade</b></code>](#) 
+> A trade has been created
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>MarginLevels</b></code>](#) 
+> Margin levels have changed for a position
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>Proposal</b></code>](#) 
+> A governance proposal has been created or updated
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>Vote</b></code>](#) 
+> A vote has been placed on a governance proposal
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>MarketData</b></code>](#) 
+> Market data has been updated
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>NodeSignature</b></code>](#) 
+> Validator node signatures for an event
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>LossSocialization</b></code>](#) 
+> A position has been closed without sufficient insurance pool balance to cover it
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>SettlePosition</b></code>](#) 
+> A position has been settled
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>SettleDistressed</b></code>](#) 
+> A distressed position has been settled
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>MarketCreated</b></code>](#) 
+> A new market has been created
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>MarketUpdated</b></code>](#) 
+> A market has been updated
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>Asset</b></code>](#) 
+> An asset has been created or update
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>MarketTick</b></code>](#) 
+> A market has progressed by one tick
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>Auction</b></code>](#) 
+> A market has either entered or exited auction
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>RiskFactor</b></code>](#) 
+> A risk factor adjustment was made
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>LiquidityProvision</b></code>](#) 
+> A liquidity commitment change occurred
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>Deposit</b></code>](#) 
+> Collateral has deposited in to this Vega network via the bridge
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>Withdrawal</b></code>](#) 
+> Collateral has been withdrawn from this Vega network via the bridge
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>OracleSpec</b></code>](#) 
+> An oracle spec has been registered
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>Market</b></code>](#) 
+> Constant for market events - mainly used for logging
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>BusEventType.<b>TransactionResult</b></code>](#) 
+> The results from processing at transaction
+> 
+
+
+
+### Member of
+
+[`BusEvent`](/testnet/api/graphql/objects/bus-event)  <Badge class="secondary" text="object"/><Bullet />[`busEvents`](/testnet/api/graphql/subscriptions/bus-events)  <Badge class="secondary" text="subscription"/>
+
+
+

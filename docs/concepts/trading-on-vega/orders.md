@@ -186,12 +186,12 @@ Good 'Til Time (GTT): A persistent order that is valid until the trader's suppli
 ### Good For Auction
 Good For Auction (GFA): This order is dependent on the market's state, and will only be accepted by the system if it arrives during an auction period, otherwise it will be rejected. The order can act like either a Good 'Til Cancelled or Good Til Time order depending on whether an expiry is set.
 
-When an auction uncrosses, GFA orders that are not matched are stopped. 
+When an auction uncrosses, GFA orders that are not matched are cancelled. 
 
 ### Good For Normal
 Good For Normal (GFN): This order is dependent on the market's state and will only be accepted by the system if it arrived during the market's standard trading mode, otherwise it will be rejected. The order can act like either a Good 'Til Cancelled or Good Til Time order depending on whether an expiry is set.
 
-Good for Normal orders are stopped if the market moves into an auction.
+Good for Normal orders are cancelled if the market moves into an auction.
 
 ## Submitting, amending and cancelling orders
 This section is specific to market and limit orders. 

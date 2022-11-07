@@ -1,0 +1,50 @@
+---
+id: market-depth
+title: MarketDepth
+hide_table_of_contents: false
+---
+
+
+Market Depth is a measure of the number of open buy and sell orders for a security or currency at different prices.
+The depth of market measure provides an indication of the liquidity and depth for the instrument.
+
+```graphql
+type MarketDepth {
+  market: Market!
+  buy: [PriceLevel!]
+  sell: [PriceLevel!]
+  lastTrade: Trade
+  sequenceNumber: String!
+}
+```
+
+
+### Fields
+
+#### [`market`](#) ([`Market!`](/mainnet/api/graphql/objects/market))
+
+Market id
+
+
+#### [`buy`](#) ([`[PriceLevel!]`](/mainnet/api/graphql/objects/price-level))
+
+Buy side price levels (if available)
+
+
+#### [`sell`](#) ([`[PriceLevel!]`](/mainnet/api/graphql/objects/price-level))
+
+Sell side price levels (if available)
+
+
+#### [`lastTrade`](#) ([`Trade`](/mainnet/api/graphql/objects/trade))
+
+Last trade for the given market (if available)
+
+
+#### [`sequenceNumber`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+Sequence number for the current snapshot of the market depth
+
+
+
+

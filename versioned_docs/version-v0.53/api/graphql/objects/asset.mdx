@@ -1,0 +1,79 @@
+---
+id: asset
+title: Asset
+hide_table_of_contents: false
+---
+
+
+Represents an asset in vega
+
+```graphql
+type Asset {
+  id: ID!
+  name: String!
+  symbol: String!
+  totalSupply: String!
+  decimals: Int!
+  quantum: String!
+  source: AssetSource!
+  status: AssetStatus!
+  infrastructureFeeAccount: Account!
+  globalRewardPoolAccount: Account
+}
+```
+
+
+### Fields
+
+#### [`id`](#) ([`ID!`](/mainnet/api/graphql/scalars/id))
+
+The id of the asset
+
+
+#### [`name`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+The full name of the asset (e.g: Great British Pound)
+
+
+#### [`symbol`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+The symbol of the asset (e.g: GBP)
+
+
+#### [`totalSupply`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+The total supply of the market
+
+
+#### [`decimals`](#) ([`Int!`](/mainnet/api/graphql/scalars/int))
+
+The precision of the asset
+
+
+#### [`quantum`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+The minimum economically meaningful amount in the asset
+
+
+#### [`source`](#) ([`AssetSource!`](/mainnet/api/graphql/unions/asset-source))
+
+The origin source of the asset (e.g: an erc20 asset)
+
+
+#### [`status`](#) ([`AssetStatus!`](/mainnet/api/graphql/enums/asset-status))
+
+The status of the asset in the vega network
+
+
+#### [`infrastructureFeeAccount`](#) ([`Account!`](/mainnet/api/graphql/objects/account))
+
+The infrastructure fee account for this asset
+
+
+#### [`globalRewardPoolAccount`](#) ([`Account`](/mainnet/api/graphql/objects/account))
+
+The global reward pool account for this asset
+
+
+
+

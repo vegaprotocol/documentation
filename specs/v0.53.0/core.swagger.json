@@ -11,7 +11,7 @@
   ],
   "host": "http://nodes-guru.mainnet.vega.community:3009/assets",
   "schemes": [
-    "http"
+    "https"
   ],
   "consumes": [
     "application/json"

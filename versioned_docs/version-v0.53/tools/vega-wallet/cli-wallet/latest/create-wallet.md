@@ -154,7 +154,7 @@ Import the following network configurations:
 * **Fairground** network: <NetworkConfigAddress frontMatter={frontMatter} label="fairground.toml" network="fairground"/>
 
 :::info
-To update your networks list, see [manage networks](/docs/testnet/tools/vega-wallet/cli-wallet/latest/guides/manage-networks#update-networks) for instructions.
+To update your networks list, see [manage networks](/mainnet/tools/vega-wallet/cli-wallet/latest/guides/manage-networks#update-networks) for instructions.
 ::: 
 
 #### Import networks from URL
@@ -191,7 +191,7 @@ vegawallet network import --from-url {NetworkConfigAddressText(frontMatter.vega_
 
 #### Import networks from file
 
-Alternatively you can import a network list from a file. Use the following command to import from file: 
+Alternatively you can import a network list from a text file. You can use the '.toml' files linked above as a template for your networks list. Use the following command to import from file: 
 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">

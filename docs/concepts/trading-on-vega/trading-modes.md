@@ -51,7 +51,7 @@ Every continuous trading market opens with an auction. Their purpose is to calib
 A new market’s opening auction begins at the proposal’s closing date.
 
 #### Exit from an opening auction
-A market’s opening auction ends at the market enactment time, unless an opening price can't be determined because no orders would uncross. In that case, the auction is extended by `market.auction.minimumDuration`. At the end of each extension time, the system looks for orders that would uncross.
+A market’s opening auction ends at the market enactment time, unless an opening price can't be determined because no orders would uncross. In that case, the auction is extended by <NetworkParameter frontMatter={frontMatter} param="market.auction.minimumDuration" hideName={true} />. At the end of each extension time, the system looks for orders that would uncross.
 
 When a market leaves its opening auction, it will use the mid-price within the range of auction bids that would result in the highest trade volume for its normal trading mode. For example, if the volume maximising range is 98-102, the market would price all trades in the uncrossing at 100. The order book would then be uncrossed at that price and the trades follow the normal flow.
 
@@ -64,7 +64,7 @@ If a price move breaches the price monitoring bounds, a market will go into a pr
 A market will go into a price monitoring auction if generating a trade would result in a price that is larger than the theoretical bounds implied by the risk model, and the market's price monitoring settings. The trade is not generated, the orders that instigated that trade remain on the order book, and the market goes into an auction.
 
 #### Exit from price monitoring auction 
-A price monitoring auction's exit depends on how large the price move was, and relies on the market's risk model. For a relatively (contextually) small price move, it would be as long as `market.auction.minimumDuration`. The market's risk model informs  how many multiples of that time the auction would be extended by.
+A price monitoring auction's exit depends on how large the price move was, and relies on the market's risk model. For a relatively (contextually) small price move, it would be as long as <NetworkParameter frontMatter={frontMatter} param="market.auction.minimumDuration" hideName={true} />. The market's risk model informs  how many multiples of that time the auction would be extended by.
 
 If no one places orders in the price monitoring auction, the auction is exited and the original order is executed.  
 

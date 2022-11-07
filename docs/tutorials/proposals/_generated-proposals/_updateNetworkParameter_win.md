@@ -4,18 +4,18 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
 "{^
 \"proposalSubmission\": {^
  \"rationale\": {^
-  \"title\": \"Update market.fee.factors.infrastructureFee\",^
-  \"description\": \"Proposal to update market.fee.factors.infrastructureFee to 300}\"^
+  \"title\": \"Update governance.proposal.asset.requiredMajority\",^
+  \"description\": \"Proposal to update governance.proposal.asset.requiredMajority to 300}\"^
  },^
  \"terms\": {^
   \"updateNetworkParameter\": {^
    \"changes\": {^
-    \"key\": \"market.fee.factors.infrastructureFee\",^
+    \"key\": \"governance.proposal.asset.requiredMajority\",^
     \"value\": \"300\"^
    }^
   },^
-  \"closingTimestamp\": 1666539201,^
-  \"enactmentTimestamp\": 1666625601^
+  \"closingTimestamp\": 1669204865,^
+  \"enactmentTimestamp\": 1669291265^
  }^
 }^
 }"

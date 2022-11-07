@@ -1,0 +1,253 @@
+---
+id: order-rejection-reason
+title: OrderRejectionReason
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Why the order was rejected by the core node
+
+```graphql
+enum OrderRejectionReason {
+  ORDER_ERROR_INVALID_MARKET_ID
+  ORDER_ERROR_INVALID_ORDER_ID
+  ORDER_ERROR_OUT_OF_SEQUENCE
+  ORDER_ERROR_INVALID_REMAINING_SIZE
+  ORDER_ERROR_TIME_FAILURE
+  ORDER_ERROR_REMOVAL_FAILURE
+  ORDER_ERROR_INVALID_EXPIRATION_DATETIME
+  ORDER_ERROR_INVALID_ORDER_REFERENCE
+  ORDER_ERROR_EDIT_NOT_ALLOWED
+  ORDER_ERROR_AMEND_FAILURE
+  ORDER_ERROR_NOT_FOUND
+  ORDER_ERROR_INVALID_PARTY_ID
+  ORDER_ERROR_MARKET_CLOSED
+  ORDER_ERROR_MARGIN_CHECK_FAILED
+  ORDER_ERROR_MISSING_GENERAL_ACCOUNT
+  ORDER_ERROR_INTERNAL_ERROR
+  ORDER_ERROR_INVALID_SIZE
+  ORDER_ERROR_INVALID_PERSISTENCE
+  ORDER_ERROR_INVALID_TYPE
+  ORDER_ERROR_SELF_TRADING
+  ORDER_ERROR_INSUFFICIENT_FUNDS_TO_PAY_FEES
+  ORDER_ERROR_INVALID_TIME_IN_FORCE
+  ORDER_ERROR_CANNOT_AMEND_TO_GTT_WITHOUT_EXPIRYAT
+  ORDER_ERROR_EXPIRYAT_BEFORE_CREATEDAT
+  ORDER_ERROR_CANNOT_HAVE_GTC_AND_EXPIRYAT
+  ORDER_ERROR_CANNOT_AMEND_TO_FOK_OR_IOC
+  ORDER_ERROR_CANNOT_AMEND_TO_GFA_OR_GFN
+  ORDER_ERROR_CANNOT_AMEND_FROM_GFA_OR_GFN
+  ORDER_ERROR_CANNOT_SEND_GFN_ORDER_DURING_AN_AUCTION
+  ORDER_ERROR_GFA_CANNOT_SEND_ORDER_DURING_CONTINUOUS_TRADING
+  ORDER_ERROR_CANNOT_SEND_IOC_ORDER_DURING_AUCTION
+  ORDER_ERROR_CANNOT_SEND_FOK_ORDER_DURING_AUCTION
+  ORDER_ERROR_MUST_BE_LIMIT_ORDER
+  ORDER_ERROR_MUST_BE_GTT_OR_GTC
+  ORDER_ERROR_WITHOUT_REFERENCE_PRICE
+  ORDER_ERROR_BUY_CANNOT_REFERENCE_BEST_ASK_PRICE
+  ORDER_ERROR_OFFSET_MUST_BE_GREATER_OR_EQUAL_TO_ZERO
+  ORDER_ERROR_SELL_CANNOT_REFERENCE_BEST_BID_PRICE
+  ORDER_ERROR_OFFSET_MUST_BE_GREATER_THAN_ZERO
+  ORDER_ERROR_INSUFFICIENT_ASSET_BALANCE
+  ORDER_ERROR_CANNOT_AMEND_PEGGED_ORDER_DETAILS_ON_NON_PEGGED_ORDER
+  ORDER_ERROR_UNABLE_TO_REPRICE_PEGGED_ORDER
+  ORDER_ERROR_UNABLE_TO_AMEND_PRICE_ON_PEGGED_ORDER
+  ORDER_ERROR_NON_PERSISTENT_ORDER_OUT_OF_PRICE_BOUNDS
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_INVALID_MARKET_ID</b></code>](#) 
+> Market ID is invalid
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_INVALID_ORDER_ID</b></code>](#) 
+> Order ID is invalid
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_OUT_OF_SEQUENCE</b></code>](#) 
+> Order is out of sequence
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_INVALID_REMAINING_SIZE</b></code>](#) 
+> Remaining size in the order is invalid
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_TIME_FAILURE</b></code>](#) 
+> Time has failed us
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_REMOVAL_FAILURE</b></code>](#) 
+> Unable to remove the order
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_INVALID_EXPIRATION_DATETIME</b></code>](#) 
+> Expiration time is invalid
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_INVALID_ORDER_REFERENCE</b></code>](#) 
+> Order reference is invalid
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_EDIT_NOT_ALLOWED</b></code>](#) 
+> Edit is not allowed
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_AMEND_FAILURE</b></code>](#) 
+> Amending the order failed
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_NOT_FOUND</b></code>](#) 
+> Order does not exist
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_INVALID_PARTY_ID</b></code>](#) 
+> Party ID is invalid
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_MARKET_CLOSED</b></code>](#) 
+> Market is closed
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_MARGIN_CHECK_FAILED</b></code>](#) 
+> Margin check failed - not enough available margin
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_MISSING_GENERAL_ACCOUNT</b></code>](#) 
+> Order missing general account
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_INTERNAL_ERROR</b></code>](#) 
+> An internal error happened
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_INVALID_SIZE</b></code>](#) 
+> Invalid size
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_INVALID_PERSISTENCE</b></code>](#) 
+> Invalid persistence
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_INVALID_TYPE</b></code>](#) 
+> Invalid type
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_SELF_TRADING</b></code>](#) 
+> Order cannot be filled because it would require self trading
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_INSUFFICIENT_FUNDS_TO_PAY_FEES</b></code>](#) 
+> Insufficient funds to pay fees
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_INVALID_TIME_IN_FORCE</b></code>](#) 
+> Invalid Time In Force
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_CANNOT_AMEND_TO_GTT_WITHOUT_EXPIRYAT</b></code>](#) 
+> Attempt to amend order to Good til Time without expiry time
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_EXPIRYAT_BEFORE_CREATEDAT</b></code>](#) 
+> Attempt to amend expiry time to a value before time order was created
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_CANNOT_HAVE_GTC_AND_EXPIRYAT</b></code>](#) 
+> Attempt to amend to Good till Cancelled without an expiry time
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_CANNOT_AMEND_TO_FOK_OR_IOC</b></code>](#) 
+> Amending to Fill or Kill, or Immediate or Cancel is invalid
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_CANNOT_AMEND_TO_GFA_OR_GFN</b></code>](#) 
+> Amending to Good for Auction or Good for Normal is invalid
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_CANNOT_AMEND_FROM_GFA_OR_GFN</b></code>](#) 
+> Amending from Good for Auction or Good for Normal is invalid
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_CANNOT_SEND_GFN_ORDER_DURING_AN_AUCTION</b></code>](#) 
+> Good for Normal order received during an auction
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_GFA_CANNOT_SEND_ORDER_DURING_CONTINUOUS_TRADING</b></code>](#) 
+> Good for Auction order received during continuous trading
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_CANNOT_SEND_IOC_ORDER_DURING_AUCTION</b></code>](#) 
+> Cannot send IOC orders during an auction
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_CANNOT_SEND_FOK_ORDER_DURING_AUCTION</b></code>](#) 
+> Cannot send FOK orders during an auction
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_MUST_BE_LIMIT_ORDER</b></code>](#) 
+> Pegged orders must be limit orders
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_MUST_BE_GTT_OR_GTC</b></code>](#) 
+> Pegged orders can only have a time in force of Good til Cancelled or Good til Time
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_WITHOUT_REFERENCE_PRICE</b></code>](#) 
+> Pegged order must have a reference price
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_BUY_CANNOT_REFERENCE_BEST_ASK_PRICE</b></code>](#) 
+> Buy pegged order cannot reference best ask price
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_OFFSET_MUST_BE_GREATER_OR_EQUAL_TO_ZERO</b></code>](#) 
+> Pegged order offset must be &#x003E;= 0
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_SELL_CANNOT_REFERENCE_BEST_BID_PRICE</b></code>](#) 
+> Sell pegged order cannot reference best bid price
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_OFFSET_MUST_BE_GREATER_THAN_ZERO</b></code>](#) 
+> Pegged order offset must be &#x003E; zero
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_INSUFFICIENT_ASSET_BALANCE</b></code>](#) 
+> Insufficient balance to submit the order (no deposit made)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_CANNOT_AMEND_PEGGED_ORDER_DETAILS_ON_NON_PEGGED_ORDER</b></code>](#) 
+> Cannot change pegged order fields on a non pegged order
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_UNABLE_TO_REPRICE_PEGGED_ORDER</b></code>](#) 
+> Unable to reprice a pegged order
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_UNABLE_TO_AMEND_PRICE_ON_PEGGED_ORDER</b></code>](#) 
+> Unable to amend pegged order price
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_NON_PERSISTENT_ORDER_OUT_OF_PRICE_BOUNDS</b></code>](#) 
+> Non-persistent order exceeds price bounds
+> 
+
+
+
+### Member of
+
+[`Order`](/testnet/api/graphql/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`OrderUpdate`](/testnet/api/graphql/objects/order-update)  <Badge class="secondary" text="object"/>
+
+
+

@@ -23,7 +23,7 @@ You'll see references to your general account in various places, including under
 :::tip Query for data
 You can see how much is allocated to the accounts for your public key in [Vega Console](https://console.fairground.wtf), the trading interface.
 
-Otherwise use a [GraphQL query](./../graphql/objects/party#accounts-account) to check your public key for the accounts.
+Otherwise use a [GraphQL query](./../api/graphql/objects/party#accounts-account) to check your public key for the accounts.
 :::
 
 ## Accounts governed by the protocol

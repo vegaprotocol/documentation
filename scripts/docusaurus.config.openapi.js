@@ -67,6 +67,8 @@ function generateRestDocument (version, specPath, isMainnet) {
   obj[ids.id] = {
     specPath,
     outputDir,
+    downloadUrl: `https://raw.githubusercontent.com/vegaprotocol/documentation/main/specs/v${version}/${ids.filename}`,
+    template: 'rest-template.mustache',
     sidebarOptions: {
       groupPathsBy: 'tag'
     }

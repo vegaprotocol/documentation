@@ -13,7 +13,7 @@ If you have questions, join our community on [Discord](https://vega.xyz/discord)
 ## What is Vega?​
 Vega is a protocol for creating and trading derivatives on a fully decentralised network. 
 
-Currently, Vega is in restricted mainnet, which is run by a set of validators. There's also a Vega testnet called Fairground, which has trading enabled. 
+Currently, Vega is in restricted mainnet, which is run by a set of validators. There's also a Vega testnet called Fairground, where it's possible to try trading cash-settled futures on a test network.
 
 ### Learn more 
 * [Vega whitepaper](https://vega.xyz/papers/vega-protocol-whitepaper.pdf): A high-level overview of the protocol

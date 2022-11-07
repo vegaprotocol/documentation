@@ -167,9 +167,9 @@ module.exports = {
       require.resolve("@edno/docusaurus2-graphql-doc-generator"),
       {
         schema: `./specs/v${version}/schema.graphql`,
-        rootPath: "docs",
+        rootPath: "docs/api/",
         baseURL: "graphql",
-        linkRoot: "/docs/testnet/",
+        linkRoot: "/testnet/api/",
         diffMethod: "none",
         docOptions: {
           toc: true,
@@ -186,7 +186,7 @@ module.exports = {
         hashed: true,
         explicitSearchResultPath: true,
         indexBlog: false,
-        docsRouteBasePath: ["/docs"],
+        docsRouteBasePath: ["/"],
       },
     ],
     [
@@ -200,10 +200,10 @@ module.exports = {
       // is no long available - so that component has been 'swizzled' out of the theme and in to ./src/theme
       require.resolve("docusaurus-protobuffet-plugin"),
       {
-        routeBasePath: "/docs/testnet/grpc",
+        routeBasePath: "/testnet/api/grpc",
         fileDescriptorsPath: `./specs/v${version}/proto.json`,
-        protoDocsPath: "./docs/grpc",
-        sidebarPath: "./docs/grpc/sidebar.js",
+        protoDocsPath: "./docs/api/grpc/",
+        sidebarPath: "./docs/api/grpc/sidebar.js",
       },
     ],
 
@@ -235,6 +235,7 @@ module.exports = {
           lastVersion: `v${shortenVersion(mainnetVersion)}`,
           docLayoutComponent: "@theme/DocPage",
           docItemComponent: "@theme/ApiItem",
+          routeBasePath: '/',
           versions: {
             current: {
               banner: "unreleased",

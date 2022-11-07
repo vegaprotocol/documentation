@@ -1,0 +1,54 @@
+---
+id: erc-20-list-asset-bundle
+title: Erc20ListAssetBundle
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Response for the signature bundle to allowlist an ERC20 token in the collateral bridge
+
+```graphql
+type Erc20ListAssetBundle {
+  assetSource: String!
+  vegaAssetId: String!
+  nonce: String!
+  signatures: String!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Erc20ListAssetBundle.<b>assetSource</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The source asset in the ethereum network
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Erc20ListAssetBundle.<b>vegaAssetId</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The ID of the vega asset
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Erc20ListAssetBundle.<b>nonce</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The nonce to be used in the request
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Erc20ListAssetBundle.<b>signatures</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Signature aggregate from the nodes, in the following format:
+0x + sig1 + sig2 + ... + sigN
+> 
+
+
+
+### Returned by
+
+[`erc20ListAssetBundle`](/testnet/api/graphql/queries/erc-20-list-asset-bundle)  <Badge class="secondary" text="query"/>
+
+
+

@@ -25,12 +25,12 @@ import NewMarketWin from './_generated-proposals/_newMarket_win.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Propose a market on any underlying.
+Propose a cash-settled futures market on any underlying with a settlement data source.
 
 ## Requirements
 
 You will need:
-* A connected [Vega wallet](/docs/tools/vega-wallet/index.md), with your wallet name and public key to hand
+* A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
 * A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens"/> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>
 * Familiarity with [governance on Vega](../../concepts/vega-protocol.md#governance), particularly [market governance](../../concepts/vega-protocol#market-governance)
 
@@ -62,7 +62,7 @@ Timestamps are required for ending the voting period, as well as enacting the ma
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
 | `closingTimestamp` | Timestamp (Unix time in seconds) when voting closes for this proposal. The chosen time must be between <NetworkParameter frontMatter={frontMatter}param="governance.proposal.market.minClose" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxClose" hideName={true} /> after the proposal submission time. (int64 as string) | 1663517914 |
-| `enactmentTimestamp ` | Timestamp (Unix time in seconds) hen the market will be enacted, ready for trading. The chosen time must be between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minEnact" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxEnact" hideName={true} /> after `closingTimestamp`. (int64 as string) | 1663604314 |
+| `enactmentTimestamp ` | Timestamp (Unix time in seconds) when the market will be enacted, ready for trading. The chosen time must be between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minEnact" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxEnact" hideName={true} /> after `closingTimestamp`. (int64 as string) | 1663604314 |
 
 ### Instrument
 The instrument shape is as follows, see below for a description of each property:
@@ -78,7 +78,7 @@ An instrument contains the following properties:
 | `settlementAsset` | Settlement asset requires the ID of the asset that the market will be margined in and settle in. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID. |  |
 | `quoteName` | The quote name is the human-readable name/abbreviation of the settlement asset. Example: In BTCUSD, USD is the quote. | tEuro |
 | `settlementDataDecimals` | The number of decimal places implied by the settlement data, emitted by the settlement oracle. | 18 |
-| `oracleSpecForSettlementPrice` | This defines the data source that will be used to identify the settlement price when the market expires. | prices.BTC.value |
+| `oracleSpecForSettlementData` | This defines the data source that will be used to identify the settlement price when the market expires. | prices.BTC.value |
 | `oracleSpecForTradingTermination` | The fields that define the oracle used for terminating trading on the market. | vegaprotocol.builtin.timestamp |
 | `oracleSpecBinding` | The fields describe how specific information provided by the oracle data is used. For example, they can identify the specific name of the settlement price output, or the specific name of the trading termination property. |
 
@@ -135,7 +135,7 @@ Price monitoring uses the following properties:
 | `auctionExtension` | Price monitoring auction extension duration (in seconds) should the price breach its theoretical level over the specified horizon at the specified probability level (set as >0) | 600 |
 
 ## Templates and submitting
-In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to submit on the token dApp, and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
+In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to [submit on the token dApp ↗](https://token.fairground.wtf/governance/propose/new-market), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
 
 <Tabs groupId="newMarket">
   <TabItem value="annotated" label="Annotated example">
@@ -160,6 +160,6 @@ All proposals are voted on by the community. To vote, community members need, at
 
 Your proposal will need [participation](../../concepts/vega-protocol#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential. If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
 
-Building support is down to you. Share your proposal in [the _New Market Proposals_ forum](https://community.vega.xyz/c/fairground-testnet-governance/new-market-proposals-testnet/33) on Vega community, being sure to follow the [post guide](https://community.vega.xyz/t/guide-to-new-market-proposals-on-fairground-testnet/4017). You may also wish to share on [Discord](https://vega.xyz/discord).
+Building support is down to you. Share your proposal in [the _New Market Proposals_ forum ↗](https://community.vega.xyz/c/fairground-testnet-governance/new-market-proposals-testnet/33) on Vega community, being sure to follow the [post guide ↗](https://community.vega.xyz/t/guide-to-new-market-proposals-on-fairground-testnet/4017). You may also wish to share on [Discord ↗](https://vega.xyz/discord).
 
-Proposal owners who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.
+Proposers who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.

@@ -1,0 +1,137 @@
+---
+id: event
+title: Event
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Union type for wrapped events in stream PROPOSAL is mapped to governance data, something to keep in mind
+
+```graphql
+union Event = TimeUpdate | MarketEvent | TransferResponses | PositionResolution | Order | Trade | AccountEvent | Party | MarginLevels | Proposal | Vote | MarketData | NodeSignature | LossSocialization | SettlePosition | Market | Asset | MarketTick | SettleDistressed | AuctionEvent | RiskFactor | Deposit | Withdrawal | OracleSpec | LiquidityProvision | TransactionResult
+```
+
+
+### Possible types
+
+#### [`TimeUpdate`](/testnet/api/graphql/objects/time-update) <Badge class="secondary" text="object"/>
+> 
+> 
+
+#### [`MarketEvent`](/testnet/api/graphql/objects/market-event) <Badge class="secondary" text="object"/>
+> 
+> 
+
+#### [`TransferResponses`](/testnet/api/graphql/objects/transfer-responses) <Badge class="secondary" text="object"/>
+> 
+> 
+
+#### [`PositionResolution`](/testnet/api/graphql/objects/position-resolution) <Badge class="secondary" text="object"/>
+> 
+> 
+
+#### [`Order`](/testnet/api/graphql/objects/order) <Badge class="secondary" text="object"/>
+> An order in Vega, if active it will be on the order book for the market
+> 
+
+#### [`Trade`](/testnet/api/graphql/objects/trade) <Badge class="secondary" text="object"/>
+> A trade on Vega, the result of two orders being 'matched' in the market
+> 
+
+#### [`AccountEvent`](/testnet/api/graphql/objects/account-event) <Badge class="secondary" text="object"/>
+> An account record
+> 
+
+#### [`Party`](/testnet/api/graphql/objects/party) <Badge class="secondary" text="object"/>
+> Represents a party on Vega, could be an ethereum wallet address in the future
+> 
+
+#### [`MarginLevels`](/testnet/api/graphql/objects/margin-levels) <Badge class="secondary" text="object"/>
+> Margins for a given a party
+> 
+
+#### [`Proposal`](/testnet/api/graphql/objects/proposal) <Badge class="secondary" text="object"/>
+> 
+> 
+
+#### [`Vote`](/testnet/api/graphql/objects/vote) <Badge class="secondary" text="object"/>
+> 
+> 
+
+#### [`MarketData`](/testnet/api/graphql/objects/market-data) <Badge class="secondary" text="object"/>
+> Live data of a Market
+> 
+
+#### [`NodeSignature`](/testnet/api/graphql/objects/node-signature) <Badge class="secondary" text="object"/>
+> Represents a signature for the approval of a resource from a validator
+> 
+
+#### [`LossSocialization`](/testnet/api/graphql/objects/loss-socialization) <Badge class="secondary" text="object"/>
+> 
+> 
+
+#### [`SettlePosition`](/testnet/api/graphql/objects/settle-position) <Badge class="secondary" text="object"/>
+> 
+> 
+
+#### [`Market`](/testnet/api/graphql/objects/market) <Badge class="secondary" text="object"/>
+> Represents a product & associated parameters that can be traded on Vega, has an associated OrderBook and Trade history
+> 
+
+#### [`Asset`](/testnet/api/graphql/objects/asset) <Badge class="secondary" text="object"/>
+> Represents an asset in Vega
+> 
+
+#### [`MarketTick`](/testnet/api/graphql/objects/market-tick) <Badge class="secondary" text="object"/>
+> 
+> 
+
+#### [`SettleDistressed`](/testnet/api/graphql/objects/settle-distressed) <Badge class="secondary" text="object"/>
+> 
+> 
+
+#### [`AuctionEvent`](/testnet/api/graphql/objects/auction-event) <Badge class="secondary" text="object"/>
+> 
+> 
+
+#### [`RiskFactor`](/testnet/api/graphql/objects/risk-factor) <Badge class="secondary" text="object"/>
+> A risk factor emitted by the risk model for a given market
+> 
+
+#### [`Deposit`](/testnet/api/graphql/objects/deposit) <Badge class="secondary" text="object"/>
+> The details of a deposit processed by Vega
+> 
+
+#### [`Withdrawal`](/testnet/api/graphql/objects/withdrawal) <Badge class="secondary" text="object"/>
+> The details of a withdrawal processed by Vega
+> 
+
+#### [`OracleSpec`](/testnet/api/graphql/objects/oracle-spec) <Badge class="secondary" text="object"/>
+> An oracle spec describe the oracle data that a product (or a risk model)
+wants to get from the oracle engine.
+> 
+
+#### [`LiquidityProvision`](/testnet/api/graphql/objects/liquidity-provision) <Badge class="secondary" text="object"/>
+> The command to be sent to the chain for a liquidity provision submission
+> 
+
+#### [`TransactionResult`](/testnet/api/graphql/objects/transaction-result) <Badge class="secondary" text="object"/>
+> The result from processing a transaction
+> 
+
+
+
+### Member of
+
+[`BusEvent`](/testnet/api/graphql/objects/bus-event)  <Badge class="secondary" text="object"/>
+
+
+
