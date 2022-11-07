@@ -1,5 +1,5 @@
 ---
-title: Provide liquidity
+title: Commit liquidity
 hide_title: false
 description: Commit liquidity onto a market and manage that commitment
 ---
@@ -8,8 +8,6 @@ In this tutorial, you'll learn:
 * How to build a liquidity commitment order to provide liquidity on a live market created with Vega. 
 * How to actively manage your liquidity commitment by amending and/or cancelling your orders.
 * How to set up the sample scripts the tutorial is based on. The scripts are available in Python and Bash, but the tutorial uses Python.
-
-<!-- If you proposed a market that was enacted and want to change your liquidity provision shape, skip down to **[amending a liquidity commitment](#amending-a-liquidity-commitment)**. -->
 
 At the end of the tutorial, find troubleshooting tips as well as more resources for understanding the mechanics of liquidity provision on Vega. 
 
