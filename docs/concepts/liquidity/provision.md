@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-title: Committing liquidity
+title: Providing liquidity
 hide_title: false
 ---
 
@@ -57,10 +57,10 @@ The formula above uses the following network parameters:
 * Scaling factor: <NetworkParameter frontMatter={frontMatter} param="market.stake.target.scalingFactor" />
 
 :::tip Query for data
-[Market data](../../api/rest/data-v2/trading-data-service-2-get-latest-market-data): Use the market data REST endpoint to see a market's target stake.
+[Market data](./api/../../../api/rest/data-v2/trading-data-service-get-latest-market-data.api.mdx): Use the market data REST endpoint to see a market's target stake.
 :::
 
-:::Note Go deeper
+:::note Go deeper
 [Target stake calculations](https://github.com/vegaprotocol/specs/blob/master/protocol/0041-TSTK-target_stake.md): Read the spec for details on how target stake is calculated by the protocol.
 :::
 
@@ -78,7 +78,7 @@ A liquidity commitment transaction must include:
 **Liquidity providers will need to actively manage their commitment.** Reducing and cancelling commitments is possible, but only if the market can function without that liquidity commitment by meeting its target stake. It is always possible to increase the commitment or change the liquidity fee bid. It is not possible to cancel the individual limit orders that are created from a liquidity commitment but it is always possible to change the "shape", i.e. the [reference, offset, proportion] lists for each book side that form part of the liquidity provision commitment.
 
 :::tip Try it out
-[Tutorial for committing liquidity](../../tutorials/providing-liquidity.md): Use helper scripts to set up and manage a liquidity commitment.
+[Tutorial for committing liquidity](../../tutorials/committing-liquidity.md): Use helper scripts to set up and manage a liquidity commitment.
 :::
 
 ### Orders created from commitment

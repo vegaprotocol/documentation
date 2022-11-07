@@ -29,8 +29,7 @@ Participants who provide liquidity earn from liquidity fees, which are paid by t
 
 In your liquidity commitment submission, you need to propose a fee factor, as a decimalised number that is converted to perecentage. Your proposed fee factor is used, with other proposed fee factors, to determine the market's liquidity fee. Once the fee for the market is set, all liquidity orders charge that fee, regardless of whether the provider's submitted fee was higher or lower, and whether you propose a higher (or lower) factor, you are still a liquidity provider. The proposed fees are used to calculate the actual fee each participant will pay on a trade in that market.
 
-:::note
-Read more 
+:::note Read more 
 [Liquidity rewards](./../concepts/liquidity/rewards-penalties.md)
 :::
 
@@ -92,7 +91,7 @@ This tutorial describes how to create, amend or cancel, and send a liquidity com
     * **Proportion**: The proportion of your committed collateral allocated to this order, as a weight
     * **Reference price**: The price that you want the order offset to reference. You can choose from the market’s mid price, best bid price, or the best ask price. In the examples below, the reference price is pegged to the mid-price, which means as the mid-price moves, so do the LP orders. This would be useful if, for example, you wanted to always provide a spread of 10 ticks, then you could peg your first orders 5 ticks from the mid price on each side.
     
-    (See a full list of applicable reference price levels in the [API documentation](./../grpc/vega/vega.proto.mdx#PeggedReference)), denoted as `reference`
+    (See a full list of applicable reference price levels in the [API documentation](./../api/grpc/vega/vega.proto.mdx#PeggedReference)), denoted as `reference`
 
 **To submit the liquidity provision message, you'll also need**: 
 
