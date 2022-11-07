@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-title: Rewards and penalties (dupe)
+title: Rewards and penalties
 hide_title: false
 ---
 
