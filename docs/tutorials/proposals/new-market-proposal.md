@@ -12,6 +12,7 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 import JSONInstructions from './_json-instructions.md';
 import TerminalInstructions from './_terminal-instructions.md';
 import NewMarketJSONInstrument from './_generated-proposals/_newMarket_json_instrument.md';
+import NewMarketJSONRisk from './_generated-proposals/_newMarket_json_risk.md';
 import NewMarketJSONLiquidityMonitoring from './_generated-proposals/_newMarket_json_liqparams.md';
 import NewMarketJSONPriceMonitoring from './_generated-proposals/_newMarket_json_priceparams.md';
 import NewMarketJSONOracle from './_generated-proposals/_newMarket_json_oracle.md';
@@ -133,6 +134,24 @@ Price monitoring uses the following properties:
 | `horizon` | Price monitoring projection horizon τ in seconds (set as >0) | 43200 |
 | `probability` | Price monitoring probability level p (set as >0 and <1) | 0.9999999 |
 | `auctionExtension` | Price monitoring auction extension duration (in seconds) should the price breach its theoretical level over the specified horizon at the specified probability level (set as >0) | 600 |
+
+### Risk model
+Choose the individual parameters for the [log-normal risk model](../../concepts/vega-protocol.md#log-normal-risk-model). You should ensure the risk model parameters represent the dynamics of the underlying instrument, and that the resulting margins strike the right balance between prudence and capital efficiency. 
+
+While you cannot define exactly how much margin (or leverage) is possible, you can influence the acceptable levels of market volatility.
+
+Read about the [risk models and parameters](../../concepts/vega-protocol.md#risk-models-and-parameters) before choosing your values.
+
+<NewMarketJSONRisk />
+The risk model uses the following properties: 
+
+| Field | Description | Suggested value |
+| ----------- | ----------- | ----------- |
+| `tau` | Projection horizon measured as a year fraction used in the expected shortfall calculation to obtain the maintenance margin. <br/><br/>Accepted values: any strictly non-negative real number; suggested value: 0.000114077116130504 - corresponds to one hour expressed as year fraction | 0.000114077116130504 |
+| `riskAversionParameter` | Probability confidence level used in expected shortfall calculation when obtaining the maintenance margin level. First, the value at risk, defined by confidence lambda is calculated. This is the cash amount that one would need to add to the position to make the probability of the value of the position and cash going negative after time tau to be less than lambda. The margin is then the expected loss of the position given that it incurred a loss bigger than the value at risk.<br/><br/> Accepted values: strictly greater than 0 and strictly smaller than 1 | 0.00001 |
+| `param: mu` | Annualised growth rate of the underlying asset. <br/><br/>Accepted values: any real number | 0 |
+| `param: r` | Annualised growth rate of the risk-free asset, it's used for discounting of future cash flows. <br/><br/> Accepted values: any real number | 0 |
+| `param: sigma` | Annualised volatility of the underlying asset. <br/><br/>Accepted values: any strictly non-negative real number; suggested value: asset dependent, should be derived from the historical time-series of prices. | 0.8 (converts to 80%) |
 
 ## Templates and submitting
 In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to [submit on the token dApp ↗](https://token.fairground.wtf/governance/propose/new-market), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
