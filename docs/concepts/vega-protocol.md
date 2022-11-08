@@ -240,7 +240,7 @@ A network parameter is defined by:
 ## Asset/token management
 
 ### Deposits and withdrawals
-See the (Deposits and withdrawals)(./deposits-withdrawals) page for how they work on Vega.
+See the [Deposits and withdrawals](./deposits-withdrawals) page for how they work on Vega.
 
 ### Transfer assets to keys or accounts
 Transfers can be used to move assets from one Vega key to another, or from a Vega key to a specific account, such as a reward pool used for the on-chain network treasury.

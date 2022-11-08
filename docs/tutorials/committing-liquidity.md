@@ -21,7 +21,7 @@ This section focuses on submitting and maintaining a liquidity commitment. This 
 The orders created from a liquidity commitment are not defined by actual numerical prices or sizes, but by liquidity shapes, which are dependent on a reference price level the provider chooses and the liquidity commitment amount. The order price follows the reference price level as the market moves.
 
 :::caution
-Providing liquidity means you'll need to actively manage your commitment. While there is a way to amend or cancel your liquidity commitment order, they'll only be possible to do if the market can function without your liquidity commitment.
+Providing liquidity means you'll need to actively manage your commitment. While there is a way to amend or cancel your liquidity commitment order, if your amendment would drop the market below its required [target stake](./../concepts/liquidity/provision#target-stake-for-a-market), then your amendment would not be accepted.
 :::
 
 ### Rewarding liquidity providers

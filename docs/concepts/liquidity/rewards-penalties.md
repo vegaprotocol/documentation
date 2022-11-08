@@ -94,7 +94,7 @@ Thus, the following amounts are then transferred to each LP's margin account onc
 ## Penalties for not fulfilling liquidity commitment
 Not being able to support the orders created from your liquidity commitment with funds in your general and/or margin accounts will put you at risk of closeout, and can put the market into a situation where there is not enough liquidity.
 
-**If a liquidity provider can't cover their commitment**: If the liquidity provider's margin account doesn't have enough funds to support the orders that are derived from their commitment, the protocol will search for funds in the general account for the relevant asset. 
+**If a liquidity provider can't cover their commitment**: If the liquidity provider's margin account doesn't have enough funds to support the orders that are derived from their commitment, the protocol will search for funds in the general account for the settlement asset. 
 
 If the general account doesn't have enough collateral to provide the margin to support the orders, then the protocol will transfer the remaining required amount from the liquidity provider's bond account, a penalty will be applied, and funds to cover the shortfall and pay the penalty will be transferred from the provider’s bond account to the market's insurance pool.
 
