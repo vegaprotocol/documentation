@@ -145,7 +145,7 @@ Read about the [risk models and parameters](../../concepts/vega-protocol.md#risk
 <NewMarketJSONRisk />
 The risk model uses the following properties: 
 
-| Field | Description | Example |
+| Field | Description | Suggested value |
 | ----------- | ----------- | ----------- |
 | `tau` | Projection horizon measured as a year fraction used in the expected shortfall calculation to obtain the maintenance margin. <br/><br/>Accepted values: any strictly non-negative real number; suggested value: 0.000114077116130504 - corresponds to one hour expressed as year fraction | 0.000114077116130504 |
 | `riskAversionParameter` | Probability confidence level used in expected shortfall calculation when obtaining the maintenance margin level. First, the value at risk, defined by confidence lambda is calculated. This is the cash amount that one would need to add to the position to make the probability of the value of the position and cash going negative after time tau to be less than lambda. The margin is then the expected loss of the position given that it incurred a loss bigger than the value at risk.<br/><br/> Accepted values: strictly greater than 0 and strictly smaller than 1 | 0.00001 |
