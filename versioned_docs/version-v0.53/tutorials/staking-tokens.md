@@ -41,12 +41,12 @@ Tokens are associated by calling [`stake` on the Vega staking bridge](../api/bri
 * `vega_public_key` - the Vega public key that will be used to nominate validators on Vega
 * `amount` - the amount of tokens being associated with the Vega key
 
-It will take ~50 block confirmations for the balance to update (approximately 1 minute). You can see when the staking balance has been credited by using [REST](../api/rest/data-v2/trading-data-service-get-stake), [GraphQL](../api/graphql/objects/party#operation/TradingDataService1_ERC20WithdrawalApproval) or [gRPC](../api/grpc/vega/vega.proto#vegaproto).
+It will take ~50 block confirmations for the balance to update (approximately 1 minute). You can see when the staking balance has been credited by using [REST](../api/rest/data-v1/trading-data-service-party-stake), [GraphQL](../api/graphql/objects/party#operation/TradingDataService_ERC20WithdrawalApproval) or [gRPC](../api/grpc/vega/vega.proto#vegaproto).
 
 ### 2. Nominating a validator
 Once the token balance is associated to a Vega key, you'll want to choose a validator or validators to nominate. 
 
-Fetch a list of validator nodes using [REST](../api/rest/data-v2/trading-data-service-list-nodes), [GraphQL](../api/graphql/queries/nodes-connection) or [gRPC](../api/grpc/data-node/api/v2/trading_data.proto#nodesconnection).
+Fetch a list of validator nodes using [REST](../api/rest/data-v1/trading-data-service-get-nodes), [GraphQL](../api/graphql/queries/nodes) or [gRPC](../api/grpc/data-node/api/v2/trading_data.proto#nodesconnection).
 
 Nominate a validator by sending a command with the Vega Wallet. 
 
@@ -87,7 +87,7 @@ A nomination to a validator occurs in one epoch, [and takes effect in the subseq
 
 That means that during the first epoch in which you nominate, no rewards will be received. For each subsequent epoch, rewards will be deposited to the Vega key, in the form of VEGA tokens. (Once trading is available on mainnet, rewards will be paid in a mix of VEGA tokens and settlement asset tokens.)
 
-Specific reward payouts can be queried via the API ([REST](../api/rest/data-v2/trading-data-service-list-reward-summaries), [GraphQL](../api/graphql/objects/reward-summary-connection)).
+Specific reward payouts can be queried via the API ([REST](../api/rest/data-v1/trading-data-service-get-rewards)).
 
 After VEGA rewards have been credited to the Vega key they can used to nominate validators or withdrawn.
 
@@ -98,7 +98,7 @@ Withdrawing involves preparing a withdrawal request, which the validators will c
 ### 1. Getting multisig bundle for withdrawal
 Your withdrawal should be confirmed within a few seconds. 
 
-You can retrieve the signature bundle, which you will submit to the ERC20 bridge in the next step, by using the APIs ([REST](../api/rest/data-v2/trading-data-service-list-withdrawals), [GraphQL](../api/graphql/objects/party#withdrawals-withdrawal)).
+You can retrieve the signature bundle, which you will submit to the ERC20 bridge in the next step, by using the APIs ([REST](../api/rest/data-v1/trading-data-service-withdrawals), [GraphQL](../api/graphql/objects/party#withdrawals-withdrawal)).
 
 ### 2. Submitting withdrawal to Ethereum
 With the signature bundle fetched above, the final step is to submit that withdrawal to the staking bridge. This can be done via the [`withdraw_asset` function on the Ethereum bridge](../api/bridge/interfaces/IERC20_Bridge_Logic#withdraw_asset).
