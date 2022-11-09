@@ -82,7 +82,11 @@ A market will go into a liquidity monitoring auction if the total commitment fro
 
 The trigger for entering a liquidity monitoring auction is: 
 
-`sum of committed liquidity + sum of static orders on the book < target stake x triggering ratio`
+`sum of LPs commitment amounts < target stake x triggering ratio`
+
+The system will also enter liquidity auction if there are no static bids or static asks on the order book (as that means that the liquidity that LPs committed to be deployed at given distance from the specified pegs cannot be deployed).
+
+The system will also enter liquidity monitoring auction under other technical conditions, for example if the best static bid / best static ask are wider than the tightest price monitoring bounds. 
 
 The triggering ratio above is set by the <NetworkParameter frontMatter={frontMatter} param="network parameter market.liquidity.targetstake.triggering.ratio" hideName={false} />.
 
