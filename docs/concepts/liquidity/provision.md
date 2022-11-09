@@ -27,7 +27,7 @@ Participants with sufficient collateral can provide liquidity for markets throug
 
 A liquidity commitment, which is made up of a commitment amount and order shapes then informs the creation of a series of orders that sit on the order book to be filled. Liquidity providers need to be able to support their liquidity commitment - their available collateral must be able to meet the size of the nominated commitment amount and the margins required to support the orders generated from that commitment, and positions that will be generated from trades.
 
-Liquidity commitments don't allow providers to submit their own orders and therefore providers don't control the volume of the orders through the liquidity commitment mechanism. This does not affect orders submitted through batch limit orders outside of the liquidity commitment.
+When submitting a liquidity commitment, orders are defined, created, and submitted on behalf of the provider. Therefore, providers don't control the volume of the orders created from their liquidity commitment. This does not affect orders submitted through batch limit orders outside of the liquidity commitment.
 
 ### Active liquidity management
 **Liquidity providers will need to actively manage their commitment.** Amending and cancelling commitments is possible, but only if the market can function without that liquidity commitment by meeting its target stake. It is not possible to cancel the individual pegged limit orders that are created from a liquidity commitment. Liquidity commitments are funded through assets in the general account and then the margin account, so market moves can have a dramatic impact on collateral. The [order shapes](#order-shapes), however, can be amended at any time.
