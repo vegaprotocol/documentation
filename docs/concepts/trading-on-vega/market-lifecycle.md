@@ -21,7 +21,7 @@ The market lifecycle begins when a proposal for a new market is accepted, and is
 <!--![Life cycle flow diagram](./0043-market-lifecycle-flow-diagram.svg)-->
 
 ## Market status: Proposed
-All markets must first be proposed by tokenholders by following the [governance process](../vega-protocol.md). Once a valid market proposal is accepted, the market can accept [liquidity commitments](./../../tutorials/providing-liquidity). 
+All markets must first be proposed by tokenholders by following the [governance process](../vega-protocol.md). Once a valid market proposal is accepted, the market can accept [liquidity commitments](./../../tutorials/committing-liquidity). 
 
 Voting begins and its state is `proposed`. Not every market that is proposed (and accepts liquidity) is guaranteed to exist, as it must get enough votes in favour from tokenholders.
 
