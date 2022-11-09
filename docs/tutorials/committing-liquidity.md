@@ -20,6 +20,8 @@ This section focuses on submitting and maintaining a liquidity commitment. This 
 
 The orders created from a liquidity commitment are not defined by actual numerical prices or sizes, but by liquidity shapes, which are dependent on a reference price level the provider chooses and the liquidity commitment amount. The order price follows the reference price level as the market moves.
 
+You can always increase your commitment, whereas lowering your commitment may not be possible. If you start with a very small commitment, you can experiment with the offsets and then slowly increase your commitment.
+
 :::caution
 Providing liquidity means you'll need to actively manage your commitment. While there is a way to amend or cancel your liquidity commitment order, if your amendment would drop the market below its required [target stake](./../concepts/liquidity/provision#target-stake-for-a-market), then your amendment would not be accepted.
 :::
@@ -101,18 +103,22 @@ This tutorial describes how to create, amend or cancel, and send a liquidity com
 ### API script
 In the [`sample-api-scripts`](https://github.com/vegaprotocol/sample-api-scripts/) repo, there is a folder named [`submit-create-liquidity-provision`](https://github.com/vegaprotocol/sample-api-scripts/tree/master/submit-create-liquidity-provision), which has a set of scripts to create a new liquidity provision using the `liquidityProvisionSubmission` command.
 
-You can see in the liquidity commitment Python script below that the most important part is the description of the commitment amount, which includes the offset and proportion for each shape. 
+You can see in the liquidity commitment Python script below that the most important part is the description of the commitment amount, which includes the offset and proportion for each shape.
 
-The reference price in this example is pegged to the mid price, which means in this commitment the offsets define the spread. 
+The **reference price** in this example is pegged to the mid price, which means in this commitment the offsets define the spread.
 
 However, if you want a dynamic spread that would change depending on how far apart the priced limit orders on the book are, you could peg your buys to the best bid and sells to the best offer.
+
+The **commitment amount** is interpreted by the asset decimal place, and expressed in an integer. In the example below, if the asset has a decimal precision of 2, the commitment amount would be 100.
+
+The **offset** is interpreted by the market decimal place. In the example below, if the target market had a decimal precision of 3, and a mid price of 100.123 (internally represented as 100123), the offset of 1 will place the volume at 100.124 as a decimal.
 
 
 ```python
 submission = {
     "liquidityProvisionSubmission": {
         "marketId": marketID,
-        "commitmentAmount": "100",              
+        "commitmentAmount": "10000",              
         "fee": "0.01",
         "buys": [                               
             {
