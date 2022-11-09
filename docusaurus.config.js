@@ -22,7 +22,7 @@ module.exports = {
         src: "img/logo-y.png",
       },
       items: [
-        /*        {
+        {
           type: "docsVersionDropdown",
           position: "right",
           // Removes the All Versions page
@@ -30,7 +30,7 @@ module.exports = {
           dropdownActiveClassDisabled: true,
           // Makes the menu not clickable when not open
           href: '#'
-        }, */
+        },
         {
           href: "https://github.com/vegaprotocol/documentation",
           label: "GitHub",
