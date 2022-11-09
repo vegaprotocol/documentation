@@ -129,7 +129,7 @@ serversForNetwork(generateForMainnet).then(servers => {
     const spec = JSON.parse(fs.readFileSync(s, 'utf-8'))
     if (!!s.match('blockexplorer')) {
       console.log('**SPECIAL CASE FOR BLOCK EXPLORER: n13**')
-      spec.servers = [ { url: 'https://n13.testnet.vega.xyz/rest', description: 'n13: Experimental node' }]
+      spec.servers = [ { url: 'https://be.testnet.vega.xyz/rest', description: 'Testnet' }]
     } else {
       spec.servers = openApiServers
       console.log(`Updating ${s} with`)

@@ -1,8 +1,10 @@
 import React from "react";
 import mainnetNodes from "../../specs/mainnet_network.json";
 import mainnetNodesVaguer from "../../specs/mainnet_vaguer.json";
+import mainnetNodesVaguerTimestamp from "../../specs/mainnet_vaguer_timestamp.json";
 import testnetNodes from "../../specs/testnet_network.json";
 import testnetNodesVaguer from "../../specs/testnet_vaguer.json";
+import testnetNodesVaguerTimestamp from "../../specs/testnet_vaguer_timestamp.json";
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -15,8 +17,8 @@ function getHostname(url) {
     if (match && match.length > 2) {
         const host = match[2]
 
-        // Make a nice 
-        return host.replace('.vega.community', '')
+        // Some special cases
+        return host.replace('.vega.community', '').replace('grpc.', '')
     }
     return url
 }
@@ -61,7 +63,7 @@ function TableForNodes(listOfNodes, vaguerResult) {
                     <td>
                         <code>{n.host}</code>
                     </td>
-                    <td align="center">{n.good === true ? '✅' : ''}</td>
+                    <td align="center">{n.good === true ? '⭐' : ''}</td>
                 </tr>
                 );
             })}
@@ -88,7 +90,7 @@ export default function DataNodes({ frontMatter }) {
   const addresses = isMainnet ? mainnetNodes.API : testnetNodes.API
   const vaguer = isMainnet ? mainnetNodesVaguer : testnetNodesVaguer
   const source = isMainnet ? 'https://github.com/vegaprotocol/networks' : 'https://github.com/vegaprotocol/networks-internal'
-
+  const d = isMainnet ? mainnetNodesVaguerTimestamp : testnetNodesVaguerTimestamp 
   if (!addresses) {
     throw new Error("Could not load addresses");
   }
@@ -100,7 +102,8 @@ export default function DataNodes({ frontMatter }) {
             <TabItem value="graphql" label="GraphQL">{TableForNodes(addresses.GraphQL.Hosts, vaguer)}</TabItem>
             <TabItem value="rest" label="REST">{TableForNodes(addresses.REST.Hosts, vaguer)}</TabItem>
         </Tabs>
-        <p>Source: <a href={source} className="external" target="_blank" rel="noopener nofollow">{source.replace('https://', '')}</a></p>
+        <p style={{fontSize: "0.7em", marginTop: '0'}}><strong>Source:</strong> <a href={source} className="external" target="_blank" rel="noopener nofollow">{source.replace('https://', '')}</a><br />
+        <strong>Last refreshed:</strong> <em>{d.date}</em></p>
     </div>
     );
 }

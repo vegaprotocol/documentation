@@ -111,48 +111,42 @@ The release level is scaled from the *maintenance margin* amount. It's calculate
 
 `[release level] = [maintenance margin] x [collateral_release scaling factor]`
 
-### Calculating the margin on open orders
+### Example: Calculating margin on open orders
 The network calculates the overall long / short position including the submitted order. Depending on which one is larger a long or short risk factor is used for margin calculation. The maintenance margin (for futures) is then a product of the largest position, the corresponding risk factor and the `mark price`. Risk factors capture the outcome of the probabilistic distribution of future market moves, and are market specific.
 
-#### Example
+:::note Go deeper
+**[Margins and credit risk ↗](https://vega.xyz/papers/margins-and-credit-risk.pdf)** - Section 6 of the protocol whitepaper.
+:::
 
-<img alt="Calculating margin on open orders (graphQL)" src="/img/concept-diagrams/calculate-margin-open-orders-graphQL.png" width="500"/>
 
-Trader posts a sell order of size 1 that doesn't trade on submission and ends up being added to the order book.
-
-The short risk factor is 0.05421518.
-
-The current mark price is 100.00.
-
-So maintenance margin = 1 x 100 x 0.05421518 = 5.42152 (rounded up to 5 decimal places). 
+* In the following scenario, the trader posts a sell order of size 1 that doesn't trade on submission and ends up being added to the order book
+* Short risk factor is 0.05421518
+* Current mark price is 100.00
+* `maintenance margin = 1 x 100 x 0.05421518 = 5.42152` (rounded up to 5 decimal places) 
 
 The initial margin scaling factor for the market (α<sup>initial</sup>) is 1.2 so the amount of collateral that gets moved to the trader's margin account for the market is 1.2 x 5.42152 = 6.50582.
 
-<img alt="Calculating margin on open orders (Console)" src="static/img/concept-diagrams/calculate-margin-open-orders-console.png" width="500"/>
+#### Seen on Vega Console
+![Calculating margin on open orders - Console](/img/concept-diagrams/calculate-margin-open-orders-console.png "Calculating margin on open orders - Console")
 
-### Margin calculations on open positions
+#### Queried using GraphQL
+![Calculating margin on open orders - GraphQL](/img/concept-diagrams/calculate-margin-open-orders-graphQL.png "Calculating margin on open orders - GraphQL")
+
+### Example: Calculating margin on open positions
 The following calculation takes into account 'slippage', as seen on an order book.
 
-#### Example
-
-<img alt="Calculating margin on open orders (graphQL)" src="static/img/concept-diagrams/calculate-margin-open-positions-graphQL.png" width="500"/>
-
-The trader has an open short position of size 1, and no open orders.
-
-The short risk factor is 0.05421518.
-
-The current mark price is 100.10.
-
-The best offer price is 100.20 and it has enough volume so that theoretically the position could be closed-out at that price.
-
-maintenance margin = 1 x (100.10 x 0.05421518 + max (0, 100.20 - 100.10)) = 5.52695 (rounded up to 5 decimal places), where the second term in the sum is the 'slippage' component.
+* In the following scenario, the trader has an open short position of size 1, and no open orders
+* Short risk factor is 0.05421518
+* Current mark price is 100.10
+* Best offer price is 100.20 and it has enough volume so that theoretically the position could be closed-out at that price
+* `maintenance margin = 1 x (100.10 x 0.05421518 + max (0, 100.20 - 100.10)) = 5.52695` (rounded up to 5 decimal places), where the second term in the sum is the 'slippage' component
 
 Other margin levels are derived from the maintenance margin using the scaling factors that form part of the market configuration.
 
 Since the amount charged to trader's margin account upon order submission (6.50582 - see previous example) is still above the current (after the order gets filled and trader ends up with a short position of size 1) search level of 6.07964 = 1.1 x 5.52695, no further margin account balance changes are initiated.
 
-<img alt="Calculating margin on open orders (graphQL)" src="static/img/concept-diagrams/calculate-margin-open-positions-console.png" width="500"/>
+#### Seen on Vega Console
+![Calculating margin on open positions - Console](/img/concept-diagrams/calculate-margin-open-positions-console.png "Calculating margin on open orders - Console")
 
-:::note Go deeper
-**[Margins and credit risk ↗](https://vega.xyz/papers/margins-and-credit-risk.pdf)** - Section 6 of the protocol whitepaper.
-:::
+#### Queried using GraphQL
+![Calculating margin on open positions - GraphQL](/img/concept-diagrams/calculate-margin-open-positions-graphQL.png "Calculating margin on open orders - GraphQL")

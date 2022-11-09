@@ -2,26 +2,26 @@
   ```json
 {
   "rationale": {
-    "title": "Add tDAI TEST (tDAI)",
-    "description": "Proposal to add tDAI TEST (tDAI) as an asset"
+    "title": "Add tUSDC TEST (tUSDC)",
+    "description": "Proposal to add tUSDC TEST (tUSDC) as an asset"
   },
   "terms": {
     "newAsset": {
       "changes": {
-        "name": "tDAI TEST",
-        "symbol": "tDAI",
+        "name": "tUSDC TEST",
+        "symbol": "tUSDC",
         "decimals": "18",
         "quantum": "1",
         "erc20": {
-          "contractAddress": "0x26223f9C67871CFcEa329975f7BC0C9cB8FBDb9b",
+          "contractAddress": "0xB404c51BBC10dcBE948077F18a4B8E553D160084",
           "withdrawThreshold": "10",
           "lifetimeLimit": "10"
         }
       }
     },
-    "closingTimestamp": 1668528151,
-    "enactmentTimestamp": 1668614551,
-    "validationTimestamp": 1668441751
+    "closingTimestamp": 1669048765,
+    "enactmentTimestamp": 1669135165,
+    "validationTimestamp": 1668962365
   }
 }
 ```
