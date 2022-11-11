@@ -20,25 +20,26 @@ const metadata = [
 ];
 
 // TODO more type assertions
-function generateSettlementOracleSpec(skeleton) {
+function generateSettlementDataSourceSpec(skeleton) {
   assert.equal(
-    skeleton.properties.pubKeys.type,
+    skeleton.properties.signers.type,
     "array",
-    "Oracle spec pubkeys used to be an array"
+    "Data Source pubkeys used to be an array"
   );
   assert.equal(
-    skeleton.properties.pubKeys.items.type,
-    "string",
-    "Oracle spec pubkeys used to be an array of strings"
+    skeleton.properties.signers.items.type,
+    "object",
+    "Data Source pubkeys used to be an array of objects"
   );
   assert.equal(
     skeleton.properties.filters.type,
     "array",
-    "Oracle spec filters"
+    "Data Source spec filters"
   );
 
+
   const spec = {
-    pubKeys: ["0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"],
+    signers: [ {ethAddress: { address: "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC" } } ],
     filters: [
       {
         key: {
@@ -52,6 +53,18 @@ function generateSettlementOracleSpec(skeleton) {
           },
         ],
       },
+      {
+        key: {
+          name: "prices.BTC.timestamp",
+          type: "TYPE_TIMESTAMP",
+        },
+        conditions: [
+          {
+            operator: "OPERATOR_GREATER_THAN",
+            value: "1648684800000000000",
+          },
+        ],
+      },
     ],
   };
 
@@ -60,15 +73,15 @@ function generateSettlementOracleSpec(skeleton) {
       skeleton.properties.filters.items.properties.conditions.description.split(
         "\n"
       );
-    const splitPubkeys = skeleton.properties.pubKeys.description.split("\n");
+    const splitPubkeys = skeleton.properties.signers.description.split("\n");
     const splitFilters = skeleton.properties.filters.description.split("\n");
     return `{
             // ${splitPubkeys[0]}
             // ${splitPubkeys[1]}
-            // ${splitPubkeys[2]} (${skeleton.properties.pubKeys.type} of ${
-      skeleton.properties.pubKeys.items.type
+            // ${splitPubkeys[2]} (${skeleton.properties.signers.type} of ${
+      skeleton.properties.signers.items.type
     }s)
-            pubKeys: ${JSON.stringify(spec.pubKeys)},
+            signers: ${JSON.stringify(spec.signers)},
 
             // ${splitFilters[0]}
             // ${splitFilters[1]}
@@ -115,7 +128,20 @@ function generateSettlementOracleSpec(skeleton) {
                       value: "${spec.filters[0].conditions[0].value}",
                     }
                   ]
-              }
+              },
+              {
+                  }
+                  key: {
+                    name: "${spec.filters[1].key.name}",
+                    type: "${spec.filters[1].key.type}",
+                  },
+                  conditions: [
+                    {
+                      operator: "${spec.filters[1].conditions[0].operator}",
+                      value: "${spec.filters[1].conditions[0].value}",
+                    }
+                  ]
+              }              
           ]
         }`;
   };
@@ -124,25 +150,25 @@ function generateSettlementOracleSpec(skeleton) {
 }
 
 // TODO more type assertions
-function generateTerminationOracleSpec(skeleton) {
+function generateTerminationDataSourceSpec(skeleton) {
   assert.equal(
-    skeleton.properties.pubKeys.type,
+    skeleton.properties.signers.type,
     "array",
-    "Oracle spec pubkeys used to be an array"
+    "Data Source signers used to be an array"
   );
   assert.equal(
-    skeleton.properties.pubKeys.items.type,
-    "string",
-    "Oracle spec pubkeys used to be an array of strings"
+    skeleton.properties.signers.items.type,
+    "object",
+    "oracle source signers used to be an array of objects"
   );
   assert.equal(
     skeleton.properties.filters.type,
     "array",
-    "Oracle spec filters"
+    "Data Source filters"
   );
 
   const spec = {
-    pubKeys: ["0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"],
+    signers: [],
     filters: [
       {
         key: {
@@ -164,15 +190,15 @@ function generateTerminationOracleSpec(skeleton) {
       skeleton.properties.filters.items.properties.conditions.description.split(
         "\n"
       );
-    const splitPubkeys = skeleton.properties.pubKeys.description.split("\n");
+    const splitPubkeys = skeleton.properties.signers.description.split("\n");
     const splitFilters = skeleton.properties.filters.description.split("\n");
     return `{
             // ${splitPubkeys[0]}
             // ${splitPubkeys[1]}
-            // ${splitPubkeys[2]} (${skeleton.properties.pubKeys.type} of ${
-      skeleton.properties.pubKeys.items.type
+            // ${splitPubkeys[2]} (${skeleton.properties.signers.type} of ${
+      skeleton.properties.signers.items.type
     }s)
-            pubKeys: ${JSON.stringify(spec.pubKeys)},
+            signers: ${JSON.stringify(spec.signers)},
 
             // ${splitFilters[0]}
             // ${splitFilters[1]}
@@ -227,7 +253,7 @@ function generateTerminationOracleSpec(skeleton) {
   return spec;
 }
 
-function generateOracleSpecBinding(skeleton) {
+function generateDataSourceSpecBinding(skeleton) {
   assert.equal(
     skeleton.properties.settlementDataProperty.type,
     "string",
@@ -290,16 +316,16 @@ function generateInstrument(skeleton) {
     "Instrument property settlementDataDecimals used to be an integer"
   );
   assert.ok(
-    skeleton.properties.future.properties.oracleSpecForSettlementData,
-    "OracleSpecForSettlementData used to exist"
+    skeleton.properties.future.properties.dataSourceSpecForSettlementData,
+    "DataSourceSpecForSettlementData used to exist"
   );
   assert.ok(
-    skeleton.properties.future.properties.oracleSpecForTradingTermination,
-    "OracleSpecForTradingTermination used to exist"
+    skeleton.properties.future.properties.dataSourceSpecForTradingTermination,
+    "DataSourceSpecForTradingTermination used to exist"
   );
   assert.ok(
-    skeleton.properties.future.properties.oracleSpecBinding,
-    "OracleSpecBinding used to exist on a future"
+    skeleton.properties.future.properties.dataSourceSpecBinding,
+    "DataSourceSpecBinding used to exist on a future"
   );
 
   const instrument = {
@@ -309,14 +335,14 @@ function generateInstrument(skeleton) {
       settlementAsset: idForAnExistingVegaAsset,
       quoteName: "tEuro",
       settlementDataDecimals: 5,
-      oracleSpecForSettlementData: generateSettlementOracleSpec(
-        skeleton.properties.future.properties.oracleSpecForSettlementData
+      dataSourceSpecForSettlementData: generateSettlementDataSourceSpec(
+        skeleton.properties.future.properties.dataSourceSpecForSettlementData
       ),
-      oracleSpecForTradingTermination: generateTerminationOracleSpec(
-        skeleton.properties.future.properties.oracleSpecForTradingTermination
+      dataSourceSpecForTradingTermination: generateTerminationDataSourceSpec(
+        skeleton.properties.future.properties.dataSourceSpecForTradingTermination
       ),
-      oracleSpecBinding: generateOracleSpecBinding(
-        skeleton.properties.future.properties.oracleSpecBinding
+      dataSourceSpecBinding: generateDataSourceSpecBinding(
+        skeleton.properties.future.properties.dataSourceSpecBinding
       ),
     },
   };
@@ -344,29 +370,29 @@ function generateInstrument(skeleton) {
     } as ${skeleton.properties.future.properties.settlementDataDecimals.type})
           settlementDataDecimals: ${instrument.future.settlementDataDecimals},
           // ${
-            skeleton.properties.future.properties.oracleSpecForSettlementData
+            skeleton.properties.future.properties.dataSourceSpecForSettlementData
               .title
           } (${
-      skeleton.properties.future.properties.oracleSpecForSettlementData.type
+      skeleton.properties.future.properties.dataSourceSpecForSettlementData.type
     })
-          oracleSpecForSettlementData: ${inspect(
-            instrument.future.oracleSpecForSettlementData,
+          dataSourceSpecForSettlementData: ${inspect(
+            instrument.future.dataSourceSpecForSettlementData,
             { depth: 5 }
           )},
           // ${
             skeleton.properties.future.properties
-              .oracleSpecForTradingTermination.title
+              .dataSourceSpecForTradingTermination.title
           } (${
-      skeleton.properties.future.properties.oracleSpecForTradingTermination.type
+      skeleton.properties.future.properties.dataSourceSpecForTradingTermination.type
     })
-          oracleSpecForTradingTermination: ${inspect(
-            instrument.future.oracleSpecForTradingTermination,
+          dataSourceSpecForTradingTermination: ${inspect(
+            instrument.future.dataSourceSpecForTradingTermination,
             { depth: 5 }
           )},
           // ${
-            skeleton.properties.future.properties.oracleSpecBinding.title
-          } (${skeleton.properties.future.properties.oracleSpecBinding.type})
-          oracleSpecBinding: ${inspect(instrument.future.oracleSpecBinding, {
+            skeleton.properties.future.properties.dataSourceSpecBinding.title
+          } (${skeleton.properties.future.properties.dataSourceSpecBinding.type})
+          dataSourceSpecBinding: ${inspect(instrument.future.dataSourceSpecBinding, {
             depth: 5,
           })}
       }`;
@@ -803,9 +829,9 @@ function produceInstrument(i) {
 
 module.exports = {
   newMarket,
-  generateOracleSpecBinding,
-  generateTerminationOracleSpec,
-  generateSettlementOracleSpec,
+  generateDataSourceSpecBinding,
+  generateTerminationDataSourceSpec,
+  generateSettlementDataSourceSpec,
   produceOverview,
   produceInstrument,
 };
