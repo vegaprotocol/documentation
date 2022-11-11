@@ -5,11 +5,13 @@ vega_network: TESTNET
 hide_title: false
 ---
 
-Protocol users need data about events, such as price history, trade data, validator scores, and more. While the core emits events when states change, it does not store the data. The data node collects and stores those events, and makes them available through API queries that can be used directly, or through dapps and other tools.
+Protocol users need to see and interact with data, such as price history, market changes, validator scores, and more. While the core emits events when states change, it does not store the data about those events. The core is responsible for processing transations for the chain and ensuring correctness. 
 
-The core is responsible for processing transations for the chain and ensuring correctness. Any processing that isn't required to make the next block is done by the data node. The data node stores information in a PostgreSQL database, and augments the data (by linking order and party data together, for example) to provide richer, more informative APIs. Those functions require extra processing that is best kept separate from running the blockchain so as not to hinder its performance.
+Any processing that isn't required to make the next block is done by the data node. The data node collects, stores, and relates the events, and makes them available through API queries that can be used directly, and through dapps and other tools.
 
-## Running a data node
+Data node stores information in a PostgreSQL database, and augments the data (by linking order and party data together, for example) to provide richer, more informative APIs. Those functions require extra processing that is best kept separate from running the blockchain so as not to hinder its performance.
+
+## Running a data node [WIP-tip]
 Data nodes can be set up and run by anyone who wants to collect and store network event data and make it available. Data nodes can be publicly available for use by dApps, or they can be used privately.
 
 Running your own data node would be useful for building a complex integration, or if you don't want to rely on a third-party data node. A data node can be run privately or publicly, though public data nodes help support the Vega community and users by allowing them to connect and reliably see live and historical data.
@@ -20,25 +22,36 @@ Setting up a data node requires configuring and using the Vega data node softwar
 Set up a data node: Read the instructions for setting up a data node.
 :::
 
-## Data structure [WIP]
+## Data structure
+In order to provide reliable, indexable data, the data node stores information with a specific structure and set of standard details. 
 
-(spec) Each chunk of data contains the eventID that created it and the block from which the event was created. An event is emitted on each occasion the blockchain time updates, and each chunk of data stored is labelled with the time stamp. 
+Each chunk of data contains an event ID that identifies the core event that created it, and the block in which the event was created. An event is emitted whenever the blockchain time updates, and each chunk of data stored is labelled with the timestamp.
 
+:::note Go deeper
+[Data node code ↗](https://github.com/vegaprotocol/vega/tree/master/datanode): See how the data node service is built.
+:::
 
-postgresql database, big relational database behind it. 
+## Available data
+The data node listens to the event stream and provides access not only to the raw data, but also links relevant information together, such as an order and the party ID that placed the order, or the order, the party and the positions that filled that order, so that queries like "show orders that were placed by Party Y" can be done. 
+
+Other types of data that the data node makes queryable include (but are not limited to): 
+* Validator node details and history: Current status and changes to stake and nominations, details per epoch, and performance metrics.
+* Staking rewards per epoch per Vega ID of validators/tokenholders, including the asset, amount, percentage of total and timestamp
+* Governance proposals: All proposals submitted, the 'yes' and 'no' votes, and the parameter changes proposed
+* Trading related data: Prices current and historical such as best bid/ask, mid, mark price; open interest, trade price/volume, closeout trades, loss socialisation events, position mark-to-market events; indicative auction uncrossing price and volume
+* Market lifecycle events: Auction start, end, reason for entering, type of auction; settlement, trading terminated
+* Liquidity provision data: LP order submissions, Equity-like share changes, Market value proxy, Target stake, Supplied stake
+* Risk data: Margin level events, Model parameter changes, Risk factor changes, Price monitoring bound setting changes, Price monitoring bounds
+* Candle data: Data that corresponds to trades during a certain time period: first trade, highest traded price, lowest traded price
 
 ## APIs [WIP]
-Talk about the APIs that display data node information. 
+For clients to communicate with data nodes, the protocol exposes a set of APIs and methods for reading data Currently there are three protocols to communicate with the data node APIs: gRPC, GraphQL and REST.
+
+When running your own data node, you can choose to enable any/all of the protocols, to tailor to your needs. Data nodes run by validators are expected to provide gRPC, GraphQL and REST, and reliably serve data. 
 
 :::tip try it out
 if you want to try running a data node to see data - set up data node instructions & capsule (?)
 :::
-
-can turn on/off graphql, rest, grpc for a data node you run, to tailor to your needs. 
-
-there are data nodes run by consensus validators, which are expected to be running all apis and reliably serve data, though as they are run by validators, the reliability depends on the operator
-
-It must be possible to augment APIs so data returned is in a shape and size that is appropriate for clients.
 
 ## Data retention [WIP]
 A data node can be configured to store only the network's current state (without saving any history), or to store historical data back to a certain date/time. 
@@ -47,34 +60,19 @@ A data node can be configured to store only the network's current state (without
 
 How much is stored between chain resets?
 
-## Data-node decentralized history [WIP]
+## Data-node decentralized history
+Each day, gigabites of event data are produced by the Vega core and stored in the data node. Data nodes have a way to fetch history from peer nodes, as it isn't feasible for a new data node to replay all blocks from the first block to recreate the history and get into a state to be able to consume new blocks. This feature is called decentralised history.
 
-## What kinds of data (more specifics) [WIP]
+History segments produced on every node for a given block span are identical, such that the IPFS content IDs of the segment are the same across all nodes. This means there's no need to upload data between nodes, as each node produces history segments, and thus can be a source of history segments. When a new node joins the network and requests a history segment for a given IPFS content ID, the provision of data to the node is shared across all other nodes in the network.
 
-listens to event stream, links order and party together for example, so queries such as "which orders were placed by x party" can be done 
+:::note Go deeper
+[Decentralised history readme](https://github.com/vegaprotocol/vega/blob/develop/datanode/dehistory/README.md): How to use decentralised history for a data node
+:::
 
-Stake / Delegations / Validator Score history
 
-All changes to staking and delegation, Validator score changes and state at any time (validatorID, epoch, score, normalised score), Validator performance metrics.
+## Database
+The data node relies on PostgreSQL to store and provide data. PostgreSQL, an open source, relational database that supports relational and non-relational queries. 
 
-Rewards per epoch per Vega ID (party, epoch, asset, amount, percentage of total, timestamp).
-
-Governance proposal history: All proposals ever submitted + votes (asset, network parameter change, market).
-
-Trading Related Data:  Best static bid, best static ask, static mid, Best bid, best ask, mid, Mark price. If in auction, indicative uncrossing price and volume. Open interest. Trade price, trade volume, Closeout trades, Loss socialisation event, Position mark-to-market events
-
-Market Data
-
-Market lifecycle events: Auction start, end, reason for entering, type. Settlement / price data received event. Trading terminated event. 
-
-Prices History
-
-available at various time resolutions: on every change, on every blockchain time change, every minute, hour, 6 hours, day. 
-   
-Liquidity provision data: LP order submissions, Equity-like share changes, Market value proxy, Target stake, Supplied stake
-
-Risk data: Margin level events, Model parameter changes, Risk factor changes, Price monitoring bound setting changes, Price monitoring bounds
-    
-Candle data
-
-Orders
+:::note Go deeper
+[About PostgreSQL ↗](https://www.postgresql.org/about/): Read about PostgreSQL and explore the documentation.
+:::
