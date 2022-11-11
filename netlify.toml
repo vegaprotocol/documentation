@@ -8,34 +8,22 @@
   YARN_VERSION = "1.22.10"
 
 [[redirects]]
-  from = "https://docs.testnet.vega.xyx/"
-  to = "https://docs.vega.xyz/"
-  status = 301
-
-[[redirects]]
   from = "https://docs.testnet.vega.xyx/*"
-  to = "https://docs.vega.xyz/"
+  to = "https://docs.vega.xyz/:splat"
   status = 301
-
-[[redirects]]
-  from = "https://docs.fairground.vega.xyz/"
-  to = "https://docs.vega.xyz/"
-  status = 301
+  force = true
 
 [[redirects]]
   from = "https://docs.fairground.vega.xyz/*"
-  to = "https://docs.vega.xyz/"
+  to = "https://docs.vega.xyz/:splat"
   status = 301
+  force = true
 
 [[redirects]]
   from = "https://vega-docusaurus.netlify.app/*"
-  to = "https://docs.vega.xyz/"
+  to = "https://docs.vega.xyz/:splat"
   status = 301
-
-[[redirects]]
-  from = "https://vega-docusaurus.netlify.app/"
-  to = "https://docs.vega.xyz/"
-  status = 301
+  force = true
 
 [[redirects]]
   from = "/docs/testnet/grpc/*"
