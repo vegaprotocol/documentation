@@ -66,7 +66,7 @@ yarn run generate-graphql
 yarn run docusaurus clean-api-docs all
 yarn run generate-rest
 
-yarn run generate-proposals
+#yarn run generate-proposals
 yarn run generate-openrpc
 
 echo ""

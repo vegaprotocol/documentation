@@ -1,6 +1,6 @@
 ---
-id: oracle-spec-status
-title: OracleSpecStatus
+id: data-source-spec-status
+title: DataSourceSpecStatus
 hide_table_of_contents: false
 ---
 
@@ -13,10 +13,10 @@ export const SpecifiedBy = (props) => <>Specification<a className="link" style={
 export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
-Status describe the status of the oracle spec
+Status describe the status of the data spec
 
 ```graphql
-enum OracleSpecStatus {
+enum DataSourceSpecStatus {
   STATUS_ACTIVE
   STATUS_DEACTIVATED
 }
@@ -25,12 +25,12 @@ enum OracleSpecStatus {
 
 ### Values
 
-#### [<code style={{ fontWeight: 'normal' }}>OracleSpecStatus.<b>STATUS_ACTIVE</b></code>](#) 
-> Describes an active oracle spec.
+#### [<code style={{ fontWeight: 'normal' }}>DataSourceSpecStatus.<b>STATUS_ACTIVE</b></code>](#) 
+> describes an active data spec.
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>OracleSpecStatus.<b>STATUS_DEACTIVATED</b></code>](#) 
-> Describes an oracle spec that is not listening to data
+#### [<code style={{ fontWeight: 'normal' }}>DataSourceSpecStatus.<b>STATUS_DEACTIVATED</b></code>](#) 
+> describes a data spec that is not listening to data
 anymore.
 > 
 
@@ -38,7 +38,7 @@ anymore.
 
 ### Member of
 
-[`OracleSpec`](/testnet/api/graphql/objects/oracle-spec)  <Badge class="secondary" text="object"/>
+[`DataSourceSpec`](/testnet/api/graphql/objects/data-source-spec)  <Badge class="secondary" text="object"/>
 
 
 

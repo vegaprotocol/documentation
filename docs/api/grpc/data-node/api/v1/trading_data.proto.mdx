@@ -334,7 +334,7 @@ _**package** datanode.api.v1_
 
 
 ### `ListOracleDataResponse`
-<ProtoMessage key={79} message={{"name":"ListOracleDataResponse","longName":"ListOracleDataResponse","fullName":"datanode.api.v1.ListOracleDataResponse","description":"The response to get all seen oracle data","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"oracle_data","description":"The list of seen oracle data","label":"repeated","type":"OracleData","longType":"oracles.v1.OracleData","fullType":"oracles.v1.OracleData","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/testnet/api/grpc/vega/oracles/v1/data.proto#oracledata"}]}} />
+<ProtoMessage key={79} message={{"name":"ListOracleDataResponse","longName":"ListOracleDataResponse","fullName":"datanode.api.v1.ListOracleDataResponse","description":"The response to get all seen oracle data","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"oracle_data","description":"The list of seen oracle data","label":"repeated","type":"OracleData","longType":"vega.OracleData","fullType":"vega.OracleData","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/testnet/api/grpc/vega/oracle.proto#oracledata"}]}} />
 
 
 ### `MarginLevelsRequest`
@@ -494,7 +494,7 @@ _**package** datanode.api.v1_
 
 
 ### `OracleDataBySpecResponse`
-<ProtoMessage key={119} message={{"name":"OracleDataBySpecResponse","longName":"OracleDataBySpecResponse","fullName":"datanode.api.v1.OracleDataBySpecResponse","description":"The response for a list of all oracle data broadcast to a given spec","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"oracle_data","description":"The list of oracle data broadcast to a given spec","label":"repeated","type":"OracleData","longType":"oracles.v1.OracleData","fullType":"oracles.v1.OracleData","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/testnet/api/grpc/vega/oracles/v1/data.proto#oracledata"}]}} />
+<ProtoMessage key={119} message={{"name":"OracleDataBySpecResponse","longName":"OracleDataBySpecResponse","fullName":"datanode.api.v1.OracleDataBySpecResponse","description":"The response for a list of all oracle data broadcast to a given spec","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"oracle_data","description":"The list of external data broadcast to a given spec","label":"repeated","type":"OracleData","longType":"vega.OracleData","fullType":"vega.OracleData","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/testnet/api/grpc/vega/oracle.proto#oracledata"}]}} />
 
 
 ### `OracleSpecRequest`
@@ -502,7 +502,7 @@ _**package** datanode.api.v1_
 
 
 ### `OracleSpecResponse`
-<ProtoMessage key={121} message={{"name":"OracleSpecResponse","longName":"OracleSpecResponse","fullName":"datanode.api.v1.OracleSpecResponse","description":"A response for a oracle spec","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"oracle_spec","description":"The withdrawal matching the identifier from the request","label":"","type":"OracleSpec","longType":"oracles.v1.OracleSpec","fullType":"oracles.v1.OracleSpec","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/testnet/api/grpc/vega/oracles/v1/spec.proto#oraclespec"}]}} />
+<ProtoMessage key={121} message={{"name":"OracleSpecResponse","longName":"OracleSpecResponse","fullName":"datanode.api.v1.OracleSpecResponse","description":"A response for a oracle spec","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"oracle_spec","description":"The withdrawal matching the identifier from the request","label":"","type":"OracleSpec","longType":"vega.OracleSpec","fullType":"vega.OracleSpec","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/testnet/api/grpc/vega/oracle.proto#oraclespec"}]}} />
 
 
 ### `OracleSpecsRequest`
@@ -510,7 +510,7 @@ _**package** datanode.api.v1_
 
 
 ### `OracleSpecsResponse`
-<ProtoMessage key={123} message={{"name":"OracleSpecsResponse","longName":"OracleSpecsResponse","fullName":"datanode.api.v1.OracleSpecsResponse","description":"The response for a list of withdrawals","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"oracle_specs","description":"The list of oracle specs","label":"repeated","type":"OracleSpec","longType":"oracles.v1.OracleSpec","fullType":"oracles.v1.OracleSpec","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/testnet/api/grpc/vega/oracles/v1/spec.proto#oraclespec"}]}} />
+<ProtoMessage key={123} message={{"name":"OracleSpecsResponse","longName":"OracleSpecsResponse","fullName":"datanode.api.v1.OracleSpecsResponse","description":"The response for a list of withdrawals","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"oracle_specs","description":"The list of external data specs","label":"repeated","type":"OracleSpec","longType":"vega.OracleSpec","fullType":"vega.OracleSpec","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/testnet/api/grpc/vega/oracle.proto#oraclespec"}]}} />
 
 
 ### `OrderByIDRequest`

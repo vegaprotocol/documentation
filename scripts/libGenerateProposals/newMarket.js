@@ -22,59 +22,81 @@ const metadata = [
 // TODO more type assertions
 function generateSettlementDataSourceSpec(skeleton) {
   assert.equal(
-    skeleton.properties.signers.type,
-    "array",
-    "Data Source pubkeys used to be an array"
-  );
+    skeleton.type,
+    "object", 
+    "This is an object with some properties"
+  )
   assert.equal(
-    skeleton.properties.signers.items.type,
+    skeleton.properties.external.type,
     "object",
-    "Data Source pubkeys used to be an array of objects"
+    "External is an object containing data sources"
   );
   assert.equal(
-    skeleton.properties.filters.type,
+    skeleton.properties.internal.type,
+    "object",
+    "Internal is an object containing data sources"
+  );
+  assert.equal(
+    skeleton.properties.internal.properties.time.type,
+    "object",
+    "Time is a valid internal data source"
+  ); 
+  assert.equal(
+    skeleton.properties.external.properties.oracle.type,
+    "object",
+    "Oracle is a valid external data source"
+  ); 
+  assert.equal(
+    skeleton.properties.external.properties.oracle.properties.filters.type,
     "array",
     "Data Source spec filters"
   );
 
-
   const spec = {
-    signers: [ {ethAddress: { address: "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC" } } ],
-    filters: [
-      {
-        key: {
-          name: "prices.BTC.value",
-          type: "TYPE_INTEGER",
-        },
-        conditions: [
-          {
-            operator: "OPERATOR_GREATER_THAN",
-            value: "0",
-          },
+    external: {
+      oracle: { 
+        signers: [
+          { ethAddress: "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC" }
         ],
-      },
-      {
-        key: {
-          name: "prices.BTC.timestamp",
-          type: "TYPE_TIMESTAMP",
-        },
-        conditions: [
+        filters: [
           {
-            operator: "OPERATOR_GREATER_THAN",
-            value: "1648684800000000000",
+            key: {
+              name: "prices.BTC.value",
+              type: "TYPE_INTEGER",
+            },
+            conditions: [
+              {
+                operator: "OPERATOR_GREATER_THAN",
+                value: "0",
+              },
+            ],
           },
-        ],
-      },
-    ],
+          {
+            key: {
+              name: "prices.BTC.timestamp",
+              type: "TYPE_TIMESTAMP",
+            },
+            conditions: [
+              {
+                operator: "OPERATOR_GREATER_THAN",
+                value: "1648684800000000000",
+              },
+            ],
+          },
+        ]
+      }
+    }
   };
+
+  console.dir(skeleton.properties.external.properties, { depth: 10 })
 
   spec[inspect.custom] = () => {
     const splitDescription =
-      skeleton.properties.filters.items.properties.conditions.description.split(
+      skeleton.properties.external.properties.oracle.properties.filters.items.properties.conditions.description.split(
         "\n"
       );
-    const splitPubkeys = skeleton.properties.signers.description.split("\n");
-    const splitFilters = skeleton.properties.filters.description.split("\n");
+    const splitPubkeys = skeleton.properties.external.properties.signers.description.split("\n");
+    
     return `{
             // ${splitPubkeys[0]}
             // ${splitPubkeys[1]}
@@ -151,38 +173,59 @@ function generateSettlementDataSourceSpec(skeleton) {
 
 // TODO more type assertions
 function generateTerminationDataSourceSpec(skeleton) {
+  console.dir(skeleton, {depth: 20})
   assert.equal(
-    skeleton.properties.signers.type,
-    "array",
-    "Data Source signers used to be an array"
-  );
+    skeleton.type,
+    "object", 
+    "This is an object with some properties"
+  )
   assert.equal(
-    skeleton.properties.signers.items.type,
+    skeleton.properties.external.type,
     "object",
-    "oracle source signers used to be an array of objects"
+    "External is an object containing data sources"
   );
   assert.equal(
-    skeleton.properties.filters.type,
+    skeleton.properties.internal.type,
+    "object",
+    "Internal is an object containing data sources"
+  );
+  assert.equal(
+    skeleton.properties.internal.properties.time.type,
+    "object",
+    "Time is a valid internal data source"
+  ); 
+  assert.equal(
+    skeleton.properties.internal.properties.time.properties.conditions.type,
     "array",
-    "Data Source filters"
+    "Time oracles requires conditions"
+  );
+  assert.equal(
+    skeleton.properties.internal.properties.time.properties.conditions.items.type,
+    "object",
+    "Time oracle conditions are objects"
+  );
+  assert.equal(
+    skeleton.properties.external.properties.oracle.type,
+    "object",
+    "Oracle is a valid external data source"
+  ); 
+  assert.equal(
+    skeleton.properties.external.properties.oracle.properties.filters.type,
+    "array",
+    "Data Source spec filters"
   );
 
   const spec = {
-    signers: [],
-    filters: [
-      {
-        key: {
-          name: "vegaprotocol.builtin.timestamp",
-          type: "TYPE_TIMESTAMP",
-        },
+    internal: {
+      time: {
         conditions: [
           {
             operator: "OPERATOR_GREATER_THAN_OR_EQUAL",
             value: "1648684800000000000",
           },
         ],
-      },
-    ],
+      }
+    }
   };
 
   spec[inspect.custom] = () => {
@@ -327,6 +370,7 @@ function generateInstrument(skeleton) {
     skeleton.properties.future.properties.dataSourceSpecBinding,
     "DataSourceSpecBinding used to exist on a future"
   );
+
 
   const instrument = {
     name: randomInstrument.name,

@@ -17,33 +17,15 @@ An oracle data contains the data sent by an oracle
 
 ```graphql
 type OracleData {
-  pubKeys: [String!]
-  data: [Property!]
-  matchedSpecIds: [ID!]
-  broadcastAt: String!
+  externalData: ExternalData!
 }
 ```
 
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>OracleData.<b>pubKeys</b></code>](#)<Bullet />[`[String!]`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
-> The list of public keys that signed the data
+#### [<code style={{ fontWeight: 'normal' }}>OracleData.<b>externalData</b></code>](#)<Bullet />[`ExternalData!`](/testnet/api/graphql/objects/external-data) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > 
-
-#### [<code style={{ fontWeight: 'normal' }}>OracleData.<b>data</b></code>](#)<Bullet />[`[Property!]`](/testnet/api/graphql/objects/property) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
-> All the properties sent by an oracle
-> 
-
-#### [<code style={{ fontWeight: 'normal' }}>OracleData.<b>matchedSpecIds</b></code>](#)<Bullet />[`[ID!]`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
-> Lists of all the oracle specs that matched this oracle data.
-When the array is empty, it means no oracle spec matched this oracle data.
-> 
-
-#### [<code style={{ fontWeight: 'normal' }}>OracleData.<b>broadcastAt</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> RFC3339Nano formatted date and time for when the data was broadcast to the markets
-with a matching oracle spec.
-It has no value when the oracle date does not match any oracle spec.
 > 
 
 
@@ -54,7 +36,7 @@ It has no value when the oracle date does not match any oracle spec.
 
 ### Member of
 
-[`OracleDataEdge`](/testnet/api/graphql/objects/oracle-data-edge)  <Badge class="secondary" text="object"/><Bullet />[`OracleSpec`](/testnet/api/graphql/objects/oracle-spec)  <Badge class="secondary" text="object"/>
+[`OracleDataEdge`](/testnet/api/graphql/objects/oracle-data-edge)  <Badge class="secondary" text="object"/>
 
 
 
