@@ -30,100 +30,101 @@
       // Product quote name (string)
       quoteName: "tEuro",
 
-      // The number of decimal places implied by the settlement data (such as price) emitted by the settlement oracle (int64 as integer)
+      // The number of decimal places implied by the settlement data (such as price) emitted by the settlement data source (int64 as integer)
       settlementDataDecimals: 5,
 
-      // The oracle spec describing the oracle data for settlement (object)
-      oracleSpecForSettlementData: {
-       // pubKeys is the list of authorized public keys that signed the data for this
-       // oracle. All the public keys in the oracle data should be contained in these
-       // public keys. (array of strings)
-       pubKeys: [
-        "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
+      // The data source spec describing the data source for settlement (object)
+      dataSourceSpecForSettlementData: {
+       // signers is the list of authorized signatures that signed the data for this
+       // source. All the signatures in the data source data should be contained in this (array of objects)
+       signers: [
+        {
+         ethAddress: {
+          address: "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
+         }
+        }
        ],
 
-       // filters describes which oracle data are considered of interest or not for
+       // filters describes which source data are considered of interest or not for
        // the product (or the risk model).
        filters: [
         {
-         // key is the oracle data property key targeted by the filter.
-         key: {
-          // name is the name of the property. (string)
-          name: "prices.BTC.value",
-
-          // type is the type of the property. (string)
-          type: "TYPE_INTEGER",
-         },
-
-         // conditions are the conditions that should be matched by the data to be
-         // considered of interest.
-         conditions: [
-          {
-           // comparator is the type of comparison to make on the value. (string)
-           operator: "OPERATOR_GREATER_THAN",
-
-           // value is used by the comparator. (string)
-           value: "0",
-          }
-         ]
+         // $
+         skeleton[p].external[p].oracle[p].filters.items[p].key.description
         }
-       ]
+        key: {
+         // name is the name of the property. (string)
+         name: "prices.BTC.value",
+
+         // type is the type of the property. (string)
+         type: "TYPE_INTEGER",
+        },
+
+        // conditions are the conditions that should be matched by the data to be
+        // considered of interest.
+        conditions: [
+         {
+          // comparator is the type of comparison to make on the value. (string)
+          operator: "OPERATOR_GREATER_THAN",
+
+          // value is used by the comparator. (string)
+          value: "0",
+         }
+        ]
+       },
+       {
+        key: {
+         name: "prices.BTC.timestamp",
+         type: "TYPE_TIMESTAMP",
+        },
+        conditions: [
+         {
+          operator: "OPERATOR_GREATER_THAN",
+          value: "1648684800000000000",
+         }
+        ]
+       }
+      ]
+     },
+
+     // The external data source spec describing the data source of trading termination (object)
+     dataSourceSpecForTradingTermination: {
+      // DataSourceDefinition represents the top level object that deals with data sources.
+      // DataSourceDefinition can be external or internal, with whatever number of data sources are defined
+      internal {
+       // DataSourceSpecConfigurationTime is the internal data source used for emitting timestamps.
+       time: {
+        // Conditions that the timestamps should meet in order to be considered.
+        conditions: [
+         {
+          // comparator is the type of comparison to make on the value. (string)
+          operator: "OPERATOR_GREATER_THAN_OR_EQUAL",
+
+          // value is used by the comparator. (string)
+          value: "1648684800000000000",
+         }
+        ]
+       }
       },
 
-      // The oracle spec describing the oracle data of trading termination (object)
-      oracleSpecForTradingTermination: {
-       // pubKeys is the list of authorized public keys that signed the data for this
-       // oracle. All the public keys in the oracle data should be contained in these
-       // public keys. (array of strings)
-       pubKeys: [
-        "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
-       ],
-
-       // filters describes which oracle data are considered of interest or not for
-       // the product (or the risk model).
-       filters: [
-        {
-         // key is the oracle data property key targeted by the filter.
-         key: {
-          // name is the name of the property. (string)
-          name: "vegaprotocol.builtin.timestamp",
-
-          // type is the type of the property. (string)
-          type: "TYPE_TIMESTAMP",
-         },
-
-         // conditions are the conditions that should be matched by the data to be
-         // considered of interest.
-         conditions: [
-          {
-           // comparator is the type of comparison to make on the value. (string)
-           operator: "OPERATOR_GREATER_THAN_OR_EQUAL",
-
-           // value is used by the comparator. (string)
-           value: "1648684800000000000",
-          }
-         ]
-        }
-       ]
-      },
-
-      // The binding between the oracle spec and the settlement data (object)
-      oracleSpecBinding: {
-       // settlement_data_property holds the name of the property in the oracle data
+      // The binding between the data source spec and the settlement data (object)
+      dataSourceSpecBinding: {
+       // settlement_data_property holds the name of the property in the source data
        // that should be used as settlement data.
        // If it is set to "prices.BTC.value", then the Future will use the value of
        // this property as settlement data. (string) 
        settlementDataProperty: "prices.BTC.value",
 
-       // the name of the property in the oracle data that signals termination of trading (string) 
-       tradingTerminationProperty: "vegaprotocol.builtin.timestamp"
+       // the name of the property in the data source data that signals termination of trading (string) 
+       tradingTerminationProperty: "vega.builtin.timestamp"
       }
      },
 
      // Optional new market meta data, tags
      metadata: [
       "sector:energy",
-      "sector:health",
+      "sector:tech",
+      "sector:food",
       "source:docs.vega.xyz"
      ],
 
@@ -171,7 +172,7 @@
      tau: 0.0001140771161,
 
      // Risk Aversion Parameter (double as number) 
-     riskAversionParameter: "0.001",
+     riskAversionParameter: "0.01",
 
      // Risk model parameters for log normal
      params: {
@@ -190,11 +191,11 @@
 
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-  closingTimestamp: 1669048765,
+  closingTimestamp: 1669926049,
 
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-  enactmentTimestamp: 1669135165,
+  enactmentTimestamp: 1670012449,
  }
 }
 ```

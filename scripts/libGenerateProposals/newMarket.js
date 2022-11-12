@@ -4,6 +4,9 @@ const sampleSize = require("lodash/sampleSize");
 const assert = require("assert").strict;
 const { inspect } = require("util");
 
+// Shortcut for deeply nested stuff
+const p = 'properties'
+
 // Seed data: Some inspirational instrument names and corresponding codes
 const instruments = [
   { name: "Apples Yearly (2022)", code: "APPLES.22" },
@@ -27,36 +30,37 @@ function generateSettlementDataSourceSpec(skeleton) {
     "This is an object with some properties"
   )
   assert.equal(
-    skeleton.properties.external.type,
+    skeleton[p].external.type,
     "object",
     "External is an object containing data sources"
   );
   assert.equal(
-    skeleton.properties.internal.type,
+    skeleton[p].internal.type,
     "object",
     "Internal is an object containing data sources"
   );
   assert.equal(
-    skeleton.properties.internal.properties.time.type,
+    skeleton[p].internal[p].time.type,
     "object",
     "Time is a valid internal data source"
   ); 
   assert.equal(
-    skeleton.properties.external.properties.oracle.type,
+    skeleton[p].external[p].oracle.type,
     "object",
     "Oracle is a valid external data source"
   ); 
   assert.equal(
-    skeleton.properties.external.properties.oracle.properties.filters.type,
+    skeleton[p].external[p].oracle[p].filters.type,
     "array",
     "Data Source spec filters"
   );
+
 
   const spec = {
     external: {
       oracle: { 
         signers: [
-          { ethAddress: "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC" }
+          { ethAddress: { address: "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC" }}
         ],
         filters: [
           {
@@ -88,79 +92,70 @@ function generateSettlementDataSourceSpec(skeleton) {
     }
   };
 
-  console.dir(skeleton.properties.external.properties, { depth: 10 })
-
   spec[inspect.custom] = () => {
+    const splitFilters = skeleton[p].external[p].oracle[p].filters.description.split("\n") 
     const splitDescription =
-      skeleton.properties.external.properties.oracle.properties.filters.items.properties.conditions.description.split(
+      skeleton[p].external[p].oracle[p].filters.items[p].conditions.description.split(
         "\n"
       );
-    const splitPubkeys = skeleton.properties.external.properties.signers.description.split("\n");
+    const splitPubkeys = skeleton[p].external[p].oracle[p].signers.description.split("\n");
     
     return `{
             // ${splitPubkeys[0]}
-            // ${splitPubkeys[1]}
-            // ${splitPubkeys[2]} (${skeleton.properties.signers.type} of ${
-      skeleton.properties.signers.items.type
-    }s)
-            signers: ${JSON.stringify(spec.signers)},
+            // ${splitPubkeys[1]} (${skeleton[p].external[p].oracle[p].signers.type} of ${skeleton.properties.external.properties.oracle.properties.signers.items.type}s)
+            signers: ${JSON.stringify(spec.external.oracle.signers)},
 
             // ${splitFilters[0]}
             // ${splitFilters[1]}
             filters: [
                 {
-                  // ${
-                    skeleton.properties.filters.items.properties.key.description
+                  // $
+                    skeleton[p].external[p].oracle[p].filters.items[p].key.description
                   }
                   key: {
                     // ${
-                      skeleton.properties.filters.items.properties.key
+                      skeleton.properties.external.properties.oracle.properties.filters.items.properties.key
                         .properties.name.description
                     } (${
-      skeleton.properties.filters.items.properties.key.properties.name.type
+      skeleton.properties.external.properties.oracle.properties.filters.items.properties.key.properties.name.type
     })
-                    name: "${spec.filters[0].key.name}",
+                    name: "${spec.external.oracle.filters[0].key.name}",
                     // ${
-                      skeleton.properties.filters.items.properties.key
+                      skeleton.properties.external.properties.oracle.properties.filters.items.properties.key
                         .properties.type.description
                     } (${
-      skeleton.properties.filters.items.properties.key.properties.type.type
+      skeleton.properties.external.properties.oracle.properties.filters.items.properties.key.properties.type.type
     })
-                    type: "${spec.filters[0].key.type}",
+                    type: "${spec.external.oracle.filters[0].key.type}",
                   },
                   // ${splitDescription[0]}
                   // ${splitDescription[1]}
                   conditions: [
                     {
                       // ${
-                        skeleton.properties.filters.items.properties.conditions
-                          .items.properties.operator.description
+                        skeleton[p].external[p].oracle[p].filters.items[p].conditions.items.properties.operator.description
                       } (${
-      skeleton.properties.filters.items.properties.conditions.items.properties
-        .operator.type
+      skeleton[p].external[p].oracle[p].filters.items[p].conditions.items[p].operator.type
     })
-                      operator: "${spec.filters[0].conditions[0].operator}",
+                      operator: "${spec.external.oracle.filters[0].conditions[0].operator}",
                       // ${
-                        skeleton.properties.filters.items.properties.conditions
-                          .items.properties.value.description
+                        skeleton[p].external[p].oracle[p].filters.items[p].conditions.items[p].value.description
                       } (${
-      skeleton.properties.filters.items.properties.conditions.items.properties
-        .value.type
+      skeleton[p].external[p].oracle[p].filters.items[p].conditions.items[p].value.type
     })
-                      value: "${spec.filters[0].conditions[0].value}",
+                      value: "${spec.external.oracle.filters[0].conditions[0].value}",
                     }
                   ]
               },
               {
-                  }
                   key: {
-                    name: "${spec.filters[1].key.name}",
-                    type: "${spec.filters[1].key.type}",
+                    name: "${spec.external.oracle.filters[1].key.name}",
+                    type: "${spec.external.oracle.filters[1].key.type}",
                   },
                   conditions: [
                     {
-                      operator: "${spec.filters[1].conditions[0].operator}",
-                      value: "${spec.filters[1].conditions[0].value}",
+                      operator: "${spec.external.oracle.filters[1].conditions[0].operator}",
+                      value: "${spec.external.oracle.filters[1].conditions[0].value}",
                     }
                   ]
               }              
@@ -173,7 +168,6 @@ function generateSettlementDataSourceSpec(skeleton) {
 
 // TODO more type assertions
 function generateTerminationDataSourceSpec(skeleton) {
-  console.dir(skeleton, {depth: 20})
   assert.equal(
     skeleton.type,
     "object", 
@@ -214,6 +208,8 @@ function generateTerminationDataSourceSpec(skeleton) {
     "array",
     "Data Source spec filters"
   );
+  
+  console.dir(skeleton, { depth: 12})
 
   const spec = {
     internal: {
@@ -228,68 +224,36 @@ function generateTerminationDataSourceSpec(skeleton) {
     }
   };
 
+  const sip = skeleton.properties.internal.properties.time.properties
+
   spec[inspect.custom] = () => {
     const splitDescription =
-      skeleton.properties.filters.items.properties.conditions.description.split(
+     skeleton.description.split(
         "\n"
       );
-    const splitPubkeys = skeleton.properties.signers.description.split("\n");
-    const splitFilters = skeleton.properties.filters.description.split("\n");
     return `{
-            // ${splitPubkeys[0]}
-            // ${splitPubkeys[1]}
-            // ${splitPubkeys[2]} (${skeleton.properties.signers.type} of ${
-      skeleton.properties.signers.items.type
-    }s)
-            signers: ${JSON.stringify(spec.signers)},
-
-            // ${splitFilters[0]}
-            // ${splitFilters[1]}
-            filters: [
-                {
-                  // ${
-                    skeleton.properties.filters.items.properties.key.description
+        // ${splitDescription[0]}
+        // ${splitDescription[1]}
+        internal {
+            // ${skeleton[p].internal[p].time.description}
+            time: {
+              // ${skeleton[p].internal[p].time[p].conditions.description}
+                conditions: [{
+                    // ${
+                      sip.conditions.items[p].operator.description
+                    } (${
+      sip.conditions.items[p].operator.type
+    })
+                    operator: "${spec.internal.time.conditions[0].operator}",
+                    // ${
+                      sip.conditions.items[p].value.description
+                    } (${
+      sip.conditions.items[p].value.type
+    })
+                    value: "${spec.internal.time.conditions[0].value}",
                   }
-                  key: {
-                    // ${
-                      skeleton.properties.filters.items.properties.key
-                        .properties.name.description
-                    } (${
-      skeleton.properties.filters.items.properties.key.properties.name.type
-    })
-                    name: "${spec.filters[0].key.name}",
-                    // ${
-                      skeleton.properties.filters.items.properties.key
-                        .properties.type.description
-                    } (${
-      skeleton.properties.filters.items.properties.key.properties.type.type
-    })
-                    type: "${spec.filters[0].key.type}",
-                  },
-                  // ${splitDescription[0]}
-                  // ${splitDescription[1]}
-                  conditions: [
-                    {
-                      // ${
-                        skeleton.properties.filters.items.properties.conditions
-                          .items.properties.operator.description
-                      } (${
-      skeleton.properties.filters.items.properties.conditions.items.properties
-        .operator.type
-    })
-                      operator: "${spec.filters[0].conditions[0].operator}",
-                      // ${
-                        skeleton.properties.filters.items.properties.conditions
-                          .items.properties.value.description
-                      } (${
-      skeleton.properties.filters.items.properties.conditions.items.properties
-        .value.type
-    })
-                      value: "${spec.filters[0].conditions[0].value}",
-                    }
-                 ]
-              }
-          ]
+               ]
+            }
         }`;
   };
 
@@ -310,7 +274,7 @@ function generateDataSourceSpecBinding(skeleton) {
 
   const binding = {
     settlementDataProperty: "prices.BTC.value",
-    tradingTerminationProperty: "vegaprotocol.builtin.timestamp",
+    tradingTerminationProperty: "vega.builtin.timestamp",
   };
 
   binding[inspect.custom] = () => {
@@ -866,8 +830,8 @@ function produceOverview(p) {
 // Produces a very basic object 'overview' of an instrument
 function produceInstrument(i) {
   const instrument = Object.assign({}, i);
-  instrument.future.oracleSpecForSettlementPrice = {};
-  instrument.future.oracleSpecForTradingTermination = {};
+  instrument.future.dataSourceSpecForSettlementPrice = {};
+  instrument.future.dataSourceSpecForTradingTermination = {};
   return instrument;
 }
 

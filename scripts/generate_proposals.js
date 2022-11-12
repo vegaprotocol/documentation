@@ -187,7 +187,7 @@ ${'```'}
 ${prettyJs(
   annotator(
     proposal.terms.newMarket.changes.instrument.future
-      .oracleSpecForTradingTermination
+      .dataSourceSpecForTradingTermination
   ),
   formatOptions
 ).replace(removeBlankLines, '')}
