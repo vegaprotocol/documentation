@@ -101,6 +101,8 @@ function generateSettlementDataSourceSpec(skeleton) {
     const splitPubkeys = skeleton[p].external[p].oracle[p].signers.description.split("\n");
     
     return `{
+      external: {
+        oracle: {
             // ${splitPubkeys[0]}
             // ${splitPubkeys[1]} (${skeleton[p].external[p].oracle[p].signers.type} of ${skeleton.properties.external.properties.oracle.properties.signers.items.type}s)
             signers: ${JSON.stringify(spec.external.oracle.signers)},
@@ -109,43 +111,42 @@ function generateSettlementDataSourceSpec(skeleton) {
             // ${splitFilters[1]}
             filters: [
                 {
-                  // $
-                    skeleton[p].external[p].oracle[p].filters.items[p].key.description
+                  skeleton[p].external[p].oracle[p].filters.items[p].key.description
+                }
+                key: {
+                  // ${
+                    skeleton.properties.external.properties.oracle.properties.filters.items.properties.key
+                      .properties.name.description
+                  } (${
+    skeleton.properties.external.properties.oracle.properties.filters.items.properties.key.properties.name.type
+  })
+                  name: "${spec.external.oracle.filters[0].key.name}",
+                  // ${
+                    skeleton.properties.external.properties.oracle.properties.filters.items.properties.key
+                      .properties.type.description
+                  } (${
+    skeleton.properties.external.properties.oracle.properties.filters.items.properties.key.properties.type.type
+  })
+                  type: "${spec.external.oracle.filters[0].key.type}",
+                },
+                // ${splitDescription[0]}
+                // ${splitDescription[1]}
+                conditions: [
+                  {
+                    // ${
+                      skeleton[p].external[p].oracle[p].filters.items[p].conditions.items.properties.operator.description
+                    } (${
+    skeleton[p].external[p].oracle[p].filters.items[p].conditions.items[p].operator.type
+  })
+                    operator: "${spec.external.oracle.filters[0].conditions[0].operator}",
+                    // ${
+                      skeleton[p].external[p].oracle[p].filters.items[p].conditions.items[p].value.description
+                    } (${
+    skeleton[p].external[p].oracle[p].filters.items[p].conditions.items[p].value.type
+  })
+                    value: "${spec.external.oracle.filters[0].conditions[0].value}",
                   }
-                  key: {
-                    // ${
-                      skeleton.properties.external.properties.oracle.properties.filters.items.properties.key
-                        .properties.name.description
-                    } (${
-      skeleton.properties.external.properties.oracle.properties.filters.items.properties.key.properties.name.type
-    })
-                    name: "${spec.external.oracle.filters[0].key.name}",
-                    // ${
-                      skeleton.properties.external.properties.oracle.properties.filters.items.properties.key
-                        .properties.type.description
-                    } (${
-      skeleton.properties.external.properties.oracle.properties.filters.items.properties.key.properties.type.type
-    })
-                    type: "${spec.external.oracle.filters[0].key.type}",
-                  },
-                  // ${splitDescription[0]}
-                  // ${splitDescription[1]}
-                  conditions: [
-                    {
-                      // ${
-                        skeleton[p].external[p].oracle[p].filters.items[p].conditions.items.properties.operator.description
-                      } (${
-      skeleton[p].external[p].oracle[p].filters.items[p].conditions.items[p].operator.type
-    })
-                      operator: "${spec.external.oracle.filters[0].conditions[0].operator}",
-                      // ${
-                        skeleton[p].external[p].oracle[p].filters.items[p].conditions.items[p].value.description
-                      } (${
-      skeleton[p].external[p].oracle[p].filters.items[p].conditions.items[p].value.type
-    })
-                      value: "${spec.external.oracle.filters[0].conditions[0].value}",
-                    }
-                  ]
+                ]
               },
               {
                   key: {
@@ -160,7 +161,8 @@ function generateSettlementDataSourceSpec(skeleton) {
                   ]
               }              
           ]
-        }`;
+        }
+    }`;
   };
 
   return spec;
@@ -209,8 +211,6 @@ function generateTerminationDataSourceSpec(skeleton) {
     "Data Source spec filters"
   );
   
-  console.dir(skeleton, { depth: 12})
-
   const spec = {
     internal: {
       time: {
