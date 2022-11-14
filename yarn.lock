@@ -2859,10 +2859,10 @@
   resolved "https://registry.yarnpkg.com/@vegaprotocol/docusaurus-theme-github-codeblock/-/docusaurus-theme-github-codeblock-0.1.8.tgz#a8ae69b0e9db969c004432fef7cfce5479aebf7c"
   integrity sha512-12v5O5PsdZ8lmdeuT/TpJZSnZXkbhndb+2U1ElxqMKkygPxurXGae5ERoR8bhPlwSXuzSktrwUSOuRN/+NNZAw==
 
-"@vegaprotocol/openrpc-md@1.2.3":
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/@vegaprotocol/openrpc-md/-/openrpc-md-1.2.3.tgz#e413863b88f9326874d87bbb9ccfc66fc91dfc55"
-  integrity sha512-2hCeWDamoUkq7Wy6qYDtYst6AUDLhESQ0yXBtuP4eTVKOt4zmlxtKfIhiXVIY7v6o5Ny64BpSMa6e9H9QdMYrw==
+"@vegaprotocol/openrpc-md@1.2.4":
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@vegaprotocol/openrpc-md/-/openrpc-md-1.2.4.tgz#7d5c46d5d3b8c90ee84612d300b95171be5cdfc4"
+  integrity sha512-Fv/WBkgPGfKhiCbc9QD8lseaU8f69OPCGGaatb1nHiT+d8CM1X+AV997yUD7cj5SMbInQOEXs0wqXTsrwE+g6Q==
   dependencies:
     "@open-rpc/schema-utils-js" "^1.16.1"
 

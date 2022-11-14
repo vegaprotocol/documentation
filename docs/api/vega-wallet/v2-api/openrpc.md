@@ -67,7 +67,7 @@ This method should be the entry point of every third-party application. Once con
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| token | string | A unique connection token randomly generated for each new connection. It's used to access the protected methods. | A unique connection token randomly generated for each new connection. It's used to access the protected methods.} |
+| token | string | A unique connection token randomly generated for each new connection. It's used to access the protected methods. | A unique connection token randomly generated for each new connection. It's used to access the protected methods. |
 
 ### Errors
 - **Client error** (3000): the user closed the connection
@@ -159,7 +159,7 @@ This method should be called, by the third-party application, right after it suc
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| permissions | object | The description of the permissions a third-party application has. | The description of the permissions a third-party application has.} |
+| permissions | object | The description of the permissions a third-party application has. | The description of the permissions a third-party application has. |
 
 
 
@@ -209,7 +209,7 @@ The user has to review the permissions.
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| permissions | object | The description of the permissions a third-party application has. | The description of the permissions a third-party application has.} |
+| permissions | object | The description of the permissions a third-party application has. | The description of the permissions a third-party application has. |
 
 ### Errors
 - **Client error** (3000): the user closed the connection
@@ -293,7 +293,7 @@ It requires a `read` access on `public_keys`.
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| keys | array | - | -} |
+| keys | array | - | - |
 
 ### Errors
 - **Application error** (2000): a "read" access on public keys is required
@@ -352,7 +352,7 @@ The user has to review the transaction.
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| transaction | object | A transaction that has been signed by the wallet. | A transaction that has been signed by the wallet.} |
+| transaction | object | A transaction that has been signed by the wallet. | A transaction that has been signed by the wallet. |
 
 ### Errors
 - **Network error** (1000): no healthy node available
@@ -413,10 +413,10 @@ The user has to review the transaction.
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| receivedAt | string | The date when the API received the request to send the transaction.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. | The date when the API received the request to send the transaction.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present.} |
-| sentAt | string | The date when the transaction has been sent to the network.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. | The date when the transaction has been sent to the network.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present.} |
-| transactionHash | string | The hash of the transaction. It's used to uniquely identify the transaction and can be used in the block explorer to retrieve it. | The hash of the transaction. It's used to uniquely identify the transaction and can be used in the block explorer to retrieve it.} |
-| transaction | object | A transaction that has been signed by the wallet. | A transaction that has been signed by the wallet.} |
+| receivedAt | string | The date when the API received the request to send the transaction.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. | The date when the API received the request to send the transaction.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. |
+| sentAt | string | The date when the transaction has been sent to the network.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. | The date when the transaction has been sent to the network.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. |
+| transactionHash | string | The hash of the transaction. It's used to uniquely identify the transaction and can be used in the block explorer to retrieve it. | The hash of the transaction. It's used to uniquely identify the transaction and can be used in the block explorer to retrieve it. |
+| transaction | object | A transaction that has been signed by the wallet. | A transaction that has been signed by the wallet. |
 
 ### Errors
 - **Network error** (1000): no healthy node available
@@ -474,7 +474,7 @@ None required
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| chainID | string | The chain identifier | The chain identifier} |
+| chainID | string | The chain identifier | The chain identifier |
 
 ### Errors
 - **Network error** (1000): no healthy node available
@@ -524,8 +524,8 @@ If successful, the wallet is ready to use for sending transaction.
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| wallet | object | the newly generated wallet | the newly generated wallet} |
-| key | object | the first public key generated | the first public key generated} |
+| wallet | object | the newly generated wallet | the newly generated wallet |
+| key | object | the first public key generated | the first public key generated |
 
 
 
@@ -596,8 +596,8 @@ If successful, the wallet is ready to use for sending transaction.
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| wallet | object | the imported wallet | the imported wallet} |
-| key | object | the first public key generated | the first public key generated} |
+| wallet | object | the imported wallet | the imported wallet |
+| key | object | the first public key generated | the first public key generated |
 
 
 
@@ -663,10 +663,10 @@ This method returns the wallet base information such as its name, ID, type and v
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| name | string | - | -} |
-| version | number | - | -} |
-| id | string | - | -} |
-| type | string | - | -} |
+| name | string | - | - |
+| version | number | - | - |
+| id | string | - | - |
+| type | string | - | - |
 
 
 
@@ -714,7 +714,7 @@ None required
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| wallets | array | - | -} |
+| wallets | array | - | - |
 
 
 
@@ -845,7 +845,7 @@ None required
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| networks | array | - | -} |
+| networks | array | - | - |
 
 
 
@@ -892,12 +892,12 @@ This method returns the network information.
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| name | string | - | -} |
-| logLevel | string | - | -} |
-| tokenExpiry | string | - | -} |
-| port | integer | - | -} |
-| host | string | - | -} |
-| api | object | The API configuration for the network. | The API configuration for the network.} |
+| name | string | - | - |
+| logLevel | string | - | - |
+| tokenExpiry | string | - | - |
+| port | integer | - | - |
+| host | string | - | - |
+| api | object | The API configuration for the network. | The API configuration for the network. |
 
 
 
@@ -1074,8 +1074,8 @@ Import a network configuration from a file or an URL.
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| name | string | - | -} |
-| filePath | string | - | -} |
+| name | string | - | - |
+| filePath | string | - | - |
 
 
 
@@ -1128,9 +1128,9 @@ A special metadata `name` can be provided to name the key. If no `name` is provi
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| publicKey | string | The Vega public key to use. | The Vega public key to use.} |
-| algorithm | object | The algorithm used to generate the key. | The algorithm used to generate the key.} |
-| metadata | array | - | -} |
+| publicKey | string | The Vega public key to use. | The Vega public key to use. |
+| algorithm | object | The algorithm used to generate the key. | The algorithm used to generate the key. |
+| metadata | array | - | - |
 
 
 
@@ -1200,10 +1200,10 @@ It doesn't return the private key for security reasons.  If you need something t
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| publicKey | string | The Vega public key to use. | The Vega public key to use.} |
-| algorithm | object | The algorithm used to generate the key. | The algorithm used to generate the key.} |
-| metadata | array | - | -} |
-| isTainted | boolean | Tells if the key is tainted or not. A tainted key cannot be used for signing and sending transaction, for example. | Tells if the key is tainted or not. A tainted key cannot be used for signing and sending transaction, for example.} |
+| publicKey | string | The Vega public key to use. | The Vega public key to use. |
+| algorithm | object | The algorithm used to generate the key. | The algorithm used to generate the key. |
+| metadata | array | - | - |
+| isTainted | boolean | Tells if the key is tainted or not. A tainted key cannot be used for signing and sending transaction, for example. | Tells if the key is tainted or not. A tainted key cannot be used for signing and sending transaction, for example. |
 
 
 
@@ -1266,7 +1266,7 @@ This method returns all generated key of the specified wallet with their respect
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| keys | array | - | -} |
+| keys | array | - | - |
 
 
 
@@ -1324,7 +1324,7 @@ This method **replaces** the existing metadata by the specified ones. It does **
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| metadata | array | - | -} |
+| metadata | array | - | - |
 
 
 
@@ -1391,8 +1391,8 @@ This is a security feature that **lowers** the impact of having a wallet stolen.
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| wallet | undefined | Name of the generated isolated wallet | Name of the generated isolated wallet} |
-| filePath | undefined | Path to the isolated wallet file | Path to the isolated wallet file} |
+| wallet | undefined | Name of the generated isolated wallet | Name of the generated isolated wallet |
+| filePath | undefined | Path to the isolated wallet file | Path to the isolated wallet file |
 
 
 
@@ -1447,8 +1447,8 @@ This method builds a transaction to rotate key on the network.
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| masterPublicKey | undefined | The master public key of the wallet used to sign the transaction | The master public key of the wallet used to sign the transaction} |
-| encodedTransaction | undefined | The base64-encoded key rotation transaction | The base64-encoded key rotation transaction} |
+| masterPublicKey | undefined | The master public key of the wallet used to sign the transaction | The master public key of the wallet used to sign the transaction |
+| encodedTransaction | undefined | The base64-encoded key rotation transaction | The base64-encoded key rotation transaction |
 
 
 
@@ -1594,7 +1594,7 @@ This method returns the permissions set for the specified wallet and hostname.
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| permissions | object | The full description of the permissions a third-party application has. | The full description of the permissions a third-party application has.} |
+| permissions | object | The full description of the permissions a third-party application has. | The full description of the permissions a third-party application has. |
 
 
 
@@ -1649,7 +1649,7 @@ For a detailed description of the permissions on a given hostname, see `admin.de
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| permissions | object | - | -} |
+| permissions | object | - | - |
 
 
 
@@ -1705,7 +1705,7 @@ This method updates the permissions for the specified wallet and hostname.
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| permissions | object | The full description of the permissions a third-party application has. | The full description of the permissions a third-party application has.} |
+| permissions | object | The full description of the permissions a third-party application has. | The full description of the permissions a third-party application has. |
 
 
 
@@ -1857,7 +1857,7 @@ This method signs a transaction returning a base64-encoded transaction that can 
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| encodedTransaction | string | - | -} |
+| encodedTransaction | string | - | - |
 
 
 
@@ -1879,7 +1879,7 @@ This method signs any given message with a Vega public-key
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| encodedSignature | string | - | -} |
+| encodedSignature | string | - | - |
 
 
 
@@ -1900,7 +1900,7 @@ This method verifies any given signature with a Vega public-key
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| isValid | string | - | -} |
+| isValid | string | - | - |
 
 
 
@@ -1923,10 +1923,10 @@ This method sends a transaction that was signed using admin.sign_transaction int
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
-| receivedAt | string | The date when the API received the request to send the transaction.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. | The date when the API received the request to send the transaction.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present.} |
-| sentAt | string | The date when the transaction has been sent to the network.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. | The date when the transaction has been sent to the network.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present.} |
-| transactionHash | string | The hash of the transaction. It's used to uniquely identify the transaction and can be used in the block explorer to retrieve it. | The hash of the transaction. It's used to uniquely identify the transaction and can be used in the block explorer to retrieve it.} |
-| transaction | object | A transaction that has been signed by the wallet. | A transaction that has been signed by the wallet.} |
+| receivedAt | string | The date when the API received the request to send the transaction.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. | The date when the API received the request to send the transaction.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. |
+| sentAt | string | The date when the transaction has been sent to the network.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. | The date when the transaction has been sent to the network.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. |
+| transactionHash | string | The hash of the transaction. It's used to uniquely identify the transaction and can be used in the block explorer to retrieve it. | The hash of the transaction. It's used to uniquely identify the transaction and can be used in the block explorer to retrieve it. |
+| transaction | object | A transaction that has been signed by the wallet. | A transaction that has been signed by the wallet. |
 
 
 
