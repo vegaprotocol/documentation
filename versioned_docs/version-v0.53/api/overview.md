@@ -12,9 +12,6 @@ There are a number of ways to interact with Vega through APIs and Ethereum bridg
 
 As most of the APIs are designed to use for trading-related queries, the best place to try them out is on the testnet network, also known as Fairground. 
 
-:::info 
-[Vega Fairground documentation](https://docs.fairground.vega.xyz/) includes [how-to guides](https://docs.fairground.vega.xyz/docs/api-howtos/) and a Gitpod environment to try out Vega Fairground. 
-:::
 ## Node API endpoints
 <DataNodes frontMatter={frontMatter} />
 
@@ -34,9 +31,9 @@ If you’re writing a web app, GraphQL is flexible and allows efficient data ret
 **[GraphQL overview](./graphql/generated.md)**: See what GraphQL covers.
 
 **GraphQL playground**: Try out GraphQL queries using one of the following playgrounds, hosted by consensus validators.
-* [Playground hosted by Commodum](http://commodum.mainnet.vega.community:3008/)
-* [Playground hosted by Ryabina](http://ryabina.mainnet.vega.community:3008/)**
-* [Playground hosted by Nodes Guru](http://nodes-guru.mainnet.vega.community:3008/)
+* [Playground hosted by Commodum ↗](http://commodum.mainnet.vega.community:3008/)
+* [Playground hosted by Ryabina ↗](http://ryabina.mainnet.vega.community:3008/)
+* [Playground hosted by Nodes Guru ↗](http://nodes-guru.mainnet.vega.community:3008/)
 
 ## gRPC
 gRPC provides fast and efficient communication with Vega’s APIs. gRPC supports near real time streaming of updates from Vega. gRPC/Protobuf is the transport of choice for many web3 apps.

@@ -125,10 +125,6 @@ module.exports = {
               to: "https://fairground.wtf/",
             },
             {
-              label: "Docs",
-              to: "https://docs.fairground.vega.xyz/",
-            },
-            {
               label: "Vega Console",
               to: "https://console.fairground.wtf/",
             },

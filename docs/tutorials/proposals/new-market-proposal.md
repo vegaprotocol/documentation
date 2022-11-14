@@ -74,7 +74,7 @@ An instrument contains the following properties:
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
 | `name` | A string for the market name. Best practice is to include a full and fairly descriptive name for the instrument. | BTC/USD DEC18. |
-| `code'  (instrument) | This is a shortcode used to easily describe the instrument. The more information you add, the easier it is for people to know what the market offers. | FX:BTCUSD/DEC18 |
+| `code`  (instrument) | This is a shortcode used to easily describe the instrument. The more information you add, the easier it is for people to know what the market offers. | FX:BTCUSD/DEC18 |
 | `future` | An object that provides details about the futures market to be proposed. |
 | `settlementAsset` | Settlement asset requires the ID of the asset that the market will be margined in and settle in. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID. |  |
 | `quoteName` | The quote name is the human-readable name/abbreviation of the settlement asset. Example: In BTCUSD, USD is the quote. | tEuro |
