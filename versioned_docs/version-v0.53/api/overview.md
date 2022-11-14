@@ -21,26 +21,29 @@ As most of the APIs are designed to use for trading-related queries, the best pl
 ## Tutorials
 Tutorials provide the information you'll need about the protocol to understand and use the guide, as well as instructions on how to interact with scripts, API calls, or other code. 
 
-[Tutorials](../tutorials/index.md): See the tutorial(s) currently available for this network.
+**[Tutorials](../tutorials/index.md)**: See the tutorial(s) currently available for this network.
 
 ## Ethereum bridges
 You can also interact with the Ethereum smart contracts, which allow for bridging between Vega and Ethereum.
 
-[Smart contracts overview](./bridge/index.md): Start exploring the bridge.
+**[Smart contracts overview](./bridge/index.md)**: Start exploring the bridge.
 
 ## GraphQL
 If you’re writing a web app, GraphQL is flexible and allows efficient data retrieval. Like gRPC, GraphQL supports near real time streaming of updates from Vega. It uses websockets under the hood but follows the specification for streaming as set by GraphQL.
 
-[GraphQL overview](./graphql/generated.md): See what GraphQL covers. 
+**[GraphQL overview](./graphql/generated.md)**: See what GraphQL covers.
 
-[GraphQL Playground](https://graphql.vega.community/query/playground): Try out GraphQL queries. 
+**GraphQL playground**: Try out GraphQL queries using one of the following playgrounds, hosted by consensus validators.
+* [Playground hosted by Commodum](http://commodum.mainnet.vega.community:3008/)
+* [Playground hosted by Ryabina](http://ryabina.mainnet.vega.community:3008/)**
+* [Playground hosted by Nodes Guru](http://nodes-guru.mainnet.vega.community:3008/)
 
 ## gRPC
 gRPC provides fast and efficient communication with Vega’s APIs. gRPC supports near real time streaming of updates from Vega. gRPC/Protobuf is the transport of choice for many web3 apps.
 
-[gRPC](./grpc/vega/vega.proto): Explore the gRPC reference documentation.
+**[gRPC](./grpc/vega/vega.proto)**: Explore the gRPC reference documentation.
 
 ## REST
 REST is the ubiquitous protocol for the web. Vega has four REST endpoints: two are served by core nodes, and two are served by data nodes. REST is fairly easy to get started with, and Vega supports nearly all the functionality provided by gRPC and GraphQL on the REST APIs. Note: REST does not support streaming.
 
-[REST overview](./rest/overview.md): Read more about data and core node APIs.
+**[REST overview](./rest/overview.md)**: Read more about data and core node APIs.
