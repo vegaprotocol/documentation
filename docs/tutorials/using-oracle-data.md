@@ -20,22 +20,22 @@ You need to specify details about the oracle in a market's governance proposal, 
 When configuring a market's instrument, you will need to select the data from one of the two sources. 
 
 This is done by:
-1. Defining an oracle spec binding for settlement price
-2. Configuring an oracle spec for settlement price values
-3. Defining an oracle spec binding for trading termination
-4. Configuring an oracle spec for trading termination values
+1. Defining a data source spec binding for settlement price
+2. Configuring a data source spec for settlement price values
+3. Defining a data source spec binding for trading termination
+4. Configuring a data source spec for trading termination values
 
 The **binding** tells the market which field contains the value. The **spec** defines which public keys to watch for data from, and which values to pass through to the binding.
 
-When it's time for a market to settle, someone needs to submit the data that matches the oracle spec defined in the market.
+When it's time for a market to settle, someone needs to submit the data that matches the data source spec defined in the market.
 
 :::note Read more: 
 [Market governance concepts:](../concepts/vega-protocol.md)
 [Tutorial - proposing a market:](./proposals/new-market-proposal.md)
 :::
 
-## Who can submit oracle data
-Any Vega keypair can submit oracle data to the chain. In the configuration for a market, an oracle specification field dictates which data feeds it is interested in. In effect, it works as a filter. This specification means that the creator of an instrument for a market will choose in advance a price source, and which data fields the market requires to settle and terminate.
+## Who can submit data
+Any Vega keypair can submit settlement and market termination data to the chain. In the configuration for a market, a data source specification field dictates which data feeds it is interested in. In effect, it works as a filter. This specification means that the creator of an instrument for a market will choose in advance a price source, and which data fields the market requires to settle and terminate.
 
 ## Open Oracle
 [Open Oracle](https://github.com/compound-finance/open-oracle) is a standard for encoding price data and signatures for price messages.
@@ -46,16 +46,16 @@ For the binding, use the `name` field of the data. In the case of our example ab
 For now this will focus on using the data for settlement price - both examples below use a Vega time data source to terminate the market.
 
 ```javascript
-"oracleSpecBinding": {
+"dataSourceSpecBinding": {
   "settlementDataProperty": "prices.BTC.value",
   "tradingTerminationProperty": "vegaprotocol.builtin.timestamp"
 }
 ```
 
-The following oracle spec would make the market use the BTC value from the Open Oracle data submitted below:
+The following data source spec would make the market use the BTC value from the Open Oracle data submitted below:
 
 ```javascript
-   "oracleSpecForSettlementData": {
+   "dataSourceSpecForSettlementData": {
         "pubKeys": ["0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"],
         "filters": [{
             "key": {

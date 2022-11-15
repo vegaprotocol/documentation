@@ -13,18 +13,11 @@ export const SpecifiedBy = (props) => <>Specification<a className="link" style={
 export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
-An oracle spec describe the oracle data that a product (or a risk model)
-wants to get from the oracle engine.
+No description
 
 ```graphql
 type OracleSpec {
-  id: ID!
-  createdAt: String!
-  updatedAt: String
-  pubKeys: [String!]
-  filters: [Filter!]
-  status: OracleSpecStatus!
-  data: [OracleData!]!
+  dataSourceSpec: ExternalDataSourceSpec!
   dataConnection(
   pagination: Pagination
 ): OracleDataConnection!
@@ -34,35 +27,8 @@ type OracleSpec {
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>OracleSpec.<b>id</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> ID is a hash generated from the OracleSpec data.
+#### [<code style={{ fontWeight: 'normal' }}>OracleSpec.<b>dataSourceSpec</b></code>](#)<Bullet />[`ExternalDataSourceSpec!`](/testnet/api/graphql/objects/external-data-source-spec) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > 
-
-#### [<code style={{ fontWeight: 'normal' }}>OracleSpec.<b>createdAt</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> RFC3339Nano creation date time
-> 
-
-#### [<code style={{ fontWeight: 'normal' }}>OracleSpec.<b>updatedAt</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
-> RFC3339Nano last updated timestamp
-> 
-
-#### [<code style={{ fontWeight: 'normal' }}>OracleSpec.<b>pubKeys</b></code>](#)<Bullet />[`[String!]`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
-> The list of authorized public keys that signed the data for this
-oracle. All the public keys in the oracle data should be contained in these
-public keys.
-> 
-
-#### [<code style={{ fontWeight: 'normal' }}>OracleSpec.<b>filters</b></code>](#)<Bullet />[`[Filter!]`](/testnet/api/graphql/objects/filter) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
-> Filters describes which oracle data are considered of interest or not for
-the product (or the risk model).
-> 
-
-#### [<code style={{ fontWeight: 'normal' }}>OracleSpec.<b>status</b></code>](#)<Bullet />[`OracleSpecStatus!`](/testnet/api/graphql/enums/oracle-spec-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
-> Status describes the status of the oracle spec
-> 
-
-#### [<code style={{ fontWeight: 'normal' }}>OracleSpec.<b>data</b></code>](#)<Bullet />[`[OracleData!]!`](/testnet/api/graphql/objects/oracle-data) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
-> Data list all the oracle data broadcast to this spec
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>OracleSpec.<b>dataConnection</b></code>](#)<Bullet />[`OracleDataConnection!`](/testnet/api/graphql/objects/oracle-data-connection) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
@@ -79,7 +45,7 @@ the product (or the risk model).
 
 ### Member of
 
-[`Future`](/testnet/api/graphql/objects/future)  <Badge class="secondary" text="object"/><Bullet />[`OracleSpecEdge`](/testnet/api/graphql/objects/oracle-spec-edge)  <Badge class="secondary" text="object"/>
+[`OracleSpecEdge`](/testnet/api/graphql/objects/oracle-spec-edge)  <Badge class="secondary" text="object"/>
 
 ### Implemented by
 

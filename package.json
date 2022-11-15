@@ -1,6 +1,6 @@
 {
   "name": "vega-documentation",
-  "version": "0.60.0",
+  "version": "0.62.1",
   "mainnetVersion": "0.53.0",
   "license": "MIT",
   "engines": {
@@ -43,7 +43,7 @@
     "@mdx-js/react": "^1.6.22",
     "@svgr/webpack": "6.3.1",
     "@vegaprotocol/docusaurus-theme-github-codeblock": "^0.1.8",
-    "@vegaprotocol/openrpc-md": "1.2.3",
+    "@vegaprotocol/openrpc-md": "1.2.4",
     "bignumber.js": "^9.0.2",
     "clsx": "^1.2.1",
     "date-fns": "^2.29.1",

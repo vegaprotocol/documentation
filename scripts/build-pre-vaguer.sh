@@ -15,8 +15,6 @@ if ((mainnet_temp_good > 3)); then
   echo "   - New run: ${mainnet_temp_good}, old run: ${mainnet_current_good}"
   rm "./specs/mainnet_vaguer.json"
   mv "./specs/mainnet_vaguer_temp.json" "./specs/mainnet_vaguer.json"
-  rm -f "./specs/mainnet_vaguer_timestamp.json"
-  echo "{\"date\": \"$(date -u)\", \"timestamp\": \"$(date +%s)\"}" > "./specs/mainnet_vaguer_timestamp.json"
 else
   echo "   - 0 good nodes, doing nothing"
   rm "./specs/mainnet_vaguer_temp.json"
@@ -32,8 +30,6 @@ if ((testnet_temp_good > 3)); then
   echo "   - New run ${testnet_temp_good}, old run: ${testnet_current_good}"
   rm "./specs/testnet_vaguer.json"
   mv "./specs/testnet_vaguer_temp.json" "./specs/testnet_vaguer.json"
-  rm -f "./specs/testnet_vaguer_timestamp.json"
-  echo "{\"date\": \"$(date -u)\", \"timestamp\": \"$(date +%s)\"}" > "./specs/testnet_vaguer_timestamp.json"
 else
   echo "   - 0 good nodes, doing nothing"
   rm "./specs/testnet_vaguer_temp.json"

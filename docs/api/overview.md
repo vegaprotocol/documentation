@@ -12,33 +12,30 @@ There are a number of ways to interact with Vega through APIs and Ethereum bridg
 
 As most of the APIs are designed to use for trading-related queries, the best place to try them out is on the testnet network, also known as Fairground. 
 
-:::info 
-[Vega Fairground documentation](https://docs.fairground.vega.xyz/) includes [how-to guides](https://docs.fairground.vega.xyz/docs/api-howtos/) and a Gitpod environment to try out Vega Fairground. 
-:::
 ## Node API endpoints
 <DataNodes frontMatter={frontMatter} />
 
 ## Tutorials
 Tutorials provide the information you'll need about the protocol to understand and use the guide, as well as instructions on how to interact with scripts, API calls, or other code. 
 
-[Tutorials](../tutorials): See the tutorial(s) currently available for this network.
+**[Tutorials](../tutorials)**: See the tutorial(s) currently available for this network.
 
 ## Ethereum bridges
 You can also interact with the Ethereum smart contracts, which allow for bridging between Vega and Ethereum.
 
-[Smart contracts overview](./bridge/index.md): Start exploring the bridge.
+**[Smart contracts overview](./bridge/index.md)**: Start exploring the bridge.
 
 ## GraphQL
 If you’re writing a web app, GraphQL is flexible and allows efficient data retrieval. Like gRPC, GraphQL supports near real time streaming of updates from Vega. It uses websockets under the hood but follows the specification for streaming as set by GraphQL.
 
-[GraphQL overview](./graphql/generated.md): See what GraphQL covers. 
+**[GraphQL overview](./graphql/generated.md)**: See what GraphQL covers. 
 
-[GraphQL Playground](https://graphql.vega.community/query/playground): Try out GraphQL queries. 
+**[GraphQL Playground](https://api.testnet.vega.xyz/graphql/)**: Try out GraphQL queries. 
 
 ## gRPC
 gRPC provides fast and efficient communication with Vega’s APIs. gRPC supports near real time streaming of updates from Vega. gRPC/Protobuf is the transport of choice for many web3 apps.
 
-[gRPC](grpc/vega/vega.proto): Explore the gRPC reference documentation.
+**[gRPC](grpc/vega/vega.proto)**: Explore the gRPC reference documentation.
 - [Core](grpc/vega/api/v1/core.proto.mdx): Get information about the network, such as 'block height' and 'Vega time'.
 - [Core state](grpc/vega/api/v1/corestate.proto): Get lists of state about the internal Vega system, such as 'list accounts', 'list parties.
 - [Commands](grpc/vega/commands/v1/commands.proto): Get all transaction types you can submit to the network.
@@ -47,7 +44,7 @@ gRPC provides fast and efficient communication with Vega’s APIs. gRPC supports
 ## REST
 REST is the ubiquitous protocol for the web. Vega has four REST endpoints: two are served by core nodes, and two are served by data nodes. REST is fairly easy to get started with, and Vega supports nearly all the functionality provided by gRPC and GraphQL on the REST APIs. Note: REST does not support streaming.
 
-[REST overview](rest/overview.md): Read more about data and core node APIs.
+**[REST overview](rest/overview.md)**: Read more about data and core node APIs.
 - [Core network state](rest/core/core-service.mdx): Get basic information about the network, such as 'block height' and 'Vega time'.
 - [Core state](rest/state/core-state-service): Get lists of state about the internal Vega system, such as 'list accounts', 'list parties.
 - [Data node (legacy API)](rest/data-v1/trading-data-service): Get limited historical information, such as 'governance data for all proposals'. This API version will be deprecated in a future version, and does not cover the system as comprehensively as v2.

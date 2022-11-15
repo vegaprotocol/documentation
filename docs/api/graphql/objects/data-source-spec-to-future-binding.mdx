@@ -1,6 +1,6 @@
 ---
-id: oracle-spec-to-future-binding
-title: OracleSpecToFutureBinding
+id: data-source-spec-to-future-binding
+title: DataSourceSpecToFutureBinding
 hide_table_of_contents: false
 ---
 
@@ -13,11 +13,11 @@ export const SpecifiedBy = (props) => <>Specification<a className="link" style={
 export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
-OracleSpecToFutureBinding tells on which property oracle data should be
+DataSourceSpecToFutureBinding tells on which property data source data should be
 used as settlement data and trading termination.
 
 ```graphql
-type OracleSpecToFutureBinding {
+type DataSourceSpecToFutureBinding {
   settlementDataProperty: String!
   tradingTerminationProperty: String!
 }
@@ -26,11 +26,11 @@ type OracleSpecToFutureBinding {
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>OracleSpecToFutureBinding.<b>settlementDataProperty</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>DataSourceSpecToFutureBinding.<b>settlementDataProperty</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > 
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>OracleSpecToFutureBinding.<b>tradingTerminationProperty</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>DataSourceSpecToFutureBinding.<b>tradingTerminationProperty</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > 
 > 
 

@@ -9,6 +9,10 @@ You can now connect to an existing Vega wallet, or create a new wallet, using th
 
 Set-up takes less than 5 minutes, from downloading the software to connecting to a Vega dApp.
 
+:::caution
+The Vega Wallet desktop app has release and pre-release versions available. The newest pre-release version is generally the version compatible with the latest testnet release, while the release version is compatible with the Vega mainnet.
+:::
+
 ## Download and start the Vega Wallet desktop app
 
 ### Download, save and open app

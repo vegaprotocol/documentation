@@ -26,6 +26,27 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Pre-release Versions 0.61.0, 0.62.0 and 0.62.1 combined | 2022-11-11
+This version was released to the Vega testnet on 11 November, 2022.
+
+As the software gets closer to being ready for Alpha Mainnet, all focus is on testing, bug fixing and measuring performace to ensure a stable network. The team has been running performance tests and gathering metrics to enhance both the core and the data node. This release brings enhancements to the data node ensuring performant operation, and the all-important accuracy of every APIs response. 
+
+The last three weeks have seen unfortunate delays to the usual weekly testnet release cadence. This was caused by a large refactor of the `oracleSpec`, clarifying the naming and distinctions between oracles and the data they provide. Why do this now? The team wanted to mitigate against large breaking changes in the months after Alpha Mainnet when new features will be developed, and building on top of Vega gets into full swing... you can thank us later.
+
+Check out the full details of this combined release in the Vega core [0.61.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.61.0), [0.62.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.62.0) and [0.62.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.62.1) release pages.
+
+:::warning API deprecations
+**Data node**: UPDATE: The v2 APIs ([REST](./../api/rest/overview) and [gRPC](./../api/grpc/data-node/api/v2/trading_data.proto)) for the data node will replace v1 in the next major version release to testnet. Therefore anyone building apps on top of Vega should start to use the v2 APIs immediately.
+
+**Vega Wallet**: For most use cases, the v2 [wallet API](./../api/vega-wallet) will soon be the only one available for interacting with the Vega Wallet. V1 will continue to be used for the testnet-only hosted wallet for testing and incentives, for slightly longer.
+:::
+
+:::caution Breaking changes
+**Vega tools**: The `vegatools` snapshot command has been updated to be consistent with other CLI options. The change also formats the json output so that it can be parsed and used programmatically.
+
+**Data sourcing**: The data sourcing types have been updated to account for multiple types of data in the future. Data types are generalised as much as possible, as in the future data will be sourced from more than the currently implemented 'price' data - this is now represented by the types `DataSpec` and `ExternalData`.
+:::
+
 ### Pre-release Versions 0.59.0 and 0.60.0 combined | 2022-10-25
 This version was released to the Vega testnet on 25 October, 2022.
 
@@ -34,7 +55,7 @@ For full details see the vega core [0.59.0 ↗](https://github.com/vegaprotocol/
 The primary focus of this release has been to add general bug fixes and improvements, improve the stability of the network and implement data node snapshots to be used for protocol upgrades and new nodes joining the network. This feature is now in testing.
 
 :::warning API deprecations
-**Data node**: The v2 APIs ([REST](./../api/rest/overview) and [gRPC](./../api/grpc/data-node/api/v2/trading_data.proto)) for the data node will be replace V1, which will soon be removed. Therefore anyone building apps on to of Vega should start to use the v2 APIs from release 0.55 onwards.
+**Data node**: The v2 APIs ([REST](./../api/rest/overview) and [gRPC](./../api/grpc/data-node/api/v2/trading_data.proto)) for the data node will replace V1, which will soon be removed. Therefore anyone building apps on top of Vega should start to use the v2 APIs from release 0.55 onwards.
 
 **Vega Wallet**: For most use cases, the v2 [wallet API](./../api/vega-wallet) will soon be the only one available for interacting with the Vega Wallet. V1 will continue to be used for the testnet-only hosted wallet for testing and incentives, for slightly longer.
 :::

@@ -183,20 +183,11 @@ ${'```'}
     // This is pretty lazy custom code for one type. If more proposal types require excerpts, rethink this
     const removeBlankLines = /^\s*\n/gm
 
-    excerpts.risk = `${'```javascript'}
-${prettyJs(
-  annotator(
-    proposal.terms.newMarket.changes.logNormal
-  ),
-  formatOptions
-).replace(removeBlankLines, '')}
-${'```'}`
-
     excerpts.oracle = `${'```javascript'}
 ${prettyJs(
   annotator(
     proposal.terms.newMarket.changes.instrument.future
-      .oracleSpecForTradingTermination
+      .dataSourceSpecForTradingTermination
   ),
   formatOptions
 ).replace(removeBlankLines, '')}
@@ -296,10 +287,6 @@ function output (partial, title) {
 
     // Special case: Excerpt some sections of JSON so they can be documented in detail
     if (title === 'newMarket') {
-      writeFileSync(
-        `${path}/_${title}_json_risk.md`,
-        partial.excerpts.risk
-      ) 
       writeFileSync(
         `${path}/_${title}_json_oracle.md`,
         partial.excerpts.oracle
