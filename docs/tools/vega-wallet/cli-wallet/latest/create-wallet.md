@@ -15,7 +15,7 @@ To download Vega Wallet and create your wallet, follow the step-by-step instruct
 
 This software is frequently updated. As of August 2022, the Vega Wallet software has moved from `vegawallet` to [`vega` ↗](https://github.com/vegaprotocol/vega/releases/) on GitHub, and the version numbers have changed. 
 
-:::caution
+:::caution Wallet version
 These instructions cover Vega Wallet version 0.62.1, which is only compatible with Vega network(s) that are also on v0.62.1. If  you need a Vega Wallet for mainnet, see [Create a wallet (mainnet)](https://docs.vega.xyz/docs/mainnet/tools/vega-wallet/cli-wallet/latest/create-wallet).
 :::
 

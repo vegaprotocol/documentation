@@ -29,7 +29,9 @@ The Vega core software is public on a business-source licence, so you can both v
 ### Pre-release Versions 0.61.0, 0.62.0 and 0.62.1 combined | 2022-11-11
 This version was released to the Vega testnet on 11 November, 2022.
 
-As the software gets closer to being ready for Alpha Mainnet, all focus is on testing, bug fixing and measuring performace to ensure a stable network. The team has been running performance tests and gathering metrics to enhance both the core and the data node. This release brings enhancements to the data node ensuring performant operation, and the all-important accuracy of every APIs response. The last three weeks have seen unfortunate delays to the usual weekly testnet release cadence. This was caused by a large refactor of the `oracleSpec`, clarifying the naming and distinctions between oracles and the data they provide. Why do this now? The team wanted to mitigate against large breaking changes in the months after Alpha Mainnet when new features will be developed, and building on top of Vega gets into full swing... you can thank us later.
+As the software gets closer to being ready for Alpha Mainnet, all focus is on testing, bug fixing and measuring performace to ensure a stable network. The team has been running performance tests and gathering metrics to enhance both the core and the data node. This release brings enhancements to the data node ensuring performant operation, and the all-important accuracy of every APIs response. 
+
+The last three weeks have seen unfortunate delays to the usual weekly testnet release cadence. This was caused by a large refactor of the `oracleSpec`, clarifying the naming and distinctions between oracles and the data they provide. Why do this now? The team wanted to mitigate against large breaking changes in the months after Alpha Mainnet when new features will be developed, and building on top of Vega gets into full swing... you can thank us later.
 
 Check out the full details of this combined release in the Vega core [0.61.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.61.0), [0.62.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.62.0) and [0.62.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.62.1) release pages.
 
@@ -42,7 +44,7 @@ Check out the full details of this combined release in the Vega core [0.61.0 ↗
 :::caution Breaking changes
 **Vega tools**: The `vegatools` snapshot command has been updated to be consistent with other CLI options. The change also formats the json output so that it can be parsed and used programmatically.
 
-**Data sourcing**: The data sourcing types have been updated to account for multiple types of data in the future. Data types are generalized as much as possible as in the future data will be sourced from more than the currently implemented 'price' data - this is now represented by the types `DataSpec` and `ExternalData`.
+**Data sourcing**: The data sourcing types have been updated to account for multiple types of data in the future. Data types are generalised as much as possible, as in the future data will be sourced from more than the currently implemented 'price' data - this is now represented by the types `DataSpec` and `ExternalData`.
 :::
 
 ### Pre-release Versions 0.59.0 and 0.60.0 combined | 2022-10-25
