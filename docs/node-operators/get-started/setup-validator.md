@@ -15,7 +15,7 @@ First, generate the default configuration files for Vega and Tendermint. You can
 The below command will create home paths (if they don't already exist) and generate the configuration in the homes you chose. 
 
 ```
-vega init --home=YOUR_HOME_PATH --tendermint-home=YOUR_TENDERMINT_HOME_PATH validator
+vega init --home=YOUR_VEGA_HOME_PATH --tendermint-home=YOUR_TENDERMINT_HOME_PATH validator
 ```
 
 To update your node configuration, such as to set up ports for the APIs, edit the config file:
@@ -37,8 +37,6 @@ You need to generate or import the wallet information for Tendermint, Vega and E
 
 :::note
 You will be asked for a passphrase for your node wallet, which you created when you initialised Vega. Make sure to save this passphrase in a text file, somewhere secure, as it allows you to unlock the node wallet.
-
-The following command should output the path of the main configuration file. Feel free to open and change settings if needed.
 :::
 
 ### Set up the Vega wallet
@@ -65,7 +63,7 @@ vega nodewallet --home="YOUR_VEGA_HOME_PATH" show
 To save the Tendermint public key in your node wallet, look in your tendermint config `YOUR_TENDERMINT_HOME_PATH/config/priv_validator_key.json` for your tendermint public key, and import it.
 
 ```
-vega nodewallet import --chain=tendermint --tendermint-pubkey="YOUR_TENDERMINT_PUBKEY"
+vega nodewallet import --chain=tendermint --tendermint-pubkey="YOUR_TENDERMINT_PUBKEY" --home=YOUR_VEGA_HOME_PATH
 ```
 
 If your Tendermint node is set up to use `tmkms`, then refer to the [tmkms documentation ↗](https://github.com/iqlusioninc/tmkms) to get your public key.
@@ -153,7 +151,9 @@ Under `Mempool Configuration Option`, ensure that `broadcast = true`.
 ### Save Tendermint genesis
 To start successfully, tendermint needs the genesis file from the network you will be trying to join. This file need to be located in `YOUR_TENDERMINT_HOME/config/genesis.json`. 
 
-You can find genesis files for network supported by the community in the [networks repository](https://github.com/vegaprotocol/networks). 
+You can find genesis files: 
+* In the [networks repository] for the mainnet network: (https://github.com/vegaprotocol/networks). 
+* In the [networks internal repository] for sandbox and other test networks: (https://github.com/vegaprotocol/networks-internal). Note: For sandbox, the genesis must be a URL to a remote file, not saved locally on disk.
 
 For example, to join mainnet you will need the following [genesis file](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json).
 
