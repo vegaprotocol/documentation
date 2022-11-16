@@ -11,6 +11,9 @@ Any processing that isn't required to make the next block is done by the data no
 
 Data node stores information in a PostgreSQL database, and augments the data (by linking order and party data together, for example) to provide richer, more informative APIs. Those functions require extra processing that is best kept separate from running the blockchain so as not to hinder its performance.
 
+### Diagram: Data node structure
+![Data node diagram](/img/concept-diagrams/data-node-overview.png)
+
 ## Running a data node [WIP-tip]
 Data nodes can be set up and run by anyone who wants to collect and store network event data and make it available. Data nodes can be publicly available for use by dApps, or they can be used privately.
 
@@ -21,6 +24,11 @@ Setting up a data node requires configuring and using the Vega data node softwar
 :::tip Try it out [WIP]
 Set up a data node: Read the instructions for setting up a data node.
 :::
+
+## Forwarding wallet transactions
+The Vega Wallet is the conduit for approving and sending transactions from the user to the core. The data node exposes the exact same endpoints as the core node, and so it can act as a proxy for the core node.
+
+When the wallet sends a transaction request to a data node, the data node ingests the request and directly forwards it to the core node it is connected to. That node, whether or not it is a consensus validator, will then send the transaction to the network. The consensus validators will then decide on the validity of the transaction and execute it.
 
 ## Data structure
 In order to provide reliable, indexable data, the data node stores information with a specific structure and set of standard details. 
@@ -45,9 +53,9 @@ Other types of data that the data node makes queryable include (but are not limi
 * Candle data: Data that corresponds to trades during a certain time period: first trade, highest traded price, lowest traded price
 
 ## APIs [WIP]
-For clients to communicate with data nodes, the protocol exposes a set of APIs and methods for reading data Currently there are three protocols to communicate with the data node APIs: gRPC, GraphQL and REST.
+For clients to communicate with data nodes, the protocol exposes a set of APIs and methods for reading data. Currently there are three protocols to communicate with the data node APIs: gRPC, GraphQL and REST.
 
-When running your own data node, you can choose to enable any/all of the protocols, to tailor to your needs. Data nodes run by validators are expected to provide gRPC, GraphQL and REST, and reliably serve data. 
+If you are running your own data node, you can choose to enable any/all of the protocols, to tailor to your needs. Data nodes run by validators are expected to provide gRPC, GraphQL and REST, and reliably serve data. 
 
 :::tip try it out
 if you want to try running a data node to see data - set up data node instructions & capsule (?)
@@ -56,22 +64,45 @@ if you want to try running a data node to see data - set up data node instructio
 ## Data retention [WIP]
 A data node can be configured to store only the network's current state (without saving any history), or to store historical data back to a certain date/time. 
 
-(What is it?) default configuration for what's considered "minimal useful" data node.
+Data types are grouped into categories, and the retention time for each type can be changed in the data node's config.toml file. 
 
-How much is stored between chain resets?
+Some data are saved in detail, but with a shorter default retention period, and then in a less-detailed sampling with a longer retention period. Take balances, for example: In addition to saving every balance change, the `conflated balances` keep a sample of a balance from once every hour. This allows the data node to have data for a long period of time, but taking up less space than saving every balance change over a year.
 
-## Data-node decentralized history
-Each day, gigabites of event data are produced by the Vega core and stored in the data node. Data nodes have a way to fetch history from peer nodes, as it isn't feasible for a new data node to replay all blocks from the first block to recreate the history and get into a state to be able to consume new blocks. This feature is called decentralised history.
+The default retention policy
+| Data type                 	| Default retention 	|
+|---------------------------	|-------------------	|
+| Balances (fine-grained)   	| 7 days            	|
+| Balances (conflated)      	| 1 year            	|
+| Network checkpoints       	| 7 days            	|
+| Historical delegations    	| 7 days            	|
+| Ledger entries            	| 7 days            	|
+| Orders                    	| 7 days            	|
+| Trades                    	| 7 days            	|
+| Trades 1 minute candle    	| 1 month           	|
+| Trades 5 minute candle    	| 1 month           	|
+| Trades 15 minute candle   	| 1 month           	|
+| Trades 1 hour candle      	| 1 year            	|
+| Trades 6 hour candle      	| 1 year            	|
+| Market data               	| 7 days            	|
+| Margin levels             	| 7 days            	|
+| Margin levels (conflated) 	| 1 year            	|
+| Positions                 	| 7 days            	|
+| Conflated positions       	| 1 year            	|
+| Liquidity provisions      	| 7 days            	|
 
-History segments produced on every node for a given block span are identical, such that the IPFS content IDs of the segment are the same across all nodes. This means there's no need to upload data between nodes, as each node produces history segments, and thus can be a source of history segments. When a new node joins the network and requests a history segment for a given IPFS content ID, the provision of data to the node is shared across all other nodes in the network.
+## Data node decentralized history
+The daily addition of gigabites of core event data to the data node make it infeasible for a new data node to replay all blocks from the first block. Rather than require that, new nodes can use a feature called decentralised history to recreate the history and get into a state to be able to consume new blocks. 
+
+History segments produced on every node for a given block span are identical, such that the IPFS content IDs of the segment are the same across all nodes. This means there's no need to upload data between nodes, as each node produces history segments, and thus can be a source of history segments. 
+
+When a new node joins the network and requests a history segment for a given IPFS content ID, the provision of data to the node is shared across all other nodes in the network.
 
 :::note Go deeper
 [Decentralised history readme](https://github.com/vegaprotocol/vega/blob/develop/datanode/dehistory/README.md): How to use decentralised history for a data node
 :::
 
-
 ## Database
-The data node relies on PostgreSQL to store and provide data. PostgreSQL, an open source, relational database that supports relational and non-relational queries. 
+The data node relies on PostgreSQL to store and provide data. PostgreSQL is an open source, relational database that supports relational and non-relational queries. 
 
 :::note Go deeper
 [About PostgreSQL ↗](https://www.postgresql.org/about/): Read about PostgreSQL and explore the documentation.

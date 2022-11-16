@@ -154,7 +154,7 @@ There is no token slashing, i.e., a tokenholder cannot lose their tokens through
 
 Read more: [How a validator node's performance is determined](#validator-node-performance)
 
-## Validating nodes
+## Validator nodes
 The Vega network is operated by a number of independent validators, who each run a node. 
 
 There are three types of validating nodes: consensus validators, standby validators, and pending validators. 
