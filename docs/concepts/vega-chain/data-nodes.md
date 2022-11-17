@@ -1,9 +1,11 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 title: Data node
 vega_network: TESTNET
 hide_title: false
 ---
+
+import NetworkParameter from '@site/src/components/NetworkParameter';
 
 Protocol users need to see and interact with data, such as price history, market changes, validator scores, and more. While the core emits events when states change, it does not store the data about those events. The core is responsible for processing transations for the chain and ensuring correctness. 
 
@@ -14,18 +16,20 @@ Data node stores information in a PostgreSQL database, and augments the data (by
 ### Diagram: Data node structure
 ![Data node diagram](/img/concept-diagrams/data-node-overview.png)
 
-## Running a data node [WIP-tip]
+## Running a data node
 Data nodes can be set up and run by anyone who wants to collect and store network event data and make it available. Data nodes can be publicly available for use by dApps, or they can be used privately.
 
 Running your own data node would be useful for building a complex integration, or if you don't want to rely on a third-party data node. A data node can be run privately or publicly, though public data nodes help support the Vega community and users by allowing them to connect and reliably see live and historical data.
 
 Setting up a data node requires configuring and using the Vega data node software. 
 
+<!--
 :::tip Try it out [WIP]
 Set up a data node: Read the instructions for setting up a data node.
 :::
+-->
 
-## Forwarding wallet transactions
+## Wallet transactions
 The Vega Wallet is the conduit for approving and sending transactions from the user to the core. The data node exposes the exact same endpoints as the core node, and so it can act as a proxy for the core node.
 
 When the wallet sends a transaction request to a data node, the data node ingests the request and directly forwards it to the core node it is connected to. That node, whether or not it is a consensus validator, will then send the transaction to the network. The consensus validators will then decide on the validity of the transaction and execute it.
@@ -52,14 +56,16 @@ Other types of data that the data node makes queryable include (but are not limi
 * Risk data: Margin level events, Model parameter changes, Risk factor changes, Price monitoring bound setting changes, Price monitoring bounds
 * Candle data: Data that corresponds to trades during a certain time period: first trade, highest traded price, lowest traded price
 
-## APIs [WIP]
-For clients to communicate with data nodes, the protocol exposes a set of APIs and methods for reading data. Currently there are three protocols to communicate with the data node APIs: gRPC, GraphQL and REST.
+## APIs
+For clients to communicate with data nodes, the protocol exposes a set of APIs and methods for reading data. Currently there are three protocols to communicate with the data node APIs: GraphQL, gRPC, and REST.
 
-If you are running your own data node, you can choose to enable any/all of the protocols, to tailor to your needs. Data nodes run by validators are expected to provide gRPC, GraphQL and REST, and reliably serve data. 
+If you are running your own data node, you can choose to enable any/all of the protocols, to tailor to your needs. Data nodes run by validators are expected to provide GraphQL, gRPC, and REST, and reliably serve data. 
 
+<!--
 :::tip try it out
 if you want to try running a data node to see data - set up data node instructions & capsule (?)
 :::
+-->
 
 ## Data retention [WIP]
 A data node can be configured to store only the network's current state (without saving any history), or to store historical data back to a certain date/time. 
@@ -98,7 +104,7 @@ History segments produced on every node for a given block span are identical, su
 When a new node joins the network and requests a history segment for a given IPFS content ID, the provision of data to the node is shared across all other nodes in the network.
 
 :::note Go deeper
-[Decentralised history readme](https://github.com/vegaprotocol/vega/blob/develop/datanode/dehistory/README.md): How to use decentralised history for a data node
+[Decentralised history readme](https://github.com/vegaprotocol/vega/blob/develop/datanode/dehistory/README.md): How to use decentralised history
 :::
 
 ## Database
