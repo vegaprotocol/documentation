@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-title: Data node
+title: Data nodes
 vega_network: TESTNET
 hide_title: false
 ---
@@ -43,7 +43,7 @@ Each chunk of data contains an event ID that identifies the core event that crea
 [Data node code ↗](https://github.com/vegaprotocol/vega/tree/master/datanode): See how the data node service is built.
 :::
 
-## Available data
+## Types of data stored
 The data node listens to the event stream and provides access not only to the raw data, but also links relevant information together, such as an order and the party ID that placed the order, or the order, the party and the positions that filled that order, so that queries like "show orders that were placed by Party Y" can be done. 
 
 Other types of data that the data node makes queryable include (but are not limited to): 
@@ -74,7 +74,9 @@ Data types are grouped into categories, and the retention time for each type can
 
 Some data are saved in detail, but with a shorter default retention period, and then in a less-detailed sampling with a longer retention period. Take balances, for example: In addition to saving every balance change, the `conflated balances` keep a sample of a balance from once every hour. This allows the data node to have data for a long period of time, but taking up less space than saving every balance change over a year.
 
-The default retention policy
+The default retention policy:
+
+
 | Data type                 	| Default retention 	|
 |---------------------------	|-------------------	|
 | Balances (fine-grained)   	| 7 days            	|
