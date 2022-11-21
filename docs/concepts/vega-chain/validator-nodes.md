@@ -15,6 +15,8 @@ There are three types of validating nodes: consensus validators, standby validat
 
 Consensus validators are responsible for keeping the network and transactions running. Standby validating nodes are ready to step in if a consensus validating node does not fulfil its requirements. Pending validating nodes are one level below standby, and should be equipped to move up and replace a standby validating node if a spot opens up.
 
+Non-validator participants keep the network fair by controlling the voting power of validators. The tokenholders use their tokens to choose the validators for the network, thus managing who validates the network (and its transactions).
+
 ## Consensus validator nodes
 Consensus validator nodes are responsible for agreeing on the order of transactions and creating new blocks so that all nodes can agree on the state of the network.
 
@@ -184,3 +186,8 @@ Vega sorts all current consensus validators from the highest performance score t
 * If there are already empty consensus validator slots, then the non-consensus validators who have the top scores are moved in to be consensus validators, starting in the next epoch.
 * If a potential validator has a higher score than the lowest incumbent consensus validator, then in the next epoch the higher-scoring validator becomes a consensus validator, and the lowest scoring incumbent becomes a standby validator.
 * If two validators have the same performance score, then the network places higher the one who's been validator for longer, and if two validators who joined at the same time have the same score, the priority goes to the one who submitted the transaction to become validator first.
+
+<!--
+### Validator scores in a restart
+Read about how validator scores are treated during a network restoration from a checkpoint: [Validator scores in a restart](./network.md#validator-scores-in-a-restart)
+-->
