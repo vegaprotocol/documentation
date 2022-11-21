@@ -40,14 +40,14 @@ Those checkpoints happen at defined intervals, and on every deposit and withdraw
 3. At network start-up, a validator submits a restore transaction with the checkpoint file. 
 4. All other validators verify the checkpoint against their own. If the hash does not match, the transaction will have no effect. If the genesis file still has a previous state hash, all transactions will be rejected until the restore transaction arrives and is processed. If the hash matches, the network will be restored with the state and then allow other transactions on the network.
 
-### Validator scores in a restart
+### Validator scores in a restart [WIP]
 The protocol needs a way to allow validators to continue initiating a restart, even before all information has been restored. 
 
 Each checkpoint includes the node IDs of all consensus, standby, and candidate validator nodes and their scores. 
 
-When initiating the restart all the nodes participating have the same Tendermint weight in genesis, which is used until the checkpoint has been fully processed. At that point, the scores are recalculated based on their state at the time the checkpoint was taken, and validators' scores are updated. 
+When initiating the restart all the nodes participating have the same Tendermint weight in genesis, which is used until the checkpoint has been fully processed. At that point, the weights are recalculated based on their state at the time the checkpoint was taken, and validators' scores are updated. 
 
-If a validator that was in the checkpoint and has its scores recalculated is offline during the restart, then the network is stopped and the process will need to begin again with all validators available. 
+If a validator with a Tendermint weight that was in the checkpoint is offline during the restart, then the network is stopped and the process will need to begin again with all validators available.
 
 ### Information restored with checkpoints
 * **Network parameters** and their values
