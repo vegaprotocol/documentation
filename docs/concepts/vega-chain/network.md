@@ -40,14 +40,14 @@ Those checkpoints happen at defined intervals, and on every deposit and withdraw
 3. At network start-up, a validator submits a restore transaction with the checkpoint file. 
 4. All other validators verify the checkpoint against their own. If the hash does not match, the transaction will have no effect. If the genesis file still has a previous state hash, all transactions will be rejected until the restore transaction arrives and is processed. If the hash matches, the network will be restored with the state and then allow other transactions on the network.
 
-### Validator scores in a restart [WIP]
+### Validator scores in a restart
 The protocol needs a way to allow validators to continue initiating a restart, even before all information has been restored. 
 
 Each checkpoint includes the node IDs of all consensus, standby, and candidate validator nodes and their scores. 
 
-When initiating the restart all the nodes participating have the same Tendermint weight in genesis, which is used until the checkpoint has been fully processed. At that point, the weights are recalculated based on their state at the time the checkpoint was taken, and validators' scores are updated. 
+When initiating the restart all the nodes participating will temporarily be given the same Tendermint weight, which is used until the checkpoint has been fully processed. At that point, the weights are recalculated based on their state at the time the checkpoint was taken, and validators' scores are updated. 
 
-If a validator with a Tendermint weight that was in the checkpoint is offline during the restart, then the network is stopped and the process will need to begin again with all validators available.
+If a validator with a Tendermint weight that was in the checkpoint and in the updated genesis is offline during the restart, then the network is stopped and the process will need to begin again with all validators available/any offline validators removed from the genesis list.
 
 ### Information restored with checkpoints
 * **Network parameters** and their values
@@ -61,7 +61,7 @@ If a validator with a Tendermint weight that was in the checkpoint is offline du
 * **Withdrawal** transaction bundles for all withdrawals, across all bridged chains
 * **Deposits**: Event ID of the **last processed deposit** event for all bridged chains, last block height of any confirmed ERC-20 deposits on the Ethereum chain, including number of confirmations; all pending ERC-20 deposits (not confirmed before last block) on the ethereum bridge
 * Hash of the **last block** 
-* **Snapshot block number and transaction ID** of the block from which the snapshot is derived
+* **Snapshot block number and transaction ID** of the block from which a snapshot is derived
 * **Stake**: Last block of confirmed stake deposits on the staking bridge and vesting contracts, along with the number of confirmations, plus all completed and pending staking events on both contracts
 
 <!--
