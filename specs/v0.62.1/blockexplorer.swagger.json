@@ -2,14 +2,14 @@
   "swagger": "2.0",
   "info": {
     "title": "Vega block explorer APIs",
-    "version": "v0.59.0"
+    "version": "v0.62.1"
   },
   "tags": [
     {
       "name": "Block Explorer"
     }
   ],
-  "host": "api.n10.testnet.vega.xyz",
+  "host": "be.testnet.vega.xyz/rest",
   "schemes": [
     
     "https"
