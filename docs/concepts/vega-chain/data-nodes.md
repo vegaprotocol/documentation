@@ -59,9 +59,11 @@ Other types of data that the data node makes queryable include (but are not limi
 * Candle data: Data that corresponds to trades during a certain time period: first trade, highest traded price, lowest traded price
 
 ## APIs
-For clients to communicate with data nodes, the protocol exposes a set of APIs and methods for reading data. Currently there are three protocols to communicate with the data node APIs: GraphQL, gRPC, and REST.
+For clients to communicate with data nodes, the protocol exposes a set of APIs and methods for reading data. Currently there are three protocols to communicate with the data node APIs: GraphQL, gRPC, and REST. 
 
-If you are running your own data node, you can choose to enable any/all of the protocols, to tailor to your needs. Data nodes run by validators are expected to provide GraphQL, gRPC, and REST, and reliably serve data. 
+Querying for data provided through the APIs is the best way to access the information that the data node provides, whether that's directly, or by using a dApp/user interface.
+
+If you are running your own data node, you can choose to enable any/all of the protocols, to tailor to your needs. Data nodes run by validators are expected to provide GraphQL, gRPC, and REST, and reliably serve data.
 
 <!--
 :::tip try it out
@@ -100,8 +102,8 @@ The data node code's configuration includes a set of default retention time fram
 | Conflated positions       	| 1 year            	|
 | Liquidity provisions      	| 1 day             	|
 
-## Data node decentralized history
-The daily addition of gigabites of core event data to the data node make it infeasible for a new data node to replay all blocks from the first block. Rather than require that, new nodes can use a feature called decentralised history to recreate the history quickly and get into a state to be able to consume new blocks. 
+## Data node decentralised history
+The daily addition of gigabites of core event data to the data node make it infeasible for a new data node to replay all blocks from the first block. Instead, new nodes can use a feature called decentralised history to recreate the history quickly and get into a state to be able to consume new blocks. 
 
 History segments produced on every node for a given block span are identical, such that the IPFS content IDs of the segment are the same across all nodes. This means there's no need to upload data between nodes, as each node produces history segments, and thus can be a source of history segments. 
 

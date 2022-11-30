@@ -65,12 +65,6 @@ All events (including the above, plus stake per validator and others) are only r
 **[Staking Bridge contracts](https://github.com/vegaprotocol/Staking_Bridge)** - on Vega's staking bridge GitHub repository.
 :::
 
-## Spam protection
-There are several spam protections enabled to protect the Vega network, some of which are relevant to staking.
-
-* A participant who wants to submit a delegation (nomination) transaction, needs to have a balance of at least  <NetworkParameter frontMatter={frontMatter} param="spam.protection.delegation.min.tokens" hideName={true} suffix="tokens" formatter="governanceToken" />  to be able to submit the transaction
-* A participant cannot send more than  <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.delegations" hideName={true} /> delegation transactions per day.
-
 ## Staking on Vega
 
 <Topic />
@@ -86,6 +80,11 @@ Using tokens to nominate validators keeps the decentralised network functioning.
 Tokenholders can nominate validators to encourage a diverse set of reliable nodes running the network, and to give the community the opportunity to disincentivise and/or remove bad validators. Tokenholders who nominate validators are also eligible for rewards. 
 
 When a tokenholder chooses a validator (or validators) to nominate with their tokens, the amount is immediately subtracted from their available balance, and is used at the start of the next epoch to actively nominate those validator(s).
+
+### Spam protection for nominations
+There are two [spam pretection](network.md#spam-protection) measures related to nominating validators.
+* A participant who wants to submit a nomination (delegation) transaction, needs to have a balance of at least  <NetworkParameter frontMatter={frontMatter} param="spam.protection.delegation.min.tokens" hideName={true} suffix="tokens" formatter="governanceToken" />  to be able to submit the transaction.
+* A participant cannot send more than <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.delegations" hideName={true} /> nomination (delegation) transactions per day.
 
 Read more: [Rewards for staking](#rewards)
 

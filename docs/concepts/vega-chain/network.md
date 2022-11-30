@@ -27,6 +27,36 @@ Currently, two transaction types can be limited:
 
 If either parameter's value is decreased (through a governance proposal and vote), then the change does not affect existing orders on the market, but only new orders/liquidity commitments placed after the change is enacted. 
 
+## Spam protection [WIP]
+On a decentralised and pseudonymous network, there's always a possibility that a malicious actor will attempt to spam blocks and fill them with meaningless transactions. To mitigate that risk, there are several spam protections enabled to protect the Vega network, in particular by enforcing minimums and maximums for transactions sent to the Vega network.
+
+The values of all spam protection network parameters can be changed through a governance vote. If a parameter change passes governance, it takes effect in the epoch after it passes.
+
+### Spam policy enforcement
+Messages that don't follow the anti-spam rules are rejected, either pre- or post-block.
+
+Pre-block rejection: A transaction is rejected before it enters the validators' mempool. This can only be done based on transactions that were in the previous block, and not on any other transactions received by the validator but not yet put into a block. Once a block is scheduled, all validators test all transactions in their mempool. If a transaction fails the spam rules set by the [parameters](#spam-protection-parameters) below, it's not processed and is removed.
+
+Post-block rejection: A transaction makes it into the block, but is rejected before it's passed to the application layer. This allows for more fine-grained policies, but the offending transaction will take up space in the blockchain. If a transaction fails the spam rules set by the [parameters](#spam-protection-parameters) below, it is rejected and may trigger a spam threshold increase.
+
+### Spam protection parameters
+
+| Spam protection parameter           	| Definition 	        | Value
+|-----------------------------------	|-------------------	|-------------------
+| spam.protection.proposal.min.tokens  	| Minimum tokens needed to submit a governance proposal	| <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} suffix="tokens" formatter="governanceToken" />
+| spam.protection.voting.min.tokens    	| Minimum tokens needed to vote on a governance proposal	| <NetworkParameter frontMatter={frontMatter} param="spam.protection.voting.min.tokens" hideName={true} suffix="tokens" formatter="governanceToken" />
+| spam.protection.delegation.min.tokens | Minimum tokens needed to nominate a validator | <NetworkParameter frontMatter={frontMatter} param="spam.protection.delegation.min.tokens" hideName={true} suffix="tokens" formatter="governanceToken" />
+| spam.pow.difficulty               	| To prevent flooding the chain with transactions, wallets need to perform a proof-of-work (PoW) calculation to submit them. This defines the difficulty level	| <NetworkParameter frontMatter={frontMatter} param="spam.pow.difficulty" hideName={true} />
+| spam.pow.hashFunction              	| Hash function used for proof-of-work	| <NetworkParameter frontMatter={frontMatter} param="spam.pow.hashFunction" hideName={true} />
+| spam.pow.numberOfTxPerBlock       	| Maximum number of transactions a wallet can put in one block 	| <NetworkParameter frontMatter={frontMatter} param="spam.pow.numberOfTxPerBlock" hideName={true} suffix="tokens" formatter="governanceToken" />
+| spam.pow.increaseDifficulty           | If a wallet exceeds the max transactions per block, the difficulty of the PoW increases by this factor | <NetworkParameter frontMatter={frontMatter} param="spam.pow.increaseDifficulty" hideName={true} />
+| spam.pow.numberOfPastBlocks         	| To compute the wallet transaction quota, transactions can be assigned to past blocks; this parameter defines how far back that goes | <NetworkParameter frontMatter={frontMatter} param="spam.pow.numberOfPastBlocks" hideName={true} />
+| spam.protection.max.batchSize         | Maximum number of transactions that can be in one batch | <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.batchSize" hideName={true} />
+| spam.protection.max.delegations       | Maximum number of nomination (delegation) transactions a public key can submit per epoch.	| <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.delegations" hideName={true} />
+| spam.protection.max.proposals         | Maximum number of governance transactions a public key can submit per epoch | <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.proposals" hideName={true} />
+| spam.protection.max.votes             | Maximum number of governance votes a public key can submit per epoch 	| <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.votes" hideName={true} />
+| spam.protection.maxUserTransfersPerEpoch | Max number of transactions a public key can submit per epoch | <NetworkParameter frontMatter={frontMatter} param="spam.protection.maxUserTransfersPerEpoch" hideName={true}" />
+
 ## Checkpoints for restarts
 The network's validators periodically store checkpoints of all important state parameters such as balances and governance proposals. 
 
