@@ -16,7 +16,7 @@ For a validator running a node the following guidelines can be used when sizing 
 
 | Resource    | Minimum     | Recommended |
 | ----------- | ----------- | ----------- |
-| CPU | 6 cores at >= 4Ghz | 12 cores at >= 4Ghz|
+| CPU | 6 cores at >= 3Ghz | 12 cores at >= 4Ghz|
 | RAM   | 16GB            | 32GB        |
 | Storage   | 1TB NVMe SSD| 2TB NVMe SSD |
 
@@ -42,4 +42,4 @@ There are several ways to do this:
 **From 0.54.x onwards:**
 - As described in the [data node readme](https://github.com/vegaprotocol/vega/blob/develop/datanode/README.md). The simplest and recommended way to do this is [using docker](https://github.com/vegaprotocol/vega/blob/develop/datanode/README.md#using-docker), which is also described in the data node readme.
 
-### Block explorer PostgresSQL [WIP]
+<!-- ### Block explorer PostgresSQL [WIP] -->
