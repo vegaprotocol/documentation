@@ -57,6 +57,7 @@ echo ""
 # Now inject servers
 node --no-warnings --experimental-fetch scripts/build-pre-openapi-servers.js
 
+exit;
 export NO_UPDATE_NOTIFIER="true"
 
 yarn run generate-netparams
