@@ -35,7 +35,7 @@ The values of all spam protection network parameters can be changed through a go
 ### Spam policy enforcement
 Messages that don't follow the anti-spam rules are rejected, either pre- or post-block.
 
-Pre-block rejection: A transaction is rejected before it enters the validators' mempool. This can only be done based on transactions that were in the previous block, and not on any other transactions received by the validator but not yet put into a block. Once a block is scheduled, all validators test all transactions in their mempool. If a transaction fails the spam rules set by the [parameters](#spam-protection-parameters) below, it's not processed and is removed.
+Pre-block rejection: A transaction is rejected before it enters the validators' mempool. This can only be done based on transactions that were in the previous block, and not on any other transactions received by a validator but not yet put into a block. Once a block is scheduled, all transactions in the mempool are verified. If a transaction fails the applicable spam rules set by the [parameters](#spam-protection-parameters) below, it's not processed and is removed.
 
 Post-block rejection: A transaction makes it into the block, but is rejected before it's passed to the application layer. This allows for more fine-grained policies, but the offending transaction will take up space in the blockchain. If a transaction fails the spam rules set by the [parameters](#spam-protection-parameters) below, it is rejected and may trigger a spam threshold increase.
 
