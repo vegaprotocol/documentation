@@ -46,7 +46,7 @@ The market's liquidity requirement, or its target stake, is the measurement of h
 
 Target stake is used by the protocol to: 
 * Calculate the market's liquidity fee level from liquidity commitments 
-* Potentially trigger a [liquidity monitoring auction] if there's an imbalance between target stake and total stake
+* Potentially trigger a [liquidity monitoring auction](../trading-on-vega/market-protections#liquidity-monitoring) if there's an imbalance between target stake and total stake
   * This can depend on the value of the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.targetstake.triggering.ratio" hideValue={true} /> network parameter, which defines how sensitive the auction trigger is
 
 The market's target stake is calculated using the maximum open interest observed over a rolling time window and a reference price, and scaled by a factor:

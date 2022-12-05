@@ -77,7 +77,8 @@ This is a _partial_ example for order submission
     "price": "42", 
     "size":10, 
     "side": "SIDE_BUY", 
-    "timeInForce": "TIME_IN_FORCE_FOK"
+    "timeInForce": "TIME_IN_FORCE_FOK",
+    "type": "TYPE_LIMIT"
   }
 }
 ```

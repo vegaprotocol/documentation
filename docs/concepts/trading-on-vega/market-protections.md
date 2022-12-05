@@ -103,9 +103,15 @@ As a consequence, a market may only become illiquid in two cases:
 * The total supplied stake by all liquidity providers is below the target stake (a multiple of the maximum open interest over a period of time set by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.stake.target.timeWindow" />). 
 * The best static bid or best static ask prices are missing from the order book, meaning the volume implied by a liquidity provider's commitment cannot be deployed.
 
+How likely a market is to enter into a liquidity monitoring auction is also dependent on the value of the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.targetstake.triggering.ratio" hideValue={true} /> network parameter, which defines how sensitive the auction trigger is.
+
 When a market is illiquid, it enters into a liquidity monitoring auction, and terminates that auction when the market liquidity level is back at a sufficiently high level.
 
 If a market enters into a liquidity auction and never again attracts enough liquidity to exit it, the market will stay in a liquidity auction until the market's settlement. Once the market's settlement price is emitted by the data source, then all market participants are settled based on their positions and account balances.
+
+:::note Read more
+[Liquidity](../liquidity/index.md): Learn about the Vega liquidity mechanism, how commitments work and the fee revenue that providers can get.
+:::
 
 ## Distressed traders
 If a trader's available margin on a market is below the closeout level and cannot be replenished, that trader is considered to be distressed.
