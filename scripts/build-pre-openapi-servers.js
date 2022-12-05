@@ -101,7 +101,7 @@ serversForNetwork(generateForMainnet).then(servers => {
     return filter.indexOf(base) !== -1
   }).map(h => {
     // Manual fix: two servers in mainnet1.toml have https, but not enabled. Override those
-    if (h.indexOf('chorus.one') !== -1 || h.indexOf('xprv') !== -1) {
+    if (h.indexOf('xprv') !== -1) {
       h = h.replace('http:', 'https:')
     }
 
