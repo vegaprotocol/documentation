@@ -124,7 +124,7 @@
 
       // Optional new market meta data, tags
       metadata: [
-       "sector:health",
+       "sector:food",
        "source:docs.vega.xyz"
       ],
 
@@ -140,7 +140,7 @@
          probability: "0.9999999",
 
          // Price monitoring auction extension duration in seconds should the price
-         // breach its theoretical level over the specified horizon at the specified
+         // breach it's theoretical level over the specified horizon at the specified
          // probability level (int64 as string)
          auctionExtension: "600",
         }
@@ -168,21 +168,21 @@
 
      // Log normal risk model parameters, valid only if MODEL_LOG_NORMAL is selected
      logNormal: {
-      // Tau parameter of the risk model, projection horizon measured as a year fraction used in the expected shortfall calculation to obtain the maintenance margin, must be a strictly non-negative real number (number) 
+      // Tau (number) 
       tau: 0.0001140771161,
 
       // Risk Aversion Parameter (double as number) 
-      riskAversionParameter: "0.0001",
+      riskAversionParameter: "0.01",
 
       // Risk model parameters for log normal
       params: {
-       // Mu parameter, annualised growth rate of the underlying asset (double as number) 
+       // Mu param (double as number) 
        mu: 0,
 
-       // R parameter, annualised growth rate of the risk-free asset, used for discounting of future cash flows, can be any real number (double as number) 
+       // R param (double as number) 
        r: 0.016,
 
-       // Sigma parameter, annualised volatility of the underlying asset, must be a strictly non-negative real number (double as number) 
+       // Sigma param (double as number) 
        sigma: 1.25,
       }
      },
@@ -191,11 +191,11 @@
 
    // Timestamp (Unix time in seconds) when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-   closingTimestamp: 1672241006,
+   closingTimestamp: 1672095854,
 
    // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
    // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-   enactmentTimestamp: 1672327406,
+   enactmentTimestamp: 1672182254,
   }
  }
 ```

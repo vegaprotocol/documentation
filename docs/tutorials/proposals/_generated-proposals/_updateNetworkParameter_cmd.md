@@ -1,20 +1,20 @@
 
   ```bash
-./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{
+./vegawallet transaction send --wallet your_walletname --pubkey your_public_key --network fairground '{
  "proposalSubmission": {
   "rationale": {
-   "title": "Update market.fee.factors.infrastructureFee",
-   "description": "Proposal to update market.fee.factors.infrastructureFee to 300}"
+   "title": "Update governance.proposal.freeform.minVoterBalance",
+   "description": "Proposal to update governance.proposal.freeform.minVoterBalance to 300}"
   },
   "terms": {
    "updateNetworkParameter": {
     "changes": {
-     "key": "market.fee.factors.infrastructureFee",
+     "key": "governance.proposal.freeform.minVoterBalance",
      "value": "300"
     }
    },
-   "closingTimestamp": 1672241006,
-   "enactmentTimestamp": 1672327406
+   "closingTimestamp": 1672095854,
+   "enactmentTimestamp": 1672182254
   }
  }
 }'

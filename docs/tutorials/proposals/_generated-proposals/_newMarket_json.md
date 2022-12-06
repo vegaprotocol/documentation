@@ -75,7 +75,7 @@
           }
         },
         "metadata": [
-          "sector:health",
+          "sector:food",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -97,7 +97,7 @@
         },
         "logNormal": {
           "tau": 0.0001140771161,
-          "riskAversionParameter": 0.0001,
+          "riskAversionParameter": 0.01,
           "params": {
             "mu": 0,
             "r": 0.016,
@@ -106,8 +106,8 @@
         }
       }
     },
-    "closingTimestamp": 1672241006,
-    "enactmentTimestamp": 1672327406
+    "closingTimestamp": 1672095854,
+    "enactmentTimestamp": 1672182254
   }
 }
 ```

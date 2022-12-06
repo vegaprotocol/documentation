@@ -50,13 +50,13 @@ const nameByType = {
   updateMarket: 'Update market'
 }
 
-function annotator (proposal) {
+function annotator(proposal) {
   const res = inspect(proposal, { depth: null })
 
   return res
 }
 
-function addTermsAnnotator (skeleton, terms, type) {
+function addTermsAnnotator(skeleton, terms, type) {
   const splitClosingTitle =
     skeleton.properties.closingTimestamp.title.split('\n')
   if (type === 'newFreeform') {
@@ -64,9 +64,8 @@ function addTermsAnnotator (skeleton, terms, type) {
       return `{
       ${type}:  ${inspect(terms[type], { depth: 20 })},
       // ${splitClosingTitle[0]}
-      // ${splitClosingTitle[1]} (${
-        skeleton.properties.closingTimestamp.format
-      } as ${skeleton.properties.closingTimestamp.type}})
+      // ${splitClosingTitle[1]} (${skeleton.properties.closingTimestamp.format
+        } as ${skeleton.properties.closingTimestamp.type}})
       closingTimestamp: ${terms.closingTimestamp},
   }`
     }
@@ -79,18 +78,15 @@ function addTermsAnnotator (skeleton, terms, type) {
     return () => `{
      ${type}:  ${inspect(terms[type], { depth: 20 })},
       // ${splitClosingTitle[0]}
-      // ${splitClosingTitle[1]} (${
-      skeleton.properties.closingTimestamp.format
-    } as ${skeleton.properties.closingTimestamp.type})
+      // ${splitClosingTitle[1]} (${skeleton.properties.closingTimestamp.format
+      } as ${skeleton.properties.closingTimestamp.type})
       closingTimestamp: ${terms.closingTimestamp},
       // ${splitEnactmentTitle[0]}
-      // ${splitEnactmentTitle[1]} (${
-      skeleton.properties.enactmentTimestamp.format
-    } as ${skeleton.properties.enactmentTimestamp.type})
+      // ${splitEnactmentTitle[1]} (${skeleton.properties.enactmentTimestamp.format
+      } as ${skeleton.properties.enactmentTimestamp.type})
       enactmentTimestamp: ${terms.enactmentTimestamp},
-      // ${skeleton.properties.validationTimestamp.title} (${
-      skeleton.properties.validationTimestamp.format
-    } as ${skeleton.properties.validationTimestamp.type})
+      // ${skeleton.properties.validationTimestamp.title} (${skeleton.properties.validationTimestamp.format
+      } as ${skeleton.properties.validationTimestamp.type})
       validationTimestamp: ${terms.validationTimestamp}
    }`
   }
@@ -99,14 +95,12 @@ function addTermsAnnotator (skeleton, terms, type) {
     return `{
      ${type}:  ${inspect(terms[type], { depth: 20 })},
       // ${splitClosingTitle[0]}
-      // ${splitClosingTitle[1]} (${
-      skeleton.properties.closingTimestamp.format
-    } as ${skeleton.properties.closingTimestamp.type})
+      // ${splitClosingTitle[1]} (${skeleton.properties.closingTimestamp.format
+      } as ${skeleton.properties.closingTimestamp.type})
       closingTimestamp: ${terms.closingTimestamp},
       // ${splitEnactmentTitle[0]}
-      // ${splitEnactmentTitle[1]} (${
-      skeleton.properties.enactmentTimestamp.format
-    } as ${skeleton.properties.enactmentTimestamp.type})
+      // ${splitEnactmentTitle[1]} (${skeleton.properties.enactmentTimestamp.format
+      } as ${skeleton.properties.enactmentTimestamp.type})
       enactmentTimestamp: ${terms.enactmentTimestamp},
   }`
   }
@@ -117,12 +111,12 @@ function addTermsAnnotator (skeleton, terms, type) {
  * @param {number} daysToAdd
  * @returns string unix timestamp of the date in the future
  */
-function daysInTheFuture (daysToAdd) {
+function daysInTheFuture(daysToAdd) {
   const d = addDays(Date.now(), daysToAdd)
   return getUnixTime(d)
 }
 
-function newProposal (p, skeleton, type) {
+function newProposal(p, skeleton, type) {
   assert.ok(skeleton.properties.closingTimestamp)
   assert.ok(skeleton.properties.enactmentTimestamp)
 
@@ -158,7 +152,7 @@ ${'```'}
   `
   const cmd = `
   ${'```bash'}
-./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '${JSON.stringify(
+./vegawallet transaction send --wallet your_walletname --pubkey your_public_key --network fairground '${JSON.stringify(
     { proposalSubmission: proposal },
     null,
     ' '
@@ -167,14 +161,14 @@ ${'```'}
   `
   const win = `
   ${'```bash'}
-vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --network fairground ^\n"${JSON.stringify(
+vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_key --network fairground ^\n"${JSON.stringify(
     { proposalSubmission: proposal },
     null,
     ' '
   )
-    .replace(/^\s/gm, '')
-    .replace(/"/g, '\\"')
-    .replace(/\n/g, '^\n')}"
+      .replace(/^\s/gm, '')
+      .replace(/"/g, '\\"')
+      .replace(/\n/g, '^\n')}"
 ${'```'}
   `
 
@@ -185,54 +179,54 @@ ${'```'}
 
     excerpts.oracle = `${'```javascript'}
 ${prettyJs(
-  annotator(
-    proposal.terms.newMarket.changes.instrument.future
-      .dataSourceSpecForTradingTermination
-  ),
-  formatOptions
-).replace(removeBlankLines, '')}
+      annotator(
+        proposal.terms.newMarket.changes.instrument.future
+          .dataSourceSpecForTradingTermination
+      ),
+      formatOptions
+    ).replace(removeBlankLines, '')}
 ${'```'}`
 
     excerpts.liqparams = `${'```javascript'}
 ${prettyJs(
-  annotator(proposal.terms.newMarket.changes.liquidityMonitoringParameters),
-  formatOptions
-).replace(removeBlankLines, '')}
+      annotator(proposal.terms.newMarket.changes.liquidityMonitoringParameters),
+      formatOptions
+    ).replace(removeBlankLines, '')}
 ${'```'}`
 
     excerpts.liquidity = `${'```javascript'}
 ${prettyJs(
-  annotator(proposal.terms.newMarket.liquidityCommitment),
-  formatOptions
-).replace(removeBlankLines, '')}
+      annotator(proposal.terms.newMarket.liquidityCommitment),
+      formatOptions
+    ).replace(removeBlankLines, '')}
 ${'```'}`
 
     excerpts.priceparams = `${'```javascript'}
 ${prettyJs(
-  annotator(proposal.terms.newMarket.changes.priceMonitoringParameters),
-  formatOptions
-).replace(removeBlankLines, '')}
+      annotator(proposal.terms.newMarket.changes.priceMonitoringParameters),
+      formatOptions
+    ).replace(removeBlankLines, '')}
 ${'```'}`
 
     excerpts.instrument = `${'```javascript'}
 ${prettyJs(
-  annotator(produceInstrument(proposal.terms.newMarket.changes.instrument)),
-  formatOptions
-).replace(removeBlankLines, '')}
+      annotator(produceInstrument(proposal.terms.newMarket.changes.instrument)),
+      formatOptions
+    ).replace(removeBlankLines, '')}
 ${'```'}`
 
     excerpts.overview = `${'```javascript'}
 ${prettyJs(
-  inspect(produceOverview(proposal), { depth: 3 }),
-  formatOptions
-).replace(removeBlankLines, '')}
+      inspect(produceOverview(proposal), { depth: 3 }),
+      formatOptions
+    ).replace(removeBlankLines, '')}
 ${'```'}`
 
     excerpts.overview = `${'```javascript'}
 ${prettyJs(
-  inspect(produceOverview(proposal), { depth: 3 }),
-  formatOptions
-).replace(removeBlankLines, '')}
+      inspect(produceOverview(proposal), { depth: 3 }),
+      formatOptions
+    ).replace(removeBlankLines, '')}
 ${'```'}`
   }
   return {
@@ -253,7 +247,7 @@ const ProposalGenerator = new Map([
   ['updateAsset', updateAsset]
 ])
 
-function parse (api) {
+function parse(api) {
   const proposalTypes = omit(
     api.definitions.vegaProposalTerms.properties,
     notProposalTypes
@@ -276,7 +270,7 @@ function parse (api) {
   return partials
 }
 
-function output (partial, title) {
+function output(partial, title) {
   const path = './docs/tutorials/proposals/_generated-proposals'
 
   if (process.argv[2]) {

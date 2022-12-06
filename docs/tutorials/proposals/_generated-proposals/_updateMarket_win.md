@@ -1,6 +1,6 @@
 
   ```bash
-vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --network fairground ^
+vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_key --network fairground ^
 "{^
 \"proposalSubmission\": {^
  \"rationale\": {^
@@ -74,7 +74,8 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
      }^
     },^
     \"metadata\": [^
-     \"sector:tech\",^
+     \"sector:energy\",^
+     \"sector:health\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -88,17 +89,17 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
     },^
     \"logNormal\": {^
      \"tau\": 0.0001140771161,^
-     \"riskAversionParameter\": 0.0001,^
+     \"riskAversionParameter\": 0.01,^
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
-      \"sigma\": 0.8^
+      \"sigma\": 0.3^
      }^
     }^
    }^
   },^
-  \"closingTimestamp\": 1672241006,^
-  \"enactmentTimestamp\": 1672327406^
+  \"closingTimestamp\": 1672095854,^
+  \"enactmentTimestamp\": 1672182254^
  }^
 }^
 }"

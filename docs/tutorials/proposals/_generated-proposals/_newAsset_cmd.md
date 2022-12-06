@@ -1,6 +1,6 @@
 
   ```bash
-./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{
+./vegawallet transaction send --wallet your_walletname --pubkey your_public_key --network fairground '{
  "proposalSubmission": {
   "rationale": {
    "title": "Add tEuro (tEURO)",
@@ -20,9 +20,9 @@
      }
     }
    },
-   "closingTimestamp": 1672241006,
-   "enactmentTimestamp": 1672327406,
-   "validationTimestamp": 1672154606
+   "closingTimestamp": 1672095854,
+   "enactmentTimestamp": 1672182254,
+   "validationTimestamp": 1672009454
   }
  }
 }'
