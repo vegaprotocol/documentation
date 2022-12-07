@@ -29,7 +29,7 @@ You can also interact with the Ethereum smart contracts, which allow for bridgin
 If you're looking to integrate a dApp, website, or bots with the Vega Wallet, you'll need to use a wallet API. The wallet is also how you authenticate and send transactions to the network. If you're looking to use the API to programmatically interact with the network for your own transactions, you'll need to [get a Vega Wallet](../tools/vega-wallet/index.md).
 
 For now, there are 2 wallet APIs: 
-The **V2 API** (in alpha) uses JSON-RPC with an HTTP wrapper. You can interact directly with the JSON-RPC, or more easily via the HTTP layer.
+The **V2 API** (in alpha) uses JSON-RPC with an HTTP wrapper.
 
 * [Getting started](./vega-wallet/v2-api/get-started): Set up a connection with the Vega Wallet server
 * [OpenRPC Wallet API](./vega-wallet/v2-api/openrpc): An overview of the API
