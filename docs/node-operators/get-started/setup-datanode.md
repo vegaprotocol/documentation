@@ -178,11 +178,6 @@ vega datanode postgres run --home="YOUR_DATA_NODE_HOME_PATH"
 
 In either case, the files for the database will be stored in the data node `state` folder located at `YOUR_DATA_NODE_HOME_PATH/state.data-node/storage/sqlstore`.
 
-### Using a cloud database provider
-While this hasn't been tested, it should be possible to use a cloud database provider such as AWS RDS or Azure Database for PostgreSQL. You will need to ensure that the database is accessible from the machine you are running the data node on. Bare in mind however that the volume of data that will be transferred between the Vega node and the data node will be significant.
-
-Also note that if you are restoring from a snapshot, the data node event source will need to be buffered to disk as a remote hosted database will not be able to keep up given the volume of data that will need to be transferred and the possible network latency, stability issues.
-
 ### Buffered event source
 When a data node is restarted from snapshots, it is possible for the event queue to become flooded causing the Vega core to panic when the event queue is full and stop both the Vega core and data node.
 
