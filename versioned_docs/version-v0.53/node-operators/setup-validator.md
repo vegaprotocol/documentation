@@ -219,7 +219,7 @@ vega announce_node --home="YOUR_VEGA_HOME_PATH" --passphrase-file="YOUR_PASSPHRA
 ```
 
 ## Nominate your node
-To move on to self-staking, wait until you see your node on the validator list as a pending validator. Query the API at `https://api.vega.xyz/epochs` or checking the [token dApp](https://token.vega.xyz/staking/).
+To move on to self-staking, wait until you see your node on the validator list as a pending validator. Query the API at `https://api.vega.xyz/epochs` or check the [token dApp](https://token.vega.xyz/staking/).
 
 Then, associate your tokens and nominate your node using the [token dApp ↗](https://token.vega.xyz/staking/) or by interacting directly with the smart contract.
 
