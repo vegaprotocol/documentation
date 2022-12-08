@@ -24,7 +24,7 @@ To update your node configuration, such as to set up ports for the APIs, edit th
 YOUR_VEGA_HOME_PATH/config/node/config.toml
 ```
 
-## Configure Vega
+## Modify Vega config
 When announcing your node (below), the node will need to be pointing to a Tendermint node. Set that in your Vega config based on information in the Tendermint config file. 
 
 Find the address for the RPC server in your Tendermint config `YOUR_TENDERMINT_HOME_PATH/config/config.toml`, under the heading `TCP or UNIX socket address for the RPC server to listen on`. 
@@ -39,7 +39,17 @@ Use that address in your node's Vega config `YOUR_VEGA_HOME_PATH/config/node/con
     RPCAddr = "tcp://your.rpc.address"
 ```
 
-Save your config before moving on.
+### Point to Ethereum node
+In order to validate events happening on the Ethereum bridge, the Vega node needs to be connected to an Ethereum node. 
+
+The Ethereum node address for the RPC endpoint needs to be set up in the configuration. Once you have an Ethereum node, insert the URL in `YOUR_VEGA_HOME/node/config.toml`, in the section:
+
+```toml
+[Ethereum]
+    Level = "Info"
+    RPCEndpoint = "INSERT_URL_HERE"
+    RetryDelay = "15s"
+```
 
 ## Set up the node wallet
 Each validator node requires two cryptographic wallets to operate properly:
@@ -127,22 +137,10 @@ You can either import an existing keystore or create a new one. (Learn how to cr
 Import an existing keystore using the following command:
 
 ```shell
-vega nodewallet import --chain=ethereum --home="YOUR_HOME_PATH" --wallet-passphrase-file="file/containing/account/passphrase" --wallet-path="YOUR_HOME_PATH"
+vega nodewallet import --chain=ethereum --home="YOUR_HOME_PATH" --wallet-passphrase-file="YOUR_PASSPHRASE_FILE_PATH" --wallet-path="YOUR_HOME_PATH"
 ```
 
-## Point to Ethereum node
-In order to validate events happening on the Ethereum bridge, the Vega node needs to be connected to an Ethereum node. 
-
-The Ethereum node address for the RPC endpoint needs to be set up in the configuration. Once you have an Ethereum node, insert the URL in `YOUR_VEGA_HOME/node/config.toml`, in the section:
-
-```toml
-[Ethereum]
-    Level = "Info"
-    RPCEndpoint = "INSERT_URL_HERE"
-    RetryDelay = "15s"
-```
-
-## Configure Tendermint
+## Modify Tendermint config
 Vega being a decentralised network, you will need an entry point to join it. This is done by connecting to one or more nodes in the network when you start your node. 
 
 This step needs to be done manually. You will first need to reach out to another node operator in the network, such as through [Discord ↗](https://discord.com/channels/720571334798737489/869236034116943903), or directly messaging, to get their node ID and the address of their node.
@@ -163,12 +161,12 @@ Then ensure the `max_packet_msg_payload_size` is at least 16384.
 
 Under `Mempool Configuration Option`, ensure that `broadcast = true`.
 
-### Save Tendermint genesis
-To start successfully, tendermint needs the genesis file from the network you will be trying to join. This file need to be located in `YOUR_TENDERMINT_HOME/config/genesis.json`. 
+### Update Tendermint genesis
+To start successfully, tendermint needs the genesis file from the network you will be trying to join. This file need to be located in `YOUR_TENDERMINT_HOME/config/genesis.json`. Download the genesis file and use it to replace the genesis in your config.
 
 You can find genesis files: 
-* In the [networks repository] for the mainnet network: (https://github.com/vegaprotocol/networks). 
-* In the [networks internal repository] for sandbox and other test networks: (https://github.com/vegaprotocol/networks-internal). Note: For sandbox, the genesis must be a URL to a remote file, not saved locally on disk.
+* In the [networks repository](https://github.com/vegaprotocol/networks) for the mainnet network. 
+* In the [networks internal repository](https://github.com/vegaprotocol/networks-internal) for sandbox and other test networks. Note: For sandbox, the genesis must be a URL to a remote file, not saved locally on disk.
 
 For example, to join mainnet you will need the following [genesis file](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json).
 
@@ -187,7 +185,7 @@ To replay all history from genesis:
 You can set a genesis file when starting the node with the following command, e.g for sandbox:
 
 ```shell
-vega start --home="YOUR_VEGA_HOME_PATH" --network=sandbox
+vega start --home="YOUR_VEGA_HOME_PATH" --nodewallet-passphrase-file="YOUR_PASSPHRASE_FILE_PATH" --network=sandbox
 ```
 
 Once your node is synchronised, you'll need to self-stake, and then announce the node to the network and then the community.
@@ -207,7 +205,7 @@ Use your Ethereum key to announce your node to the network.
 You'll need to know the [current epoch ↗](https://sandbox.token.vega.xyz/staking), and have the following data to hand: the URL for your validator website, and URL for the avatar that will show up on the token dApp next to your node name.
 
 ```shell
-vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" --avatar-url="YOUR_AVATAR_URL" --country="UK" -- name="YOUR_NODE_NAME" --from-epoch="CURRENT_EPOCH" --submitter-address="YOUR_ETHEREUM_KEY"
+vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" --avatar-url="YOUR_AVATAR_URL" --country="UK" --name="YOUR_NODE_NAME" --from-epoch="CURRENT_EPOCH" --submitter-address="YOUR_ETHEREUM_KEY"
 ```
 
 ## Nominate your node
