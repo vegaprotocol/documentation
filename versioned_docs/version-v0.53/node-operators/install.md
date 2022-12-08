@@ -87,7 +87,7 @@ This will print the version of the binary you just built.
 ### Build the data node
 1. Clone the data node repository:
 ```Shell
-git clone --branch <tag_name> https://github.com/vegaprotocol/vega
+git clone --branch <tag_name> https://github.com/vegaprotocol/data-node
 ```
 
 For example, for version v0.53.1, replace `tag_name` with v0.53.1
