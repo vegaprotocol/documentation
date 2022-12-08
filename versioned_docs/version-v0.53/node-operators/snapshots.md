@@ -14,7 +14,8 @@ A node can be started by using a local snapshot (state of the chain built by the
 The snapshots can also be retrieved from the network without any previous local state. This would be useful when a node is joining the network after the bootstrap of the network.
 
 All node of the network will be taking a snapshot of the state at the same block height, this is configured globally using the following network parameter:
-```Json
+
+```json
 {
   "snapshot.interval.length": "10000",
 }
@@ -31,7 +32,8 @@ Snapshots available: 2
 ```
 Here we can see that our node took two snapshots, at the block 901 and 601.
 
-You can set how many blocks you want the note to retain through the vega configuration:
+You can set how many blocks you want the node to retain through the Vega config.toml:
+
 ```Toml
 [Snapshot]
   ...
