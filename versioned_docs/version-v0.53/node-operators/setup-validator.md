@@ -223,10 +223,10 @@ To move on to self-staking, wait until you see your node on the validator list a
 
 Then, associate your tokens and nominate your node using the [token dApp ↗](https://token.vega.xyz/staking/) or by interacting directly with the smart contract.
 
-Your pending validator node will need to see Ethereum <> Vega transactions on the network and send heartbeats before moving on to the next step.
+Your pending validator node will need to see Ethereum bridge events on the network and send heartbeats before moving on to the next step.
 
 ## Submit signature bundle
-In the epoch after you announced your node, and once your pending validator has seen Ethereum <> Vega transactions and sent heartbeats, your node will be added to a signature bundle built by the network: proof from the network that your node can be added to the multisigControl signers.
+In the epoch after you announced your node, and once your pending validator has seen Ethereum bridge events and sent heartbeats, your node will be added to a signature bundle built by the network: proof from the network that your node can be added to the multisigControl signers.
 
 You'll need your node ID, which you can find on the latest epoch's [validator list](https://api.vega.xyz/epochs).
 
@@ -234,7 +234,7 @@ Ensure that you have set up your [data node](./install.md#build-the-data-node) a
 
 Open your data node's gRPC web UI using your node domain to get the signature bundle:
 * Service name: `datanode.api.v2.TradingDataService`
-* Method name: [`erc20multisigsigneraddedbundle`](../../api/grpc/data-node/api/v2/trading_data.proto.mdx#erc20multisigsigneraddedbundle) 
+* Method name: [`erc20multisigsigneraddedbundle`](../api/grpc/data-node/api/v2/trading_data.proto.mdx#erc20multisigsigneraddedbundle) 
 
 Use the data from the bundle with the [MultiSigControl smart contract](./../api/bridge/contracts/MultisigControl.md#add_signer). It **must** be executed from the node's Ethereum wallet.
 
