@@ -184,17 +184,13 @@ To join mainnet you will need the following [genesis file](https://github.com/ve
 
 
 ## Start your node
-Start the node and synchronise with the network by replaying the full chain history to get up-to-date.
+Start the node and synchronise with the network by replaying the full chain history to get up-to-date. It may take several hours, or up to a few days, (depending on chain size and your node's infrastructure) to catch up.
 
-To replay all history from genesis, set a genesis file when starting the node with the following commands, e.g for mainnet:
+To replay all history from genesis, set a genesis file when starting the node with the following commands:
 
+`vega node --home="path/to/vega-home" --nodewallet-passphrase-file="YOUR_PASSPHRASE_FILE_PATH"`
 
-```shell
-vega node --home="path/to/vega-home" --nodewallet-passphrase-file="YOUR_PASSPHRASE_FILE_PATH"
-
-vega tm start --home="path/to/tendermint-home"
-
-```
+`vega tm start --home="path/to/tendermint-home"`
 
 To verify that your node is connected and verifying blocks, you can query `https://YOUR_NODE_DOMAIN/statistics` endpoint.
 
