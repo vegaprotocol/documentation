@@ -24,8 +24,8 @@ For production use, we recommend using the Linux binary on Ubuntu as this is the
 
 The releases pages offer binaries for MacOS, Windows and Linux. 
 
-* [Vega core releases](https://github.com/vegaprotocol/vega/releases)
-* [Data node releases](https://github.com/vegaprotocol/data-node/releases)
+* [Vega core releases](https://github.com/vegaprotocol/vega/releases/latest)
+* [Data node releases](https://github.com/vegaprotocol/data-node/releases/latest)
 
 If the pre-built binaries don't work or are unavailable for your system, you will need to [**build the binaries from sources**](#build-from-sources).
 
@@ -63,10 +63,12 @@ export CGO_ENABLED=0
 ```
 
 ### Build the Vega node
-1. Clone the Vega repository:
+1. Clone the Vega repository for the specific branch of the relevant release:
 ```Shell
-git clone https://github.com/vegaprotocol/vega
+git clone --branch <tag_name> https://github.com/vegaprotocol/vega
 ```
+
+For example, for version v0.53, replace `tag_name` with v0.53
 
 2. Build the Vega binary by running the following command from the root of the cloned repository:
 ```
@@ -85,8 +87,10 @@ This will print the version of the binary you just built.
 ### Build the data node
 1. Clone the data node repository:
 ```Shell
-git clone https://github.com/vegaprotocol/data-node
+git clone --branch <tag_name> https://github.com/vegaprotocol/vega
 ```
+
+For example, for version v0.53.1, replace `tag_name` with v0.53.1
 
 2. Build the data node binary by running the following command from the root of the cloned repository:
 ```
@@ -100,6 +104,20 @@ This will result in a Vega binary built at the root of the repository.
 ./data-node version
 ```
 This will print the version of the binary you just built.
+
+### Update data node config.toml
+In the data node config, ensure that the `WebUIEnabled` field is set to `true`. You can choose to change the `WebUIPort` to suit your set-up, or leave it as the default. 
+
+```toml
+[API]
+    ...
+  WebUIPort = 3006
+  WebUIEnabled = true
+```
+
+You'll need a data node running in order to get the signature bundle to add your node to the multsig signers list, when setting up your validator node.
+
+Once your data node is set up, you can access the gRPC Web UI for your node at `http://YOUR_NODE_DOMAIN:3006/`
 
 ### Data node requirement as of 0.53
 After building the data node, you will have to run a PostgreSQL server (starting with version 0.53). 
