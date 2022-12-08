@@ -1,50 +1,29 @@
 ---
 sidebar_position: 4
-title: Build and send transactions
+title: Build and send commands
 hide_title: false
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This guide will teach you how to build, sign, and send a Vega transaction.
+This guide will teach you how to build a Vega command to include in a transaction. Once you create a command, to create a transaction you will need to sign it, and include your public key and the block height you are targeting.
 
-A transaction is an action you want to issue to the network, usually encoded in JSON. For example, a transaction to indicate an affirmative vote for a governance proposal might look like this:
+## Build commands
 
-```json
-{
-    "voteSubmission": {
-        "proposalId": "eb2d3902fdda9c3eb6e369f2235689b871c7322cf3ab284dde3e9dfc13863a17",
-        "value": "VALUE_YES"
-    }
-}
-```
+A command is an action you want to issue to the network. To submit that command to the network, you will need to sign it to verify it, and add in other data. 
 
-Before the transaction is submitted to the Vega network, it must be bundled up with a few pieces of metadata and signed with your public key. That metadata includes:
+Vega Wallet allows you to send and sign commands to the Vega network by using the following wallet commands:
+* `vegawallet command send`: turns a command into a transaction and send it
+* `vegawallet command sign`: turns a command into a transaction (base64-encoded) without sending it
 
-- your public key
-- a small to a proof-of-work
-- the block height you are targeting
+:::info Commands and transactions are different
+A Vega transaction is a bundle containing a Vega command, a signature, a public key and target block height.
 
-The signed transaction bundle can then either be:
-- immediately submitted by the wallet to a node in the network
-- base64 encoded into a `raw_transaction` and output to the screen or a file for later submission.
+There are other Vega Wallet commands that allow you to work with Vega transactions (base64-encoded), such as `vegawallet tx send`.
 
-The former is the most convenient way to sign & submit a transaction, but the latter is required if you have a 'cold' wallet that is not connected to the internet.
-
-## Build transactions
-
-
-Vega Wallet allows you to send and sign transactions to the Vega network by using the following wallet commands:
-* `vegawallet transaction sign`: takes your transaction, bundles it with the metadata discussed above, signs it and returns an base64 encoded representation of the `raw_transaction`
-* `vegawallet transaction send`:  as above, but immediately send the transaction to the network rather then displaying the base64 encoded `raw_transaction`
-* `vegawallet raw_transaction send`: forward the base64-encoded output of `transaction sign` and submits it to the network.
-
-:::info Transactions and raw_transactions are different
-A Vega raw_transaction is a base64 encoded bundle containing a Vega transaction, a signature, a public key and target block height.
-
-Inserting a Vega transaction in `vegawallet raw_transaction send` will fail, as it requires a encoded transaction bundle.
-Inserting a Vega raw_transaction in `vegawallet transaction sign` will fail, as it requires a Vega transaction only, without signature or any other data.
+Inserting a Vega command in `vegawallet tx send` will fail, as it requires a transaction, hence a bundled Vega command with its signature.
+Inserting a Vega transaction in `vegawallet command sign` will fail, as it requires a Vega command only, without signature or any other data.
 :::
 
 :::warning
@@ -61,15 +40,15 @@ The supported commands can be found here:
 * [Validator commands](/mainnet/api/grpc/vega/commands/v1/validator_commands.proto)
 * [Oracle commands](/mainnet/api/grpc/vega/commands/v1/oracles.proto)
 
-### Transaction format
+### Command format
 
-The gRPC transaction needs to be formatted as a JSON payload, as follows:
+The gRPC command needs to be formatted as a JSON payload, as follows:
 
 ```json
 {"commandName": {"someProperty": "someValue", "anObject": {"nestedProperty":42}}}
 ```
 
-* `commandName` is the name of the command you want to submit in your transaction, such as "voteSubmission", or "orderCancellation". It should be camel or snake case.
+* `commandName` is the name of the command you want to submit, such as "voteSubmission", or "orderCancellation". It should be camel or snake case.
 * `someProperty` is the name of the property or properties that are required by the command, such as "proposalId" on "voteSubmission", or "price" on "orderSubmission". It should be camel or snake case.
 * If the command you want to send has nested fields, `anObject` is the name of the object that wraps them, such as "peggedOrder" on "orderSubmission", or "terms" on "proposalSubmission".
 
@@ -103,40 +82,38 @@ This is a _partial_ example for order submission
 }
 ```
 
-## Send transactions
+## Send commands 
 
-**Tips for sending transactions**
+**Tips for sending commands**
 
-1. Write the transactions on a single line to prevent problems with the CLI not properly handling multiple arguments.
-3. Wrap the JSON payload with single quotes in the command line to prevent the CLI from interpreting the JSON transactions as a special command.
+1. Write the command on a single line to prevent problems with the CLI not properly handling multiple arguments.
+3. Wrap the JSON payload with single quotes in the command line to prevent the CLI from interpreting the JSON command as a special command.
 
 
 **Command structure**
 ```bash
-vegawallet transaction sign '{"commandName": {"someProperty": "someValue", "anObject": {"nestedProperty":42}}}'
-vegawallet transaction send '{"commandName": {"someProperty": "someValue", "anObject": {"nestedProperty":42}}}'
-vegawallet raw_transaction send 'ChwIxZXB58qn4K06EMC2BPI+CwoHc29tZS1pZ....'
+vegawallet command-name '{"commandName": {"someProperty": "someValue", "anObject": {"nestedProperty":42}}}'
 ```
 
 
-**Send the transaction to the first node configured in the network configuration, via its gRPC API using:**
+**Send the command to the first node configured in the network configuration, via its gRPC API using:**
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
 
 ```bash
-vegawallet transaction send --network "NETWORK" --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY"
+vegawallet command send --network "NETWORK" --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY"
 ```
 </TabItem>
 <TabItem value="mac" label="MacOS">
 
 ```bash
-./vegawallet transaction send --network "NETWORK" --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY"
+./vegawallet command send --network "NETWORK" --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY"
 ```
 </TabItem>
 <TabItem value="linux" label="Linux">
 
 ```bash
-./vegawallet transaction send --network "NETWORK" --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY"
+./vegawallet command send --network "NETWORK" --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY"
 ```
 </TabItem>
 </Tabs>
@@ -147,19 +124,19 @@ vegawallet transaction send --network "NETWORK" --wallet "MY_WALLET_NAME" --pubk
 <TabItem value="windows" label="Windows">
 
 ```bash
-vegawallet transaction send --retries 10
+vegawallet command send --retries 10
 ```
 </TabItem>
 <TabItem value="mac" label="MacOS">
 
 ```bash
-./vegawallet transaction send --retries 10
+./vegawallet command send --retries 10
 ```
 </TabItem>
 <TabItem value="linux" label="Linux">
 
 ```bash
-./vegawallet transaction send --retries 10
+./vegawallet command send --retries 10
 
 ```
 </TabItem>
@@ -171,19 +148,19 @@ vegawallet transaction send --retries 10
 <TabItem value="windows" label="Windows">
 
 ```bash
-vegawallet transaction send --node-address "ADDRESS"
+vegawallet command send --node-address "ADDRESS"
 ```
 </TabItem>
 <TabItem value="mac" label="MacOS">
 ```bash
-./vegawallet transaction send --node-address "ADDRESS"
+./vegawallet command send --node-address "ADDRESS"
 ```
 </TabItem>
 
 <TabItem value="linux" label="Linux">
 
 ```bash
-./vegawallet transaction send --node-address "ADDRESS"
+./vegawallet command send --node-address "ADDRESS"
 ```
 </TabItem>
 </Tabs>
@@ -194,19 +171,19 @@ vegawallet transaction send --node-address "ADDRESS"
 <TabItem value="windows" label="Windows">
 
 ```bash
-vegawallet transaction send --help
+vegawallet command send --help
 ```
 </TabItem>
 <TabItem value="mac" label="MacOS">
 ```bash
-./vegawallet transaction send --help
+./vegawallet command send --help
 ```
 </TabItem>
 
 <TabItem value="linux" label="Linux">
 
 ```bash
-./vegawallet transaction send --help
+./vegawallet command send --help
 ```
 </TabItem>
 </Tabs>
@@ -214,34 +191,34 @@ vegawallet transaction send --help
 
 ### Create transactions with air-gapped wallets
 
-This is useful for validators that are signing validator transaction using their root keys.
+This is useful for validators that are signing validator commands using their root keys.
 
 The workflow is:
-1. Build and sign a Vega transaction on an air-gapped computer to get a base64 encoded transaction
-2. Send that raw_transaction using an online computer
+1. Build and sign a Vega command on an air-gapped computer to get a base64 encoded transaction
+2. Send that transaction using an online computer
 
 
-#### 1. Build raw transaction on an air-gapped computer
+#### 1. Build transaction on an air-gapped computer
 
-This will build a raw_transaction containing the specified transaction, its signature and additional protocol related data:
+This will build a transaction containing the specified command, its signature and additional protocol related data:
 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
 
 ```bash
-vegawallet transaction sign --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY" --tx-height "TRANSACTION_BLOCK_HEIGHT" "TRANSACTION"
+vegawallet command sign --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY" --tx-height "TRANSACTION_BLOCK_HEIGHT" "COMMAND"
 ```
 </TabItem>
 <TabItem value="mac" label="MacOS">
 
 ```bash
-./vegawallet transaction sign --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY" --tx-height "TRANSACTION_BLOCK_HEIGHT" "TRANSACTION"
+./vegawallet command sign --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY" --tx-height "TRANSACTION_BLOCK_HEIGHT" "COMMAND"
 ```
 </TabItem>
 <TabItem value="linux" label="Linux">
 
 ```bash
-./vegawallet transaction sign --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY" --tx-height "TRANSACTION_BLOCK_HEIGHT" "TRANSACTION"
+./vegawallet command sign --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY" --tx-height "TRANSACTION_BLOCK_HEIGHT" "COMMAND"
 ```
   
 </TabItem>
@@ -259,7 +236,7 @@ base64 --decode --input result.txt
 
 The transaction will be decoded and displayed on screen.
 
-#### 2. Send raw transaction with an online computer
+#### 2. Send transaction with an online computer
 
 Use any way to transfer the transaction from your air-grapped computer to the online one.
 
@@ -269,26 +246,26 @@ Then, send the transaction using:
 <TabItem value="windows" label="Windows">
 
 ```bash
-vegawallet raw_transaction send --network "NETWORK" "BASE64_TRANSACTION"
+vegawallet tx send --network "NETWORK" "BASE64_TRANSACTION"
 ```
 </TabItem>
 <TabItem value="mac" label="MacOS">
 
 ```bash
-./vegawallet raw_transaction send --network "NETWORK" "BASE64_TRANSACTION"
+./vegawallet tx send --network "NETWORK" "BASE64_TRANSACTION"
 ```
 </TabItem>
 <TabItem value="linux" label="Linux">
 
 ```bash
-./vegawallet raw_transaction send --network "NETWORK" "BASE64_TRANSACTION"
+./vegawallet tx send --network "NETWORK" "BASE64_TRANSACTION"
 ```
   
 </TabItem>
 </Tabs>
 
 :::info Block height 
-You will need to respect the block height that you set in you transaction with the command `vegawallet transaction sign`.
+You will need to respect the block height that you set in you transaction with the command `vegawallet command sign`.
 
 You must wait if the block height you define is higher than the blockchain's block height. Transactions set with a future block height will be rejected.
 

@@ -111,7 +111,7 @@ The Vega Wallet desktop app does not yet have the full functionality of the CLI 
 To do any of the following, you will need to use the **[CLI wallet](../../cli-wallet)** app:
 * Customise key details
 * Isolate keys
-* Build and send commands 
+* Build and send transactions 
 
 ### 'Wallet already exists' error when recovering wallet
 #### Problem
