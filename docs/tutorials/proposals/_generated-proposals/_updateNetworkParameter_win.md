@@ -4,18 +4,18 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
 "{^
 \"proposalSubmission\": {^
  \"rationale\": {^
-  \"title\": \"Update governance.proposal.freeform.minVoterBalance\",^
-  \"description\": \"Proposal to update governance.proposal.freeform.minVoterBalance to 300}\"^
+  \"title\": \"Update market.fee.factors.infrastructureFee\",^
+  \"description\": \"Proposal to update market.fee.factors.infrastructureFee to 300}\"^
  },^
  \"terms\": {^
   \"updateNetworkParameter\": {^
    \"changes\": {^
-    \"key\": \"governance.proposal.freeform.minVoterBalance\",^
+    \"key\": \"market.fee.factors.infrastructureFee\",^
     \"value\": \"300\"^
    }^
   },^
-  \"closingTimestamp\": 1672095854,^
-  \"enactmentTimestamp\": 1672182254^
+  \"closingTimestamp\": 1672246528,^
+  \"enactmentTimestamp\": 1672332928^
  }^
 }^
 }"
