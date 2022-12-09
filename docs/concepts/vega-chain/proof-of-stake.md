@@ -128,23 +128,15 @@ Try out staking on **[token.fairground.wtf](https://token.fairground.wtf)** to t
 Staking rewards must be withdrawn to an Ethereum wallet, and then associated to a Vega wallet, before they can be staked.
 :::
 
-In each epoch, rewards are distributed among validators in proportion to the number of tokens they represent (i.e., their total stake). The total stake includes a validator's own stake and the tokens nominated to that validator. Of this reward, a fixed amount is distributed among the tokenholders the validator represents.
+In each epoch, rewards are distributed among validators in proportion to the number of tokens they represent (i.e., their total stake). The total stake includes a validator's own stake and the tokens nominated to that validator. Of this reward, a fixed amount is distributed among the tokenholders the validator represents. The proportion of rewards distributed to delegators is <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.delegatorShare" hideName={true} />.
 
-The reward scheme uses a linear reward curve - the reward per staked token is independent of the behaviour of other tokenholders. 
-
-This holds for validators as well, with the exception that there is a maximum amount of stake an individual validator can take on. To avoid validators getting too big, the rewards a validator gets, and thus can distribute to its nominators, is capped. In other words, the reward per token is decreases if a validator exceeds a maximum size.
-
-At the end of each epoch, reward payments are calculated per active validator, and then some of that reward is divided between their nominators. 
+The actual reward received by each validator at the end of each epoch is based on a few factors and is discussed in the next section.
 
 Read more: [Risks of over-staked validators](#too-much-stake)
  
-:::note Go deeper
-**[Staking rewards spec](https://github.com/vegaprotocol/specs/blob/master/protocol/0061-REWP-pos_rewards.md)** - more detail on how rewards are calculated and will be in future iterations. 
-:::
-
 ### Penalties
-Validator nodes that don't meet the requirements or prove to be bad actors will have rewards withheld, and a vaildator's nominators may also receive fewer (or no) rewards. 
+Validator rewards can be impacted by various penalties that may be applied based on scoring, these are discussed in the next section. 
 
-There is no token slashing, i.e., a tokenholder cannot lose their tokens through any actions of a validator.
+However, there is no token slashing, i.e., a tokenholder cannot lose their tokens through any actions of a validator.
 
 Read more: [How a validator node's performance is determined](#validator-node-performance)
