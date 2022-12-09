@@ -47,7 +47,7 @@ To find out more please see the issues [7065 ↗](https://github.com/vegaprotoco
 :::
 
 :::caution Breaking changes
-**Data node V1 APIs removed**: As flagged over the previous release summary notes the data node V1 APIs have now been removed. 
+**Data node V1 APIs removed**: As flagged previously, the data node V1 APIs have now been removed. 
 
 This release also introduces a number of [breaking  changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0630) that should be reviewed if you are using data node APIs or starting to use the V2 wallet APIs.
 :::
