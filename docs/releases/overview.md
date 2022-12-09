@@ -26,6 +26,33 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+
+### Pre-release Versions 0.63.0, 0.63.1, 0.63.2 and 0.64.0 combined | 2022-11-11
+This version was released to the Vega testnet on 09 December 2022.
+
+As we approach the end of 2022 we are still pushing out some awesome updates to testnet. Any eagle eyed followers will have seen the recent demo on Twitch sharing the outputs of the performance testing. This has resulted in a few new features to help maintain the stability of the network as usage scales up:
+
+- [Network wide limits](https://github.com/vegaprotocol/specs/blob/master/protocol/0078-NWLI-network_wide_limits.md) will allow the community to tune the maximum number of pegged orders on a market and the number of LP shapes on the network. The expectation is that these will be increased via governance as the protocol is adopted as the performance and interplay between the core and data nodes is better understood in mainnet.
+- [Vega transaction gas costs and priorities](https://github.com/vegaprotocol/specs/blob/master/protocol/0079-TGAP-transaction_gas_and_priority.md) Vega doesn't charge users gas costs per transaction, however, there are still constraints in the system processing capacity. In order to ensure liveness, each transaction will have an associated gas cost. This allows the protocol to ensure that each block will contain only transactions up to a certain block "gas limit".
+
+This deployment brings with it many other fixes and improvements leading up to Alpha Mainnet; check out the full details of this combined release in the Vega core [0.63.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.63.0), [0.63.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.63.1), [0.63.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.63.2) and [0.64.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.64.0) release pages.
+
+
+:::warning Deprecations
+**Vega Wallet**: A number of changes have been introduced resulting in the deprecation of commands in the Vega CLI wallet. 
+
+These will be removed in the next release. 
+
+To find out more please see the issues [7065 ↗](https://github.com/vegaprotocol/vega/issues/7065), [7066 ↗](https://github.com/vegaprotocol/vega/issues/7066) and [7068 ↗](https://github.com/vegaprotocol/vega/issues/7068)
+:::
+
+:::caution Breaking changes
+**Data node V1 APIs removed**: As flagged previously, the data node V1 APIs have now been removed. 
+
+This release also introduces a number of [breaking  changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0630) that should be reviewed if you are using data node APIs or starting to use the V2 wallet APIs.
+:::
+
+
 ### Pre-release Versions 0.61.0, 0.62.0 and 0.62.1 combined | 2022-11-11
 This version was released to the Vega testnet on 11 November, 2022.
 
