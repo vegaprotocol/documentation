@@ -17,10 +17,10 @@
     // New market instrument configuration
     instrument: {
      // Instrument name
-     name: "Apples Yearly (2022)",
+     name: "Oranges Daily",
 
      // Instrument code, human-readable shortcode used to describe the instrument
-     code: "APPLES.22",
+     code: "ORANGES.24h",
 
      // Future
      future: {
@@ -124,7 +124,8 @@
 
       // Optional new market meta data, tags
       metadata: [
-       "sector:health",
+       "sector:energy",
+       "sector:materials",
        "source:docs.vega.xyz"
       ],
 
@@ -183,7 +184,7 @@
        r: 0.016,
 
        // Sigma parameter, annualised volatility of the underlying asset, must be a strictly non-negative real number (double as number) 
-       sigma: 1.25,
+       sigma: 0.8,
       }
      },
     }
@@ -191,11 +192,11 @@
 
    // Timestamp (Unix time in seconds) when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-   closingTimestamp: 1672241006,
+   closingTimestamp: 1672246528,
 
    // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
    // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-   enactmentTimestamp: 1672327406,
+   enactmentTimestamp: 1672332928,
   }
  }
 ```

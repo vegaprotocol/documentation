@@ -44,13 +44,13 @@ Once the token balance is associated to a Vega key, you'll want to choose a vali
 
 Fetch a list of validator nodes using [REST](../api/rest/data-v2/trading-data-service-list-nodes), [GraphQL](../api/graphql/queries/nodes-connection) or [gRPC](../api/grpc/data-node/api/v2/trading_data.proto#nodesconnection).
 
-Nominate a validator by sending a command with the Vega Wallet:
+Nominate a validator by sending a transaction with the Vega Wallet:
 
 <Tabs>
   <TabItem value="cmd" label="Command line (Linux / OSX)">
 
 ```bash
-vegawallet command send --wallet "WALLET_NAME" --pubkey "VEGA_PUBKEY" --network fairground '{
+vegawallet transaction send --wallet "WALLET_NAME" --pubkey "VEGA_PUBKEY" --network fairground '{
   "delegateSubmission": {
     "nodeId":"INSERT_NODE_ID_FOR_NOMINATION",
     "amount":"1000000000000000000"
@@ -62,7 +62,7 @@ vegawallet command send --wallet "WALLET_NAME" --pubkey "VEGA_PUBKEY" --network 
   <TabItem value="win" label="Command line (Windows)">
 
 ```bash
-vegawallet.exe command send --wallet "WALLET_NAME" --pubkey "VEGA_PUBKEY" --network fairground ^
+vegawallet.exe transaction send --wallet "WALLET_NAME" --pubkey "VEGA_PUBKEY" --network fairground ^
 "{\"delegateSubmission\": ^
     { ^
         \"nodeId\":\"INSERT_NODE_ID_FOR_NOMINATION", ^

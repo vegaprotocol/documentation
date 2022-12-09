@@ -3,7 +3,7 @@ title: Wallet API v1
 hide_title: false
 sidebar_position: 2
 ---
-Vega Wallet uses a built-in REST API service to allow programmatic access to signing and key management. This API service is used to sign transactions with a private and public key pair when submitting orders or other commands to a Vega node.
+Vega Wallet uses a built-in REST API service to allow programmatic access to signing and key management. This API service is used to sign transactions with a private and public key pair when submitting orders or other transactions to a Vega node.
 
 :::warning API deprecation
 This API is being deprecated, and will not be available once the [JSON-RPC Wallet API](./v2-api/get-started) is out of alpha.

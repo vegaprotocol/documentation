@@ -133,7 +133,7 @@ When submitting the `OracleDataSubmission`, make sure to specify the `source` fi
   <TabItem value="cmd" label="Linux / OSX command line">
 
 ```bash
-vegawallet command send \
+vegawallet transaction send \
     --wallet oracle-wallet \
     --pubkey 123abc \
     --network fairground \
@@ -144,7 +144,7 @@ vegawallet command send \
   <TabItem value="win" label="Windows command line">
 
 ```bash
-vegawallet.exe command send \
+vegawallet.exe transaction send \
     --wallet oracle-wallet \
     --pubkey 123abc \
     --network fairground \
@@ -292,7 +292,7 @@ When submitting the `OracleDataSubmission`, make sure to specify the `source` fi
   <TabItem value="cmd" label="Linux / OSX command line">
 
 ```bash title="Linux/OSX command line example"
-vegawallet command send \
+vegawallet transaction send \
     --wallet oracle-wallet \
     --pubkey 123abc \
     --network fairground \
@@ -303,7 +303,7 @@ vegawallet command send \
   <TabItem value="win" label="Windows command line">
 
 ```bash title="Linux/OSX command line example"
-vegawallet.exe command send \
+vegawallet.exe transaction send \
     --wallet oracle-wallet \
     --pubkey 123abc \
     --network fairground \

@@ -114,6 +114,8 @@
 
       // Optional market metadata, tags
       metadata: [
+       "sector:health",
+       "sector:energy",
        "sector:tech",
        "source:docs.vega.xyz"
       ],
@@ -143,7 +145,7 @@
        tau: 0.0001140771161,
 
        // Risk Aversion Parameter (double as number) 
-       riskAversionParameter: "0.0001",
+       riskAversionParameter: "0.01",
 
        // Risk model parameters for log normal
        params: {
@@ -154,7 +156,7 @@
         r: 0.016,
 
         // Sigma parameter, annualised volatility of the underlying asset, must be a strictly non-negative real number (double as number) 
-        sigma: 0.8,
+        sigma: 1.25,
        }
       },
      },
@@ -162,11 +164,11 @@
 
     // Timestamp (Unix time in seconds) when voting closes for this proposal,
     // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-    closingTimestamp: 1672241006,
+    closingTimestamp: 1672246528,
 
     // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
     // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-    enactmentTimestamp: 1672327406,
+    enactmentTimestamp: 1672332928,
    }
   }
 ```

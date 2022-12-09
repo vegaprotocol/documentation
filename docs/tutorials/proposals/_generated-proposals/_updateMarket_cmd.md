@@ -1,6 +1,6 @@
 
   ```bash
-./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{
+./vegawallet transaction send --wallet your_walletname --pubkey your_public_key --network fairground '{
  "proposalSubmission": {
   "rationale": {
    "title": "Update Lorem Ipsum market",
@@ -73,6 +73,8 @@
       }
      },
      "metadata": [
+      "sector:health",
+      "sector:energy",
       "sector:tech",
       "source:docs.vega.xyz"
      ],
@@ -87,17 +89,17 @@
      },
      "logNormal": {
       "tau": 0.0001140771161,
-      "riskAversionParameter": 0.0001,
+      "riskAversionParameter": 0.01,
       "params": {
        "mu": 0,
        "r": 0.016,
-       "sigma": 0.8
+       "sigma": 1.25
       }
      }
     }
    },
-   "closingTimestamp": 1672241006,
-   "enactmentTimestamp": 1672327406
+   "closingTimestamp": 1672246528,
+   "enactmentTimestamp": 1672332928
   }
  }
 }'
