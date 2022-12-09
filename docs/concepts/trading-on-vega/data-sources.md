@@ -29,15 +29,21 @@ Data sources must be able to emit the following data types:
 * Date/Time - to compare against in filters
 * Structured data records - such as a set of key value pairs (inputs to filters)
 
-## Signed message data source
-Signed message data sources are a source of off-chain data. They introduce a Vega transaction that represents a data result that is validated by ensuring the signed message is provided by the Ethereum public key provided in the market’s proposal.
+## Signed message data sources [WIP]
+Signed message data sources are a source of off-chain data. They introduce a Vega transaction that represents a data result that is validated by ensuring the signed message is provided by the Vega or Ethereum public key provided in the market’s proposal.
 
-Specifically, Signed Message Data Sources are equivalent to Posters in [Compound’s Open Price Feed](https://medium.com/compound-finance/announcing-compound-open-oracle-development-cff36f06aad3), taking signed price reports and posting them to the Vega chain. As Open Oracle reports include signatures, the data can still be verified against its source. 
+If data already exists in Open Oracle form on Ethereum, and already has a signature, use that. For data that doesn't exist in Open Oracle, create and use a signed JSON message. 
 
-A signed message data source must include:
+!!! Add a caveat that all data sources should be verified. 
+
+!!!! Specification - needs more information about that. The difference between the proposal specifications and then the data that gets fed in at the right time. 
+
+A signed message data source specification must include:
 * Public keys that can sign and submit values for this oracle, as well as the key algorithm to be used, if required
-* Type of data to be supplied in the transaction
-* ABI encoded data
+* Type of data to be supplied in the transaction, and filters for the data
+
+### Open Oracle data
+Signed ABI encoded data sources, such as Open Oracle, are equivalent to Posters in [Compound’s Open Price Feed](https://medium.com/compound-finance/announcing-compound-open-oracle-development-cff36f06aad3), taking signed price reports and posting them to the Vega chain. As Open Oracle reports include signatures, the data can still be verified against its source. 
 
 For example, a [message taken from Coinbase's Price Oracle](https://blog.coinbase.com/introducing-the-coinbase-price-oracle-6d1ee22c7068) would have the signatures verified, and the ABI encoded data will be transformed into the following format (note: the precise representation will vary based on which API you're using):
 
@@ -62,24 +68,12 @@ For example, a [message taken from Coinbase's Price Oracle](https://blog.coinbas
 ]
 ```
 
-## Internal data source
-Vega provides a timestamp source, which can be used to trigger a market event (such as trading termination or final settlement) at a set date and time. The `vegaprotocol.builtin.timestamp` is used by the market proposer to provide a Unix timestamp in seconds of the Vega time, which is to say the time agreed via consensus. 
+### Signed JSON message
+Signed JSON messages are an alternative to using *Open Oracle data sources*, which are best used for off-chain prices. Some markets need data other than prices, and for that flexibility Vega also supports arbitrary JSON messages, signed by a Vega key. 
 
-As the name implies, an internal data source event is generated automatically inside Vega when the time changes (i.e. once per block) and will then be processed by a data source definition (e.g. to filter the events so that trading terminated is only triggered after a certain date/time is reached).
+Data from these messages is only as reliable as the Vega public key that publishes the data, thus confirming the reliability of the signer is imperative for the community to consider when voting for, or taking part in a market. 
 
-For example, a single timestamp event will appear as follows. Note: the precise representation will vary based on which API you're using):
-
-```json
-[
-	{
-		"name": "vega.builtin.timestamp",
-		"value": "1661273220"
-	}
-]
-```
-
-## Signed JSON message
-Signed JSON messages are an alternative to using *signed message data sources*, which are best used for off-chain prices. Some markets need data other than prices, and for that flexibility Vega also supports arbitrary JSON messages, signed by a Vega key. Data from these types is only as reliable as the Vega public key that publishes the data, whereas signed message data sources have signed data. The advantage is that the format is less rigid than signed messages: any properties can be specified, including strings, booleans or non-price numbers.
+The advantage is that the format is less rigid than Open Oracle data: any properties can be specified, including strings, booleans or non-price numbers.
 
 The data sourcing framework takes in these JSON messages and presents them similarly to the other data formats:
 
@@ -100,6 +94,22 @@ The data sourcing framework takes in these JSON messages and presents them simil
 :::note Read more
 For a more thorough example of how to produce, sign and submit data in this format, see [Tutorials: Using data sources](./../../tutorials/using-data-sources.md)
 :::
+
+## Internal data source
+Vega provides a timestamp source, which can be used to trigger a market event (such as trading termination or final settlement) at a set date and time. The `vegaprotocol.builtin.timestamp` is used by the market proposer to provide a Unix timestamp in seconds of the Vega time, which is to say the time agreed via consensus. 
+
+As the name implies, an internal data source event is generated automatically inside Vega when the time changes (i.e. once per block) and will then be processed by a data source definition (e.g. to filter the events so that trading terminated is only triggered after a certain date/time is reached).
+
+For example, a single timestamp event will appear as follows. Note: the precise representation will vary based on which API you're using):
+
+```json
+[
+	{
+		"name": "vega.builtin.timestamp",
+		"value": "1661273220"
+	}
+]
+```
 
 ## Using a data source: Filtering
 Data source filters allow the market proposer to specify, for a given "root" data source (for example all messages signed by a given public key), which of its messages are relevant.
