@@ -3,17 +3,19 @@ sidebar_position: 8
 title: Data sourcing
 hide_title: false
 ---
-Vega's data sourcing framework is the system that standardises and publishes information that can be useful in the operation of markets. The system broadly includes oracles that may exist on other chains, data produced in the operation of other markets, or off-chain data.
+Vega's data sourcing framework is the system that enables the acquisition and consumption of data by the Vega protocol, for example, for terminating trading at expiry or settling markets. It consists of a number of source types, initially including off-chain data signed by a known key and data from Vega itself. In future it will include more data types and sources, as well as the ability to source data from other chains, starting with Ethereum.
 
-The information produced by data sourcing is relevant to market settlement, risk models, and other features that require specific data which must come from somewhere, often completely external to Vega. For example, a market based on the price of Bitcoin on a specific date needs a trustworthy and reliable source of the price of Bitcoin.
+The data sourcing framework also includes the ability to process data by selecting specific fields from a larger data object, filtering out irrelevant or potentially erroneous data, etc. In future there will also be additional processing options available to transform, aggregate, and perform additional checks on data, among other things.
 
-The types of data sources that Vega can accept in the current implementation is limited to those listed below. The APIs and protocol are expected to support a wider range of data source standards in the future.
+The information produced by data sourcing is relevant to market settlement, risk models, and other features that require specific data which must come from somewhere, often completely external to Vega. For example, a market based on the price of Bitcoin on a specific date needs a trustworthy and reliable source of the price of Bitcoin in order to settle.
+
+The types of data sources that Vega can accept in the current implementation is limited to those listed below. As mentioned above, the APIs and protocol are expected to support a wider range of data sources and processing capbilities in the future.
 
 ## Sources of data
 Inputs to the data sourcing framework can come from:
 * Signed message data source, part of the [Open Oracle ↗](https://github.com/compound-finance/open-oracle) feed
 * Specially formatted and signed JSON messages
-* Internal data
+* Data internal to Vega's state (for example the latest block timestamp)
 
 ### What's in a data source
 Data sources must provide:
@@ -28,7 +30,7 @@ Data sources must be able to emit the following data types:
 * Structured data records - such as a set of key value pairs (inputs to filters)
 
 ## Signed message data source
-Signed message data sources are a source of off-chain price data, and can be used for settling and terminating a market. They introduce a Vega transaction that represents a data result that is validated by ensuring the signed message is provided by the Ethereum public key provided in the market’s proposal.
+Signed message data sources are a source of off-chain data. They introduce a Vega transaction that represents a data result that is validated by ensuring the signed message is provided by the Ethereum public key provided in the market’s proposal.
 
 Specifically, Signed Message Data Sources are equivalent to Posters in [Compound’s Open Price Feed](https://medium.com/compound-finance/announcing-compound-open-oracle-development-cff36f06aad3), taking signed price reports and posting them to the Vega chain. As Open Oracle reports include signatures, the data can still be verified against its source. 
 
@@ -63,7 +65,7 @@ For example, a [message taken from Coinbase's Price Oracle](https://blog.coinbas
 ## Internal data source
 Vega provides a timestamp source, which can be used to trigger a market event (such as trading termination or final settlement) at a set date and time. The `vegaprotocol.builtin.timestamp` is used by the market proposer to provide a Unix timestamp in seconds of the Vega time, which is to say the time agreed via consensus. 
 
-As the name implies, an internal data source is generated inside Vega and is submitted automatically when the time is reached.
+As the name implies, an internal data source event is generated automatically inside Vega when the time changes (i.e. once per block) and will then be processed by a data source definition (e.g. to filter the events so that trading terminated is only triggered after a certain date/time is reached).
 
 For example, a single timestamp event will appear as follows. Note: the precise representation will vary based on which API you're using):
 
@@ -100,9 +102,9 @@ For a more thorough example of how to produce, sign and submit data in this form
 :::
 
 ## Using a data source: Filtering
-Data source filters allow the market proposer to specify which data sources it is listening for, and which of their messages are relevant.
+Data source filters allow the market proposer to specify, for a given "root" data source (for example all messages signed by a given public key), which of its messages are relevant.
 
-Markets require data to progress through the market lifecycle. The two key transitions controlled by data sources are the termination of trading, and settlement of the market. These are both configured when the market is proposed, using data source filters.
+Products on Vega use data to drive actions like settlement and to progress through the market lifecycle. The two key transitions controlled by data sources for cash settled futures are the termination of trading, and settlement of the market. These are both configured when the market is proposed by providing a data source specification that covers the root source and any filters required to select the specific data or trigger event.
 
 As a public key may provide many messages, a filter is used to extract the required message - for example trading could terminate at a specific date and time, and so the filters would ensure that only data provided on or after the specified date and time would trigger termination. Similarly for settlement, only price data *after* trading has terminated would be relevant.
 

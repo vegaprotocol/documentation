@@ -9,13 +9,13 @@ import TabItem from '@theme/TabItem';
 
 ## Choosing a data source when proposing a market
 
-You need to specify details about the data required for a market in the market creation governance proposal. When configuring a market's instrument, you will need to select the data sourcefor two events: settlement and trading termination. 
+A market proposal must specify details about the data it requires in the market creation governance proposal. When configuring a market's instrument, you will need to select the data sourcefor two events: settlement and trading termination. 
 
 This is done by:
-1. Defining an data source spec binding for settlement price
-2. Configuring an data source spec for settlement price values
-3. Defining an data source spec binding for trading termination
-4. Configuring an data source spec for trading termination values
+1. Defining a data source spec binding for settlement price
+2. Configuring a data source spec for settlement price values
+3. Defining a data source spec binding for trading termination
+4. Configuring a data source spec for trading termination values
 
 The **binding** tells the market which field contains the value. The **spec** defines which public keys to watch for data from, and which values to pass through to the binding.
 
@@ -30,7 +30,7 @@ When it's time for a market to settle, someone needs to submit the data that mat
 Any Vega keypair can submit data. In the configuration for a market, a data source specification field dictates which data feeds it is interested in. In effect, it works as a filter. This specification means that the creator of an instrument for a market will choose in advance a price source, and which data fields the market requires to settle and terminate.
 
 ## Signed Messages
-Vega's Data Sourcing framework supports ABI-encoded [Open Oracle](https://github.com/compound-finance/open-oracle) messages. Signed Messages can be vefiried to have come from the public key that signed them, which allows markets on Vega to use pricing data sourced from Ethereum
+Vega's Data Sourcing framework supports signed ABI-encoded [Open Oracle](https://github.com/compound-finance/open-oracle) or JSON messages. Signed Messages can be vefiried to have come from the public key that signed them, which allows markets on Vega to use pricing data sourced from Ethereum.
 
 ### Using Signed Messages a market proposal
 For the binding, use the `name` field of the data. In the case of Open Oracle messages, the price data will be availableas 'prices.currency-code.value', for example:`"prices.BTC.value"`.
