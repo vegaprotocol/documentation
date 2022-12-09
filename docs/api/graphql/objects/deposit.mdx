@@ -22,8 +22,8 @@ type Deposit {
   amount: String!
   asset: Asset!
   status: DepositStatus!
-  createdTimestamp: String!
-  creditedTimestamp: String
+  createdTimestamp: Timestamp!
+  creditedTimestamp: Timestamp
   txHash: String
 }
 ```
@@ -51,11 +51,11 @@ type Deposit {
 > The current status of the deposit
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Deposit.<b>createdTimestamp</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Deposit.<b>createdTimestamp</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time at which the deposit was created
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Deposit.<b>creditedTimestamp</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Deposit.<b>creditedTimestamp</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time at which the deposit was finalised
 > 
 
@@ -71,7 +71,7 @@ type Deposit {
 
 ### Member of
 
-[`DepositEdge`](/testnet/api/graphql/objects/deposit-edge)  <Badge class="secondary" text="object"/><Bullet />[`Party`](/testnet/api/graphql/objects/party)  <Badge class="secondary" text="object"/>
+[`DepositEdge`](/testnet/api/graphql/objects/deposit-edge)  <Badge class="secondary" text="object"/>
 
 ### Implemented by
 

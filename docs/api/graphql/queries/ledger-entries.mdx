@@ -18,7 +18,6 @@ Get ledger entries by asset, market, party, account type, transfer type within t
 ```graphql
 ledgerEntries(
   filter: LedgerEntryFilter
-  groupOptions: GroupOptions
   dateRange: DateRange
   pagination: Pagination
 ): AggregatedLedgerEntriesConnection!
@@ -28,10 +27,6 @@ ledgerEntries(
 ### Arguments
 
 #### [<code style={{ fontWeight: 'normal' }}>ledgerEntries.<b>filter</b></code>](#)<Bullet />[`LedgerEntryFilter`](/testnet/api/graphql/inputs/ledger-entry-filter) <Badge class="secondary" text="input"/>
-> 
-> 
-
-#### [<code style={{ fontWeight: 'normal' }}>ledgerEntries.<b>groupOptions</b></code>](#)<Bullet />[`GroupOptions`](/testnet/api/graphql/inputs/group-options) <Badge class="secondary" text="input"/>
 > 
 > 
 

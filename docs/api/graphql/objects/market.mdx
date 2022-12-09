@@ -28,27 +28,15 @@ type Market {
   tradingMode: MarketTradingMode!
   state: MarketState!
   proposal: Proposal
-  orders(
-  skip: Int
-  first: Int
-  last: Int
-): [Order!]
   ordersConnection(
   dateRange: DateRange
   pagination: Pagination
+  filter: OrderFilter
 ): OrderConnection
-  accounts(
-  partyId: ID
-): [AccountBalance!]
   accountsConnection(
   partyId: ID
   pagination: Pagination
 ): AccountsConnection
-  trades(
-  skip: Int
-  first: Int
-  last: Int
-): [Trade!]
   tradesConnection(
   dateRange: DateRange
   pagination: Pagination
@@ -63,9 +51,6 @@ type Market {
   pagination: Pagination
 ): CandleDataConnection
   data: MarketData
-  liquidityProvisions(
-  partyId: ID
-): [LiquidityProvision!]
   liquidityProvisionsConnection(
   partyId: ID
   pagination: Pagination
@@ -139,20 +124,6 @@ duration and optionally a minimum traded volume).
 > The proposal that initiated this market
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Market.<b>orders</b></code>](#)<Bullet />[`[Order!]`](/testnet/api/graphql/objects/order) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
-> Orders on a market
-> ##### [<code style={{ fontWeight: 'normal' }}>Market.orders.<b>skip</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
-> Pagination skip
-> 
-
-##### [<code style={{ fontWeight: 'normal' }}>Market.orders.<b>first</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
-> Pagination first element
-> 
-
-##### [<code style={{ fontWeight: 'normal' }}>Market.orders.<b>last</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
-> Pagination last element
-> 
-
 #### [<code style={{ fontWeight: 'normal' }}>Market.<b>ordersConnection</b></code>](#)<Bullet />[`OrderConnection`](/testnet/api/graphql/objects/order-connection) <Badge class="secondary" text="object"/>
 > Orders on a market
 > ##### [<code style={{ fontWeight: 'normal' }}>Market.ordersConnection.<b>dateRange</b></code>](#)<Bullet />[`DateRange`](/testnet/api/graphql/inputs/date-range) <Badge class="secondary" text="input"/>
@@ -163,10 +134,8 @@ duration and optionally a minimum traded volume).
 > Pagination information
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Market.<b>accounts</b></code>](#)<Bullet />[`[AccountBalance!]`](/testnet/api/graphql/objects/account-balance) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
-> Get account for a party or market
-> ##### [<code style={{ fontWeight: 'normal' }}>Market.accounts.<b>partyId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
-> ID of the party to get the margin account for
+##### [<code style={{ fontWeight: 'normal' }}>Market.ordersConnection.<b>filter</b></code>](#)<Bullet />[`OrderFilter`](/testnet/api/graphql/inputs/order-filter) <Badge class="secondary" text="input"/>
+> Filter orders
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Market.<b>accountsConnection</b></code>](#)<Bullet />[`AccountsConnection`](/testnet/api/graphql/objects/accounts-connection) <Badge class="secondary" text="object"/>
@@ -177,20 +146,6 @@ duration and optionally a minimum traded volume).
 
 ##### [<code style={{ fontWeight: 'normal' }}>Market.accountsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
 > Pagination information
-> 
-
-#### [<code style={{ fontWeight: 'normal' }}>Market.<b>trades</b></code>](#)<Bullet />[`[Trade!]`](/testnet/api/graphql/objects/trade) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
-> Trades on a market
-> ##### [<code style={{ fontWeight: 'normal' }}>Market.trades.<b>skip</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
-> Pagination skip
-> 
-
-##### [<code style={{ fontWeight: 'normal' }}>Market.trades.<b>first</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
-> Pagination first element
-> 
-
-##### [<code style={{ fontWeight: 'normal' }}>Market.trades.<b>last</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
-> Pagination last element
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Market.<b>tradesConnection</b></code>](#)<Bullet />[`TradeConnection`](/testnet/api/graphql/objects/trade-connection) <Badge class="secondary" text="object"/>
@@ -231,12 +186,6 @@ duration and optionally a minimum traded volume).
 > marketData for the given market
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Market.<b>liquidityProvisions</b></code>](#)<Bullet />[`[LiquidityProvision!]`](/testnet/api/graphql/objects/liquidity-provision) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
-> The list of the liquidity provision commitments for this market
-> ##### [<code style={{ fontWeight: 'normal' }}>Market.liquidityProvisions.<b>partyId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
-> An optional party ID
-> 
-
 #### [<code style={{ fontWeight: 'normal' }}>Market.<b>liquidityProvisionsConnection</b></code>](#)<Bullet />[`LiquidityProvisionsConnection`](/testnet/api/graphql/objects/liquidity-provisions-connection) <Badge class="secondary" text="object"/>
 > The list of the liquidity provision commitments for this market
 > ##### [<code style={{ fontWeight: 'normal' }}>Market.liquidityProvisionsConnection.<b>partyId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
@@ -259,7 +208,7 @@ duration and optionally a minimum traded volume).
 
 ### Returned by
 
-[`market`](/testnet/api/graphql/queries/market)  <Badge class="secondary" text="query"/><Bullet />[`markets`](/testnet/api/graphql/queries/markets)  <Badge class="secondary" text="query"/>
+[`market`](/testnet/api/graphql/queries/market)  <Badge class="secondary" text="query"/>
 
 ### Member of
 

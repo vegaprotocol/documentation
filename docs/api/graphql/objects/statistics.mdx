@@ -21,10 +21,10 @@ type Statistics {
   blockHash: String!
   backlogLength: String!
   totalPeers: String!
-  genesisTime: String!
-  currentTime: String!
+  genesisTime: Timestamp!
+  currentTime: Timestamp!
   upTime: String!
-  vegaTime: String!
+  vegaTime: Timestamp!
   status: String!
   txPerBlock: String!
   averageTxBytes: String!
@@ -64,11 +64,11 @@ type Statistics {
 > Total number of peers on the Vega network
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>genesisTime</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>genesisTime</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano genesis time of the chain
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>currentTime</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>currentTime</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano current time (real)
 > 
 
@@ -76,7 +76,7 @@ type Statistics {
 > RFC3339Nano uptime of the node
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>vegaTime</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>vegaTime</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano current time of the chain (decided through consensus)
 > 
 

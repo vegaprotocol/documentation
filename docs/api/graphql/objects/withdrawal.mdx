@@ -23,9 +23,9 @@ type Withdrawal {
   asset: Asset!
   status: WithdrawalStatus!
   ref: String!
-  expiry: String!
-  createdTimestamp: String!
-  withdrawnTimestamp: String
+  expiry: Timestamp!
+  createdTimestamp: Timestamp!
+  withdrawnTimestamp: Timestamp
   txHash: String
   details: WithdrawalDetails
 }
@@ -58,15 +58,15 @@ type Withdrawal {
 > A reference the foreign chain can use to refer to when processing the withdrawal
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Withdrawal.<b>expiry</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Withdrawal.<b>expiry</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time until the withdrawal will be invalid
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Withdrawal.<b>createdTimestamp</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Withdrawal.<b>createdTimestamp</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time at which the withdrawal was created
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Withdrawal.<b>withdrawnTimestamp</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Withdrawal.<b>withdrawnTimestamp</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time at which the withdrawal was finalised
 > 
 
@@ -86,7 +86,7 @@ type Withdrawal {
 
 ### Member of
 
-[`Party`](/testnet/api/graphql/objects/party)  <Badge class="secondary" text="object"/><Bullet />[`WithdrawalEdge`](/testnet/api/graphql/objects/withdrawal-edge)  <Badge class="secondary" text="object"/>
+[`WithdrawalEdge`](/testnet/api/graphql/objects/withdrawal-edge)  <Badge class="secondary" text="object"/>
 
 ### Implemented by
 

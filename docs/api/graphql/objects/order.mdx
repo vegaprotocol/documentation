@@ -25,11 +25,10 @@ type Order {
   size: String!
   remaining: String!
   party: Party!
-  createdAt: String!
-  expiresAt: String
+  createdAt: Timestamp!
+  expiresAt: Timestamp
   status: OrderStatus!
   reference: String!
-  trades: [Trade!]
   tradesConnection(
   dateRange: DateRange
   pagination: Pagination
@@ -37,7 +36,7 @@ type Order {
   type: OrderType
   rejectionReason: OrderRejectionReason
   version: String!
-  updatedAt: String
+  updatedAt: Timestamp
   peggedOrder: PeggedOrder
   liquidityProvision: LiquidityProvision
 }
@@ -78,11 +77,11 @@ type Order {
 > The party that placed the order (probably stored internally as the party's public key)
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Order.<b>createdAt</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>createdAt</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano formatted date and time for when the order was created (timestamp)
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Order.<b>expiresAt</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>expiresAt</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
 > Expiration time of this order (ISO-8601 RFC3339+Nano formatted date)
 > 
 
@@ -92,10 +91,6 @@ type Order {
 
 #### [<code style={{ fontWeight: 'normal' }}>Order.<b>reference</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > The external reference (if available) for the order
-> 
-
-#### [<code style={{ fontWeight: 'normal' }}>Order.<b>trades</b></code>](#)<Bullet />[`[Trade!]`](/testnet/api/graphql/objects/trade) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
-> Trades relating to this order
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Order.<b>tradesConnection</b></code>](#)<Bullet />[`TradeConnection`](/testnet/api/graphql/objects/trade-connection) <Badge class="secondary" text="object"/>
@@ -120,7 +115,7 @@ type Order {
 > Version of this order, counts the number of amends
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Order.<b>updatedAt</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>updatedAt</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time the order was altered
 > 
 
@@ -136,11 +131,11 @@ type Order {
 
 ### Returned by
 
-[`orderByID`](/testnet/api/graphql/queries/order-by-id)  <Badge class="secondary" text="query"/><Bullet />[`orderByReference`](/testnet/api/graphql/queries/order-by-reference)  <Badge class="secondary" text="query"/><Bullet />[`orderVersions`](/testnet/api/graphql/queries/order-versions)  <Badge class="secondary" text="query"/>
+[`orderByID`](/testnet/api/graphql/queries/order-by-id)  <Badge class="secondary" text="query"/><Bullet />[`orderByReference`](/testnet/api/graphql/queries/order-by-reference)  <Badge class="secondary" text="query"/>
 
 ### Member of
 
-[`LiquidityOrderReference`](/testnet/api/graphql/objects/liquidity-order-reference)  <Badge class="secondary" text="object"/><Bullet />[`Market`](/testnet/api/graphql/objects/market)  <Badge class="secondary" text="object"/><Bullet />[`OrderEdge`](/testnet/api/graphql/objects/order-edge)  <Badge class="secondary" text="object"/><Bullet />[`Party`](/testnet/api/graphql/objects/party)  <Badge class="secondary" text="object"/>
+[`LiquidityOrderReference`](/testnet/api/graphql/objects/liquidity-order-reference)  <Badge class="secondary" text="object"/><Bullet />[`OrderEdge`](/testnet/api/graphql/objects/order-edge)  <Badge class="secondary" text="object"/>
 
 ### Implemented by
 

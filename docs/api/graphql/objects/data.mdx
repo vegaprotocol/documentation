@@ -20,7 +20,7 @@ type Data {
   signers: [Signer!]
   data: [Property!]
   matchedSpecIds: [ID!]
-  broadcastAt: String!
+  broadcastAt: Timestamp!
 }
 ```
 
@@ -40,7 +40,7 @@ type Data {
 When the array is empty, it means no data spec matched this source data.
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Data.<b>broadcastAt</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Data.<b>broadcastAt</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano formatted date and time for when the data was broadcast to the markets
 with a matching data spec.
 It has no value when the source data does not match any data spec.
