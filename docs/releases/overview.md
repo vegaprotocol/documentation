@@ -38,7 +38,7 @@ As we approach the end of 2022 we are still pushing out some awesome updates to 
 This deployment brings with it many other fixes and improvements leading up to Alpha Mainnet; check out the full details of this combined release in the Vega core [0.63.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.63.0), [0.63.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.63.1), [0.63.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.63.2) and [0.64.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.64.0) release pages.
 
 
-:::warning API deprecations
+:::warning Deprecations
 **Vega Wallet**: As development progresses in order to fully remove the V1 wallet API a number of changes have been introduced resulting in the deprecation of commands in the wallet. These will be removed in the next release giving time for users, where required, to update and use the new commands. To find out more please see the issues [7065 ↗](https://github.com/vegaprotocol/vega/issues/7065), [7066 ↗](https://github.com/vegaprotocol/vega/issues/7066) and [7068 ↗](https://github.com/vegaprotocol/vega/issues/7068)
 :::
 
