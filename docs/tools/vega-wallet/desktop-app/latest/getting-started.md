@@ -9,7 +9,7 @@ You can now connect to an existing Vega wallet, or create a new wallet, using th
 
 Set-up takes less than 5 minutes, from downloading the software to connecting to a Vega dApp.
 
-:::caution
+:::caution Software version compatibility
 The Vega Wallet desktop app has release and pre-release versions available. The newest pre-release version is generally the version compatible with the latest testnet release, while the release version is compatible with the Vega mainnet.
 :::
 
@@ -127,7 +127,7 @@ If you see the error message `Wallet with this name already exists` but you do n
 You recover a wallet using your recovery phrase, and the public key you see doesn't match the key you expect (such as if you expected that key to have assets associated with it, and it doesn't). 
 
 #### Possible solutions
-* Choose the alternate wallet version number alongside your recovery phrase. If you recovered and chose "version 2", then you should try using the same recovery phrase but choose "version 1". 
+* Choose the alternate wallet version number alongside your recovery phrase. If you recovered and chose "version 2", then you should try using the same recovery phrase but choose "version 1".
 * Ensure that your recovery phrase includes the exact same words, in the exact same order, as they were provided to you when you first created your wallet. 
 
 ### Reporting bugs
