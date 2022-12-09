@@ -58,6 +58,7 @@ echo ""
 ./scripts/build-pre-openapi.sh
 # Now inject servers
 node --no-warnings --experimental-fetch scripts/build-pre-openapi-servers.js
+MAINNET=true node --no-warnings --experimental-fetch scripts/build-pre-openapi-servers.js
 
 export NO_UPDATE_NOTIFIER="true"
 
