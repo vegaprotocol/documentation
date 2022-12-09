@@ -20,8 +20,8 @@ type AuctionEvent {
   marketId: ID!
   leave: Boolean!
   openingAuction: Boolean!
-  auctionStart: String!
-  auctionEnd: String!
+  auctionStart: Timestamp!
+  auctionEnd: Timestamp!
   trigger: AuctionTrigger!
   extensionTrigger: AuctionTrigger
 }
@@ -42,11 +42,11 @@ type AuctionEvent {
 > Event related to opening auction
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AuctionEvent.<b>auctionStart</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>AuctionEvent.<b>auctionStart</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano start time of auction
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AuctionEvent.<b>auctionEnd</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>AuctionEvent.<b>auctionEnd</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano optional end time of auction
 > 
 

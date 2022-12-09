@@ -19,11 +19,11 @@ A stake linking represent the intent from a party to deposit / remove stake on t
 type StakeLinking {
   id: ID!
   type: StakeLinkingType!
-  timestamp: String!
+  timestamp: Timestamp!
   party: Party!
   amount: String!
   status: StakeLinkingStatus!
-  finalizedAt: String
+  finalizedAt: Timestamp
   txHash: String!
 }
 ```
@@ -39,7 +39,7 @@ type StakeLinking {
 > Type of linking: link|unlink
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>timestamp</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>timestamp</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > The time at which the request happened on ethereum
 > 
 
@@ -55,7 +55,7 @@ type StakeLinking {
 > The status of the linking
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>finalizedAt</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>finalizedAt</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
 > The time at which the stake linking was fully processed by the Vega network, null until defined
 > 
 

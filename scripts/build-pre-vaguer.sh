@@ -11,6 +11,9 @@ JSON=true npx --yes --silent github:vegaprotocol/vaguer mainnet1 > "./specs/main
 mainnet_temp_good=$(jq '[.[] | select(."🥇" == "🥇")] | length' ./specs/mainnet_vaguer_temp.json)
 mainnet_current_good=$(jq '[.[] | select(."🥇" == "🥇")] | length' ./specs/mainnet_vaguer.json)
 
+d=$(date -u)
+dt=$(date -u +%s)
+
 if ((mainnet_temp_good > 3)); then
   echo "   - New run: ${mainnet_temp_good}, old run: ${mainnet_current_good}"
   rm "./specs/mainnet_vaguer.json"
@@ -19,6 +22,9 @@ else
   echo "   - 0 good nodes, doing nothing"
   rm "./specs/mainnet_vaguer_temp.json"
 fi
+
+rm  -f "./specs/mainnet_vaguer_timestamp.json"
+echo "{\"date\": \"$d\", \"timestamp\": \"$dt\"}" > ./specs/mainnet_vaguer_timestamp.json
 
 ## Testnet block. Currently follows the same rules
 echo " - Fetching testnet"
@@ -34,3 +40,6 @@ else
   echo "   - 0 good nodes, doing nothing"
   rm "./specs/testnet_vaguer_temp.json"
 fi
+
+rm -f "./specs/testnet_vaguer_timestamp.json"
+echo "{\"date\": \"$d\", \"timestamp\": \"$dt\"}" > ./specs/testnet_vaguer_timestamp.json

@@ -25,14 +25,14 @@ type OrderUpdate {
   size: String!
   remaining: String!
   partyId: ID!
-  createdAt: String!
-  expiresAt: String
+  createdAt: Timestamp!
+  expiresAt: Timestamp
   status: OrderStatus!
   reference: String!
   type: OrderType
   rejectionReason: OrderRejectionReason
   version: String!
-  updatedAt: String
+  updatedAt: Timestamp
   peggedOrder: PeggedOrder
   liquidityProvisionId: ID
 }
@@ -73,11 +73,11 @@ type OrderUpdate {
 > The party that placed the order (probably stored internally as the party's public key)
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>OrderUpdate.<b>createdAt</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>OrderUpdate.<b>createdAt</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano formatted date and time for when the order was created (timestamp)
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>OrderUpdate.<b>expiresAt</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>OrderUpdate.<b>expiresAt</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
 > Expiration time of this order (ISO-8601 RFC3339+Nano formatted date)
 > 
 
@@ -101,7 +101,7 @@ type OrderUpdate {
 > Version of this order, counts the number of amends
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>OrderUpdate.<b>updatedAt</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>OrderUpdate.<b>updatedAt</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time the order was altered
 > 
 

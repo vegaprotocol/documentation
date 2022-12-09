@@ -17,29 +17,29 @@ Timestamps for when the market changes state
 
 ```graphql
 type MarketTimestamps {
-  proposed: String
-  pending: String
-  open: String
-  close: String
+  proposed: Timestamp
+  pending: Timestamp!
+  open: Timestamp!
+  close: Timestamp!
 }
 ```
 
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>MarketTimestamps.<b>proposed</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>MarketTimestamps.<b>proposed</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
 > Time when the market is first proposed
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>MarketTimestamps.<b>pending</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>MarketTimestamps.<b>pending</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Time when the market has been voted in and waiting to be created
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>MarketTimestamps.<b>open</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>MarketTimestamps.<b>open</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Time when the market is open and ready to accept trades
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>MarketTimestamps.<b>close</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>MarketTimestamps.<b>close</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Time when the market is closed
 > 
 

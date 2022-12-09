@@ -19,8 +19,8 @@ The command to be sent to the chain for a liquidity provision submission
 type LiquidityProvisionUpdate {
   id: ID
   partyID: ID!
-  createdAt: String!
-  updatedAt: String
+  createdAt: Timestamp!
+  updatedAt: Timestamp
   marketID: ID!
   commitmentAmount: String!
   fee: String!
@@ -43,11 +43,11 @@ type LiquidityProvisionUpdate {
 > The party making this commitment
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvisionUpdate.<b>createdAt</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvisionUpdate.<b>createdAt</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > When the liquidity provision was initially created (formatted RFC3339)
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvisionUpdate.<b>updatedAt</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvisionUpdate.<b>updatedAt</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time of when the liquidity provision was updated
 > 
 

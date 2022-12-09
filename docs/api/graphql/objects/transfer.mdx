@@ -26,7 +26,7 @@ type Transfer {
   amount: String!
   reference: String
   status: TransferStatus!
-  timestamp: String!
+  timestamp: Timestamp!
   kind: TransferKind!
   reason: String
 }
@@ -71,7 +71,7 @@ type Transfer {
 > The status of this transfer
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>timestamp</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Transfer.<b>timestamp</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > The time at which the transfer was submitted
 > 
 
@@ -84,10 +84,6 @@ type Transfer {
 > 
 
 
-
-### Returned by
-
-[`transfers`](/testnet/api/graphql/queries/transfers)  <Badge class="secondary" text="query"/>
 
 ### Member of
 

@@ -23,7 +23,7 @@ estimateOrder(
   size: String!
   side: Side!
   timeInForce: OrderTimeInForce!
-  expiration: String
+  expiration: Timestamp
   type: OrderType!
 ): OrderEstimate!
 ```
@@ -55,7 +55,7 @@ estimateOrder(
 > TimeInForce of the order
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>estimateOrder.<b>expiration</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>estimateOrder.<b>expiration</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
 > Expiration of the the order
 > 
 
