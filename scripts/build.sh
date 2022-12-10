@@ -22,11 +22,6 @@ rm -rf docs/api/graphql 2> /dev/null
 rm -rf docs/api/grpc/data-node 2> /dev/null
 rm -rf docs/api/grpc/vega 2> /dev/null
 rm -rf docs/api/grpc/blockexplorer 2> /dev/null
-rm -rf docs/api/rest/core 2> /dev/null
-rm -rf docs/api/rest/data-v2 2> /dev/null
-rm -rf docs/api/rest/data-v1 2> /dev/null
-rm -rf docs/api/rest/explorer 2> /dev/null
-rm -rf docs/api/rest/state 2> /dev/null
 ## Back compat: Remove former GRPC docs path
 rm -rf docs/graphql 2> /dev/null
 rm -rf versioned_docs/version-v0.53.0/graphql 2> /dev/null
