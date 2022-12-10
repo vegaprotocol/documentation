@@ -35,6 +35,10 @@ The **V2 API** (in alpha) uses JSON-RPC with an HTTP wrapper.
 * [OpenRPC Wallet API](./vega-wallet/v2-api/openrpc): An overview of the API
 * [JSON-RPC playground](./vega-wallet/v2-api/openrpc-api-playground): See what methods the wallet API calls and try it out
 
+**V1**, which uses REST. The V1 API will not be supported once the V2 API is out of alpha.
+The V1 API (in deprecation) uses REST.
+* [V1 REST documentation](./vega-wallet/v1-api)
+
 ## REST for learning the APIs
 REST is the ubiquitous protocol for the web. Vega has four REST endpoints: two are served by core nodes, and two are served by data nodes. REST is fairly easy to get started with, and Vega supports nearly all the functionality provided by gRPC and GraphQL on the REST APIs. Note: REST does not support streaming.
 
