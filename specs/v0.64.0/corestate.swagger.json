@@ -9,7 +9,7 @@
       "name": "CoreStateService"
     }
   ],
-  "host": "api.n10.testnet.vega.xyz",
+  "host": "n10.testnet.vega.xyz",
   "schemes": [
     
     "https"
