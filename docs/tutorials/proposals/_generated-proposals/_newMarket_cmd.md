@@ -12,8 +12,8 @@
      "decimalPlaces": "5",
      "positionDecimalPlaces": "5",
      "instrument": {
-      "name": "Oranges Daily",
-      "code": "ORANGES.24h",
+      "name": "Apples Yearly (2022)",
+      "code": "APPLES.22",
       "future": {
        "settlementAsset": "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
        "quoteName": "tEuro",
@@ -76,8 +76,8 @@
       }
      },
      "metadata": [
+      "sector:health",
       "sector:energy",
-      "sector:materials",
       "source:docs.vega.xyz"
      ],
      "priceMonitoringParameters": {
@@ -99,17 +99,17 @@
      },
      "logNormal": {
       "tau": 0.0001140771161,
-      "riskAversionParameter": 0.0001,
+      "riskAversionParameter": 0.01,
       "params": {
        "mu": 0,
        "r": 0.016,
-       "sigma": 0.8
+       "sigma": 0.5
       }
      }
     }
    },
-   "closingTimestamp": 1672246528,
-   "enactmentTimestamp": 1672332928
+   "closingTimestamp": 1672306222,
+   "enactmentTimestamp": 1672392622
   }
  }
 }'

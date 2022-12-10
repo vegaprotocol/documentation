@@ -11,7 +11,6 @@
 
 const { protodocs } = require('./docs/api/grpc/sidebar')
 const datav2 = require('./docs/api/rest/data-v2/sidebar.js')
-const datav1 = require('./docs/api/rest/data-v1/sidebar.js')
 const core = require('./docs/api/rest/core/sidebar.js')
 const state = require('./docs/api/rest/state/sidebar.js')
 const explorer = require('./docs/api/rest/explorer/sidebar.js')
@@ -75,30 +74,9 @@ module.exports = {
           label: 'Overview'
         },
         datav2,
-        datav1,
         explorer,
         core,
         state
-        /*        {
-          type: 'link',
-          href: '/docs/testnet/api/rest/data-v1/trading-data-service',
-          label: 'Data node (v1)'
-        },
-        {
-          type: 'link',
-          href: '/docs/testnet/api/rest/data-v2/trading-data-service',
-          label: 'Data node (v2)'
-        },
-        {
-          type: 'link',
-          href: '/docs/testnet/api/rest/core/core-service',
-          label: 'Core'
-        },
-        {
-          type: 'link',
-          href: '/docs/testnet/api/rest/state/core-state-service',
-          label: 'Core state'
-        } */
       ]
     },
     {
