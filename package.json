@@ -35,8 +35,8 @@
   },
   "dependencies": {
     "@apidevtools/swagger-parser": "^10.1.0",
-    "@docusaurus/core": "^2.1.0",
-    "@docusaurus/preset-classic": "^2.1.0",
+    "@docusaurus/core": "^2.2.0",
+    "@docusaurus/preset-classic": "^2.2.0",
     "@easyops-cn/docusaurus-search-local": "0.33.5",
     "@edno/docusaurus2-graphql-doc-generator": "^1.13.1",
     "@graphql-tools/url-loader": "^7.13.3",
@@ -47,9 +47,9 @@
     "bignumber.js": "^9.0.2",
     "clsx": "^1.2.1",
     "date-fns": "^2.29.1",
-    "docusaurus-plugin-openapi-docs": "^1.4.0",
+    "docusaurus-plugin-openapi-docs": "1.4.7",
     "docusaurus-protobuffet": "0.3.2",
-    "docusaurus-theme-openapi-docs": "^1.4.0",
+    "docusaurus-theme-openapi-docs": "1.4.7",
     "file-loader": "6.2.0",
     "glob": "^8.0.3",
     "graphql": "^16.5.0",
@@ -62,7 +62,7 @@
     "url-loader": "4.1.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^2.1.0"
+    "@docusaurus/module-type-aliases": "^2.2.0"
   },
   "browserslist": {
     "production": [
