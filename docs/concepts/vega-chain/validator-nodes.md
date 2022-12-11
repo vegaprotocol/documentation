@@ -50,18 +50,40 @@ To become a standby validator, a candidate / pending validator must:
 
 If there are free slots for one or more standby validators, they are added as standby validators in the next epoch. If a node that submits the transaction to join has a higher score than the lowest scoring standby validator, then it will become a standby validator and the lowest scoring standby validator is removed from the standby set.
 
+## Candidate / Pending Validators
+Any other nodes on the network are known as candidate or pending validators.  Nodes could be in this status for one of two reasons:
+1. The node has not sent the necessary transaction to announce itself to the network
+2. The node has sent the transaction, but does not have enough total stake to make become a standby or consensus validator 
+
 Read more: [Becoming a validator](#becoming-a-validator)
 
-## Validator Scoring (I propose to make everything under here into a 5th page
+# Staking rewards and validator scoring
+
+Validators and nominators both receive incentives for securing the network. The amount of those incentives, rewarded as VEGA, depends on factors including how much stake is nominated. 
+
+**To be considered for staking rewards, a tokenholder must associate VEGA to a Vega key and nominate one or more validators.**
+
+:::info Try it out
+Try out staking on **[token.fairground.wtf](https://token.fairground.wtf)** to try out associating testnet tokens and nominating validators. Staking rewards are paid into your Vega wallet after each epoch ends. 
+
+Staking rewards must be withdrawn to an Ethereum wallet, and then associated to a Vega wallet, before they can be staked.
+:::
+
+In each epoch, rewards are distributed among validators in proportion to the number of tokens they represent (i.e., their total stake). The total stake includes a validator's own stake and the tokens nominated to that validator. Of this reward, a fixed amount is distributed among the tokenholders the validator represents. The proportion of rewards distributed to delegators is <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.delegatorShare" hideName={true} />.
+
+The  reward received by each validator, and therefore passed onto their delegators, at the end of each epoch is based on their validator scores which account for various penalties.  However, there is no token slashing, i.e., a tokenholder cannot lose their tokens through any actions of a validator.
+
 A validating node’s score is calculated based on three factors:
 
-* Stake 
+* Total Stake 
 * Penalties for overstaking 
 * Performance
 
+These factors drive a number of individual scores which combine to form the overall score for each validator in the epoch.  These scores can be found on the rewards API.
+
 ### Raw Validator Score 
 
-The raw validator score takes into account a number of factors, including the total stake, optimal stake, minimum number of validators required, actual number of validators, and more. At a high level, it represents the overall share of total stake the validator represents, but penalises if the node is "overstaked".  Overstaking is a risk to network security since it can lead to a concentration of voting power with a small number of nodes, allowing those nodes to potentially halt the network.
+The raw validator score represents the overall share of total stake the validator represents, but penalises the node if it is "overstaked".  Overstaking is a risk to network security since it can lead to a concentration of voting power with a small number of nodes, allowing those nodes to potentially halt the network.
 
 See below for how the validator score is calculated. 
 
@@ -87,7 +109,7 @@ The raw validator score is calculated as follows:
 
 `raw_validator_score` = (`validator_stake_i` - `flat_penalty` - `higher_penalty`) / `total_stake`
 
-In other words, the network calculates an optimal stake which represents an even distribution of stake for the current number of concensus validators.  It then penalises any validators which have stake that exceeds that amount.  Then the raw validator score is the resulting amount divided by the total stake on the network.
+In other words, the network calculates an optimal stake which represents an even distribution of stake for the current number of consensus validators and the desired competition level.  It then penalises any validators which have stake that exceeds that amount.  The raw validator score is then the resulting amount divided by the total stake on the network.
 
 Full details on this calculation can be found in https://github.com/vegaprotocol/specs/blob/master/protocol/0061-REWP-pos_rewards.md.
 
