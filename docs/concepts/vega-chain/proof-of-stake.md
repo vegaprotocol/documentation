@@ -10,17 +10,11 @@ import Topic from '/docs/topics/_topic-staking.mdx'
 
 Vega runs on a delegated proof of stake blockchain. 
 
-Validator nodes run the Vega network, and they decide on the validity of the blocks containing the network's transactions and thus execute those transactions. The validators who run validator nodes are required to own a minimum amount of <NetworkParameter frontMatter={frontMatter} param="validators.delegation.minAmount" hideName={true} suffix="tokens" formatter="governanceToken" /> that they stake to themselves.
+Validator nodes run the Vega network, and they decide on the validity of the blocks containing the network's transactions and thus execute those transactions. The validators who run validator nodes are required to own a minimum amount of <NetworkParameter frontMatter={frontMatter} param="validators.delegation.minAmount" hideName={true} suffix="tokens" formatter="governanceToken" /> that they stake to themselves. The validator nodes reach consensus using Tendermint and propose blocks at a rate proportionate to their voting power, which is driven by their total stake minus any penalties. 
 
 Read more: [Validator nodes](#validating-nodes)
 
-**Participants who hold a balance of VEGA, the governance asset, can use their tokens to nominate validator nodes.** This is done by associating those tokens to a Vega key to use as stake, and then nominating one or more validators they trust to help secure the network. Nominating validators loans the consensus voting weight of the VEGA tokens to endorse a validator's trustworthiness. 
-
-Tokens, in addition to their use for nominating validators, also grant tokenholder voting rights on governance actions. If a token is delegated, its governance voting rights stay with the tokenholder and are not transferred to any validators that the tokenholder nominates.
-
-Everyone participating in keeping the network secure, robust and reliable, including nominators, is **rewarded** for keeping the network running. Not meeting the requirements of running the network can lead to penalties, such as **rewards being withheld**.
-
-Read more: [Rewards](#rewards)
+**Participants who hold a balance of VEGA, the governance asset, can use their tokens to nominate validator nodes.** This is done by associating those tokens to a Vega key to use as stake, and then nominating one or more validators they trust to help secure the network. Nominating validators loans the consensus voting weight of the VEGA tokens to endorse a validator's trustworthiness. Participants with staked tokens will earn rewards for supporting the network.
 
 Vega is non-slashing -- there is no mechanism through which a tokenholder can lose a staked token through a validator being punished. Any measures to that end use different mechanisms that will affect a bad validator's (and potentially their delegators') revenue, but does not affect the delegated tokens themselves.
 
@@ -28,6 +22,8 @@ Read more: [Penalties](#penalties)
 
 ## VEGA token
 Vega uses the VEGA ERC20 token for governance, which includes nominating validators to run nodes, and creating and voting on governance proposals.
+
+If a token is delegated, its governance voting rights stay with the tokenholder and are not transferred to any validators that the tokenholder nominates.
 
 A VEGA token (or fraction) can be either dissociated or associated with a Vega key:
 
@@ -115,28 +111,3 @@ A participant can choose to un-nominate at any time, and the action is executed 
 
 The participant will not receive any rewards from the validator in that epoch. The tokens are marked as available to the participant.
 
-## Staking rewards & penalties
-
-### Rewards
-Validators and nominators both receive incentives for securing the network. The amount of those incentives, rewarded as VEGA, depends on factors including how much stake is nominated. 
-
-**To be considered for staking rewards, a tokenholder must associate VEGA to a Vega key and nominate one or more validators.**
-
-:::info Try it out
-Try out staking on **[token.fairground.wtf](https://token.fairground.wtf)** to try out associating testnet tokens and nominating validators. Staking rewards are paid into your Vega wallet after each epoch ends. 
-
-Staking rewards must be withdrawn to an Ethereum wallet, and then associated to a Vega wallet, before they can be staked.
-:::
-
-In each epoch, rewards are distributed among validators in proportion to the number of tokens they represent (i.e., their total stake). The total stake includes a validator's own stake and the tokens nominated to that validator. Of this reward, a fixed amount is distributed among the tokenholders the validator represents. The proportion of rewards distributed to delegators is <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.delegatorShare" hideName={true} />.
-
-The actual reward received by each validator at the end of each epoch is based on a few factors and is discussed in the next section.
-
-Read more: [Risks of over-staked validators](#too-much-stake)
- 
-### Penalties
-Validator rewards can be impacted by various penalties that may be applied based on scoring, these are discussed in the next section. 
-
-However, there is no token slashing, i.e., a tokenholder cannot lose their tokens through any actions of a validator.
-
-Read more: [How a validator node's performance is determined](#validator-node-performance)
