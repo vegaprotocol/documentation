@@ -1,0 +1,73 @@
+---
+id: network-limits
+title: NetworkLimits
+hide_table_of_contents: false
+---
+
+
+Information about whether proposals are enabled, if we are still bootstrapping etc..
+
+```graphql
+type NetworkLimits {
+  canProposeMarket: Boolean!
+  canProposeAsset: Boolean!
+  bootstrapFinished: Boolean!
+  proposeMarketEnabled: Boolean!
+  proposeAssetEnabled: Boolean!
+  bootstrapBlockCount: Int!
+  genesisLoaded: Boolean!
+  proposeMarketEnabledFrom: Timestamp!
+  proposeAssetEnabledFrom: Timestamp!
+}
+```
+
+
+### Fields
+
+#### [`canProposeMarket`](#) ([`Boolean!`](/mainnet/api/graphql/scalars/boolean))
+
+Are market proposals allowed at this point in time
+
+
+#### [`canProposeAsset`](#) ([`Boolean!`](/mainnet/api/graphql/scalars/boolean))
+
+Are asset proposals allowed at this point in time
+
+
+#### [`bootstrapFinished`](#) ([`Boolean!`](/mainnet/api/graphql/scalars/boolean))
+
+True once block count &#x003E; bootstrapBlockCount
+
+
+#### [`proposeMarketEnabled`](#) ([`Boolean!`](/mainnet/api/graphql/scalars/boolean))
+
+Are market proposals enabled on this chain
+
+
+#### [`proposeAssetEnabled`](#) ([`Boolean!`](/mainnet/api/graphql/scalars/boolean))
+
+Are asset proposals enabled on this chain
+
+
+#### [`bootstrapBlockCount`](#) ([`Int!`](/mainnet/api/graphql/scalars/int))
+
+How many blocks before the chain comes out of bootstrap mode
+
+
+#### [`genesisLoaded`](#) ([`Boolean!`](/mainnet/api/graphql/scalars/boolean))
+
+True once the genesis file is loaded
+
+
+#### [`proposeMarketEnabledFrom`](#) ([`Timestamp!`](/mainnet/api/graphql/scalars/timestamp))
+
+The date/timestamp in unix nanoseconds at which market proposals will be enabled (0 indicates not set)
+
+
+#### [`proposeAssetEnabledFrom`](#) ([`Timestamp!`](/mainnet/api/graphql/scalars/timestamp))
+
+The date/timestamp in unix nanoseconds at which asset proposals will be enabled (0 indicates not set)
+
+
+
+

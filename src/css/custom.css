@@ -254,12 +254,100 @@ a.external:after {
 
 /* Topic stubs */
 
-.stub [class*='details'] {
-  background: var( --ifm-color-secondary-contrast-background );
-  border-color: var(--ifm-color-secondary-dark);
-  --docusaurus-details-decoration-color: var(--ifm-color-secondary-darkest);
+.col--12 .stub [class*='details'] {
+  background: var( --ifm-color-secondary-contrast-background ) !important;
+  border-color: var(--ifm-color-secondary-dark) !important;
+  --docusaurus-details-decoration-color: var(--ifm-color-secondary-darkest) !important;
 }
 
-.stub [class*='details'] a {
+.col--12 .stub [class*='details'] a {
     text-decoration-color: var(--ifm-color-secondary-darkest);
+}
+
+/* OpenAPI docs */
+/* Sidebar Method labels */
+.api-method > .menu__link {
+  align-items: center;
+  justify-content: start;
+}
+
+.api-method > .menu__link::before {
+  width: 50px;
+  height: 20px;
+  font-size: 12px;
+  line-height: 20px;
+  text-transform: uppercase;
+  font-weight: 600;
+  border-radius: 0.25rem;
+  border: 1px solid;
+  border-inline-start-width: 5px;
+  margin-right: var(--ifm-spacing-horizontal);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.get > .menu__link::before {
+  content: "get";
+  background-color: var(--ifm-color-info-contrast-background);
+  color: var(--ifm-color-info-contrast-foreground);
+  border-color: var(--ifm-color-info-dark);
+}
+
+.post > .menu__link::before {
+  content: "post";
+  background-color: var(--ifm-color-success-contrast-background);
+  color: var(--ifm-color-success-contrast-foreground);
+  border-color: var(--ifm-color-success-dark);
+}
+
+.delete > .menu__link::before {
+  content: "del";
+  background-color: var(--ifm-color-danger-contrast-background);
+  color: var(--ifm-color-danger-contrast-foreground);
+  border-color: var(--ifm-color-danger-dark);
+}
+
+.put > .menu__link::before {
+  content: "put";
+  background-color: var(--ifm-color-warning-contrast-background);
+  color: var(--ifm-color-warning-contrast-foreground);
+  border-color: var(--ifm-color-warning-dark);
+}
+
+.patch > .menu__link::before {
+  content: "patch";
+  background-color: var(--ifm-color-success-contrast-background);
+  color: var(--ifm-color-success-contrast-foreground);
+  border-color: var(--ifm-color-success-dark);
+}
+
+.head > .menu__link::before {
+  content: "head";
+  background-color: var(--ifm-color-secondary-contrast-background);
+  color: var(--ifm-color-secondary-contrast-foreground);
+  border-color: var(--ifm-color-secondary-dark);
+} 
+
+/* Fix for details element style override in openapi docs */
+.row .col--12 details {
+  --docusaurus-details-decoration-color: var(--ifm-alert-border-color) !important;
+  --docusaurus-details-transition: transform var(--ifm-transition-fast) ease !important;
+  background-color: var(--ifm-alert-background-color);
+  border: var(--ifm-alert-border-width) solid var(--ifm-alert-border-color);
+  border-left-width: var(--ifm-alert-border-left-width);
+  margin: 0 0 var(--ifm-spacing-vertical) !important;
+  box-shadow: var(--ifm-alert-shadow);
+  color: var(--ifm-alert-foreground-color);
+  padding: var(--ifm-alert-padding-vertical) var(--ifm-alert-padding-horizontal);
+}
+
+/* Fix for details element style override in openapi docs */
+.row .col.col--12 details > div {
+  margin-top: 1rem;
+  border-top: 1px solid var(--docusaurus-details-decoration-color);
+  padding-top: 1rem; 
+}
+
+.DataNodeList p {
+  font-size: 0.8em;
 }

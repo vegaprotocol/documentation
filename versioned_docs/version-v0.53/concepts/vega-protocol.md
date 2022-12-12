@@ -85,6 +85,42 @@ If a proposal receives enough token weight in favour within the enactment period
 
 Note the enactment date must be at least the minimum enactment period for the proposal type/subtype (specified by a network parameter for each proposal type) after voting closes. See the network parameters and their values on the [Vega block explorer](https://explorer.vega.xyz/network-parameters).
 
+### Thresholds set by network parameters
+Governance requires that certain parameters need to be within a defined range, but offer some flexibility.
+
+When validating a governance proposal, the values chosen in the proposal will be checked to ensure they fit within the thresholds defined by the network parameters.
+
+Each type of governance proposal can have different thresholds, though they fit into broader categories. Those categories include:
+
+* `minProposerBalance`: minimum amount of VEGA that a proposer needs to have associated with their Vega key to have the proposal accepted for a tokenholder vote
+* `minClose`: minimum amount of time before a proposal can be closed for voting 
+* `maxClose`: maximum amount of time a proposal can be open for voting 
+* `minEnactment`: minimum time allowed between vote closing and the proposal's change being enacted on the network
+* `maxEnactment`: maximum time allowed between vote closing and the proposal's change being enacted on the network
+* `requiredParticipation`: minimum number of tokens that must vote for a proposal to pass 
+* `requiredMajority`: minimum majority that a proposal's 'yes' votes must reach for it to be enacted 
+  
+Importantly, these `minimum` levels are themselves network parameters, and therefore can be changed through governance.
+
+:::tip Query for data
+See the current values (in some cases, different per network) on the [block explorer](https://explorer.fairground.wtf). 
+
+Otherwise, [use REST](../api/rest/state/core-state-service-list-network-parameters.api.mdx) to see the network parameters and their values.
+:::
+
+#### Example
+Consider a network parameter that specifies the proportion of fees that goes to validators (<NetworkParameter frontMatter={frontMatter} param="transfer.fee.factor" />), with change thresholds:
+
+* <NetworkParameter frontMatter={frontMatter} name="Minimum length of voting period" param="governance.proposal.updateNetParam.minClose" />
+* <NetworkParameter frontMatter={frontMatter} name="Maximum length of voting period" param="governance.proposal.updateNetParam.maxClose" />
+* <NetworkParameter frontMatter={frontMatter} name="Minimum time to enactment" param="governance.proposal.updateNetParam.minEnact" />
+* <NetworkParameter frontMatter={frontMatter} name="Maximum time to enactment" param="governance.proposal.updateNetParam.maxEnact" />
+* <NetworkParameter frontMatter={frontMatter} name="Required participation" param="governance.proposal.updateNetParam.requiredParticipation" formatter="percent" />
+* <NetworkParameter frontMatter={frontMatter} name="Required majority" param="governance.proposal.updateNetParam.requiredMajority" formatter="percent" />
+* <NetworkParameter frontMatter={frontMatter} name="Proposer must have" param="governance.proposal.updateNetParam.minProposerBalance" formatter="governanceToken" suffix='tokens' />
+
+A proposal to change the <NetworkParameter frontMatter={frontMatter} hideValue={true} param="transfer.fee.factor" />, would need to pass all of the thresholds listed above.
+
 ## Network parameter governance
 There are certain parameters within Vega that influence the behaviour of the system and can be changed by on-chain governance. Vega tokenholders can define the optimal network configuration by creating and voting on network parameter proposals.
 
@@ -97,35 +133,12 @@ A network parameter is defined by:
 * Constraints
 * Governance update policy
 
-**Read more:** [Guide to submitting a network parameter proposal using the command line](../tutorials/proposals/network-parameter-proposal.md)
+:::tip Try it out
+[Proposal tutorial](../tutorials/proposals/network-parameter-proposal.md): See the steps for submitting a network parameter proposal.
+:::
 
-### Thresholds for network parameters
-Some network parameters need to be more difficult to change than others. Therefore, the protocol needs to know for each network parameter what governance thresholds apply for ascertaining a proposal's ability to change the parameter's value. Specifically, those thresholds are:
-
-* `MinimumProposalPeriod`
-* `MinimumPreEnactmentPeriod`
-* `MinimumRequiredParticipation` 
-* `MinimumRequiredMajority`
-
-There are groups of network parameters that will use the same values for the thresholds. Importantly, these `minimum` levels are themselves network parameters, and therefore subject to change.
-
-Consider a network parameter that specifies the proportion of fees that goes to validators (<NetworkParameter frontMatter={frontMatter} param="transfer.fee.factor" hideValue={true} />), with change thresholds:
-
-* <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minClose" />
-* <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.maxClose" />
-* <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minEnact" />
-* <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.maxEnact" />
-* <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.requiredParticipation" formatter="percent" />
-* <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.requiredMajority" formatter="percent" />
-* <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minProposerBalance" formatter="governanceToken" suffix='tokens' />
-
-A proposal to change the <NetworkParameter frontMatter={frontMatter} param="transfer.fee.factor" />, would need to pass all of the thresholds listed above.
-
-<!--### Threshold and rules [WIP]-->
-  
 ## Asset/token management
 In restricted mainnet, the VEGA token can be used for nominating validators and for voting on governance proposals. In a future version, it will be possible to deposit and withdraw assets used for trading.
-
 
 ### Withdrawals
 
@@ -139,7 +152,9 @@ To move the assets into the participant's Ethereum wallet, they need to submit t
 
 Once a successful withdrawal transaction has occurred, the ERC20 bridge will emit an `Asset_Withdrawn` event, and confirms to the Vega network that the withdrawal has been completed.
 
-**Read more**: [ERC20 bridge logic API documentation](../api/bridge/contracts/ERC20_Bridge_Logic.md#withdraw_asset)
+:::note Read more
+[ERC20 bridge logic API documentation](../api/bridge/contracts/ERC20_Bridge_Logic.md#withdraw_asset)
+:::
 
 #### Diagram: Withdrawals
 ![Withdrawal diagram](/img/concept-diagrams/diagram-withdraw.png)
@@ -153,8 +168,9 @@ Rewards accrued through staking are not associated automatically. To stake those
 Track and withdraw staking rewards on the [Vega token withdrawals page](https://token.vega.xyz/withdraw).
 :::
 
-**Read more**: 
-* [VEGA token](./vega-chain#vega-token) for more details about the VEGA token
+:::note Read more
+See [VEGA token](./vega-chain#vega-token) for more details about the VEGA token.
+:::
 
 ### Transfer assets to keys or accounts
 Transfers can be used to move assets from one Vega key to another, or from a Vega key to a specific account, such as a reward pool used for the on-chain network treasury.

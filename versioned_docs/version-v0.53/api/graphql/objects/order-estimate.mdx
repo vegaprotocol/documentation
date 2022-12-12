@@ -1,0 +1,37 @@
+---
+id: order-estimate
+title: OrderEstimate
+hide_table_of_contents: false
+---
+
+
+An estimate of the fee to be paid by the order
+
+```graphql
+type OrderEstimate {
+  fee: TradeFee!
+  totalFeeAmount: String!
+  marginLevels: MarginLevels!
+}
+```
+
+
+### Fields
+
+#### [`fee`](#) ([`TradeFee!`](/mainnet/api/graphql/objects/trade-fee))
+
+The estimated fee if the order was to trade
+
+
+#### [`totalFeeAmount`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+The total estimated amount of fee if the order was to trade
+
+
+#### [`marginLevels`](#) ([`MarginLevels!`](/mainnet/api/graphql/objects/margin-levels))
+
+The margin requirement for this order
+
+
+
+

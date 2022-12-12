@@ -1,0 +1,30 @@
+---
+id: int
+title: Int
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+
+```graphql
+scalar Int
+```
+
+
+
+
+### Member of
+
+[`Asset`](/testnet/api/graphql/objects/asset)  <Badge class="secondary" text="object"/><Bullet />[`AuctionDuration`](/testnet/api/graphql/objects/auction-duration)  <Badge class="secondary" text="object"/><Bullet />[`busEvents`](/testnet/api/graphql/subscriptions/bus-events)  <Badge class="secondary" text="subscription"/><Bullet />[`Delegation`](/testnet/api/graphql/objects/delegation)  <Badge class="secondary" text="object"/><Bullet />[`DiscreteTrading`](/testnet/api/graphql/objects/discrete-trading)  <Badge class="secondary" text="object"/><Bullet />[`EpochData`](/testnet/api/graphql/objects/epoch-data)  <Badge class="secondary" text="object"/><Bullet />[`Future`](/testnet/api/graphql/objects/future)  <Badge class="secondary" text="object"/><Bullet />[`FutureProduct`](/testnet/api/graphql/objects/future-product)  <Badge class="secondary" text="object"/><Bullet />[`getMarketDataHistoryByID`](/testnet/api/graphql/queries/get-market-data-history-by-id)  <Badge class="secondary" text="query"/><Bullet />[`HistorySegment`](/testnet/api/graphql/objects/history-segment)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityOrder`](/testnet/api/graphql/objects/liquidity-order)  <Badge class="secondary" text="object"/><Bullet />[`Market`](/testnet/api/graphql/objects/market)  <Badge class="secondary" text="object"/><Bullet />[`NetworkLimits`](/testnet/api/graphql/objects/network-limits)  <Badge class="secondary" text="object"/><Bullet />[`NewAsset`](/testnet/api/graphql/objects/new-asset)  <Badge class="secondary" text="object"/><Bullet />[`NewMarket`](/testnet/api/graphql/objects/new-market)  <Badge class="secondary" text="object"/><Bullet />[`NodeData`](/testnet/api/graphql/objects/node-data)  <Badge class="secondary" text="object"/><Bullet />[`NodeSet`](/testnet/api/graphql/objects/node-set)  <Badge class="secondary" text="object"/><Bullet />[`OffsetPagination`](/testnet/api/graphql/inputs/offset-pagination)  <Badge class="secondary" text="input"/><Bullet />[`orderByID`](/testnet/api/graphql/queries/order-by-id)  <Badge class="secondary" text="query"/><Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination)  <Badge class="secondary" text="input"/><Bullet />[`PositionResolution`](/testnet/api/graphql/objects/position-resolution)  <Badge class="secondary" text="object"/><Bullet />[`PriceMonitoringTrigger`](/testnet/api/graphql/objects/price-monitoring-trigger)  <Badge class="secondary" text="object"/><Bullet />[`RecurringTransfer`](/testnet/api/graphql/objects/recurring-transfer)  <Badge class="secondary" text="object"/><Bullet />[`TargetStakeParameters`](/testnet/api/graphql/objects/target-stake-parameters)  <Badge class="secondary" text="object"/><Bullet />[`Trade`](/testnet/api/graphql/objects/trade)  <Badge class="secondary" text="object"/><Bullet />[`TradeSettlement`](/testnet/api/graphql/objects/trade-settlement)  <Badge class="secondary" text="object"/><Bullet />[`TradeUpdate`](/testnet/api/graphql/objects/trade-update)  <Badge class="secondary" text="object"/>
+
+
+

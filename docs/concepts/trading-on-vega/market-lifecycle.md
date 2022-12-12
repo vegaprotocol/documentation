@@ -21,7 +21,7 @@ The market lifecycle begins when a proposal for a new market is accepted, and is
 <!--![Life cycle flow diagram](./0043-market-lifecycle-flow-diagram.svg)-->
 
 ## Market status: Proposed
-All markets must first be proposed by tokenholders by following the [governance process](../vega-protocol.md). Once a valid market proposal is accepted, the market can accept [liquidity commitments](./../../tutorials/providing-liquidity). 
+All markets must first be proposed by tokenholders by following the [governance process](../vega-protocol.md). Once a valid market proposal is accepted, the market can accept [liquidity commitments](./../../tutorials/committing-liquidity). 
 
 Voting begins and its state is `proposed`. Not every market that is proposed (and accepts liquidity) is guaranteed to exist, as it must get enough votes in favour from tokenholders.
 
@@ -76,7 +76,7 @@ An active market status indicates it is in continuous trading.
 
 ### Enters active state
 - From `Pending`: enactment date reached and conditions to transition from pending to active are met
-- From `Suspended`: conditions specified in [price monitoring](/docs/testnet/concepts/trading-on-vega/market-protections#price-monitoring), and [liquidity monitoring](/docs/testnet/concepts/trading-on-vega/market-protections#liquidity-monitoring) are met for the market to exit the suspended status back to active
+- From `Suspended`: conditions specified in [price monitoring](/testnet/concepts/trading-on-vega/market-protections#price-monitoring), and [liquidity monitoring](/testnet/concepts/trading-on-vega/market-protections#liquidity-monitoring) are met for the market to exit the suspended status back to active
 
 ### What is and isn't possible
 - Liquidity providers can submit, amend, or cancel commitments 

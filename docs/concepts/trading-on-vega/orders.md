@@ -5,7 +5,8 @@ hide_title: false
 description: See the order types and when they're applicable for a market.
 ---
 
-# Orders
+import NetworkParameter from '@site/src/components/NetworkParameter';
+
 An order is an instruction to buy or sell on specific market, and it can go long or short on the market's price. Placing an order does not guarantee it gets filled. 
 
 :::info Try it out
@@ -26,7 +27,7 @@ The information needed by Vega to process an order:
 | Expires at | If the order has a Good 'til Time TIF, the specific time the order will expire | Chosen by user|
 | [Type](#order-types)	  | Type of order (such as limit or market)                                   | Chosen by user|
 | [Pegged order](#pegged-order) | Details about a pegged order, if an order uses pegs                 |Chosen by user|
-| [Liquidity provision](./../../tutorials/providing-liquidity.md) | Provides details if an order is a liquidity commitment order   |Chosen by user|
+| [Liquidity provision](./../../tutorials/committing-liquidity.md) | Provides details if an order is a liquidity commitment order   |Chosen by user|
 | Order ID | Unique deterministic ID, can be used to query but only exists after consensus      |Determined by network|
 | [Order status](#order-status)	  | Whether an order is filled, partially filled, stopped or cancelled |Determined by network|
 | Reference | Unique order reference, used to retrieve an order submitted through consensus |Determined by network|
@@ -105,6 +106,22 @@ Unparked pegged orders will be rejected:
 * If the reference price no longer exists (e.g. no best bid)
 * If the price moves to a value that means it would create an invalid order if the offset was applied
 
+## Batch order
+Order instructions (such as submit, cancel, and/or amend orders) can be batched together in a single transaction, which allows traders to regularly place and maintain the price and size of multiple orders without needing to wait for each order instruction to be processed by the network individually. 
+
+To prevent spamming, the total number of instructions in a batch order can be no more than the number set with the network parameter: <NetworkParameter frontMatter={frontMatter} param="network.spam_protection.max.batch.size" />
+
+Batches are processed in the following order: all cancellations, then all amendments, then all submissions. 
+
+They are also processed as if they were standalone order instructions in terms of market behaviour. For example, if an instruction, had it been submitted individually, would trigger entry into or exit from an auction, then the order instruction would set off the auction trigger before the rest of the batch is processed.
+
+Batch order instructions can be used in a liquidity provision strategy to help providers manage their limit orders (and their risk) more efficiently.
+
+:::note Read more
+* [Auctions](trading-modes.md#auctions)
+* [Providing liquidity](../liquidity/provision.md)
+:::
+
 ### Network order
 A network order is triggered by the Vega network to close out a distressed trader, as part of position resolution. Network orders cannot be submitted by a party.
 
@@ -172,17 +189,17 @@ Good 'Til Time (GTT): A persistent order that is valid until the trader's suppli
 ### Good For Auction
 Good For Auction (GFA): This order is dependent on the market's state, and will only be accepted by the system if it arrives during an auction period, otherwise it will be rejected. The order can act like either a Good 'Til Cancelled or Good Til Time order depending on whether an expiry is set.
 
-When an auction uncrosses, GFA orders that are not matched are stopped. 
+When an auction uncrosses, GFA orders that are not matched are cancelled. 
 
 ### Good For Normal
 Good For Normal (GFN): This order is dependent on the market's state and will only be accepted by the system if it arrived during the market's standard trading mode, otherwise it will be rejected. The order can act like either a Good 'Til Cancelled or Good Til Time order depending on whether an expiry is set.
 
-Good for Normal orders are stopped if the market moves into an auction.
+Good for Normal orders are cancelled if the market moves into an auction.
 
 ## Submitting, amending and cancelling orders
 This section is specific to market and limit orders. 
 
-See [pegged orders](#pegged-order) and [liquidity commitment orders](./../../tutorials/providing-liquidity) for information on how to manage those order types.
+See [pegged orders](#pegged-order) and [liquidity commitment orders](./../../tutorials/committing-liquidity) for information on how to manage those order types.
 
 ### Submit an order 
 Orders can be submitted into any market that is active - not expired or settled. Orders will only be accepted if sufficient margin can be allocated from a trader's available collateral. Not all orders can be submitted in all trading modes. 

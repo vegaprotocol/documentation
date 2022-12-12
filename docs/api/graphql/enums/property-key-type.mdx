@@ -1,0 +1,64 @@
+---
+id: property-key-type
+title: PropertyKeyType
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Type describes the type of properties that are supported by the data source
+engine.
+
+```graphql
+enum PropertyKeyType {
+  TYPE_EMPTY
+  TYPE_INTEGER
+  TYPE_STRING
+  TYPE_BOOLEAN
+  TYPE_DECIMAL
+  TYPE_TIMESTAMP
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>PropertyKeyType.<b>TYPE_EMPTY</b></code>](#) 
+> Any type.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>PropertyKeyType.<b>TYPE_INTEGER</b></code>](#) 
+> Integer type.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>PropertyKeyType.<b>TYPE_STRING</b></code>](#) 
+> String type.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>PropertyKeyType.<b>TYPE_BOOLEAN</b></code>](#) 
+> Boolean type.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>PropertyKeyType.<b>TYPE_DECIMAL</b></code>](#) 
+> Any floating point decimal type.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>PropertyKeyType.<b>TYPE_TIMESTAMP</b></code>](#) 
+> Timestamp date type.
+> 
+
+
+
+### Member of
+
+[`PropertyKey`](/testnet/api/graphql/objects/property-key)  <Badge class="secondary" text="object"/>
+
+
+

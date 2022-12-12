@@ -1,0 +1,67 @@
+---
+id: deposit
+title: Deposit
+hide_table_of_contents: false
+---
+
+
+The details of a deposit processed by vega
+
+```graphql
+type Deposit {
+  id: ID!
+  party: Party!
+  amount: String!
+  asset: Asset!
+  status: DepositStatus!
+  createdTimestamp: String!
+  creditedTimestamp: String
+  txHash: String
+}
+```
+
+
+### Fields
+
+#### [`id`](#) ([`ID!`](/mainnet/api/graphql/scalars/id))
+
+The Vega internal id of the deposit
+
+
+#### [`party`](#) ([`Party!`](/mainnet/api/graphql/objects/party))
+
+The PartyID initiating the deposit
+
+
+#### [`amount`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+The amount to be withdrawn
+
+
+#### [`asset`](#) ([`Asset!`](/mainnet/api/graphql/objects/asset))
+
+The asset to be withdrawn
+
+
+#### [`status`](#) ([`DepositStatus!`](/mainnet/api/graphql/enums/deposit-status))
+
+The current status of the deposit
+
+
+#### [`createdTimestamp`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+RFC3339Nano time at which the deposit was created
+
+
+#### [`creditedTimestamp`](#) ([`String`](/mainnet/api/graphql/scalars/string))
+
+RFC3339Nano time at which the deposit was finalized
+
+
+#### [`txHash`](#) ([`String`](/mainnet/api/graphql/scalars/string))
+
+Hash of the transaction on the foreign chain
+
+
+
+

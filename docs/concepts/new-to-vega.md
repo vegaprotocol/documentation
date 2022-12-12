@@ -13,12 +13,11 @@ If you have questions, join our community on [Discord](https://vega.xyz/discord)
 ## What is Vega?​
 Vega is a protocol for creating and trading derivatives on a fully decentralised network. 
 
-Currently, Vega is in restricted mainnet, which is run by a set of validators. There's also a Vega testnet called Fairground, which has trading enabled. 
+Currently, Vega is in restricted mainnet, which is run by a set of validators. There's also a Vega testnet called Fairground, where it's possible to try trading cash-settled futures on a test network.
 
 ### Learn more 
 * [Vega whitepaper](https://vega.xyz/papers/vega-protocol-whitepaper.pdf): A high-level overview of the protocol
 * [Vega website](https://vega.xyz): More about the project and the team
-* [Fairground docs](https://docs.fairground.vega.xyz): Testnet-specific documentation including trading info and guides
 * [Vega on YouTube](https://youtube.com/vegaprotocol): Video walkthroughs and conversations with Vega contributors
 * [Engineering roadmap](https://github.com/orgs/vegaprotocol/projects/114/views/4): Board showing the features the team has planned and their current status
 
@@ -45,7 +44,6 @@ Its functionality is limited and is riskier than networks that will follow it, a
 
 #### Fairground, Vega's testnet
 * [Learn about Fairground](https://fairground.wtf): Though trading isn't enabled on mainnet, you can try trading on Fairground. Place an order, track your positions, and explore the margin mechanism using Fairground. Keep an eye on the site for incentive opportunties, too. 
-* [Propose a market or asset](https://docs.fairground.vega.xyz/docs/trading-questions/#governance): Read documentation about proposals on the Fairground docs. 
 * [Share your proposal on Discord](https://vega.xyz/discord): If you propose a market, let everyone know on Discord so that people can vote on it. 
 
 ## How can I contribute to Vega?

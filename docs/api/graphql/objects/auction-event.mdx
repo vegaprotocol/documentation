@@ -1,0 +1,68 @@
+---
+id: auction-event
+title: AuctionEvent
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+type AuctionEvent {
+  marketId: ID!
+  leave: Boolean!
+  openingAuction: Boolean!
+  auctionStart: Timestamp!
+  auctionEnd: Timestamp!
+  trigger: AuctionTrigger!
+  extensionTrigger: AuctionTrigger
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>AuctionEvent.<b>marketId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The ID of the market that went into auction
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AuctionEvent.<b>leave</b></code>](#)<Bullet />[`Boolean!`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Event fired because of auction end
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AuctionEvent.<b>openingAuction</b></code>](#)<Bullet />[`Boolean!`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Event related to opening auction
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AuctionEvent.<b>auctionStart</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano start time of auction
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AuctionEvent.<b>auctionEnd</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano optional end time of auction
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AuctionEvent.<b>trigger</b></code>](#)<Bullet />[`AuctionTrigger!`](/testnet/api/graphql/enums/auction-trigger) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> What triggered the auction
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AuctionEvent.<b>extensionTrigger</b></code>](#)<Bullet />[`AuctionTrigger`](/testnet/api/graphql/enums/auction-trigger) <Badge class="secondary" text="enum"/>
+> What, if anything, extended the ongoing auction
+> 
+
+
+
+### Implemented by
+
+[`Event`](/testnet/api/graphql/unions/event)  <Badge class="secondary" text="union"/>
+
+
+

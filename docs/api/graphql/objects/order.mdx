@@ -1,0 +1,145 @@
+---
+id: order
+title: Order
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+An order in Vega, if active it will be on the order book for the market
+
+```graphql
+type Order {
+  id: ID!
+  price: String!
+  timeInForce: OrderTimeInForce!
+  side: Side!
+  market: Market!
+  size: String!
+  remaining: String!
+  party: Party!
+  createdAt: Timestamp!
+  expiresAt: Timestamp
+  status: OrderStatus!
+  reference: String!
+  tradesConnection(
+  dateRange: DateRange
+  pagination: Pagination
+): TradeConnection
+  type: OrderType
+  rejectionReason: OrderRejectionReason
+  version: String!
+  updatedAt: Timestamp
+  peggedOrder: PeggedOrder
+  liquidityProvision: LiquidityProvision
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>id</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Hash of the order data
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>price</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The worst price the order will trade at (e.g. buy for price or less, sell for price or more) (uint64)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>timeInForce</b></code>](#)<Bullet />[`OrderTimeInForce!`](/testnet/api/graphql/enums/order-time-in-force) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The timeInForce of order (determines how and if it executes, and whether it persists on the book)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>side</b></code>](#)<Bullet />[`Side!`](/testnet/api/graphql/enums/side) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Whether the order is to buy or sell
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>market</b></code>](#)<Bullet />[`Market!`](/testnet/api/graphql/objects/market) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The market the order is trading on (probably stored internally as a hash of the market details)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>size</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Total number of units that may be bought or sold (immutable) (uint64)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>remaining</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Number of units remaining of the total that have not yet been bought or sold (uint64)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>party</b></code>](#)<Bullet />[`Party!`](/testnet/api/graphql/objects/party) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The party that placed the order (probably stored internally as the party's public key)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>createdAt</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano formatted date and time for when the order was created (timestamp)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>expiresAt</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
+> Expiration time of this order (ISO-8601 RFC3339+Nano formatted date)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>status</b></code>](#)<Bullet />[`OrderStatus!`](/testnet/api/graphql/enums/order-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The status of an order, for example 'Active'
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>reference</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The external reference (if available) for the order
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>tradesConnection</b></code>](#)<Bullet />[`TradeConnection`](/testnet/api/graphql/objects/trade-connection) <Badge class="secondary" text="object"/>
+> Trades relating to this order
+> ##### [<code style={{ fontWeight: 'normal' }}>Order.tradesConnection.<b>dateRange</b></code>](#)<Bullet />[`DateRange`](/testnet/api/graphql/inputs/date-range) <Badge class="secondary" text="input"/>
+> Date range to retrieve trades from/to. Start and end time should be expressed as an integer value of nano-seconds past the Unix epoch
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Order.tradesConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>type</b></code>](#)<Bullet />[`OrderType`](/testnet/api/graphql/enums/order-type) <Badge class="secondary" text="enum"/>
+> The order type
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>rejectionReason</b></code>](#)<Bullet />[`OrderRejectionReason`](/testnet/api/graphql/enums/order-rejection-reason) <Badge class="secondary" text="enum"/>
+> Why the order was rejected
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>version</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Version of this order, counts the number of amends
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>updatedAt</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
+> RFC3339Nano time the order was altered
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>peggedOrder</b></code>](#)<Bullet />[`PeggedOrder`](/testnet/api/graphql/objects/pegged-order) <Badge class="secondary" text="object"/>
+> PeggedOrder contains the details about a pegged order
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>liquidityProvision</b></code>](#)<Bullet />[`LiquidityProvision`](/testnet/api/graphql/objects/liquidity-provision) <Badge class="secondary" text="object"/>
+> The liquidity provision this order was created from
+> 
+
+
+
+### Returned by
+
+[`orderByID`](/testnet/api/graphql/queries/order-by-id)  <Badge class="secondary" text="query"/><Bullet />[`orderByReference`](/testnet/api/graphql/queries/order-by-reference)  <Badge class="secondary" text="query"/>
+
+### Member of
+
+[`LiquidityOrderReference`](/testnet/api/graphql/objects/liquidity-order-reference)  <Badge class="secondary" text="object"/><Bullet />[`OrderEdge`](/testnet/api/graphql/objects/order-edge)  <Badge class="secondary" text="object"/>
+
+### Implemented by
+
+[`Event`](/testnet/api/graphql/unions/event)  <Badge class="secondary" text="union"/>
+
+
+

@@ -2,10 +2,13 @@
 sidebar_position: 2
 title: Manage networks
 hide_title: false
+vega_network: MAINNET
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import { NetworkConfigAddress, NetworkConfigAddressText } from '@site/src/components/NetworkConfigAddress';
+import CodeBlock from '@theme/CodeBlock';
 
 You'll need to import and choose a network to use your wallet to interact with Vega. This page explains the network-related commands within Vega Wallet, and how to use them. 
 
@@ -16,8 +19,8 @@ You can see a list of available commands by running `./vegawallet -h` on MacOS a
 ## Network URLs
 You can use the following network URLs to connect to the mainnet or fairground network through your wallet: 
 
-* **Mainnet** network (run by validators): [`mainnet1.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml)
-* **Fairground** network: [`fairground.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/fairground/fairground.toml)
+* **Mainnet** network (run by validators): <NetworkConfigAddress frontMatter={frontMatter} label="mainnet1.toml" network="mainnet"/>
+* **Fairground** network: <NetworkConfigAddress frontMatter={frontMatter} label="fairground.toml" network="fairground"/>
 
 ## Update networks
 At times you may need to force the wallet to update the list of available networks. Below, choose between forcing an update via URL or file. 
@@ -28,23 +31,24 @@ Run the following `--force` command to update to the latest available from your 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
 
-```bash
-vegawallet network import --force --from-url "URL_OF_TOML_FILE"
-```
+<CodeBlock language="bash">
+vegawallet network import --force --from-url "{NetworkConfigAddressText(frontMatter.vega_network)}"
+</CodeBlock>
+
 </TabItem>
 <TabItem value="mac" label="MacOS">
 
-```bash
-./vegawallet network import --force \
-    --from-url "URL_OF_TOML_FILE"
-```
+<CodeBlock language="bash">
+./vegawallet network import --force \{'\n'}
+&nbsp;&nbsp;--from-url "{NetworkConfigAddressText(frontMatter.vega_network)}"
+</CodeBlock>
 </TabItem>
 <TabItem value="linux" label="Linux">
 
-```bash
-./vegawallet network import --force \
-     --from-url "URL_OF_TOML_FILE"
-```
+<CodeBlock language="bash">
+./vegawallet network import --force \{'\n'}
+&nbsp;&nbsp;--from-url "{NetworkConfigAddressText(frontMatter.vega_network)}"
+</CodeBlock>
 </TabItem>
 </Tabs>
 
@@ -151,3 +155,17 @@ vegawallet network delete --network "NETWORK_NAME"
 </TabItem>
 
 </Tabs>
+
+## Connecting to stable nodes
+You can change the list of data nodes in your network configuation to control how many nodes the wallet tries to connect to. The wallet connects to a data node in order to communicate with the network, and uses it to forward transactions to the consensus validator nodes.
+
+The number of nodes that you have in the config list depends on how reliable you believe the nodes are, and how sensitive you are to the speed of your transactions being sent.
+
+A shorter list of stable nodes will lead to the fastest transaction experience. If you think the nodes are unreliable, a longer list of nodes will provide diversity and more likelihood that the wallet will cycle through to find a connected node. 
+
+A balanced set up for one’s network configuration would be around 10 stable and trusted nodes, If any of them isn't able to connect, there are plenty of others for the wallet to connect through.
+
+### Configure the node list
+To configure the node list your wallet uses, you'll need to be able to edit the .TOML file you're using. Unless you have self-hosted or cloned a network's config list, you will need to save it locally and [update network from file](#update-network-from-file).
+
+See the files linked in [Network URLs](#network-urls) for the structure of the network config file.

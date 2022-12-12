@@ -1,28 +1,28 @@
 
   ```bash
-./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{
+./vegawallet transaction send --wallet your_walletname --pubkey your_public_key --network fairground '{
  "proposalSubmission": {
   "rationale": {
-   "title": "Add USDT Coin (USDT)",
-   "description": "Proposal to add USDT Coin (USDT) as an asset"
+   "title": "Add tEuro (tEURO)",
+   "description": "Proposal to add tEuro (tEURO) as an asset"
   },
   "terms": {
    "newAsset": {
     "changes": {
-     "name": "USDT Coin",
-     "symbol": "USDT",
+     "name": "tEuro",
+     "symbol": "tEURO",
      "decimals": "18",
      "quantum": "1",
      "erc20": {
-      "contractAddress": "0xb404c51bbc10dcbe948077f18a4b8e553d160084",
+      "contractAddress": "0x0158031158Bb4dF2AD02eAA31e8963E84EA978a4",
       "withdrawThreshold": "10",
       "lifetimeLimit": "10"
      }
     }
    },
-   "closingTimestamp": 1665423449,
-   "enactmentTimestamp": 1665509849,
-   "validationTimestamp": 1665337049
+   "closingTimestamp": 1672306222,
+   "enactmentTimestamp": 1672392622,
+   "validationTimestamp": 1672219822
   }
  }
 }'

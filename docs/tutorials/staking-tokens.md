@@ -2,62 +2,106 @@
 title: Stake tokens
 hide_title: false
 vega_network: TESTNET
-ethereum_network: Ropsten
 description: Stake unlocked tokens with Vega Wallet and smart contracts
 ---
+
 import EthAddresses from '@site/src/components/EthAddresses';
 import Topic from '/docs/topics/_topic-staking.mdx'
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 <Topic />
 
 :::tip
-
-This tutorial describes how to stake via APIs and smart contract integrations. If you're just looking to stake tokens, visit [token.vega.xyz](https://token.vega.xyz)
-
+This tutorial describes how to stake using the smart contracts, the APIs, an Ethereum wallet, and a Vega Wallet. If you're looking for the easiest way to stake tokens, visit [token.fairground.wtf](https://token.fairground.wtf)
 :::
 
-# Background knowledge
-* Users can stake tokens to [validators on the Vega chain](../concepts/vega-chain#delegated-proof-of-stake)
+* Tokenholders can stake tokens to [validators on the Vega chain](../concepts/vega-chain#delegated-proof-of-stake), also known as nominating validators.
+* A [Vega Wallet](../tools/vega-wallet/) is required to create a Vega key and to stake (also known as nominate) validators.
 * Vega tokens may be locked in a vesting schedule. This tutorial covers unlocked tokens, i.e. tokens that are in a user's Ethereum wallet.
-* A Vega address can be created using the [Vega Wallet](../tools/vega-wallet/)
 * The staking bridge used to *stake* assets is different to the ERC20 bridge that allows asset *withdrawal*.
 
-# Staking unlocked tokens
-Staking tokens from a user's Ethereum wallet is a three step process:
-1. On Ethereum, the tokens are associated with a Vega address
-2. On Vega, the Vega address nominates a validator to stake their tokens
-3. At the end of each epoch, rewards are paid out to the Vega address
-4. On Vega, a withdrawal transaction is submitted
-5. On Ethereum, the withdrawal confirmation is submitted to the Staking bridge, and the rewards are released to the specified address
+## Staking unlocked tokens
+Staking tokens from a tokenholder's Ethereum wallet follows the below process:
+1. On Ethereum, the tokens need to be associated with a Vega key
+2. On Vega, the Vega key is used to nominate a validator (stake)
+3. At the end of each epoch, rewards are paid out to the Vega key
 
-## 1. Associating tokens
+## Withdrawing unlocked and unassociated tokens
+1. On Vega, rewards and unassociated tokens can be withdrawn by submitting a withdrawal transaction
+2. On Ethereum, the withdrawal confirmation is submitted to the staking bridge, and the rewards are released to the specified Ethereum address
+
+## Staking unlocked tokens: step by step
+### 1. Associating tokens
 Tokens are associated by calling [`stake` on the Vega staking bridge](../api/bridge/contracts/Vega_Staking_Bridge#stake). The two parameters are:
-* `vega_public_key` - the public key of the address that will perform staking on Vega
-* `amount` - the amount of stake being associated with the Vega key
+* `vega_public_key` - the Vega public key that will be used to nominate validators on Vega
+* `amount` - the amount of tokens being associated with the Vega key
 
-Deposits will take ~50 block confirmations to arrive on Vega. You can check using [REST](../api/rest/data-v2/trading-data-service-get-stake), [GraphQL](../graphql/objects/party#operation/TradingDataService_ERC20WithdrawalApproval) or [GRPC](../grpc/vega/vega.proto#vegaproto) to know when the staking balance has been credited.
+It will take ~50 block confirmations for the balance to update (approximately 1 minute). You can see when the staking balance has been credited by using [REST](../api/rest/data-v2/trading-data-service-get-stake), [GraphQL](../api/graphql/objects/party#operation/TradingDataService1_ERC20WithdrawalApproval) or [gRPC](../api/grpc/vega/vega.proto#vegaproto).
 
-## 2. Nominating to a validator
-Now that the staking balance is available, you'll want to choose a validator to stake to.
+### 2. Nominating a validator
+Once the token balance is associated to a Vega key, you'll want to choose a validator or validators to nominate. 
 
-## 3. Waiting for the next epoch
-A nomination to a validator occurs in one epoch, [and takes effect in the subsequent epoch](../concepts/vega-chain#operation/ERC20WithdrawalApproval). That means that during the first period in which you nominate, no rewards will be received. For each subsequent epoch, rewards will be deposited to the Vega key, in the form of Vega tokens. Specific reward payouts can be queried via the API ([REST](../api/rest/data-v2/trading-data-service-list-reward-summaries), [GraphQL](../graphql/objects/reward-summary-connection)).
+Fetch a list of validator nodes using [REST](../api/rest/data-v2/trading-data-service-list-nodes), [GraphQL](../api/graphql/queries/nodes-connection) or [gRPC](../api/grpc/data-node/api/v2/trading_data.proto#nodesconnection).
 
-## 4. Withdrawing rewards
-Now that rewards have been paid in to your account, you will want to request a withdrawal. This involves preparing a withdrawal request, which the validators will confirm and sign in order for you to be able to request the withdrawal on Ethereum. The funds will immediately be locked on Vega, to allow for you to withdraw them through the Ethereum bridge.
+Nominate a validator by sending a transaction with the Vega Wallet:
 
-Your withdrawal should be confirmed within a few seconds, and using the APIs ([REST](../api/rest/data-v2/trading-data-service-list-withdrawals),  [GraphQL](../graphql/objects/party#withdrawals-withdrawal)) you can retrieve the signature bundle, which you will submit to the ERC20 bridge in the next step.
+<Tabs>
+  <TabItem value="cmd" label="Command line (Linux / OSX)">
 
-## 5. Submit withdrawal
-With the signature bundle fetched in step 4, the final step is to submit that withdrawal to the staking bridge. This can be done via the [`withdraw_asset` function on the Ethereum bridge](../api/bridge/interfaces/IERC20_Bridge_Logic#withdraw_asset).
+```bash
+vegawallet transaction send --wallet "WALLET_NAME" --pubkey "VEGA_PUBKEY" --network fairground '{
+  "delegateSubmission": {
+    "nodeId":"INSERT_NODE_ID_FOR_NOMINATION",
+    "amount":"1000000000000000000"
+   }
+}'
+```
+
+  </TabItem>
+  <TabItem value="win" label="Command line (Windows)">
+
+```bash
+vegawallet.exe transaction send --wallet "WALLET_NAME" --pubkey "VEGA_PUBKEY" --network fairground ^
+"{\"delegateSubmission\": ^
+    { ^
+        \"nodeId\":\"INSERT_NODE_ID_FOR_NOMINATION", ^
+        \"amount\":\"1000000000000000000\" ^
+    } ^
+}"
+```
+
+  </TabItem>
+</Tabs>
+
+
+
+### 3. Claiming rewards
+A nomination to a validator occurs in one epoch, [and takes effect in the subsequent epoch](../concepts/vega-chain#operation/ERC20WithdrawalApproval). 
+
+That means that during the first epoch in which you nominate, no rewards will be received. For each subsequent epoch, rewards will be deposited to the Vega key, in the form of VEGA tokens. (Once trading is available on mainnet, rewards will be paid in a mix of VEGA tokens and settlement asset tokens.)
+
+Specific reward payouts can be queried via the API ([REST](../api/rest/data-v2/trading-data-service-list-reward-summaries), [GraphQL](../api/graphql/objects/reward-summary-connection)).
+
+After VEGA rewards have been credited to the Vega key they can used to nominate validators or withdrawn.
+
+Withdrawing involves preparing a withdrawal request, which the validators will confirm and sign in order for you to be able to request the withdrawal on Ethereum. The funds will immediately be locked on Vega, so they can be withdrawn through the Ethereum bridge.
+
+## Withdrawing unlocked tokens: step by step
+
+### 1. Getting multisig bundle for withdrawal
+Your withdrawal should be confirmed within a few seconds. 
+
+You can retrieve the signature bundle, which you will submit to the ERC20 bridge in the next step, by using the APIs ([REST](../api/rest/data-v2/trading-data-service-list-withdrawals), [GraphQL](../api/graphql/objects/party#withdrawals-withdrawal)).
+
+### 2. Submitting withdrawal to Ethereum
+With the signature bundle fetched above, the final step is to submit that withdrawal to the staking bridge. This can be done via the [`withdraw_asset` function on the Ethereum bridge](../api/bridge/interfaces/IERC20_Bridge_Logic#withdraw_asset).
+
 * `amount` - the amount of Vega being withdrawn
 * `asset_source` - the contract address of the asset being withdrawn
 * `target` - the Ethereum address to receive the rewards
 * `nonce` - the nonce from step 4
 * `signatures` - signature bundle from step 4
 
-## Ethereum addresses
+### Ethereum addresses
 <EthAddresses frontMatter={frontMatter} />
-
-
-

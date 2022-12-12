@@ -1,0 +1,75 @@
+---
+id: estimate-order
+title: estimateOrder
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Return an estimation of the potential cost for a new order
+
+```graphql
+estimateOrder(
+  marketId: ID!
+  partyId: ID!
+  price: String
+  size: String!
+  side: Side!
+  timeInForce: OrderTimeInForce!
+  expiration: Timestamp
+  type: OrderType!
+): OrderEstimate!
+```
+
+
+### Arguments
+
+#### [<code style={{ fontWeight: 'normal' }}>estimateOrder.<b>marketId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> ID of the market to place the order
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>estimateOrder.<b>partyId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> ID of the party placing the order
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>estimateOrder.<b>price</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> Price of the asset
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>estimateOrder.<b>size</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Size of the order
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>estimateOrder.<b>side</b></code>](#)<Bullet />[`Side!`](/testnet/api/graphql/enums/side) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Side of the order (Buy or Sell)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>estimateOrder.<b>timeInForce</b></code>](#)<Bullet />[`OrderTimeInForce!`](/testnet/api/graphql/enums/order-time-in-force) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> TimeInForce of the order
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>estimateOrder.<b>expiration</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
+> Expiration of the the order
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>estimateOrder.<b>type</b></code>](#)<Bullet />[`OrderType!`](/testnet/api/graphql/enums/order-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Type of the order
+> 
+
+### Type
+
+#### [`OrderEstimate`](/testnet/api/graphql/objects/order-estimate) <Badge class="secondary" text="object"/>
+> An estimate of the fee to be paid by the order
+> 
+
+
+
+
+

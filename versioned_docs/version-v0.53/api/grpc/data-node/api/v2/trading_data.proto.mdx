@@ -1,0 +1,1054 @@
+---
+title: trading_data.proto
+hide_title: false
+---
+
+import { ProtoMessage, ProtoServiceMethod, ProtoEnum } from '@theme/ProtoFile';
+
+## `trading_data.proto`
+_**path** data-node/api/v2/trading_data.proto_
+
+_**package** datanode.api.v2_
+
+
+
+---
+
+## Messages
+
+
+### `AccountEdge`
+<ProtoMessage key={0} message={{"name":"AccountEdge","longName":"AccountEdge","fullName":"datanode.api.v2.AccountEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"account","description":"The actual account object","label":"","type":"Account","longType":"vega.Account","fullType":"vega.Account","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#account"},{"name":"cursor","description":"A cursor which can be used to fetch further pages with reference to this account","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `AccountFilter`
+<ProtoMessage key={1} message={{"name":"AccountFilter","longName":"AccountFilter","fullName":"datanode.api.v2.AccountFilter","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"asset_id","description":"Restrict accounts to those holding balances in this asset ID","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"party_ids","description":"Restrict accounts to those owned by the parties in this list (pass an empty list for no filter)","label":"repeated","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"market_ids","description":"Restrict accounts to those connected to the marketsin this list (pass an empty list for no filter)","label":"repeated","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"account_types","description":"Restrict accounts to those connected to any of the types in this list (pass an empty list for no filter)","label":"repeated","type":"AccountType","longType":"vega.AccountType","fullType":"vega.AccountType","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#accounttype"}]}} />
+
+
+### `AccountsConnection`
+<ProtoMessage key={2} message={{"name":"AccountsConnection","longName":"AccountsConnection","fullName":"datanode.api.v2.AccountsConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"total_count","description":"Total number of accounts matching the supplied filter","label":"","type":"int64","longType":"int64","fullType":"int64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"edges","description":"The accounts & cursors","label":"repeated","type":"AccountEdge","longType":"AccountEdge","fullType":"datanode.api.v2.AccountEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#accountedge"},{"name":"page_info","description":"Information for fetching further pages","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+
+### `AggregatedBalance`
+<ProtoMessage key={3} message={{"name":"AggregatedBalance","longName":"AggregatedBalance","fullName":"datanode.api.v2.AggregatedBalance","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"timestamp","description":"Timestamp to of block the balance is referring to, in nanoseconds since the epoch","label":"","type":"int64","longType":"int64","fullType":"int64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"balance","description":"The balance of the set of requested accounts at the time above","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"account_id","description":"If grouping by account ID, the account ID","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_account_id","defaultValue":""},{"name":"party_id","description":"If grouping by party, the party ID","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_party_id","defaultValue":""},{"name":"asset_id","description":"If grouping by asset, the asset ID","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_asset_id","defaultValue":""},{"name":"market_id","description":"If grouping by market, the market ID","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_market_id","defaultValue":""},{"name":"account_type","description":"If grouping by account type, the account type","label":"","type":"AccountType","longType":"vega.AccountType","fullType":"vega.AccountType","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#accounttype"}]}} />
+
+
+### `AssetEdge`
+<ProtoMessage key={4} message={{"name":"AssetEdge","longName":"AssetEdge","fullName":"datanode.api.v2.AssetEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"Asset","longType":"vega.Asset","fullType":"vega.Asset","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/assets.proto#asset"},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `AssetsConnection`
+<ProtoMessage key={5} message={{"name":"AssetsConnection","longName":"AssetsConnection","fullName":"datanode.api.v2.AssetsConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"edges","description":"","label":"repeated","type":"AssetEdge","longType":"AssetEdge","fullType":"datanode.api.v2.AssetEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#assetedge"},{"name":"page_info","description":"","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+
+### `Candle`
+<ProtoMessage key={6} message={{"name":"Candle","longName":"Candle","fullName":"datanode.api.v2.Candle","description":"Represents the high, low, open, and closing prices for an interval of trading,\nreferred to commonly as a candlestick or candle","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"start","description":"Timestamp for the point in time when the candle was initially created/opened, in nanoseconds since the epoch\n- See [`VegaTimeResponse`](#api.VegaTimeResponse).`timestamp`","label":"","type":"int64","longType":"int64","fullType":"int64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"last_update","description":"Timestamp for the point in time when the candle was last updated, in nanoseconds since the epoch\n- See [`VegaTimeResponse`](#api.VegaTimeResponse).`timestamp`","label":"","type":"int64","longType":"int64","fullType":"int64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"high","description":"Highest price for trading during the candle interval","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"low","description":"Lowest price for trading during the candle interval","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"open","description":"Open trade price","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"close","description":"Closing trade price","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"volume","description":"Total trading volume during the candle interval","label":"","type":"uint64","longType":"uint64","fullType":"uint64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `CandleDataConnection`
+<ProtoMessage key={7} message={{"name":"CandleDataConnection","longName":"CandleDataConnection","fullName":"datanode.api.v2.CandleDataConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"edges","description":"","label":"repeated","type":"CandleEdge","longType":"CandleEdge","fullType":"datanode.api.v2.CandleEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#candleedge"},{"name":"page_info","description":"","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+
+### `CandleEdge`
+<ProtoMessage key={8} message={{"name":"CandleEdge","longName":"CandleEdge","fullName":"datanode.api.v2.CandleEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"Candle","longType":"Candle","fullType":"datanode.api.v2.Candle","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#candle"},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `Checkpoint`
+<ProtoMessage key={9} message={{"name":"Checkpoint","longName":"Checkpoint","fullName":"datanode.api.v2.Checkpoint","description":"-- Checkpoints --\nThe actual data regarding a checkpoint","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"hash","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"block_hash","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"at_block","description":"","label":"","type":"uint64","longType":"uint64","fullType":"uint64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `CheckpointEdge`
+<ProtoMessage key={10} message={{"name":"CheckpointEdge","longName":"CheckpointEdge","fullName":"datanode.api.v2.CheckpointEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"Checkpoint","longType":"Checkpoint","fullType":"datanode.api.v2.Checkpoint","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#checkpoint"},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `CheckpointsConnection`
+<ProtoMessage key={11} message={{"name":"CheckpointsConnection","longName":"CheckpointsConnection","fullName":"datanode.api.v2.CheckpointsConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"edges","description":"","label":"repeated","type":"CheckpointEdge","longType":"CheckpointEdge","fullType":"datanode.api.v2.CheckpointEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#checkpointedge"},{"name":"page_info","description":"","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+
+### `DelegationEdge`
+<ProtoMessage key={12} message={{"name":"DelegationEdge","longName":"DelegationEdge","fullName":"datanode.api.v2.DelegationEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"Delegation","longType":"vega.Delegation","fullType":"vega.Delegation","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#delegation"},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `DelegationsConnection`
+<ProtoMessage key={13} message={{"name":"DelegationsConnection","longName":"DelegationsConnection","fullName":"datanode.api.v2.DelegationsConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"edges","description":"","label":"repeated","type":"DelegationEdge","longType":"DelegationEdge","fullType":"datanode.api.v2.DelegationEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#delegationedge"},{"name":"page_info","description":"","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+
+### `DepositEdge`
+<ProtoMessage key={14} message={{"name":"DepositEdge","longName":"DepositEdge","fullName":"datanode.api.v2.DepositEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"Deposit","longType":"vega.Deposit","fullType":"vega.Deposit","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#deposit"},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `DepositsConnection`
+<ProtoMessage key={15} message={{"name":"DepositsConnection","longName":"DepositsConnection","fullName":"datanode.api.v2.DepositsConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"edges","description":"","label":"repeated","type":"DepositEdge","longType":"DepositEdge","fullType":"datanode.api.v2.DepositEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#depositedge"},{"name":"page_info","description":"","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+
+### `ERC20MultiSigSignerAddedBundle`
+<ProtoMessage key={16} message={{"name":"ERC20MultiSigSignerAddedBundle","longName":"ERC20MultiSigSignerAddedBundle","fullName":"datanode.api.v2.ERC20MultiSigSignerAddedBundle","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"new_signer","description":"The ethereum address of the signer to be removed","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"submitter","description":"The ethereum address of the submitter","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"nonce","description":"The nonce used in the signing operation","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"timestamp","description":"unixnano timestamp for when the validator was added","label":"","type":"int64","longType":"int64","fullType":"int64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"signatures","description":"The bundle of signatures from current validators to sign in the new signer","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"epoch_seq","description":"The epoch in which the validator was added","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `ERC20MultiSigSignerRemovedBundle`
+<ProtoMessage key={17} message={{"name":"ERC20MultiSigSignerRemovedBundle","longName":"ERC20MultiSigSignerRemovedBundle","fullName":"datanode.api.v2.ERC20MultiSigSignerRemovedBundle","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"old_signer","description":"The ethereum address of the signer to be removed","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"submitter","description":"The ethereum address of the submitter","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"nonce","description":"The nonce used in the signing operation","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"timestamp","description":"unixnano timestamp for when the validator was added","label":"","type":"int64","longType":"int64","fullType":"int64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"signatures","description":"The bundle of signatures from current validators to sign in the new signer","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"epoch_seq","description":"The epoch in which the validator was removed","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `EstimateFeeRequest`
+<ProtoMessage key={18} message={{"name":"EstimateFeeRequest","longName":"EstimateFeeRequest","fullName":"datanode.api.v2.EstimateFeeRequest","description":"-- Estimates --\nRequest to fetch the estimated fee if an order were to trade immediately","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"order","description":"Order to estimate fees for\nthe following fields in the order are required:\nMarketID (used to specify the fee factors)\nPrice (the price at which the order could trade)\nSize (the size at which the order could eventually trade)","label":"","type":"Order","longType":"vega.Order","fullType":"vega.Order","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#order"}]}} />
+
+
+### `EstimateFeeResponse`
+<ProtoMessage key={19} message={{"name":"EstimateFeeResponse","longName":"EstimateFeeResponse","fullName":"datanode.api.v2.EstimateFeeResponse","description":"Response to a EstimateFeeRequest, containing the estimated fees for a given order","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"fee","description":"Summary of the estimated fees for this order if it were to trade now","label":"","type":"Fee","longType":"vega.Fee","fullType":"vega.Fee","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#fee"}]}} />
+
+
+### `EstimateMarginRequest`
+<ProtoMessage key={20} message={{"name":"EstimateMarginRequest","longName":"EstimateMarginRequest","fullName":"datanode.api.v2.EstimateMarginRequest","description":"Request to fetch the estimated MarginLevels if an order were to trade immediately","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"order","description":"Order to estimate fees for","label":"","type":"Order","longType":"vega.Order","fullType":"vega.Order","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#order"}]}} />
+
+
+### `EstimateMarginResponse`
+<ProtoMessage key={21} message={{"name":"EstimateMarginResponse","longName":"EstimateMarginResponse","fullName":"datanode.api.v2.EstimateMarginResponse","description":"Response to a EstimateMarginRequest, containing the estimated marginLevels for a given order","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"margin_levels","description":"Summary of the estimated margins for this order if it were to trade now","label":"","type":"MarginLevels","longType":"vega.MarginLevels","fullType":"vega.MarginLevels","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#marginlevels"}]}} />
+
+
+### `GetAssetRequest`
+<ProtoMessage key={22} message={{"name":"GetAssetRequest","longName":"GetAssetRequest","fullName":"datanode.api.v2.GetAssetRequest","description":"-- Assets --","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"asset_id","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `GetAssetResponse`
+<ProtoMessage key={23} message={{"name":"GetAssetResponse","longName":"GetAssetResponse","fullName":"datanode.api.v2.GetAssetResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"asset","description":"","label":"","type":"Asset","longType":"vega.Asset","fullType":"vega.Asset","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/assets.proto#asset"}]}} />
+
+
+### `GetBalanceHistoryRequest`
+<ProtoMessage key={24} message={{"name":"GetBalanceHistoryRequest","longName":"GetBalanceHistoryRequest","fullName":"datanode.api.v2.GetBalanceHistoryRequest","description":"-- Balances --","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"filter","description":"Limit the accounts considered according to the filter supplied","label":"","type":"AccountFilter","longType":"AccountFilter","fullType":"datanode.api.v2.AccountFilter","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#accountfilter"},{"name":"group_by","description":"By default the net balances of all the accounts specified by the filter are returned.\nIf a list if fields is given in group_by, split out those balances by the supplied crietera.","label":"repeated","type":"AccountField","longType":"AccountField","fullType":"datanode.api.v2.AccountField","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#accountfield"}]}} />
+
+
+### `GetBalanceHistoryResponse`
+<ProtoMessage key={25} message={{"name":"GetBalanceHistoryResponse","longName":"GetBalanceHistoryResponse","fullName":"datanode.api.v2.GetBalanceHistoryResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"balances","description":"","label":"repeated","type":"AggregatedBalance","longType":"AggregatedBalance","fullType":"datanode.api.v2.AggregatedBalance","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#aggregatedbalance"}]}} />
+
+
+### `GetDepositRequest`
+<ProtoMessage key={26} message={{"name":"GetDepositRequest","longName":"GetDepositRequest","fullName":"datanode.api.v2.GetDepositRequest","description":"-- Deposits --\nA request to get a specific deposit by identifier","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"id","description":"The identifier of the deposit","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `GetDepositResponse`
+<ProtoMessage key={27} message={{"name":"GetDepositResponse","longName":"GetDepositResponse","fullName":"datanode.api.v2.GetDepositResponse","description":"A response for a deposit","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"deposit","description":"The deposit matching the identifier from the request","label":"","type":"Deposit","longType":"vega.Deposit","fullType":"vega.Deposit","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#deposit"}]}} />
+
+
+### `GetERC20ListAssetBundleRequest`
+<ProtoMessage key={28} message={{"name":"GetERC20ListAssetBundleRequest","longName":"GetERC20ListAssetBundleRequest","fullName":"datanode.api.v2.GetERC20ListAssetBundleRequest","description":"A request to get an asset bundle details","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"asset_id","description":"The ID of the asset requested","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `GetERC20ListAssetBundleResponse`
+<ProtoMessage key={29} message={{"name":"GetERC20ListAssetBundleResponse","longName":"GetERC20ListAssetBundleResponse","fullName":"datanode.api.v2.GetERC20ListAssetBundleResponse","description":"The response with all information required to bundle the call to propose an erc20 asset","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"asset_source","description":"The address of the asset on ethereum","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"vega_asset_id","description":"The ID of the vega asset","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"nonce","description":"The nonce, which is actually the internal reference for the proposal","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"signatures","description":"The signatures bundle as hex encoded data, forward by 0x\ne.g: 0x + sig1 + sig2 + ... + sixN","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `GetERC20MultiSigSignerAddedBundlesRequest`
+<ProtoMessage key={30} message={{"name":"GetERC20MultiSigSignerAddedBundlesRequest","longName":"GetERC20MultiSigSignerAddedBundlesRequest","fullName":"datanode.api.v2.GetERC20MultiSigSignerAddedBundlesRequest","description":"-- ERC20 Multi Sig --","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node_id","description":"The node id of the validator of which a signature bundle is required","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"epoch_seq","description":"The epoch which generated the bundle i.e the epoch in which the node became a tendermint validator","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"pagination","description":"Pagination controls","label":"","type":"OffsetPagination","longType":"OffsetPagination","fullType":"datanode.api.v2.OffsetPagination","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#offsetpagination"}]}} />
+
+
+### `GetERC20MultiSigSignerAddedBundlesResponse`
+<ProtoMessage key={31} message={{"name":"GetERC20MultiSigSignerAddedBundlesResponse","longName":"GetERC20MultiSigSignerAddedBundlesResponse","fullName":"datanode.api.v2.GetERC20MultiSigSignerAddedBundlesResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"bundles","description":"list of bundles for that validator, it may have been added multiple times if removed in between","label":"repeated","type":"ERC20MultiSigSignerAddedBundle","longType":"ERC20MultiSigSignerAddedBundle","fullType":"datanode.api.v2.ERC20MultiSigSignerAddedBundle","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#erc20multisigsigneraddedbundle"}]}} />
+
+
+### `GetERC20MultiSigSignerRemovedBundlesRequest`
+<ProtoMessage key={32} message={{"name":"GetERC20MultiSigSignerRemovedBundlesRequest","longName":"GetERC20MultiSigSignerRemovedBundlesRequest","fullName":"datanode.api.v2.GetERC20MultiSigSignerRemovedBundlesRequest","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node_id","description":"The node id of the validator of which a signature bundle is required","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"submitter","description":"The ethereum address of the validator which will submit the bundle","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"epoch_seq","description":"The epoch which generated the bundle i.e the epoch in which the node was demoted from a tendermint validator","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"pagination","description":"Pagination controls","label":"","type":"OffsetPagination","longType":"OffsetPagination","fullType":"datanode.api.v2.OffsetPagination","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#offsetpagination"}]}} />
+
+
+### `GetERC20MultiSigSignerRemovedBundlesResponse`
+<ProtoMessage key={33} message={{"name":"GetERC20MultiSigSignerRemovedBundlesResponse","longName":"GetERC20MultiSigSignerRemovedBundlesResponse","fullName":"datanode.api.v2.GetERC20MultiSigSignerRemovedBundlesResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"bundles","description":"list of signer bundles for that validator","label":"repeated","type":"ERC20MultiSigSignerRemovedBundle","longType":"ERC20MultiSigSignerRemovedBundle","fullType":"datanode.api.v2.ERC20MultiSigSignerRemovedBundle","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#erc20multisigsignerremovedbundle"}]}} />
+
+
+### `GetERC20SetAssetLimitsBundleRequest`
+<ProtoMessage key={34} message={{"name":"GetERC20SetAssetLimitsBundleRequest","longName":"GetERC20SetAssetLimitsBundleRequest","fullName":"datanode.api.v2.GetERC20SetAssetLimitsBundleRequest","description":"A request to get an asset bundle details","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"proposal_id","description":"The ID of the proposal to update an asset","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `GetERC20SetAssetLimitsBundleResponse`
+<ProtoMessage key={35} message={{"name":"GetERC20SetAssetLimitsBundleResponse","longName":"GetERC20SetAssetLimitsBundleResponse","fullName":"datanode.api.v2.GetERC20SetAssetLimitsBundleResponse","description":"The response with all information required to bundle the call to propose an erc20 asset","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"asset_source","description":"The address of the asset on ethereum","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"vega_asset_id","description":"The ID of the vega asset","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"nonce","description":"The nonce, which is actually the internal reference for the proposal","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"lifetime_limit","description":"The lifetime limit deposit for this asset","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"threshold","description":"The threshold withdraw for this asset","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"signatures","description":"The signatures bundle as hex encoded data, forward by 0x\ne.g: 0x + sig1 + sig2 + ... + sixN","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `GetERC20WithdrawalApprovalRequest`
+<ProtoMessage key={36} message={{"name":"GetERC20WithdrawalApprovalRequest","longName":"GetERC20WithdrawalApprovalRequest","fullName":"datanode.api.v2.GetERC20WithdrawalApprovalRequest","description":"The request to get all information required to bundle the call to finalise the withdrawal on the erc20 bridge","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"withdrawal_id","description":"The identifier of the withdrawal","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `GetERC20WithdrawalApprovalResponse`
+<ProtoMessage key={37} message={{"name":"GetERC20WithdrawalApprovalResponse","longName":"GetERC20WithdrawalApprovalResponse","fullName":"datanode.api.v2.GetERC20WithdrawalApprovalResponse","description":"The response with all information required to bundle the call to finalise the withdrawal on the erc20 bridge\nfunction withdraw_asset(address asset_source, uint256 asset_id, uint256 amount, uint256 expiry, uint256 nonce, bytes memory signatures)","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"asset_source","description":"The address of asset on ethereum","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"amount","description":"The amount to be withdrawn","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"expiry","description":"The expiry / until what time the request is valid","label":"","type":"int64","longType":"int64","fullType":"int64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"nonce","description":"The nonce, which is actually the internal reference for the withdrawal","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"signatures","description":"The signatures bundle as hex encoded data, forward by 0x\ne.g: 0x + sig1 + sig2 + ... + sixN","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"target_address","description":"The ethereum address to withdraw the funds to, 0x prefixed","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"creation","description":"The creation timestamps","label":"","type":"int64","longType":"int64","fullType":"int64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `GetEpochRequest`
+<ProtoMessage key={38} message={{"name":"GetEpochRequest","longName":"GetEpochRequest","fullName":"datanode.api.v2.GetEpochRequest","description":"-- Epochs --","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"id","description":"","label":"optional","type":"uint64","longType":"uint64","fullType":"uint64","ismap":false,"isoneof":true,"oneofdecl":"_id","defaultValue":""}]}} />
+
+
+### `GetEpochResponse`
+<ProtoMessage key={39} message={{"name":"GetEpochResponse","longName":"GetEpochResponse","fullName":"datanode.api.v2.GetEpochResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"epoch","description":"","label":"","type":"Epoch","longType":"vega.Epoch","fullType":"vega.Epoch","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#epoch"}]}} />
+
+
+### `GetLatestMarketDataRequest`
+<ProtoMessage key={40} message={{"name":"GetLatestMarketDataRequest","longName":"GetLatestMarketDataRequest","fullName":"datanode.api.v2.GetLatestMarketDataRequest","description":"Request for the latest market data for a given market","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"market_id","description":"Market identifier, required field","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `GetLatestMarketDataResponse`
+<ProtoMessage key={41} message={{"name":"GetLatestMarketDataResponse","longName":"GetLatestMarketDataResponse","fullName":"datanode.api.v2.GetLatestMarketDataResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"market_data","description":"Market identifier, required field","label":"","type":"MarketData","longType":"vega.MarketData","fullType":"vega.MarketData","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#marketdata"}]}} />
+
+
+### `GetLatestMarketDepthRequest`
+<ProtoMessage key={42} message={{"name":"GetLatestMarketDepthRequest","longName":"GetLatestMarketDepthRequest","fullName":"datanode.api.v2.GetLatestMarketDepthRequest","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"market_id","description":"Market identifier, required field","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"max_depth","description":"","label":"optional","type":"uint64","longType":"uint64","fullType":"uint64","ismap":false,"isoneof":true,"oneofdecl":"_max_depth","defaultValue":""}]}} />
+
+
+### `GetLatestMarketDepthResponse`
+<ProtoMessage key={43} message={{"name":"GetLatestMarketDepthResponse","longName":"GetLatestMarketDepthResponse","fullName":"datanode.api.v2.GetLatestMarketDepthResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"market_id","description":"Market identifier","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"buy","description":"Zero or more price levels for the buy side of the market depth data","label":"repeated","type":"PriceLevel","longType":"vega.PriceLevel","fullType":"vega.PriceLevel","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#pricelevel"},{"name":"sell","description":"Zero or more price levels for the sell side of the market depth data","label":"repeated","type":"PriceLevel","longType":"vega.PriceLevel","fullType":"vega.PriceLevel","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#pricelevel"},{"name":"last_trade","description":"Last trade recorded on Vega at the time of retrieving the `MarketDepthResponse`","label":"","type":"Trade","longType":"vega.Trade","fullType":"vega.Trade","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#trade"},{"name":"sequence_number","description":"Sequence number incremented after each update","label":"","type":"uint64","longType":"uint64","fullType":"uint64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `GetMarketDataHistoryByIDRequest`
+<ProtoMessage key={44} message={{"name":"GetMarketDataHistoryByIDRequest","longName":"GetMarketDataHistoryByIDRequest","fullName":"datanode.api.v2.GetMarketDataHistoryByIDRequest","description":"Request for Market Data History","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"market_id","description":"Market identifier, required field","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"start_timestamp","description":"Optional Unix time in nanoseconds","label":"optional","type":"int64","longType":"int64","fullType":"int64","ismap":false,"isoneof":true,"oneofdecl":"_start_timestamp","defaultValue":""},{"name":"end_timestamp","description":"Optional Unix time in nanoseconds","label":"optional","type":"int64","longType":"int64","fullType":"int64","ismap":false,"isoneof":true,"oneofdecl":"_end_timestamp","defaultValue":""},{"name":"pagination","description":"Optional pagination control","label":"optional","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":true,"oneofdecl":"_pagination","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"},{"name":"offset_pagination","description":"Optional offset pagination control in order to support existing version of the Market Data History query\nthat is available in the GraphQL API. That function has been deprecated, but until it's removed we have\nadded this to support pagination queries that use an offset.","label":"optional","type":"OffsetPagination","longType":"OffsetPagination","fullType":"datanode.api.v2.OffsetPagination","ismap":false,"isoneof":true,"oneofdecl":"_offset_pagination","defaultValue":"","options":{"deprecated":true},"typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#offsetpagination"}]}} />
+
+
+### `GetMarketDataHistoryByIDResponse`
+<ProtoMessage key={45} message={{"name":"GetMarketDataHistoryByIDResponse","longName":"GetMarketDataHistoryByIDResponse","fullName":"datanode.api.v2.GetMarketDataHistoryByIDResponse","description":"Response for Market Data History","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"market_data","description":"","label":"","type":"MarketDataConnection","longType":"MarketDataConnection","fullType":"datanode.api.v2.MarketDataConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#marketdataconnection"}]}} />
+
+
+### `GetNetworkDataRequest`
+<ProtoMessage key={46} message={{"name":"GetNetworkDataRequest","longName":"GetNetworkDataRequest","fullName":"datanode.api.v2.GetNetworkDataRequest","description":"-- Nodes --","hasExtensions":false,"hasFields":false,"hasOneofs":false,"extensions":[],"fields":[]}} />
+
+
+### `GetNetworkDataResponse`
+<ProtoMessage key={47} message={{"name":"GetNetworkDataResponse","longName":"GetNetworkDataResponse","fullName":"datanode.api.v2.GetNetworkDataResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node_data","description":"","label":"","type":"NodeData","longType":"vega.NodeData","fullType":"vega.NodeData","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#nodedata"}]}} />
+
+
+### `GetNetworkLimitsRequest`
+<ProtoMessage key={48} message={{"name":"GetNetworkLimitsRequest","longName":"GetNetworkLimitsRequest","fullName":"datanode.api.v2.GetNetworkLimitsRequest","description":"-- Network Limits --\nRequest for the current network limits","hasExtensions":false,"hasFields":false,"hasOneofs":false,"extensions":[],"fields":[]}} />
+
+
+### `GetNetworkLimitsResponse`
+<ProtoMessage key={49} message={{"name":"GetNetworkLimitsResponse","longName":"GetNetworkLimitsResponse","fullName":"datanode.api.v2.GetNetworkLimitsResponse","description":"Response for the current network limits","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"limits","description":"","label":"","type":"NetworkLimits","longType":"vega.NetworkLimits","fullType":"vega.NetworkLimits","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#networklimits"}]}} />
+
+
+### `GetNodeRequest`
+<ProtoMessage key={50} message={{"name":"GetNodeRequest","longName":"GetNodeRequest","fullName":"datanode.api.v2.GetNodeRequest","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"id","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `GetNodeResponse`
+<ProtoMessage key={51} message={{"name":"GetNodeResponse","longName":"GetNodeResponse","fullName":"datanode.api.v2.GetNodeResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"Node","longType":"vega.Node","fullType":"vega.Node","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#node"}]}} />
+
+
+### `GetOracleSpecRequest`
+<ProtoMessage key={52} message={{"name":"GetOracleSpecRequest","longName":"GetOracleSpecRequest","fullName":"datanode.api.v2.GetOracleSpecRequest","description":"The request to get a specific oracle spec by identifier","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"oracle_spec_id","description":"The ID to get the oracle spec for","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `GetOracleSpecResponse`
+<ProtoMessage key={53} message={{"name":"GetOracleSpecResponse","longName":"GetOracleSpecResponse","fullName":"datanode.api.v2.GetOracleSpecResponse","description":"The response for a oracle spec","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"oracle_spec","description":"The oracle spec matching the ID.","label":"","type":"OracleSpec","longType":"oracles.v1.OracleSpec","fullType":"oracles.v1.OracleSpec","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/oracles/v1/spec.proto#oraclespec"}]}} />
+
+
+### `GetOrderRequest`
+<ProtoMessage key={54} message={{"name":"GetOrderRequest","longName":"GetOrderRequest","fullName":"datanode.api.v2.GetOrderRequest","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"order_id","description":"Order identifier","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"version","description":"Optional version","label":"optional","type":"int32","longType":"int32","fullType":"int32","ismap":false,"isoneof":true,"oneofdecl":"_version","defaultValue":""}]}} />
+
+
+### `GetOrderResponse`
+<ProtoMessage key={55} message={{"name":"GetOrderResponse","longName":"GetOrderResponse","fullName":"datanode.api.v2.GetOrderResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"order","description":"An order, if found","label":"","type":"Order","longType":"vega.Order","fullType":"vega.Order","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#order"}]}} />
+
+
+### `GetRiskFactorsRequest`
+<ProtoMessage key={56} message={{"name":"GetRiskFactorsRequest","longName":"GetRiskFactorsRequest","fullName":"datanode.api.v2.GetRiskFactorsRequest","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"market_id","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `GetRiskFactorsResponse`
+<ProtoMessage key={57} message={{"name":"GetRiskFactorsResponse","longName":"GetRiskFactorsResponse","fullName":"datanode.api.v2.GetRiskFactorsResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"risk_factor","description":"","label":"","type":"RiskFactor","longType":"vega.RiskFactor","fullType":"vega.RiskFactor","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#riskfactor"}]}} />
+
+
+### `GetStakeRequest`
+<ProtoMessage key={58} message={{"name":"GetStakeRequest","longName":"GetStakeRequest","fullName":"datanode.api.v2.GetStakeRequest","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"party","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"pagination","description":"","label":"optional","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":true,"oneofdecl":"_pagination","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `GetStakeResponse`
+<ProtoMessage key={59} message={{"name":"GetStakeResponse","longName":"GetStakeResponse","fullName":"datanode.api.v2.GetStakeResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"current_stake_available","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"stake_linkings","description":"","label":"","type":"StakesConnection","longType":"StakesConnection","fullType":"datanode.api.v2.StakesConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#stakesconnection"}]}} />
+
+
+### `GetWithdrawalRequest`
+<ProtoMessage key={60} message={{"name":"GetWithdrawalRequest","longName":"GetWithdrawalRequest","fullName":"datanode.api.v2.GetWithdrawalRequest","description":"-- Withdrawals --\nA request to get a specific withdrawal by identifier","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"id","description":"The identifier of the withdrawal","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `GetWithdrawalResponse`
+<ProtoMessage key={61} message={{"name":"GetWithdrawalResponse","longName":"GetWithdrawalResponse","fullName":"datanode.api.v2.GetWithdrawalResponse","description":"A response for a withdrawal request","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"withdrawal","description":"The withdrawal matching the identifier from the request","label":"","type":"Withdrawal","longType":"vega.Withdrawal","fullType":"vega.Withdrawal","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#withdrawal"}]}} />
+
+
+### `GovernanceDataConnection`
+<ProtoMessage key={62} message={{"name":"GovernanceDataConnection","longName":"GovernanceDataConnection","fullName":"datanode.api.v2.GovernanceDataConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"edges","description":"","label":"repeated","type":"GovernanceDataEdge","longType":"GovernanceDataEdge","fullType":"datanode.api.v2.GovernanceDataEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#governancedataedge"},{"name":"page_info","description":"","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+
+### `GovernanceDataEdge`
+<ProtoMessage key={63} message={{"name":"GovernanceDataEdge","longName":"GovernanceDataEdge","fullName":"datanode.api.v2.GovernanceDataEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"GovernanceData","longType":"vega.GovernanceData","fullType":"vega.GovernanceData","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/governance.proto#governancedata"},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `InfoRequest`
+<ProtoMessage key={64} message={{"name":"InfoRequest","longName":"InfoRequest","fullName":"datanode.api.v2.InfoRequest","description":"-- Info --\nnode info","hasExtensions":false,"hasFields":false,"hasOneofs":false,"extensions":[],"fields":[]}} />
+
+
+### `InfoResponse`
+<ProtoMessage key={65} message={{"name":"InfoResponse","longName":"InfoResponse","fullName":"datanode.api.v2.InfoResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"version","description":"A semver formatted version of the data node","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"commit_hash","description":"The commit hash from which the data-node was built","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `IntervalToCandleId`
+<ProtoMessage key={66} message={{"name":"IntervalToCandleId","longName":"IntervalToCandleId","fullName":"datanode.api.v2.IntervalToCandleId","description":"Maps an interval for a given market to its corresponding candle_id","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"interval","description":"The interval for the candle","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"candle_id","description":"The unique id of the candle","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `LiquidityProvisionsConnection`
+<ProtoMessage key={67} message={{"name":"LiquidityProvisionsConnection","longName":"LiquidityProvisionsConnection","fullName":"datanode.api.v2.LiquidityProvisionsConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"edges","description":"","label":"repeated","type":"LiquidityProvisionsEdge","longType":"LiquidityProvisionsEdge","fullType":"datanode.api.v2.LiquidityProvisionsEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#liquidityprovisionsedge"},{"name":"page_info","description":"","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+
+### `LiquidityProvisionsEdge`
+<ProtoMessage key={68} message={{"name":"LiquidityProvisionsEdge","longName":"LiquidityProvisionsEdge","fullName":"datanode.api.v2.LiquidityProvisionsEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"LiquidityProvision","longType":"vega.LiquidityProvision","fullType":"vega.LiquidityProvision","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#liquidityprovision"},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `ListAccountsRequest`
+<ProtoMessage key={69} message={{"name":"ListAccountsRequest","longName":"ListAccountsRequest","fullName":"datanode.api.v2.ListAccountsRequest","description":"-- Accounts --","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"filter","description":"Limit the accounts considered according to the filter supplied","label":"","type":"AccountFilter","longType":"AccountFilter","fullType":"datanode.api.v2.AccountFilter","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#accountfilter"},{"name":"pagination","description":"Optional pagination control","label":"optional","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":true,"oneofdecl":"_pagination","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `ListAccountsResponse`
+<ProtoMessage key={70} message={{"name":"ListAccountsResponse","longName":"ListAccountsResponse","fullName":"datanode.api.v2.ListAccountsResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"accounts","description":"Paged connection with 0 or more accounts","label":"","type":"AccountsConnection","longType":"AccountsConnection","fullType":"datanode.api.v2.AccountsConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#accountsconnection"}]}} />
+
+
+### `ListAssetsRequest`
+<ProtoMessage key={71} message={{"name":"ListAssetsRequest","longName":"ListAssetsRequest","fullName":"datanode.api.v2.ListAssetsRequest","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"asset_id","description":"","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_asset_id","defaultValue":""},{"name":"pagination","description":"","label":"optional","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":true,"oneofdecl":"_pagination","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `ListAssetsResponse`
+<ProtoMessage key={72} message={{"name":"ListAssetsResponse","longName":"ListAssetsResponse","fullName":"datanode.api.v2.ListAssetsResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"assets","description":"","label":"","type":"AssetsConnection","longType":"AssetsConnection","fullType":"datanode.api.v2.AssetsConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#assetsconnection"}]}} />
+
+
+### `ListCandleDataRequest`
+<ProtoMessage key={73} message={{"name":"ListCandleDataRequest","longName":"ListCandleDataRequest","fullName":"datanode.api.v2.ListCandleDataRequest","description":"Request for a list of candles for a market at an interval","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"candle_id","description":"Candle identifier, required field.","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"from_timestamp","description":"Timestamp to retrieve candles since, in nanoseconds since the epoch,\nrequired field - See [`VegaTimeResponse`](#api.VegaTimeResponse).`timestamp`","label":"","type":"int64","longType":"int64","fullType":"int64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"to_timestamp","description":"Timestamp to retrieve candles since, in nanoseconds since the epoch,\nrequired field - See [`VegaTimeResponse`](#api.VegaTimeResponse).`timestamp`","label":"","type":"int64","longType":"int64","fullType":"int64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"interval","description":"Time interval for the candles, required field specified as a valid postgres interval","label":"","type":"Interval","longType":"vega.Interval","fullType":"vega.Interval","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#interval"},{"name":"pagination","description":"pagination controls","label":"optional","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":true,"oneofdecl":"_pagination","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `ListCandleDataResponse`
+<ProtoMessage key={74} message={{"name":"ListCandleDataResponse","longName":"ListCandleDataResponse","fullName":"datanode.api.v2.ListCandleDataResponse","description":"Response for list of candles for a market at an interval","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"candles","description":"A list of 0 or more candles","label":"","type":"CandleDataConnection","longType":"CandleDataConnection","fullType":"datanode.api.v2.CandleDataConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#candledataconnection"}]}} />
+
+
+### `ListCandleIntervalsRequest`
+<ProtoMessage key={75} message={{"name":"ListCandleIntervalsRequest","longName":"ListCandleIntervalsRequest","fullName":"datanode.api.v2.ListCandleIntervalsRequest","description":"-- Candles --\nRequest to get a list of supported intervals for the given market along with the corresponding candle id","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"market_id","description":"The unique identifier for the market","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `ListCandleIntervalsResponse`
+<ProtoMessage key={76} message={{"name":"ListCandleIntervalsResponse","longName":"ListCandleIntervalsResponse","fullName":"datanode.api.v2.ListCandleIntervalsResponse","description":"A list of interval to candle id mappings for a given market","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"interval_to_candle_id","description":"","label":"repeated","type":"IntervalToCandleId","longType":"IntervalToCandleId","fullType":"datanode.api.v2.IntervalToCandleId","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#intervaltocandleid"}]}} />
+
+
+### `ListCheckpointsRequest`
+<ProtoMessage key={77} message={{"name":"ListCheckpointsRequest","longName":"ListCheckpointsRequest","fullName":"datanode.api.v2.ListCheckpointsRequest","description":"Request to get all checkpoints. Currently no fields, probably will be expanded to allow filtering data","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"pagination","description":"","label":"optional","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":true,"oneofdecl":"_pagination","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `ListCheckpointsResponse`
+<ProtoMessage key={78} message={{"name":"ListCheckpointsResponse","longName":"ListCheckpointsResponse","fullName":"datanode.api.v2.ListCheckpointsResponse","description":"Response message containing all checkpoints requested","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"checkpoints","description":"","label":"","type":"CheckpointsConnection","longType":"CheckpointsConnection","fullType":"datanode.api.v2.CheckpointsConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#checkpointsconnection"}]}} />
+
+
+### `ListDelegationsRequest`
+<ProtoMessage key={79} message={{"name":"ListDelegationsRequest","longName":"ListDelegationsRequest","fullName":"datanode.api.v2.ListDelegationsRequest","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"party_id","description":"","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_party_id","defaultValue":""},{"name":"node_id","description":"","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_node_id","defaultValue":""},{"name":"epoch_id","description":"","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_epoch_id","defaultValue":""},{"name":"pagination","description":"","label":"optional","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":true,"oneofdecl":"_pagination","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `ListDelegationsResponse`
+<ProtoMessage key={80} message={{"name":"ListDelegationsResponse","longName":"ListDelegationsResponse","fullName":"datanode.api.v2.ListDelegationsResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"delegations","description":"","label":"","type":"DelegationsConnection","longType":"DelegationsConnection","fullType":"datanode.api.v2.DelegationsConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#delegationsconnection"}]}} />
+
+
+### `ListDepositsRequest`
+<ProtoMessage key={81} message={{"name":"ListDepositsRequest","longName":"ListDepositsRequest","fullName":"datanode.api.v2.ListDepositsRequest","description":"A request to list all deposits for a given party","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"party_id","description":"The identifier of a party whose deposits are to be retrieved","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"pagination","description":"Optional pagination control","label":"optional","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":true,"oneofdecl":"_pagination","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `ListDepositsResponse`
+<ProtoMessage key={82} message={{"name":"ListDepositsResponse","longName":"ListDepositsResponse","fullName":"datanode.api.v2.ListDepositsResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"deposits","description":"","label":"","type":"DepositsConnection","longType":"DepositsConnection","fullType":"datanode.api.v2.DepositsConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#depositsconnection"}]}} />
+
+
+### `ListGovernanceDataRequest`
+<ProtoMessage key={83} message={{"name":"ListGovernanceDataRequest","longName":"ListGovernanceDataRequest","fullName":"datanode.api.v2.ListGovernanceDataRequest","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"proposal_state","description":"","label":"optional","type":"State","longType":"vega.Proposal.State","fullType":"vega.Proposal.State","ismap":false,"isoneof":true,"oneofdecl":"_proposal_state","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/governance.proto#proposalstate"},{"name":"proposal_type","description":"","label":"optional","type":"Type","longType":"ListGovernanceDataRequest.Type","fullType":"datanode.api.v2.ListGovernanceDataRequest.Type","ismap":false,"isoneof":true,"oneofdecl":"_proposal_type","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listgovernancedatarequesttype"},{"name":"proposer_party_id","description":"","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_proposer_party_id","defaultValue":""},{"name":"proposal_reference","description":"","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_proposal_reference","defaultValue":""},{"name":"pagination","description":"","label":"optional","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":true,"oneofdecl":"_pagination","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `ListGovernanceDataResponse`
+<ProtoMessage key={84} message={{"name":"ListGovernanceDataResponse","longName":"ListGovernanceDataResponse","fullName":"datanode.api.v2.ListGovernanceDataResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"connection","description":"","label":"","type":"GovernanceDataConnection","longType":"GovernanceDataConnection","fullType":"datanode.api.v2.GovernanceDataConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#governancedataconnection"}]}} />
+
+
+### `ListLatestMarketDataRequest`
+<ProtoMessage key={85} message={{"name":"ListLatestMarketDataRequest","longName":"ListLatestMarketDataRequest","fullName":"datanode.api.v2.ListLatestMarketDataRequest","description":"Request to get the latest market data for every market","hasExtensions":false,"hasFields":false,"hasOneofs":false,"extensions":[],"fields":[]}} />
+
+
+### `ListLatestMarketDataResponse`
+<ProtoMessage key={86} message={{"name":"ListLatestMarketDataResponse","longName":"ListLatestMarketDataResponse","fullName":"datanode.api.v2.ListLatestMarketDataResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"markets_data","description":"","label":"repeated","type":"MarketData","longType":"vega.MarketData","fullType":"vega.MarketData","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#marketdata"}]}} />
+
+
+### `ListLiquidityProvisionsRequest`
+<ProtoMessage key={87} message={{"name":"ListLiquidityProvisionsRequest","longName":"ListLiquidityProvisionsRequest","fullName":"datanode.api.v2.ListLiquidityProvisionsRequest","description":"-- Liquidity Provisions --","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"market_id","description":"The target market for the liquidity provision orders","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_market_id","defaultValue":""},{"name":"party_id","description":"The party which submitted the liquidity provision orders","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_party_id","defaultValue":""},{"name":"reference","description":"The reference of the liquidity provision","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_reference","defaultValue":""},{"name":"pagination","description":"","label":"optional","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":true,"oneofdecl":"_pagination","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `ListLiquidityProvisionsResponse`
+<ProtoMessage key={88} message={{"name":"ListLiquidityProvisionsResponse","longName":"ListLiquidityProvisionsResponse","fullName":"datanode.api.v2.ListLiquidityProvisionsResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"liquidity_provisions","description":"","label":"","type":"LiquidityProvisionsConnection","longType":"LiquidityProvisionsConnection","fullType":"datanode.api.v2.LiquidityProvisionsConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#liquidityprovisionsconnection"}]}} />
+
+
+### `ListMarginLevelsRequest`
+<ProtoMessage key={89} message={{"name":"ListMarginLevelsRequest","longName":"ListMarginLevelsRequest","fullName":"datanode.api.v2.ListMarginLevelsRequest","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"party_id","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"market_id","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"pagination","description":"","label":"","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `ListMarginLevelsResponse`
+<ProtoMessage key={90} message={{"name":"ListMarginLevelsResponse","longName":"ListMarginLevelsResponse","fullName":"datanode.api.v2.ListMarginLevelsResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"margin_levels","description":"","label":"","type":"MarginConnection","longType":"MarginConnection","fullType":"datanode.api.v2.MarginConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#marginconnection"}]}} />
+
+
+### `ListMarketsRequest`
+<ProtoMessage key={91} message={{"name":"ListMarketsRequest","longName":"ListMarketsRequest","fullName":"datanode.api.v2.ListMarketsRequest","description":"-- Markets --","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"market_id","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"pagination","description":"","label":"optional","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":true,"oneofdecl":"_pagination","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `ListMarketsResponse`
+<ProtoMessage key={92} message={{"name":"ListMarketsResponse","longName":"ListMarketsResponse","fullName":"datanode.api.v2.ListMarketsResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"markets","description":"","label":"","type":"MarketConnection","longType":"MarketConnection","fullType":"datanode.api.v2.MarketConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#marketconnection"}]}} />
+
+
+### `ListNetworkParametersRequest`
+<ProtoMessage key={93} message={{"name":"ListNetworkParametersRequest","longName":"ListNetworkParametersRequest","fullName":"datanode.api.v2.ListNetworkParametersRequest","description":"A message requesting for the list of all network parameters","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"pagination","description":"","label":"optional","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":true,"oneofdecl":"_pagination","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `ListNetworkParametersResponse`
+<ProtoMessage key={94} message={{"name":"ListNetworkParametersResponse","longName":"ListNetworkParametersResponse","fullName":"datanode.api.v2.ListNetworkParametersResponse","description":"A response containing all of the vega network parameters","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"network_parameters","description":"","label":"","type":"NetworkParameterConnection","longType":"NetworkParameterConnection","fullType":"datanode.api.v2.NetworkParameterConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#networkparameterconnection"}]}} />
+
+
+### `ListNodesRequest`
+<ProtoMessage key={95} message={{"name":"ListNodesRequest","longName":"ListNodesRequest","fullName":"datanode.api.v2.ListNodesRequest","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"epoch_seq","description":"","label":"optional","type":"uint64","longType":"uint64","fullType":"uint64","ismap":false,"isoneof":true,"oneofdecl":"_epoch_seq","defaultValue":""},{"name":"pagination","description":"","label":"optional","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":true,"oneofdecl":"_pagination","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `ListNodesResponse`
+<ProtoMessage key={96} message={{"name":"ListNodesResponse","longName":"ListNodesResponse","fullName":"datanode.api.v2.ListNodesResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"nodes","description":"","label":"","type":"NodesConnection","longType":"NodesConnection","fullType":"datanode.api.v2.NodesConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#nodesconnection"}]}} />
+
+
+### `ListOracleDataRequest`
+<ProtoMessage key={97} message={{"name":"ListOracleDataRequest","longName":"ListOracleDataRequest","fullName":"datanode.api.v2.ListOracleDataRequest","description":"The request to get all seen oracle data","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"oracle_spec_id","description":"","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_oracle_spec_id","defaultValue":""},{"name":"pagination","description":"Pagination controls","label":"optional","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":true,"oneofdecl":"_pagination","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `ListOracleDataResponse`
+<ProtoMessage key={98} message={{"name":"ListOracleDataResponse","longName":"ListOracleDataResponse","fullName":"datanode.api.v2.ListOracleDataResponse","description":"The response to get all seen oracle data","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"oracle_data","description":"The list of seen oracle data","label":"","type":"OracleDataConnection","longType":"OracleDataConnection","fullType":"datanode.api.v2.OracleDataConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#oracledataconnection"}]}} />
+
+
+### `ListOracleSpecsRequest`
+<ProtoMessage key={99} message={{"name":"ListOracleSpecsRequest","longName":"ListOracleSpecsRequest","fullName":"datanode.api.v2.ListOracleSpecsRequest","description":"The request to get all active oracle specs","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"pagination","description":"Pagination controls","label":"optional","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":true,"oneofdecl":"_pagination","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `ListOracleSpecsResponse`
+<ProtoMessage key={100} message={{"name":"ListOracleSpecsResponse","longName":"ListOracleSpecsResponse","fullName":"datanode.api.v2.ListOracleSpecsResponse","description":"The response to get all active oracle specs","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"oracle_specs","description":"The list of active oracle specs","label":"","type":"OracleSpecsConnection","longType":"OracleSpecsConnection","fullType":"datanode.api.v2.OracleSpecsConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#oraclespecsconnection"}]}} />
+
+
+### `ListOrderVersionsRequest`
+<ProtoMessage key={101} message={{"name":"ListOrderVersionsRequest","longName":"ListOrderVersionsRequest","fullName":"datanode.api.v2.ListOrderVersionsRequest","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"order_id","description":"Order identifier","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"pagination","description":"Optional pagination control","label":"optional","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":true,"oneofdecl":"_pagination","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `ListOrderVersionsResponse`
+<ProtoMessage key={102} message={{"name":"ListOrderVersionsResponse","longName":"ListOrderVersionsResponse","fullName":"datanode.api.v2.ListOrderVersionsResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"orders","description":"Paged connection with 0 or more order versions","label":"","type":"OrderConnection","longType":"OrderConnection","fullType":"datanode.api.v2.OrderConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#orderconnection"}]}} />
+
+
+### `ListOrdersRequest`
+<ProtoMessage key={103} message={{"name":"ListOrdersRequest","longName":"ListOrdersRequest","fullName":"datanode.api.v2.ListOrdersRequest","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"party_id","description":"Party identifier","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_party_id","defaultValue":""},{"name":"market_id","description":"Market identifier","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_market_id","defaultValue":""},{"name":"reference","description":"Reference","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_reference","defaultValue":""},{"name":"pagination","description":"Optional pagination control","label":"optional","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":true,"oneofdecl":"_pagination","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `ListOrdersResponse`
+<ProtoMessage key={104} message={{"name":"ListOrdersResponse","longName":"ListOrdersResponse","fullName":"datanode.api.v2.ListOrdersResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"orders","description":"Paged connection with 0 or more orders","label":"","type":"OrderConnection","longType":"OrderConnection","fullType":"datanode.api.v2.OrderConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#orderconnection"}]}} />
+
+
+### `ListPartiesRequest`
+<ProtoMessage key={105} message={{"name":"ListPartiesRequest","longName":"ListPartiesRequest","fullName":"datanode.api.v2.ListPartiesRequest","description":"-- Parties --","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"party_id","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"pagination","description":"","label":"","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `ListPartiesResponse`
+<ProtoMessage key={106} message={{"name":"ListPartiesResponse","longName":"ListPartiesResponse","fullName":"datanode.api.v2.ListPartiesResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"party","description":"","label":"","type":"PartyConnection","longType":"PartyConnection","fullType":"datanode.api.v2.PartyConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#partyconnection"}]}} />
+
+
+### `ListPositionsRequest`
+<ProtoMessage key={107} message={{"name":"ListPositionsRequest","longName":"ListPositionsRequest","fullName":"datanode.api.v2.ListPositionsRequest","description":"-- Positions --\nRequest for a list of positions for a party\nOptionally, if a market identifier is set, the results will be filtered for that market only","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"party_id","description":"Party identifier, required field","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"market_id","description":"Market identifier","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"pagination","description":"Optional pagination control","label":"optional","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":true,"oneofdecl":"_pagination","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `ListPositionsResponse`
+<ProtoMessage key={108} message={{"name":"ListPositionsResponse","longName":"ListPositionsResponse","fullName":"datanode.api.v2.ListPositionsResponse","description":"Response for a list of positions for a party","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"positions","description":"A list of 0 or more positions","label":"","type":"PositionConnection","longType":"PositionConnection","fullType":"datanode.api.v2.PositionConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#positionconnection"}]}} />
+
+
+### `ListRewardSummariesRequest`
+<ProtoMessage key={109} message={{"name":"ListRewardSummariesRequest","longName":"ListRewardSummariesRequest","fullName":"datanode.api.v2.ListRewardSummariesRequest","description":"A request to get reward details for a party","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"party_id","description":"","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_party_id","defaultValue":""},{"name":"asset_id","description":"","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_asset_id","defaultValue":""}]}} />
+
+
+### `ListRewardSummariesResponse`
+<ProtoMessage key={110} message={{"name":"ListRewardSummariesResponse","longName":"ListRewardSummariesResponse","fullName":"datanode.api.v2.ListRewardSummariesResponse","description":"The return message with reward details in for a single party","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"summaries","description":"","label":"repeated","type":"RewardSummary","longType":"vega.RewardSummary","fullType":"vega.RewardSummary","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#rewardsummary"}]}} />
+
+
+### `ListRewardsRequest`
+<ProtoMessage key={111} message={{"name":"ListRewardsRequest","longName":"ListRewardsRequest","fullName":"datanode.api.v2.ListRewardsRequest","description":"A request to get reward details for a party","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"party_id","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"asset_id","description":"","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_asset_id","defaultValue":""},{"name":"pagination","description":"","label":"optional","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":true,"oneofdecl":"_pagination","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `ListRewardsResponse`
+<ProtoMessage key={112} message={{"name":"ListRewardsResponse","longName":"ListRewardsResponse","fullName":"datanode.api.v2.ListRewardsResponse","description":"The return message with reward details in for a single party","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"rewards","description":"","label":"","type":"RewardsConnection","longType":"RewardsConnection","fullType":"datanode.api.v2.RewardsConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#rewardsconnection"}]}} />
+
+
+### `ListTradesRequest`
+<ProtoMessage key={113} message={{"name":"ListTradesRequest","longName":"ListTradesRequest","fullName":"datanode.api.v2.ListTradesRequest","description":"-- Trades --","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"market_id","description":"","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_market_id","defaultValue":""},{"name":"order_id","description":"","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_order_id","defaultValue":""},{"name":"party_id","description":"","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_party_id","defaultValue":""},{"name":"pagination","description":"","label":"optional","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":true,"oneofdecl":"_pagination","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `ListTradesResponse`
+<ProtoMessage key={114} message={{"name":"ListTradesResponse","longName":"ListTradesResponse","fullName":"datanode.api.v2.ListTradesResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"trades","description":"","label":"","type":"TradeConnection","longType":"TradeConnection","fullType":"datanode.api.v2.TradeConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#tradeconnection"}]}} />
+
+
+### `ListTransfersRequest`
+<ProtoMessage key={115} message={{"name":"ListTransfersRequest","longName":"ListTransfersRequest","fullName":"datanode.api.v2.ListTransfersRequest","description":"Request for transfers","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"pubkey","description":"Public key of which transfers to request","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_pubkey","defaultValue":""},{"name":"direction","description":"Directions to include in the response data","label":"","type":"TransferDirection","longType":"TransferDirection","fullType":"datanode.api.v2.TransferDirection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#transferdirection"},{"name":"pagination","description":"Optional pagination cntrol","label":"optional","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":true,"oneofdecl":"_pagination","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `ListTransfersResponse`
+<ProtoMessage key={116} message={{"name":"ListTransfersResponse","longName":"ListTransfersResponse","fullName":"datanode.api.v2.ListTransfersResponse","description":"Response for transfers","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"transfers","description":"","label":"","type":"TransferConnection","longType":"TransferConnection","fullType":"datanode.api.v2.TransferConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#transferconnection"}]}} />
+
+
+### `ListVotesRequest`
+<ProtoMessage key={117} message={{"name":"ListVotesRequest","longName":"ListVotesRequest","fullName":"datanode.api.v2.ListVotesRequest","description":"-- Votes --\nRequest for Votes","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"party_id","description":"Party of which the votes are requested","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"pagination","description":"Optional pagination control","label":"optional","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":true,"oneofdecl":"_pagination","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `ListVotesResponse`
+<ProtoMessage key={118} message={{"name":"ListVotesResponse","longName":"ListVotesResponse","fullName":"datanode.api.v2.ListVotesResponse","description":"Response for Votes","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"votes","description":"","label":"","type":"VoteConnection","longType":"VoteConnection","fullType":"datanode.api.v2.VoteConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#voteconnection"}]}} />
+
+
+### `ListWithdrawalsRequest`
+<ProtoMessage key={119} message={{"name":"ListWithdrawalsRequest","longName":"ListWithdrawalsRequest","fullName":"datanode.api.v2.ListWithdrawalsRequest","description":"List all withdrawals for a given party","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"party_id","description":"The identifier for the party whose withdrawals we want to retrieve","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"pagination","description":"Optional pagination information to limit the data that is returned","label":"optional","type":"Pagination","longType":"Pagination","fullType":"datanode.api.v2.Pagination","ismap":false,"isoneof":true,"oneofdecl":"_pagination","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pagination"}]}} />
+
+
+### `ListWithdrawalsResponse`
+<ProtoMessage key={120} message={{"name":"ListWithdrawalsResponse","longName":"ListWithdrawalsResponse","fullName":"datanode.api.v2.ListWithdrawalsResponse","description":"A paged connection with the requested withdrawal information","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"withdrawals","description":"","label":"","type":"WithdrawalsConnection","longType":"WithdrawalsConnection","fullType":"datanode.api.v2.WithdrawalsConnection","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#withdrawalsconnection"}]}} />
+
+
+### `MarginConnection`
+<ProtoMessage key={121} message={{"name":"MarginConnection","longName":"MarginConnection","fullName":"datanode.api.v2.MarginConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"edges","description":"","label":"repeated","type":"MarginEdge","longType":"MarginEdge","fullType":"datanode.api.v2.MarginEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#marginedge"},{"name":"page_info","description":"","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+
+### `MarginEdge`
+<ProtoMessage key={122} message={{"name":"MarginEdge","longName":"MarginEdge","fullName":"datanode.api.v2.MarginEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"MarginLevels","longType":"vega.MarginLevels","fullType":"vega.MarginLevels","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#marginlevels"},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `MarketConnection`
+<ProtoMessage key={123} message={{"name":"MarketConnection","longName":"MarketConnection","fullName":"datanode.api.v2.MarketConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"edges","description":"","label":"repeated","type":"MarketEdge","longType":"MarketEdge","fullType":"datanode.api.v2.MarketEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#marketedge"},{"name":"page_info","description":"","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+
+### `MarketDataConnection`
+<ProtoMessage key={124} message={{"name":"MarketDataConnection","longName":"MarketDataConnection","fullName":"datanode.api.v2.MarketDataConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"edges","description":"","label":"repeated","type":"MarketDataEdge","longType":"MarketDataEdge","fullType":"datanode.api.v2.MarketDataEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#marketdataedge"},{"name":"page_info","description":"","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+
+### `MarketDataEdge`
+<ProtoMessage key={125} message={{"name":"MarketDataEdge","longName":"MarketDataEdge","fullName":"datanode.api.v2.MarketDataEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"MarketData","longType":"vega.MarketData","fullType":"vega.MarketData","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#marketdata"},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `MarketEdge`
+<ProtoMessage key={126} message={{"name":"MarketEdge","longName":"MarketEdge","fullName":"datanode.api.v2.MarketEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"Market","longType":"vega.Market","fullType":"vega.Market","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/markets.proto#market"},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `MarketsDataSubscribeRequest`
+<ProtoMessage key={127} message={{"name":"MarketsDataSubscribeRequest","longName":"MarketsDataSubscribeRequest","fullName":"datanode.api.v2.MarketsDataSubscribeRequest","description":"Request to subscribe to a stream of MarketsData\nOptionally, the list can be additionally filtered by market","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"market_id","description":"Market identifier","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `MarketsDataSubscribeResponse`
+<ProtoMessage key={128} message={{"name":"MarketsDataSubscribeResponse","longName":"MarketsDataSubscribeResponse","fullName":"datanode.api.v2.MarketsDataSubscribeResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"market_data","description":"","label":"repeated","type":"MarketData","longType":"vega.MarketData","fullType":"vega.MarketData","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#marketdata"}]}} />
+
+
+### `NetworkParameterConnection`
+<ProtoMessage key={129} message={{"name":"NetworkParameterConnection","longName":"NetworkParameterConnection","fullName":"datanode.api.v2.NetworkParameterConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"edges","description":"","label":"repeated","type":"NetworkParameterEdge","longType":"NetworkParameterEdge","fullType":"datanode.api.v2.NetworkParameterEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#networkparameteredge"},{"name":"page_info","description":"","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+
+### `NetworkParameterEdge`
+<ProtoMessage key={130} message={{"name":"NetworkParameterEdge","longName":"NetworkParameterEdge","fullName":"datanode.api.v2.NetworkParameterEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"NetworkParameter","longType":"vega.NetworkParameter","fullType":"vega.NetworkParameter","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#networkparameter"},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `NodeEdge`
+<ProtoMessage key={131} message={{"name":"NodeEdge","longName":"NodeEdge","fullName":"datanode.api.v2.NodeEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"Node","longType":"vega.Node","fullType":"vega.Node","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#node"},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `NodesConnection`
+<ProtoMessage key={132} message={{"name":"NodesConnection","longName":"NodesConnection","fullName":"datanode.api.v2.NodesConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"edges","description":"","label":"repeated","type":"NodeEdge","longType":"NodeEdge","fullType":"datanode.api.v2.NodeEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#nodeedge"},{"name":"page_info","description":"","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+
+### `ObserveAccountsRequest`
+<ProtoMessage key={133} message={{"name":"ObserveAccountsRequest","longName":"ObserveAccountsRequest","fullName":"datanode.api.v2.ObserveAccountsRequest","description":"Request to subscribe to a stream of (Accounts)[#vega.Account]","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"market_id","description":"Market identifier","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"party_id","description":"Party identifier","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"asset","description":"Asset identifier","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"type","description":"Account type to subscribe to, required field","label":"","type":"AccountType","longType":"vega.AccountType","fullType":"vega.AccountType","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#accounttype"}]}} />
+
+
+### `ObserveAccountsResponse`
+<ProtoMessage key={134} message={{"name":"ObserveAccountsResponse","longName":"ObserveAccountsResponse","fullName":"datanode.api.v2.ObserveAccountsResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"account","description":"","label":"","type":"Account","longType":"vega.Account","fullType":"vega.Account","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#account"}]}} />
+
+
+### `ObserveCandleDataRequest`
+<ProtoMessage key={135} message={{"name":"ObserveCandleDataRequest","longName":"ObserveCandleDataRequest","fullName":"datanode.api.v2.ObserveCandleDataRequest","description":"Request to subscribe to a stream of (Candles)[#vega.Candle]","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"candle_id","description":"The unique identifier for the candle","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `ObserveCandleDataResponse`
+<ProtoMessage key={136} message={{"name":"ObserveCandleDataResponse","longName":"ObserveCandleDataResponse","fullName":"datanode.api.v2.ObserveCandleDataResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"candle","description":"","label":"","type":"Candle","longType":"Candle","fullType":"datanode.api.v2.Candle","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#candle"}]}} />
+
+
+### `ObserveDelegationsRequest`
+<ProtoMessage key={137} message={{"name":"ObserveDelegationsRequest","longName":"ObserveDelegationsRequest","fullName":"datanode.api.v2.ObserveDelegationsRequest","description":"Request to obsever all event related to delegation with the given filters","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"party_id","description":"","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_party_id","defaultValue":""},{"name":"node_id","description":"","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_node_id","defaultValue":""}]}} />
+
+
+### `ObserveDelegationsResponse`
+<ProtoMessage key={138} message={{"name":"ObserveDelegationsResponse","longName":"ObserveDelegationsResponse","fullName":"datanode.api.v2.ObserveDelegationsResponse","description":"All events related to delegation with the given filters","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"delegation","description":"","label":"","type":"Delegation","longType":"vega.Delegation","fullType":"vega.Delegation","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#delegation"}]}} />
+
+
+### `ObserveEventBusRequest`
+<ProtoMessage key={139} message={{"name":"ObserveEventBusRequest","longName":"ObserveEventBusRequest","fullName":"datanode.api.v2.ObserveEventBusRequest","description":"-- EventBus --\nRequest to subscribe to a stream of one or more event types from the Vega event bus","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"type","description":"One or more types of event, required field","label":"repeated","type":"BusEventType","longType":"vega.events.v1.BusEventType","fullType":"vega.events.v1.BusEventType","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/events/v1/events.proto#buseventtype"},{"name":"market_id","description":"Market identifier, optional field","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"party_id","description":"Party identifier, optional field","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"batch_size","description":"Batch size, optional field -\nIf not specified, any events received will be sent immediately. If the client is not ready\nfor the next data-set, data may be dropped a number of times, and eventually the stream is closed.\nif specified, the first batch will be sent when ready. To receive the next set of events, the client\nmust write an `ObserveEventBatch` message on the stream to flush the buffer.\nIf no message is received in 5 seconds, the stream is closed.\nDefault: 0, send any and all events when they are available.","label":"","type":"int64","longType":"int64","fullType":"int64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `ObserveEventBusResponse`
+<ProtoMessage key={140} message={{"name":"ObserveEventBusResponse","longName":"ObserveEventBusResponse","fullName":"datanode.api.v2.ObserveEventBusResponse","description":"Response to a subscribed stream of events from the Vega event bus","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"events","description":"One or more events","label":"repeated","type":"BusEvent","longType":"vega.events.v1.BusEvent","fullType":"vega.events.v1.BusEvent","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/events/v1/events.proto#busevent"}]}} />
+
+
+### `ObserveGovernanceRequest`
+<ProtoMessage key={141} message={{"name":"ObserveGovernanceRequest","longName":"ObserveGovernanceRequest","fullName":"datanode.api.v2.ObserveGovernanceRequest","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"party_id","description":"","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_party_id","defaultValue":""}]}} />
+
+
+### `ObserveGovernanceResponse`
+<ProtoMessage key={142} message={{"name":"ObserveGovernanceResponse","longName":"ObserveGovernanceResponse","fullName":"datanode.api.v2.ObserveGovernanceResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"data","description":"","label":"","type":"GovernanceData","longType":"vega.GovernanceData","fullType":"vega.GovernanceData","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/governance.proto#governancedata"}]}} />
+
+
+### `ObserveMarginLevelsRequest`
+<ProtoMessage key={143} message={{"name":"ObserveMarginLevelsRequest","longName":"ObserveMarginLevelsRequest","fullName":"datanode.api.v2.ObserveMarginLevelsRequest","description":"Request to subscribe to a stream of MarginLevels data matching the given party identifier\nOptionally, the list can be additionally filtered by market","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"party_id","description":"Party identifier, required field","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"market_id","description":"Market identifier","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_market_id","defaultValue":""}]}} />
+
+
+### `ObserveMarginLevelsResponse`
+<ProtoMessage key={144} message={{"name":"ObserveMarginLevelsResponse","longName":"ObserveMarginLevelsResponse","fullName":"datanode.api.v2.ObserveMarginLevelsResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"margin_levels","description":"","label":"","type":"MarginLevels","longType":"vega.MarginLevels","fullType":"vega.MarginLevels","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#marginlevels"}]}} />
+
+
+### `ObserveMarketsDataRequest`
+<ProtoMessage key={145} message={{"name":"ObserveMarketsDataRequest","longName":"ObserveMarketsDataRequest","fullName":"datanode.api.v2.ObserveMarketsDataRequest","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"market_ids","description":"","label":"repeated","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `ObserveMarketsDataResponse`
+<ProtoMessage key={146} message={{"name":"ObserveMarketsDataResponse","longName":"ObserveMarketsDataResponse","fullName":"datanode.api.v2.ObserveMarketsDataResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"market_data","description":"","label":"repeated","type":"MarketData","longType":"vega.MarketData","fullType":"vega.MarketData","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#marketdata"}]}} />
+
+
+### `ObserveMarketsDepthRequest`
+<ProtoMessage key={147} message={{"name":"ObserveMarketsDepthRequest","longName":"ObserveMarketsDepthRequest","fullName":"datanode.api.v2.ObserveMarketsDepthRequest","description":"-- Market Data --","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"market_ids","description":"","label":"repeated","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `ObserveMarketsDepthResponse`
+<ProtoMessage key={148} message={{"name":"ObserveMarketsDepthResponse","longName":"ObserveMarketsDepthResponse","fullName":"datanode.api.v2.ObserveMarketsDepthResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"market_depth","description":"","label":"repeated","type":"MarketDepth","longType":"vega.MarketDepth","fullType":"vega.MarketDepth","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#marketdepth"}]}} />
+
+
+### `ObserveMarketsDepthUpdatesRequest`
+<ProtoMessage key={149} message={{"name":"ObserveMarketsDepthUpdatesRequest","longName":"ObserveMarketsDepthUpdatesRequest","fullName":"datanode.api.v2.ObserveMarketsDepthUpdatesRequest","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"market_ids","description":"","label":"repeated","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `ObserveMarketsDepthUpdatesResponse`
+<ProtoMessage key={150} message={{"name":"ObserveMarketsDepthUpdatesResponse","longName":"ObserveMarketsDepthUpdatesResponse","fullName":"datanode.api.v2.ObserveMarketsDepthUpdatesResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"update","description":"","label":"repeated","type":"MarketDepthUpdate","longType":"vega.MarketDepthUpdate","fullType":"vega.MarketDepthUpdate","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#marketdepthupdate"}]}} />
+
+
+### `ObserveOrdersRequest`
+<ProtoMessage key={151} message={{"name":"ObserveOrdersRequest","longName":"ObserveOrdersRequest","fullName":"datanode.api.v2.ObserveOrdersRequest","description":"Request to subscribe to a stream of (Orders)[#vega.Order]\n\nThe fields for market identifier and party identifier are optional filters:\nIf omitted all orders, for all parties on all markets will be returned on the stream\nIf market identifier is given, orders from that market will be returned on the stream\nIf party identifier is given, orders from that party will be returned on the stream\nBoth filters can be combined","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"market_id","description":"Market identifier","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_market_id","defaultValue":""},{"name":"party_id","description":"Party identifier","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_party_id","defaultValue":""}]}} />
+
+
+### `ObserveOrdersResponse`
+<ProtoMessage key={152} message={{"name":"ObserveOrdersResponse","longName":"ObserveOrdersResponse","fullName":"datanode.api.v2.ObserveOrdersResponse","description":"Response sent over an orders stream","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"orders","description":"A list of 0 or more orders","label":"repeated","type":"Order","longType":"vega.Order","fullType":"vega.Order","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#order"}]}} />
+
+
+### `ObservePositionsRequest`
+<ProtoMessage key={153} message={{"name":"ObservePositionsRequest","longName":"ObservePositionsRequest","fullName":"datanode.api.v2.ObservePositionsRequest","description":"Request to subscribe to a stream of (Positions)[#vega.Position]","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"party_id","description":"Optional party identifier","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_party_id","defaultValue":""},{"name":"market_id","description":"Optional market identifier","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_market_id","defaultValue":""}]}} />
+
+
+### `ObservePositionsResponse`
+<ProtoMessage key={154} message={{"name":"ObservePositionsResponse","longName":"ObservePositionsResponse","fullName":"datanode.api.v2.ObservePositionsResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"position","description":"","label":"","type":"Position","longType":"vega.Position","fullType":"vega.Position","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#position"}]}} />
+
+
+### `ObserveRewardsRequest`
+<ProtoMessage key={155} message={{"name":"ObserveRewardsRequest","longName":"ObserveRewardsRequest","fullName":"datanode.api.v2.ObserveRewardsRequest","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"asset_id","description":"","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_asset_id","defaultValue":""},{"name":"party_id","description":"","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_party_id","defaultValue":""}]}} />
+
+
+### `ObserveRewardsResponse`
+<ProtoMessage key={156} message={{"name":"ObserveRewardsResponse","longName":"ObserveRewardsResponse","fullName":"datanode.api.v2.ObserveRewardsResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"reward","description":"","label":"","type":"Reward","longType":"vega.Reward","fullType":"vega.Reward","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#reward"}]}} />
+
+
+### `ObserveTradesRequest`
+<ProtoMessage key={157} message={{"name":"ObserveTradesRequest","longName":"ObserveTradesRequest","fullName":"datanode.api.v2.ObserveTradesRequest","description":"Request to subscribe to a stream of (Trades)[#vega.Trade]\n\nThe fields for market identifier and party identifier are optional filters:\nIf omitted all trades, for all parties on all markets will be returned on the stream\nIf market identifier is given, trades from that market will be returned on the stream\nIf party identifier is given, trades from that party will be returned on the stream\nBoth filters can be combined","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"market_id","description":"Market identifier","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_market_id","defaultValue":""},{"name":"party_id","description":"Party identifier","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_party_id","defaultValue":""}]}} />
+
+
+### `ObserveTradesResponse`
+<ProtoMessage key={158} message={{"name":"ObserveTradesResponse","longName":"ObserveTradesResponse","fullName":"datanode.api.v2.ObserveTradesResponse","description":"A stream of trades","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"trades","description":"A list of 0 or more trades","label":"repeated","type":"Trade","longType":"vega.Trade","fullType":"vega.Trade","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#trade"}]}} />
+
+
+### `ObserveTransferResponsesRequest`
+<ProtoMessage key={159} message={{"name":"ObserveTransferResponsesRequest","longName":"ObserveTransferResponsesRequest","fullName":"datanode.api.v2.ObserveTransferResponsesRequest","description":"-- Transfer Responses --","hasExtensions":false,"hasFields":false,"hasOneofs":false,"extensions":[],"fields":[]}} />
+
+
+### `ObserveTransferResponsesResponse`
+<ProtoMessage key={160} message={{"name":"ObserveTransferResponsesResponse","longName":"ObserveTransferResponsesResponse","fullName":"datanode.api.v2.ObserveTransferResponsesResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"response","description":"","label":"","type":"TransferResponse","longType":"vega.TransferResponse","fullType":"vega.TransferResponse","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#transferresponse"}]}} />
+
+
+### `ObserveVotesRequest`
+<ProtoMessage key={161} message={{"name":"ObserveVotesRequest","longName":"ObserveVotesRequest","fullName":"datanode.api.v2.ObserveVotesRequest","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"party_id","description":"Party of which the votes are requested","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_party_id","defaultValue":""},{"name":"proposal_id","description":"Option proposal id for which the votes are requested","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_proposal_id","defaultValue":""}]}} />
+
+
+### `ObserveVotesResponse`
+<ProtoMessage key={162} message={{"name":"ObserveVotesResponse","longName":"ObserveVotesResponse","fullName":"datanode.api.v2.ObserveVotesResponse","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"vote","description":"","label":"","type":"Vote","longType":"vega.Vote","fullType":"vega.Vote","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/governance.proto#vote"}]}} />
+
+
+### `OffsetPagination`
+<ProtoMessage key={163} message={{"name":"OffsetPagination","longName":"OffsetPagination","fullName":"datanode.api.v2.OffsetPagination","description":"-- Pagination --\nPagination controls","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"skip","description":"Skip the number of records specified, default is 0","label":"","type":"uint64","longType":"uint64","fullType":"uint64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"limit","description":"Limit the number of returned records to the value specified, default is 50","label":"","type":"uint64","longType":"uint64","fullType":"uint64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"descending","description":"Descending reverses the order of the records returned,\ndefault is true, if false the results will be returned in ascending order","label":"","type":"bool","longType":"bool","fullType":"bool","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `OracleDataConnection`
+<ProtoMessage key={164} message={{"name":"OracleDataConnection","longName":"OracleDataConnection","fullName":"datanode.api.v2.OracleDataConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"edges","description":"","label":"repeated","type":"OracleDataEdge","longType":"OracleDataEdge","fullType":"datanode.api.v2.OracleDataEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#oracledataedge"},{"name":"page_info","description":"","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+
+### `OracleDataEdge`
+<ProtoMessage key={165} message={{"name":"OracleDataEdge","longName":"OracleDataEdge","fullName":"datanode.api.v2.OracleDataEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"OracleData","longType":"oracles.v1.OracleData","fullType":"oracles.v1.OracleData","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/oracles/v1/data.proto#oracledata"},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `OracleSpecEdge`
+<ProtoMessage key={166} message={{"name":"OracleSpecEdge","longName":"OracleSpecEdge","fullName":"datanode.api.v2.OracleSpecEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"OracleSpec","longType":"oracles.v1.OracleSpec","fullType":"oracles.v1.OracleSpec","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/oracles/v1/spec.proto#oraclespec"},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `OracleSpecsConnection`
+<ProtoMessage key={167} message={{"name":"OracleSpecsConnection","longName":"OracleSpecsConnection","fullName":"datanode.api.v2.OracleSpecsConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"edges","description":"","label":"repeated","type":"OracleSpecEdge","longType":"OracleSpecEdge","fullType":"datanode.api.v2.OracleSpecEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#oraclespecedge"},{"name":"page_info","description":"","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+
+### `OrderConnection`
+<ProtoMessage key={168} message={{"name":"OrderConnection","longName":"OrderConnection","fullName":"datanode.api.v2.OrderConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"edges","description":"","label":"repeated","type":"OrderEdge","longType":"OrderEdge","fullType":"datanode.api.v2.OrderEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#orderedge"},{"name":"page_info","description":"","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+
+### `OrderEdge`
+<ProtoMessage key={169} message={{"name":"OrderEdge","longName":"OrderEdge","fullName":"datanode.api.v2.OrderEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"Order","longType":"vega.Order","fullType":"vega.Order","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#order"},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `PageInfo`
+<ProtoMessage key={170} message={{"name":"PageInfo","longName":"PageInfo","fullName":"datanode.api.v2.PageInfo","description":"Page information for cursor based pagination","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"has_next_page","description":"","label":"","type":"bool","longType":"bool","fullType":"bool","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"has_previous_page","description":"","label":"","type":"bool","longType":"bool","fullType":"bool","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"start_cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"end_cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `Pagination`
+<ProtoMessage key={171} message={{"name":"Pagination","longName":"Pagination","fullName":"datanode.api.v2.Pagination","description":"Cursor information for cursor based pagination requests","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"first","description":"","label":"optional","type":"int32","longType":"int32","fullType":"int32","ismap":false,"isoneof":true,"oneofdecl":"_first","defaultValue":""},{"name":"after","description":"","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_after","defaultValue":""},{"name":"last","description":"","label":"optional","type":"int32","longType":"int32","fullType":"int32","ismap":false,"isoneof":true,"oneofdecl":"_last","defaultValue":""},{"name":"before","description":"","label":"optional","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":true,"oneofdecl":"_before","defaultValue":""},{"name":"newest_first","description":"Newest records first, older records last, default is true","label":"optional","type":"bool","longType":"bool","fullType":"bool","ismap":false,"isoneof":true,"oneofdecl":"_newest_first","defaultValue":""}]}} />
+
+
+### `PartyConnection`
+<ProtoMessage key={172} message={{"name":"PartyConnection","longName":"PartyConnection","fullName":"datanode.api.v2.PartyConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"edges","description":"","label":"repeated","type":"PartyEdge","longType":"PartyEdge","fullType":"datanode.api.v2.PartyEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#partyedge"},{"name":"page_info","description":"","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+
+### `PartyEdge`
+<ProtoMessage key={173} message={{"name":"PartyEdge","longName":"PartyEdge","fullName":"datanode.api.v2.PartyEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"Party","longType":"vega.Party","fullType":"vega.Party","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#party"},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `PositionConnection`
+<ProtoMessage key={174} message={{"name":"PositionConnection","longName":"PositionConnection","fullName":"datanode.api.v2.PositionConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"edges","description":"","label":"repeated","type":"PositionEdge","longType":"PositionEdge","fullType":"datanode.api.v2.PositionEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#positionedge"},{"name":"page_info","description":"","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+
+### `PositionEdge`
+<ProtoMessage key={175} message={{"name":"PositionEdge","longName":"PositionEdge","fullName":"datanode.api.v2.PositionEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"Position","longType":"vega.Position","fullType":"vega.Position","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#position"},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `RewardEdge`
+<ProtoMessage key={176} message={{"name":"RewardEdge","longName":"RewardEdge","fullName":"datanode.api.v2.RewardEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"Reward","longType":"vega.Reward","fullType":"vega.Reward","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#reward"},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `RewardsConnection`
+<ProtoMessage key={177} message={{"name":"RewardsConnection","longName":"RewardsConnection","fullName":"datanode.api.v2.RewardsConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"edges","description":"","label":"repeated","type":"RewardEdge","longType":"RewardEdge","fullType":"datanode.api.v2.RewardEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#rewardedge"},{"name":"page_info","description":"","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+
+### `StakeLinkingEdge`
+<ProtoMessage key={178} message={{"name":"StakeLinkingEdge","longName":"StakeLinkingEdge","fullName":"datanode.api.v2.StakeLinkingEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"StakeLinking","longType":"vega.events.v1.StakeLinking","fullType":"vega.events.v1.StakeLinking","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/events/v1/events.proto#stakelinking"},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `StakesConnection`
+<ProtoMessage key={179} message={{"name":"StakesConnection","longName":"StakesConnection","fullName":"datanode.api.v2.StakesConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"edges","description":"","label":"repeated","type":"StakeLinkingEdge","longType":"StakeLinkingEdge","fullType":"datanode.api.v2.StakeLinkingEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#stakelinkingedge"},{"name":"page_info","description":"","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+
+### `TradeConnection`
+<ProtoMessage key={180} message={{"name":"TradeConnection","longName":"TradeConnection","fullName":"datanode.api.v2.TradeConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"edges","description":"","label":"repeated","type":"TradeEdge","longType":"TradeEdge","fullType":"datanode.api.v2.TradeEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#tradeedge"},{"name":"page_info","description":"","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+
+### `TradeEdge`
+<ProtoMessage key={181} message={{"name":"TradeEdge","longName":"TradeEdge","fullName":"datanode.api.v2.TradeEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"Trade","longType":"vega.Trade","fullType":"vega.Trade","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#trade"},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `TransferConnection`
+<ProtoMessage key={182} message={{"name":"TransferConnection","longName":"TransferConnection","fullName":"datanode.api.v2.TransferConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"edges","description":"","label":"repeated","type":"TransferEdge","longType":"TransferEdge","fullType":"datanode.api.v2.TransferEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#transferedge"},{"name":"page_info","description":"","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+
+### `TransferEdge`
+<ProtoMessage key={183} message={{"name":"TransferEdge","longName":"TransferEdge","fullName":"datanode.api.v2.TransferEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"Transfer","longType":"vega.events.v1.Transfer","fullType":"vega.events.v1.Transfer","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/events/v1/events.proto#transfer"},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `VoteConnection`
+<ProtoMessage key={184} message={{"name":"VoteConnection","longName":"VoteConnection","fullName":"datanode.api.v2.VoteConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"edges","description":"","label":"repeated","type":"VoteEdge","longType":"VoteEdge","fullType":"datanode.api.v2.VoteEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#voteedge"},{"name":"page_info","description":"","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+
+### `VoteEdge`
+<ProtoMessage key={185} message={{"name":"VoteEdge","longName":"VoteEdge","fullName":"datanode.api.v2.VoteEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"Vote","longType":"vega.Vote","fullType":"vega.Vote","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/governance.proto#vote"},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `WithdrawalEdge`
+<ProtoMessage key={186} message={{"name":"WithdrawalEdge","longName":"WithdrawalEdge","fullName":"datanode.api.v2.WithdrawalEdge","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"node","description":"","label":"","type":"Withdrawal","longType":"vega.Withdrawal","fullType":"vega.Withdrawal","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/vega.proto#withdrawal"},{"name":"cursor","description":"","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `WithdrawalsConnection`
+<ProtoMessage key={187} message={{"name":"WithdrawalsConnection","longName":"WithdrawalsConnection","fullName":"datanode.api.v2.WithdrawalsConnection","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"edges","description":"","label":"repeated","type":"WithdrawalEdge","longType":"WithdrawalEdge","fullType":"datanode.api.v2.WithdrawalEdge","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#withdrawaledge"},{"name":"page_info","description":"","label":"","type":"PageInfo","longType":"PageInfo","fullType":"datanode.api.v2.PageInfo","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#pageinfo"}]}} />
+
+---
+## Enums
+
+
+### `AccountField`
+<ProtoEnum key={0} enumb={{"name":"AccountField","longName":"AccountField","fullName":"datanode.api.v2.AccountField","description":"A list of the properties of an account, used for grouping","values":[{"name":"ACCOUNT_FIELD_UNSPECIFIED","number":"0","description":""},{"name":"ACCOUNT_FIELD_ID","number":"1","description":""},{"name":"ACCOUNT_FIELD_PARTY_ID","number":"2","description":""},{"name":"ACCOUNT_FIELD_ASSET_ID","number":"3","description":""},{"name":"ACCOUNT_FIELD_MARKET_ID","number":"4","description":""},{"name":"ACCOUNT_FIELD_TYPE","number":"5","description":""}]}} />
+
+
+### `ListGovernanceDataRequest.Type`
+<ProtoEnum key={1} enumb={{"name":"Type","longName":"ListGovernanceDataRequest.Type","fullName":"datanode.api.v2.ListGovernanceDataRequest.Type","description":"","values":[{"name":"TYPE_UNSPECIFIED","number":"0","description":""},{"name":"TYPE_ALL","number":"1","description":"List all proposals"},{"name":"TYPE_NEW_MARKET","number":"2","description":"List new market proposals"},{"name":"TYPE_UPDATE_MARKET","number":"3","description":"List update market proposals"},{"name":"TYPE_NETWORK_PARAMETERS","number":"4","description":"List change Vega network parameter proposals"},{"name":"TYPE_NEW_ASSET","number":"5","description":"New asset proposals"},{"name":"TYPE_NEW_FREE_FORM","number":"6","description":"Proposals for creating a new free form proposal"}]}} />
+
+
+### `TransferDirection`
+<ProtoEnum key={2} enumb={{"name":"TransferDirection","longName":"TransferDirection","fullName":"datanode.api.v2.TransferDirection","description":"-- Transfers --","values":[{"name":"TRANSFER_DIRECTION_UNSPECIFIED","number":"0","description":""},{"name":"TRANSFER_DIRECTION_TRANSFER_FROM","number":"1","description":""},{"name":"TRANSFER_DIRECTION_TRANSFER_TO","number":"2","description":""},{"name":"TRANSFER_DIRECTION_TRANSFER_TO_OR_FROM","number":"3","description":""}]}} />
+
+---
+## Services
+
+
+### `TradingDataService`
+
+
+
+
+#### `ListAccounts`
+<ProtoServiceMethod key={'ListAccounts-0'} method={{"name":"ListAccounts","description":"-- Accounts --\nReturns a list of accounts matching the supplied filter, including their current balances.\nIf a given account has never had a balance, it will be absent from the list.","requestType":"ListAccountsRequest","requestLongType":"ListAccountsRequest","requestFullType":"datanode.api.v2.ListAccountsRequest","requestStreaming":false,"responseType":"ListAccountsResponse","responseLongType":"ListAccountsResponse","responseFullType":"datanode.api.v2.ListAccountsResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listaccountsrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listaccountsresponse"}} />
+
+
+#### `ObserveAccounts`
+<ProtoServiceMethod key={'ObserveAccounts-1'} method={{"name":"ObserveAccounts","description":"Subscribe to a stream of Accounts","requestType":"ObserveAccountsRequest","requestLongType":"ObserveAccountsRequest","requestFullType":"datanode.api.v2.ObserveAccountsRequest","requestStreaming":false,"responseType":"ObserveAccountsResponse","responseLongType":"ObserveAccountsResponse","responseFullType":"datanode.api.v2.ObserveAccountsResponse","responseStreaming":true,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observeaccountsrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observeaccountsresponse"}} />
+
+
+#### `Info`
+<ProtoServiceMethod key={'Info-2'} method={{"name":"Info","description":"node info","requestType":"InfoRequest","requestLongType":"InfoRequest","requestFullType":"datanode.api.v2.InfoRequest","requestStreaming":false,"responseType":"InfoResponse","responseLongType":"InfoResponse","responseFullType":"datanode.api.v2.InfoResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#inforequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#inforesponse"}} />
+
+
+#### `GetOrder`
+<ProtoServiceMethod key={'GetOrder-3'} method={{"name":"GetOrder","description":"-- Orders --\nGets the current version of an order, or optionally provide a version id to retrieve a given version.","requestType":"GetOrderRequest","requestLongType":"GetOrderRequest","requestFullType":"datanode.api.v2.GetOrderRequest","requestStreaming":false,"responseType":"GetOrderResponse","responseLongType":"GetOrderResponse","responseFullType":"datanode.api.v2.GetOrderResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getorderrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getorderresponse"}} />
+
+
+#### `ListOrders`
+<ProtoServiceMethod key={'ListOrders-4'} method={{"name":"ListOrders","description":"Get a list of orders that match the given filters","requestType":"ListOrdersRequest","requestLongType":"ListOrdersRequest","requestFullType":"datanode.api.v2.ListOrdersRequest","requestStreaming":false,"responseType":"ListOrdersResponse","responseLongType":"ListOrdersResponse","responseFullType":"datanode.api.v2.ListOrdersResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listordersrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listordersresponse"}} />
+
+
+#### `ListOrderVersions`
+<ProtoServiceMethod key={'ListOrderVersions-5'} method={{"name":"ListOrderVersions","description":"List all versions of an order in the order history","requestType":"ListOrderVersionsRequest","requestLongType":"ListOrderVersionsRequest","requestFullType":"datanode.api.v2.ListOrderVersionsRequest","requestStreaming":false,"responseType":"ListOrderVersionsResponse","responseLongType":"ListOrderVersionsResponse","responseFullType":"datanode.api.v2.ListOrderVersionsResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listorderversionsrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listorderversionsresponse"}} />
+
+
+#### `ObserveOrders`
+<ProtoServiceMethod key={'ObserveOrders-6'} method={{"name":"ObserveOrders","description":"Subscribe to a stream of Orders","requestType":"ObserveOrdersRequest","requestLongType":"ObserveOrdersRequest","requestFullType":"datanode.api.v2.ObserveOrdersRequest","requestStreaming":false,"responseType":"ObserveOrdersResponse","responseLongType":"ObserveOrdersResponse","responseFullType":"datanode.api.v2.ObserveOrdersResponse","responseStreaming":true,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observeordersrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observeordersresponse"}} />
+
+
+#### `ListPositions`
+<ProtoServiceMethod key={'ListPositions-7'} method={{"name":"ListPositions","description":"-- Positions --\nGet a list of Positions by Party using cursor based pagination","requestType":"ListPositionsRequest","requestLongType":"ListPositionsRequest","requestFullType":"datanode.api.v2.ListPositionsRequest","requestStreaming":false,"responseType":"ListPositionsResponse","responseLongType":"ListPositionsResponse","responseFullType":"datanode.api.v2.ListPositionsResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listpositionsrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listpositionsresponse"}} />
+
+
+#### `ObservePositions`
+<ProtoServiceMethod key={'ObservePositions-8'} method={{"name":"ObservePositions","description":"Subscribe to a stream of Positions","requestType":"ObservePositionsRequest","requestLongType":"ObservePositionsRequest","requestFullType":"datanode.api.v2.ObservePositionsRequest","requestStreaming":false,"responseType":"ObservePositionsResponse","responseLongType":"ObservePositionsResponse","responseFullType":"datanode.api.v2.ObservePositionsResponse","responseStreaming":true,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observepositionsrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observepositionsresponse"}} />
+
+
+#### `GetBalanceHistory`
+<ProtoServiceMethod key={'GetBalanceHistory-9'} method={{"name":"GetBalanceHistory","description":"-- Balances --\nGet an aggregated list of the changes in balances in a set of accounts over time","requestType":"GetBalanceHistoryRequest","requestLongType":"GetBalanceHistoryRequest","requestFullType":"datanode.api.v2.GetBalanceHistoryRequest","requestStreaming":false,"responseType":"GetBalanceHistoryResponse","responseLongType":"GetBalanceHistoryResponse","responseFullType":"datanode.api.v2.GetBalanceHistoryResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getbalancehistoryrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getbalancehistoryresponse"}} />
+
+
+#### `GetLatestMarketData`
+<ProtoServiceMethod key={'GetLatestMarketData-10'} method={{"name":"GetLatestMarketData","description":"-- Market Data --\nGet the lastest market data for a given market","requestType":"GetLatestMarketDataRequest","requestLongType":"GetLatestMarketDataRequest","requestFullType":"datanode.api.v2.GetLatestMarketDataRequest","requestStreaming":false,"responseType":"GetLatestMarketDataResponse","responseLongType":"GetLatestMarketDataResponse","responseFullType":"datanode.api.v2.GetLatestMarketDataResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getlatestmarketdatarequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getlatestmarketdataresponse"}} />
+
+
+#### `ListLatestMarketData`
+<ProtoServiceMethod key={'ListLatestMarketData-11'} method={{"name":"ListLatestMarketData","description":"Lists the latest market data for every market","requestType":"ListLatestMarketDataRequest","requestLongType":"ListLatestMarketDataRequest","requestFullType":"datanode.api.v2.ListLatestMarketDataRequest","requestStreaming":false,"responseType":"ListLatestMarketDataResponse","responseLongType":"ListLatestMarketDataResponse","responseFullType":"datanode.api.v2.ListLatestMarketDataResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listlatestmarketdatarequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listlatestmarketdataresponse"}} />
+
+
+#### `GetLatestMarketDepth`
+<ProtoServiceMethod key={'GetLatestMarketDepth-12'} method={{"name":"GetLatestMarketDepth","description":"Get the latest market depth for a given market","requestType":"GetLatestMarketDepthRequest","requestLongType":"GetLatestMarketDepthRequest","requestFullType":"datanode.api.v2.GetLatestMarketDepthRequest","requestStreaming":false,"responseType":"GetLatestMarketDepthResponse","responseLongType":"GetLatestMarketDepthResponse","responseFullType":"datanode.api.v2.GetLatestMarketDepthResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getlatestmarketdepthrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getlatestmarketdepthresponse"}} />
+
+
+#### `ObserveMarketsDepth`
+<ProtoServiceMethod key={'ObserveMarketsDepth-13'} method={{"name":"ObserveMarketsDepth","description":"","requestType":"ObserveMarketsDepthRequest","requestLongType":"ObserveMarketsDepthRequest","requestFullType":"datanode.api.v2.ObserveMarketsDepthRequest","requestStreaming":false,"responseType":"ObserveMarketsDepthResponse","responseLongType":"ObserveMarketsDepthResponse","responseFullType":"datanode.api.v2.ObserveMarketsDepthResponse","responseStreaming":true,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observemarketsdepthrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observemarketsdepthresponse"}} />
+
+
+#### `ObserveMarketsDepthUpdates`
+<ProtoServiceMethod key={'ObserveMarketsDepthUpdates-14'} method={{"name":"ObserveMarketsDepthUpdates","description":"","requestType":"ObserveMarketsDepthUpdatesRequest","requestLongType":"ObserveMarketsDepthUpdatesRequest","requestFullType":"datanode.api.v2.ObserveMarketsDepthUpdatesRequest","requestStreaming":false,"responseType":"ObserveMarketsDepthUpdatesResponse","responseLongType":"ObserveMarketsDepthUpdatesResponse","responseFullType":"datanode.api.v2.ObserveMarketsDepthUpdatesResponse","responseStreaming":true,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observemarketsdepthupdatesrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observemarketsdepthupdatesresponse"}} />
+
+
+#### `ObserveMarketsData`
+<ProtoServiceMethod key={'ObserveMarketsData-15'} method={{"name":"ObserveMarketsData","description":"","requestType":"ObserveMarketsDataRequest","requestLongType":"ObserveMarketsDataRequest","requestFullType":"datanode.api.v2.ObserveMarketsDataRequest","requestStreaming":false,"responseType":"ObserveMarketsDataResponse","responseLongType":"ObserveMarketsDataResponse","responseFullType":"datanode.api.v2.ObserveMarketsDataResponse","responseStreaming":true,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observemarketsdatarequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observemarketsdataresponse"}} />
+
+
+#### `GetMarketDataHistoryByID`
+<ProtoServiceMethod key={'GetMarketDataHistoryByID-16'} method={{"name":"GetMarketDataHistoryByID","description":"Get Market Data History for a Market ID between given dates using a cursor based pagination model","requestType":"GetMarketDataHistoryByIDRequest","requestLongType":"GetMarketDataHistoryByIDRequest","requestFullType":"datanode.api.v2.GetMarketDataHistoryByIDRequest","requestStreaming":false,"responseType":"GetMarketDataHistoryByIDResponse","responseLongType":"GetMarketDataHistoryByIDResponse","responseFullType":"datanode.api.v2.GetMarketDataHistoryByIDResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getmarketdatahistorybyidrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getmarketdatahistorybyidresponse"}} />
+
+
+#### `ListTransfers`
+<ProtoServiceMethod key={'ListTransfers-17'} method={{"name":"ListTransfers","description":"-- Transfers --\nList Transfers to/from/either a public key using a cursor based pagination model","requestType":"ListTransfersRequest","requestLongType":"ListTransfersRequest","requestFullType":"datanode.api.v2.ListTransfersRequest","requestStreaming":false,"responseType":"ListTransfersResponse","responseLongType":"ListTransfersResponse","responseFullType":"datanode.api.v2.ListTransfersResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listtransfersrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listtransfersresponse"}} />
+
+
+#### `GetNetworkLimits`
+<ProtoServiceMethod key={'GetNetworkLimits-18'} method={{"name":"GetNetworkLimits","description":"-- Network Limits --\nGet the current network limits (is bootstrapping finished, are proposals enabled etc..)","requestType":"GetNetworkLimitsRequest","requestLongType":"GetNetworkLimitsRequest","requestFullType":"datanode.api.v2.GetNetworkLimitsRequest","requestStreaming":false,"responseType":"GetNetworkLimitsResponse","responseLongType":"GetNetworkLimitsResponse","responseFullType":"datanode.api.v2.GetNetworkLimitsResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getnetworklimitsrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getnetworklimitsresponse"}} />
+
+
+#### `ListCandleData`
+<ProtoServiceMethod key={'ListCandleData-19'} method={{"name":"ListCandleData","description":"-- Candles --\nGet candle data for a given candle id","requestType":"ListCandleDataRequest","requestLongType":"ListCandleDataRequest","requestFullType":"datanode.api.v2.ListCandleDataRequest","requestStreaming":false,"responseType":"ListCandleDataResponse","responseLongType":"ListCandleDataResponse","responseFullType":"datanode.api.v2.ListCandleDataResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listcandledatarequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listcandledataresponse"}} />
+
+
+#### `ObserveCandleData`
+<ProtoServiceMethod key={'ObserveCandleData-20'} method={{"name":"ObserveCandleData","description":"Subscribe to a stream of Candle updates","requestType":"ObserveCandleDataRequest","requestLongType":"ObserveCandleDataRequest","requestFullType":"datanode.api.v2.ObserveCandleDataRequest","requestStreaming":false,"responseType":"ObserveCandleDataResponse","responseLongType":"ObserveCandleDataResponse","responseFullType":"datanode.api.v2.ObserveCandleDataResponse","responseStreaming":true,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observecandledatarequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observecandledataresponse"}} />
+
+
+#### `ListCandleIntervals`
+<ProtoServiceMethod key={'ListCandleIntervals-21'} method={{"name":"ListCandleIntervals","description":"Gets all available intervals for a given market along with the corresponding candle id","requestType":"ListCandleIntervalsRequest","requestLongType":"ListCandleIntervalsRequest","requestFullType":"datanode.api.v2.ListCandleIntervalsRequest","requestStreaming":false,"responseType":"ListCandleIntervalsResponse","responseLongType":"ListCandleIntervalsResponse","responseFullType":"datanode.api.v2.ListCandleIntervalsResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listcandleintervalsrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listcandleintervalsresponse"}} />
+
+
+#### `ListVotes`
+<ProtoServiceMethod key={'ListVotes-22'} method={{"name":"ListVotes","description":"-- Votes --\nGet Votes for a Party ID using a cursor based pagination model","requestType":"ListVotesRequest","requestLongType":"ListVotesRequest","requestFullType":"datanode.api.v2.ListVotesRequest","requestStreaming":false,"responseType":"ListVotesResponse","responseLongType":"ListVotesResponse","responseFullType":"datanode.api.v2.ListVotesResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listvotesrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listvotesresponse"}} />
+
+
+#### `ObserveVotes`
+<ProtoServiceMethod key={'ObserveVotes-23'} method={{"name":"ObserveVotes","description":"Subscribe to a stream of votes","requestType":"ObserveVotesRequest","requestLongType":"ObserveVotesRequest","requestFullType":"datanode.api.v2.ObserveVotesRequest","requestStreaming":false,"responseType":"ObserveVotesResponse","responseLongType":"ObserveVotesResponse","responseFullType":"datanode.api.v2.ObserveVotesResponse","responseStreaming":true,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observevotesrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observevotesresponse"}} />
+
+
+#### `GetERC20MultiSigSignerAddedBundles`
+<ProtoServiceMethod key={'GetERC20MultiSigSignerAddedBundles-24'} method={{"name":"GetERC20MultiSigSignerAddedBundles","description":"-- ERC20 Multi Sig --\nGets the signature bundles that add a particular validator to the multisig contract","requestType":"GetERC20MultiSigSignerAddedBundlesRequest","requestLongType":"GetERC20MultiSigSignerAddedBundlesRequest","requestFullType":"datanode.api.v2.GetERC20MultiSigSignerAddedBundlesRequest","requestStreaming":false,"responseType":"GetERC20MultiSigSignerAddedBundlesResponse","responseLongType":"GetERC20MultiSigSignerAddedBundlesResponse","responseFullType":"datanode.api.v2.GetERC20MultiSigSignerAddedBundlesResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#geterc20multisigsigneraddedbundlesrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#geterc20multisigsigneraddedbundlesresponse"}} />
+
+
+#### `GetERC20MultiSigSignerRemovedBundles`
+<ProtoServiceMethod key={'GetERC20MultiSigSignerRemovedBundles-25'} method={{"name":"GetERC20MultiSigSignerRemovedBundles","description":"Gets the signature bundles that remove a particular validator to the multisig contract","requestType":"GetERC20MultiSigSignerRemovedBundlesRequest","requestLongType":"GetERC20MultiSigSignerRemovedBundlesRequest","requestFullType":"datanode.api.v2.GetERC20MultiSigSignerRemovedBundlesRequest","requestStreaming":false,"responseType":"GetERC20MultiSigSignerRemovedBundlesResponse","responseLongType":"GetERC20MultiSigSignerRemovedBundlesResponse","responseFullType":"datanode.api.v2.GetERC20MultiSigSignerRemovedBundlesResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#geterc20multisigsignerremovedbundlesrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#geterc20multisigsignerremovedbundlesresponse"}} />
+
+
+#### `GetERC20ListAssetBundle`
+<ProtoServiceMethod key={'GetERC20ListAssetBundle-26'} method={{"name":"GetERC20ListAssetBundle","description":"Gets the signature bundles that remove a particular validator to the multisig contract","requestType":"GetERC20ListAssetBundleRequest","requestLongType":"GetERC20ListAssetBundleRequest","requestFullType":"datanode.api.v2.GetERC20ListAssetBundleRequest","requestStreaming":false,"responseType":"GetERC20ListAssetBundleResponse","responseLongType":"GetERC20ListAssetBundleResponse","responseFullType":"datanode.api.v2.GetERC20ListAssetBundleResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#geterc20listassetbundlerequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#geterc20listassetbundleresponse"}} />
+
+
+#### `GetERC20SetAssetLimitsBundle`
+<ProtoServiceMethod key={'GetERC20SetAssetLimitsBundle-27'} method={{"name":"GetERC20SetAssetLimitsBundle","description":"Gets the signature bundles that remove a particular validator to the multisig contract","requestType":"GetERC20SetAssetLimitsBundleRequest","requestLongType":"GetERC20SetAssetLimitsBundleRequest","requestFullType":"datanode.api.v2.GetERC20SetAssetLimitsBundleRequest","requestStreaming":false,"responseType":"GetERC20SetAssetLimitsBundleResponse","responseLongType":"GetERC20SetAssetLimitsBundleResponse","responseFullType":"datanode.api.v2.GetERC20SetAssetLimitsBundleResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#geterc20setassetlimitsbundlerequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#geterc20setassetlimitsbundleresponse"}} />
+
+
+#### `GetERC20WithdrawalApproval`
+<ProtoServiceMethod key={'GetERC20WithdrawalApproval-28'} method={{"name":"GetERC20WithdrawalApproval","description":"","requestType":"GetERC20WithdrawalApprovalRequest","requestLongType":"GetERC20WithdrawalApprovalRequest","requestFullType":"datanode.api.v2.GetERC20WithdrawalApprovalRequest","requestStreaming":false,"responseType":"GetERC20WithdrawalApprovalResponse","responseLongType":"GetERC20WithdrawalApprovalResponse","responseFullType":"datanode.api.v2.GetERC20WithdrawalApprovalResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#geterc20withdrawalapprovalrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#geterc20withdrawalapprovalresponse"}} />
+
+
+#### `ListTrades`
+<ProtoServiceMethod key={'ListTrades-29'} method={{"name":"ListTrades","description":"-- Trades --\nGet a list of all trades, optionally filtered by party/market/order using a cursor based pagination model","requestType":"ListTradesRequest","requestLongType":"ListTradesRequest","requestFullType":"datanode.api.v2.ListTradesRequest","requestStreaming":false,"responseType":"ListTradesResponse","responseLongType":"ListTradesResponse","responseFullType":"datanode.api.v2.ListTradesResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listtradesrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listtradesresponse"}} />
+
+
+#### `ObserveTrades`
+<ProtoServiceMethod key={'ObserveTrades-30'} method={{"name":"ObserveTrades","description":"Subscribe to a stream of Trades, optionally filtered by party/market","requestType":"ObserveTradesRequest","requestLongType":"ObserveTradesRequest","requestFullType":"datanode.api.v2.ObserveTradesRequest","requestStreaming":false,"responseType":"ObserveTradesResponse","responseLongType":"ObserveTradesResponse","responseFullType":"datanode.api.v2.ObserveTradesResponse","responseStreaming":true,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observetradesrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observetradesresponse"}} />
+
+
+#### `GetOracleSpec`
+<ProtoServiceMethod key={'GetOracleSpec-31'} method={{"name":"GetOracleSpec","description":"-- Oracles --\nGet an oracle spec by ID.","requestType":"GetOracleSpecRequest","requestLongType":"GetOracleSpecRequest","requestFullType":"datanode.api.v2.GetOracleSpecRequest","requestStreaming":false,"responseType":"GetOracleSpecResponse","responseLongType":"GetOracleSpecResponse","responseFullType":"datanode.api.v2.GetOracleSpecResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getoraclespecrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getoraclespecresponse"}} />
+
+
+#### `ListOracleSpecs`
+<ProtoServiceMethod key={'ListOracleSpecs-32'} method={{"name":"ListOracleSpecs","description":"Get the oracle specs","requestType":"ListOracleSpecsRequest","requestLongType":"ListOracleSpecsRequest","requestFullType":"datanode.api.v2.ListOracleSpecsRequest","requestStreaming":false,"responseType":"ListOracleSpecsResponse","responseLongType":"ListOracleSpecsResponse","responseFullType":"datanode.api.v2.ListOracleSpecsResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listoraclespecsrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listoraclespecsresponse"}} />
+
+
+#### `ListOracleData`
+<ProtoServiceMethod key={'ListOracleData-33'} method={{"name":"ListOracleData","description":"Get all oracle data","requestType":"ListOracleDataRequest","requestLongType":"ListOracleDataRequest","requestFullType":"datanode.api.v2.ListOracleDataRequest","requestStreaming":false,"responseType":"ListOracleDataResponse","responseLongType":"ListOracleDataResponse","responseFullType":"datanode.api.v2.ListOracleDataResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listoracledatarequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listoracledataresponse"}} />
+
+
+#### `ListMarkets`
+<ProtoServiceMethod key={'ListMarkets-34'} method={{"name":"ListMarkets","description":"-- Markets --\nGet all markets using a cursor based pagination model","requestType":"ListMarketsRequest","requestLongType":"ListMarketsRequest","requestFullType":"datanode.api.v2.ListMarketsRequest","requestStreaming":false,"responseType":"ListMarketsResponse","responseLongType":"ListMarketsResponse","responseFullType":"datanode.api.v2.ListMarketsResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listmarketsrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listmarketsresponse"}} />
+
+
+#### `ListParties`
+<ProtoServiceMethod key={'ListParties-35'} method={{"name":"ListParties","description":"-- Parties --\nGet Parties using a cursor based pagination model","requestType":"ListPartiesRequest","requestLongType":"ListPartiesRequest","requestFullType":"datanode.api.v2.ListPartiesRequest","requestStreaming":false,"responseType":"ListPartiesResponse","responseLongType":"ListPartiesResponse","responseFullType":"datanode.api.v2.ListPartiesResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listpartiesrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listpartiesresponse"}} />
+
+
+#### `ListMarginLevels`
+<ProtoServiceMethod key={'ListMarginLevels-36'} method={{"name":"ListMarginLevels","description":"-- Margin Levels --\nGet Margin Levels using a cursor based pagination model","requestType":"ListMarginLevelsRequest","requestLongType":"ListMarginLevelsRequest","requestFullType":"datanode.api.v2.ListMarginLevelsRequest","requestStreaming":false,"responseType":"ListMarginLevelsResponse","responseLongType":"ListMarginLevelsResponse","responseFullType":"datanode.api.v2.ListMarginLevelsResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listmarginlevelsrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listmarginlevelsresponse"}} />
+
+
+#### `ObserveMarginLevels`
+<ProtoServiceMethod key={'ObserveMarginLevels-37'} method={{"name":"ObserveMarginLevels","description":"Subscribe to a stream of Margin Levels","requestType":"ObserveMarginLevelsRequest","requestLongType":"ObserveMarginLevelsRequest","requestFullType":"datanode.api.v2.ObserveMarginLevelsRequest","requestStreaming":false,"responseType":"ObserveMarginLevelsResponse","responseLongType":"ObserveMarginLevelsResponse","responseFullType":"datanode.api.v2.ObserveMarginLevelsResponse","responseStreaming":true,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observemarginlevelsrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observemarginlevelsresponse"}} />
+
+
+#### `ListRewards`
+<ProtoServiceMethod key={'ListRewards-38'} method={{"name":"ListRewards","description":"-- Rewards --\nGet rewards","requestType":"ListRewardsRequest","requestLongType":"ListRewardsRequest","requestFullType":"datanode.api.v2.ListRewardsRequest","requestStreaming":false,"responseType":"ListRewardsResponse","responseLongType":"ListRewardsResponse","responseFullType":"datanode.api.v2.ListRewardsResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listrewardsrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listrewardsresponse"}} />
+
+
+#### `ListRewardSummaries`
+<ProtoServiceMethod key={'ListRewardSummaries-39'} method={{"name":"ListRewardSummaries","description":"Get reward summaries","requestType":"ListRewardSummariesRequest","requestLongType":"ListRewardSummariesRequest","requestFullType":"datanode.api.v2.ListRewardSummariesRequest","requestStreaming":false,"responseType":"ListRewardSummariesResponse","responseLongType":"ListRewardSummariesResponse","responseFullType":"datanode.api.v2.ListRewardSummariesResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listrewardsummariesrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listrewardsummariesresponse"}} />
+
+
+#### `ObserveRewards`
+<ProtoServiceMethod key={'ObserveRewards-40'} method={{"name":"ObserveRewards","description":"subscribe to rewards","requestType":"ObserveRewardsRequest","requestLongType":"ObserveRewardsRequest","requestFullType":"datanode.api.v2.ObserveRewardsRequest","requestStreaming":false,"responseType":"ObserveRewardsResponse","responseLongType":"ObserveRewardsResponse","responseFullType":"datanode.api.v2.ObserveRewardsResponse","responseStreaming":true,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observerewardsrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observerewardsresponse"}} />
+
+
+#### `GetDeposit`
+<ProtoServiceMethod key={'GetDeposit-41'} method={{"name":"GetDeposit","description":"-- Deposits --\nGet a deposit by its identifier","requestType":"GetDepositRequest","requestLongType":"GetDepositRequest","requestFullType":"datanode.api.v2.GetDepositRequest","requestStreaming":false,"responseType":"GetDepositResponse","responseLongType":"GetDepositResponse","responseFullType":"datanode.api.v2.GetDepositResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getdepositrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getdepositresponse"}} />
+
+
+#### `ListDeposits`
+<ProtoServiceMethod key={'ListDeposits-42'} method={{"name":"ListDeposits","description":"Get a list of deposits for a given party","requestType":"ListDepositsRequest","requestLongType":"ListDepositsRequest","requestFullType":"datanode.api.v2.ListDepositsRequest","requestStreaming":false,"responseType":"ListDepositsResponse","responseLongType":"ListDepositsResponse","responseFullType":"datanode.api.v2.ListDepositsResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listdepositsrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listdepositsresponse"}} />
+
+
+#### `GetWithdrawal`
+<ProtoServiceMethod key={'GetWithdrawal-43'} method={{"name":"GetWithdrawal","description":"-- Withdrawals --","requestType":"GetWithdrawalRequest","requestLongType":"GetWithdrawalRequest","requestFullType":"datanode.api.v2.GetWithdrawalRequest","requestStreaming":false,"responseType":"GetWithdrawalResponse","responseLongType":"GetWithdrawalResponse","responseFullType":"datanode.api.v2.GetWithdrawalResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getwithdrawalrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getwithdrawalresponse"}} />
+
+
+#### `ListWithdrawals`
+<ProtoServiceMethod key={'ListWithdrawals-44'} method={{"name":"ListWithdrawals","description":"","requestType":"ListWithdrawalsRequest","requestLongType":"ListWithdrawalsRequest","requestFullType":"datanode.api.v2.ListWithdrawalsRequest","requestStreaming":false,"responseType":"ListWithdrawalsResponse","responseLongType":"ListWithdrawalsResponse","responseFullType":"datanode.api.v2.ListWithdrawalsResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listwithdrawalsrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listwithdrawalsresponse"}} />
+
+
+#### `GetAsset`
+<ProtoServiceMethod key={'GetAsset-45'} method={{"name":"GetAsset","description":"-- Assets --","requestType":"GetAssetRequest","requestLongType":"GetAssetRequest","requestFullType":"datanode.api.v2.GetAssetRequest","requestStreaming":false,"responseType":"GetAssetResponse","responseLongType":"GetAssetResponse","responseFullType":"datanode.api.v2.GetAssetResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getassetrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getassetresponse"}} />
+
+
+#### `ListAssets`
+<ProtoServiceMethod key={'ListAssets-46'} method={{"name":"ListAssets","description":"","requestType":"ListAssetsRequest","requestLongType":"ListAssetsRequest","requestFullType":"datanode.api.v2.ListAssetsRequest","requestStreaming":false,"responseType":"ListAssetsResponse","responseLongType":"ListAssetsResponse","responseFullType":"datanode.api.v2.ListAssetsResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listassetsrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listassetsresponse"}} />
+
+
+#### `ListLiquidityProvisions`
+<ProtoServiceMethod key={'ListLiquidityProvisions-47'} method={{"name":"ListLiquidityProvisions","description":"-- Liquidity Provisions --","requestType":"ListLiquidityProvisionsRequest","requestLongType":"ListLiquidityProvisionsRequest","requestFullType":"datanode.api.v2.ListLiquidityProvisionsRequest","requestStreaming":false,"responseType":"ListLiquidityProvisionsResponse","responseLongType":"ListLiquidityProvisionsResponse","responseFullType":"datanode.api.v2.ListLiquidityProvisionsResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listliquidityprovisionsrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listliquidityprovisionsresponse"}} />
+
+
+#### `ListGovernanceData`
+<ProtoServiceMethod key={'ListGovernanceData-48'} method={{"name":"ListGovernanceData","description":"-- Governance --\nList proposals using a cursor based pagination model","requestType":"ListGovernanceDataRequest","requestLongType":"ListGovernanceDataRequest","requestFullType":"datanode.api.v2.ListGovernanceDataRequest","requestStreaming":false,"responseType":"ListGovernanceDataResponse","responseLongType":"ListGovernanceDataResponse","responseFullType":"datanode.api.v2.ListGovernanceDataResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listgovernancedatarequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listgovernancedataresponse"}} />
+
+
+#### `ObserveGovernance`
+<ProtoServiceMethod key={'ObserveGovernance-49'} method={{"name":"ObserveGovernance","description":"","requestType":"ObserveGovernanceRequest","requestLongType":"ObserveGovernanceRequest","requestFullType":"datanode.api.v2.ObserveGovernanceRequest","requestStreaming":false,"responseType":"ObserveGovernanceResponse","responseLongType":"ObserveGovernanceResponse","responseFullType":"datanode.api.v2.ObserveGovernanceResponse","responseStreaming":true,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observegovernancerequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observegovernanceresponse"}} />
+
+
+#### `ListDelegations`
+<ProtoServiceMethod key={'ListDelegations-50'} method={{"name":"ListDelegations","description":"-- Delegation --\nList delegations","requestType":"ListDelegationsRequest","requestLongType":"ListDelegationsRequest","requestFullType":"datanode.api.v2.ListDelegationsRequest","requestStreaming":false,"responseType":"ListDelegationsResponse","responseLongType":"ListDelegationsResponse","responseFullType":"datanode.api.v2.ListDelegationsResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listdelegationsrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listdelegationsresponse"}} />
+
+
+#### `ObserveDelegations`
+<ProtoServiceMethod key={'ObserveDelegations-51'} method={{"name":"ObserveDelegations","description":"subscribe to delegation events","requestType":"ObserveDelegationsRequest","requestLongType":"ObserveDelegationsRequest","requestFullType":"datanode.api.v2.ObserveDelegationsRequest","requestStreaming":false,"responseType":"ObserveDelegationsResponse","responseLongType":"ObserveDelegationsResponse","responseFullType":"datanode.api.v2.ObserveDelegationsResponse","responseStreaming":true,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observedelegationsrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observedelegationsresponse"}} />
+
+
+#### `GetNetworkData`
+<ProtoServiceMethod key={'GetNetworkData-52'} method={{"name":"GetNetworkData","description":"-- Nodes --\nGet data regarding the nodes of the network","requestType":"GetNetworkDataRequest","requestLongType":"GetNetworkDataRequest","requestFullType":"datanode.api.v2.GetNetworkDataRequest","requestStreaming":false,"responseType":"GetNetworkDataResponse","responseLongType":"GetNetworkDataResponse","responseFullType":"datanode.api.v2.GetNetworkDataResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getnetworkdatarequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getnetworkdataresponse"}} />
+
+
+#### `GetNode`
+<ProtoServiceMethod key={'GetNode-53'} method={{"name":"GetNode","description":"Get information about a given node","requestType":"GetNodeRequest","requestLongType":"GetNodeRequest","requestFullType":"datanode.api.v2.GetNodeRequest","requestStreaming":false,"responseType":"GetNodeResponse","responseLongType":"GetNodeResponse","responseFullType":"datanode.api.v2.GetNodeResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getnoderequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getnoderesponse"}} />
+
+
+#### `ListNodes`
+<ProtoServiceMethod key={'ListNodes-54'} method={{"name":"ListNodes","description":"List information about the nodes on the network","requestType":"ListNodesRequest","requestLongType":"ListNodesRequest","requestFullType":"datanode.api.v2.ListNodesRequest","requestStreaming":false,"responseType":"ListNodesResponse","responseLongType":"ListNodesResponse","responseFullType":"datanode.api.v2.ListNodesResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listnodesrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listnodesresponse"}} />
+
+
+#### `GetEpoch`
+<ProtoServiceMethod key={'GetEpoch-55'} method={{"name":"GetEpoch","description":"-- Epochs --\nGet data for a specific epoch, if id omitted it gets the current epoch","requestType":"GetEpochRequest","requestLongType":"GetEpochRequest","requestFullType":"datanode.api.v2.GetEpochRequest","requestStreaming":false,"responseType":"GetEpochResponse","responseLongType":"GetEpochResponse","responseFullType":"datanode.api.v2.GetEpochResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getepochrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getepochresponse"}} />
+
+
+#### `EstimateFee`
+<ProtoServiceMethod key={'EstimateFee-56'} method={{"name":"EstimateFee","description":"-- Estimates --","requestType":"EstimateFeeRequest","requestLongType":"EstimateFeeRequest","requestFullType":"datanode.api.v2.EstimateFeeRequest","requestStreaming":false,"responseType":"EstimateFeeResponse","responseLongType":"EstimateFeeResponse","responseFullType":"datanode.api.v2.EstimateFeeResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#estimatefeerequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#estimatefeeresponse"}} />
+
+
+#### `EstimateMargin`
+<ProtoServiceMethod key={'EstimateMargin-57'} method={{"name":"EstimateMargin","description":"","requestType":"EstimateMarginRequest","requestLongType":"EstimateMarginRequest","requestFullType":"datanode.api.v2.EstimateMarginRequest","requestStreaming":false,"responseType":"EstimateMarginResponse","responseLongType":"EstimateMarginResponse","responseFullType":"datanode.api.v2.EstimateMarginResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#estimatemarginrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#estimatemarginresponse"}} />
+
+
+#### `ListNetworkParameters`
+<ProtoServiceMethod key={'ListNetworkParameters-58'} method={{"name":"ListNetworkParameters","description":"-- Network Parameters --\nGet the network parameters","requestType":"ListNetworkParametersRequest","requestLongType":"ListNetworkParametersRequest","requestFullType":"datanode.api.v2.ListNetworkParametersRequest","requestStreaming":false,"responseType":"ListNetworkParametersResponse","responseLongType":"ListNetworkParametersResponse","responseFullType":"datanode.api.v2.ListNetworkParametersResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listnetworkparametersrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listnetworkparametersresponse"}} />
+
+
+#### `ListCheckpoints`
+<ProtoServiceMethod key={'ListCheckpoints-59'} method={{"name":"ListCheckpoints","description":"-- Checkpoints --","requestType":"ListCheckpointsRequest","requestLongType":"ListCheckpointsRequest","requestFullType":"datanode.api.v2.ListCheckpointsRequest","requestStreaming":false,"responseType":"ListCheckpointsResponse","responseLongType":"ListCheckpointsResponse","responseFullType":"datanode.api.v2.ListCheckpointsResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listcheckpointsrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#listcheckpointsresponse"}} />
+
+
+#### `GetStake`
+<ProtoServiceMethod key={'GetStake-60'} method={{"name":"GetStake","description":"-- Stake --","requestType":"GetStakeRequest","requestLongType":"GetStakeRequest","requestFullType":"datanode.api.v2.GetStakeRequest","requestStreaming":false,"responseType":"GetStakeResponse","responseLongType":"GetStakeResponse","responseFullType":"datanode.api.v2.GetStakeResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getstakerequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getstakeresponse"}} />
+
+
+#### `GetRiskFactors`
+<ProtoServiceMethod key={'GetRiskFactors-61'} method={{"name":"GetRiskFactors","description":"-- Risk Factors --\nGet Risk Factor data for a given market","requestType":"GetRiskFactorsRequest","requestLongType":"GetRiskFactorsRequest","requestFullType":"datanode.api.v2.GetRiskFactorsRequest","requestStreaming":false,"responseType":"GetRiskFactorsResponse","responseLongType":"GetRiskFactorsResponse","responseFullType":"datanode.api.v2.GetRiskFactorsResponse","responseStreaming":false,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getriskfactorsrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#getriskfactorsresponse"}} />
+
+
+#### `ObserveEventBus`
+<ProtoServiceMethod key={'ObserveEventBus-62'} method={{"name":"ObserveEventBus","description":"-- Event Bus --\nSubscribe to a stream of events from the core","requestType":"ObserveEventBusRequest","requestLongType":"ObserveEventBusRequest","requestFullType":"datanode.api.v2.ObserveEventBusRequest","requestStreaming":true,"responseType":"ObserveEventBusResponse","responseLongType":"ObserveEventBusResponse","responseFullType":"datanode.api.v2.ObserveEventBusResponse","responseStreaming":true,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observeeventbusrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observeeventbusresponse"}} />
+
+
+#### `ObserveTransferResponses`
+<ProtoServiceMethod key={'ObserveTransferResponses-63'} method={{"name":"ObserveTransferResponses","description":"-- Transfer Responses --\nSubscribe to a stream of Transfer Responses","requestType":"ObserveTransferResponsesRequest","requestLongType":"ObserveTransferResponsesRequest","requestFullType":"datanode.api.v2.ObserveTransferResponsesRequest","requestStreaming":false,"responseType":"ObserveTransferResponsesResponse","responseLongType":"ObserveTransferResponsesResponse","responseFullType":"datanode.api.v2.ObserveTransferResponsesResponse","responseStreaming":true,"requestTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observetransferresponsesrequest","responseTypeLink":"/mainnet/api/grpc/data-node/api/v2/trading_data.proto#observetransferresponsesresponse"}} />
+
+
+---
+
+
+  

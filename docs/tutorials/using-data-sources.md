@@ -19,7 +19,7 @@ This is done by:
 
 The **binding** tells the market which field contains the value. The **spec** defines which public keys to watch for data from, and which values to pass through to the binding.
 
-When it's time for a market to settle, someone needs to submit the data that matches the spec defined in the market.
+When it's time for a market to settle, someone needs to submit the data that matches the data source spec defined in the market.
 
 :::note Read more: 
 [Market governance concepts:](../concepts/vega-protocol.md)
@@ -38,8 +38,8 @@ For the binding, use the `name` field of the data. In the case of Open Oracle me
 For now this will focus on using the data for settlement price - both examples below use a Vega time data source to terminate the market.
 
 ```javascript
-"oracleSpecBinding": {
-  "settlementPriceProperty": "prices.BTC.value",
+"dataSourceSpecBinding": {
+  "settlementDataProperty": "prices.BTC.value",
   "tradingTerminationProperty": "vegaprotocol.builtin.timestamp"
 }
 ```
@@ -47,7 +47,7 @@ For now this will focus on using the data for settlement price - both examples b
 The following spec would make the market use the BTC value from the [Coinbase Price Oracle](https://blog.coinbase.com/introducing-the-coinbase-price-oracle-6d1ee22c7068) data that is submitted in a subsequent example:
 
 ```javascript
-   "oracleSpecForSettlementPrice": {
+   "dataSourceSpecForSettlementData": {
         "pubKeys": ["0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"],
         "filters": [{
             "key": {
@@ -128,7 +128,7 @@ When submitting the `OracleDataSubmission`, make sure to specify the `source` fi
   <TabItem value="cmd" label="Linux / OSX command line">
 
 ```bash
-vegawallet command send \
+vegawallet transaction send \
     --wallet oracle-wallet \
     --pubkey 123abc \
     --network fairground \
@@ -139,7 +139,7 @@ vegawallet command send \
   <TabItem value="win" label="Windows command line">
 
 ```bash
-vegawallet.exe command send \
+vegawallet.exe transaction send \
     --wallet oracle-wallet \
     --pubkey 123abc \
     --network fairground \
@@ -207,7 +207,7 @@ For the binding, use the `name` field of the data. In the following example, the
 
 ```javascript
 "oracleSpecBinding": {
-  "settlementPriceProperty": "moonwalkers",
+  "settlementDataProperty": "moonwalkers",
   "tradingTerminationProperty": "vegaprotocol.builtin.timestamp"
 }
 ```
@@ -215,7 +215,7 @@ For the binding, use the `name` field of the data. In the following example, the
 The Oracle Specification that would bind to the `moonwalkers` property would be as follows:
 
 ```javascript
-   "oracleSpecForSettlementPrice": {
+   "oracleSpecForSettlementData": {
         "pubKeys": ["123abc"],
         "filters": [{
             "key": {
@@ -287,7 +287,7 @@ When submitting the `OracleDataSubmission`, make sure to specify the `source` fi
   <TabItem value="cmd" label="Linux / OSX command line">
 
 ```bash title="Linux/OSX command line example"
-vegawallet command send \
+vegawallet transaction send \
     --wallet oracle-wallet \
     --pubkey 123abc \
     --network fairground \
@@ -298,7 +298,7 @@ vegawallet command send \
   <TabItem value="win" label="Windows command line">
 
 ```bash title="Linux/OSX command line example"
-vegawallet.exe command send \
+vegawallet.exe transaction send \
     --wallet oracle-wallet \
     --pubkey 123abc \
     --network fairground \

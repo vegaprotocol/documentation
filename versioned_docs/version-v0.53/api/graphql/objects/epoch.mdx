@@ -1,0 +1,72 @@
+---
+id: epoch
+title: Epoch
+hide_table_of_contents: false
+---
+
+
+No description
+
+```graphql
+type Epoch {
+  id: String!
+  timestamps: EpochTimestamps!
+  validators: [Node!]!
+  delegations(
+  partyId: String
+  nodeId: String
+  skip: Int
+  first: Int
+  last: Int
+): [Delegation!]!
+}
+```
+
+
+### Fields
+
+#### [`id`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+Presumably this is an integer or something. If there's no such thing, disregard
+
+
+#### [`timestamps`](#) ([`EpochTimestamps!`](/mainnet/api/graphql/objects/epoch-timestamps))
+
+Timestamps for start/end etc
+
+
+#### [`validators`](#) ([`[Node!]!`](/mainnet/api/graphql/objects/node))
+
+Validators that participated in this epoch
+
+
+#### [`delegations`](#) ([`[Delegation!]!`](/mainnet/api/graphql/objects/delegation))
+
+
+- ##### [`partyId`](#) ([`String`](/mainnet/api/graphql/scalars/string))
+
+
+
+
+- ##### [`nodeId`](#) ([`String`](/mainnet/api/graphql/scalars/string))
+
+
+
+
+- ##### [`skip`](#) ([`Int`](/mainnet/api/graphql/scalars/int))
+
+Pagination skip
+
+
+- ##### [`first`](#) ([`Int`](/mainnet/api/graphql/scalars/int))
+
+Pagination first element
+
+
+- ##### [`last`](#) ([`Int`](/mainnet/api/graphql/scalars/int))
+
+Pagination last element
+
+
+
+

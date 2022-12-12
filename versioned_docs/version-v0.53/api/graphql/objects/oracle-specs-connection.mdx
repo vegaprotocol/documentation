@@ -1,0 +1,37 @@
+---
+id: oracle-specs-connection
+title: OracleSpecsConnection
+hide_table_of_contents: false
+---
+
+
+No description
+
+```graphql
+type OracleSpecsConnection {
+  totalCount: Int!
+  edges: [OracleSpecEdge]
+  pageInfo: PageInfo!
+}
+```
+
+
+### Fields
+
+#### [`totalCount`](#) ([`Int!`](/mainnet/api/graphql/scalars/int))
+
+The total number of oracle specs available with this connection
+
+
+#### [`edges`](#) ([`[OracleSpecEdge]`](/mainnet/api/graphql/objects/oracle-spec-edge))
+
+The oracle specs
+
+
+#### [`pageInfo`](#) ([`PageInfo!`](/mainnet/api/graphql/objects/page-info))
+
+The pagination information
+
+
+
+

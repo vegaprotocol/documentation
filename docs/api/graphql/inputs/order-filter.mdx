@@ -1,0 +1,49 @@
+---
+id: order-filter
+title: OrderFilter
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+input OrderFilter {
+  status: [OrderStatus!]
+  types: [OrderType!]
+  timeInForce: [OrderTimeInForce!]
+  excludeLiquidity: Boolean
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderFilter.<b>status</b></code>](#)<Bullet />[`[OrderStatus!]`](/testnet/api/graphql/enums/order-status) <Badge class="secondary" text="list"/> <Badge class="secondary" text="enum"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderFilter.<b>types</b></code>](#)<Bullet />[`[OrderType!]`](/testnet/api/graphql/enums/order-type) <Badge class="secondary" text="list"/> <Badge class="secondary" text="enum"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderFilter.<b>timeInForce</b></code>](#)<Bullet />[`[OrderTimeInForce!]`](/testnet/api/graphql/enums/order-time-in-force) <Badge class="secondary" text="list"/> <Badge class="secondary" text="enum"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderFilter.<b>excludeLiquidity</b></code>](#)<Bullet />[`Boolean`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+
+
+
+

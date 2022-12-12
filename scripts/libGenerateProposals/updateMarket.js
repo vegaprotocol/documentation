@@ -1,7 +1,7 @@
 const sample = require('lodash/sample');
 const random = require('lodash/random');
 const sampleSize = require('lodash/sampleSize');
-const { generateSettlementOracleSpec, generateTerminationOracleSpec, generateOracleSpecBinding } = require('./newMarket')
+const { generateSettlementDataSourceSpec, generateTerminationDataSourceSpec, generateDataSourceSpecBinding } = require('./newMarket')
 const assert = require('assert').strict;
 const { inspect } = require('util');
 
@@ -21,21 +21,20 @@ function generateInstrument(skeleton) {
   // The properties of an instrument
   assert.ok(skeleton.properties.code, 'Instrument property code used to exist');
   assert.ok(skeleton.properties.future.properties.quoteName, 'Instrument property quoteName used to exist');
-  
-  assert.ok(skeleton.properties.future.properties.settlementPriceDecimals, 'Instrument property settlementPriceDecimals used to exist');
-  assert.equal(skeleton.properties.future.properties.settlementPriceDecimals.type, 'integer', 'Instrument property settlementPriceDecimals used to be an integer');
-  assert.ok(skeleton.properties.future.properties.oracleSpecForSettlementPrice, 'OracleSpecForSettlementPrice used to exist');
-  assert.ok(skeleton.properties.future.properties.oracleSpecForTradingTermination, 'OracleSpecForTradingTermination used to exist');
-  assert.ok(skeleton.properties.future.properties.oracleSpecBinding, 'OracleSpecBinding used to exist on a future');
 
+  assert.ok(skeleton.properties.future.properties.settlementDataDecimals, 'Instrument property settlementDataDecimals used to exist');
+  assert.equal(skeleton.properties.future.properties.settlementDataDecimals.type, 'integer', 'Instrument property settlementDataDecimals used to be an integer');
+  assert.ok(skeleton.properties.future.properties.dataSourceSpecForSettlementData, 'DataSourceSpecForSettlementPrice used to exist');
+  assert.ok(skeleton.properties.future.properties.dataSourceSpecForTradingTermination, 'DataSourceSpecForTradingTermination used to exist');
+  assert.ok(skeleton.properties.future.properties.dataSourceSpecBinding, 'DataSourceSpecBinding used to exist on a future');
   const instrument = {
     code: randomInstrument.code,
     future: {
       quoteName: 'tEuro',
-      settlementPriceDecimals: 5,
-      oracleSpecForSettlementPrice: generateSettlementOracleSpec(skeleton.properties.future.properties.oracleSpecForSettlementPrice),
-      oracleSpecForTradingTermination: generateTerminationOracleSpec(skeleton.properties.future.properties.oracleSpecForTradingTermination),
-      oracleSpecBinding: generateOracleSpecBinding(skeleton.properties.future.properties.oracleSpecBinding)
+      settlementDataDecimals: 5,
+      dataSourceSpecForSettlementData: generateSettlementDataSourceSpec(skeleton.properties.future.properties.dataSourceSpecForSettlementData),
+      dataSourceSpecForTradingTermination: generateTerminationDataSourceSpec(skeleton.properties.future.properties.dataSourceSpecForTradingTermination),
+      dataSourceSpecBinding: generateDataSourceSpecBinding(skeleton.properties.future.properties.dataSourceSpecBinding)
     }
   }
 
@@ -47,14 +46,14 @@ function generateInstrument(skeleton) {
         future: {
           // ${skeleton.properties.future.properties.quoteName.title} (${skeleton.properties.future.properties.quoteName.type})
           quoteName: "${instrument.future.quoteName}",
-          // ${skeleton.properties.future.properties.settlementPriceDecimals.title} (${skeleton.properties.future.properties.settlementPriceDecimals.format} as ${skeleton.properties.future.properties.settlementPriceDecimals.type})
-          settlementPriceDecimals: ${instrument.future.settlementPriceDecimals},
-          // ${skeleton.properties.future.properties.oracleSpecForSettlementPrice.title} (${skeleton.properties.future.properties.oracleSpecForSettlementPrice.type})
-          oracleSpecForSettlementPrice: ${inspect(instrument.future.oracleSpecForSettlementPrice, {depth: 5})},
-          // ${skeleton.properties.future.properties.oracleSpecForTradingTermination.title} (${skeleton.properties.future.properties.oracleSpecForTradingTermination.type})
-          oracleSpecForTradingTermination: ${inspect(instrument.future.oracleSpecForTradingTermination, {depth: 5})},
-          // ${skeleton.properties.future.properties.oracleSpecBinding.title} (${skeleton.properties.future.properties.oracleSpecBinding.type})
-          oracleSpecBinding: ${inspect(instrument.future.oracleSpecBinding, {depth: 5})}
+          // ${skeleton.properties.future.properties.settlementDataDecimals.title} (${skeleton.properties.future.properties.settlementDataDecimals.format} as ${skeleton.properties.future.properties.settlementDataDecimals.type})
+          settlementDataDecimals: ${instrument.future.settlementDataDecimals},
+          // ${skeleton.properties.future.properties.dataSourceSpecForSettlementData.title} (${skeleton.properties.future.properties.dataSourceSpecForSettlementData.type})
+          dataSourceSpecForSettlementData: ${inspect(instrument.future.dataSourceSpecForSettlementData, {depth: 5})},
+          // ${skeleton.properties.future.properties.dataSourceSpecForTradingTermination.title} (${skeleton.properties.future.properties.dataSourceSpecForTradingTermination.type})
+          dataSourceSpecForTradingTermination: ${inspect(instrument.future.dataSourceSpecForTradingTermination, {depth: 5})},
+          // ${skeleton.properties.future.properties.dataSourceSpecBinding.title} (${skeleton.properties.future.properties.dataSourceSpecBinding.type})
+          dataSourceSpecBinding: ${inspect(instrument.future.dataSourceSpecBinding, {depth: 5})}
       }`
     }
 
