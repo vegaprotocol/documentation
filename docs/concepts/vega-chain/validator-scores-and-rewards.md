@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-title: Validator nodes
+title: Validator scores and rewards
 vega_network: TESTNET
 hide_title: false
 ---
@@ -9,7 +9,6 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 import Topic from '/docs/topics/_topic-staking.mdx'
 
 # Validator scoring and rewards
-
 Validators and nominators both receive incentives for securing the network. The amount of those incentives, rewarded as VEGA, depends on factors including how much stake is nominated. 
 
 **To be considered for staking rewards, a tokenholder must associate VEGA to a Vega key and nominate one or more validators.**
@@ -22,19 +21,20 @@ Staking rewards must be withdrawn to an Ethereum wallet, and then associated to 
 
 In each epoch, rewards are distributed among validators in proportion to the number of tokens they represent (i.e., their total stake). The total stake includes a validator's own stake and the tokens nominated to that validator. Of this reward, a fixed amount is distributed among the tokenholders the validator represents. The proportion of rewards distributed to delegators is <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.delegatorShare" hideName={true} />.
 
-The  reward received by each validator, and therefore passed onto their delegators, at the end of each epoch is based on their validator scores which account for various penalties.  However, there is no token slashing, i.e., a tokenholder cannot lose their tokens through any actions of a validator.
+The reward received by each validator, and therefore passed onto their delegators, at the end of each epoch is based on their validator scores which account for various penalties. However, there is no token slashing, i.e., a tokenholder cannot lose their tokens through any actions of a validator.
 
 A validating node’s score is calculated based on three factors:
 
-* Total Stake 
+* Total stake 
 * Penalties for overstaking 
 * Performance
 
-These factors drive a number of individual scores which combine to form the overall score for each validator in the epoch.  These scores can be found on the rewards API.
+These factors drive a number of individual scores which combine to form the overall score for each validator in the epoch. These scores can be found on the rewards API.
 
-## Raw Validator Score 
+## Raw validator score 
+The raw validator score represents the overall share of total stake the validator represents, and determines if a node is overstaked, and thus penalised.
 
-The raw validator score represents the overall share of total stake the validator represents, but penalises the node if it is "overstaked".  Overstaking is a risk to network security since it can lead to a concentration of voting power with a small number of nodes, allowing those nodes to potentially halt the network.
+Overstaking is a risk to network security since it can lead to a concentration of voting power with a small number of nodes, allowing those nodes to potentially halt the network.
 
 See below for how the validator score is calculated. 
 
@@ -48,7 +48,7 @@ See below for how the validator score is calculated.
 > 
 > `optimal_stake` = total delegation divided by the greater of `min_validators`, OR (`num_validators` / `comp_level`): Optimal stake is how much stake each validator is expected to have, at most
 > 
-> `optimal_stake_multiplier` = value defined by <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.optimalStakeMultiplier" />), which indicates how many times the optimal stake a validator is penalised for, if they are further than the optimal stake
+> `optimal_stake_multiplier` = value defined by <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.optimalStakeMultiplier" hideValue={true} />), which indicates how many times the optimal stake a validator is penalised for, if they are further than the optimal stake
 > 
 >`validator_stake_i` = stake of the given validator whose score is being calculated
 >
@@ -60,15 +60,18 @@ The raw validator score is calculated as follows:
 
 `raw_validator_score` = (`validator_stake_i` - `flat_penalty` - `higher_penalty`) / `total_stake`
 
-In other words, the network calculates an optimal stake which represents an even distribution of stake for the current number of consensus validators and the desired competition level.  It then penalises any validators which have stake that exceeds that amount.  The raw validator score is then the resulting amount divided by the total stake on the network.
+In other words, the network calculates an optimal stake which represents an even distribution of stake for the current number of consensus validators and the desired competition level. It then penalises any validators that have stake that exceeds that amount. The raw validator score is then the resulting amount divided by the total stake on the network.
 
-Full details on this calculation can be found in https://github.com/vegaprotocol/specs/blob/master/protocol/0061-REWP-pos_rewards.md.
+
+:::note Go deeper
+[Proof of stake rewards spec](https://github.com/vegaprotocol/specs/blob/master/protocol/0061-REWP-pos_rewards.md): Read the full details on how scores are calculated.
+:::
 
 ## Performance score
-For the network to run effectively, it requires nodes that are highly available, highly performant, and process the transactions expected of them.  Therefore a performance score is calculated for all validator nodes.  This calculation of performance score differs slightly between consensus and standby validators.
+For the network to run effectively, it requires nodes that are highly available, highly performant, and process the transactions expected of them. Therefore a performance score is calculated for all validator nodes. This calculation of performance score differs slightly between consensus and standby validators.
 
 ### Consensus validators 
-In tendermint consensus, the number of times a consensus validator can be expected to propose a block is roughly proportional to their voting power from the previous epoch.  Therefore, in order to assess the performance of a node, the protocol compares the number of times that node should have been expected to propose a block in the previous epoch against the number of blocks it actually proposed.
+In tendermint consensus, the number of times a consensus validator can be expected to propose a block is roughly proportional to their voting power from the previous epoch. Therefore, in order to assess the performance of a node, the protocol compares the number of times that node should have been expected to propose a block in the previous epoch against the number of blocks it actually proposed.
 
 Let `p` be the number of times the validator proposed blocks in the previous epoch 
 
@@ -102,25 +105,27 @@ The network will verify this to confirm that the validator owns the keys.
 The network will keep track of the last 10 times a standby validator was meant to submit the transactions, and the performance score is the number of times this has been verified, divided by 10.
 
 ## Validator score and voting power
-The validator score for the epoch is then calculated as:
+The validator score for the epoch is calculated as:
 
 `validator_score` = `raw_validator_score` x `performance_score` x `multisig_bonus`
 
-Where `multisig_bonus` is used to ensure consensus validators are registered to the multisig contract.  If a consensus validator is not registered to the multisig they will get a score of zero, otherwise they get 1.  Non-consensus validators are always awarded a `multisig_bonus ` of 1 since they are not required to be registered to the multisig.
+Where `multisig_bonus` is used to ensure consensus validators are registered to the multisig contract. If a consensus validator is not registered to the multisig they will get a score of zero, otherwise they get 1. Non-consensus validators are always awarded a `multisig_bonus` of 1 since they are not required to be registered to the multisig.
 
-Finally, this score is normalised to sum to 1 and is known as the `normalisedScore`.  This figure is then used to define that node's `voting_power` in the next epoch.  Note that this figure is multiplied by 10,000 and rounded to integer values because tendermint requires it. 
+Finally, the validator score is normalised to sum to 1. This `normalised score` is then used to define a node's `voting power` in the next epoch. Note that the `voting power` is multiplied by 10,000 and rounded to integer values, to meet Tendermint requirements.
 
-## Allocation of rewards
-
-At the end of each epoch the full pool of staking rewards is allocated to validators, with each validator receiving `total_rewards` x `normalised_score`.
-
-Each validator keeps a share of these rewards, where that share is given by 1 minus the delegator share <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.delegatorShare" />).  
-
-If the validator does not have sufficient self-stake as defined by <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" formatter="governanceToken" suffix="tokens" hideName={true} /> then it will not receive these rewards and they are returned to the reward pool.
-
-The remaining rewards are then distributed to the tokenholders delegating to the node in proportion to their share of delegation on that node.  
-
+## Reward allocation
 :::caution 
 As of version 0.47.5, the Vega network does not prevent tokenholders from nominating stake that would cause a node to be over-nominated. Tokenholders must actively manage their stake and keep track of the nodes they support.
 :::
+
+At the end of each epoch the full pool of staking rewards is allocated to validators, with each validator receiving `total rewards` x `normalised score`.
+
+Each validator keeps a share of these rewards, where that share is:
+
+1 minus the delegator share of <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.delegatorShare" hideName={true} />.
+
+If the validator does not have sufficient self-stake as defined by <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" formatter="governanceToken" suffix="tokens" hideName={true} /> then it will not receive these rewards and they are returned to the reward pool.
+
+The remaining rewards are then distributed to the tokenholders delegating to the node in proportion to their share of delegation on that node.
+
 
