@@ -14,7 +14,7 @@ Validators and nominators both receive incentives for securing the network. The 
 **To be considered for staking rewards, a tokenholder must associate VEGA to a Vega key and nominate one or more validators.**
 
 :::info Try it out
-Try out staking on **[token.fairground.wtf](https://token.fairground.wtf)** to try out associating testnet tokens and nominating validators. Staking rewards are paid into your Vega wallet after each epoch ends. 
+Use **[token.fairground.wtf](https://token.fairground.wtf)** to try out associating testnet tokens and nominating validators. Staking rewards are paid into your Vega wallet after each epoch ends. 
 
 Staking rewards must be withdrawn to an Ethereum wallet, and then associated to a Vega wallet, before they can be staked.
 :::
@@ -29,7 +29,11 @@ A validating node’s score is calculated based on three factors:
 * Penalties for overstaking 
 * Performance
 
-These factors drive a number of individual scores which combine to form the overall score for each validator in the epoch. These scores can be found on the rewards API.
+These factors drive a number of individual scores which combine to form the overall score for each validator in the epoch. 
+
+:::tip Query for data
+See each validator's rewards scores by [querying the API](../../../../api/rest/data-v2/trading-data-service-list-nodes).
+:::
 
 ## Raw validator score 
 The raw validator score represents the overall share of total stake the validator represents, and determines if a node is overstaked, and thus penalised.
@@ -61,7 +65,6 @@ The raw validator score is calculated as follows:
 `raw_validator_score` = (`validator_stake_i` - `flat_penalty` - `higher_penalty`) / `total_stake`
 
 In other words, the network calculates an optimal stake which represents an even distribution of stake for the current number of consensus validators and the desired competition level. It then penalises any validators that have stake that exceeds that amount. The raw validator score is then the resulting amount divided by the total stake on the network.
-
 
 :::note Go deeper
 [Proof of stake rewards spec](https://github.com/vegaprotocol/specs/blob/master/protocol/0061-REWP-pos_rewards.md): Read the full details on how scores are calculated.
