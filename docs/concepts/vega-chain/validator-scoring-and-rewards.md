@@ -1,5 +1,14 @@
+---
+sidebar_position: 3
+title: Validator nodes
+vega_network: TESTNET
+hide_title: false
+---
 
-# Validator scoring and staking rewards
+import NetworkParameter from '@site/src/components/NetworkParameter';
+import Topic from '/docs/topics/_topic-staking.mdx'
+
+# Validator scoring and rewards
 
 Validators and nominators both receive incentives for securing the network. The amount of those incentives, rewarded as VEGA, depends on factors including how much stake is nominated. 
 
@@ -23,7 +32,7 @@ A validating node’s score is calculated based on three factors:
 
 These factors drive a number of individual scores which combine to form the overall score for each validator in the epoch.  These scores can be found on the rewards API.
 
-### Raw Validator Score 
+## Raw Validator Score 
 
 The raw validator score represents the overall share of total stake the validator represents, but penalises the node if it is "overstaked".  Overstaking is a risk to network security since it can lead to a concentration of voting power with a small number of nodes, allowing those nodes to potentially halt the network.
 
@@ -55,10 +64,10 @@ In other words, the network calculates an optimal stake which represents an even
 
 Full details on this calculation can be found in https://github.com/vegaprotocol/specs/blob/master/protocol/0061-REWP-pos_rewards.md.
 
-### Performance score
+## Performance score
 For the network to run effectively, it requires nodes that are highly available, highly performant, and process the transactions expected of them.  Therefore a performance score is calculated for all validator nodes.  This calculation of performance score differs slightly between consensus and standby validators.
 
-#### Consensus validators 
+### Consensus validators 
 In tendermint consensus, the number of times a consensus validator can be expected to propose a block is roughly proportional to their voting power from the previous epoch.  Therefore, in order to assess the performance of a node, the protocol compares the number of times that node should have been expected to propose a block in the previous epoch against the number of blocks it actually proposed.
 
 Let `p` be the number of times the validator proposed blocks in the previous epoch 
@@ -75,7 +84,7 @@ ie. the number of blocks the validator is expected to propose is equal to their 
 Then `performance_score = max(0.05, min((p/expected, 1))`
 ie. the performance score is equal to the ratio of number of blocks actually proposed vs number of expected blocks, with a score of 1 representing a node that has proposed at least as many blocks as were expected.
 
-#### Standby validators
+### Standby validators
 Standby validators do not propose blocks, therefore the method above is not suitable for assessing performance of standby validators. Instead, the performance score of a standby validator is calculated based on them successfully submitting transactions to the network. The performance score for *new* standby validators is set to 0 for the first epoch. 
 
 Validator candidates that have submitted a transaction to become standby validating nodes will need to send a hash of block number `b`, separately signed by the three required keys and submitted, during each epoch and every set number of blocks (`numBlocks`). 
@@ -92,7 +101,7 @@ The network will verify this to confirm that the validator owns the keys.
 
 The network will keep track of the last 10 times a standby validator was meant to submit the transactions, and the performance score is the number of times this has been verified, divided by 10.
 
-### Validator score and voting power
+## Validator score and voting power
 The validator score for the epoch is then calculated as:
 
 `validator_score` = `raw_validator_score` x `performance_score` x `multisig_bonus`
@@ -101,7 +110,7 @@ Where `multisig_bonus` is used to ensure consensus validators are registered to 
 
 Finally, this score is normalised to sum to 1 and is known as the `normalisedScore`.  This figure is then used to define that node's `voting_power` in the next epoch.  Note that this figure is multiplied by 10,000 and rounded to integer values because tendermint requires it. 
 
-### Allocation of rewards
+## Allocation of rewards
 
 At the end of each epoch the full pool of staking rewards is allocated to validators, with each validator receiving `total_rewards` x `normalised_score`.
 
