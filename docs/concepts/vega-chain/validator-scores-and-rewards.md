@@ -32,7 +32,7 @@ A validating node’s score is calculated based on three factors:
 These factors drive a number of individual scores which combine to form the overall score for each validator in the epoch. 
 
 :::tip Query for data
-See each validator's rewards scores by [querying the API](../../../../api/rest/data-v2/trading-data-service-list-nodes).
+See each validator's rewards scores by [querying the API](../../api/rest/data-v2/trading-data-service-list-nodes).
 :::
 
 ## Raw validator score 
