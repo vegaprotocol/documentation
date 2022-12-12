@@ -32,15 +32,22 @@ Data sources must be able to emit the following data types:
 ## Signed message data sources [WIP]
 Signed message data sources are a source of off-chain data. They introduce a Vega transaction that represents a data result that is validated by ensuring the signed message is provided by the Vega or Ethereum public key provided in the market’s proposal.
 
-If data already exists in Open Oracle form on Ethereum, and already has a signature, use that. For data that doesn't exist in Open Oracle, create and use a signed JSON message. 
-
-!!! Add a caveat that all data sources should be verified. 
-
-!!!! Specification - needs more information about that. The difference between the proposal specifications and then the data that gets fed in at the right time. 
-
 A signed message data source specification must include:
 * Public keys that can sign and submit values for this oracle, as well as the key algorithm to be used, if required
 * Type of data to be supplied in the transaction, and filters for the data
+
+Vega supports two signed message data sources:
+* Open Oracle data source
+* JSON messages
+
+!!!! Specification - needs more information about that. The difference between the proposal specifications and then the data that gets fed in at the right time. 
+
+For a market proposer looking to choose which signed message data source is best for their market, it's recommended use data that's already in Open Oracle format, with a signature, if it exists. If the relevant market/asset data doesn't exist in Open Oracle, then create and use a signed JSON message.
+
+### Data source guidance
+Whether it's when voting for a market, or when choosing a market to trade on, it's important to verify the data source specification for the market. Voters and traders should verify that you trust the public key signing the data, as well as the data filters being used.
+
+Those proposing a market/providing data should verify that the data source they're using is reliable and will provide accurate information for network participants.
 
 ### Open Oracle data
 Signed ABI encoded data sources, such as Open Oracle, are equivalent to Posters in [Compound’s Open Price Feed](https://medium.com/compound-finance/announcing-compound-open-oracle-development-cff36f06aad3), taking signed price reports and posting them to the Vega chain. As Open Oracle reports include signatures, the data can still be verified against its source. 
@@ -123,3 +130,4 @@ When a market is proposed, it must specify filters for the chosen data source(s)
 :::tip Try it out
 The **[submitting data and configuring markets](./../../tutorials/using-data-sources.md)** guide describes how to encode oracle data and configure a market to use it. 
 :::
+ 
