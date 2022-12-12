@@ -8,7 +8,7 @@ hide_title: false
 import NetworkParameter from '@site/src/components/NetworkParameter';
 import Topic from '/docs/topics/_topic-staking.mdx'
 
-## Validator nodes
+# Validator nodes
 The Vega network is operated by a number of independent validators, who each run a node. 
 
 There are three types of validating nodes: consensus validators, standby validators, and pending validators. 
