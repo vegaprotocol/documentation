@@ -8,7 +8,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## Choosing a data source when proposing a market
-
 A market proposal must specify details about the data it requires in the market creation governance proposal. When configuring a market's instrument, you will need to select the data sourcefor two events: settlement and trading termination. 
 
 This is done by:
@@ -29,10 +28,10 @@ When it's time for a market to settle, someone needs to submit the data that mat
 ## Who can submit data
 Any Vega keypair can submit data. In the configuration for a market, a data source specification field dictates which data feeds it is interested in. In effect, it works as a filter. This specification means that the creator of an instrument for a market will choose in advance a price source, and which data fields the market requires to settle and terminate.
 
-## Signed Messages
-Vega's Data Sourcing framework supports signed ABI-encoded [Open Oracle](https://github.com/compound-finance/open-oracle) or JSON messages. Signed Messages can be vefiried to have come from the public key that signed them, which allows markets on Vega to use pricing data sourced from Ethereum.
+## Open Oracle signed messages
+Vega's Data Sourcing framework supports signed ABI-encoded [Open Oracle](https://github.com/compound-finance/open-oracle) or JSON messages. ABI-encoded signed messages can be verified to have come from the public key that signed them, which allows markets on Vega to use pricing data sourced from Ethereum.
 
-### Using Signed Messages a market proposal
+### Using Open Oracle signed messages in a market proposal
 For the binding, use the `name` field of the data. In the case of Open Oracle messages, the price data will be availableas 'prices.currency-code.value', for example:`"prices.BTC.value"`.
 
 For now this will focus on using the data for settlement price - both examples below use a Vega time data source to terminate the market.
@@ -65,10 +64,9 @@ The following spec would make the market use the BTC value from the [Coinbase Pr
 The pubKey in this case is the **Ethereum public key that signed the data in the message**. 
 
 ### Submitting Open Oracle data
-
 Use the command line to submit an Open Oracle message as a transaction that is signed by your Vega wallet and sent to the validators for consensus.
 
-Below, find instructions on how to submit Open Oracle data as a Signed Message. Markets should be configured to only use the data at the relevant time, such as after a defined settlement date.
+Below, find instructions on how to submit Open Oracle data as a signed message. Markets should be configured to only use the data at the relevant time, such as after a defined settlement date, in the [market proposal](./proposals/new-market-proposal.md).
 
 :::info API note
 When looking at market data using the API, the `pubKeys` field in the response for Open Oracle data submissions is set to the Open Oracle signing key.
@@ -199,10 +197,10 @@ The data we submitted in step three will be returned as follows:
 }
 ```
 
-## JSON data
-[JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON) messages are a simpler, more configurable alternative to Open Oracle data. The advantage is that they can be totally custom objects, as long as they are valid JSON. The disadvantage is that they are not attested by any off-chain source in the way that Open Oracle messages are. Due to this constraint, it's generally advisable to find an Open Oracle price source before resorting to JSON data.
+## JSON signed message data
+[JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON) messages are a simpler, more configurable alternative to Open Oracle data. They can be totally custom objects, as long as they are valid JSON. As they are not attested by any off-chain source in the way that Open Oracle messages are, and so it's generally advisable to check for an Open Oracle price source before choosing JSON data. The Vega key that signs the message will be referred to as the source for the data. 
 
-### Using JSON data spec in a market proposal
+### Using JSON signed message data in a market proposal
 For the binding, use the `name` field of the data. In the following example, the market is settled based on the number of people who have walked on the moon.
 
 ```javascript
@@ -357,7 +355,9 @@ Vega provides a timestamp source, which is useful for terminating a market at a 
 As the name implies, a built in data source is generated inside Vega, and cannot be submitted by other keys.
 
 ### Using built-in data for trading termination
-It's possible to settle on any data source field - for instance checking if a `boolean` is `true` - but time is a good starting point, and the [built-in time data source](#built-in-data-source) can be used for exactly that:
+It's possible to settle on any data source field - for instance checking if a `boolean` is `true` - but time is a good starting point, and the [built-in time data source](#built-in-data-source) can be used for exactly that. 
+
+When using the built-in time source, **use greater than or equals**, rather than solely equals. This will help to avoid missing the time if no event is emitted with the precise required timestamp.
 
 ```javascript
 "oracleSpecForTradingTermination": {

@@ -17,7 +17,11 @@ Inputs to the data sourcing framework can come from:
 * Specially formatted and signed JSON messages
 * Data internal to Vega's state (for example the latest block timestamp)
 
-### What's in a data source
+### What's in a data source specification
+Data source specifications include the particular information to be processed for the market that the data source is targeting. The specifications are ennumerated when the market is proposed.
+
+When looking for or building a data source, ensure the following information is available. 
+
 Data sources must provide:
 * Type of data source (e.g. `vega.builtin.timestamps`, `Open Oracle`)
 * Data type (e.g. float for a price)
@@ -29,7 +33,7 @@ Data sources must be able to emit the following data types:
 * Date/Time - to compare against in filters
 * Structured data records - such as a set of key value pairs (inputs to filters)
 
-## Signed message data sources [WIP]
+## Signed message data sources
 Signed message data sources are a source of off-chain data. They introduce a Vega transaction that represents a data result that is validated by ensuring the signed message is provided by the Vega or Ethereum public key provided in the market’s proposal.
 
 A signed message data source specification must include:
@@ -38,16 +42,14 @@ A signed message data source specification must include:
 
 Vega supports two signed message data sources:
 * Open Oracle data source
-* JSON messages
+* JSON messages 
 
-!!!! Specification - needs more information about that. The difference between the proposal specifications and then the data that gets fed in at the right time. 
-
-For a market proposer looking to choose which signed message data source is best for their market, it's recommended use data that's already in Open Oracle format, with a signature, if it exists. If the relevant market/asset data doesn't exist in Open Oracle, then create and use a signed JSON message.
-
-### Data source guidance
+## Choosing and verifying data
 Whether it's when voting for a market, or when choosing a market to trade on, it's important to verify the data source specification for the market. Voters and traders should verify that you trust the public key signing the data, as well as the data filters being used.
 
 Those proposing a market/providing data should verify that the data source they're using is reliable and will provide accurate information for network participants.
+
+For a market proposer looking to choose which signed message data source is best for their market, it's recommended use data that's already in Open Oracle format, with a signature, if it exists. If the relevant market/asset data doesn't exist in Open Oracle, then create and use a signed JSON message.
 
 ### Open Oracle data
 Signed ABI encoded data sources, such as Open Oracle, are equivalent to Posters in [Compound’s Open Price Feed](https://medium.com/compound-finance/announcing-compound-open-oracle-development-cff36f06aad3), taking signed price reports and posting them to the Vega chain. As Open Oracle reports include signatures, the data can still be verified against its source. 
@@ -103,6 +105,8 @@ For a more thorough example of how to produce, sign and submit data in this form
 :::
 
 ## Internal data source
+An internal data source provides information that comes from within Vega, rather than an external source. They are defined and used in the same way as external data sources, but are triggered by the relevant event in protocol rather than by an incoming transaction.
+
 Vega provides a timestamp source, which can be used to trigger a market event (such as trading termination or final settlement) at a set date and time. The `vegaprotocol.builtin.timestamp` is used by the market proposer to provide a Unix timestamp in seconds of the Vega time, which is to say the time agreed via consensus. 
 
 As the name implies, an internal data source event is generated automatically inside Vega when the time changes (i.e. once per block) and will then be processed by a data source definition (e.g. to filter the events so that trading terminated is only triggered after a certain date/time is reached).
@@ -125,9 +129,13 @@ Products on Vega use data to drive actions like settlement and to progress throu
 
 As a public key may provide many messages, a filter is used to extract the required message - for example trading could terminate at a specific date and time, and so the filters would ensure that only data provided on or after the specified date and time would trigger termination. Similarly for settlement, only price data *after* trading has terminated would be relevant.
 
-When a market is proposed, it must specify filters for the chosen data source(s). Those filters are applied to the source of structured data records used as input and emit only the value of a named field - such as to return `BTCUSD_PRICE` from a record containing many prices. 
+When a market is proposed, the market proposal must include details for filters to be applied to the chosen data source(s). Those filters are applied to the source of structured data records that are used as input and determine how data is emitted: such as the specific value for a named field, to return `BTCUSD_PRICE` from a record containing many prices, for example; or price data on/after a certain time.
+
+## Submitting data for a market
+Any Vega keypair can submit settlement and market termination data to the chain. The creator of an instrument for a market has chosen in advance a price source, which data fields the market requires to settle and terminate, and filters that determine when the data is used.
+
+The data can be broadcast at any and all points, but if the market isn't looking for data, based on the filters, then the data doesn't make it to the chain and has no effect. The market is only listening when the filters signal that the data should be processed and used.
 
 :::tip Try it out
 The **[submitting data and configuring markets](./../../tutorials/using-data-sources.md)** guide describes how to encode oracle data and configure a market to use it. 
 :::
- 
