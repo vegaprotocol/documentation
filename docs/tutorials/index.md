@@ -27,4 +27,4 @@ Take a look at the tutorials for help with using Vega's APIs.
 | Topic                                                                 |  Description                                                                                                        |
 | ----------------------------------------------------------------------| -------------------------------------------------------------------------------------------------------- |
 | [Commit liquidity](./committing-liquidity.md)               | Submitting and amending a liquidity commitment by saving and editing scripts |
-| [Submit oracle data](./using-oracle-data.md)               | How data sources for markets are sourced, shaped and submitted |
+| [Use market data](./using-data-sources.md)               | How data sources for markets are sourced, shaped and submitted |
