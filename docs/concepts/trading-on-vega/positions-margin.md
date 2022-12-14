@@ -2,7 +2,11 @@
 sidebar_position: 2
 title: Positions and margin
 hide_title: false
+description: Dynamic margining maximises collateral usage and market solvency.
 ---
+
+import NetworkParameter from '@site/src/components/NetworkParameter';
+
 Trading margined derivatives (such as futures) allows you to create leveraged positions, meaning you only need some of the notional value of an instrument to place orders on a market on Vega. 
 
 Margin is the amount of the settlement asset of the market required to keep your positions open and orders funded. You can think of margin as the 'down payment' to open a position. Leverage, meanwhile, describes how many times larger is the notional value of that position compared to the margin you have dedicated to it. For example, if you need 20DAI to open a position worth 100DAI: your leverage is 5x and your initial margin is 20% of the full value.
@@ -35,7 +39,7 @@ For a futures market created on Vega, marking to market is carried out every tim
 Mark to market settlement instructions are generated based on the change in market value of the open positions of a party. When the mark price changes, the network calculates settlement cash flows for each party, and the process is repeated each time the mark price changes until the maturity date for the market is reached.
 
 :::note Read more
-[Mark to market settlement](./settlement#mark-to-market-settlement)
+[Mark to market settlement](./settlement#mark-to-market-settlement): How settlement works when the mark to market price is recalculated.
 :::
 
 
@@ -72,14 +76,15 @@ The amount a trader will have held aside as maintenance margin is derived from t
 If the margin balance drops below the maintenance margin level, the position closeout process gets initiated.
 
 :::note Read more
-[Closeouts](./market-protections#closeouts)
-[Risk models](../vega-protocol#risk-models-and-parameters)
+[Closeouts](./market-protections#closeouts): What triggers a closeout, and what happens in a closeout
+[Risk models](../vega-protocol#risk-models-and-parameters): Details on the risk model parameters for a market
 :::
 
 ### Margin level: Initial
 The *initial margin level* is the amount that will be transferred from the trader's general account to be used as margin when an order is placed or a trade is executed. The initial margin is more than the absolute minimum needed to support a position, as it offers a cushion to keep a position open as the mark price changes.
 
-The initial margin is scaled from the *maintenance margin* amount. It's calculated by multiplying the maintenance margin amount by the `initial_margin` scaling factor, which is set by the network parameter `market.margin.scalingFactors`.
+The initial margin is scaled from the *maintenance margin* amount. It's calculated by multiplying the maintenance margin amount by the `initial_margin` scaling factor, which is set by a network parameter: 
+<NetworkParameter frontMatter={frontMatter} param="market.margin.scalingFactors" />.
 
 `[initial margin level] = [maintenance margin] x [initial_margin scaling factor]`
 
@@ -92,22 +97,24 @@ If the margin account can be topped up, then the position stays open. If that's 
 
 In most cases, the allocated margin should cover market swings so that collateral search is attempted first as described above, however in extreme cases the market move could be so large as to immediately proceed to the liquidation step.
 
-The search level is scaled from the *maintenance margin* amount. It's calculated by multiplying the maintenance margin amount by the `search_level` scaling factor, which is set by the network parameter `market.margin.scalingFactors`.
+The search level is scaled from the *maintenance margin* amount. It's calculated by multiplying the maintenance margin amount by the `search_level` scaling factor, which is set by a network parameter: 
+<NetworkParameter frontMatter={frontMatter} param="market.margin.scalingFactors" />.
 
 `[search level] = [maintenance margin] x [search_level scaling factor]`
 
-:::note Read more
-[Closeouts](./market-protections#closeouts)
-:::
-
 If there is not enough collateral to provide the required margin, then the position will be closed out.
+
+:::note Read more
+[Closeouts](./market-protections#closeouts): What triggers a closeout, and what happens in a closeout
+:::
 
 ### Margin level: Releasing collateral
 If a trader's margin balance exceeds the *collateral release level*, the position is considered overcollateralised. The excess money is released to their general account, to get their margin back to the *initial margin level*. 
 
 Those gains can then be withdrawn, or used to fund other trades.
 
-The release level is scaled from the *maintenance margin* amount. It's calculated by multiplying the maintenance margin amount by the `collateral_release` scaling factor, which is set by the network parameter `market.margin.scalingFactors`.
+The release level is scaled from the *maintenance margin* amount. It's calculated by multiplying the maintenance margin amount by the `collateral_release` scaling factor, which is set by a network parameter:
+<NetworkParameter frontMatter={frontMatter} param="market.margin.scalingFactors"/>.
 
 `[release level] = [maintenance margin] x [collateral_release scaling factor]`
 
