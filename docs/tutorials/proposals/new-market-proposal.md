@@ -104,7 +104,7 @@ Data source bindings require the following properties:
 | `value` | A number that is constrained by the operator | 0 |
 
 :::info Submitting data
-Learn how to find and submit data in the [submitting data sources tutorial](../using-oracle-data.md).
+Learn how to find and submit data in the [submitting data sources tutorial](../using-data-sources.md).
 :::
 
 ### Liquidity monitoring
