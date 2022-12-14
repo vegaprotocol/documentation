@@ -17,15 +17,17 @@ Inputs to the data sourcing framework can come from:
 * Specially formatted and signed JSON messages
 * Data internal to Vega's state (for example the latest block timestamp)
 
-### What's in a data source specification
-Data source specifications include the particular information to be processed for the market that the data source is targeting. The specifications are ennumerated when the market is proposed.
-
-When looking for or building a data source, ensure the following information is available. 
+When looking for or building a data source, ensure the following information is provided if you're looking to verify the source, or searching for/creating a data source to use for a market proposal.
 
 Data sources must provide:
 * Type of data source (e.g. `vega.builtin.timestamps`, `Open Oracle`)
 * Data type (e.g. float for a price)
 * Data source specific details
+
+### What's in a data source specification
+Data source specifications include the particular information to be processed for the market that the data source is targeting. The specifications are ennumerated when the market is proposed.
+
+When looking for or building a data source, ensure the following types are available, so the information can be used in a market proposal.
 
 Data sources must be able to emit the following data types:
 * Number - for prices or in filter comparisons
@@ -52,7 +54,7 @@ Those proposing a market/providing data should verify that the data source they'
 For a market proposer looking to choose which signed message data source is best for their market, it's recommended use data that's already in Open Oracle format, with a signature, if it exists. If the relevant market/asset data doesn't exist in Open Oracle, then create and use a signed JSON message.
 
 ### Open Oracle data
-Signed ABI encoded data sources, such as Open Oracle, are equivalent to Posters in [Compound’s Open Price Feed](https://medium.com/compound-finance/announcing-compound-open-oracle-development-cff36f06aad3), taking signed price reports and posting them to the Vega chain. As Open Oracle reports include signatures, the data can still be verified against its source. 
+The signer of the signed message data source is equivalent to the reporter in [Compound’s Open Price Feed](https://medium.com/compound-finance/announcing-compound-open-oracle-development-cff36f06aad3). As Open Oracle reports include signatures, the data can still be verified against its source. The poster equivalent is the Vega key that submits the signed message to the Vega chain for the market to act on it.
 
 For example, a [message taken from Coinbase's Price Oracle](https://blog.coinbase.com/introducing-the-coinbase-price-oracle-6d1ee22c7068) would have the signatures verified, and the ABI encoded data will be transformed into the following format (note: the precise representation will vary based on which API you're using):
 
@@ -78,7 +80,7 @@ For example, a [message taken from Coinbase's Price Oracle](https://blog.coinbas
 ```
 
 ### Signed JSON message
-Signed JSON messages are an alternative to using *Open Oracle data sources*, which are best used for off-chain prices. Some markets need data other than prices, and for that flexibility Vega also supports arbitrary JSON messages, signed by a Vega key. 
+Signed JSON messages are an alternative to using *Open Oracle signed message data sources*, which are best used for off-chain prices that are available using that format. Some markets need data other than prices, and some markets need prices that are not available with Open Oracle. For that flexibility Vega also supports arbitrary JSON messages, signed by a Vega key. Data from these types is only as reliable as the Vega public key that publishes the data, whereas signed message data sources have signed data. The advantage is that the format is less rigid than signed messages: any properties can be specified, including strings, booleans or non-price numbers.
 
 Data from these messages is only as reliable as the Vega public key that publishes the data, thus confirming the reliability of the signer is imperative for the community to consider when voting for, or taking part in a market. 
 

@@ -237,7 +237,7 @@ Use the command line to submit a JSON message as a transaction that is signed by
 :::
 
 ### 1. Define your JSON structure
-JSON data has no defined structure - but to be useful for market creators, they'll need to know what the structure is ahead of time. Pick a data model and ensure that it's well communicated. For this tutorial, we'll create a JSON data source for the number of humans that have walked on the moon:
+JSON data should be submitted as a single object of attributes and primitive values (i.e. no objects or arrays). Exactly what the attributes are called is up to the submitter of the data. Pick your structure in advance and ensure that it's well communicated. For this tutorial, we'll create a JSON data source for the number of humans that have walked on the moon:
 
 ```json
 {
