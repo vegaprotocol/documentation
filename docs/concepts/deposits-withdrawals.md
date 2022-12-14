@@ -2,6 +2,7 @@
 sidebar_position: 5
 title: Deposits and withdrawals
 hide_title: false
+description: Deposits and withdrawals go through a bridge contract.
 ---
 Assets used for trading, paying fees, funding rewards, and providing liquidity need to be deposited using a bridge contract, and can be withdrawn back into an Ethereum wallet if they are not being used for margin or liquidity commitment.
 
