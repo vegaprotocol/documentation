@@ -113,7 +113,7 @@ The validator score for the epoch is calculated as:
 
 `validator_score` = `raw_validator_score` x `performance_score` x `multisig_bonus`
 
-Where `multisig_bonus` is used to ensure consensus validators are registered to the [multisig contract](/../../../api/bridge/contracts/MultisigControl.md). If a consensus validator is not registered to the multisig they will get a score of zero, otherwise they get 1. Non-consensus validators are always awarded a `multisig_bonus` of 1 since they are not required to be registered to the multisig.
+Where `multisig_bonus` is used to ensure consensus validators are registered to the [multisig contract](/../../../api/bridge/contracts/MultisigControl). If a consensus validator is not registered to the multisig they will get a score of zero, otherwise they get 1. Non-consensus validators are always awarded a `multisig_bonus` of 1 since they are not required to be registered to the multisig.
 
 Finally, the validator score is normalised to sum to 1. This `normalised score` is then used to define a node's `voting power` in the next epoch. Note that the `voting power` is multiplied by 10,000 and rounded to integer values, to meet Tendermint requirements.
 
