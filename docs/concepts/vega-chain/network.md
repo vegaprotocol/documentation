@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 title: Network
 vega_network: TESTNET
 hide_title: false
