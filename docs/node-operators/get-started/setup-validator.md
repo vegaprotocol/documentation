@@ -40,9 +40,11 @@ Use that address in your node's Vega config `YOUR_VEGA_HOME_PATH/config/node/con
 ```
 
 ### Point to Ethereum node
-In order to validate events happening on the Ethereum bridge, the Vega node needs to be connected to an Ethereum node. 
+In order to validate events happening on the Ethereum bridge, the Vega node needs to be connected to an Ethereum archive node (rather than full node). The core software connects to the `eth_getLogs` endpoint, which is only available on archive nodes. This allows the Vega node to verify that an event happened on Ethereum (e.g: a deposit or a withdrawal).
 
-The Ethereum node address for the RPC endpoint needs to be set up in the configuration. Once you have an Ethereum node, insert the URL in `YOUR_VEGA_HOME/node/config.toml`, in the section:
+The Ethereum node address for the RPC endpoint needs to be set up in the configuration. 
+
+Once you have an Ethereum archive node, insert the URL in `YOUR_VEGA_HOME/node/config.toml`, in the section:
 
 ```toml
 [Ethereum]
@@ -191,13 +193,17 @@ vega start --home="YOUR_VEGA_HOME_PATH" --nodewallet-passphrase-file="YOUR_PASSP
 Once your node is synchronised, you'll need to self-stake, and then announce the node to the network and then the community.
 
 ## Associate tokens to your Vega key
-Before you announce your node, you will need to have <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={true} formatter="governanceToken" suffix="tokens"/> Vega associated to your Vega key.
+Before you announce your node, you will need to have <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={true} formatter="governanceToken" suffix="tokens"/> Vega associated to your Vega key to self-stake (below).
 
 Use the [Sepolia VEGA contract ↗](https://sepolia.etherscan.io/address/0xAe6dd14bD9313d22Cf2254F347836570Df592022#writeContract) to faucet tokens to your Ethereum key. 
 
-The tokens that you want to use for self-staking must be available on an Ethereum wallet, and then associated to the same Vega key you used to set up the node.
+The tokens that you want to use for self-staking must be available on an Ethereum wallet, and then associated to the same Vega public key you used to set up the node. 
+
+You can do this by [importing the Vega Wallet](../../tools/vega-wallet/cli-wallet/latest/guides/restore-wallet.md) you created for your node wallet, onto your local computer using the Vega Wallet recovery phrase.
 
 Once you have tokens, connect your Ethereum wallet and your Vega Wallet, and associate the tokens to your Vega public key using the [token dApp ↗](https://sandbox.token.vega.xyz/staking/). Below, you'll self-nominate (self-stake) to your node.
+
+The association will need to be confirmed by both the Ethereum and Vega blockchains, and may take some time.
 
 ## Announce node on-chain
 Use your Ethereum key to announce your node to the network.
