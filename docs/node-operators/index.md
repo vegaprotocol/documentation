@@ -16,7 +16,7 @@ You must be able to handle and act on technical issues with your node. Being a v
 ## Requirements
 **[Security, infrastructure, self-stake and active communication](requirements/index.md)**: Prospective validators on Vega must meet the requirements for their node infrastructure as well as building trust with the community.
 
-**[Validator node overview](/docs/testnet/concepts/vega-chain#validator-nodes)**: Before beginning the process, learn how nodes work on Vega. Explore the different types of validator nodes that run a Vega network, how they're chosen, and what impact their scores have on their status.
+<!--**[Validator node overview](/docs/testnet/concepts/vega-chain#validator-nodes)**: Before beginning the process, learn how nodes work on Vega. Explore the different types of validator nodes that run a Vega network, how they're chosen, and what impact their scores have on their status.-->
 
 ## Getting started
 Setting up and running a validator can be broken down into three parts:
