@@ -145,7 +145,10 @@ vega nodewallet --home="path/to/home/" show
 ### Modify Vega config.toml
 Each Vega validator node needs to be connected to an Ethereum node. This allows the Vega node to verify that an event happened on Ethereum (e.g: a deposit or a withdrawal).
 
-Set the Ethereum node address in the Vega configuration (`path/to/home/config/node/config.toml`):
+Set the Ethereum node address in the Vega configuration. The Ethereum node needs to an archive node, as the core uses the `eth_getLogs` endpoint, which is only available on archive nodes.
+
+Modify the following config in `path/to/home/config/node/config.toml`):
+
 ```Toml
 [NodeWallet]
   Level = "Info"
