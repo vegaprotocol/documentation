@@ -145,7 +145,7 @@ vega nodewallet --home="path/to/home/" show
 ### Modify Vega config.toml
 Each Vega validator node needs to be connected to an Ethereum archive node (rather than full node). The core software connects to the `eth_getLogs` endpoint, which is only available on archive nodes. This allows the Vega node to verify that an event happened on Ethereum (e.g: a deposit or a withdrawal).
 
-Modify the following config in `path/to/home/config/node/config.toml`):
+Modify the following config in `path/to/home/config/node/config.toml`:
 
 ```Toml
 [NodeWallet]
