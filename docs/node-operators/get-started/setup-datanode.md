@@ -43,6 +43,10 @@ To ensure you install the correct version of TimescaleDB, you can use the notes 
 </Tabs>
 :::
 
+:::note Database user roles
+Due to operations that are required for snapshotting, the database user for the data-node must have superuser privileges. This is a limitation that we currently have due to Postgresql 14 and TimescaleDB.
+:::
+
 ### PostgreSQL and TimescaleDB docker installation
 If you prefer to run PostgreSQL and TimescaleDB in a docker container, you can use the following command to start a Postgresql docker container with TimescaleDB installed:
 
