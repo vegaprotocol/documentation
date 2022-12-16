@@ -12,9 +12,10 @@ import TabItem from '@theme/TabItem';
 This section will take your through all the steps to configure your node as a validator and join an existing network.
 
 :::note
-All the following commands will use an optional --home flag. This flag allows you to specify a custom home for the configuration, state, and cache of your Vega node. The flag is not mandatory and a default path will be chosen if not specified. 
+All the following commands will use an optional `--home` flag. This flag allows you to specify a custom home for the configuration, state, and cache of your Vega node. The flag is not mandatory and a default path will be chosen if not specified. 
 
 The XDG Base Directory standard is use to create the path, see: [XDG Base Directory spec](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html).
+
 :::
 
 :::info

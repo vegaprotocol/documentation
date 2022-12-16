@@ -199,7 +199,7 @@ Use the [Sepolia VEGA contract ↗](https://sepolia.etherscan.io/address/0xAe6dd
 
 The tokens that you want to use for self-staking must be available on an Ethereum wallet, and then associated to the same Vega public key you used to set up the node. 
 
-You can do this by [importing the Vega Wallet](../../tools/vega-wallet/cli-wallet/latest/guides/restore-wallet.md) you created for your node wallet, onto your local computer using the Vega Wallet recovery phrase.
+You can do this by [importing the Vega Wallet](../../tools/vega-wallet/cli-wallet/latest/guides/restore-wallet) you created for your node wallet, onto your local computer using the Vega Wallet recovery phrase.
 
 Once you have tokens, connect your Ethereum wallet and your Vega Wallet, and associate the tokens to your Vega public key using the [token dApp ↗](https://sandbox.token.vega.xyz/staking/). Below, you'll self-nominate (self-stake) to your node.
 
