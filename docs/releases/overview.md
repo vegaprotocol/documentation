@@ -26,8 +26,29 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Pre-release Versions 0.65.0, 0.65.1 and 0.65.2 combined | 2022-12-23
+This version was released to the Vega testnet on 23 December 2022.
 
-### Pre-release Versions 0.63.0, 0.63.1, 0.63.2 and 0.64.0 combined | 2022-11-11
+For the last scheduled release of 2022 to testnet the core team has introduced some refactors to liquidity provision code. The protocol doesn’t want LP margins to be affected by probability of trading as this makes the job of being an LP overly difficult. Similarly the protocol does want to discourage LPs from posting orders far away from the mid price so liquidity provided is 'useful' liquidity. This refactor addresses these concerns and means that these changes have happened before liquidity providers start to integrate with the protocol for both the mainnet sims and the Alphap Mainnet release.
+
+The team has also made some improvements to the way that snapshot data is stored and retrieved in order to manage the memory consumption. This combined with some postgres config tweaking has made some major improvements to the network stability. This will be proved out in the incentive running over the coming week.
+
+Finally as a parting gift to 2022, the team has added a couple of additional APIs. These allow users to query the reward types and amounts distributed for a given epoch and the other to see the liquidity score on the market data response.
+
+:::caution Breaking changes
+**Market definition API**: The market definition API has been extended with the new field for LP price range, this has resulted in a breaking change.
+**Data source decimal places**: The decimal places are now defined in the oracle data source having been moved from market definition resulting in a breaking change.
+
+To find out more please see these issues [6955 ↗](https://github.com/vegaprotocol/vega/issues/6955) and [6645 ↗](https://github.com/vegaprotocol/vega/issues/6645) respectively.
+:::
+
+:::warning Deprecations
+**Vega Wallet**: A number of recent changes have deprecated commands in the Vega CLI wallet, these will be removed in the next release. 
+
+To find out more please see these issues [6887 ↗](https://github.com/vegaprotocol/vega/issues/6887), [6957 ↗](https://github.com/vegaprotocol/vega/issues/6957), [6963 ↗](https://github.com/vegaprotocol/vega/issues/6963), [7067 ↗](https://github.com/vegaprotocol/vega/issues/7067), [7069 ↗](https://github.com/vegaprotocol/vega/issues/7069) and [7079 ↗](https://github.com/vegaprotocol/vega/issues/7079)
+:::
+
+### Pre-release Versions 0.63.0, 0.63.1, 0.63.2 and 0.64.0 combined | 2022-12-09
 This version was released to the Vega testnet on 09 December 2022.
 
 As we approach the end of 2022 we are still pushing out some awesome updates to testnet. Any eagle eyed followers will have seen the recent demo on Twitch sharing the outputs of the performance testing. This has resulted in a few new features to help maintain the stability of the network as usage scales up:
