@@ -29,9 +29,9 @@ The Vega core software is public on a business-source licence, so you can both v
 ### Pre-release Versions 0.65.0, 0.65.1 and 0.65.2 combined | 2022-12-23
 This version was released to the Vega testnet on 23 December 2022.
 
-For the last scheduled release of 2022 to testnet the core team has introduced some refactors to liquidity provision code. The protocol doesn’t want LP margins to be affected by probability of trading as this makes the job of being an LP overly difficult. Similarly the protocol does want to discourage LPs from posting orders far away from the mid price so liquidity provided is 'useful' liquidity. This refactor addresses these concerns and means that these changes have happened before liquidity providers start to integrate with the protocol for both the mainnet sims and the Alphap Mainnet release.
+The final scheduled testnet release of 2022 has introduced some refactors to the liquidity provision (LP) code. The protocol doesn’t want LP margins to be affected by the probability of trading, because this makes the job of being an LP overly difficult. Similarly, the protocol wants to discourage LPs from posting orders too far away from the mid price. This ensures that liquidity provided is 'useful' liquidity. Doing this refactor now addresses these points before liquidity providers start to integrate with the protocol, both for the mainnet sims and the Alphap Mainnet release.
 
-The team has also made some improvements to the way that snapshot data is stored and retrieved in order to manage the memory consumption. This combined with some postgres config tweaking has made some major improvements to the network stability. This will be proved out in the incentive running over the coming week.
+Improvements have been made to the way snapshot data is stored and retrieved, this is in order to manage the memory load during these processes. This combined with some Postgres configuration improvements has made significant improvements to the network stability. This will be further proved out in the incentive running over the coming week.
 
 Finally as a parting gift to 2022, the team has added a couple of additional APIs. These allow users to query the reward types and amounts distributed for a given epoch and the other to see the liquidity score on the market data response.
 
