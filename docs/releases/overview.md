@@ -31,7 +31,7 @@ This version was released to the Vega testnet on 23 December 2022.
 
 The final scheduled testnet release of 2022 has introduced some refactors to the liquidity provision (LP) code. The protocol has been changed so LP margins will not be affected by the probability of trading, because that would make the job of being an LP overly difficult. Similarly, the protocol has been redesigned to discourage LPs from posting orders too far away from the mid price. This ensures that liquidity provided is 'useful' liquidity. Doing this refactor now addresses these points before liquidity providers integrate with the protocol, both for the mainnet sims and the Alpha Mainnet release.
 
-The way snapshot data is stored and retrieved has been improved to manage the memory load during these processes. This combined with some Postgres configuration changes has made the first od a set of planned improvements to the network stability. This will be further proved out in incentives running over the coming weeks.
+The way snapshot data is stored and retrieved has been improved to manage the memory load during these processes. This combined with some Postgres configuration changes introduces the first of a set of planned improvements to the network stability. This will be further updated and proved out in the incentives running over the coming weeks.
 
 Finally as a parting gift to 2022, the team has added a couple of additional APIs. One allows users to query the reward types and amounts distributed for a given epoch and the other can show the liquidity score in the market data response.
 
