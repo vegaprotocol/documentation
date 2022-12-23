@@ -35,6 +35,8 @@ Improvements have been made to the way snapshot data is stored and retrieved, th
 
 Finally as a parting gift to 2022, the team has added a couple of additional APIs. These allow users to query the reward types and amounts distributed for a given epoch and the other to see the liquidity score on the market data response.
 
+This deployment brings with it many other fixes and improvements leading up to Alpha Mainnet; check out the full details of this combined release in the Vega core [0.65.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.65.0), [0.65.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.65.1) and [0.65.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.65.2) release pages.
+
 :::caution Breaking changes
 **Market definition API**: The market definition API has been extended with the new field for LP price range, this has resulted in a breaking change.
 **Data source decimal places**: The decimal places are now defined in the oracle data source having been moved from market definition resulting in a breaking change.
