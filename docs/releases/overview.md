@@ -29,17 +29,17 @@ The Vega core software is public on a business-source licence, so you can both v
 ### Pre-release Versions 0.65.0, 0.65.1 and 0.65.2 combined | 2022-12-23
 This version was released to the Vega testnet on 23 December 2022.
 
-The final scheduled testnet release of 2022 has introduced some refactors to the liquidity provision (LP) code. The protocol doesn’t want LP margins to be affected by the probability of trading, because this makes the job of being an LP overly difficult. Similarly, the protocol wants to discourage LPs from posting orders too far away from the mid price. This ensures that liquidity provided is 'useful' liquidity. Doing this refactor now addresses these points before liquidity providers start to integrate with the protocol, both for the mainnet sims and the Alphap Mainnet release.
+The final scheduled testnet release of 2022 has introduced some refactors to the liquidity provision (LP) code. The protocol has been changed so LP margins will not be affected by the probability of trading, because that would make the job of being an LP overly difficult. Similarly, the protocol has been redesigned to discourage LPs from posting orders too far away from the mid price. This ensures that liquidity provided is 'useful' liquidity. Doing this refactor now addresses these points before liquidity providers integrate with the protocol, both for the mainnet sims and the Alpha Mainnet release.
 
-Improvements have been made to the way snapshot data is stored and retrieved, this is in order to manage the memory load during these processes. This combined with some Postgres configuration improvements has made significant improvements to the network stability. This will be further proved out in the incentive running over the coming week.
+The way snapshot data is stored and retrieved has been improved to manage the memory load during these processes. This combined with some Postgres configuration changes has made significant improvements to the network stability. This will be further proved out in the incentive running over the coming weeks.
 
-Finally as a parting gift to 2022, the team has added a couple of additional APIs. These allow users to query the reward types and amounts distributed for a given epoch and the other to see the liquidity score on the market data response.
+Finally as a parting gift to 2022, the team has added a couple of additional APIs. One allows users to query the reward types and amounts distributed for a given epoch and the other can show the liquidity score in the market data response.
 
 This deployment brings with it many other fixes and improvements leading up to Alpha Mainnet; check out the full details of this combined release in the Vega core [0.65.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.65.0), [0.65.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.65.1) and [0.65.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.65.2) release pages.
 
 :::caution Breaking changes
 **Market definition API**: The market definition API has been extended with the new field for LP price range, this has resulted in a breaking change.
-**Data source decimal places**: The decimal places are now defined in the oracle data source having been moved from market definition resulting in a breaking change.
+**Data source decimal places**: The decimal places are now defined in the oracle data source and removed from the market definition resulting in a breaking change.
 
 To find out more please see these issues [6955 ↗](https://github.com/vegaprotocol/vega/issues/6955) and [6645 ↗](https://github.com/vegaprotocol/vega/issues/6645) respectively.
 :::
