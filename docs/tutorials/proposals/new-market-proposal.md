@@ -89,7 +89,7 @@ Data feeds from an oracle can be used to terminate trading and settle markets. S
 
 <NewMarketJSONOracle/>
 
-Data source bindings require the following properties: 
+Data source bindings include the following properties: 
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
@@ -98,7 +98,7 @@ Data source bindings require the following properties:
 | `key` | Defines the specific type of information the data source provides that is relevant to the proposed market. Example: If a data source provides a list of prices for various markets, focus only on the specific relevant price for the market |
 | `name` | Specific name of the information that the filter provides. | prices.ETH.value |
 | `type` | Specifies the data type that is emitted. For example, for the `prices.ETH.value`, the type is an integer, as it is output as a non-fractional number | TYPE_TIMESTAMP |
-| `numberDecimalPlaces` | Specifies the precision in which that data is emitted. | 18 |
+| `numberDecimalPlaces` | Optional field to specify the precision in which numerical data is emitted. Use when data is numerical | 18 |
 | `conditions` | A filter for the data. The conditions that should to be matched by the data to be considered. This is an optional set of fields. For example you could use an operator and a value to denote that a price should be greater than zero |
 | `operator` | This adds a constraint to the value, such as LESS_THAN, GREATER_THAN. For example if you wanted to ensure that the price would always be above zero, you would set the operator to ‘GREATER_THAN’ and the Value to be ‘0’ | GREATER_THAN |
 | `value` | A number that is constrained by the operator | 0 |
