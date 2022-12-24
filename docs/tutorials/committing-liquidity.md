@@ -18,7 +18,7 @@ Providing liquidity on a market can be done using a combination of two tactics: 
 
 This section focuses on submitting and maintaining a liquidity commitment. This involves submitting one liquidity commitment that keeps a series of orders active and funded on a market. The buy and sell shapes submitted as part of the liquidity commitment can be used alongside standard limit orders to provide liquidity.
 
-The orders created from a liquidity commitment are not defined by actual numerical prices or sizes, but by liquidity shapes, which are dependent on a reference price level the provider chooses and the liquidity commitment amount. The order price follows the reference price level as the market moves.
+The orders created from a liquidity commitment are not defined by actual numerical prices or sizes, but by liquidity shapes, which are dependent on a reference price level the provider chooses, the LP price and the liquidity commitment amount. The order price follows the reference price level as the market moves, and which orders are deployed depends on the LP price range defined when the market is proposed.
 
 You can always increase your commitment, whereas lowering your commitment may not be possible. If you start with a very small commitment, you can experiment with the offsets and then slowly increase your commitment.
 
@@ -40,7 +40,7 @@ In essence, a liquidity commitment submission is a set of pegged orders grouped 
 
 You define the order placement on the book using two shapes: buy shape and sell shape. The script example below shows how to set up your shapes by defining what proportion of orders each price level will have, and the distances (offset) for the price levels where the orders will be placed, based on the reference price level you choose to peg to (`PEGGED_REFERENCE_BEST_BID`, `PEGGED_REFERENCE_MID` or `PEGGED_REFERENCE_BEST_ASK`).
 
-You can influence how likely the specific orders within the liquidity commitment are to get matched with incoming orders through the order shapes. Orders using a lower offset number are closer to the best bid/ask price, and are more likely to be filled than orders with higher offsets that are thus further away.
+You can influence how likely the specific orders within the liquidity commitment are to get matched with incoming orders through the order shapes. Orders using a lower offset number are closer to the best bid/ask price, and are more likely to be filled than orders with higher offsets that are thus further away, in particular in relation to the LP price range set per market, which specifies the range of price levels over which automated liquidity commitment orders will be deployed.
 
 Vega then calculates the size of the liquidity order placed at each price level. As the prices on the order book move, the protocol will recalculate the order sizes and prices, and update the orders.
 
@@ -50,10 +50,6 @@ Vega then calculates the size of the liquidity order placed at each price level.
 
 ### Balancing position risk with margin cost
 Liquidity providers must be vigilant of both margin risk and position risk. Your liquidity commitment will generate orders, and those orders require margin. If you have insufficient margin, the protocol will take collateral from your general account. If the orders created from your commitment are hit by trades, you will have an open position, and therefore be at risk of the market moving against you, leaving you with unrealised losses.
-
-There's an intrinsic relationship between position risk and margin cost when committing liquidity to a market. Offsets further from a market's current trading prices (large offsets) generate large orders for the same weighting and require more margin, but have a lower likelihood of becoming positions, whereas offsets closer to a market's current trading prices (small offsets) require less margin but have higher likelihood of being hit and creating a position that needs to be managed. 
-
-For example, a liquidity provider plans to commit the approximate equivalent of 1 million USD to a liquidity commitment: If their position risk is low (larger offsets) then about 5-10% can be reserved for the bond. If their position risk is higher (smaller offsets), and a provider manages their positions and margin carefully, the provider would need to reserve more to commit to the bond.
 
 ## Using the sample helper scripts
 **[Sample API scripts](https://github.com/vegaprotocol/sample-api-scripts)**: This GitHub repository has a set of sample scripts that perform many of the basic actions you can do with the Vega protocol, including submitting, amending, and cancelling liquidity commitments.
@@ -89,7 +85,7 @@ This tutorial describes how to create, amend or cancel, and send a liquidity com
 * **Proposed liquidity fee**: The scaling factor for the fee you are bidding to receive when your order is matched, on a scale between 0 and 1. For example, a fee level of 0.01 would mean `0.01 * total trade amount` is charged. Note: Your proposed fee is used along with other proposed fees and commitments to determine the actual fee percentage for the market. [Learn how all proposed fee levels influence the market's fees]). Denoted as `fee` Denoted as `fee`
 
 * A set of liquidity **buy and sell order shapes** (denoted as `buys` and `sells`), which include:
-    * **Offset**: How many ticks away from the reference price you want your orders to be. The tick size is the smallest decimal place the market allows for orders. There is a tradeoff between larger offsets, which have higher margin cost but less position risk, versus smaller offsets, which have smaller margin cost but more postion risk
+    * **Offset**: How many ticks away from the reference price you want your orders to be. The tick size is the smallest decimal place the market allows for orders.
     * **Proportion**: The proportion of your committed collateral allocated to this order, as a weight
     * **Reference price**: The price that you want the order offset to reference. You can choose from the market’s mid price, best bid price, or the best ask price. In the examples below, the reference price is pegged to the mid-price, which means as the mid-price moves, so do the LP orders. This would be useful if, for example, you wanted to always provide a spread of 10 ticks, then you could peg your first orders 5 ticks from the mid price on each side.
     

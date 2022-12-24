@@ -10,8 +10,6 @@
   settlementAsset: "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
   // Product quote name (string)
   quoteName: "tEuro",
-  // The number of decimal places implied by the settlement data (such as price) emitted by the settlement data source (int64 as integer)
-  settlementDataDecimals: 5,
   // The data source spec describing the data source for settlement (object)
   dataSourceSpecForSettlementData: {
    external: {
@@ -36,6 +34,8 @@
        name: "prices.BTC.value",
        // type is the type of the property. (string)
        type: "TYPE_INTEGER",
+       // An optional decimal place to be be applied on the provided value
+       valid only for PropertyType of type DECIMAL and INTEGER(string) numberDecimalPlaces: "5",
       },
       // conditions are the conditions that should be matched by the data to be
       // considered of interest.

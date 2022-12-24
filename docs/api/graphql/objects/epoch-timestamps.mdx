@@ -20,6 +20,8 @@ type EpochTimestamps {
   start: Timestamp
   expiry: Timestamp
   end: Timestamp
+  firstBlock: String!
+  lastBlock: String
 }
 ```
 
@@ -36,6 +38,14 @@ type EpochTimestamps {
 
 #### [<code style={{ fontWeight: 'normal' }}>EpochTimestamps.<b>end</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
 > RFC3339 timestamp - Vega time of epoch end, null if not ended
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>EpochTimestamps.<b>firstBlock</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Height of first block in the epoch, null if not started
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>EpochTimestamps.<b>lastBlock</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> Height of last block in the epoch, null if not ended
 > 
 
 

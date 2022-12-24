@@ -2,26 +2,26 @@
   ```json
 {
   "rationale": {
-    "title": "Add tEuro (tEURO)",
-    "description": "Proposal to add tEuro (tEURO) as an asset"
+    "title": "Add tUSDC TEST (tUSDC)",
+    "description": "Proposal to add tUSDC TEST (tUSDC) as an asset"
   },
   "terms": {
     "newAsset": {
       "changes": {
-        "name": "tEuro",
-        "symbol": "tEURO",
+        "name": "tUSDC TEST",
+        "symbol": "tUSDC",
         "decimals": "18",
         "quantum": "1",
         "erc20": {
-          "contractAddress": "0x0158031158Bb4dF2AD02eAA31e8963E84EA978a4",
+          "contractAddress": "0xB404c51BBC10dcBE948077F18a4B8E553D160084",
           "withdrawThreshold": "10",
           "lifetimeLimit": "10"
         }
       }
     },
-    "closingTimestamp": 1672306222,
-    "enactmentTimestamp": 1672392622,
-    "validationTimestamp": 1672219822
+    "closingTimestamp": 1673527565,
+    "enactmentTimestamp": 1673613965,
+    "validationTimestamp": 1673441165
   }
 }
 ```
