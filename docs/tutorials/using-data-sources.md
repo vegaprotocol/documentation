@@ -219,6 +219,7 @@ The Oracle Specification that would bind to the `moonwalkers` property would be 
             "key": {
                 "name": "moonwalkers",
                 "type": "TYPE_INTEGER",
+                "numberDecimalPlaces": "0"
             },
             "conditions": [{
                 "operator": "OPERATOR_GREATER_THAN",
@@ -338,7 +339,7 @@ Assuming someone submitted JSON  data, the result would be something like this:
         "data": [
           {
             "name": "moonwalkers",
-            "value": "12"
+            "value": "12",
           }
         ],
         "broadcastAt": "",

@@ -10,6 +10,7 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
  \"terms\": {^
   \"newMarket\": {^
    \"changes\": {^
+    \"lpPriceRange\": \"10\",^
     \"decimalPlaces\": \"5\",^
     \"positionDecimalPlaces\": \"5\",^
     \"instrument\": {^
@@ -18,7 +19,6 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
      \"future\": {^
       \"settlementAsset\": \"8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4\",^
       \"quoteName\": \"tEuro\",^
-      \"settlementDataDecimals\": 5,^
       \"dataSourceSpecForSettlementData\": {^
        \"external\": {^
         \"oracle\": {^
@@ -33,7 +33,8 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
           {^
            \"key\": {^
             \"name\": \"prices.BTC.value\",^
-            \"type\": \"TYPE_INTEGER\"^
+            \"type\": \"TYPE_INTEGER\",^
+            \"numberDecimalPlaces\": \"5\"^
            },^
            \"conditions\": [^
             {^
@@ -77,8 +78,7 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
      }^
     },^
     \"metadata\": [^
-     \"sector:health\",^
-     \"sector:energy\",^
+     \"sector:food\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -100,17 +100,17 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
     },^
     \"logNormal\": {^
      \"tau\": 0.0001140771161,^
-     \"riskAversionParameter\": 0.01,^
+     \"riskAversionParameter\": 0.0001,^
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
-      \"sigma\": 0.5^
+      \"sigma\": 0.3^
      }^
     }^
    }^
   },^
-  \"closingTimestamp\": 1672306222,^
-  \"enactmentTimestamp\": 1672392622^
+  \"closingTimestamp\": 1673527565,^
+  \"enactmentTimestamp\": 1673613965^
  }^
 }^
 }"

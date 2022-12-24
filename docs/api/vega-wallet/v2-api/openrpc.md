@@ -10,7 +10,7 @@
 - [client.send_transaction](#clientsend_transaction): Send a transaction to the network.
 - [client.get_chain_id](#clientget_chain_id): Returns the chain ID of the network in use.
 - [admin.create_wallet](#admincreate_wallet): Creates a wallet with its first key-pair.
-- [admin.import_wallet](#adminimport_wallet): Import a wallet with its first key-pair with a recovery phrase and a version.
+- [admin.import_wallet](#adminimport_wallet): Import a wallet with its first key-pair with a recovery phrase and a key derivation version.
 - [admin.describe_wallet](#admindescribe_wallet): Returns the wallet base information.
 - [admin.list_wallets](#adminlist_wallets): Returns the list of the wallets present on the computer.
 - [admin.rename_wallet](#adminrename_wallet): Renames a wallet
@@ -515,7 +515,7 @@ An example of requesting the chain's ID
 
 ## `admin.create_wallet`
 
-This method creates a HD wallet (version 2) and generates its first key-pair the cryptographic algorithm ed25519.
+This method creates a HD wallet (with version 2 of the key derivation) and generates its first key-pair the cryptographic algorithm ed25519.
 
 The passphrase will be used to encrypt the wallet and its keys.
 
@@ -559,7 +559,7 @@ undefined
     "value": {
         "wallet": {
             "name": "my-wallet",
-            "version": 2,
+            "keyDerivationVersion": 2,
             "recoveryPhrase": "swing ceiling chaos green put insane ripple desk match tip melt usual shrug turkey renew icon parade veteran lens govern path rough page render",
             "filePath": "some/path/to/my-wallet"
         },
@@ -585,7 +585,7 @@ undefined
 
 ## `admin.import_wallet`
 
-This method imports a wallet using the specified recovery phrase and wallet version, and generates its first key-pair.
+This method imports a wallet using the specified recovery phrase and a key derivation version, and generates its first key-pair.
 
 The passphrase will be used to encrypt the wallet and its keys.
 
@@ -597,7 +597,7 @@ If successful, the wallet is ready to use for sending transaction.
 | **wallet** | string | - |
 | **passphrase** | string | - |
 | **recoveryPhrase** | string | - |
-| **version** | number | - |
+| **keyDerivationVersion** | number | - |
 
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
@@ -621,7 +621,7 @@ undefined
         "wallet": "my-wallet",
         "passphrase": "this-is-not-a-good-passphrase",
         "recoveryPhrase": "swing ceiling chaos green put insane ripple desk match tip melt usual shrug turkey renew icon parade veteran lens govern path rough page render",
-        "version": "2"
+        "keyDerivationVersion": "2"
     }
 }
 ```
@@ -633,7 +633,7 @@ undefined
     "value": {
         "wallet": {
             "name": "my-wallet",
-            "version": 2,
+            "keyDerivationVersion": 2,
             "filePath": "some/path/to/my-wallet"
         },
         "key": {
@@ -658,7 +658,7 @@ undefined
 
 ## `admin.describe_wallet`
 
-This method returns the wallet base information such as its name, ID, type and version. It doesn't return the keys nor the permissions.
+This method returns the wallet base information such as its name, ID, type and key derivation version. It doesn't return the keys nor the permissions.
 
 ### Parameters
 | Parameter name  |  Type  |  Description |
@@ -670,7 +670,7 @@ This method returns the wallet base information such as its name, ID, type and v
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
 | name | string | - | - |
-| version | number | - | - |
+| keyDerivationVersion | number | - | - |
 | id | string | - | - |
 | type | string | - | - |
 
@@ -699,7 +699,7 @@ undefined
     "name": "Success",
     "value": {
         "name": "my-wallet",
-        "version": 2,
+        "keyDerivationVersion": 2,
         "type": "HD Wallet",
         "id": "7ffa36b2fb99d8404e9448f0d2ce944055e64c36d895d1fde044c867bfdf779f"
     }
@@ -1486,7 +1486,7 @@ undefined
     "name": "Success",
     "value": {
         "masterPublicKey": "9df682a3c87d90567f260566a9c223ccbbb7529c38340cf163b8fe199dbf0f2e",
-        "filePath": "CqsBdGVzdC1jaGFpbi1UaHo5YzYACPfdurmpppHlogEQCqp9iAEIAhAPGkA5ODhlYWUzMjNhMDdmMTIzNjNjMTcwMjVjMjNlZTU4ZWEzMmFjMzkxMjM5OGUxNmJiMGI1Njk2OWY1N2FkYzUyIkA4MWFhZjk2NmU4ZjUxNDIzZjBiZDFkOTMzYWQ0NmY5NjJlMjNiY2Q3MTg4ZWQzZmUwZjUzZjRkYThhMzJhOWVlEpMBCoABYzg3NDVkODhlMWQ1YTBhOGE3NGI5YzRmN2QyMzQ3ZmQ5ZDY1NzIwYTQ3ZmYwNWU3YTZmZmYyOTA0NzhmOTU0M2NjM2E4MzJkNjBmYTJiNmY3ZTQ3YWJlMjE0MGIwOTEyNzBlNTAxZTA5MjVjNDg3NzEwMjViOTkyYTg1ZTAxMDQSDHZlZ2EvZWQyNTUxORgBgH0D0j5AOWRmNjgyYTNjODdkOTA1NjdmMjYwNTY2YTljMjIzY2NiYmI3NTI5YzM4MzQwY2YxNjNiOGZlMTk5ZGJmMGYyZQ=="
+        "encodedTransaction": "CqsBdGVzdC1jaGFpbi1UaHo5YzYACPfdurmpppHlogEQCqp9iAEIAhAPGkA5ODhlYWUzMjNhMDdmMTIzNjNjMTcwMjVjMjNlZTU4ZWEzMmFjMzkxMjM5OGUxNmJiMGI1Njk2OWY1N2FkYzUyIkA4MWFhZjk2NmU4ZjUxNDIzZjBiZDFkOTMzYWQ0NmY5NjJlMjNiY2Q3MTg4ZWQzZmUwZjUzZjRkYThhMzJhOWVlEpMBCoABYzg3NDVkODhlMWQ1YTBhOGE3NGI5YzRmN2QyMzQ3ZmQ5ZDY1NzIwYTQ3ZmYwNWU3YTZmZmYyOTA0NzhmOTU0M2NjM2E4MzJkNjBmYTJiNmY3ZTQ3YWJlMjE0MGIwOTEyNzBlNTAxZTA5MjVjNDg3NzEwMjViOTkyYTg1ZTAxMDQSDHZlZ2EvZWQyNTUxORgBgH0D0j5AOWRmNjgyYTNjODdkOTA1NjdmMjYwNTY2YTljMjIzY2NiYmI3NTI5YzM4MzQwY2YxNjNiOGZlMTk5ZGJmMGYyZQ=="
     }
 }
 ```
