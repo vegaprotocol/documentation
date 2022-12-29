@@ -6,8 +6,6 @@ description: See the order types and when they're applicable for a market.
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-import NetworkParameter from '@site/src/components/NetworkParameter';
-
 An order is an instruction to buy or sell on specific market, and it can go long or short on the market's price. Placing an order does not guarantee it gets filled. 
 
 :::info Try it out
