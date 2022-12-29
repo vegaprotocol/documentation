@@ -3,26 +3,26 @@
 ./vegawallet transaction send --wallet your_walletname --pubkey your_public_key --network fairground '{
  "proposalSubmission": {
   "rationale": {
-   "title": "Add tUSDC TEST (tUSDC)",
-   "description": "Proposal to add tUSDC TEST (tUSDC) as an asset"
+   "title": "Add tDAI TEST (tDAI)",
+   "description": "Proposal to add tDAI TEST (tDAI) as an asset"
   },
   "terms": {
    "newAsset": {
     "changes": {
-     "name": "tUSDC TEST",
-     "symbol": "tUSDC",
+     "name": "tDAI TEST",
+     "symbol": "tDAI",
      "decimals": "18",
      "quantum": "1",
      "erc20": {
-      "contractAddress": "0xB404c51BBC10dcBE948077F18a4B8E553D160084",
+      "contractAddress": "0x26223f9C67871CFcEa329975f7BC0C9cB8FBDb9b",
       "withdrawThreshold": "10",
       "lifetimeLimit": "10"
      }
     }
    },
-   "closingTimestamp": 1673527565,
-   "enactmentTimestamp": 1673613965,
-   "validationTimestamp": 1673441165
+   "closingTimestamp": 1673982487,
+   "enactmentTimestamp": 1674068887,
+   "validationTimestamp": 1673896087
   }
  }
 }'

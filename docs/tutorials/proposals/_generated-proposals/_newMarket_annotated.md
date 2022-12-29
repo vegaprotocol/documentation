@@ -51,9 +51,6 @@
          // filters describes which source data are considered of interest or not for
          // the product (or the risk model).
          filters: [
-          {
-           skeleton[p].external[p].oracle[p].filters.items[p].key.description
-          }
           key: {
            // name is the name of the property. (string)
            name: "prices.BTC.value",
@@ -62,7 +59,8 @@
            type: "TYPE_INTEGER",
 
            // An optional decimal place to be be applied on the provided value
-           valid only for PropertyType of type DECIMAL and INTEGER(string) numberDecimalPlaces: "5",
+           // valid only for PropertyType of type DECIMAL and INTEGER
+           numberDecimalPlaces: "5",
           },
 
           // conditions are the conditions that should be matched by the data to be
@@ -128,7 +126,8 @@
 
       // Optional new market meta data, tags
       metadata: [
-       "sector:food",
+       "sector:tech",
+       "sector:health",
        "source:docs.vega.xyz"
       ],
 
@@ -176,7 +175,7 @@
       tau: 0.0001140771161,
 
       // Risk Aversion Parameter (double as number) 
-      riskAversionParameter: "0.0001",
+      riskAversionParameter: "0.01",
 
       // Risk model parameters for log normal
       params: {
@@ -187,7 +186,7 @@
        r: 0.016,
 
        // Sigma parameter, annualised volatility of the underlying asset, must be a strictly non-negative real number (double as number) 
-       sigma: 0.3,
+       sigma: 0.5,
       }
      },
     }
@@ -195,11 +194,11 @@
 
    // Timestamp (Unix time in seconds) when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-   closingTimestamp: 1673527565,
+   closingTimestamp: 1673982487,
 
    // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
    // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-   enactmentTimestamp: 1673613965,
+   enactmentTimestamp: 1674068887,
   }
  }
 ```
