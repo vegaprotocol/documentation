@@ -82,6 +82,18 @@ The default PostgreSQL configuration is not optimised for memory usage, and can 
 
 Find the PostgreSQL parameters in the `postgresq.conf` file. The default file path for Linux and PostgreSQL 14 is: `/etc/postgresql/14/main/postgresql.conf`.
 
+:::note
+Total memory usage for PostgreSQL is predictable. To determine the values of the parameters below, you must know how PostgreSQL uses the memory. 
+There is a `shared_memory` that is shared between all connections and background workers. 
+
+Each background worker and connection has its own smaller chunk of memory:
+
+- `work_mem` - memory available for the query buffers in the connection session.
+- `temp_buffers` - memory available for accessing temporary tables by the connection session.
+
+You can assume that `Max RAM` utilisation can be rounded to: `shared_buffer + (temp_buffers + work_mem) * max_connections`.
+:::
+
 The suggested parameters are below.
 
 #### Max connections
@@ -146,18 +158,8 @@ New value:
 shared_memory_type = sysv
 ```
 
-
-#### Total memory usage
-
-Total memory usage for PostgreSQL is predictable. There is a `shared_memory` that is shared between all connections and background workers. 
-
-
-Each background worker and connection has its own smaller chunk of memory:
-
-- `work_mem` - memory available for the query buffers in the connection session.
-- `temp_buffers` - memory available for accessing temporary tables by the connection session.
-
-You can assume that `Max RAM` utilisation can be rounded to: `shared_buffer + (temp_buffers + work_mem) * max_connections`.
+The two above parameters determine how your operating system manages the shared memory. 
+If your operating system supports the POSIX standard, you may want to use the `map` value both for the `dynamic_shared_memory_type` and `shared_memory_type`. But the `sysv` value is more portable than `mmap`. There is no significand difference in performance (ref.: https://lists.dragonflybsd.org/pipermail/kernel/attachments/20120913/317c1aab/attachment-0001.pdf)
 
 
 ## Generate configuration files
