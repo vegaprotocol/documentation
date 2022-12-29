@@ -26,16 +26,14 @@
      // filters describes which source data are considered of interest or not for
      // the product (or the risk model).
      filters: [
-      {
-       skeleton[p].external[p].oracle[p].filters.items[p].key.description
-      }
       key: {
        // name is the name of the property. (string)
        name: "prices.BTC.value",
        // type is the type of the property. (string)
        type: "TYPE_INTEGER",
        // An optional decimal place to be be applied on the provided value
-       valid only for PropertyType of type DECIMAL and INTEGER(string) numberDecimalPlaces: "5",
+       // valid only for PropertyType of type DECIMAL and INTEGER
+       numberDecimalPlaces: "5",
       },
       // conditions are the conditions that should be matched by the data to be
       // considered of interest.

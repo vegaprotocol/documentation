@@ -105,7 +105,7 @@ function generateSettlementDataSourceSpec(skeleton) {
         "\n"
       );
     const splitPubkeys = skeleton[p].external[p].oracle[p].signers.description.split("\n");
-                    
+    const splitDP = skeleton.properties.external.properties.oracle.properties.filters.items.properties.key.properties.numberDecimalPlaces.title.split("\n")
     return `{
       external: {
         oracle: {
@@ -116,9 +116,6 @@ function generateSettlementDataSourceSpec(skeleton) {
             // ${splitFilters[0]}
             // ${splitFilters[1]}
             filters: [
-                {
-                  skeleton[p].external[p].oracle[p].filters.items[p].key.description
-                }
                 key: {
                   // ${
                     skeleton.properties.external.properties.oracle.properties.filters.items.properties.key
@@ -135,11 +132,8 @@ function generateSettlementDataSourceSpec(skeleton) {
   })
                   type: "${spec.external.oracle.filters[0].key.type}",
 
-                  // ${
-                    skeleton.properties.external.properties.oracle.properties.filters.items.properties.key.properties.numberDecimalPlaces.title
-                  } (${
-    skeleton.properties.external.properties.oracle.properties.filters.items.properties.key.properties.numberDecimalPlaces.type
-  })
+                  // ${splitDP[0]}
+                  // ${splitDP[1]}
                   numberDecimalPlaces: "${spec.external.oracle.filters[0].key.numberDecimalPlaces}",
                 },
                 // ${splitDescription[0]}
