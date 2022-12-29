@@ -84,7 +84,7 @@ Find the PostgreSQL parameters in the `postgresq.conf` file. The default file pa
 
 The suggested parameters are below.
 
-#### `max_connections`
+#### Max connections
 
 New value:
 
@@ -150,6 +150,7 @@ shared_memory_type = sysv
 #### Total memory usage
 
 Total memory usage for PostgreSQL is predictable. There is a `shared_memory` that is shared between all connections and background workers. 
+
 
 Each background worker and connection has its own smaller chunk of memory:
 
