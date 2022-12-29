@@ -2,6 +2,7 @@
 sidebar_position: 3
 title: Accounts
 hide_title: false
+description: Accounts hold assets for different purposes.
 ---
 
 ## Accounting system
@@ -23,7 +24,7 @@ You'll see references to your general account in various places, including under
 :::tip Query for data
 You can see how much is allocated to the accounts for your public key in [Vega Console](https://console.fairground.wtf), the trading interface.
 
-Otherwise use a [GraphQL query](./../graphql/objects/party#accounts-account) to check your public key for the accounts.
+Otherwise use a [GraphQL query](./../api/graphql/objects/party#accounts-account) to check your public key for the accounts.
 :::
 
 ## Accounts governed by the protocol
@@ -41,12 +42,16 @@ To move some or all of the money in your margin account back into your general a
 [Margin](./trading-on-vega/positions-margin)
 :::
 -->
-### Mark-to-market settlement accounts
+### Settlement accounts
 This account type temporarily holds assets to be distributed based on the outcomes of trades and market movements.
 
-Each market has a mark-to-market settlement account. Cashflows from mark-to-market settlement are collected into that account and distributed from it every time there is a mark-to-market calculation. After each mark-to-market settlement, the account balance is back to zero. 
+Each market has its own settlement account. Cashflows from mark-to-market settlement are collected into that account and distributed from it every time there is a mark-to-market calculation. After each mark-to-market settlement, the account balance is back to zero. 
 
 Note that this happens instantaneously, so you will likely never observe a current balance in an account of this type. However, you may see transfers to and from this account and historic balances if you examine historic data. This can help you to understand how funds have moved between parties with active positions on a market.
+
+:::info Read more
+[Mark-to-market settlement](./trading-on-vega/settlement#mark-to-market-settlement) 
+:::
 
 ### Liquidity bond accounts
 Every liquidity provider automatically transfers a certain amount of money to a bond account for each market that they're committed to. The liquidity provider chooses how much goes into the bond account, and that amount is locked up for the entire time that party commits liquidity to the market. It acts as a guarantee for the liquidity obligation, to assure that the commitment is firm and the protocol can rely on that liquidity in any market conditions.

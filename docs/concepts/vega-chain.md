@@ -14,9 +14,9 @@ Read more: [How Vega bridges to Ethereum](#bridges-used-for-staking)
 ## Delegated proof of stake
 Vega runs on a delegated proof of stake blockchain. 
 
-Validator nodes run the Vega network, and they decide on the validity of the blocks containing the network's transactions and thus execute those transactions. The validators who run validator nodes are required to own a minimum amount of <NetworkParameter frontMatter={frontMatter} param="validators.delegation.minAmount" hideName={true} suffix="tokens" formatter="governanceToken" /> that they delegate to themselves.
+Validator nodes run the Vega network, and they decide on the validity of the blocks containing the network's transactions and thus execute those transactions. The validators who run validator nodes are required to own a minimum amount of <NetworkParameter frontMatter={frontMatter} param="validators.delegation.minAmount" hideName={true} suffix="tokens" formatter="governanceToken" /> that they stake to themselves.
 
-Read more: [Validator nodes](#validator-nodes)
+Read more: [Validator nodes](#validating-nodes)
 
 **Participants who hold a balance of VEGA, the governance asset, can use their tokens to nominate validator nodes.** This is done by associating those tokens to a Vega key to use as stake, and then nominating one or more validators they trust to help secure the network. Nominating validators loans the consensus voting weight of the VEGA tokens to endorse a validator's trustworthiness. 
 

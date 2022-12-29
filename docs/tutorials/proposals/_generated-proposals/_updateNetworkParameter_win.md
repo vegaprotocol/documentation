@@ -1,6 +1,6 @@
 
   ```bash
-vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --network fairground ^
+vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_key --network fairground ^
 "{^
 \"proposalSubmission\": {^
  \"rationale\": {^
@@ -14,8 +14,8 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
     \"value\": \"300\"^
    }^
   },^
-  \"closingTimestamp\": 1665313779,^
-  \"enactmentTimestamp\": 1665400179^
+  \"closingTimestamp\": 1673527565,^
+  \"enactmentTimestamp\": 1673613965^
  }^
 }^
 }"

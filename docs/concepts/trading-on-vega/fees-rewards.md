@@ -4,6 +4,7 @@ title: Fees and trading rewards
 hide_title: false
 description: Trades can incur fees as well as get rewards.
 ---
+
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
 The Vega trading fee structure incentivises passive trading (placing orders on the order book), providing liquidity, and running the network infrastructure. The protocol does not charge gas fees for interacting with the network.
@@ -68,7 +69,7 @@ Reward proceeds are paid directly to the recipient's general account.
 
 Rewards are independent from fees, which are paid to validators, liquidity providers, and price makers on each trade.
 
-:::info Try it out
+:::tip Try it out
 [Set up a reward transfer](../../tutorials/transferring-assets.md): Choose an activity to reward and set up a one-off or recurring transfer to fund it.
 :::
 
@@ -112,7 +113,7 @@ Party A would receive $100 / $10,000 = 1% of the rewards for that epoch.
 #### Market creation reward metric 
 The market creation reward dispatch metric is designed to incentivise creating markets that attract good trading volume. Rewards are awarded to the proposers of any markets that meet a certain total trade value. 
 
-The threshold for what counts as 'enough' trading volume is a formula that takes into account the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="rewards.marketCreationQuantumMultiple" />, as well as the settlement asset's quantum to assess the market's size. 
+The threshold for what counts as 'enough' trading volume is a formula that takes into account the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="rewards.marketCreationQuantumMultiple" />, as well as the settlement asset's quantum to assess the market's size.
 
 An asset's quantum is defined an approximation of the smallest 'meaningful' amount of that asset, generally expecting it to be the quantity of the asset valued at approximately the value of 1 USD. An asset's quantum is set in the governance proposal that enabled the asset for use on Vega.
 

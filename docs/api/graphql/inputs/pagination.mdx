@@ -1,0 +1,53 @@
+---
+id: pagination
+title: Pagination
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Pagination constructs to support cursor based pagination in the API
+
+```graphql
+input Pagination {
+  first: Int
+  after: String
+  last: Int
+  before: String
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Pagination.<b>first</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
+> The number of items to fetch in the next page traversing forward through the connection
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Pagination.<b>after</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> The cursor to start fetching items after. If empty, data will be fetched from the beginning of the connection
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Pagination.<b>last</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
+> The number of items to fetch in the next page traversing backward through the connection
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Pagination.<b>before</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> The cursor to start fetching items before. If empty data will be fetched from the end of the connection
+> 
+
+
+
+### Member of
+
+[`assetsConnection`](/testnet/api/graphql/queries/assets-connection)  <Badge class="secondary" text="query"/><Bullet />[`balanceChanges`](/testnet/api/graphql/queries/balance-changes)  <Badge class="secondary" text="query"/><Bullet />[`coreSnapshots`](/testnet/api/graphql/queries/core-snapshots)  <Badge class="secondary" text="query"/><Bullet />[`deposits`](/testnet/api/graphql/queries/deposits)  <Badge class="secondary" text="query"/><Bullet />[`epochRewardSummaries`](/testnet/api/graphql/queries/epoch-reward-summaries)  <Badge class="secondary" text="query"/><Bullet />[`erc20MultiSigSignerAddedBundles`](/testnet/api/graphql/queries/erc-20-multi-sig-signer-added-bundles)  <Badge class="secondary" text="query"/><Bullet />[`erc20MultiSigSignerRemovedBundles`](/testnet/api/graphql/queries/erc-20-multi-sig-signer-removed-bundles)  <Badge class="secondary" text="query"/><Bullet />[`getMarketDataHistoryConnectionByID`](/testnet/api/graphql/queries/get-market-data-history-connection-by-id)  <Badge class="secondary" text="query"/><Bullet />[`keyRotationsConnection`](/testnet/api/graphql/queries/key-rotations-connection)  <Badge class="secondary" text="query"/><Bullet />[`ledgerEntries`](/testnet/api/graphql/queries/ledger-entries)  <Badge class="secondary" text="query"/><Bullet />[`marketsConnection`](/testnet/api/graphql/queries/markets-connection)  <Badge class="secondary" text="query"/><Bullet />[`networkParametersConnection`](/testnet/api/graphql/queries/network-parameters-connection)  <Badge class="secondary" text="query"/><Bullet />[`nodesConnection`](/testnet/api/graphql/queries/nodes-connection)  <Badge class="secondary" text="query"/><Bullet />[`nodeSignaturesConnection`](/testnet/api/graphql/queries/node-signatures-connection)  <Badge class="secondary" text="query"/><Bullet />[`oracleDataBySpecConnection`](/testnet/api/graphql/queries/oracle-data-by-spec-connection)  <Badge class="secondary" text="query"/><Bullet />[`oracleDataConnection`](/testnet/api/graphql/queries/oracle-data-connection)  <Badge class="secondary" text="query"/><Bullet />[`oracleSpecsConnection`](/testnet/api/graphql/queries/oracle-specs-connection)  <Badge class="secondary" text="query"/><Bullet />[`orderVersionsConnection`](/testnet/api/graphql/queries/order-versions-connection)  <Badge class="secondary" text="query"/><Bullet />[`partiesConnection`](/testnet/api/graphql/queries/parties-connection)  <Badge class="secondary" text="query"/><Bullet />[`proposalsConnection`](/testnet/api/graphql/queries/proposals-connection)  <Badge class="secondary" text="query"/><Bullet />[`protocolUpgradeProposals`](/testnet/api/graphql/queries/protocol-upgrade-proposals)  <Badge class="secondary" text="query"/><Bullet />[`transfersConnection`](/testnet/api/graphql/queries/transfers-connection)  <Badge class="secondary" text="query"/><Bullet />[`withdrawals`](/testnet/api/graphql/queries/withdrawals)  <Badge class="secondary" text="query"/>
+
+
+

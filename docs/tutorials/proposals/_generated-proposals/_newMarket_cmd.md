@@ -1,6 +1,6 @@
 
   ```bash
-./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{
+./vegawallet transaction send --wallet your_walletname --pubkey your_public_key --network fairground '{
  "proposalSubmission": {
   "rationale": {
    "title": "Add Lorem Ipsum market",
@@ -9,44 +9,58 @@
   "terms": {
    "newMarket": {
     "changes": {
+     "lpPriceRange": "10",
      "decimalPlaces": "5",
      "positionDecimalPlaces": "5",
      "instrument": {
-      "name": "Oranges Daily",
-      "code": "ORANGES.24h",
+      "name": "Apples Yearly (2022)",
+      "code": "APPLES.22",
       "future": {
        "settlementAsset": "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
        "quoteName": "tEuro",
-       "settlementPriceDecimals": 5,
-       "oracleSpecForSettlementPrice": {
-        "pubKeys": [
-         "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
-        ],
-        "filters": [
-         {
-          "key": {
-           "name": "prices.BTC.value",
-           "type": "TYPE_INTEGER"
-          },
-          "conditions": [
+       "dataSourceSpecForSettlementData": {
+        "external": {
+         "oracle": {
+          "signers": [
            {
-            "operator": "OPERATOR_GREATER_THAN",
-            "value": "0"
+            "ethAddress": {
+             "address": "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
+            }
+           }
+          ],
+          "filters": [
+           {
+            "key": {
+             "name": "prices.BTC.value",
+             "type": "TYPE_INTEGER",
+             "numberDecimalPlaces": "5"
+            },
+            "conditions": [
+             {
+              "operator": "OPERATOR_GREATER_THAN",
+              "value": "0"
+             }
+            ]
+           },
+           {
+            "key": {
+             "name": "prices.BTC.timestamp",
+             "type": "TYPE_TIMESTAMP"
+            },
+            "conditions": [
+             {
+              "operator": "OPERATOR_GREATER_THAN",
+              "value": "1648684800000000000"
+             }
+            ]
            }
           ]
          }
-        ]
+        }
        },
-       "oracleSpecForTradingTermination": {
-        "pubKeys": [
-         "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
-        ],
-        "filters": [
-         {
-          "key": {
-           "name": "vegaprotocol.builtin.timestamp",
-           "type": "TYPE_TIMESTAMP"
-          },
+       "dataSourceSpecForTradingTermination": {
+        "internal": {
+         "time": {
           "conditions": [
            {
             "operator": "OPERATOR_GREATER_THAN_OR_EQUAL",
@@ -54,17 +68,16 @@
            }
           ]
          }
-        ]
+        }
        },
-       "oracleSpecBinding": {
-        "settlementPriceProperty": "prices.BTC.value",
-        "tradingTerminationProperty": "vegaprotocol.builtin.timestamp"
+       "dataSourceSpecBinding": {
+        "settlementDataProperty": "prices.BTC.value",
+        "tradingTerminationProperty": "vega.builtin.timestamp"
        }
       }
      },
      "metadata": [
       "sector:food",
-      "sector:energy",
       "source:docs.vega.xyz"
      ],
      "priceMonitoringParameters": {
@@ -90,13 +103,13 @@
       "params": {
        "mu": 0,
        "r": 0.016,
-       "sigma": 0.8
+       "sigma": 0.3
       }
      }
     }
    },
-   "closingTimestamp": 1665313779,
-   "enactmentTimestamp": 1665400179
+   "closingTimestamp": 1673527565,
+   "enactmentTimestamp": 1673613965
   }
  }
 }'

@@ -2,7 +2,7 @@
 
 # Documenting the Vega protocol
 
-This repo currently includes documentation about the Vega restricted mainnet. For testnet documentation, visit [docs.fairground.vega.xyz](https://docs.fairground.vega.xyz).
+This repo includes documentation about the Vega protocol.
 
 If you have any questions, drop them into Vega's [Discord](https://vega.xyz/discord), [Telegram](https://t.me/vegacommunity), or [Forum](https://community.vega.xyz).
 
@@ -15,7 +15,7 @@ This website is built using [Docusaurus 2](https://docusaurus.io/). For more inf
 - [docusaurus-protobuffet](https://github.com/protobuffet/docusaurus-protobuffet) - Protobuf docs
 - [docusaurus-openapi-docs](https://github.com/PaloAltoNetworks/docusaurus-openapi-docs) - REST docs
 - [docusaurus2-graphql-doc-generator](https://github.com/graphql-markdown/graphql-markdown) - GraphQL docs
-- [docusaurus-search-local](https://github.com/easyops-cn/docusaurus-search-local) -
+- [docusaurus-search-local](https://github.com/easyops-cn/docusaurus-search-local) - Search
 
 ## Versioning
 

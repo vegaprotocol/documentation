@@ -4,6 +4,7 @@ title: Trading modes
 hide_title: false
 description: Find out what trading modes the protocol supports.
 ---
+
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
 # Trading modes 
@@ -78,6 +79,16 @@ This also happens when best static bid / ask is not present after all transactio
 
 #### Entry into liquidity monitoring auction 
 A market will go into a liquidity monitoring auction if the total commitment from liquidity providers (total stake) drops too low relative to the estimate of the market's liquidity demand (target stake), or if there are no best bid and/or best ask prices on the market.
+
+The trigger for entering a liquidity monitoring auction is: 
+
+`sum of LPs commitment amounts < target stake x triggering ratio`
+
+The system will also enter liquidity auction if there are no static bids or static asks on the order book (as that means that the liquidity that LPs committed to be deployed at given distance from the specified pegs cannot be deployed).
+
+The system will also enter liquidity monitoring auction under other technical conditions, for example if the best static bid / best static ask are wider than the tightest price monitoring bounds. 
+
+The triggering ratio above is set by the <NetworkParameter frontMatter={frontMatter} param="network parameter market.liquidity.targetstake.triggering.ratio" hideName={false} />.
 
 #### Exit from liquidity monitoring auction 
 Enough liquidity relative to the market's open interest, to get the market back above the target stake and best static bid and best static ask which will stay on the book *after* the auction uncrossing (i.e. there is some volume on either side of the book which will not trade in the auction).

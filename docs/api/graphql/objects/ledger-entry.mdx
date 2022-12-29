@@ -1,0 +1,58 @@
+---
+id: ledger-entry
+title: LedgerEntry
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+type LedgerEntry {
+  accountFromId: AccountDetails!
+  accountToId: AccountDetails!
+  amount: String!
+  type: TransferType!
+  timestamp: Timestamp!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>accountFromId</b></code>](#)<Bullet />[`AccountDetails!`](/testnet/api/graphql/objects/account-details) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Account from which the asset was taken
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>accountToId</b></code>](#)<Bullet />[`AccountDetails!`](/testnet/api/graphql/objects/account-details) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Account to which the balance was transferred
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>amount</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The amount transferred
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>type</b></code>](#)<Bullet />[`TransferType!`](/testnet/api/graphql/enums/transfer-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Type of ledger entry
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>timestamp</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano time at which the transfer was made
+> 
+
+
+
+### Member of
+
+[`TransferResponse`](/testnet/api/graphql/objects/transfer-response)  <Badge class="secondary" text="object"/>
+
+
+

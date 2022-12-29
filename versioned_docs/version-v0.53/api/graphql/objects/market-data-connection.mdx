@@ -1,0 +1,37 @@
+---
+id: market-data-connection
+title: MarketDataConnection
+hide_table_of_contents: false
+---
+
+
+No description
+
+```graphql
+type MarketDataConnection {
+  totalCount: Int
+  edges: [MarketDataEdge]
+  pageInfo: PageInfo
+}
+```
+
+
+### Fields
+
+#### [`totalCount`](#) ([`Int`](/mainnet/api/graphql/scalars/int))
+
+The total number of market data elements available with this connection
+
+
+#### [`edges`](#) ([`[MarketDataEdge]`](/mainnet/api/graphql/objects/market-data-edge))
+
+The market data elements for the requested page
+
+
+#### [`pageInfo`](#) ([`PageInfo`](/mainnet/api/graphql/objects/page-info))
+
+The pagination information
+
+
+
+

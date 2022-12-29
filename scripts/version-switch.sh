@@ -8,7 +8,6 @@
 # Below, update the values where appropriate. For instance, when 'docs' was tagged to 'v0.50.2',
 # - 'mainnet' moved to version 'v0.50.2', which means replacing all the links in what was formerly 'testnet' to 'mainnet'
 # - Now that v0.47.0 is not deployed anywhere, it means removing its bespoke path and fixing all the links from 'mainnet' to 'v0.47.0'
-# - You will still get some build errors related to the REST documentation. This is managed from docusaurus.config.js
 # - Pages that use <EthAddresses /> will need their frontmatter updated to reflect network
 # -----
 
@@ -25,13 +24,11 @@ sed -i -E 's/\/docs\/testnet\//\/docs\/mainnet\//g' versioned_sidebars/version-v
 # Testnet docs
 ## Ensure graphql pages in /docs/ link to /testnet/
 find 'docs/graphql' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/graphql/\/docs\/testnet\/graphql/g' {} +
-## Ensure grpxc graphql pages in /docs/ link to /testnet/
+## Ensure grpc pages in /docs/ link to /testnet/
 find 'docs/grpc' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/grpc/\/docs\/testnet\/grpc/g' {} +
 
 ## Ensure frontmatter for non-testnet docs is set to mainnets
 find 'versioned_docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/vega_network: TESTNET/vega_network: MAINNET/g' {} +
-find 'versioned_docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/ethereum_network: ROPSTEN/ethereum_network: Mainnet/g' {} +
-find 'versioned_docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/ethereum_network: Ropsten/ethereum_network: Mainnet/g' {} +
 
 ## Do the inverse, just in case
 find 'docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/vega_network: MAINNET/vega_network: TESTNET/g' {} +

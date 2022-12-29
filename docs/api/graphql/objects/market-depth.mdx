@@ -1,0 +1,59 @@
+---
+id: market-depth
+title: MarketDepth
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Market Depth is a measure of the number of open buy and sell orders for a security or currency at different prices.
+The depth of market measure provides an indication of the liquidity and depth for the instrument.
+
+```graphql
+type MarketDepth {
+  market: Market!
+  buy: [PriceLevel!]
+  sell: [PriceLevel!]
+  lastTrade: Trade
+  sequenceNumber: String!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>MarketDepth.<b>market</b></code>](#)<Bullet />[`Market!`](/testnet/api/graphql/objects/market) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MarketDepth.<b>buy</b></code>](#)<Bullet />[`[PriceLevel!]`](/testnet/api/graphql/objects/price-level) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> Buy side price levels (if available)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MarketDepth.<b>sell</b></code>](#)<Bullet />[`[PriceLevel!]`](/testnet/api/graphql/objects/price-level) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> Sell side price levels (if available)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MarketDepth.<b>lastTrade</b></code>](#)<Bullet />[`Trade`](/testnet/api/graphql/objects/trade) <Badge class="secondary" text="object"/>
+> Last trade for the given market (if available)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MarketDepth.<b>sequenceNumber</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Sequence number for the current snapshot of the market depth
+> 
+
+
+
+### Member of
+
+[`Market`](/testnet/api/graphql/objects/market)  <Badge class="secondary" text="object"/>
+
+
+

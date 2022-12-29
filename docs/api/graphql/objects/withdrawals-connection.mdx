@@ -1,0 +1,47 @@
+---
+id: withdrawals-connection
+title: WithdrawalsConnection
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Connection type for retrieving cursor-based paginated withdrawals information
+
+```graphql
+type WithdrawalsConnection {
+  edges: [WithdrawalEdge]
+  pageInfo: PageInfo
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>WithdrawalsConnection.<b>edges</b></code>](#)<Bullet />[`[WithdrawalEdge]`](/testnet/api/graphql/objects/withdrawal-edge) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> The withdrawals
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>WithdrawalsConnection.<b>pageInfo</b></code>](#)<Bullet />[`PageInfo`](/testnet/api/graphql/objects/page-info) <Badge class="secondary" text="object"/>
+> The pagination information
+> 
+
+
+
+### Returned by
+
+[`withdrawals`](/testnet/api/graphql/queries/withdrawals)  <Badge class="secondary" text="query"/>
+
+### Member of
+
+[`Party`](/testnet/api/graphql/objects/party)  <Badge class="secondary" text="object"/>
+
+
+

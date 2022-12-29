@@ -1,0 +1,43 @@
+---
+id: key-rotation-edge
+title: KeyRotationEdge
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Edge type containing the key rotation and cursor information returned by a KeyRotationConnection
+
+```graphql
+type KeyRotationEdge {
+  node: KeyRotation!
+  cursor: String!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>KeyRotationEdge.<b>node</b></code>](#)<Bullet />[`KeyRotation!`](/testnet/api/graphql/objects/key-rotation) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The key rotation
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>KeyRotationEdge.<b>cursor</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Cursor identifying the key rotation
+> 
+
+
+
+### Member of
+
+[`KeyRotationConnection`](/testnet/api/graphql/objects/key-rotation-connection)  <Badge class="secondary" text="object"/>
+
+
+

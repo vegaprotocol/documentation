@@ -1,0 +1,45 @@
+---
+id: order-by-id
+title: orderByID
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+An order in the Vega network found by orderID
+
+```graphql
+orderByID(
+  id: ID!
+  version: Int
+): Order!
+```
+
+
+### Arguments
+
+#### [<code style={{ fontWeight: 'normal' }}>orderByID.<b>id</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> ID for an order
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>orderByID.<b>version</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
+> Version of the order (omitted or 0 for most recent; 1 for original; 2 for first amendment, etc)
+> 
+
+### Type
+
+#### [`Order`](/testnet/api/graphql/objects/order) <Badge class="secondary" text="object"/>
+> An order in Vega, if active it will be on the order book for the market
+> 
+
+
+
+
+

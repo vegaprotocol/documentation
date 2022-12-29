@@ -1,0 +1,37 @@
+---
+id: price-level
+title: PriceLevel
+hide_table_of_contents: false
+---
+
+
+Represents a price on either the buy or sell side and all the orders at that price
+
+```graphql
+type PriceLevel {
+  price: String!
+  volume: String!
+  numberOfOrders: String!
+}
+```
+
+
+### Fields
+
+#### [`price`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+The price of all the orders at this level (uint64)
+
+
+#### [`volume`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+The total remaining size of all orders at this level (uint64)
+
+
+#### [`numberOfOrders`](#) ([`String!`](/mainnet/api/graphql/scalars/string))
+
+The number of orders at this price level (uint64)
+
+
+
+

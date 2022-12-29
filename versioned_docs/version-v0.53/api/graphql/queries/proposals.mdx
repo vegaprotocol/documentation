@@ -1,0 +1,32 @@
+---
+id: proposals
+title: proposals
+hide_table_of_contents: false
+---
+
+
+All governance proposals in the VEGA network
+
+```graphql
+proposals(
+  inState: ProposalState
+): [Proposal!]
+```
+
+
+### Arguments
+
+#### [`inState`](#) ([`ProposalState`](/mainnet/api/graphql/enums/proposal-state))
+
+Returns only proposals in the specified state. Leave out to get all proposals
+
+
+### Type
+
+#### [`Proposal`](/mainnet/api/graphql/objects/proposal)
+
+
+
+
+
+

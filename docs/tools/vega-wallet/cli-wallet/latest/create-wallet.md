@@ -3,24 +3,28 @@ sidebar_position: 1
 title: Create a wallet
 hide_title: false
 description: Set up your first wallet and keypair using the CLI wallet app
+vega_network: TESTNET
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import { NetworkConfigAddress, NetworkConfigAddressText } from '@site/src/components/NetworkConfigAddress';
+import CodeBlock from '@theme/CodeBlock';
 
-To download Vega Wallet and create your wallet, follow the step-by-step instructions below. This software a work-in-progress and is frequently updated. As of August 2022, the Vega Wallet software has moved from `vegawallet` to [`vega` ↗](https://github.com/vegaprotocol/vega/releases/) on GitHub, and the version numbers have changed. 
+To download Vega Wallet and create your wallet, follow the step-by-step instructions below. 
 
-:::caution
-These instructions cover version 0.54, which is only compatible with Vega network(s) that are also on 0.54.
+This software is frequently updated. As of August 2022, the Vega Wallet software has moved from `vegawallet` to [`vega` ↗](https://github.com/vegaprotocol/vega/releases/) on GitHub, and the version numbers have changed. 
+
+:::caution Wallet version
+These instructions cover Vega Wallet version 0.64, which is only compatible with Vega network(s) that are also on v0.65.1. If you need a Vega Wallet for mainnet, see [Create a wallet (mainnet)](https://docs.vega.xyz/docs/mainnet/tools/vega-wallet/cli-wallet/latest/create-wallet).
 :::
 
 Note: If you are looking for instructions for connecting your hardware wallet to MetaMask, see [MetaMask's guide ↗](https://metamask.zendesk.com/hc/en-us/articles/360020394612-How-to-connect-a-Trezor-or-Ledger-Hardware-Wallet).
 
+## Command line guidance
 Use the following instructions in command line. Below, you'll see commands in the code blocks for each operating system. Copy those instructions and paste them into your command line interface.
 
-:::info 
 In your command line interface, you can view a list of available commands by running `./vegawallet -h` on MacOS and Linux, or `vegawallet -h` on Windows. Help is also available for every command, for example: `vegawallet create -h` will provide information about the `create` command.
-:::
 
 ## 1. Install and run Vega Wallet
 
@@ -149,11 +153,11 @@ If you want to interact with the Token dApp or Vega Console, you'll need to impo
 
 Import the following network configurations: 
 
-* **Mainnet** network (run by validators): [`mainnet1.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml)
-* **Fairground** network: [`fairground.toml`](https://raw.githubusercontent.com/vegaprotocol/networks/master/fairground/fairground.toml)
+* **Mainnet** network (run by validators): <NetworkConfigAddress frontMatter={frontMatter} label="mainnet1.toml" network="mainnet"/>
+* **Fairground** network: <NetworkConfigAddress frontMatter={frontMatter} label="fairground.toml" network="fairground"/>
 
 :::info
-To update your networks list, see [manage networks](/docs/testnet/tools/vega-wallet/cli-wallet/latest/guides/manage-networks#update-networks) for instructions.
+To update your networks list, see [manage networks](/testnet/tools/vega-wallet/cli-wallet/latest/guides/manage-networks#update-networks) for instructions.
 ::: 
 
 #### Import networks from URL
@@ -165,29 +169,32 @@ Use the following command to import from URL.
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
 
-```bash
-vegawallet network import --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
-```
+<CodeBlock language="bash">
+vegawallet network import --from-url {NetworkConfigAddressText(frontMatter.vega_network)}
+</CodeBlock>
+
 </TabItem>
 <TabItem value="mac" label="MacOS">
 
-```bash
-./vegawallet network import \
-    --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
-```
+<CodeBlock language="bash">
+./vegawallet network import \{'\n'}
+&nbsp;&nbsp;--from-url {NetworkConfigAddressText(frontMatter.vega_network)}
+</CodeBlock>
+
 </TabItem>
 <TabItem value="linux" label="Linux">
+<CodeBlock language="bash">
+./vegawallet network import \{'\n'}
+&nbsp;&nbsp;--from-url {NetworkConfigAddressText(frontMatter.vega_network)}
+</CodeBlock>
 
-```bash
-./vegawallet network import \
-     --from-url https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml
-```
+
 </TabItem>
 </Tabs>
 
 #### Import networks from file
 
-Alternatively you can import a network list from a file. Use the following command to import from file: 
+Alternatively you can import a network list from a text file. You can use the '.toml' files linked above as a template for your networks list. Use the following command to import from file: 
 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">

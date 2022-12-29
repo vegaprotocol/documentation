@@ -1,5 +1,7 @@
 const sample = require('lodash/sample');
-const { generateSettlementOracleSpec, generateTerminationOracleSpec, generateOracleSpecBinding } = require('./newMarket')
+const random = require('lodash/random');
+const sampleSize = require('lodash/sampleSize');
+const { generateSettlementDataSourceSpec, generateTerminationDataSourceSpec, generateDataSourceSpecBinding } = require('./newMarket')
 const assert = require('assert').strict;
 const { inspect } = require('util');
 
@@ -9,6 +11,9 @@ const instruments = [
     { name: 'Oranges Daily', code: 'ORANGES.24h' }
 ];
 
+// Seed data: some example metadata for a market
+const metadata = ['sector:energy', 'sector:tech', 'sector:materials', 'sector:health', 'sector:food']
+
 // This is slightly smaller than the one in newMarket
 function generateInstrument(skeleton) {
   const randomInstrument = sample(instruments)
@@ -16,21 +21,17 @@ function generateInstrument(skeleton) {
   // The properties of an instrument
   assert.ok(skeleton.properties.code, 'Instrument property code used to exist');
   assert.ok(skeleton.properties.future.properties.quoteName, 'Instrument property quoteName used to exist');
-  
-  assert.ok(skeleton.properties.future.properties.settlementPriceDecimals, 'Instrument property settlementPriceDecimals used to exist');
-  assert.equal(skeleton.properties.future.properties.settlementPriceDecimals.type, 'integer', 'Instrument property settlementPriceDecimals used to be an integer');
-  assert.ok(skeleton.properties.future.properties.oracleSpecForSettlementPrice, 'OracleSpecForSettlementPrice used to exist');
-  assert.ok(skeleton.properties.future.properties.oracleSpecForTradingTermination, 'OracleSpecForTradingTermination used to exist');
-  assert.ok(skeleton.properties.future.properties.oracleSpecBinding, 'OracleSpecBinding used to exist on a future');
 
+  assert.ok(skeleton.properties.future.properties.dataSourceSpecForSettlementData, 'DataSourceSpecForSettlementPrice used to exist');
+  assert.ok(skeleton.properties.future.properties.dataSourceSpecForTradingTermination, 'DataSourceSpecForTradingTermination used to exist');
+  assert.ok(skeleton.properties.future.properties.dataSourceSpecBinding, 'DataSourceSpecBinding used to exist on a future');
   const instrument = {
     code: randomInstrument.code,
     future: {
       quoteName: 'tEuro',
-      settlementPriceDecimals: 5,
-      oracleSpecForSettlementPrice: generateSettlementOracleSpec(skeleton.properties.future.properties.oracleSpecForSettlementPrice),
-      oracleSpecForTradingTermination: generateTerminationOracleSpec(skeleton.properties.future.properties.oracleSpecForTradingTermination),
-      oracleSpecBinding: generateOracleSpecBinding(skeleton.properties.future.properties.oracleSpecBinding)
+      dataSourceSpecForSettlementData: generateSettlementDataSourceSpec(skeleton.properties.future.properties.dataSourceSpecForSettlementData),
+      dataSourceSpecForTradingTermination: generateTerminationDataSourceSpec(skeleton.properties.future.properties.dataSourceSpecForTradingTermination),
+      dataSourceSpecBinding: generateDataSourceSpecBinding(skeleton.properties.future.properties.dataSourceSpecBinding)
     }
   }
 
@@ -42,14 +43,12 @@ function generateInstrument(skeleton) {
         future: {
           // ${skeleton.properties.future.properties.quoteName.title} (${skeleton.properties.future.properties.quoteName.type})
           quoteName: "${instrument.future.quoteName}",
-          // ${skeleton.properties.future.properties.settlementPriceDecimals.title} (${skeleton.properties.future.properties.settlementPriceDecimals.format} as ${skeleton.properties.future.properties.settlementPriceDecimals.type})
-          settlementPriceDecimals: ${instrument.future.settlementPriceDecimals},
-          // ${skeleton.properties.future.properties.oracleSpecForSettlementPrice.title} (${skeleton.properties.future.properties.oracleSpecForSettlementPrice.type})
-          oracleSpecForSettlementPrice: ${inspect(instrument.future.oracleSpecForSettlementPrice, {depth: 5})},
-          // ${skeleton.properties.future.properties.oracleSpecForTradingTermination.title} (${skeleton.properties.future.properties.oracleSpecForTradingTermination.type})
-          oracleSpecForTradingTermination: ${inspect(instrument.future.oracleSpecForTradingTermination, {depth: 5})},
-          // ${skeleton.properties.future.properties.oracleSpecBinding.title} (${skeleton.properties.future.properties.oracleSpecBinding.type})
-          oracleSpecBinding: ${inspect(instrument.future.oracleSpecBinding, {depth: 5})}
+          // ${skeleton.properties.future.properties.dataSourceSpecForSettlementData.title} (${skeleton.properties.future.properties.dataSourceSpecForSettlementData.type})
+          dataSourceSpecForSettlementData: ${inspect(instrument.future.dataSourceSpecForSettlementData, {depth: 5})},
+          // ${skeleton.properties.future.properties.dataSourceSpecForTradingTermination.title} (${skeleton.properties.future.properties.dataSourceSpecForTradingTermination.type})
+          dataSourceSpecForTradingTermination: ${inspect(instrument.future.dataSourceSpecForTradingTermination, {depth: 5})},
+          // ${skeleton.properties.future.properties.dataSourceSpecBinding.title} (${skeleton.properties.future.properties.dataSourceSpecBinding.type})
+          dataSourceSpecBinding: ${inspect(instrument.future.dataSourceSpecBinding, {depth: 5})}
       }`
     }
 
@@ -95,6 +94,12 @@ function generatePriceMonitoringParameters(skeleton) {
 
   return params
 
+}
+
+function generateMetadata(skeleton) {
+  assert.equal(skeleton.type, 'array', 'Market metadata type used to be an array')
+  assert.equal(skeleton.items.type, 'string', 'Market metadata type used to be an array of strings')
+  return [...sampleSize(metadata, random(1,3)) ,'source:docs.vega.xyz'] 
 }
 
 function generateRiskModel(skeleton, riskModelType) {
@@ -152,6 +157,7 @@ function generateRiskModel(skeleton, riskModelType) {
 function updateMarket(skeleton) {
   assert.ok(skeleton.properties.changes);
   assert.ok(skeleton.properties.changes.properties.instrument);
+  assert.ok(skeleton.properties.changes.properties.lpPriceRange);
   assert.equal(skeleton.properties.changes.properties.metadata.type, 'array');
   assert.ok(skeleton.properties.changes.properties.priceMonitoringParameters);
   assert.ok(skeleton.properties.changes.properties.liquidityMonitoringParameters);
@@ -166,7 +172,9 @@ function updateMarket(skeleton) {
       updateMarket: {
         marketId: '123',
         changes: {
+          lpPriceRange: "11",
           instrument: generateInstrument(skeleton.properties.changes.properties.instrument),
+          metadata: generateMetadata(skeleton.properties.changes.properties.metadata),
           priceMonitoringParameters: generatePriceMonitoringParameters(skeleton.properties.changes.properties.priceMonitoringParameters),
           logNormal: generateRiskModel(skeleton.properties.changes.properties.logNormal, 'logNormal')
         },
@@ -175,15 +183,20 @@ function updateMarket(skeleton) {
   };
 
   /*------- Liquidity Commitment required */
-
+  const lpLabel = skeleton.properties.changes.properties.lpPriceRange.title.split('\n')
   result.terms.updateMarket[inspect.custom]= () => {
    return `{
         // ${skeleton.properties.marketId.title}
         marketId: '123',
         changes: {
+          // ${lpLabel[0]}
+          // ${lpLabel[1]}
+          lpPriceRange: ${result.terms.updateMarket.changes.lpPriceRange},
           // ${skeleton.properties.changes.properties.instrument.title}
           instrument: ${inspect(result.terms.updateMarket.changes.instrument, { depth: 19 })},
-          // ${skeleton.properties.changes.properties.priceMonitoringParameters.title}
+          // ${skeleton.properties.changes.properties.metadata.title}
+          metadata: ${JSON.stringify(result.terms.updateMarket.changes.metadata)},
+           // ${skeleton.properties.changes.properties.priceMonitoringParameters.title}
           priceMonitoringParameters: ${inspect(result.terms.updateMarket.changes.priceMonitoringParameters, { depth: 19 })},
           // ${skeleton.properties.changes.properties.logNormal.title}
           logNormal: ${inspect(result.terms.updateMarket.changes.logNormal, { depth: 19 })},

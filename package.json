@@ -1,20 +1,29 @@
 {
   "name": "vega-documentation",
-  "version": "0.53.0",
+  "version": "0.65.1",
+  "mainnetVersion": "0.53.0",
   "license": "MIT",
   "engines": {
     "node": ">=16.14"
   },
   "private": true,
+  "specs": {
+    "networks": {
+      "fairground": "https://raw.githubusercontent.com/vegaprotocol/networks-internal/main/fairground/vegawallet-fairground.toml",
+      "mainnet1": "https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/mainnet1.toml"
+    }
+  },
   "scripts": {
     "postinstall": "touch proto.json",
     "prettier": "prettier --write '*.js' 'src/**/*.js'",
     "docusaurus": "docusaurus",
-    "generate-grpc": "mkdir -p docs/grpc && docusaurus generate-proto-docs",
-    "generate-graphql": "mkdir -p docs/graphql && docusaurus graphql-to-doc",
+    "generate-grpc": "docusaurus generate-proto-docs",
+    "generate-graphql": "docusaurus graphql-to-doc",
     "generate-rest": "docusaurus gen-api-docs all",
     "generate-proposals": "node scripts/generate_proposals.js output",
     "generate-proposals:debug": "node scripts/generate_proposals.js",
+    "generate-openrpc": "node scripts/generate_openrpc.js",
+    "generate-netparams": "node --no-warnings --experimental-fetch scripts/generate_netparams.js",
     "start": "docusaurus start",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
@@ -26,32 +35,34 @@
   },
   "dependencies": {
     "@apidevtools/swagger-parser": "^10.1.0",
-    "@docusaurus/core": "2.0.1",
-    "@docusaurus/preset-classic": "2.0.1",
-    "@easyops-cn/docusaurus-search-local": "0.32.0",
-    "@edno/docusaurus2-graphql-doc-generator": "1.11.0",
+    "@docusaurus/core": "^2.2.0",
+    "@docusaurus/preset-classic": "^2.2.0",
+    "@easyops-cn/docusaurus-search-local": "0.33.5",
+    "@edno/docusaurus2-graphql-doc-generator": "^1.13.1",
     "@graphql-tools/url-loader": "^7.13.3",
     "@mdx-js/react": "^1.6.22",
     "@svgr/webpack": "6.3.1",
     "@vegaprotocol/docusaurus-theme-github-codeblock": "^0.1.8",
-    "@vegaprotocol/smart-contracts-sdk": "^1.6.0",
+    "@vegaprotocol/openrpc-md": "1.2.4",
     "bignumber.js": "^9.0.2",
     "clsx": "^1.2.1",
     "date-fns": "^2.29.1",
-    "docusaurus-plugin-openapi-docs": "^1.1.10",
+    "docusaurus-plugin-openapi-docs": "1.4.7",
     "docusaurus-protobuffet": "0.3.2",
-    "docusaurus-theme-openapi-docs": "^1.1.10",
+    "docusaurus-theme-openapi-docs": "1.4.7",
     "file-loader": "6.2.0",
+    "glob": "^8.0.3",
     "graphql": "^16.5.0",
     "prettier": "2.7.1",
     "pretty-js": "^0.2.2",
     "prism-react-renderer": "^1.3.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "toml": "^3.0.0",
     "url-loader": "4.1.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "2.0.1"
+    "@docusaurus/module-type-aliases": "^2.2.0"
   },
   "browserslist": {
     "production": [

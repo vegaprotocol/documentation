@@ -1,0 +1,44 @@
+---
+id: data-source-spec-status
+title: DataSourceSpecStatus
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Status describe the status of the data spec
+
+```graphql
+enum DataSourceSpecStatus {
+  STATUS_ACTIVE
+  STATUS_DEACTIVATED
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>DataSourceSpecStatus.<b>STATUS_ACTIVE</b></code>](#) 
+> describes an active data spec.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DataSourceSpecStatus.<b>STATUS_DEACTIVATED</b></code>](#) 
+> describes a data spec that is not listening to data
+anymore.
+> 
+
+
+
+### Member of
+
+[`DataSourceSpec`](/testnet/api/graphql/objects/data-source-spec)  <Badge class="secondary" text="object"/>
+
+
+

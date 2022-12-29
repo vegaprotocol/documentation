@@ -7,59 +7,83 @@
 #
 # Additionally, a script is called to generate proposal documentation. It's not a docusaurus plugin.
 
+
+doc_version="v$(cat package.json | jq .version -r)"
+echo "Building: v${doc_version}"
+
+
+echo " 🛠  Tidy up"
+echo "==========================="
+
 # Removing old versions
 rm proto.json 2> /dev/null
 rm schema.graphql 2> /dev/null
-rm -rf docs/graphql/ 2> /dev/null
+rm -rf docs/api/graphql 2> /dev/null
+rm -rf docs/api/grpc/data-node 2> /dev/null
+rm -rf docs/api/grpc/vega 2> /dev/null
+rm -rf docs/api/grpc/blockexplorer 2> /dev/null
+## Back compat: Remove former GRPC docs path
+rm -rf docs/graphql 2> /dev/null
+rm -rf versioned_docs/version-v0.53.0/graphql 2> /dev/null
+## Back compat: Remove former GRPC docs path
 rm -rf docs/grpc 2> /dev/null
+rm -rf versioned_docs/version-v0.53.0/grpc 2> /dev/null
  
-testnet_network_parameters=https://lb.testnet.vega.xyz/network/parameters
-mainnet_network_parameters=https://api.token.vega.xyz/network/parameters
+echo ""
+echo " 🛠  Install deps"
+echo "==========================="
+echo ""
 
-# set -e
-
-version=v0.54.0
-
-# This should be using /specs/vxxx but those versions are not yet build correctly
-echo "Fetching grpc..."
-cp "./data/${doc_version}/proto.json" ./proto.json
-
-echo "Fetching graphql..."
-cp "./data/${doc_version}/schema.graphql" ./schema.graphql
-
-echo "Fetching latest network parameters as placeholders for NetworkParameter.js"
-rm data/testnet_network_parameters.json 2> /dev/null
-curl ${testnet_network_parameters} -o "data/testnet_network_parameters.json" 
-rm data/mainnet_network_parameters.json 2> /dev/null
-curl ${mainnet_network_parameters} -o "data/mainnet_network_parameters.json" 
-
-# Create an empty folder to keep the tools happy
-echo "Regenerating docs..."
 yarn install
-mkdir -p ./docs/grpc
+
+set -e
+
+echo ""
+echo " 🛠  The main bit"
+echo "==========================="
+echo ""
+
+# Unnest important files, delete the rest
+./scripts/build-pre-flatten.sh
+# Fix things that are easier fixed in the specs than the output
+./scripts/build-pre-fix-specs.sh
+
+
+# Inject more testnet servers for testnet
+## Run vaguer and store the output
+./scripts/build-pre-vaguer.sh
+
+
+# Generate OpenAPI from swagger 
+./scripts/build-pre-openapi.sh
+# Now inject servers
+node --no-warnings --experimental-fetch scripts/build-pre-openapi-servers.js
+MAINNET=true node --no-warnings --experimental-fetch scripts/build-pre-openapi-servers.js
+
+export NO_UPDATE_NOTIFIER="true"
+
+yarn run generate-netparams
+
 yarn run generate-grpc
-yarn run generate-rest
 yarn run generate-graphql
+yarn run docusaurus clean-api-docs all
+yarn run generate-rest
 
-# This var is used in GraphQL tidyup
-echo "GraphQL: Removing generated on date..."
-sed -i -E '/Generated on/d' docs/graphql/generated.md
-echo "GraphQL: Updating generated title on date..."
-sed -i -E 's/Schema Documentation/GraphQL Schema/g' docs/graphql/generated.md
+yarn run generate-proposals
+yarn run generate-openrpc
 
-# GRPC tidyup
-echo "GRPC: Do not hide titles"
-find . -type f -name '*.mdx' -exec sed -i -E 's/hide_title: true/hide_title: false/g' {} +
+echo ""
+echo " 🛠  Fix ups"
+echo "==========================="
+echo ""
 
+# Fix unconfigurable things from generated docs
+./scripts/build-post-fix-generated.sh
 # Fix up sidebars for all APIs
-./scripts/build-sidebars.sh
-yarn run build
+./scripts/build-post-fix-sidebars.sh
 
-echo "Tidying up..."
-
-# GRPC tidyup
-rm proto.json
-rm schema.graphql
+if [ -z ${SKIP_BUILD+x} ]; then yarn run build; else echo "Docusaurus build skipped"; fi
 
 echo "Done! Now check if you need to run the versioning script (./scripts/version.sh)"
+
 

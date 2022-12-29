@@ -8,7 +8,7 @@
    // Price monitoring probability level p (string)
    probability: "0.9999999",
    // Price monitoring auction extension duration in seconds should the price
-   // breach it's theoretical level over the specified horizon at the specified
+   // breach its theoretical level over the specified horizon at the specified
    // probability level (int64 as string)
    auctionExtension: "600",
   }
