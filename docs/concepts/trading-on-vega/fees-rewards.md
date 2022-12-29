@@ -34,7 +34,7 @@ The infrastructure portion of the fee is paid to validators as a reward for runn
 Some of the infrastructure fee paid to validators is then distributed to the validators' nominators.
 
 #### Liquidity fee
-The liquidity portion of the fee is paid to participants who commit liquidity to the market. It's transferred to a liquidity fee account, and distributed to each liquidity provider's margin account at a defined time (based on network parameter  <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providers.fee.distributionTimeStep" />), and depending on how much their liquidity commitments have contributed to the market.
+The liquidity portion of the fee is paid to participants who commit liquidity to the market. It's transferred to a liquidity fee account, and distributed to each liquidity provider's margin account at a defined time (based on network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providers.fee.distributionTimeStep" />), and depending on how much their liquidity commitments have contributed to the market.
 
 ### Fee calculations
 At a high level, the trading fee is calculated using the following formulas:

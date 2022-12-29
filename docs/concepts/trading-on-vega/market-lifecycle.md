@@ -4,6 +4,8 @@ title: Market lifecycle
 hide_title: false
 description: See every stage possible for a proposed or live market.
 ---
+import NetworkParameter from '@site/src/components/NetworkParameter';
+
 The market lifecycle begins when a proposal for a new market is accepted, and is driven by the market's state. The table shows a high-level view of each part of a market's lifecycle, including when that stage is over and a new one begins. Below, learn more about each lifecycle stage.
 
 | Status              | Accepting LP[1]  | Trading Mode        | Condition for entry                                                           | Condition for exit                   
