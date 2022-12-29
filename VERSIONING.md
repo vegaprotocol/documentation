@@ -23,7 +23,7 @@ Every time a release is [tagged in vegaprotocol/vega](https://github.com/vegapro
 - Only one version is kept in `versioned_docs`. [vegaprotocol/vega](https://github.com/vegaprotocol/vega). This is because each version contains a lot of pages, which slows down the build - and at this point in time, the benefit of keeping old versions is small.
 
 ## Changing the testnet version
-When a new release is *tagged*, a pull request with the API documents will automatically be create. It will add a new folder in `/specs/`, for example `v0.88.1`. Only those versions that actually get released need to be merged, so **when the network is updated**:
+When a new release is *tagged*, a pull request with the API documents will automatically be created. It will add a new folder in `/specs/`, for example `v0.88.1`. Only those versions that actually get released need to be merged, so **when the network is updated**:
 
 1. Update the version in [package.json](./package.json) to the version that has been released (e.g. `0.88.1`)
 2. Run `./scripts/build.sh`
