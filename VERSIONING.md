@@ -18,9 +18,9 @@ Every time a release is [tagged in vegaprotocol/vega](https://github.com/vegapro
 --- 
 
 ## tl;dr
-- [/docs/](https://github.com/vegaprotocol/documentation/tree/main/versioned_docs/) is 'the current testnet version'. Every time testnet is updated, the docs here will be updated. This folder is served as `/testnet/`.
-- [/versioned_docs/](https://github.com/vegaprotocol/documentation/tree/main/versioned_docs/) contains *every version that has been released to mainnet*. The most recent version in this folder is served as `/mainnet/`.
-- Only two mainnet versions are kept. [vegaprotocol/vega](https://github.com/vegaprotocol/vega)versions that are not deployed to testnet are not built. 
+- [/docs/](https://github.com/vegaprotocol/documentation/tree/main/docs/) is 'the current testnet version'. Every time testnet is updated, the docs here will be updated. This folder is served as `/testnet/`.
+- [/versioned_docs/](https://github.com/vegaprotocol/documentation/tree/main/versioned_docs/) contains version folders. The most recent version in this folder is served as `/mainnet/`.
+- Only one version is kept in `versioned_docs`. [vegaprotocol/vega](https://github.com/vegaprotocol/vega). This is because each version contains a lot of pages, which slows down the build - and at this point in time, the benefit of keeping old versions is small.
 
 ## Changing the testnet version
 When a new release is *tagged*, a pull request with the API documents will automatically be create. It will add a new folder in `/specs/`, for example `v0.88.1`. Only those versions that actually get released need to be merged, so **when the network is updated**:
