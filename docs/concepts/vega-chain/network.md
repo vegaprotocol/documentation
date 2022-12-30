@@ -28,9 +28,22 @@ Currently, two transaction types can be limited:
 If either parameter's value is decreased (through a governance proposal and vote), then the change does not affect existing orders on the market, but only new orders/liquidity commitments placed after the change is enacted. 
 
 ## Spam protection [WIP]
-On a decentralised and pseudonymous network, there's always a possibility that a malicious actor will attempt to spam blocks and fill them with meaningless transactions. To mitigate that risk, there are several spam protections enabled to protect the Vega network, in particular by enforcing minimums and maximums for transactions sent to the Vega network.
+On a decentralised and pseudonymous network, there's always a possibility that a malicious actor will attempt to spam blocks and fill them with meaningless transactions. To mitigate that risk, there are spam protections enabled to protect the Vega network, in particular by enforcing minimums and maximums for transactions sent to the Vega network.
 
 The values of all spam protection network parameters can be changed through a governance vote. If a parameter change passes governance, it takes effect in the epoch after it passes.
+
+### Proof of work 
+Although Vega is a proof-of-stake network, there is a client-side proof-of-work mechanism to prevent transaction spam from public keys trying to flood the network, or submitting a number of transactions that could slow down the network for all participants. The proof-of-work is calculated by the Vega wallet. It does not incur gas fees and does not have any effect on a transaction's priority.
+
+Every transaction must include a proof-of-work calculation derived from a recent block, proving the transaction was created recently. If a public key submits transactions above the maximum set by the network parameter (<NetworkParameter frontMatter={frontMatter} param="spam.pow.numberOfTxPerBlock" hideValue={true} />), the difficulty of the PoW increases and the proof will take longer to calculate, i.e., transactions will take longer to be generated but can still be included in a block.
+
+It's possible to submit a large volume of transactions at one time, as long as the proof-of-work is calculated by the wallet adequately.
+
+A transaction with a missing or incorrect proof is rejected, as is any transaction that uses an already-used PoW calculation. A public key that sends transactions with faulty proof-of-work calculations is banned for 30 seconds or 1/48th of an epoch, whichever is greater.
+
+:::note Go deeper
+[Spam protection POW ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0072-SPPW-spam-protection-PoW.md): Read the spec for implementation details and how this mechanism works in particular circumstances.
+:::
 
 ### Spam policy enforcement
 Messages that don't follow the anti-spam rules are rejected, either pre- or post-block.
@@ -46,12 +59,13 @@ Post-block rejection: A transaction makes it into the block, but is rejected bef
 | spam.protection.proposal.min.tokens  	| Minimum tokens needed to submit a governance proposal	| <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} suffix="tokens" formatter="governanceToken" />
 | spam.protection.voting.min.tokens    	| Minimum tokens needed to vote on a governance proposal	| <NetworkParameter frontMatter={frontMatter} param="spam.protection.voting.min.tokens" hideName={true} suffix="tokens" formatter="governanceToken" />
 | spam.protection.delegation.min.tokens | Minimum tokens needed to nominate a validator | <NetworkParameter frontMatter={frontMatter} param="spam.protection.delegation.min.tokens" hideName={true} suffix="tokens" formatter="governanceToken" />
-| spam.pow.numberOfTxPerBlock       	| Maximum number of transactions a wallet can put in one block 	| <NetworkParameter frontMatter={frontMatter} param="spam.pow.numberOfTxPerBlock" hideName={true} suffix="tokens" formatter="governanceToken" />
 | spam.protection.max.batchSize         | Maximum number of transactions that can be in one batch | <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.batchSize" hideName={true} />
 | spam.protection.max.delegations       | Maximum number of nomination (delegation) transactions a public key can submit per epoch.	| <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.delegations" hideName={true} />
 | spam.protection.max.proposals         | Maximum number of governance transactions a public key can submit per epoch | <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.proposals" hideName={true} />
 | spam.protection.max.votes             | Maximum number of governance votes a public key can submit per epoch 	| <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.votes" hideName={true} />
-| spam.protection.maxUserTransfersPerEpoch | Max number of transactions a public key can submit per epoch | <NetworkParameter frontMatter={frontMatter} param="spam.protection.maxUserTransfersPerEpoch" hideName={true}" />
+| spam.protection.maxUserTransfersPerEpoch | Max number of transactions a public key can submit per epoch | <NetworkParameter frontMatter={frontMatter} param="spam.protection.maxUserTransfersPerEpoch" hideName={true} />  | 
+| **Spam proof of work parameters** | |
+| spam.pow.numberOfTxPerBlock       	| Maximum number of transactions a wallet can put in one block 	| <NetworkParameter frontMatter={frontMatter} param="spam.pow.numberOfTxPerBlock" hideName={true} />
 | spam.pow.difficulty               	| To prevent flooding the chain with transactions, wallets need to perform a proof-of-work (PoW) calculation to submit them. This defines the difficulty level	| <NetworkParameter frontMatter={frontMatter} param="spam.pow.difficulty" hideName={true} />
 | spam.pow.hashFunction              	| Hash function used for proof-of-work	| <NetworkParameter frontMatter={frontMatter} param="spam.pow.hashFunction" hideName={true} />
 | spam.pow.increaseDifficulty           | If a wallet exceeds the max transactions per block, the difficulty of the PoW increases by this factor | <NetworkParameter frontMatter={frontMatter} param="spam.pow.increaseDifficulty" hideName={true} />
