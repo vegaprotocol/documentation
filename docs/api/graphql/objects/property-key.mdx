@@ -13,12 +13,13 @@ export const SpecifiedBy = (props) => <>Specification<a className="link" style={
 export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
-PropertyKey describes the property key contained in an oracle data.
+PropertyKey describes the property key contained in a source data.
 
 ```graphql
 type PropertyKey {
   name: String
   type: PropertyKeyType!
+  numberDecimalPlaces: Int
 }
 ```
 
@@ -31,6 +32,11 @@ type PropertyKey {
 
 #### [<code style={{ fontWeight: 'normal' }}>PropertyKey.<b>type</b></code>](#)<Bullet />[`PropertyKeyType!`](/testnet/api/graphql/enums/property-key-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
 > The type of the property.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>PropertyKey.<b>numberDecimalPlaces</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
+> An optional decimal place to be applied on the provided value.
+Valid only for PropertyType of type DECIMAL, INTEGER.
 > 
 
 

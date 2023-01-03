@@ -20,7 +20,9 @@ type NodeData {
   stakedTotal: String!
   totalNodes: Int!
   inactiveNodes: Int!
-  validatingNodes: Int!
+  tendermintNodes: NodeSet!
+  ersatzNodes: NodeSet
+  pendingNodes: NodeSet
   uptime: Float!
 }
 ```
@@ -33,15 +35,23 @@ type NodeData {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>NodeData.<b>totalNodes</b></code>](#)<Bullet />[`Int!`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> Total number of nodes
+> Total number of nodes across all node sets
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>NodeData.<b>inactiveNodes</b></code>](#)<Bullet />[`Int!`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> Number of inactive nodes
+> Total number of nodes that had a performance score of 0 at the end of the last epoch
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>NodeData.<b>validatingNodes</b></code>](#)<Bullet />[`Int!`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> Number of nodes validating
+#### [<code style={{ fontWeight: 'normal' }}>NodeData.<b>tendermintNodes</b></code>](#)<Bullet />[`NodeSet!`](/testnet/api/graphql/objects/node-set) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Details on the set of consensus nodes in the network
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NodeData.<b>ersatzNodes</b></code>](#)<Bullet />[`NodeSet`](/testnet/api/graphql/objects/node-set) <Badge class="secondary" text="object"/>
+> Details on the set of ersatz (standby) nodes in the network
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NodeData.<b>pendingNodes</b></code>](#)<Bullet />[`NodeSet`](/testnet/api/graphql/objects/node-set) <Badge class="secondary" text="object"/>
+> Details on the set of pending nodes in the network
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>NodeData.<b>uptime</b></code>](#)<Bullet />[`Float!`](/testnet/api/graphql/scalars/float) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>

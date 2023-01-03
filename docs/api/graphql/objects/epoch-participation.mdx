@@ -18,8 +18,8 @@ Summary of a node's rewards for a given epoch
 ```graphql
 type EpochParticipation {
   epoch: Epoch
-  offline: String
-  online: String
+  offline: Timestamp
+  online: Timestamp
   totalRewards: Float
 }
 ```
@@ -31,11 +31,11 @@ type EpochParticipation {
 > 
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>EpochParticipation.<b>offline</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>EpochParticipation.<b>offline</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
 > RFC3339 timestamp
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>EpochParticipation.<b>online</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>EpochParticipation.<b>online</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
 > RFC3339 timestamp
 > 
 

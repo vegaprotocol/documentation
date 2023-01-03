@@ -17,8 +17,8 @@ Candle stick representation of trading
 
 ```graphql
 type Candle {
-  periodStart: String!
-  lastUpdateInPeriod: String!
+  periodStart: Timestamp!
+  lastUpdateInPeriod: Timestamp!
   high: String!
   low: String!
   open: String!
@@ -30,11 +30,11 @@ type Candle {
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>Candle.<b>periodStart</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Candle.<b>periodStart</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano formatted date and time for the candle start time
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Candle.<b>lastUpdateInPeriod</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Candle.<b>lastUpdateInPeriod</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano formatted date and time for the candle end time, or last updated time if the candle is still open
 > 
 

@@ -2,17 +2,17 @@
   ```javascript
 {
  rationale: {
-  title: "Add tUSDC TEST (tUSDC)",
-  description: "Proposal to add tUSDC TEST (tUSDC) as an asset"
+  title: "Add tDAI TEST (tDAI)",
+  description: "Proposal to add tDAI TEST (tDAI) as an asset"
  },
  terms: {
   newAsset: {
    changes: {
     // Name of the asset (e.g: Great British Pound) (string) 
-    name: "tUSDC TEST",
+    name: "tDAI TEST",
 
     // Symbol of the asset (e.g: GBP) (string) 
-    symbol: "tUSDC",
+    symbol: "tDAI",
 
     // Number of decimal / precision handled by this asset (string) 
     decimals: "18",
@@ -23,7 +23,7 @@
     // An Ethereum ERC20 asset
     erc20: {
      // The address of the contract for the token, on the ethereum network (string)
-     contractAddress: "0xB404c51BBC10dcBE948077F18a4B8E553D160084",
+     contractAddress: "0x26223f9C67871CFcEa329975f7BC0C9cB8FBDb9b",
 
      // The maximum you can withdraw instantly. All withdrawals over the threshold will be delayed by the withdrawal delay.
      // There’s no limit on the size of a withdrawal (string)
@@ -38,14 +38,14 @@
 
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-  closingTimestamp: 1669048765,
+  closingTimestamp: 1673982487,
 
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-  enactmentTimestamp: 1669135165,
+  enactmentTimestamp: 1674068887,
 
   // Validation timestamp (Unix time in seconds) (int64 as string)
-  validationTimestamp: 1668962365
+  validationTimestamp: 1673896087
  }
 }
 ```

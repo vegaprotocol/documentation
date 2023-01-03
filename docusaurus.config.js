@@ -3,8 +3,8 @@
 const { shortenVersion, openApiConfig, version, mainnetVersion } = require('./scripts/docusaurus.config.openapi.js')
 
 module.exports = {
-  title: "Vega Protocol",
-  tagline: "A protocol for creating and trading derivatives on a fully decentralised network",
+  title: "Vega Protocol Documentation",
+  tagline: "Documentation of a protocol for creating and trading derivatives on a fully decentralised network",
   url: "https://docs.vega.xyz/",
   baseUrl: "/",
   trailingSlash: false,
@@ -50,8 +50,14 @@ module.exports = {
         },
         {
           type: "doc",
+          docId: "tutorials/index",
+          label: "Tutorials",
+          position: "left",
+        },
+        {
+          type: "doc",
           docId: "tools/index",
-          label: "Apps and Tools",
+          label: "Apps & Tools",
           position: "left",
         },
         {
@@ -123,10 +129,6 @@ module.exports = {
             {
               label: "Home",
               to: "https://fairground.wtf/",
-            },
-            {
-              label: "Docs",
-              to: "https://docs.fairground.vega.xyz/",
             },
             {
               label: "Vega Console",

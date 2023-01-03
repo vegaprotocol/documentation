@@ -47,7 +47,7 @@ The general shape is as follows:
 
 The contents of a `changes` object specifies what will be different after the proposal. In this case, these are the changes that will occur on the network, in the form of a new market.
 
-Instrument, liquidity monitoring parameters, price monitoring parameters, oracles, and liquidity commitment are all described in more detail below.
+Instrument, liquidity monitoring parameters, price monitoring parameters, data sources, and liquidity commitment are all described in more detail below.
 
 Rationale requires a description, which is a free-text field that describes the purpose of the proposal. Include links with more information about your proposal (such as to the IPFS content or forum post) that voters can reference to learn more about the market.
 
@@ -74,37 +74,37 @@ An instrument contains the following properties:
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
 | `name` | A string for the market name. Best practice is to include a full and fairly descriptive name for the instrument. | BTC/USD DEC18. |
-| `code'  (instrument) | This is a shortcode used to easily describe the instrument. The more information you add, the easier it is for people to know what the market offers. | FX:BTCUSD/DEC18 |
+| `code`  (instrument) | This is a shortcode used to easily describe the instrument. The more information you add, the easier it is for people to know what the market offers. | FX:BTCUSD/DEC18 |
 | `future` | An object that provides details about the futures market to be proposed. |
 | `settlementAsset` | Settlement asset requires the ID of the asset that the market will be margined in and settle in. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID. |  |
 | `quoteName` | The quote name is the human-readable name/abbreviation of the settlement asset. Example: In BTCUSD, USD is the quote. | tEuro |
-| `settlementDataDecimals` | The number of decimal places implied by the settlement data, emitted by the settlement oracle. | 18 |
-| `oracleSpecForSettlementData` | This defines the data source that will be used to identify the settlement price when the market expires. | prices.BTC.value |
-| `oracleSpecForTradingTermination` | The fields that define the oracle used for terminating trading on the market. | vegaprotocol.builtin.timestamp |
-| `oracleSpecBinding` | The fields describe how specific information provided by the oracle data is used. For example, they can identify the specific name of the settlement price output, or the specific name of the trading termination property. |
+| `dataSourceSpecForSettlementData` | This defines the data source that will be used to identify the settlement price when the market expires. | prices.BTC.value |
+| `dataSourceSpecForTradingTermination` | The fields that define the data source used for terminating trading on the market. | vegaprotocol.builtin.timestamp |
+| `dataSourceSpecBinding` | The fields describe how specific information provided by the data source is used. For example, they can identify the specific name of the settlement price output, or the specific name of the trading termination property. |
 
-For easy reading, the oracle filters are separated out - see [Oracle bindings](#oracle-bindings) below to see the fields for specifying oracle data.
+For easy reading, the data source filters are separated out - see [Data source bindings](#data-source-bindings) below to see the fields for specifying data.
 
-### Oracle bindings
-Oracle feeds can be used to terminate trading and settle markets. See below for a full description of each field. An oracle spec binding looks like this:
+### Data source bindings
+Data feeds from an oracle can be used to terminate trading and settle markets. See below for a full description of each field. A data source spec binding looks like this:
 
 <NewMarketJSONOracle/>
 
-Oracle bindings require the following properties: 
+Data source bindings include the following properties: 
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
-| `pubKeys` | Public key(s) that can sign and submit values for this oracle | 0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC |
-| `filters` | Filters define which oracle data is of importance for the purposes of the type of governance proposal |
-| `key` | Defines the specific type of information the oracle provides that are is relevant to the proposed market. Example: If an oracle provides a list of prices for various markets, focus only on the specific relevant price for the market |
+| `pubKeys` | Public key(s) that can sign and submit values for this data source | 0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC |
+| `filters` | Filters define what data is of importance for the purposes of the type of governance proposal |
+| `key` | Defines the specific type of information the data source provides that is relevant to the proposed market. Example: If a data source provides a list of prices for various markets, focus only on the specific relevant price for the market |
 | `name` | Specific name of the information that the filter provides. | prices.ETH.value |
 | `type` | Specifies the data type that is emitted. For example, for the `prices.ETH.value`, the type is an integer, as it is output as a non-fractional number | TYPE_TIMESTAMP |
-| `conditions` | A filter for the oracle data. The conditions that should to be matched by the data to be considered. This is an optional set of fields. For example you could use an operator and a value to denote that a price should be greater than zero |
+| `numberDecimalPlaces` | Optional field to specify the precision in which numerical data is emitted. Use when data is numerical | 18 |
+| `conditions` | A filter for the data. The conditions that should to be matched by the data to be considered. This is an optional set of fields. For example you could use an operator and a value to denote that a price should be greater than zero |
 | `operator` | This adds a constraint to the value, such as LESS_THAN, GREATER_THAN. For example if you wanted to ensure that the price would always be above zero, you would set the operator to ‘GREATER_THAN’ and the Value to be ‘0’ | GREATER_THAN |
 | `value` | A number that is constrained by the operator | 0 |
 
-:::info Submitting oracle data
-Learn how to find and submit oracle data in the [submitting oracles tutorial](../using-oracle-data.md).
+:::info Submitting data
+Learn how to find and submit data in the [submitting data sources tutorial](../using-data-sources.md).
 :::
 
 ### Liquidity monitoring

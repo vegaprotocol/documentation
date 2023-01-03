@@ -1,0 +1,53 @@
+---
+id: protocol-upgrade-proposal
+title: ProtocolUpgradeProposal
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A proposal to upgrade the vega protocol (i.e. which version of the vega software nodes will run)
+
+```graphql
+type ProtocolUpgradeProposal {
+  upgradeBlockHeight: String!
+  vegaReleaseTag: String!
+  approvers: [String!]!
+  status: ProtocolUpgradeProposalStatus!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>ProtocolUpgradeProposal.<b>upgradeBlockHeight</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> At which block the upgrade is proposed
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProtocolUpgradeProposal.<b>vegaReleaseTag</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> To which vega release tag the upgrade is proposed
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProtocolUpgradeProposal.<b>approvers</b></code>](#)<Bullet />[`[String!]!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Tendermint validators that have agreed to the upgrade
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProtocolUpgradeProposal.<b>status</b></code>](#)<Bullet />[`ProtocolUpgradeProposalStatus!`](/testnet/api/graphql/enums/protocol-upgrade-proposal-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> the status of the proposal
+> 
+
+
+
+### Member of
+
+[`ProtocolUpgradeProposalEdge`](/testnet/api/graphql/objects/protocol-upgrade-proposal-edge)  <Badge class="secondary" text="object"/>
+
+
+

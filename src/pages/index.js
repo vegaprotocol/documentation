@@ -20,7 +20,7 @@ function HomepageHeader() {
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <Layout title={`${siteConfig.title}`} description="${siteConfig.tagline}">
+    <Layout description={`${siteConfig.tagline}`}>
       <HomepageHeader />
       <main>
         <section id="topics">
@@ -47,7 +47,7 @@ export default function Home() {
             <p>Explore the risk-free Vega testnet, Fairground. Mainnet trading launching soon, starting with cash settled futures.</p>
             <ul>
               <li><a class="external" href="https://console.fairground.wtf/" target="_blank">Fairground trading console</a></li>
-              <li><a class="external" href="https://docs.fairground.vega.xyz/" target="_blank">Fairground docs</a></li>
+              <li><a class="external" href="https://docs.vega.xyz/testnet/concepts/new-to-vega" target="_blank">Fairground docs</a></li>
             </ul>
           </article>
         </section>

@@ -2,7 +2,7 @@
 
 # Documenting the Vega protocol
 
-This repo currently includes documentation about the Vega restricted mainnet. For testnet documentation, visit [docs.fairground.vega.xyz](https://docs.fairground.vega.xyz).
+This repo includes documentation about the Vega protocol.
 
 If you have any questions, drop them into Vega's [Discord](https://vega.xyz/discord), [Telegram](https://t.me/vegacommunity), or [Forum](https://community.vega.xyz).
 

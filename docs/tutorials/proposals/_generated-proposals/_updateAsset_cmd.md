@@ -1,6 +1,6 @@
 
   ```bash
-./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{
+./vegawallet transaction send --wallet your_walletname --pubkey your_public_key --network fairground '{
  "proposalSubmission": {
   "rationale": {
    "title": "Update asset",
@@ -17,8 +17,8 @@
      }
     }
    },
-   "closingTimestamp": 1669048765,
-   "enactmentTimestamp": 1669135165
+   "closingTimestamp": 1673982487,
+   "enactmentTimestamp": 1674068887
   }
  }
 }'

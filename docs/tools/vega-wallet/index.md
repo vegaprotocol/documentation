@@ -18,7 +18,7 @@ The **[desktop wallet](./desktop-app/index.md)** provides a visual interface to:
 Use the **[command line app](./cli-wallet/index.md)** to do everything you can do with the desktop app, plus:
 * Customise key details 
 * Isolate keys
-* Build and send commands
+* Build and send transactions
 
 ## What is a wallet?
 **[Wallet concepts](../../concepts/vega-wallet.md)**: Read about how the Vega Wallet works and what the terms like 'wallet name' and 'recovery phrase' mean.

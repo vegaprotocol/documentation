@@ -21,6 +21,7 @@ type AccountUpdate {
   assetId: ID!
   type: AccountType!
   marketId: ID
+  partyId: ID!
 }
 ```
 
@@ -41,6 +42,10 @@ type AccountUpdate {
 
 #### [<code style={{ fontWeight: 'normal' }}>AccountUpdate.<b>marketId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > Market id (only relevant to margin accounts)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountUpdate.<b>partyId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The party owning the account
 > 
 
 

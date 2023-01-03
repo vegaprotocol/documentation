@@ -14,7 +14,8 @@ A node can be started by using a local snapshot (state of the chain built by the
 The snapshots can also be retrieved from the network without any previous local state. This would be useful when a node is joining the network after the bootstrap of the network.
 
 All node of the network will be taking a snapshot of the state at the same block height, this is configured globally using the following network parameter:
-```Json
+
+```json
 {
   "snapshot.interval.length": "10000",
 }
@@ -31,7 +32,8 @@ Snapshots available: 2
 ```
 Here we can see that our node took two snapshots, at the block 901 and 601.
 
-You can set how many blocks you want the note to retain through the vega configuration:
+You can set how many blocks you want the node to retain through the Vega config.toml:
+
 ```Toml
 [Snapshot]
   ...
@@ -61,18 +63,19 @@ From the configuration file in the Snapshot section:
 ## Snapshots from the network
 
 :::note
-When loading snapshots from the network, the steps described previously to load them locally are not necessary. You will need to get the snapshots information from another
-node runner in the network (e.g, at which block height a snapshot was taken).
+When loading snapshots from the network, the steps described previously to load them locally are not necessary. You will need to get the snapshots information from another node runner in the network (e.g, at which block height a snapshot was taken).
 :::
 
-Tendermint offers the possibility to gossip about snapshots taken by other nodes. This can be enabled via the tendermint configuration. You will also need the hash of the block at the height you want to load the snapshot, but also a list of trusted tendermint RPC servers (the default port on the node should be 26657).
+Tendermint offers the possibility to gossip about snapshots taken by other nodes. This can be enabled via the tendermint configuration.
+
+You will need the height and hash of a recent block that isn't older than the trust period, which is also set in the state sync. You'll also need a list of trusted tendermint RPC servers (the default port on the node should be 26657).
 
 Update the following Tendermint configuration section:
 ```Toml
 [statesync]
 enable = true # this default to false, set it to true
 rpc_servers = "n01.testnet.vega.xyz:26657,n02.testnet.vega.xyz:26657" # a comma separated list of tendermint rpc
-trust_height = 901 # the height of the block we want to join at
+trust_height = 901 # the height of the block you want to join at
 trust_hash = "5E1501B89463A9F23C454A58DB92913D960E47DCA76D1FC1EA03988A6C6D0C30" # the hash of the block
 ```
 

@@ -252,7 +252,7 @@ Below are the two factors that can lower a validator's score, and why.
 Self-nominated stake refers to the amount of VEGA a validator has staked to their own node.  The minimum stake amount required is <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" formatter="governanceToken" suffix="tokens" hideName={true} />. Not having enough self-nominated stake can have an impact on rewards. 
 
 * **Network risk**: A validator who has not committed enough stake to meet the minimum is a risk to the network because they may not be invested in keeping the network running
-* **Validator score**: If a validator does not have  <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={true} formatter="governanceToken" suffix="tokens" />), the validator is given a lower score, which can affect their reward
+* **Validator score**: If a validator does not have  <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={true} formatter="governanceToken" suffix="tokens" />, the validator is given a lower score, which can affect their reward
 * **Reward impact**: A validator with too little self-stake forfeits their share of the rewards for each epoch they are below the threshold. However tokenholders who nominated that validator will still receive rewards
 
 #### Too much stake
@@ -281,7 +281,7 @@ Factors that affect the validator score:
 > 
 > `optimal_stake` = total delegation divided by the greater of `min_validators`, OR (`num_validators` / `comp_level`): Optimal stake is how much stake each validator is expected to have, at most
 > 
-> `optimal_stake_multiplier` = value defined by <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.optimalStakeMultiplier" />), which indicates how many times the optimal stake a validator is penalised for, if they are further than the optimal stake
+> `optimal_stake_multiplier` = value defined by <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.optimalStakeMultiplier" />, which indicates how many times the optimal stake a validator is penalised for, if they are further than the optimal stake
 > 
 >`validator_stake_i` = stake of the given validator whose score is being calculated
 >

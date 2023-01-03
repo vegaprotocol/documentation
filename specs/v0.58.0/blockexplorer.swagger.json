@@ -9,7 +9,7 @@
       "name": "Block Explorer"
     }
   ],
-  "host": "n13.testnet.vega.xyz/rest",
+  "host": "be.testnet.vega.xyz/rest",
   "schemes": [
     "https"
   ],

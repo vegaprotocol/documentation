@@ -29,12 +29,6 @@ type Node {
   pendingStake: String!
   epochData: EpochData
   status: NodeStatus!
-  delegations(
-  partyId: ID
-  skip: Int
-  first: Int
-  last: Int
-): [Delegation!]
   delegationsConnection(
   partyId: ID
   pagination: Pagination
@@ -97,24 +91,6 @@ type Node {
 > Validator status of the node
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Node.<b>delegations</b></code>](#)<Bullet />[`[Delegation!]`](/testnet/api/graphql/objects/delegation) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
-> All delegation for a node by a given party if specified, or all delegations.
-> ##### [<code style={{ fontWeight: 'normal' }}>Node.delegations.<b>partyId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
-> 
-> 
-
-##### [<code style={{ fontWeight: 'normal' }}>Node.delegations.<b>skip</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
-> Pagination skip
-> 
-
-##### [<code style={{ fontWeight: 'normal' }}>Node.delegations.<b>first</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
-> Pagination first element
-> 
-
-##### [<code style={{ fontWeight: 'normal' }}>Node.delegations.<b>last</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
-> Pagination last element
-> 
-
 #### [<code style={{ fontWeight: 'normal' }}>Node.<b>delegationsConnection</b></code>](#)<Bullet />[`DelegationsConnection`](/testnet/api/graphql/objects/delegations-connection) <Badge class="secondary" text="object"/>
 > All delegation for a node by a given party if specified, or all delegations.
 > ##### [<code style={{ fontWeight: 'normal' }}>Node.delegationsConnection.<b>partyId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
@@ -145,11 +121,11 @@ type Node {
 
 ### Returned by
 
-[`node`](/testnet/api/graphql/queries/node)  <Badge class="secondary" text="query"/><Bullet />[`nodes`](/testnet/api/graphql/queries/nodes)  <Badge class="secondary" text="query"/>
+[`node`](/testnet/api/graphql/queries/node)  <Badge class="secondary" text="query"/>
 
 ### Member of
 
-[`Delegation`](/testnet/api/graphql/objects/delegation)  <Badge class="secondary" text="object"/><Bullet />[`Epoch`](/testnet/api/graphql/objects/epoch)  <Badge class="secondary" text="object"/><Bullet />[`NodeEdge`](/testnet/api/graphql/objects/node-edge)  <Badge class="secondary" text="object"/>
+[`Delegation`](/testnet/api/graphql/objects/delegation)  <Badge class="secondary" text="object"/><Bullet />[`NodeEdge`](/testnet/api/graphql/objects/node-edge)  <Badge class="secondary" text="object"/>
 
 
 

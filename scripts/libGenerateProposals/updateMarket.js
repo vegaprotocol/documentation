@@ -1,7 +1,7 @@
 const sample = require('lodash/sample');
 const random = require('lodash/random');
 const sampleSize = require('lodash/sampleSize');
-const { generateSettlementOracleSpec, generateTerminationOracleSpec, generateOracleSpecBinding } = require('./newMarket')
+const { generateSettlementDataSourceSpec, generateTerminationDataSourceSpec, generateDataSourceSpecBinding } = require('./newMarket')
 const assert = require('assert').strict;
 const { inspect } = require('util');
 
@@ -21,20 +21,17 @@ function generateInstrument(skeleton) {
   // The properties of an instrument
   assert.ok(skeleton.properties.code, 'Instrument property code used to exist');
   assert.ok(skeleton.properties.future.properties.quoteName, 'Instrument property quoteName used to exist');
-  
-  assert.ok(skeleton.properties.future.properties.settlementDataDecimals, 'Instrument property settlementDataDecimals used to exist');
-  assert.equal(skeleton.properties.future.properties.settlementDataDecimals.type, 'integer', 'Instrument property settlementDataDecimals used to be an integer');
-  assert.ok(skeleton.properties.future.properties.oracleSpecForSettlementData, 'OracleSpecForSettlementPrice used to exist');
-  assert.ok(skeleton.properties.future.properties.oracleSpecForTradingTermination, 'OracleSpecForTradingTermination used to exist');
-  assert.ok(skeleton.properties.future.properties.oracleSpecBinding, 'OracleSpecBinding used to exist on a future');
+
+  assert.ok(skeleton.properties.future.properties.dataSourceSpecForSettlementData, 'DataSourceSpecForSettlementPrice used to exist');
+  assert.ok(skeleton.properties.future.properties.dataSourceSpecForTradingTermination, 'DataSourceSpecForTradingTermination used to exist');
+  assert.ok(skeleton.properties.future.properties.dataSourceSpecBinding, 'DataSourceSpecBinding used to exist on a future');
   const instrument = {
     code: randomInstrument.code,
     future: {
       quoteName: 'tEuro',
-      settlementDataDecimals: 5,
-      oracleSpecForSettlementData: generateSettlementOracleSpec(skeleton.properties.future.properties.oracleSpecForSettlementData),
-      oracleSpecForTradingTermination: generateTerminationOracleSpec(skeleton.properties.future.properties.oracleSpecForTradingTermination),
-      oracleSpecBinding: generateOracleSpecBinding(skeleton.properties.future.properties.oracleSpecBinding)
+      dataSourceSpecForSettlementData: generateSettlementDataSourceSpec(skeleton.properties.future.properties.dataSourceSpecForSettlementData),
+      dataSourceSpecForTradingTermination: generateTerminationDataSourceSpec(skeleton.properties.future.properties.dataSourceSpecForTradingTermination),
+      dataSourceSpecBinding: generateDataSourceSpecBinding(skeleton.properties.future.properties.dataSourceSpecBinding)
     }
   }
 
@@ -46,14 +43,12 @@ function generateInstrument(skeleton) {
         future: {
           // ${skeleton.properties.future.properties.quoteName.title} (${skeleton.properties.future.properties.quoteName.type})
           quoteName: "${instrument.future.quoteName}",
-          // ${skeleton.properties.future.properties.settlementDataDecimals.title} (${skeleton.properties.future.properties.settlementDataDecimals.format} as ${skeleton.properties.future.properties.settlementDataDecimals.type})
-          settlementDataDecimals: ${instrument.future.settlementDataDecimals},
-          // ${skeleton.properties.future.properties.oracleSpecForSettlementData.title} (${skeleton.properties.future.properties.oracleSpecForSettlementData.type})
-          oracleSpecForSettlementData: ${inspect(instrument.future.oracleSpecForSettlementData, {depth: 5})},
-          // ${skeleton.properties.future.properties.oracleSpecForTradingTermination.title} (${skeleton.properties.future.properties.oracleSpecForTradingTermination.type})
-          oracleSpecForTradingTermination: ${inspect(instrument.future.oracleSpecForTradingTermination, {depth: 5})},
-          // ${skeleton.properties.future.properties.oracleSpecBinding.title} (${skeleton.properties.future.properties.oracleSpecBinding.type})
-          oracleSpecBinding: ${inspect(instrument.future.oracleSpecBinding, {depth: 5})}
+          // ${skeleton.properties.future.properties.dataSourceSpecForSettlementData.title} (${skeleton.properties.future.properties.dataSourceSpecForSettlementData.type})
+          dataSourceSpecForSettlementData: ${inspect(instrument.future.dataSourceSpecForSettlementData, {depth: 5})},
+          // ${skeleton.properties.future.properties.dataSourceSpecForTradingTermination.title} (${skeleton.properties.future.properties.dataSourceSpecForTradingTermination.type})
+          dataSourceSpecForTradingTermination: ${inspect(instrument.future.dataSourceSpecForTradingTermination, {depth: 5})},
+          // ${skeleton.properties.future.properties.dataSourceSpecBinding.title} (${skeleton.properties.future.properties.dataSourceSpecBinding.type})
+          dataSourceSpecBinding: ${inspect(instrument.future.dataSourceSpecBinding, {depth: 5})}
       }`
     }
 
@@ -162,6 +157,7 @@ function generateRiskModel(skeleton, riskModelType) {
 function updateMarket(skeleton) {
   assert.ok(skeleton.properties.changes);
   assert.ok(skeleton.properties.changes.properties.instrument);
+  assert.ok(skeleton.properties.changes.properties.lpPriceRange);
   assert.equal(skeleton.properties.changes.properties.metadata.type, 'array');
   assert.ok(skeleton.properties.changes.properties.priceMonitoringParameters);
   assert.ok(skeleton.properties.changes.properties.liquidityMonitoringParameters);
@@ -176,6 +172,7 @@ function updateMarket(skeleton) {
       updateMarket: {
         marketId: '123',
         changes: {
+          lpPriceRange: "11",
           instrument: generateInstrument(skeleton.properties.changes.properties.instrument),
           metadata: generateMetadata(skeleton.properties.changes.properties.metadata),
           priceMonitoringParameters: generatePriceMonitoringParameters(skeleton.properties.changes.properties.priceMonitoringParameters),
@@ -186,12 +183,15 @@ function updateMarket(skeleton) {
   };
 
   /*------- Liquidity Commitment required */
-
+  const lpLabel = skeleton.properties.changes.properties.lpPriceRange.title.split('\n')
   result.terms.updateMarket[inspect.custom]= () => {
    return `{
         // ${skeleton.properties.marketId.title}
         marketId: '123',
         changes: {
+          // ${lpLabel[0]}
+          // ${lpLabel[1]}
+          lpPriceRange: ${result.terms.updateMarket.changes.lpPriceRange},
           // ${skeleton.properties.changes.properties.instrument.title}
           instrument: ${inspect(result.terms.updateMarket.changes.instrument, { depth: 19 })},
           // ${skeleton.properties.changes.properties.metadata.title}

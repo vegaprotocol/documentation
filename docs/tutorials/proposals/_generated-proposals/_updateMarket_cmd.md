@@ -1,6 +1,6 @@
 
   ```bash
-./vegawallet command send --wallet your_walletname --pubkey your_public_key --network fairground '{
+./vegawallet transaction send --wallet your_walletname --pubkey your_public_key --network fairground '{
  "proposalSubmission": {
   "rationale": {
    "title": "Update Lorem Ipsum market",
@@ -10,40 +10,54 @@
    "updateMarket": {
     "marketId": "123",
     "changes": {
+     "lpPriceRange": "11",
      "instrument": {
-      "code": "ORANGES.24h",
+      "code": "APPLES.22",
       "future": {
        "quoteName": "tEuro",
-       "settlementDataDecimals": 5,
-       "oracleSpecForSettlementData": {
-        "pubKeys": [
-         "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
-        ],
-        "filters": [
-         {
-          "key": {
-           "name": "prices.BTC.value",
-           "type": "TYPE_INTEGER"
-          },
-          "conditions": [
+       "dataSourceSpecForSettlementData": {
+        "external": {
+         "oracle": {
+          "signers": [
            {
-            "operator": "OPERATOR_GREATER_THAN",
-            "value": "0"
+            "ethAddress": {
+             "address": "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
+            }
+           }
+          ],
+          "filters": [
+           {
+            "key": {
+             "name": "prices.BTC.value",
+             "type": "TYPE_INTEGER",
+             "numberDecimalPlaces": "5"
+            },
+            "conditions": [
+             {
+              "operator": "OPERATOR_GREATER_THAN",
+              "value": "0"
+             }
+            ]
+           },
+           {
+            "key": {
+             "name": "prices.BTC.timestamp",
+             "type": "TYPE_TIMESTAMP"
+            },
+            "conditions": [
+             {
+              "operator": "OPERATOR_GREATER_THAN",
+              "value": "1648684800000000000"
+             }
+            ]
            }
           ]
          }
-        ]
+        }
        },
-       "oracleSpecForTradingTermination": {
-        "pubKeys": [
-         "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
-        ],
-        "filters": [
-         {
-          "key": {
-           "name": "vegaprotocol.builtin.timestamp",
-           "type": "TYPE_TIMESTAMP"
-          },
+       "dataSourceSpecForTradingTermination": {
+        "internal": {
+         "time": {
           "conditions": [
            {
             "operator": "OPERATOR_GREATER_THAN_OR_EQUAL",
@@ -51,17 +65,17 @@
            }
           ]
          }
-        ]
+        }
        },
-       "oracleSpecBinding": {
+       "dataSourceSpecBinding": {
         "settlementDataProperty": "prices.BTC.value",
-        "tradingTerminationProperty": "vegaprotocol.builtin.timestamp"
+        "tradingTerminationProperty": "vega.builtin.timestamp"
        }
       }
      },
      "metadata": [
-      "sector:health",
       "sector:energy",
+      "sector:materials",
       "source:docs.vega.xyz"
      ],
      "priceMonitoringParameters": {
@@ -84,8 +98,8 @@
      }
     }
    },
-   "closingTimestamp": 1669048765,
-   "enactmentTimestamp": 1669135165
+   "closingTimestamp": 1673982487,
+   "enactmentTimestamp": 1674068887
   }
  }
 }'

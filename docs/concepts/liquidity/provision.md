@@ -25,9 +25,9 @@ While providing liquidity through a commitment is a riskier strategy than using 
 ## Liquidity commitments
 Participants with sufficient collateral can provide liquidity for markets through a liquidity commitment submission.
 
-A liquidity commitment, which is made up of a commitment amount and order shapes then informs the creation of a series of orders that sit on the order book to be filled. Liquidity providers need to be able to support their liquidity commitment - their available collateral must be able to meet the size of the nominated commitment amount and the margins required to support the orders generated from that commitment, and positions that will be generated from trades.
+A liquidity commitment, which is made up of a commitment amount and order shapes then informs the creation of a series of orders that sit on the order book to be filled. When a market is proposed, a price range is specified over which liquidity providers can deploy orders, based on the mid price. For example: [(1 - LP price range) * mid price, (1 + LP price range) * mid price]. If it's set, for example, to 0.04, it will deploy LP orders within 4% up or down from the mid price. 
 
-When submitting a liquidity commitment, orders are defined, created, and submitted on behalf of the provider. Therefore, providers don't control the volume of the orders created from their liquidity commitment. This does not affect orders submitted through batch limit orders outside of the liquidity commitment.
+Liquidity providers need to be able to support their liquidity commitment - their available collateral must be able to meet the size of the nominated commitment amount and the margins required to support the orders created with that commitment, and positions that will be generated from trades.
 
 ### Active liquidity management
 **Liquidity providers will need to actively manage their commitment.** Amending and cancelling commitments is possible, but only if the market can function without that liquidity commitment by meeting its target stake. It is not possible to cancel the individual pegged limit orders that are created from a liquidity commitment. Liquidity commitments are funded through assets in the general account and then the margin account, so market moves can have a dramatic impact on collateral. The [order shapes](#order-shapes), however, can be amended at any time.
@@ -46,7 +46,7 @@ The market's liquidity requirement, or its target stake, is the measurement of h
 
 Target stake is used by the protocol to: 
 * Calculate the market's liquidity fee level from liquidity commitments 
-* Potentially trigger a [liquidity monitoring auction] if there's an imbalance between target stake and total stake
+* Potentially trigger a [liquidity monitoring auction](../trading-on-vega/market-protections#liquidity-monitoring) if there's an imbalance between target stake and total stake
   * This can depend on the value of the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.targetstake.triggering.ratio" hideValue={true} /> network parameter, which defines how sensitive the auction trigger is
 
 The market's target stake is calculated using the maximum open interest observed over a rolling time window and a reference price, and scaled by a factor:
@@ -81,7 +81,7 @@ A liquidity commitment transaction must include:
 :::
 
 ### Orders created from commitment
-In essence, liquidity commitment orders are sets of pegged orders grouped by order book size, with a proportion set for each order within the order 'shape'. The overall volume that Vega will imply and automatically place on the order book from this depends on the remaining liquidity obligation, the best bid / ask prices, the price monitoring bounds, and the risk model parameters, but the reference, offsets and proportion at the reference / offset can always be amended. 
+In essence, liquidity commitment orders are sets of pegged orders grouped by order book size, with a proportion set for each order within the order 'shape'. The overall volume that Vega will imply and automatically place on the order book from this depends on the remaining liquidity obligation, the best bid / ask prices, and the LP price range set on the market. The reference price, offsets and proportion at the reference / offset can always be amended. 
 
 A liquidity commitment order type has a specific set of features that set it apart from a standard order: 
 * *Submitted as a special transaction*: A liquidity commitment order allows simultaneously specifying multiple orders in one message/transaction
@@ -133,11 +133,9 @@ Below see how a buy and sell shape are constructed:
 </details>
 
 ### Order volume
-Once a liquidity commitment is submitted and accepted, the committed amount, shapes submitted and the party’s other limit orders on the book are used by the protocol to determine the limit order volume that will be posted on the book to ensure the party meets its obligation.
+Once a liquidity commitment is submitted and accepted, the committed amount, shapes submitted and the party’s other limit orders on the book are used by the protocol to determine the limit order volume that will be posted on the book to ensure the party meets its obligation. Orders that are not within the LP order price range (set per market) are not placed.
 
 It is possible to meet the entire liquidity obligation with limit orders; indeed this should be the aim of most LP strategies as this gives the best control. The missing amount of the liquidity obligation is posted by the system. If the shape specifies large offset from best bid / ask then the system will place more volume on the book for the LP party. All other things being equal, higher committed stake means more volume is posted on the book.
-
-The obligation is higher if the offsets are further away from the best bid/ask, and lower the closer the offsets are to the bid/ask. A higher obligation results in larger orders being deployed. The protocol assigns more value to volume that is close to best bid / ask, and less to volume further out. Each unit of volume counts for less the further they are from the best bid / ask. 
 
 :::note Go deeper
 Explore liquidity calculations in more depth in the [liquidity mechanics spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0044-LIME-lp_mechanics.md).
