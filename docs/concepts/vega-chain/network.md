@@ -27,10 +27,12 @@ Currently, two transaction types can be limited:
 
 If either parameter's value is decreased (through a governance proposal and vote), then the change does not affect existing orders on the market, but only new orders/liquidity commitments placed after the change is enacted. 
 
-## Spam protection [WIP]
-On a decentralised and pseudonymous network, there's always a possibility that a malicious actor will attempt to spam blocks and fill them with meaningless transactions. To mitigate that risk, there are spam protections enabled to protect the Vega network, in particular by enforcing minimums and maximums for transactions sent to the Vega network.
+## Spam protection
+On a decentralised and pseudonymous network, there's always a possibility that a malicious actor will attempt to spam blocks and fill them with meaningless transactions. To mitigate that risk, there are spam protections enabled to protect the Vega network, in particular enforced minimums and maximums for transactions sent to the Vega network, and a client-side proof of work requirement to mitigate transaction spam.
 
 The values of all spam protection network parameters can be changed through a governance vote. If a parameter change passes governance, it takes effect in the epoch after it passes.
+
+<!-- link to governance -->
 
 ### Proof of work 
 Although Vega is a proof-of-stake network, there is a client-side proof-of-work mechanism to prevent transaction spam from public keys trying to flood the network, or submitting a number of transactions that could slow down the network for all participants. The proof-of-work is calculated by the Vega wallet. It does not incur gas fees and does not have any effect on a transaction's priority.
@@ -41,8 +43,10 @@ It's possible to submit a large volume of transactions at one time, as long as t
 
 A transaction with a missing or incorrect proof is rejected, as is any transaction that uses an already-used PoW calculation. A public key that sends transactions with faulty proof-of-work calculations is banned for 30 seconds or 1/48th of an epoch, whichever is greater.
 
+See a full list of the network parameters used for PoW in the [spam protection parameters table](#spam-protection-parameters).
+
 :::note Go deeper
-[Spam protection POW ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0072-SPPW-spam-protection-PoW.md): Read the spec for implementation details and how this mechanism works in particular circumstances.
+[Spam protection PoW ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0072-SPPW-spam-protection-PoW.md): Read the spec for implementation details and how this mechanism works in particular circumstances.
 :::
 
 ### Spam policy enforcement
@@ -71,7 +75,7 @@ Post-block rejection: A transaction makes it into the block, but is rejected bef
 | spam.pow.increaseDifficulty           | If a wallet exceeds the max transactions per block, the difficulty of the PoW increases by this factor | <NetworkParameter frontMatter={frontMatter} param="spam.pow.increaseDifficulty" hideName={true} />
 | spam.pow.numberOfPastBlocks         	| To compute the wallet transaction quota, transactions can be assigned to past blocks; this parameter defines how far back that goes | <NetworkParameter frontMatter={frontMatter} param="spam.pow.numberOfPastBlocks" hideName={true} />
 
-## Checkpoints for restarts
+## Network restarts: Checkpoints
 The network's validators periodically store checkpoints of all important state parameters such as balances and governance proposals. 
 
 Checkpoints allow the chain to be restarted from a previously valid state in the event of consensus failure, a network restart, or a critical issue being discovered.
