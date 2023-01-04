@@ -79,7 +79,7 @@ python3 get-markets-and-market-data/get-markets-and-marketdata.py
 ## Creating a liquidity commitment
 This tutorial describes how to create, amend or cancel, and send a liquidity commitment submission, using Python. Note: There are also scripts available for Bash.
 
-**The liquidity provision submission must include**:
+**The liquidity commitment submission must include**:
 * The **market’s unique ID**, denoted as `marketId` - Confirm that the market is in a state to accept liquidity commitment, and is not a rejected market, has not had trading terminated, or has not been settled 
 * **Liquidity commitment amount**: The amount of funds that you want to allocate to providing liquidity. The amount will be moved into a bond account during the duration of your liquidity commitment, denoted as `commitmentAmount`
 * **Proposed liquidity fee**: The scaling factor for the fee you are bidding to receive when your order is matched, on a scale between 0 and 1. For example, a fee level of 0.01 would mean `0.01 * total trade amount` is charged. Note: Your proposed fee is used along with other proposed fees and commitments to determine the actual fee percentage for the market. [Learn how all proposed fee levels influence the market's fees]). Denoted as `fee` Denoted as `fee`
@@ -91,13 +91,16 @@ This tutorial describes how to create, amend or cancel, and send a liquidity com
     
     (See a full list of applicable reference price levels in the [API documentation](./../api/grpc/vega/vega.proto.mdx#PeggedReference)), denoted as `reference`
 
-**To submit the liquidity provision message, you'll also need**: 
+**To submit the liquidity commitment message, you'll also need**: 
 
 * Public key: The public key being used to place the liquidity commitment
 * Propagate: Is true or false. Propogate is used to define if you want the liquidity commitment sent to the nodes for processing immediately (true), or if you want to manually submit the orders in a transaction (false). Note: If you choose to manually submit, it must be within the block tolerance level or it will be rejected
 
 ### API script
-In the [`sample-api-scripts`](https://github.com/vegaprotocol/sample-api-scripts/) repo, there is a folder named [`submit-create-liquidity-provision`](https://github.com/vegaprotocol/sample-api-scripts/tree/master/submit-create-liquidity-provision), which has a set of scripts to create a new liquidity provision using the `liquidityProvisionSubmission` command.
+In the [`sample-api-scripts`](https://github.com/vegaprotocol/sample-api-scripts/tree/master/rest) repo, there is a set of Python scripts using REST to create a new liquidity commitment using the `liquidityProvisionSubmission` command: 
+* [submit liquidity commitment](https://github.com/vegaprotocol/sample-api-scripts/blob/master/rest/liquidity-commitment-submit.py)
+* [amend liquidity commitment](https://github.com/vegaprotocol/sample-api-scripts/blob/master/rest/liquidity-commitment-amend.py)
+* [cancel liquidity commitment](https://github.com/vegaprotocol/sample-api-scripts/blob/master/rest/liquidity-commitment-cancel.py)
 
 You can see in the liquidity commitment Python script below that the most important part is the description of the commitment amount, which includes the offset and proportion for each shape.
 
@@ -155,15 +158,15 @@ submission = {
 To run the script with your own values, you will need to edit the file, save it and run the following script from the `samples-api-scripts` repo:
 
 ```bash
-python3 submit-create-liquidity-provision/submit-create-liquidity-provision-order.py
+python3 rest/liquidity-commitment-submit.py
 ```
 
 ## Amending a liquidity commitment
 When amending a liquidity commitment, the network will always allow you to provide more liquidity. However, reducing your liquidity commitment will depend on the maximum amount that the market can reduce by given the current liquidity demand in the market. If you were to reduce your commitment to the point where the market would drop below its required [target stake](./../concepts/liquidity/provision.md#target-stake), then your amendment would not be accepted.
 
-The protocol does not take into account your current position when it creates the orders from your liquidity provision shape. Regardless of if you are already long or short, the orders created will be the same, so you will need to actively manage your orders as your position changes. For example, if you create a shape that is more likely to result in a long position, then over time you are likely to become longer. As you are required to have enough margin to cover you position, this puts more strain on your margin account as your position grows.
+The protocol does not take into account your current position when it creates the orders from your liquidity commitment shape. Regardless of if you are already long or short, the orders created will be the same, so you will need to actively manage your orders as your position changes. For example, if you create a shape that is more likely to result in a long position, then over time you are likely to become longer. As you are required to have enough margin to cover you position, this puts more strain on your margin account as your position grows.
 
-One way you can help control your margin requirements is to change the shape of liquidity provision order to help reduce your position. For this, you can use the `liquidityProvisionAmendment` command.
+One way you can help control your margin requirements is to change the shape of liquidity commitment order to help reduce your position. For this, you can use the `liquidityProvisionAmendment` command.
 
 Submitting an amendment will replace the entire set of orders with the ones in your amendment transaction. If you want to keep any of your orders, you'll need to add them into your amendment.
 
@@ -203,7 +206,7 @@ submission = {
 To run the script with your own values, you will need to edit the file, save it and run the following script from the `samples-api-scripts` repo:
 
 ```bash
-python3 submit-amend-liquidity-provision/submit-amend-liquidity-provision-order.py
+python3 rest/liquidity-commitment-amend.py
 ```
 
 ## Cancelling a liquidity commitment
@@ -218,7 +221,7 @@ If you no longer want to commit open orders through a liquidity provision, you w
 To cancel a liquidity commitment, or see how a cancellation is built, you can use the following script from the `samples-api-scripts` repo:
 
 ```bash
-python3 submit-cancel-liquidity-provision/submit-cancel-liquidity-provision-order.py
+python3 rest/liquidity-commitment-cancel.py
 ```
 
 ```python
