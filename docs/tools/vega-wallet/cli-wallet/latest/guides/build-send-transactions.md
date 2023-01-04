@@ -23,7 +23,7 @@ A transaction is an action you want to issue to the network, usually encoded in 
 Before the transaction is submitted to the Vega network, it must be bundled up with a few pieces of metadata and signed with your public key. That metadata includes:
 
 - your public key
-- a small to a proof-of-work
+- a small proof-of-work calculation
 - the block height you are targeting
 
 The signed transaction bundle can then either be:

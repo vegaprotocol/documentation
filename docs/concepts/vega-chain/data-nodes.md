@@ -75,10 +75,14 @@ IPFS is used to share decentralised history segments across a data node's networ
 * [About IPFS ↗](https://docs.ipfs.tech/concepts/what-is-ipfs/): Get familiar with IPFS.
 :::
 
-## Connect directly to database [WIP]
+## Connect directly to database
 It's possible to connect directly to the Postgres database of a data node without running a data node yourself, if the data node you're using allows it. You'll need the connection details from the data node operator, such as the relevant address, username and password in order to connect directly to that node's database.
 
 Alternatively, you can run your own data node and use [decentralised history](#decentralised-history) to pull existing data into your new database, or start fresh.
+
+:::caution Reliability
+PostgreSQL database schemas are liable to change without warning and without deprecation.
+:::
 
 <!-- Link to the data node postgres information.-->
 
