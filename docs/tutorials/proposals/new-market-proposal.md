@@ -49,9 +49,11 @@ The contents of a `changes` object specifies what will be different after the pr
 
 Instrument, liquidity monitoring parameters, price monitoring parameters, data sources, and liquidity commitment are all described in more detail below.
 
-Rationale requires a description, which is a free-text field that describes the purpose of the proposal. Include links with more information about your proposal (such as to the IPFS content or forum post) that voters can reference to learn more about the market.
+**Rationale** requires a description, which is a free-text field that describes the purpose of the proposal. Include links with more information about your proposal (such as to the IPFS content or forum post) that voters can reference to learn more about the market.
 
-Decimal places need to be defined for both order sizes and the market.
+**LP price range** is a number that, when multiplied by 100, determines the percentage move up and down from the mid price, which determines the range of price levels over which automated [liquidity commitment orders](../../concepts/liquidity/provision.md) will be deployed. An accepted value is > 0 and <= 100.
+
+**Decimal places** need to be defined for both order sizes and the market.
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |

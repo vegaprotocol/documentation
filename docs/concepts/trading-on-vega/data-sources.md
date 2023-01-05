@@ -9,7 +9,7 @@ The data sourcing framework also includes the ability to process data by selecti
 
 The information produced by data sourcing is relevant to market settlement, risk models, and other features that require specific data which must come from somewhere, often completely external to Vega. For example, a market based on the price of Bitcoin on a specific date needs a trustworthy and reliable source of the price of Bitcoin in order to settle.
 
-The types of data sources that Vega can accept in the current implementation is limited to those listed below. As mentioned above, the APIs and protocol are expected to support a wider range of data sources and processing capbilities in the future.
+The types of data sources that Vega can accept in the current implementation is limited to those listed below. As mentioned above, the APIs and protocol are expected to support a wider range of data sources and processing capabilities in the future.
 
 ## Sources of data
 Inputs to the data sourcing framework can come from:
@@ -25,7 +25,7 @@ Data sources must provide:
 * Data source specific details
 
 ### What's in a data source specification
-Data source specifications include the particular information to be processed for the market that the data source is targeting. The specifications are ennumerated when the market is proposed.
+Data source specifications include the particular information to be processed for the market that the data source is targeting. The specifications are enumerated when the market is proposed.
 
 When looking for or building a data source, ensure the following types are available, so the information can be used in a market proposal.
 
@@ -51,7 +51,7 @@ Whether it's when voting for a market, or when choosing a market to trade on, it
 
 Those proposing a market/providing data should verify that the data source they're using is reliable and will provide accurate information for network participants.
 
-For a market proposer looking to choose which signed message data source is best for their market, it's recommended use data that's already in Open Oracle format, with a signature, if it exists. If the relevant market/asset data doesn't exist in Open Oracle, then create and use a signed JSON message.
+For a market proposer looking to choose which signed message data source is best for their market, it's recommended to use data that's already in Open Oracle format, with a signature, if it exists. If the relevant market/asset data doesn't exist in Open Oracle, then create and use a signed JSON message.
 
 ### Open Oracle data
 The signer of the signed message data source is equivalent to the reporter in [Compound’s Open Price Feed](https://medium.com/compound-finance/announcing-compound-open-oracle-development-cff36f06aad3). As Open Oracle reports include signatures, the data can still be verified against its source. The poster equivalent is the Vega key that submits the signed message to the Vega chain for the market to act on it.
@@ -107,7 +107,7 @@ For a more thorough example of how to produce, sign and submit data in this form
 :::
 
 ## Internal data source
-An internal data source provides information that comes from within Vega, rather than an external source. They are defined and used in the same way as external data sources, but are triggered by the relevant event in protocol rather than by an incoming transaction.
+An internal data source provides information that comes from within Vega, rather than an external source. They are defined and used in the same way as external data sources, but are triggered by the relevant event in the protocol rather than by an incoming transaction.
 
 Vega provides a timestamp source, which can be used to trigger a market event (such as trading termination or final settlement) at a set date and time. The `vegaprotocol.builtin.timestamp` is used by the market proposer to provide a Unix timestamp in seconds of the Vega time, which is to say the time agreed via consensus. 
 

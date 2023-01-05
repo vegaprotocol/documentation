@@ -353,7 +353,7 @@ With the introduction of the [v2 wallet API](../api/vega-wallet/v2-api/get-start
 #### Critical Bug fixes
 
 #### Data nodes serve stale data if their Vega node dies
-It was identified that if a core node fails the the validators data-node can serve stale data. In order to resolve this, the data node team has added headers `X-Block-Height`, `X-Block-Timestamp` and `X-Vega-Connection` to all API responses. Using this approach will not break any current client implementations that rely on a 200 status code, but gives a clear indicator of the state of the API responses. This work was done in issue [5971 ↗](https://github.com/vegaprotocol/vega/issues/5971).
+It was identified that if a core node fails the validators data-node can serve stale data. In order to resolve this, the data node team has added headers `X-Block-Height`, `X-Block-Timestamp` and `X-Vega-Connection` to all API responses. Using this approach will not break any current client implementations that rely on a 200 status code, but gives a clear indicator of the state of the API responses. This work was done in issue [5971 ↗](https://github.com/vegaprotocol/vega/issues/5971).
 
 #### Asset cache was returning stale data
 During QA testing, an asset which has been proposed, enabled and listed was being reported as `STATUS_PROPOSED`, when it should have been `STATUS_ENABLED`. This was due to fetching an asset by ID after it had been updated, but before the transaction was committed leading to a poisoned cache that returned stale values. This work was done in issue [5687 ↗](https://github.com/vegaprotocol/vega/issues/5687).
