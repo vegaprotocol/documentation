@@ -35,7 +35,7 @@ In your liquidity commitment submission, you need to propose a fee factor, as a 
 [Liquidity rewards](./../concepts/liquidity/rewards-penalties.md)
 :::
 
-### Shapes for commitment [WIP - fix link]
+### Shapes for commitment
 In essence, a liquidity commitment submission is a set of pegged orders grouped by order book size, with a proportion set for each order within an order 'shape'. The order automatically updates the price and size as needed to meet an LP's commitment, and automatically refreshes the volume after trading to ensure continuous liquidity provision.
 
 You define the order placement on the book using two shapes: buy shape and sell shape. The script example below shows how to set up your shapes by defining what proportion of orders each price level will have, and the distances (offset) for the price levels where the orders will be placed, based on the reference price level you choose to peg to (`PEGGED_REFERENCE_BEST_BID`, `PEGGED_REFERENCE_MID` or `PEGGED_REFERENCE_BEST_ASK`).

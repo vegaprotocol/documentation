@@ -64,7 +64,7 @@ The market's liquidity fee and the trading volume determine how big the liquidit
 
 The liquidity score is the average volume-weighted probability of trading of all their orders within the [liquidity order price range](provision.md#price-range-for-liquidity-orders), averaged over the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providers.fee.distributionTimeStep" hideName={false} />. It's calculated for all orders placed by the liquidity provider: automatically deployed and limit orders. 
 
-Generally speaking, an order's probability of trading decreases the further away from the mid-price it is placed, so all other things being constant, the provider who places orders closer to the mid-price will receive a higher fraction of the fees than someone who places orders further away.
+Generally speaking, an order's probability of trading decreases the further away from the mid-price it is placed, so all other things being constant, the provider who places orders closer to the mid-price will receive a higher fraction of the fees than someone who places orders further away. Furthermore, the probability of trading is set to 0 outside the narrowest price monitoring bounds, so any orders deployed there will decrease the liquidity score.
 
 Because an LP who committed to a market early provided a larger proportion of the commitment earlier on, they continue to keep that larger share of fees even once other parties are also committing liquidity to the market.
 
