@@ -13,7 +13,7 @@ Liquidity providers receive [rewards](#rewarding-liquidity-providers), through f
 :::
 
 ## Rewarding liquidity providers
-Liquidity providers earn from the fees paid by takers on the market. How much providers are paid is calculated automatically and distributed according to the how the liquidity was provided (through limit orders or a liquidity commitment), based on a provider's relative commitment and how early in the market’s lifecycle they committed. Once a provider meets their obligation, whether through a combination of limit orders and their liquidity commitment or solely through a commitment, they are eligible to receive their portion of the liquidity fee.
+Liquidity providers earn from the fees paid by takers on the market. How much providers are paid is calculated automatically and distributed based on how the liquidity was provided (through limit orders or a liquidity commitment), based on a provider's relative commitment and how early in the market’s lifecycle they committed. Once a provider meets their obligation, whether through a combination of limit orders and their liquidity commitment or solely through a commitment, they are eligible to receive their portion of the liquidity fee.
 
 Note: During an auction uncrossing, orders derived from a liquidity providers' commitments will not need to provide liquidity or enable trades. However, providers must maintain their liquidity commitment, and their liquidity orders are placed back on the order book when normal trading resumes.
 
@@ -23,6 +23,7 @@ Liquidity providers receive a cut of the fees paid by price takers.
 The amount each liquidity provider receives depends on:
 * The market's liquidity fee, or the percentage of a trade's value which is collected from the price taker for every trade, and combined in a pool 
 * Their equity-like share of the market, which is based on the relative size of their commitment amount, and when they committed liquidity to the market
+* Their liquidity score, which is the average volume-weighted probability of trading of all their orders within the [liquidity order price range](provision.md#price-range-for-liquidity-orders), and includes automatically deployed and limit orders
    
 The fee percentage determines how much money goes into the pool. How much a provider receives in fees is dependent on when they began to commit liquidity on the market, as liquidity providers who commit to a market early benefit from helping to grow the market (also known as the 'equity-like share').
 
@@ -49,7 +50,7 @@ In the example below, there are 3 liquidity providers all bidding for their chos
 * [LP 2 stake = 20 ETH, LP 2 liquidity-fee-factor = 0.75%]
 * [LP 3 stake = 60 ETH, LP 3 liquidity-fee-factor = 3.75%]
 
-* If the target stake = 119 then the needed liquidity is given by LP 1, thus market's liquidity-fee-factor is the LP 1 fee: 0.5%.
+* If the target stake = 119 then the needed liquidity is given by LP 1, thus the market's liquidity-fee-factor is the LP 1 fee: 0.5%.
 * If the target stake = 123 then the needed liquidity is given by the combination of LP 1 and LP 2, and so the market's liquidity-fee-factor is LP 2 fee: 0.75%.
 * If the target stake = 240 then all the liquidity supplied above does not meet the estimated market liquidity demand, and thus the market's liquidity-fee-factor is set to the highest, LP 3's fee: 3.75%.
 
@@ -57,14 +58,19 @@ In the example below, there are 3 liquidity providers all bidding for their chos
 </details>
 
 ### How liquidity fees are split
-By committing liquidity, a liquidity provider gets a share of the market's fees that depends on how trading has grown on the market. This is known as the equity-like share. Liquidity providers who get into a market early benefit from helping to grow the market by earning a larger share of the market's trading fees than their actual commitment would imply. 
+By committing liquidity, a liquidity provider gets a share of the market's fees that depends on how trading has grown on the market. This is known as the equity-like share. Liquidity providers who get into a market early benefit from helping to grow the market by earning a larger share of the market's trading fees than their actual commitment would imply.
 
-The market's liquidity fee and the trading volume determine how big the liquidity fee pool is, and a provider's equity-like share of the market determines how that pool is distributed.
+The market's liquidity fee and the trading volume determine how big the liquidity fee pool is. A provider's equity-like share of the market and their liquidity score determine how that pool is distributed.
+
+The liquidity score is the average volume-weighted probability of trading of all their orders within the [liquidity order price range](provision.md#price-range-for-liquidity-orders), averaged over the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providers.fee.distributionTimeStep" hideName={false} />. It's calculated for all orders placed by the liquidity provider: automatically deployed and limit orders. 
+
+Generally speaking, an order's probability of trading decreases the further away from the mid-price it is placed, so all other things being constant, the provider who places orders closer to the mid-price will receive a higher fraction of the fees than someone who places orders further away.
 
 Because an LP who committed to a market early provided a larger proportion of the commitment earlier on, they continue to keep that larger share of fees even once other parties are also committing liquidity to the market.
 
 :::note Go deeper
-[LP equity-like share calculations](https://github.com/vegaprotocol/specs/blob/master/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#calculating-liquidity-provider-equity-like-share): See the variables that go into calculating a liquidity provider's share.
+* [LP equity-like share calculations](https://github.com/vegaprotocol/specs/blob/master/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#calculating-liquidity-provider-equity-like-share): See the variables that go into calculating a liquidity provider's share.
+* [Average volume-weighted probability of trading](https://github.com/vegaprotocol/specs/blob/master/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#calculating-the-liquidity-score): Learn more about how liquidity score is calculated and used.
 :::
 
 ### How liquidity fees are distributed
@@ -74,7 +80,7 @@ How often fees are distributed is defined by the network parameter <NetworkParam
 
 <details><summary>Fee distribution example</summary>
 <p>
-A market has 4 LPs with equity-like share:
+A market has 4 LPs with equity-like share, and each has the same liquidity score:
 
 * LP 1 share = 0.65
 * LP 2 share = 0.25

@@ -8,7 +8,7 @@ hide_title: false
 import NetworkParameter from '@site/src/components/NetworkParameter';
 import Topic from '/docs/topics/_topic-staking.mdx'
 
-Vega uses Tendermint as a consensus layer to form a blockchain. The rest of the information here informs on how that blockchain and its relevant components is comprised. 
+Vega uses Tendermint as a consensus layer to form a blockchain. The rest of the information here informs on how that blockchain and its relevant components are comprised. 
 
 Read more: [How Vega bridges to Ethereum](#bridges-used-for-staking)
 
@@ -137,7 +137,7 @@ In each epoch, rewards are distributed among validators in proportion to the num
 
 The reward scheme uses a linear reward curve - the reward per staked token is independent of the behaviour of other tokenholders. 
 
-This holds for validators as well, with the exception that there is a maximum amount of stake an individual validator can take on. To avoid validators getting too big, the rewards a validator gets, and thus can distribute to its nominators, is capped. In other words, the reward per token is decreases if a validator exceeds a maximum size.
+This holds for validators as well, with the exception that there is a maximum amount of stake an individual validator can take on. To avoid validators getting too big, the rewards a validator gets, and thus can distribute to its nominators, is capped. In other words, the reward per token is decreased if a validator exceeds a maximum size.
 
 At the end of each epoch, reward payments are calculated per active validator, and then some of that reward is divided between their nominators. 
 
@@ -256,7 +256,7 @@ Self-nominated stake refers to the amount of VEGA a validator has staked to thei
 * **Reward impact**: A validator with too little self-stake forfeits their share of the rewards for each epoch they are below the threshold. However tokenholders who nominated that validator will still receive rewards
 
 #### Too much stake
-An over-staked validator has more stake than is ideal for a healthy and functioning network. Staking to an over-staked node can your rewards. 
+An over-staked validator has more stake than is ideal for a healthy and functioning network. Staking to an over-staked node can affect your rewards. 
 
 * **Network risk**: The risk of an over-staked node is that it could have too much consensus voting power
 * **Validator score**: A node that is over-staked is given a lower validator score - the more over-staked it is, the lower the score 
@@ -305,7 +305,7 @@ Those scores are then normalised (divided by the sum of them):
 - Validator 2 gets a normalised score of 0.5
 - Validator 3 gets a normalised score of 0.5
 
-The normalised validator score number directly affects how much each validator (and its nominators) would recieve of the 1000 reward. 
+The normalised validator score number directly affects how much each validator (and its nominators) would receive of the 1000 reward. 
 
 - Validator 1 (and its nominators) will receive 0 rewards. Validator 2 & 3 will split the 1000 equally.
 
@@ -338,7 +338,7 @@ The impact of using fewer cores than recommended is that the critical parts (dat
 The impact of having slower cores than recommended (or older cores that have a reduced IPC rate compared to modern Zen3 cores) is that the maximum throughput will be reduced due to the bottlenecks being single threaded.
 
 ### How candidate validators are ranked
-At the end of each epoch, the Vega network will calculate validator score. The consensus validators during that epoch will have their validator scores scaled by (1 + <NetworkParameter frontMatter={frontMatter} param="network.validators.incumbentBonus" hideName={true} />). This number combines self-stake and nominated stake with the performance score (which measures basic node performance).
+At the end of each epoch, the Vega network will calculate the validator score. The consensus validators during that epoch will have their validator scores scaled by (1 + <NetworkParameter frontMatter={frontMatter} param="network.validators.incumbentBonus" hideName={true} />). This number combines self-stake and nominated stake with the performance score (which measures basic node performance).
 
 Vega sorts all current consensus validators from the highest performance score to the lowest. All of those who submit a transaction expressing intent to be a validator are then sorted by their validator score, highest to lowest.
 
@@ -369,7 +369,7 @@ Those checkpoints happen at defined intervals, and on every deposit and withdraw
 
 <!-- ### ***Further reading*** 
 DPOS - For a full list of data stored in a checkpoint, see SPECS LINK.
-Non-validator participants keep the network fair by controlling the voting power of validators. When tokens are delegated, the tokenholders choose the validators for the network. it is the responsibility of tokenholders to manage who validates the network (and its transactions).
+Non-validator participants keep the network fair by controlling the voting power of validators. When tokens are delegated, the tokenholders choose the validators for the network. It is the responsibility of tokenholders to manage who validates the network (and its transactions).
 ## Tendermint consensus
  ### Transaction and sequencing
  ### Transaction ordering
