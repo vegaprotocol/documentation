@@ -19,7 +19,7 @@ No description
 type Vote {
   value: VoteValue!
   party: Party!
-  datetime: String!
+  datetime: Timestamp!
   proposalId: ID!
   governanceTokenBalance: String!
   governanceTokenWeight: String!
@@ -38,7 +38,7 @@ type Vote {
 > The party casting the vote
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Vote.<b>datetime</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Vote.<b>datetime</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time and date when the vote reached Vega network
 > 
 

@@ -26,7 +26,7 @@ type TradeUpdate {
   aggressor: Side!
   price: String!
   size: String!
-  createdAt: String!
+  createdAt: Timestamp!
   type: TradeType!
   buyerFee: TradeFee!
   sellerFee: TradeFee!
@@ -74,7 +74,7 @@ type TradeUpdate {
 > The number of units traded, will always be &#x003C;= the remaining size of both orders immediately before the trade (uint64)
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>TradeUpdate.<b>createdAt</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>TradeUpdate.<b>createdAt</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time for when the trade occurred
 > 
 

@@ -20,8 +20,8 @@ type LedgerEntry {
   accountFromId: AccountDetails!
   accountToId: AccountDetails!
   amount: String!
-  type: String!
-  timestamp: String!
+  type: TransferType!
+  timestamp: Timestamp!
 }
 ```
 
@@ -40,11 +40,11 @@ type LedgerEntry {
 > The amount transferred
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>type</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>type</b></code>](#)<Bullet />[`TransferType!`](/testnet/api/graphql/enums/transfer-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
 > Type of ledger entry
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>timestamp</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>timestamp</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time at which the transfer was made
 > 
 

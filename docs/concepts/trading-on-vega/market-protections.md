@@ -7,13 +7,13 @@ description: Read about how markets can trade safely, pseudonymously.
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-In a pseudonymous environment where counter-parties may be identified by no more than a public key, it's essential for the software to consider credit risk, given that the avenues available for traditional marketplaces aren't available. If a counterparty owes more in settlement than their posted collateral, there is no way to reclaim those assets.
+In a pseudonymous environment where counterparties may be identified by no more than a public key, it's essential for the software to consider credit risk, given that the avenues available for traditional marketplaces aren't available. If a counterparty owes more in settlement than their posted collateral, there is no way to reclaim those assets.
 
 The Vega protocol has been designed with rules to detect dangerous market conditions and apply protective measures, and to constantly maintain effective collateralisation for all positions.
 
-Margin calculations take into account the probability of the liquidation value of a position falling short of the available capital. The network is also designed to frequently re-evaluate each individual's risk, and pre-emptively close positions.
+Margin calculations take into account the probability of the liquidation value of a position falling short of the available capital. The network is also designed to frequently re-evaluate each individual's risk, and preemptively close positions.
 
-Some of those measures include price monitoring, liqudity monitoring, and frequent mark to market calculations.
+Some of those measures include price monitoring, liquidity monitoring, and frequent mark to market calculations.
 <!--
 :::note Read more
 * [Margin on Vega](./positions-margin#margin)
@@ -52,7 +52,7 @@ If the market did not have any triggers specified in its market proposal, then t
 
 In case of multiple monitoring triggers, each trigger is checked separately and the resulting price monitoring auction length will be the sum of auction durations from all the triggers that were breached.
 
-There could be a situation where only a single trigger is breached to begin with, but as the initial price monitoring auction period comes to an end, the indicative uncrossing price breaches one or more of the other triggers, resulting in an auction extension. This process continues until no more triggers are breached after the appropriate auction extension period elapses. This can be because price doesn't breach any other triggers, or all triggers have already been breached. Once a given trigger is activated, it's not checked again until the price monitoring auction is resolved and market goes back into its default trading mode.
+There could be a situation where only a single trigger is breached to begin with, but as the initial price monitoring auction period comes to an end, the indicative uncrossing price breaches one or more of the other triggers, resulting in an auction extension. This process continues until no more triggers are breached after the appropriate auction extension period elapses. This can be because price doesn't breach any other triggers, or all triggers have already been breached. Once a given trigger is activated, it's not checked again until the price monitoring auction is resolved and the market goes back into its default trading mode.
 
 Price monitoring is meant to stop large market movements that are not 'real' from occurring, rather than just detect them after the fact. To achieve that, the module works preemptively: a transaction that would've caused the price monitoring bounds to be breached doesn't get processed in the default trading mode. The market first switches to price monitoring auction mode, and then that transaction (and any subsequent ones until the auction time elapses) get processed. 
 
@@ -80,7 +80,7 @@ Now:
     * If after 1 minute has passed there are no trades resulting from the auction or the indicative price of the auction, then if in the `[95,105]` the trades are generated and the price monitoring auction concludes.
     * If after 1 minute has passed the indicative price of the auction is outside the `[95,105]`, the auction gets extended by 5 minutes, as concluding the auction at the 1 minute mark would breach the valid ranges implied by the second trigger. After the 5 minutes, trades (if any) are generated irrespective of their price, as there are no more active triggers, and the price monitoring auction concludes.
 
-The images below show how according to the risk model, 90%, 95%, or 99% of the price moves from current price of 10 over the time horizon are in the green area under the density function. Anything outside the green area is considered unlikely and would trigger an auction.
+The images below show how according to the risk model, 90%, 95%, or 99% of the price moves from the current price of 10 over the time horizon are in the green area under the density function. Anything outside the green area is considered unlikely and would trigger an auction.
 
 
 ![Price distribution graph 90% for price monitoring example](/img/concept-diagrams/price-distribution-monitoring-90.png)
@@ -91,7 +91,7 @@ The images below show how according to the risk model, 90%, 95%, or 99% of the p
 </details>
 
 ## Liquidity monitoring
-Besides the obvious appeal to traders, a liquid market also offers some risk management, particularly in a system that does not have a central counter-party. When a trader is distressed, their position can only be liquidated if there is enough volume on the order book to offload it. 
+Besides the obvious appeal to traders, a liquid market also offers some risk management, particularly in a system that does not have a central counterparty. When a trader is distressed, their position can only be liquidated if there is enough volume on the order book to offload it. 
 
 In order to ensure there is enough liquidity to keep a market active and protect against insolvent parties, the network must be able to detect when the market's liquidity is too low.
 
@@ -103,16 +103,22 @@ As a consequence, a market may only become illiquid in two cases:
 * The total supplied stake by all liquidity providers is below the target stake (a multiple of the maximum open interest over a period of time set by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.stake.target.timeWindow" />). 
 * The best static bid or best static ask prices are missing from the order book, meaning the volume implied by a liquidity provider's commitment cannot be deployed.
 
+How likely a market is to enter into a liquidity monitoring auction is also dependent on the value of the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.targetstake.triggering.ratio" hideValue={true} /> network parameter, which defines how sensitive the auction trigger is.
+
 When a market is illiquid, it enters into a liquidity monitoring auction, and terminates that auction when the market liquidity level is back at a sufficiently high level.
 
 If a market enters into a liquidity auction and never again attracts enough liquidity to exit it, the market will stay in a liquidity auction until the market's settlement. Once the market's settlement price is emitted by the data source, then all market participants are settled based on their positions and account balances.
+
+:::note Read more
+[Liquidity](../liquidity/index.md): Learn about the Vega liquidity mechanism, how commitments work and the fee revenue that providers can get.
+:::
 
 ## Distressed traders
 If a trader's available margin on a market is below the closeout level and cannot be replenished, that trader is considered to be distressed.
 
 A distressed trader has all their open orders on that market cancelled. The network will then recalculate the margin requirement on the trader's remaining open position. If they then have sufficient collateral, they are no longer considered a distressed trader. 
 
-However, if the trader does not have sufficient collateral, they are added to list of traders that will then undergo position resolution to close out their positions.
+However, if the trader does not have sufficient collateral, they are added to a list of traders that will then undergo position resolution to close out their positions.
 
 ### Closeouts
 When a participant does not have enough collateral to hold their open positions, the protocol will automatically trigger a closeout.

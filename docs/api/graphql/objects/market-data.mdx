@@ -29,7 +29,7 @@ type MarketData {
   bestStaticOfferVolume: String!
   midPrice: String!
   staticMidPrice: String!
-  timestamp: String!
+  timestamp: Timestamp!
   openInterest: String!
   auctionEnd: String
   auctionStart: String
@@ -45,6 +45,7 @@ type MarketData {
   priceMonitoringBounds: [PriceMonitoringBounds!]
   marketValueProxy: String!
   liquidityProviderFeeShare: [LiquidityProviderFeeShare!]
+  nextMarkToMarket: String!
 }
 ```
 
@@ -99,7 +100,7 @@ type MarketData {
 > The arithmetic average of the best static bid price and best static offer price
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>timestamp</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>timestamp</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time at which this market price was relevant
 > 
 
@@ -161,6 +162,10 @@ type MarketData {
 
 #### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>liquidityProviderFeeShare</b></code>](#)<Bullet />[`[LiquidityProviderFeeShare!]`](/testnet/api/graphql/objects/liquidity-provider-fee-share) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
 > The equity like share of liquidity fee for each liquidity provider
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>nextMarkToMarket</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano time indicating the next time positions will be marked to market
 > 
 
 

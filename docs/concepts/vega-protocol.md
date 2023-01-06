@@ -70,10 +70,10 @@ VEGA tokenholders can vote for or against any active proposals, as long as the t
 * The network compares the weight of all 'for' votes, as a percentage of the weight of all votes cast, to the required majority - `for_rate = SUM (weightings of votes cast for) / SUM (weightings of all votes cast)`
 * If the minimum for both is reached, the proposal is enacted. If at least one is not reached, the proposal fails.
 
-For proposals to change market parameters, there are additional requirements. The market's liquidity providers can vote with their equity like share without requiring tokenholder participation. However, if tokenholders vote and participation and majority requirements for this vote are met, then the tokenholders' votes can overrule the liquidity providers' votes.
+For proposals to change market parameters, there are additional requirements. The market's liquidity providers can vote with their equity-like share without requiring tokenholder participation. However, if tokenholders vote and participation and majority requirements for this vote are met, then the tokenholders' votes can overrule the liquidity providers' votes.
 
 The network will also calculate:
-* The LP participation rate, which is the sum of the equity like share of all LPs who cast a vote - `LP participation rate = SUM (equity like share of all LPs who cast a vote)`
+* The LP participation rate, which is the sum of the equity-like share of all LPs who cast a vote - `LP participation rate = SUM (equity-like share of all LPs who cast a vote)`
 * The rate of 'for' votes cast by liquidity providers, calculated as the sum of all who voted 'for', divided by the LP participation rate - `LP for rate = SUM (all who voted for) / LP participation rate`
     
 :::tip Try it out
@@ -147,7 +147,7 @@ Read more:
 ### Propose a new market
 Tokenholders can propose new markets, which then need to be voted on by other tokenholders. The proposer will need to have at least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the market, and staked to a validator. Note, this amount is set through the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true} />.
 
-If the market proposal gets a <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" hideName={true} formatter="percent"/> majority of tokeholder support, then it will be enacted. The required majority is defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" hideValue={true} />.
+If the market proposal gets a <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" hideName={true} formatter="percent"/> majority of tokenholder support, then it will be enacted. The required majority is defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" hideValue={true} />.
 
 To propose a market, you'll need to provide the details required for the market to begin trading right away. While some of the fields are free-text, others are constrained by a range set through network parameters, to ensure that the values provided are fit for purpose.
 
@@ -176,7 +176,7 @@ Optional fields include:
 -->
 
 ### Risk models and parameters
-When proposing a market, the market proposer will need to choose the risk parameters associated with the risk model that's appropriate for the instrument. The risk model is essential for calculating margins on the market. 
+When proposing a market, the market proposer will need to choose the risk parameters associated with the risk model that's appropriate for the instrument. The acceptable amount of volatility on a market is driven by its risk model. The risk model is essential for calculating margins on the market. 
 
 The [log-normal risk model](#log-normal-risk-model) is the only one currently supported. While the model is pre-defined, you'll need to choose the individual parameters.
 
@@ -208,7 +208,7 @@ The log-normal model assumes that the logarithm of the price increments are norm
   * accepted values: **any strictly non-negative real number**,
   * suggested value: asset dependent, should be derived from the historical time-series of prices, and a typical value would be 0.8 = 80%
 
-Another paramerer is
+Another parameter is
 * `Mu` - annualised growth rate of the underlying asset:
   * accepted values: **any real number**,
   * suggested value: in almost all situations `0` is the value to use
@@ -263,7 +263,7 @@ Set up transfers with your Vega wallet using the command line. Find out how in t
 A one-off transfer can happen immediately (as soon as it is validated), or be set to happen at a specific time. When you set a delay, the transfer funds are removed from your account immediately and stored in a pool, and then distributed to the destination account once the time you chose is reached.
 
 #### Recurring transfers
-A party can also setup recurring transfers that will happen at the end of each epoch, and before the next one starts.
+A party can also set up recurring transfers that will happen at the end of each epoch, and before the next one starts.
 
 A recurring transfer transaction needs to contain the following:
 * How much is available to transfer

@@ -26,11 +26,10 @@ type Position {
   realisedPNL: String!
   unrealisedPNL: String!
   averageEntryPrice: String!
-  margins: [MarginLevels!]
   marginsConnection(
   pagination: Pagination
 ): MarginConnection
-  updatedAt: String
+  updatedAt: Timestamp
 }
 ```
 
@@ -61,17 +60,13 @@ type Position {
 > Average entry price for this position
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Position.<b>margins</b></code>](#)<Bullet />[`[MarginLevels!]`](/testnet/api/graphql/objects/margin-levels) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
-> Margins of the party for the given position
-> 
-
 #### [<code style={{ fontWeight: 'normal' }}>Position.<b>marginsConnection</b></code>](#)<Bullet />[`MarginConnection`](/testnet/api/graphql/objects/margin-connection) <Badge class="secondary" text="object"/>
 > Margins of the party for the given position
 > ##### [<code style={{ fontWeight: 'normal' }}>Position.marginsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
 > 
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Position.<b>updatedAt</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>updatedAt</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time the position was updated
 > 
 
@@ -79,7 +74,7 @@ type Position {
 
 ### Member of
 
-[`Party`](/testnet/api/graphql/objects/party)  <Badge class="secondary" text="object"/><Bullet />[`PositionEdge`](/testnet/api/graphql/objects/position-edge)  <Badge class="secondary" text="object"/>
+[`PositionEdge`](/testnet/api/graphql/objects/position-edge)  <Badge class="secondary" text="object"/>
 
 
 

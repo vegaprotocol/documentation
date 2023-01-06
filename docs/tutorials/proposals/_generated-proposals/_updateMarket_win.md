@@ -1,6 +1,6 @@
 
   ```bash
-vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --network fairground ^
+vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_key --network fairground ^
 "{^
 \"proposalSubmission\": {^
  \"rationale\": {^
@@ -11,11 +11,11 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
   \"updateMarket\": {^
    \"marketId\": \"123\",^
    \"changes\": {^
+    \"lpPriceRange\": \"11\",^
     \"instrument\": {^
-     \"code\": \"ORANGES.24h\",^
+     \"code\": \"APPLES.22\",^
      \"future\": {^
       \"quoteName\": \"tEuro\",^
-      \"settlementDataDecimals\": 5,^
       \"dataSourceSpecForSettlementData\": {^
        \"external\": {^
         \"oracle\": {^
@@ -30,7 +30,8 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
           {^
            \"key\": {^
             \"name\": \"prices.BTC.value\",^
-            \"type\": \"TYPE_INTEGER\"^
+            \"type\": \"TYPE_INTEGER\",^
+            \"numberDecimalPlaces\": \"5\"^
            },^
            \"conditions\": [^
             {^
@@ -74,9 +75,8 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
      }^
     },^
     \"metadata\": [^
-     \"sector:health\",^
-     \"sector:tech\",^
-     \"sector:food\",^
+     \"sector:energy\",^
+     \"sector:materials\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -90,17 +90,17 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
     },^
     \"logNormal\": {^
      \"tau\": 0.0001140771161,^
-     \"riskAversionParameter\": 0.001,^
+     \"riskAversionParameter\": 0.0001,^
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
-      \"sigma\": 0.8^
+      \"sigma\": 0.5^
      }^
     }^
    }^
   },^
-  \"closingTimestamp\": 1669930413,^
-  \"enactmentTimestamp\": 1670016813^
+  \"closingTimestamp\": 1673982487,^
+  \"enactmentTimestamp\": 1674068887^
  }^
 }^
 }"

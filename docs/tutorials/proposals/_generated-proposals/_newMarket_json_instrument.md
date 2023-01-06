@@ -1,17 +1,15 @@
 ```javascript
 {
  // Instrument name
- name: "Oranges Daily",
+ name: "Apples Yearly (2022)",
  // Instrument code, human-readable shortcode used to describe the instrument
- code: "ORANGES.24h",
+ code: "APPLES.22",
  // Future
  future: {
   // Asset ID for the product's settlement asset (string)
   settlementAsset: "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
   // Product quote name (string)
   quoteName: "tEuro",
-  // The number of decimal places implied by the settlement data (such as price) emitted by the settlement data source (int64 as integer)
-  settlementDataDecimals: 5,
   // The data source spec describing the data source for settlement (object)
   dataSourceSpecForSettlementData: {
    external: {
@@ -28,14 +26,14 @@
      // filters describes which source data are considered of interest or not for
      // the product (or the risk model).
      filters: [
-      {
-       skeleton[p].external[p].oracle[p].filters.items[p].key.description
-      }
       key: {
        // name is the name of the property. (string)
        name: "prices.BTC.value",
        // type is the type of the property. (string)
        type: "TYPE_INTEGER",
+       // An optional decimal place to be be applied on the provided value
+       // valid only for PropertyType of type DECIMAL and INTEGER
+       numberDecimalPlaces: "5",
       },
       // conditions are the conditions that should be matched by the data to be
       // considered of interest.

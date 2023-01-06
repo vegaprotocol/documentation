@@ -49,9 +49,11 @@ The contents of a `changes` object specifies what will be different after the pr
 
 Instrument, liquidity monitoring parameters, price monitoring parameters, data sources, and liquidity commitment are all described in more detail below.
 
-Rationale requires a description, which is a free-text field that describes the purpose of the proposal. Include links with more information about your proposal (such as to the IPFS content or forum post) that voters can reference to learn more about the market.
+**Rationale** requires a description, which is a free-text field that describes the purpose of the proposal. Include links with more information about your proposal (such as to the IPFS content or forum post) that voters can reference to learn more about the market.
 
-Decimal places need to be defined for both order sizes and the market.
+**LP price range** is a number that, when multiplied by 100, determines the percentage move up and down from the mid price, which determines the range of price levels over which automated [liquidity commitment orders](../../concepts/liquidity/provision.md) will be deployed. An accepted value is > 0 and <= 100.
+
+**Decimal places** need to be defined for both order sizes and the market.
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
@@ -78,7 +80,6 @@ An instrument contains the following properties:
 | `future` | An object that provides details about the futures market to be proposed. |
 | `settlementAsset` | Settlement asset requires the ID of the asset that the market will be margined in and settle in. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID. |  |
 | `quoteName` | The quote name is the human-readable name/abbreviation of the settlement asset. Example: In BTCUSD, USD is the quote. | tEuro |
-| `settlementDataDecimals` | The number of decimal places implied by the settlement data, emitted by the settlement data source. | 18 |
 | `dataSourceSpecForSettlementData` | This defines the data source that will be used to identify the settlement price when the market expires. | prices.BTC.value |
 | `dataSourceSpecForTradingTermination` | The fields that define the data source used for terminating trading on the market. | vegaprotocol.builtin.timestamp |
 | `dataSourceSpecBinding` | The fields describe how specific information provided by the data source is used. For example, they can identify the specific name of the settlement price output, or the specific name of the trading termination property. |
@@ -90,7 +91,7 @@ Data feeds from an oracle can be used to terminate trading and settle markets. S
 
 <NewMarketJSONOracle/>
 
-Data source bindings require the following properties: 
+Data source bindings include the following properties: 
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
@@ -99,12 +100,13 @@ Data source bindings require the following properties:
 | `key` | Defines the specific type of information the data source provides that is relevant to the proposed market. Example: If a data source provides a list of prices for various markets, focus only on the specific relevant price for the market |
 | `name` | Specific name of the information that the filter provides. | prices.ETH.value |
 | `type` | Specifies the data type that is emitted. For example, for the `prices.ETH.value`, the type is an integer, as it is output as a non-fractional number | TYPE_TIMESTAMP |
+| `numberDecimalPlaces` | Optional field to specify the precision in which numerical data is emitted. Use when data is numerical | 18 |
 | `conditions` | A filter for the data. The conditions that should to be matched by the data to be considered. This is an optional set of fields. For example you could use an operator and a value to denote that a price should be greater than zero |
 | `operator` | This adds a constraint to the value, such as LESS_THAN, GREATER_THAN. For example if you wanted to ensure that the price would always be above zero, you would set the operator to ‘GREATER_THAN’ and the Value to be ‘0’ | GREATER_THAN |
 | `value` | A number that is constrained by the operator | 0 |
 
 :::info Submitting data
-Learn how to find and submit data in the [submitting data sources tutorial](../using-oracle-data.md).
+Learn how to find and submit data in the [submitting data sources tutorial](../using-data-sources.md).
 :::
 
 ### Liquidity monitoring

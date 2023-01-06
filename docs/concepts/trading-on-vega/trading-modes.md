@@ -75,7 +75,7 @@ If no one places orders in the price monitoring auction, the auction is exited a
 ### Auction type: Liquidity monitoring
 In order to ensure there is enough liquidity to keep a market active and protect against insolvent parties, the network will detect when the market's liquidity is too low, and if it is too low, will stop continuous trading and put the market into a liquidity monitoring auction. 
 
-This also happens when best static bid / ask is not present after all transactions with the same timestamp have been processed, as without those liquidity provision orders cannot be deployed, even if liquidity providers have committed liquidity. 
+This also happens when the best static bid / ask is not present after all transactions with the same timestamp have been processed, as without those liquidity provision orders cannot be deployed, even if liquidity providers have committed liquidity. 
 
 #### Entry into liquidity monitoring auction 
 A market will go into a liquidity monitoring auction if the total commitment from liquidity providers (total stake) drops too low relative to the estimate of the market's liquidity demand (target stake), or if there are no best bid and/or best ask prices on the market.
@@ -84,9 +84,9 @@ The trigger for entering a liquidity monitoring auction is:
 
 `sum of LPs commitment amounts < target stake x triggering ratio`
 
-The system will also enter liquidity auction if there are no static bids or static asks on the order book (as that means that the liquidity that LPs committed to be deployed at given distance from the specified pegs cannot be deployed).
+The market will also enter a liquidity auction if there are no static bids or static asks on the order book (as that means that the liquidity that LPs committed to be deployed at a given distance from the specified pegs cannot be deployed).
 
-The system will also enter liquidity monitoring auction under other technical conditions, for example if the best static bid / best static ask are wider than the tightest price monitoring bounds. 
+The market will also enter a liquidity monitoring auction under other technical conditions, for example if the best static bid / best static ask are wider than the tightest price monitoring bounds. 
 
 The triggering ratio above is set by the <NetworkParameter frontMatter={frontMatter} param="network parameter market.liquidity.targetstake.triggering.ratio" hideName={false} />.
 

@@ -4,7 +4,10 @@ title: Orders
 hide_title: false
 description: See the order types and when they're applicable for a market.
 ---
-An order is an instruction to buy or sell on specific market, and it can go long or short on the market's price. Placing an order does not guarantee it gets filled. 
+
+import NetworkParameter from '@site/src/components/NetworkParameter';
+
+An order is an instruction to buy or sell on a specific market, and it can go long or short on the market's price. Placing an order does not guarantee it gets filled. 
 
 :::info Try it out
 Place orders on markets using [Vega Console ↗](https://console.fairground.wtf), configured to the Fairground network, which only uses testnet assets.
@@ -38,7 +41,7 @@ The information needed by Vega to process an order:
 ## Order sizes
 The order size defines how much of a unit the user wants to buy or sell with their order. 
 
-Orders are filled if the price is achieved, and an order can fill partly, completely or not at all. This doesn't affect the original order size, but does effect the remaining order size. 
+Orders are filled if the price is achieved, and an order can fill partly, completely or not at all. This doesn't affect the original order size, but does affect the remaining order size. 
 
 Order sizes can be whole numbers or fractional, as long as the order is within the maximum number of decimal places allowable for the market. Any order containing more precision than this will be rejected. A market's decimal places are specified at the time of the market's proposal.
 
@@ -74,7 +77,7 @@ Pegged orders are orders that are a defined distance from a reference price (i.e
 
 A pegged order is not placed on the order book itself, but instead generates a limit order with the price generated based on the reference and offset value. As the price levels in the order book move around, the order's price on the order book also moves.
 
-The reference can only be positive and Vega applies it differently depending on if the order is a buy or sell. If the order is a `buy`, then the offset is taken away from the reference price. If the order is a `sell` they the offset is added to the reference price.
+The reference can only be positive and Vega applies it differently depending on if the order is a buy or sell. If the order is a `buy`, then the offset is taken away from the reference price. If the order is a `sell` then the offset is added to the reference price.
 
 #### Values available for pegged orders
 Pegged orders are restricted in what values can be used when they are created, and only the times in force of Good 'til Cancelled and Good 'til Time can be used.
@@ -130,7 +133,7 @@ A network order is triggered by the Vega network to close out a distressed trade
 * **Filled**: Orders can be fully or partially filled. If the entire order amount has traded, it's `fully filled`. If only some of the order has traded, it's `partially filled`
 * **Rejected**: If you don't have enough collateral to fill the margin requirements on an order, it will show up as `rejected`
 * **Cancelled**:  If you cancel an order, the status will be shown as `cancelled`
-* **Stopped**: If the the network cannot fill an order, based on the parameters you set, for example, then the order will show up as `stopped`
+* **Stopped**: If the network cannot fill an order, based on the parameters you set, for example, then the order will show up as `stopped`
 
 ## Times in force
 The following charts explain the times in force for orders and the statuses that they'll show, based on what happens in the network. 
@@ -221,6 +224,6 @@ If your amendment will change the price you're seeking or increase the order siz
 ### Cancel an order
 Market, limit and pegged orders that have not been fully filled can be cancelled. 
 
-Liquidity commitment orders can be cancelled, but the cancellation will only be accepted if there's enough liquidity on the market without those committment orders.
+Liquidity commitment orders can be cancelled, but the cancellation will only be accepted if there's enough liquidity on the market without those commitment orders.
 
 When trading using the APIs, a trader can cancel individual orders, all orders for their public key across all markets, or all orders for their public key on a single market.

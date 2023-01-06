@@ -7,7 +7,7 @@ let loadingMutex = false;
 
 // Where to link to if the user clicks on the component
 const networkApiUrl = {
-	TESTNET: "https://lb.testnet.vega.xyz/network/parameters",
+	TESTNET: "https://api.testnet.vega.xyz/api/v2/network/parameters",
 	MAINNET: "https://api.token.vega.xyz/network/parameters",
 };
 
@@ -35,9 +35,15 @@ export function restructureData(apiResponse) {
 	}
 
 	const dict = {};
-	apiResponse.networkParameters.forEach((a) => {
-		dict[a["key"]] = a["value"];
-	});
+	if (apiResponse.networkParameters.edges) {
+		apiResponse.networkParameters.edges.forEach(a => {
+			dict[a.node["key"]] = a.node["value"];
+		});
+	} else {
+		apiResponse.networkParameters.forEach((a) => {
+			dict[a["key"]] = a["value"];
+		});
+	}
 	return dict;
 }
 

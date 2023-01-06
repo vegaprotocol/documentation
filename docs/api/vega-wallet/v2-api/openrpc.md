@@ -10,7 +10,7 @@
 - [client.send_transaction](#clientsend_transaction): Send a transaction to the network.
 - [client.get_chain_id](#clientget_chain_id): Returns the chain ID of the network in use.
 - [admin.create_wallet](#admincreate_wallet): Creates a wallet with its first key-pair.
-- [admin.import_wallet](#adminimport_wallet): Import a wallet with its first key-pair with a recovery phrase and a version.
+- [admin.import_wallet](#adminimport_wallet): Import a wallet with its first key-pair with a recovery phrase and a key derivation version.
 - [admin.describe_wallet](#admindescribe_wallet): Returns the wallet base information.
 - [admin.list_wallets](#adminlist_wallets): Returns the list of the wallets present on the computer.
 - [admin.rename_wallet](#adminrename_wallet): Renames a wallet
@@ -36,7 +36,14 @@
 - [admin.sign_transaction](#adminsign_transaction): Sign a command using the specified wallet and public key.
 - [admin.sign_message](#adminsign_message): Sign any arbitrary message
 - [admin.verify_message](#adminverify_message): Verify any arbitrary signature
-- [admin.send_transaction](#adminsend_transaction): Send a signed transaction to a network
+- [admin.send_transaction](#adminsend_transaction): Sign & send a transaction to a network
+- [admin.send_raw_transaction](#adminsend_raw_transaction): Send a signed transaction to a network
+- [admin.start_service](#adminstart_service): Start a wallet service.
+- [admin.stop_service](#adminstop_service): Stop a wallet service.
+- [admin.list_connections](#adminlist_connections): List all the connections of a service.
+- [admin.close_connection](#adminclose_connection): Close the connection between a third-party application and a wallet.
+- [admin.close_connections_to_hostname](#adminclose_connections_to_hostname): Close the connection from the specified third-party application to any wallet.
+- [admin.close_connections_to_wallet](#adminclose_connections_to_wallet): Close the connection from any third-party application to the specified wallet.
 
 ---
 
@@ -60,9 +67,8 @@ However, it's not possible to have multiple connections on the same wallet for t
 This method should be the entry point of every third-party application. Once connected, see the method `get_permissions`.
 
 ### Parameters
-| Parameter name  |  Type  |  Description |
-|------------------|--------|--------|
-| **hostname** | string | The name of the third-party application initiating the connection. |
+
+None required
 
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
@@ -347,7 +353,7 @@ The user has to review the transaction.
 |------------------|--------|--------|
 | **token** | string | A unique connection token randomly generated for each new connection. It's used to access the protected methods. |
 | **publicKey** | string | The Vega public key to use. |
-| **encodedTransaction** | string | The transaction encoded using base-64. |
+| **transaction** | object | The transaction as a JSON object |
 
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
@@ -408,7 +414,7 @@ The user has to review the transaction.
 | **token** | string | A unique connection token randomly generated for each new connection. It's used to access the protected methods. |
 | **publicKey** | string | The Vega public key to use. |
 | **sendingMode** | string | The chosen mode to send the transaction:<br />- `TYPE_SYNC` returns the result of running the transaction.<br />- `TYPE_ASYNC` returns right away without waiting to hear if the transaction is even valid.<br />- `TYPE_COMMIT` waits until the transaction is committed in a block or until some timeout is reached or returns return right away if the transaction is not valid. |
-| **encodedTransaction** | string | The transaction encoded using base-64. |
+| **transaction** | object | The transaction as a JSON object |
 
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
@@ -509,7 +515,7 @@ An example of requesting the chain's ID
 
 ## `admin.create_wallet`
 
-This method creates a HD wallet (version 2) and generates its first key-pair the cryptographic algorithm ed25519.
+This method creates a HD wallet (with version 2 of the key derivation) and generates its first key-pair the cryptographic algorithm ed25519.
 
 The passphrase will be used to encrypt the wallet and its keys.
 
@@ -553,7 +559,7 @@ undefined
     "value": {
         "wallet": {
             "name": "my-wallet",
-            "version": 2,
+            "keyDerivationVersion": 2,
             "recoveryPhrase": "swing ceiling chaos green put insane ripple desk match tip melt usual shrug turkey renew icon parade veteran lens govern path rough page render",
             "filePath": "some/path/to/my-wallet"
         },
@@ -579,7 +585,7 @@ undefined
 
 ## `admin.import_wallet`
 
-This method imports a wallet using the specified recovery phrase and wallet version, and generates its first key-pair.
+This method imports a wallet using the specified recovery phrase and a key derivation version, and generates its first key-pair.
 
 The passphrase will be used to encrypt the wallet and its keys.
 
@@ -591,7 +597,7 @@ If successful, the wallet is ready to use for sending transaction.
 | **wallet** | string | - |
 | **passphrase** | string | - |
 | **recoveryPhrase** | string | - |
-| **version** | number | - |
+| **keyDerivationVersion** | number | - |
 
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
@@ -615,7 +621,7 @@ undefined
         "wallet": "my-wallet",
         "passphrase": "this-is-not-a-good-passphrase",
         "recoveryPhrase": "swing ceiling chaos green put insane ripple desk match tip melt usual shrug turkey renew icon parade veteran lens govern path rough page render",
-        "version": "2"
+        "keyDerivationVersion": "2"
     }
 }
 ```
@@ -627,7 +633,7 @@ undefined
     "value": {
         "wallet": {
             "name": "my-wallet",
-            "version": 2,
+            "keyDerivationVersion": 2,
             "filePath": "some/path/to/my-wallet"
         },
         "key": {
@@ -652,7 +658,7 @@ undefined
 
 ## `admin.describe_wallet`
 
-This method returns the wallet base information such as its name, ID, type and version. It doesn't return the keys nor the permissions.
+This method returns the wallet base information such as its name, ID, type and key derivation version. It doesn't return the keys nor the permissions.
 
 ### Parameters
 | Parameter name  |  Type  |  Description |
@@ -664,7 +670,7 @@ This method returns the wallet base information such as its name, ID, type and v
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
 | name | string | - | - |
-| version | number | - | - |
+| keyDerivationVersion | number | - | - |
 | id | string | - | - |
 | type | string | - | - |
 
@@ -693,9 +699,9 @@ undefined
     "name": "Success",
     "value": {
         "name": "my-wallet",
-        "version": 2,
+        "keyDerivationVersion": 2,
         "type": "HD Wallet",
-        "ID": "7ffa36b2fb99d8404e9448f0d2ce944055e64c36d895d1fde044c867bfdf779f"
+        "id": "7ffa36b2fb99d8404e9448f0d2ce944055e64c36d895d1fde044c867bfdf779f"
     }
 }
 ```
@@ -787,7 +793,7 @@ undefined
 ```json
 {
     "name": "Success",
-    "value": {}
+    "value": null
 }
 ```
 
@@ -827,7 +833,7 @@ undefined
 ```json
 {
     "name": "Success",
-    "value": {}
+    "value": null
 }
 ```
 
@@ -887,7 +893,7 @@ This method returns the network information.
 ### Parameters
 | Parameter name  |  Type  |  Description |
 |------------------|--------|--------|
-| **network** | string | - |
+| **name** | string | - |
 
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
@@ -923,9 +929,9 @@ undefined
     "name": "Success",
     "value": {
         "name": "local-network",
-        "level": "info",
+        "logLevel": "info",
         "tokenExpiry": "168h0m0s",
-        "port": "1789",
+        "port": 1789,
         "host": "localhost",
         "api": {
             "grpcConfig": {
@@ -1012,7 +1018,7 @@ undefined
 ```json
 {
     "name": "Success",
-    "value": {}
+    "value": null
 }
 ```
 
@@ -1026,7 +1032,7 @@ This method removes a network from the computer.
 ### Parameters
 | Parameter name  |  Type  |  Description |
 |------------------|--------|--------|
-| **network** | string | - |
+| **name** | string | - |
 
 ### Result: `Success`
 
@@ -1052,7 +1058,7 @@ undefined
 ```json
 {
     "name": "Success",
-    "value": {}
+    "value": null
 }
 ```
 
@@ -1480,7 +1486,7 @@ undefined
     "name": "Success",
     "value": {
         "masterPublicKey": "9df682a3c87d90567f260566a9c223ccbbb7529c38340cf163b8fe199dbf0f2e",
-        "filePath": "CqsBdGVzdC1jaGFpbi1UaHo5YzYACPfdurmpppHlogEQCqp9iAEIAhAPGkA5ODhlYWUzMjNhMDdmMTIzNjNjMTcwMjVjMjNlZTU4ZWEzMmFjMzkxMjM5OGUxNmJiMGI1Njk2OWY1N2FkYzUyIkA4MWFhZjk2NmU4ZjUxNDIzZjBiZDFkOTMzYWQ0NmY5NjJlMjNiY2Q3MTg4ZWQzZmUwZjUzZjRkYThhMzJhOWVlEpMBCoABYzg3NDVkODhlMWQ1YTBhOGE3NGI5YzRmN2QyMzQ3ZmQ5ZDY1NzIwYTQ3ZmYwNWU3YTZmZmYyOTA0NzhmOTU0M2NjM2E4MzJkNjBmYTJiNmY3ZTQ3YWJlMjE0MGIwOTEyNzBlNTAxZTA5MjVjNDg3NzEwMjViOTkyYTg1ZTAxMDQSDHZlZ2EvZWQyNTUxORgBgH0D0j5AOWRmNjgyYTNjODdkOTA1NjdmMjYwNTY2YTljMjIzY2NiYmI3NTI5YzM4MzQwY2YxNjNiOGZlMTk5ZGJmMGYyZQ=="
+        "encodedTransaction": "CqsBdGVzdC1jaGFpbi1UaHo5YzYACPfdurmpppHlogEQCqp9iAEIAhAPGkA5ODhlYWUzMjNhMDdmMTIzNjNjMTcwMjVjMjNlZTU4ZWEzMmFjMzkxMjM5OGUxNmJiMGI1Njk2OWY1N2FkYzUyIkA4MWFhZjk2NmU4ZjUxNDIzZjBiZDFkOTMzYWQ0NmY5NjJlMjNiY2Q3MTg4ZWQzZmUwZjUzZjRkYThhMzJhOWVlEpMBCoABYzg3NDVkODhlMWQ1YTBhOGE3NGI5YzRmN2QyMzQ3ZmQ5ZDY1NzIwYTQ3ZmYwNWU3YTZmZmYyOTA0NzhmOTU0M2NjM2E4MzJkNjBmYTJiNmY3ZTQ3YWJlMjE0MGIwOTEyNzBlNTAxZTA5MjVjNDg3NzEwMjViOTkyYTg1ZTAxMDQSDHZlZ2EvZWQyNTUxORgBgH0D0j5AOWRmNjgyYTNjODdkOTA1NjdmMjYwNTY2YTljMjIzY2NiYmI3NTI5YzM4MzQwY2YxNjNiOGZlMTk5ZGJmMGYyZQ=="
     }
 }
 ```
@@ -1621,11 +1627,13 @@ undefined
 {
     "name": "Success",
     "value": {
-        "publicKeys": {
-            "access": "read",
-            "restrictedKeys": [
-                "b5fd9d3c4ad553cb3196303b6e6df7f484cf7f5331a572a45031239fd71ad8a0"
-            ]
+        "permissions": {
+            "publicKeys": {
+                "access": "read",
+                "restrictedKeys": [
+                    "b5fd9d3c4ad553cb3196303b6e6df7f484cf7f5331a572a45031239fd71ad8a0"
+                ]
+            }
         }
     }
 }
@@ -1740,11 +1748,13 @@ undefined
 {
     "name": "Success",
     "value": {
-        "publicKeys": {
-            "access": "read",
-            "restrictedKeys": [
-                "b5fd9d3c4ad553cb3196303b6e6df7f484cf7f5331a572a45031239fd71ad8a0"
-            ]
+        "permissions": {
+            "publicKeys": {
+                "access": "read",
+                "restrictedKeys": [
+                    "b5fd9d3c4ad553cb3196303b6e6df7f484cf7f5331a572a45031239fd71ad8a0"
+                ]
+            }
         }
     }
 }
@@ -1852,7 +1862,7 @@ This method signs a transaction returning a base64-encoded transaction that can 
 | **chainId** | string | - |
 | **blockHeight** | integer | - |
 | network _(Optional)_ | integer | - |
-| **encodedCommand** | string | - |
+| **transaction** | object | The transaction as a JSON object |
 
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
@@ -1883,6 +1893,35 @@ This method signs any given message with a Vega public-key
 
 
 
+### Examples
+#### Sign a message
+undefined
+
+##### Parameters
+```json
+{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "admin.sign_message",
+    "params": {
+        "wallet": "my-wallet",
+        "passphrase": "this-is-not-a-good-passphrase",
+        "pubKey": "0101010101010101010101010101010101010101010101010101010101010101",
+        "encodedMessage": "U3VwZXIgc2VjcmV0IG1lc3NhZ2U="
+    }
+}
+```
+
+##### Result
+```json
+{
+    "name": "Success",
+    "value": {
+        "encodedSignature": "6a2Ud6yuNcnOaO8jaiTJJi8dZBQzvNySV2Tt2hD+YhVnz1dNxHGUavU2a1W1z0/1uX0n91x2jWXONMRpiiNODg=="
+    }
+}
+```
+
 ---
 
 
@@ -1909,6 +1948,33 @@ This method verifies any given signature with a Vega public-key
 
 ## `admin.send_transaction`
 
+This method signs a transaction returning a base64-encoded transaction that can be sent using the method `admin.send_transaction`
+
+### Parameters
+| Parameter name  |  Type  |  Description |
+|------------------|--------|--------|
+| **wallet** | string | - |
+| **passphrase** | string | - |
+| **pubKey** | string | - |
+| network _(Optional)_ | integer | - |
+| **sendingMode** | string | The chosen mode to send the transaction:<br />- `TYPE_SYNC` returns the result of running the transaction.<br />- `TYPE_ASYNC` returns right away without waiting to hear if the transaction is even valid.<br />- `TYPE_COMMIT` waits until the transaction is committed in a block or until some timeout is reached or returns return right away if the transaction is not valid. |
+| **transaction** | object | The transaction as a JSON object |
+
+### Result: `Success`
+| Result key  |  Type  |  Description | Example |
+|------------------|--------|--------|---------|
+| receivedAt | string | The date when the API received the request to send the transaction.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. | The date when the API received the request to send the transaction.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. |
+| sentAt | string | The date when the transaction has been sent to the network.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. | The date when the transaction has been sent to the network.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. |
+| transactionHash | string | The hash of the transaction. It's used to uniquely identify the transaction and can be used in the block explorer to retrieve it. | The hash of the transaction. It's used to uniquely identify the transaction and can be used in the block explorer to retrieve it. |
+| transaction | object | A transaction that has been signed by the wallet. | A transaction that has been signed by the wallet. |
+
+
+
+---
+
+
+## `admin.send_raw_transaction`
+
 This method sends a transaction that was signed using admin.sign_transaction into a network
 
 ### Parameters
@@ -1929,5 +1995,299 @@ This method sends a transaction that was signed using admin.sign_transaction int
 | transaction | object | A transaction that has been signed by the wallet. | A transaction that has been signed by the wallet. |
 
 
+
+---
+
+
+## `admin.start_service`
+
+This method starts a wallet service targeting the specified network.
+
+### Parameters
+| Parameter name  |  Type  |  Description |
+|------------------|--------|--------|
+| **network** | string | - |
+| **noVersionCheck** | boolean | - |
+
+### Result: `Success`
+
+
+
+### Examples
+#### Start the service
+undefined
+
+##### Parameters
+```json
+{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "admin.start_service",
+    "params": {
+        "network": "mainnet1",
+        "noVersionCheck": false
+    }
+}
+```
+
+##### Result
+```json
+{
+    "name": "Success",
+    "value": null
+}
+```
+
+---
+
+
+## `admin.stop_service`
+
+This method stops the wallet service targeting the specified network. This automatically disconnects all the wallets used in the service.
+
+It does not fail if there is no service running for this network.
+
+### Parameters
+| Parameter name  |  Type  |  Description |
+|------------------|--------|--------|
+| **network** | string | - |
+
+### Result: `Success`
+
+
+
+### Examples
+#### Stop a running service
+undefined
+
+##### Parameters
+```json
+{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "admin.stop_service",
+    "params": {
+        "network": "mainnet1"
+    }
+}
+```
+
+##### Result
+```json
+{
+    "name": "Success",
+    "value": null
+}
+```
+
+
+#### Stop a non-running service
+undefined
+
+##### Parameters
+```json
+{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "admin.stop_service",
+    "params": {
+        "network": "network-without-running-service"
+    }
+}
+```
+
+##### Result
+```json
+{
+    "name": "Success",
+    "value": null
+}
+```
+
+---
+
+
+## `admin.list_connections`
+
+This method lists all the connections of a service.
+
+### Parameters
+| Parameter name  |  Type  |  Description |
+|------------------|--------|--------|
+| **network** | string | - |
+
+### Result: `Success`
+| Result key  |  Type  |  Description | Example |
+|------------------|--------|--------|---------|
+| activeConnections | array | The list is sorted by hostname, then by wallet name. | The list is sorted by hostname, then by wallet name. |
+
+
+
+### Examples
+#### List the connection of a service
+undefined
+
+##### Parameters
+```json
+{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "admin.list_connections",
+    "params": {
+        "network": "mainnet1"
+    }
+}
+```
+
+##### Result
+```json
+{
+    "name": "Success",
+    "value": {
+        "activeConnections": [
+            {
+                "hostname": "console.vega.xyz",
+                "wallet": "my-btc-wallet"
+            },
+            {
+                "hostname": "vega.xyz",
+                "wallet": "my-btc-wallet"
+            },
+            {
+                "hostname": "vega.xyz",
+                "wallet": "my-eth-wallet"
+            }
+        ]
+    }
+}
+```
+
+---
+
+
+## `admin.close_connection`
+
+This method closes the connection between a third-party application and a wallet opened in the service that run against the specified network.
+
+### Parameters
+| Parameter name  |  Type  |  Description |
+|------------------|--------|--------|
+| **network** | string | - |
+| **hostname** | string | - |
+| **wallet** | string | - |
+
+### Result: `Success`
+
+
+
+### Examples
+#### Close a connection
+undefined
+
+##### Parameters
+```json
+{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "admin.close_connection",
+    "params": {
+        "network": "mainnet1",
+        "hostname": "vega.xyz",
+        "wallet": "my-btc-wallet"
+    }
+}
+```
+
+##### Result
+```json
+{
+    "name": "Success",
+    "value": null
+}
+```
+
+---
+
+
+## `admin.close_connections_to_hostname`
+
+This method closes all the connections from the specified hostname to any wallet opened in the service that run against the specified network.
+
+### Parameters
+| Parameter name  |  Type  |  Description |
+|------------------|--------|--------|
+| **network** | string | - |
+| **hostname** | string | - |
+
+### Result: `Success`
+
+
+
+### Examples
+#### Close all connections to a given hostname
+undefined
+
+##### Parameters
+```json
+{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "admin.close_connections_to_hostname",
+    "params": {
+        "network": "mainnet1",
+        "hostname": "vega.xyz"
+    }
+}
+```
+
+##### Result
+```json
+{
+    "name": "Success",
+    "value": null
+}
+```
+
+---
+
+
+## `admin.close_connections_to_wallet`
+
+This method closes all the connections from any hostname to the specified wallet opened in the service that run against the specified network.
+
+### Parameters
+| Parameter name  |  Type  |  Description |
+|------------------|--------|--------|
+| **network** | string | - |
+| **wallet** | string | - |
+
+### Result: `Success`
+
+
+
+### Examples
+#### Close all connections to a given wallet
+undefined
+
+##### Parameters
+```json
+{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "admin.close_connections_to_wallet",
+    "params": {
+        "network": "mainnet1",
+        "wallet": "my-btc-wallet"
+    }
+}
+```
+
+##### Result
+```json
+{
+    "name": "Success",
+    "value": null
+}
+```
 
 

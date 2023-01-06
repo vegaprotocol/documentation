@@ -22,7 +22,6 @@ type FutureProduct {
   dataSourceSpecForSettlementData: DataSourceDefinition!
   dataSourceSpecForTradingTermination: DataSourceDefinition!
   dataSourceSpecBinding: DataSourceSpecToFutureBinding!
-  settlementDataDecimals: Int!
 }
 ```
 
@@ -48,10 +47,6 @@ type FutureProduct {
 #### [<code style={{ fontWeight: 'normal' }}>FutureProduct.<b>dataSourceSpecBinding</b></code>](#)<Bullet />[`DataSourceSpecToFutureBinding!`](/testnet/api/graphql/objects/data-source-spec-to-future-binding) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > DataSourceSpecToFutureBinding tells on which property source data should be
 used as settlement data.
-> 
-
-#### [<code style={{ fontWeight: 'normal' }}>FutureProduct.<b>settlementDataDecimals</b></code>](#)<Bullet />[`Int!`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> The number of decimal places implied by the settlement data (such as price) emitted by the settlement oracle
 > 
 
 

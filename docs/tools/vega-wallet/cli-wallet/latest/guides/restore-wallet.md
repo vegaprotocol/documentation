@@ -18,7 +18,6 @@ You can see a list of available commands by running `./vegawallet -h` on MacOS a
 :::
 
 ## Restore a wallet
-
 Use your recovery phrase to restore a wallet with the `import` command. If you were not provided with a recovery phrase or have lost it, you will need to create a new wallet and generate new keys. Use the command below to import the plain-text file with your recovery phrase in it.
 
 You can use your previous wallet name or choose a new one. You'll also need to choose a passphrase.
@@ -54,9 +53,11 @@ Once you've imported your wallet, you can carry on with running it and interacti
 
 ## Common errors
 
-### I restored my wallet but the generated keys are different.
+### I restored my wallet but the generated keys are different
 * Make sure you used the right recovery phrase for that wallet. If your recovery phrase is incorrect, it will either fail or you will end up creating a new wallet with new keys.
-* If your wallet is version 1, restore it using the `--version` flag. See the instructions below.
+* If you have access to the previous wallet, use the command `vegawallet describe --wallet "MY_WALLET_NAME"` to see what key derivation version your wallet uses: 1 or 2.
+* If your wallet is key derivation version 1, restore it using the `--version` flag. See the instructions below.
+* If your wallet is key derivation version 2, you can restore without the `--version` flag.
 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">

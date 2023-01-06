@@ -30,7 +30,7 @@ Restricted mainnet is the first decentralised version of the Vega network. The f
 
 Although restricted mainnet is a live, decentralised network that allows tokenholders to interact with it, it is also an **extended test phase**. 
 
-Its functionality is limited and is riskier than networks that will follow it, and involves regularly scheduled software upgrades and downtime. There will probably some growing pains as the network is stress-tested and upgrades are rolled out.  
+Its functionality is limited and is riskier than networks that will follow it, and involves regularly scheduled software upgrades and downtime. There will probably be some growing pains as the network is stress-tested and upgrades are rolled out.  
 
 ## How can I use Vega?
 
@@ -43,7 +43,7 @@ Its functionality is limited and is riskier than networks that will follow it, a
 * [Fairground token interface](https://token.fairground.wtf): You can also try out the interface using testnet tokens, if you want to familiarise yourself with it first.
 
 #### Fairground, Vega's testnet
-* [Learn about Fairground](https://fairground.wtf): Though trading isn't enabled on mainnet, you can try trading on Fairground. Place an order, track your positions, and explore the margin mechanism using Fairground. Keep an eye on the site for incentive opportunties, too. 
+* [Learn about Fairground](https://fairground.wtf): Though trading isn't enabled on mainnet, you can try trading on Fairground. Place an order, track your positions, and explore the margin mechanism using Fairground. Keep an eye on the site for incentive opportunities, too. 
 * [Share your proposal on Discord](https://vega.xyz/discord): If you propose a market, let everyone know on Discord so that people can vote on it. 
 
 ## How can I contribute to Vega?

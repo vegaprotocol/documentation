@@ -1,6 +1,6 @@
 
   ```bash
-vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --network fairground ^
+vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_key --network fairground ^
 "{^
 \"proposalSubmission\": {^
  \"rationale\": {^
@@ -10,15 +10,15 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
  \"terms\": {^
   \"newMarket\": {^
    \"changes\": {^
+    \"lpPriceRange\": \"10\",^
     \"decimalPlaces\": \"5\",^
     \"positionDecimalPlaces\": \"5\",^
     \"instrument\": {^
-     \"name\": \"Oranges Daily\",^
-     \"code\": \"ORANGES.24h\",^
+     \"name\": \"Apples Yearly (2022)\",^
+     \"code\": \"APPLES.22\",^
      \"future\": {^
       \"settlementAsset\": \"8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4\",^
       \"quoteName\": \"tEuro\",^
-      \"settlementDataDecimals\": 5,^
       \"dataSourceSpecForSettlementData\": {^
        \"external\": {^
         \"oracle\": {^
@@ -33,7 +33,8 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
           {^
            \"key\": {^
             \"name\": \"prices.BTC.value\",^
-            \"type\": \"TYPE_INTEGER\"^
+            \"type\": \"TYPE_INTEGER\",^
+            \"numberDecimalPlaces\": \"5\"^
            },^
            \"conditions\": [^
             {^
@@ -77,8 +78,8 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
      }^
     },^
     \"metadata\": [^
-     \"sector:energy\",^
      \"sector:tech\",^
+     \"sector:health\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -109,8 +110,8 @@ vegawallet.exe command send --wallet your_walletname --pubkey your_public_key --
     }^
    }^
   },^
-  \"closingTimestamp\": 1669930413,^
-  \"enactmentTimestamp\": 1670016813^
+  \"closingTimestamp\": 1673982487,^
+  \"enactmentTimestamp\": 1674068887^
  }^
 }^
 }"

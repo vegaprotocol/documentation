@@ -17,9 +17,9 @@ The rationale behind the proposal
 
 ```graphql
 type ProposalTerms {
-  closingDatetime: String!
-  enactmentDatetime: String
-  validationDatetime: String
+  closingDatetime: Timestamp!
+  enactmentDatetime: Timestamp
+  validationDatetime: Timestamp
   change: ProposalChange!
 }
 ```
@@ -27,18 +27,18 @@ type ProposalTerms {
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>ProposalTerms.<b>closingDatetime</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>ProposalTerms.<b>closingDatetime</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time and date when voting closes for this proposal.
 Constrained by "minClose" and "maxClose" network parameters.
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>ProposalTerms.<b>enactmentDatetime</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>ProposalTerms.<b>enactmentDatetime</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time and date when this proposal is executed (if passed). Note that it has to be after closing date time.
 Constrained by "minEnactInSeconds" and "maxEnactInSeconds" network parameters.
 Note: Optional as free form proposals do not require it.
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>ProposalTerms.<b>validationDatetime</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>ProposalTerms.<b>validationDatetime</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time and when node validation of the proposal stops, accepted only with new asset proposals
 > 
 

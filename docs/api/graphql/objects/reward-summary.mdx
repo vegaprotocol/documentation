@@ -19,11 +19,6 @@ No description
 type RewardSummary {
   asset: Asset!
   amount: String!
-  rewards(
-  skip: Int
-  first: Int
-  last: Int
-): [Reward]
   rewardsConnection(
   assetId: ID
   pagination: Pagination
@@ -40,20 +35,6 @@ type RewardSummary {
 
 #### [<code style={{ fontWeight: 'normal' }}>RewardSummary.<b>amount</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Total quantity of rewards awarded in this asset
-> 
-
-#### [<code style={{ fontWeight: 'normal' }}>RewardSummary.<b>rewards</b></code>](#)<Bullet />[`[Reward]`](/testnet/api/graphql/objects/reward) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
-> List of individual reward payouts, ordered by epoch
-> ##### [<code style={{ fontWeight: 'normal' }}>RewardSummary.rewards.<b>skip</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
-> Pagination skip
-> 
-
-##### [<code style={{ fontWeight: 'normal' }}>RewardSummary.rewards.<b>first</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
-> Pagination first element
-> 
-
-##### [<code style={{ fontWeight: 'normal' }}>RewardSummary.rewards.<b>last</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
-> Pagination last element
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>RewardSummary.<b>rewardsConnection</b></code>](#)<Bullet />[`RewardsConnection`](/testnet/api/graphql/objects/rewards-connection) <Badge class="secondary" text="object"/>

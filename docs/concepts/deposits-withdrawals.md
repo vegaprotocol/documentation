@@ -2,6 +2,7 @@
 sidebar_position: 5
 title: Deposits and withdrawals
 hide_title: false
+description: Deposits and withdrawals go through a bridge contract.
 ---
 Assets used for trading, paying fees, funding rewards, and providing liquidity need to be deposited using a bridge contract, and can be withdrawn back into an Ethereum wallet if they are not being used for margin or liquidity commitment.
 
@@ -32,7 +33,7 @@ The first assets that will be available for interacting with markets on Vega wil
 
 An asset can then be deposited into the ERC-20 bridge contract. The funds in that smart contract will then be made available to the user's chosen Vega public key. 
 
-Note: Associated and deposited are not equivalent, as deposited tokens are held within the ERC-20 bridge contract, and associated tokens are held in the staking bridge contract (or in the vesting contract for locked/unredeemed tokens). The difference is that tokens deposited to the ERC-20 bridge are under the control of the Vega network whereas those associated with a Vega key remain solely in the control of the original holder -- you cannot lose your associated/steked tokens.
+Note: Associated and deposited are not equivalent, as deposited tokens are held within the ERC-20 bridge contract, and associated tokens are held in the staking bridge contract (or in the vesting contract for locked/unredeemed tokens). The difference is that tokens deposited to the ERC-20 bridge are under the control of the Vega network whereas those associated with a Vega key remain solely in the control of the original holder -- you cannot lose your associated/staked tokens.
 
 ### Lifetime deposit limits 
 During alpha mainnet, the ERC-20 bridge smart contract limits how much can ever be deposited from an Ethereum address. This is done in an abundance of caution, to assure users in the face of recent bridge hacks that they would have only a small amount at risk at any point. 
@@ -40,11 +41,11 @@ During alpha mainnet, the ERC-20 bridge smart contract limits how much can ever 
 If, however, a user wanted to bypass those limits and understood the risks to their assets, they could run `exempt_depositor()` on the [ERC-20 bridge contract](../api/bridge#erc20-asset-bridge) for each asset, after which transactions greater than deposit limit for the asset would be allowed.
 
 ### Depositing ERC-20 assets
-Deposits go through the ERC0-20 bridge smart contract. Every type of asset supported by and voted into Vega will have a bridge, but for the time being there is only an ERC-20 bridge.
+Deposits go through the ERC-20 bridge smart contract. Every type of asset supported by and voted into Vega will have a bridge, but for the time being there is only an ERC-20 bridge.
 
-When a participant wants to deposit assets onto a Vega key, they need to call a deposit function on the ERC20 bridge specifying the Vega public key to deposit to, and the quantity of the specified asset that the Vega key should receive. For this to succeed, the briodge contract must be [approved](https://docs.openzeppelin.com/contracts/2.x/api/token/erc20#IERC20-approve-address-uint256-) for at least the amount of the deposit.
+When a participant wants to deposit assets onto a Vega key, they need to call a deposit function on the ERC20 bridge specifying the Vega public key to deposit to, and the quantity of the specified asset that the Vega key should receive. For this to succeed, the bridge contract must be [approved](https://docs.openzeppelin.com/contracts/2.x/api/token/erc20#IERC20-approve-address-uint256-) for at least the amount of the deposit.
 
-Once deposited, the assets are held in the [asset pool smart contract](../api/bridge/index.md#erc20-asset-bridge) for security, as the bridge can be disconnected by a quroum of validators to prevent it accessing funds if a bug is found and withdrawals need to be stopped temporarily. This also makes contract updates easier and less risky.
+Once deposited, the assets are held in the [asset pool smart contract](../api/bridge/index.md#erc20-asset-bridge) for security, as the bridge can be disconnected by a quorum of validators to prevent it accessing funds if a bug is found and withdrawals need to be stopped temporarily. This also makes contract updates easier and less risky.
 
 :::note Go deeper
 Before running the deposit function, you must run the ERC20-standard approve function to authorise the bridge smart contract as a spender of the target token. This will only allow a specific amount of that token to be used by the bridge. This can be done directly or through a Vega app.
@@ -52,7 +53,7 @@ Before running the deposit function, you must run the ERC20-standard approve fun
 Read about the ERC-20 token standard: [EIP-20: Token Standard proposal ↗](https://docs.openzeppelin.com/contracts/2.x/api/token/erc20#IERC20)
 :::
 
-After a successful deposit transaction, wheter done directly or through Vega Console, the `Asset_Deposited` event will be emitted for use by the Vega event queue.
+After a successful deposit transaction, whether done directly or through Vega Console, the `Asset_Deposited` event will be emitted for use by the Vega event queue.
 
 The transaction is recognised by the Vega event queue and packaged as an event, which is then submitted to the validator nodes to verify the event contents against an Ethereum node that Vega validators also run.
 
@@ -80,7 +81,7 @@ To remove assets from the Vega network, submit a withdrawal request via a Vega a
 This request, if valid, will be put through consensus - the validators sign a multi-signature withdrawal order bundle for the ERC-20 bridge. The bridge validates the bundle and then releases the funds to the chosen Ethereum wallet.
 
 
-If it's a successful withdrawal transaction, the ERC20 bridge will emit an `Asset_Withdrawn` event, and confirms to the Vega network that the withdrawal has been completed.
+If it's a successful withdrawal transaction, the ERC20 bridge will emit an `Asset_Withdrawn` event, and confirm to the Vega network that the withdrawal has been completed.
 
 :::note Read more
 [ERC20 bridge logic API documentation](../api/bridge/contracts/ERC20_Bridge_Logic.md#withdraw_asset)
@@ -101,7 +102,7 @@ Once the delay time has passed, and the bundle is valid, **the withdrawal must b
 :::tip Query for data
 You can see the threshold and delay for withdrawals in [Vega Console ↗](https://console.fairground.wtf).
 
-Alternatively, see the withdraw threshold using a GraphQL query for the asset, and its asset source [ERC20](../api/graphql/objects/erc20.mdx).
+Alternatively, see the withdrawal threshold using a GraphQL query for the asset, and its asset source [ERC20](../api/graphql/objects/erc20.mdx).
 :::
 
 ### Diagrams: Withdrawals

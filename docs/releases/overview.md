@@ -26,6 +26,56 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Pre-release Versions 0.65.0 and 0.65.1 combined | 2022-12-23
+This version was released to the Vega testnet on 23 December 2022.
+
+The final scheduled testnet release of 2022 has introduced some refactors to the liquidity provision (LP) code. The protocol has been changed so LP margins will not be affected by the probability of trading, because that would make the job of being an LP overly difficult. Similarly, the protocol has been redesigned to discourage LPs from posting orders too far away from the mid price. This ensures that liquidity provided is 'useful' liquidity. Doing this refactor now addresses these points before liquidity providers integrate with the protocol, both for the mainnet sims and the Alpha Mainnet release.
+
+The way snapshot data is stored and retrieved has been improved to manage the memory load during these processes. This combined with some Postgres configuration changes introduces the first of a set of planned improvements to the network stability. This will be further updated and proved out in the incentives running over the coming weeks.
+
+Finally as a parting gift to 2022, the team has added a couple of additional APIs. One allows users to query the reward types and amounts distributed for a given epoch and the other can show the liquidity score in the market data response.
+
+This deployment brings with it many other fixes and improvements leading up to Alpha Mainnet; check out the full details of this combined release in the Vega core [0.65.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.65.0) and [0.65.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.65.1) release pages.
+
+:::caution Breaking changes
+**Market definition API**: The market definition API has been extended with the new field for LP price range, this has resulted in a breaking change.
+**Data source decimal places**: The decimal places are now defined in the oracle data source and removed from the market definition resulting in a breaking change.
+
+To find out more please see these issues [6955 ↗](https://github.com/vegaprotocol/vega/issues/6955) and [6645 ↗](https://github.com/vegaprotocol/vega/issues/6645) respectively.
+:::
+
+:::warning Deprecations
+**Vega Wallet**: A number of recent changes have deprecated commands in the Vega CLI wallet, these will be removed in the next release. 
+
+To find out more please see these issues [6887 ↗](https://github.com/vegaprotocol/vega/issues/6887), [6957 ↗](https://github.com/vegaprotocol/vega/issues/6957), [6963 ↗](https://github.com/vegaprotocol/vega/issues/6963), [7067 ↗](https://github.com/vegaprotocol/vega/issues/7067), [7069 ↗](https://github.com/vegaprotocol/vega/issues/7069) and [7079 ↗](https://github.com/vegaprotocol/vega/issues/7079)
+:::
+
+### Pre-release Versions 0.63.0, 0.63.1, 0.63.2 and 0.64.0 combined | 2022-12-09
+This version was released to the Vega testnet on 09 December 2022.
+
+As we approach the end of 2022 we are still pushing out some awesome updates to testnet. Any eagle eyed followers will have seen the recent demo on Twitch sharing the outputs of the performance testing. This has resulted in a few new features to help maintain the stability of the network as usage scales up:
+
+- [Network wide limits](https://github.com/vegaprotocol/specs/blob/master/protocol/0078-NWLI-network_wide_limits.md) will allow the community to tune the maximum number of pegged orders on a market and the number of LP shapes on the network. The expectation is that these will be increased via governance as the protocol is adopted as the performance and interplay between the core and data nodes is better understood in mainnet.
+- [Vega transaction gas costs and priorities](https://github.com/vegaprotocol/specs/blob/master/protocol/0079-TGAP-transaction_gas_and_priority.md) Vega doesn't charge users gas costs per transaction, however, there are still constraints in the system processing capacity. In order to ensure liveness, each transaction will have an associated gas cost. This allows the protocol to ensure that each block will contain only transactions up to a certain block "gas limit".
+
+This deployment brings with it many other fixes and improvements leading up to Alpha Mainnet; check out the full details of this combined release in the Vega core [0.63.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.63.0), [0.63.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.63.1), [0.63.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.63.2) and [0.64.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.64.0) release pages.
+
+
+:::warning Deprecations
+**Vega Wallet**: A number of changes have been introduced resulting in the deprecation of commands in the Vega CLI wallet. 
+
+These will be removed in the next release. 
+
+To find out more please see the issues [7065 ↗](https://github.com/vegaprotocol/vega/issues/7065), [7066 ↗](https://github.com/vegaprotocol/vega/issues/7066) and [7068 ↗](https://github.com/vegaprotocol/vega/issues/7068)
+:::
+
+:::caution Breaking changes
+**Data node V1 APIs removed**: As flagged previously, the data node V1 APIs have now been removed. 
+
+This release also introduces a number of [breaking  changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0630) that should be reviewed if you are using data node APIs or starting to use the V2 wallet APIs.
+:::
+
+
 ### Pre-release Versions 0.61.0, 0.62.0 and 0.62.1 combined | 2022-11-11
 This version was released to the Vega testnet on 11 November, 2022.
 
@@ -303,7 +353,7 @@ With the introduction of the [v2 wallet API](../api/vega-wallet/v2-api/get-start
 #### Critical Bug fixes
 
 #### Data nodes serve stale data if their Vega node dies
-It was identified that if a core node fails the the validators data-node can serve stale data. In order to resolve this, the data node team has added headers `X-Block-Height`, `X-Block-Timestamp` and `X-Vega-Connection` to all API responses. Using this approach will not break any current client implementations that rely on a 200 status code, but gives a clear indicator of the state of the API responses. This work was done in issue [5971 ↗](https://github.com/vegaprotocol/vega/issues/5971).
+It was identified that if a core node fails the validators data-node can serve stale data. In order to resolve this, the data node team has added headers `X-Block-Height`, `X-Block-Timestamp` and `X-Vega-Connection` to all API responses. Using this approach will not break any current client implementations that rely on a 200 status code, but gives a clear indicator of the state of the API responses. This work was done in issue [5971 ↗](https://github.com/vegaprotocol/vega/issues/5971).
 
 #### Asset cache was returning stale data
 During QA testing, an asset which has been proposed, enabled and listed was being reported as `STATUS_PROPOSED`, when it should have been `STATUS_ENABLED`. This was due to fetching an asset by ID after it had been updated, but before the transaction was committed leading to a poisoned cache that returned stale values. This work was done in issue [5687 ↗](https://github.com/vegaprotocol/vega/issues/5687).

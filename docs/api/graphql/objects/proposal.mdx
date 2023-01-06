@@ -21,7 +21,7 @@ type Proposal {
   reference: String!
   party: Party!
   state: ProposalState!
-  datetime: String!
+  datetime: Timestamp!
   rationale: ProposalRationale!
   terms: ProposalTerms!
   votes: ProposalVotes!
@@ -53,7 +53,7 @@ type Proposal {
 > State of the proposal
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>datetime</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>datetime</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time and date when the proposal reached Vega network
 > 
 
@@ -97,11 +97,11 @@ type Proposal {
 
 ### Returned by
 
-[`networkParametersProposals`](/testnet/api/graphql/queries/network-parameters-proposals)  <Badge class="secondary" text="query"/><Bullet />[`newAssetProposals`](/testnet/api/graphql/queries/new-asset-proposals)  <Badge class="secondary" text="query"/><Bullet />[`newFreeformProposals`](/testnet/api/graphql/queries/new-freeform-proposals)  <Badge class="secondary" text="query"/><Bullet />[`newMarketProposals`](/testnet/api/graphql/queries/new-market-proposals)  <Badge class="secondary" text="query"/><Bullet />[`proposal`](/testnet/api/graphql/queries/proposal)  <Badge class="secondary" text="query"/><Bullet />[`proposals`](/testnet/api/graphql/queries/proposals)  <Badge class="secondary" text="query"/><Bullet />[`proposals`](/testnet/api/graphql/subscriptions/proposals)  <Badge class="secondary" text="subscription"/><Bullet />[`updateMarketProposals`](/testnet/api/graphql/queries/update-market-proposals)  <Badge class="secondary" text="query"/>
+[`proposal`](/testnet/api/graphql/queries/proposal)  <Badge class="secondary" text="query"/><Bullet />[`proposals`](/testnet/api/graphql/subscriptions/proposals)  <Badge class="secondary" text="subscription"/>
 
 ### Member of
 
-[`Market`](/testnet/api/graphql/objects/market)  <Badge class="secondary" text="object"/><Bullet />[`Party`](/testnet/api/graphql/objects/party)  <Badge class="secondary" text="object"/><Bullet />[`ProposalEdge`](/testnet/api/graphql/objects/proposal-edge)  <Badge class="secondary" text="object"/>
+[`Market`](/testnet/api/graphql/objects/market)  <Badge class="secondary" text="object"/><Bullet />[`ProposalEdge`](/testnet/api/graphql/objects/proposal-edge)  <Badge class="secondary" text="object"/>
 
 ### Implemented by
 

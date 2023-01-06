@@ -19,8 +19,8 @@ wants to get from the oracle engine.
 ```graphql
 type DataSourceSpec {
   id: ID!
-  createdAt: String!
-  updatedAt: String
+  createdAt: Timestamp!
+  updatedAt: Timestamp
   data: DataSourceDefinition!
   status: DataSourceSpecStatus!
 }
@@ -33,11 +33,11 @@ type DataSourceSpec {
 > ID is a hash generated from the DataSourceSpec data.
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>DataSourceSpec.<b>createdAt</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>DataSourceSpec.<b>createdAt</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano creation date time
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>DataSourceSpec.<b>updatedAt</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>DataSourceSpec.<b>updatedAt</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
 > RFC3339Nano last updated timestamp
 > 
 
