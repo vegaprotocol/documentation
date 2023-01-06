@@ -78,7 +78,6 @@
      },
      "metadata": [
       "sector:tech",
-      "sector:health",
       "source:docs.vega.xyz"
      ],
      "priceMonitoringParameters": {
@@ -95,7 +94,7 @@
        "timeWindow": "3600",
        "scalingFactor": 10
       },
-      "triggeringRatio": 0.7,
+      "triggeringRatio": "0.7",
       "auctionExtension": "1"
      },
      "logNormal": {
@@ -104,13 +103,13 @@
       "params": {
        "mu": 0,
        "r": 0.016,
-       "sigma": 0.5
+       "sigma": 0.3
       }
      }
     }
    },
-   "closingTimestamp": 1673982487,
-   "enactmentTimestamp": 1674068887
+   "closingTimestamp": 1674663903,
+   "enactmentTimestamp": 1674750303
   }
  }
 }'

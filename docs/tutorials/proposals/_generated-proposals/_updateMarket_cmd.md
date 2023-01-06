@@ -12,7 +12,7 @@
     "changes": {
      "lpPriceRange": "11",
      "instrument": {
-      "code": "APPLES.22",
+      "code": "ORANGES.24h",
       "future": {
        "quoteName": "tEuro",
        "dataSourceSpecForSettlementData": {
@@ -74,8 +74,7 @@
       }
      },
      "metadata": [
-      "sector:energy",
-      "sector:materials",
+      "sector:tech",
       "source:docs.vega.xyz"
      ],
      "priceMonitoringParameters": {
@@ -98,8 +97,8 @@
      }
     }
    },
-   "closingTimestamp": 1673982487,
-   "enactmentTimestamp": 1674068887
+   "closingTimestamp": 1674663903,
+   "enactmentTimestamp": 1674750303
   }
  }
 }'
