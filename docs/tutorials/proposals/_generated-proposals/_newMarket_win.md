@@ -78,8 +78,8 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
      }^
     },^
     \"metadata\": [^
-     \"sector:health\",^
      \"sector:energy\",^
+     \"sector:materials\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -105,13 +105,13 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
-      \"sigma\": 0.5^
+      \"sigma\": 0.3^
      }^
     }^
    }^
   },^
-  \"closingTimestamp\": 1674666708,^
-  \"enactmentTimestamp\": 1674753108^
+  \"closingTimestamp\": 1674678991,^
+  \"enactmentTimestamp\": 1674765391^
  }^
 }^
 }"
