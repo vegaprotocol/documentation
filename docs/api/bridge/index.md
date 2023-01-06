@@ -14,7 +14,7 @@ There are three main components to the Vega <-> Ethereum bridge
 
 Allows users to stake locked or unlocked Vega tokens.
 
-For an introduction to staking on Vega, [check out our Concepts section](../../concepts/vega-chain/proof-of-stake) or for a higher level overview [see this blog post](https://blog.vega.xyz/staking-on-vega-17f22113e3df).
+For an introduction to staking on Vega, [check out our Concepts section](../../concepts/vega-chain/proof-of-stake.md#bridges-used-for-staking) or for a higher level overview [see this blog post](https://blog.vega.xyz/staking-on-vega-17f22113e3df).
 
 ## [ERC20 asset bridge](./interfaces/IERC20_Bridge_Logic.md)
 <EthAddresses frontMatter={frontMatter} show={["ERC20Bridge"]} />
