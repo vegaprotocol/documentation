@@ -14,8 +14,8 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
     \"decimalPlaces\": \"5\",^
     \"positionDecimalPlaces\": \"5\",^
     \"instrument\": {^
-     \"name\": \"Apples Yearly (2022)\",^
-     \"code\": \"APPLES.22\",^
+     \"name\": \"Oranges Daily\",^
+     \"code\": \"ORANGES.24h\",^
      \"future\": {^
       \"settlementAsset\": \"8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4\",^
       \"quoteName\": \"tEuro\",^
@@ -78,7 +78,8 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
      }^
     },^
     \"metadata\": [^
-     \"sector:tech\",^
+     \"sector:health\",^
+     \"sector:energy\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -104,13 +105,13 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
-      \"sigma\": 0.3^
+      \"sigma\": 0.5^
      }^
     }^
    }^
   },^
-  \"closingTimestamp\": 1674663903,^
-  \"enactmentTimestamp\": 1674750303^
+  \"closingTimestamp\": 1674666708,^
+  \"enactmentTimestamp\": 1674753108^
  }^
 }^
 }"
