@@ -1,6 +1,6 @@
 ---
-sidebar_position: 4
-title: Network 
+sidebar_position: 5
+title: Network
 vega_network: TESTNET
 hide_title: false
 ---
@@ -124,8 +124,3 @@ See how a validator node can restore from a checkpoint.
 ## Fast syncing (Snapshots) 
 ## Fairness (Wendy)
  -->
-
-
-
-
-

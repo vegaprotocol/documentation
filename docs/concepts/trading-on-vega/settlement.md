@@ -9,7 +9,7 @@ Vega can be used to create cash-settled futures markets, meaning they are margin
 Settlement is the process of moving collateral between accounts when a position is closed, when the market's mark price changes, and when the market expires. Vega operates as a decentralised 'central counterparty' that facilitates settlement.
 
 More specifically, settlement on markets occurs when:
-* A position is fully or partially closed, with settlement occuring for the closed volume. An open position is closed when the open position's holder enters into a countertrade
+* A position is fully or partially closed, with settlement occurring for the closed volume. An open position is closed when the open position's holder enters into a countertrade
 * The protocol runs mark to market settlement
 * A market expires, at which point all open positions in the market are settled
 
@@ -77,7 +77,7 @@ If the full required amount cannot be collected from all three accounts, then as
 When collateral is collected, ledger entries that adhere to double-entry accounting are created to record the actual transfers. The destination is the settlement account for the market, which will have a 0 balance before the settlement process begins, and again after it completes.
  
 ### Distribution
-If all the requested amounts are succesfully transferred to the settlement account, then the amount collected will match the amount to be distributed and the participants whose moves were positive receive what they're owed in their margin accounts. 
+If all the requested amounts are successfully transferred to the settlement account, then the amount collected will match the amount to be distributed and the participants whose moves were positive receive what they're owed in their margin accounts. 
 
 :::note Read more 
 * [Insurance pools](/testnet/concepts/trading-on-vega/market-protections#insurance-pools)

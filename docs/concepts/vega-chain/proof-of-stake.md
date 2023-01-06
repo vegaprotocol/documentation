@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 title: Delegated proof of stake
 vega_network: TESTNET
 hide_title: false
@@ -28,6 +28,8 @@ Read more: [Penalties](#penalties)
 
 ## VEGA token
 Vega uses the VEGA ERC20 token for governance, which includes nominating validators to run nodes, and creating and voting on governance proposals.
+
+If a token is delegated, its governance voting rights stay with the tokenholder and are not transferred to any validators that the tokenholder nominates.
 
 A VEGA token (or fraction) can be either dissociated or associated with a Vega key:
 
@@ -86,12 +88,6 @@ There are two [spam pretection](network.md#spam-protection) measures related to 
 * A participant who wants to submit a nomination (delegation) transaction, needs to have a balance of at least  <NetworkParameter frontMatter={frontMatter} param="spam.protection.delegation.min.tokens" hideName={true} suffix="tokens" formatter="governanceToken" />  to be able to submit the transaction.
 * A participant cannot send more than <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.delegations" hideName={true} /> nomination (delegation) transactions per day.
 
-Read more: [Rewards for staking](#rewards)
-
-:::info Try it out
-VEGA tokenholders can use **[token.fairground.wtf](https://token.fairground.wtf)** to associate their tokens and nominate validators. A Vega Wallet and Ethereum wallet are both required. CoinList custodial users should confirm with CoinList how staking works for them.
-:::
-
 ## Automatic nomination
 Automatic nomination is triggered when an individual tokenholder has manually nominated 95%+ of their associated tokens. At that point, any newly associated tokens will automatically be nominated to the same validators, in the same proportion.
 
@@ -113,37 +109,3 @@ The action is announced in the next available block of the same epoch, but the n
 A participant can choose to un-nominate at any time, and the action is executed immediately following the block it is announced in (within the same epoch). 
 
 The participant will not receive any rewards from the validator in that epoch. The tokens are marked as available to the participant.
-
-## Staking rewards & penalties
-
-### Rewards
-Validators and nominators both receive incentives for securing the network. The amount of those incentives, rewarded as VEGA, depends on factors including how much stake is nominated. 
-
-**To be considered for staking rewards, a tokenholder must associate VEGA to a Vega key and nominate one or more validators.**
-
-:::info Try it out
-Try out staking on **[token.fairground.wtf](https://token.fairground.wtf)** to try out associating testnet tokens and nominating validators. Staking rewards are paid into your Vega wallet after each epoch ends. 
-
-Staking rewards must be withdrawn to an Ethereum wallet, and then associated to a Vega wallet, before they can be staked.
-:::
-
-In each epoch, rewards are distributed among validators in proportion to the number of tokens they represent (i.e., their total stake). The total stake includes a validator's own stake and the tokens nominated to that validator. Of this reward, a fixed amount is distributed among the tokenholders the validator represents.
-
-The reward scheme uses a linear reward curve - the reward per staked token is independent of the behaviour of other tokenholders. 
-
-This holds for validators as well, with the exception that there is a maximum amount of stake an individual validator can take on. To avoid validators getting too big, the rewards a validator gets, and thus can distribute to its nominators, is capped. In other words, the reward per token is decreases if a validator exceeds a maximum size.
-
-At the end of each epoch, reward payments are calculated per active validator, and then some of that reward is divided between their nominators. 
-
-Read more: [Risks of over-staked validators](#too-much-stake)
- 
-:::note Go deeper
-**[Staking rewards spec](https://github.com/vegaprotocol/specs/blob/master/protocol/0061-REWP-pos_rewards.md)** - more detail on how rewards are calculated and will be in future iterations. 
-:::
-
-### Penalties
-Validator nodes that don't meet the requirements or prove to be bad actors will have rewards withheld, and a vaildator's nominators may also receive fewer (or no) rewards. 
-
-There is no token slashing, i.e., a tokenholder cannot lose their tokens through any actions of a validator.
-
-Read more: [How a validator node's performance is determined](#validator-node-performance)
