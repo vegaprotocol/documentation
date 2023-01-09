@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 6
 title: Data nodes
 vega_network: TESTNET
 hide_title: false
@@ -89,12 +89,20 @@ PostgreSQL database schemas are liable to change without warning and without dep
 ## Data retention
 A data node's data retention time allows data node operator to store historical data for specific amounts of time.
 
-Data types are grouped into categories, and the retention time for each type can be changed in the data node's `config.toml` file.
+Data types are grouped into categories, and the retention time for each type can be changed in the data node's `config.toml` file. You can configure a data node so that all data older than any time period (e.g. `1m`, `1h`, `1h:22m:32s`, `1 month`) is deleted, or extend the default times for the retention mode you choose.
 
 Some data can be saved in detail, and in a less-detailed sampling. Take balances, for example: In addition to saving every balance change, the `conflated balances` keep a sample of a balance from once every hour. This allows the data node to have data for a long period of time, but taking up less space than saving every balance change over a year.
 
 The data node code's configuration includes a set of default retention time frames. Those time frames have been defined with an individual trader that wants to run their own data node, for their own use, in mind. A public data node that's intended to support querying archival information will need much longer data retention time frames.
 
+### Data retention modes
+When starting a data node, you can choose one of three retention modes, depending on what you want the data node to do. 
+
+* **Standard (default)**: The node retains data according to the default retention policies (below) of the data node
+* **Archive**: The node retains all data
+* **Lite**: The node retains enough data to be able to provide the latest state to clients, and produce decentralised history segments. This mode saves enough to provide the current state of accounts, assets, balances, delegations, liquidity provisions, live orders, margin levels, markets, network limits, network parameters, node details, parties, positions 
+
+**Standard data node retention times (default)** 
 
 | Data type                 	| Default retention 	|
 |---------------------------	|-------------------	|

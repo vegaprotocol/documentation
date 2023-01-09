@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 3
 title: Network
 vega_network: TESTNET
 hide_title: false
@@ -7,6 +7,8 @@ hide_title: false
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
 import Topic from '/docs/topics/_topic-staking.mdx'
+
+The Vega network is operated by a number of independent validators, who each run a [validator node](validator-nodes.md), and may also run [data nodes](data-nodes.md).
 
 ## Network life
 Vega networks will, at least initially, run for a limited time only, and chain restarts will pick up from the most recent valid state. A network restart will be driven by situations including Vega protocol and Tendermint software upgrades.
