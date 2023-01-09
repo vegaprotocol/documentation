@@ -19,7 +19,6 @@ All the data related to the approval of a withdrawal from the network
 type Erc20WithdrawalApproval {
   assetSource: String!
   amount: String!
-  expiry: Timestamp!
   nonce: String!
   signatures: String!
   targetAddress: String!
@@ -36,10 +35,6 @@ type Erc20WithdrawalApproval {
 
 #### [<code style={{ fontWeight: 'normal' }}>Erc20WithdrawalApproval.<b>amount</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > The amount to be withdrawn
-> 
-
-#### [<code style={{ fontWeight: 'normal' }}>Erc20WithdrawalApproval.<b>expiry</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> Timestamp in seconds for expiry of the approval
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Erc20WithdrawalApproval.<b>nonce</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>

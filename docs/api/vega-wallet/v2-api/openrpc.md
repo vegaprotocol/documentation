@@ -3,8 +3,6 @@
 ---
 - [client.connect_wallet](#clientconnect_wallet): Initiates a connection between a wallet and a third-party application.
 - [client.disconnect_wallet](#clientdisconnect_wallet): Ends the connection between the third-party application and the wallet.
-- [client.get_permissions](#clientget_permissions): Returns the permissions set on the wallet for the third-party application.
-- [client.request_permissions](#clientrequest_permissions): Requests permissions update for the third-party application.
 - [client.list_keys](#clientlist_keys): Returns the keys the user has allowed the third-party application to have access to.
 - [client.sign_transaction](#clientsign_transaction): Sign a transaction without sending it.
 - [client.send_transaction](#clientsend_transaction): Send a transaction to the network.
@@ -64,7 +62,7 @@ A connection token is generated and returned to the third-party application. Thi
 
 However, it's not possible to have multiple connections on the same wallet for the same hostname. The previous connection will be terminated and a new token will be generated.
 
-This method should be the entry point of every third-party application. Once connected, see the method `get_permissions`.
+This method should be the entry point of every third-party application.
 
 ### Parameters
 
@@ -145,140 +143,6 @@ The third-party application "vega.xyz" requests a disconnection to a wallet usin
 {
     "name": "Success",
     "value": null
-}
-```
-
----
-
-
-## `client.get_permissions`
-
-This method returns the permissions set on the wallet for the third-party application.
-
-This method should be called, by the third-party application, right after it successfully connected to a wallet, to ensure it has sufficient permissions to call the method it relies on. If the third-party application doesn't have enough permissions, see the method `request_permissions`.
-
-### Parameters
-| Parameter name  |  Type  |  Description |
-|------------------|--------|--------|
-| **token** | string | A unique connection token randomly generated for each new connection. It's used to access the protected methods. |
-
-### Result: `Success`
-| Result key  |  Type  |  Description | Example |
-|------------------|--------|--------|---------|
-| permissions | object | The description of the permissions a third-party application has. | The description of the permissions a third-party application has. |
-
-
-
-### Examples
-#### Get permissions set for "vega.xyz"
-The third-party application "vega.xyz" wants to know the permissions that have been set on the wallet in use.
-
-##### Parameters
-```json
-{
-    "id": 1,
-    "jsonrpc": "2.0",
-    "method": "client.get_permissions",
-    "params": {
-        "token": "hZKSx0snBvikp2NGMJdKPHU5qvloSeqpqbJg6BsMwCcqX4iZvvy99BV2l13oeyEG"
-    }
-}
-```
-
-##### Result
-```json
-{
-    "name": "Success",
-    "value": {
-        "publicKeys": "read"
-    }
-}
-```
-
----
-
-
-## `client.request_permissions`
-
-This method allows a third-party application to request new permissions to access the methods it requires.
-
-All permissions the third-party relies on have to be specified. If a permission is omitted, it will be considered as no longer required and, as a result, be automatically revoked.
-
-The user has to review the permissions.
-
-### Parameters
-| Parameter name  |  Type  |  Description |
-|------------------|--------|--------|
-| **token** | string | A unique connection token randomly generated for each new connection. It's used to access the protected methods. |
-| **requestedPermissions** | object | The description of the permissions a third-party application has.<br /><br />`{ "public_keys": "read" }`<br />`{ "public_keys": "none" }` |
-
-### Result: `Success`
-| Result key  |  Type  |  Description | Example |
-|------------------|--------|--------|---------|
-| permissions | object | The description of the permissions a third-party application has. | The description of the permissions a third-party application has. |
-
-### Errors
-- **Client error** (3000): the user closed the connection
-- **Client error** (3001): the user rejected the request
-- **Server error** (-32001): the request has been interrupted
-
-### Examples
-#### Updating permissions for "vega.xyz"
-The third-party application "vega.xyz" requests an update of its permissions and the user accepts.
-
-##### Parameters
-```json
-{
-    "id": 1,
-    "jsonrpc": "2.0",
-    "method": "client.request_permissions",
-    "params": {
-        "token": "hZKSx0snBvikp2NGMJdKPHU5qvloSeqpqbJg6BsMwCcqX4iZvvy99BV2l13oeyEG",
-        "requestedPermissions": {
-            "publicKeys": "read"
-        }
-    }
-}
-```
-
-##### Result
-```json
-{
-    "name": "Success",
-    "value": {
-        "permissions": {
-            "publicKeys": "read"
-        }
-    }
-}
-```
-
-
-#### Updating permissions for "vega.xyz" with omitted permission
-The third-party application "vega.xyz" omits a permission during the update and the user accepts. This automatically marks the omitted permission as revoked.
-
-##### Parameters
-```json
-{
-    "id": 1,
-    "jsonrpc": "2.0",
-    "method": "client.request_permissions",
-    "params": {
-        "token": "hZKSx0snBvikp2NGMJdKPHU5qvloSeqpqbJg6BsMwCcqX4iZvvy99BV2l13oeyEG",
-        "requestedPermissions": {}
-    }
-}
-```
-
-##### Result
-```json
-{
-    "name": "Success",
-    "value": {
-        "permissions": {
-            "publicKeys": "none"
-        }
-    }
 }
 ```
 

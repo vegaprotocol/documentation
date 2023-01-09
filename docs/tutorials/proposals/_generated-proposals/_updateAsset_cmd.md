@@ -17,8 +17,8 @@
      }
     }
    },
-   "closingTimestamp": 1673982487,
-   "enactmentTimestamp": 1674068887
+   "closingTimestamp": 1674678991,
+   "enactmentTimestamp": 1674765391
   }
  }
 }'

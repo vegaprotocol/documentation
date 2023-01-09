@@ -617,7 +617,7 @@ function generateLiquidityMonitoringParameters(skeleton) {
     "number"
   );
 
-  assert.equal(skeleton.properties.triggeringRatio.type, "number");
+  assert.equal(skeleton.properties.triggeringRatio.type, "string");
   assert.equal(skeleton.properties.auctionExtension.type, "string");
 
   const params = {
@@ -625,7 +625,7 @@ function generateLiquidityMonitoringParameters(skeleton) {
       timeWindow: "3600",
       scalingFactor: 10,
     },
-    triggeringRatio: 0.7,
+    triggeringRatio: "0.7",
     auctionExtension: "1",
   };
 
