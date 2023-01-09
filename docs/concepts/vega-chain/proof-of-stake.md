@@ -83,8 +83,8 @@ Tokenholders can nominate validators to encourage a diverse set of reliable node
 
 When a tokenholder chooses a validator (or validators) to nominate with their tokens, the amount is immediately subtracted from their available balance, and is used at the start of the next epoch to actively nominate those validator(s).
 
-### Spam protection for nominations
-There are two [spam pretection](network.md#spam-protection) measures related to nominating validators.
+### Spam protection: nominations
+There are two [spam pretection](./network#spam-protection) measures related to nominating validators.
 * A participant who wants to submit a nomination (delegation) transaction, needs to have a balance of at least  <NetworkParameter frontMatter={frontMatter} param="spam.protection.delegation.min.tokens" hideName={true} suffix="tokens" formatter="governanceToken" />  to be able to submit the transaction.
 * A participant cannot send more than <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.delegations" hideName={true} /> nomination (delegation) transactions per day.
 
