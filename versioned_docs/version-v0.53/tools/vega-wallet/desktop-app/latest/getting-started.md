@@ -4,6 +4,7 @@ hide_title: false
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import { NetworkConfigAddress, NetworkConfigAddressText } from '@site/src/components/NetworkConfigAddress';
 
 You can now connect to an existing Vega wallet, or create a new wallet, using the Vega Wallet desktop app.
 
@@ -93,6 +94,27 @@ If your Vega wallet was created on a different device, or you lost access to it 
 4. Identify if your wallet was version 1 or 2 by choosing the version number. 
 5. Choose a Vega network to connect to: Click on the arrow in the bottom bar of the app. 
 
+## Networks and nodes
+
+### Add or update network URLs
+You can use the following network URLs to connect to mainnet or fairground networks through your wallet:
+* **Mainnet** network (run by validators): <NetworkConfigAddress frontMatter={frontMatter} label="mainnet1.toml" network="mainnet"/>
+* **Fairground** network: <NetworkConfigAddress frontMatter={frontMatter} label="fairground.toml" network="fairground"/>
+
+### Connecting to stable nodes
+You can change the list of data nodes in your network configuation to control how many nodes the wallet tries to connect to. The wallet connects to a data node in order to communicate with the network, and uses it to forward transactions to the consensus validator nodes.
+
+The number of nodes that you have in the config list depends on how reliable you believe the nodes are, and how sensitive you are to the speed of your transactions being sent.
+
+A shorter list of stable nodes will lead to the fastest transaction experience. If you think the nodes are unreliable, a longer list of nodes will provide diversity and more likelihood that the wallet will cycle through to find a connected node. 
+
+A balanced set up for one’s network configuration would be around 10 stable and trusted nodes, If any of them isn't able to connect, there are plenty of others for the wallet to connect through.
+
+### Configure the node list
+To configure the node list your wallet uses, you'll need to be able to edit the .TOML file you're using. Unless you have self-hosted or cloned a network's config list, you will need to save it locally and update the network by uploading a file.
+
+See the files linked in [Network URLs](#add-or-update-network-urls) for the structure of the network config file.
+
 ## Updating the app
 It's recommended that you keep the Vega Wallet app up-to-date, to take advantage of the latest features. 
 
@@ -102,7 +124,6 @@ To update to the latest version:
 2. Download the latest version for your operating system from [GitHub](https://github.com/vegaprotocol/vegawallet-desktop/releases).
 3. Click on the compressed folder to get access to the new app file. 
 4. Open the latest version of the Vega Wallet desktop app.
-
 
 ## Troubleshooting
 The Vega Wallet desktop app does not yet have the full functionality of the CLI wallet app.
