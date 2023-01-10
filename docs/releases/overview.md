@@ -31,7 +31,7 @@ This version was released to the Vega testnet on 6 January 2023.
 
 Happy New Year from the Vega team.
 
-The first testnet deployment of 2023 brings with it the final planned data node stability improvements ahead of the market simulations. Using the data from the last incentive the team has made changes to the way the snapshot metadata is stored, this has significantly improved RAM usage during snapshot file creation. In addition to the memory usage optimisations a panic observed when fetching data segment history has been resolved. 
+The first testnet deployment of 2023 brings with it the final planned data node stability improvements ahead of the market simulations. Using the data from the last incentive, the team has made changes to the way the snapshot metadata is stored, which has significantly improved RAM usage during snapshot file creation. In addition to the memory usage optimisations, a panic when fetching data segment history has been resolved. 
 
 These fixes and stability improvements bring the data node software into a state of readiness for the Alpha Mainnet market simulations.
 
