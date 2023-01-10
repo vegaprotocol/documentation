@@ -35,7 +35,7 @@ The first testnet deployment of 2023 brings with it the final planned data node 
 
 These fixes and stability improvements bring the data node software into a state of readiness for the Alpha Mainnet market simulations.
 
-To round off this release several API improvements have been introduced, along with a number of bug fixes, preparing the core and wallet software for the market simulations. Until then, the team is focused on completing the wallet token support, increasing the test coverage and fixing any bugs found along the way.
+To round off this release several API improvements have been introduced, along with a number of bug fixes, preparing the core and wallet software for the market simulations. Until then, the team is focused on completing wallet API token support, increasing the test coverage and fixing any bugs found along the way.
 
 :::caution Breaking changes
 **Wallet API  and command removals**: Over the recent testnet releases a number of the wallet APIs have been deprecated. The deployment of `0.66.0` now removes a number of these deprecated fields, endpoints and commands.
