@@ -22,6 +22,7 @@ type Party {
   dateRange: DateRange
   pagination: Pagination
   filter: OrderFilter
+  marketId: ID
 ): OrderConnection
   tradesConnection(
   marketId: ID
@@ -103,6 +104,10 @@ type Party {
 
 ##### [<code style={{ fontWeight: 'normal' }}>Party.ordersConnection.<b>filter</b></code>](#)<Bullet />[`OrderFilter`](/testnet/api/graphql/inputs/order-filter) <Badge class="secondary" text="input"/>
 > Filter orders
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.ordersConnection.<b>marketId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> Market ID to limit the results to
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Party.<b>tradesConnection</b></code>](#)<Bullet />[`TradeConnection`](/testnet/api/graphql/objects/trade-connection) <Badge class="secondary" text="object"/>
