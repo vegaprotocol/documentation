@@ -31,22 +31,21 @@ This version was released to the Vega testnet on 6 January 2023.
 
 Happy New Year from the Vega team.
 
-The first testnet deployment of 2023 brings with it the final significant data node stability improvements before the market simulations. Using the data from the last incentive the team has made changes to the way the snapshot metadata is stored, this has significantly improved the usage of RAM during the creation of snapshot files. In addition to the memory usage optimisations a bug seen when fetching data segment history from the network, resulting in a data node panic, has been resolved. 
+The first testnet deployment of 2023 brings with it the final planned data node stability improvements ahead of the market simulations. Using the data from the last incentive the team has made changes to the way the snapshot metadata is stored, this has significantly improved RAM usage during snapshot file creation. In addition to the memory usage optimisations a panic observed when fetching data segment history has been resolved. 
 
-These bug fixes and stability improvements bring the data node software into a state of readiness for the Alpha Mainnet market simulations.
+These fixes and stability improvements bring the data node software into a state of readiness for the Alpha Mainnet market simulations.
 
-To round off this release several API improvements have been introduced, along with a number of bug fixes, bringing the software very close to a state of readiness for the market simulations. Until then the team is focused on completing the work on token support for the wallet, increasing the test coverage and fixing any bugs found along the way.
+To round off this release several API improvements have been introduced, along with a number of bug fixes, preparing the core and wallet software for the market simulations. Until then, the team is focused on completing the wallet token support, increasing the test coverage and fixing any bugs found along the way.
 
 :::caution Breaking changes
-**Wallet API  and command removals**: Over recent releases a number of the wallet APIs have been deprecated. The deployment of 0.66 removes a number of these deprecated fields, endpoints and commands.
-**Network parameter name change**: The network parameter `stakeToCcySiskas` has been renamed, this parameter is now called `stakeToCcyVolume`.
-**Network parameter name change**: When proposing a market with a float value for the `triggeringRatio` field, the proposal passes, however the response from the APIs is incorrect. This has been resolved by changing the type from `double` to a `string`.
+**Wallet API  and command removals**: Over the recent testnet releases a number of the wallet APIs have been deprecated. The deployment of `0.66.0` now removes a number of these deprecated fields, endpoints and commands.
+**Network parameter name change**: The network parameter `stakeToCcySiskas` has been renamed to `stakeToCcyVolume`.
+**Network parameter name change**: When proposing a market, using a float value for the `triggeringRatio` field, the proposal passes however the response from the APIs was incorrect. This has been resolved by changing the type from `double` to a `string`.
 
 To find out more please see the [breaking changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0660) entries in the changelog.
 :::
 
 Check out the full details of this combined release in the Vega core [0.66.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.66.0) and [0.66.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.66.1) release pages.
-
 
 ### Pre-release Versions 0.65.0 and 0.65.1 combined | 2022-12-23
 This version was released to the Vega testnet on 23 December 2022.
