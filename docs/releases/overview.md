@@ -40,7 +40,7 @@ To round off this release several API improvements have been introduced, along w
 :::caution Breaking changes
 **Wallet API  and command removals**: Over the recent testnet releases a number of the wallet APIs have been deprecated. The deployment of `0.66.0` now removes a number of these deprecated fields, endpoints and commands.
 **Network parameter name change**: The network parameter `stakeToCcySiskas` has been renamed to `stakeToCcyVolume`.
-**Network parameter name change**: When proposing a market, using a float value for the `triggeringRatio` field, the proposal passes however the response from the APIs was incorrect. This has been resolved by changing the type from `double` to a `string`.
+**Network parameter name change**: The `triggeringRatio` field has been changed from `double` to a `string`. When proposing a market, using a float value would lead to a passing proposal, however the response from the APIs was incorrect. This has been resolved by changing the accepted data format.
 
 To find out more please see the [breaking changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0660) entries in the changelog.
 :::
