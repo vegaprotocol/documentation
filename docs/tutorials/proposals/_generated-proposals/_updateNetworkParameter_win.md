@@ -13,7 +13,9 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
     \"key\": \"market.fee.factors.infrastructureFee\",^
     \"value\": \"300\"^
    }^
-  }^
+  },^
+  \"closingTimestamp\": 1675103064000,^
+  \"enactmentTimestamp\": 1675189464000^
  }^
 }^
 }"

@@ -118,13 +118,21 @@ function daysInTheFuture(daysToAdd) {
   return getUnixTime(d) * 1000
 }
 
-function newProposal(p, skeleton, type) {
+function newProposal(p, skeleton, type, partialProposal) {
   
   assert.ok(skeleton.properties.closingTimestamp)
   assert.ok(skeleton.properties.enactmentTimestamp)
 
   const proposal = p
-
+  proposal.terms.closingTimestamp = partialProposal.terms.closingTimestamp
+      
+  // Freeform proposals don't get enacted, so they can't have this
+  if (type !== 'newFreeform') {
+    proposal.terms.enactmentTimestamp = partialProposal.terms.enactmentTimestamp
+  }
+  if (type === 'newAsset') {
+    proposal.terms.validationTimestamp = partialProposal.terms.enactmentTimestamp
+  }  
   proposal.terms[inspect.custom] = addTermsAnnotator(
     skeleton,
     proposal.terms,
@@ -264,7 +272,7 @@ function parse(api) {
         // TODO move in to new Proposal so we can use dates in metadata
         const changes = ProposalGenerator.get(type)(proposalTypes[type], proposal)
         output(
-          newProposal(changes, api.definitions.vegaProposalTerms, type),
+          newProposal(changes, api.definitions.vegaProposalTerms, type, proposal),
           type
         )
       } else {
