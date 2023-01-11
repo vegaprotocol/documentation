@@ -11,9 +11,7 @@
         "key": "market.fee.factors.infrastructureFee",
         "value": "300"
       }
-    },
-    "closingTimestamp": 1674678991,
-    "enactmentTimestamp": 1674765391
+    }
   }
 }
 ```

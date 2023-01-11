@@ -126,8 +126,8 @@
 
       // Optional new market meta data, tags
       metadata: [
-       "sector:energy",
-       "sector:materials",
+       "enactment:2023-01-31T17:58:46Z",
+       "settlement:2023-01-30T17:58:46Z",
        "source:docs.vega.xyz"
       ],
 
@@ -186,7 +186,7 @@
        r: 0.016,
 
        // Sigma parameter, annualised volatility of the underlying asset, must be a strictly non-negative real number (double as number) 
-       sigma: 0.3,
+       sigma: 0.5,
       }
      },
     }
@@ -194,11 +194,11 @@
 
    // Timestamp (Unix time in seconds) when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-   closingTimestamp: 1674678991,
+   closingTimestamp: undefined,
 
    // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
    // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-   enactmentTimestamp: 1674765391,
+   enactmentTimestamp: undefined,
   }
  }
 ```

@@ -17,9 +17,7 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
      \"lifetimeLimit\": \"10\"^
     }^
    }^
-  },^
-  \"closingTimestamp\": 1674678991,^
-  \"enactmentTimestamp\": 1674765391^
+  }^
  }^
 }^
 }"

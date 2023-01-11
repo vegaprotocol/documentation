@@ -13,7 +13,7 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
    \"changes\": {^
     \"lpPriceRange\": \"11\",^
     \"instrument\": {^
-     \"code\": \"ORANGES.24h\",^
+     \"code\": \"APPLES.22\",^
      \"future\": {^
       \"quoteName\": \"tEuro\",^
       \"dataSourceSpecForSettlementData\": {^
@@ -75,8 +75,6 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
      }^
     },^
     \"metadata\": [^
-     \"sector:food\",^
-     \"sector:health\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -94,13 +92,11 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
-      \"sigma\": 0.8^
+      \"sigma\": 0.5^
      }^
     }^
    }^
-  },^
-  \"closingTimestamp\": 1674678991,^
-  \"enactmentTimestamp\": 1674765391^
+  }^
  }^
 }^
 }"

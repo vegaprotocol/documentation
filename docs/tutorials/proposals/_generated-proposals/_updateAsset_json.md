@@ -15,9 +15,7 @@
           "lifetimeLimit": "10"
         }
       }
-    },
-    "closingTimestamp": 1674678991,
-    "enactmentTimestamp": 1674765391
+    }
   }
 }
 ```

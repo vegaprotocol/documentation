@@ -76,8 +76,8 @@
           }
         },
         "metadata": [
-          "sector:energy",
-          "sector:materials",
+          "enactment:2023-01-31T17:58:46Z",
+          "settlement:2023-01-30T17:58:46Z",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -103,13 +103,11 @@
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 0.3
+            "sigma": 0.5
           }
         }
       }
-    },
-    "closingTimestamp": 1674678991,
-    "enactmentTimestamp": 1674765391
+    }
   }
 }
 ```

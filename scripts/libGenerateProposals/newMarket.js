@@ -1,8 +1,8 @@
 const sample = require("lodash/sample");
 const random = require("lodash/random");
-const sampleSize = require("lodash/sampleSize");
 const assert = require("assert").strict;
 const { inspect } = require("util");
+const { format } = require("date-fns");
 
 // Shortcut for deeply nested stuff
 const p = 'properties'
@@ -11,15 +11,6 @@ const p = 'properties'
 const instruments = [
   { name: "Apples Yearly (2022)", code: "APPLES.22" },
   { name: "Oranges Daily", code: "ORANGES.24h" },
-];
-
-// Seed data: some example metadata for a market
-const metadata = [
-  "sector:energy",
-  "sector:tech",
-  "sector:materials",
-  "sector:health",
-  "sector:food",
 ];
 
 // TODO more type assertions
@@ -648,7 +639,11 @@ function generateLiquidityMonitoringParameters(skeleton) {
   return params;
 }
 
-function generateMetadata(skeleton) {
+function generateMetadata(skeleton, proposalSoFar) {
+  const dateFormat = "yyyy-MM-dd\'T\'HH:mm:ss"
+  const settlement = format(proposalSoFar.terms.closingTimestamp, dateFormat)
+  const enactment = format(proposalSoFar.terms.enactmentTimestamp, dateFormat)
+
   assert.equal(
     skeleton.type,
     "array",
@@ -659,7 +654,11 @@ function generateMetadata(skeleton) {
     "string",
     "Market metadata type used to be an array of strings"
   );
-  return [...sampleSize(metadata, random(1, 3)), "source:docs.vega.xyz"];
+  return [
+    `enactment:${enactment}Z`,
+    `settlement:${settlement}Z`,
+    "source:docs.vega.xyz"
+  ];
 }
 
 function generateRiskModel(skeleton, riskModelType) {
@@ -681,14 +680,14 @@ function generateRiskModel(skeleton, riskModelType) {
     // This was what all the markets on fairground were set to
     tau: 0.0001140771161,
     // This is a random array based on what was live on Fairground at the time
-    riskAversionParameter: sample([0.001, 0.01, 0.0001]),
+    riskAversionParameter: 0.01,
     params: {
       // This was what all the markets on fairground were set to
       mu: 0,
       // Ditto
       r: 0.016,
       // This is a random array based on what was live on Fairground at the time
-      sigma: sample([0.5, 0.3, 1.25, 0.8]),
+      sigma: 0.5,
     },
   };
 
@@ -713,7 +712,7 @@ function generateRiskModel(skeleton, riskModelType) {
   return riskModel;
 }
 
-function newMarket(skeleton) {
+function newMarket(skeleton, proposalSoFar) {
   assert.ok(skeleton.properties.changes);
   assert.ok(skeleton.properties.changes.properties.decimalPlaces);
   assert.ok(skeleton.properties.changes.properties.positionDecimalPlaces);
@@ -741,7 +740,8 @@ function newMarket(skeleton) {
             skeleton.properties.changes.properties.instrument
           ),
           metadata: generateMetadata(
-            skeleton.properties.changes.properties.metadata
+            skeleton.properties.changes.properties.metadata,
+            proposalSoFar
           ),
           priceMonitoringParameters: generatePriceMonitoringParameters(
             skeleton.properties.changes.properties.priceMonitoringParameters
