@@ -34,6 +34,19 @@ Read the [JSON-RPC specification ↗](https://www.jsonrpc.org/specification) for
 
 See the full set of methods that you can use in the **[Open RPC documentation](./openrpc)**.
 
+### Retrieve token
+You can retrieve a [long-living token](#generate-a-long-living-token) using the command-line, see instructions below. 
+
+For sessions (the `client.connect_wallet` workflow below), the token is returned through the Authorization HTTP header in the client.connect_wallet response. This allows you to use to following technique:
+
+```
+response = send_requests("client.connect_wallet")
+
+token = response.Header("Authorization")
+
+send_requests("client.list_keys", header("Authorization", token))
+```
+
 ### Issue request to the service
 
 :::caution Origin header required 
@@ -42,7 +55,7 @@ The service requires the Origin (or Referrer) HTTP header to be specified in the
 
 Use `POST /api/v2/requests` to communicate with the wallet. The request body is a JSON-RPC 2.0 payload. 
 
-If you want to use a [long-living token](#generate-a-long-living-token), you'll need to specify it in the `Authorization` HTTP header with the scheme `VWT`. Example: `Authorization: VWT <TOKEN>`
+If you want to use a token, you'll need to specify it in the `Authorization` HTTP header with the scheme `VWT`. Example: `Authorization: VWT <TOKEN>`
 
 1. Get the ID for the chain the service is connected to. This allows your app to display the information related to the network that the service is connected to:
 
