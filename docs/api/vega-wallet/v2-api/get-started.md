@@ -147,10 +147,10 @@ vegawallet service run --load-tokens --network testnet1
 ### Verify the service
 1. Verify the service is running with `GET /api/v2/health`
 2. If it is running, verify the service exposes the JSON-RPC methods using `GET /api/v2/methods`
-3. If it does expose the methods, you can start issuing request to the wallet software with `POST /api/v2/requests`
+3. If it does expose the methods, you can start issuing requests to the wallet software with `POST /api/v2/requests`
    a. Get the chain ID of the network the wallet is connected to, to show data from the same network using `client.get_chain_id`.
 
-### Issue request to the service
+### Issue a request to the service
 
 :::caution Origin header required 
 The service requires the Origin (or Referrer) HTTP header to be specified in the request. This is usually handled by the browser, so you may not have to do anything, but for software that does not use one of those headers, the request will be rejected.
