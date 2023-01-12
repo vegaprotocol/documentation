@@ -17,7 +17,7 @@
     // Updated market instrument configuration
     instrument: {
      // Instrument code, human-readable shortcode used to describe the instrument
-     code: "ORANGES.24h",
+     code: "APPLES.22",
 
      // Future
      future: {
@@ -116,8 +116,6 @@
 
       // Optional market metadata, tags
       metadata: [
-       "sector:food",
-       "sector:health",
        "source:docs.vega.xyz"
       ],
 
@@ -157,7 +155,7 @@
         r: 0.016,
 
         // Sigma parameter, annualised volatility of the underlying asset, must be a strictly non-negative real number (double as number) 
-        sigma: 0.8,
+        sigma: 1.25,
        }
       },
      },
@@ -165,11 +163,11 @@
 
     // Timestamp (Unix time in seconds) when voting closes for this proposal,
     // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-    closingTimestamp: 1674678991,
+    closingTimestamp: 1675103064000,
 
     // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
     // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-    enactmentTimestamp: 1674765391,
+    enactmentTimestamp: 1675189464000,
    }
   }
 ```

@@ -1,7 +1,7 @@
 const assert = require("assert").strict;
 const { inspect } = require("util");
 
-function updateAsset(skeleton) {
+function updateAsset(skeleton, proposalSoFar) {
   assert.ok(skeleton.properties.changes);
   assert.ok(skeleton.properties.changes.properties.erc20);
   assert.ok(
