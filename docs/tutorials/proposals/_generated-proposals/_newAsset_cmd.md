@@ -3,26 +3,26 @@
 ./vegawallet transaction send --wallet your_walletname --pubkey your_public_key --network fairground '{
  "proposalSubmission": {
   "rationale": {
-   "title": "Add tEuro (tEURO)",
-   "description": "Proposal to add tEuro (tEURO) as an asset"
+   "title": "Add tDAI TEST (tDAI)",
+   "description": "Proposal to add tDAI TEST (tDAI) as an asset"
   },
   "terms": {
    "newAsset": {
     "changes": {
-     "name": "tEuro",
-     "symbol": "tEURO",
+     "name": "tDAI TEST",
+     "symbol": "tDAI",
      "decimals": "18",
      "quantum": "1",
      "erc20": {
-      "contractAddress": "0x0158031158Bb4dF2AD02eAA31e8963E84EA978a4",
+      "contractAddress": "0x26223f9C67871CFcEa329975f7BC0C9cB8FBDb9b",
       "withdrawThreshold": "10",
       "lifetimeLimit": "10"
      }
     }
    },
-   "closingTimestamp": 1672306222,
-   "enactmentTimestamp": 1672392622,
-   "validationTimestamp": 1672219822
+   "closingTimestamp": 1675103064000,
+   "enactmentTimestamp": 1675189464000,
+   "validationTimestamp": 1675189464000
   }
  }
 }'

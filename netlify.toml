@@ -1,5 +1,5 @@
 [build]
-  command = "touch proto.json && yarn && yarn build"
+  command = "yarn && yarn build"
   publish = "./build"
 
 [build.environment]

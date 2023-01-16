@@ -8,7 +8,7 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 
 The Vega protocol allows liquidity to be priced individually for each market, a design decision that rewards liquidity providers for taking a bigger risk on markets with little liquidity competition by allowing them to earn more per trade, and drives down fees on markets where there are many participants committing liquidity.
 
-Providing liquidity on a market can be done using a combination of two tactics: [batched limit orders](./../trading-on-vega/orders#batch-order) and a [liquidity commitment](#liquidity-commitments). Supplying limit orders makes an LP eligible to receive maker fees when volume they place on the book is hit, while a liquidity committment makes an LP eligible to receive a portion of the liquidity fee from every trade on the book, regardless of if it their your volume that was targeted or not. Using a liquidity provision strategy that combines both tactics means the provider is eligible to receive both fees.
+Providing liquidity on a market can be done using a combination of two tactics: [batched limit orders](./../trading-on-vega/orders#batch-order) and automatic orders created from a [liquidity commitment](#liquidity-commitments). Supplying limit orders makes an LP eligible to receive maker fees when volume they place on the book is hit. A liquidity commitment makes an LP eligible to receive a portion of the liquidity fee from every trade in the market and orders that are hit will earn the maker fee.
 
 Typically liquidity providers would aim to meet most of their liquidity obligation using standard limit orders, which give them the most control over their strategy. The [batch orders transaction](./../trading-on-vega/orders#batch-order) is designed to enable this efficiently.
 
@@ -25,12 +25,12 @@ While providing liquidity through a commitment is a riskier strategy than using 
 ## Liquidity commitments
 Participants with sufficient collateral can provide liquidity for markets through a liquidity commitment submission.
 
-A liquidity commitment, which is made up of a commitment amount and order shapes then informs the creation of a series of orders that sit on the order book to be filled. Liquidity providers need to be able to support their liquidity commitment - their available collateral must be able to meet the size of the nominated commitment amount and the margins required to support the orders generated from that commitment, and positions that will be generated from trades.
+A liquidity commitment, which is made up of a commitment amount and order shapes then informs the creation of a series of orders that sit on the order book to be filled, as well as the limit orders submitted by the provider (as long as they are within the [price range for liquidity orders](#price-range-for-liquidity-orders)).
 
-When submitting a liquidity commitment, orders are defined, created, and submitted on behalf of the provider. Therefore, providers don't control the volume of the orders created from their liquidity commitment. This does not affect orders submitted through batch limit orders outside of the liquidity commitment.
+Liquidity providers need to be able to support their liquidity commitment - their available collateral must be able to meet the size of the nominated commitment amount and the margins required to support the orders created with that commitment, and positions that will be generated from trades.
 
 ### Active liquidity management
-**Liquidity providers will need to actively manage their commitment.** Amending and cancelling commitments is possible, but only if the market can function without that liquidity commitment by meeting its target stake. It is not possible to cancel the individual pegged limit orders that are created from a liquidity commitment. Liquidity commitments are funded through assets in the general account and then the margin account, so market moves can have a dramatic impact on collateral. The [order shapes](#order-shapes), however, can be amended at any time.
+**Liquidity providers will need to actively manage their commitment.** Amending and cancelling commitments is possible, but only if the market can function without that liquidity commitment by meeting its target stake. It is not possible to cancel the individual pegged limit orders that are created from a liquidity commitment. Liquidity commitments are funded through assets in the general account and then the margin account. The [order shapes](#order-shapes), however, can be amended at any time.
 
 Participants who want to commit liquidity to a market can enter their commitments as soon as a market proposal is submitted and accepted, even before the governance vote to create the market concludes, as well as at any time while the market is trading. Committing earlier in a market's lifecycle leads to a higher [equity-like share](rewards-penalties.md#liquidity-fees) in that market, assuming the trading volume on the market increases with time.
 
@@ -40,6 +40,9 @@ When a provider commits liquidity, the amount of their commitment is set aside a
 The amount committed during the liquidity commitment transaction is stored in a bond account (one per party, per market). The deposits and withdrawals for the bond account are governed by the protocol and cannot be manually triggered.
 
 When someone successfully commits liquidity, the commitment amount (in the market's settlement asset) is deposited into the bond account as part of the transaction. The bond total will remain in the bond account for as long as the liquidity provider is active. This is to act as a guarantee for the provider's liquidity obligation, to ensure that the commitment is firm and the protocol can rely on that liquidity in any market conditions, even if the provider's margin and general accounts have been depleted.
+
+### Price range for liquidity orders
+When a market is proposed, a price range is specified for the liquidity orders, based on the mid price. Only the limit orders manually placed within that range will count towards a provider's liquidity obligation. The automatically deployed orders based on the order shape will be placed in the same range. If an automatic order ends up with a price outside the range, it's adjusted so it falls on the boundary. For example: [(1 - LP price range) * mid price, (1 + LP price range) * mid price]. If it's set, for example, to 0.04, it will deploy LP orders within 4% up or down from the mid price. 
 
 ### Target stake for a market
 The market's liquidity requirement, or its target stake, is the measurement of how much stake is the ideal committed to a market, relative to what is on the market at the time. 
@@ -81,7 +84,7 @@ A liquidity commitment transaction must include:
 :::
 
 ### Orders created from commitment
-In essence, liquidity commitment orders are sets of pegged orders grouped by order book size, with a proportion set for each order within the order 'shape'. The overall volume that Vega will imply and automatically place on the order book from this depends on the remaining liquidity obligation, the best bid / ask prices, the price monitoring bounds, and the risk model parameters, but the reference, offsets and proportion at the reference / offset can always be amended. 
+In essence, liquidity commitment orders are sets of pegged orders grouped by order book side, with a proportion set for each order within the order 'shape'. The overall volume that Vega will imply and automatically place on the order book from this depends on the remaining liquidity obligation, the best bid / ask prices, and the LP price range set on the market. The reference price, offsets and proportion at the reference / offset can always be amended. If an order created from the commitment ends up with a price outside the [price range set in the market proposal](#price-range-for-liquidity-orders), it's adjusted so it falls on the boundary. 
 
 A liquidity commitment order type has a specific set of features that set it apart from a standard order: 
 * *Submitted as a special transaction*: A liquidity commitment order allows simultaneously specifying multiple orders in one message/transaction
@@ -95,14 +98,14 @@ A liquidity commitment order type has a specific set of features that set it apa
 ### Order shapes
 A liquidity commitment uses a special order type that automatically updates price and size as needed to meet the commitment, and automatically refreshes its volume after trading to ensure continuous liquidity provision.
 
-The placement of orders on the book is defined by two shapes: buy shape and sell shape. The shapes are created by the liquidity provider, and they define what weight each price level will have, and the distances of the price levels at which the orders will be placed (known as 'offsets') from the the chosen price level (current best bid, mid, or best offer).
+The placement of orders on the book is defined by two shapes: buy shape and sell shape. The shapes are created by the liquidity provider, and they define what weight each price level will have, and the distances of the price levels at which the orders will be placed (known as 'offsets') from the chosen price level (current best bid, mid, or best offer).
 
 Vega then calculates the size of the liquidity order placed at each price level using: the total bond amount, the current price, and the weight on each level. As the prices on the order book move, Vega will recalculate the order sizes and prices and update the orders.
 
 The shape of the orders placed for a liquidity provision can influence how likely they are to get matched with incoming orders. Orders closer to the best bid/ask price are more likely to be filled than orders further away.
 
 The **buy and sell order shapes** (denoted as `buys` and `sells`) include:
-    * **Offset**: How many ticks away from the reference price you want your orders to be. The tick size is the smallest decimal place the market allows for orders. There is a tradeoff between larger offsets, which have higher margin cost but less position risk, versus smaller offsets, which have smaller margin cost but more postion risk. The offset is interpreted by the market decimal precision, meaning that an offset of 1, on a market with a decimal precision of 5, would be 0.00001 away from the reference price
+    * **Offset**: How many ticks away from the reference price you want your orders to be. The tick size is the smallest decimal place the market allows for orders. There is a tradeoff between larger offsets, which have higher margin cost but less position risk, versus smaller offsets, which have smaller margin cost but more position risk. The offset is interpreted by the market decimal precision, meaning that an offset of 1, on a market with a decimal precision of 5, would be 0.00001 away from the reference price
     * **Proportion**: The proportion of your committed collateral allocated to this order, as a weight
     * **Reference price**: The price that you want the order offset to reference. You can choose from the market’s mid price, best bid price, or the best ask price. In the examples below, the reference price is pegged to the mid-price, which means as the mid-price moves, so do the LP orders. This would be useful if, for example, you wanted to always provide a spread of 10 ticks, then you could peg your first orders 5 ticks from the mid price on each side.
     
@@ -133,11 +136,9 @@ Below see how a buy and sell shape are constructed:
 </details>
 
 ### Order volume
-Once a liquidity commitment is submitted and accepted, the committed amount, shapes submitted and the party’s other limit orders on the book are used by the protocol to determine the limit order volume that will be posted on the book to ensure the party meets its obligation.
+Once a liquidity commitment is submitted and accepted, the committed amount, shapes submitted and the party’s other limit orders on the book are used by the protocol to determine the limit order volume that will be posted on the book to ensure the party meets its obligation. Orders that are not within the LP order price range (set per market) are placed at the boundary of the range.
 
 It is possible to meet the entire liquidity obligation with limit orders; indeed this should be the aim of most LP strategies as this gives the best control. The missing amount of the liquidity obligation is posted by the system. If the shape specifies large offset from best bid / ask then the system will place more volume on the book for the LP party. All other things being equal, higher committed stake means more volume is posted on the book.
-
-The obligation is higher if the offsets are further away from the best bid/ask, and lower the closer the offsets are to the bid/ask. A higher obligation results in larger orders being deployed. The protocol assigns more value to volume that is close to best bid / ask, and less to volume further out. Each unit of volume counts for less the further they are from the best bid / ask. 
 
 :::note Go deeper
 Explore liquidity calculations in more depth in the [liquidity mechanics spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0044-LIME-lp_mechanics.md).
@@ -153,7 +154,7 @@ Liquidity commitments can be amended by providing a new set of liquidity provisi
 When amending or cancelling a liquidity commitment, the network will always allow the submitter to provide more liquidity. However, reducing the liquidity commitment will depend on the maximum amount that the market can reduce by given the current liquidity demand in the market. If the submitter were to reduce their commitment to the point where the market would drop below its required stake threshold, then the amendment would not be accepted. 
 
 :::caution
-If a market doesn't have enough liquidity, or is perpetually in a liqudity monitoring auction, you may not be able to reduce or cancel your commitment, and you will need to continue to support your commitment until there is enough liquidity or the market is settled.
+If a market doesn't have enough liquidity, or is perpetually in a liquidity monitoring auction, you may not be able to reduce or cancel your commitment, and you will need to continue to support your commitment until there is enough liquidity or the market is settled.
 
 You can [submit a governance proposal](./../../tutorials/proposals/update-market-proposal.md) to update the market's settlement date, and vote with the weight of your equity-like share.
 :::

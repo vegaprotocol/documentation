@@ -9,12 +9,12 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 
 Trading margined derivatives (such as futures) allows you to create leveraged positions, meaning you only need some of the notional value of an instrument to place orders on a market on Vega. 
 
-Margin is the amount of the settlement asset of the market required to keep your positions open and orders funded. You can think of margin as the 'down payment' to open a position. Leverage, meanwhile, describes how many times larger is the notional value of that position compared to the margin you have dedicated to it. For example, if you need 20DAI to open a position worth 100DAI: your leverage is 5x and your initial margin is 20% of the full value.
+Margin is the amount of the settlement asset of the market required to keep your positions open and orders funded. You can think of margin as the 'down payment' to open a position. Leverage, meanwhile, describes how many times larger is the notional value of that position compared to the margin you have dedicated to it. For example, if you need 20 DAI to open a position worth 100 DAI: your leverage is 5x and your initial margin is 20% of the full value.
 
 The exact margin requirements of open orders and positions are determined by the market's risk model and market conditions. The larger the position and the more volatile the market, the greater the amount of margin that will be set aside. The volatility tolerance of the market is driven by the risk model.
 
 ## Positions
-A trader's margin requirements in a given market are driven by their open volume and orders. They are recalculated based on market movements and changes to the open volume and/or orders. Orders that the increase your risk level of your position will require more margin, orders that reduce the exposure can be placed without any additional capital.
+A trader's margin requirements in a given market are driven by their open volume and orders. They are recalculated based on market movements and changes to the open volume and/or orders. Orders that then increase your risk level of your position will require more margin, orders that reduce the exposure can be placed without any additional capital.
 
 When a party on Vega opens a position, the minimum amount of assets required to open that position is put into a margin account for that party in that market. 
 
@@ -66,7 +66,7 @@ To more closely control how much is risked on a position, it's possible to repli
 ### Margin requirements
 The Vega protocol calculates four margin levels, which are used to determine when a trader has the right amount, too much, or not enough margin set aside to support their position(s). Those levels are: maintenance margin, initial margin, search level, collateral release level. 
 
-The maintenance margin (minimum amount needed to keep a position open) is derived from the market's risk model, and all other margin levels are based the maintenance margin level.
+The maintenance margin (minimum amount needed to keep a position open) is derived from the market's risk model, and all other margin levels are based on the maintenance margin level.
 
 ### Margin level: Maintenance
 Throughout the life of an open position, the minimum required amount to keep a position open is called the maintenance margin. It corresponds to the minimum amount required to cover a position during adverse market moves within a given probability level. 

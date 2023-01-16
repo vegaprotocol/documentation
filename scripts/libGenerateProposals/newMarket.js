@@ -1,8 +1,8 @@
 const sample = require("lodash/sample");
 const random = require("lodash/random");
-const sampleSize = require("lodash/sampleSize");
 const assert = require("assert").strict;
 const { inspect } = require("util");
+const { format } = require("date-fns");
 
 // Shortcut for deeply nested stuff
 const p = 'properties'
@@ -11,15 +11,6 @@ const p = 'properties'
 const instruments = [
   { name: "Apples Yearly (2022)", code: "APPLES.22" },
   { name: "Oranges Daily", code: "ORANGES.24h" },
-];
-
-// Seed data: some example metadata for a market
-const metadata = [
-  "sector:energy",
-  "sector:tech",
-  "sector:materials",
-  "sector:health",
-  "sector:food",
 ];
 
 // TODO more type assertions
@@ -54,6 +45,11 @@ function generateSettlementDataSourceSpec(skeleton) {
     "array",
     "Data Source spec filters"
   );
+  assert.equal(
+    skeleton[p].external[p].oracle[p].filters.items.properties.key.properties.numberDecimalPlaces.format,
+    "uint64",
+    "numberDecimalPlaces is a uint"
+  );
 
 
   const spec = {
@@ -67,6 +63,7 @@ function generateSettlementDataSourceSpec(skeleton) {
             key: {
               name: "prices.BTC.value",
               type: "TYPE_INTEGER",
+              numberDecimalPlaces: "5"
             },
             conditions: [
               {
@@ -99,7 +96,7 @@ function generateSettlementDataSourceSpec(skeleton) {
         "\n"
       );
     const splitPubkeys = skeleton[p].external[p].oracle[p].signers.description.split("\n");
-    
+    const splitDP = skeleton.properties.external.properties.oracle.properties.filters.items.properties.key.properties.numberDecimalPlaces.title.split("\n")
     return `{
       external: {
         oracle: {
@@ -110,9 +107,6 @@ function generateSettlementDataSourceSpec(skeleton) {
             // ${splitFilters[0]}
             // ${splitFilters[1]}
             filters: [
-                {
-                  skeleton[p].external[p].oracle[p].filters.items[p].key.description
-                }
                 key: {
                   // ${
                     skeleton.properties.external.properties.oracle.properties.filters.items.properties.key
@@ -128,6 +122,10 @@ function generateSettlementDataSourceSpec(skeleton) {
     skeleton.properties.external.properties.oracle.properties.filters.items.properties.key.properties.type.type
   })
                   type: "${spec.external.oracle.filters[0].key.type}",
+
+                  // ${splitDP[0]}
+                  // ${splitDP[1]}
+                  numberDecimalPlaces: "${spec.external.oracle.filters[0].key.numberDecimalPlaces}",
                 },
                 // ${splitDescription[0]}
                 // ${splitDescription[1]}
@@ -314,15 +312,6 @@ function generateInstrument(skeleton) {
   );
 
   assert.ok(
-    skeleton.properties.future.properties.settlementDataDecimals,
-    "Instrument property settlementDataDecimals used to exist"
-  );
-  assert.equal(
-    skeleton.properties.future.properties.settlementDataDecimals.type,
-    "integer",
-    "Instrument property settlementDataDecimals used to be an integer"
-  );
-  assert.ok(
     skeleton.properties.future.properties.dataSourceSpecForSettlementData,
     "DataSourceSpecForSettlementData used to exist"
   );
@@ -342,7 +331,6 @@ function generateInstrument(skeleton) {
     future: {
       settlementAsset: idForAnExistingVegaAsset,
       quoteName: "tEuro",
-      settlementDataDecimals: 5,
       dataSourceSpecForSettlementData: generateSettlementDataSourceSpec(
         skeleton.properties.future.properties.dataSourceSpecForSettlementData
       ),
@@ -371,12 +359,6 @@ function generateInstrument(skeleton) {
       skeleton.properties.future.properties.quoteName.type
     })
           quoteName: "${instrument.future.quoteName}",
-          // ${
-            skeleton.properties.future.properties.settlementDataDecimals.title
-          } (${
-      skeleton.properties.future.properties.settlementDataDecimals.format
-    } as ${skeleton.properties.future.properties.settlementDataDecimals.type})
-          settlementDataDecimals: ${instrument.future.settlementDataDecimals},
           // ${
             skeleton.properties.future.properties.dataSourceSpecForSettlementData
               .title
@@ -626,7 +608,7 @@ function generateLiquidityMonitoringParameters(skeleton) {
     "number"
   );
 
-  assert.equal(skeleton.properties.triggeringRatio.type, "number");
+  assert.equal(skeleton.properties.triggeringRatio.type, "string");
   assert.equal(skeleton.properties.auctionExtension.type, "string");
 
   const params = {
@@ -634,7 +616,7 @@ function generateLiquidityMonitoringParameters(skeleton) {
       timeWindow: "3600",
       scalingFactor: 10,
     },
-    triggeringRatio: 0.7,
+    triggeringRatio: "0.7",
     auctionExtension: "1",
   };
 
@@ -657,7 +639,11 @@ function generateLiquidityMonitoringParameters(skeleton) {
   return params;
 }
 
-function generateMetadata(skeleton) {
+function generateMetadata(skeleton, proposalSoFar) {
+  const dateFormat = "yyyy-MM-dd\'T\'HH:mm:ss"
+  const settlement = format(proposalSoFar.terms.closingTimestamp, dateFormat)
+  const enactment = format(proposalSoFar.terms.enactmentTimestamp, dateFormat)
+
   assert.equal(
     skeleton.type,
     "array",
@@ -668,7 +654,11 @@ function generateMetadata(skeleton) {
     "string",
     "Market metadata type used to be an array of strings"
   );
-  return [...sampleSize(metadata, random(1, 3)), "source:docs.vega.xyz"];
+  return [
+    `enactment:${enactment}Z`,
+    `settlement:${settlement}Z`,
+    "source:docs.vega.xyz"
+  ];
 }
 
 function generateRiskModel(skeleton, riskModelType) {
@@ -690,14 +680,14 @@ function generateRiskModel(skeleton, riskModelType) {
     // This was what all the markets on fairground were set to
     tau: 0.0001140771161,
     // This is a random array based on what was live on Fairground at the time
-    riskAversionParameter: sample([0.001, 0.01, 0.0001]),
+    riskAversionParameter: 0.01,
     params: {
       // This was what all the markets on fairground were set to
       mu: 0,
       // Ditto
       r: 0.016,
       // This is a random array based on what was live on Fairground at the time
-      sigma: sample([0.5, 0.3, 1.25, 0.8]),
+      sigma: 0.5,
     },
   };
 
@@ -722,11 +712,12 @@ function generateRiskModel(skeleton, riskModelType) {
   return riskModel;
 }
 
-function newMarket(skeleton) {
+function newMarket(skeleton, proposalSoFar) {
   assert.ok(skeleton.properties.changes);
   assert.ok(skeleton.properties.changes.properties.decimalPlaces);
   assert.ok(skeleton.properties.changes.properties.positionDecimalPlaces);
   assert.ok(skeleton.properties.changes.properties.instrument);
+  assert.ok(skeleton.properties.changes.properties.lpPriceRange);
   assert.equal(skeleton.properties.changes.properties.metadata.type, "array");
   assert.ok(skeleton.properties.changes.properties.priceMonitoringParameters);
   assert.ok(
@@ -742,13 +733,15 @@ function newMarket(skeleton) {
     terms: {
       newMarket: {
         changes: {
+          lpPriceRange: "10",
           decimalPlaces: "5",
           positionDecimalPlaces: "5",
           instrument: generateInstrument(
             skeleton.properties.changes.properties.instrument
           ),
           metadata: generateMetadata(
-            skeleton.properties.changes.properties.metadata
+            skeleton.properties.changes.properties.metadata,
+            proposalSoFar
           ),
           priceMonitoringParameters: generatePriceMonitoringParameters(
             skeleton.properties.changes.properties.priceMonitoringParameters
@@ -766,10 +759,15 @@ function newMarket(skeleton) {
   };
 
   /*------- Liquidity Commitment required */
+  const lbLabel = skeleton.properties.changes.properties.lpPriceRange.title.split('\n') 
 
   result.terms.newMarket[inspect.custom] = () => {
     return `{
         changes: {
+          // ${lbLabel[0]}
+          // ${lbLabel[1]}
+          lpPriceRange: "${result.terms.newMarket.changes.lpPriceRange}",
+
           // ${skeleton.properties.changes.properties.decimalPlaces.title} (${
       skeleton.properties.changes.properties.decimalPlaces.format
     } as ${skeleton.properties.changes.properties.decimalPlaces.type})

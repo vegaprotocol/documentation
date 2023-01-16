@@ -6,7 +6,7 @@ description: Accounts hold assets for different purposes.
 ---
 
 ## Accounting system
-Vega uses accounts in various situations to ensure funds are never lost or double spent. The amounts in each account, as well as the transactions that added to and removed from those accounts, are all recorded and stored on-chain. Double entry accounting is maintained at all points.
+Vega uses accounts in various situations to ensure funds are never lost or double spent. The amounts in each account, as well as the transactions that were added to and removed from those accounts, are all recorded and stored on-chain. Double entry accounting is maintained at all points.
 
 Accounts are used either to hold assets that you're in control of using — such as collateral you deposit, or for setting money aside that only the network can manage — to fulfil margin requirements, for example, or to store assets that are earmarked for rewards or paying out fees. This means that, for example, when your funds are allocated to margin to support a position you opened, or you submit a liquidity commitment and bond amount is reserved, those assets can't be used for anything else.
 
@@ -15,7 +15,7 @@ The *general account* is managed by the party who controls the keys that account
 
 Every public key has a potential general account in every asset supported on the Vega network; it's created the first time assets are deposited or transferred to it. The general account is the place where deposits and rewards go, where withdrawals come from, and where a participant can transfer assets from (or receive assets to).
 
-The general account also holds VEGA tokens that have been deposited to the network (but not those associated to a Vega key via the Ethereum staking bridge and/or locked in a smart contract). Staking rewards, as well as trading rewards, are paid into the general account.
+The general account also holds VEGA tokens that have been deposited to the network (but not those associated with a Vega key via the Ethereum staking bridge and/or locked in a smart contract). Staking rewards, as well as trading rewards, are paid into the general account.
 
 Any assets that are in a general account can be withdrawn or transferred.
 
@@ -92,7 +92,7 @@ The revenue from other fees go into fee-specific accounts:
 ### Reward accounts 
 Trading rewards are funded by community members that want to incentivise certain types of market activities. 
 
-Reward accounts can exist for each combination of reward metric, asset, and market, and they come to exist when they are funded by reward account transfers, which occur at the end of each epoch. The amount of assets entering each reward account depend on the amount transferred and the reward transfer strategy that the funder(s) defined when they set up the rewards transfer.
+Reward accounts can exist for each combination of reward metric, asset, and market, and they come to exist when they are funded by reward account transfers, which occur at the end of each epoch. The amount of assets entering each reward account depends on the amount transferred and the reward transfer strategy that the funder(s) defined when they set up the rewards transfer.
 
 :::note Read more
 [Trading rewards](./trading-on-vega/fees-rewards#trading-rewards)

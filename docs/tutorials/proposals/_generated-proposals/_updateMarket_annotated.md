@@ -10,6 +10,10 @@
    // The identifier of the market to update
    marketId: "123",
    changes: {
+    // Percentage move up and down from the mid price which specifies the range of 
+    // price levels over which automated liquidity provision orders will be deployed
+    lpPriceRange: 11,
+
     // Updated market instrument configuration
     instrument: {
      // Instrument code, human-readable shortcode used to describe the instrument
@@ -19,9 +23,6 @@
      future: {
       // Human-readable name/abbreviation of the quote name (string)
       quoteName: "tEuro",
-
-      // The number of decimal places implied by the settlement data (such as price) emitted by the settlement external data source (int64 as integer)
-      settlementDataDecimals: 5,
 
       // The data source spec describing the data of settlement data (object)
       dataSourceSpecForSettlementData: {
@@ -40,15 +41,16 @@
          // filters describes which source data are considered of interest or not for
          // the product (or the risk model).
          filters: [
-          {
-           skeleton[p].external[p].oracle[p].filters.items[p].key.description
-          }
           key: {
            // name is the name of the property. (string)
            name: "prices.BTC.value",
 
            // type is the type of the property. (string)
            type: "TYPE_INTEGER",
+
+           // An optional decimal place to be be applied on the provided value
+           // valid only for PropertyType of type DECIMAL and INTEGER
+           numberDecimalPlaces: "5",
           },
 
           // conditions are the conditions that should be matched by the data to be
@@ -114,8 +116,6 @@
 
       // Optional market metadata, tags
       metadata: [
-       "sector:health",
-       "sector:materials",
        "source:docs.vega.xyz"
       ],
 
@@ -144,7 +144,7 @@
        tau: 0.0001140771161,
 
        // Risk Aversion Parameter (double as number) 
-       riskAversionParameter: "0.01",
+       riskAversionParameter: "0.001",
 
        // Risk model parameters for log normal
        params: {
@@ -155,7 +155,7 @@
         r: 0.016,
 
         // Sigma parameter, annualised volatility of the underlying asset, must be a strictly non-negative real number (double as number) 
-        sigma: 0.8,
+        sigma: 1.25,
        }
       },
      },
@@ -163,11 +163,11 @@
 
     // Timestamp (Unix time in seconds) when voting closes for this proposal,
     // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-    closingTimestamp: 1672306222,
+    closingTimestamp: 1675103064000,
 
     // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
     // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-    enactmentTimestamp: 1672392622,
+    enactmentTimestamp: 1675189464000,
    }
   }
 ```

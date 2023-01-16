@@ -9,15 +9,15 @@
   "terms": {
    "newMarket": {
     "changes": {
+     "lpPriceRange": "10",
      "decimalPlaces": "5",
      "positionDecimalPlaces": "5",
      "instrument": {
-      "name": "Apples Yearly (2022)",
-      "code": "APPLES.22",
+      "name": "Oranges Daily",
+      "code": "ORANGES.24h",
       "future": {
        "settlementAsset": "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
        "quoteName": "tEuro",
-       "settlementDataDecimals": 5,
        "dataSourceSpecForSettlementData": {
         "external": {
          "oracle": {
@@ -32,7 +32,8 @@
            {
             "key": {
              "name": "prices.BTC.value",
-             "type": "TYPE_INTEGER"
+             "type": "TYPE_INTEGER",
+             "numberDecimalPlaces": "5"
             },
             "conditions": [
              {
@@ -76,8 +77,8 @@
       }
      },
      "metadata": [
-      "sector:health",
-      "sector:energy",
+      "enactment:2023-01-31T18:24:24Z",
+      "settlement:2023-01-30T18:24:24Z",
       "source:docs.vega.xyz"
      ],
      "priceMonitoringParameters": {
@@ -94,7 +95,7 @@
        "timeWindow": "3600",
        "scalingFactor": 10
       },
-      "triggeringRatio": 0.7,
+      "triggeringRatio": "0.7",
       "auctionExtension": "1"
      },
      "logNormal": {
@@ -108,8 +109,8 @@
      }
     }
    },
-   "closingTimestamp": 1672306222,
-   "enactmentTimestamp": 1672392622
+   "closingTimestamp": 1675103064000,
+   "enactmentTimestamp": 1675189464000
   }
  }
 }'

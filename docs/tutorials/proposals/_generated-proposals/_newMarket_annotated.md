@@ -8,6 +8,10 @@
  terms: {
   newMarket: {
    changes: {
+    // Percentage move up and down from the mid price which specifies the range of 
+    // price levels over which automated liquidity provision orders will be deployed
+    lpPriceRange: "10",
+
     // Decimal places used for the new market, sets the smallest price increment on the book (uint64 as string)
     decimalPlaces: "5",
 
@@ -17,10 +21,10 @@
     // New market instrument configuration
     instrument: {
      // Instrument name
-     name: "Apples Yearly (2022)",
+     name: "Oranges Daily",
 
      // Instrument code, human-readable shortcode used to describe the instrument
-     code: "APPLES.22",
+     code: "ORANGES.24h",
 
      // Future
      future: {
@@ -29,9 +33,6 @@
 
       // Product quote name (string)
       quoteName: "tEuro",
-
-      // The number of decimal places implied by the settlement data (such as price) emitted by the settlement data source (int64 as integer)
-      settlementDataDecimals: 5,
 
       // The data source spec describing the data source for settlement (object)
       dataSourceSpecForSettlementData: {
@@ -50,15 +51,16 @@
          // filters describes which source data are considered of interest or not for
          // the product (or the risk model).
          filters: [
-          {
-           skeleton[p].external[p].oracle[p].filters.items[p].key.description
-          }
           key: {
            // name is the name of the property. (string)
            name: "prices.BTC.value",
 
            // type is the type of the property. (string)
            type: "TYPE_INTEGER",
+
+           // An optional decimal place to be be applied on the provided value
+           // valid only for PropertyType of type DECIMAL and INTEGER
+           numberDecimalPlaces: "5",
           },
 
           // conditions are the conditions that should be matched by the data to be
@@ -124,8 +126,8 @@
 
       // Optional new market meta data, tags
       metadata: [
-       "sector:health",
-       "sector:energy",
+       "enactment:2023-01-31T18:24:24Z",
+       "settlement:2023-01-30T18:24:24Z",
        "source:docs.vega.xyz"
       ],
 
@@ -159,7 +161,7 @@
         scalingFactor: 10
        },
 
-       // Specifies the triggering ratio for entering liquidity auction (double as number) 
+       // Specifies the triggering ratio for entering liquidity auction (undefined as string) 
        triggeringRatio: "0.7",
 
        // Specifies by how many seconds an auction should be extended if leaving the auction were to trigger a liquidity auction (int64 as string) 
@@ -192,11 +194,11 @@
 
    // Timestamp (Unix time in seconds) when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-   closingTimestamp: 1672306222,
+   closingTimestamp: 1675103064000,
 
    // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
    // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-   enactmentTimestamp: 1672392622,
+   enactmentTimestamp: 1675189464000,
   }
  }
 ```

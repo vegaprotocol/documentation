@@ -34,7 +34,7 @@ The infrastructure portion of the fee is paid to validators as a reward for runn
 Some of the infrastructure fee paid to validators is then distributed to the validators' nominators.
 
 #### Liquidity fee
-The liquidity portion of the fee is paid to participants who commit liquidity to the market. It's transferred to a liquidity fee account, and distributed to each liquidity provider's margin account at a defined time (based on network parameter  <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providers.fee.distributionTimeStep" />), and depending on how much their liquidity commitments have contributed to the market.
+The liquidity portion of the fee is paid to participants who commit liquidity to the market. It's transferred to a liquidity fee account, and distributed to each liquidity provider's margin account at a defined time (based on network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providers.fee.distributionTimeStep" />), and depending on how much their liquidity commitments have contributed to the market.
 
 ### Fee calculations
 At a high level, the trading fee is calculated using the following formulas:
@@ -115,7 +115,7 @@ The market creation reward dispatch metric is designed to incentivise creating m
 
 The threshold for what counts as 'enough' trading volume is a formula that takes into account the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="rewards.marketCreationQuantumMultiple" />, as well as the settlement asset's quantum to assess the market's size.
 
-An asset's quantum is defined an approximation of the smallest 'meaningful' amount of that asset, generally expecting it to be the quantity of the asset valued at approximately the value of 1 USD. An asset's quantum is set in the governance proposal that enabled the asset for use on Vega.
+An asset's quantum is defined as an approximation of the smallest 'meaningful' amount of that asset, generally expecting it to be the quantity of the asset valued at approximately the value of 1 USD. An asset's quantum is set in the governance proposal that enabled the asset for use on Vega.
 
 **Example**: 
 

@@ -7,7 +7,7 @@ hide_title: false
 import NetworkParameter from '@site/src/components/NetworkParameter';
 import Topic from '../topics/_topic-staking.mdx'
 
-Vega uses Tendermint as a consensus layer to form a blockchain. The rest of the information here informs on how that blockchain and its relevant components is comprised. 
+Vega uses Tendermint as a consensus layer to form a blockchain. The rest of the information here informs on how that blockchain and its relevant components are comprised. 
 
 Read more: [How Vega bridges to Ethereum](#bridges-used-for-staking)
 
@@ -136,7 +136,7 @@ In each epoch, rewards are distributed among validators in proportion to the num
 
 The reward scheme uses a linear reward curve - the reward per staked token is independent of the behaviour of other tokenholders. 
 
-This holds for validators as well, with the exception that there is a maximum amount of stake an individual validator can take on. To avoid validators getting too big, the rewards a validator gets, and thus can distribute to its nominators, is capped. In other words, the reward per token is decreases if a validator exceeds a maximum size.
+This holds for validators as well, with the exception that there is a maximum amount of stake an individual validator can take on. To avoid validators getting too big, the rewards a validator gets, and thus can distribute to its nominators, is capped. In other words, the reward per token is decreased if a validator exceeds a maximum size.
 
 At the end of each epoch, reward payments are calculated per active validator, and then some of that reward is divided between their nominators. 
 
@@ -255,7 +255,7 @@ Self-nominated stake refers to the amount of VEGA a validator has staked to thei
 * **Reward impact**: A validator with too little self-stake forfeits their share of the rewards for each epoch they are below the threshold. However tokenholders who nominated that validator will still receive rewards
 
 #### Too much stake
-An over-staked validator has more stake than is ideal for a healthy and functioning network. Staking to an over-staked node can your rewards. 
+An over-staked validator has more stake than is ideal for a healthy and functioning network. Staking to an over-staked node can affect your rewards. 
 
 * **Network risk**: The risk of an over-staked node is that it could have too much consensus voting power
 * **Validator score**: A node that is over-staked is given a lower validator score - the more over-staked it is, the lower the score 

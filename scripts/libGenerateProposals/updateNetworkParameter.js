@@ -3,9 +3,9 @@ const assert = require('assert').strict;
 const { inspect } = require('util');
 
 // Seed data: Some valid network parameters
-const networkParameters = ['market.fee.factors.infrastructureFee', 'governance.proposal.asset.requiredMajority', 'governance.proposal.freeform.minVoterBalance']
+const networkParameters = ['market.fee.factors.infrastructureFee']
 
-function updateNetworkParameter(skeleton) {
+function updateNetworkParameter(skeleton, proposalSoFar) {
   assert.ok(skeleton.properties.changes);
   assert.ok(skeleton.properties.changes.properties.key);
   assert.ok(skeleton.properties.changes.properties.value);

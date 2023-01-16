@@ -21,6 +21,7 @@ type NewMarket {
   decimalPlaces: Int!
   riskParameters: RiskModel!
   metadata: [String!]
+  lpPriceRange: String!
 }
 ```
 
@@ -41,6 +42,10 @@ type NewMarket {
 
 #### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>metadata</b></code>](#)<Bullet />[`[String!]`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
 > Metadata for this instrument, tags
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>lpPriceRange</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Liquidity Provision order price range
 > 
 
 
