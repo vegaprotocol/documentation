@@ -497,8 +497,6 @@ Further information on these changes can be found in the updated documentation i
 **Smart contract upgrade:**
 With the upgrade of the network to version v0.53 will come an upgrade of the smart contracts. The multisig control contract and the collateral bridge will thus increase users' control over the funds they deposit (opt-out) and include performance improvements, such as decreasing gas cost when using the bridge. The Vega asset pool contract will not be upgraded. Once the new contracts are properly set up on Ethereum, the validators will migrate the asset pool to use the new contracts.
 
-Information on how to upgrade can be found in the [smart contracts migration guide](../node-operators/migration-guides/smart-contracts-migration.md).
-
 **Checkpoint commands:**
 From version 0.53.0, checkpoints are always loaded via the genesis. To facilitate this the  `--genesis-file` option has been added to the `load_checkpoint` command. 
 
@@ -513,7 +511,7 @@ In the short term, the CLI wallet app will still be available to download from t
 During the testing of the decentralised validator selection feature, a bug was found whereby if the network parameter that controls the number of ersatz validators is reduced in the same epoch that an ersatz validator is promoted, the network could be left with a node set where the actual number of ersatz validators was greater than the total allowed number. A fix has been implemented to handle Tendermint demotion and ersatz slot reduction at the same time and keep true to the configured network parameter values.
 
 **PostgreSQL database:**
-**Find out how to run a data node with Postgres in the [data-node readme ↗](https://github.com/vegaprotocol/data-node/blob/v0.53.0/README.md).**
+**Find out how to run a data node with Postgres in the [data node readme ↗](https://github.com/vegaprotocol/data-node/blob/v0.53.0/README.md).**
 
 As of version 0.53, data node uses [PostgreSQL ↗](https://www.postgresql.org) as its storage back end instead of the previous mix of in-memory and BadgerDB file stores. We also make use of a Postgres extension called [TimescaleDB](https://www.timescale.com), which adds a number of time series specific features.
 
@@ -526,7 +524,7 @@ Collateral checkpoint locked global reward balance:
 With the deployment of version 0.50.3 a new format for the account owner of the global reward account was introduced. When the mainnet was upgraded, the above was interpreted as a general party account rather than the newly formatted global reward account. As such, a balance of 21500 VEGA became locked in an account that is no longer accessible. To resolve this issue and recover the trapped VEGA, when the checkpoint is read, and on discovery of an old account format, the balance is transferred to the relevant new reward account. Full details can be seen in issue [5546 ↗](https://github.com/vegaprotocol/vega/issues/5546)
 
 **Unable to query the VEGA asset due to large quantum:**
-Part of testing the network version compatibility is to deploy the latest version of the software using a mainnet checkpoint file. During this test it was found that the VEGA asset could not be found in the data-node via the assets API. To resolve this issue support was introduced in the data-node for large integers for the asset quantum. Full details can be seen in issue [782 ↗](https://github.com/vegaprotocol/data-node/issues/782)
+Part of testing the network version compatibility is to deploy the latest version of the software using a mainnet checkpoint file. During this test it was found that the VEGA asset could not be found in the data node via the assets API. To resolve this issue support was introduced in the data node for large integers for the asset quantum. Full details can be seen in issue [782 ↗](https://github.com/vegaprotocol/data-node/issues/782)
 
 **Incorrect prices returned from depth endpoint in data node API:**
 The depth value in the data node API appeared to occasionally become desynchronised from the 'true' prices. This was observed on testnet when a market’s prices of the 'bids' values were much higher than those of 'ask' and did not tally with values from best bid/ask.
@@ -536,7 +534,7 @@ In V1 of the data node (which will be replaced with V2) there is a check which r
 Note: this issue affects the V1 APIs which will be deprecated and replaced by V2 which is single threaded and thus could not have this bug.
 
 **Event subscriptions for orders was broken:**
-When placing an order the orders subscription correctly emits an update for the newly created order. However, the bus event subscription did not emit the expected event. The fix for [719 ↗](https://github.com/vegaprotocol/data-node/issues/719) (market depth in data-node V1 incorrect due to race condition) changed the type of the order event such that it no longer implemented these interfaces (no code broke as the check is dynamic), and this prevented the event bus from sending events using the party and market filters.
+When placing an order the orders subscription correctly emits an update for the newly created order. However, the bus event subscription did not emit the expected event. The fix for [719 ↗](https://github.com/vegaprotocol/data-node/issues/719) (market depth in data node V1 incorrect due to race condition) changed the type of the order event such that it no longer implemented these interfaces (no code broke as the check is dynamic), and this prevented the event bus from sending events using the party and market filters.
 
 Full details can be seen in issue [730 ↗](https://github.com/vegaprotocol/data-node/issues/730)
 
@@ -546,7 +544,7 @@ Full details can be seen in issue [730 ↗](https://github.com/vegaprotocol/data
 To ensure that this does not affect existing transactions the protocol verifies proof of work with the parameters as they were configured at the time of the block of the transaction.
 
 #### 0.51.2 (10 June 2022)
-Version 0.51 of the Vega software implements some key changes to the features of governance and rewards as well as smart contracts. In addition, work continues on the data-node to transition to the time-series `PostGres` data storage and the migrated APIs which will help the data-node scale as usage increases on the network. 
+Version 0.51 of the Vega software implements some key changes to the features of governance and rewards as well as smart contracts. In addition, work continues on the data node to transition to the time-series `PostGres` data storage and the migrated APIs which will help the data node scale as usage increases on the network. 
 
 **Breaking change - asset governance:** In release 0.51.2, a breaking change has been introduced that may affect governance proposals that refer to assets. The function used to request the asset bundle before proposing an asset has been renamed to be clearer, as in the future there will be an option for removing assets. 
 
@@ -585,7 +583,7 @@ For full detailed information on the changes please see:
 ### Versions 0.50.3-0.49.8 combined | 2022-04-27
 This release was shared with validators on 27 April, 2022. The validators released it to the mainnet network on 22 June, 2022.
 
-The primary focus of this and the next upcoming releases has been to complete the final remaining features, progress data-node improvements for scalability and to add test coverage and fix bugs.
+The primary focus of this and the next upcoming releases has been to complete the final remaining features, progress data node improvements for scalability and to add test coverage and fix bugs.
 
 Note: While many of the features below are related to trading, it is not yet enabled on mainnet. 
 
