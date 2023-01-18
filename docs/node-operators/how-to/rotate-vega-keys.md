@@ -42,11 +42,11 @@ The below steps are then carried out from the Validator nodes's machine:
 - `ENCODED_TRANSACTION` - an encoded and pre-signed key rotation transaction
 
 
-## Preparing a Key Rotation Transaction and an Isolated Wallet
+## Prepare a key rotation transaction and an isolated wallet
 
 The following steps should be executed on the machine containing the Vega wallet. This machine which should be seen as containing more sensitive data that the machine running the validator node.
 
-### Confirm that the Vega wallet is the correct wallet
+### Confirm Vega wallet is using correct wallet
 
 It is important that the Vega wallet used to generate `NEW_VEGA_PUB_KEY` is the same as the one which generated `VEGA_PUB_KEY` otherwise the key rotation transaction will be rejected by the network.
 

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 title: Set up a data node
 hide_title: false
 ---
@@ -281,16 +281,16 @@ To prevent this, the buffered event source flag is set to true by default. You c
 ## Run Vega and data node
 It is recommended to start the data node before starting the Vega node. By default if the `Broker.Socket.Enabled` flag is set to true, the Vega node will attempt to connect to the data node on startup. It will continue to try and connect for one minute before giving up.
 
-To start the data node, run the following command:
+**If you're using [Vega Visor](setup-server#install-visor)**, start your data node by running the service manager of your choice and use the following command:
+
+```shell
+visor run --home "VISOR_HOME_PATH"
+```
+
+If not using Vega Visor, to start the data node, run the following command:
 
 ```shell
 vega datanode start --home="YOUR_DATA_NODE_HOME_PATH"
-```
-
-To start Vega, run the following command:
-
-```shell
-vega start --home="YOUR_VEGA_HOME_PATH" --tendermint-home="YOUR_TENDERMINT_HOME_PATH"
 ```
 
 ## Configure data node APIs

@@ -11,11 +11,11 @@ import TabItem from '@theme/TabItem';
 Vega networks support restarts using checkpoints. Checkpoints are a minimal save of the state of the network every N block, or, after funds are moved in or out of the network. They are both a way of restarting a clean chain with the current view of all accounts balances, and a security measure in order to not misplace any funds in case of a major issue that would require a restart of the chain.
 
 :::note
-This guide is valid for a network restart with version 0.50
+This guide is valid for a network restart with version 0.50+
 :::
 
 
-## Step -1: Verify your node wallet keys (to do before any following steps)
+## Verify your node wallet keys (do this first)
 
 In a recent version of the Vega core, validation has been added at runtime to ensure the keys that validators have set up in the genesis block matches those saved in the node wallet.
 
@@ -62,7 +62,7 @@ You should the verify that your validator information set in the [genesis file](
 
 Should there be a difference between the keys in the genesis file and those in the output of the command, this should be raised on Discord.
 
-## Step 0: Edit configuration
+## Update configuration
 You can prepare your configuration but you may not want to update your mainnet node with the configuration before it's stopped.
 
 ### Add the Tendermint public key to your node wallet
@@ -117,7 +117,7 @@ This can be set up in the following section of the data node:
 
 If you do not want to enable SSL, ensure `HTTPSEnabled` is set to false or the data node will not start properly.
 
-### Step 1: Stop the network
+### Stop the network
 Wait for a new checkpoint file to be produced, then stop all the nodes of the network (Vega, data node and Tendermint). Once stopped, back up all Tendermint chain data and Vega data.
 
 Save the selected checkpoint file in a safe location. You will need to reuse it later.
@@ -138,7 +138,7 @@ rm -rf "YOUR_DATANODE_HOME/vega/data-node/storage/"
 The exact path of the data node folder to remove can be found using `vega paths list`. The required path is `DataNodeStorageHome` in the list.
 :::
 
-### Step 2: Update the genesis file
+### Update the genesis file
 One of the validators will now need to update the [genesis file](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json) with the following information:
 - The new start date of the network
 - The new network ID
@@ -146,10 +146,10 @@ One of the validators will now need to update the [genesis file](https://github.
 
 This should be done via a pull request on the [networks](https://github.com/vegaprotocol/networks) repo and ideally approved by 2/3+1 of all validators.
 
-### Step 3: Restart the network
+### Restart the network
 
 :::note
-This is a critical step that needs to be done with all validators synchronously. (This will not be needed in future updates).
+This is a critical step that needs to be done with all validators synchronously, if not using Visor for protocol upgrades.
 :::
 
 All validators need to restart their node in a synchronous way. This is required as the network needs to synchronise its state with the Ethereum state in relation to the Vega token delegation to the Vega network. 
@@ -163,5 +163,5 @@ vega checkpoint restore --home="YOUR_VEGA_HOME" --passphrase-file="YOUR_NODEWALL
 
 Once this is done, you will need to monitor the network to make sure all delegation are recovered properly by the end of the bootstraping period.
 
-### Deprecated
+### Deprecated: Ethereum event forwarder
 The Ethereum event forwarder is no longer required. This should be removed from your infrastructure and not started. This service has been re-written and is now integrated in the Vega core node.

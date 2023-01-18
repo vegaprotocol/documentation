@@ -30,7 +30,8 @@ To keep your node and its related components functioning and up-to-date, refer t
 
 | Topic                                                                 |  Description                                                                                                        |
 | ----------------------------------------------------------------------| -------------------------------------------------------------------------------------------------------- |
-| [Restart network](how-to/restart-network.md)                               | This guide walks you through how to manage network restarts. |
+| [Propose a protocol upgrade](how-to/propose-protocol-upgrades.md)                               | This guide describes how to propose a protocol software upgrade and how Vega Visor simplifies the process. |
+| [Restart network](how-to/restart-network.md)                               | This explains how to manage network restarts without Vega Visor. |
 | [Restart from snapshots](how-to/use-snapshots.md)                               | This guide will take you through using the state snapshots. |
-| [Rotate Ethereum keys](how-to/rotate-ethereum-keys.md) | This guide will take you through rotating your Vega key for security purposes. |
+| [Rotate Ethereum keys](how-to/rotate-ethereum-keys.md) | This guide will take you through rotating your Ethereum key for security purposes. |
 | [Rotate Vega keys](how-to/rotate-vega-keys.md)                               | This guide will take you through rotating your Vega key for security purposes. |
