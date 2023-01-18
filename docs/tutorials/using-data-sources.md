@@ -47,7 +47,7 @@ The following spec would make the market use the BTC value from the [Coinbase Pr
 
 ```javascript
    "dataSourceSpecForSettlementData": {
-        "pubKeys": ["0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"],
+        "signers": [{"ethAddress": { "address": "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC" } }],
         "filters": [{
             "key": {
                 "name": "prices.BTC.timestamp",
@@ -151,51 +151,7 @@ vegawallet.exe transaction send \
 You will be able to see this data by querying the API for `OracleData`. In the API response you will be able to check which markets had filters that matched this data.
 
 ### Querying the data
-The following GraphQL query shows previous oracle data submissions, which can be useful for confirming that data submission was sucessful, and/or determining the fields that a market's oracle spec requires.
-
-```graphql
-{
-  oracleData {
-    pubKeys
-    data {
-      name
-      value
-    }
-    broadcastAt
-    matchedSpecIds
-  }
-}
-```
-
-The data we submitted in step three will be returned as follows:
-```javascript
-{
-  "data": {
-    "oracleData": [
-      // This is the Open Oracle data message
-      {
-        "pubKeys": [
-          // This is the Ethereum public key of the Coinbase oracle, the original signer of the Open Oracle message
-          // submitted above
-          "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
-        ],
-        "data": [
-          {
-            "name": "prices.BTC.value",
-            "value": "43721750000"
-          },
-          {
-            "name": "prices.BTC.timestamp",
-            "value": "1649265840"
-          }
-        ],
-        "broadcastAt": "",
-        "matchedSpecIds": null
-      }
-    ]
-  }
-}
-```
+The [Oracle Data list REST endpoint](../api/rest/data-v2/trading-data-service-list-oracle-data) shows previous data submissions, which can be useful for confirming that data submission was sucessful, and/or determining the fields that a market's oracle spec requires.
 
 ## JSON signed message data
 [JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON) messages are a simpler, more configurable alternative to Open Oracle data. They can be totally custom objects, as long as they are valid JSON. As they are not attested by any off-chain source in the way that Open Oracle messages are, and so it's generally advisable to check for an Open Oracle price source before choosing JSON data. The Vega key that signs the message will be referred to as the source for the data. 
@@ -214,7 +170,7 @@ The Oracle Specification that would bind to the `moonwalkers` property would be 
 
 ```javascript
    "oracleSpecForSettlementData": {
-        "pubKeys": ["123abc"],
+        "signers": [{ "pubKey":{ "key": "123abc" }}],
         "filters": [{
             "key": {
                 "name": "moonwalkers",
@@ -308,47 +264,7 @@ vegawallet.exe transaction send \
 </Tabs>
 
 ### Querying an existing data source spec
-The following GraphQL query shows previous data submissions, which can be useful for confirming that a data submission was successful, and/or determining the fields that a market's data source spec requires.
-
-```graphql
-{
-  oracleData {
-    pubKeys
-    data {
-      name
-      value
-    }
-    broadcastAt
-    matchedSpecIds
-  }
-}
-```
-Assuming someone submitted JSON  data, the result would be something like this:
-
-```javascript
-{
- {
-  "data": {
-    "oracleData": [
-      // This is the JSON Oracle data message
-      {
-        "pubKeys": [
-          // For JSON Oracles, the public key is the vega key that submitted the message
-          "123abc"
-        ],
-        "data": [
-          {
-            "name": "moonwalkers",
-            "value": "12",
-          }
-        ],
-        "broadcastAt": "",
-        "matchedSpecIds": null
-      }
-    ]
-  }
-}
-```
+The [Oracle Data list REST endpoint](../api/rest/data-v2/trading-data-service-list-oracle-data) shows previous data submissions, which can be useful for confirming that a data submission was successful, and/or determining the fields that a market's data source spec requires.
 
 ## Built-in data source
 Vega provides a timestamp source, which is useful for terminating a market at a set date. `vegaprotocol.builtin.timestamp` provides a Unix timestamp of the Vega time, which is to say the time agreed via consensus.
