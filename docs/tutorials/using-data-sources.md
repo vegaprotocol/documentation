@@ -61,16 +61,12 @@ The following spec would make the market use the BTC value from the [Coinbase Pr
     }
 ```
 
-The pubKey in this case is the **Ethereum public key that signed the data in the message**. 
+The `signers: ethAddress` in this case is the Ethereum public key that **signed the data in the message**. 
 
 ### Submitting Open Oracle data
 Use the command line to submit an Open Oracle message as a transaction that is signed by your Vega wallet and sent to the validators for consensus.
 
 Below, find instructions on how to submit Open Oracle data as a signed message. Markets should be configured to only use the data at the relevant time, such as after a defined settlement date, in the [market proposal](./proposals/new-market-proposal.md).
-
-:::info API note
-When looking at market data using the API, the `pubKeys` field in the response for Open Oracle data submissions is set to the Open Oracle signing key.
-:::
 
 ### 1. Obtain an Open Oracle message
 
