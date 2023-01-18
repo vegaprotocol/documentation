@@ -301,7 +301,7 @@ There are currently three protocols to communicate with the data node APIs:
 ### gRPC
 gRPC is an open source remote procedure call (RPC) system initially developed at Google. In data node the gRPC API features streaming of events in addition to standard procedure calls.
 
-The default port (configurable) for the gRPC API is `3007` and matches the [gRPC protobuf definition](https://github.com/vegaprotocol/vega/tree/develop/protos).
+The default port (configurable) for the gRPC API is `3007` and matches the [gRPC protobuf definition ↗](https://github.com/vegaprotocol/vega/tree/develop/protos).
 
 gRPC configurations are defined under the `[Gateway.Node]` section of the data node configuration file `YOUR_DATA_NODE_HOME_PATH/config/data-node/config.toml`:
 

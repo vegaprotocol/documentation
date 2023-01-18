@@ -248,10 +248,10 @@ Under `Mempool Configuration Option`, ensure that `broadcast = true`.
 To start successfully, tendermint needs the genesis file from the network you will be trying to join. This file need to be located in `YOUR_TENDERMINT_HOME/config/genesis.json`. Download the genesis file and use it to replace the genesis in your config.
 
 You can find genesis files: 
-* In the [networks repository](https://github.com/vegaprotocol/networks) for the mainnet network. 
-* In the [networks internal repository](https://github.com/vegaprotocol/networks-internal) for sandbox and other test networks. Note: For sandbox, the genesis must be a URL to a remote file, not saved locally on disk.
+* In the [networks repository ↗](https://github.com/vegaprotocol/networks) for the mainnet network. 
+* In the [networks internal repository ↗](https://github.com/vegaprotocol/networks-internal) for sandbox and other test networks. Note: For sandbox, the genesis must be a URL to a remote file, not saved locally on disk.
 
-For example, to join mainnet you will need the following [genesis file](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json).
+For example, to join mainnet you will need the following [genesis file ↗](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json).
 
 ## Synchronise your node
 You can either start the node from a snapshot (recommended, particularly for a long chain), or replay the full chain history to get up-to-date. If using Visor for protocol upgrades, follow the instructions below to start the node with Visor.
@@ -313,7 +313,7 @@ vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" 
 ```
 
 ## Nominate your node
-To move on to self-staking, wait until you see your node on the validator list by querying the API or checking the [token dApp](https://sandbox.token.vega.xyz/staking/).
+To move on to self-staking, wait until you see your node on the validator list by querying the API or checking the [token dApp ↗](https://sandbox.token.vega.xyz/staking/).
 
 Then, associate your tokens and nominate your node using the [token dApp ↗](https://sandbox.token.vega.xyz/staking/) or by interacting directly with the smart contract.
 

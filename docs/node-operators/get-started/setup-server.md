@@ -7,7 +7,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## Setting up the server and building the software
-The Vega node is the implementation of the Vega protocol. It secures the network using VEGA, the network's governance and staking token, and relies on a BFT consensus engine ([Tendermint](https://tendermint.com/)).
+The Vega node is the implementation of the Vega protocol. It secures the network using VEGA, the network's governance and staking token, and relies on a BFT consensus engine ([Tendermint ↗](https://tendermint.com/)).
 
 The data node offers a set of APIs to query the state of the network. It works as a pair with a Vega node (started in non-validator mode) to reconcile the state of the application and serve rich APIs.
 
@@ -32,7 +32,7 @@ See the [infrastructure requirements](../requirements/infrastructure.md) page fo
 ## Use the pre-built binaries
 One way to set up a Vega node is to use the pre-built binaries. You'll use: Vega, Vega Wallet, Visor (optional - for easier protocol upgrades), and data node (optional).
 
-Find them under [Vega core releases](https://github.com/vegaprotocol/vega/releases).
+Find them under [Vega core releases ↗](https://github.com/vegaprotocol/vega/releases).
 
 If the pre-built binaries don't work or are unavailable for your system, you will need to [**build the binaries from sources**](#build-from-sources).
 
@@ -45,8 +45,8 @@ This section will walk you through compiling the Vega toolchain yourself from th
 :::info
 Before starting you will need both Git and Go 1.19+ installed on your system. 
 
-Git should be available using the default package manager of your system, which you can check at [git-scm.com](https://git-scm.com/). 
-Download Go from the [official website](https://go.dev/dl/).
+Git should be available using the default package manager of your system, which you can check at [git-scm.com ↗](https://git-scm.com/). 
+Download Go from the [official website ↗](https://go.dev/dl/).
 :::
 
 ### Environment set-up
@@ -115,11 +115,11 @@ This will print the version of the binary you just built.
 ### Install Visor
 Visor manages protocol upgrades, allowing the nodes running a network to automatically update to the latest version of the Vega protocol, without requiring manual intervention. Using Visor is optional, but recommended. 
 
-Download and install the [Visor binary](https://github.com/vegaprotocol/vega/releases) that matches the release version you built.
+Download and install the [Visor binary ↗](https://github.com/vegaprotocol/vega/releases) that matches the release version you built.
 
-Read detailed information about Vega Visor, including how it works, how the config is set up and how you can edit it in the [full software description](https://github.com/vegaprotocol/vega/tree/develop/visor#readme).
+Read detailed information about Vega Visor, including how it works, how the config is set up and how you can edit it in the [full software description ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#readme).
 
-You can also read the [architecture overview](https://github.com/vegaprotocol/vega/tree/develop/visor#architecture) and [upgrade flow](https://github.com/vegaprotocol/vega/tree/develop/visor#upgrade-flow) topics in the Visor readme before setting it up.
+You can also read the [architecture overview ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#architecture) and [upgrade flow ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#upgrade-flow) topics in the Visor readme before setting it up.
 
 ## Next Steps
 

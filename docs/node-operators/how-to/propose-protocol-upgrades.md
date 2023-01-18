@@ -35,6 +35,6 @@ This includes stopping the currently running nodes, ensuring that the new binari
 You can configure the number of restart attempts in the Visor config, located at `VISOR_HOME_PATH/config.toml`
 
 ## Read more about Visor
-Read detailed information about Vega Visor, including how it works, how the config is set up and how you can edit it in the [full software description](https://github.com/vegaprotocol/vega/tree/develop/visor#readme).
+Read detailed information about Vega Visor, including how it works, how the config is set up and how you can edit it in the [full software description ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#readme).
 
-You can also read the [architecture overview](https://github.com/vegaprotocol/vega/tree/develop/visor#architecture) and [upgrade flow](https://github.com/vegaprotocol/vega/tree/develop/visor#upgrade-flow) topics in the Visor readme.
+You can also read the [architecture overview ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#architecture) and [upgrade flow ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#upgrade-flow) topics in the Visor readme.
