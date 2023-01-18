@@ -186,7 +186,7 @@ To update your node configuration, such as to set up ports for the APIs, edit th
 When starting a data node, you can choose the data retention configuration for your data node, depending on the use case for the node. The retention policy details can all be fine-tuned manually, as well.
 
 There are 3 retention policy configurations: 
-* **Standard (default)**: The node retains data according to the default retention policies, which assume a data node retains some data over time, but not alßl data
+* **Standard (default)**: The node retains data according to the default retention policies, which assume a data node retains some data over time, but not all data
 * **Lite**: The node retains enough data to be able to provide the latest state to clients, and produce network history segments. This mode saves enough to provide the current state of accounts, assets, balances, delegations, liquidity provisions, live orders, margin levels, markets, network limits, network parameters, node details, parties, positions 
 * **Archive**: The node retains all data
 
