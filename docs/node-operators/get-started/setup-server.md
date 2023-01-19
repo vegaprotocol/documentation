@@ -110,7 +110,9 @@ To ensure that the compilation was successful run the following command:
 
 This will print the version of the binary you just built.
 
-:::note In order to run the `vega` command from any folder you should move the binary to a folder that is in your PATH.
+:::note 
+In order to run the `vega` command from any folder you should move the binary to a folder that is in your PATH.
+:::
 
 ## Next Steps
 
