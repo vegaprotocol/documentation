@@ -196,6 +196,14 @@ To run a node that doesn't use the standard default retention, use one of the fo
 * For an archive node, use `--archive`
 * For a lite node, use `--lite`
 
+If you want to tweak the retention policy once the initial configuration has been generated, set it on per-table basis in the data node's `config.toml`. 
+
+For example: 
+
+```toml
+[[SQLStore.RetentionPolicies]]
+  HypertableOrCaggName = "balances"
+  DataRetentionPeriod = "7 days"
 ## Generate config
 To generate the configuration files you need for the data node, you can use the following command:
 
@@ -318,10 +326,10 @@ To see how much network history your data node has, run the following command:
 vega datanode network-history show --home="YOUR_DATA_NODE_HOME_PATH"
 ```
 
-To fetch a network history segment, run the command below. Use the ID of the segment you want (for example, the oldest) and load all data from a block height. `500` is used as an example.
+To fetch a network history segment, run the command below. Use the ID of the segment you want (for example, the oldest) followed by the number of blocks prior to the segment's height that you want fetch. `2000` is used in the following example. This will result in all blocks from height 3000 to 5000 being retrieved.
 
 ```shell
-vega datanode fetch <segment-id-of-segment-at-height-500> 500
+vega datanode fetch <segment-id-of-segment-at-height-5000> 2000
 ```
 
 ## Configure data node APIs
