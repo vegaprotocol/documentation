@@ -44,7 +44,7 @@ In order to validate events happening on the Ethereum bridge, the Vega node need
 
 The Ethereum node address for the RPC endpoint needs to be set up in the configuration. 
 
-Once you have an Ethereum archive node, insert the URL in `YOUR_VEGA_HOME/node/config.toml`, in the section:
+Once you have an Ethereum archive node, insert the URL in `YOUR_VEGA_HOME/config/node/config.toml`, in the section:
 
 ```toml
 [Ethereum]
@@ -195,7 +195,7 @@ Once your node is synchronised, you'll need to self-stake, and then announce the
 ## Associate tokens to your Vega key
 Before you announce your node, you will need to have <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={true} formatter="governanceToken" suffix="tokens"/> Vega associated to your Vega key to self-stake (below).
 
-Use the [Sepolia VEGA contract ↗](https://sepolia.etherscan.io/address/0xAe6dd14bD9313d22Cf2254F347836570Df592022#writeContract) to faucet tokens to your Ethereum key. 
+Use the [Sepolia VEGA contract address on the token site ↗](https://sandbox.token.vega.xyz/token) to call the contract and faucet tokens to your Ethereum key. 
 
 The tokens that you want to use for self-staking must be available on an Ethereum wallet, and then associated to the same Vega public key you used to set up the node. 
 
