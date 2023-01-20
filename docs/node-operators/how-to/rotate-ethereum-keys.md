@@ -35,7 +35,7 @@ Rotating a Node's Ethereum Key can be done by following the below steps:
 
 ## Generate a new Ethereum key
 
-Vega supports both local key-store wallets and [Clef](https://geth.ethereum.org/docs/clef/introduction) Wallets. Ethereum key rotation can be performed between wallets of any type. For example you can rotate from an key in a local key-store wallet, to a key generated in a Clef wallet.
+Vega supports both local key-store wallets and [Clef](https://geth.ethereum.org/docs/tools/clef/introduction) Wallets. Ethereum key rotation can be performed between wallets of any type. For example you can rotate from an key in a local key-store wallet, to a key generated in a Clef wallet.
 
 
 ### Using the nodewallet local key-store
