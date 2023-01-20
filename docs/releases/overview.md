@@ -31,7 +31,7 @@ This version was released to the Vega testnet on 20 January 2023.
 
 Building on the stability improvements in the first release of 2023, the second 2023 release, 0.67.2, is the version the team believe is ready for the first community Market Simulation. This release brings with it a number of bug fixes around data sourcing and a critical fix whereby transfers and announce-node spam policies were not included in the snapshot. These issues have been resolved and covered in tests to ensure no regression in the future.
 
-In addition to these fixes improvements have been made to the data node API documentation and the data node operator UX. It is now possible to initialise a data node using one of the three [retention modes](https://github.com/vegaprotocol/specs/blob/master/protocol/0076-DANO-data-node.md#datanode-retention-modes). Finally for v0.67.2 the wallet API token support has been extended to support long lived tokens.
+In addition to these fixes improvements, have been made to the data node API documentation and the data node operator UX. It is now possible to initialise a data node using one of the three [retention modes](https://github.com/vegaprotocol/specs/blob/master/protocol/0076-DANO-data-node.md#datanode-retention-modes). Finally for v0.67.2 the wallet API token support has been extended to support long lived tokens.
 
 Check out the full details of this combined release in the Vega core [0.67.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.67.0), [0.67.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.67.1) and [0.67.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.67.2) release pages.
 
