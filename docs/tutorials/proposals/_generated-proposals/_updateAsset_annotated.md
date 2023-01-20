@@ -18,7 +18,7 @@
      withdrawThreshold: "10",
 
      // The lifetime limits deposit per address.
-     // This is will be interpreted against the asset decimals. (string)
+     // This will be interpreted against the asset decimals. (string)
      lifetimeLimit: "10",
     }
    }
@@ -26,11 +26,11 @@
 
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-  closingTimestamp: 1675103064000,
+  closingTimestamp: 1675869603000,
 
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-  enactmentTimestamp: 1675189464000,
+  enactmentTimestamp: 1675956003000,
  }
 }
 ```

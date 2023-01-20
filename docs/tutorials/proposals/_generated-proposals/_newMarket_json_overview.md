@@ -16,7 +16,7 @@
     positionDecimalPlaces: "5",
     // New market instrument configuration
     instrument: {},
-    // Optional new market meta data, tags
+    // Optional new market metadata, tags
     metadata: [],
     // Price monitoring parameters
     priceMonitoringParameters: [],
@@ -28,10 +28,10 @@
   },
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-  closingTimestamp: 1675103064000,
+  closingTimestamp: 1675869603000,
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-  enactmentTimestamp: 1675189464000,
+  enactmentTimestamp: 1675956003000,
  }
 }
 ```

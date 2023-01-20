@@ -13,16 +13,14 @@ export const SpecifiedBy = (props) => <>Specification<a className="link" style={
 export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
 
 
-Information about whether proposals are enabled, if the markets are still bootstrapping etc..
+Information about whether proposals are enabled, if the markets are still bootstrapping, etc..
 
 ```graphql
 type NetworkLimits {
   canProposeMarket: Boolean!
   canProposeAsset: Boolean!
-  bootstrapFinished: Boolean!
   proposeMarketEnabled: Boolean!
   proposeAssetEnabled: Boolean!
-  bootstrapBlockCount: Int!
   genesisLoaded: Boolean!
   proposeMarketEnabledFrom: Timestamp!
   proposeAssetEnabledFrom: Timestamp!
@@ -40,20 +38,12 @@ type NetworkLimits {
 > Are asset proposals allowed at this point in time
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>NetworkLimits.<b>bootstrapFinished</b></code>](#)<Bullet />[`Boolean!`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> True once block count &#x003E; bootstrapBlockCount
-> 
-
 #### [<code style={{ fontWeight: 'normal' }}>NetworkLimits.<b>proposeMarketEnabled</b></code>](#)<Bullet />[`Boolean!`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Are market proposals enabled on this chain
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>NetworkLimits.<b>proposeAssetEnabled</b></code>](#)<Bullet />[`Boolean!`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Are asset proposals enabled on this chain
-> 
-
-#### [<code style={{ fontWeight: 'normal' }}>NetworkLimits.<b>bootstrapBlockCount</b></code>](#)<Bullet />[`Int!`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> How many blocks before the chain comes out of bootstrap mode
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>NetworkLimits.<b>genesisLoaded</b></code>](#)<Bullet />[`Boolean!`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
