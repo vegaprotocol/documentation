@@ -110,7 +110,7 @@ This will read the Tendermint keys from the configuration path, and set up your 
 Vega supports two types of Ethereum wallet: you can either register a wallet available from a clef instance or import a keystore file (e.g: create with `geth account`).
 
 #### Using clef
-To set up your clef instance please refer to the [clef documentation ↗](https://geth.ethereum.org/docs/clef/tutorial).
+To set up your clef instance please refer to the [clef documentation ↗](https://geth.ethereum.org/docs/tools/clef/introduction).
 
 Set the address of your clef instance in the Vega configuration (`YOUR_VEGA_HOME/config/node/config.toml`):
 ```Toml
