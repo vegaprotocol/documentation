@@ -19,9 +19,9 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 
 [**Vega Desktop Wallet on GitHub** ↗](https://github.com/vegaprotocol/vegawallet-desktop/releases) - The code for the Vega Wallet desktop app is open source, and you can read the contents of each release on the repo.
 
-[**Token dApp on GitHub** ↗](https://github.com/vegaprotocol/frontend-monorepo/releases) - The Token dApp, which provides an interface for interacting with VEGA tokens, is open-source and you can read the contents of each release on the Token Frontend repo.
+[**Governance dApp on GitHub** ↗](https://github.com/vegaprotocol/frontend-monorepo/releases) - The Governance dApp, which provides an interface for interacting with governance proposals, VEGA tokens, and staking to validators; Console, a trading interface; and the Vega Block Explorer are open-source and you see more about them in the frontend monorepo.
 
-[**Vega Capsule on GitHub** ↗](https://github.com/vegaprotocol/vegacapsule/releases) - Vega Capsule, which lets you create an instance of the Vega network on your computer to experiment with using the protocol, is public and you can resad the contents of each release on GitHub.
+[**Vega Capsule on GitHub** ↗](https://github.com/vegaprotocol/vegacapsule/releases) - Vega Capsule, which lets you create an instance of the Vega network on your computer to experiment with using the protocol, is public and you can read the contents of each release on GitHub.
 
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
@@ -29,9 +29,9 @@ The Vega core software is public on a business-source licence, so you can both v
 ### Pre-release Versions 0.67.0, 0.67.1 and 0.67.2 combined | 2023-01-20
 This version was released to the Vega testnet on 20 January 2023.
 
-Building on the stability improvements in the first release of 2023, the second 2023 release, 0.67.2, is the version the team believe is ready for the first community Market Simulation. This release brings with it a number of bug fixes around data sourcing and a critical fix whereby transfers and announce-node spam policies were not included in the snapshot. These issues have been resolved and covered in tests to ensure no regression in the future.
+Building on the stability improvements in the first release of 2023, the second release of the year, 0.67.2, is the version the team believe is ready for the first community Market Simulation. This release brings with it bug fixes around data sourcing and a critical fix whereby transfers and announce-node spam policies were not included in snapshots. These issues have been resolved and covered in tests to ensure no regression in the future.
 
-In addition to these fixes improvements, have been made to the data node API documentation and the data node operator UX. It is now possible to initialise a data node using one of the three [retention modes](https://github.com/vegaprotocol/specs/blob/master/protocol/0076-DANO-data-node.md#datanode-retention-modes). Finally for v0.67.2 the wallet API token support has been extended to support long lived tokens.
+In addition to these fixes, improvements have been made to the data node API documentation and the data node operator UX. It is now possible to initialise a data node using one of the three [retention modes](https://github.com/vegaprotocol/specs/blob/master/protocol/0076-DANO-data-node.md#datanode-retention-modes). Finally for v0.67.2 the wallet API token support has been extended to support long lived tokens.
 
 Check out the full details of this combined release in the Vega core [0.67.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.67.0), [0.67.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.67.1) and [0.67.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.67.2) release pages.
 
