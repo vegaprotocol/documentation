@@ -18,8 +18,8 @@ Filter for historical entry ledger queries
 ```graphql
 input LedgerEntryFilter {
   CloseOnAccountFilters: Boolean
-  SenderAccountFilter: AccountFilter
-  ReceiverAccountFilter: AccountFilter
+  FromAccountFilter: AccountFilter
+  ToAccountFilter: AccountFilter
   TransferTypes: [TransferType]
 }
 ```
@@ -31,11 +31,11 @@ input LedgerEntryFilter {
 > 
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>LedgerEntryFilter.<b>SenderAccountFilter</b></code>](#)<Bullet />[`AccountFilter`](/testnet/api/graphql/inputs/account-filter) <Badge class="secondary" text="input"/>
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntryFilter.<b>FromAccountFilter</b></code>](#)<Bullet />[`AccountFilter`](/testnet/api/graphql/inputs/account-filter) <Badge class="secondary" text="input"/>
 > 
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>LedgerEntryFilter.<b>ReceiverAccountFilter</b></code>](#)<Bullet />[`AccountFilter`](/testnet/api/graphql/inputs/account-filter) <Badge class="secondary" text="input"/>
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntryFilter.<b>ToAccountFilter</b></code>](#)<Bullet />[`AccountFilter`](/testnet/api/graphql/inputs/account-filter) <Badge class="secondary" text="input"/>
 > 
 > 
 

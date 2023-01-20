@@ -9,6 +9,7 @@
 - [client.get_chain_id](#clientget_chain_id): Returns the chain ID of the network in use.
 - [admin.create_wallet](#admincreate_wallet): Creates a wallet with its first key-pair.
 - [admin.import_wallet](#adminimport_wallet): Import a wallet with its first key-pair with a recovery phrase and a key derivation version.
+- [admin.update_passphrase](#adminupdate_passphrase): Change the passphrase of the specified wallet.
 - [admin.describe_wallet](#admindescribe_wallet): Returns the wallet base information.
 - [admin.list_wallets](#adminlist_wallets): Returns the list of the wallets present on the computer.
 - [admin.rename_wallet](#adminrename_wallet): Renames a wallet
@@ -53,14 +54,12 @@ This method initiates a connection between a wallet and a third-party applicatio
 
 The user has to review the request, and, if they accept it, select the wallet they want to use for this connection.
 
-A connection token is generated and returned to the third-party application. This token is meant to be used in protected methods.
-
 **Supported connections:**
-- Multiple wallets connected for the same hostname. Each connection will have a different token.
-- A single wallet connected to multiple hostnames. Each connection will have a different token.
+- Multiple wallets connected for the same hostname.
+- A single wallet connected to multiple hostnames.
 - Combination of the above setups.
 
-However, it's not possible to have multiple connections on the same wallet for the same hostname. The previous connection will be terminated and a new token will be generated.
+However, it's not possible to have multiple connections on the same wallet for the same hostname. The previous connection will be terminated and a new one will be initiated.
 
 This method should be the entry point of every third-party application.
 
@@ -69,9 +68,6 @@ This method should be the entry point of every third-party application.
 None required
 
 ### Result: `Success`
-| Result key  |  Type  |  Description | Example |
-|------------------|--------|--------|---------|
-| token | string | A unique connection token randomly generated for each new connection. It's used to access the protected methods. | A unique connection token randomly generated for each new connection. It's used to access the protected methods. |
 
 ### Errors
 - **Client error** (3000): the user closed the connection
@@ -98,9 +94,7 @@ The third-party application "vega.xyz" requests a connection to a wallet and the
 ```json
 {
     "name": "Success",
-    "value": {
-        "token": "hZKSx0snBvikp2NGMJdKPHU5qvloSeqpqbJg6BsMwCcqX4iZvvy99BV2l13oeyEG"
-    }
+    "value": "null"
 }
 ```
 
@@ -109,14 +103,11 @@ The third-party application "vega.xyz" requests a connection to a wallet and the
 
 ## `client.disconnect_wallet`
 
-This method ends the connection between the third-party application and the wallet. The token is, then, no longer valid.
-
-Calling this method with an invalid token doesn't fail.
+This method ends the connection between the third-party application and the wallet.
 
 ### Parameters
-| Parameter name  |  Type  |  Description |
-|------------------|--------|--------|
-| **token** | string | A unique connection token randomly generated for each new connection. It's used to access the protected methods. |
+
+None required
 
 
 
@@ -124,7 +115,7 @@ Calling this method with an invalid token doesn't fail.
 
 ### Examples
 #### Disconnection from "vega.xyz"
-The third-party application "vega.xyz" requests a disconnection to a wallet using a valid token.
+The third-party application "vega.xyz" requests a disconnection to a wallet.
 
 ##### Parameters
 ```json
@@ -132,9 +123,7 @@ The third-party application "vega.xyz" requests a disconnection to a wallet usin
     "id": 1,
     "jsonrpc": "2.0",
     "method": "client.disconnect_wallet",
-    "params": {
-        "token": "hZKSx0snBvikp2NGMJdKPHU5qvloSeqpqbJg6BsMwCcqX4iZvvy99BV2l13oeyEG"
-    }
+    "params": []
 }
 ```
 
@@ -156,9 +145,8 @@ This method returns the keys the user has allowed the third-party application to
 It requires a `read` access on `public_keys`.
 
 ### Parameters
-| Parameter name  |  Type  |  Description |
-|------------------|--------|--------|
-| **token** | string | A unique connection token randomly generated for each new connection. It's used to access the protected methods. |
+
+None required
 
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
@@ -178,9 +166,7 @@ The third-party application "vega.xyz" wants to list the public keys it has acce
     "id": 1,
     "jsonrpc": "2.0",
     "method": "client.list_keys",
-    "params": {
-        "token": "hZKSx0snBvikp2NGMJdKPHU5qvloSeqpqbJg6BsMwCcqX4iZvvy99BV2l13oeyEG"
-    }
+    "params": []
 }
 ```
 
@@ -215,7 +201,6 @@ The user has to review the transaction.
 ### Parameters
 | Parameter name  |  Type  |  Description |
 |------------------|--------|--------|
-| **token** | string | A unique connection token randomly generated for each new connection. It's used to access the protected methods. |
 | **publicKey** | string | The Vega public key to use. |
 | **transaction** | object | The transaction as a JSON object |
 
@@ -243,10 +228,9 @@ The third-party application "vega.xyz" requests to sign a transaction and the us
     "jsonrpc": "2.0",
     "method": "client.sign_transaction",
     "params": {
-        "token": "hZKSx0snBvikp2NGMJdKPHU5qvloSeqpqbJg6BsMwCcqX4iZvvy99BV2l13oeyEG",
         "publicKey": "3fd42fd5ceb22d99ac45086f1d82d516118a5cb7ad9a2e096cd78ca2c8960c80",
         "sendingMode": "TYPE_SYNC",
-        "encodedTransaction": "ewogICAgInZvdGVTdWJtaXNzaW9uIjogewogICAgICAgICJwcm9wb3NhbElkIjogImViMmQzOTAyZmRkYTljM2ViNmUzNjlmMjIzNTY4OWI4NzFjNzMyMmNmM2FiMjg0ZGRlM2U5ZGZjMTM4NjNhMTciLAogICAgICAgICJ2YWx1ZSI6ICJWQUxVRV9ZRVMiCiAgICB9Cn0K"
+        "transaction": {}
     }
 }
 ```
@@ -275,9 +259,8 @@ The user has to review the transaction.
 ### Parameters
 | Parameter name  |  Type  |  Description |
 |------------------|--------|--------|
-| **token** | string | A unique connection token randomly generated for each new connection. It's used to access the protected methods. |
 | **publicKey** | string | The Vega public key to use. |
-| **sendingMode** | string | The chosen mode to send the transaction:<br />- `TYPE_SYNC` returns the result of running the transaction.<br />- `TYPE_ASYNC` returns right away without waiting to hear if the transaction is even valid.<br />- `TYPE_COMMIT` waits until the transaction is committed in a block or until some timeout is reached or returns return right away if the transaction is not valid. |
+| **sendingMode** | string | The chosen mode to send the transaction:<br />- `TYPE_SYNC` returns the result of running the transaction.<br />- `TYPE_ASYNC` returns right away without waiting to hear if the transaction is even valid.<br />- `TYPE_COMMIT` waits until the transaction is committed in a block, or until some timeout is reached, or returns return right away if the transaction is not valid. |
 | **transaction** | object | The transaction as a JSON object |
 
 ### Result: `Success`
@@ -308,7 +291,6 @@ The third-party application "vega.xyz" requests to send a transaction and the us
     "jsonrpc": "2.0",
     "method": "client.send_transaction",
     "params": {
-        "token": "hZKSx0snBvikp2NGMJdKPHU5qvloSeqpqbJg6BsMwCcqX4iZvvy99BV2l13oeyEG",
         "publicKey": "3fd42fd5ceb22d99ac45086f1d82d516118a5cb7ad9a2e096cd78ca2c8960c80",
         "sendingMode": "TYPE_SYNC",
         "encodedTransaction": "ewogICAgInZvdGVTdWJtaXNzaW9uIjogewogICAgICAgICJwcm9wb3NhbElkIjogImViMmQzOTAyZmRkYTljM2ViNmUzNjlmMjIzNTY4OWI4NzFjNzMyMmNmM2FiMjg0ZGRlM2U5ZGZjMTM4NjNhMTciLAogICAgICAgICJ2YWx1ZSI6ICJWQUxVRV9ZRVMiCiAgICB9Cn0K"
@@ -514,6 +496,50 @@ undefined
             ]
         }
     }
+}
+```
+
+---
+
+
+## `admin.update_passphrase`
+
+This method changes the passphrase used to lock the wallet.
+
+### Parameters
+| Parameter name  |  Type  |  Description |
+|------------------|--------|--------|
+| **wallet** | string | - |
+| **passphrase** | string | - |
+| **newPassphrase** | string | - |
+
+### Result: `Success`
+
+
+
+### Examples
+#### Update the passphrase
+undefined
+
+##### Parameters
+```json
+{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "admin.update_passphrase",
+    "params": {
+        "wallet": "my-wallet",
+        "passphrase": "this-is-the-old-passphrase",
+        "newPassphrase": "this-is-the-new-passphrase"
+    }
+}
+```
+
+##### Result
+```json
+{
+    "name": "Success",
+    "value": null
 }
 ```
 
@@ -1362,7 +1388,7 @@ undefined
 
 This method marks the specified public key as tainted. It makes it unusable for transaction signing.
 
-When a key is tainted, it is automatically removed from the restricted keys if specified. If the key is the only one to be set, the permission to access the public keys is revoked. If no restricted key is specified, but all keys in the wallet are tainted, the permission of the public keys is revoked as well.
+When a key is tainted, it is automatically removed from the allowed keys if specified. If the key is the only one to be set, the permission to access the public keys is revoked. If no allowed key is specified, but all keys in the wallet are tainted, the permission of the public keys is revoked as well.
 
 ### Parameters
 | Parameter name  |  Type  |  Description |
@@ -1494,7 +1520,7 @@ undefined
         "permissions": {
             "publicKeys": {
                 "access": "read",
-                "restrictedKeys": [
+                "allowedKeys": [
                     "b5fd9d3c4ad553cb3196303b6e6df7f484cf7f5331a572a45031239fd71ad8a0"
                 ]
             }
@@ -1598,7 +1624,7 @@ undefined
         "permissions": {
             "publicKeys": {
                 "access": "read",
-                "restrictedKeys": [
+                "allowedKeys": [
                     "b5fd9d3c4ad553cb3196303b6e6df7f484cf7f5331a572a45031239fd71ad8a0"
                 ]
             }
@@ -1615,7 +1641,7 @@ undefined
         "permissions": {
             "publicKeys": {
                 "access": "read",
-                "restrictedKeys": [
+                "allowedKeys": [
                     "b5fd9d3c4ad553cb3196303b6e6df7f484cf7f5331a572a45031239fd71ad8a0"
                 ]
             }
@@ -1821,7 +1847,7 @@ This method signs a transaction returning a base64-encoded transaction that can 
 | **passphrase** | string | - |
 | **pubKey** | string | - |
 | network _(Optional)_ | integer | - |
-| **sendingMode** | string | The chosen mode to send the transaction:<br />- `TYPE_SYNC` returns the result of running the transaction.<br />- `TYPE_ASYNC` returns right away without waiting to hear if the transaction is even valid.<br />- `TYPE_COMMIT` waits until the transaction is committed in a block or until some timeout is reached or returns return right away if the transaction is not valid. |
+| **sendingMode** | string | The chosen mode to send the transaction:<br />- `TYPE_SYNC` returns the result of running the transaction.<br />- `TYPE_ASYNC` returns right away without waiting to hear if the transaction is even valid.<br />- `TYPE_COMMIT` waits until the transaction is committed in a block, or until some timeout is reached, or returns return right away if the transaction is not valid. |
 | **transaction** | object | The transaction as a JSON object |
 
 ### Result: `Success`
@@ -1848,7 +1874,7 @@ This method sends a transaction that was signed using admin.sign_transaction int
 | **network** | string | The network to send the transaction to. |
 | **nodeAddress** | string | The node address to send the transaction to. |
 | **retries** | integer | the number of times sending the transaction should be attempted if it fails |
-| **sendingMode** | string | The chosen mode to send the transaction:<br />- `TYPE_SYNC` returns the result of running the transaction.<br />- `TYPE_ASYNC` returns right away without waiting to hear if the transaction is even valid.<br />- `TYPE_COMMIT` waits until the transaction is committed in a block or until some timeout is reached or returns return right away if the transaction is not valid. |
+| **sendingMode** | string | The chosen mode to send the transaction:<br />- `TYPE_SYNC` returns the result of running the transaction.<br />- `TYPE_ASYNC` returns right away without waiting to hear if the transaction is even valid.<br />- `TYPE_COMMIT` waits until the transaction is committed in a block, or until some timeout is reached, or returns return right away if the transaction is not valid. |
 
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
@@ -1976,9 +2002,8 @@ undefined
 This method lists all the connections of a service.
 
 ### Parameters
-| Parameter name  |  Type  |  Description |
-|------------------|--------|--------|
-| **network** | string | - |
+
+None required
 
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
@@ -1997,9 +2022,7 @@ undefined
     "id": 1,
     "jsonrpc": "2.0",
     "method": "admin.list_connections",
-    "params": {
-        "network": "mainnet1"
-    }
+    "params": []
 }
 ```
 
@@ -2036,7 +2059,6 @@ This method closes the connection between a third-party application and a wallet
 ### Parameters
 | Parameter name  |  Type  |  Description |
 |------------------|--------|--------|
-| **network** | string | - |
 | **hostname** | string | - |
 | **wallet** | string | - |
 
@@ -2055,7 +2077,6 @@ undefined
     "jsonrpc": "2.0",
     "method": "admin.close_connection",
     "params": {
-        "network": "mainnet1",
         "hostname": "vega.xyz",
         "wallet": "my-btc-wallet"
     }
@@ -2080,7 +2101,6 @@ This method closes all the connections from the specified hostname to any wallet
 ### Parameters
 | Parameter name  |  Type  |  Description |
 |------------------|--------|--------|
-| **network** | string | - |
 | **hostname** | string | - |
 
 ### Result: `Success`
@@ -2098,7 +2118,6 @@ undefined
     "jsonrpc": "2.0",
     "method": "admin.close_connections_to_hostname",
     "params": {
-        "network": "mainnet1",
         "hostname": "vega.xyz"
     }
 }
@@ -2122,7 +2141,6 @@ This method closes all the connections from any hostname to the specified wallet
 ### Parameters
 | Parameter name  |  Type  |  Description |
 |------------------|--------|--------|
-| **network** | string | - |
 | **wallet** | string | - |
 
 ### Result: `Success`
@@ -2140,7 +2158,6 @@ undefined
     "jsonrpc": "2.0",
     "method": "admin.close_connections_to_wallet",
     "params": {
-        "network": "mainnet1",
         "wallet": "my-btc-wallet"
     }
 }

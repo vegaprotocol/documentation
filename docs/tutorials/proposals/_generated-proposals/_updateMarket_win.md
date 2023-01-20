@@ -92,13 +92,13 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
-      \"sigma\": 1.25^
+      \"sigma\": 0.5^
      }^
     }^
    }^
   },^
-  \"closingTimestamp\": 1675103064000,^
-  \"enactmentTimestamp\": 1675189464000^
+  \"closingTimestamp\": 1675869603000,^
+  \"enactmentTimestamp\": 1675956003000^
  }^
 }^
 }"
