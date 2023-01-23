@@ -177,7 +177,8 @@ To update your node configuration, such as to set up ports for the APIs, edit th
 "YOUR_VEGA_HOME_PATH"/config/node/config.toml
 ```
 
-:::note For more information about setting up a validator node, see the [validator node setup guide](setup-validator.md).
+:::note Setting up validator node
+For more information about setting up a validator node, see the [validator node setup guide](setup-validator.md).
 :::
 
 ### Data node configuration
