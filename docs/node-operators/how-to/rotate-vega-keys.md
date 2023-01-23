@@ -111,8 +111,6 @@ You'll receive the following information as a response
 
 where `WALLET_HOME/wallets/test.debf91b` is the filepath to the new isolated wallet. Make a note of its location as you will need to transport this file onto another machine later.
 
-
-
 ### Generate a Vega key rotation transaction
 
 After generating a new key and isolating it in a wallet, create a key rotation transaction that can be sent to the network.

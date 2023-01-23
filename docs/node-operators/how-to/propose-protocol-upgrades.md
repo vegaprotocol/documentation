@@ -1,6 +1,7 @@
 ---
 sidebar_position: 3
-title: Propose and coordinate a protocol upgrade
+title: Propose & coordinate protocol upgrades
+sidebar_label: Propose & coordinate upgrades
 hide_title: false
 ---
 import Tabs from '@theme/Tabs';

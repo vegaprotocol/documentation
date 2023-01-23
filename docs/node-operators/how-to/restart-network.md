@@ -1,7 +1,7 @@
 ---
 sidebar_position: 6
 title: How to restart a network with checkpoints
-sidebar_label: Restart a network with checkpoints
+sidebar_label: Restart network with checkpoints
 hide_title: false
 ---
 
@@ -10,10 +10,9 @@ import TabItem from '@theme/TabItem';
 
 Vega networks support restarts using checkpoints. Checkpoints are a minimal save of the state of the network every N block, or, after funds are moved in or out of the network. They are both a way of restarting a clean chain with the current view of all accounts balances, and a security measure in order to not misplace any funds in case of a major issue that would require a restart of the chain.
 
-:::note
-This guide is valid for a network restart with version 0.50+
+:::note Using Visor
+If you're using Visor for protocol upgrades, you'll need to use it to stop and start the node software.
 :::
-
 
 ## Verify your node wallet keys (do this first)
 

@@ -18,6 +18,10 @@ The snapshots can also be retrieved from the network without any previous local 
 
 All of the network's nodes will take a snapshot of the state at the same block height. This is configured globally using the following network parameter: <NetworkParameter frontMatter={frontMatter} param="snapshot.interval.length" hideValue={false} />
 
+:::note Using Visor
+If you're using Visor for protocol upgrades, you'll need to use it to stop and start the node software.
+:::
+
 ## List available snapshots
 The vega toolchain offers a subcommand to list all snapshots available locally. Once your node has been running for a while, you should be able to see them using the following command:
 ```
