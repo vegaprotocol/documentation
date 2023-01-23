@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 title: Validator community
 sidebar_label: Community
 vega_network: TESTNET

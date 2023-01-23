@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 title: Set up a data node
 hide_title: false
 ---
@@ -177,7 +177,8 @@ To update your node configuration, such as to set up ports for the APIs, edit th
 "YOUR_VEGA_HOME_PATH"/config/node/config.toml
 ```
 
-:::note For more information about setting up a validator node, see the [validator node setup guide](setup-validator.md).
+:::note Setting up validator node
+For more information about setting up a validator node, see the [validator node setup guide](setup-validator.md).
 :::
 
 ### Data node configuration
@@ -204,12 +205,15 @@ For example:
 [[SQLStore.RetentionPolicies]]
   HypertableOrCaggName = "balances"
   DataRetentionPeriod = "7 days"
+```
+
 ## Generate config
 To generate the configuration files you need for the data node, you can use the following command:
 
 ```shell
 vega datanode init --home="YOUR_DATA_NODE_HOME_PATH" "CHAIN_ID"
 ```
+
 Find the `CHAIN_ID` by going to the relevant network genesis file in the relevant networks repo. 
 
 Visit [networks ↗](https://github.com/vegaprotocol/networks/) for mainnet or [networks-internal ↗](https://github.com/vegaprotocol/networks-internal) for a testnet network. 
@@ -305,16 +309,16 @@ To prevent this, the buffered event source flag is set to true by default. You c
 ## Start Vega and data node
 It is recommended to start the data node before starting the Vega node. By default if the `Broker.Socket.Enabled` flag is set to true, the Vega node will attempt to connect to the data node on startup. It will continue to try and connect for one minute before giving up.
 
-To start the data node, run the following command:
+**If you're using [Vega Visor](setup-server#install-visor)**, start your data node by running the service manager of your choice and use the following command:
+
+```shell
+visor run --home "VISOR_HOME_PATH"
+```
+
+If not using Vega Visor, to start the data node, run the following command:
 
 ```shell
 vega datanode start --home="YOUR_DATA_NODE_HOME_PATH"
-```
-
-To start Vega, run the following command:
-
-```shell
-vega start --home="YOUR_VEGA_HOME_PATH" --tendermint-home="YOUR_TENDERMINT_HOME_PATH"
 ```
 
 ## Fetch network history
@@ -340,7 +344,7 @@ There are currently three protocols to communicate with the data node APIs:
 ### gRPC
 gRPC is an open source remote procedure call (RPC) system initially developed at Google. In data node the gRPC API features streaming of events in addition to standard procedure calls.
 
-The default port (configurable) for the gRPC API is `3007` and matches the [gRPC protobuf definition](https://github.com/vegaprotocol/vega/tree/develop/protos).
+The default port (configurable) for the gRPC API is `3007` and matches the [gRPC protobuf definition ↗](https://github.com/vegaprotocol/vega/tree/develop/protos).
 
 gRPC configurations are defined under the `[Gateway.Node]` section of the data node configuration file `YOUR_DATA_NODE_HOME_PATH/config/data-node/config.toml`:
 

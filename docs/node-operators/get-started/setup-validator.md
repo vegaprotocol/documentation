@@ -24,6 +24,85 @@ To update your node configuration, such as to set up ports for the APIs, edit th
 YOUR_VEGA_HOME_PATH/config/node/config.toml
 ```
 
+## Initialise Visor (for smooth protocol upgrades)
+Visor manages protocol upgrades, allowing the nodes running a network to automatically update to the latest version of the Vega protocol, without requiring manual intervention. Using Visor is optional, but recommended. 
+
+Read more about how to [propose a protocol upgrade](../how-to/propose-protocol-upgrades.md).
+
+The command to initialise Visor will vary depending on whether you want to use Visor with only a validator node, or also a data node. 
+
+Run the initialisation command to generate Visor’s home folder, with a generated home folder structure, to your provided `VISOR_HOME_PATH`:
+
+**Vega only**
+
+```shell
+visor init --home VISOR_HOME_PATH
+```
+
+**With data node**
+
+```shell
+visor init --home VISOR_HOME_PATH --with-data-node
+```
+
+## Configure Visor
+Configure Visor in the configuration file `config.toml`, located at `VISOR_HOME_PATH/config.toml`. 
+
+This configuration allows you to modify Visor functionality. See the [Visor config documentation](https://github.com/vegaprotocol/vega/blob/develop/visor/visor-config.md) for more details on what you can configure and why.
+    
+Example of configuration you may want to customise: 
+```toml
+  maxNumberOfRestarts = 1
+  maxNumberOfFirstConnectionRetries = 100
+  stopSignalTimeoutSeconds = 60
+  restartsDelaySeconds = 10
+  
+  [autoInstall]
+	  enabled = false
+```
+### Prepare initial Visor run
+Prepare the first run configuration in `VISOR_HOME_PATH/genesis/run-config.toml`. The configuration allows you to specify what binaries and their arguments will be run in a specific upgrade. 
+
+Be sure to check that you use the correct location for the relevant Vega binary, and include the specific arguments for your set-up.
+
+Note: By default, Visor automatically links the genesis folder as the current folder, if the current folder does not exist.
+
+Example of configuration to customise:
+```toml
+name = "genesis"
+
+[vega]
+  [vega.binary]
+	path = "/path/vega-binary"
+	args = ["node",
+		"--home", "VEGA_HOME_PATH",
+		"--tendermint-home", "TENDERMINT_HOME_PATH" ]
+[vega.rpc]
+	socketPath = "VEGA_ADMIN_SOCKET_PATH/vega.sock"
+	httpPath = "/rpc"
+```
+
+### Visor service manager
+Use a service manager (for example Systemd) to run Visor. While you can use any service manager for running Visor, below is an example of Systemd service definition.
+
+```toml
+[Unit]
+      Description=vegavisor
+      Documentation=https://github.com/vegaprotocol/vega
+      After=network.target network-online.target
+      Requires=network-online.target
+  [Service] User=vega Group=vega
+      ExecStart="visor" run --home "VISOR_HOME_PATH"
+      TimeoutStopSec=10s
+      LimitNOFILE=1048576
+      LimitNPROC=512
+      PrivateTmp=true
+      ProtectSystem=full
+      AmbientCapabilities=CAP_NET_BIND_SERVICE
+  [Install]
+      WantedBy=multi-user.target
+```
+
 ## Modify Vega config
 When announcing your node (below), the node will need to be pointing to a Tendermint node. Set that in your Vega config based on information in the Tendermint config file. 
 
@@ -38,6 +117,7 @@ Use that address in your node's Vega config `YOUR_VEGA_HOME_PATH/config/node/con
     Level = "Info"
     RPCAddr = "tcp://your.rpc.address"
 ```
+
 
 ### Point to Ethereum node
 In order to validate events happening on the Ethereum bridge, the Vega node needs to be connected to an Ethereum archive node (rather than full node). The core software connects to the `eth_getLogs` endpoint, which is only available on archive nodes. This allows the Vega node to verify that an event happened on Ethereum (e.g: a deposit or a withdrawal).
@@ -163,31 +243,49 @@ Then ensure the `max_packet_msg_payload_size` is at least 16384.
 
 Under `Mempool Configuration Option`, ensure that `broadcast = true`.
 
+
 ### Update Tendermint genesis
 To start successfully, tendermint needs the genesis file from the network you will be trying to join. This file need to be located in `YOUR_TENDERMINT_HOME/config/genesis.json`. Download the genesis file and use it to replace the genesis in your config.
 
 You can find genesis files: 
-* In the [networks repository](https://github.com/vegaprotocol/networks) for the mainnet network. 
-* In the [networks internal repository](https://github.com/vegaprotocol/networks-internal) for sandbox and other test networks. Note: For sandbox, the genesis must be a URL to a remote file, not saved locally on disk.
+* In the [networks repository ↗](https://github.com/vegaprotocol/networks) for the mainnet network. 
+* In the [networks internal repository ↗](https://github.com/vegaprotocol/networks-internal) for sandbox and other test networks. Note: For sandbox, the genesis must be a URL to a remote file, not saved locally on disk.
 
-For example, to join mainnet you will need the following [genesis file](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json).
+For example, to join mainnet you will need the following [genesis file ↗](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json).
 
 ## Synchronise your node
-You can either start the node from a snapshot (recommended, particularly for a long chain), or replay the full chain history to get up-to-date.
+You can either start the node from a snapshot (recommended, particularly for a long chain), or replay the full chain history to get up-to-date. If using Visor for protocol upgrades, follow the instructions below to start the node with Visor.
 
 ### Start node from a snapshot
 [Snapshots](../how-to/use-snapshots.md): Use a recent network snapshot to start your node without having to replay the entire chain.
 
-After you start from snapshot, start your node by running the following command:
-```vega start```
+After you choose the snapshot you're starting from: 
+
+**If you're using Visor**, start your node by running the service manager of your choice and use the following command:
+
+```shell
+visor run --home "VISOR_HOME_PATH"
+```
+
+**If you're not using Visor**, start your node by running the following command e.g. for sandbox:
+
+```shell
+vega start --home="YOUR_VEGA_HOME_PATH" --nodewallet-passphrase-file="YOUR_PASSPHRASE_FILE_PATH" --network=sandbox
+```
 
 ### Replay from genesis
 To replay all history from genesis: 
 
-You can set a genesis file when starting the node with the following command, e.g for sandbox:
+You can set a genesis file when starting the node with the following command, e.g. for sandbox:
 
 ```shell
 vega start --home="YOUR_VEGA_HOME_PATH" --nodewallet-passphrase-file="YOUR_PASSPHRASE_FILE_PATH" --network=sandbox
+```
+
+If using Visor, configure the node with Visor, including the required args (flags) for network, etc, and then start Visor with the service manager of your choice using the following command:
+
+```shell
+visor run --home "VISOR_HOME_PATH"
 ```
 
 Once your node is synchronised, you'll need to self-stake, and then announce the node to the network and then the community.
@@ -215,7 +313,7 @@ vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" 
 ```
 
 ## Nominate your node
-To move on to self-staking, wait until you see your node on the validator list by querying the API or checking the [token dApp](https://sandbox.token.vega.xyz/staking/).
+To move on to self-staking, wait until you see your node on the validator list by querying the API or checking the [token dApp ↗](https://sandbox.token.vega.xyz/staking/).
 
 Then, associate your tokens and nominate your node using the [token dApp ↗](https://sandbox.token.vega.xyz/staking/) or by interacting directly with the smart contract.
 
@@ -233,4 +331,15 @@ You need to add your node as a signer by the end of the epoch that the signature
 ## Announce node off-chain
 [Create a validator profile on the forum ↗](https://community.vega.xyz/c/mainnet-validator-candidates/23) describing the experience you have, security practices and policies, how you will ensure maximum uptime, how you'll meet suitable performance standards, your communication channels for questions and the role you intend to take in Vega's governance.
 
-Share your profile with the community, for example in [the Validators Discord channel ↗](https://discord.com/channels/720571334798737489/869236034116943903), to attract staker delegation.
+Share your profile with the community, for example in [the Validators Discord channel ↗](https://discord.com/channels/720571334798737489/869236034116943903), to attract stakers to nominate your node.
+
+## Next steps
+Once your node is up and running, you'll need to maintain it, and ensure that it's still taking part in the network. You may also need to upgrade the software, restart the network and rotate your keys (for security). 
+
+See the following guides to learn how to: 
+
+* [Propose a protocol upgrade](../how-to/propose-protocol-upgrades.md)
+* [Restart the network](../how-to/restart-network.md)
+* [Rotate Ethereum keys](../how-to/rotate-ethereum-keys.md)
+* [Rotate Vega keys](../how-to/rotate-vega-keys.md)
+* [Use snapshots](../how-to/use-snapshots.md)
