@@ -190,7 +190,7 @@ This will read the Tendermint keys from the configuration path, and set up your 
 Vega supports two types of Ethereum wallet: you can either register a wallet available from a clef instance or import a keystore file (e.g: create with `geth account`).
 
 #### Using clef
-To set up your clef instance please refer to the [clef documentation ↗](https://geth.ethereum.org/docs/clef/tutorial).
+To set up your clef instance please refer to the [clef documentation ↗](https://geth.ethereum.org/docs/tools/clef/introduction).
 
 Set the address of your clef instance in the Vega configuration (`YOUR_VEGA_HOME/config/node/config.toml`):
 ```Toml
@@ -293,7 +293,7 @@ Once your node is synchronised, you'll need to self-stake, and then announce the
 ## Associate tokens to your Vega key
 Before you announce your node, you will need to have <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={true} formatter="governanceToken" suffix="tokens"/> Vega associated to your Vega key to self-stake (below).
 
-Use the [Sepolia VEGA contract ↗](https://sepolia.etherscan.io/address/0xAe6dd14bD9313d22Cf2254F347836570Df592022#writeContract) to faucet tokens to your Ethereum key. 
+Use the [Sepolia VEGA contract address on the token site ↗](https://sandbox.token.vega.xyz/token) to call the contract and faucet tokens to your Ethereum key. 
 
 The tokens that you want to use for self-staking must be available on an Ethereum wallet, and then associated to the same Vega public key you used to set up the node. 
 

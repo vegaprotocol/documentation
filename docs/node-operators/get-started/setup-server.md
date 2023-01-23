@@ -110,7 +110,9 @@ To ensure that the compilation was successful run the following command:
 
 This will print the version of the binary you just built.
 
-:::note In order to run the `vega` command from any folder you should move the binary to a folder that is in your PATH.
+:::note 
+In order to run the `vega` command from any folder you should move the binary to a folder that is in your PATH.
+:::
 
 ### Install Visor
 Visor manages protocol upgrades, allowing the nodes running a network to automatically update to the latest agreed version of the Vega protocol, without requiring manual intervention at the upgrade time. Using Visor is optional, but recommended. 

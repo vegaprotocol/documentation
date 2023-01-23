@@ -181,11 +181,38 @@ To update your node configuration, such as to set up ports for the APIs, edit th
 :::
 
 ### Data node configuration
+
+## Data node retention profiles
+When starting a data node, you can choose the data retention configuration for your data node, depending on the use case for the node. The retention policy details can all be fine-tuned manually, as well.
+
+There are 3 retention policy configurations: 
+* **Standard (default)**: The node retains data according to the default retention policies, which assume a data node retains some data over time, but not all data
+* **Lite**: The node retains enough data to be able to provide the latest state to clients, and produce network history segments. This mode saves enough to provide the current state of accounts, assets, balances, delegations, liquidity provisions, live orders, margin levels, markets, network limits, network parameters, node details, parties, positions 
+* **Archive**: The node retains all data
+
+To run a node that doesn't use the standard default retention, use one of the following flags when running the `init` command: 
+   
+* For a standard node, no flag
+* For an archive node, use `--archive`
+* For a lite node, use `--lite`
+
+If you want to tweak the retention policy once the initial configuration has been generated, set it on per-table basis in the data node's `config.toml`. 
+
+For example: 
+
+```toml
+[[SQLStore.RetentionPolicies]]
+  HypertableOrCaggName = "balances"
+  DataRetentionPeriod = "7 days"
+```
+
+## Generate config
 To generate the configuration files you need for the data node, you can use the following command:
 
 ```shell
 vega datanode init --home="YOUR_DATA_NODE_HOME_PATH" "CHAIN_ID"
 ```
+
 Find the `CHAIN_ID` by going to the relevant network genesis file in the relevant networks repo. 
 
 Visit [networks ↗](https://github.com/vegaprotocol/networks/) for mainnet or [networks-internal ↗](https://github.com/vegaprotocol/networks-internal) for a testnet network. 
@@ -278,7 +305,7 @@ To prevent this, the buffered event source flag is set to true by default. You c
   ...
 ```
 
-## Run Vega and data node
+## Start Vega and data node
 It is recommended to start the data node before starting the Vega node. By default if the `Broker.Socket.Enabled` flag is set to true, the Vega node will attempt to connect to the data node on startup. It will continue to try and connect for one minute before giving up.
 
 **If you're using [Vega Visor](setup-server#install-visor)**, start your data node by running the service manager of your choice and use the following command:
@@ -291,6 +318,21 @@ If not using Vega Visor, to start the data node, run the following command:
 
 ```shell
 vega datanode start --home="YOUR_DATA_NODE_HOME_PATH"
+```
+
+## Fetch network history
+After starting a data node, you can load in a segment of network history, if you want your node to have more data than provided by the current height. This is particularly useful if you're running an archive node.
+
+To see how much network history your data node has, run the following command:
+
+```shell
+vega datanode network-history show --home="YOUR_DATA_NODE_HOME_PATH"
+```
+
+To fetch a network history segment, run the command below. Use the ID of the segment you want (for example, the oldest) followed by the number of blocks prior to the segment's height that you want fetch. `2000` is used in the following example. This will result in all blocks from height 3000 to 5000 being retrieved.
+
+```shell
+vega datanode fetch <segment-id-of-segment-at-height-5000> 2000
 ```
 
 ## Configure data node APIs
