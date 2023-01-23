@@ -24,10 +24,10 @@ To update your node configuration, such as to set up ports for the APIs, edit th
 YOUR_VEGA_HOME_PATH/config/node/config.toml
 ```
 
-## Initialise Visor for protocol upgrades
+## Initialise Visor (for smooth protocol upgrades)
 Visor manages protocol upgrades, allowing the nodes running a network to automatically update to the latest version of the Vega protocol, without requiring manual intervention. Using Visor is optional, but recommended. 
 
-Read more about protocol upgrades (link)
+Read more about how to [propose a protocol upgrade](../how-to/propose-protocol-upgrades.md).
 
 The command to initialise Visor will vary depending on whether you want to use Visor with only a validator node, or also a data node. 
 
@@ -282,7 +282,7 @@ You can set a genesis file when starting the node with the following command, e.
 vega start --home="YOUR_VEGA_HOME_PATH" --nodewallet-passphrase-file="YOUR_PASSPHRASE_FILE_PATH" --network=sandbox
 ```
 
-If using Visor, start your node by running the service manager of your choice, including the required args (flags) for network, etc, and use the following command:
+If using Visor, configure the node with Visor, including the required args (flags) for network, etc, and then start Visor with the service manager of your choice using the following command:
 
 ```shell
 visor run --home "VISOR_HOME_PATH"

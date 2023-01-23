@@ -30,7 +30,7 @@ For production use, we recommend using the Linux binary on Ubuntu as this is the
 See the [infrastructure requirements](../requirements/infrastructure.md) page for a full list of what you need to run various parts of the Vega toolchain.
 
 ## Use the pre-built binaries
-One way to set up a Vega node is to use the pre-built binaries. You'll use: Vega, Vega Wallet, Visor (optional - for easier protocol upgrades), and data node (optional).
+One way to set up a Vega node is to use the pre-built binaries. You'll use 'Vega', as well as the following features that are subcommands of the Vega binary: Vega Wallet, Visor (optional - for easier protocol upgrades), and data node (optional - for storing and supplying data).
 
 Find them under [Vega core releases ↗](https://github.com/vegaprotocol/vega/releases).
 
@@ -113,13 +113,13 @@ This will print the version of the binary you just built.
 :::note In order to run the `vega` command from any folder you should move the binary to a folder that is in your PATH.
 
 ### Install Visor
-Visor manages protocol upgrades, allowing the nodes running a network to automatically update to the latest version of the Vega protocol, without requiring manual intervention. Using Visor is optional, but recommended. 
+Visor manages protocol upgrades, allowing the nodes running a network to automatically update to the latest agreed version of the Vega protocol, without requiring manual intervention at the upgrade time. Using Visor is optional, but recommended. 
 
-Download and install the [Visor binary ↗](https://github.com/vegaprotocol/vega/releases) that matches the release version you built.
+Download and install the [Visor binary ↗](https://github.com/vegaprotocol/vega/releases) that matches the release version of Vega you built.
 
 Read detailed information about Vega Visor, including how it works, how the config is set up and how you can edit it in the [full software description ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#readme).
 
-You can also read the [architecture overview ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#architecture) and [upgrade flow ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#upgrade-flow) topics in the Visor readme before setting it up.
+See the [architecture overview ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#architecture) and [upgrade flow ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#upgrade-flow) topics in the Visor readme before setting it up.
 
 ## Next Steps
 
