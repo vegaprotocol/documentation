@@ -90,13 +90,13 @@
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 0.5
+            "sigma": 0.8
           }
         }
       }
     },
-    "closingTimestamp": 1675869603000,
-    "enactmentTimestamp": 1675956003000
+    "closingTimestamp": 1676224323000,
+    "enactmentTimestamp": 1676310723000
   }
 }
 ```

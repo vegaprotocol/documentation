@@ -26,14 +26,14 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-### Pre-release Versions 0.67.0, 0.67.1 and 0.67.2 combined | 2023-01-20
-This version was released to the Vega testnet on 20 January 2023.
+### Pre-release Versions 0.67.0, 0.67.1, 0.67.2 and 0.67.3 combined | 2023-01-20
+This version was released to the Vega testnet on 20 January 2023, with patch 0.67.3 released on 24 January.
 
-Building on the stability improvements in the first release of 2023, the second release of the year, 0.67.2, is the version the team believe is ready for the first community Market Simulation. This release brings with it bug fixes around data sourcing and a critical fix whereby transfers and announce-node spam policies were not included in snapshots. These issues have been resolved and covered in tests to ensure no regression in the future.
+Building on the stability improvements in the first release of 2023, this second release of the year is the version the team believe is ready for the first community Market Simulation. This release brings with it bug fixes around data sourcing and a critical fix whereby transfers and announce-node spam policies were not included in snapshots. These issues have been resolved and covered in tests to ensure no regression in the future.
 
 In addition to these fixes, improvements have been made to the data node API documentation and the data node operator UX. It is now possible to initialise a data node using one of the three [retention modes](https://github.com/vegaprotocol/specs/blob/master/protocol/0076-DANO-data-node.md#datanode-retention-modes). Finally for v0.67.2 the wallet API token support has been extended to support long lived tokens.
 
-Check out the full details of this combined release in the Vega core [0.67.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.67.0), [0.67.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.67.1) and [0.67.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.67.2) release pages.
+Check out the full details of this combined release in the Vega core [0.67.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.67.0), [0.67.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.67.1), [0.67.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.67.3) and [0.67.3 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.67.2) release pages.
 
 ### Pre-release Versions 0.66.0 and 0.66.1 combined | 2023-01-06
 This version was released to the Vega testnet on 6 January 2023.
