@@ -125,15 +125,15 @@ When starting a data node, you can choose one of three retention modes, dependin
 | Conflated positions       	| 1 year            	|
 | Liquidity provisions      	| 1 day             	|
 
-## Decentralised history
-The daily addition of gigabites of core event data to the data node make it infeasible for a new data node to replay all blocks from the first block. Instead, new nodes can use a feature called decentralised history to recreate the history quickly and get into a state to be able to consume new blocks. 
+## Network history
+The daily addition of gigabites of core event data to the data node make it infeasible for a new data node to replay all blocks from the first block. Instead, new nodes can use a feature called network history to recreate the history quickly and get into a state to be able to consume new blocks. 
 
-History segments produced on every node for a given block span are identical, such that the IPFS content IDs of the segment are the same across all nodes. This means there's no need to upload data between nodes, as each node produces history segments, and thus can be a source of history segments. 
+History segments produced on every node for a given block span are identical, such that the IPFS content IDs of the segment are the same across all nodes. This means there's no need to upload data between nodes, as each node produces history segments, and thus can be a source of history segments.
 
 When a new node joins the network and requests a history segment for a given IPFS content ID, the provision of data to the node is shared across all other nodes in the network. The data node software also supports pulling all available historical data asynchronously once the newly joined data node has loaded the latest history segment. 
 
-A decentralised history segment is created every snapshot interval. It gets the interval's worth of data from the PostgreSQL database to create the history segment, without blocking event processing. The data node then publishes it to the network's IPFS swarm, thus making it available to all other current and future data nodes (per network).
+A network history segment is created every snapshot interval. It gets the interval's worth of data from the PostgreSQL database to create the history segment, without blocking event processing. The data node then publishes it to the network's IPFS swarm, thus making it available to all other current and future data nodes (per network).
 
 :::note Go deeper
-[Decentralised history readme](https://github.com/vegaprotocol/vega/blob/develop/datanode/dehistory/README.md): How to use decentralised history
+[Network history readme](https://github.com/vegaprotocol/vega/blob/develop/datanode/networkhistory/README.md): How to use network history
 :::
