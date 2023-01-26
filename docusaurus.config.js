@@ -58,7 +58,7 @@ module.exports = {
         {
           type: "doc",
           docId: "tools/index",
-          label: "Apps & Tools",
+          label: "Apps",
           position: "left",
         },
         {
