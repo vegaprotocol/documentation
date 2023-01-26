@@ -19,7 +19,7 @@ module.exports = {
       title: "Vega documentation",
       logo: {
         alt: "Vega Protocol Logo",
-        src: "img/logo-y.png",
+        src: "/img/logo-y.png",
       },
       items: [
         {
