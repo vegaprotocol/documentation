@@ -14,12 +14,12 @@ module.exports = {
   organizationName: "vegaprotocol",
   projectName: "documentation",
   themeConfig: {
-    image: "img/logo-y.png",
+    image: "img/preview-image.png",
     navbar: {
       title: "Vega documentation",
       logo: {
         alt: "Vega Protocol Logo",
-        src: "img/logo-y.png",
+        src: "/img/logo-y.png",
       },
       items: [
         {
@@ -33,8 +33,9 @@ module.exports = {
         },
         {
           href: "https://github.com/vegaprotocol/documentation",
-          label: "GitHub",
-          position: "right",
+          position: 'right',
+          className: 'header-github-link',
+          'aria-label': 'GitHub repository',
         },
         {
           type: "doc",
@@ -57,7 +58,7 @@ module.exports = {
         {
           type: "doc",
           docId: "tools/index",
-          label: "Apps & Tools",
+          label: "Apps",
           position: "left",
         },
         {
