@@ -33,8 +33,9 @@ module.exports = {
         },
         {
           href: "https://github.com/vegaprotocol/documentation",
-          label: "GitHub",
-          position: "right",
+          position: 'right',
+          className: 'header-github-link',
+          'aria-label': 'GitHub repository',
         },
         {
           type: "doc",
