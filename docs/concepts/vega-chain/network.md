@@ -41,14 +41,14 @@ Governance transactions have several limits in order to mitigate the potential s
 * To submit a vote, the minimum required number of governance tokens associated to the voting public key is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.voting.min.tokens" hideName={true} suffix="tokens" formatter="governanceToken" />
 * Minimum number of governance tokens associated to the proposing public key required to submit the proposal is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" suffix="tokens" formatter="governanceToken" />
 
-**Votes on proposals** and **submitting governance proposals* also have limitations on the max number of each per epoch: 
+**Votes on proposals** and **submitting governance proposals** also have limitations on the max number of each per epoch: 
 * Maximum number of votes per public key, per epoch is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.votes" />
 * Maximum number of proposals per public key, per epoch is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.proposals" hideName={true} />
 
 #### Mitigating spam attacks
 If the network perceives it is under attack based on the amount of rejected governance votes coming after they're added to a block, or in spite of the spam limits, then the minimum required tokens to submit a vote is doubled automatically until the attack is over.
 
-If three blocks in a row are filled with spam, for example, if parties continue to send substantially more than 3 votes, then the number of required tokens is doubled, up to a maximum of 1600 tokens.
+If three blocks in a row are filled with spam, for example if parties continue to send substantially more than 3 votes, then the number of required tokens is doubled, up to a maximum of 1600 tokens.
 
 ### Spam limits: Transfers 
 Each party (public key) has a limitation on how many transfer transactions it can submit per epoch, set by the network parameter
@@ -77,11 +77,11 @@ As uncompleted withdrawals don't expire, it's possible to generate a large numbe
 
 A minimum amount per withdrawal can lower the risk of transaction spam from tiny withdrawal and/or transfer requests.
 
-The minimum amount per withdrawal is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.minimumWithdrawalQuantumMultiple" hideValue={true} /> multiplied by the specific asset's quan†um. An asset's quantum is defined as an approximation of the smallest 'meaningful' amount of that asset, generally expecting it to be the quantity of the asset valued at about 1 USD.
+The minimum amount per withdrawal is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.minimumWithdrawalQuantumMultiple" hideValue={true} /> multiplied by the specific asset's quantum. An asset's quantum is defined as an approximation of the smallest 'meaningful' amount of that asset, generally expecting it to be the quantity of the asset valued at about 1 USD.
 
 Any withdrawal request for a smaller amount is immediately rejected.
 
-<!--> delay threshold will probably be zero. -->
+<!-- delay threshold will probably be zero. -->
 <!-- (mention in withdrawals area) -->
 
 
