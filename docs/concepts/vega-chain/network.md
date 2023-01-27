@@ -45,17 +45,10 @@ Governance transactions have several limits in order to mitigate the potential s
 * Maximum number of votes per public key, per epoch is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.votes" />
 * Maximum number of proposals per public key, per epoch is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.proposals" hideName={true} />
 
-#### Transaction rejection policies
-Governance transactions that don't follow the anti-spam rules are rejected, either before the block is built, or after, depending on the circumstances.
-
-Pre-block rejection: Each governance transaction is checked to ensure the public key sending it meets the spam protection requirements before the transaction enters the validators' mempool. The remaining transactions that were not added to a block are rechecked after the original block's execution, to be added to the next block. If a transaction fails the applicable spam rules set by the [parameters](#spam-protection-and-pow-parameters) below, it's not processed and is removed.
-
-Post-block rejection: When a transaction makes it into the block, it is still checked before the block is finalised, and can then be rejected before it's passed to the application layer. Although this type of validation allows for more fine-grained policies because more information is available, the offending transaction will take up space in the block. If a transaction fails the spam rules set by the [parameters](#spam-protection-and-pow-parameters) below, it is rejected. The party may be banned if their transactions continue to be rejected, and could trigger an increase in the minimum token requirement for all those submitting governance transactions.
-
 #### Mitigating spam attacks
-If the network perceives it is under attack based on the amount of rejections coming post-block, or in spite of the spam limits, then the minimum required tokens to submit a governance related-transaction is doubled automatically until the attack is over. 
+If the network perceives it is under attack based on the amount of rejected governance votes coming after they're added to a block, or in spite of the spam limits, then the minimum required tokens to submit a vote is doubled automatically until the attack is over.
 
-If three blocks in a row are filled with spam, for example, if parties continue to send substantially more than 3 votes, then the number of required tokens is doubled, up to a maximum of 1600 tokens. 
+If three blocks in a row are filled with spam, for example, if parties continue to send substantially more than 3 votes, then the number of required tokens is doubled, up to a maximum of 1600 tokens.
 
 ### Spam limits: Transfers 
 Each party (public key) has a limitation on how many transfer transactions it can submit per epoch, set by the network parameter
@@ -63,6 +56,21 @@ Each party (public key) has a limitation on how many transfer transactions it ca
 
 Once that transfer limit is reached for a key, any subsequent transactions are rejected until the epoch switches over.
 <!-- (mention in transfers area) -->
+
+### Spam limits: Staking
+Staking to any number validators is subject to minimum token requirements and a limit on the number of delegations per epoch:
+
+* Minimum required number of governance tokens associated to the voting public key is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.delegation.min.tokens" suffix="tokens" formatter="governanceToken" />. Nominations submitted without enough tokens are rejected.
+* Maximum number of nominations per public key, per epoch is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.delegations"/>. Once that nominations limit is reached for a key, any subsequent nominations are rejected until the epoch switches over.
+
+#### Rejection policies
+Relevant transactions (governance, transfers, and staking) that don't follow the anti-spam rules are rejected, either before the block is processed, or after, depending on the circumstances.
+
+**Pre-block rejection:** Each governance transaction is checked to ensure the public key sending it meets the spam protection requirements before the transaction enters the validators' mempool. The remaining transactions that were not added to a block are rechecked after the original block's execution, to be added to the next block. If a transaction fails the applicable spam rules set by the [parameters](#spam-protection-and-pow-parameters) below, it's not processed and is removed.
+
+**Post-block rejection:** When a transaction makes it into the block, it is still checked before the block is finalised, and can then be rejected before it's passed to the application layer. A transaction may be rejected post-block and passed the initial validation if, for example, it breaches the maximum allowed rule, but nodes aren't yet aware of how many of that party's transactions will eventually be included in a block. That can happen because a validator node doesn't know what's in the other validators' mempools until transactions reach them through gossip. When the nodes evaluate a block during its execution, all mempool and transaction information is available, so any transactions that breach those spam rules are rejected and removed from the block before they can be executed.
+
+If a party has 50% or more transactions rejected post-block, that party will be banned for 30 seconds or 1/48th of an epoch, whichever is greater. 
 
 ### Spam limits: Withdrawals
 As uncompleted withdrawals don't expire, it's possible to generate a large number of transactions and withdrawal request data by requesting many small transactions.
@@ -77,17 +85,11 @@ Any withdrawal request for a smaller amount is immediately rejected.
 <!-- (mention in withdrawals area) -->
 
 
-### Spam limits: Staking
-Staking to any number validators is subject to minimum token requirements and a limit on the number of delegations per epoch:
-
-* Minimum required number of governance tokens associated to the voting public key is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.delegation.min.tokens" suffix="tokens" formatter="governanceToken" />. Nominations submitted without enough tokens are rejected.
-* Maximum number of nominations per public key, per epoch is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.delegations"/>. Once that nominations limit is reached for a key, any subsequent nominations are rejected until the epoch switches over.
-
 ### Spam limits: Batch order instructions 
 Batch order instructions are limited by a maximum size per batch, determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.batchSize" />. A batch with a size higher than the limit is rejected.
 
 ### Proof of work
-Although Vega is a proof-of-stake network, there is a client-side proof-of-work mechanism to prevent transaction spam from public keys trying to flood the network, or submitting a number of transactions that could slow down the network for all participants. 
+Although Vega is a proof-of-stake network, there is a client-side proof-of-work mechanism to prevent transaction spam from public keys trying to flood the network, or submitting a number of transactions that could slow down the network for all participants.
 
 Every transaction must include a proof-of-work calculation derived from a recent block, proving the transaction was created recently. The proof-of-work is calculated by the Vega Wallet software. It does not incur gas fees and does not have any effect on a transaction's priority.
 
