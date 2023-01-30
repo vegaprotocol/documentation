@@ -64,6 +64,9 @@ Download `vegawallet-desktop-linux-amd64.zip`
 </TabItem>
 </Tabs>
 
+#### Antivirus software
+If you are running antivirus software, you may need to ‘allowlist’ or ‘whitelist’ the Vega Wallet software, so that your antivirus provider doesn’t quarantine the software and block you from using it.
+
 #### 2. Extract the file
 Click on the compressed folder to get access to the app. 
 

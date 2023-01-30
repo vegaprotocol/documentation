@@ -21,11 +21,6 @@ These instructions cover Vega Wallet version 0.67.3, which is compatible with Ve
 
 Note: If you are looking for instructions for connecting your hardware wallet to MetaMask, see [MetaMask's guide ↗](https://metamask.zendesk.com/hc/en-us/articles/360020394612-How-to-connect-a-Trezor-or-Ledger-Hardware-Wallet).
 
-## Command line guidance
-Use the following instructions in command line. Below, you'll see commands in the code blocks for each operating system. Copy those instructions and paste them into your command line interface.
-
-In your command line interface, you can view a list of available commands by running `./vegawallet -h` on MacOS and Linux, or `vegawallet -h` on Windows. Help is also available for every command, for example: `vegawallet create -h` will provide information about the `create` command.
-
 ## 1. Install and run Vega Wallet
 
 ### Download file
@@ -66,6 +61,14 @@ Download `vegawallet-linux-amd64.zip`
 </TabItem>
 </Tabs>
 :::
+
+#### Antivirus software
+If you are running antivirus software, you may need to 'allowlist' or 'whitelist' the Vega Wallet software, so that your antivirus provider doesn't quarantine the software and block you from using it.
+
+## Command line guidance
+Use the following instructions in command line. Below, you'll see commands in the code blocks for each operating system. Copy those instructions and paste them into your command line interface.
+
+In your command line interface, you can view a list of available commands by running `./vegawallet -h` on MacOS and Linux, or `vegawallet -h` on Windows. Help is also available for every command, for example: `vegawallet create -h` will provide information about the `create` command.
 
 :::info
 You'll need to run the commands from the directory you've saved the wallet file in. Use the command `pwd` to find out where your terminal is looking in the file system. Use the command `cd` and the path/to/wallet/directory to tell the command line where to find the file. 
