@@ -85,7 +85,7 @@ If you don't already have a Vega wallet, create a new wallet.
 2. Click on "Create new wallet" 
 3. Enter a wallet name of your choice, and a passphrase. 
 4. Your first keypair will be created for you. You can create more keys for that wallet but you only need one to start interacting with Vega. 
-5. Choose a Vega network to connect to: Click on the arrow in the bottom bar of the app. 
+5. Choose a Vega network to connect to: Click on the arrow in the bottom bar of the app. If you do not have any network configuration, you can use the .toml URLs in the [manage networks guide](../../cli-wallet/latest/guides/manage-networks#network-urls) to import a network.
 
 ## Restore wallet
 If your Vega wallet was created on a different device, or you lost access to it but have the recovery phrase, you can recover the wallet using that recovery phrase. 
@@ -94,7 +94,7 @@ If your Vega wallet was created on a different device, or you lost access to it 
 2. Click on "Use recovery phrase"
 3. Enter your recovery phrase, exactly in the order that it was first presented to you. 
 4. Identify if your wallet was version 1 or 2 by choosing the version number. 
-5. Choose a Vega network to connect to: Click on the arrow in the bottom bar of the app. 
+5. Choose a Vega network to connect to: Click on the arrow in the bottom bar of the app. If you do not have any network configuration, you can use the .toml URLs in the [manage networks guide](../../cli-wallet/latest/guides/manage-networks#network-urls) to import a network.
 
 ## Updating the app
 It's recommended that you keep the Vega Wallet app up-to-date, to take advantage of the latest features. 
@@ -131,7 +131,10 @@ You recover a wallet using your recovery phrase, and the public key you see does
 
 #### Possible solutions
 * Choose the alternate wallet version number alongside your recovery phrase. If you recovered and chose "version 2", then you should try using the same recovery phrase but choose "version 1".
-* Ensure that your recovery phrase includes the exact same words, in the exact same order, as they were provided to you when you first created your wallet. 
+* Ensure that your recovery phrase includes the exact same words, in the exact same order, as they were provided to you when you first created your wallet.
+
+## No networks available
+If you chose not to import the available networks when setting up the wallet app, you will need to import them manually. Use the .toml URLs in the [manage networks guide](../../cli-wallet/latest/guides/manage-networks#network-urls) to import a network.
 
 ### Reporting bugs
 **[Report on the feedback board](https://github.com/vegaprotocol/feedback/discussions/)**: If you discover a bug or are having problems with the Desktop Wallet app, report them on Vega's feedback board. 
