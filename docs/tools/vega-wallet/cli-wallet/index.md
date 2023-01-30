@@ -2,6 +2,9 @@
 title: CLI Wallet
 hide_title: false
 ---
+import Topic from '/docs/topics/_topic-wallet.mdx'
+
+<Topic />
 
 The Vega Wallet is available to use as a command-line application.
 
