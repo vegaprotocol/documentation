@@ -4,6 +4,9 @@ title: Wallets and keys
 vega_network: TESTNET
 hide_title: false
 ---
+import Topic from '/docs/topics/_topic-wallet.mdx'
+
+<Topic />
 
 Vega Wallet is an app that lets you manage wallets and cryptographic key pairs. Key pairs are used to sign and send transactions in a secure way. 
 
