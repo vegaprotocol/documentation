@@ -42,13 +42,13 @@ Governance transactions have several limits in order to mitigate the potential s
 * Minimum number of governance tokens associated to the proposing public key required to submit the proposal is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" suffix="tokens" formatter="governanceToken" />
 
 **Votes on proposals** and **submitting governance proposals** also have limitations on the max number of each per epoch: 
-* Maximum number of votes per public key, per epoch is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.votes" />
+* Maximum number of votes per public key, on each proposal per epoch is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.votes" />
 * Maximum number of proposals per public key, per epoch is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.proposals" hideName={true} />
 
 #### Mitigating spam attacks
 If the network perceives it is under attack based on the amount of rejected governance votes coming after they're added to a block, or in spite of the spam limits, then the minimum required tokens to submit a vote is doubled automatically until the attack is over.
 
-If three blocks in a row are filled with spam, for example if parties continue to send substantially more than 3 votes, then the number of required tokens is doubled, up to a maximum of 1600 tokens.
+If three blocks in a row are filled with spam, for example if parties continue to send substantially more than three votes on one proposal, then the number of required tokens is doubled, up to a maximum of 1600 tokens.
 
 ### Spam limits: Transfers 
 Each party (public key) has a limitation on how many transfer transactions it can submit per epoch, set by the network parameter
