@@ -93,7 +93,14 @@ Once you update the Tendermint config, restart the node by running:
 ```
 vega start --home="YOUR_VEGA_HOME" --tendermint-home="YOUR_TENDERMINT_HOME" --network-url="NETWORK_URL"
 ```
-If you need to reset the Tendermint and Vega nodes, use the following commands. They will remove all chain-related data and keep node wallets, private keys and saved config:
+If you need to reset the Tendermint and Vega nodes, use the following commands. They will remove all chain-related data and keep node wallets, private keys and saved config. 
+
+You can now remove all previous states of the chain by running the reset commands, either together or separately.
+
+:::caution Reset clears all data
+Ensure that your Vega and Tendermint config homes are different, as this command will delete everything within the home folder. If, for example, you reset Tendermint and everything is in the same folder or choose the Vega home path rather than Tendermint, it will also delete your Vega config and saved keys.
+:::
+
 
 ```
 vega tendermint unsafe_reset_all --home="YOUR_TENDERMINT_HOME"

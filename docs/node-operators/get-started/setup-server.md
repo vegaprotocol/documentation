@@ -18,9 +18,11 @@ Both nodes are built using bare Go and should run on most mainstream platforms (
 The instructions below guide you on how to build from source code.
 
 :::tip Setting home folder
-The following commands use the `--home` flag, to allow you to specify a custom home for the configuration, state, and cache of your Vega node. Remove it to use the default path.
+The following commands use the `--home` flag, to allow you to specify a custom home for the configuration, state, and cache of your Vega node. Remove it to use the default path. 
 
- You can list all the paths used by your Vega installation with the following command:
+It's recommended that you use different folders for your Vega and Tendermint homes. Keep track of which home you're referring to as you progress.
+
+You can list all the paths used by your Vega installation with the following command:
 `vega paths list`
 :::
 
