@@ -144,15 +144,17 @@ vega nodewallet --home="path/to/home/" show
 ## Update config files
 
 ### Modify Vega config.toml
-Each Vega validator node needs to be connected to an Ethereum archive node (rather than full node). The core software connects to the `eth_getLogs` endpoint, which is only available on archive nodes. This allows the Vega node to verify that an event happened on Ethereum (e.g: a deposit or a withdrawal).
+Each Vega validator node needs to be connected to an **Ethereum archive node** (not a full node). The core software connects to the `eth_getLogs` endpoint, which is only available on archive nodes. This allows the Vega node to verify that an event happened on Ethereum (e.g: a deposit or a withdrawal).
 
 Modify the following config in `path/to/home/config/node/config.toml`:
 
 ```Toml
-[Ethereum]
-  Level = "Info"
-  RPCEndpoint = "http://ethereum.node.com/rpc"
-  RetryDelay = "15s"
+ [NodeWallet]
+   Level = "Info"
+   [NodeWallet.ETH]
+     Level = "Info"
+     Address = "http://ADD_YOUR_ETH_ARCHIVE_NODE_RPC_ENDOINT.here/rpc"
+     ClefAddress = ""
 ```
 
 ### Modify tendermint config.toml
