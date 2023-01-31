@@ -12,7 +12,7 @@ This will also initiate the node wallet software, which you'll be prompted to cr
 
 First, generate the default configuration files for Vega and Tendermint. You can then alter those to the specific requirements.
 
-The below command will create home paths (if they don't already exist) and generate the configuration in the homes you chose. 
+The below command will create home paths (if they don't already exist) and generate the configuration in the homes you chose. **It's recommended that you use different folders for your Vega and Tendermint homes. Keep track of which home you're referring to as you progress.**
 
 ```
 vega init --home=YOUR_VEGA_HOME_PATH --tendermint-home=YOUR_TENDERMINT_HOME_PATH validator

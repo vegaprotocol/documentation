@@ -126,7 +126,13 @@ You can locate all your nodes' checkpoint files under: `YOUR_VEGA_HOME/vega/node
 You can also get a list of all paths used by your node using `vega paths list`. The checkpoints folder path is `CheckpointStateHome` within this list.
 :::
 
-You can now remove all previous states of the chain by running:
+You can now remove all previous states of the chain by running the reset commands separately or together.
+
+:::caution Reset clears all data
+Ensure that your Vega and Tendermint config homes are different, as this command will delete everything within the home folder. If, for example, you reset Tendermint and everything is in the same folder or choose the Vega home path rather than Tendermint, it will also delete your Vega config and saved keys.
+:::
+
+
 ```
 vega unsafe_reset_all --home="YOUR_VEGA_HOME"
 vega tm unsafe_reset_all --home="YOUR_TENDERMINT_HOME"
