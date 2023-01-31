@@ -120,16 +120,16 @@ Use that address in your node's Vega config `YOUR_VEGA_HOME_PATH/config/node/con
 
 
 ### Point to Ethereum node
-In order to validate events happening on the Ethereum bridge, the Vega node needs to be connected to an Ethereum archive node (rather than full node). The core software connects to the `eth_getLogs` endpoint, which is only available on archive nodes. This allows the Vega node to verify that an event happened on Ethereum (e.g: a deposit or a withdrawal).
+In order to validate events happening on the Ethereum bridge, each Vega validator node needs to be connected to an **Ethereum archive node** (not a full node). The core software connects to the `eth_getLogs` endpoint, which is only available on archive nodes. This allows the Vega node to verify that an event happened on Ethereum (e.g: a deposit or a withdrawal).
 
-The Ethereum node address for the RPC endpoint needs to be set up in the configuration. 
+The Ethereum node address for the RPC endpoint is set in the configuration. 
 
 Once you have an Ethereum archive node, insert the URL in `YOUR_VEGA_HOME/config/node/config.toml`, in the section:
 
 ```toml
 [Ethereum]
     Level = "Info"
-    RPCEndpoint = "INSERT_URL_HERE"
+    RPCEndpoint = "INSERT_ARCHIVE_NODE_URL_HERE"
     RetryDelay = "15s"
 ```
 
