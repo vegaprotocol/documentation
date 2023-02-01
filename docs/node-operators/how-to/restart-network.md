@@ -11,7 +11,10 @@ import TabItem from '@theme/TabItem';
 Vega networks support restarts using checkpoints. Checkpoints are a minimal save of the state of the network every N block, or, after funds are moved in or out of the network. They are both a way of restarting a clean chain with the current view of all accounts balances, and a security measure in order to not misplace any funds in case of a major issue that would require a restart of the chain.
 
 :::note Using Visor
-If you're using Visor for protocol upgrades, you'll need to use it to stop and start the node software.
+If you're using Visor for protocol upgrades, you'll need to use it to stop and start the node software. Read more:
+
+* [Set up a node with Visor](../get-started/setup-validator#initialise-visor-for-smooth-protocol-upgrades)
+* [Propose a protocol upgrade](propose-protocol-upgrades)
 :::
 
 ## Verify your node wallet keys (do this first)
@@ -153,20 +156,4 @@ This should be done via a pull request on the [networks](https://github.com/vega
 
 ### Restart the network
 
-:::note
-This is a critical step that needs to be done with all validators synchronously, if not using Visor for protocol upgrades.
-:::
-
-All validators need to restart their node in a synchronous way. This is required as the network needs to synchronise its state with the Ethereum state in relation to the Vega token delegation to the Vega network. 
-
-This is done during the bootstrapping period, which happens during the first `N` blocks of the chain (`N` can be configured in the genesis file).
-
-During the bootstrapping no transactions from users can be emitted other than the transaction to submit the checkpoint. This should be done only once by **one** of the validators using the following command:
-```
-vega checkpoint restore --home="YOUR_VEGA_HOME" --passphrase-file="YOUR_NODEWALLET_PASSPHRASE_FILE" --checkpoint-file="PATH_FOR_CHECKPOINT_FILE"
-```
-
-Once this is done, you will need to monitor the network to make sure all delegation are recovered properly by the end of the bootstraping period.
-
-### Deprecated: Ethereum event forwarder
-The Ethereum event forwarder is no longer required. This should be removed from your infrastructure and not started. This service has been re-written and is now integrated in the Vega core node.
+Each validator then needs to restart their node with the latest release of the software.
