@@ -29,9 +29,9 @@ It's strongly recommended that you set up Visor for automatic protocol upgrades.
 You'll need to set up the Visor config to support your node's requirements. 
 
 * [Set up a node with Visor](./get-started/setup-validator#initialise-visor-for-smooth-protocol-upgrades)
-* [Propose a protocol upgrade](propose-protocol-upgrades)
+* [Propose a protocol upgrade](./how-to/propose-protocol-upgrades)
 
 If you have questions about Visor, or would like to suggest enhancements, please raise them in the Validators Discord channel, or as issues on the [Vega repo ↗](https://github.com/vegaprotocol/vega/issues).
 
 ## 5. Restart network
-Follow the instructions on [restarting the network](../how-to/restart-network.md) using a checkpoint.
+Follow the instructions on [restarting the network](./how-to/restart-network) using a checkpoint.
