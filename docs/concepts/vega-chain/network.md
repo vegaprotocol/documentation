@@ -134,19 +134,10 @@ Checkpoints allow the chain to be restarted from a previously valid state in the
 Those checkpoints happen at defined intervals, and on every deposit and withdrawal request. 
 
 ### How a checkpoint is created and used
-1. Each validator node calculates the hash of the checkpoint file and then sends this through consensus to ensure all the nodes in the network agree on the state. A checkpoint file is then automatically produced and saved with a hash. 
-2. When a network is taken down, the checkpoint file's hash is added to the genesis block. A node operator updates the genesis file in the networks repo with the network's new start date, the new network ID, and the hash of the checkpoint file to be used in the network restoration. Once the file is updated, the node operators manually approve the change, and then one validator submits the restore transaction with the relevant checkpoint file.
-3. At network start-up, a validator submits a restore transaction with the checkpoint file. 
-4. All other validators verify the checkpoint against their own. If the hash does not match, the transaction will have no effect. If the genesis file still has a previous state hash, all transactions will be rejected until the restore transaction arrives and is processed. If the hash matches, the network will be restored with the state and then allow other transactions on the network.
-
-### Validator scores in a restart
-The protocol needs a way to allow validators to continue initiating a restart, even before all information has been restored. 
-
-Each checkpoint includes the node IDs of all consensus, standby, and candidate validator nodes and their scores. 
-
-When initiating the restart all the nodes participating will temporarily be given the same Tendermint weight, which is used until the checkpoint has been fully processed. At that point, the weights are recalculated based on their state at the time the checkpoint was taken, and validators' scores are updated. 
-
-If a validator with a Tendermint weight that was in the checkpoint and in the updated genesis is offline during the restart, then the network is stopped and the process will need to begin again with all validators available/any offline validators removed from the genesis list.
+1. Each validator node generates a checkpoint file, which is saved with a hash. That hash is used as the consensus for the block - if there’s no consensus the network will not be able to run.
+2. When a network is taken down, the checkpoint file’s hash, as well as all the checkpoint data, is added to the genesis block by a validator.
+3. A node operator then updates the genesis file in the networks repo with the network’s new start date, the new network ID, and the hash of the checkpoint file to be used in the network restoration. Once the file is updated, the node operators need to approve and merge the change.
+4. If the checkpoint file hash matches the expected hash from genesis, when validators restart their nodes, the network will be restored with the state and then allow other transactions on the network.
 
 ### Information restored with checkpoints
 * **Network parameters** and their values
