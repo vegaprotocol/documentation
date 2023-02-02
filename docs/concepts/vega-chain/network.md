@@ -74,7 +74,7 @@ Relevant transactions (governance, transfers, and staking) that don't follow the
 
 **Post-block rejection:** When a transaction makes it into the block, it is still checked before the block is finalised, and can then be rejected before it's passed to the application layer. A transaction may be rejected post-block and passed the initial validation if, for example, it breaches the maximum allowed rule, but nodes aren't yet aware of how many of that party's transactions will eventually be included in a block. That can happen because a validator node doesn't know what's in the other validators' mempools until transactions reach them through gossip. When blocks are executed, the network has all the information from before the block, and all transactions already seen within the block, so any transactions that breach the spam rules are rejected and removed from the block before they can be executed.
 
-If a party has 50% or more transactions rejected post-block, that party will be banned for 30 seconds or 1/48th of an epoch, whichever is greater. 
+If a party has 50% or more transactions rejected post-block, that party will be banned from sending that type of transaction for 30 seconds or 1/48th of an epoch, whichever is greater. 
 
 ### Spam limits: Withdrawals
 As uncompleted withdrawals don't expire, it's possible to generate a large number of transactions and withdrawal request data by requesting many small transactions.
