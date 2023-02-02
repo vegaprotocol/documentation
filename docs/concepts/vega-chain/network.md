@@ -34,6 +34,10 @@ On a decentralised and pseudonymous network, there's always a possibility that a
 
 The values of all [spam protection network parameters](#spam-protection-parameters) can be changed through a governance vote. If a parameter change passes governance, it takes effect in the epoch after it passes.
 
+:::tip Query for data
+Use the [spam statistics API](../../api/rest/core/core-service-get-spam-statistics) to see a public key's spam count. This could be useful if you're building wallet software for use with Vega, to stop accidental spamming.
+:::
+
 ### Spam limits: Governance
 Governance transactions have several limits in order to mitigate the potential spam risk of someone attempting to overload the network with inexpensive transactions.
 

@@ -98,7 +98,9 @@ The data node code's configuration includes a set of default retention time fram
 Whenever a data node starts up, the existing retention policy for each data type is output in the logs.
 
 ### Data retention modes
-When starting a data node, you can choose one of three retention modes, depending on what you want the data node to do. 
+When starting a data node, your chosen retention mode will be applied. After initialisation, it's possible to change the retention mode, for example from standard to lite, by changing the retention period setting in the configuration file.
+
+The three retention policies are: 
 
 * **Standard (default)**: The node retains data according to the default retention policies (below) of the data node
 * **Archive**: The node retains all data
