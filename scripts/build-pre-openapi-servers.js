@@ -130,6 +130,15 @@ serversForNetwork(generateForMainnet).then(servers => {
     if (!!s.match('blockexplorer')) {
       console.log('**SPECIAL CASE FOR BLOCK EXPLORER: n13**')
       spec.servers = [ { url: 'https://be.testnet.vega.xyz/rest', description: 'Block Explorer' }]
+    } else if (!!s.match('core')) {
+      spec.servers = openApiServers.map(s => {
+        return {
+          url: s.url.replace('api.', ''),
+          description: s.description.replace(' (data node)', '')
+        }
+      }) 
+      console.log(`Updating ${s} with`)
+      console.dir(spec.servers)
     } else {
       spec.servers = openApiServers
       console.log(`Updating ${s} with`)

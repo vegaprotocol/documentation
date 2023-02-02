@@ -1,7 +1,7 @@
 const assert = require('assert').strict;
 const { inspect } = require('util');
 
-function newFreeform(skeleton) {
+function newFreeform(skeleton, proposalSoFar) {
   assert.ok(skeleton.title);
 
   const result = {

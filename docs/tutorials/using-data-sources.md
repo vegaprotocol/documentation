@@ -29,7 +29,7 @@ When it's time for a market to settle, someone needs to submit the data that mat
 Any Vega keypair can submit data. In the configuration for a market, a data source specification field dictates which data feeds it is interested in. In effect, it works as a filter. This specification means that the creator of an instrument for a market will choose in advance a price source, and which data fields the market requires to settle and terminate.
 
 ## Open Oracle signed messages
-Vega's Data Sourcing framework supports signed ABI-encoded [Open Oracle](https://github.com/compound-finance/open-oracle) or JSON messages. ABI-encoded signed messages can be verified to have come from the public key that signed them, which allows markets on Vega to use pricing data sourced from Ethereum.
+Vega's Data Sourcing framework supports signed ABI-encoded [Open Oracle ↗](https://github.com/compound-finance/open-oracle) or JSON messages. ABI-encoded signed messages can be verified to have come from the public key that signed them, which allows markets on Vega to use pricing data sourced from Ethereum.
 
 ### Using Open Oracle signed messages in a market proposal
 For the binding, use the `name` field of the data. In the case of Open Oracle messages, the price data will be availableas 'prices.currency-code.value', for example:`"prices.BTC.value"`.
@@ -43,11 +43,11 @@ For now this will focus on using the data for settlement price - both examples b
 }
 ```
 
-The following spec would make the market use the BTC value from the [Coinbase Price Oracle](https://blog.coinbase.com/introducing-the-coinbase-price-oracle-6d1ee22c7068) data that is submitted in a subsequent example:
+The following spec would make the market use the BTC value from the [Coinbase Price Oracle ↗](https://blog.coinbase.com/introducing-the-coinbase-price-oracle-6d1ee22c7068) data that is submitted in a subsequent example:
 
 ```javascript
    "dataSourceSpecForSettlementData": {
-        "pubKeys": ["0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"],
+        "signers": [{"ethAddress": { "address": "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC" } }],
         "filters": [{
             "key": {
                 "name": "prices.BTC.timestamp",
@@ -61,16 +61,12 @@ The following spec would make the market use the BTC value from the [Coinbase Pr
     }
 ```
 
-The pubKey in this case is the **Ethereum public key that signed the data in the message**. 
+The `signers: ethAddress` in this case is the Ethereum public key that **signed the data in the message**. 
 
 ### Submitting Open Oracle data
 Use the command line to submit an Open Oracle message as a transaction that is signed by your Vega wallet and sent to the validators for consensus.
 
 Below, find instructions on how to submit Open Oracle data as a signed message. Markets should be configured to only use the data at the relevant time, such as after a defined settlement date, in the [market proposal](./proposals/new-market-proposal.md).
-
-:::info API note
-When looking at market data using the API, the `pubKeys` field in the response for Open Oracle data submissions is set to the Open Oracle signing key.
-:::
 
 ### 1. Obtain an Open Oracle message
 
@@ -151,54 +147,10 @@ vegawallet.exe transaction send \
 You will be able to see this data by querying the API for `OracleData`. In the API response you will be able to check which markets had filters that matched this data.
 
 ### Querying the data
-The following GraphQL query shows previous oracle data submissions, which can be useful for confirming that data submission was sucessful, and/or determining the fields that a market's oracle spec requires.
-
-```graphql
-{
-  oracleData {
-    pubKeys
-    data {
-      name
-      value
-    }
-    broadcastAt
-    matchedSpecIds
-  }
-}
-```
-
-The data we submitted in step three will be returned as follows:
-```javascript
-{
-  "data": {
-    "oracleData": [
-      // This is the Open Oracle data message
-      {
-        "pubKeys": [
-          // This is the Ethereum public key of the Coinbase oracle, the original signer of the Open Oracle message
-          // submitted above
-          "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
-        ],
-        "data": [
-          {
-            "name": "prices.BTC.value",
-            "value": "43721750000"
-          },
-          {
-            "name": "prices.BTC.timestamp",
-            "value": "1649265840"
-          }
-        ],
-        "broadcastAt": "",
-        "matchedSpecIds": null
-      }
-    ]
-  }
-}
-```
+The [Oracle Data list REST endpoint](../api/rest/data-v2/trading-data-service-list-oracle-data) shows previous data submissions, which can be useful for confirming that data submission was sucessful, and/or determining the fields that a market's oracle spec requires.
 
 ## JSON signed message data
-[JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON) messages are a simpler, more configurable alternative to Open Oracle data. They can be totally custom objects, as long as they are valid JSON. As they are not attested by any off-chain source in the way that Open Oracle messages are, and so it's generally advisable to check for an Open Oracle price source before choosing JSON data. The Vega key that signs the message will be referred to as the source for the data. 
+[JSON ↗](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON) messages are a simpler, more configurable alternative to Open Oracle data. They can be totally custom objects, as long as they are valid JSON. As they are not attested by any off-chain source in the way that Open Oracle messages are, and so it's generally advisable to check for an Open Oracle price source before choosing JSON data. The Vega key that signs the message will be referred to as the source for the data. 
 
 ### Using JSON signed message data in a market proposal
 For the binding, use the `name` field of the data. In the following example, the market is settled based on the number of people who have walked on the moon.
@@ -214,7 +166,7 @@ The Oracle Specification that would bind to the `moonwalkers` property would be 
 
 ```javascript
    "oracleSpecForSettlementData": {
-        "pubKeys": ["123abc"],
+        "signers": [{ "pubKey":{ "key": "123abc" }}],
         "filters": [{
             "key": {
                 "name": "moonwalkers",
@@ -308,47 +260,7 @@ vegawallet.exe transaction send \
 </Tabs>
 
 ### Querying an existing data source spec
-The following GraphQL query shows previous data submissions, which can be useful for confirming that a data submission was successful, and/or determining the fields that a market's data source spec requires.
-
-```graphql
-{
-  oracleData {
-    pubKeys
-    data {
-      name
-      value
-    }
-    broadcastAt
-    matchedSpecIds
-  }
-}
-```
-Assuming someone submitted JSON  data, the result would be something like this:
-
-```javascript
-{
- {
-  "data": {
-    "oracleData": [
-      // This is the JSON Oracle data message
-      {
-        "pubKeys": [
-          // For JSON Oracles, the public key is the vega key that submitted the message
-          "123abc"
-        ],
-        "data": [
-          {
-            "name": "moonwalkers",
-            "value": "12",
-          }
-        ],
-        "broadcastAt": "",
-        "matchedSpecIds": null
-      }
-    ]
-  }
-}
-```
+The [Oracle Data list REST endpoint](../api/rest/data-v2/trading-data-service-list-oracle-data) shows previous data submissions, which can be useful for confirming that a data submission was successful, and/or determining the fields that a market's data source spec requires.
 
 ## Built-in data source
 Vega provides a timestamp source, which is useful for terminating a market at a set date. `vegaprotocol.builtin.timestamp` provides a Unix timestamp of the Vega time, which is to say the time agreed via consensus.

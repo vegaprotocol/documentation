@@ -1,6 +1,7 @@
 ---
-sidebar_position: 5
-title: Network restart (checkpoints)
+sidebar_position: 6
+title: How to restart a network with checkpoints
+sidebar_label: Restart network with checkpoints
 hide_title: false
 ---
 
@@ -9,18 +10,20 @@ import TabItem from '@theme/TabItem';
 
 Vega networks support restarts using checkpoints. Checkpoints are a minimal save of the state of the network every N block, or, after funds are moved in or out of the network. They are both a way of restarting a clean chain with the current view of all accounts balances, and a security measure in order to not misplace any funds in case of a major issue that would require a restart of the chain.
 
-:::note
-This guide is valid for a network restart with version 0.50
+:::note Using Visor
+If you're using Visor for protocol upgrades, you'll need to use it to stop and start the node software. Read more:
+
+* [Set up a node with Visor](../get-started/setup-validator#initialise-visor-for-smooth-protocol-upgrades)
+* [Propose a protocol upgrade](propose-protocol-upgrades)
 :::
 
-
-## Step -1: Verify your node wallet keys (to do before any following steps)
+## Verify your node wallet keys (do this first)
 
 In a recent version of the Vega core, validation has been added at runtime to ensure the keys that validators have set up in the genesis block matches those saved in the node wallet.
 
 Do this by by running the following command:
 ```
-vega genesis new validator --tm-home="/path/to/tendermint/home" --home="/path/to/vega/home" --country="any" --info-url="any" --name="any"
+vega genesis new validator --tm-home="YOUR_TENDERMINT_HOME" --home="YOUR_VEGA_HOME" --country="any" --info-url="any" --name="any"
 ```
 
 :::note
@@ -61,13 +64,13 @@ You should the verify that your validator information set in the [genesis file](
 
 Should there be a difference between the keys in the genesis file and those in the output of the command, this should be raised on Discord.
 
-## Step 0: Edit configuration
+## Update configuration
 You can prepare your configuration but you may not want to update your mainnet node with the configuration before it's stopped.
 
 ### Add the Tendermint public key to your node wallet
 The node wallet now requires your Tendermint public key. You can save this key by running the following Vega command:
 ```
-vega nodewallet --home="/path/to/vega/home" import --chain=tendermint --tendermint-pubkey="YOUR_TENDERMINT_PUBKEY"
+vega nodewallet --home="YOUR_VEGA_HOME" import --chain=tendermint --tendermint-pubkey="YOUR_TENDERMINT_PUBKEY"
 ```
 
 ### Update the Vega configuration
@@ -78,17 +81,17 @@ The configuration must specify if a node is running as a validator or not. If yo
 NodeMode = "validator"
 ```
 
-#### Update the data-node configuration
-For the Vega configuration, new fields have been added in the data-node configuration. We recommend you generate a default one to compare with what you used.
+#### Update the data node configuration
+For the Vega configuration, new fields have been added in the data node configuration. We recommend you generate a default one to compare with what you used.
 
-The Vega node connected to the data-node should add the following line to its config:
+The Vega node connected to the data node should add the following line to its config:
 ```
 NodeMode = "full"
 ```
 
-The data-node configuration supports SSL for the HTTP connection. It is highly recommended that SSL is setup on the data-node as this enables GraphQL subscriptions, which are used by frontend dApps.
+The data node configuration supports SSL for the HTTP connection. It is highly recommended that SSL is setup on the data node as this enables GraphQL subscriptions, which are used by frontend dApps.
 
-This can be set up in the following section of the data-node:
+This can be set up in the following section of the data node:
 ```
 [Gateway]
   Level = "Info"
@@ -114,30 +117,36 @@ This can be set up in the following section of the data-node:
     APMEnabled = true
 ```
 
-If you do not want to enable SSL, ensure `HTTPSEnabled` is set to false or the data-node will not start properly.
+If you do not want to enable SSL, ensure `HTTPSEnabled` is set to false or the data node will not start properly.
 
-### Step 1: Stop the network
-Wait for a new checkpoint file to be produced, then stop all the nodes of the network (Vega, data-node and Tendermint). Once stopped, back up all Tendermint chain data and Vega data.
+### Stop the network
+Wait for a new checkpoint file to be produced, then stop all the nodes of the network (Vega, data node and Tendermint). Once stopped, back up all Tendermint chain data and Vega data.
 
 Save the selected checkpoint file in a safe location. You will need to reuse it later.
 
 :::info
-You can locate all your nodes' checkpoint files under: `/path/to/vega/home/vega/node/checkpoints`
+You can locate all your nodes' checkpoint files under: `YOUR_VEGA_HOME/vega/node/checkpoints`
 You can also get a list of all paths used by your node using `vega paths list`. The checkpoints folder path is `CheckpointStateHome` within this list.
 :::
 
-You can now remove all previous states of the chain by running:
+You can now remove all previous states of the chain by running the reset commands separately or together.
+
+:::caution Reset clears all data
+Ensure that your Vega and Tendermint config homes are different, as this command will delete everything within the home folder. If, for example, you reset Tendermint and everything is in the same folder or choose the Vega home path rather than Tendermint, it will also delete your Vega config and saved keys.
+:::
+
+
 ```
-vega unsafe_reset_all --home="/path/to/vega/home"
-vega tm unsafe_reset_all --home="/path/to/tendermint/home"
-rm -rf "/path/to/data-node/home/vega/data-node/storage/"
+vega unsafe_reset_all --home="YOUR_VEGA_HOME"
+vega tm unsafe_reset_all --home="YOUR_TENDERMINT_HOME"
+rm -rf "YOUR_DATANODE_HOME/vega/data-node/storage/"
 ```
 
 :::info
-The exact path of the data-node folder to remove can be found using `vega paths list`. The required path is `DataNodeStorageHome` in the list.
+The exact path of the data node folder to remove can be found using `vega paths list`. The required path is `DataNodeStorageHome` in the list.
 :::
 
-### Step 2: Update the genesis file
+### Update the genesis file
 One of the validators will now need to update the [genesis file](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json) with the following information:
 - The new start date of the network
 - The new network ID
@@ -145,23 +154,6 @@ One of the validators will now need to update the [genesis file](https://github.
 
 This should be done via a pull request on the [networks](https://github.com/vegaprotocol/networks) repo and ideally approved by 2/3+1 of all validators.
 
-### Step 3: Restart the network
+### Restart the network
 
-:::note
-This is a critical step that needs to be done with all validators synchronously. (This will not be needed in future updates).
-:::
-
-All validators need to restart their node in a synchronous way. This is required as the network needs to synchronise its state with the Ethereum state in relation to the Vega token delegation to the Vega network. 
-
-This is done during the bootstrapping period, which happens during the first `N` blocks of the chain (`N` can be configured in the genesis file).
-
-During the bootstrapping no transactions from users can be emitted other than the transaction to submit the checkpoint. This should be done only once by **one** of the validators using the following command:
-```
-vega checkpoint restore --home="/path/to/vega/home" --passphrase-file="YOUR_NODEWALLET_PASSPHRASE_FILE" --checkpoint-file="/path/tothe/
-checkpoint/file"
-```
-
-Once this is done, you will need to monitor the network to make sure all delegation are recovered properly by the end of the bootstraping period.
-
-### Deprecated
-The Ethereum event forwarder is no longer required. This should be removed from your infrastructure and not started. This service has been re-written and is now integrated in the Vega core node.
+Each validator then needs to restart their node with the latest release of the software.

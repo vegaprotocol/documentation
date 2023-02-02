@@ -21,10 +21,10 @@
     // New market instrument configuration
     instrument: {
      // Instrument name
-     name: "Apples Yearly (2022)",
+     name: "Oranges Daily",
 
      // Instrument code, human-readable shortcode used to describe the instrument
-     code: "APPLES.22",
+     code: "ORANGES.24h",
 
      // Future
      future: {
@@ -124,10 +124,10 @@
        }
       },
 
-      // Optional new market meta data, tags
+      // Optional new market metadata, tags
       metadata: [
-       "sector:tech",
-       "sector:health",
+       "enactment:2023-02-13T17:52:03Z",
+       "settlement:2023-02-12T17:52:03Z",
        "source:docs.vega.xyz"
       ],
 
@@ -161,7 +161,7 @@
         scalingFactor: 10
        },
 
-       // Specifies the triggering ratio for entering liquidity auction (double as number) 
+       // Specifies the triggering ratio for entering liquidity auction (undefined as string) 
        triggeringRatio: "0.7",
 
        // Specifies by how many seconds an auction should be extended if leaving the auction were to trigger a liquidity auction (int64 as string) 
@@ -194,11 +194,11 @@
 
    // Timestamp (Unix time in seconds) when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-   closingTimestamp: 1673982487,
+   closingTimestamp: 1676224323000,
 
    // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
    // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-   enactmentTimestamp: 1674068887,
+   enactmentTimestamp: 1676310723000,
   }
  }
 ```

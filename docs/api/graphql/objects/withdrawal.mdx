@@ -23,7 +23,6 @@ type Withdrawal {
   asset: Asset!
   status: WithdrawalStatus!
   ref: String!
-  expiry: Timestamp!
   createdTimestamp: Timestamp!
   withdrawnTimestamp: Timestamp
   txHash: String
@@ -56,10 +55,6 @@ type Withdrawal {
 
 #### [<code style={{ fontWeight: 'normal' }}>Withdrawal.<b>ref</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > A reference the foreign chain can use to refer to when processing the withdrawal
-> 
-
-#### [<code style={{ fontWeight: 'normal' }}>Withdrawal.<b>expiry</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> RFC3339Nano time until the withdrawal will be invalid
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Withdrawal.<b>createdTimestamp</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>

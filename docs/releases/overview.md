@@ -19,12 +19,42 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 
 [**Vega Desktop Wallet on GitHub** ↗](https://github.com/vegaprotocol/vegawallet-desktop/releases) - The code for the Vega Wallet desktop app is open source, and you can read the contents of each release on the repo.
 
-[**Token dApp on GitHub** ↗](https://github.com/vegaprotocol/frontend-monorepo/releases) - The Token dApp, which provides an interface for interacting with VEGA tokens, is open-source and you can read the contents of each release on the Token Frontend repo.
+[**Governance dApp on GitHub** ↗](https://github.com/vegaprotocol/frontend-monorepo/releases) - The Governance dApp, which provides an interface for interacting with governance proposals, VEGA tokens, and staking to validators; Console, a trading interface; and the Vega Block Explorer are open-source and you see more about them in the frontend monorepo.
 
-[**Vega Capsule on GitHub** ↗](https://github.com/vegaprotocol/vegacapsule/releases) - Vega Capsule, which lets you create an instance of the Vega network on your computer to experiment with using the protocol, is public and you can resad the contents of each release on GitHub.
+[**Vega Capsule on GitHub** ↗](https://github.com/vegaprotocol/vegacapsule/releases) - Vega Capsule, which lets you create an instance of the Vega network on your computer to experiment with using the protocol, is public and you can read the contents of each release on GitHub.
 
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
+
+### Pre-release Versions 0.67.0, 0.67.1, 0.67.2 and 0.67.3 combined | 2023-01-20
+This version was released to the Vega testnet on 20 January 2023, with patch 0.67.3 released on 24 January.
+
+Building on the stability improvements in the first release of 2023, this second release of the year is the version the team believe is ready for the first community Market Simulation. This release brings with it bug fixes around data sourcing and a critical fix whereby transfers and announce-node spam policies were not included in snapshots. These issues have been resolved and covered in tests to ensure no regression in the future.
+
+In addition to these fixes, improvements have been made to the data node API documentation and the data node operator UX. It is now possible to initialise a data node using one of the three [retention modes](https://github.com/vegaprotocol/specs/blob/master/protocol/0076-DANO-data-node.md#datanode-retention-modes). Finally for v0.67.2 the wallet API token support has been extended to support long lived tokens.
+
+Check out the full details of this combined release in the Vega core [0.67.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.67.0), [0.67.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.67.1), [0.67.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.67.3) and [0.67.3 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.67.2) release pages.
+
+### Pre-release Versions 0.66.0 and 0.66.1 combined | 2023-01-06
+This version was released to the Vega testnet on 6 January 2023.
+
+Happy New Year from the Vega team.
+
+The first testnet deployment of 2023 brings with it the final planned data node stability improvements ahead of the market simulations. Using the data from the last incentive, the team has made changes to the way the snapshot metadata is stored, which has significantly improved RAM usage during snapshot file creation. In addition to the memory usage optimisations, a panic when fetching data segment history has been resolved. 
+
+These fixes and stability improvements bring the data node software into a state of readiness for the Alpha Mainnet market simulations.
+
+To round off this release several API improvements have been introduced, along with a number of bug fixes, preparing the core and wallet software for the market simulations. Until then, the team is focused on completing wallet API token support, increasing the test coverage and fixing any bugs found along the way.
+
+:::caution Breaking changes
+**Wallet API  and command removals**: Over the recent testnet releases a number of the wallet APIs have been deprecated. The deployment of `0.66.0` now removes a number of these deprecated fields, endpoints and commands.
+**Network parameter name change**: The network parameter `stakeToCcySiskas` has been renamed to `stakeToCcyVolume`.
+**Network parameter name change**: The `triggeringRatio` field has been changed from `double` to a `string`. When proposing a market, using a float value would lead to a passing proposal, however the response from the APIs was incorrect. This has been resolved by changing the accepted data format.
+
+To find out more please see the [breaking changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0660) entries in the changelog.
+:::
+
+Check out the full details of this combined release in the Vega core [0.66.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.66.0) and [0.66.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.66.1) release pages.
 
 ### Pre-release Versions 0.65.0 and 0.65.1 combined | 2022-12-23
 This version was released to the Vega testnet on 23 December 2022.
@@ -291,7 +321,7 @@ To ensure that the settlement API field name can scale to non-cash products, for
 To ensure clarity of the positions subscription API the field name `Position` has been updated to `PositionUpdate`. This change was made under [6162 ↗](https://github.com/vegaprotocol/vega/issues/6162)
 
 #### Critical Bug fixes
-/docs
+
 #### Equity like share calculations
 The equity like share feature applied the market growth scaling factor to the virtual stakes every block, instead of every market window. This resulted in the core spending an increasing amount of time carrying out calculations, thus having to serialise larger and larger decimals values and marshall and store each bit of data. The snapshot engine was unable to process correctly and caused network instability. The fix for this bug was carried out as part of [6245 ↗](https://github.com/vegaprotocol/vega/issues/6245)
 
@@ -476,8 +506,6 @@ Further information on these changes can be found in the updated documentation i
 **Smart contract upgrade:**
 With the upgrade of the network to version v0.53 will come an upgrade of the smart contracts. The multisig control contract and the collateral bridge will thus increase users' control over the funds they deposit (opt-out) and include performance improvements, such as decreasing gas cost when using the bridge. The Vega asset pool contract will not be upgraded. Once the new contracts are properly set up on Ethereum, the validators will migrate the asset pool to use the new contracts.
 
-Information on how to upgrade can be found in the [smart contracts migration guide](../node-operators/migration-guides/smart-contracts-migration.md).
-
 **Checkpoint commands:**
 From version 0.53.0, checkpoints are always loaded via the genesis. To facilitate this the  `--genesis-file` option has been added to the `load_checkpoint` command. 
 
@@ -492,7 +520,7 @@ In the short term, the CLI wallet app will still be available to download from t
 During the testing of the decentralised validator selection feature, a bug was found whereby if the network parameter that controls the number of ersatz validators is reduced in the same epoch that an ersatz validator is promoted, the network could be left with a node set where the actual number of ersatz validators was greater than the total allowed number. A fix has been implemented to handle Tendermint demotion and ersatz slot reduction at the same time and keep true to the configured network parameter values.
 
 **PostgreSQL database:**
-**Find out how to run a data node with Postgres in the [data-node readme ↗](https://github.com/vegaprotocol/data-node/blob/v0.53.0/README.md).**
+**Find out how to run a data node with Postgres in the [data node readme ↗](https://github.com/vegaprotocol/data-node/blob/v0.53.0/README.md).**
 
 As of version 0.53, data node uses [PostgreSQL ↗](https://www.postgresql.org) as its storage back end instead of the previous mix of in-memory and BadgerDB file stores. We also make use of a Postgres extension called [TimescaleDB](https://www.timescale.com), which adds a number of time series specific features.
 
@@ -505,7 +533,7 @@ Collateral checkpoint locked global reward balance:
 With the deployment of version 0.50.3 a new format for the account owner of the global reward account was introduced. When the mainnet was upgraded, the above was interpreted as a general party account rather than the newly formatted global reward account. As such, a balance of 21500 VEGA became locked in an account that is no longer accessible. To resolve this issue and recover the trapped VEGA, when the checkpoint is read, and on discovery of an old account format, the balance is transferred to the relevant new reward account. Full details can be seen in issue [5546 ↗](https://github.com/vegaprotocol/vega/issues/5546)
 
 **Unable to query the VEGA asset due to large quantum:**
-Part of testing the network version compatibility is to deploy the latest version of the software using a mainnet checkpoint file. During this test it was found that the VEGA asset could not be found in the data-node via the assets API. To resolve this issue support was introduced in the data-node for large integers for the asset quantum. Full details can be seen in issue [782 ↗](https://github.com/vegaprotocol/data-node/issues/782)
+Part of testing the network version compatibility is to deploy the latest version of the software using a mainnet checkpoint file. During this test it was found that the VEGA asset could not be found in the data node via the assets API. To resolve this issue support was introduced in the data node for large integers for the asset quantum. Full details can be seen in issue [782 ↗](https://github.com/vegaprotocol/data-node/issues/782)
 
 **Incorrect prices returned from depth endpoint in data node API:**
 The depth value in the data node API appeared to occasionally become desynchronised from the 'true' prices. This was observed on testnet when a market’s prices of the 'bids' values were much higher than those of 'ask' and did not tally with values from best bid/ask.
@@ -515,7 +543,7 @@ In V1 of the data node (which will be replaced with V2) there is a check which r
 Note: this issue affects the V1 APIs which will be deprecated and replaced by V2 which is single threaded and thus could not have this bug.
 
 **Event subscriptions for orders was broken:**
-When placing an order the orders subscription correctly emits an update for the newly created order. However, the bus event subscription did not emit the expected event. The fix for [719 ↗](https://github.com/vegaprotocol/data-node/issues/719) (market depth in data-node V1 incorrect due to race condition) changed the type of the order event such that it no longer implemented these interfaces (no code broke as the check is dynamic), and this prevented the event bus from sending events using the party and market filters.
+When placing an order the orders subscription correctly emits an update for the newly created order. However, the bus event subscription did not emit the expected event. The fix for [719 ↗](https://github.com/vegaprotocol/data-node/issues/719) (market depth in data node V1 incorrect due to race condition) changed the type of the order event such that it no longer implemented these interfaces (no code broke as the check is dynamic), and this prevented the event bus from sending events using the party and market filters.
 
 Full details can be seen in issue [730 ↗](https://github.com/vegaprotocol/data-node/issues/730)
 
@@ -525,7 +553,7 @@ Full details can be seen in issue [730 ↗](https://github.com/vegaprotocol/data
 To ensure that this does not affect existing transactions the protocol verifies proof of work with the parameters as they were configured at the time of the block of the transaction.
 
 #### 0.51.2 (10 June 2022)
-Version 0.51 of the Vega software implements some key changes to the features of governance and rewards as well as smart contracts. In addition, work continues on the data-node to transition to the time-series `PostGres` data storage and the migrated APIs which will help the data-node scale as usage increases on the network. 
+Version 0.51 of the Vega software implements some key changes to the features of governance and rewards as well as smart contracts. In addition, work continues on the data node to transition to the time-series `PostGres` data storage and the migrated APIs which will help the data node scale as usage increases on the network. 
 
 **Breaking change - asset governance:** In release 0.51.2, a breaking change has been introduced that may affect governance proposals that refer to assets. The function used to request the asset bundle before proposing an asset has been renamed to be clearer, as in the future there will be an option for removing assets. 
 
@@ -564,7 +592,7 @@ For full detailed information on the changes please see:
 ### Versions 0.50.3-0.49.8 combined | 2022-04-27
 This release was shared with validators on 27 April, 2022. The validators released it to the mainnet network on 22 June, 2022.
 
-The primary focus of this and the next upcoming releases has been to complete the final remaining features, progress data-node improvements for scalability and to add test coverage and fix bugs.
+The primary focus of this and the next upcoming releases has been to complete the final remaining features, progress data node improvements for scalability and to add test coverage and fix bugs.
 
 Note: While many of the features below are related to trading, it is not yet enabled on mainnet. 
 

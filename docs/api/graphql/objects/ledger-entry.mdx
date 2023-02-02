@@ -17,22 +17,24 @@ No description
 
 ```graphql
 type LedgerEntry {
-  accountFromId: AccountDetails!
-  accountToId: AccountDetails!
+  fromAccountId: AccountDetails!
+  toAccountId: AccountDetails!
   amount: String!
   type: TransferType!
   timestamp: Timestamp!
+  fromAccountBalance: String!
+  toAccountBalance: String!
 }
 ```
 
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>accountFromId</b></code>](#)<Bullet />[`AccountDetails!`](/testnet/api/graphql/objects/account-details) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>fromAccountId</b></code>](#)<Bullet />[`AccountDetails!`](/testnet/api/graphql/objects/account-details) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > Account from which the asset was taken
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>accountToId</b></code>](#)<Bullet />[`AccountDetails!`](/testnet/api/graphql/objects/account-details) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>toAccountId</b></code>](#)<Bullet />[`AccountDetails!`](/testnet/api/graphql/objects/account-details) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > Account to which the balance was transferred
 > 
 
@@ -46,6 +48,14 @@ type LedgerEntry {
 
 #### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>timestamp</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time at which the transfer was made
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>fromAccountBalance</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Sender account balance after the transfer
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LedgerEntry.<b>toAccountBalance</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Receiver account balance after the transfer
 > 
 
 

@@ -1,14 +1,14 @@
 ---
 id: trading-data-service-get-protocol-upgrade-status
-title: "Protocol Upgrade status"
-description: "Protocol Upgrade status"
-sidebar_label: "Protocol Upgrade status"
+title: "Protocol upgrade status"
+description: "Get status of protocol upgrades"
+sidebar_label: "Protocol upgrade status"
 hide_title: true
 hide_table_of_contents: true
-api: {"responses":{"200":{"content":{"application/json":{"schema":{"properties":{"ready":{"type":"boolean"}},"type":"object"}}},"description":"A successful response."},"default":{"content":{"application/json":{"schema":{"properties":{"code":{"format":"int32","type":"integer"},"details":{"items":{"additionalProperties":{},"properties":{"@type":{"type":"string"}},"type":"object"},"type":"array"},"message":{"type":"string"}},"type":"object"}}},"description":"An unexpected error response."}},"tags":["TradingDataService"],"operationId":"TradingDataService_GetProtocolUpgradeStatus","description":"Protocol Upgrade status","method":"get","path":"/api/v2/upgrade/status","servers":[{"url":"https://api.n06.testnet.vega.xyz","description":"n06 (data node)"},{"url":"https://api.n08.testnet.vega.xyz","description":"n08 (data node)"},{"url":"https://api.n11.testnet.vega.xyz","description":"n11 (data node)"},{"url":"https://api.n12.testnet.vega.xyz","description":"n12 (data node)"}],"info":{"title":"Vega data node APIs","version":"v0.65.1"},"postman":{"name":"Protocol Upgrade status","description":{"type":"text/plain"},"url":{"path":["api","v2","upgrade","status"],"host":["{{baseUrl}}"],"query":[],"variable":[]},"header":[{"key":"Accept","value":"application/json"}],"method":"GET"}}
+api: {"responses":{"200":{"content":{"application/json":{"schema":{"properties":{"ready":{"type":"boolean"}},"type":"object"}}},"description":"A successful response."},"default":{"content":{"application/json":{"schema":{"properties":{"code":{"format":"int32","type":"integer"},"details":{"items":{"additionalProperties":{},"properties":{"@type":{"type":"string"}},"type":"object"},"type":"array"},"message":{"type":"string"}},"type":"object"}}},"description":"An unexpected error response."}},"tags":["TradingDataService"],"description":"Get status of protocol upgrades","operationId":"TradingDataService_GetProtocolUpgradeStatus","method":"get","path":"/api/v2/upgrade/status","servers":[{"url":"https://api.n06.testnet.vega.xyz","description":"n06 (data node)"},{"url":"https://api.n08.testnet.vega.xyz","description":"n08 (data node)"},{"url":"https://api.n09.testnet.vega.xyz","description":"n09 (data node)"},{"url":"https://api.n11.testnet.vega.xyz","description":"n11 (data node)"},{"url":"https://api.n12.testnet.vega.xyz","description":"n12 (data node)"}],"info":{"title":"Vega data node APIs","version":"v0.67.3"},"postman":{"name":"Protocol upgrade status","description":{"content":"Get status of protocol upgrades","type":"text/plain"},"url":{"path":["api","v2","upgrade","status"],"host":["{{baseUrl}}"],"query":[],"variable":[]},"header":[{"key":"Accept","value":"application/json"}],"method":"GET"}}
 sidebar_class_name: "get api-method"
 info_path: api/rest/data-v2/vega-data-node-ap-is
-custom_edit_url: "https://github.com/vegaprotocol/documentation/issues/new?labels=documentation&title=[Documentation] Requesting changes to 'Protocol Upgrade status' (trading-data-service-get-protocol-upgrade-status)"
+custom_edit_url: "https://github.com/vegaprotocol/documentation/issues/new?labels=documentation&title=[Documentation] Requesting changes to 'Protocol upgrade status' (trading-data-service-get-protocol-upgrade-status)"
 ---
 
 import ApiTabs from "@theme/ApiTabs";
@@ -20,11 +20,11 @@ import SchemaTabs from "@theme/SchemaTabs";
 import DiscriminatorTabs from "@theme/DiscriminatorTabs";
 import TabItem from "@theme/TabItem";
 
-## Protocol Upgrade status
+## Protocol upgrade status
 
 
 
-Protocol Upgrade status
+Get status of protocol upgrades
 
 <div><ApiTabs><TabItem label={"200"} value={"200"}><div>
 

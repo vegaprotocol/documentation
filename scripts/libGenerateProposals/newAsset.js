@@ -1,15 +1,12 @@
 const assert = require('assert').strict;
-const sample = require('lodash/sample');
 const { inspect } = require('util');
 
 // Seed data: Some asset names
 const assetNames = [
-    { name: 'tEuro', symbol: 'tEURO', contractAddress: '0x0158031158Bb4dF2AD02eAA31e8963E84EA978a4' },
-    { name: 'tDAI TEST', symbol: 'tDAI', contractAddress: '0x26223f9C67871CFcEa329975f7BC0C9cB8FBDb9b' },
-    { name: 'tUSDC TEST', symbol: 'tUSDC', contractAddress: '0xB404c51BBC10dcBE948077F18a4B8E553D160084' },
+    { name: 'tDAI TEST', symbol: 'tDAI', contractAddress: '0x26223f9C67871CFcEa329975f7BC0C9cB8FBDb9b' }
 ];
 
-function newAsset(skeleton) {
+function newAsset(skeleton, proposalSoFar) {
   assert.ok(skeleton.properties.changes);
   assert.ok(skeleton.properties.changes.properties.name);
   assert.ok(skeleton.properties.changes.properties.symbol);
@@ -19,7 +16,7 @@ function newAsset(skeleton) {
   assert.ok(skeleton.properties.changes.properties.erc20.properties.withdrawThreshold);
   assert.ok(skeleton.properties.changes.properties.erc20.properties.lifetimeLimit);
 
-  const asset = sample(assetNames);
+  const asset = assetNames[0]
   const result = {
     rationale: {
       title: `Add ${asset.name} (${asset.symbol})`,

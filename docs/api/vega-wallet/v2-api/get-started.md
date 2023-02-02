@@ -19,7 +19,7 @@ The **JSON-RPC API** and its endpoint **`/api/v2/requests`** is in the alpha pha
 * 🛝 **[API playground](./openrpc-api-playground)**: Try it out and explore the potential results and errors
 
 ## Software compatibility
-Vega Wallet API (v2)'s latest version was released in Vega software `v.0.63.1`. If you're interacting with a network on `v0.63.1` or newer, you'll need to have a wallet that supports the new API.
+Vega Wallet API (v2)'s latest version was released in Vega software `v.0.67`. If you're interacting with a network on `v0.67` or newer, you'll need to have a wallet that supports the new API.
 
 :::note New to JSON-RPC?
 Read the [JSON-RPC specification ↗](https://www.jsonrpc.org/specification) for the standards and conventions.
@@ -34,13 +34,28 @@ Read the [JSON-RPC specification ↗](https://www.jsonrpc.org/specification) for
 
 See the full set of methods that you can use in the **[Open RPC documentation](./openrpc)**.
 
+### Retrieve token
+You can retrieve a [long-living token](#generate-a-long-living-token) using the command-line, see instructions below. 
+
+For sessions (the `client.connect_wallet` workflow below), the token is returned through the Authorization HTTP header in the client.connect_wallet response. This allows you to use to following technique:
+
+```
+response = send_requests("client.connect_wallet")
+
+token = response.Header("Authorization")
+
+send_requests("client.list_keys", header("Authorization", token))
+```
+
 ### Issue request to the service
 
 :::caution Origin header required 
 The service requires the Origin (or Referrer) HTTP header to be specified in the request. This is usually handled by the browser, so you may not have to do anything, but for software that does not use one of those headers, the request will be rejected.
 :::
 
-Use `POST /api/v2/requests` to communicate with the wallet. The request body is a JSON-RPC 2.0 payload.
+Use `POST /api/v2/requests` to communicate with the wallet. The request body is a JSON-RPC 2.0 payload. 
+
+If you want to use a token, you'll need to specify it in the `Authorization` HTTP header with the scheme `VWT`. Example: `Authorization: VWT <TOKEN>`
 
 1. Get the ID for the chain the service is connected to. This allows your app to display the information related to the network that the service is connected to:
 
@@ -70,9 +85,6 @@ Use `POST /api/v2/requests` to communicate with the wallet. The request body is 
     {
       "jsonrpc": "2.0",
       "method": "client.list_keys",
-      "params": {
-        "token": "THE_TOKEN_FROM_THE_CONNECT_WALLET_CALL"
-      }
       "id": "request_3"
     }
 ```
@@ -84,7 +96,6 @@ Use `POST /api/v2/requests` to communicate with the wallet. The request body is 
       "jsonrpc": "2.0",
       "method": "client.send_transaction",
       "params": {
-         "token": "THE_TOKEN_FROM_THE_CONNECT_WALLET_CALL",
          "publicKey": "ONE_OF_THE_PUBLIC_KEY_FROM_THE_LIST_KEY_CALL",
          "sendingMode": "TYPE_SYNC",
          "transaction": {
@@ -104,9 +115,6 @@ Use `POST /api/v2/requests` to communicate with the wallet. The request body is 
     {
       "jsonrpc": "2.0",
       "method": "client.disconnect_wallet",
-      "params": {
-        "token": "THE_TOKEN_FROM_THE_CONNECT_WALLET_CALL"
-      }
       "id": "request_5"
     }
 ```
@@ -139,10 +147,10 @@ vegawallet service run --load-tokens --network testnet1
 ### Verify the service
 1. Verify the service is running with `GET /api/v2/health`
 2. If it is running, verify the service exposes the JSON-RPC methods using `GET /api/v2/methods`
-3. If it does expose the methods, you can start issuing request to the wallet software with `POST /api/v2/requests`
+3. If it does expose the methods, you can start issuing requests to the wallet software with `POST /api/v2/requests`
    a. Get the chain ID of the network the wallet is connected to, to show data from the same network using `client.get_chain_id`.
 
-### Issue request to the service
+### Issue a request to the service
 
 :::caution Origin header required 
 The service requires the Origin (or Referrer) HTTP header to be specified in the request. This is usually handled by the browser, so you may not have to do anything, but for software that does not use one of those headers, the request will be rejected.
@@ -150,17 +158,14 @@ The service requires the Origin (or Referrer) HTTP header to be specified in the
 
 Use `POST /api/v2/requests` to communicate with the wallet. The request body is a JSON-RPC 2.0 payload.
 
-1. You don't need to connect. You can use the pre-generated, long-living token in place of the regular token.
+1. You don't need to connect. You can use the pre-generated, long-living token in place of the regular token. The token should be specified in the `Authorization` HTTP header with the scheme `VWT`. Example: `Authorization: VWT <TOKEN>`
 
-   Use the method below to get the public keys you have access to:
+Use the method below to get the public keys you have access to:
 
 ```
     {
       "jsonrpc": "2.0",
       "method": "client.list_keys",
-      "params": {
-        "token": "THE_LONG_LIVING_TOKEN"
-      }
       "id": "request_1"
     }
 ```
@@ -174,7 +179,6 @@ Use `POST /api/v2/requests` to communicate with the wallet. The request body is 
       "jsonrpc": "2.0",
       "method": "client.send_transaction",
       "params": {
-         "token": "THE_LONG_LIVING_TOKEN",
          "publicKey": "ONE_OF_THE_PUBLIC_KEY_FROM_THE_LIST_KEY_CALL",
          "sendingMode": "TYPE_SYNC",
          "transaction": {

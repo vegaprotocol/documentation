@@ -153,23 +153,23 @@ There is no token slashing, i.e., a tokenholder cannot lose their tokens through
 
 Read more: [How a validator node's performance is determined](#validator-node-performance)
 
-## Validating nodes
+## Validator nodes
 The Vega network is operated by a number of independent validators, who each run a node. 
 
-There are three types of validating nodes: consensus validators, standby validators, and pending validators. 
+There are three types of validator nodes: consensus validators, standby validators, and pending validators. 
 
-Consensus validators are responsible for keeping the network and transactions running. Standby validating nodes are ready to step in if a consensus validating node does not fulfil its requirements. Pending validating nodes are one level below standby, and should be equipped to move up and replace a standby validating node if a spot opens up.
+Consensus validators are responsible for keeping the network and transactions running. Standby validator nodes are ready to step in if a consensus validator node does not fulfil its requirements. Pending validator nodes are one level below standby, and should be equipped to move up and replace a standby validator node if a spot opens up.
 
 ## Consensus validator nodes
 Consensus validator nodes are responsible for agreeing on the order of transactions and creating new blocks so that all nodes can agree on the state of the network.
 
 They receive rewards based on having enough (but not too much) self-stake, as well as how many tokenholders nominate them. The tokenholders who nominate them also receive a cut of the rewards.
 
-If a consensus validator's stake or performance is subpar, their validator score will be lowered, and that validator's node will be chosen less frequently to propose a block, because Vega feeds the voting power of each validating node to the Tendermint consensus algorithm.
+If a consensus validator's stake or performance is subpar, their validator score will be lowered, and that validator's node will be chosen less frequently to propose a block, because Vega feeds the voting power of each validator node to the Tendermint consensus algorithm.
 
 This can also affect the rewards they and their nominators receive.
 
-If a consensus validating node stops validating, or performs poorly, then a standby validator can replace it.
+If a consensus validator node stops validating, or performs poorly, then a standby validator can replace it.
 
 ### How consensus validators are chosen
 Consensus validators are chosen based on a range of variables, including the validator scores, and the number of available slots. If there are no empty slots, at most one validator can be changed per epoch.
@@ -200,12 +200,12 @@ Read more: [Becoming a validator](#becoming-a-validator)
 ### Moving from standby to consensus validator
 A standby validator that wants to be in line for promotion to become a consensus validator needs to do the following: 
 
-1. Run a validating node
+1. Run a validator node
 2. Have enough self-stake: <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" formatter="governanceToken" suffix="tokens" hideName={true} /> 
 3. Forward the relevant Ethereum events
 
-## Validating node performance
-A validating node’s performance is calculated based on three factors:
+## Validator node performance
+A validator node’s performance is calculated based on three factors:
 
 * Ranking, whether it is a consensus or standby validator
 * Voting power based on the performance, which defines the performance score
@@ -226,7 +226,7 @@ Then `validator_performance = max(0.05, min((p/expected, 1))`
 ### Performance score: Standby validators
 The performance score for *new* standby validators is set to 0. The performance score of a standby validator is calculated based on them successfully submitting transactions.
 
-Validator candidates that have submitted a transaction to become consensus validating nodes will need to send a hash of block number `b`, separately signed by the three required keys and submitted, during each epoch and every set number of blocks (`numBlocks`). 
+Validator candidates that have submitted a transaction to become a consensus validator will need to send a hash of block number `b`, separately signed by the three required keys and submitted, during each epoch and every set number of blocks (`numBlocks`). 
 
 `numBlocks` = the higher of (the lower of (50 and the epoch duration in seconds) and (epoch duration in seconds x 0.01)
 
@@ -307,9 +307,9 @@ The normalised validator score number directly affects how much each validator (
 The network is set to not allow any standby validators for alpha mainnet, and the number of validators will be increased via governance as early alpha mainnet progresses.
 :::
 
-A node operator that wants to express interest in running a validating node for Vega needs to do the following: 
+A node operator that wants to express interest in running a validator for Vega needs to do the following: 
 
-1. Start a Vega validating node, including the associated infrastructure (see below)
+1. Start a Vega validator node, including the associated infrastructure
 2. Submit a transaction using their keys, announcing they want to validate, and receive a response that the network has verified key ownership (see below)
 3. Self-stake to their validator Vega key at least <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" formatter="governanceToken" suffix="tokens" hideName={true} /> 
 4. Wait for others to nominate them. It would be worth announcing to the community that you have started a node and are looking for stake)

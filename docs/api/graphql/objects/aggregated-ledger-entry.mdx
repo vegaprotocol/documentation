@@ -21,12 +21,14 @@ type AggregatedLedgerEntry {
   quantity: String!
   assetId: ID
   transferType: TransferType
-  senderPartyId: ID
-  receiverPartyId: ID
-  senderMarketId: ID
-  receiverMarketId: ID
-  senderAccountType: AccountType
-  receiverAccountType: AccountType
+  fromAccountPartyId: ID
+  toAccountPartyId: ID
+  fromAccountMarketId: ID
+  toAccountMarketId: ID
+  fromAccountType: AccountType
+  toAccountType: AccountType
+  fromAccountBalance: String!
+  toAccountBalance: String!
 }
 ```
 
@@ -49,28 +51,36 @@ type AggregatedLedgerEntry {
 > Type of the transfer for this ledger entry
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>senderPartyId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>fromAccountPartyId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > Party identifier, if query was grouped by sender party - else null
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>receiverPartyId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>toAccountPartyId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > Party identifier, if query was grouped by receiver party - else null
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>senderMarketId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>fromAccountMarketId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > Market identifier, if query was grouped by sender market - else null
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>receiverMarketId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>toAccountMarketId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > Market identifier, if query was grouped by receiver market - else null
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>senderAccountType</b></code>](#)<Bullet />[`AccountType`](/testnet/api/graphql/enums/account-type) <Badge class="secondary" text="enum"/>
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>fromAccountType</b></code>](#)<Bullet />[`AccountType`](/testnet/api/graphql/enums/account-type) <Badge class="secondary" text="enum"/>
 > Account type, if query was grouped by sender account type - else null
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>receiverAccountType</b></code>](#)<Bullet />[`AccountType`](/testnet/api/graphql/enums/account-type) <Badge class="secondary" text="enum"/>
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>toAccountType</b></code>](#)<Bullet />[`AccountType`](/testnet/api/graphql/enums/account-type) <Badge class="secondary" text="enum"/>
 > Account type, if query was grouped by receiver account type - else null
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>fromAccountBalance</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Sender account balance after the transfer
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>toAccountBalance</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Receiver account balance after the transfer
 > 
 
 

@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
-title: Set up validating node
 vega_network: MAINNET
+title: Set up validator node
 hide_title: false
 ---
 
@@ -12,9 +12,12 @@ import TabItem from '@theme/TabItem';
 This section will take your through all the steps to configure your node as a validator and join an existing network.
 
 :::note
-All the following commands will use an optional --home flag. This flag allows you to specify a custom home for the configuration, state, and cache of your Vega node. The flag is not mandatory and a default path will be chosen if not specified. 
+All the following commands will use an optional `--home` flag. This flag allows you to specify a custom home for the configuration, state, and cache of your Vega node. The flag is not mandatory and a default path will be chosen if not specified. 
+
+It's recommended that you use different folders for your Vega and Tendermint homes. Keep track of which home you're referring to as you progress.
 
 The XDG Base Directory standard is use to create the path, see: [XDG Base Directory spec](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html).
+
 :::
 
 :::info
@@ -84,7 +87,7 @@ This will read the Tendermint keys from the configuration path, and set up your 
 Vega supports two types of Ethereum wallet: you can either register a wallet available from a clef instance or import a keystore file (e.g: create with `geth account`).
 
 #### Using clef
-To set up your clef instance please refer to the [clef documentation](https://geth.ethereum.org/docs/clef/tutorial).
+To set up your clef instance please refer to the [clef documentation](https://geth.ethereum.org/docs/tools/clef/introduction).
 
 Set the address of your clef instance in the Vega configuration (`path/to/home/config/node/config.toml`):
 ```Toml
@@ -106,7 +109,7 @@ vega nodewallet import --chain=ethereum --home=path/to/home --clef-account-addre
 ```
 
 #### Using a keystore account file
-You can either import an existing keystore or create a new one. (Learn how to create a keystore [using geth](https://geth.ethereum.org/docs/getting-started)) 
+You can either import an existing keystore or create a new one. (Learn how to create a keystore [using geth](https://geth.ethereum.org/docs/developers/dapp-developer/native-accounts#encrypted-keystores)) 
 
 Import an existing keystore using the following command:
 ```
@@ -143,17 +146,17 @@ vega nodewallet --home="path/to/home/" show
 ## Update config files
 
 ### Modify Vega config.toml
-Each Vega validator node needs to be connected to an Ethereum archive node (rather than full node). The core software connects to the `eth_getLogs` endpoint, which is only available on archive nodes. This allows the Vega node to verify that an event happened on Ethereum (e.g: a deposit or a withdrawal).
+Each Vega validator node needs to be connected to an **Ethereum archive node** (not a full node). The core software connects to the `eth_getLogs` endpoint, which is only available on archive nodes. This allows the Vega node to verify that an event happened on Ethereum (e.g: a deposit or a withdrawal).
 
 Modify the following config in `path/to/home/config/node/config.toml`:
 
 ```Toml
-[NodeWallet]
-  Level = "Info"
-  [NodeWallet.ETH]
-    Level = "Info"
-    Address = "http://ethereum.node.com/rpc"
-    ClefAddress = ""
+ [NodeWallet]
+   Level = "Info"
+   [NodeWallet.ETH]
+     Level = "Info"
+     Address = "http://ADD_YOUR_ETH_ARCHIVE_NODE_RPC_ENDOINT.here/rpc"
+     ClefAddress = ""
 ```
 
 ### Modify tendermint config.toml

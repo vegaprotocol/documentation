@@ -7,12 +7,8 @@ const { inspect } = require('util');
 
 // Seed data: Some inspirational instrument names and corresponding codes
 const instruments = [
-    { name: 'Apples Yearly (2022)', code: 'APPLES.22' },
-    { name: 'Oranges Daily', code: 'ORANGES.24h' }
+    { name: 'Apples Yearly (2022)', code: 'APPLES.22' }
 ];
-
-// Seed data: some example metadata for a market
-const metadata = ['sector:energy', 'sector:tech', 'sector:materials', 'sector:health', 'sector:food']
 
 // This is slightly smaller than the one in newMarket
 function generateInstrument(skeleton) {
@@ -99,7 +95,7 @@ function generatePriceMonitoringParameters(skeleton) {
 function generateMetadata(skeleton) {
   assert.equal(skeleton.type, 'array', 'Market metadata type used to be an array')
   assert.equal(skeleton.items.type, 'string', 'Market metadata type used to be an array of strings')
-  return [...sampleSize(metadata, random(1,3)) ,'source:docs.vega.xyz'] 
+  return ['source:docs.vega.xyz'] 
 }
 
 function generateRiskModel(skeleton, riskModelType) {
@@ -154,7 +150,7 @@ function generateRiskModel(skeleton, riskModelType) {
 
 }
 
-function updateMarket(skeleton) {
+function updateMarket(skeleton, proposalSoFar) {
   assert.ok(skeleton.properties.changes);
   assert.ok(skeleton.properties.changes.properties.instrument);
   assert.ok(skeleton.properties.changes.properties.lpPriceRange);

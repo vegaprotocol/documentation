@@ -74,8 +74,6 @@
       }
      },
      "metadata": [
-      "sector:energy",
-      "sector:materials",
       "source:docs.vega.xyz"
      ],
      "priceMonitoringParameters": {
@@ -89,17 +87,17 @@
      },
      "logNormal": {
       "tau": 0.0001140771161,
-      "riskAversionParameter": 0.0001,
+      "riskAversionParameter": 0.001,
       "params": {
        "mu": 0,
        "r": 0.016,
-       "sigma": 0.5
+       "sigma": 0.8
       }
      }
     }
    },
-   "closingTimestamp": 1673982487,
-   "enactmentTimestamp": 1674068887
+   "closingTimestamp": 1676224323000,
+   "enactmentTimestamp": 1676310723000
   }
  }
 }'
