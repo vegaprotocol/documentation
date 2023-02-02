@@ -95,12 +95,14 @@ Some data can be saved in detail, and in a less-detailed sampling. Take balances
 
 The data node code's configuration includes a set of default retention time frames. Those time frames have been defined with an individual trader that wants to run their own data node, for their own use, in mind. A public data node that's intended to support querying archival information will need much longer data retention time frames.
 
+Whenever a data node starts up, the existing retention policy for each data type is output in the logs.
+
 ### Data retention modes
 When starting a data node, you can choose one of three retention modes, depending on what you want the data node to do. 
 
 * **Standard (default)**: The node retains data according to the default retention policies (below) of the data node
 * **Archive**: The node retains all data
-* **Lite**: The node retains enough data to be able to provide the latest state to clients, and produce decentralised history segments. This mode saves enough to provide the current state of accounts, assets, balances, delegations, liquidity provisions, live orders, margin levels, markets, network limits, network parameters, node details, parties, positions 
+* **Lite**: The default retention policy is one day
 
 **Standard data node retention times (default)** 
 
@@ -108,6 +110,8 @@ When starting a data node, you can choose one of three retention modes, dependin
 |---------------------------	|-------------------	|
 | Balances (fine-grained)   	| 7 days            	|
 | Balances (conflated)      	| 1 year            	|
+| Deposits                    	| 1 year            	|
+| Withdrawals                  	| 1 year            	|
 | Network checkpoints       	| 7 days            	|
 | Delegations                  	| 7 days            	|
 | Ledger entries            	| 6 months            	|
@@ -118,12 +122,29 @@ When starting a data node, you can choose one of three retention modes, dependin
 | Trades 15 minute candle   	| 1 month           	|
 | Trades 1 hour candle      	| 1 year            	|
 | Trades 6 hour candle      	| 1 year            	|
+| Trades 1 day candle       	| 1 year            	|
+| Markets                     	| 1 year            	|
 | Market data               	| 7 days            	|
 | Margin levels             	| 7 days            	|
 | Margin levels (conflated) 	| 1 year            	|
 | Positions                 	| 7 days            	|
 | Conflated positions       	| 1 year            	|
 | Liquidity provisions      	| 1 day             	|
+| Blocks    	| Equal to longest retention across all data types |
+
+#### Change retention times
+From version 0.68, retention policy for any data type can be overridden by creating an entry in the config file, under the SQLStore section, as seen below. Once you change the retention policy, you will need to restart your data node.
+
+```toml
+[SQLStore]
+ [[SQLStore.RetentionPolicies]]
+    HypertableOrCaggName = "balances"
+    DataRetentionPeriod = "7 days"
+
+  [[SQLStore.RetentionPolicies]]
+    HypertableOrCaggName = "checkpoints"
+    DataRetentionPeriod = "7 days"
+```
 
 ## Network history
 The daily addition of gigabites of core event data to the data node make it infeasible for a new data node to replay all blocks from the first block. Instead, new nodes can use a feature called network history to recreate the history quickly and get into a state to be able to consume new blocks. 
