@@ -126,23 +126,23 @@ See a full list of the network parameters used for PoW in the [spam protection p
 | spam.pow.numberOfPastBlocks         	| To compute the wallet transaction quota, transactions can be assigned to past blocks; this parameter defines how far back that goes | <NetworkParameter frontMatter={frontMatter} param="spam.pow.numberOfPastBlocks" hideName={true} />
 
 
-## Loading network state: Snapshots
-To allow a Vega node to be restarted without the need to replay the whole blockchain, a Vega node can load an existing snapshot created by a different node, which will populate all the network state. The node can then resume listening to blocks after the snapshot, until it gets to the live block height, at which point it will be able to contribute to the chain.
+## Loading node state: Snapshots
+To allow a Vega node to be restarted without the need to replay the whole blockchain, a Vega node can load an existing snapshot created by a different node, which will populate all the node state. The node then downloads and replays blocks from the height corresponding to the snapshot, until it gets to the live block height, at which point it will be able to contribute to the chain.
 
 :::note Try it out
-Node operators can refer to [how to use snapshots](../../node-operators/how-to/use-snapshots.md) for a step-by-step guide on loading network state with snapshots. 
+Node operators can refer to [how to use snapshots](../../node-operators/how-to/use-snapshots.md) for a step-by-step guide on loading state with snapshots. 
 :::
 
-## Network restarts: Checkpoints
-The network's validators periodically store checkpoints of all important state parameters such as balances and governance proposals. 
+## Network restarts: LNL checkpoints
+The network's validators periodically store checkpoints of all essential state parameters such as balances and governance proposals. LNL (limited network life) checkpoints allow the chain to be restarted from a previously valid state in the event of consensus failure, a full network restart, or a critical issue being discovered.
 
-Checkpoints allow the chain to be restarted from a previously valid state in the event of consensus failure, a full network restart, or a critical issue being discovered.
+Limited network life checkpoints save a more limited set of information than snapshots, making them quicker to produce and easier to understand and restore from in case of emergency. This is at the cost of needing a synchronous network restore and losing traders' positions and orders. In the event of a restart using an LNL checkpoint, margin, bond and other balances are summed up and restored based on the last market to market cashflow.
 
-Those checkpoints happen at defined intervals, and on every deposit and withdrawal request. 
+LNL checkpoints happen at defined intervals, and on every deposit and withdrawal request.
 
 ### How a checkpoint is created and used
 1. Each validator node generates a checkpoint file, which is saved with a hash. That hash is used as the consensus for the block - if there’s no consensus the network will not be able to run.
-2. When a network is taken down, the checkpoint file’s hash, as well as all the checkpoint data, is added to the genesis block by a validator.
+2. If a network is taken down, the checkpoint file’s hash, as well as all the checkpoint data, is added to the genesis block by a validator.
 3. A node operator then updates the genesis file in the networks repo with the network’s new start date, the new network ID, and the hash of the checkpoint file to be used in the network restoration. Once the file is updated, the node operators need to approve and merge the change.
 4. If the checkpoint file hash matches the expected hash from genesis, when validators restart their nodes, the network will be restored with the state and then allow other transactions on the network.
 
