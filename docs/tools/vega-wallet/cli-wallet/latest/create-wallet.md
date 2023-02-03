@@ -10,6 +10,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import { NetworkConfigAddress, NetworkConfigAddressText } from '@site/src/components/NetworkConfigAddress';
 import CodeBlock from '@theme/CodeBlock';
+import Topic from '/docs/topics/_topic-wallet.mdx'
+
+<Topic />
 
 To download Vega Wallet and create your wallet, follow the step-by-step instructions below. 
 
