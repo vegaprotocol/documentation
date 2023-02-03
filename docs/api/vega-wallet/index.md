@@ -3,6 +3,11 @@ title: Intro to Vega Wallet APIs
 hide_title: false
 sidebar_position: 1
 ---
+
+import Topic from '/docs/topics/_topic-wallet.mdx'
+
+<Topic />
+
 Build on and integrate with the Vega Wallet service using the available APIs.
 
 ## V2 API
@@ -17,3 +22,6 @@ The **JSON-RPC API** and its endpoint **`/api/v2/requests`** is in the alpha pha
 The **REST API** is being deprecated and will only be supported until the JSON-RPC API is out of alpha. 
 
 See the [REST API for Vega Wallet](./vega-wallet/v1-api) documentation.
+
+## Wallet app guides 
+If you want to use the Vega Wallet CLI app directly, rather than through the API, explore the [wallet guides](../../tools/vega-wallet/cli-wallet/index.md). 

@@ -18,18 +18,13 @@ Note: If you are looking for instructions for connecting your hardware wallet to
 The wallet software linked below is only compatible with the Vega mainnet network on v0.53. If you need a wallet for use with the Vega testnet, Fairground, see **[Create a wallet (testnet)](https://docs.vega.xyz/docs/testnet/tools/vega-wallet/cli-wallet/latest/create-wallet)**.
 :::
 
-## Command line guidance
-Use the following instructions in command line. Below, you'll see commands in the code blocks for each operating system. Copy those instructions and paste them into your command line interface.
-
-In your command line interface, you can view a list of available commands by running `./vegawallet -h` on MacOS and Linux, or `vegawallet -h` on Windows. Help is also available for every command, for example: `vegawallet create -h` will provide information about the `create` command.
-
 ## 1. Install and run Vega Wallet
 
 ### Download file
 
 **Download and save the zip file from [Vega Wallet software releases ↗](https://github.com/vegaprotocol/vegawallet/releases/)**. Keep track of where you've saved the file, because that's where the command line interface will look for it.
 
-:::note You may need to change your system preferences to run the file. 
+:::note You may need to change your system preferences to run the file.
 
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
@@ -63,6 +58,15 @@ Download `vegawallet-linux-amd64.zip`
 </TabItem>
 </Tabs>
 :::
+
+#### Antivirus software
+If you are running antivirus software, you may need to 'allowlist' or 'whitelist' the Vega Wallet software, so that your antivirus provider doesn't quarantine the software and block you from using it.
+
+## Command line guidance
+Use the following instructions in command line. Below, you'll see commands in the code blocks for each operating system. Copy those instructions and paste them into your command line interface.
+
+In your command line interface, you can view a list of available commands by running `./vegawallet -h` on MacOS and Linux, or `vegawallet -h` on Windows. Help is also available for every command, for example: `vegawallet create -h` will provide information about the `create` command.
+
 
 :::info
 You'll need to run the commands from the directory you've saved the wallet file in. Use the command `pwd` to find out where your terminal is looking in the file system. Use the command `cd` and the path/to/wallet/directory to tell the command line where to find the file. 

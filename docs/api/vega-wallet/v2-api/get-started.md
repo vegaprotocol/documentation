@@ -3,6 +3,10 @@ title: Get started with API v2
 hide_title: false
 sidebar_position: 1 
 ---
+import Topic from '/docs/topics/_topic-wallet.mdx'
+
+<Topic />
+
 Vega Wallet supports a JSON-RPC API for integrating interfaces with the Vega Wallet service, to read keys, get transaction approval, and more.
 
 :::note Admin access
