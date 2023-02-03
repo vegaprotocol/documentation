@@ -12,8 +12,8 @@ The market lifecycle begins when a proposal for a new market is accepted, and is
 | ------------------ |:--------------:| ------------------- | --------------------------------------------------------------- | -----------------------------------------         
 | [Proposed](#market-status-proposed)           |   ✅          | No trading          | Governance proposal valid and accepted                                       | Governance proposal voting period ends
 | [Rejected](#market-status-rejected)           |   ❌           | No trading          | Outcome of governance votes is to reject the market             | N/A                                                    
-| [Pending](#market-status-pending)            |   ✅          | Opening auction     | Governance vote passes                                     | Governance vote (to close) OR enactment date reached
-| [Active](#market-status-active)             |   ✅          | Normal trading      | Enactment date reached and usual auction exit checks pass       | Governance vote (to close) OR maturity of market      
+| [Pending](#market-status-pending)            |   ✅          | Opening auction     | Governance vote passes                                     | Governance vote OR enactment date reached
+| [Active](#market-status-active)             |   ✅          | Normal trading (such as continuous)     | Enactment date reached and usual auction exit checks pass       | Maturity of market      
 | [Suspended](#market-status-suspended)          |   ✅          | Exceptional auction | Price monitoring or liquidity monitoring trigger, or product lifecycle trigger                | Exit conditions met per monitoring spec. that triggered it, no other monitoring triggered or governance vote if allowed (see below)
 | [Trading Terminated](#market-status-trading-terminated) |   ❌           | No trading          | Defined by the product (i.e. from a product parameter, specified in market definition, giving close date/time) | Settlement event commences                       
 | [Settled](#market-status-settled)            |   ❌           | No trading          | Settlement triggered and completed as defined by product                                      | N/A                                            
@@ -82,7 +82,7 @@ An active market status indicates it is in continuous trading.
 
 ### What is and isn't possible
 - Liquidity providers can submit, amend, or cancel commitments 
-- Orders can be placed into the market, trading occurs according to normal trading mode rules
+- Orders can be placed into the market, trading occurs according to normal trading mode rules (for example, such as continuous trading)
 - Market data is emitted
 - Positions and margins are managed
 - Changes to a market configuration can be enacted through governance

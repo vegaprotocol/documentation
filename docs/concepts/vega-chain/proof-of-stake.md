@@ -8,15 +8,19 @@ hide_title: false
 import NetworkParameter from '@site/src/components/NetworkParameter';
 import Topic from '/docs/topics/_topic-staking.mdx'
 
-# Proof of stake
-
 Vega runs on a delegated proof of stake blockchain. 
 
-Validator nodes run the Vega network, and they decide on the validity of the blocks containing the network's transactions and thus execute those transactions. The validators who run validator nodes are required to own a minimum amount of <NetworkParameter frontMatter={frontMatter} param="validators.delegation.minAmount" hideName={true} suffix="tokens" formatter="governanceToken" /> that they stake to themselves. The validator nodes reach consensus using Tendermint and propose blocks at a rate proportionate to their voting power, which is driven by their total stake minus any penalties. 
+Validator nodes run the Vega network, and they decide on the validity of the blocks containing the network's transactions and thus execute those transactions. The validators who run validator nodes are required to own a minimum amount of <NetworkParameter frontMatter={frontMatter} param="validators.delegation.minAmount" hideName={true} suffix="tokens" formatter="governanceToken" /> that they stake to themselves.
 
 Read more: [Validator nodes](#validating-nodes)
 
-**Participants who hold a balance of VEGA, the governance asset, can use their tokens to nominate validator nodes.** This is done by associating those tokens to a Vega key to use as stake, and then nominating one or more validators they trust to help secure the network. Nominating validators loans the consensus voting weight of the VEGA tokens to endorse a validator's trustworthiness. Participants with staked tokens will earn rewards for supporting the network.
+**Participants who hold a balance of VEGA, the governance asset, can use their tokens to nominate validator nodes.** This is done by associating those tokens to a Vega key to use as stake, and then nominating one or more validators they trust to help secure the network. Nominating validators loans the consensus voting weight of the VEGA tokens to endorse a validator's trustworthiness. 
+
+Tokens, in addition to their use for nominating validators, also grant tokenholder voting rights on governance actions. If a token is delegated, its governance voting rights stay with the tokenholder and are not transferred to any validators that the tokenholder nominates.
+
+Everyone participating in keeping the network secure, robust and reliable, including nominators, is **rewarded** for keeping the network running. Not meeting the requirements of running the network can lead to penalties, such as **rewards being withheld**.
+
+Read more: [Rewards](#rewards)
 
 Vega is non-slashing -- there is no mechanism through which a tokenholder can lose a staked token through a validator being punished. Any measures to that end use different mechanisms that will affect a bad validator's (and potentially their delegators') revenue, but does not affect the delegated tokens themselves.
 
@@ -72,27 +76,26 @@ Vega networks use the ERC20 token VEGA for staking. Staking requires the combine
 ### Epochs
 An epoch is a time period during which staking changes can be announced and then implemented. Changes that are announced in one epoch will only be executed in the following epoch (excepting ['un-nominate now'](#un-nominate-now)). The length of an epoch is <NetworkParameter frontMatter={frontMatter} param="validators.epoch.length" hideName={true} />.
 
-### Nominating validators
+## Nominating validators
 Using tokens to nominate validators keeps the decentralised network functioning. 
 
 Tokenholders can nominate validators to encourage a diverse set of reliable nodes running the network, and to give the community the opportunity to disincentivise and/or remove bad validators. Tokenholders who nominate validators are also eligible for rewards. 
 
 When a tokenholder chooses a validator (or validators) to nominate with their tokens, the amount is immediately subtracted from their available balance, and is used at the start of the next epoch to actively nominate those validator(s).
 
-Read more: [Rewards for staking](#rewards)
+### Spam protection: nominations
+There are two [spam pretection](./network#spam-protection) measures related to nominating validators.
+* A participant who wants to submit a nomination (delegation) transaction, needs to have a balance of at least  <NetworkParameter frontMatter={frontMatter} param="spam.protection.delegation.min.tokens" hideName={true} suffix="tokens" formatter="governanceToken" />  to be able to submit the transaction.
+* A participant cannot send more than <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.delegations" hideName={true} /> nomination (delegation) transactions per day.
 
-:::info Try it out
-VEGA tokenholders can use **[token.fairground.wtf](https://token.fairground.wtf)** to associate their tokens and nominate validators. A Vega Wallet and Ethereum wallet are both required. CoinList custodial users should confirm with CoinList how staking works for them.
-:::
-
-### Automatic nomination
+## Automatic nomination
 Automatic nomination is triggered when an individual tokenholder has manually nominated 95%+ of their associated tokens. At that point, any newly associated tokens will automatically be nominated to the same validators, in the same proportion.
 
 Exceptions to automatic nomination: 
 * If, ahead of the next epoch a participant uses their available tokens to nominate validators manually, that takes precedence over automatic nomination. 
 * For the epoch after un-nominating validators (see below), tokens are not auto-nominated, to provide time to change the delegation / remove tokens.  
 
-### Un-nominating validators
+## Un-nominating validators
 Participants can remove their nomination at the end of an epoch, or immediately. The un-nominated tokens will be restored back to the participant's associated token balance. 
 
 If nominated tokens are moved to a different Ethereum address, they are un-nominated immediately, (equivalent to ['un-nominate now'](#un-nominate-now)) and rewards are forfeited for that epoch. In this case, or any case in which you dissociate tokens without first removing the nomination from a particular validator, the tokens are un-nominated from each validator you've nominated, in proportion to the nomination. 
@@ -106,9 +109,3 @@ The action is announced in the next available block of the same epoch, but the n
 A participant can choose to un-nominate at any time, and the action is executed immediately following the block it is announced in (within the same epoch). 
 
 The participant will not receive any rewards from the validator in that epoch. The tokens are marked as available to the participant.
-
-## Spam protection
-There are several spam protections enabled to protect the Vega network, some of which are relevant to staking.
-
-* A participant who wants to submit a delegation (nomination) transaction, needs to have a balance of at least  <NetworkParameter frontMatter={frontMatter} param="spam.protection.delegation.min.tokens" hideName={true} suffix="tokens" formatter="governanceToken" />  to be able to submit the transaction
-* A participant cannot send more than  <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.delegations" hideName={true} /> delegation transactions per day.
