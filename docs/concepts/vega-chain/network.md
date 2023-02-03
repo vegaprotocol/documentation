@@ -10,11 +10,6 @@ import Topic from '/docs/topics/_topic-staking.mdx'
 
 The Vega network is operated by a number of independent validators, who each run a [validator node](validator-nodes.md), and may also run [data nodes](data-nodes.md).
 
-## Network life
-Vega networks will, at least initially, run for a limited time only, and chain restarts will pick up from the most recent valid state. A network restart will be driven by situations including Vega protocol and Tendermint software upgrades.
-
-Ensuring that the latest software versions are being used by all validators when the software is ready lessens the risk of incompatible or outdated code leading to a consensus failure, and removes the burden of supporting multiple versions. Upgrades to a running chain need to respect and be able to recalculate the deterministic state for earlier blocks, so all versions of critical code must remain in the system. 
-
 ## Network-wide limits
 Some limits have been introduced to the protocol in an aim to keep the overall system performant and responsive, with low-latency. As the system relies on both a lean core and a data node that consumes and provides data, having limits allows the option to somewhat control how many computations and how much data is generated, while also allowing full use of the protocol's functionality. 
 
@@ -130,10 +125,18 @@ See a full list of the network parameters used for PoW in the [spam protection p
 | spam.pow.increaseDifficulty           | If a wallet exceeds the max transactions per block, the difficulty of the PoW increases by this factor | <NetworkParameter frontMatter={frontMatter} param="spam.pow.increaseDifficulty" hideName={true} />
 | spam.pow.numberOfPastBlocks         	| To compute the wallet transaction quota, transactions can be assigned to past blocks; this parameter defines how far back that goes | <NetworkParameter frontMatter={frontMatter} param="spam.pow.numberOfPastBlocks" hideName={true} />
 
+
+## Loading network state: Snapshots
+To allow a Vega node to be restarted without the need to replay the whole blockchain, a Vega node can load an existing snapshot created by a different node, which will populate all the network state. The node can then resume listening to blocks after the snapshot, until it gets to the live block height, at which point it will be able to contribute to the chain.
+
+:::note Try it out
+Node operators can refer to [how to use snapshots](../../node-operators/how-to/use-snapshots.md) for a step-by-step guide on loading network state with snapshots. 
+:::
+
 ## Network restarts: Checkpoints
 The network's validators periodically store checkpoints of all important state parameters such as balances and governance proposals. 
 
-Checkpoints allow the chain to be restarted from a previously valid state in the event of consensus failure, a network restart, or a critical issue being discovered.
+Checkpoints allow the chain to be restarted from a previously valid state in the event of consensus failure, a full network restart, or a critical issue being discovered.
 
 Those checkpoints happen at defined intervals, and on every deposit and withdrawal request. 
 
@@ -158,16 +161,13 @@ Those checkpoints happen at defined intervals, and on every deposit and withdraw
 * **Snapshot block number and transaction ID** of the block from which a snapshot is derived
 * **Stake**: Last block of confirmed stake deposits on the staking bridge and vesting contracts, along with the number of confirmations, plus all completed and pending staking events on both contracts
 
-<!--
-:::note Go deeper
-Node operators can use the [guide to restore a network from a checkpoint].
+:::note Try it out
+Node operators use the how-to guide to [restart a network using a checkpoint](../../node-operators/how-to/restart-network.md).
 :::
--->
 
 <!-- ### ***Further reading*** 
 ## Tendermint consensus
  ### Transaction and sequencing
  ### Transaction ordering
-## Fast syncing (Snapshots) 
 ## Fairness (Wendy)
  -->
