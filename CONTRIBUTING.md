@@ -19,30 +19,29 @@ The best way to get the correct version of node is using the `nvm` utility which
 
 `https://github.com/nvm-sh/nvm#installing-and-updating`
 
-Once nvm is installed (check with `nvm --version`) you can run the following command from inside the root of the documentation folder to download and install the correct version of node required by the script:
+Once nvm is installed (check with `nvm --version`) you can run the following command from inside the root of the documentation folder to download and install the correct version of node required by the script.
 
-```
-> nvm install
-> npm --version
+```bash
+nvm install
 ```
 
-`Yarn` can be install by running:
+`Yarn` can be install by running the command below. Running with the `--version` flag will show you it's correctly installed and tell you what version you're running:
 
-```
-> npm install -g yarn
-> yarn --version
+```bash
+npm install -g yarn
+yarn --version
 ```
 
 The libraries needed by yarn can be installed by:
 
-```
-> yarn install
+```bash
+yarn install
 ```
 
 If you are regenerating the API documentation, you need to have Python3 installed. You can check if you have by running:
 
-```
-> python3 --version
+```bash
+python3 --version
 ```
 
 
@@ -66,7 +65,7 @@ cd documentation
 ### Running locally
 
 ```console
-yarn serve
+yarn start
 ```
 
 ### Production build locally
