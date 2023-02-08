@@ -28,6 +28,9 @@ find "specs/$doc_version/" -name "*.swagger.json" -exec sed -i -E 's/lb.testnet.
 find "specs/$doc_version/" -name "*.swagger.json" -exec sed -i -E 's/\/datanode\/rest//g' {} +
 find "specs/$doc_version/" -name "*.swagger.json" -exec sed -i -E 's/"http",//g' {} +
 
+echo "- GRPC: Filter out files that contain only internal types"
+node ./scripts/build-pre-fix-specs-filter-protos.js $doc_version
+
 # Mac SED workaround - delete remnant files (not required with gsed)
 find . -name "*-E" -exec rm -rf {} +
 
