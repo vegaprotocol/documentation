@@ -23,7 +23,7 @@ The **JSON-RPC API** and its endpoint **`/api/v2/requests`** is in the alpha pha
 * 🛝 **[API playground](./openrpc-api-playground)**: Try it out and explore the potential results and errors
 
 ## Software compatibility
-Vega Wallet API (v2)'s latest version was released in Vega software `v.0.67`. If you're interacting with a network on `v0.67` or newer, you'll need to have a wallet that supports the new API.
+Vega Wallet API (v2)'s latest version was released in Vega software `v.0.68`. If you're interacting with a network on `v0.68` or newer, you'll need to have a wallet that supports the new API.
 
 :::note New to JSON-RPC?
 Read the [JSON-RPC specification ↗](https://www.jsonrpc.org/specification) for the standards and conventions.
