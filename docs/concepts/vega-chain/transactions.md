@@ -13,7 +13,7 @@ A transaction is an instruction (command) issued the network, bundled with a sig
 Use the [Vega block explorer](https://explorer.fairground.wtf) to see transactions and their status, plus lots more data about the network.
 :::
 
-When a transaction is submitted, it goes to the validators’ mempool - which is is an organised queue where the transactions are stored, sorted, and verified before being added to a newly started block. A validated transaction enters a block based on the priority assigned to the transaction type, and the order in which it arrived.
+When a transaction is submitted, it goes to the validators’ mempool - which is is an organised queue where the transactions are stored, sorted, and verified before being added to a newly started block. A validated transaction enters a block based on the priority assigned to the transaction type, and the order in which it arrived. Vega does not have any gas-type charges that can boost priority or cause a transaction to be lower priority.
 
 ## Commands
 A command is the specific instruction issued to the network within a transaction.
