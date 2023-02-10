@@ -13,7 +13,7 @@ A transaction is an instruction (command) issued the network, bundled with a sig
 Use the [Vega block explorer](https://explorer.fairground.wtf) to see transactions and their status, plus lots more data about the network.
 :::
 
-When a transaction is submitted, it goes to the validators’ mempool - which is is an organised queue where the transactions are stored, sorted, and verified before being added to a newly started block. A validated transaction enters a block based on the priority assigned to the transaction type, and the order in which it arrived. Vega does not have any gas-type charges that can boost priority or cause a transaction to be lower priority.
+When a transaction is submitted, it goes to the validators’ mempools - which is is an organised queue where the transactions are stored, sorted, and verified before being added to a newly started block. A validated transaction enters a block based on the priority assigned to the transaction type, and the order in which it arrived. Vega does not have any gas-type charges that can boost priority or cause a transaction to be lower priority.
 
 ## Commands
 A command is the specific instruction issued to the network within a transaction.
@@ -50,7 +50,7 @@ Once you receive your transaction hash, you can track your transaction’s progr
 :::
 
 ## Filling a block: Transaction gas value
-The network's consensus layer, Tendermint, takes transactions from each validator's mempool and puts them into a block until the block reaches a maximum total gas amount. This value of <NetworkParameter frontMatter={frontMatter} param="network.transactions.maxgasperblock" hideName={true} /> is set through a network parameter.
+The proposer of a block takes transactions from their mempool and puts them into a block until the block reaches a maximum total gas amount. This value of <NetworkParameter frontMatter={frontMatter} param="network.transactions.maxgasperblock" hideName={true} /> is set through a network parameter.
 
 Every transaction has a Tendermint gas value assigned to it, which goes into determining how many transactions enter each block.
 
