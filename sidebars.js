@@ -14,6 +14,7 @@ const datav2 = require('./docs/api/rest/data-v2/sidebar.js')
 const core = require('./docs/api/rest/core/sidebar.js')
 const state = require('./docs/api/rest/state/sidebar.js')
 const explorer = require('./docs/api/rest/explorer/sidebar.js')
+const wallet = require('./docs/api/rest/wallet/sidebar.js')
 
 module.exports = {
   concepts: [
@@ -76,7 +77,8 @@ module.exports = {
         datav2,
         explorer,
         core,
-        state
+        state,
+        wallet
       ]
     },
     {

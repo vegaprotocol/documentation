@@ -47,6 +47,8 @@ function getIdsFromFilename (version, filename) {
     return { id: `corev${ver}`, filename: 'core' }
   } else if (filename.indexOf('blockexplorer') !== -1) {
     return { id: `explorerv${ver}`, filename: 'explorer' }
+  } else if (filename.indexOf('wallet') !== -1) {
+    return { id: `walletv${ver}`, filename: 'wallet' }
   } else {
     throw new Error(`Unknown file: ${filename}, add config in docusaurus.config.js`)
   }
