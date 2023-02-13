@@ -1,7 +1,7 @@
 ---
 title: Integrate the wallet service
 hide_title: false
-sidebar_position: 5 
+sidebar_position: 2
 ---
 
 This guide will walk you through how to set up the Vega  Wallet from scratch to use when building a Vega dApp, or integrating with CI/CD. 
@@ -14,7 +14,9 @@ Depending on your end-goal, you may be able to skip some steps. API token-relate
 
 2. **Download and install the Vega Wallet software.** 
     There are two ways you can do that:
+
     a. Download the latest release of the [Vega software ↗](https://github.com/vegaprotocol/vega/releases) and unzip it to a shared location. To test if it worked, run the `vega version` command.
+    
     b. Clone the [Vega repo ↗](https://github.com/vegaprotocol/vega). Make sure you have installed `go`. Read the guide for [getting started with Go for Vega ↗](https://github.com/vegaprotocol/vega/blob/develop/GETTING_STARTED.md#installing-golang) if you need help. Set up the `GOBIN` environment and add it to `PATH` (e.g. `export GOBIN="$HOME/go/bin; export PATH=$GOBIN/:$PATH`. Run `go install ./…` to install the binaries. Verify by running the command `vega version`.
 
 3. **Initialise the wallet** using the command below to create new, fresh wallet files. 
@@ -28,6 +30,7 @@ Depending on your end-goal, you may be able to skip some steps. API token-relate
     The `-f` flag overwrites any existing wallet configuration at the home location.
 
 4. **Create a new wallet or import an existing wallet or wallets.** You can create/import as many wallets as you want.
+    
     a. To create a new wallet: 
 
     ```bash
@@ -46,6 +49,7 @@ Depending on your end-goal, you may be able to skip some steps. API token-relate
     ````
 
 6. **Import network config.** You can do that two ways. See more details in the [manage networks guide](../../../tools/vega-wallet/cli-wallet/latest/guides/manage-networks):
+    
     a. Using the config URL: 
 
     ```
