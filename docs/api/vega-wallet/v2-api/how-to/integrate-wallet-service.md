@@ -1,5 +1,5 @@
 ---
-title: Integrate the wallet service
+title: Integrate the wallet service [rename?]
 hide_title: false
 sidebar_position: 2
 ---
