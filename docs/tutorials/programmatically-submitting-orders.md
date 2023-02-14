@@ -214,7 +214,8 @@ curl -v -H "Content-Type: application/json" -H "Origin:mybot" -H "Authorization:
 ## Cancelling a trade
 
 Copy the following json into a file and update the fields you require for your own order. Then send the order using the following command:
-curl -v -H "Content-Type: application/json" -H "Origin:mybot" -H "Authorization:VWT <TOKEN>" localhost:1789/api/v2/requests -d @sendcancel.json
+
+`curl -v -H "Content-Type: application/json" -H "Origin:mybot" -H "Authorization:VWT <TOKEN>" localhost:1789/api/v2/requests -d @sendcancel.json`
 
 ```json
 {
@@ -250,7 +251,7 @@ Subscribe to the endpoints which returns the trade/order information and the pos
 
 https://api.n00.testnet.vega.xyz/graphql/
 
-```graphql
+```
 subscription {
   orders(marketId: "", partyId: "") {
     id
@@ -321,9 +322,9 @@ DEPOSIT
 
 WITHDRAW
 1. prepare withdrawal transaction and send using Vega Wallet 
-1. Query for withdrawal ID (https://docs.vega.xyz/testnet/api/rest/data-v2/trading-data-service-list-withdrawals)or calculate from the transaction signature (do this by sha3-ing the signature - export const determineId = (sig: string) => {
+1. Query for withdrawal ID (https://docs.vega.xyz/testnet/api/rest/data-v2/trading-data-service-list-withdrawals)or calculate from the transaction signature (do this by sha3-ing the signature - `export const determineId = (sig: string) => {
   return sha3_256(ethers.utils.arrayify('0x' + sig));
-};)
+};)`
 1. retrieve signature bundle from Vega API: https://docs.vega.xyz/testnet/api/rest/data-v2/trading-data-service-get-withdrawal 
 1. run withdrawal asset
    * ensure you have the withdrawal bundle from Vega retrieved in the previous step
