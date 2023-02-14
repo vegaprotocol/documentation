@@ -12,9 +12,6 @@ There are a number of ways to interact with Vega through APIs and Ethereum bridg
 
 As most of the APIs are designed to use for trading-related queries, the best place to try them out is on the testnet network, also known as Fairground. 
 
-## Node API endpoints
-<DataNodes frontMatter={frontMatter} />
-
 ## Tutorials
 Tutorials provide the information you'll need about the protocol to understand and use the guide, as well as instructions on how to interact with scripts, API calls, or other code. 
 

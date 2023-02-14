@@ -3,73 +3,92 @@ title: Submit orders
 hide_title: false
 description: Start bot development for submitting orders with this guide.
 ---
-
-[WIP]
-
 This tutorial uses Linux/MacOs commands. The overall guide will also work for Windows, but you may need to update the commands. 
 
 In this tutorial you'll learn how to:
-* Download and set up Vega Wallet for headless software
-* Find a market and its settlement asset
-* Deposit assets using Console or directly via the smart contracts
-* Encode and send transactions using Vega Wallet
-* Submit orders (place trades)
-* Cancel orders 
-* Get current market information
-* Monitor trades
 
-Set up the Vega Wallet 
+1. Download and set up Vega Wallet for headless software
+2. Find a market and its settlement asset
+3. Deposit assets using Console or directly via the smart contracts
+4. Encode and send transactions using Vega Wallet
+5. Submit orders (place trades)
+6. Cancel orders 
+7. Get current market information
+8. Monitor trades
 
-Downloading the vega wallet software
+## Set up the Vega Wallet 
 
-Each network such as testnet will have a matching version of the command line wallet which should be used to interact with it. For the current testnet we will be using version 0.67.3 which can be downloaded from here:
+### Download the Vega Wallet software
 
-https://github.com/vegaprotocol/vega/releases/tag/v0.67.3
+Each network, such as testnet, will have a compatible version of the CLI Wallet software, which should be used to interact with it. The Vega Wallet software manages wallets and the keys within them, and allows you to approve or reject site connections and transactions.
 
-Choose the `vegawallet-<os>-<arch>.zip` for your machine then unpack the file and make sure the resulting `vegawallet` executable is placed in your path.
-You can check by running `vegawallet software version` to see if the right version is loaded.
+:::read more Create a wallet
+[Create a wallet](../tools/vega-wallet/cli-wallet/latest/create-wallet): See a step-by-step guide to creating a Vega Wallet for testnet.
+:::
 
-Creating a wallet and public/private keypair
+Check the docs site top bar to see what software version the network you need is running on, and download the equivalent version on [GitHub](https://github.com/vegaprotocol/vega/releases).
 
-If we want to place trades we must first have a wallet to hold our private/public keypair required for sending in new transactions. This is a 2 step process as we need to create a long life token to prevent us from needing to verify every transaction manually.
+Choose the `vegawallet-<os>-<arch>.zip` for your machine, then unpack the file and make sure the resulting `vegawallet` executable is placed in your path. Run `vegawallet software version` to check if the right version is loaded.
 
-Create the named wallet and secure it with a password 
-vegawallet --home=/vega/wallet create --wallet=<WalletName>
-Create a token password file for the long lived tokens
-Echo “password” > /vega/tokenpassword.txt
-Initialise the long lived token support
-vegawallet --home=/vega/wallet api-token init --passphrase-file=/vega/tokenpassword.txt
-Create an api token for the new wallet
-vegawallet --home=/vega/wallet api-token generate --wallet-name=<WalletName> --tokens-passphrase-file=tokenpassword.txt
+### Creating a wallet and public/private keypair
 
-The last step will produce an API token that you must save/remember as it will be needed later when communicating with the wallet.
-“✓ The API token has been successfully generated: qqjkzoby9aXCN9K0zcAn1OhbWTzCsFvugK5AHRf1iuJxIEWG43fyEK28cbEmtRiT”
+If you want to place trades, you'll need to have a wallet to hold our private/public keypair required for sending in new transactions. This is a 2 step process as we need to create a long life token to prevent us from needing to verify every transaction manually.
 
+1. Choose a name for your first wallet, and secure it with a passphrase.
+`vegawallet --home=/vega/wallet create --wallet=<WalletName>`
 
-Start the wallet service
-The wallet service needs to know which network it will be connecting to. To do this we must download a configuration file from github which contains the addresses of the nodes on the network it can connect to.
+2. Create a token password file for the long lived tokens
+`echo “password” > /vega/tokenpassword.txt`
 
-Download the testnet wallet configuration file
+3. Initialise the long lived token support
+`vegawallet --home=/vega/wallet api-token init --passphrase-file=/vega/tokenpassword.txt`
+
+4. Create an api token for the new wallet
+`vegawallet --home=/vega/wallet api-token generate --wallet-name=<WalletName> --tokens-passphrase-file=tokenpassword.txt`
+
+The last step will produce an API token that you must save or take note of, as it will be needed later when communicating with the wallet. You'll receive an output something like: 
+`✓ The API token has been successfully generated: qqjkzoby9aXCN9K0zcAn1OhbWTzCsFvugK5AHRf1iuJxIEWG43fyEK28cbEmtRiT`
+
+### Set up network config
+The wallet service needs to know which network it will be connecting to. To do this, download a configuration file from the relevant network repo. The file contains the addresses of the nodes on the network it can connect to.
+
+:::read more
+[Manage networks](../tools/vega-wallet/cli-wallet/latest/guides/manage-networks): Read about how to get specific network details and troubleshoot any issues.
+:::
+
+Download the wallet configuration file for the testnet network called fairground.
+
+```
 mkdir /vega/wallet/config/wallet-service/networks
 cd /vega/wallet/config/wallet-service/networks
 curl https://raw.githubusercontent.com/vegaprotocol/networks-internal/main/fairground/vegawallet-fairground.toml > testnet.toml
+```
+
+### Start the wallet service
 
 Start the wallet service by running:
-vegawallet --home=/vega/wallet service run --network=testnet --load-tokens
 
-* Starting HTTP service at: 127.0.0.1:1789
-Connect to the network and find the market you wish to trade on
-  
+`vegawallet --home=/vega/wallet service run --network=testnet --load-tokens`
 
-Find a market
-  
-If you are going to trade on the Vega network you need to find the market ID of the market you are interested in. You can get a list of all the markets by going to a browser and entering the following URL (https://n08.testnet.vega.xyz/markets). From this JSON output we can see the ID for the settlement asset along with the marketID we will need to use later when sending in new orders.
 
-Or you connect to the network using the console front end by going to this URL: https://console.fairground.wtf/
+## Find a market to trade on
 
-In console, choose the button top right that says “CONNECT VEGA WALLET” and then “CONNECT VEGA WALLET” again.
-Check the console running the wallet and answer the questions around choosing a wallet and entering the password for it. If this works OK then the wallet is running correctly and can be used by your bot for trading.
+### Find a market using the API
+To place a trade, rather than the market name, you'll need to find the market ID of the market you want to trade on. 
 
+Get a list of all the markets by using a node URL and the markets endpoint. For example, for testnet you can use: `https://n08.testnet.vega.xyz/markets`. 
+
+From this JSON output, you can see the market ID, as well as the asset ID for the market's settlement asset.
+
+### Find a market using Console
+You could, instead, use the Console trading interface to see the current markets and what state they're in, and take note of the market ID and settlement assset ID. Visit `https://console.fairground.wtf/`.
+
+Once you're on the Console dApp, click on the button that says “CONNECT VEGA WALLET” and then click “CONNECT VEGA WALLET” again. 
+
+Choose your wallet and allow Console to connect to your wallet. If this works, then the wallet is running correctly and can be used by your bot for trading.
+
+When connecting, you'll be given a prompt similar to this one, when connecting: 
+```
 > The application "console.fairground.wtf" wants to connect to your wallet.
 ? Do you approve connecting your wallet to this application? (yes/no) yes
 * Connection approved.
@@ -79,28 +98,35 @@ Check the console running the wallet and answer the questions around choosing a 
 > Enter the passphrase for the wallet "TestBot":
 * The connection to the wallet has been successfully established.
 
-
 > The application "console.fairground.wtf" requires the following permissions for "TestBot":
     - public_keys: read
 ? Do you want to grant these permissions? (yes/no) yes
 * Permissions update approved.
 * The permissions have been successfully updated.
-Depositing funds to the new account using Console
+```
+## Faucet testnet assets using Console
+Connect to your wallet in [Console](https://console.fairground.wtf/).
 
-Before we can send any trades we need to deposit some assets into the wallet we created above.This can be done from the console application. For testnet, you can faucet tokens and then download them. 
+Select the “MARKETS” option on the top toolbar, if you haven't picked a market from the pop-up market selector.
 
-Load the fairground console application (https://console.fairground.wtf/)
-Connect it to your vega wallet like above
-Select the “MARKETS” option on the top toolbar
-For the market you wish to trade on, select the settlement asset which will open an asset details dialog.
-Select the contract address to go to a new website with details of the asset’s smart contract
-Select “Contract” in the middle toolbar
-Select “Write” in the buttons below
-Select “Connect to Web3” and allow it to connect to your metamask wallet
-Look down the page for the faucet option and select it and click “Write”. This will create and transfer some of the asset to your ethereum account. It will take 10 seconds or so to complete.
-Go back to the console app and select the “PORTFOLIO” button on the top toolbar
-In the bottom section select the “DEPOSITS” tab
-Click the “DEPOSIT” button on the bottom right
+For the market you wish to trade on, click on the settlement asset. This will open an asset details dialog. Select the contract address to see details of the asset’s smart contract on Etherscan.
+
+Select “Contract” in the middle toolbar. 
+
+Select “Write” in the buttons below.
+
+Select “Connect to Web3” and allow it to connect to your Ethereum wallet.
+
+Further down the page, choose the faucet option, select it and click “Write”. This will create and transfer some of the asset to your Ethereum address.
+
+## Deposit assets [WIP]
+Before submitting any orders, you'll need to deposit assets to the wallet you created above. This can be done from the Console dApp, or directly with the smart contract. For testnet, you can faucet tokens and then download them. 
+
+### Deposit using Console
+Go back to the console app and select the “PORTFOLIO” button on the top toolbar. 
+
+In the bottom section select the “DEPOSITS” tab.
+Click the “DEPOSIT” button on the bottom right.
 Connect your ethereum wallet to the app to popular the “From address”
 Select the asset we just faucetted in the asset dropdown
 Enter the amount of the asset you would like to transfer, taking into account the maximum limits shown above the data entry field.
@@ -122,35 +148,42 @@ A string consisting of the constant “VWT “ and the long lived token generate
 VWT <oHmxvahukhhUMs9OWObPZkaLB7Si2Ycfk5t4Pitp2FX4iYvgvGUPWTv3xKAIkOjQ>
 
 
-
 The origin field can be any name that identifies the project you are working on. The Authorization field must be the long life token generated at the start and should be formatted as “VWT <token>”
 
-Sending Request to the Wallet
+## Sending Request to the Wallet
 
-curl -v -H "Content-Type: application/json" -H "Origin:mybot" -H "Authorization:VWT oHmxvahukhhUMs9OWObPZkaLB7Si2Zcfk5t4Pitp2FX4iYvgvGUPWTv3xKAIkOjD" localhost:1789/api/v2/requests -d @<file containing json request> 
-Getting the public key
+```
+curl -v -H "Content-Type: application/json" -H "Origin:mybot" -H "Authorization:VWT oHmxvahukhhUMs9OWObPZkaLB7Si2Zcfk5t4Pitp2FX4iYvgvGUPWTv3xKAIkOjD" localhost:1789/api/v2/requests -d @<file containing json request>
+```
+
+## Getting the public key
 
 When we send transactions into the network we need to provide our public key so that transactions can be decoded. We get the public key from the wallet using the “client.list_keys” method. We perform a POST request with the following body:
 
+```json
 {
   "id": "1",
   "jsonrpc": "2.0",
   "method": "client.list_keys"
 }
+```
 
 Which generates a reply similar to this:
 
-
+```
 {"jsonrpc":"2.0","result":{"keys":[{"name":"Key 1","publicKey":"bb4bff0825f45210ce8fab46f0086bfb4c8d47707b011ce294b3fbb9a5b4125c"}]},"id":"1"}
+```
 
 If the wallet has more than one key pair set up, they will be listed in the same reply. In most cases you will only have one key pair and you can use the publicKey value returned in future transactions.
 
 
 
 
-Placing a trade
+## Placing a trade
 
 Copy the following json into a file and update the fields you require for your own order. Then send the order using the following command:
+
+```
 curl -v -H "Content-Type: application/json" -H "Origin:mybot" -H "Authorization:VWT <TOKEN>" localhost:1789/api/v2/requests -d @sendtrade.json
 
 {
@@ -175,17 +208,15 @@ curl -v -H "Content-Type: application/json" -H "Origin:mybot" -H "Authorization:
     }
   }
 }
+```
 
 
-
-
-
-Canceling a trade
+## Cancelling a trade
 
 Copy the following json into a file and update the fields you require for your own order. Then send the order using the following command:
 curl -v -H "Content-Type: application/json" -H "Origin:mybot" -H "Authorization:VWT <TOKEN>" localhost:1789/api/v2/requests -d @sendcancel.json
 
-
+```json
 {
   "id":"1",
   "jsonrpc":"2.0",
@@ -203,7 +234,9 @@ curl -v -H "Content-Type: application/json" -H "Origin:mybot" -H "Authorization:
     }
   }
 }
-Getting market information
+```
+
+## Getting market information
 
 If you plan to add orders into the order book you need to know the current state of the market so you can accurately price the new orders you are sending. Follow the documentation to query the current market depth for the market shown here:
 https://docs.vega.xyz/testnet/api/rest/data-v2/trading-data-service-get-latest-market-depth
@@ -217,6 +250,7 @@ Subscribe to the endpoints which returns the trade/order information and the pos
 
 https://api.n00.testnet.vega.xyz/graphql/
 
+```graphql
 subscription {
   orders(marketId: "", partyId: "") {
     id
@@ -239,8 +273,9 @@ subscription {
     updatedAt
   }
 }
+```
 
-Example bot code
+## Example bot code
 
 If you want to use go code to perform the same actions, visit the sample bot at https://github.com/jeremyletang/vegamm. Note that this code may not be actively maintained, so you should to test it before using it on an active network.
 
