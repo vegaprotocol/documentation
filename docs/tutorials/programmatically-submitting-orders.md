@@ -136,7 +136,7 @@ Sending transactions via the wallet
 
 To enter transactions into the network we use the wallet to perform the encoding and sending of the data packets. Every transaction sent to the wallet needs a minimum set of headers. The origin and the authorization fields must be populated.
 
-
+```
 Header Name
 Value
 Example
@@ -146,9 +146,9 @@ mybot
 Authorization
 A string consisting of the constant “VWT “ and the long lived token generated from the vega wallet
 VWT <oHmxvahukhhUMs9OWObPZkaLB7Si2Ycfk5t4Pitp2FX4iYvgvGUPWTv3xKAIkOjQ>
+```
 
-
-The origin field can be any name that identifies the project you are working on. The Authorization field must be the long life token generated at the start and should be formatted as “VWT <token>”
+The origin field can be any name that identifies the project you are working on. The Authorization field must be the long life token generated at the start and should be formatted as `VWT <token>`
 
 ## Sending Request to the Wallet
 
