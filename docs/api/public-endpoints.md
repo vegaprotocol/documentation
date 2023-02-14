@@ -14,7 +14,7 @@ This differs from centralised services, as you can't connect to an API server ru
 Below, find a list of all the public endpoints available for this network. 
 
 :::note Read more
-[Data nodes](../../../docs/concepts/vega-chain/data-nodes): Find out what a data node is, and if setting one up for yourself is right for you.
+[Data nodes](../concepts/vega-chain/data-nodes.md): Find out what a data node is, and if setting one up for yourself is right for you.
 :::
 
 ## Node API endpoints
