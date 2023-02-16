@@ -1,5 +1,6 @@
 ---
 title: Transfer assets
+sidebar_position: 3
 hide_title: true
 description: One-off or recurring asset transfers between Vega keys or asset pools
 ---

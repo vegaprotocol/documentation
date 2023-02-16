@@ -7,6 +7,7 @@
   ],
   "api": [
     "api/overview",
+    "api/public-endpoints",
     {
       "type": "category",
       "label":"GraphQL",

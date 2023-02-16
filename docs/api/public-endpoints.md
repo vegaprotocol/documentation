@@ -4,6 +4,7 @@ hide_title: false
 description: Vega's APIs are served over public endpoints.
 vega_network: TESTNET
 ---
+
 import Topic from '/docs/topics/_topic-development.mdx'
 import DataNodes from '@site/src/components/DataNodes';
 
