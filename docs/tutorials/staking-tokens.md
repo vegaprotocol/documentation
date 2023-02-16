@@ -14,7 +14,7 @@ import TabItem from '@theme/TabItem';
 <Topic />
 
 :::tip
-This tutorial describes how to stake using the smart contracts, the APIs, an Ethereum wallet, and a Vega Wallet. If you're looking for the easiest way to stake tokens, visit [token.fairground.wtf](https://token.fairground.wtf)
+This tutorial describes how to stake using the smart contracts, the APIs, an Ethereum wallet, and a Vega Wallet. If you're looking for the easiest way to stake tokens, visit [token.fairground.wtf ↗](https://token.fairground.wtf)
 :::
 
 * Tokenholders can stake tokens to [validators on the Vega chain](../concepts/vega-chain#delegated-proof-of-stake), also known as nominating validators.
@@ -38,7 +38,7 @@ Tokens are associated by calling [`stake` on the Vega staking bridge](../api/bri
 * `vega_public_key` - the Vega public key that will be used to nominate validators on Vega
 * `amount` - the amount of tokens being associated with the Vega key
 
-It will take ~50 block confirmations for the balance to update (approximately 1 minute). You can see when the staking balance has been credited by using [REST](../api/rest/data-v2/trading-data-service-get-stake), [GraphQL](../api/graphql/objects/party#operation/TradingDataService1_ERC20WithdrawalApproval) or [gRPC](../api/grpc/vega/vega.proto#vegaproto).
+It will take ~50 block confirmations for the balance to update (approximately 1 minute). You can see when the staking balance has been credited by using [REST](../api/rest/data-v2/trading-data-service-get-stake) or [gRPC](../api/grpc/vega/vega.proto#vegaproto).
 
 ### 2. Nominating a validator
 Once the token balance is associated to a Vega key, you'll want to choose a validator or validators to nominate. 

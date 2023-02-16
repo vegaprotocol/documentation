@@ -32,7 +32,7 @@ Each network, such as testnet, will have a compatible version of the CLI Wallet 
 [Create a wallet](../tools/vega-wallet/cli-wallet/latest/create-wallet): See a step-by-step guide to creating a Vega Wallet for testnet.
 :::
 
-Check the docs site top bar to see what software version the network you need is running on, and download the equivalent version on [GitHub](https://github.com/vegaprotocol/vega/releases).
+Check the docs site top bar to see what software version the network you need is running on, and download the equivalent version on [GitHub ↗](https://github.com/vegaprotocol/vega/releases).
 
 Choose the `vegawallet-<os>-<arch>.zip` for your machine, then unpack the file and make sure the resulting `vegawallet` executable is placed in your path. Run `vegawallet software version` to check if the right version is loaded.
 
@@ -90,6 +90,7 @@ From this JSON output, you can see the market ID, as well as the asset ID for th
 
 ### Find a market using Console
 You could, instead, use the Console trading interface to see the current markets and what state they're in, and take note of the market ID and settlement assset ID. Visit `https://console.fairground.wtf/`.
+
 ### Check the wallet service is running correctly
 Once you're on the Console dApp, click on the button that says “CONNECT VEGA WALLET” and then click “CONNECT VEGA WALLET” again. 
 
@@ -115,7 +116,7 @@ When connecting, you'll be given a prompt similar to this one:
 
 ## Get testnet assets using Console
 
-* Connect to your wallet in [Console](https://console.fairground.wtf/).
+* Connect to your wallet in [Console ↗](https://console.fairground.wtf/).
 * Select the “MARKETS” option on the top toolbar, if you haven't picked a market from the pop-up market selector.
 * For the market you wish to trade on, click on the settlement asset. This will open an asset details dialog. Select the contract address to see details of the asset’s smart contract on Etherscan.
 * Select “Contract” in the middle toolbar. 
@@ -129,7 +130,7 @@ Before submitting any orders, you'll need to deposit assets to the wallet you cr
 You'll need Sepolia ETH to pay for the Ethereum transaction gas.
 
 ### Deposit using Console
-* Go back to [Console](https://console.fairground.wtf/) and select the “PORTFOLIO” button on the top toolbar. 
+* Go back to [Console ↗](https://console.fairground.wtf/) and select the “PORTFOLIO” button on the top toolbar. 
 * Select the Deposits tab.
 * Click the “DEPOSIT” button on the bottom right.
 * Connect your Ethereum wallet to the dApp to populate the “from address”.
@@ -146,8 +147,8 @@ You'll need the following information available:
 * Token address for the asset
 
 :::note Ethereum addresses
-* Contract and bridge addresses for the **fairground testnet network** are in the [networks-internal GitHub repo](https://github.com/vegaprotocol/networks-internal/blob/main/fairground/templates/smart_contracts.json). 
-* Contract and bridge addresses for the **validator-run testnet networks**, and for **mainnet**, in the [networks repo on GitHub](https://github.com/vegaprotocol/networks).
+* Contract and bridge addresses for the **fairground testnet network** are in the [networks-internal GitHub repo ↗](https://github.com/vegaprotocol/networks-internal/blob/main/fairground/templates/smart_contracts.json). 
+* Contract and bridge addresses for the **validator-run testnet networks**, and for **mainnet**, in the [networks repo on GitHub ↗](https://github.com/vegaprotocol/networks).
 :::
 
 Ensure the token you want to deposit is listed:
@@ -185,7 +186,7 @@ Run the deposit asset function:
 ## Get market information
 If you plan to add orders into the order book using limit orders, rather than have them fill immediately (market orders), then you'll need to know the current state of the market so you can accurately price the new orders you are sending. 
 
-Follow the REST documentation to [query the current market depth for the market](https://docs.vega.xyz/testnet/api/rest/data-v2/trading-data-service-get-latest-market-depth).
+Follow the REST documentation to [query the current market depth for the market](../api/rest/data-v2/trading-data-service-get-latest-market-depth).
 
 There is also a subscription service available using gRPC and GraphQL to give you the market depth data in real time as things change in the market.
 
@@ -294,32 +295,10 @@ Send the order cancellation using the following command:
 `curl -v -H "Content-Type: application/json" -H "Origin:mybot" -H "Authorization:VWT <TOKEN>" localhost:1789/api/v2/requests -d @sendcancel.json`
 
 ## Monitor trades and overall positions
-You can subscribe to the endpoints that return order and position information, and the positions stream using the [GraphQL playground](https://api.n00.testnet.vega.xyz/graphql/).
+You can subscribe to the endpoints that return order and position information using REST:
 
-```
-subscription {
-  orders(marketId: "", partyId: "") {
-    id
-    timeInForce
-    side
-    size
-    remaining
-    status
-  }
-}
-
-subscription {
-  positions(partyId: “") {
-    marketId
-    partyId
-    openVolume
-    realisedPNL
-    unrealisedPNL
-    averageEntryPrice
-    updatedAt
-  }
-}
-```
+* [Subscribe to positions - reference documentation](../api/rest/data-v2/trading-data-service-observe-positions)
+* [Subscribe to orders - reference documentation](../api/rest/data-v2/trading-data-service-observe-orders)
 
 ## Example bot code in Go
-If you want to use Go to perform the same actions, see the sample bot at [github.com/jeremyletang/vegamm](https://github.com/jeremyletang/vegamm). Note that this code may not be actively maintained, so you should to test it before using it on an active network.
+If you want to use Go to perform the same actions, see the sample bot at [github.com/jeremyletang/vegamm ↗](https://github.com/jeremyletang/vegamm). Note that this code may not be actively maintained, so you should to test it before using it on an active network.
