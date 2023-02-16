@@ -35,7 +35,7 @@ Choose the `vegawallet-<os>-<arch>.zip` for your machine, then unpack the file a
 ### Create a wallet and public/private keypair
 
 If you want to place trades, you'll need to have a wallet to hold our private/public keypair required for sending in new transactions. This is a 2 step process as we need to create a long life token to prevent us from needing to verify every transaction manually.
-
+For all example commands below we are assuming the existence of the folder `/vega` which you will used to store all configuration and runtime files.
 1. Choose a name for your first wallet, and secure it with a passphrase.
 `vegawallet --home=/vega/wallet create --wallet=<WalletName>`
 
@@ -86,7 +86,7 @@ From this JSON output, you can see the market ID, as well as the asset ID for th
 
 ### Find a market using Console
 You could, instead, use the Console trading interface to see the current markets and what state they're in, and take note of the market ID and settlement assset ID. Visit `https://console.fairground.wtf/`.
-
+### Check the wallet service is running correctly
 Once you're on the Console dApp, click on the button that says “CONNECT VEGA WALLET” and then click “CONNECT VEGA WALLET” again. 
 
 Choose your wallet and allow Console to connect to your wallet. If this works, then the wallet is running correctly and can be used by your bot for trading.
