@@ -1,11 +1,10 @@
 ---
-title: Submit orders with a bot
+title: Programmatic trading basics
 hide_title: false
 description: Start bot development for submitting orders with this guide.
 ---
-This tutorial uses Linux/MacOs commands. The overall guide will also work for Windows, but you may need to update the commands. 
 
-In this tutorial you'll learn how to:
+In this tutorial you'll learn the basics about how to use Vega and the Vega Wallet to submit orders, so you can build bots or other software to interact with the network. This guide covers:
 
 1.  [Set up your Vega Wallet](#set-up-your-vega-wallet)
 2.  [Find a market to trade on](#find-a-market-to-trade-on)
@@ -17,6 +16,8 @@ In this tutorial you'll learn how to:
 8.  [Cancel an order](#cancel-an-order)
 9.  [Monitor trades and overall positions](#monitor-trades-and-overall-positions)
 10. [See example bot code in Go](#example-bot-code-in-go)
+
+This tutorial uses Linux commands. The overall guide will also work for Windows and MacOS, but you may need to update the command format.
 
 ## Set up your Vega Wallet 
 
