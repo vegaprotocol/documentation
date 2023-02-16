@@ -5,7 +5,9 @@ hide_title: false
 description: Start bot development for submitting orders with this guide.
 ---
 
-In this tutorial you'll learn the basics about how to use Vega and the Vega Wallet to submit orders, so you can build bots or other software to interact with the network. This guide covers:
+In this tutorial you'll learn the basics about how to use Vega and the Vega Wallet to submit orders, so you can build bots or other software to interact with the network. 
+
+This guide covers how to:
 
 1.  [Set up your Vega Wallet](#set-up-your-vega-wallet)
 2.  [Find a market to trade on](#find-a-market-to-trade-on)
