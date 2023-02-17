@@ -7,7 +7,7 @@ hide_title: false
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-A transaction is an instruction (command) issued the network, bundled with a signature, the submitter’s public key, a small proof-of-work calculation, and the target block height. A transaction that doesn't pass [validation](#validation) (for example, an order without enough assets to cover it) will be rejected.
+A transaction is an instruction (command) issued to the network, bundled with a signature, the submitter’s public key, a small proof-of-work calculation, and the target block height. A transaction that doesn't pass [validation](#validation) (for example, an order without enough assets to cover it) will be rejected.
 
 :::tip Viewing transactions
 Use the [Vega block explorer](https://explorer.fairground.wtf) to see transactions and their status, plus lots more data about the network.
@@ -18,7 +18,7 @@ When a transaction is submitted, it goes to the validators’ mempools - which i
 ## Commands
 A command is the specific instruction issued to the network within a transaction.
 
-The commands that non-validator users can be submitted to the network include submitting, amending, and cancelling orders, liquidity provisions and transfers, associating tokens and nominating validators, governance proposals and voting on proposals, and depositing and withdrawing assets.
+The commands that non-validator users can submit to the network include placing, amending, and cancelling orders, liquidity provisions and transfers, associating tokens and nominating validators, governance proposals and voting on proposals, and depositing and withdrawing assets.
 
 Validators can submit signatures, propose protocol upgrades, rotate their keys and more.
 
@@ -46,11 +46,11 @@ There are several levels of validation:
    Once the transaction is in the mempool, the validator nodes check if the request looks valid, and can be enacted/completed based on the state of the network, and confirms that all the details in the transaction are valid. For example, to vote on a proposal: ensuring the proposal is still live, and that the key has enough tokens to vote. For an order, it confirms, for example, that the assets to cover margin are available, the state of the market is relevant for the order, etc.
 
 ::: tip View your transaction
-Once you receive your transaction hash, you can track your transaction’s progress on the [Vega block explorer](https://explorer.fairground.wtf).
+Once your transaction hash is reported by the wallet, you can track your transaction’s progress on the [Vega block explorer](https://explorer.fairground.wtf).
 :::
 
 ## Filling a block: Transaction gas value
-The proposer of a block takes transactions from their mempool and puts them into a block until the block reaches a maximum total gas amount. This value of <NetworkParameter frontMatter={frontMatter} param="network.transactions.maxgasperblock" hideName={true} /> is set through a network parameter.
+The proposer of a block takes transactions from their mempool and puts them into a block until the block reaches a maximum total gas amount. This value, <NetworkParameter frontMatter={frontMatter} param="network.transactions.maxgasperblock" hideName={true} />, comes from the max gas per block network parameter.
 
 Every transaction has a Tendermint gas value assigned to it, which goes into determining how many transactions enter each block.
 
