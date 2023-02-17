@@ -1,6 +1,6 @@
 ---
 sidebar_position: 6
-title: How to restart a network with checkpoints
+title: How to restart and upgrade a network with checkpoints
 sidebar_label: Restart network with checkpoints
 hide_title: false
 ---
@@ -156,4 +156,4 @@ This should be done via a pull request on the [networks](https://github.com/vega
 
 ### Restart the network
 
-Each validator then needs to restart their node with the latest release of the software.
+Each validator then needs to restart their node with the latest release of the software. Follow the instructions in the [setup server guide](../get-started/setup-server) to build from the version you are upgrading to.
