@@ -30,7 +30,9 @@ Restricted mainnet is the first decentralised version of the Vega network. The f
 
 Although restricted mainnet is a live, decentralised network that allows tokenholders to interact with it, it is also an **extended test phase**. 
 
-Its functionality is limited and is riskier than networks that will follow it, and involves regularly scheduled software upgrades and downtime. There will probably be some growing pains as the network is stress-tested and upgrades are rolled out.  
+Its functionality is limited and is riskier than networks that will follow it, and involves regularly scheduled software upgrades and downtime. There will probably be some growing pains as the network is stress-tested and upgrades are rolled out.
+
+**[Mainnet incidents](https://blog.vega.xyz/tagged/vega-incident-reports)**: Vega publishes information about mainnet incidents and their resolutions on the blog.
 
 ## How can I use Vega?
 
@@ -48,5 +50,4 @@ Its functionality is limited and is riskier than networks that will follow it, a
 
 ## How can I contribute to Vega?
 * [Bugs and feature requests](https://github.com/vegaprotocol/feedback/discussions/): Raise any bugs you find, or feature requests you have, on Vega's feedback board.
-* [Developer bounties](https://github.com/vegaprotocol/bounties/): See available bounties on the bounties repo. 
 * [Documentation translation](https://github.com/vegaprotocol/documentation/issues): Raise an issue on the documentation repo to express your interest in translating Vega documentation. 
