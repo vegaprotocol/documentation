@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 6
 title: Validator scores and rewards
 vega_network: TESTNET
 hide_title: false
