@@ -295,7 +295,7 @@ Send the order cancellation using the following command:
 `curl -v -H "Content-Type: application/json" -H "Origin:mybot" -H "Authorization:VWT <TOKEN>" localhost:1789/api/v2/requests -d @sendcancel.json`
 
 ## Monitor trades and overall positions
-You can subscribe to the endpoints that return order and position information using REST:
+You can use the curl command to subscribe to the endpoints that return order and position information using REST:
 
 * [Subscribe to positions - reference documentation](../api/rest/data-v2/trading-data-service-observe-positions)
 * [Subscribe to orders - reference documentation](../api/rest/data-v2/trading-data-service-observe-orders)
