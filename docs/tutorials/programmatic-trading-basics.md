@@ -20,7 +20,7 @@ This guide covers how to:
 9.  [Monitor trades and overall positions](#monitor-trades-and-overall-positions)
 10. [See example bot code in Go](#example-bot-code-in-go)
 
-This tutorial uses Linux commands. The overall guide will also work for Windows and MacOS, but you may need to update the command format.
+This tutorial uses Linux commands. The overall guide will also work for Windows and MacOS, but you may need to update the command format. Each example command with a file path has a `$HOME` variable, which you should replace with your home path.
 
 ## Set up your Vega Wallet 
 
@@ -41,16 +41,16 @@ Choose the `vegawallet-<os>-<arch>.zip` for your machine, then unpack the file a
 If you want to place trades, you'll need to have a wallet to hold our private/public keypair required for sending in new transactions. This is a 2 step process as we need to create a long life token to prevent us from needing to verify every transaction manually.
 For all example commands below we are assuming the existence of the folder `/vega` which you will used to store all configuration and runtime files.
 1. Choose a name for your first wallet, and secure it with a passphrase.
-`vegawallet --home=/vega/wallet create --wallet=<WalletName>`
+`vegawallet --home=/$HOME/vega/wallet create --wallet=<WalletName>`
 
 2. Create a token password file for the long lived tokens
-`echo “password” > /vega/tokenpassword.txt`
+`echo “password” > /$HOME/vega/tokenpassword.txt`
 
 3. Initialise the long lived token support
-`vegawallet --home=/vega/wallet api-token init --passphrase-file=/vega/tokenpassword.txt`
+`vegawallet --home=/$HOME/vega/wallet api-token init --passphrase-file=/vega/tokenpassword.txt`
 
 4. Create an api token for the new wallet
-`vegawallet --home=/vega/wallet api-token generate --wallet-name=<WalletName> --tokens-passphrase-file=tokenpassword.txt`
+`vegawallet --home=/$HOME/vega/wallet api-token generate --wallet-name=<WalletName> --tokens-passphrase-file=tokenpassword.txt`
 
 The last step will produce an API token that you must save or take note of, as it will be needed later when communicating with the wallet. You'll receive an output something like: 
 `✓ The API token has been successfully generated: qqjkzoby9aXCN9K0zcAn1OhbWTzCsFvugK5AHRf1iuJxIEWG43fyEK28cbEmtRiT`
@@ -65,8 +65,8 @@ The wallet service needs to know which network it will be connecting to. To do t
 Download the wallet configuration file for the testnet network called fairground.
 
 ```
-mkdir /vega/wallet/config/wallet-service/networks
-cd /vega/wallet/config/wallet-service/networks
+mkdir /$HOME/vega/wallet/config/wallet-service/networks
+cd /$HOME/vega/wallet/config/wallet-service/networks
 curl https://raw.githubusercontent.com/vegaprotocol/networks-internal/main/fairground/vegawallet-fairground.toml > testnet.toml
 ```
 
@@ -75,7 +75,7 @@ curl https://raw.githubusercontent.com/vegaprotocol/networks-internal/main/fairg
 Start the wallet service by running:
 
 ```
-vegawallet --home=/vega/wallet service run --network=testnet --load-tokens
+vegawallet --home=/$HOME/vega/wallet service run --network=testnet --load-tokens
 ```
 
 
@@ -188,7 +188,7 @@ If you plan to add orders into the order book using limit orders, rather than ha
 
 Follow the REST documentation to [query the current market depth for the market](../api/rest/data-v2/trading-data-service-get-latest-market-depth).
 
-There is also a subscription service available using gRPC and GraphQL to give you the market depth data in real time as things change in the market.
+There is also a subscription service available using REST to give you the market depth data in real time as things change in the market.
 
 ## Send transactions via the Vega Wallet
 To enter transactions into the network, you'll need to use Vega Wallet to encode and send the data packets. Every transaction sent to the wallet needs a minimum set of headers. 
