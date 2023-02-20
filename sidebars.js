@@ -108,13 +108,16 @@ module.exports = {
         {
           type: 'category',
           label: 'Vega Wallet API v2',
+          link: {
+            type: 'doc',
+            id: 'api/vega-wallet/v2-api/index'
+          },
           collapsed: true,
           items: [
             'api/vega-wallet/v2-api/get-started',
             'api/vega-wallet/v2-api/integrate-wallet-service',
             'api/vega-wallet/v2-api/openrpc',
-            'api/vega-wallet/v2-api/openrpc-api-playground',
-            [wallet[1]],
+            'api/vega-wallet/v2-api/openrpc-api-playground'
           ]
         },
       ]
