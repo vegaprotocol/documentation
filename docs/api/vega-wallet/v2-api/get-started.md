@@ -19,8 +19,8 @@ The **JSON-RPC API** and its endpoint **`/api/v2/requests`** is in the alpha pha
 
 * 🧩 **[Connect with a dApp](#connect-with-dapps)**: Connect your dApp to the Vega Wallet service
 * 🤖 **[Connect with a bot](#connect-with-bots)**: Connect your bots, or other headless software, to the Vega Wallet service
-* 📚 **[API documentation](./openrpc)**: See the full JSON-RPC documentation to build your integration with the Vega Wallet
-* 🛝 **[API playground](./openrpc-api-playground)**: Try it out and explore the potential results and errors
+* 📚 **[API documentation](./reference/core/openrpc)**: See the full JSON-RPC documentation to build your integration with the Vega Wallet
+* 🛝 **[API playground](./reference/core/openrpc-api-playground)**: Try it out and explore the potential results and errors
 
 ## Software compatibility
 Vega Wallet API (v2)'s latest version was released in Vega software `v.0.68`. If you're interacting with a network on `v0.68` or newer, you'll need to have a wallet that supports the new API.
@@ -36,7 +36,7 @@ Read the [JSON-RPC specification ↗](https://www.jsonrpc.org/specification) for
 2. If it is running, verify the service exposes the JSON-RPC methods using `GET /api/v2/methods`
        * If you get a 404 response, `v2` API is not available. Update your wallet to use the `v2` API, unless you're running a network using software older than 0.54.
 
-See the full set of methods that you can use in the **[Open RPC documentation](./openrpc)**.
+See the full set of methods that you can use in the **[Open RPC documentation](./reference/core/openrpc)**.
 
 ### Retrieve token
 You can retrieve a [long-living token](#generate-a-long-living-token) using the command-line, see instructions below. 

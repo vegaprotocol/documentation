@@ -32,8 +32,8 @@ For now, there are 2 wallet APIs:
 The **V2 API** (in alpha) uses JSON-RPC with an HTTP wrapper.
 
 * [Getting started](./vega-wallet/v2-api/get-started): Set up a connection with the Vega Wallet server
-* [OpenRPC Wallet API](./vega-wallet/v2-api/openrpc): An overview of the API
-* [JSON-RPC playground](./vega-wallet/v2-api/openrpc-api-playground): See what methods the wallet API calls and try it out
+* [OpenRPC Wallet API](./vega-wallet/v2-api/reference/core/openrpc): An overview of the API
+* [JSON-RPC playground](./vega-wallet/v2-api/reference/core/openrpc-api-playground): See what methods the wallet API calls and try it out
 
 **V1**, which uses REST. The V1 API will not be supported once the V2 API is out of alpha.
 The V1 API (in deprecation) uses REST.

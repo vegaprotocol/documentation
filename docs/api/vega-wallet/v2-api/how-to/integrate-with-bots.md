@@ -13,7 +13,7 @@ Vega Wallet supports a JSON-RPC API for integrating interfaces with the Vega Wal
 :::note Admin access
 The HTTP service doesn't provide access to the `admin` endpoints, for security reasons. Actions such as creating a wallet cannot be done programmatically using the API.
 
-See the [Create a Wallet guide](../../../tools/vega-wallet/cli-wallet/latest/create-wallet.md) to set up the Vega Wallet for command line. Then connect using the info below.
+See the [Create a Wallet guide](../../../../tools/vega-wallet/cli-wallet/latest/create-wallet.md) to set up the Vega Wallet for command line. Then connect using the info below.
 :::
 
 ## Software compatibility

@@ -15,8 +15,8 @@ The **JSON-RPC API** and its endpoint **`/api/v2/requests`** is in the alpha pha
 
 * 🧩 **[Connect with a dApp](./vega-wallet/v2-api/get-started#connect-with-dapps)**: Connect your dApp to the Vega Wallet service
 * 🤖 **[Connect with a bot](./vega-wallet/v2-api/get-started#connect-with-bots)**: Connect your bots, or other headless software, to the Vega Wallet service
-* 📚 **[API documentation](./vega-wallet/v2-api/openrpc)**: See the full JSON-RPC documentation to build your integration with the Vega Wallet
-* 🛝 **[API playground](./vega-wallet/v2-api/openrpc-api-playground)**: Try it out and explore the potential results and errors
+* 📚 **[API documentation](./vega-wallet/v2-api/reference/core/openrpc)**: See the full JSON-RPC documentation to build your integration with the Vega Wallet
+* 🛝 **[API playground](./vega-wallet/v2-api/reference/core/openrpc-api-playground)**: Try it out and explore the potential results and errors
   
 ## V1 API
 The **REST API** is being deprecated and will only be supported until the JSON-RPC API is out of alpha. 

@@ -48,7 +48,7 @@ Depending on your end-goal, you may be able to skip some steps. API token-relate
     vega wallet key generate -w <WALLET_NAME> -p passphrase --home <WALLET_PATH>
     ````
 
-6. **Import network config.** You can do that two ways. See more details in the [manage networks guide](../../../tools/vega-wallet/cli-wallet/latest/guides/manage-networks):
+6. **Import network config.** You can do that two ways. See more details in the [manage networks guide](../../../../tools/vega-wallet/cli-wallet/latest/guides/manage-networks):
     
     a. Using the config URL: 
 
