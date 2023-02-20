@@ -64,3 +64,52 @@ gRPC provides fast and efficient communication with Vega’s APIs. gRPC supports
 - [Data](grpc/data-node/api/v2/trading_data.proto.mdx): Interact with all data that the data nodes store, including trading data, interactions between the network and Ethereum, and governance.
 - 
 
+<!--
+## Introduction
+Vega, from a technical perspective. High level, short. 
+
+## Data flow
+Explain how effectively you read from data node, then write via wallet78789
+Data node via API (or run your own) --- > You --- > Wallet --- > Chain --- > Data Node
+
+ due to the distributed nature of Vega, most of the APIs are served from a data node (and most of the rest need a core node). This is unlilke normal centralised services where you'd connect to an API server run by a single company. It means that there's no single API server and users will need a node to connect to.
+
+
+## Available APIs
+Vega serves GraphQL and REST and GRPC. This document uses the REST API endpoint, but equivalents are available for all 3 API types. You might choose ... GQL for, and GRPC for y.
+
+### Pagination {in REST}
+Cursor based navigation, what is it good for (hopefully something)
+
+### Sending transactions to the chain {i.e. sending txs with the wallet}
+Tell people that they'll need a wallet running, and a key pair (party ID), and how TXs go to/from wallet into the chain
+
+### Transaction hashes {equivalent to request IDs - available on writes, also deterministic ids}
+Follow on from the above - get people used to transaction IDs and how they can look them up in the explorer
+
+### Versioning
+it's not easy being green
+
+## Primary elements (resources, building blocks..?)
+(Ordered so they layer up - each can't exist without one or more of the previous things. Link to concepts for more info on each)
+
+### Assets
+Briefly what an asset is. List how to query for all assets, show details of an asset
+
+### Parties
+A party is a vega pubkey. Show how to list parties
+
+### Accounts
+Pretty much as above, show querying accounts by a party, accounts for assets
+
+### Proposals
+Mention that proposals are how new assets are added, and markets created. Also need gov. tokens
+
+### Markets
+Markets have accounts, are created with proposals, and allow parties to place orders with assets
+
+### Orders
+How to see orders. Maybe positions too.
+
+## Now we'll need more detail on the combinations of those things and I haven't thought this far yet
+--->
