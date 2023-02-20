@@ -29,7 +29,7 @@ If either parameter's value is decreased (through a governance proposal and vote
 ## Spam protection
 On a decentralised and pseudonymous network, there's always a possibility that a malicious actor will attempt to spam blocks and fill them with meaningless transactions. To mitigate that risk, there are spam protections enabled to protect the Vega network, in particular enforced minimums and maximums for certain transactions sent to the Vega network, and a client-side proof of work requirement to mitigate transaction spam.
 
-The Vega Wallet software prevent you from sending in a transaction that will trigger a spam violation and cause your public key to be banned.
+The Vega Wallet software prevents you from sending in a transaction that will trigger a spam violation and cause your public key to be banned.
 
 The values of all [spam protection network parameters](#spam-protection-parameters) can be changed through a governance vote. If a parameter change passes governance, it takes effect in the epoch after it passes.
 
