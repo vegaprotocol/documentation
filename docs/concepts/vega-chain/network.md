@@ -29,6 +29,8 @@ If either parameter's value is decreased (through a governance proposal and vote
 ## Spam protection
 On a decentralised and pseudonymous network, there's always a possibility that a malicious actor will attempt to spam blocks and fill them with meaningless transactions. To mitigate that risk, there are spam protections enabled to protect the Vega network, in particular enforced minimums and maximums for certain transactions sent to the Vega network, and a client-side proof of work requirement to mitigate transaction spam.
 
+The Vega Wallet software prevent you from sending in a transaction that will trigger a spam violation and cause your public key to be banned.
+
 The values of all [spam protection network parameters](#spam-protection-parameters) can be changed through a governance vote. If a parameter change passes governance, it takes effect in the epoch after it passes.
 
 :::tip Query for data
@@ -95,6 +97,8 @@ Although Vega is a proof-of-stake network, there is a client-side proof-of-work 
 Every transaction must include a proof-of-work calculation derived from a recent block, proving the transaction was created recently. The proof-of-work is calculated by the Vega Wallet software. It does not incur gas fees and does not have any effect on a transaction's priority.
 
 It's possible to submit a large volume of transactions at one time, as long as the proof-of-work is calculated by the wallet adequately.
+
+The Vega Wallet apps generate the required proof-of-work for a public key's transaction based on any other transactions submitted by that key pair.
 
 #### Policy enforcement
 If a public key submits transactions for which the proof of work is based on a given block height, and the number of transactions is above the maximum set by the network parameter (<NetworkParameter frontMatter={frontMatter} param="spam.pow.numberOfTxPerBlock" hideValue={true} />), the difficulty of the PoW increases (if it's not set to 0) and the proof will take longer to calculate, i.e., transactions will take longer to be generated but can still be included in a block.
