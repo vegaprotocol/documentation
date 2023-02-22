@@ -26,6 +26,17 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Pre-release Version 0.68.0 | 2023-02-22
+This version was released to the Vega testnet on 22 February 2023
+
+Version 0.68.0 addresses the required improvements and fixes identified during pre-Alpha Mainnet Market Sim 1. A large proportion of the effort spent in this version has been spent ensuring data node stability, and in doing so identified two areas of concern. The first of these was a memory leak found in the event subscriber. This functionality is where events are emitted by the core and consumed by the data nodes. The code shared between the nodes has been simplified and the memory leak fixed. Secondly, it was noticed that the data node was not closing GraphQL subscriptions once they had been finished with. This resulted in many connections being left open increasing the memory usage of the data node. To further help with CPU utilisation on both the core and data nodes the team has consolidated order expiry events into a single event containing just the market and order IDs of those orders required to be expired.
+
+In addition to the data node fixes improvements have been made to the protocol in terms of the margin calculations and capping of slippage. The latter of these changes resolves an issue whereby it was possible for a user to be closed out when the market moves in their favour. With the introduction of two new network parameters, the slippage component of the margin is never allowed to be larger than the `slippage_cap` and if there is insufficient volume on the book the cap is used instead of slippage per unit.
+
+Finally a number of API improvements and fixes have been made including a new API to query close out and loss socialisation reasons. These changes combined with improvements in error messaging in the wallet round off a number of great UX improvements taking the protocol a step closer to Alpha Mainnet.
+
+This release contains a large number of bug fixes and minor enhancements. Check out the full details in the Vega core [0.68.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.68.0) release page.
+
 ### Pre-release Versions 0.67.0, 0.67.1, 0.67.2 and 0.67.3 combined | 2023-01-20
 This version was released to the Vega testnet on 20 January 2023, with patch 0.67.3 released on 24 January.
 
