@@ -36,7 +36,7 @@ In addition to the data node fixes improvements have been made to the protocol i
 Finally a number of API improvements and fixes have been made including a new API to query close out and loss socialisation reasons. These changes combined with improvements in error messaging in the wallet round off a number of great UX improvements taking the protocol a step closer to Alpha Mainnet.
 
 :::caution Breaking changes
-**Data node API rate limiting**: Rate limiting has been introduced for the GRPC, Rest and GraphQL APIs. Users will be warned and where required banned from submitting more requests. Should the user continue to breach the API rate limts the ban length witll increase exponentially.
+**Data node API rate limiting**: Rate limiting has been introduced for the GRPC, Rest and GraphQL APIs. Users will be warned and where required banned from submitting more requests. Should the user continue to breach the API rate limits the ban length will increase exponentially.
 
 **`IssueSignatures` command**: The `IssueSignatures` command is no longer a validator command and can be run by any member of the community. Due to this fact the command has been opened up to it is now covered by spam protection rules.
 
