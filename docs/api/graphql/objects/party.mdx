@@ -74,6 +74,8 @@ type Party {
   rewardsConnection(
   assetId: ID
   pagination: Pagination
+  fromEpoch: Int
+  toEpoch: Int
 ): RewardsConnection
   rewardSummaries(
   assetId: ID
@@ -242,6 +244,14 @@ type Party {
 > Optional pagination information
 > 
 
+##### [<code style={{ fontWeight: 'normal' }}>Party.rewardsConnection.<b>fromEpoch</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
+> Optionally only return rewards &#x003E;= this epoch
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.rewardsConnection.<b>toEpoch</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
+> Optionally only return rewards &#x003C;= this epoch
+> 
+
 #### [<code style={{ fontWeight: 'normal' }}>Party.<b>rewardSummaries</b></code>](#)<Bullet />[`[RewardSummary]`](/testnet/api/graphql/objects/reward-summary) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
 > Return net reward information
 > ##### [<code style={{ fontWeight: 'normal' }}>Party.rewardSummaries.<b>assetId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
@@ -267,10 +277,6 @@ type Party {
 ### Member of
 
 [`AccountBalance`](/testnet/api/graphql/objects/account-balance)  <Badge class="secondary" text="object"/><Bullet />[`AccountEvent`](/testnet/api/graphql/objects/account-event)  <Badge class="secondary" text="object"/><Bullet />[`Delegation`](/testnet/api/graphql/objects/delegation)  <Badge class="secondary" text="object"/><Bullet />[`Deposit`](/testnet/api/graphql/objects/deposit)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProviderFeeShare`](/testnet/api/graphql/objects/liquidity-provider-fee-share)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProvision`](/testnet/api/graphql/objects/liquidity-provision)  <Badge class="secondary" text="object"/><Bullet />[`MarginLevels`](/testnet/api/graphql/objects/margin-levels)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/testnet/api/graphql/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`PartyEdge`](/testnet/api/graphql/objects/party-edge)  <Badge class="secondary" text="object"/><Bullet />[`Position`](/testnet/api/graphql/objects/position)  <Badge class="secondary" text="object"/><Bullet />[`Proposal`](/testnet/api/graphql/objects/proposal)  <Badge class="secondary" text="object"/><Bullet />[`Reward`](/testnet/api/graphql/objects/reward)  <Badge class="secondary" text="object"/><Bullet />[`StakeLinking`](/testnet/api/graphql/objects/stake-linking)  <Badge class="secondary" text="object"/><Bullet />[`Trade`](/testnet/api/graphql/objects/trade)  <Badge class="secondary" text="object"/><Bullet />[`Vote`](/testnet/api/graphql/objects/vote)  <Badge class="secondary" text="object"/><Bullet />[`Withdrawal`](/testnet/api/graphql/objects/withdrawal)  <Badge class="secondary" text="object"/>
-
-### Implemented by
-
-[`Event`](/testnet/api/graphql/unions/event)  <Badge class="secondary" text="union"/>
 
 
 

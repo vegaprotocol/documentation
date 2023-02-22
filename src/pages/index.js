@@ -18,7 +18,8 @@ function HomepageHeader() {
 }
 
 export default function Home() {
-  const { siteConfig } = useDocusaurusContext();
+  const { siteConfig, siteMetadata } = useDocusaurusContext();
+  console.dir(siteMetadata)
   return (
     <Layout description={`${siteConfig.tagline}`}>
       <HomepageHeader />

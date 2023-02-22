@@ -1,0 +1,39 @@
+---
+id: trading-data-service-network-history-status
+title: "Network history status"
+description: "Retrieves information about the current state of network history
+Response contains the network history status"
+sidebar_label: "Network history status"
+hide_title: true
+hide_table_of_contents: true
+api: {"responses":{"200":{"content":{"application/json":{"schema":{"properties":{"connectedPeers":{"items":{"type":"string"},"title":"The connected peers","type":"array"},"ipfsAddress":{"title":"The IPFS address of this node","type":"string"},"swarmKey":{"title":"The swarm key","type":"string"},"swarmKeySeed":{"title":"The swarm key seed","type":"string"}},"title":"Response containing the status of network history","type":"object"}}},"description":"A successful response."},"default":{"content":{"application/json":{"schema":{"properties":{"code":{"format":"int32","type":"integer"},"details":{"items":{"additionalProperties":{},"properties":{"@type":{"type":"string"}},"type":"object"},"type":"array"},"message":{"type":"string"}},"type":"object"}}},"description":"An unexpected error response."}},"tags":["TradingDataService"],"description":"Retrieves information about the current state of network history\nResponse contains the network history status","operationId":"TradingDataService_NetworkHistoryStatus","method":"get","path":"/api/v2/networkhistory","servers":[{"url":"https://api.n06.testnet.vega.xyz","description":"n06 (data node)"},{"url":"https://api.n08.testnet.vega.xyz","description":"n08 (data node)"},{"url":"https://api.n09.testnet.vega.xyz","description":"n09 (data node)"},{"url":"https://api.n11.testnet.vega.xyz","description":"n11 (data node)"},{"url":"https://api.n12.testnet.vega.xyz","description":"n12 (data node)"}],"info":{"title":"Vega data node APIs","version":"v0.68.0"},"postman":{"name":"Network history status","description":{"content":"Retrieves information about the current state of network history\nResponse contains the network history status","type":"text/plain"},"url":{"path":["api","v2","networkhistory"],"host":["{{baseUrl}}"],"query":[],"variable":[]},"header":[{"key":"Accept","value":"application/json"}],"method":"GET"}}
+sidebar_class_name: "get api-method"
+info_path: api/rest/data-v2/vega-data-node-ap-is
+custom_edit_url: "https://github.com/vegaprotocol/documentation/issues/new?labels=documentation&title=[Documentation] Requesting changes to 'Network history status' (trading-data-service-network-history-status)"
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem"
+import SchemaTabs from "@theme/SchemaTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import TabItem from "@theme/TabItem";
+
+## Network history status
+
+
+
+Retrieves information about the current state of network history
+Response contains the network history status
+
+<div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+A successful response.
+
+</div><div><MimeTabs schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"connectedPeers"} required={false} schemaDescription={undefined} schemaName={"string[]"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"ipfsAddress"} required={false} schemaDescription={undefined} schemaName={"The IPFS address of this node"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"swarmKey"} required={false} schemaDescription={undefined} schemaName={"The swarm key"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"swarmKeySeed"} required={false} schemaDescription={undefined} schemaName={"The swarm key seed"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"connectedPeers\": [\n    \"string\"\n  ],\n  \"ipfsAddress\": \"string\",\n  \"swarmKey\": \"string\",\n  \"swarmKeySeed\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"default"} value={"default"}><div>
+
+An unexpected error response.
+
+</div><div><MimeTabs schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"code"} required={false} schemaDescription={undefined} schemaName={"int32"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}}><summary style={{}}><strong>details</strong><span style={{"opacity":"0.6"}}> object[]</span></summary><div style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"@type"} required={false} schemaDescription={undefined} schemaName={"string"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem></div></details></SchemaItem><SchemaItem collapsible={false} name={"message"} required={false} schemaDescription={undefined} schemaName={"string"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"code\": 0,\n  \"details\": [\n    {\n      \"@type\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div>

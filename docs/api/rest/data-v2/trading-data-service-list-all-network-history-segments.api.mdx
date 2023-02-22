@@ -1,0 +1,37 @@
+---
+id: trading-data-service-list-all-network-history-segments
+title: "Network history all segments"
+description: "List all history segments stored by this node"
+sidebar_label: "Network history all segments"
+hide_title: true
+hide_table_of_contents: true
+api: {"responses":{"200":{"content":{"application/json":{"schema":{"properties":{"segments":{"items":{"properties":{"fromHeight":{"format":"int64","title":"Starting height of the history segment","type":"string"},"historySegmentId":{"title":"ID of the history segment","type":"string"},"previousHistorySegmentId":{"title":"ID of the previous history segment","type":"string"},"toHeight":{"format":"int64","title":"Ending height of the history segment","type":"string"}},"title":"Describes a network history segment","type":"object"},"title":"List of history segments data","type":"array"}},"title":"Response with a list of all the nodes history segments","type":"object"}}},"description":"A successful response."},"default":{"content":{"application/json":{"schema":{"properties":{"code":{"format":"int32","type":"integer"},"details":{"items":{"additionalProperties":{},"properties":{"@type":{"type":"string"}},"type":"object"},"type":"array"},"message":{"type":"string"}},"type":"object"}}},"description":"An unexpected error response."}},"tags":["TradingDataService"],"description":"List all history segments stored by this node","operationId":"TradingDataService_ListAllNetworkHistorySegments","method":"get","path":"/api/v2/networkhistory/segments","servers":[{"url":"https://api.n06.testnet.vega.xyz","description":"n06 (data node)"},{"url":"https://api.n08.testnet.vega.xyz","description":"n08 (data node)"},{"url":"https://api.n09.testnet.vega.xyz","description":"n09 (data node)"},{"url":"https://api.n11.testnet.vega.xyz","description":"n11 (data node)"},{"url":"https://api.n12.testnet.vega.xyz","description":"n12 (data node)"}],"info":{"title":"Vega data node APIs","version":"v0.68.0"},"postman":{"name":"Network history all segments","description":{"content":"List all history segments stored by this node","type":"text/plain"},"url":{"path":["api","v2","networkhistory","segments"],"host":["{{baseUrl}}"],"query":[],"variable":[]},"header":[{"key":"Accept","value":"application/json"}],"method":"GET"}}
+sidebar_class_name: "get api-method"
+info_path: api/rest/data-v2/vega-data-node-ap-is
+custom_edit_url: "https://github.com/vegaprotocol/documentation/issues/new?labels=documentation&title=[Documentation] Requesting changes to 'Network history all segments' (trading-data-service-list-all-network-history-segments)"
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem"
+import SchemaTabs from "@theme/SchemaTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import TabItem from "@theme/TabItem";
+
+## Network history all segments
+
+
+
+List all history segments stored by this node
+
+<div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+A successful response.
+
+</div><div><MimeTabs schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}}><summary style={{}}><strong>segments</strong><span style={{"opacity":"0.6"}}> object[]</span></summary><div style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"fromHeight"} required={false} schemaDescription={undefined} schemaName={"int64"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"historySegmentId"} required={false} schemaDescription={undefined} schemaName={"ID of the history segment"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"previousHistorySegmentId"} required={false} schemaDescription={undefined} schemaName={"ID of the previous history segment"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={false} name={"toHeight"} required={false} schemaDescription={undefined} schemaName={"int64"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem></div></details></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"segments\": [\n    {\n      \"fromHeight\": \"string\",\n      \"historySegmentId\": \"string\",\n      \"previousHistorySegmentId\": \"string\",\n      \"toHeight\": \"string\"\n    }\n  ]\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"default"} value={"default"}><div>
+
+An unexpected error response.
+
+</div><div><MimeTabs schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"code"} required={false} schemaDescription={undefined} schemaName={"int32"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}}><summary style={{}}><strong>details</strong><span style={{"opacity":"0.6"}}> object[]</span></summary><div style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"@type"} required={false} schemaDescription={undefined} schemaName={"string"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem></div></details></SchemaItem><SchemaItem collapsible={false} name={"message"} required={false} schemaDescription={undefined} schemaName={"string"} qualifierMessage={undefined} defaultValue={undefined}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"code\": 0,\n  \"details\": [\n    {\n      \"@type\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div>
