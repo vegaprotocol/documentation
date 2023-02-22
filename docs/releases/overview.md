@@ -35,6 +35,33 @@ In addition to the data node fixes improvements have been made to the protocol i
 
 Finally a number of API improvements and fixes have been made including a new API to query close out and loss socialisation reasons. These changes combined with improvements in error messaging in the wallet round off a number of great UX improvements taking the protocol a step closer to Alpha Mainnet.
 
+:::caution Breaking changes
+**Data node API rate limiting**: Rate limiting has been introduced for the GRPC, Rest and GraphQL APIs. Users will be warned and where required banned from submitting more requests. Should the user continue to breach the API rate limts the ban length witll increase exponentially.
+
+**`IssueSignatures` command**: The `IssueSignatures` command is no longer a validator command and can be run by any member of the community. Due to this fact the command has been opened up to it is now covered by spam protection rules.
+
+To find out more please see these issues [7445 ↗](https://github.com/vegaprotocol/vega/issues/7445) and [7382 ↗](https://github.com/vegaprotocol/vega/issues/7382)
+
+To find out more please see all 0.68.0 [breaking changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0660) entries in the changelog.
+:::
+
+:::warning Removals
+**`Grpc-Metadata-` headers**: The deprecated headers with the `Grpc-Metadata-` prefix in datanode API and REST and GraphQL gateways have now been removed.
+
+**Network API**: The legacy fields from network API have now been removed.
+
+To find out more please see these issues [7419 ↗](https://github.com/vegaprotocol/vega/issues/7419) and [6963 ↗](https://github.com/vegaprotocol/vega/issues/6963)
+:::
+
+:::warning Deprecations
+**`X-Vega-Connection` HTTP header**: The `X-Vega-Connection` HTTP header in datanode API and REST and GraphQL gateways has been deprecated and will be removed in a future release.
+
+To find out more please see issue [7385 ↗](https://github.com/vegaprotocol/vega/issues/7385)
+:::
+
+
+
+
 This release contains a large number of bug fixes and minor enhancements. Check out the full details in the Vega core [0.68.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.68.0) release page.
 
 ### Pre-release Versions 0.67.0, 0.67.1, 0.67.2 and 0.67.3 combined | 2023-01-20
