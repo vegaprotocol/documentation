@@ -9,13 +9,16 @@ import {usePluginData} from '@docusaurus/useGlobalData';
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
+  const versions = usePluginData('docusaurus-plugin-content-docs');
+  const isBrowser = useIsBrowser();
+  const base = isBrowser ? getBaseUrl(versions) : 'mainnet'
 
   return (
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <Link className="cta" href="concepts/new-to-vega">New to Vega?</Link>
+        <Link className="cta" href={`${base}/concepts/new-to-vega`}>New to Vega?</Link>
       </div>
     </header>
   );
@@ -67,7 +70,7 @@ export default function Home() {
             <h2>Getting started</h2>
             <p>Learn about the Vega framework and get set up to take part.</p>
             <ul>
-              <li><Link to={`${base}/concepts/new-to-vega`}>Introduction to Vega</Link></li>
+              <li><Link href={`${base}/concepts/new-to-vega`}>Introduction to Vega</Link></li>
               <li>Get a <Link to={`${base}/tools/vega-wallet`}>Vega wallet</Link>, on <Link to={`${base}/tools/vega-wallet/desktop-app`}>desktop</Link> or for <Link to={`${base}/tools/vega-wallet/cli-wallet`}>command line</Link></li>
               <li><Link className="external" base="https://github.com/orgs/vegaprotocol/projects/114/views/4" target="_blank">Roadmap</Link></li>
             </ul>
