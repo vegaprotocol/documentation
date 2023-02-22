@@ -17,8 +17,7 @@ List reward summary per epoch by asset, market, reward type
 
 ```graphql
 epochRewardSummaries(
-  fromEpoch: Int
-  toEpoch: Int
+  filter: RewardSummaryFilter
   pagination: Pagination
 ): EpochRewardSummaryConnection
 ```
@@ -26,11 +25,7 @@ epochRewardSummaries(
 
 ### Arguments
 
-#### [<code style={{ fontWeight: 'normal' }}>epochRewardSummaries.<b>fromEpoch</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
-> 
-> 
-
-#### [<code style={{ fontWeight: 'normal' }}>epochRewardSummaries.<b>toEpoch</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>epochRewardSummaries.<b>filter</b></code>](#)<Bullet />[`RewardSummaryFilter`](/testnet/api/graphql/inputs/reward-summary-filter) <Badge class="secondary" text="input"/>
 > 
 > 
 

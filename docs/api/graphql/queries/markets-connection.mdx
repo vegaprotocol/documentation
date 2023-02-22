@@ -19,6 +19,7 @@ One or more instruments that are trading on the Vega network
 marketsConnection(
   id: ID
   pagination: Pagination
+  includeSettled: Boolean
 ): MarketConnection
 ```
 
@@ -31,6 +32,10 @@ marketsConnection(
 
 #### [<code style={{ fontWeight: 'normal' }}>marketsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
 > Optional pagination information
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>marketsConnection.<b>includeSettled</b></code>](#)<Bullet />[`Boolean`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> Whether to include markets that have settled (defaults to true)
 > 
 
 ### Type
