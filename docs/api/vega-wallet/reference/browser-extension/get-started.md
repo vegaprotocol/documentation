@@ -1,7 +1,7 @@
 ---
-title: Connect to browser extension
+title: Build with the browser extension
 hide_title: false
-sidebar_position: 3
+sidebar_position: 1 
 ---
 import Topic from '/docs/topics/_topic-wallet.mdx'
 

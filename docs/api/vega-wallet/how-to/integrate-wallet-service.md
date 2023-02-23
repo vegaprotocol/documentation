@@ -1,10 +1,10 @@
 ---
-title: Integrate the wallet service [rename?]
+title: Integrate wallet service [rename?]
 hide_title: false
-sidebar_position: 2
+sidebar_position: 3
 ---
 
-This guide will walk you through how to set up the Vega  Wallet from scratch to use when building a Vega dApp, or integrating with CI/CD. 
+This guide will walk you through how to set up the Vega Wallet from scratch to use when building a Vega dApp, or integrating with CI/CD. 
 
 You can find the current working CI/CD implementation in the [front-end GitHub repo ↗](https://github.com/vegaprotocol/frontend-monorepo/blob/develop/.github/actions/setup-vegawallet/action.yml).
 

@@ -1,7 +1,7 @@
 ---
-title: Get started with the browser extension
+title: Connect to local service
 hide_title: false
-sidebar_position: 1 
+sidebar_position: 5
 ---
 import Topic from '/docs/topics/_topic-wallet.mdx'
 

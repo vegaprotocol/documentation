@@ -20,7 +20,7 @@ Any consensus validator can submit a proposal for a protocol upgrade.
 
 The proposal transaction needs to include details about the proposed version and the block height in which to stop the network and upgrade. Submitting the proposal triggers a vote among consensus validators.
 
-Use the Vega Wallet CLI to submit the following command: 
+Use the Vega Wallet CLI to submit the following command:
 
 ```shell 
 vega protocol_upgrade_proposal
