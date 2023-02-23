@@ -83,6 +83,8 @@ systemctl status data-node
 
 We recommend doing this at the beginning of the upgrade procedure, but this can happen at any point before validators start the network. After genesis is prepared, all the validators must use the same `genesis.json` file.
 
+**NOTE**: To load checkpoint, find more information in the [documentation page](vegaprotocol/documentation/docs/node-operators/how-to/restart-network.md#Load Checkpoint) 
+
 1. As a first step, one of the validators or vega team member has to adjust [the genesis file](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json) in the [vegaprotocol/networks](https://github.com/vegaprotocol/networks) repository.
 2. The person responsible for updating genesis should create PR with changes.
 3. All of the validators should accept changes and approve the PR.
@@ -115,7 +117,7 @@ tree <BACKUP-FOLDER>
 ```
 
 **NOTE**: * the `tree` command needs to be installed(e.g. `apt-get install -y tree`) but it is the easiest way to see if backup files match to original files without going too deep into details.
-**NOTE**: ** You might see some errors when running pg_dump. To learn if they can be safely ignored, see the [troubleshooting section in the official timescale db](https://docs.timescale.com/timescaledb/latest/how-to-guides/backup-and-restore/troubleshooting/).
+**NOTE**: ** You might see some errors when running pg_dump. To learn if they can be safely ignored, see the [troubleshooting section in the official timescale db](https://docs.timescale.com/timescaledb/latest/how-to-guides/backup-and-restore/troubleshooting/).docs/node-operators/how-to/network-upgrade-from-ops-perspective.md
 
 
 ### 5. Download new genesis file
