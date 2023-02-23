@@ -126,8 +126,8 @@ After you create a backup and validators prepare a new genesis file, you can put
 
 1. Download genesis
 2. Remvoe old genesis(`<TENDERMINT-HOME>/config/genesis.json`)
-3. Put downloaded genesis in the final place: <TENDERMINT-HOME>/config/genesis.json
-4. Verify genesis(see examople below)
+3. Put downloaded genesis in the final place: `<TENDERMINT-HOME>/config/genesis.json`
+4. Verify genesis(see example below)
 
 Example workflow may look like following:
 
@@ -368,7 +368,7 @@ However, following the same procedure as for `vega` and `tendermint` is possible
 
 1. Remove the data-node state(ensure you have backup): `rm -r <DATA-NODE-HOME>/state/data-node/`
 2. Ensure you have a backup of your old data-node config: `cp <DATA-NODE-HOME>config/data-node/config.toml <BACKUP-FOLDER>/data-node-config.toml`
-3. Init the data-node config: `<VEGA-BIN> datanode init --archive --home=<DATA-NODE-HOME> <CHAIN-ID> --force`*
+3. Init the data-node config: `<VEGA-BIN> datanode init --archive --home=<DATA-NODE-HOME> <CHAIN-ID> --force`
 4. Modify generated data-node config: `<DATA-NODE-HOME>config/data-node/config.toml` - see section below for important parameters
 
 **NOTE**: We should use the `--archive` flag to keep data for a longer period.
