@@ -40,7 +40,7 @@ Its functionality is limited and is riskier than networks that will follow it, a
 #### Token management and network governance 
 * [Mainnet token interface](https://token.vega.xyz): Interact with your $VEGA tokens on the token interface.
 * [Mainnet FAQ](https://blog.vega.xyz/the-vega-restricted-mainnet-faqs-6bedc7a57f24): Regularly updated list of the most commonly asked questions and answers to help you get your bearings with restricted mainnet.
-* [Fairground token interface](https://token.fairground.wtf): You can also try out the interface using testnet tokens, if you want to familiarise yourself with it first.
+* [Fairground governance interface](https://token.fairground.wtf): You can also try out the interface using testnet tokens, if you want to familiarise yourself with it first.
 
 #### Fairground, Vega's testnet
 * [Learn about Fairground](https://fairground.wtf): Though trading isn't enabled on mainnet, you can try trading on Fairground. Place an order, track your positions, and explore the margin mechanism using Fairground. Keep an eye on the site for incentive opportunties, too. 
@@ -48,5 +48,4 @@ Its functionality is limited and is riskier than networks that will follow it, a
 
 ## How can I contribute to Vega?
 * [Bugs and feature requests](https://github.com/vegaprotocol/feedback/discussions/): Raise any bugs you find, or feature requests you have, on Vega's feedback board.
-* [Developer bounties](https://github.com/vegaprotocol/bounties/): See available bounties on the bounties repo. 
 * [Documentation translation](https://github.com/vegaprotocol/documentation/issues): Raise an issue on the documentation repo to express your interest in translating Vega documentation. 

@@ -27,6 +27,8 @@ type PositionUpdate {
   unrealisedPNL: String!
   averageEntryPrice: String!
   updatedAt: Timestamp
+  lossSocializationAmount: String!
+  positionStatus: PositionStatus!
 }
 ```
 
@@ -59,6 +61,14 @@ type PositionUpdate {
 
 #### [<code style={{ fontWeight: 'normal' }}>PositionUpdate.<b>updatedAt</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time the position was updated
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>PositionUpdate.<b>lossSocializationAmount</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The total amount of profit and loss that was not transferred due to loss socialisation
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>PositionUpdate.<b>positionStatus</b></code>](#)<Bullet />[`PositionStatus!`](/testnet/api/graphql/enums/position-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Enum set if the position was closed out or orders were removed because party was distressed
 > 
 
 

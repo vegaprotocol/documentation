@@ -58,6 +58,8 @@ type Market {
   marketTimestamps: MarketTimestamps!
   riskFactors: RiskFactor
   lpPriceRange: String!
+  linearSlippageFactor: String!
+  quadraticSlippageFactor: String!
 }
 ```
 
@@ -209,6 +211,14 @@ duration and optionally a minimum traded volume).
 > Liquidity Provision order price range
 > 
 
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>linearSlippageFactor</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Linear slippage factor is used to cap the slippage component of maintainence margin - it is applied to the slippage volume
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>quadraticSlippageFactor</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Quadratic slippage factor is used to cap the slippage component of maintainence margin - it is applied to the square of the slippage volume
+> 
+
 
 
 ### Returned by
@@ -218,10 +228,6 @@ duration and optionally a minimum traded volume).
 ### Member of
 
 [`AccountBalance`](/testnet/api/graphql/objects/account-balance)  <Badge class="secondary" text="object"/><Bullet />[`AccountEvent`](/testnet/api/graphql/objects/account-event)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProvision`](/testnet/api/graphql/objects/liquidity-provision)  <Badge class="secondary" text="object"/><Bullet />[`MarginLevels`](/testnet/api/graphql/objects/margin-levels)  <Badge class="secondary" text="object"/><Bullet />[`MarketData`](/testnet/api/graphql/objects/market-data)  <Badge class="secondary" text="object"/><Bullet />[`MarketDepth`](/testnet/api/graphql/objects/market-depth)  <Badge class="secondary" text="object"/><Bullet />[`MarketDepthUpdate`](/testnet/api/graphql/objects/market-depth-update)  <Badge class="secondary" text="object"/><Bullet />[`MarketEdge`](/testnet/api/graphql/objects/market-edge)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/testnet/api/graphql/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`Position`](/testnet/api/graphql/objects/position)  <Badge class="secondary" text="object"/><Bullet />[`Trade`](/testnet/api/graphql/objects/trade)  <Badge class="secondary" text="object"/>
-
-### Implemented by
-
-[`Event`](/testnet/api/graphql/unions/event)  <Badge class="secondary" text="union"/>
 
 
 
