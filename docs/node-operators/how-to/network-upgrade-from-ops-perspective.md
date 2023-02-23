@@ -17,6 +17,13 @@ Before you start, you have to prepare and keep in mind a few things:
 - `<VEGA-BIN>`; the path to the vega core binary, e.g., `/home/vega/bin/visor`
 - `<CHAIN-ID>`; new chain id for network, it is required to pass as an argument for data-node, e.g., current chain id on mainnet is: `vega-mainnet-0009`
 
+
+Placeholders for the PostgreSQL
+
+- `<VEGA-DB-USER>` - a postgreSQL user you create and put in the data-node config
+- `<VEGA-DB-NAME>` - a postgreSQL data-base name
+- `<VEGA-DB-PASS>` - a password for your `<VEGA-DB-USER>`
+
 We will refer to the above paths in the following article. The sample paths given above are just examples. We recommend setting your paths that align with the conventions adopted in your company.
 
 # Upgrade steps
@@ -24,7 +31,7 @@ We will refer to the above paths in the following article. The sample paths give
 
 ### 1. Download a new binaries
 
-Download new binaries from [the GitHub release](https://github.com/vegaprotocol/vega/releases) and unzip them, then you have to put them in the `<VEGA-BIN>` and the `<VISOR-BIN>
+Download new binaries from [the GitHub release](https://github.com/vegaprotocol/vega/releases) and unzip them, then you have to put them in the `<VEGA-BIN>` and the `<VISOR-BIN>`
 
 The binaries you need: 
 
@@ -102,9 +109,14 @@ cp -r <TENDERMINT-HOME>/data <BACKUP-FOLDER>/v0.53.0/tm-state
 
 # Check if backup has been successfully done*; check if all files has been copied up correctly
 tree <BACKUP-FOLDER>
+
+# Backup postgresql if you have been running data-node**
+ pg_dump --host=localhost --port=5432 --username=<VEGA-DB-USER> --password -Fc -f <BACKUP-FOLDER/data_node_db.bak.sql <VEGA-DB-NAME>
 ```
 
 **NOTE**: * the `tree` command needs to be installed(e.g. `apt-get install -y tree`) but it is the easiest way to see if backup files match to original files without going too deep into details.
+**NOTE**: ** You might see some errors when running pg_dump. To learn if they can be safely ignored, see the [troubleshooting section in the official timescale db](https://docs.timescale.com/timescaledb/latest/how-to-guides/backup-and-restore/troubleshooting/).
+
 
 ### 5. Download new genesis file
 
@@ -318,11 +330,6 @@ We tested data-node with:
 - PostgreSQL 14
 - TimescaleDB: 2.8.0
 
-Placeholders:
-- <VEGA-DB-USER> - a postgreSQL user you create and put in the data-node config
-- <VEGA-DB-NAME> - a postgreSQL data-base name
-- <VEGA-DB-PASS> - a password for your `<VEGA-DB-USER>`
-
 
 The procedure for preparing postgresql is:
 
@@ -337,7 +344,9 @@ The procedure for preparing postgresql is:
 9. Grant the following roles for the `<VEGA-DB-USER>` user:
   a. pg_write_server_files: `grant pg_write_server_files TO <VEGA-DB-USER>;`
   b. pg_signal_backend: `grant pg_signal_backend TO <VEGA-DB-USER>;`
-10. Ensure you have access to the vega database with your credentials: `psql --host=127.0.0.1 --port=5432 --username=<VEGA-DB-USER> --password <VEGA-DB-NAME>`, and enter the `<VEGA-DB-PASS>`
+10. Switch database to `<VEGA-DB-NAME>`: `\c <VEGA-DB-NAME>`
+11. Activate extension for new database: `CREATE EXTENSION IF NOT EXISTS timescaledb;`
+12. Ensure you have access to the vega database with your credentials: `psql --host=127.0.0.1 --port=5432 --username=<VEGA-DB-USER> --password <VEGA-DB-NAME>`, and enter the `<VEGA-DB-PASS>`
 
 
 Final result should looks like below:
@@ -355,9 +364,12 @@ postgres=# \du
 
 However, following the same procedure as for `vega` and `tendermint` is possible. There are a lot of changes in the data-node config. I recommend a different approach to that.
 
-1. Initiate the data-node in the temporary location. `<VEGA-BIN> datanode init --lite /tmp/data-node`
-2. Compare config, but move changes from the old config to the newly generated one, and then use this file as a data-node `config.toml`
-3. Move your new data-node config into `<DATA-NODE-HOME>/config/data-node/config.toml` 
+1. Remove the data-node state(ensure you have backup): `rm -r <DATA-NODE-HOME>/state/data-node/`
+2. Ensure you have a backup of your old data-node config: `cp <DATA-NODE-HOME>config/data-node/config.toml <BACKUP-FOLDER>/data-node-config.toml`
+3. Init the data-node config: `<VEGA-BIN> datanode init --archive --home=<DATA-NODE-HOME> <CHAIN-ID> --force`*
+4. Modify generated data-node config: `<DATA-NODE-HOME>config/data-node/config.toml` - see section below for important parameters
+
+**NOTE**: We should use the `--archive` flag to keep data for a longer period.
 
 #### A bit about config
 
@@ -371,8 +383,18 @@ Important config keys We updates are:
 - `SQLStore.wipe_on_startup` - Defines if data-node removes data from the postgresql after the restart. We recommend setting it to `false`.
 - `SQLStore.UseEmbedded` - If true, internal(managed by binary itself) postgresql is used. I do not recommend setting it to true in production. The purpose of it is to use in tests.
 - `SQLStore.ConnectionConfig` - Entire section, where you set PostgreSQL credentials.
-- `NetworkHistory.Enabled` - Enables based on IPFS network history.
+- `NetworkHistory.Enabled` - Enables based on IPFS network history (see section below)
 
+Example of the PostgreSQL connection section:
+
+```toml
+  [SQLStore.ConnectionConfig]
+    Host = "localhost"
+    Port = 5432
+    Username = "<VEGA-DB-USER>"
+    Password = "<VEGA-DB-PASS>"
+    Database = "<VEGA-DB-NAME>"
+```
 
 #### A bit about Network History
 
@@ -386,6 +408,12 @@ Format of the `BootstrapPeers` is:
 "/dns/<DATA-NODE-HOST>/tcp/<DATA-NODE-SWARM-PORT>/ipfs/<DATA-NODE-PEER-ID>"
 ```
 
+Example `BootstrapPeers` value:
+
+```toml
+BootstrapPeers = ["/dns/n05.stagnet1.vega.xyz/tcp/4001/ipfs/12D3KooWHNyJBuN9GmYp23FAdMbL3nmwe5DzixFNL8d4oBTMzxag","/dns/n06.stagnet1.vega.xyz/tcp/4001/ipfs/12D3KooWQpceAbYaEaas65tEt8CJofHgjRPANaojwA7oaQApHTvB"]
+```
+
 ### 14. Reload systemd services
 
 We have to reload the systemd services to load the previously added vegavisor service. Use the following command: `sudo systemctl daemon-reload`
@@ -397,6 +425,7 @@ We have to reload the systemd services to load the previously added vegavisor se
 1. Call unsafe reset all for tendermitn: `<VEGA-BIN> tendermint unsafe-reset-all --home <TENDERMINT-HOME>`
 2. Call unsafe reset all for vega core: `<VEGA-BIN> unsafe_reset_all --home <VEGA-NETWORK-HOME>`
 3. Remove data-node state. Required for older version of data node(before v0.68.0): `rm -r <DATA-NODE-HOME>/state/data-node`
+4. Recreate the postgresql database if you have data with 
 
 ### 16. Start the network
 
