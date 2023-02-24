@@ -144,7 +144,7 @@ You may also risk losing your wallets, so back them up as well.
     - b. Follow instructions in the step to [Install/Upgrade PostgreSQL instance](#14-installupgrade-postgresql-instance) (optional for data node setup) to recreate new database
 
 
-## 5. Prepare genesis file
+### 5. Prepare genesis file
 We recommend doing this at the beginning of the upgrade procedure, but this can happen at any point before validators start the network. After the genesis is prepared, all the validators must use the same `genesis.json` file.
 
 To load the checkpoint, find more information in the [restart network guide](../how-to/restart-network.md#load-checkpoint) 
