@@ -143,7 +143,7 @@ vegawallet create --wallet "MY_WALLET_NAME"
 
 </Tabs>
 
-It will then prompt you to **input a passphrase**, and then **confirm that passphrase**. You'll use this wallet name and passphrase to login to the token site and Vega Console.
+It will then prompt you to **input a passphrase**, and then **confirm that passphrase**.
 
 :::warning
 Keep your recovery phrase safe and secret. You will need it to import your keys. 
