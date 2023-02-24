@@ -10,9 +10,9 @@ import TabItem from '@theme/TabItem';
 
 With the upgrade of the network to version v0.53 there was upgrade of the smart contracts.
 
-The multisig control contract and the collateral bridge will be upgraded in order to increase users' control over the funds they deposit (opt-out) and performance improvements, such as decreasing gas cost when using the bridge. The Vega asset pool contract will not be upgraded. Once the new contracts are properly set up on Ethereum, the validators will migrate the asset pool to use the new contracts.
+The multisig control contract and the collateral bridge was upgraded in order to increase users' control over the funds they deposit (opt-out) and performance improvements, such as decreasing gas cost when using the bridge. The Vega asset pool contract was not upgraded. Once the new contracts were properly set up on Ethereum, the validators migrated the asset pool to use the new contracts.
 
-This guide will explain, step-by-step, how the Vega team and the validators will upgrade the smart contracts.
+This guide explains, step-by-step, how the Vega team and the validators upgraded the smart contracts when the software was upgraded to 0.53.
 
 You can find the updated code for the smart contracts on the [Multisig Control repo](https://github.com/vegaprotocol/MultisigControl/tree/a421bce980391c6c1509fc621185ca33810709fd).
 
