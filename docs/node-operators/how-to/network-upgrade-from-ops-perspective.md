@@ -9,16 +9,16 @@ Before you start, you have to prepare and keep in mind a few things:
 - `<VEGA-USER>`; the Linux user that runs vega, e.g., `vega`
 - `<USER-HOME>`; path to the `<VEGA-USER>` home directory, e.g., `/home/vega`
 - `<VEGA-NETWORK-HOME>`; the home path to the vega network, e.g., `/home/vega/vega_home`
-- `<DATA-NODE-HOME>`; the home path to the data-node, the home can be safely shared with vega core, e.g., `/home/vega/data_node_home`
 - `<TENDERMINT-HOME>`; the tendermint home path, e.g., `/home/vega/tendermint_home`
 - `<VEGAVISOR-HOME>`; the vegavisor home path, e.g., `/home/vega/vegavisor_home`
 - `<BACKUP-FOLDER>`; the folder where you store backups, e.g., `/home/vega/backups`
 - `<VISOR-BIN>`; the path to the vega visor binary, e.g., `/home/vega/bin/visor`
-- `<VEGA-BIN>`; the path to the vega core binary, e.g., `/home/vega/bin/visor`
+- `<VEGA-BIN>`; the path to the vega core binary, e.g., `/home/vega/bin/vega`
 - `<CHAIN-ID>`; new chain id for network, it is required to pass as an argument for data-node, e.g., current chain id on mainnet is: `vega-mainnet-0009`
+- `<POSTGRESQL-LINUX-USER>`; the user who runs the postgresql process
 
 
-Placeholders for the PostgreSQL
+Placeholders for the PostgreSQL connection details for the data-node(the one you put in the data-node `config.toml`)
 
 - `<VEGA-DB-USER>` - a postgreSQL user you create and put in the data-node config
 - `<VEGA-DB-NAME>` - a postgreSQL data-base name
@@ -29,34 +29,11 @@ We will refer to the above paths in the following article. The sample paths give
 # Upgrade steps
 
 
-### 1. Download a new binaries
-
-Download new binaries from [the GitHub release](https://github.com/vegaprotocol/vega/releases) and unzip them, then you have to put them in the `<VEGA-BIN>` and the `<VISOR-BIN>`
-
-The binaries you need: 
-
-- vega binary
-- visor binary (optional for non-visor setup)
-
-Example commands to download:
-
-```bash
-# Download archives
-wget https://github.com/vegaprotocol/vega/releases/download/v0.68.0/vega-linux-amd64.zip
-wget https://github.com/vegaprotocol/vega/releases/download/v0.68.0/visor-linux-amd64.zip
-
-# Unzip downloaded archives
-unzip vega-linux-amd64.zip
-unzip visor-linux-amd64.zip
-
-mv vega <VEGA-BIN>
-mv visor <VISOR-BIN>
-``` 
-
-
-## 2. Stop the network
+## 1. Stop the network
 
 At this point, validators choose the checkpoint, which will be loaded into the network during the next restart, and stop the network as soon as everyone agrees on the selected checkpoint. The reason to quickly stop the network is to avoid producing more checkpoints and missing transactions after restart(the transactions executed between selected checkpoint is produced, and the network is stopped). Network should be stopped by all the validators at the same time.
+
+For testnet releases we may relax time requirement but for mainnet we should limit downtime as much as possible.
 
 1. Stop the `vega` node
 2. Stop the `tendermint` node
@@ -78,19 +55,7 @@ systemctl status tendermint;
 systemctl status data-node
 ```
 
-
-## 3. Prepare genesis file
-
-We recommend doing this at the beginning of the upgrade procedure, but this can happen at any point before validators start the network. After genesis is prepared, all the validators must use the same `genesis.json` file.
-
-**NOTE**: To load checkpoint, find more information in the [documentation page](vegaprotocol/documentation/docs/node-operators/how-to/restart-network.md#Load Checkpoint) 
-
-1. As a first step, one of the validators or vega team member has to adjust [the genesis file](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json) in the [vegaprotocol/networks](https://github.com/vegaprotocol/networks) repository.
-2. The person responsible for updating genesis should create PR with changes.
-3. All of the validators should accept changes and approve the PR.
-4. Approved PR must be merged
-
-### 4. Create backup
+### 2. Create backup
 
 ```bash
 mkdir -p <BACKUP-FOLDER>/v0.53.0/core-wallets;
@@ -117,10 +82,60 @@ tree <BACKUP-FOLDER>
 ```
 
 **NOTE**: * the `tree` command needs to be installed(e.g. `apt-get install -y tree`) but it is the easiest way to see if backup files match to original files without going too deep into details.
-**NOTE**: ** You might see some errors when running pg_dump. To learn if they can be safely ignored, see the [troubleshooting section in the official timescale db](https://docs.timescale.com/timescaledb/latest/how-to-guides/backup-and-restore/troubleshooting/).docs/node-operators/how-to/network-upgrade-from-ops-perspective.md
+
+**NOTE**: ** You might see some errors when running pg_dump. To learn if they can be safely ignored, see the [troubleshooting section in the official timescale db](https://docs.timescale.com/timescaledb/latest/how-to-guides/backup-and-restore/troubleshooting/)
 
 
-### 5. Download new genesis file
+### 3. Download a new binaries
+
+Download new binaries from [the GitHub release](https://github.com/vegaprotocol/vega/releases) and unzip them, then you have to put them in the `<VEGA-BIN>` and the `<VISOR-BIN>`
+
+The binaries you need: 
+
+- vega binary - it also includes tendermint and datanode as binary subcommands
+- visor binary (optional for non-visor setup)
+
+Example commands to download:
+
+```bash
+# Download archives
+wget https://github.com/vegaprotocol/vega/releases/download/v0.68.0/vega-linux-amd64.zip
+wget https://github.com/vegaprotocol/vega/releases/download/v0.68.0/visor-linux-amd64.zip
+
+# Unzip downloaded archives
+unzip vega-linux-amd64.zip
+unzip visor-linux-amd64.zip
+
+mv vega <VEGA-BIN>
+mv visor <VISOR-BIN>
+``` 
+
+
+### 4. Unsafe reset all
+
+**NOTE**: Ensure you have a backup of the network files because the steps below will remove data from your home. You may risk losing your wallets, so backup them as well.
+
+1. Call unsafe reset all for tendermitn: `<VEGA-BIN> tendermint unsafe-reset-all --home <TENDERMINT-HOME>`
+2. Call unsafe reset all for vega core: `<VEGA-BIN> unsafe_reset_all --home <VEGA-NETWORK-HOME>`
+3. Remove data-node state. Required for older version of data node(before v0.68.0): `rm -r <VEGA-NETWORK-HOME>/state/data-node`
+4. Recreate the postgresql database if you have data within: 
+    - a. Call the following command in PostgreSQL terminal: `DROP DATABASE IF EXISTS <VEGA-DB-NAME>`
+    - b. Follow instructions in the step `Install/Upgrade PostgreSQL instance (optional for non-data-node setup)` to recreate new data base.
+
+
+## 5. Prepare genesis file
+
+We recommend doing this at the beginning of the upgrade procedure, but this can happen at any point before validators start the network. After genesis is prepared, all the validators must use the same `genesis.json` file.
+
+**NOTE**: To load checkpoint, find more information in the [documentation page](vegaprotocol/documentation/docs/node-operators/how-to/restart-network.md#Load Checkpoint) 
+
+1. As a first step, one of the validators or vega team member has to adjust [the genesis file](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json) in the [vegaprotocol/networks](https://github.com/vegaprotocol/networks) repository.
+2. The person responsible for updating genesis should create PR with changes.
+3. All of the validators should accept changes and approve the PR.
+4. Approved PR must be merged
+
+
+### 6. Download new genesis file
 
 After you create a backup and validators prepare a new genesis file, you can put it on your server. All the validators must use the same genesis file. 
 
@@ -144,12 +159,12 @@ mv ./genesis.json <TENDERMINT-HOME>/config/genesis.json
 ```
 
 
-### 5. Read the vegavisor documentation
+### 7. Read the vegavisor documentation
 
 - [Vegavisor on Github](https://github.com/vegaprotocol/vega/tree/develop/visor)
 - [Official documentation for vegavisor](https://github.com/vegaprotocol/devops-infra/blob/master/docs/mainnet-mirror/restart-with-vegavisor.md)
 
-### 6. Init visor node (optional for non-visor setup)
+### 8. Init visor node (optional for non-visor setup)
 
 Generate visor configuration with the following command:
 
@@ -171,7 +186,7 @@ The visor prepares the following structure:
 2 directories, 3 files
 ```
 
-### 7. Prepare the visor config (optional for non-visor setup)
+### 9. Prepare the visor config (optional for non-visor setup)
 
 The config is located in the `<VEGAVISOR-HOME>/config.toml`
 
@@ -198,7 +213,7 @@ stopSignalTimeoutSeconds = 15
   enabled = false
 ```
 
-### 8. Prepare visor run config (optional for non-visor setup)
+### 10. Prepare visor run config (optional for non-visor setup)
 
 The visor `run-config` defines, commands to start the network. Run config resides in the `<VEGAVISOR-HOME>/genesis/run-config.toml` and it is called genesis because it is used to start the network first time, next time when you use protocol upgrade, other run-config may be used.
 
@@ -253,7 +268,7 @@ name = "genesis"
     path = "<VEGA-BIN>"
     args = [
       "datanode", "start",
-      "--home", "<DATA-NODE-HOME>",
+      "--home", "<VEGA-NETWORK-HOME>",
     ]
 ```
 
@@ -262,9 +277,9 @@ Pay attention that We have two critical parameters:
 1. `--nodewallet-passphrase-file` - path to the file where you keep the passphrase for the vega node wallet.
 2. `socketPath` - path to the Unix sock file vega creates for communicating with other network components running locally. 
 
-**NOTE**: make sure the parent dir for the `sock` file exists. To ensire it you may run: `mkdir -p <USER-HOME>/run/vega.sock`
+**NOTE**: make sure the parent dir for the `sock` file exists. To ensure it you may run: `mkdir -p <USER-HOME>/run/vega.sock`
 
-### 9. Prepare systemd service for vegavisor (optional for non-visor setup)
+### 11. Prepare systemd service for vegavisor (optional for non-visor setup)
 
 Just create `/lib/systemd/system/vegavisor.service` file with the following content:
 
@@ -298,13 +313,73 @@ Above file must be created with the `root` or a higher permission user.
 - vega (tendermint is part of the vega process now)
 - data-node (optional)
 
-### 10. Update vega core config
+### 12. Create vega&data-node systemd services (only if you are not using vegavisor)
+
+1. Create the vega systemd service(see example below) under the location: `/lib/systemd/system/vega.service`
+2. Create the data-node systemd(if you are going to run data-node) file: `/lib/systemd/system/data-node.service`
+
+Example of the vega service file:
+
+```toml
+# /lib/systemd/system/vega.service
+
+[Unit]
+Description=vega
+Documentation=https://github.com/vegaprotocol/vega
+After=network.target network-online.target
+Requires=network-online.target
+
+[Service]
+User=vega
+Group=vega
+ExecStart="<VEGA-BIN>" start --home "<VEGA-NETWORK-HOME>" --tendermint-home "<TENDERMINT-HOME>" --nodewallet-passphrase-file "<VEGA-NETWORK-HOME>/all-wallet-passphrase.txt"
+TimeoutStopSec=10s
+LimitNOFILE=1048576
+LimitNPROC=512
+PrivateTmp=true
+ProtectSystem=full
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Example of the data-node service file:
+
+```
+# /lib/systemd/system/data-node.service
+
+[Unit]
+Description=tendermint
+Documentation=https://github.com/vegaprotocol/vega
+After=network.target network-online.target
+Requires=network-online.target
+
+[Service]
+User=vega
+Group=vega
+ExecStart="<VEGA-BIN>" datanode start --home "<VEGA-NETWORK-HOME>"
+TimeoutStopSec=10s
+LimitNOFILE=1048576
+LimitNPROC=512
+PrivateTmp=true
+ProtectSystem=full
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+
+[Install]
+WantedBy=multi-user.target
+```
+
+
+### 12. Update vega core config
+
+**NOTE**: This step may be time consuming, as there is no automation and it needs to be done by hands. 
 
 There are a few ways to update your existing vega config. The practical way to see what changed in the vega config is as follows:
 
 1. Generate the vega node in a temporary location: `<VEGA-BIN> init --home /tmp/vega-home <TYPE>`; when the terminal asks you about passphrases, type whatever. We are interested only in the `config.toml` file. The `<TYPE>` may be different depending on the configuration you are running
-  a. `validator` - if you are running only vega-core w/o data-node, e.g., `<VEGA-BIN> init --home /tmp/vega-home validator`
-  b. `full` - if you are running vega-core with data-node, e.g., `<VEGA-BIN> init --home /tmp/vega-home full`
+    - a. `validator` - if you are running only vega-core w/o data-node, e.g., `<VEGA-BIN> init --home /tmp/vega-home validator`
+    - b. `full` - if you are running vega-core with data-node, e.g., `<VEGA-BIN> init --home /tmp/vega-home full`
 2. Compare the old config with the generated one: `diff <VEGA-NETWORK-HOME>/config/node/config.toml /tmp/vega-home/config/node/config.toml`
 3. Update your `<VEGA-NETWORK-HOME>/config/node/config.toml` file based on the above diff
 
@@ -312,9 +387,11 @@ There are a few ways to update your existing vega config. The practical way to s
 
 **NOTE**: You are responsible for deciding what parameters you want to use. `vega init` generates a config with default values. Values in your config may be changed intentionally. Review and prepare your config carefully.
 
-### 11. Update tendermint config
+### 13. Update tendermint config
 
-The procedure is very similar to updating the vega config.
+**NOTE**: This step may be time consuming, as there is no automation and it needs to be done by hands.
+
+The procedure is very similar to updating the vega config. I recommend to read [the official documentation how to run tendermint in production](https://docs.tendermint.com/v0.33/tendermint-core/running-in-production.html)
 
 1. Generate tendermint node in a temporary location: `<VEGA-BIN> tm init --home /tmp/tendermint-home`
 2. Compare the original tendermint config with the generated one: `diff /tmp/tendermint-home/config/config.toml <TENDERMINT-HOME>/config/config.toml`
@@ -324,31 +401,42 @@ The procedure is very similar to updating the vega config.
 
 **NOTE**: You are responsible for deciding what parameters you want to use. `vega tm init` generates a config with default values. Values in your config may be changed intentionally. Review and prepare your config carefully.
 
-### 12. Install PostgreSQL instance (optional for non-data-node setup)
+### 14. Install/Upgrade PostgreSQL instance (optional for non-data-node setup)
 
 The PostgreSQL must be on the same server as the data node, as the PostgreSQL does data-snapshot in the data-node location file space. The data node uses postgresql snapshots for the network-history feature.
 
-We tested data-node with:
+You must install the following version of software:
+
 - PostgreSQL 14
 - TimescaleDB: 2.8.0
 
+If above version mismatch, you should upgrade/downgrade your software.
 
 The procedure for preparing postgresql is:
 
 1. Install PostgreSQL. As a reference, use [the official documentation](https://www.postgresql.org/download/linux/ubuntu/)
 2. Install TimescaleDB. As a reference, use [the official documentation](https://docs.timescale.com/install/latest/self-hosted/installation-linux/)
-3. Apply recommended timescale tunning unless you want to do it manually(and you know what you are doing): `timescaledb-tune --quiet --yes`
+3. Apply recommended timescale tunning unless you want to do it manually(and you know what you are doing): `timescaledb-tune` 
 4. Login to postgresql super user: `sudo -u postgres psql`
 5. Create the `<VEGA-DB-USER>` user in postgresql: `create user <VEGA-DB-USER> with encrypted password '<VEGA-DB-PASS>';`
 6. With the `<VEGA-DB-USER>` user create a `<VEGA-DB-NAME>` database: `create database <VEGA-DB-NAME> with OWNER=<VEGA-DB-USER>;`
 7. Ensure `<VEGA-DB-USER>` has permissions to `<VEGA-DB-NAME>`: `grant all privileges on database <VEGA-DB-NAME> to <VEGA-DB-USER>;`
 8. Grant the `SUPERUSER` permissions for the `<VEGA-DB-USER>` user: `alter user <VEGA-DB-USER> with SUPERUSER;`
-9. Grant the following roles for the `<VEGA-DB-USER>` user:
-  a. pg_write_server_files: `grant pg_write_server_files TO <VEGA-DB-USER>;`
-  b. pg_signal_backend: `grant pg_signal_backend TO <VEGA-DB-USER>;`
-10. Switch database to `<VEGA-DB-NAME>`: `\c <VEGA-DB-NAME>`
-11. Activate extension for new database: `CREATE EXTENSION IF NOT EXISTS timescaledb;`
-12. Ensure you have access to the vega database with your credentials: `psql --host=127.0.0.1 --port=5432 --username=<VEGA-DB-USER> --password <VEGA-DB-NAME>`, and enter the `<VEGA-DB-PASS>`
+9. Switch database to `<VEGA-DB-NAME>`: `\c <VEGA-DB-NAME>`
+10. Activate extension for new database: `CREATE EXTENSION IF NOT EXISTS timescaledb;`
+11. Quit the postgresql terminal: Just type `\q`
+12. Ensure you have access to the vega database with your new credentials: `psql --host=127.0.0.1 --port=5432 --username=<VEGA-DB-USER> --password <VEGA-DB-NAME>`, and enter the `<VEGA-DB-PASS>`
+13. Ensure <POSTGRESQL-LINUX-USER>(see below how to determine it) has access to the `<VEGA-NETWORK-HOME>/state/data-node` directory: `sudo usermod -a -G <VEGA-USER> <POSTGRESQL-LINUX-USER>`
+
+
+#### How to determine the <POSTGRESQL-LINUX-USER>?
+
+The user who runs the postgresql process needs access to the data node state directory to put snapshots there. To determine what is the user run the following command:
+
+```bash
+ps aux | grep 'postgres' | grep -v 'grep' | awk '{ print $1 }' | sed '1 d' | sort | uniq
+```
+
 
 
 Final result should looks like below:
@@ -356,20 +444,20 @@ Final result should looks like below:
 ```sql
 postgres=# \du
                                                     List of roles
- Role name         |                         Attributes                         |                 Member of
--------------------+------------------------------------------------------------+-------------------------------------------
+ Role name         |                         Attributes                         |   Member of
+-------------------+------------------------------------------------------------+----------------
  postgres          | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
- <VEGA-DB-USER>    | Superuser                                                  | {pg_write_server_files,pg_signal_backend}
+ <VEGA-DB-USER>    | Superuser                                                  |
 ```
 
-### 13. Update data-node config (optional for non-data-node setup)
+### 15. Update data-node config (optional for non-data-node setup)
 
 However, following the same procedure as for `vega` and `tendermint` is possible. There are a lot of changes in the data-node config. I recommend a different approach to that.
 
-1. Remove the data-node state(ensure you have backup): `rm -r <DATA-NODE-HOME>/state/data-node/`
-2. Ensure you have a backup of your old data-node config: `cp <DATA-NODE-HOME>config/data-node/config.toml <BACKUP-FOLDER>/data-node-config.toml`
-3. Init the data-node config: `<VEGA-BIN> datanode init --archive --home=<DATA-NODE-HOME> <CHAIN-ID> --force`
-4. Modify generated data-node config: `<DATA-NODE-HOME>config/data-node/config.toml` - see section below for important parameters
+1. Remove the data-node state(ensure you have backup): `rm -r <VEGA-NETWORK-HOME>/state/data-node/`
+2. Ensure you have a backup of your old data-node config: `cp <VEGA-NETWORK-HOME>config/data-node/config.toml <BACKUP-FOLDER>/data-node-config.toml`
+3. Init the data-node config: `<VEGA-BIN> datanode init --archive --home=<VEGA-NETWORK-HOME> <CHAIN-ID> --force`
+4. Modify generated data-node config: `<VEGA-NETWORK-HOME>config/data-node/config.toml` - see section below for important parameters
 
 **NOTE**: We should use the `--archive` flag to keep data for a longer period.
 
@@ -379,7 +467,7 @@ Important config keys We updates are:
 
 - `AutoInitialiseFromNetworkHistory` - We recommend setting it to `false` when you start the network from scratch(e.g., checkpoint restart), or there is no other data node available
 - `ChainID` - Make sure it matches the new chain id for your network
-- `Admin.Server.SocketPath` - Path for the Unix `sock` file; Ensure parent directory exists. Example may be `<DATA-NODE-HOME>/run/datanode.sock`
+- `Admin.Server.SocketPath` - Path for the Unix `sock` file; Ensure parent directory exists. Example may be `<VEGA-NETWORK-HOME>/run/datanode.sock`
 - `API.CoreNodeIP` - IP of the server where the vega core node is running. Usually, it is `127.0.0.1.` (localhost)
 - `API.CoreNodeGRPCPort` - Port, you expose vega core GRPC node, By default: `3002`
 - `SQLStore.wipe_on_startup` - Defines if data-node removes data from the postgresql after the restart. We recommend setting it to `false`.
@@ -412,24 +500,19 @@ Format of the `BootstrapPeers` is:
 
 Example `BootstrapPeers` value:
 
+Do not use below bootstrap peers as it is only example from the testnet!
+
 ```toml
 BootstrapPeers = ["/dns/n05.stagnet1.vega.xyz/tcp/4001/ipfs/12D3KooWHNyJBuN9GmYp23FAdMbL3nmwe5DzixFNL8d4oBTMzxag","/dns/n06.stagnet1.vega.xyz/tcp/4001/ipfs/12D3KooWQpceAbYaEaas65tEt8CJofHgjRPANaojwA7oaQApHTvB"]
 ```
 
-### 14. Reload systemd services
+### 16. Reload systemd services
 
-We have to reload the systemd services to load the previously added vegavisor service. Use the following command: `sudo systemctl daemon-reload`
+We have to reload the systemd services to load the previously added vegavisor(or vega&data-node) services. Use the following command: `sudo systemctl daemon-reload`
 
-### 15. Unsafe reset all
+### 17. Start the network
 
-**NOTE**: Ensure you have a backup of the network files because the steps below will remove data from your home. You may risk losing your wallets, so backup them as well.
-
-1. Call unsafe reset all for tendermitn: `<VEGA-BIN> tendermint unsafe-reset-all --home <TENDERMINT-HOME>`
-2. Call unsafe reset all for vega core: `<VEGA-BIN> unsafe_reset_all --home <VEGA-NETWORK-HOME>`
-3. Remove data-node state. Required for older version of data node(before v0.68.0): `rm -r <DATA-NODE-HOME>/state/data-node`
-4. Recreate the postgresql database if you have data with 
-
-### 16. Start the network
+#### If you are running vegavisor 
 
 ```bash
 sudo systemctl start vegavisor
@@ -437,6 +520,27 @@ sudo systemctl start vegavisor
 
 ***NOTE**: To verify vega node is working correctly, check the status of the vegavisor. You may do it with the `systemctl status vegavisor` command.
 
-
 **NOTE**: To check the network logs, you may want to run the following command:
 `journalctl -u vegavisor -n 10000`
+
+
+#### If you are running without vegavisor
+
+```bash
+sudo systemctl start vega
+sudo systemctl start data-node
+```
+
+To check their statuses run the following commands:
+
+```bash
+sudo systemctl status vega
+sudo systemctl status data-node
+```
+
+To see their logs run the following commands:
+
+```bash
+journalctl -u vega -n 5000
+journalctl -u data-node -n 5000
+```
