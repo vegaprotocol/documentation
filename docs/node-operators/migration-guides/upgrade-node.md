@@ -130,7 +130,7 @@ mv visor <VISOR-BIN>
 
 ### 4. Reset and clear all data
 
-:::warn Back up files before progressing
+:::warning Back up files before progressing
 Ensure you have a backup of the network files because the steps below will remove data from your home.
 
 You may also risk losing your wallets, so back them up as well.
@@ -404,7 +404,7 @@ There are a few ways to update your existing Vega config. The most practical way
 2. Compare the old config with the generated one: `diff <VEGA-NETWORK-HOME>/config/node/config.toml /tmp/vega-home/config/node/config.toml`
 3. Update your `<VEGA-NETWORK-HOME>/config/node/config.toml` file based on the above diff
 
-:::warn Config parameters
+:::warning Config parameters
 We strongly recommend you read the list of configuration changes in the [upgrading file ↗](https://github.com/vegaprotocol/vega/blob/develop/UPGRADING.md#configuration-changes) to understand what config parameters and sections have changed.
 
 You are responsible for deciding what parameters you want to use. `vega init` generates a config with default values. Values in your config may be changed intentionally. Review and prepare your config carefully.
@@ -422,7 +422,7 @@ The procedure is very similar to updating the Vega config. We recommend you read
 2. Compare the original Tendermint config with the generated one: `diff /tmp/tendermint-home/config/config.toml <TENDERMINT-HOME>/config/config.toml`
 3. Update your `<TENDERMINT-HOME>/config/config.toml` file based on the above diff
 
-:::warn Config parameters
+:::warning Config parameters
 We recommend discussing Tendermint changes with the validator operators as they are essential for running the network. 
 
 It is also important to understand the Tendermint configuration parameters as described in the [Tendermint docs ↗](https://docs.tendermint.com/v0.33/tendermint-core/configuration.html)
