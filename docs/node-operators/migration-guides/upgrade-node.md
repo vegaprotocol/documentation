@@ -452,8 +452,7 @@ The procedure for preparing PostgreSQL:
 10. Activate extension for new database: `CREATE EXTENSION IF NOT EXISTS timescaledb;`
 11. Quit the PostgreSQL terminal: `\q`
 12. Ensure you have access to the Vega database with your new credentials: `psql --host=127.0.0.1 --port=5432 --username=<VEGA-DB-USER> --password <VEGA-DB-NAME>`, and enter the `<VEGA-DB-PASS>`
-13. Ensure <POSTGRESQL-LINUX-USER> (see below for how to determine it) has access to the `<VEGA-NETWORK-HOME>/state/data-node` directory: `sudo usermod -a -G <VEGA-USER> <POSTGRESQL-LINUX-USER>`
-
+13. Ensure `<POSTGRESQL-LINUX-USER>` (see below for how to determine it) has access to the `<VEGA-NETWORK-HOME>/state/data-node` directory: `sudo usermod -a -G <VEGA-USER> <POSTGRESQL-LINUX-USER>`
 
 #### How to determine the POSTGRESQL-LINUX-USER
 The user who runs the PostgreSQL process needs access to the data node state directory to put snapshots there. To determine the user, run the following command:
