@@ -21,7 +21,7 @@ The instructions below are written for Debian-like Linux operating systems.
 
 The guide uses systemd commands(`systemctl` and `journalctl`) to control binaries in our setup. If you are using something different, that article's commands may vary.
 
-They are specificially intended for those who are already running a validator node. 
+This guide is specifically intended for those who are already running a validator node. 
 
 Before you start, note that the instructions use the following variables for file paths:
 
