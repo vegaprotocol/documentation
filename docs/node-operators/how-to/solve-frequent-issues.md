@@ -15,7 +15,9 @@ If you come across an issue you don't see addressed here - share it in the valid
 
 Some of the issues below will be addressed in future software versions, while others may be a result of mis-configurations.
 
-## Problem: Data node fails to startup because it times out when `fetching history for segment`
+## Problem: Data node fails to start because it times out when `fetching history for segment`
+
+You may see the following information in your error log. 
 
 ```log
 INFO	datanode.start.persistentPre	start/node_pre.go:121	Auto Initialising Datanode From Network History
@@ -26,12 +28,14 @@ INFO	datanode.start.persistentPre	networkhistory/initialise.go:81	fetching histo
 failed to initialize datanode from network history: failed to fetch history blocks:failed to fetch history:could not write out the fetched history segment: context deadline exceeded
 ```
 
-## Solution:
+## Solution: Restart data node
 
-If the above issue happens, just try to start the `data-node` one more time.
+If the above issue happens, try to start the data node one more time.
 
 
-## Problem: Data-node fails to startup with the following panic
+## Problem: Data-node fails to start up with the following panic
+
+You may see the following information in your panic log.
 
 ```log
 panic: runtime error: invalid memory address or nil pointer dereference [recovered]
@@ -74,15 +78,15 @@ created by code.vegaprotocol.io/vega/cmd/vega/node.(*Command).Run
         /home/runner/work/vega/vega/cmd/vega/node/node.go:131 +0x6af
 ```
 
-### Solution
-The above problem is caused by wrong file permissions for `snapshot` database.
+### Solution: Check permissions
+The above problem is caused by wrong file permissions for the `snapshot` database.
 
-To verify: list all files in `<vega-home>/state/node/snapshots/snapshot.db/` and check that all files should be owned by the user that runs `data-node` service.
+To verify: List all files in `<vega-home>/state/node/snapshots/snapshot.db/` and check that all files are owned by the user that runs the data node service.
 
-To fix: change the ownership of all files in that directory to the user that runs `data-node` service. and start the service again.
+To fix: Change the ownership of all files in that directory to the user that runs data node service, and start the service again.
 
-Possilbe cause of issue:
-You could have run the follwing command from a different user, e.g. `root`:
+Possible cause: You may have run the following command when connected as a different user, e.g. `root`:
+
 ```bash
 # list all the local snapshots
 sudo ./vega tools snapshot
