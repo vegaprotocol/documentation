@@ -15,9 +15,20 @@ If you come across an issue you don't see addressed here - share it in the valid
 
 Some of the issues below will be addressed in future software versions, while others may be a result of mis-configurations.
 
-## Problem: Data node times out when fetching history for segment
+## Problem: Data node fails to startup because it times out when `fetching history for segment`
 
-## Solution: 
+```log
+INFO	datanode.start.persistentPre	start/node_pre.go:121	Auto Initialising Datanode From Network History
+INFO	datanode.start.persistentPre	networkhistory/initialise.go:61	got most recent history segment	{"segment": "from_height:136001 to_height:137000 history_segment_id:\"QmWtU5Xks8CewedyYtibLZ32tgSifoNozyQTLibYNmTmcV\" previous_history_segment_id:\"Qmc6uqPnLdMUTgLuvm5FmSGe3WarveJ9UvB1GvbEf6XsvT\"", "peer": "143.198.66.233:3007"}
+INFO	datanode.start.persistentPre	start/node_pre.go:125	fetching history using as the first segment:{QmWtU5Xks8CewedyYtibLZ32tgSifoNozyQTLibYNmTmcV} and minimum blocks to fetch 1
+INFO	datanode.start.persistentPre	networkhistory/initialise.go:81	fetching history for segment id:QmWtU5Xks8CewedyYtibLZ32tgSifoNozyQTLibYNmTmcV
+
+failed to initialize datanode from network history: failed to fetch history blocks:failed to fetch history:could not write out the fetched history segment: context deadline exceeded
+```
+
+## Solution:
+
+If the above issue happens, just try to start the `data-node` one more time.
 
 
 ## Problem: Data-node fails to startup with the following panic
