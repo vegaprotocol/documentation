@@ -186,7 +186,7 @@ While Visor is optional, it is strongly recommended that you install and use Vis
 If you will NOT use Visor, skip to [step 12](#12-create-vega-and-data-node-systemd-services).
 
 ### 8. Initiate Visor
-It's strongly recommended that you set up Visor for automatic protocol upgrades. Visor enables you to upgrade to future versions without needing to coordinate with all validators. If you have Visor enabled, a validator can propose a block for an upgrade, your node can agree to that proposal, and the upgrade will happen at the pre-determined block height without intervention.
+It's strongly recommended that you set up Visor for automatic protocol upgrades. Visor enables you to upgrade to future versions without needing to coordinate with all validators. If you have Visor enabled, a validator can propose a block for an upgrade, your node can agree to that proposal, and the upgrade will happen at the predetermined block height without intervention.
 
 If you have questions about Visor, or would like to suggest enhancements, please raise them in the Validators Discord channel, or as issues on the [Vega repo ↗](https://github.com/vegaprotocol/vega/issues).
 
@@ -221,7 +221,7 @@ Use the following pages as a reference:
 ```toml
 # <VEGAVISOR-HOME>/config.toml 
 
-# Try every 2 seconds; 165 retries is 330sec
+# Try every 2 seconds; 165 retries is 330 sec
 maxNumberOfFirstConnectionRetries = 165
 maxNumberOfRestarts = 3
 restartsDelaySeconds = 5
@@ -443,7 +443,7 @@ The procedure for preparing PostgreSQL:
 1. Install PostgreSQL. As a reference, use the [PostgreSQL documentation ↗](https://www.postgresql.org/download/linux/ubuntu/)
 2. Install TimescaleDB. As a reference, use [the Timescale documentation ↗](https://docs.timescale.com/install/latest/self-hosted/installation-linux/)
 3. Apply recommended Timescale tuning unless you want to do it manually - and you know what you are doing: `timescaledb-tune` 
-4. Log in as PostgreSQL super user: `sudo -u postgres psql`
+4. Log in as PostgreSQL superuser: `sudo -u postgres psql`
 5. Create the `<VEGA-DB-USER>` user in PostgreSQL: `create user <VEGA-DB-USER> with encrypted password '<VEGA-DB-PASS>';`
 6. With the `<VEGA-DB-USER>` user create a `<VEGA-DB-NAME>` database: `create database <VEGA-DB-NAME> with OWNER=<VEGA-DB-USER>;`
 7. Ensure `<VEGA-DB-USER>` has permissions to `<VEGA-DB-NAME>`: `grant all privileges on database <VEGA-DB-NAME> to <VEGA-DB-USER>;`
@@ -507,7 +507,7 @@ Important config keys that you need to update:
 ```
 
 #### A bit about network history
-The network history feature allows you to get data into your data node (which acts as a rich API node) faster by fetching data from the other nodes instead replaying it.
+The network history feature allows you to get data into your data node (which acts as a rich API node) faster by fetching data from the other nodes instead of replaying it.
 
 There is an entire section called `NetworkHistory` in the data node's `config.toml`. To use it, you must provide at least one other data node that exposes the IPFS node in the `NetworkHistory.Store.BootstrapPeers` parameter. If you do not provide that, you won't be able to use the IPFS-based network history.
 
