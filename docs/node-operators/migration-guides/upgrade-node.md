@@ -78,7 +78,7 @@ systemctl status data-node
 ### 2. Create backup
 
 ```bash
-mkdir -p <BACKUP-FOLDER>/v0.53.0/core-wallets;
+mkdir -p <BACKUP-FOLDER>/v0.53.0/wallets;
 mkdir -p <BACKUP-FOLDER>/v0.53.0/core-state;
 mkdir -p <BACKUP-FOLDER>/v0.53.0/tm-state;
 
@@ -90,7 +90,10 @@ cp -r <VEGA-NETWORK-HOME>/config <BACKUP-FOLDER>/v0.53.0/vega-config
 cp -r <TENDERMINT-HOME>/config <BACKUP-FOLDER>/v0.53.0/tendermint-config
 
 # copy wallets
-cp -r <VEGA-NETWORK-HOME>/data/node/wallets <BACKUP-FOLDER>/v0.53.0/core-wallets
+cp -r <VEGA-NETWORK-HOME>/data/node/wallets <BACKUP-FOLDER>/v0.53.0/wallets
+cp <TENDERMINT-HOME>/node_key.json <BACKUP-FOLDER>/v0.53.0/wallets
+cp <TENDERMINT-HOME>/priv_validator_key.json <BACKUP-FOLDER>/v0.53.0/wallets
+cp <VEGA-NETWORK-HOME>/nodewallet-passphrase.txt <BACKUP-FOLDER>/v0.53.0/wallets  # filename and location might differ, depending on your setup
 # copy network state
 cp -r <VEGA-NETWORK-HOME>/state/node <BACKUP-FOLDER>/v0.53.0/core-state
 cp -r <TENDERMINT-HOME>/data <BACKUP-FOLDER>/v0.53.0/tm-state
@@ -149,7 +152,7 @@ We recommend doing this at the beginning of the upgrade procedure, but this can 
 
 To load the checkpoint, find more information in the [restart network guide](../how-to/restart-network.md#load-checkpoint) 
 
-1. One of the validators or Vega team member must adjust [the genesis file ↗](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json) in the [Vega Protocol networks repository ↗](https://github.com/vegaprotocol/networks).
+1. One of the Vega team members will adjust [the genesis file ↗](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json) in the [Vega Protocol networks repository ↗](https://github.com/vegaprotocol/networks).
 2. The person responsible for updating genesis needs to create a PR with changes.
 3. All of the validators need to accept changes and approve the PR.
 4. Approved PR must be merged by one of the validators.
@@ -170,23 +173,22 @@ An example workflow for reviewing the genesis file may look like following:
 wget https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/genesis.json
 
 # Copy genesis to its final location
-mv <TENDERMINT-HOME>/config/genesis.json <TENDERMINT-HOME>/config/genesis.json-old
-mv ./genesis.json <TENDERMINT-HOME>/config/genesis.json
+cp ./genesis.json <TENDERMINT-HOME>/config/genesis.json
 
 # Verify genesis
 <VEGA-BIN> verify genesis <TENDERMINT-HOME>/config/genesis.json
 ```
 
 ### 7. Read the Visor documentation
-While Visor is optional, it is strongly recommended that you install and use Visor to simplify protocol upgrades. 
+While Visor is optional, it is recommended that you install and use Visor to simplify protocol upgrades. 
 
 - [See the Visor code ↗](https://github.com/vegaprotocol/vega/tree/develop/visor)
-- [Read the Visor documentation ↗](https://github.com/vegaprotocol/devops-infra/blob/master/docs/mainnet-mirror/restart-with-vegavisor.md)
+- [Read the Visor documentation ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#readme)
 
 If you will NOT use Visor, skip to [step 12](#12-create-vega-and-data-node-systemd-services).
 
-### 8. Initiate Visor
-It's strongly recommended that you set up Visor for automatic protocol upgrades. Visor enables you to upgrade to future versions without needing to coordinate with all validators. If you have Visor enabled, a validator can propose a block for an upgrade, your node can agree to that proposal, and the upgrade will happen at the predetermined block height without intervention.
+### 8. Initiate Visor (optional)
+It's strongly recommended that you set up Visor for automatic protocol upgrades, i.e. to upgrade your node to a newer version. With Visor, an upgrade will happen at a predetermined block height without manual intervention.
 
 If you have questions about Visor, or would like to suggest enhancements, please raise them in the Validators Discord channel, or as issues on the [Vega repo ↗](https://github.com/vegaprotocol/vega/issues).
 
@@ -213,7 +215,7 @@ The config is located in the `<VEGAVISOR-HOME>/config.toml`. Update the configur
 
 Use the following pages as a reference:
 
-- [Documentation for Visor ↗](https://github.com/vegaprotocol/devops-infra/blob/master/docs/mainnet-mirror/restart-with-vegavisor.md)
+- [Documentation for Visor ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#readme)
 - [Visor config documentation ↗](https://github.com/vegaprotocol/vega/blob/develop/visor/visor-config.md)
 
 #### Example config
@@ -258,7 +260,7 @@ name = "genesis"
       "start",
       "--home", "<VEGA-NETWORK-HOME>",
       "--tendermint-home", "<TENDERMINT-HOME>",
-      "--nodewallet-passphrase-file", "<VEGA-NETWORK-HOME>/all-wallet-passphrase.txt",
+      "--nodewallet-passphrase-file", "<VEGA-NETWORK-HOME>/nodewallet-passphrase.txt",
           ]
   [vega.rpc]
     socketPath = "<USER-HOME>/run/vega.sock"
@@ -279,7 +281,7 @@ name = "genesis"
       "start",
       "--home", "<VEGA-NETWORK-HOME>",
       "--tendermint-home", "<TENDERMINT-HOME>",
-      "--nodewallet-passphrase-file", "<VEGA-NETWORK-HOME>/all-wallet-passphrase.txt",
+      "--nodewallet-passphrase-file", "<VEGA-NETWORK-HOME>/nodewallet-passphrase.txt",
           ]
   [vega.rpc]
     socketPath = "<USER-HOME>/run/vega.sock"
@@ -390,7 +392,7 @@ AmbientCapabilities=CAP_NET_BIND_SERVICE
 WantedBy=multi-user.target
 ```
 
-### 12. Update Vega core config
+### 13. Update Vega core config
 
 :::note Manual process
 This step may be time consuming, as there is no automation and it needs to be done by hand. 
@@ -410,7 +412,7 @@ We strongly recommend you read the list of configuration changes in the [upgradi
 You are responsible for deciding what parameters you want to use. `vega init` generates a config with default values. Values in your config may be changed intentionally. Review and prepare your config carefully.
 :::
 
-### 13. Update Tendermint config
+### 14. Update Tendermint config
 
 :::note Manual process
 This step may be time consuming, as there is no automation and it needs to be done by hand. 
@@ -430,7 +432,7 @@ It is also important to understand the Tendermint configuration parameters as de
 You are responsible for deciding what parameters you want to use. `vega tm init` generates a config with default values. Values in your config may be changed intentionally. Review and prepare your config carefully.
 :::
 
-### 14. Install/Upgrade PostgreSQL for data node
+### 15. Install/Upgrade PostgreSQL for data node
 If you are running a data node, you will need to install or upgrade PostgreSQL. The PostgreSQL instance must be on the same server as the data node, as the PostgreSQL does data-snapshot in the data node location file space. The data node uses PostgreSQL snapshots for the network history feature.
 
 Install the following versions of the software:
@@ -472,7 +474,7 @@ postgres=# \du
  <VEGA-DB-USER>    | Superuser                                                  |
 ```
 
-### 15. Update data node config
+### 16. Update data node config
 While following the same procedure for a data node as for `vega` and `tendermint` is possible, there are a lot of changes in the data node config, thus we suggest an alternative process:
 
 1. Ensure you have backup first, then remove the data node state: `rm -r <VEGA-NETWORK-HOME>/state/data-node/`
