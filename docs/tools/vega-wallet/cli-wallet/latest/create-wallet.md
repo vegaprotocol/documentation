@@ -319,3 +319,6 @@ vegawallet service run --network "NETWORK_NAME" --automatic-consent
 ```
 </TabItem>
 </Tabs>
+
+## Wallet API
+See the [Wallet API documentation](../../../../api/vega-wallet) if you're looking to use the Vega Wallet with a script or trading bot, or want to integrate with the wallet software.
