@@ -27,6 +27,8 @@ Click through the tabs below to find out which download file you need.
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
 
+You'll need Windows 8 or newer to use the desktop app.
+
 **For Windows devices with an AMD processor (aka x86-64)**: 
 
 Download `vegawallet-desktop-windows-amd64.zip`
@@ -50,6 +52,8 @@ If you do not have WebView2 installed on your computer, you will be prompted to 
 
 **For Macs with an AMD processor (aka x86-64)**:
 
+You'll need MacOS 10.13 (High Sierra) or newer to use the desktop app.
+
 Download `vegawallet-desktop-darwin-amd64.zip`
 
 **For Macs with an M1 processor** ([See Apple guidance](https://support.apple.com/en-us/HT211814)): 
@@ -59,6 +63,8 @@ Download `vegawallet-desktop-darwin-arm64.zip`
 </TabItem>
 
 <TabItem value="linux" label="Linux">
+
+Linux is generally supported, though the minimum version is unknown.
 
 Download `vegawallet-desktop-linux-amd64.zip`
 </TabItem>
