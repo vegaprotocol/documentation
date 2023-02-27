@@ -183,7 +183,7 @@ cp ./genesis.json <TENDERMINT-HOME>/config/genesis.json
 While Visor is optional, it is strongly recommended that you install and use Visor to simplify protocol upgrades. 
 
 - [See the Visor code ↗](https://github.com/vegaprotocol/vega/tree/develop/visor)
-- [Read the Visor documentation ↗](https://github.com/vegaprotocol/devops-infra/blob/master/docs/mainnet-mirror/restart-with-vegavisor.md)
+- [Read the Visor documentation ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#readme)
 
 If you will NOT use Visor, skip to [step 12](#12-create-vega-and-data-node-systemd-services).
 
@@ -215,7 +215,7 @@ The config is located in the `<VEGAVISOR-HOME>/config.toml`. Update the configur
 
 Use the following pages as a reference:
 
-- [Documentation for Visor ↗](https://github.com/vegaprotocol/devops-infra/blob/master/docs/mainnet-mirror/restart-with-vegavisor.md)
+- [Documentation for Visor ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#readme)
 - [Visor config documentation ↗](https://github.com/vegaprotocol/vega/blob/develop/visor/visor-config.md)
 
 #### Example config
