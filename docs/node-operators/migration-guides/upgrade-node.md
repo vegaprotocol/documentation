@@ -255,7 +255,7 @@ name = "genesis"
 
 [vega]
   [vega.binary]
-    path = <VEGA-BIN>
+    path = "<VEGA-BIN>"
     args = [
       "start",
       "--home", "<VEGA-NETWORK-HOME>",
@@ -276,7 +276,7 @@ name = "genesis"
 
 [vega]
   [vega.binary]
-    path = <VEGA-BIN>
+    path = "<VEGA-BIN>"
     args = [
       "start",
       "--home", "<VEGA-NETWORK-HOME>",
