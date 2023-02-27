@@ -188,7 +188,7 @@ While Visor is optional, it is recommended that you install and use Visor to sim
 If you will NOT use Visor, skip to [step 12](#12-create-vega-and-data-node-systemd-services).
 
 ### 8. Initiate Visor (optional)
-It's recommended that you set up Visor for automatic protocol upgrades, i.e. upgrade your node to future version. With visor the upgrade will happen at the predetermined block height without manual intervention.
+It's strongly recommended that you set up Visor for automatic protocol upgrades, i.e. to upgrade your node to a newer version. With Visor, an upgrade will happen at a predetermined block height without manual intervention.
 
 If you have questions about Visor, or would like to suggest enhancements, please raise them in the Validators Discord channel, or as issues on the [Vega repo ↗](https://github.com/vegaprotocol/vega/issues).
 
@@ -255,7 +255,7 @@ name = "genesis"
 
 [vega]
   [vega.binary]
-    path = "vega"
+    path = <VEGA-BIN>
     args = [
       "start",
       "--home", "<VEGA-NETWORK-HOME>",
@@ -276,7 +276,7 @@ name = "genesis"
 
 [vega]
   [vega.binary]
-    path = "vega"
+    path = <VEGA-BIN>
     args = [
       "start",
       "--home", "<VEGA-NETWORK-HOME>",
