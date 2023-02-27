@@ -180,15 +180,15 @@ cp ./genesis.json <TENDERMINT-HOME>/config/genesis.json
 ```
 
 ### 7. Read the Visor documentation
-While Visor is optional, it is strongly recommended that you install and use Visor to simplify protocol upgrades. 
+While Visor is optional, it is recommended that you install and use Visor to simplify protocol upgrades. 
 
 - [See the Visor code ↗](https://github.com/vegaprotocol/vega/tree/develop/visor)
 - [Read the Visor documentation ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#readme)
 
 If you will NOT use Visor, skip to [step 12](#12-create-vega-and-data-node-systemd-services).
 
-### 8. Initiate Visor
-It's strongly recommended that you set up Visor for automatic protocol upgrades, i.e. upgrade your node to future version. With visor the upgrade will happen at the predetermined block height without manual intervention.
+### 8. Initiate Visor (optional)
+It's recommended that you set up Visor for automatic protocol upgrades, i.e. upgrade your node to future version. With visor the upgrade will happen at the predetermined block height without manual intervention.
 
 If you have questions about Visor, or would like to suggest enhancements, please raise them in the Validators Discord channel, or as issues on the [Vega repo ↗](https://github.com/vegaprotocol/vega/issues).
 
