@@ -152,7 +152,7 @@ We recommend doing this at the beginning of the upgrade procedure, but this can 
 
 To load the checkpoint, find more information in the [restart network guide](../how-to/restart-network.md#load-checkpoint) 
 
-1. One of the validators must adjust [the genesis file ↗](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json) in the [Vega Protocol networks repository ↗](https://github.com/vegaprotocol/networks).
+1. One of the Vega team members will adjust [the genesis file ↗](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json) in the [Vega Protocol networks repository ↗](https://github.com/vegaprotocol/networks).
 2. The person responsible for updating genesis needs to create a PR with changes.
 3. All of the validators need to accept changes and approve the PR.
 4. Approved PR must be merged by one of the validators.
