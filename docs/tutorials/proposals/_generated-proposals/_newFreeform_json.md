@@ -7,7 +7,7 @@
   },
   "terms": {
     "newFreeform": {},
-    "closingTimestamp": 1677689662000
+    "closingTimestamp": 1679225161000
   }
 }
 ```
