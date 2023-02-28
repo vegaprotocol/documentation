@@ -1,6 +1,18 @@
 ---
 id: trading-data-service-list-ledger-entries
 title: "Ledger entries"
+description: "List ledger entries by asset, market, party, account type and transfer type within the given date range.
+This query requests and sums the number of ledger entries from a given subset of accounts, specified via the 'filter' argument.
+It returns a time series (implemented as a list of AggregateLedgerEntry structs), with a row for every time
+the summed ledger entries of the set of specified accounts changes.
+Listed entries should be limited to a single party from each side only. If zero or more than one party is provided
+for each of the sides - sending and receiving accounts, the query returns an error.
+
+Entries can be queried by:
+  - listing ledger entries with filtering on the sending account (market ID, asset ID, account type)
+  - listing ledger entries with filtering on the receiving account (market ID, asset ID, account type)
+  - listing ledger entries with filtering on the sending AND receiving account
+  - listing ledger entries with filtering on the transfer type (on top of above filters or as a standalone option)"
 sidebar_label: "Ledger entries"
 hide_title: true
 hide_table_of_contents: true

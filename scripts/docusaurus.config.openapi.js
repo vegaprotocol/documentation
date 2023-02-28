@@ -70,7 +70,7 @@ function generateRestDocument (version, specPath, isMainnet) {
     specPath,
     outputDir,
     downloadUrl: `https://raw.githubusercontent.com/vegaprotocol/documentation/main/specs/v${version}/${ids.filename}`,
-    template: ids.filename.includes('wallet') ? 'rest-templates/default.mustache' : 'rest-templates/wallet.mustache',
+    template: ids.filename.includes('wallet') ? 'rest-templates/wallet.mustache' : 'rest-templates/default.mustache',
     sidebarOptions: {
       groupPathsBy: 'tag'
     }
