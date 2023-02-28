@@ -19,9 +19,9 @@
         }
       }
     },
-    "closingTimestamp": 1679225161000,
-    "enactmentTimestamp": 1679311561000,
-    "validationTimestamp": 1679311561000
+    "closingTimestamp": 1678708127000,
+    "enactmentTimestamp": 1678794527000,
+    "validationTimestamp": 1678794527000
   }
 }
 ```

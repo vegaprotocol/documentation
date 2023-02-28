@@ -19,7 +19,7 @@ To download Vega Wallet and create your wallet, follow the step-by-step instruct
 This software is frequently updated. As of August 2022, the Vega Wallet software has moved from `vegawallet` to [`vega` ↗](https://github.com/vegaprotocol/vega/releases/) on GitHub, and the version numbers have changed. 
 
 :::caution Wallet version
-These instructions cover Vega Wallet version 0.67.3, which is compatible with Vega network(s) that are on v0.67.3. If you need a Vega Wallet for mainnet, see [Create a wallet (mainnet)](https://docs.vega.xyz/docs/mainnet/tools/vega-wallet/cli-wallet/latest/create-wallet).
+These instructions cover Vega Wallet version 0.68.0, which is compatible with Vega network(s) that are on v0.68.0. If you need a Vega Wallet for mainnet, see [Create a wallet (mainnet)](https://docs.vega.xyz/docs/mainnet/tools/vega-wallet/cli-wallet/latest/create-wallet).
 :::
 
 Note: If you are looking for instructions for connecting your hardware wallet to MetaMask, see [MetaMask's guide ↗](https://metamask.zendesk.com/hc/en-us/articles/360020394612-How-to-connect-a-Trezor-or-Ledger-Hardware-Wallet).
@@ -143,7 +143,7 @@ vegawallet create --wallet "MY_WALLET_NAME"
 
 </Tabs>
 
-It will then prompt you to **input a passphrase**, and then **confirm that passphrase**. You'll use this wallet name and passphrase to login to the token site and Vega Console.
+It will then prompt you to **input a passphrase**, and then **confirm that passphrase**.
 
 :::warning
 Keep your recovery phrase safe and secret. You will need it to import your keys. 
@@ -319,3 +319,6 @@ vegawallet service run --network "NETWORK_NAME" --automatic-consent
 ```
 </TabItem>
 </Tabs>
+
+## Wallet API
+See the [Wallet API documentation](../../../../api/vega-wallet) if you're looking to use the Vega Wallet with a script or trading bot, or want to integrate with the wallet software.

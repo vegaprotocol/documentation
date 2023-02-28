@@ -26,6 +26,41 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Pre-release Version 0.68.0 | 2023-02-22
+This version was released to the Vega testnet on 22 February 2023.
+
+Version 0.68.0 addresses the required improvements and fixes identified during pre-Alpha Mainnet Market Sim 1. Much of the effort on this version was spent ensuring data node stability, and this identified two areas of concern. The first of these was a memory leak found in the event subscriber. This functionality is where events are emitted by the core and consumed by the data nodes. The code shared between the nodes has been simplified and the memory leak fixed. Secondly, it was noticed that the data node did not close GraphQL subscriptions once they had been finished with, meaning many connections were left open, increasing the memory usage of the data node. To further help with CPU utilisation on both the core and data nodes, the team consolidated order expiry events into a single event containing just the market and order IDs of those orders set to expire.
+
+In addition, improvements have been made to the protocol for margin calculations and capping of slippage. The latter of these changes resolves an issue whereby it was possible for a user to be closed out when the market moved in their favour. With the introduction of two new network parameters, the slippage component of the margin is never allowed to be larger than the `slippage_cap`, and if there is insufficient volume on the book, the cap is used instead of slippage per unit.
+
+Finally, API enhancements in this release include a new API to query the market conditions that led to closeouts and loss socialisation. These changes combined with improvements in error messaging in the wallet round off a number of great UX improvements taking the protocol a step closer to Alpha Mainnet.
+
+:::caution Breaking changes
+**Data node API rate limiting**: Rate limiting has been introduced for the GRPC, REST and GraphQL APIs. Users will be warned and where required banned from submitting more requests. Should the user continue to breach the API rate limits, the ban length will increase exponentially.
+
+**`IssueSignatures` command**: The `IssueSignatures` command is no longer limited to validators, and can now be used by any member of the community. It is also now covered by spam protection rules.
+
+To find out more please see these issues [7445 ↗](https://github.com/vegaprotocol/vega/issues/7445) and [7382 ↗](https://github.com/vegaprotocol/vega/issues/7382)
+
+To find out more please see all 0.68.0 [breaking changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0660) entries in the changelog.
+:::
+
+:::warning Removals
+**`Grpc-Metadata-` headers**: The deprecated headers with the `Grpc-Metadata-` prefix in datanode API and REST and GraphQL gateways have now been removed.
+
+**Network API**: The legacy fields from network API have now been removed.
+
+To find out more please see these issues [7419 ↗](https://github.com/vegaprotocol/vega/issues/7419) and [6963 ↗](https://github.com/vegaprotocol/vega/issues/6963)
+:::
+
+:::warning Deprecations
+**`X-Vega-Connection` HTTP header**: The `X-Vega-Connection` HTTP header in data node API and REST and GraphQL gateways has been deprecated and will be removed in a future release.
+
+To find out more please see issue [7385 ↗](https://github.com/vegaprotocol/vega/issues/7385)
+:::
+
+This release contains a large number of bug fixes and minor enhancements. Check out the full details in the Vega core [0.68.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.68.0) release page.
+
 ### Pre-release Versions 0.67.0, 0.67.1, 0.67.2 and 0.67.3 combined | 2023-01-20
 This version was released to the Vega testnet on 20 January 2023, with patch 0.67.3 released on 24 January.
 

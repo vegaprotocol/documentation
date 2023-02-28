@@ -239,8 +239,6 @@ persistent_peers = "55b8ac477ddd6c0c9bae411dfa6ebfb46e7b4022@veganodeoperator.co
 ```
 
 
-Then ensure the `max_packet_msg_payload_size` is at least 16384.
-
 Under `Mempool Configuration Option`, ensure that `broadcast = true`.
 
 

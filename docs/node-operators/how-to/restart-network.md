@@ -1,6 +1,6 @@
 ---
 sidebar_position: 6
-title: How to restart a network with checkpoints
+title: How to restart and upgrade a network with checkpoints
 sidebar_label: Restart network with checkpoints
 hide_title: false
 ---
@@ -122,7 +122,7 @@ If you do not want to enable SSL, ensure `HTTPSEnabled` is set to false or the d
 ### Stop the network
 Wait for a new checkpoint file to be produced, then stop all the nodes of the network (Vega, data node and Tendermint). Once stopped, back up all Tendermint chain data and Vega data.
 
-Save the selected checkpoint file in a safe location. You will need to reuse it later.
+Save the selected checkpoint file in **a safe location**. You will need to reuse it later.
 
 :::info
 You can locate all your nodes' checkpoint files under: `YOUR_VEGA_HOME/vega/node/checkpoints`
@@ -146,14 +146,30 @@ rm -rf "YOUR_DATANODE_HOME/vega/data-node/storage/"
 The exact path of the data node folder to remove can be found using `vega paths list`. The required path is `DataNodeStorageHome` in the list.
 :::
 
+### Load checkpoint
+
+The loaded checkpoint is part of genesis in the current version of vega. To load a new `checkpoint`, you need the following things:
+`vega` - the binary version you will be starting a new version of the network
+`checkpoint` - you selected to load into the genesis
+`genesis.json` - you are going the `checkpoint` to 
+
+To load a checkpoint into genesis you have to execute the following command:
+
+```bash
+vega genesis load_checkpoint --genesis-file=<path-to-genesis.json-file> --checkpoint-path=<path-to-checkpoint-file>
+
+#example:
+# vega genesis load_checkpoint --genesis-file=./genesis.json --checkpoint-path=./20230125112555-522765-3ece638a9eba5771c392b323ca7e0134198009a84c60700ec04dd888f5b60521.cp
+```
+
 ### Update the genesis file
 One of the validators will now need to update the [genesis file](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json) with the following information:
 - The new start date of the network
 - The new network ID
-- The hash of the checkpoint file to be used
+- Load checkpoint (see above section)
 
 This should be done via a pull request on the [networks](https://github.com/vegaprotocol/networks) repo and ideally approved by 2/3+1 of all validators.
 
 ### Restart the network
 
-Each validator then needs to restart their node with the latest release of the software.
+Each validator then needs to restart their node with the latest release of the software. Follow the instructions in the [setup server guide](../get-started/setup-server) to build from the version you are upgrading to.
