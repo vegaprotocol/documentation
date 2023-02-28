@@ -277,10 +277,11 @@ a.external:after {
     text-decoration-color: var(--ifm-color-secondary-darkest);
 }
 
-/* Very specific styles to eliminate some */
-.col--12 .stub details div.collapsibleContent_node_modules-\@docusaurus-theme-common-lib-components-Details-styles-module {
+/* Very specific styles to eliminate some double lines
+  'Class starts with' selector used because the name changes in build */
+.col--12 .stub details div[class^='collapsibleContent_'] {
   border-top: none !important;
-  margin-top: none !important;
+  margin-top: 0px !important;
   padding-top: 0; 
 }
 
