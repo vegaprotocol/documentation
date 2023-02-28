@@ -9,7 +9,7 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
  },^
  \"terms\": {^
   \"newFreeform\": {},^
-  \"closingTimestamp\": 1679236526000^
+  \"closingTimestamp\": 1679237089000^
  }^
 }^
 }"

@@ -1,41 +1,6 @@
 ---
 id: submit-a-json-rpc-request-to-the-wallet-api
 title: "Submit a JSON-RPC request to the wallet API."
-description: "This endpoint is the main entrypoint to submit the JSON-RPC requests. The body of the HTTP request should be formatted as a JSON-RPC v2 request. The HTTP response is formatted as the JSON-RPC v2 response.
-
-Be sure to specify the `id` if you are interested in the response. See [the JSON-RPC notification documentation](https://www.jsonrpc.org/specification#notification) for more details.
-
-# Content type
-This endpoint returns a response with a specific `Content-Type` header: `application/json-rpc`.
-
-This content type is used to help third-party applications differentiate the different JSON format return by the 
-
-Note that `application/json-rpc` is not a standard HTTP content type.
-
-# Authentication
-
-## Workflow
-When connecting to a wallet, you will receive a connection token back through the `Authorization` header.
-
-When accessing protected JSON-RPC methods, the connection token must be set to the `Authorization` header. If the connection token is not valid, the server returns a response with the HTTP code 401, and the `WWW-Authenticate` header set to `VWT` as required by the HTTP standards.
-
-### Community implementation of the wallet service
-People might be willing to implement their own wallet service with their own authentication system. We recommend the community implementations to follow the same workflow.
-
-This will save third-party applications from having to _explicitly_ support different authentication schemes, and make the community implementation fully interoperable with all third-party application, out of the box.
-
-### Token format
-
-
-The token will be formatted as follow:
-`VWT <TOKEN>`
-
-`VWT` scheme stands for 'Vega Wallet Token' and is not a standard authorization scheme.
-
-The `<TOKEN>` is a randomly generated string of 64 characters with numbers and letters. Each session generates a unique one.
-
-# Request
-See the [OpenRPC documentation of the wallet](https://docs.vega.xyz) for more details.."
 sidebar_label: "Submit a JSON-RPC request to the wallet API."
 hide_title: true
 hide_table_of_contents: true

@@ -64,6 +64,7 @@ function generateRestDocument (version, specPath, isMainnet) {
 
   const ids = getIdsFromFilename (version, specPath)
   const outputDir = ids.filename.includes('wallet')? `${baseDir}/api/vega-wallet/v2-api/reference/local-service`: `${baseDir}/api/rest/${ids.filename}`
+   console.dir(ids)
 
   const obj = {}
   obj[ids.id] = {
