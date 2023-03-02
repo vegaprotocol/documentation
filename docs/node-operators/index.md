@@ -28,10 +28,11 @@ Setting up and running a validator can be broken down into three parts:
 ## Maintaining your node
 To keep your node and its related components functioning and up-to-date, refer to the how-tos below.
 
-| Topic                                                                 |  Description                                                                                                        |
+| Topic                       |  Description                                                                                                        |
 | ----------------------------------------------------------------------| -------------------------------------------------------------------------------------------------------- |
-| [Propose a protocol upgrade](how-to/propose-protocol-upgrades.md)                               | This guide describes how to propose a protocol software upgrade and how Vega Visor simplifies the process. |
-| [Restart network](how-to/restart-network.md)                               | This explains how to manage network restarts without Vega Visor. |
-| [Restart from snapshots](how-to/use-snapshots.md)                               | This guide will take you through using the state snapshots. |
-| [Rotate Ethereum keys](how-to/rotate-ethereum-keys.md) | This guide will take you through rotating your Ethereum key for security purposes. |
-| [Rotate Vega keys](how-to/rotate-vega-keys.md)                               | This guide will take you through rotating your Vega key for security purposes. |
+| [Restart network with checkpoints](./how-to/restart-network.md)                               | This explains how to manage network restarts. |
+| [Restart from snapshots](./how-to/use-snapshots.md)                               | This guide will take you through using the state snapshots. |
+| [Propose and execute a protocol upgrade](./how-to/upgrade-network.md) | This guide describes how to propose a protocol software upgrade and then upgrade the network using Visor or manually. |
+| [Rotate Ethereum keys](./how-to/rotate-ethereum-keys.md) | This guide will take you through rotating your Ethereum key for security purposes. |
+| [Rotate Vega keys](./how-to/rotate-vega-keys.md)                               | This guide will take you through rotating your Vega key for security purposes. |
+| [Resolve common issues](./how-to/solve-frequent-issues.md)                               | This guide will describe issues you may encounter, and potential solutions. |
