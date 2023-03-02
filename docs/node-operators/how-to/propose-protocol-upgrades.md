@@ -155,7 +155,7 @@ Check the following parameters.
 
 Once you have your visor run config and the network config, you have to wait for the upgrade block. Vegavisor should listen to the upgrade event and restart your binaries. 
 
-### 4. Prepare an upgrade when you are not running vegavisor.
+#### 4. Prepare an upgrade when you are not running vegavisor.
 
 You should do that step only when you are not running the vegavisor.
 
