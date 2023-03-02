@@ -336,7 +336,7 @@ Once your node is up and running, you'll need to maintain it, and ensure that it
 
 See the following guides to learn how to: 
 
-* [Propose a protocol upgrade](../how-to/propose-protocol-upgrades.md)
+* [Propose and enact an upgrade](../how-to/upgrade-network.md)
 * [Restart the network](../how-to/restart-network.md)
 * [Rotate Ethereum keys](../how-to/rotate-ethereum-keys.md)
 * [Rotate Vega keys](../how-to/rotate-vega-keys.md)
