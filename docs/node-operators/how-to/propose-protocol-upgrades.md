@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
-title: Propose & coordinate protocol upgrades
-sidebar_label: Propose & coordinate upgrades
+title: Propose & execute protocol upgrades
+sidebar_label: Propose & execute upgrades
 hide_title: false
 ---
 import Tabs from '@theme/Tabs';
@@ -17,7 +17,7 @@ A protocol upgrade involves two main parts:
 * Submitting a transaction to initiate the upgrade on a specific block
 * Using a process manager, Vega Visor, to coordinate the rollout of the upgrade, or manually upgrading at the agreed block height
 
-## Visor can coordinate upgrades
+## Using Visor to coordinate upgrades
 If an upgrade proposal is approved (more than 2/3 of consensus validators have voted on the proposal), those using Visor can rely on it to coordinate the rollout of the upgrade across all the nodes on the chosen block height. 
 
 This includes stopping the currently running nodes, ensuring that the new binaries are the correct software version, and starting new nodes. Visor also includes features such as restart capability, which allows Visor to retry the start-up several times before failing. 
@@ -29,8 +29,8 @@ Read detailed information about Vega Visor, including how it works, how the conf
 
 You can also read the [architecture overview ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#architecture) and [upgrade flow ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#upgrade-flow) topics in the Visor readme.
 
-## The API endpoints to help with the protocol upgrade
-The data node exposes endpoints for the protocol upgrade. You can use them to see the number of proposals submitted and the protocol upgrade status for the network.
+## API endpoints to help with protocol upgrades
+The data node exposes endpoints for a protocol upgrade. You can use them to see the number of proposals submitted and the protocol upgrade status for the network.
 
 To see proposals submitted for a protocol upgrade, use the **[protocol upgrade proposals](../../api/rest/data-v2/trading-data-service-list-protocol-upgrade-proposals.api.mdx) endpoint**.
 
@@ -52,10 +52,10 @@ If you select the `current block` + 1000 - it should give you 1000 blocks * 1.5 
 To predict the time that you allow for other validators to prepare configs and vote, check the block time on the network. To do that, visit the `http://<YOUR-NODE-IP>:3003/statistics` endpoint. When there are no transactions, the block time is about 1.5 seconds max, though it may be lower, for example, 0.8 seconds.
 :::
 
-### 2. Perform manual steps required for protocol upgrade
+### 2. Perform manual steps required for upgrade
 
 #### a. Vote for an upgrade
-All of the validators must execute this step, regardless of if you are running Vega Visor or not.
+All of the validators must execute this step, regardless of whether or not you are running Vega Visor.
 
 After all the validators agree on `upgrade block height` and the `desired version` of Vega, vote on an upgrade. To vote, use the following command:
 
@@ -79,19 +79,19 @@ vega protocol_upgrade_proposal \
 	--output "json"
 ```
 
-#### b. Prepare a network configuration
+#### b. Prepare network configuration
 After you propose a protocol upgrade, prepare your configuration. 
 
 1. The Vega core configuration (`<VEGA-NETWORK-HOME>/config/node/config.toml`)- only if there were changes
 2. The Tendermint configuration (`<TENDERMINT-HOME>/config/config.toml`)  - only if there were changes
 3. The data node configuration (`<VEGA-NETWORK-HOME>/config/data-node/config.toml`) - only if there were changes and you are running data-node.
 
-You can see the following link to track changes in the configuration: [Configuration changes ↗](https://github.com/vegaprotocol/vega/blob/develop/UPGRADING.md#configuration-changes)
+Track changes in the configuration between versions in the upgrading readme: [Configuration changes ↗](https://github.com/vegaprotocol/vega/blob/develop/UPGRADING.md#configuration-changes)
 
 You must prepare the above configs whether you are running vega with a visor or not.
 
-### 3a. Prepare the Visor configuration
-You can skip this step if you are not running Visor.
+### 3a. Prepare Visor configuration
+You can skip to the next step if you are not running Visor.
 
 1. Create the new version folder in the `<VEGA-VISOR-HOME>`, e.g., for version `v0.68.2`, run the following command: `mkdir -p <VEGA-VISOR-HOME>/v0.68.2`.
 2. Create the run configuration and put it in the folder created in the previous point (see example below)
