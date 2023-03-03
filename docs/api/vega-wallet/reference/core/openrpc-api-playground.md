@@ -1,5 +1,5 @@
 ---
-title: API Playground
+title: OpenRPC Playground
 hide_title: false
 hide_table_of_contents: true
 vega_network: TESTNET

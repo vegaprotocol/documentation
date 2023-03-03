@@ -1,16 +1,11 @@
 ---
-title: How to integrate with Vega Wallet
+title: How-to guides
 hide_title: false
-sidebar_position: 1 
+sidebar_position: 1
 ---
+import Topic from '/docs/topics/_topic-wallet.mdx'
 import DocCardList from '@theme/DocCardList';
 import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
 
+<Topic />
 <DocCardList items={useCurrentSidebarCategory().items}/>
-
-<!--
-* 🧩 **[Connect with a dApp]**: Connect your dApp to the Vega Wallet service
-* 🤖 **[Connect with a bot]**: Connect your bots, or other headless software, to the Vega Wallet service
-* 📚 **[API documentation]**: See the full JSON-RPC documentation to build your integration with the Vega Wallet
-* 🛝 **[API playground]**: Try it out and explore the potential results and errors
--->
