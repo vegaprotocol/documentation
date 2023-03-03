@@ -7,6 +7,8 @@ import Topic from '/docs/topics/_topic-wallet.mdx'
 
 <Topic />
 
+The following guide walks you through connecting to the local service so that you can, for example, connect a dApp you're building to the Vega wallet service. 
+
 ## Verify the service
 1. Verify the service is running with `GET /api/v2/health`
 2. If it is running, verify the service exposes the JSON-RPC methods using `GET /api/v2/methods`
