@@ -47,6 +47,8 @@ function getIdsFromFilename (version, filename) {
     return { id: `corev${ver}`, filename: 'core' }
   } else if (filename.indexOf('blockexplorer') !== -1) {
     return { id: `explorerv${ver}`, filename: 'explorer' }
+  } else if (filename.indexOf('wallet') !== -1) {
+    return { id: `walletv${ver}`, filename: 'wallet' }
   } else {
     throw new Error(`Unknown file: ${filename}, add config in docusaurus.config.js`)
   }
@@ -61,14 +63,15 @@ function generateRestDocument (version, specPath, isMainnet) {
   const baseDir = isMainnet ? `versioned_docs/version-v${shortVersion}` : 'docs'
 
   const ids = getIdsFromFilename (version, specPath)
-  const outputDir = `${baseDir}/api/rest/${ids.filename}`
+  const outputDir = ids.filename.includes('wallet')? `${baseDir}/api/vega-wallet/v2-api/reference/local-service`: `${baseDir}/api/rest/${ids.filename}`
+   console.dir(ids)
 
   const obj = {}
   obj[ids.id] = {
     specPath,
     outputDir,
     downloadUrl: `https://raw.githubusercontent.com/vegaprotocol/documentation/main/specs/v${version}/${ids.filename}`,
-    template: 'rest-template.mustache',
+    template: ids.filename.includes('wallet') ? 'rest-templates/wallet.mustache' : 'rest-templates/default.mustache',
     sidebarOptions: {
       groupPathsBy: 'tag'
     }

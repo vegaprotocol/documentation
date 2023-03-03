@@ -130,6 +130,9 @@ serversForNetwork(generateForMainnet).then(servers => {
     if (!!s.match('blockexplorer')) {
       console.log('**SPECIAL CASE FOR BLOCK EXPLORER: n13**')
       spec.servers = [ { url: 'https://be.testnet.vega.xyz/rest', description: 'Block Explorer' }]
+    } else if (!!s.match('wallet')) {
+      console.log('**SPECIAL CASE FOR BLOCK EXPLORER: localhost**')
+      spec.servers = [ { url: 'http://localhost:1789/api/', description: 'Local wallet' }]
     } else if (!!s.match('core')) {
       spec.servers = openApiServers.map(s => {
         return {
