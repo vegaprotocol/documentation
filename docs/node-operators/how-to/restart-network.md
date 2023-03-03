@@ -14,7 +14,7 @@ Vega networks support restarts using checkpoints. Checkpoints are a minimal save
 If you're using Visor for protocol upgrades, you'll need to use it to stop and start the node software. Read more:
 
 * [Set up a node with Visor](../get-started/setup-validator#initialise-visor-for-smooth-protocol-upgrades)
-* [Propose a protocol upgrade](propose-protocol-upgrades)
+* [Propose and execute a protocol upgrade](upgrade-network.md)
 :::
 
 ## Verify your node wallet keys (do this first)

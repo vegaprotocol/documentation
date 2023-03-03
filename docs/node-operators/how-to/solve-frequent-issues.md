@@ -1,7 +1,7 @@
 ---
 sidebar_position: 10
 title: How to resolve common issues
-sidebar_label: Resolve common issue
+sidebar_label: Resolve common issues
 hide_title: false
 ---
 
