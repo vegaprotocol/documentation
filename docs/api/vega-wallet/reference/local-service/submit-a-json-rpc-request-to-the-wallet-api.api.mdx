@@ -86,14 +86,14 @@ This will save third-party applications from having to _explicitly_ support diff
 
 
 The token will be formatted as follow:
-`VWT &lt;TOKEN>`
+`VWT <TOKEN>`
 
 `VWT` scheme stands for "Vega Wallet Token" and is not a standard authorization scheme.
 
-The `&lt;TOKEN>` is a randomly generated string of 64 characters with numbers and letters. Each session generates a unique one.
+The `<TOKEN>` is a randomly generated string of 64 characters with numbers and letters. Each session generates a unique one.
 
 # Request
-See the [OpenRPC documentation of the wallet](https://docs.vega.xyz) for more details..
+See the OpenRPC documentation of the wallet for more details.
 
 <details style={{"marginBottom":"1rem"}} data-collapsed={false} open={true}><summary style={{}}><strong>Header Parameters</strong></summary><div><ul><ParamsItem className={"paramsItem"} param={{"in":"header","name":"Origin","description":"The origin of the request. If this header is missing, the request will be rejected as an unauthorized request (401 Unauthorized).","required":true,"schema":{"type":"string"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"in":"header","name":"Authorization","description":"The token used to access the protected methods. The format is `VWT <TOKEN>`. VWT is a non-standard scheme that stands for Vega Wallet Token. If this header is missing when accessing protected methods, the request will be rejected as an unauthorized request (401 Unauthorized).","schema":{"type":"string"},"examples":{"test":{"value":"VWT stuTxgheMY8RZyISS9voyLjXHBaQFS7DRqDyXCM7Xx6rcj8zP84U1XNAIhf8110S"}}}}></ParamsItem></ul></div></details><MimeTabs><TabItem label={"application/json-rpc"} value={"application/json-rpc-schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Request Body</strong><strong style={{"fontSize":"var(--ifm-code-font-size)","color":"var(--openapi-required)"}}> required</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}><div style={{"marginTop":"1rem","marginBottom":"1rem"}}>
 
