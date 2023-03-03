@@ -94,3 +94,7 @@ Use the method below to get the public keys you have access to:
       "id": "request_4"
     }
 ```
+
+:::info Next steps
+Need to boostrap the wallet? [See the guide](bootstrap-wallet-service.md).
+:::

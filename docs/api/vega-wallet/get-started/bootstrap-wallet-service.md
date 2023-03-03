@@ -1,5 +1,5 @@
 ---
-title: Integrate wallet service [rename?]
+title: Bootstrap Wallet service
 hide_title: false
 sidebar_position: 3
 ---
@@ -103,3 +103,8 @@ Depending on your end-goal, you may be able to skip some steps. API token-relate
 Once you set up a wallet for the first time, you will probably only need to run the `service run` command and update the binaries when a new version is released. 
 
 **If you need help using the wallet software**, use the Vega Wallet `--help` flag. If you’re stuck on a command, use `vega wallet -h` for general guidance, or, for example, `vega wallet api-token generate -h` to read details about a specific command.
+
+
+:::info Next steps
+Want to integrate your bots or trading scripts? [See the guide](integrate-with-bots.md).
+:::
