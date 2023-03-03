@@ -16,7 +16,7 @@ The HTTP service doesn't provide access to the `admin` endpoints, for security r
 See the [Create a Wallet guide](../../tools/vega-wallet/cli-wallet/latest/create-wallet.md) to set up the Vega Wallet for command line. Then choose a guide below depending on your needs.
 
 ## Available APIs
-The **JSON-RPC API** and its endpoint **`/api/v2/requests`** is in the alpha phase, and will be replacing the v1 REST API. If you discover any issues, please raise them on the [feedback board ↗](https://github.com/vegaprotocol/feedback/discussions).
+The **JSON-RPC API** and its endpoint **`/api/v2/requests`** is in the alpha phase, and replaces the v1 REST API. If you discover any issues, please raise them on the [feedback board ↗](https://github.com/vegaprotocol/feedback/discussions).
 
 :::note New to JSON-RPC?
 Read the [JSON-RPC specification ↗](https://www.jsonrpc.org/specification) for the standards and conventions.
