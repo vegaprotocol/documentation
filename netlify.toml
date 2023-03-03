@@ -59,3 +59,13 @@
   from = "/testnet/api/vega-wallet/v2-api"
   to = "/testnet/category/api/wallet-api"
   status = 301
+
+[[redirects]]
+  from = "/testnet/api/vega-wallet/v2-api/integrate-wallet-service"
+  to = "/testnet/api/vega-wallet/how-to/bootstrap-wallet-service"
+  status = 301
+
+[[redirects]]
+  from = "/testnet/api/vega-wallet/v2-api/openrpc"
+  to = "/testnet/api/vega-wallet/reference/core/openrpc"
+  status = 301
