@@ -51,6 +51,11 @@
   status = 301
 
 [[redirects]]
-  from = "https://docs.vega.xyz/testnet/api/vega-wallet/v2-api/get-started"
-  to = "https://docs.vega.xyz/testnet/api/vega-wallet/get-started"
+  from = "/testnet/api/vega-wallet/v2-api/get-started"
+  to = "/testnet/api/vega-wallet/get-started"
+  status = 301
+
+[[redirects]]
+  from = "/testnet/api/vega-wallet/v2-api"
+  to = "/testnet/category/api/wallet-api"
   status = 301
