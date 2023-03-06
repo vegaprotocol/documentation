@@ -37,6 +37,8 @@ type Statistics {
   totalCreateOrder: String!
   totalOrders: String!
   totalTrades: String!
+  eventCount: String!
+  eventsPerSecond: String!
   appVersionHash: String!
   appVersion: String!
   chainVersion: String!
@@ -126,6 +128,14 @@ type Statistics {
 
 #### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>totalTrades</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Total number of trades
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>eventCount</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Total number of events on the last block
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>eventsPerSecond</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The number of events per second on the last block
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Statistics.<b>appVersionHash</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>

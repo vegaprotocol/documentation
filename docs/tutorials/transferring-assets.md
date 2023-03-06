@@ -5,6 +5,7 @@ description: One-off or recurring asset transfers between Vega keys or asset poo
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import NetworkParameter from '@site/src/components/NetworkParameter';
 
 # Transfers: Key-to-key and trading rewards
 Use transfers to send assets to **another Vega key** or to a **reward pool** to fund trading rewards. 
@@ -121,6 +122,15 @@ vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --netwo
 ## Funding trading rewards
 Trading rewards are funded using recurring transfers to a reward account, which holds the assets for reward pools. The assets move from your account to the nominated reward account at the end of each epoch.
 
+Trading rewards can be used to incentivise:
+* Placing market/limit orders that are filled (determined by amount of maker fees a party paid or received) 
+* Submitting liquidity provision orders to the book that are hit (determined by amount of liquidity fees a party received)
+* Creating markets that attract good trading volume (determined based on value of <NetworkParameter frontMatter={frontMatter} param="rewards.marketCreationQuantumMultiple" hideValue={true} />, and the settlement asset's quantum)
+
+:::info Read more
+[Trading rewards](../concepts/trading-on-vega/fees-rewards): Read about trading rewards, including the different rewards you can contribute to.
+:::
+
 You'll need the following information to set up a reward: 
 * `startEpoch`: The number of the epoch in which you want the first transfer to be made. It will initiate at the end of that epoch.
 * `factor`: Written as a decimal less than 1.0. Factor is used to determine what portion of the full `amount` is transferred in each epoch. Think of it like a percentage, so the number you include, when multiplied by 100, will equal what percentage of the amount will be transferred each time. 
@@ -181,6 +191,9 @@ vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --netwo
 ```
 </TabItem>
 </Tabs>
+
+### Publicising trading rewards
+Once you've funded a reward pool, you can promote the reward, and the market it's relevant for, by sharing it with the community on [Discord ↗](https://vega.xyz/discord) and on the [Vega forum ↗](https://community.vega.xyz).
 
 ## Cancelling recurring transfers
 To cancel a recurring transfer, you'll need the transfer's ID. To see the ID for every transfer your public key makes, [run a transfers GraphQL query](../api/graphql/queries/transfers-connection.mdx).

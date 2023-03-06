@@ -9,7 +9,7 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 
 A transaction is an instruction (command) issued to the network, bundled with a signature, the submitter’s public key, a small proof-of-work calculation, and the target block height. A transaction that doesn't pass [validation](#validation) (for example, an order without enough assets to cover it) will be rejected.
 
-:::tip Viewing transactions
+:::note Viewing transactions
 Use the [Vega block explorer](https://explorer.fairground.wtf) to see transactions and their status, plus lots more data about the network.
 :::
 
@@ -45,7 +45,7 @@ There are several levels of validation:
 3. Validator node consensus check: 
    Once the transaction is in the mempool, the validator nodes check if the request looks valid, and can be enacted/completed based on the state of the network, and confirms that all the details in the transaction are valid. For example, to vote on a proposal: ensuring the proposal is still live, and that the key has enough tokens to vote. For an order, it confirms, for example, that the assets to cover margin are available, the state of the market is relevant for the order, etc.
 
-::: tip View your transaction
+:::note View your transaction
 Once your transaction hash is reported by the wallet, you can track your transaction’s progress on the [Vega block explorer](https://explorer.fairground.wtf).
 :::
 
