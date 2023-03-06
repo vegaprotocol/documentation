@@ -64,33 +64,33 @@ The documentation on this site covers the core software version running on the V
 
 See the [releases page](../releases/overview.md) for a summary of each software release and links to the full changelog on GitHub. 
 
-## Available APIs [WIP]
+## Available reference docs [WIP]
 Four/five areas: core/data node | ethereum bridges | vega wallet | block explorer(?)
 
 Vega has been built to support REST, GRPC and GraphQL for interacting with the core and data nodes. 
 
-The Vega Wallet serves an API that uses ? openrpc, rest ?
+### Ethereum bridges [WIP]
+The Ethereum contracts: You can also interact with the Ethereum smart contracts, which allow for bridging between Vega and Ethereum.
 
-The Ethereum contracts serve ... 
+**[Smart contracts overview](./bridge/index.md)**: Start exploring the bridge.
 
-### APIs for querying data
+### Integrating with Vega Wallet
+If you're looking to integrate a dApp, website, or bots with the Vega Wallet, you'll need to use a wallet API. The wallet is also how you authenticate and send transactions to the network. To use the API to programmatically interact with the network for your own transactions, you'll need to [get a Vega Wallet](../tools/vega-wallet/index.md).
+
+The **Wallet API** (in alpha) uses JSON-RPC with an HTTP wrapper.
+
+### REST APIs
 REST provides endpoints for querying for trading data, account information, ledger movements, asset and market information, and much more. 
 
-* **Trading data API** covers a wide range of information, including, but not limited to:
+* **Trading data API** providers historic information and cumulative data, and covers a wide range of data, including, but not limited to:
   * liquidity provisions
   * network limits and parameters
   * information about validator and non-validator nodes
   * reward summaries
   * governance proposals and votes
 * **Core service API**: Provides the minimum state of the chain required to build and send a transaction. This is also exposed in the trading data API
-* **Explorer API**: Provides transaction details, particularly for uses in block explorers
+* **Explorer API**: Provides transaction details, designed particularly to support the development of block explorers
 * **Core state API**: This API is specifically for node operators, and may not be exposed by nodes running the network. All methods under that umbrella are also available under the other endpoints
-
-## APIs for submitting data
-gRPC: 
-
-## API for using Vega Wallet
-The Vega Wallet supports a JSON-RPC API for integrating interfaces with the wallet service to read keys, get transaction approval and other interactions.
 
 ## Rate limiting 
 To prevent abuse of the APIs provided by data nodes, there are limitations to the rate of API requests that can be enabled by data node operators. Rate limiting is applied on a per-remote-IP-address basis.
@@ -140,25 +140,8 @@ Example of the cursor part of a query response:
 ```
 
 <!-->
-## Ethereum bridges [rework]
-You can also interact with the Ethereum smart contracts, which allow for bridging between Vega and Ethereum.
-
-**[Smart contracts overview](./bridge/index.md)**: Start exploring the bridge.
-
-## Vega Wallet API to connect a wallet
-If you're looking to integrate a dApp, website, or bots with the Vega Wallet, you'll need to use a wallet API. The wallet is also how you authenticate and send transactions to the network. If you're looking to use the API to programmatically interact with the network for your own transactions, you'll need to [get a Vega Wallet](../tools/vega-wallet/index.md).
-
-The **Wallet API** (in alpha) uses JSON-RPC with an HTTP wrapper.
-
-* [Getting started](./vega-wallet/get-started): Set up a connection with the Vega Wallet server
-* [OpenRPC Wallet API](./vega-wallet/reference/core/openrpc): An overview of the API
-* [JSON-RPC playground](./vega-wallet/reference/core/openrpc-api-playground): See what methods the wallet API calls and try it out
 
 - **[REST overview](rest/overview.md)**: Read more about data and core node APIs.
-- [Core network state](rest/core/core-service.mdx): Get basic information about the network, such as 'block height' and 'Vega time'.
-- [Core state](rest/state/core-state-service): Get lists of state about the internal Vega system, such as 'list accounts', 'list parties.
-- [Data node (v2)](rest/data-v2/trading-data-service): Get historic information and cumulative data, such as 'governance data for all proposals'. v2 is receiving active development.
-- [Block explorer](/testnet/category/api/rest/explorer/block-explorer): Get information about blocks created on the Vega network.
 
 
 ## GraphQL for web apps [rework/remove?]
@@ -176,6 +159,9 @@ gRPC provides fast and efficient communication with Vega’s APIs. gRPC supports
 - [Commands](grpc/vega/commands/v1/commands.proto): Get all transaction types you can submit to the network.
 - [Data](grpc/data-node/api/v2/trading_data.proto.mdx): Interact with all data that the data nodes store, including trading data, interactions between the network and Ethereum, and governance. 
 -->
+
+## Other available frameworks [WIP]
+gRPC provides fast and efficient communication, and supports near real time streaming of updates from Vega. 
 
 ## Primary elements (resources, building blocks..?) [WIP]
 (Ordered so they layer up - each can't exist without one or more of the previous things. Link to concepts for more info on each)
