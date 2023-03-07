@@ -97,10 +97,6 @@ module.exports = {
               label: "Blog",
               to: "https://blog.vega.xyz",
             },
-            {
-              label: "YouTube",
-              to: "https://www.youtube.com/vegaprotocol",
-            },
             ],
         },
         {
@@ -125,10 +121,6 @@ module.exports = {
             {
               label: "YouTube",
               to: "https://www.youtube.com/vegaprotocol",
-            },
-            {
-              label: "Twitch",
-              to: "https://www.twitch.tv/vegaprotocol",
             },
           ],
         },
