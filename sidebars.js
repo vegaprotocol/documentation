@@ -24,6 +24,7 @@ module.exports = {
   ],
   api: [
     'api/overview',
+    'api/public-endpoints',
     {
       type: 'category',
       label: 'GraphQL',
@@ -90,7 +91,7 @@ module.exports = {
           dirName: 'api/vega-wallet'
         }
       ]
-    },
+    }
   ],
   tutorials: [
     {
