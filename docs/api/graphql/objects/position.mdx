@@ -26,6 +26,8 @@ type Position {
   realisedPNL: String!
   unrealisedPNL: String!
   averageEntryPrice: String!
+  lossSocializationAmount: String!
+  positionStatus: PositionStatus!
   marginsConnection(
   pagination: Pagination
 ): MarginConnection
@@ -58,6 +60,14 @@ type Position {
 
 #### [<code style={{ fontWeight: 'normal' }}>Position.<b>averageEntryPrice</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Average entry price for this position
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>lossSocializationAmount</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The total amount of profit and loss that was not transferred due to loss socialisation
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>positionStatus</b></code>](#)<Bullet />[`PositionStatus!`](/testnet/api/graphql/enums/position-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Enum set if the position was closed out or orders were removed because party was distressed
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Position.<b>marginsConnection</b></code>](#)<Bullet />[`MarginConnection`](/testnet/api/graphql/objects/margin-connection) <Badge class="secondary" text="object"/>

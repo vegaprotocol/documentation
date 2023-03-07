@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 title: Validator nodes
 vega_network: TESTNET
 hide_title: false

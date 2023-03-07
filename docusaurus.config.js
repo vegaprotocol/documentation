@@ -90,10 +90,18 @@ module.exports = {
               to: "https://github.com/vegaprotocol",
             },
             {
+              label: "Mainnet incidents",
+              to: "https://blog.vega.xyz/tagged/vega-incident-reports",
+            },
+            {
               label: "Blog",
               to: "https://blog.vega.xyz",
             },
-          ],
+            {
+              label: "YouTube",
+              to: "https://www.youtube.com/vegaprotocol",
+            },
+            ],
         },
         {
           title: "Community",
@@ -117,6 +125,10 @@ module.exports = {
             {
               label: "YouTube",
               to: "https://www.youtube.com/vegaprotocol",
+            },
+            {
+              label: "Twitch",
+              to: "https://www.twitch.tv/vegaprotocol",
             },
           ],
         },

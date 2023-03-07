@@ -21,7 +21,12 @@ type NewMarket {
   decimalPlaces: Int!
   riskParameters: RiskModel!
   metadata: [String!]
+  priceMonitoringParameters: PriceMonitoringParameters!
+  liquidityMonitoringParameters: LiquidityMonitoringParameters!
+  positionDecimalPlaces: Int!
   lpPriceRange: String!
+  linearSlippageFactor: String!
+  quadraticSlippageFactor: String!
 }
 ```
 
@@ -44,8 +49,28 @@ type NewMarket {
 > Metadata for this instrument, tags
 > 
 
+#### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>priceMonitoringParameters</b></code>](#)<Bullet />[`PriceMonitoringParameters!`](/testnet/api/graphql/objects/price-monitoring-parameters) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Price monitoring parameters
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>liquidityMonitoringParameters</b></code>](#)<Bullet />[`LiquidityMonitoringParameters!`](/testnet/api/graphql/objects/liquidity-monitoring-parameters) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Liquidity monitoring parameters
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>positionDecimalPlaces</b></code>](#)<Bullet />[`Int!`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Decimal places for order sizes, sets what size the smallest order / position on the market can be
+> 
+
 #### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>lpPriceRange</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Liquidity Provision order price range
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>linearSlippageFactor</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Linear slippage factor is used to cap the slippage component of maintainence margin - it is applied to the slippage volume
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>quadraticSlippageFactor</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Quadratic slippage factor is used to cap the slippage component of maintainence margin - it is applied to the square of the slippage volume
 > 
 
 

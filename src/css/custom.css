@@ -277,6 +277,14 @@ a.external:after {
     text-decoration-color: var(--ifm-color-secondary-darkest);
 }
 
+/* Very specific styles to eliminate some double lines
+  'Class starts with' selector used because the name changes in build */
+.col--12 .stub details div[class^='collapsibleContent_'] {
+  border-top: none !important;
+  margin-top: 0px !important;
+  padding-top: 0; 
+}
+
 /* OpenAPI docs */
 /* Sidebar Method labels */
 .api-method > .menu__link {

@@ -27,7 +27,7 @@ YOUR_VEGA_HOME_PATH/config/node/config.toml
 ## Initialise Visor (for smooth protocol upgrades)
 Visor manages protocol upgrades, allowing the nodes running a network to automatically update to the latest version of the Vega protocol, without requiring manual intervention. Using Visor is optional, but recommended. 
 
-Read more about how to [propose a protocol upgrade](../how-to/propose-protocol-upgrades.md).
+Read more about how to [upgrade your node](../how-to/upgrade-network.md).
 
 The command to initialise Visor will vary depending on whether you want to use Visor with only a validator node, or also a data node. 
 
@@ -239,8 +239,6 @@ persistent_peers = "55b8ac477ddd6c0c9bae411dfa6ebfb46e7b4022@veganodeoperator.co
 ```
 
 
-Then ensure the `max_packet_msg_payload_size` is at least 16384.
-
 Under `Mempool Configuration Option`, ensure that `broadcast = true`.
 
 
@@ -338,7 +336,7 @@ Once your node is up and running, you'll need to maintain it, and ensure that it
 
 See the following guides to learn how to: 
 
-* [Propose a protocol upgrade](../how-to/propose-protocol-upgrades.md)
+* [Propose and enact an upgrade](../how-to/upgrade-network.md)
 * [Restart the network](../how-to/restart-network.md)
 * [Rotate Ethereum keys](../how-to/rotate-ethereum-keys.md)
 * [Rotate Vega keys](../how-to/rotate-vega-keys.md)
