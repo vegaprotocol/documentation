@@ -38,7 +38,7 @@ Tokens are associated by calling [`stake` on the Vega staking bridge](../api/bri
 * `vega_public_key` - the Vega public key that will be used to nominate validators on Vega
 * `amount` - the amount of tokens being associated with the Vega key
 
-It will take ~50 block confirmations for the balance to update (approximately 1 minute). You can see when the staking balance has been credited by using [REST](../api/rest/data-v2/trading-data-service-get-stake) or [gRPC](../api/grpc/vega/vega.proto#vegaproto).
+It will take ~50 block confirmations for the balance to update. You can see when the staking balance has been credited by using [REST](../api/rest/data-v2/trading-data-service-get-stake) or [gRPC](../api/grpc/vega/vega.proto#vegaproto).
 
 ### 2. Nominating a validator
 Once the token balance is associated to a Vega key, you'll want to choose a validator or validators to nominate. 

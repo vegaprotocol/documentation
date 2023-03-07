@@ -5,7 +5,7 @@ hide_title: false
 description: Start bot development for submitting orders with this guide.
 ---
 
-In this tutorial you'll learn the basics about how to use Vega and the Vega Wallet to submit orders, so you can build bots or other software to interact with the network. 
+In this tutorial you'll learn the basics about how to use Vega and the Vega Wallet to submit orders using the APIs, so you can build bots or other software to interact with the network. 
 
 This guide covers how to:
 
@@ -28,6 +28,8 @@ This tutorial uses Linux commands. The overall guide will also work for Windows 
 
 Each network, such as testnet, will have a compatible version of the CLI Wallet software, which should be used to interact with it. The Vega Wallet software manages wallets and the keys within them, and allows you to approve or reject site connections and transactions.
 
+You can also sign transactions directly from your application with a signer library if one exists for the language you're using, but this is out of scope of this guide. You can refer to two [example libs in the example code section](#signer-libraries).
+
 :::note Read more
 [Create a wallet](../tools/vega-wallet/cli-wallet/latest/create-wallet): See a step-by-step guide to creating a Vega Wallet for testnet.
 :::
@@ -37,9 +39,10 @@ Check the docs site top bar to see what software version the network you need is
 Choose the `vegawallet-<os>-<arch>.zip` for your machine, then unpack the file and make sure the resulting `vegawallet` executable is placed in your path. Run `vegawallet software version` to check if the right version is loaded.
 
 ### Create a wallet and public/private keypair
+If you want to place or manage orders, you'll need to have a wallet to hold your private/public keypair, which is required for sending in new transactions. Once you've created a wallet, you'll also need to create a long life token for your application to prevent you from having to verify every transaction manually.
 
-If you want to place trades, you'll need to have a wallet to hold our private/public keypair required for sending in new transactions. This is a 2 step process as we need to create a long life token to prevent us from needing to verify every transaction manually.
-For all example commands below we are assuming the existence of the folder `/vega` which you will used to store all configuration and runtime files.
+For all example commands below we are assuming the existence of the folder `vega` in your home directory which you will used to store all configuration and runtime files.
+
 1. Choose a name for your first wallet, and secure it with a passphrase.
 `vegawallet --home=/$HOME/vega/wallet create --wallet=<WalletName>`
 
@@ -300,5 +303,13 @@ You can use the curl command to subscribe to the endpoints that return order and
 * [Subscribe to positions - reference documentation](../api/rest/data-v2/trading-data-service-observe-positions)
 * [Subscribe to orders - reference documentation](../api/rest/data-v2/trading-data-service-observe-orders)
 
-## Example bot code in Go
+## Example code 
+
+### Signer libraries 
+Refer to the following example libraries for submitting signed transactions to the Vega protocol via gRPC, bypassing the Vega Wallet. Note, these may not be actively maintained, so you should test before using either on an active network.
+
+* [Authenticator (Go) ↗](https://github.com/MM0819/vega-protocol-auth-go)
+* [Authenticator (Java) ↗](https://github.com/MM0819/vega-protocol-auth-java)
+
+### Bot code
 If you want to use Go to perform the same actions, see the sample bot at [github.com/jeremyletang/vegamm ↗](https://github.com/jeremyletang/vegamm). Note that this code may not be actively maintained, so you should to test it before using it on an active network.
