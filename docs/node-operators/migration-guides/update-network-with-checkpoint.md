@@ -4,6 +4,30 @@ sidebar_label: Upgrade to latest
 sidebar_position: 1
 ---
 
+## Assumptions for the upgrade guide
+The instructions below are written for Debian-like Linux operating systems. 
+
+The guide uses systemd commands(`systemctl` and `journalctl`) to control binaries in our setup. If you are using something different, that article's commands may vary.
+
+This guide is specifically intended for those who are already running a validator node with version `v0.68.0` or higher
+
+Before you start, note that the instructions use the following variables for file paths:
+
+* `<VEGA-NETWORK-HOME>`: the home path to the Vega network, e.g., `/home/vega/vega_home`
+* `<TENDERMINT-HOME>`: the Tendermint home path, e.g., `/home/vega/tendermint_home`
+* `<VEGAVISOR-HOME>`: the Vega Visor home path, e.g., `/home/vega/vegavisor_home`
+* `<BACKUP-FOLDER>`: the folder where you store backups, e.g., `/home/vega/backups`
+* `<VISOR-BIN>`: the path to the Vega Visor binary, e.g., `/home/vega/bin/visor`
+* `<VEGA-BIN>`: the path to the Vega core binary, e.g., `/home/vega/bin/vega`
+* `<CHAIN-ID>`: new chain ID for network; it is required to pass as an argument for data-node, e.g., current chain ID on mainnet is: `vega-mainnet-0009`
+
+The following are placeholders for the PostgreSQL connection details for the data node - the ones you put in the data node `config.toml`.
+
+* `<VEGA-DB-USER>` - PostgreSQL user you create and put in the data node config
+* `<VEGA-DB-NAME>` - PostgreSQL database name
+
+We will refer to the above paths in the following guide. The sample paths given above are just examples. We recommend setting the paths that align with the conventions adopted by your organisation.
+
 
 ## Study the changes between versions
 Before upgrading your node software, read the upgrading file in the Vega repo for a full list of the changes between the two versions, and review the breaking API changes.
@@ -52,9 +76,13 @@ cp -r <VEGA-NETWORK-HOME>/data/node/wallets <BACKUP-FOLDER>/v0.53.0/wallets
 cp <TENDERMINT-HOME>/node_key.json <BACKUP-FOLDER>/v0.53.0/wallets
 cp <TENDERMINT-HOME>/priv_validator_key.json <BACKUP-FOLDER>/v0.53.0/wallets
 cp <VEGA-NETWORK-HOME>/nodewallet-passphrase.txt <BACKUP-FOLDER>/v0.53.0/wallets  # filename and location might differ, depending on your setup
+
 # copy network state
 cp -r <VEGA-NETWORK-HOME>/state/node <BACKUP-FOLDER>/v0.53.0/core-state
 cp -r <TENDERMINT-HOME>/data <BACKUP-FOLDER>/v0.53.0/tm-state
+
+# copy vegavisor config if you are running visor on your node
+cp -r <VEGAVISOR-HOME>/current <BACKUP-FOLDER>/vegavisor-current
 
 # Check if backup has been successfully done*; check if all files has been copied correctly
 tree <BACKUP-FOLDER>
@@ -91,7 +119,7 @@ mv visor <VISOR-BIN>
 ```
 
 :::node  Manual update for binaries when you are running visor
-Visor cannot automatically restart(or upgrade) binaries because We are restarting the network with the `checkpoint`. Once you stop the Vega network, you must update the old binaries with the downloaded ones.
+Visor cannot automatically restart(or upgrade) binaries because We are restarting the network with the `checkpoint`. Once you stop the Vega network, you must update the old binaries with the downloaded ones. You can find the binary path in the `<VEGAVISOR-HOME>/current/run-config.toml` file. Usually the path is `<VEGAVISOR-HOME>/current/vega`
 :::
 
 ### 4. Reset and clear all data
@@ -185,7 +213,6 @@ It is also important to understand the Tendermint configuration parameters as de
 You are responsible for deciding what parameters you want to use. `vega tm init` generates a config with default values. Values in your config may be changed intentionally. Review and prepare your config carefully.
 :::
 
-
 ### 9. Update data-node config
 
 :::note Manual process
@@ -204,7 +231,7 @@ We strongly recommend you read the list of configuration changes in the [upgradi
 You are responsible for deciding what parameters you want to use. `vega datanode init` generates a config with default values. Values in your config may be changed intentionally. Review and prepare your config carefully.
 :::
 
-### 17. Start the upgraded network
+### 10. Start the upgraded network
 
 #### If you are running Visor
 
