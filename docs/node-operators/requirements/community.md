@@ -37,4 +37,4 @@ Having a dedicated site for your validator will help build credibility and give 
 You could show all the networks that you validate for, as well as details about your location and projects or guides you've created to boost your trustworthiness.
 
 ### When announcing on-chain
-Include your website when you [announce your node](./../get-started/setup-validator#announce-node-on-chain) to the network to ensure that it's displayed on UIs such as the [token dApp](https://token.vega.xyz).
+Include your website when you [announce your node](./../get-started/setup-validator#announce-node-on-chain) to the network to ensure that it's displayed on UIs such as the [governance dApp](https://token.vega.xyz).

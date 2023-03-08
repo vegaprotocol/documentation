@@ -149,8 +149,8 @@ You will be asked for a passphrase for your node wallet, which you created when 
 :::
 
 ### Set up the Vega wallet
-To use your Vega Wallet for staking with the token dApp (below), you will need to either: 
-a. use a browser running on your server to access the token dApp, and Ethereum wallet, and connect locally to the wallet
+To use your Vega Wallet for staking with the governance dApp (below), you will need to either: 
+a. use a browser running on your server to access the governance dApp, and Ethereum wallet, and connect locally to the wallet
 b. regenerate the wallet on your local machine using the recovery phrase. If you do regenerate the wallet locally, consider removing that wallet from your local machine once you've self-staked, to keep your keys as secure as possible.
 
 [Create a Vega Wallet](../../tools/vega-wallet/cli-wallet/latest/create-wallet.md) and public key, using the software version that matches the network's software version.
@@ -304,7 +304,7 @@ The association will need to be confirmed by both the Ethereum and Vega blockcha
 ## Announce node on-chain
 Use your Ethereum key to announce your node to the network.
 
-You'll need to know the [current epoch ↗](https://validator-testnet.governance.vega.xyz/staking), and have the following data to hand: the URL for your validator website, and URL for the avatar that will show up on the token dApp next to your node name.
+You'll need to know the [current epoch ↗](https://validator-testnet.governance.vega.xyz/staking), and have the following data to hand: the URL for your validator website, and URL for the avatar that will show up on the governance dApp next to your node name.
 
 ```shell
 vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" --avatar-url="YOUR_AVATAR_URL" --country="UK" --name="YOUR_NODE_NAME" --from-epoch="CURRENT_EPOCH" --submitter-address="YOUR_ETHEREUM_KEY"

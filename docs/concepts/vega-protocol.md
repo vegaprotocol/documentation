@@ -77,7 +77,7 @@ The network will also calculate:
 * The rate of 'for' votes cast by liquidity providers, calculated as the sum of all who voted 'for', divided by the LP participation rate - `LP for rate = SUM (all who voted for) / LP participation rate`
     
 :::tip Try it out
-Vote on active proposals on the **[Vega token dApp ↗](https://token.fairground.wtf/governance)**.
+Vote on active proposals on the **[Vega governance dApp ↗](https://token.fairground.wtf/governance)**.
 :::
 
 #### 5. Enacting changes

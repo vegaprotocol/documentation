@@ -207,23 +207,23 @@ The tokens that you want to use for self-staking must be available on an Ethereu
 
 You can do this by [importing the Vega Wallet](../../../docs/tools/vega-wallet/cli-wallet/latest/guides/restore-wallet.md) you created for your node wallet, onto your local computer using the Vega Wallet recovery phrase.
 
-Once you have tokens, connect your Ethereum wallet and your Vega Wallet, and associate the tokens to your Vega public key using the [token dApp ↗](https://token.vega.xyz/staking/). Below, you'll self-nominate (self-stake) to your node.
+Once you have tokens, connect your Ethereum wallet and your Vega Wallet, and associate the tokens to your Vega public key using the [governance dApp ↗](https://token.vega.xyz/staking/). Below, you'll self-nominate (self-stake) to your node.
 
 The association will need to be confirmed by both the Ethereum and Vega blockchains, and may take some time.
 
 ## Announce node on-chain
 Use your Ethereum key to announce your node to the network, once your VEGA tokens are available in your Vega wallet.
 
-You'll need to know the [current epoch ↗](https://token.vega.xyz/staking), and have the following data to hand: the URL for your validator website, and URL for the avatar that will show up on the token dApp next to your node name.
+You'll need to know the [current epoch ↗](https://token.vega.xyz/staking), and have the following data to hand: the URL for your validator website, and URL for the avatar that will show up on the governance dApp next to your node name.
 
 ```shell
 vega announce_node --home="YOUR_VEGA_HOME_PATH" --passphrase-file="YOUR_PASSPHRASE_FILE_PATH"  --info-url="YOUR_VALIDATOR_URL" --avatar-url="YOUR_AVATAR_URL" --country="UK" --name="YOUR_NODE_NAME" --from-epoch="CURRENT_EPOCH" 
 ```
 
 ## Nominate your node
-To move on to self-staking, wait until you see your node on the validator list as a pending validator. Query the API at `https://api.vega.xyz/epochs` or check the [token dApp](https://token.vega.xyz/staking/).
+To move on to self-staking, wait until you see your node on the validator list as a pending validator. Query the API at `https://api.vega.xyz/epochs` or check the [governance dApp](https://token.vega.xyz/staking/).
 
-Then, associate your tokens and nominate your node using the [token dApp ↗](https://token.vega.xyz/staking/) or by interacting directly with the smart contract.
+Then, associate your tokens and nominate your node using the [governance dApp ↗](https://token.vega.xyz/staking/) or by interacting directly with the smart contract.
 
 Your pending validator node will need to see Ethereum bridge events on the network and send heartbeats before moving on to the next step.
 
