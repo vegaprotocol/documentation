@@ -1,13 +1,13 @@
 ---
-title: Upgrade node to latest
-sidebar_label: Upgrade to latest
+title: Upgrade node to 0.68.0
+sidebar_label: Upgrade to 0.68.0
 sidebar_position: 1
 ---
 
-To upgrade your validator node from version 0.53 to version 0.68+, follow the steps below. 
+To upgrade your validator node from version 0.53 to version 0.68.0, follow the steps below. 
 
 ## Study the changes between versions
-Before upgrading your node software, read the upgrading file in the Vega repo for a full list of the changes between the two versions, and review the breaking API changes.
+Before upgrading your node software, read the upgrading file in the Vega repo for a full list of the changes between the two versions, review the breaking API changes, and study the `TOML` changes to the networks repo for the validator testnet.
 
 Review the **[release notes](../../releases/overview.md)** for a list of breaking API changes for each version from 0.54 onwards.
 
@@ -15,6 +15,8 @@ Review the **[upgrading readme ↗](https://github.com/vegaprotocol/vega/blob/de
 * [Repository changes ↗](https://github.com/vegaprotocol/vega/blob/develop/UPGRADING.md#repository-changes)
 * [Configuration changes ↗](https://github.com/vegaprotocol/vega/blob/develop/UPGRADING.md#configuration-changes)
 * [Command line changes ↗](https://github.com/vegaprotocol/vega/blob/develop/UPGRADING.md#command-line-changes)
+
+Review the [wallet config ↗](https://github.com/vegaprotocol/networks/pull/131) structural and content changes. For mainnet, you will need to review/approve the equivalent PR.
 
 ## Assumptions for the upgrade guide
 The instructions below are written for Debian-like Linux operating systems. 
@@ -102,7 +104,7 @@ cp -r <TENDERMINT-HOME>/data <BACKUP-FOLDER>/v0.53.0/tm-state
 tree <BACKUP-FOLDER>
 
 # Backup PostgreSQL if you have been running data node**
- pg_dump --host=localhost --port=5432 --username=<VEGA-DB-USER> --password -Fc -f <BACKUP-FOLDER/data_node_db.bak.sql <VEGA-DB-NAME>
+pg_dump --host=localhost --port=5432 --username=<VEGA-DB-USER> --password -Fc -f <BACKUP-FOLDER/data_node_db.bak.sql <VEGA-DB-NAME>
 ```
 
 **Notes**: 
@@ -129,7 +131,7 @@ unzip visor-linux-amd64.zip
 
 mv vega <VEGA-BIN>
 mv visor <VISOR-BIN>
-``` 
+```
 
 ### 4. Reset and clear all data
 
@@ -171,6 +173,9 @@ An example workflow for reviewing the genesis file may look like following:
 ```bash 
 # Download genesis
 wget https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/genesis.json
+
+# Move old genesis to a different location
+cp <TENDERMINT-HOME>/config/genesis.json <TENDERMINT-HOME>/config/genesis.json.bk
 
 # Copy genesis to its final location
 cp ./genesis.json <TENDERMINT-HOME>/config/genesis.json
