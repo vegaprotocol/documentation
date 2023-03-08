@@ -1,5 +1,6 @@
 ---
 title: Using data sources
+sidebar_position: 4
 hide_title: false
 description: Include oracle details in a proposal and submit data to settle and terminate a market
 ---

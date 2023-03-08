@@ -27,6 +27,8 @@ yarn-error.log*
 /proto.json
 /schema.grapqhl
 
+/specs/*_temp.json
+
 # Never commit files accidentally created by platform incompatible seds
 *.md-E
 *.mdx-E

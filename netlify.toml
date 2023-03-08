@@ -45,13 +45,27 @@
   to = "/mainnet/api/graphql/:splat"
   status = 301
 
-
 [[redirects]]
   from = "/docs/*"
   to = "/:splat"
   status = 301
 
 [[redirects]]
-  from = "https://docs.vega.xyz/testnet/tools/vega-wallet/cli-wallet/latest/guides/build-send-commands"
-  to = "https://docs.vega.xyz/testnet/tools/vega-wallet/cli-wallet/latest/guides/build-send-transactions"
+  from = "/testnet/api/vega-wallet/v2-api/get-started"
+  to = "/testnet/api/vega-wallet/get-started"
+  status = 301
+
+[[redirects]]
+  from = "/testnet/api/vega-wallet/v2-api"
+  to = "/testnet/category/api/wallet-api"
+  status = 301
+
+[[redirects]]
+  from = "/testnet/api/vega-wallet/v2-api/integrate-wallet-service"
+  to = "/testnet/api/vega-wallet/how-to/bootstrap-wallet-service"
+  status = 301
+
+[[redirects]]
+  from = "/testnet/api/vega-wallet/v2-api/openrpc"
+  to = "/testnet/api/vega-wallet/reference/core/openrpc"
   status = 301

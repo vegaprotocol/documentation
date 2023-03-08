@@ -49,7 +49,7 @@ blocks_swagger="./blockexplorer/swagger/blockexplorer/blockexplorer.swagger.json
 blocks_swagger_dest="blockexplorer.swagger.json"
 movePlease "$blocks_swagger" "$blocks_swagger_dest"
 
-wallet_openapi="./wallet/api/wallet.openapi.json"
+wallet_openapi="./wallet/service/openapi.json"
 wallet_openapi_dest="wallet.openapi.json"
 movePlease "$blocks_swagger" "$blocks_swagger_dest"
 

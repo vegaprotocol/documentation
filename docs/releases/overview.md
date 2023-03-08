@@ -153,7 +153,7 @@ Check out the full details of this combined release in the Vega core [0.61.0 ↗
 :::warning API deprecations
 **Data node**: UPDATE: The v2 APIs ([REST](./../api/rest/overview) and [gRPC](./../api/grpc/data-node/api/v2/trading_data.proto)) for the data node will replace v1 in the next major version release to testnet. Therefore anyone building apps on top of Vega should start to use the v2 APIs immediately.
 
-**Vega Wallet**: For most use cases, the v2 [wallet API](./../api/vega-wallet) will soon be the only one available for interacting with the Vega Wallet. V1 will continue to be used for the testnet-only hosted wallet for testing and incentives, for slightly longer.
+**Vega Wallet**: For most use cases, the v2 [wallet API](./../api/vega-wallet/get-started.md) will soon be the only one available for interacting with the Vega Wallet. V1 will continue to be used for the testnet-only hosted wallet for testing and incentives, for slightly longer.
 :::
 
 :::caution Breaking changes
@@ -172,7 +172,7 @@ The primary focus of this release has been to add general bug fixes and improvem
 :::warning API deprecations
 **Data node**: The v2 APIs ([REST](./../api/rest/overview) and [gRPC](./../api/grpc/data-node/api/v2/trading_data.proto)) for the data node will replace V1, which will soon be removed. Therefore anyone building apps on top of Vega should start to use the v2 APIs from release 0.55 onwards.
 
-**Vega Wallet**: For most use cases, the v2 [wallet API](./../api/vega-wallet) will soon be the only one available for interacting with the Vega Wallet. V1 will continue to be used for the testnet-only hosted wallet for testing and incentives, for slightly longer.
+**Vega Wallet**: For most use cases, the v2 [wallet API](./../api/vega-wallet/get-started.md) will soon be the only one available for interacting with the Vega Wallet. V1 will continue to be used for the testnet-only hosted wallet for testing and incentives, for slightly longer.
 :::
 
 #### Breaking Changes
@@ -391,7 +391,7 @@ The primary focus of this release has been to progress work on the data node ens
 :::warning API deprecations
 **Data node**: The v2 APIs ([REST](./../api/rest/overview) and [gRPC](./../api/grpc/data-node/api/v2/trading_data.proto)) for the data node will be replace v1, which will soon be removed. Therefore anyone building apps on to of Vega should start to use the v2 APIs from this release (0.55) onwards.
 
-**Vega Wallet**: For most use cases, the v2 [wallet API](./../api/vega-wallet) will soon be the only one available for interacting with the Vega Wallet. V1 will continue to be used for the testnet-only hosted wallet for testing and incentives, for slightly longer.
+**Vega Wallet**: For most use cases, the v2 [wallet API](./../api/vega-wallet/get-started.md) will soon be the only one available for interacting with the Vega Wallet. V1 will continue to be used for the testnet-only hosted wallet for testing and incentives, for slightly longer.
 :::
 
 #### Breaking Changes
@@ -413,7 +413,7 @@ This work was done in issue [6095 ↗](https://github.com/vegaprotocol/vega/issu
 The best experience for restarting a node is to load from the highest possible block before the node was stopped. This is most important when a node was started using state-sync and the tendermint block store does not contain enough history to replay the chain from block zero. To avoid any issues with not being able to reply from block zero, the default behaviour is now to always start from the most recent local snapshot. This work was done in issue [5442 ↗](https://github.com/vegaprotocol/vega/issues/5442).
 
 #### Return the key on `session.list_keys` endpoint on wallet API version 2
-With the introduction of the [v2 wallet API](../api/vega-wallet/v2-api/get-started) there is now added security in order for a dApp to request metadata that can be used by the user to label a key in wallet and dApp, thus preventing data being leaked unintentionally. This work was done in issue [6139 ↗](https://github.com/vegaprotocol/vega/issues/6139).
+With the introduction of the [v2 wallet API](../api/vega-wallet/get-started) there is now added security in order for a dApp to request metadata that can be used by the user to label a key in wallet and dApp, thus preventing data being leaked unintentionally. This work was done in issue [6139 ↗](https://github.com/vegaprotocol/vega/issues/6139).
 
 #### Critical Bug fixes
 

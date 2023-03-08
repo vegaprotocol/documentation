@@ -6,9 +6,11 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-To set up a data node, you must first have followed the guide to [install and set up a Vega node](setup-server.md).
+To set up a data node, you must first have followed the guide to [install and set up a Vega node](setup-server.md). A data node must be run in conjunction with a **non-validator Vega node**. 
 
-A data node must be run in conjunction with a Vega node. The Vega node will send the events it receives from the network and the events it creates to the data node, which will then store them in a database. An API is provided to query the data stored by the data node.
+The non-validator Vega node will send the events it receives from the network and the events it creates to the data node, which will then store them in a database. An API is provided to query the data stored by the data node.
+
+Note: If you are running a Vega validator node it is recommended that you do not connect the data node to this node, but to a separate non-validator Vega node.
 
 The database used by the data node is a PostgreSQL database with the Timescale extension installed. The database can be a dedicated database server, a docker container, or an embedded version of PostgreSql with Timescale installed that is provided by Vega.
 

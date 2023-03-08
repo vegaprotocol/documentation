@@ -1,5 +1,6 @@
 ---
 title: Commit liquidity
+sidebar_position: 3
 hide_title: false
 description: Commit liquidity onto a market and manage that commitment
 ---
