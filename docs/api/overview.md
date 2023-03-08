@@ -70,9 +70,28 @@ Four/five areas: core/data node | ethereum bridges | vega wallet | block explore
 Vega has been built to support REST, GRPC and GraphQL for interacting with the core and data nodes. 
 
 ### Ethereum bridges [WIP]
-The Ethereum contracts: You can also interact with the Ethereum smart contracts, which allow for bridging between Vega and Ethereum.
+Vega uses assets from Ethereum so to facilitate this inter-chain interactions, there exist a number of smart contract bridges.
+These bridges can be interacted with in the various UIs and wallets and, like any smart contract on Ethereum, the smart contracts can be interacted with directly using an Ethereum JSONRPC node or a service like Etherscan(TODO Etherscan link).
 
-**[Smart contracts overview](./bridge/index.md)**: Start exploring the bridge.
+In order to enable inter-chain interactions between Vega and Ethereum, Vega utilizes assets from Ethereum, which are then transferred through a series of smart contract bridges. These bridges provide a seamless experience for users, allowing them to interact with the bridges through a variety of user interfaces (UIs) and wallets.
+
+Moreover, these smart contract bridges operate just like any other smart contract on Ethereum, meaning that users can interact with them directly using an Ethereum JSONRPC node or a service like [Etherscan](https://etherscan.io/), which provides a user-friendly interface for exploring and interacting with Ethereum smart contracts.
+
+**Smart Contracts**
+* ERC20 Bridge Logic
+  * Contains the functions necessary to deposit, withdraw, list assets, etc. Is controlled by Multisig Control and controls Asset Pool.
+* ERC20 Asset Pool
+  * Holds deposited assets and remits them to provided addresses based on orders from the assigned Bridge Logic. Is controlled by Bridge Logic and Multisig Control
+* Multisig Control
+  * Handles verification of orders signed by a threshold of validators. 
+* Staking Bridge
+  * Allows users to deposit and withdraw VEGA tokens for staking. The VEGA tokens are always controlled only by the user, even when on the Staking Bridge. Stake can be removed at any time by the user
+* VEGA Token 
+  * ERC20 token smart contract
+* Vesting
+  * All VEGA tokens are issued through this. Handles the linear vesting of VEGA tokens and allows users to Stake VEGA they own (vested or no)
+
+**[Smart contracts overview](./bridge/index.md)**: Start exploring the contracts.
 
 ### Integrating with Vega Wallet
 If you're looking to integrate a dApp, website, or bots with the Vega Wallet, you'll need to use a wallet API. The wallet is also how you authenticate and send transactions to the network. To use the API to programmatically interact with the network for your own transactions, you'll need to [get a Vega Wallet](../tools/vega-wallet/index.md).
