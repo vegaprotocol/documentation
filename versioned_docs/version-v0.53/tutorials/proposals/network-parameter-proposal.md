@@ -34,14 +34,14 @@ This page describes what you need to propose a change to a network parameter, an
 3. You can see your proposal on the [Fairground block explorer](https://explorer.vega.xyz/governance).
 4. Your proposal will need enough voting weight to pass, so having community support of your proposal is essential.
 
-### Submit using token dApp
-1. To create your own proposal and submit with the token dApp, copy the JSON example into a text editor and include the values you want for the market.
-2. Use the token dApp's [Governance page](https://token.vega.xyz/governance) to submit your proposal. 
-3. You can see your proposal on the token dApp governance page.
+### Submit using governance dApp
+1. To create your own proposal and submit with the governance dApp, copy the JSON example into a text editor and include the values you want for the market.
+2. Use the governance dApp's [Governance page](https://token.vega.xyz/governance) to submit your proposal. 
+3. You can see your proposal on the governance dApp governance page.
 4. Your proposal will need enough voting weight to pass, so having community support of your proposal is essential.
 
 ## Full proposal examples
-In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to submit on the token dApp, and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
+In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to submit on the governance dApp, and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
 
 <Tabs groupId="updateNetworkParameter">
   <TabItem value="annotated" label="Annotated example">

@@ -90,14 +90,31 @@ module.exports = {
               to: "https://github.com/vegaprotocol",
             },
             {
-              label: "Mainnet incidents",
-              to: "https://blog.vega.xyz/tagged/vega-incident-reports",
-            },
-            {
               label: "Blog",
               to: "https://blog.vega.xyz",
             },
             ],
+        },
+        {
+          title: "Status",
+          items: [
+            {
+              label: "Mainnet incidents",
+              to: "https://blog.vega.xyz/tagged/vega-incident-reports",
+            },
+            {
+              label: "Known issues",
+              to: "https://github.com/orgs/vegaprotocol/projects/122",
+            },
+            {
+              label: "Share feedback",
+              to: "https://github.com/vegaprotocol/feedback/discussions",
+            },
+            {
+              label: "Roadmap",
+              to: "https://github.com/orgs/vegaprotocol/projects/114/views/4",
+            },
+          ],
         },
         {
           title: "Community",

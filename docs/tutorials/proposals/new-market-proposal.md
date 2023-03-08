@@ -53,7 +53,7 @@ Instrument, liquidity monitoring parameters, price monitoring parameters, data s
 
 **LP price range** is a number that, when multiplied by 100, determines the percentage move up and down from the mid price, which determines the range of price levels over which automated [liquidity commitment orders](../../concepts/liquidity/provision.md) will be deployed. An accepted value is > 0 and <= 100.
 
-**Decimal places** need to be defined for both order sizes and the market.
+**Decimal places** need to be defined for both order sizes and the market. A market cannot specify more decimal places than its settlement asset supports.
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
@@ -156,13 +156,13 @@ The risk model uses the following properties:
 | `param: sigma` | Annualised volatility of the underlying asset. <br/><br/>Accepted values: any strictly non-negative real number; suggested value: asset dependent, should be derived from the historical time-series of prices. | 0.8 (converts to 80%) |
 
 ## Templates and submitting
-In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to [submit on the token dApp ↗](https://token.fairground.wtf/governance/propose/new-market), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
+In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to [submit on the governance dApp ↗](https://token.fairground.wtf/governance/propose/new-market), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
 
 <Tabs groupId="newMarket">
   <TabItem value="annotated" label="Annotated example">
     <NewMarketAnnotated />
   </TabItem>
-  <TabItem value="json" label="Token dApp (JSON)">
+  <TabItem value="json" label="Governance dApp (JSON)">
 		<JSONInstructions />
 		<NewMarketJSON />
   </TabItem>

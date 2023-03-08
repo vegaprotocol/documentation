@@ -77,7 +77,7 @@ The network will also calculate:
 * The rate of 'for' votes cast by liquidity providers, calculated as the sum of all who voted 'for', divided by the LP participation rate - `LP for rate = SUM (all who voted for) / LP participation rate`
     
 :::tip Try it out
-Vote on active proposals on the **[Vega token dApp ↗](https://token.fairground.wtf/governance)**.
+Vote on active proposals on the **[Vega governance dApp ↗](https://token.fairground.wtf/governance)**.
 :::
 
 #### 5. Enacting changes
@@ -155,7 +155,7 @@ Required fields include:
 * Instrument details, including a human-readable name, an understandable shortcode for the market, the type of product (futures)
 * Risk model parameters
 * Product specifics including the settlement asset and quote name
-* Decimal places for the settlement asset, market, and positions 
+* Decimal places for the settlement asset, market, and positions. (Note: A market cannot specify more decimal places than its settlement asset supports)
 * Oracle details, including the oracle's public key, specifications for the settlement price and trading termination, and data filters
 * Liquidity monitoring parameters, including the target stake parameters, triggering ratio and auction extension
 

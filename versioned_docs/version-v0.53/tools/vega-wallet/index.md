@@ -13,7 +13,7 @@ The **[desktop wallet](./desktop-app/index.md)** provides a visual interface to:
 * Create new wallet 
 * Connect to networks
 * Sign transactions
-* Run and connect to Vega apps, such as the token dApp
+* Run and connect to Vega apps, such as the governance dApp
 
 ## Vega Wallet CLI app
 Use the **[command line app](./cli-wallet/index.md)** to do everything you can do with the desktop app, plus:

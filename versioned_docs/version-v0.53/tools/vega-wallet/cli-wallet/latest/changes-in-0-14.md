@@ -14,7 +14,7 @@ From version 0.14 onwards, you will need to approve transactions with your Vega 
 ## Submitting a transaction
 
 **Up to version 0.14** 
-Submitting transactions did not require any explicit approval from the person managing the Vega wallet when interacting with, for example, the token dApp or APIs.
+Submitting transactions did not require any explicit approval from the person managing the Vega wallet when interacting with, for example, the governance dApp or APIs.
 
 **Version 0.14.0 onwards**
 For every transaction submitted, the wallet will prompt with details of the transaction, and ask if you approve the transaction.

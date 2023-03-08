@@ -15,7 +15,7 @@ You can see a list of available commands by running `./vegawallet -h` on MacOS a
 
 ## Give a name to a key pair
 
-Use the metadata field `name` to give your key a label that means something to you. This name will be displayed by Vega interfaces like the token dApp and Vega Console. 
+Use the metadata field `name` to give your key a label that means something to you. This name will be displayed by Vega interfaces like the governance dApp and Vega Console. 
 
 To give your key a name, use the following command:
 

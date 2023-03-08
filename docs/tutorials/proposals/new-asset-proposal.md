@@ -49,13 +49,13 @@ When adding an ERC-20 asset to the bridge, the key details are compared to the s
 Validation happens according to the `validationTimestamp` parameter. In most situations, this should be early on in the voting period so that any validation errors are caught before token holders start voting. However you could push the validation later if the contract is not yet deployed.
 
 ## Templates and submitting
-In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to [submit on the token dApp ↗](https://token.fairground.wtf/governance/propose/new-asset), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
+In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to [submit on the governance dApp ↗](https://token.fairground.wtf/governance/propose/new-asset), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
 
 <Tabs groupId="newAssetProposal">
   <TabItem value="annotated" label="Annotated example">
     <NewAssetAnnotated />
   </TabItem>
-  <TabItem value="json" label="Token dApp (JSON)">
+  <TabItem value="json" label="Governance dApp (JSON)">
 		<JSONInstructions />
 		<NewAssetJSON />
   </TabItem>
