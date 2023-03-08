@@ -143,10 +143,20 @@ We recommend doing this at the beginning of the upgrade procedure, but this can 
 
 To load the checkpoint, find more information in the [restart network guide](../how-to/restart-network.md#load-checkpoint) 
 
-1. One of the Vega team members will adjust [the genesis file ↗](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json) in the [Vega Protocol networks repository ↗](https://github.com/vegaprotocol/networks).
+1. One of the validators will adjust [the genesis file ↗](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json) in the [Vega Protocol networks repository ↗](https://github.com/vegaprotocol/networks). You also may ask the vega team member to review it.
 2. The person responsible for updating genesis needs to create a PR with changes.
 3. All of the validators need to accept changes and approve the PR.
 4. Approved PR must be merged by one of the validators.
+
+:::note
+Make sure, you have correct values for the following parameters in your genesis: `genesis_time`, `time_iota_ms`, `chain_id`, `network_parameters_checkpoint_overwrite`.
+:::
+
+:::note The checkpoint parameters overwrite
+All of the network parameters will be taken from checkpoint except:
+- Added since the previous released version
+- Mentioned in the `network_parameters_checkpoint_overwrite` section
+:::
 
 ### 6. Download new genesis file
 After creating a backup and preparing a new genesis file, put it on your server. All the validators **must** use the same genesis file. 
@@ -199,7 +209,11 @@ You are responsible for deciding what parameters you want to use. `vega init` ge
 This step may be time consuming, as there is no automation and it needs to be done by hand. 
 :::
 
-The procedure is very similar to updating the Vega config. We recommend you read the [documentation for running Tendermint in production ↗](https://docs.tendermint.com/v0.33/tendermint-core/running-in-production.html)
+The procedure is very similar to updating the Vega config. We recommend you read the following docs:
+
+- [documentation for running Tendermint in production ↗](https://docs.tendermint.com/v0.33/tendermint-core/running-in-production.html)
+- [upgrading tendermint parameters - recommendation from vega](https://github.com/vegaprotocol/vega/blob/develop/UPGRADING.md#tendermint)
+- [tendermint upgrading guide](https://github.com/tendermint/tendermint/blob/main/UPGRADING.md)
 
 1. Generate Tendermint node in a temporary location: `<VEGA-BIN> tm init --home /tmp/tendermint-home`
 2. Compare the original Tendermint config with the generated one: `diff /tmp/tendermint-home/config/config.toml <TENDERMINT-HOME>/config/config.toml`
@@ -219,7 +233,7 @@ You are responsible for deciding what parameters you want to use. `vega tm init`
 This step may be time consuming, as there is no automation and it needs to be done by hand.
 :::
 
-There are a few ways to update your existing data-node config. The most practical way is to see what changed in the Vega config between versions, as follows:
+There are a few ways to update your existing data-node config. The most practical way is to see what changed in the data-node config between versions, as follows:
 
 1. Generate the Vega node in a temporary location: `<VEGA-BIN> datanode init --home /tmp/vega-home --archive <CHAIN-ID>`. When the terminal asks you about passphrases, type anything. You are interested only in the `/tmp/vega-home/config/data-node/config.toml` file. The `<CHAIN-ID>` is a new chain ID for your network
 2. Compare the old config with the generated one: `diff <VEGA-NETWORK-HOME>/config/data-node/config.toml /tmp/vega-home/config/data-node/config.toml`
@@ -241,7 +255,7 @@ sudo systemctl start vegavisor
 
 To verify the Vega node is working correctly, check the status of Visor with the `systemctl status vegavisor` command.
 
-To check the network logs, you can run the following command: `journalctl -u vegavisor -n 10000`
+To check the network logs, you can run the following command: `journalctl -u vegavisor -n 10000 -f`
 
 #### If you are running without Visor
 
@@ -260,6 +274,6 @@ sudo systemctl status data-node
 To see their logs run the following commands:
 
 ```bash
-journalctl -u vega -n 5000
-journalctl -u data-node -n 5000
+journalctl -u vega -n 5000 -f
+journalctl -u data-node -n 5000 -f
 ```
