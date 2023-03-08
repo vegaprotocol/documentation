@@ -4,7 +4,7 @@ sidebar_label: Upgrade to latest
 sidebar_position: 1
 ---
 
-To upgrade your validator node from version 0.53 to version 0.68+, follow the steps below. 
+To upgrade your validator node from version 0.53 to version 0.68.0, follow the steps below. 
 
 ## Study the changes between versions
 Before upgrading your node software, read the upgrading file in the Vega repo for a full list of the changes between the two versions, and review the breaking API changes.
