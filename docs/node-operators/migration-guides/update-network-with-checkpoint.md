@@ -1,15 +1,16 @@
 ---
-title: Upgrade node with the checkpoint
-sidebar_label: Upgrade to latest
+title: Upgrade to 0.68.2
+sidebar_label: Upgrade to 0.68.2
 sidebar_position: 1
 ---
+This guide describes the steps to upgrade from version 0.68.0 to 0.68.2 using a checkpoint. This upgrade includes a fix to `time_iota_ms` in the genesis file.
 
-## Assumptions for the upgrade guide
+## Assumptions for the guide
 The instructions below are written for Debian-like Linux operating systems. 
 
-The guide uses systemd commands(`systemctl` and `journalctl`) to control binaries in our setup. If you are using something different, that article's commands may vary.
+The guide uses systemd commands(`systemctl` and `journalctl`) to control binaries in our setup. If you are using something different, your system's commands may vary.
 
-This guide is specifically intended for those who are already running a validator node with version `v0.68.0` or higher
+This guide is specifically intended for those who are already running a validator node with version `v0.68.0` or higher.
 
 Before you start, note that the instructions use the following variables for file paths:
 
@@ -19,15 +20,14 @@ Before you start, note that the instructions use the following variables for fil
 * `<BACKUP-FOLDER>`: the folder where you store backups, e.g., `/home/vega/backups`
 * `<VISOR-BIN>`: the path to the Vega Visor binary, e.g., `/home/vega/bin/visor`
 * `<VEGA-BIN>`: the path to the Vega core binary, e.g., `/home/vega/bin/vega`
-* `<CHAIN-ID>`: new chain ID for network; it is required to pass as an argument for data-node, e.g., current chain ID on mainnet is: `vega-mainnet-0009`
+* `<CHAIN-ID>`: new chain ID for network; it is required to pass as an argument for data node, e.g., current chain ID on mainnet is: `vega-mainnet-0009`
 
 The following are placeholders for the PostgreSQL connection details for the data node - the ones you put in the data node `config.toml`.
 
 * `<VEGA-DB-USER>` - PostgreSQL user you create and put in the data node config
 * `<VEGA-DB-NAME>` - PostgreSQL database name
 
-We will refer to the above paths in the following guide. The sample paths given above are just examples. We recommend setting the paths that align with the conventions adopted by your organisation.
-
+This guide will refer to the above paths. The sample paths given above are just examples. We recommend setting the paths that align with the conventions adopted by your organisation.
 
 ## Study the changes between versions
 Before upgrading your node software, read the upgrading file in the Vega repo for a full list of the changes between the two versions, and review the breaking API changes.
@@ -49,46 +49,45 @@ The reason to quickly stop the network is to avoid producing more checkpoints an
 For testnet releases, the time requirement may be relaxed, but mainnet downtime must be limited as much as possible.
 
 1. Stop the running node
-    - Stop `vega` and optionally `data-node` if you are not running vegavisor: `sudo systemctl stop vega && sudo systemctl stop data-node`
-    - Stop `vegavisor` if you are running your node under the `vegavisor`: `sudo systemctl stop vegavisor`
+    - Stop `Vega` and optionally `data node` if you are not running Visor: `sudo systemctl stop vega && sudo systemctl stop data-node`
+    - Stop `vegavisor` if you are running your node with Visor: `sudo systemctl stop vegavisor`
 2. Verify the node has been stopped:
     - Vega: `systemctl status vega`
-    - Optionally data-node: `systemctl status data-node`
-    - Optionally vegavisor: `systemctl status vegavisor`
-
+    - Optionally data node: `systemctl status data-node`
+    - Optionally Visor: `systemctl status vegavisor`
 
 ### 2. Create backup
 
 ```bash
-mkdir -p <BACKUP-FOLDER>/v0.68.0/wallets;
-mkdir -p <BACKUP-FOLDER>/v0.68.0/core-state;
-mkdir -p <BACKUP-FOLDER>/v0.68.0/tm-state;
+mkdir -p <BACKUP-FOLDER>/v0.68.2/wallets;
+mkdir -p <BACKUP-FOLDER>/v0.68.2/core-state;
+mkdir -p <BACKUP-FOLDER>/v0.68.2/tm-state;
 
 # copy genesis
-cp <TENDERMINT-HOME>/config/genesis.json <BACKUP-FOLDER>/v0.68.0/genesis.json
+cp <TENDERMINT-HOME>/config/genesis.json <BACKUP-FOLDER>/v0.68.2/genesis.json
 
 # copy config files
-cp -r <VEGA-NETWORK-HOME>/config <BACKUP-FOLDER>/v0.68.0/vega-config
-cp -r <TENDERMINT-HOME>/config <BACKUP-FOLDER>/v0.68.0/tendermint-config
+cp -r <VEGA-NETWORK-HOME>/config <BACKUP-FOLDER>/v0.68.2/vega-config
+cp -r <TENDERMINT-HOME>/config <BACKUP-FOLDER>/v0.68.2/tendermint-config
 
 # copy wallets
-cp -r <VEGA-NETWORK-HOME>/data/node/wallets <BACKUP-FOLDER>/v0.68.0/wallets
-cp <TENDERMINT-HOME>/node_key.json <BACKUP-FOLDER>/v0.68.0/wallets
-cp <TENDERMINT-HOME>/priv_validator_key.json <BACKUP-FOLDER>/v0.68.0/wallets
-cp <VEGA-NETWORK-HOME>/nodewallet-passphrase.txt <BACKUP-FOLDER>/v0.68.0/wallets  # filename and location might differ, depending on your setup
+cp -r <VEGA-NETWORK-HOME>/data/node/wallets <BACKUP-FOLDER>/v0.68.2/wallets
+cp <TENDERMINT-HOME>/node_key.json <BACKUP-FOLDER>/v0.68.2/wallets
+cp <TENDERMINT-HOME>/priv_validator_key.json <BACKUP-FOLDER>/v0.68.2/wallets
+cp <VEGA-NETWORK-HOME>/nodewallet-passphrase.txt <BACKUP-FOLDER>/v0.68.2/wallets  # filename and location might differ, depending on your setup
 
 # copy network state
-cp -r <VEGA-NETWORK-HOME>/state/node <BACKUP-FOLDER>/v0.68.0/core-state
-cp -r <TENDERMINT-HOME>/data <BACKUP-FOLDER>/v0.68.0/tm-state
+cp -r <VEGA-NETWORK-HOME>/state/node <BACKUP-FOLDER>/v0.68.2/core-state
+cp -r <TENDERMINT-HOME>/data <BACKUP-FOLDER>/v0.68.2/tm-state
 
-# copy vegavisor config if you are running visor on your node
-cp -r <VEGAVISOR-HOME>/current <BACKUP-FOLDER>/v0.68.0/vegavisor-current
+# copy vegavisor config if you are running Visor on your node
+cp -r <VEGAVISOR-HOME>/current <BACKUP-FOLDER>/v0.68.2/vegavisor-current
 
 # Check if backup has been successfully done*; check if all files has been copied correctly
 tree <BACKUP-FOLDER>
 
 # Backup PostgreSQL if you have been running data node**
-pg_dump --host=localhost --port=5432 --username=<VEGA-DB-USER> --password -Fc -f <BACKUP-FOLDER>/v0.68.0/data_node_db.bak.sql <VEGA-DB-NAME>
+pg_dump --host=localhost --port=5432 --username=<VEGA-DB-USER> --password -Fc -f <BACKUP-FOLDER>/v0.68.2/data_node_db.bak.sql <VEGA-DB-NAME>
 ```
 
 **Notes**: 
@@ -107,8 +106,8 @@ See example commands for downloading below. You may need to update the version n
 
 ```bash
 # Download archives
-wget https://github.com/vegaprotocol/vega/releases/download/v0.68.0/vega-linux-amd64.zip
-wget https://github.com/vegaprotocol/vega/releases/download/v0.68.0/visor-linux-amd64.zip
+wget https://github.com/vegaprotocol/vega/releases/download/v0.68.2/vega-linux-amd64.zip
+wget https://github.com/vegaprotocol/vega/releases/download/v0.68.2/visor-linux-amd64.zip
 
 # Unzip downloaded archives
 unzip vega-linux-amd64.zip
