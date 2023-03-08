@@ -21,7 +21,7 @@ Vega will communicate with node operators, and node operators should communicate
 
 **[Vega community Discord](https://vega.xyz/discord)**: Use the Vega community Discord to introduce yourself, communicate network updates with tokenholders and community members, and keep on top of community news.
 
-**Sandbox channel**: To finalise setting up your validator node, you will need to join the sandbox support channel in the Vega Discord server. This channel is also where important information is shared between node operators, and where validator votes, and new software availability are announced.
+**Validators channel**: To finalise setting up your validator node, you will need to join the Validators channel in the Vega Discord server. This channel is also where important information is shared between node operators, and where validator votes, and new software availability are announced.
 
 **[Vega community forum](https://community.vega.xyz)**: Introduce your node operation, and keep track of governance proposals and other discussions on the Vega forum.
 

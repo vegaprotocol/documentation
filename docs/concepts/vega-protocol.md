@@ -155,7 +155,7 @@ Required fields include:
 * Instrument details, including a human-readable name, an understandable shortcode for the market, the type of product (futures)
 * Risk model parameters
 * Product specifics including the settlement asset and quote name
-* Decimal places for the settlement asset, market, and positions 
+* Decimal places for the settlement asset, market, and positions. (Note: A market cannot specify more decimal places than its settlement asset supports)
 * Oracle details, including the oracle's public key, specifications for the settlement price and trading termination, and data filters
 * Liquidity monitoring parameters, including the target stake parameters, triggering ratio and auction extension
 

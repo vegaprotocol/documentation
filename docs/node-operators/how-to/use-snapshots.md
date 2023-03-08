@@ -25,7 +25,7 @@ If you're using Visor for protocol upgrades, you'll need to use it to stop and s
 ## List available snapshots
 The vega toolchain offers a subcommand to list all snapshots available locally. Once your node has been running for a while, you should be able to see them using the following command:
 ```
-vega tools snapshotdb --show=list --home="YOUR_VEGA_HOME"
+vega tools snapshot --show=list --home="YOUR_VEGA_HOME"
 Snapshots available: 2
 	Height 901, version: 4, size 92, hash: 562414bb5be3ccc8403fbd030d06eebc799bfef5ca25b02ad360fec349cb4bc8
 	Height 601, version: 3, size 92, hash: 72a2edd960cf3340ae94bf092991f923850738144789959124590675798fefd9
@@ -122,7 +122,7 @@ git clone git@github.com:vegaprotocol/vegatools.git && cd vegatools && go instal
 
 Then using the vegatools command line you can inspect the state of the snapshot at a given height:
 ```
-vega tools snapshotdb --db-path=/path/to/the/snapshot.db --block-height=901
+vega tools snapshot --db-path=/path/to/the/snapshot.db --block-height=901
 ```
 
 :::note

@@ -7,6 +7,8 @@ vega_network: TESTNET
 
 import Topic from '/docs/topics/_topic-development.mdx'
 import DataNodes from '@site/src/components/DataNodes';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 Due to the distributed nature of Vega, most of the APIs are served from a data node, and a few from a core node. This means there is no single API server, and users will need to choose a node to connect to.
 
@@ -22,3 +24,29 @@ Below, find a list of all the public servers available for this network, and use
 <DataNodes frontMatter={frontMatter} />
 
 ## Node API endpoints: Validator testnet
+
+<Tabs groupId="servers">
+<TabItem value="REST" label="REST">
+
+| Name        | Address     |
+| ----------- | ----------- |
+| api-validators-testnet | `https://api-validators-testnet.vega.rocks/` |
+
+</TabItem>
+
+<TabItem value="GraphQL" label="GraphQL">
+
+| Name        | Address     |
+| ----------- | ----------- |
+| api-validators-testnet | `https://api-validators-testnet.vega.rocks/graphql/`|
+
+</TabItem>
+
+<TabItem value="gRPC" label="gRPC">
+
+| Name        | Address     |
+| ----------- | ----------- |
+| api.validators-testnet      | `api.validators-testnet.vega.rocks:3007`|
+
+</TabItem>
+</Tabs>

@@ -53,7 +53,7 @@ Instrument, liquidity monitoring parameters, price monitoring parameters, data s
 
 **LP price range** is a number that, when multiplied by 100, determines the percentage move up and down from the mid price, which determines the range of price levels over which automated [liquidity commitment orders](../../concepts/liquidity/provision.md) will be deployed. An accepted value is > 0 and <= 100.
 
-**Decimal places** need to be defined for both order sizes and the market.
+**Decimal places** need to be defined for both order sizes and the market. A market cannot specify more decimal places than its settlement asset supports.
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
