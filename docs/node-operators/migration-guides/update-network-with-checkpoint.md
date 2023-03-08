@@ -32,7 +32,7 @@ We will refer to the above paths in the following guide. The sample paths given 
 ## Study the changes between versions
 Before upgrading your node software, read the upgrading file in the Vega repo for a full list of the changes between the two versions, and review the breaking API changes.
 
-Review the **[release notes](../../releases/overview.md)** for a list of breaking API changes for each version from 0.54 onwards.
+Review the **[release notes](../../releases/overview.md)** for a list of breaking API changes for each version from the previously released version.
 
 Review the **[upgrading readme ↗](https://github.com/vegaprotocol/vega/blob/develop/UPGRADING.md)** with details on major updates.
 * [Repository changes ↗](https://github.com/vegaprotocol/vega/blob/develop/UPGRADING.md#repository-changes)
@@ -60,35 +60,35 @@ For testnet releases, the time requirement may be relaxed, but mainnet downtime 
 ### 2. Create backup
 
 ```bash
-mkdir -p <BACKUP-FOLDER>/v0.53.0/wallets;
-mkdir -p <BACKUP-FOLDER>/v0.53.0/core-state;
-mkdir -p <BACKUP-FOLDER>/v0.53.0/tm-state;
+mkdir -p <BACKUP-FOLDER>/v0.68.0/wallets;
+mkdir -p <BACKUP-FOLDER>/v0.68.0/core-state;
+mkdir -p <BACKUP-FOLDER>/v0.68.0/tm-state;
 
 # copy genesis
-cp <TENDERMINT-HOME>/config/genesis.json <BACKUP-FOLDER>/v0.53.0/genesis.json
+cp <TENDERMINT-HOME>/config/genesis.json <BACKUP-FOLDER>/v0.68.0/genesis.json
 
 # copy config files
-cp -r <VEGA-NETWORK-HOME>/config <BACKUP-FOLDER>/v0.53.0/vega-config
-cp -r <TENDERMINT-HOME>/config <BACKUP-FOLDER>/v0.53.0/tendermint-config
+cp -r <VEGA-NETWORK-HOME>/config <BACKUP-FOLDER>/v0.68.0/vega-config
+cp -r <TENDERMINT-HOME>/config <BACKUP-FOLDER>/v0.68.0/tendermint-config
 
 # copy wallets
-cp -r <VEGA-NETWORK-HOME>/data/node/wallets <BACKUP-FOLDER>/v0.53.0/wallets
-cp <TENDERMINT-HOME>/node_key.json <BACKUP-FOLDER>/v0.53.0/wallets
-cp <TENDERMINT-HOME>/priv_validator_key.json <BACKUP-FOLDER>/v0.53.0/wallets
-cp <VEGA-NETWORK-HOME>/nodewallet-passphrase.txt <BACKUP-FOLDER>/v0.53.0/wallets  # filename and location might differ, depending on your setup
+cp -r <VEGA-NETWORK-HOME>/data/node/wallets <BACKUP-FOLDER>/v0.68.0/wallets
+cp <TENDERMINT-HOME>/node_key.json <BACKUP-FOLDER>/v0.68.0/wallets
+cp <TENDERMINT-HOME>/priv_validator_key.json <BACKUP-FOLDER>/v0.68.0/wallets
+cp <VEGA-NETWORK-HOME>/nodewallet-passphrase.txt <BACKUP-FOLDER>/v0.68.0/wallets  # filename and location might differ, depending on your setup
 
 # copy network state
-cp -r <VEGA-NETWORK-HOME>/state/node <BACKUP-FOLDER>/v0.53.0/core-state
-cp -r <TENDERMINT-HOME>/data <BACKUP-FOLDER>/v0.53.0/tm-state
+cp -r <VEGA-NETWORK-HOME>/state/node <BACKUP-FOLDER>/v0.68.0/core-state
+cp -r <TENDERMINT-HOME>/data <BACKUP-FOLDER>/v0.68.0/tm-state
 
 # copy vegavisor config if you are running visor on your node
-cp -r <VEGAVISOR-HOME>/current <BACKUP-FOLDER>/vegavisor-current
+cp -r <VEGAVISOR-HOME>/current <BACKUP-FOLDER>/v0.68.0/vegavisor-current
 
 # Check if backup has been successfully done*; check if all files has been copied correctly
 tree <BACKUP-FOLDER>
 
 # Backup PostgreSQL if you have been running data node**
-pg_dump --host=localhost --port=5432 --username=<VEGA-DB-USER> --password -Fc -f <BACKUP-FOLDER/data_node_db.bak.sql <VEGA-DB-NAME>
+pg_dump --host=localhost --port=5432 --username=<VEGA-DB-USER> --password -Fc -f <BACKUP-FOLDER>/v0.68.0/data_node_db.bak.sql <VEGA-DB-NAME>
 ```
 
 **Notes**: 
