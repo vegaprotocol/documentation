@@ -1,34 +1,44 @@
 ---
+title: API Overview
+vega_network: TESTNET
+sidebar_position: 1
 vega_network: TESTNET
 ---
+
 import Topic from '/docs/topics/_topic-development.mdx'
 import DataNodes from '@site/src/components/DataNodes';
+import EthAddresses from '@site/src/components/EthAddresses';
 
 <Topic />
 
 ## Introduction
 The Vega protocol forms a blockchain specifically built to support trading of financial products on markets proposed and voted on by members of the Vega community.
 
-There several ways to interact with Vega through APIs and smart contracts, and below you can learn more about the overall technical structure, the reference documentation, and tutorials that are currently available.
+There are several ways to interact with Vega through APIs and smart contracts, and below you can learn more about the overall technical structure, the reference documentation, and tutorials that are currently available.
 
-As most of the APIs are designed to use for trading-related queries, the best place to try them out is on the testnet network, also known as Fairground. The public endpoints differ between testnet and mainnet, as do the network configurations your Vega-compatible wallet needs in order to connect. See the public endpoints page for details. You can switch between documentation of the networks' software versions in the top menu bar on every page.
+As most of the APIs are designed to be used for trading-related queries, the best place to try them out is on the testnet network, also known as Fairground. The public endpoints differ between testnet and mainnet, as do the network configurations your Vega-compatible wallet needs in order to connect. See the public endpoints page for details. You can switch between documentation of the networks' software versions in the top menu bar on every page.
 
 The easiest way to get started with Vega programmatically is by using REST. There are also [gRPC](./grpc/overview.md) and [GraphQL](./graphql/generated.md) endpoints geared towards users with specific requirements. For more about the endpoints they provide, go to their specific sections.
 
 Because Vega is a decentralised network run by independent validators, there are a number of different servers that you'll need to interact while working with the network - data will generally be recieved from one service and transactions will be sent to another. See the [the next section on data flow](#data-flow).
 
-## Data flow [WIP]
+## Data flow
 Most of the data you will want to access will come from the trading data REST service. This is served by a 'data node' - servers that read the blockchain and produce a database of the current state, and in some cases store the past state. These data nodes are where you will read data from. 
 
 To 'write' to the chain - that is to send in a transaction - you will use a Vega wallet, which will sign your transactions and send them to a validator node to be included in the chain.
 
-<!-- to diagram
-Data node via API (or run your own) --- > You --- > Wallet --- > Chain --- > Data Node ...MENTION ETHEREUM in flow.
--->
+![How data cycles through the Vega network](/img/api-diagrams/data-flow-vega.png)
 
 <!--
 This guide will use a wallet server running on localhost to 'write' data, and a specific data node to read data from. Depending on your use case, you may eventually run your own data source, or host a wallet on a remote machine.
 -->
+
+## Core nodes
+Vega's chain is built using the Tendermint consensus mechanism. Read more about Tendermint in their [documentation](https://docs.tendermint.com/). You can see what version of Tendermint the Vega core is using by checking the [statistics endpoint](../api/rest/core/core-service-statistics.api.mdx) for the `chainVersion`.
+
+The Vega core processes each transaction in order, from a block that's been created by Tendermint and then executing the transaction. When the transaction is being executed, it will trigger actions in the core. For example, an order submission could enter the order book, match other orders, trigger trades, etc. The core is comprised of the order books, risk engines, governance mechanisms, market lifecycle, and other essential protocol functions.
+
+![Simplified view of the transaction flow](/img/api-diagrams/transactions-flow-easy.png)
 
 ## Authentication
 Authentication takes several forms when interacting with Vega. When requesting data, such as through a query, you don't need to authenticate nor do you need an API token. 
@@ -51,12 +61,14 @@ You can see a full list of transaction types on the [commands API](./grpc/vega/c
 ### Transaction hashes
 Once a transaction has been successfully submitted to the chain, you receive the transaction's hash from the wallet. A transaction hash is a unique identifier for the transaction, and can be used to find that transaction and check its status on a Vega block explorer. Note that a transaction can only be seen by the block explorer once it's been processed by the network.
 
-Depending on transaction type, most will be given an ID, derived from the transaction hash, which specific to the object the transaction creates once it's processed. You can use that object-specific ID with the relevant endpoint to then get richer, more specific information about it. 
+Depending on transaction type, most will be given an ID, derived from the transaction hash, which is specific to the object the transaction creates once it's processed. You can use that object-specific ID with the relevant endpoint to then get richer, more detailed information about it. 
 
-For example, a submitted order will receive an order ID once the transaction to submit an order has been accepted into a block. You can use the REST endpoint to [get order by ID](./rest/data-v2/trading-data-service-get-order.api.mdx).
+For example, a submitted order will receive an order ID once the transaction to submit the order has been accepted into a block. You can use the REST endpoint to [get order by ID](./rest/data-v2/trading-data-service-get-order.api.mdx).
 
 ## Versioning
-Once the latest code is prepared for a release, it's deployed to a testnet, where the latest features and updates can be trialled. When the validator node operators agree that a version is sufficiently stable to be released to mainnet, all code from that version and the previous versions are upgraded to. Find out what version a data node is running with the [data node info endpoint](./rest/data-v2/trading-data-service-info.api.mdx).
+Once the latest code is prepared for a release, it's deployed to a testnet, where the latest features and updates can be trialled. When the validator node operators agree that a version is sufficiently stable to be released to mainnet, all code from that version and the previous versions are used to upgrade the network. 
+
+Find out what version a data node is running with the [data node info endpoint](./rest/data-v2/trading-data-service-info.api.mdx).
 
 Breaking APIs changes go through a deprecation cycle, and are announced in the summary for each [release](../releases/overview.md).
 
@@ -64,42 +76,8 @@ The documentation on this site covers the core software version running on the V
 
 See the [releases page](../releases/overview.md) for a summary of each software release and links to the full changelog on GitHub. 
 
-## Available reference docs [WIP]
-Four/five areas: core/data node | ethereum bridges | vega wallet | block explorer(?)
-
-Vega has been built to support REST, GRPC and GraphQL for interacting with the core and data nodes. 
-
-### Ethereum bridges [WIP]
-Vega uses assets from Ethereum so to facilitate this inter-chain interactions, there exist a number of smart contract bridges.
-These bridges can be interacted with in the various UIs and wallets and, like any smart contract on Ethereum, the smart contracts can be interacted with directly using an Ethereum JSONRPC node or a service like Etherscan(TODO Etherscan link).
-
-In order to enable inter-chain interactions between Vega and Ethereum, Vega utilizes assets from Ethereum, which are then transferred through a series of smart contract bridges. These bridges provide a seamless experience for users, allowing them to interact with the bridges through a variety of user interfaces (UIs) and wallets.
-
-Moreover, these smart contract bridges operate just like any other smart contract on Ethereum, meaning that users can interact with them directly using an Ethereum JSONRPC node or a service like [Etherscan](https://etherscan.io/), which provides a user-friendly interface for exploring and interacting with Ethereum smart contracts.
-
-**Smart Contracts**
-* ERC20 Bridge Logic
-  * Contains the functions necessary to deposit, withdraw, list assets, etc. Is controlled by Multisig Control and controls Asset Pool.
-* ERC20 Asset Pool
-  * Holds deposited assets and remits them to provided addresses based on orders from the assigned Bridge Logic. Is controlled by Bridge Logic and Multisig Control
-* Multisig Control
-  * Handles verification of orders signed by a threshold of validators. 
-* Staking Bridge
-  * Allows users to deposit and withdraw VEGA tokens for staking. The VEGA tokens are always controlled only by the user, even when on the Staking Bridge. Stake can be removed at any time by the user
-* VEGA Token 
-  * ERC20 token smart contract
-* Vesting
-  * All VEGA tokens are issued through this. Handles the linear vesting of VEGA tokens and allows users to Stake VEGA they own (vested or no)
-
-**[Smart contracts overview](./bridge/index.md)**: Start exploring the contracts.
-
-### Integrating with Vega Wallet
-If you're looking to integrate a dApp, website, or bots with the Vega Wallet, you'll need to use a wallet API. The wallet is also how you authenticate and send transactions to the network. To use the API to programmatically interact with the network for your own transactions, you'll need to [get a Vega Wallet](../tools/vega-wallet/index.md).
-
-The **Wallet API** (in alpha) uses JSON-RPC with an HTTP wrapper.
-
 ### REST APIs
-REST provides endpoints for querying for trading data, account information, ledger movements, asset and market information, and much more. 
+REST provides endpoints for querying for trading data, account information, ledger movements, asset and market information, and much more.
 
 * **Trading data API** providers historic information and cumulative data, and covers a wide range of data, including, but not limited to:
   * liquidity provisions
@@ -107,9 +85,9 @@ REST provides endpoints for querying for trading data, account information, ledg
   * information about validator and non-validator nodes
   * reward summaries
   * governance proposals and votes
-* **Core service API**: Provides the minimum state of the chain required to build and send a transaction. This is also exposed in the trading data API
-* **Explorer API**: Provides transaction details, designed particularly to support the development of block explorers
-* **Core state API**: This API is specifically for node operators, and may not be exposed by nodes running the network. All methods under that umbrella are also available under the other endpoints
+* **Core service API**: Provides the minimum state of the chain required to build and send a transaction. This is also exposed in the trading data API.
+* **Explorer API**: Provides transaction details, designed particularly to support the development of block explorers.
+* **Core state API**: This API is specifically for node operators, and may not be exposed by nodes running the network. All methods under this umbrella are also available on the trading data endpoints.
 
 ## Rate limiting 
 To prevent abuse of the APIs provided by data nodes, there are limitations to the rate of API requests that can be enabled by data node operators. Rate limiting is applied on a per-remote-IP-address basis.
@@ -142,7 +120,7 @@ Read more about rate limiting in the [rate limiting README ↗](https://github.c
 ### Pagination
 Pagination in REST is cursor-based. To query data, you can make a GET request to an endpoint. As an example, this section will use the `/transactions` endpoint. Use the query with the desired query parameters. If the query response contains more objects than the specified limit, you can use the `before` or `after` parameter to paginate through the results.
 
-Using `transactions`, to retrieve the first 10 transactions, make a GET request to `/transactions?limit=10`. 
+For example, to use `transactions` to retrieve the first 10 transactions, make a GET request to `/transactions?limit=10`. 
 
 You can specify the `after` to be equal to the `endCursor` value (see below) of an item to retrieve the page of **older** objects occurring immediately **after** the named object in the reverse chronological stream. Similarly, if it has a previous page, you can specify the `before` to be equal to the `startCursor` value of an item to retrieve the page of **newer** objecs occurring immediately **before** the named object in the reverse chronological stream.
 
@@ -157,56 +135,95 @@ Example of the cursor part of a query response:
       "endCursor": "eyJzeW50aGV0aWNfdGltZSI6IjIwMjMtMDItMjhUMTI6NTg6NTUuMTA1NzIzWiJ9"
     }
 ```
-
-<!-->
-
-- **[REST overview](rest/overview.md)**: Read more about data and core node APIs.
-
-
-## GraphQL for web apps [rework/remove?]
-If you’re writing a web app, GraphQL is flexible and allows efficient data retrieval. Like gRPC, GraphQL supports near real time streaming of updates from Vega. It uses websockets under the hood but follows the specification for streaming as set by GraphQL.
-
-**[GraphQL overview](./graphql/generated.md)**: See what GraphQL covers. 
-
-**[GraphQL Playground](https://api.testnet.vega.xyz/graphql/)**: Try out GraphQL queries. 
-
-## gRPC for fast interactions [rework]
-gRPC provides fast and efficient communication with Vega’s APIs. gRPC supports near real time streaming of updates from Vega. gRPC/Protobuf is the transport of choice for many web3 apps.
-
-**[gRPC](grpc/vega/vega.proto)**: Explore the gRPC reference documentation.
-- [Core state](grpc/vega/api/v1/corestate.proto): Get lists of state about the internal Vega system, such as 'list accounts', 'list parties.
-- [Commands](grpc/vega/commands/v1/commands.proto): Get all transaction types you can submit to the network.
-- [Data](grpc/data-node/api/v2/trading_data.proto.mdx): Interact with all data that the data nodes store, including trading data, interactions between the network and Ethereum, and governance. 
--->
-
 ## Other available frameworks [WIP]
-gRPC provides fast and efficient communication, and supports near real time streaming of updates from Vega. 
+gRPC provides fast and efficient communication, and supports near real time streaming of updates from Vega.
+GraphQL is used for building UIs that require complex queries. 
+
+### Ethereum bridges
+Vega uses ERC-20 assets from Ethereum, and to facilitate inter-chain interactions between Vega and Ethereum, those assets are then transferred through a series of smart contract bridges. These bridges provide a seamless experience for users, allowing them to use Ethereum assets on the (non-Ethereum) Vega chain.
+
+Moreover, these smart contract bridges operate just like any other smart contract on Ethereum, meaning that users can interact with them directly using an Ethereum JSON-RPC node or a service like [Etherscan ↗](https://etherscan.io/), which provides a user-friendly interface for exploring and interacting with Ethereum smart contracts.
+
+#### Smart contracts
+
+* [ERC20 Bridge Logic](./bridge/contracts/ERC20_Bridge_Logic.md)
+  * Contains the functions necessary to deposit, withdraw, list assets, etc. It's controlled by Multisig Control and controls Asset Pool.
+* [ERC20 Asset Pool](./bridge/contracts/ERC20_Asset_Pool.md)
+  * Holds deposited assets and remits them to provided addresses based on orders from the assigned Bridge Logic. It is controlled by Bridge Logic and Multisig Control.
+* [Multisig Control](./bridge/contracts/MultisigControl.md)
+  * Handles verification of orders signed by a threshold of validators. 
+* [Staking Bridge](./bridge/contracts/Vega_Staking_Bridge.md)
+  * Allows users to deposit and withdraw VEGA tokens for staking. The VEGA tokens are always controlled exclusively by the tokenholder, even when on the Staking Bridge. Stake can be removed at any time by the tokenholder.
+* VEGA Token contract
+  * ERC20 token smart contract.
+* Vesting contract
+  * All VEGA tokens are issued through this. Handles the linear vesting of VEGA tokens and allows users to stake VEGA they own (vested or not).
+
+#### Ethereum addresses
+<EthAddresses frontMatter={frontMatter} />
+
+**[Smart contracts overview](./bridge/index.md)**: Start exploring the contracts.
+
+### Vega Wallet integration
+If you're looking to integrate the Vega Wallet with a dApp or bots, you'll most likely need to use the wallet API. The wallet is also how you authenticate and send transactions to the network. To use the API to programmatically interact with the network for your own transactions, [download a Vega Wallet](../tools/vega-wallet/index.md).
+
+The **Wallet API** (in alpha) uses JSON-RPC with an HTTP wrapper.
 
 ## Primary elements (resources, building blocks..?) [WIP]
 (Ordered so they layer up - each can't exist without one or more of the previous things. Link to concepts for more info on each)
 
 ### Parties
-A party is a vega pubkey. Show how to list parties. 
+A party is a single user, defined as a Vega public key. As one person or entity can have many public keys, this is a unique identifier as far as an individual key's actions.  A party ID and a Vega public key (pubkey) are equivalent, and can be used interchangeably.
 
-A Party ID and a Vega public key are equivalent. 
+Show a paginated list of parties using the **[parties endpoint](../api/rest/data-v2/trading-data-service-list-parties.api.mdx)**.
 
 ### Assets
-Briefly what an asset is. List how to query for all assets, show details of an asset
+Assets used on Vega (to start) are all ERC-20 tokens, and thus originate on the Ethereum chain, not the Vega chain. Inter-chain asset interactions between Vega and Ethereum are facilitated through the [Ethereum bridges](#ethereum-bridges). 
+
+Assets can only be added to the network to be used as a market settlement asset through a governance action, and a follow-on update to the asset bridge.
+
+See all assets that can be used on the network with the **[list assets endpoint]](../api/rest/data-v2/trading-data-service-list-assets.api.mdx)**.
+
+Show a specific asset details using the **[asset endpoint](../api/rest/data-v2/trading-data-service-get-asset.api.mdx)**.
+
+### Deposits and withdrawals
+
+Assets need to be deposited using the bridge. 
+
+Assets need to be withdrawn using the bridge. 
+
+Ethereum deposit bridge
+Ethereum withdrawal bridge
+
+[See all deposits](../api/rest/data-v2/trading-data-service-list-deposits.api.mdx) for a specific party ID.
+[See a specific deposit](../api/rest/data-v2/trading-data-service-get-deposit.api.mdx) using its ID.
 
 ### Accounts
 Pretty much as above, show querying accounts by a party, accounts for assets
 
+List [all accounts](../api/rest/data-v2/trading-data-service-list-accounts.api.mdx)
+
 ### Markets
 Markets have accounts, are created with proposals, and allow parties to place orders with assets
 
-### Proposals
+[See all markets](../api/rest/data-v2/trading-data-service-list-markets.api.mdx)
+[Get information about a single market](../api/rest/data-v2/trading-data-service-get-market.api.mdx) using the market ID
+
+### Governance proposals and voting
 Mention that proposals are how new assets are added, and markets created. Also need gov. tokens
 
+[List all proposals](../api/rest/data-v2/trading-data-service-list-governance-data.api.mdx), with their current state, paginated.
+[Get detailed information about a specific proposal](../api/rest/data-v2/trading-data-service-get-governance-data.api.mdx) using its ID.
+
 #### Governance token
+VEGA token used for taking part in network, market, asset and freeform governance. 
 
 ### Orders
 How to see orders. Maybe positions too.
 
+[View information about one order](../api/rest/data-v2/trading-data-service-get-order.api.mdx) using its order ID.
+[Filter for orders](../api/rest/data-v2/trading-data-service-list-orders.api.mdx) based on specific information
+[List positions](../api/rest/data-v2/trading-data-service-list-all-positions.api.mdx) for a specific party ID
 
 ## Tutorials
 Tutorials provide the information you'll need about the protocol to understand and use the guide, as well as instructions on how to interact with scripts, API calls, or other code. 
