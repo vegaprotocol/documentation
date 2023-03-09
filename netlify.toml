@@ -62,7 +62,7 @@
 
 [[redirects]]
   from = "/testnet/api/vega-wallet/v2-api/integrate-wallet-service"
-  to = "/testnet/api/vega-wallet/how-to/bootstrap-wallet-service"
+  to = "/testnet/api/vega-wallet/how-to/bootstrap-local-service"
   status = 301
 
 [[redirects]]

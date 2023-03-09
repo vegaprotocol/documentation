@@ -25,7 +25,7 @@ Use the **[command line app](./cli-wallet/index.md)** to do everything you can d
 * Build and send transactions
 
 ## Vega Wallet API
-Integrate with the [Vega Wallet API](../../api/vega-wallet/get-started.md) to build UIs or create other headless applications like bots or scripts.
+Integrate with the [Vega Wallet API](../../api/vega-wallet/start-implementing.md) to build UIs or create other headless applications like bots or scripts.
 
 ## What is a wallet?
 **[Wallet concepts](../../concepts/vega-wallet.md)**: Read about how the Vega Wallet works and what the terms like 'wallet name' and 'recovery phrase' mean.

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 title: Manage networks
 hide_title: false
 description: Set up network details to connect your wallet, update network details, and list the available networks

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 title: Customise key details
 hide_title: false
 description: Add metadata to your keys to help you identify each key pair
