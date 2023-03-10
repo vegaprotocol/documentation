@@ -404,35 +404,31 @@ If you prefer, the data node can manage this for you by automatically generating
     AutoCertDomain = "my.lovely.domain.com"
 ```
 
-You can also buy certitficate from verified source and place obtained file to prefered location. It is advised that certificate and key files have permission mask `0600` and directory where they are located `0700`.
+You can also buy a certificate from a verified source and save the obtained file to your preferred location. It is advised that the certificate and key files have a permission mask of `0600` and the directory where they are located as `0700`.
 
-In advanced scenario you can obtain certificate by running certbot in crontab from prefered acme server. You need to:
+In advanced scenarios, you can obtain a certificate by running certbot in crontab from your preferred acme server.
 
-- [Install certbot](https://www.inmotionhosting.com/support/website/ssl/lets-encrypt-ssl-ubuntu-with-certbot/)
-- `certbot certonly --standalone` to generate certificate
-- place generated `fullchain.pem` to `Gateway.GraphQL.CertificateFile` location and corresponding `privkey.pem` to `Gateway.GraphQL.KeyFile`.
-- now you need to restart the data-node process to reload files. You can use for that [`systemd`](https://www.shellhacks.com/systemd-service-file-example/).
-- [Configuration considerations](https://serverfault.com/questions/790772/best-practices-for-setting-a-cron-job-for-lets-encrypt-certbot-renewal) for certbot in crontab.
+* [Install certbot](https://www.inmotionhosting.com/support/website/ssl/lets-encrypt-ssl-ubuntu-with-certbot/)
+* Run `certbot certonly --standalone` to generate certificate
+* Place the generated `fullchain.pem` into the `Gateway.GraphQL.CertificateFile` location and corresponding `privkey.pem` to `Gateway.GraphQL.KeyFile`.
+* Restart the data node process to reload the files
+* Read the [configuration considerations](https://serverfault.com/questions/790772/best-practices-for-setting-a-cron-job-for-lets-encrypt-certbot-renewal) for certbot in crontab.
 
-However, it is a requirement of the `LetsEncrypt` validation process that the the server answering its challenge is running on the standard HTTPS port (443). This means you must either
+However, it is a requirement of the `LetsEncrypt` validation process that the the server answering its challenge is running on the standard HTTPS port (443). This means, if using `LetsEncrypt`, you must do one of the following:
 
-- Forward port 443 on your machine to the GraphQL port (3008 by default) using `iptables` or similar other network configuration CLI. Example:
-  - `iptables`: `iptables -A PREROUTING -t nat -p tcp --dport 443 -j DNAT --to-destination :3008`
-- Proxy pass to port 3008 by using reverse proxy server. Some example sources on how to setup one:
+* Forward port 443 on your machine to the GraphQL port (3008 by default) using `iptables` or similar other network configuration CLI. Example: `iptables`: `iptables -A PREROUTING -t nat -p tcp --dport 443 -j DNAT --to-destination :3008`
+* Proxy pass to port 3008 by using reverse proxy server. Some example sources on how to set one up:
   - [`caddy`](https://caddyserver.com/docs/quick-starts/reverse-proxy)
   - [`nginx`](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
   - [`httpd`](https://httpd.apache.org/docs/2.4/howto/reverse_proxy.html)
-- Directly use port 443 for the GraphQL server in data node by specifying
+* Directly use port 443 for the GraphQL server in data node by specifying the following:
 
 ```toml
   [Gateway.GraphQL]
     Port = 443
 ```
 
-Note that Linux systems generally require processes listening on ports under 1024 to either
-
-- run as root, or
-- be specifically granted permission, e.g. by launching with
+Note that Linux systems generally require processes listening on ports under 1024 to either run as root, or be specifically granted permission, e.g. by launching with the following:
 
 ```shell
 setcap cap_net_bind_service=ep vega datanode run
