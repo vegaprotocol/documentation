@@ -109,6 +109,5 @@ vega wallet service run -n <NETWORK_NAME> --load-tokens --tokens-passphrase-file
 Once you set up a wallet for the first time, you will probably only need to run the `service run` command and update the binaries when a new version is released.
 
 ## Get help with the CLI
-
-**If you need help using the Vega wallet CLI**, see the ["Get help with the CLI" guide](/tools/vega-wallet/CLI-wallet/latest/guides/get-help.md).
+If you need help using the Vega wallet CLI, see the ["Get help with the CLI" guide](../../../tools/vega-wallet/cli-wallet/latest/guides/get-help.md).
 

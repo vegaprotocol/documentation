@@ -11,19 +11,16 @@ import Topic from '/docs/topics/_topic-wallet.mdx'
 The following guide describes how to integrate the wallet service headless software like bots and scripts.
 
 ### Generate a long-living token
-
-First, you need to create a long-living API token. Follow the ["Use long-living tokens" guide](./use-long-living-tokens.md) to know how.
+First, you need to create a long-living API token. Follow the ["Use long-living tokens" guide](./use-long-living-tokens.md) to find out how.
 
 ### Connect to the local service
+Once you generated the token, you'll need to bootstrap the local service, if not already done. See the ["Bootstrap wallet service" guide](./bootstrap-local-service.md).
 
-Now you generated the token, you first need to bootstrap the local service, if not already done. See ["Bootstrap wallet service" guide](./bootstrap-local-service.md) to know how.
+Then, you will have to connect to the local service. Follow the ["Connect to local service" guide](./connect-to-local-service.md).
 
-Then, you will have to connection to the local service. Follow the ["Connect to local service" guide](./connect-to-local-service.md) to know how.
-
-Remember, you are using a long-living token. There is no need to support live sessions.
+As you are using a long-living token, there is no need to support live sessions.
 
 ### List the public keys
-
 On the HTTP endpoint `POST /api/v2/requests`, use the JSON-RPC method below to get the public keys you have access to:
 
 ```json
@@ -37,7 +34,6 @@ On the HTTP endpoint `POST /api/v2/requests`, use the JSON-RPC method below to g
 More detail at [`client.list_keys`](../reference/core/openrpc.md#clientlistkeys).
 
 ### Send a transaction
-
 Once you have access to the key list, you can send a transaction.
 
 Note, the transaction field is an example, you will have to define your own.
@@ -60,4 +56,4 @@ Note, the transaction field is an example, you will have to define your own.
 }
 ```
 
-More detail at [`client.send_transaction`](../reference/core/openrpc.md#clientsendtransaction).
+See more detail at the [`client.send_transaction`](../reference/core/openrpc.md#clientsendtransaction) API reference documentation.

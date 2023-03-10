@@ -1,7 +1,8 @@
 ---
 title: API principles
 hide_title: false
-sidebar_position: 3
+description: Learn the core principles behind the wallet API.
+sidebar_position: 2
 ---
 
 import Topic from '/docs/topics/_topic-wallet.mdx'
