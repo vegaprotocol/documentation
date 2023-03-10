@@ -6,7 +6,7 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-To set up a data node, you must first have followed the guide to [install and set up a Vega node](setup-server.md). A data node must be run in conjunction with a **non-validator Vega node**. 
+To set up a data node, you must first have followed the guide to [install and set up a Vega node](setup-server.md). A data node must be run in conjunction with a **non-validator Vega node**.
 
 The non-validator Vega node will send the events it receives from the network and the events it creates to the data node, which will then store them in a database. An API is provided to query the data stored by the data node.
 
@@ -14,7 +14,7 @@ Note: If you are running a Vega validator node it is recommended that you do not
 
 The database used by the data node is a PostgreSQL database with the Timescale extension installed. The database can be a dedicated database server, a docker container, or an embedded version of PostgreSql with Timescale installed that is provided by Vega.
 
-:::note Operating system 
+:::note Operating system
 The following instructions assume you are installing on a Ubuntu Linux machine as explained in the [server setup guide](setup-server#os-and-software).
 :::
 
@@ -24,7 +24,7 @@ The following instructions assume you are installing on a Ubuntu Linux machine a
 Please follow the instructions in the [server setup guide](setup-server.md) to install Vega.
 
 ### PostgreSQL and TimescaleDB full installation
-We have tested and recommend using version 2.8.0 of the TimescaleDB plugin with Postgres 14. 
+We have tested and recommend using version 2.8.0 of the TimescaleDB plugin with Postgres 14.
 
 Refer to the [PostgreSQL documentation ↗](https://www.postgresql.org/docs/14/index.html) for more detailed information on setting up a PostgreSQL database.
 
@@ -40,7 +40,7 @@ To ensure you install the correct version of TimescaleDB, you can use the notes 
 <TabItem value="mac" label="MacOS">
 
 ### MacOS users
-To ensure you install the correct version of TimescaleDB, you can use the notes at the bottom of the [Timescales Documentation for Mac ↗](https://docs.timescale.com/install/latest/self-hosted/installation-macos/). 
+To ensure you install the correct version of TimescaleDB, you can use the notes at the bottom of the [Timescales Documentation for Mac ↗](https://docs.timescale.com/install/latest/self-hosted/installation-macos/).
 </TabItem>
 </Tabs>
 :::
@@ -78,13 +78,13 @@ Where:
 
 ### PostgreSQL configuration tuning
 
-The default PostgreSQL configuration is not optimised for memory usage, and can be modified. 
+The default PostgreSQL configuration is not optimised for memory usage, and can be modified.
 
 Find the PostgreSQL parameters in the `postgresq.conf` file. The default file path for Linux and PostgreSQL 14 is: `/etc/postgresql/14/main/postgresql.conf`.
 
 :::note Memory usage
-Total memory usage for PostgreSQL is predictable. To determine the values of the parameters below, you must know how PostgreSQL uses the memory. 
-There is a `shared_memory` that is used between all connections and background workers. 
+Total memory usage for PostgreSQL is predictable. To determine the values of the parameters below, you must know how PostgreSQL uses the memory.
+There is a `shared_memory` that is used between all connections and background workers.
 
 Each background worker and connection has its own smaller chunk of memory:
 
@@ -160,7 +160,7 @@ shared_memory_type = sysv
 
 The two above parameters determine how your operating system manages the shared memory.
 
-If your operating system supports the POSIX standard, you may want to use the `map` value both for the `dynamic_shared_memory_type` and `shared_memory_type`. But the `sysv` value is more portable than `map`. There is no significant difference in [performance ↗](https://lists.dragonflybsd.org/pipermail/kernel/attachments/20120913/317c1aab/attachment-0001.pdf). 
+If your operating system supports the POSIX standard, you may want to use the `map` value both for the `dynamic_shared_memory_type` and `shared_memory_type`. But the `sysv` value is more portable than `map`. There is no significant difference in [performance ↗](https://lists.dragonflybsd.org/pipermail/kernel/attachments/20120913/317c1aab/attachment-0001.pdf).
 
 ## Generate configuration files
 
@@ -188,20 +188,20 @@ For more information about setting up a validator node, see the [validator node 
 ## Data node retention profiles
 When starting a data node, you can choose the data retention configuration for your data node, depending on the use case for the node. The retention policy details can all be fine-tuned manually, as well.
 
-There are 3 retention policy configurations: 
+There are 3 retention policy configurations:
 * **Standard (default)**: The node retains data according to the default retention policies, which assume a data node retains some data over time, but not all data
-* **Lite**: The node retains enough data to be able to provide the latest state to clients, and produce network history segments. This mode saves enough to provide the current state of accounts, assets, balances, delegations, liquidity provisions, live orders, margin levels, markets, network limits, network parameters, node details, parties, positions 
+* **Lite**: The node retains enough data to be able to provide the latest state to clients, and produce network history segments. This mode saves enough to provide the current state of accounts, assets, balances, delegations, liquidity provisions, live orders, margin levels, markets, network limits, network parameters, node details, parties, positions
 * **Archive**: The node retains all data
 
-To run a node that doesn't use the standard default retention, use one of the following flags when running the `init` command: 
-   
+To run a node that doesn't use the standard default retention, use one of the following flags when running the `init` command:
+
 * For a standard node, no flag
 * For an archive node, use `--archive`
 * For a lite node, use `--lite`
 
-If you want to tweak the retention policy once the initial configuration has been generated, set it on per-table basis in the data node's `config.toml`. 
+If you want to tweak the retention policy once the initial configuration has been generated, set it on per-table basis in the data node's `config.toml`.
 
-For example: 
+For example:
 
 ```toml
 [[SQLStore.RetentionPolicies]]
@@ -216,9 +216,9 @@ To generate the configuration files you need for the data node, you can use the 
 vega datanode init --home="YOUR_DATA_NODE_HOME_PATH" "CHAIN_ID"
 ```
 
-Find the `CHAIN_ID` by going to the relevant network genesis file in the relevant networks repo. 
+Find the `CHAIN_ID` by going to the relevant network genesis file in the relevant networks repo.
 
-Visit [networks ↗](https://github.com/vegaprotocol/networks/) for mainnet or [networks-internal ↗](https://github.com/vegaprotocol/networks-internal) for a testnet network. 
+Visit [networks ↗](https://github.com/vegaprotocol/networks/) for mainnet or [networks-internal ↗](https://github.com/vegaprotocol/networks-internal) for a testnet network.
 
 To update your data node configuration, such as to set up ports for the APIs or database credentials, edit the config file:
 
@@ -238,7 +238,7 @@ To configure your Vega node to work with a data node you need to update the `[Br
     ...
 ```
 
-:::note 
+:::note
 While it's possible to run the data node and Vega node on separate machines, it's not recommended given the volume of data that will be transferred between the two.
 :::
 
@@ -404,9 +404,24 @@ If you prefer, the data node can manage this for you by automatically generating
     AutoCertDomain = "my.lovely.domain.com"
 ```
 
+You can also buy certitficate from verified source and place obtained file to prefered location. It is advised that certificate and key files have permission mask `0600` and directory where they are located `0700`.
+
+In advanced scenario you can obtain certificate by running certbot in crontab from prefered acme server. You need to:
+
+- [Install certbot](https://www.inmotionhosting.com/support/website/ssl/lets-encrypt-ssl-ubuntu-with-certbot/)
+- `certbot certonly --standalone` to generate certificate
+- place generated `fullchain.pem` to `Gateway.GraphQL.CertificateFile` location and corresponding `privkey.pem` to `Gateway.GraphQL.KeyFile`.
+- now you need to restart the data-node process to reload files. You can use for that [`systemd`](https://www.shellhacks.com/systemd-service-file-example/).
+- [Configuration considerations](https://serverfault.com/questions/790772/best-practices-for-setting-a-cron-job-for-lets-encrypt-certbot-renewal) for certbot in crontab.
+
 However, it is a requirement of the `LetsEncrypt` validation process that the the server answering its challenge is running on the standard HTTPS port (443). This means you must either
 
-- Forward port 443 on your machine to the GraphQL port (3008 by default) using `iptables` or similar
+- Forward port 443 on your machine to the GraphQL port (3008 by default) using `iptables` or similar other network configuration CLI. Example:
+  - `iptables`: `iptables -A PREROUTING -t nat -p tcp --dport 443 -j DNAT --to-destination :3008`
+- Proxy pass to port 3008 by using reverse proxy server. Some example sources on how to setup one:
+  - [`caddy`](https://caddyserver.com/docs/quick-starts/reverse-proxy)
+  - [`nginx`](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
+  - [`httpd`](https://httpd.apache.org/docs/2.4/howto/reverse_proxy.html)
 - Directly use port 443 for the GraphQL server in data node by specifying
 
 ```toml
