@@ -52,7 +52,7 @@
 
 [[redirects]]
   from = "/testnet/api/vega-wallet/v2-api/get-started"
-  to = "/testnet/api/vega-wallet/get-started"
+  to = "/testnet/api/vega-wallet/accessing-api"
   status = 301
 
 [[redirects]]
