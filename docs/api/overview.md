@@ -1,6 +1,5 @@
 ---
 title: API Overview
-vega_network: TESTNET
 sidebar_position: 1
 vega_network: TESTNET
 ---
@@ -187,43 +186,49 @@ See all assets that can be used on the network with the **[list assets endpoint]
 Show a specific asset details using the **[asset endpoint](../api/rest/data-v2/trading-data-service-get-asset.api.mdx)**.
 
 ### Deposits and withdrawals
-
-Assets need to be deposited using the bridge. 
-
-Assets need to be withdrawn using the bridge. 
-
-Ethereum deposit bridge
-Ethereum withdrawal bridge
+Assets used on the Vega network need to be deposited from an Ethereum wallet using the [bridge contracts](#ethereum-bridges), and can be withdrawn back into an Ethereum wallet if they are not being used for margin or liquidity commitments.
 
 [See all deposits](../api/rest/data-v2/trading-data-service-list-deposits.api.mdx) for a specific party ID.
 [See a specific deposit](../api/rest/data-v2/trading-data-service-get-deposit.api.mdx) using its ID.
 
-### Accounts
-Pretty much as above, show querying accounts by a party, accounts for assets
+Read more: [Deposits and withdrawals](../concepts/deposits-withdrawals.md)
 
-List [all accounts](../api/rest/data-v2/trading-data-service-list-accounts.api.mdx)
+### Accounts
+Vega relies on accounts to ensure funds are never lost or double spent. The amounts in each account, as well as the transactions that were added to and removed from those accounts, are all recorded and stored on-chain. Accounts are used either to hold assets that the public key holder is in control of using — such as deposited collateral, or for setting money aside that only the network can manage — to fulfil margin requirements, for example, or to store assets that are earmarked for rewards or paying out fees.
+
+List [accounts](../api/rest/data-v2/trading-data-service-list-accounts.api.mdx) based on chosen filters.
+
+[Read about accounts](../concepts/accounts.md)
 
 ### Markets
-Markets have accounts, are created with proposals, and allow parties to place orders with assets
+Markets have accounts, are created with proposals, and allow parties to place orders with assets.
 
 [See all markets](../api/rest/data-v2/trading-data-service-list-markets.api.mdx)
 [Get information about a single market](../api/rest/data-v2/trading-data-service-get-market.api.mdx) using the market ID
 
 ### Governance proposals and voting
-Mention that proposals are how new assets are added, and markets created. Also need gov. tokens
+Governance proposals used to add new assets and markets, as well as to suggest changes to assets, markets, and network parameters, as well as off-chain suggestions. VEGA tokens need to be associated to the Vega public key that wants to take part in governance.
 
 [List all proposals](../api/rest/data-v2/trading-data-service-list-governance-data.api.mdx), with their current state, paginated.
 [Get detailed information about a specific proposal](../api/rest/data-v2/trading-data-service-get-governance-data.api.mdx) using its ID.
 
 #### Governance token
-VEGA token used for taking part in network, market, asset and freeform governance. 
+VEGA token are used for taking part in network, market, asset and freeform governance, and to secure the network by nominating validators that run the network.
+
+See votes using the **[list votes endpoint](../api/rest/data-v2/trading-data-service-list-votes.api.mdx)**
+See paginated proposals using the **[governance list endpoint]](../api/rest/data-v2/trading-data-service-list-governance-data.api.mdx)**
+
+Explore the [tutorials for submitting proposals](../tutorials/proposals/index.md) using the command line.
 
 ### Orders
-How to see orders. Maybe positions too.
+An order is an instruction to buy or sell on a specific market, and it can go long or short on the market's price. Placing an order does not guarantee it gets filled, but if it is filled, it will result in a position, which will require collateral to use for margin to keep that position open.
 
 [View information about one order](../api/rest/data-v2/trading-data-service-get-order.api.mdx) using its order ID.
 [Filter for orders](../api/rest/data-v2/trading-data-service-list-orders.api.mdx) based on specific information
 [List positions](../api/rest/data-v2/trading-data-service-list-all-positions.api.mdx) for a specific party ID
+
+[Read more about orders](../concepts/trading-on-vega/orders.md).
+[Read more about positions](../concepts/trading-on-vega/positions-margin.md)
 
 ## Tutorials
 Tutorials provide the information you'll need about the protocol to understand and use the guide, as well as instructions on how to interact with scripts, API calls, or other code. 
