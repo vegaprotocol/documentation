@@ -1,5 +1,6 @@
 ---
     title: OpenRPC
+    description: See all the JSON-RPC methods.
     sidebar_position: 1
 ---
 - [client.connect_wallet](#clientconnect_wallet): Initiates a connection between a wallet and a third-party application.

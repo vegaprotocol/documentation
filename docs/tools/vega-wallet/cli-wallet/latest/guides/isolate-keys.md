@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 6
 title: Isolate keys
 hide_title: false
 description: Move a key pair from a standard wallet into a wallet that can only sign and verify transactions

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 title: Restore a wallet
 hide_title: false
 description: Restore a wallet using a recovery phrase, such as when you want to use the wallet on a different device
