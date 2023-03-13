@@ -60,12 +60,19 @@ Instrument, liquidity monitoring parameters, price monitoring parameters, data s
 | `decimalPlaces` | Sets the smallest price increment on the book. | 18 |
 | `positionDecimalPlaces` | Sets how big the smallest order / position on the market can be. | 5 |
 
-Timestamps are required for ending the voting period, as well as enacting the market. The time between closing and enactment also defines how long an opening auction will be, which must be smaller than/equal to the difference between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxClose" /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxEnact" />.
+**Timestamps** are required for ending the voting period, as well as enacting the market. The time between closing and enactment also defines how long an opening auction will be, which must be smaller than/equal to the difference between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxClose" /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxEnact" />.
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
 | `closingTimestamp` | Timestamp (Unix time in seconds) when voting closes for this proposal. The chosen time must be between <NetworkParameter frontMatter={frontMatter}param="governance.proposal.market.minClose" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxClose" hideName={true} /> after the proposal submission time. (int64 as string) | 1663517914 |
 | `enactmentTimestamp ` | Timestamp (Unix time in seconds) when the market will be enacted, ready for trading. The chosen time must be between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minEnact" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxEnact" hideName={true} /> after `closingTimestamp`. (int64 as string) | 1663604314 |
+
+**Slippage factors** are optional parameters that set out how much the liquidity component of the margin is dependent on the position size. They are used to add an upper limit to how much slippage that margin can have. Margin slippage is calculated as `slippageFromFactors = linear x position  + quadratic x position^2) x price`, unless there is a lot of liquidity on the book, at which point the protocol calculates the closeout amount, and provides the lower amount, i.e., the liquidity part of the margin `min(slippageFromFactors, slippageFromBook)`.
+
+| Field | Description | Example |
+| ----------- | ----------- | ----------- |
+| `linearSlippageFactor` | The linear slippage factor captures that for a bigger position there is proportionally bigger liquidity risk. | 0.001 |
+| `quadraticSlippageFactor` | The quadratic slippage factor determines by what factor especially large positions are penalised. When closing those out, the system will 'walk the book' and potentially end up with an execution price notably worse that the last mark price. | 0.0 |
 
 ### Instrument
 The instrument shape is as follows, see below for a description of each property:
@@ -83,6 +90,7 @@ An instrument contains the following properties:
 | `dataSourceSpecForSettlementData` | This defines the data source that will be used to identify the settlement price when the market expires. | prices.BTC.value |
 | `dataSourceSpecForTradingTermination` | The fields that define the data source used for terminating trading on the market. | vegaprotocol.builtin.timestamp |
 | `dataSourceSpecBinding` | The fields describe how specific information provided by the data source is used. For example, they can identify the specific name of the settlement price output, or the specific name of the trading termination property. |
+
 
 For easy reading, the data source filters are separated out - see [Data source bindings](#data-source-bindings) below to see the fields for specifying data.
 

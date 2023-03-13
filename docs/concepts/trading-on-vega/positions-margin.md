@@ -66,7 +66,7 @@ To more closely control how much is risked on a position, it's possible to repli
 ### Margin requirements
 The Vega protocol calculates four margin levels, which are used to determine when a trader has the right amount, too much, or not enough margin set aside to support their position(s). Those levels are: maintenance margin, initial margin, search level, collateral release level. 
 
-The maintenance margin (minimum amount needed to keep a position open) is derived from the market's risk model, and all other margin levels are based on the maintenance margin level.
+The maintenance margin (minimum amount needed to keep a position open) is derived from the market's risk model and includes some slippage calculations. All other margin levels are based on the maintenance margin level.
 
 ### Margin level: Maintenance
 Throughout the life of an open position, the minimum required amount to keep a position open is called the maintenance margin. It corresponds to the minimum amount required to cover a position during adverse market moves within a given probability level. 
@@ -74,6 +74,17 @@ Throughout the life of an open position, the minimum required amount to keep a p
 The amount a trader will have held aside as maintenance margin is derived from the market's risk model. Specifically, it's based on a risk measure called the expected shortfall, used to evaluate the market risk of the position and any open orders.
 
 If the margin balance drops below the maintenance margin level, the position closeout process gets initiated.
+
+#### Slippage factors
+Maintenance margin is calculated as: 
+
+```
+maintenance margin = price x (linear slippage factor x |position| + quadratic slippage factor x position^2) + price x |position| x size x risk factor
+```
+
+Slippage factors are optional market parameters that determine if (and by how much) the liquidity component of the margin is dependent on the position size. 
+
+Margin slippage is calculated as `slippageFromFactors = linear x position  + quadratic x position^2) x price`, unless there is a lot of liquidity on the book, at which point the protocol calculates the closeout amount, and provides the lower amount, i.e., the liquidity part of the margin `min(slippageFromFactors, slippageFromBook)`. Increasing either slippage factor increases the liquidity part of the margin calculation, but only if there is little volume on the book; if there is enough volume on the book the slippage comes directly from the book.
 
 :::note Read more
 [Closeouts](./market-protections#closeouts): What triggers a closeout, and what happens in a closeout
