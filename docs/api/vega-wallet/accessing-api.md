@@ -10,8 +10,6 @@ import Topic from '/docs/topics/_topic-wallet.mdx'
 <Topic />
 
 ## How to access this API
-First of all, there are two kinds of API.
-
 All Vega Wallet software exposes a JSON-RPC API. This API, its endpoints, requests, and responses are all exactly the same, and are handled exactly the same way, whatever the software implementation.
 
 However, the way the JSON-RPC API is exposed depends on the software that implements it. One could expose it through an HTTP server, another could inject it in the webpage. This part of the API is called the communication layer.
