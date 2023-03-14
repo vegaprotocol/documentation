@@ -82,7 +82,7 @@ Maintenance margin is calculated as:
 maintenance margin = price x (linear slippage factor x |position| + quadratic slippage factor x position^2) + price x |position| x size x risk factor
 ```
 
-Slippage factors are optional market parameters that specify by how much the liquidity component of the margin calculation is dependent on the position size in a low-volume market scenario.
+Slippage factors are market parameters that specify by how much the liquidity component of the margin calculation is dependent on the position size in a low-volume market scenario.
 
 If there is enough volume on the book, the slippage comes directly from the book and the liquidity component is not used. Margin slippage in a low-volume scenario is calculated as `slippageFromFactors = linear x position  + quadratic x position^2) x price`. If there is a lot of liquidity on the book, the protocol calculates the closeout amount and provides the lower amount, i.e., the liquidity part of the margin `min(slippageFromFactors, slippageFromBook)`. Increasing the linear or quadratic slippage factor increases the liquidity part of the margin calculation, but only if there is little volume on the book; if there is enough volume on the book the slippage comes directly from the book.
 
