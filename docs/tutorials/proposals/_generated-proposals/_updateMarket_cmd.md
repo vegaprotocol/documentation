@@ -11,6 +11,8 @@
     "marketId": "123",
     "changes": {
      "lpPriceRange": "11",
+     "linearSlippageFactor": "0.001",
+     "quadraticSlippageFactor": "0",
      "instrument": {
       "code": "APPLES.22",
       "future": {
@@ -87,17 +89,17 @@
      },
      "logNormal": {
       "tau": 0.0001140771161,
-      "riskAversionParameter": 0.001,
+      "riskAversionParameter": 0.01,
       "params": {
        "mu": 0,
        "r": 0.016,
-       "sigma": 0.5
+       "sigma": 1.25
       }
      }
     }
    },
-   "closingTimestamp": 1679237089000,
-   "enactmentTimestamp": 1679323489000
+   "closingTimestamp": 1680444258000,
+   "enactmentTimestamp": 1680530658000
   }
  }
 }'

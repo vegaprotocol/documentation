@@ -11,6 +11,8 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
   \"newMarket\": {^
    \"changes\": {^
     \"lpPriceRange\": \"10\",^
+    \"linearSlippageFactor\": \"0.001\",^
+    \"quadraticSlippageFactor\": \"0\",^
     \"decimalPlaces\": \"5\",^
     \"positionDecimalPlaces\": \"5\",^
     \"instrument\": {^
@@ -78,8 +80,8 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
      }^
     },^
     \"metadata\": [^
-     \"enactment:2023-03-20T14:44:49Z\",^
-     \"settlement:2023-03-19T14:44:49Z\",^
+     \"enactment:2023-04-03T15:04:18Z\",^
+     \"settlement:2023-04-02T15:04:18Z\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -110,8 +112,8 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
     }^
    }^
   },^
-  \"closingTimestamp\": 1679237089000,^
-  \"enactmentTimestamp\": 1679323489000^
+  \"closingTimestamp\": 1680444258000,^
+  \"enactmentTimestamp\": 1680530658000^
  }^
 }^
 }"
