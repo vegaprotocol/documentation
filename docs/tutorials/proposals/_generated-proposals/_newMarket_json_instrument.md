@@ -1,9 +1,9 @@
 ```javascript
 {
  // Instrument name
- name: "Apples Yearly (2022)",
+ name: "Oranges Daily",
  // Instrument code, human-readable shortcode used to describe the instrument
- code: "APPLES.22",
+ code: "ORANGES.24h",
  // Future
  future: {
   // Asset ID for the product's settlement asset (string)

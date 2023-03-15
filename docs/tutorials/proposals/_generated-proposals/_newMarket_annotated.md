@@ -12,6 +12,12 @@
     // price levels over which automated liquidity provision orders will be deployed
     lpPriceRange: "10",
 
+    // Linear slippage factor is used to cap the slippage component of maintainence margin - it is applied to the slippage volume
+    linearSlippageFactor: 0.001,
+
+    // Quadratic slippage factor is used to cap the slippage component of maintainence margin - it is applied to the square of the slippage volume
+    quadraticSlippageFactor: 0,
+
     // Decimal places used for the new market, sets the smallest price increment on the book (uint64 as string)
     decimalPlaces: "5",
 
@@ -21,10 +27,10 @@
     // New market instrument configuration
     instrument: {
      // Instrument name
-     name: "Apples Yearly (2022)",
+     name: "Oranges Daily",
 
      // Instrument code, human-readable shortcode used to describe the instrument
-     code: "APPLES.22",
+     code: "ORANGES.24h",
 
      // Future
      future: {
@@ -126,8 +132,8 @@
 
       // Optional new market metadata, tags
       metadata: [
-       "enactment:2023-04-03T15:04:18Z",
-       "settlement:2023-04-02T15:04:18Z",
+       "enactment:2023-04-04T17:00:13Z",
+       "settlement:2023-04-03T17:00:13Z",
        "source:docs.vega.xyz"
       ],
 
@@ -194,11 +200,11 @@
 
    // Timestamp (Unix time in seconds) when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-   closingTimestamp: 1680444258000,
+   closingTimestamp: 1680534013000,
 
    // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
    // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-   enactmentTimestamp: 1680530658000,
+   enactmentTimestamp: 1680620413000,
   }
  }
 ```

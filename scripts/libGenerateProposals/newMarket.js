@@ -751,6 +751,11 @@ function newMarket(skeleton, proposalSoFar) {
           // ${lbLabel[1]}
           lpPriceRange: "${result.terms.newMarket.changes.lpPriceRange}",
 
+          // ${skeleton.properties.changes.properties.linearSlippageFactor.title}
+          linearSlippageFactor: ${result.terms.newMarket.changes.linearSlippageFactor},
+          // ${skeleton.properties.changes.properties.quadraticSlippageFactor.title}
+          quadraticSlippageFactor: ${result.terms.newMarket.changes.quadraticSlippageFactor},
+
           // ${skeleton.properties.changes.properties.decimalPlaces.title} (${skeleton.properties.changes.properties.decimalPlaces.format
       } as ${skeleton.properties.changes.properties.decimalPlaces.type})
           decimalPlaces: "${result.terms.newMarket.changes.decimalPlaces}",

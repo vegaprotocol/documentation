@@ -14,6 +14,12 @@
     // price levels over which automated liquidity provision orders will be deployed
     lpPriceRange: 11,
 
+    // Linear slippage factor is used to cap the slippage component of maintainence margin - it is applied to the slippage volume
+    linearSlippageFactor: 0.001,
+
+    // Quadratic slippage factor is used to cap the slippage component of maintainence margin - it is applied to the square of the slippage volume
+    quadraticSlippageFactor: 0,
+
     // Updated market instrument configuration
     instrument: {
      // Instrument code, human-readable shortcode used to describe the instrument
@@ -144,7 +150,7 @@
        tau: 0.0001140771161,
 
        // Risk Aversion Parameter (double as number)
-       riskAversionParameter: "0.01",
+       riskAversionParameter: "0.001",
 
        // Risk model parameters for log normal
        params: {
@@ -155,7 +161,7 @@
         r: 0.016,
 
         // Sigma parameter, annualised volatility of the underlying asset, must be a strictly non-negative real number (double as number)
-        sigma: 1.25,
+        sigma: 0.5,
        }
       },
      },
@@ -163,11 +169,11 @@
 
     // Timestamp (Unix time in seconds) when voting closes for this proposal,
     // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-    closingTimestamp: 1680444258000,
+    closingTimestamp: 1680534013000,
 
     // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
     // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-    enactmentTimestamp: 1680530658000,
+    enactmentTimestamp: 1680620413000,
    }
   }
 ```
