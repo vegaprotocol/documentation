@@ -86,6 +86,9 @@ Slippage factors are market parameters that specify by how much the liquidity co
 
 If there is enough volume on the book, the slippage comes directly from the book and the liquidity component is not used. Margin slippage in a low-volume scenario is calculated as `slippageFromFactors = linear x position  + quadratic x position^2) x price`. If there is a lot of liquidity on the book, the protocol calculates the closeout amount and provides the lower amount, i.e., the liquidity part of the margin `min(slippageFromFactors, slippageFromBook)`. Increasing the linear or quadratic slippage factor increases the liquidity part of the margin calculation, but only if there is little volume on the book; if there is enough volume on the book the slippage comes directly from the book.
 
+The `risk factor` will be different for short and long positions; the risk model provides `risk factor long` for when `position > 0` and `risk factor short` for when `position < 0`. 
+
+Note that your party's limit orders are included as well and the maintenance margin is calculated for the riskiest long or short combination of orders and position. 
 :::note Read more
 [Closeouts](./market-protections#closeouts): What triggers a closeout, and what happens in a closeout
 [Risk models](../vega-protocol#risk-models-and-parameters): Details on the risk model parameters for a market
