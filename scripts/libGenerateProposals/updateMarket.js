@@ -192,6 +192,10 @@ function updateMarket(skeleton, proposalSoFar) {
           // ${lpLabel[0]}
           // ${lpLabel[1]}
           lpPriceRange: ${result.terms.updateMarket.changes.lpPriceRange},
+          // ${skeleton.properties.changes.properties.linearSlippageFactor.title}
+          linearSlippageFactor: ${result.terms.updateMarket.changes.linearSlippageFactor},
+          // ${skeleton.properties.changes.properties.quadraticSlippageFactor.title}
+          quadraticSlippageFactor: ${result.terms.updateMarket.changes.quadraticSlippageFactor},
           // ${skeleton.properties.changes.properties.instrument.title}
           instrument: ${inspect(result.terms.updateMarket.changes.instrument, { depth: 19 })},
           // ${skeleton.properties.changes.properties.metadata.title}

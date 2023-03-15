@@ -21,9 +21,9 @@ if (!version) {
 const MIN_LENGTH = 10000  
 const title = 'OpenRPC Wallet API'
 const url = `./specs/v${version}/openrpc.json`
-const dest = './docs/api/vega-wallet/v2-api/openrpc.md'
+const dest = './docs/api/vega-wallet/reference/core/openrpc.md'
 console.info(`Using schema at: ${url}`)
-const cmd = `npx openrpc-md ${url} ${title}`
+const cmd = `npx openrpc-md "${url}" "${title}"`
 console.info(`Running: "${cmd}"`)
 exec(cmd, (error, stdout, stderr) => {
   if (error) {

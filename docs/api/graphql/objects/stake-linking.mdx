@@ -25,6 +25,7 @@ type StakeLinking {
   status: StakeLinkingStatus!
   finalizedAt: Timestamp
   txHash: String!
+  blockHeight: String!
 }
 ```
 
@@ -61,6 +62,10 @@ type StakeLinking {
 
 #### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>txHash</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > The transaction hash (ethereum) which initiated the link/unlink
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>blockHeight</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The (ethereum) block height of the link/unlink
 > 
 
 

@@ -21,7 +21,8 @@ enum AuctionTrigger {
   AUCTION_TRIGGER_BATCH
   AUCTION_TRIGGER_OPENING
   AUCTION_TRIGGER_PRICE
-  AUCTION_TRIGGER_LIQUIDITY
+  AUCTION_TRIGGER_LIQUIDITY_TARGET_NOT_MET
+  AUCTION_TRIGGER_UNABLE_TO_DEPLOY_LP_ORDERS
 }
 ```
 
@@ -44,8 +45,12 @@ enum AuctionTrigger {
 > Price monitoring
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AuctionTrigger.<b>AUCTION_TRIGGER_LIQUIDITY</b></code>](#) 
-> Liquidity monitoring
+#### [<code style={{ fontWeight: 'normal' }}>AuctionTrigger.<b>AUCTION_TRIGGER_LIQUIDITY_TARGET_NOT_MET</b></code>](#) 
+> Liquidity monitoring due to unmet target stake
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AuctionTrigger.<b>AUCTION_TRIGGER_UNABLE_TO_DEPLOY_LP_ORDERS</b></code>](#) 
+> Liquidity monitoring due to not being able to deploy LP orders because there's nothing to peg on one or both sides of the book
 > 
 
 

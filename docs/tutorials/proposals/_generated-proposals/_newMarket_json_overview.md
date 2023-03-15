@@ -10,6 +10,10 @@
     // Percentage move up and down from the mid price which specifies the range of 
     // price levels over which automated liquidity provision orders will be deployed
     lpPriceRange: "10",
+    // Linear slippage factor is used to cap the slippage component of maintainence margin - it is applied to the slippage volume
+    linearSlippageFactor: 0.001,
+    // Quadratic slippage factor is used to cap the slippage component of maintainence margin - it is applied to the square of the slippage volume
+    quadraticSlippageFactor: 0,
     // Decimal places used for the new market, sets the smallest price increment on the book (uint64 as string)
     decimalPlaces: "5",
     // Decimal places for order sizes, sets what size the smallest order / position on the market can be (int64 as string)
@@ -28,10 +32,10 @@
   },
   // Timestamp (Unix time in seconds) when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-  closingTimestamp: 1680444258000,
+  closingTimestamp: 1680533029000,
   // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
   // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-  enactmentTimestamp: 1680530658000,
+  enactmentTimestamp: 1680619429000,
  }
 }
 ```

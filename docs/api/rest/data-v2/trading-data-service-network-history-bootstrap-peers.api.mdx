@@ -1,12 +1,12 @@
 ---
 id: trading-data-service-network-history-bootstrap-peers
 title: "Network history bootstrap peers"
-description: "Retrieves the nodes bootstrap peers
+description: "Retrieves the bootstrap peers for data nodes.
 Response contains the bootstrap peers"
 sidebar_label: "Network history bootstrap peers"
 hide_title: true
 hide_table_of_contents: true
-api: {"responses":{"200":{"content":{"application/json":{"schema":{"properties":{"bootstrapPeers":{"items":{"type":"string"},"title":"The bootstrap peers","type":"array"}},"title":"Response containing the nodes network history bootstrap peers","type":"object"}}},"description":"A successful response."},"default":{"content":{"application/json":{"schema":{"properties":{"code":{"format":"int32","type":"integer"},"details":{"items":{"additionalProperties":{},"properties":{"@type":{"type":"string"}},"type":"object"},"type":"array"},"message":{"type":"string"}},"type":"object"}}},"description":"An unexpected error response."}},"tags":["TradingDataService"],"description":"Retrieves the nodes bootstrap peers\nResponse contains the bootstrap peers","operationId":"TradingDataService_NetworkHistoryBootstrapPeers","method":"get","path":"/api/v2/networkhistory/bootstrap","servers":[{"url":"https://api.n06.testnet.vega.xyz","description":"n06 (data node)"},{"url":"https://api.n08.testnet.vega.xyz","description":"n08 (data node)"},{"url":"https://api.n09.testnet.vega.xyz","description":"n09 (data node)"},{"url":"https://api.n11.testnet.vega.xyz","description":"n11 (data node)"},{"url":"https://api.n12.testnet.vega.xyz","description":"n12 (data node)"}],"info":{"title":"Vega data node APIs","version":"v0.68.0"},"postman":{"name":"Network history bootstrap peers","description":{"content":"Retrieves the nodes bootstrap peers\nResponse contains the bootstrap peers","type":"text/plain"},"url":{"path":["api","v2","networkhistory","bootstrap"],"host":["{{baseUrl}}"],"query":[],"variable":[]},"header":[{"key":"Accept","value":"application/json"}],"method":"GET"}}
+api: {"responses":{"200":{"content":{"application/json":{"schema":{"properties":{"bootstrapPeers":{"items":{"type":"string"},"title":"The bootstrap peers","type":"array"}},"title":"Response containing the nodes network history bootstrap peers","type":"object"}}},"description":"A successful response."},"default":{"content":{"application/json":{"schema":{"properties":{"code":{"format":"int32","type":"integer"},"details":{"items":{"additionalProperties":{},"properties":{"@type":{"type":"string"}},"type":"object"},"type":"array"},"message":{"type":"string"}},"type":"object"}}},"description":"An unexpected error response."}},"tags":["TradingDataService"],"description":"Retrieves the bootstrap peers for data nodes.\nResponse contains the bootstrap peers","operationId":"TradingDataService_NetworkHistoryBootstrapPeers","method":"get","path":"/api/v2/networkhistory/bootstrap","servers":[{"url":"https://api.n07.testnet.vega.xyz","description":"n07 (data node)"},{"url":"https://api.n08.testnet.vega.xyz","description":"n08 (data node)"},{"url":"https://api.n09.testnet.vega.xyz","description":"n09 (data node)"}],"info":{"title":"Vega data node APIs","version":"v0.69.0"},"postman":{"name":"Network history bootstrap peers","description":{"content":"Retrieves the bootstrap peers for data nodes.\nResponse contains the bootstrap peers","type":"text/plain"},"url":{"path":["api","v2","networkhistory","bootstrap"],"host":["{{baseUrl}}"],"query":[],"variable":[]},"header":[{"key":"Accept","value":"application/json"}],"method":"GET"}}
 sidebar_class_name: "get api-method"
 info_path: api/rest/data-v2/vega-data-node-ap-is
 custom_edit_url: "https://github.com/vegaprotocol/documentation/issues/new?labels=documentation&title=[Documentation] Requesting changes to 'Network history bootstrap peers' (trading-data-service-network-history-bootstrap-peers)"
@@ -25,7 +25,7 @@ import TabItem from "@theme/TabItem";
 
 
 
-Retrieves the nodes bootstrap peers
+Retrieves the bootstrap peers for data nodes.
 Response contains the bootstrap peers
 
 <div><ApiTabs><TabItem label={"200"} value={"200"}><div>

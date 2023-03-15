@@ -1,13 +1,12 @@
 ---
-    title: OpenRPC
-    description: See all the JSON-RPC methods.
-    sidebar_position: 1
+    title: OpenRPC Wallet API
 ---
 - [client.connect_wallet](#clientconnect_wallet): Initiates a connection between a wallet and a third-party application.
 - [client.disconnect_wallet](#clientdisconnect_wallet): Ends the connection between the third-party application and the wallet.
 - [client.list_keys](#clientlist_keys): Returns the keys the user has allowed the third-party application to have access to.
 - [client.sign_transaction](#clientsign_transaction): Sign a transaction without sending it.
 - [client.send_transaction](#clientsend_transaction): Send a transaction to the network.
+- [client.check_transaction](#clientcheck_transaction): Check a transaction or a bundle of transactions and send them to the network.
 - [client.get_chain_id](#clientget_chain_id): Returns the chain ID of the network in use.
 - [admin.create_wallet](#admincreate_wallet): Creates a wallet with its first key-pair.
 - [admin.import_wallet](#adminimport_wallet): Import a wallet with its first key-pair with a recovery phrase and a key derivation version.
@@ -19,6 +18,7 @@
 - [admin.list_networks](#adminlist_networks): Returns the list of all registered networks.
 - [admin.describe_network](#admindescribe_network): Returns the network information.
 - [admin.update_network](#adminupdate_network): Update an existing network.
+- [admin.rename_network](#adminrename_network): Renames a network
 - [admin.remove_network](#adminremove_network): Removes a network from the computer.
 - [admin.import_network](#adminimport_network): Import a network configuration from a file or an URL.
 - [admin.generate_key](#admingenerate_key): Generates a key on the specified wallet.
@@ -38,6 +38,7 @@
 - [admin.sign_message](#adminsign_message): Sign any arbitrary message
 - [admin.verify_message](#adminverify_message): Verify any arbitrary signature
 - [admin.send_transaction](#adminsend_transaction): Sign & send a transaction to a network
+- [admin.check_transaction](#admincheck_transaction): Check transaction command using the specified wallet and public key.
 - [admin.send_raw_transaction](#adminsend_raw_transaction): Send a signed transaction to a network
 - [admin.start_service](#adminstart_service): Start a wallet service.
 - [admin.stop_service](#adminstop_service): Stop a wallet service.
@@ -72,9 +73,11 @@ None required
 ### Result: `Success`
 
 ### Errors
-- **Client error** (3000): the user closed the connection
-- **Client error** (3001): the user rejected the request
-- **Server error** (-32001): the request has been interrupted
+- **User error** (3000): the user closed the connection
+- **Application error** (2001): the application cancelled the request
+- **User error** (3001): the user rejected the wallet connection
+- **User error** (3002): the user cancelled the request
+- **User error** (3002): the user cancelled the request
 
 ### Examples
 #### Accepting a connection from "vega.xyz"
@@ -86,9 +89,7 @@ The third-party application "vega.xyz" requests a connection to a wallet and the
     "id": 1,
     "jsonrpc": "2.0",
     "method": "client.connect_wallet",
-    "params": {
-        "hostname": "vega.xyz"
-    }
+    "params": []
 }
 ```
 
@@ -155,8 +156,7 @@ None required
 |------------------|--------|--------|---------|
 | keys | array | - | - |
 
-### Errors
-- **Application error** (2000): a "read" access on public keys is required
+
 
 ### Examples
 #### List keys allowed on "vega.xyz"
@@ -213,11 +213,15 @@ The user has to review the transaction.
 
 ### Errors
 - **Network error** (1000): no healthy node available
+- **Network error** (1000): could not get the chain ID from the node
 - **Network error** (1000): could not get information about the last block on the network
 - **Application error** (2000): the public key is not allowed to be used
-- **Client error** (3000): the user closed the connection
-- **Client error** (3001): the user rejected the request
-- **Server error** (-32001): the request has been interrupted
+- **User error** (3000): the user closed the connection
+- **User error** (3001): the user rejected the wallet connection
+- **User error** (3002): the user cancelled the request
+- **Application error** (2000): the transaction will break the network's spam rules
+- **Application error** (2000): the block height is too historic
+- **Application error** (2000): the transaction per block limit has been reached
 
 ### Examples
 #### Signing a transaction for "vega.xyz"
@@ -275,12 +279,16 @@ The user has to review the transaction.
 
 ### Errors
 - **Network error** (1000): no healthy node available
+- **Network error** (1000): could not get the chain ID from the node
 - **Network error** (1000): could not get information about the last block on the network
-- **Network error** (1000): the transaction failed
+- **Network error** (1001): the transaction failed
+- **User error** (3000): the user closed the connection
+- **User error** (3001): the user rejected the wallet connection
+- **User error** (3002): the user cancelled the request
 - **Application error** (2000): the public key is not allowed to be used
-- **Client error** (3000): the user closed the connection
-- **Client error** (3001): the user rejected the request
-- **Server error** (-32001): the request has been interrupted
+- **Application error** (2000): the transaction will break the network's spam rules
+- **Application error** (2000): the block height is too historic
+- **Application error** (2000): the transaction per block limit has been reached
 
 ### Examples
 #### Sending a transaction for "vega.xyz"
@@ -296,6 +304,72 @@ The third-party application "vega.xyz" requests to send a transaction and the us
         "publicKey": "3fd42fd5ceb22d99ac45086f1d82d516118a5cb7ad9a2e096cd78ca2c8960c80",
         "sendingMode": "TYPE_SYNC",
         "encodedTransaction": "ewogICAgInZvdGVTdWJtaXNzaW9uIjogewogICAgICAgICJwcm9wb3NhbElkIjogImViMmQzOTAyZmRkYTljM2ViNmUzNjlmMjIzNTY4OWI4NzFjNzMyMmNmM2FiMjg0ZGRlM2U5ZGZjMTM4NjNhMTciLAogICAgICAgICJ2YWx1ZSI6ICJWQUxVRV9ZRVMiCiAgICB9Cn0K"
+    }
+}
+```
+
+##### Result
+```json
+{
+    "name": "Success",
+    "value": {
+        "receivedAt": "2021-02-18T21:54:42.123Z",
+        "sentAt": "2021-02-18T21:54:42.123Z",
+        "txHash": "E8C167126D1FC8D92898AB9C07C318161DF68753A1316A69ABDC9ADC557723B3"
+    }
+}
+```
+
+---
+
+
+## `client.check_transaction`
+
+This method sends a transaction or a bundle of transactions to the network to verify their validity.
+
+The network does not add them to a block. What happens with the transaction is up to the third-party application.
+
+The user has to review the transaction after this step.
+
+### Parameters
+| Parameter name  |  Type  |  Description |
+|------------------|--------|--------|
+| **publicKey** | string | The Vega public key to use. |
+| **transaction** | object | The transaction as a JSON object |
+
+### Result: `Success`
+| Result key  |  Type  |  Description | Example |
+|------------------|--------|--------|---------|
+| receivedAt | string | The date when the API received the request to send the transaction.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. | The date when the API received the request to send the transaction.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. |
+| sentAt | string | The date when the transaction has been sent to the network.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. | The date when the transaction has been sent to the network.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. |
+| transaction | object | A transaction that has been signed by the wallet. | A transaction that has been signed by the wallet. |
+
+### Errors
+- **Network error** (1000): no healthy node available
+- **Network error** (1000): could not get the chain ID from the node
+- **Network error** (1000): could not get information about the last block on the network
+- **Network error** (1001): the transaction failed
+- **User error** (3000): the user closed the connection
+- **User error** (3001): the user rejected the wallet connection
+- **User error** (3002): the user cancelled the request
+- **Application error** (2000): the public key is not allowed to be used
+- **Application error** (2000): the transaction will break the network's spam rules
+- **Application error** (2000): the block height is too historic
+- **Application error** (2000): the transaction per block limit has been reached
+
+### Examples
+#### Check a transaction for "vega.xyz"
+
+
+##### Parameters
+```json
+{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "client.check_transaction",
+    "params": {
+        "publicKey": "3fd42fd5ceb22d99ac45086f1d82d516118a5cb7ad9a2e096cd78ca2c8960c80",
+        "transaction": {}
     }
 }
 ```
@@ -408,8 +482,7 @@ undefined
         "wallet": {
             "name": "my-wallet",
             "keyDerivationVersion": 2,
-            "recoveryPhrase": "swing ceiling chaos green put insane ripple desk match tip melt usual shrug turkey renew icon parade veteran lens govern path rough page render",
-            "filePath": "some/path/to/my-wallet"
+            "recoveryPhrase": "swing ceiling chaos green put insane ripple desk match tip melt usual shrug turkey renew icon parade veteran lens govern path rough page render"
         },
         "key": {
             "publicKey": "b5fd9d3c4ad553cb3196303b6e6df7f484cf7f5331a572a45031239fd71ad8a0",
@@ -481,8 +554,7 @@ undefined
     "value": {
         "wallet": {
             "name": "my-wallet",
-            "keyDerivationVersion": 2,
-            "filePath": "some/path/to/my-wallet"
+            "keyDerivationVersion": 2
         },
         "key": {
             "publicKey": "b5fd9d3c4ad553cb3196303b6e6df7f484cf7f5331a572a45031239fd71ad8a0",
@@ -657,7 +729,6 @@ If the new name matches an existing wallet, it fails.
 |------------------|--------|--------|
 | **wallet** | string | - |
 | **newName** | string | - |
-| **passphrase** | string | - |
 
 ### Result: `Success`
 
@@ -675,8 +746,7 @@ undefined
     "method": "admin.rename_wallet",
     "params": {
         "wallet": "my-wallet",
-        "newWallet": "my-new-wallet-name",
-        "passphrase": "this-is-not-a-good-passphrase"
+        "newWallet": "my-new-wallet-name"
     }
 }
 ```
@@ -767,9 +837,27 @@ undefined
     "name": "Success",
     "value": {
         "networks": [
-            "mainnet",
-            "fairground",
-            "local-network"
+            {
+                "name": "mainnet1",
+                "metadata": [
+                    {
+                        "key": "network",
+                        "value": "mainnet"
+                    }
+                ]
+            },
+            {
+                "name": "fairground",
+                "metadata": [
+                    {
+                        "key": "network",
+                        "value": "testnet"
+                    }
+                ]
+            },
+            {
+                "name": "local-network"
+            }
         ]
     }
 }
@@ -791,11 +879,9 @@ This method returns the network information.
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
 | name | string | - | - |
-| logLevel | string | - | - |
-| tokenExpiry | string | - | - |
-| port | integer | - | - |
-| host | string | - | - |
+| metadata | array | - | - |
 | api | object | The API configuration for the network. | The API configuration for the network. |
+| apps | object | The URLs to the network applications. | The URLs to the network applications. |
 
 
 
@@ -821,10 +907,70 @@ undefined
     "name": "Success",
     "value": {
         "name": "local-network",
-        "logLevel": "info",
-        "tokenExpiry": "168h0m0s",
-        "port": 1789,
-        "host": "localhost",
+        "metadata": [
+            {
+                "key": "network",
+                "value": "local"
+            }
+        ],
+        "api": {
+            "grpcConfig": {
+                "hosts": [
+                    "localhost:3028"
+                ],
+                "retries": 5
+            },
+            "graphQLConfig": {
+                "hosts": [
+                    "localhost:3028"
+                ]
+            },
+            "restConfig": {
+                "hosts": [
+                    "localhost:3029"
+                ]
+            }
+        },
+        "apps": {
+            "console": "console.vega.xyz",
+            "governance": "governance.vega.xyz",
+            "explorer": "explorer.vega.xyz"
+        }
+    }
+}
+```
+
+---
+
+
+## `admin.update_network`
+
+This method updates the network configuration.
+
+### Parameters
+| Parameter name  |  Type  |  Description |
+|------------------|--------|--------|
+| **name** | string | - |
+| metadata _(Optional)_ | array | - |
+| **api** | object | The API configuration for the network.<br /><br /><br /><br /> |
+| **apps** | object | The URLs to the network applications.<br /><br /><br /><br /> |
+
+### Result: `Success`
+
+
+
+### Examples
+#### Update a network
+undefined
+
+##### Parameters
+```json
+{
+    "id": 1,
+    "jsonrpc": "2.0",
+    "method": "admin.update_network",
+    "params": {
+        "name": "local-network",
         "api": {
             "grpcConfig": {
                 "hosts": [
@@ -847,29 +993,35 @@ undefined
 }
 ```
 
+##### Result
+```json
+{
+    "name": "Success",
+    "value": null
+}
+```
+
 ---
 
 
-## `admin.update_network`
+## `admin.rename_network`
 
-This method updates the network configuration.
+This method renames a network in-place.
+
+If the new name matches an existing network, it fails.
 
 ### Parameters
 | Parameter name  |  Type  |  Description |
 |------------------|--------|--------|
-| **name** | string | - |
-| **logLevel** | string | - |
-| **tokenExpiry** | string | - |
-| **port** | integer | - |
-| **host** | string | - |
-| **api** | object | The API configuration for the network.<br /><br /><br /><br /> |
+| **network** | string | - |
+| **newName** | string | - |
 
 ### Result: `Success`
 
 
 
 ### Examples
-#### Update a network
+#### Rename a network
 undefined
 
 ##### Parameters
@@ -877,31 +1029,10 @@ undefined
 {
     "id": 1,
     "jsonrpc": "2.0",
-    "method": "admin.update_network",
+    "method": "admin.rename_network",
     "params": {
-        "name": "local-network",
-        "level": "info",
-        "tokenExpiry": "168h0m0s",
-        "port": "1789",
-        "host": "localhost",
-        "api": {
-            "grpcConfig": {
-                "hosts": [
-                    "localhost:3028"
-                ],
-                "retries": 5
-            },
-            "graphQLConfig": {
-                "hosts": [
-                    "localhost:3028"
-                ]
-            },
-            "restConfig": {
-                "hosts": [
-                    "localhost:3029"
-                ]
-            }
-        }
+        "network": "my-network",
+        "newWallet": "my-new-network-name"
     }
 }
 ```
@@ -964,16 +1095,14 @@ Import a network configuration from a file or an URL.
 ### Parameters
 | Parameter name  |  Type  |  Description |
 |------------------|--------|--------|
-| name _(Optional)_ | string | - |
-| **filePath** | string | - |
-| **url** | string | - |
+| name _(Optional)_ | string | The name to give to the imported network. If unset the network's name will be taken from the imported definition |
+| **url** | string | The URL of a network to import. The prefix `file://` can be used to indicate a file-path. |
 | **overwrite** | boolean | - |
 
 ### Result: `Success`
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
 | name | string | - | - |
-| filePath | string | - | - |
 
 
 
@@ -989,7 +1118,7 @@ undefined
     "method": "admin.import_network",
     "params": {
         "name": "local-network",
-        "filePath": "/Users/username/local-network.toml"
+        "url": "file:///Users/username/local-network.toml"
     }
 }
 ```
@@ -999,8 +1128,7 @@ undefined
 {
     "name": "Success",
     "value": {
-        "name": "local-network",
-        "filePath": "/Users/username/vega-home/wallet-service/networks/local-network.toml"
+        "name": "local-network"
     }
 }
 ```
@@ -1290,7 +1418,6 @@ This is a security feature that **lowers** the impact of having a wallet stolen.
 | Result key  |  Type  |  Description | Example |
 |------------------|--------|--------|---------|
 | wallet | undefined | Name of the generated isolated wallet | Name of the generated isolated wallet |
-| filePath | undefined | Path to the isolated wallet file | Path to the isolated wallet file |
 
 
 
@@ -1318,8 +1445,7 @@ undefined
 {
     "name": "Success",
     "value": {
-        "wallet": "my-wallet.b5fd9d3c.isolated",
-        "filePath": "some/path/to/my-wallet.b5fd9d3c.isolated"
+        "wallet": "my-wallet.b5fd9d3c.isolated"
     }
 }
 ```
@@ -1849,6 +1975,8 @@ This method signs a transaction returning a base64-encoded transaction that can 
 | **passphrase** | string | - |
 | **pubKey** | string | - |
 | network _(Optional)_ | integer | - |
+| nodeAddress _(Optional)_ | string | - |
+| retries _(Optional)_ | integer | - |
 | **sendingMode** | string | The chosen mode to send the transaction:<br />- `TYPE_SYNC` returns the result of running the transaction.<br />- `TYPE_ASYNC` returns right away without waiting to hear if the transaction is even valid.<br />- `TYPE_COMMIT` waits until the transaction is committed in a block, or until some timeout is reached, or returns return right away if the transaction is not valid. |
 | **transaction** | object | The transaction as a JSON object |
 
@@ -1858,6 +1986,33 @@ This method signs a transaction returning a base64-encoded transaction that can 
 | receivedAt | string | The date when the API received the request to send the transaction.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. | The date when the API received the request to send the transaction.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. |
 | sentAt | string | The date when the transaction has been sent to the network.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. | The date when the transaction has been sent to the network.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. |
 | transactionHash | string | The hash of the transaction. It's used to uniquely identify the transaction and can be used in the block explorer to retrieve it. | The hash of the transaction. It's used to uniquely identify the transaction and can be used in the block explorer to retrieve it. |
+| transaction | object | A transaction that has been signed by the wallet. | A transaction that has been signed by the wallet. |
+
+
+
+---
+
+
+## `admin.check_transaction`
+
+This method checks a transaction is valid, and returns a base64-encoded transaction that can be sent using the method `admin.send_transaction`
+
+### Parameters
+| Parameter name  |  Type  |  Description |
+|------------------|--------|--------|
+| **wallet** | string | - |
+| **passphrase** | string | - |
+| **pubKey** | string | - |
+| network _(Optional)_ | integer | - |
+| nodeAddress _(Optional)_ | string | - |
+| retries _(Optional)_ | integer | - |
+| **transaction** | object | The transaction as a JSON object |
+
+### Result: `Success`
+| Result key  |  Type  |  Description | Example |
+|------------------|--------|--------|---------|
+| receivedAt | string | The date when the API received the request to send the transaction.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. | The date when the API received the request to send the transaction.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. |
+| sentAt | string | The date when the transaction has been sent to the network.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. | The date when the transaction has been sent to the network.<br /><br />The time is a quoted string in RFC 3339 format, with sub-second precision added if present. |
 | transaction | object | A transaction that has been signed by the wallet. | A transaction that has been signed by the wallet. |
 
 
