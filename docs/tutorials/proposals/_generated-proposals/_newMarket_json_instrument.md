@@ -68,9 +68,9 @@
    // settlement_data_property holds the name of the property in the source data
    // that should be used as settlement data.
    // If it is set to "prices.BTC.value", then the Future will use the value of
-   // this property as settlement data. (string) 
+   // this property as settlement data. (string)
    settlementDataProperty: "prices.BTC.value",
-   // the name of the property in the data source data that signals termination of trading (string) 
+   // the name of the property in the data source data that signals termination of trading (string)
    tradingTerminationProperty: "vega.builtin.timestamp"
   }
  }

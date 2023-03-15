@@ -7,7 +7,7 @@ const { inspect } = require('util');
 
 // Seed data: Some inspirational instrument names and corresponding codes
 const instruments = [
-    { name: 'Apples Yearly (2022)', code: 'APPLES.22' }
+  { name: 'Apples Yearly (2022)', code: 'APPLES.22' }
 ];
 
 // This is slightly smaller than the one in newMarket
@@ -31,8 +31,8 @@ function generateInstrument(skeleton) {
     }
   }
 
-  instrument[inspect.custom]= () => {
-   return `{
+  instrument[inspect.custom] = () => {
+    return `{
         // ${skeleton.properties.code.title}
         code: "${instrument.code}",
         // ${skeleton.properties.future.title}
@@ -40,13 +40,13 @@ function generateInstrument(skeleton) {
           // ${skeleton.properties.future.properties.quoteName.title} (${skeleton.properties.future.properties.quoteName.type})
           quoteName: "${instrument.future.quoteName}",
           // ${skeleton.properties.future.properties.dataSourceSpecForSettlementData.title} (${skeleton.properties.future.properties.dataSourceSpecForSettlementData.type})
-          dataSourceSpecForSettlementData: ${inspect(instrument.future.dataSourceSpecForSettlementData, {depth: 5})},
+          dataSourceSpecForSettlementData: ${inspect(instrument.future.dataSourceSpecForSettlementData, { depth: 5 })},
           // ${skeleton.properties.future.properties.dataSourceSpecForTradingTermination.title} (${skeleton.properties.future.properties.dataSourceSpecForTradingTermination.type})
-          dataSourceSpecForTradingTermination: ${inspect(instrument.future.dataSourceSpecForTradingTermination, {depth: 5})},
+          dataSourceSpecForTradingTermination: ${inspect(instrument.future.dataSourceSpecForTradingTermination, { depth: 5 })},
           // ${skeleton.properties.future.properties.dataSourceSpecBinding.title} (${skeleton.properties.future.properties.dataSourceSpecBinding.type})
-          dataSourceSpecBinding: ${inspect(instrument.future.dataSourceSpecBinding, {depth: 5})}
+          dataSourceSpecBinding: ${inspect(instrument.future.dataSourceSpecBinding, { depth: 5 })}
       }`
-    }
+  }
 
   return instrument
 }
@@ -69,9 +69,9 @@ function generatePriceMonitoringParameters(skeleton) {
     ]
   }
 
-  params[inspect.custom]= () => {
-   const splitTitle = skeleton.properties.triggers.items.properties.auctionExtension.title.split('\n') 
-   return `{
+  params[inspect.custom] = () => {
+    const splitTitle = skeleton.properties.triggers.items.properties.auctionExtension.title.split('\n')
+    return `{
           // ${skeleton.properties.triggers.items.title}
           triggers: [
             {
@@ -95,7 +95,7 @@ function generatePriceMonitoringParameters(skeleton) {
 function generateMetadata(skeleton) {
   assert.equal(skeleton.type, 'array', 'Market metadata type used to be an array')
   assert.equal(skeleton.items.type, 'string', 'Market metadata type used to be an array of strings')
-  return ['source:docs.vega.xyz'] 
+  return ['source:docs.vega.xyz']
 }
 
 function generateRiskModel(skeleton, riskModelType) {
@@ -128,31 +128,33 @@ function generateRiskModel(skeleton, riskModelType) {
     }
   }
 
- riskModel[inspect.custom]= () => {
-   return `{
-        // ${skeleton.properties.tau.title} (${skeleton.properties.tau.type}) 
+  riskModel[inspect.custom] = () => {
+    return `{
+        // ${skeleton.properties.tau.title} (${skeleton.properties.tau.type})
         tau: ${riskModel.tau},
-        // ${skeleton.properties.riskAversionParameter.title} (${skeleton.properties.riskAversionParameter.format} as ${skeleton.properties.riskAversionParameter.type}) 
+        // ${skeleton.properties.riskAversionParameter.title} (${skeleton.properties.riskAversionParameter.format} as ${skeleton.properties.riskAversionParameter.type})
         riskAversionParameter: "${riskModel.riskAversionParameter}",
         // ${skeleton.properties.params.title}
         params: {
-          // ${skeleton.properties.params.properties.mu.title} (${skeleton.properties.params.properties.mu.format} as ${skeleton.properties.params.properties.mu.type}) 
-          mu: ${riskModel.params.mu},     
-          // ${skeleton.properties.params.properties.r.title} (${skeleton.properties.params.properties.r.format} as ${skeleton.properties.params.properties.r.type}) 
-          r: ${riskModel.params.r},     
-          // ${skeleton.properties.params.properties.sigma.title} (${skeleton.properties.params.properties.sigma.format} as ${skeleton.properties.params.properties.sigma.type}) 
-          sigma: ${riskModel.params.sigma},     
+          // ${skeleton.properties.params.properties.mu.title} (${skeleton.properties.params.properties.mu.format} as ${skeleton.properties.params.properties.mu.type})
+          mu: ${riskModel.params.mu},
+          // ${skeleton.properties.params.properties.r.title} (${skeleton.properties.params.properties.r.format} as ${skeleton.properties.params.properties.r.type})
+          r: ${riskModel.params.r},
+          // ${skeleton.properties.params.properties.sigma.title} (${skeleton.properties.params.properties.sigma.format} as ${skeleton.properties.params.properties.sigma.type})
+          sigma: ${riskModel.params.sigma},
         }
       }`
- }
+  }
 
- return riskModel
+  return riskModel
 
 }
 
 function updateMarket(skeleton, proposalSoFar) {
   assert.ok(skeleton.properties.changes);
   assert.ok(skeleton.properties.changes.properties.instrument);
+  assert.ok(skeleton.properties.changes.properties.quadraticSlippageFactor);
+  assert.ok(skeleton.properties.changes.properties.linearSlippageFactor);
   assert.ok(skeleton.properties.changes.properties.lpPriceRange);
   assert.equal(skeleton.properties.changes.properties.metadata.type, 'array');
   assert.ok(skeleton.properties.changes.properties.priceMonitoringParameters);
@@ -169,6 +171,8 @@ function updateMarket(skeleton, proposalSoFar) {
         marketId: '123',
         changes: {
           lpPriceRange: "11",
+          linearSlippageFactor: "0.001",
+          quadraticSlippageFactor: "0",
           instrument: generateInstrument(skeleton.properties.changes.properties.instrument),
           metadata: generateMetadata(skeleton.properties.changes.properties.metadata),
           priceMonitoringParameters: generatePriceMonitoringParameters(skeleton.properties.changes.properties.priceMonitoringParameters),
@@ -180,8 +184,8 @@ function updateMarket(skeleton, proposalSoFar) {
 
   /*------- Liquidity Commitment required */
   const lpLabel = skeleton.properties.changes.properties.lpPriceRange.title.split('\n')
-  result.terms.updateMarket[inspect.custom]= () => {
-   return `{
+  result.terms.updateMarket[inspect.custom] = () => {
+    return `{
         // ${skeleton.properties.marketId.title}
         marketId: '123',
         changes: {
@@ -200,7 +204,7 @@ function updateMarket(skeleton, proposalSoFar) {
     }`
   }
 
-  
+
   return result
 }
 

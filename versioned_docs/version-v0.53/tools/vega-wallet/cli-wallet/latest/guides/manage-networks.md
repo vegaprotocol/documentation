@@ -21,6 +21,7 @@ You can use the following network URLs to connect to the mainnet or fairground n
 
 * **Mainnet** network (run by validators): <NetworkConfigAddress frontMatter={frontMatter} label="mainnet1.toml" network="mainnet"/>
 * **Fairground** network: <NetworkConfigAddress frontMatter={frontMatter} label="fairground.toml" network="fairground"/>
+* **Validator testnet** network: [testnet2.toml ↗](https://raw.githubusercontent.com/vegaprotocol/networks/master/testnet2/testnet2.toml)
 
 ## Update networks
 At times you may need to force the wallet to update the list of available networks. Below, choose between forcing an update via URL or file. 

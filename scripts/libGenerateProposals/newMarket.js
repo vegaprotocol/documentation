@@ -17,7 +17,7 @@ const instruments = [
 function generateSettlementDataSourceSpec(skeleton) {
   assert.equal(
     skeleton.type,
-    "object", 
+    "object",
     "This is an object with some properties"
   )
   assert.equal(
@@ -34,12 +34,12 @@ function generateSettlementDataSourceSpec(skeleton) {
     skeleton[p].internal[p].time.type,
     "object",
     "Time is a valid internal data source"
-  ); 
+  );
   assert.equal(
     skeleton[p].external[p].oracle.type,
     "object",
     "Oracle is a valid external data source"
-  ); 
+  );
   assert.equal(
     skeleton[p].external[p].oracle[p].filters.type,
     "array",
@@ -54,9 +54,9 @@ function generateSettlementDataSourceSpec(skeleton) {
 
   const spec = {
     external: {
-      oracle: { 
+      oracle: {
         signers: [
-          { ethAddress: { address: "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC" }}
+          { ethAddress: { address: "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC" } }
         ],
         filters: [
           {
@@ -90,7 +90,7 @@ function generateSettlementDataSourceSpec(skeleton) {
   };
 
   spec[inspect.custom] = () => {
-    const splitFilters = skeleton[p].external[p].oracle[p].filters.description.split("\n") 
+    const splitFilters = skeleton[p].external[p].oracle[p].filters.description.split("\n")
     const splitDescription =
       skeleton[p].external[p].oracle[p].filters.items[p].conditions.description.split(
         "\n"
@@ -108,19 +108,15 @@ function generateSettlementDataSourceSpec(skeleton) {
             // ${splitFilters[1]}
             filters: [
                 key: {
-                  // ${
-                    skeleton.properties.external.properties.oracle.properties.filters.items.properties.key
-                      .properties.name.description
-                  } (${
-    skeleton.properties.external.properties.oracle.properties.filters.items.properties.key.properties.name.type
-  })
+                  // ${skeleton.properties.external.properties.oracle.properties.filters.items.properties.key
+        .properties.name.description
+      } (${skeleton.properties.external.properties.oracle.properties.filters.items.properties.key.properties.name.type
+      })
                   name: "${spec.external.oracle.filters[0].key.name}",
-                  // ${
-                    skeleton.properties.external.properties.oracle.properties.filters.items.properties.key
-                      .properties.type.description
-                  } (${
-    skeleton.properties.external.properties.oracle.properties.filters.items.properties.key.properties.type.type
-  })
+                  // ${skeleton.properties.external.properties.oracle.properties.filters.items.properties.key
+        .properties.type.description
+      } (${skeleton.properties.external.properties.oracle.properties.filters.items.properties.key.properties.type.type
+      })
                   type: "${spec.external.oracle.filters[0].key.type}",
 
                   // ${splitDP[0]}
@@ -131,17 +127,13 @@ function generateSettlementDataSourceSpec(skeleton) {
                 // ${splitDescription[1]}
                 conditions: [
                   {
-                    // ${
-                      skeleton[p].external[p].oracle[p].filters.items[p].conditions.items.properties.operator.description
-                    } (${
-    skeleton[p].external[p].oracle[p].filters.items[p].conditions.items[p].operator.type
-  })
+                    // ${skeleton[p].external[p].oracle[p].filters.items[p].conditions.items.properties.operator.description
+      } (${skeleton[p].external[p].oracle[p].filters.items[p].conditions.items[p].operator.type
+      })
                     operator: "${spec.external.oracle.filters[0].conditions[0].operator}",
-                    // ${
-                      skeleton[p].external[p].oracle[p].filters.items[p].conditions.items[p].value.description
-                    } (${
-    skeleton[p].external[p].oracle[p].filters.items[p].conditions.items[p].value.type
-  })
+                    // ${skeleton[p].external[p].oracle[p].filters.items[p].conditions.items[p].value.description
+      } (${skeleton[p].external[p].oracle[p].filters.items[p].conditions.items[p].value.type
+      })
                     value: "${spec.external.oracle.filters[0].conditions[0].value}",
                   }
                 ]
@@ -157,7 +149,7 @@ function generateSettlementDataSourceSpec(skeleton) {
                       value: "${spec.external.oracle.filters[1].conditions[0].value}",
                     }
                   ]
-              }              
+              }
           ]
         }
     }`;
@@ -170,7 +162,7 @@ function generateSettlementDataSourceSpec(skeleton) {
 function generateTerminationDataSourceSpec(skeleton) {
   assert.equal(
     skeleton.type,
-    "object", 
+    "object",
     "This is an object with some properties"
   )
   assert.equal(
@@ -187,7 +179,7 @@ function generateTerminationDataSourceSpec(skeleton) {
     skeleton.properties.internal.properties.time.type,
     "object",
     "Time is a valid internal data source"
-  ); 
+  );
   assert.equal(
     skeleton.properties.internal.properties.time.properties.conditions.type,
     "array",
@@ -202,13 +194,13 @@ function generateTerminationDataSourceSpec(skeleton) {
     skeleton.properties.external.properties.oracle.type,
     "object",
     "Oracle is a valid external data source"
-  ); 
+  );
   assert.equal(
     skeleton.properties.external.properties.oracle.properties.filters.type,
     "array",
     "Data Source spec filters"
   );
-  
+
   const spec = {
     internal: {
       time: {
@@ -226,7 +218,7 @@ function generateTerminationDataSourceSpec(skeleton) {
 
   spec[inspect.custom] = () => {
     const splitDescription =
-     skeleton.description.split(
+      skeleton.description.split(
         "\n"
       );
     return `{
@@ -237,17 +229,13 @@ function generateTerminationDataSourceSpec(skeleton) {
             time: {
               // ${skeleton[p].internal[p].time[p].conditions.description}
                 conditions: [{
-                    // ${
-                      sip.conditions.items[p].operator.description
-                    } (${
-      sip.conditions.items[p].operator.type
-    })
+                    // ${sip.conditions.items[p].operator.description
+      } (${sip.conditions.items[p].operator.type
+      })
                     operator: "${spec.internal.time.conditions[0].operator}",
-                    // ${
-                      sip.conditions.items[p].value.description
-                    } (${
-      sip.conditions.items[p].value.type
-    })
+                    // ${sip.conditions.items[p].value.description
+      } (${sip.conditions.items[p].value.type
+      })
                     value: "${spec.internal.time.conditions[0].value}",
                   }
                ]
@@ -283,9 +271,9 @@ function generateDataSourceSpecBinding(skeleton) {
             // ${splitSettle[0]}
             // ${splitSettle[1]}
             // ${splitSettle[2]}
-            // ${splitSettle[3]} (${skeleton.properties.settlementDataProperty.type}) 
+            // ${splitSettle[3]} (${skeleton.properties.settlementDataProperty.type})
             settlementDataProperty: "${binding.settlementDataProperty}",
-            // ${skeleton.properties.tradingTerminationProperty.title} (${skeleton.properties.tradingTerminationProperty.type}) 
+            // ${skeleton.properties.tradingTerminationProperty.title} (${skeleton.properties.tradingTerminationProperty.type})
             tradingTerminationProperty: "${binding.tradingTerminationProperty}"
           }`;
   };
@@ -351,40 +339,33 @@ function generateInstrument(skeleton) {
         code: "${instrument.code}",
         // ${skeleton.properties.future.title}
         future: {
-          // ${skeleton.properties.future.properties.settlementAsset.title} (${
-      skeleton.properties.future.properties.settlementAsset.type
-    })
+          // ${skeleton.properties.future.properties.settlementAsset.title} (${skeleton.properties.future.properties.settlementAsset.type
+      })
           settlementAsset: "${instrument.future.settlementAsset}",
-          // ${skeleton.properties.future.properties.quoteName.title} (${
-      skeleton.properties.future.properties.quoteName.type
-    })
+          // ${skeleton.properties.future.properties.quoteName.title} (${skeleton.properties.future.properties.quoteName.type
+      })
           quoteName: "${instrument.future.quoteName}",
-          // ${
-            skeleton.properties.future.properties.dataSourceSpecForSettlementData
-              .title
-          } (${
-      skeleton.properties.future.properties.dataSourceSpecForSettlementData.type
-    })
+          // ${skeleton.properties.future.properties.dataSourceSpecForSettlementData
+        .title
+      } (${skeleton.properties.future.properties.dataSourceSpecForSettlementData.type
+      })
           dataSourceSpecForSettlementData: ${inspect(
-            instrument.future.dataSourceSpecForSettlementData,
-            { depth: 5 }
-          )},
-          // ${
-            skeleton.properties.future.properties
-              .dataSourceSpecForTradingTermination.title
-          } (${
-      skeleton.properties.future.properties.dataSourceSpecForTradingTermination.type
-    })
+        instrument.future.dataSourceSpecForSettlementData,
+        { depth: 5 }
+      )},
+          // ${skeleton.properties.future.properties
+        .dataSourceSpecForTradingTermination.title
+      } (${skeleton.properties.future.properties.dataSourceSpecForTradingTermination.type
+      })
           dataSourceSpecForTradingTermination: ${inspect(
-            instrument.future.dataSourceSpecForTradingTermination,
-            { depth: 5 }
-          )},
-          // ${
-            skeleton.properties.future.properties.dataSourceSpecBinding.title
-          } (${skeleton.properties.future.properties.dataSourceSpecBinding.type})
+        instrument.future.dataSourceSpecForTradingTermination,
+        { depth: 5 }
+      )},
+          // ${skeleton.properties.future.properties.dataSourceSpecBinding.title
+      } (${skeleton.properties.future.properties.dataSourceSpecBinding.type})
           dataSourceSpecBinding: ${inspect(instrument.future.dataSourceSpecBinding, {
-            depth: 5,
-          })}
+        depth: 5,
+      })}
       }`;
   };
 
@@ -405,11 +386,11 @@ function generatePeggedOrder(skeleton, side, customInspect = false) {
   if (customInspect) {
     order[inspect.custom] = () => {
       return `  {
-      // ${skeleton.offset.title} (${skeleton.offset.type}) 
+      // ${skeleton.offset.title} (${skeleton.offset.type})
       offset: "${order.offset}",
-      // ${skeleton.proportion.title} (${skeleton.proportion.format} as ${skeleton.proportion.type}) 
+      // ${skeleton.proportion.title} (${skeleton.proportion.format} as ${skeleton.proportion.type})
       proportion: ${order.proportion},
-      // ${skeleton.reference.title} (${skeleton.reference.type}) 
+      // ${skeleton.reference.title} (${skeleton.reference.type})
       reference: "${order.reference}",
     }`;
     };
@@ -527,13 +508,11 @@ function generateNewMarketCommitment(skeleton) {
 
   commitment[inspect.custom] = () => {
     return `{
-          // ${skeleton.properties.commitmentAmount.title} (${
-      skeleton.properties.commitmentAmount.type
-    })
+          // ${skeleton.properties.commitmentAmount.title} (${skeleton.properties.commitmentAmount.type
+      })
           commitmentAmount: "${commitment.commitmentAmount}",
-          // ${skeleton.properties.fee.title} (${
-      skeleton.properties.fee.format
-    } as ${skeleton.properties.fee.type})
+          // ${skeleton.properties.fee.title} (${skeleton.properties.fee.format
+      } as ${skeleton.properties.fee.type})
           fee: ${commitment.fee},
           // ${skeleton.properties.buys.title}
           buys: ${inspect(commitment.buys, { depth: 20 })},
@@ -629,9 +608,9 @@ function generateLiquidityMonitoringParameters(skeleton) {
           // ${skeleton.properties.targetStakeParameters.properties.scalingFactor.title} (${skeleton.properties.targetStakeParameters.properties.scalingFactor.type})
           scalingFactor: ${params.targetStakeParameters.scalingFactor}
         },
-        // ${skeleton.properties.triggeringRatio.title} (${skeleton.properties.triggeringRatio.format} as ${skeleton.properties.triggeringRatio.type}) 
+        // ${skeleton.properties.triggeringRatio.title} (${skeleton.properties.triggeringRatio.format} as ${skeleton.properties.triggeringRatio.type})
         triggeringRatio: "${params.triggeringRatio}",
-        // ${skeleton.properties.auctionExtension.title} (${skeleton.properties.auctionExtension.format} as ${skeleton.properties.auctionExtension.type}) 
+        // ${skeleton.properties.auctionExtension.title} (${skeleton.properties.auctionExtension.format} as ${skeleton.properties.auctionExtension.type})
         auctionExtension: "${params.auctionExtension}",
       }}`;
   };
@@ -693,18 +672,18 @@ function generateRiskModel(skeleton, riskModelType) {
 
   riskModel[inspect.custom] = () => {
     return `{
-        // ${skeleton.properties.tau.title} (${skeleton.properties.tau.type}) 
+        // ${skeleton.properties.tau.title} (${skeleton.properties.tau.type})
         tau: ${riskModel.tau},
-        // ${skeleton.properties.riskAversionParameter.title} (${skeleton.properties.riskAversionParameter.format} as ${skeleton.properties.riskAversionParameter.type}) 
+        // ${skeleton.properties.riskAversionParameter.title} (${skeleton.properties.riskAversionParameter.format} as ${skeleton.properties.riskAversionParameter.type})
         riskAversionParameter: "${riskModel.riskAversionParameter}",
         // ${skeleton.properties.params.title}
         params: {
-          // ${skeleton.properties.params.properties.mu.title} (${skeleton.properties.params.properties.mu.format} as ${skeleton.properties.params.properties.mu.type}) 
-          mu: ${riskModel.params.mu},     
-          // ${skeleton.properties.params.properties.r.title} (${skeleton.properties.params.properties.r.format} as ${skeleton.properties.params.properties.r.type}) 
-          r: ${riskModel.params.r},     
-          // ${skeleton.properties.params.properties.sigma.title} (${skeleton.properties.params.properties.sigma.format} as ${skeleton.properties.params.properties.sigma.type}) 
-          sigma: ${riskModel.params.sigma},     
+          // ${skeleton.properties.params.properties.mu.title} (${skeleton.properties.params.properties.mu.format} as ${skeleton.properties.params.properties.mu.type})
+          mu: ${riskModel.params.mu},
+          // ${skeleton.properties.params.properties.r.title} (${skeleton.properties.params.properties.r.format} as ${skeleton.properties.params.properties.r.type})
+          r: ${riskModel.params.r},
+          // ${skeleton.properties.params.properties.sigma.title} (${skeleton.properties.params.properties.sigma.format} as ${skeleton.properties.params.properties.sigma.type})
+          sigma: ${riskModel.params.sigma},
         }
       }`;
   };
@@ -715,6 +694,8 @@ function generateRiskModel(skeleton, riskModelType) {
 function newMarket(skeleton, proposalSoFar) {
   assert.ok(skeleton.properties.changes);
   assert.ok(skeleton.properties.changes.properties.decimalPlaces);
+  assert.ok(skeleton.properties.changes.properties.quadraticSlippageFactor);
+  assert.ok(skeleton.properties.changes.properties.linearSlippageFactor);
   assert.ok(skeleton.properties.changes.properties.positionDecimalPlaces);
   assert.ok(skeleton.properties.changes.properties.instrument);
   assert.ok(skeleton.properties.changes.properties.lpPriceRange);
@@ -734,6 +715,8 @@ function newMarket(skeleton, proposalSoFar) {
       newMarket: {
         changes: {
           lpPriceRange: "10",
+          linearSlippageFactor: "0.001",
+          quadraticSlippageFactor: "0",
           decimalPlaces: "5",
           positionDecimalPlaces: "5",
           instrument: generateInstrument(
@@ -759,7 +742,7 @@ function newMarket(skeleton, proposalSoFar) {
   };
 
   /*------- Liquidity Commitment required */
-  const lbLabel = skeleton.properties.changes.properties.lpPriceRange.title.split('\n') 
+  const lbLabel = skeleton.properties.changes.properties.lpPriceRange.title.split('\n')
 
   result.terms.newMarket[inspect.custom] = () => {
     return `{
@@ -768,44 +751,38 @@ function newMarket(skeleton, proposalSoFar) {
           // ${lbLabel[1]}
           lpPriceRange: "${result.terms.newMarket.changes.lpPriceRange}",
 
-          // ${skeleton.properties.changes.properties.decimalPlaces.title} (${
-      skeleton.properties.changes.properties.decimalPlaces.format
-    } as ${skeleton.properties.changes.properties.decimalPlaces.type})
+          // ${skeleton.properties.changes.properties.decimalPlaces.title} (${skeleton.properties.changes.properties.decimalPlaces.format
+      } as ${skeleton.properties.changes.properties.decimalPlaces.type})
           decimalPlaces: "${result.terms.newMarket.changes.decimalPlaces}",
-          // ${
-            skeleton.properties.changes.properties.positionDecimalPlaces.title
-          } (${
-      skeleton.properties.changes.properties.positionDecimalPlaces.format
-    } as ${skeleton.properties.changes.properties.positionDecimalPlaces.type})
-          positionDecimalPlaces: "${
-            result.terms.newMarket.changes.positionDecimalPlaces
-          }",
+          // ${skeleton.properties.changes.properties.positionDecimalPlaces.title
+      } (${skeleton.properties.changes.properties.positionDecimalPlaces.format
+      } as ${skeleton.properties.changes.properties.positionDecimalPlaces.type})
+          positionDecimalPlaces: "${result.terms.newMarket.changes.positionDecimalPlaces
+      }",
           // ${skeleton.properties.changes.properties.instrument.title}
           instrument: ${inspect(result.terms.newMarket.changes.instrument, {
-            depth: 19,
-          })},
+        depth: 19,
+      })},
           // ${skeleton.properties.changes.properties.metadata.title}
           metadata: ${JSON.stringify(result.terms.newMarket.changes.metadata)},
-          // ${
-            skeleton.properties.changes.properties.priceMonitoringParameters
-              .title
-          }
+          // ${skeleton.properties.changes.properties.priceMonitoringParameters
+        .title
+      }
           priceMonitoringParameters: ${inspect(
-            result.terms.newMarket.changes.priceMonitoringParameters,
-            { depth: 19 }
-          )},
-          // ${
-            skeleton.properties.changes.properties.liquidityMonitoringParameters
-              .title
-          }
+        result.terms.newMarket.changes.priceMonitoringParameters,
+        { depth: 19 }
+      )},
+          // ${skeleton.properties.changes.properties.liquidityMonitoringParameters
+        .title
+      }
           liquidityMonitoringParameters: ${inspect(
-            result.terms.newMarket.changes.liquidityMonitoringParameters,
-            { depth: 19 }
-          )},
+        result.terms.newMarket.changes.liquidityMonitoringParameters,
+        { depth: 19 }
+      )},
           // ${skeleton.properties.changes.properties.logNormal.title}
           logNormal: ${inspect(result.terms.newMarket.changes.logNormal, {
-            depth: 19,
-          })},
+        depth: 19,
+      })},
         }
     }`;
   };
