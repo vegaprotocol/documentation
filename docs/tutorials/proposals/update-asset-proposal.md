@@ -41,7 +41,7 @@ You will need:
 
 ## Templates and submitting
 
-In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to [submit on the governance dApp ↗](https://token.fairground.wtf/governance/propose/update-asset), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
+In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to [submit on the governance dApp ↗](https://governance.fairground.wtf/proposals/propose/update-asset), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
 
 <Tabs groupId="updateAssetProposal">
   <TabItem value="annotated" label="Annotated example">
