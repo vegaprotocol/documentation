@@ -30,7 +30,7 @@ You will need:
 * Familiarity with [governance on Vega](../../concepts/vega-protocol.md#governance), particularly [network parameter governance](../../concepts/vega-protocol#network-parameter-governance)
 
 ## Templates and submitting
-In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to [submit on the governance dApp](https://token.fairground.wtf/governance/propose/network-parameter), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
+In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to [submit on the governance dApp](https://governance.fairground.wtf/proposals/propose/network-parameter), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
 Voting and enacting
 <Tabs groupId="updateNetworkParameter">
   <TabItem value="annotated" label="Annotated example">

@@ -14,7 +14,7 @@ import TabItem from '@theme/TabItem';
 <Topic />
 
 :::tip
-This tutorial describes how to stake using the smart contracts, the APIs, an Ethereum wallet, and a Vega Wallet. If you're looking for the easiest way to stake tokens, visit [token.fairground.wtf ↗](https://token.fairground.wtf)
+This tutorial describes how to stake using the smart contracts, the APIs, an Ethereum wallet, and a Vega Wallet. If you're looking for the easiest way to stake tokens, visit [governance.fairground.wtf ↗](https://governance.fairground.wtf/token)
 :::
 
 * Tokenholders can stake tokens to [validators on the Vega chain](../concepts/vega-chain#delegated-proof-of-stake), also known as nominating validators.

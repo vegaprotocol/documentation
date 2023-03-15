@@ -118,7 +118,7 @@ VEGA (an ERC20 token) used for staking is associated with a Vega key. To withdra
 Rewards accrued through staking are not associated automatically. To stake those tokens or transfer them, they need to be withdrawn from the Vega key that the rewards are credited to, and sent to an Ethereum wallet.
 
 :::tip Try it
-Track and withdraw testnet staking rewards on the [Vega token withdrawals page for testnet ↗](https://token.fairground.wtf/withdraw).
+Track and withdraw testnet staking rewards on the [Vega token withdrawals page for testnet ↗](https://governance.fairground.wtf/token/withdraw).
 
 Alternatively, use the [smart contract](../api/bridge/contracts/ERC20_Bridge_Logic#withdraw_asset) and an Ethereum RPC node to run the withdraw function.
 :::
