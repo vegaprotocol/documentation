@@ -203,32 +203,41 @@ List [accounts](../api/rest/data-v2/trading-data-service-list-accounts.api.mdx) 
 ### Markets
 Markets have accounts, are created with proposals, and allow parties to place orders with assets.
 
-[See all markets](../api/rest/data-v2/trading-data-service-list-markets.api.mdx)
-[Get information about a single market](../api/rest/data-v2/trading-data-service-get-market.api.mdx) using the market ID
+| Documentation | Description | Call |
+| ----------- | ----------- | ----------- |
+| [List markets](../api/rest/data-v2/trading-data-service-list-markets.api.mdx) | See all markets on the network. | `GET /api/v2/markets`
+| [Market](../api/rest/data-v2/trading-data-service-get-market.api.mdx) | Get information about a single market using the market's ID. | `GET /api/v2/market/:marketId`
+| [Markets data](../api/rest/data-v2/trading-data-service-list-latest-market-data.api.mdx) | List the latest market data for every market. | `GET /api/v2/markets/data`
 
 ### Governance proposals and voting
 Governance proposals used to add new assets and markets, as well as to suggest changes to assets, markets, and network parameters, as well as off-chain suggestions. VEGA tokens need to be associated to the Vega public key that wants to take part in governance.
 
-[List all proposals](../api/rest/data-v2/trading-data-service-list-governance-data.api.mdx), with their current state, paginated.
-[Get detailed information about a specific proposal](../api/rest/data-v2/trading-data-service-get-governance-data.api.mdx) using its ID.
+| Documentation | Description | Call |
+| ----------- | ----------- | ----------- |
+| [List proposals](../api/rest/data-v2/trading-data-service-list-governance-data.api.mdx) | View all governance proposals with their current state, paginated. | `GET /api/v2/governances`
+| [Proposal](../api/rest/data-v2/trading-data-service-get-governance-data.api.mdx) | Get detailed information about a specific governance proposal using its ID. | `GET /api/v2/governance`
 
 #### Governance token
 VEGA token are used for taking part in network, market, asset and freeform governance, and to secure the network by nominating validators that run the network.
 
-See votes using the **[list votes endpoint](../api/rest/data-v2/trading-data-service-list-votes.api.mdx)**
-See paginated proposals using the **[governance list endpoint]](../api/rest/data-v2/trading-data-service-list-governance-data.api.mdx)**
+| Documentation | Description | Call |
+| ----------- | ----------- | ----------- |
+| [List votes](../api/rest/data-v2/trading-data-service-list-votes.api.mdx) | See a list of votes. | `GET /api/v2/votes` |
 
-Explore the [tutorials for submitting proposals](../tutorials/proposals/index.md) using the command line.
+Explore the **[tutorials for submitting proposals](../tutorials/proposals/index.md)** using the command line.
 
 ### Orders
 An order is an instruction to buy or sell on a specific market, and it can go long or short on the market's price. Placing an order does not guarantee it gets filled, but if it is filled, it will result in a position, which will require collateral to use for margin to keep that position open.
 
-[View information about one order](../api/rest/data-v2/trading-data-service-get-order.api.mdx) using its order ID.
-[Filter for orders](../api/rest/data-v2/trading-data-service-list-orders.api.mdx) based on specific information
-[List positions](../api/rest/data-v2/trading-data-service-list-all-positions.api.mdx) for a specific party ID
+| Documentation | Description | Call |
+| ----------- | ----------- | ----------- |
+| [Order](../api/rest/data-v2/trading-data-service-get-order.api.mdx) | Get information about an order using its ID. | `GET /api/v2/order/:orderId` |
+| [List orders](../api/rest/data-v2/trading-data-service-list-orders.api.mdx) | Get a list of orders that have been filtered based on information you provide. | `GET /api/v2/orders`
+| [List positions](../api/rest/data-v2/trading-data-service-list-all-positions.api.mdx) | Get a list of all positions for a specific party ID | `GET /api/v2/positions` 
+| [List trades](/api/rest/data-v2/trading-data-service-list-trades.api.mdx) | Get a paginated list of all trades, optionally filtered by party, market, or order | `GET /api/v2/trades`
 
-[Read more about orders](../concepts/trading-on-vega/orders.md).
-[Read more about positions](../concepts/trading-on-vega/positions-margin.md)
+* [Read more about **orders**](../concepts/trading-on-vega/orders.md)
+* [Read more about **positions**](../concepts/trading-on-vega/positions-margin.md)
 
 ## Tutorials
 Tutorials provide the information you'll need about the protocol to understand and use the guide, as well as instructions on how to interact with scripts, API calls, or other code. 
