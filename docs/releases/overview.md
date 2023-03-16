@@ -30,7 +30,7 @@ The Vega core software is public on a business-source licence, so you can both v
 This version was released to the Vega testnet on 15 March 2023.
 
 :::caution Breaking changes
-To find out more please see these issues: [7798 ↗](https://github.com/vegaprotocol/vega/issues/7798), [7710 ↗](https://github.com/vegaprotocol/vega/issues/7710), [6905 ↗](https://github.com/vegaprotocol/vega/issues/6905), [6905 ↗](https://github.com/vegaprotocol/vega/issues/6905), [7731 ↗](https://github.com/vegaprotocol/vega/issues/7731), [7802 ↗](https://github.com/vegaprotocol/vega/issues/7802), [7728 ↗](https://github.com/vegaprotocol/vega/issues/7728), [7816 ↗](https://github.com/vegaprotocol/vega/issues/7816)
+To find out more please see these issues: [7798 ↗](https://github.com/vegaprotocol/vega/issues/7798), [7710 ↗](https://github.com/vegaprotocol/vega/issues/7710), [6905 ↗](https://github.com/vegaprotocol/vega/issues/6905), [7731 ↗](https://github.com/vegaprotocol/vega/issues/7731), [7802 ↗](https://github.com/vegaprotocol/vega/issues/7802), [7728 ↗](https://github.com/vegaprotocol/vega/issues/7728), [7816 ↗](https://github.com/vegaprotocol/vega/issues/7816)
 
 To read a summary of each, see all 0.69.0 [breaking changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0690) entries in the changelog.
 :::
