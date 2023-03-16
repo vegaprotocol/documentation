@@ -159,4 +159,4 @@ Will - the below result came from: `curl -L -X GET 'https://api.n07.testnet.vega
 </Tabs>
 
 ## Available websocket APIs
-List here with links to all the available ones that we provide.
+List here with links to all the available ones that are littered throughout trading-data list.
