@@ -123,7 +123,6 @@ Will - the below result came from: `curl -L -X GET 'https://api.n07.testnet.vega
   }
 }
 ```
-
 </TabItem>
 
 <TabItem value="sample-2" label="EXAMPLE OF TABBED AREA2">
@@ -137,6 +136,7 @@ Will - the below result came from: `curl -L -X GET 'https://api.n07.testnet.vega
     "op": "subscribe"
 }
 ```
+</TabItem>
 
 
 <TabItem value="sample-3" label="EXAMPLE OF TABBED AREA3">
@@ -157,3 +157,6 @@ Will - the below result came from: `curl -L -X GET 'https://api.n07.testnet.vega
 
 </TabItem>
 </Tabs>
+
+## Available websocket APIs
+List here with links to all the available ones that we provide.
