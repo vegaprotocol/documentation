@@ -26,6 +26,23 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Pre-release Version 0.69.0 | 2023-03-15
+This version was released to the Vega testnet on 15 March 2023.
+
+:::caution Breaking changes
+To find out more please see these issues [7798 ↗](https://github.com/vegaprotocol/vega/issues/7798), [7710 ↗](https://github.com/vegaprotocol/vega/issues/7710), [6905 ↗](https://github.com/vegaprotocol/vega/issues/6905), [6905 ↗](https://github.com/vegaprotocol/vega/issues/6905), [7731 ↗](https://github.com/vegaprotocol/vega/issues/7731), [7802 ↗](https://github.com/vegaprotocol/vega/issues/7802), [7728 ↗](https://github.com/vegaprotocol/vega/issues/7728), [7816 ↗](https://github.com/vegaprotocol/vega/issues/7816)
+
+To find out more please see all 0.69.0 [breaking changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0690) entries in the changelog.
+:::
+
+:::warning Deprecations
+**`X-Vega-Connection` HTTP header**: The `X-Vega-Connection` HTTP header in data node API and REST and GraphQL gateways has been deprecated and will be removed in a future release.
+
+To find out more please see issue [7385 ↗](https://github.com/vegaprotocol/vega/issues/7385)
+:::
+
+This release contains breaking changes, wallet improvements, bug fixes and minor enhancements. Check out the full details in the Vega core [0.69.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.69.0) release page.
+
 ### Pre-release Version 0.68.0 | 2023-02-22
 This version was released to the Vega testnet on 22 February 2023.
 
@@ -42,7 +59,7 @@ Finally, API enhancements in this release include a new API to query the market 
 
 To find out more please see these issues [7445 ↗](https://github.com/vegaprotocol/vega/issues/7445) and [7382 ↗](https://github.com/vegaprotocol/vega/issues/7382)
 
-To find out more please see all 0.68.0 [breaking changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0660) entries in the changelog.
+To find out more please see all 0.68.0 [breaking changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0680) entries in the changelog.
 :::
 
 :::warning Removals
