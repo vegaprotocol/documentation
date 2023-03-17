@@ -27,7 +27,7 @@ If you're looking to integrate a dApp, website, or bots with the Vega Wallet, yo
 
 The **Wallet API** (in alpha) uses JSON-RPC with an HTTP wrapper.
 
-* [Learn about the APIs](../api/vega-wallet/api-principles.md): Learn about the available wallet APIs
+* [Learn about the APIs](../api/vega-wallet/leading-principles.md): Learn about the available wallet APIs
 * [OpenRPC Wallet API](./vega-wallet/reference/core/json-rpc-basics): An overview of the API
 * [JSON-RPC playground](./vega-wallet/reference/core/openrpc-api-playground): See what methods the wallet API calls and try it out
 

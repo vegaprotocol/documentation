@@ -18,13 +18,13 @@ By following this guide, your application will only be able to talk to networks 
 
 The local service is an HTTP server exposed on the user's localhost. Therefore, communicating with the Vega wallet service is done through HTTP endpoints.
 
-See the **[Open API documentation](../reference/local-service/wallet-api.info.mdx)** to list all supported HTTP endpoints.
+See the **[HTTP API documentation](../reference/local-service/wallet-api.info.mdx)** to list all supported HTTP endpoints.
 
 :::caution `Origin` HTTP header required
 The service requires the `Origin` (or `Referrer`) HTTP header to be specified in the request. This is usually automatically handled by the browser, so you may not have to do anything, but software, like bots and scripts, should set the `Origin` header themselves. If not set, the request will be rejected.
 :::
 
-To access the JSON-RPC API, you will have to submit the request to the HTTP endpoint `POST /api/v2/requests`. To know how to build your JSON-RPC requests, see the **[Open RPC documentation](../reference/core/openrpc.md)**.
+To access the JSON-RPC API, you will have to submit the request to the HTTP endpoint `POST /api/v2/requests`. To know how to build your JSON-RPC requests, see the **[JSON-RPC API documentation](../reference/core/openrpc.md)**.
 
 On the local service, only the JSON-RPC methods from the client namespace (starting by `client.`) are callable. The method from the admin namespace (starting by `admin.`) cannot be called.
 

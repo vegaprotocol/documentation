@@ -1,8 +1,8 @@
 ---
 title: Wallet architecture
 hide_title: false
-description: Explore the wallet architecture.
-sidebar_position: 1
+description: Understand how the wallet works to ease your integration.
+sidebar_position: 2
 ---
 
 import Topic from '/docs/topics/_topic-wallet.mdx'
