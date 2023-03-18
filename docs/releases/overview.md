@@ -29,16 +29,18 @@ The Vega core software is public on a business-source licence, so you can both v
 ### Pre-release Version 0.69.0 | 2023-03-15
 This version was released to the Vega testnet on 15 March 2023.
 
+Version 0.69.0 is a large release that incorporates both fixes from the Market Simulation activities and many improvements to the protocol. 
+
+One of the key improvements in this version has been to the process of restoring data from network history. The insert query time for the orders table was continually increasing, eventually resulting in the data node falling behind the core. This has been resolved by optimising the query and replacing the ‘current order’ flag with some SQL magic and carefully crafted indexing.
+
+The CLI wallet has been improved to allow a better UX to `locate`, `describe` and `reset` the wallet service configuration. These changes have been made in conjunction with other wallet improvements creating a better CLI and desktop wallet user experience.
+
 :::caution Breaking changes
-To find out more please see these issues: [7798 ↗](https://github.com/vegaprotocol/vega/issues/7798), [7710 ↗](https://github.com/vegaprotocol/vega/issues/7710), [6905 ↗](https://github.com/vegaprotocol/vega/issues/6905), [7731 ↗](https://github.com/vegaprotocol/vega/issues/7731), [7802 ↗](https://github.com/vegaprotocol/vega/issues/7802), [7728 ↗](https://github.com/vegaprotocol/vega/issues/7728), [7816 ↗](https://github.com/vegaprotocol/vega/issues/7816)
+**Require slippage factors in market proposals**: When creating a new market proposal the `linear` and `quadratic` slippage factor fields have been changed from optional to required.
 
-To read a summary of each, see all 0.69.0 [breaking changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0690) entries in the changelog.
-:::
+**Deprecated fields removed from the wallet API**: The `version` field has been removed from the `admin.import_wallet` wallet API. All references to file paths have now been removed from the `admin.import_wallet`, `admin.import_network`, `admin.create_wallet` and `admin.isolate_keywallet` API
 
-:::warning Deprecations
-**`X-Vega-Connection` HTTP header**: The `X-Vega-Connection` HTTP header in data node API and REST and GraphQL gateways has been deprecated and will be removed in a future release.
-
-To find out more please see issue [7385 ↗](https://github.com/vegaprotocol/vega/issues/7385)
+Checkout a full summary of all the 0.69.0 [breaking changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0690) entries in the changelog.
 :::
 
 This release contains breaking changes, wallet improvements, bug fixes and minor enhancements. Check out the full details in the Vega core [0.69.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.69.0) release page.
