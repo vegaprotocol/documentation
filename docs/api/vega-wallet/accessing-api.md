@@ -2,7 +2,7 @@
 title: Accessing the API
 hide_title: false
 description: How to access the right APIs for your purposes.
-sidebar_position: 4
+sidebar_position: 3
 ---
 
 import Topic from '/docs/topics/_topic-wallet.mdx'
