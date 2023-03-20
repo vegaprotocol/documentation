@@ -36,9 +36,9 @@ The admin namespace exposes methods to administrate the wallets, the keys within
 **Third-party applications cannot access this namespace.** The admin namespace is not accessible from the communication layer (the top level API) of the Vega Wallet software. Issuing the request targeting a method of the admin namespace from a third-party application will result in a rejection.
 
 Therefore, as an example, if you want to programmatically create a wallet, you have 3 options:
-a. Use the command line (`vega wallet create`), if you have the Vega software available. We recommend using the `json` output flag in scripts.
-b. Write your own software in Golang and use Vega code as a library.
-c. Reimplement the wallet creation from scratch using the technology of you choice.
+1. Use the command line (`vega wallet create`), if you have the Vega software available. We recommend using the `json` output flag in scripts.
+2. Write your own software in Golang and use Vega code as a library.
+3. Reimplement the wallet creation from scratch using the technology of you choice.
 
 ### Client namespace
 
@@ -49,16 +49,11 @@ This is the only namespace that is fully accessible by third-party applications.
 :::note Privacy oriented
 The client namespace is made to reduce the amount of information given to third-party applications down to a minimum, **on purpose**.
 
-Everything is done to prevent unmasking the user.
-
-As a result, the third-party application only has access to:
-
-- Public keys the users explicitly gave access to
-- Chain ID of the network the user is connected to
-- Requesting to send, sign and check a transaction
-  :::
-
-## Third-party applications gets very little information about user information
+Everything is done to prevent unmasking the user. As a result, the third-party application can only:
+- List the public keys the users explicitly gave access to
+- Get the chain ID of the network the user is connected to
+- Request the sending, signing and checking of a transaction
+:::
 
 ## Basic workflow
 

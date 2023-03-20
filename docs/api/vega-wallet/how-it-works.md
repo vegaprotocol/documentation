@@ -1,5 +1,5 @@
 ---
-title: Wallet architecture
+title: How it works
 hide_title: false
 description: Understand how the wallet works to ease your integration.
 sidebar_position: 2

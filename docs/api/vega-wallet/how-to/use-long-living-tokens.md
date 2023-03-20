@@ -1,7 +1,7 @@
 ---
 title: Use long-living tokens
 hide_title: false
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 :::caution Warning
