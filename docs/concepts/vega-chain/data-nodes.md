@@ -148,9 +148,9 @@ From version 0.68, retention policy for any data type can be overridden by creat
     DataRetentionPeriod = "7 days"
 ```
 
-### Hypertable Chunk Intervals
+### Hypertable chunk intervals
 
-The data node uses [hypertables](https://docs.timescale.com/latest/using-timescaledb/hypertables) to store data. Hypertables are a TimescaleDB feature that allows you to store large amounts of time-series data in a more efficient way than a regular PostgreSQL table. By default, the chunk interval is set in the database migration scripts and applied when the data node is created or restored.
+The data node uses [hypertables ↗](https://docs.timescale.com/latest/using-timescaledb/hypertables) to store data. Hypertables are a TimescaleDB feature that allows you to store large amounts of time-series data in a more efficient way than a regular PostgreSQL table. By default, the chunk interval is set in the database migration scripts and applied when the data node is created or restored.
 
 **Standard data node chunk intervals (default)**
 
