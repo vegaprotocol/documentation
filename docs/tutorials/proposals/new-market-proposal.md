@@ -38,7 +38,7 @@ You will need:
 <!--[Update an existing market](#update-an-existing-market): change the details of a market that is already enacted.-->
 
 ## Anatomy of a market proposal
-In this section, the [full proposal template](#templates) has been divided into sections to provide more details on what you need to submit.
+In this section, the [full proposal template](#templates-and-submitting) has been divided into sections to provide more details on what you need to submit.
 
 There are a number of fields required for proposing a market to ensure that it has all the necessary details and research behind it to be a well-functioning market. 
 
@@ -164,7 +164,7 @@ The risk model uses the following properties:
 | `param: sigma` | Annualised volatility of the underlying asset. <br/><br/>Accepted values: any strictly non-negative real number; suggested value: asset dependent, should be derived from the historical time-series of prices. | 0.8 (converts to 80%) |
 
 ## Templates and submitting
-In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to [submit on the governance dApp ↗](https://governance.fairground.wtf/proposals/propose/new-market), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
+In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used as the basis to [submit on the governance dApp ↗](https://governance.fairground.wtf/proposals/propose/new-market), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
 
 <Tabs groupId="newMarket">
   <TabItem value="annotated" label="Annotated example">
