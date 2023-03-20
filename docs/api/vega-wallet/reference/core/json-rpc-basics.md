@@ -10,6 +10,7 @@ import Topic from '/docs/topics/_topic-wallet.mdx'
 <Topic />
 
 ## JSON-RPC API Introduction
+
 All Vega Wallet software supports a JSON-RPC API to manage the wallets and their keys, and sign and send transactions. It's the core of the wallet backend and is consistent across implementations.
 
 :::note New to JSON-RPC?
@@ -25,9 +26,11 @@ See [the JSON-RPC notification documentation](https://www.jsonrpc.org/specificat
 :::
 
 ## Namespaces
+
 The methods of this JSON-RPC API are scoped in two namespaces: admin - methods starting with `admin.`; and client - methods starting with `client.`.
 
 ### Admin namespace
+
 The admin namespace exposes methods to administrate the wallets, the keys within them and their permissions, and the networks. It can also sign and send transactions. These methods are primarily meant to be consumed by wallet frontends only.
 
 **Third-party applications cannot access this namespace.** The admin namespace is not accessible from the communication layer (the top level API) of the Vega Wallet software. Issuing the request targeting a method of the admin namespace from a third-party application will result in a rejection.
@@ -38,17 +41,27 @@ b. Write your own software in Golang and use Vega code as a library.
 c. Reimplement the wallet creation from scratch using the technology of you choice.
 
 ### Client namespace
+
 The client namespace exposes methods that primarily support third-party connections and transaction signing and sending.
 
 This is the only namespace that is fully accessible by third-party applications.
 
 :::note Privacy oriented
-The client namespace reduces the amount of information given to third-party applications down to a minimum, **on purpose**.
+The client namespace is made to reduce the amount of information given to third-party applications down to a minimum, **on purpose**.
 
 Everything is done to prevent unmasking the user.
-:::
+
+As a result, the third-party application only has access to:
+
+- Public keys the users explicitly gave access to
+- Chain ID of the network the user is connected to
+- Requesting to send, sign and check a transaction
+  :::
+
+## Third-party applications gets very little information about user information
 
 ## Basic workflow
+
 This example shows how a third-party application should use the JSON-RPC API.
 
 1. The app has to connect to the wallet using the method [`client.connect_wallet`](./openrpc.md#clientconnectwallet). The connection must be reviewed and approved by the user to succeed. Depending on the software you send this request to, you may have to go through extra steps, like retrieving a connection token from the response.
