@@ -1,23 +1,24 @@
 ---
-title: Stream with websocket
-sidebar_label: Websocket
+title: Websocket Streams
+sidebar_label: Websocket Streams
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-WebSockets API offers real-time updates to changes in state of the Vega network, allowing subscriptions to events such as per-market trades or changes to a party's position.
 
-As Vega is a blockchain time moves in dicrete blocks and so updates will appear as blocks are executed.
+Vega's API has websocket endpoints that offer real-time updates to changes in state of the Vega network, allowing subscriptions to events such as per-market trades or changes to a party's position.
+
+As Vega is a blockchain time moves in discrete blocks and so updates will appear as blocks are executed.
 
 ## Authentication
 
-Data nodes in the Vega network are designed to have only public APIs and do not require API tokens for access. TLS is supported on all websocket end-points. As data nodes on the Vega network are decentralized, whether TLS is enabled on a particular data node is a choice made by the node operator.
+Data nodes in the Vega network are designed to have only public APIs and do not require API tokens for access. TLS is supported on all websocket endpoints. As data nodes on the Vega network are decentralized, whether TLS is enabled on a particular data node is a choice made by the node operator.
 
 
 ## Subscribing using the WebSockets API
 
-Below is an example of how to stream trades
-
 <Tabs>
-<TabItem value="bash" label="bash example">
+<TabItem value="bash" label="Bash">
 
 ```bash
 curl -L -X GET 'https://api.n07.testnet.vega.xyz/api/v2/stream/trades'
@@ -26,9 +27,9 @@ curl -L -X GET 'https://api.n07.testnet.vega.xyz/api/v2/stream/trades'
 </TabItem>
 
 
-<TabItem value="python" label="python example">
+<TabItem value="py" label="Python">
 
-```python
+```py
 import rel
 import json
 import websocket
@@ -51,15 +52,33 @@ rel.dispatch()
 
 </TabItem>
 
+<TabItem value="js" label="Node">
+
+```js
+var WebSocketClient = require('websocket').client;
+
+url = "wss://api.n07.testnet.vega.xyz/api/v2/stream/trades"
+
+var client = new WebSocketClient();
+client.on('connect', function (connection) {
+    connection.on('message', function (message) {
+        console.log(message.utf8Data);
+    });
+});
+client.connect(url);
+```
+
+</TabItem>
+
 </Tabs>
 
-Subscription to a WebSocket endpoint happens when the connection is opened, unsubscription occurs when the connection is closed. It is not necessary to send a request through the websocket to initiate the subscription or to prove liviness of the connection.
+The above examples show how to use websockets to stream trades that are made on the Vega network.
 
-## Stream Snapshots
+Subscription to a websocket endpoint happens when the connection is opened and unsubscription occurs when the connection is closed. It is not necessary to send a request through the websocket to initiate the subscription or to prove liviness of the connection.
 
-Some of the Websocket endpoints will send a snapshot of the current state of data when a connection is first made. This allows for an application to build an initial state creating context for subsequent updates.
+## Snapshot Data
 
-The snapshot data will be sent in batches after which subsequent messages will only be updates to the snapshot state.
+Some of the Websocket endpoints will send a snapshot of the current state of data when a connection is first made. This allows for an application to build an initial state creating context for subsequent updates. The snapshot data will be sent in batches after which subsequent messages will only be updates to the snapshot state.
 
 As an example, when streaming orders the current state of the orderbook will be sent first
 
@@ -74,10 +93,10 @@ As an example, when streaming orders the current state of the orderbook will be 
 }
 ```
 
-the last batch of snapshot data will have `lastPage` is set to `true` after which the stream will switch to sending updates to the orderbook
+The last batch of snapshot data will have `lastPage` set to `true` after which the stream will switch to sending updates to the orderbook
 
 
-``` json
+```json
 {
     "result": {
         "updates": {
@@ -88,14 +107,12 @@ the last batch of snapshot data will have `lastPage` is set to `true` after whic
 ```
 
 
-## Filtered Subscriptions
+## Adding Filters to Subscriptions
 
-Most of the Websockets API support filtering such as by-party or by-market. The filters are set as query-parameters on the URL. 
-
-Below is an example of how to stream trades by `partyId`
+Most of the websocket endpoints support filtering such as by-party or by-market. The filters are set as query-parameters on the URL. 
 
 <Tabs>
-<TabItem value="bash" label="bash example">
+<TabItem value="bash" label="Bash">
 
 ```bash
 curl -L -X GET 'https://api.n07.testnet.vega.xyz/api/v2/stream/trades?api.n07.testnet.vega.xyz/api/v2/stream/trades?partyId?=faf83ce0533a2321ba2c0570844c631d4d888f6cc0e549e5222c1964ed764338'
@@ -104,9 +121,9 @@ curl -L -X GET 'https://api.n07.testnet.vega.xyz/api/v2/stream/trades?api.n07.te
 </TabItem>
 
 
-<TabItem value="python" label="python example">
+<TabItem value="py" label="Python">
 
-```python
+```py
 import rel
 import json
 import websocket
@@ -129,12 +146,28 @@ rel.dispatch()
 
 </TabItem>
 
+<TabItem value="js" label="Node">
+
+```js
+var WebSocketClient = require('websocket').client;
+
+url = "wss://api.n07.testnet.vega.xyz/api/v2/stream/trades?partyId?=faf83ce0533a2321ba2c0570844c631d4d888f6cc0e549e5222c1964ed764338"
+
+var client = new WebSocketClient();
+client.on('connect', function (connection) {
+    connection.on('message', function (message) {
+        console.log(message.utf8Data);
+    });
+});
+client.connect(url);
+```
+
+</TabItem>
+
 </Tabs>
 
-Only trades where `buyer` or `seller` matches the given `partyID` will be streamed.
+The above examples show how to use websockets to stream trades filtering on a `partyId`. The stream will only contain trades where `buyer` or `seller` matches `faf83ce0533a2321ba2c0570844c631d4d888f6cc0e549e5222c1964ed764338`.
 
-### Available websocket APIs
+## Available websocket APIs
 
 List here with links to all the available ones that are littered throughout trading-data list.
-TODO:
-work out how to do links
