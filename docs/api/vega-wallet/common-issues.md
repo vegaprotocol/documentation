@@ -31,7 +31,7 @@ Make sure you start the service with the flag `--load-tokens`.
 
 More details in the ["How to bootstrap the local service" guide](./how-to/bootstrap-local-service.md#8-start-the-service).
 
-## My JSON-RPC requests always return `201 No Content`
+## My JSON-RPC requests always return '201 No Content'
 
 Be sure to specify the `id` property in your JSON-RPC request.
 
