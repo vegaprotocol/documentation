@@ -25,7 +25,7 @@ kill -9 <PID>
 
 Use `sudo` if there is no result. If it still doesn't show, use more advanced tools to locate it, or as a final option, reboot your computer.
 
-## I can't connect using my long-living token
+## Can't connect using long-living token
 
 Make sure you start the service with the flag `--load-tokens`.
 
