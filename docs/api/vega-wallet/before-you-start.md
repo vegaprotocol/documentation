@@ -29,4 +29,4 @@ Once you've read the guides above, you will be able to start a local wallet serv
 If you have a local wallet service running, and your application can connect to a wallet, you're all set up. Here is the API documentation:
 
 - [HTTP API documentation](./reference/local-service/wallet-api.info.mdx): This documents all the details about the HTTP endpoints of the local service.
-- [JSON-RPC API documentation](./reference/core/openrpc.md): This documents all the details of the JSON-RPC methods exposed to third-party applications.
+- [JSON-RPC API documentation](./reference/core/json-rpc.md): This documents all the details of the JSON-RPC methods exposed to third-party applications.

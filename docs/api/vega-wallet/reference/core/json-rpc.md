@@ -1,5 +1,5 @@
 ---
-    title: OpenRPC Wallet API
+    title: JSON-RPC Wallet API
 ---
 - [client.connect_wallet](#clientconnect_wallet): Initiates a connection between a wallet and a third-party application.
 - [client.disconnect_wallet](#clientdisconnect_wallet): Ends the connection between the third-party application and the wallet.

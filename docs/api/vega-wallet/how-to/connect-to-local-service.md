@@ -24,7 +24,7 @@ See the **[HTTP API documentation](../reference/local-service/wallet-api.info.md
 The service requires the `Origin` (or `Referrer`) HTTP header to be specified in the request. This is usually automatically handled by the browser, so you may not have to do anything, but software, like bots and scripts, should set the `Origin` header themselves. If not set, the request will be rejected.
 :::
 
-To access the JSON-RPC API, you will have to submit the request to the HTTP endpoint `POST /api/v2/requests`. To know how to build your JSON-RPC requests, see the **[JSON-RPC API documentation](../reference/core/openrpc.md)**.
+To access the JSON-RPC API, you will have to submit the request to the HTTP endpoint `POST /api/v2/requests`. To know how to build your JSON-RPC requests, see the **[JSON-RPC API documentation](../reference/core/json-rpc.md)**.
 
 On the local service, only the JSON-RPC methods from the client namespace (starting by `client.`) are callable. The method from the admin namespace (starting by `admin.`) cannot be called.
 
@@ -53,7 +53,7 @@ Query the HTTP endpoint `GET /api/v2/methods`:
 * If some methods are missing, your app should tell the user that some features won't be available, or that your application is missing critical functions.
 
 ### 3. Verify which network the service is connected to
-Query the chain ID by submitting the JSON-RPC request [`client.get_chain_id`](../reference/core/openrpc.md#clientgetchainid) to HTTP endpoint `POST /api/v2/requests`:
+Query the chain ID by submitting the JSON-RPC request [`client.get_chain_id`](../reference/core/json-rpc.md#clientgetchainid) to HTTP endpoint `POST /api/v2/requests`:
 
 * If the chain ID is the one you expected, the app can safely start submitting transactions.
 * If the chain ID is different from what you expected, tell the user to switch networks.
@@ -81,7 +81,7 @@ When using API tokens, no interaction from the user is required. That means no c
 :::
 
 #### Get a live session token
-To get a connection token, your application has to submit a JSON-RPC request [`client.connect_wallet`](../reference/core/openrpc.md#clientconnectwallet) to the HTTP endpoint `POST /api/v2/requests`.
+To get a connection token, your application has to submit a JSON-RPC request [`client.connect_wallet`](../reference/core/json-rpc.md#clientconnectwallet) to the HTTP endpoint `POST /api/v2/requests`.
 
 **Each session generates a unique connection.** It's not reusable across sessions.
 

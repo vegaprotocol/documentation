@@ -9,7 +9,7 @@ import Topic from '/docs/topics/_topic-wallet.mdx'
 
 <Topic />
 
-## JSON-RPC API Introduction
+## JSON-RPC API introduction
 
 All Vega Wallet software supports a JSON-RPC API to manage the wallets and their keys, and sign and send transactions. It's the core of the wallet backend and is consistent across implementations.
 
@@ -59,7 +59,7 @@ Everything is done to prevent unmasking the user. As a result, the third-party a
 
 This example shows how a third-party application should use the JSON-RPC API.
 
-1. The app has to connect to the wallet using the method [`client.connect_wallet`](./openrpc.md#clientconnectwallet). The connection must be reviewed and approved by the user to succeed. Depending on the software you send this request to, you may have to go through extra steps, like retrieving a connection token from the response.
+1. The app has to connect to the wallet using the method [`client.connect_wallet`](./json-rpc.md#clientconnectwallet). The connection must be reviewed and approved by the user to succeed. Depending on the software you send this request to, you may have to go through extra steps, like retrieving a connection token from the response.
 
 ```json
 {
@@ -69,7 +69,7 @@ This example shows how a third-party application should use the JSON-RPC API.
 }
 ```
 
-2. Once connected, list the keys the user selected for your application, using the method [`client.list_keys`](./openrpc.md#clientlistkeys). That's an important step because sending a transaction requires the third-party application to specify the public key to use. This method relies on a permission system. As a result, the user has to grant your app access to their keys. The permission access is requested only once per third-party application.
+2. Once connected, list the keys the user selected for your application, using the method [`client.list_keys`](./json-rpc.md#clientlistkeys). That's an important step because sending a transaction requires the third-party application to specify the public key to use. This method relies on a permission system. As a result, the user has to grant your app access to their keys. The permission access is requested only once per third-party application.
 
 ```json
 {
@@ -79,7 +79,7 @@ This example shows how a third-party application should use the JSON-RPC API.
 }
 ```
 
-3. Once access to the keys has been granted, you can send a transaction using the method [`client.send_transaction`](./openrpc.md#clientsendtransaction). Once again the user will have to review and approve the transaction. Once approved, it can take some time for the wallet to bundle the transaction, sign, and send it. The transaction field below is set as an example.
+3. Once access to the keys has been granted, you can send a transaction using the method [`client.send_transaction`](./json-rpc.md#clientsendtransaction). Once again the user will have to review and approve the transaction. Once approved, it can take some time for the wallet to bundle the transaction, sign, and send it. The transaction field below is set as an example.
 
 ```json
 {
@@ -99,7 +99,7 @@ This example shows how a third-party application should use the JSON-RPC API.
 }
 ```
 
-4. *Optional but highly recommended* - Your application should expose a button to disconnect the wallet, calling the method [`client.disconnect_wallet`](./openrpc.md#clientdisconnectwallet):
+4. *Optional but highly recommended* - Your application should expose a button to disconnect the wallet, calling the method [`client.disconnect_wallet`](./json-rpc.md#clientdisconnectwallet):
 
 ```json
 {

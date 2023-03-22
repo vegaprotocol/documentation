@@ -56,4 +56,4 @@ Note, the transaction field is an example, you will have to define your own.
 }
 ```
 
-See more detail at the [`client.send_transaction`](../reference/core/openrpc.md#clientsendtransaction) API reference documentation.
+See more detail at the [`client.send_transaction`](../reference/core/json-rpc.md#clientsendtransaction) API reference documentation.

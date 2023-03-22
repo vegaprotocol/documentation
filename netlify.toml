@@ -67,5 +67,10 @@
 
 [[redirects]]
   from = "/testnet/api/vega-wallet/v2-api/openrpc"
-  to = "/testnet/api/vega-wallet/reference/core/openrpc"
+  to = "/testnet/api/vega-wallet/reference/core/json-rpc"
+  status = 301
+
+[[redirects]]
+  from = "/testnet/api/vega-wallet/reference/core/openrpc"
+  to = "/testnet/api/vega-wallet/reference/core/json-rpc"
   status = 301
