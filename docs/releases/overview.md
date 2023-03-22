@@ -554,6 +554,18 @@ The Vega Wallet API has been completely rewritten to support all authentication 
 
 Further information on these changes can be found in the updated documentation implemented in issues [5618 ↗](https://github.com/vegaprotocol/vega/issues/5618) and [5619 ↗](https://github.com/vegaprotocol/vega/issues/5619).
 
+### Version 0.53.1 | 2023-02-22
+This version was released to the Vega testnet on 22 February 2023.
+
+Version 0.53.1 addresses a critical mainnet issue. A bug has been identified that caused a network outage at the time that the protocol was promoting a new validator to consensus validator status. The issue was caused by insufficient validation of the Tendermint public keys specified in the `announce node` command.
+
+The fix introduced both resolved the issue and enhances the validation so that this cannot be repeated again.
+
+
+To find out more please see the issue [7936 ↗](https://github.com/vegaprotocol/vega/issues/7936) and the [incident blog ↗](https://blog.vega.xyz/incident-report-validator-nodes-down-in-mainnet-2ac2f724d67e)
+
+### Versions 0.53-0.51 | 2022-08-15
+This version was released to mainnet by the validators on 15 August, 2022.
 
 #### 0.53.0 (14 July 2022)
 
