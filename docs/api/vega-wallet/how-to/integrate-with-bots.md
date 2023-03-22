@@ -1,7 +1,7 @@
 ---
 title: Integrate bots with wallet
 hide_title: false
-sidebar_position: 2
+sidebar_position: 4
 ---
 
 import Topic from '/docs/topics/_topic-wallet.mdx'
@@ -31,7 +31,7 @@ On the HTTP endpoint `POST /api/v2/requests`, use the JSON-RPC method below to g
 }
 ```
 
-More detail at [`client.list_keys`](../reference/core/openrpc.md#clientlistkeys).
+More detail at [`client.list_keys`](../reference/core/json-rpc.md#clientlistkeys).
 
 ### Send a transaction
 Once you have access to the key list, you can send a transaction.
@@ -56,4 +56,4 @@ Note, the transaction field is an example, you will have to define your own.
 }
 ```
 
-See more detail at the [`client.send_transaction`](../reference/core/openrpc.md#clientsendtransaction) API reference documentation.
+See more detail at the [`client.send_transaction`](../reference/core/json-rpc.md#clientsendtransaction) API reference documentation.

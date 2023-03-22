@@ -33,7 +33,7 @@ This runs a number of tasks:
 - Making minor tweaks to those files to improve the output
 - Generate:
   - REST, GRPC, GraphQL API docs
-  - OpenRPC page
+  - JSON-RPC page
   - Example proposals
 - Making minor tweaks to those generated files to improve the output
 - Attempt a build

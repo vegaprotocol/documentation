@@ -1,5 +1,5 @@
 ---
-title: OpenRPC Playground
+title: JSON-RPC Playground
 hide_title: false
 hide_table_of_contents: true
 vega_network: TESTNET

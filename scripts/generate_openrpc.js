@@ -19,9 +19,9 @@ if (!version) {
 // Config
 // Magic number based on the current length (if it's less than a quarter the current size, something is off)
 const MIN_LENGTH = 10000  
-const title = 'OpenRPC Wallet API'
-const url = `./specs/v${version}/openrpc.json`
-const dest = './docs/api/vega-wallet/reference/core/openrpc.md'
+const title = 'JSON-RPC Wallet API'
+const url = `./specs/v${version}/json-rpc.json`
+const dest = './docs/api/vega-wallet/reference/core/json-rpc.md'
 console.info(`Using schema at: ${url}`)
 const cmd = `npx openrpc-md "${url}" "${title}"`
 console.info(`Running: "${cmd}"`)
