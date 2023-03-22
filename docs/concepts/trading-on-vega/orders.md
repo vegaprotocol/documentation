@@ -71,7 +71,7 @@ Limit orders offer conditions that can be set to determine when and how they're 
 ##### Post-only 
 A limit order can be set as post-only if you only want the order to be sent when it can enter the order book, and thus not immediately, neither partly nor entirely, cross with any orders already on the book. If the order would have immediately traded, it is instead stopped, and the party receives a response that the order was stopped to avoid a trade occurring. 
 
-A post-only order will never incur [maker fees](./fees-rewards.md#maker-fee).
+A post-only order will not incur [fees](./fees-rewards.md) if executed in continuous trading. However, if the order trades at an auction uncrossing, it may incur a fraction of liquidity and infrastructure fees.
 
 Once the order reaches the order book, it acts identically to an unconditional limit order set at the same price.
 
