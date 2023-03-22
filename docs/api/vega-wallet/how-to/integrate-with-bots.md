@@ -31,7 +31,7 @@ On the HTTP endpoint `POST /api/v2/requests`, use the JSON-RPC method below to g
 }
 ```
 
-More detail at [`client.list_keys`](../reference/core/openrpc.md#clientlistkeys).
+More detail at [`client.list_keys`](../reference/core/json-rpc.md#clientlistkeys).
 
 ### Send a transaction
 Once you have access to the key list, you can send a transaction.
