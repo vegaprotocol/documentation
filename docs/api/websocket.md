@@ -79,7 +79,7 @@ const client = new WebSocket("wss://api.n07.testnet.vega.xyz/api/v2/stream/ledge
 client.onmessage = console.dir;
 ```
 
-</Tabitem>
+</TabItem>
 </Tabs>
 
 The above examples show how to use websockets to stream all ledger movements that occur on the Vega network. An example payload is show below
