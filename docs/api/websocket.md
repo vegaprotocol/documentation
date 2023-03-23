@@ -148,7 +148,7 @@ The last batch of snapshot data will have `lastPage` set to `true` after which t
 {
     "result": {
         "updates": {
-            "orders": [],
+            "orders": []
         }
     }
 }
