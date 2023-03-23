@@ -75,7 +75,7 @@ The documentation on this site covers the core software version running on the V
 
 See the [releases page](../releases/overview.md) for a summary of each software release and links to the full changelog on GitHub. 
 
-### REST APIs
+## REST APIs
 REST provides endpoints for querying for trading data, account information, ledger movements, asset and market information, and much more.
 
 * **Trading data API** providers historic information and cumulative data, and covers a wide range of data, including, but not limited to:
@@ -88,7 +88,7 @@ REST provides endpoints for querying for trading data, account information, ledg
 * **Explorer API**: Provides transaction details, designed particularly to support the development of block explorers.
 * **Core state API**: This API is specifically for node operators, and may not be exposed by nodes running the network. All methods under this umbrella are also available on the trading data endpoints.
 
-## Rate limiting 
+### Rate limiting 
 To prevent abuse of the APIs provided by data nodes, there are limitations to the rate of API requests that can be enabled by data node operators. Rate limiting is applied on a per-remote-IP-address basis.
 
 Each IP address that connects to data node is assigned a bucket of tokens. That bucket has a maximum capacity, and begins full of tokens. Each API request costs one token, which is removed from the bucket when the call is made. The data node adds a number of tokens every second (the rate of the limiter) to the bucket up to its maximum capacity.
