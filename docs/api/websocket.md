@@ -56,24 +56,30 @@ rel.dispatch()
 
 </TabItem>
 
-<TabItem value="js" label="Node">
+<TabItem value="njs" label="Node">
 
-```js
-var WebSocketClient = require('websocket').client;
+```javascript
+// https://www.npmjs.com/package/ws
+import { WebSocket } from 'ws';
+const url = "wss://api.n07.testnet.vega.xyz/api/v2/stream/ledger/movements";
+const client = new WebSocket(url);
 
-url = "wss://api.n07.testnet.vega.xyz/api/v2/stream/ledger/movements"
-
-var client = new WebSocketClient();
-client.on('connect', function (connection) {
-    connection.on('message', function (message) {
-        console.log(message.utf8Data);
-    });
+client.on('message', message => {
+  console.log(message.toString());
 });
-client.connect(url);
 ```
 
 </TabItem>
 
+<TabItem value="js" label="Browser">
+
+```javascript
+const client = new WebSocket("wss://api.n07.testnet.vega.xyz/api/v2/stream/ledger/movements");
+
+client.onmessage = console.dir;
+```
+
+</Tabitem>
 </Tabs>
 
 The above examples show how to use websockets to stream all ledger movements that occur on the Vega network. An example payload is show below
@@ -188,23 +194,28 @@ rel.dispatch()
 
 </TabItem>
 
-<TabItem value="js" label="Node">
+<TabItem value="njs" label="Node">
 
 ```js
-var WebSocketClient = require('websocket').client;
+import { WebSocket } from 'ws';
+const url = "wss://api.n07.testnet.vega.xyz/api/v2/stream/trades?partyId?=faf83ce0533a2321ba2c0570844c631d4d888f6cc0e549e5222c1964ed764338";
+const client = new WebSocket(url);
 
-url = "wss://api.n07.testnet.vega.xyz/api/v2/stream/trades?partyId?=faf83ce0533a2321ba2c0570844c631d4d888f6cc0e549e5222c1964ed764338"
-
-var client = new WebSocketClient();
-client.on('connect', function (connection) {
-    connection.on('message', function (message) {
-        console.log(message.utf8Data);
-    });
+client.on('message', message => {
+  console.log(message.toString());
 });
-client.connect(url);
 ```
 
 </TabItem>
+<TabItem value="js" label="Browser">
+
+```javascript
+const client = new WebSocket("wss://api.n07.testnet.vega.xyz/api/v2/stream/trades?partyId?=faf83ce0533a2321ba2c0570844c631d4d888f6cc0e549e5222c1964ed764338");
+
+client.onmessage = console.dir;
+```
+
+</Tabitem>
 
 </Tabs>
 
