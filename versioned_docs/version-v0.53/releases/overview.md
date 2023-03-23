@@ -25,6 +25,16 @@ See the full release notes on [GitHub](https://github.com/vegaprotocol/vega/rele
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Versions 0.53.1 and 0.53.2 combined | 2023-03-22
+This version was released to the Vega mainnet on 22 March 2023.
+
+This deployment addresses a critical mainnet issue. A bug has been identified that caused a network outage at the time that the protocol was promoting a new validator to consensus validator status. The issue was caused by insufficient validation of the Tendermint public keys specified in the `announce node` command.
+
+The fix introduced both resolved the issue and enhances the validation so that this cannot be repeated again.
+
+
+To find out more please see the issue [7936 ↗](https://github.com/vegaprotocol/vega/issues/7936) and the [incident blog ↗](https://blog.vega.xyz/incident-report-validator-nodes-down-in-mainnet-2ac2f724d67e)
+
 ### Versions 0.53-0.51 | 2022-08-15
 This version was released to mainnet by the validators on 15 August, 2022.
 
