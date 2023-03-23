@@ -6,13 +6,13 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-Vega's API has websocket endpoints that offer real-time updates to changes in state of the Vega network, allowing subscriptions to events such as per-market trades or changes to a party's position.
+Vega's API contains websocket endpoints that offer real-time updates to changes in state of the Vega network, allowing subscriptions to events such as per-market trades or changes to a party's position.
 
 As Vega is a blockchain time moves in discrete blocks and so updates will appear as blocks are executed.
 
 ## Authentication and Ratelimiting
 
-API tokens are not required for access as all the API are public. TLS is supported on all websocket endpoints but note that it is enabled a particular data node is a choice made by the node operator.
+API tokens are not required to access the API as they are all public. TLS is supported on all websocket endpoints but note that whether it is enabled on a particular data node is a choice made by the node operator.
 
 Websocket connections are ratelimited by a maximum allowed number of subscriptions per IP address. The default maximum is set to 250 connections but note that this value may differ between data node operators.
 
@@ -116,7 +116,7 @@ The above examples show how to use websockets to stream all ledger movements tha
 }
 ```
 
-All enum values are sent as their integer value and not their string representation. This is to reduce the amount of data in each packet and help the performance.
+All enum values are sent as their integer values and not their string representation. This is to reduce the amount of data in each packet and to help the performance.
 
 ## Snapshot Data
 
