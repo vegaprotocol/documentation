@@ -215,7 +215,7 @@ const client = new WebSocket("wss://api.n07.testnet.vega.xyz/api/v2/stream/trade
 client.onmessage = console.dir;
 ```
 
-</Tabitem>
+</TabItem>
 
 </Tabs>
 
