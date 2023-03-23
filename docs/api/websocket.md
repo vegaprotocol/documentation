@@ -14,7 +14,7 @@ As Vega is a blockchain time moves in discrete blocks and so updates will appear
 
 API tokens are not required to access the API as they are all public. TLS is supported on all websocket endpoints but note that whether it is enabled on a particular data node is a choice made by the node operator.
 
-Websocket connections are ratelimited by a maximum allowed number of subscriptions per IP address. The default maximum is set to 250 connections but note that this value may differ between data node operators.
+Websocket connections are rate limited by a maximum allowed number of subscriptions per IP address. The default maximum is set to 250 connections but note that this value may differ between data node operators.
 
 Subscription to a websocket endpoint happens when the connection is opened and unsubscription occurs when the connection is closed. It is not necessary to send a request through the websocket to initiate the subscription or to prove liviness of the connection.
 
