@@ -1,7 +1,6 @@
 ---
 title: Common issues
 hide_title: false
-description: Commonly seen issues and how to address them.
 sidebar_position: 6
 ---
 
