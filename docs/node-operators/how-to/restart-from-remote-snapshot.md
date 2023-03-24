@@ -42,7 +42,12 @@ Update the `statesync` section in the <<tendermint_home>>/config/config.toml
 enable = true
 trust_height = <<blockHeight>>
 trust_hash = "<<blockHash>>"
+rpc_servers = "<<rpcServers>>"
 ```
+
+:::note
+You have to ask someone for tendermint RPC server. The best server is the one you collected trusted block height and hash. But it can be any server which has trusted block.
+:::
 
 ### 5. Enable network sync from network history
 
