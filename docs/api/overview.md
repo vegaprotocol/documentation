@@ -22,9 +22,9 @@ The easiest way to get started with Vega programmatically is by using REST. Ther
 Because Vega is a decentralised network run by independent validators, there are a number of different servers that you'll need to interact while working with the network - data will generally be recieved from one service and transactions will be sent to another. See the [the next section on data flow](#data-flow).
 
 ## Data flow
-Most of the data you will want to access will come from the trading data REST service. This is served by a 'data node' - servers that read the blockchain and produce a database of the current state, and in some cases store the past state. These data nodes are where you will read data from. 
+Most of the data you will want to access will come from the trading data REST service. This is served by a 'data node' - servers that read from the event stream (event queue), from a Vega core node and produce a database of the current state, and in some cases store the past state. These data nodes are where you will read data from. 
 
-To 'write' to the chain - that is to send in a transaction - you will use a Vega wallet, which will sign your transactions and send them to a validator node to be included in the chain.
+To send in a transaction - you'll need to use a Vega wallet, which will combine your command with a signature and public key, and send that bundle, which makes up the transaction, to a validator node to be included in the chain.
 
 ![How data cycles through the Vega network](/img/concept-diagrams/data-flow-vega.png)
 
@@ -47,7 +47,7 @@ If you want to interact with the network, you'll need to ensure that you have a 
 When creating any scripts or software to interact with Vega, you'll need a wallet authentication token. See the [Wallet API guides to get started](./vega-wallet/before-you-start.md).
 
 ## Sending transactions to the chain
-When sending transactions, you'll need a Vega Wallet with at least one keypair, and have the wallet service running. You'll also need to have your Vega public key (also known as a party ID) to hand, as well as the relevant transaction data, in order to submit your transaction.
+When sending transactions, you'll need a Vega Wallet with at least one keypair, and have the wallet service running. You'll need to have your Vega public key (also known as a party ID) to hand, as well as the relevant transaction data, in order to submit your transaction.
 
 When your client needs to sends a transaction, it fills in the details and passes it to the wallet to be signed, and forwarded to a validator node before being added to a block.
 
