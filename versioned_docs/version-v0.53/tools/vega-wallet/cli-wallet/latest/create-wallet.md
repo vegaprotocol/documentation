@@ -22,7 +22,7 @@ The wallet software linked below is only compatible with the Vega mainnet networ
 
 ### Download file
 
-**Download and save the zip file from [Vega Wallet software releases ↗](https://github.com/vegaprotocol/vegawallet/releases/)**. Keep track of where you've saved the file, because that's where the command line interface will look for it.
+**Download and save the `vegawallet` zip file from the latest tagged [Vega Wallet software release ↗](https://github.com/vegaprotocol/vega/releases/)**. Keep track of where you've saved the file, because that's where the command line interface will look for it.
 
 :::note You may need to change your system preferences to run the file.
 
