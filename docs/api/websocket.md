@@ -1,25 +1,25 @@
 ---
-title: Websocket Streams
-sidebar_label: Websocket Streams
+title: Websocket streams
+sidebar_label: Websocket streams
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+Vega's API contains websocket endpoints that offer real-time updates to changes in the state of the Vega network, allowing subscriptions to events such as per-market trades or changes to a party's position.
 
-Vega's API contains websocket endpoints that offer real-time updates to changes in state of the Vega network, allowing subscriptions to events such as per-market trades or changes to a party's position.
+As Vega is a blockchain, time moves in discrete blocks and so updates will appear as blocks are executed.
 
-As Vega is a blockchain time moves in discrete blocks and so updates will appear as blocks are executed.
+## Authentication and rate limiting
 
-## Authentication and Ratelimiting
+API tokens are not required to access the API as they are all public. TLS is supported on all websocket endpoints but note that whether it is enabled on a particular data node is a choice made by the data node's operator.
 
-API tokens are not required to access the API as they are all public. TLS is supported on all websocket endpoints but note that whether it is enabled on a particular data node is a choice made by the node operator.
+Websocket connections are rate limited by a maximum allowed number of subscriptions per IP address. The default maximum is set to 250 connections, but note that this value may differ between data node operators.
 
-Websocket connections are rate limited by a maximum allowed number of subscriptions per IP address. The default maximum is set to 250 connections but note that this value may differ between data node operators.
+Subscription to a websocket endpoint happens when the connection is opened and unsubscription occurs when the connection is closed. It is not necessary to send a request through the websocket to initiate the subscription or to prove the liveliness of the connection.
 
-Subscription to a websocket endpoint happens when the connection is opened and unsubscription occurs when the connection is closed. It is not necessary to send a request through the websocket to initiate the subscription or to prove liviness of the connection.
+## Subscribing using the WebSocket API
 
-
-## Subscribing using the WebSockets API
+The tabs below show how to stream all ledger movements that occur on the Vega Fairground network using Bash, Python, and NodeJS.
 
 <Tabs>
 <TabItem value="bash" label="Bash">
@@ -82,7 +82,7 @@ client.onmessage = console.dir;
 </TabItem>
 </Tabs>
 
-The above examples show how to use websockets to stream all ledger movements that occur on the Vega network. An example payload is show below
+The above examples show how to use websockets to stream all ledger movements that occur on the Vega Fairground network. An example payload is shown below:
 
 ```json
 {
@@ -122,13 +122,13 @@ The above examples show how to use websockets to stream all ledger movements tha
 }
 ```
 
-All enum values are sent as their integer values and not their string representation. This is to reduce the amount of data in each packet and to help the performance.
+All enum values are sent as their integer values and not their string representation. This is to reduce the amount of data in each packet and for speedy performance.
 
-## Snapshot Data
+## Snapshot data
 
-Some of the Websocket endpoints will send a snapshot of the current state of data when a connection is first made. This allows for an application to build an initial state creating context for subsequent updates. The snapshot data will be sent in batches after which subsequent messages will only be updates to the snapshot state.
+Some of the websocket endpoints will send a snapshot of the current state of data when a connection is first made. This allows for an application to build an initial state, creating context for subsequent updates. The snapshot data will be sent in batches after which subsequent messages will only be updates to the snapshot state.
 
-As an example, when streaming orders the current state of the orderbook will be sent first
+As an example, when streaming orders the current state of the order book will be sent first:
 
 ```json
 {
@@ -141,7 +141,7 @@ As an example, when streaming orders the current state of the orderbook will be 
 }
 ```
 
-The last batch of snapshot data will have `lastPage` set to `true` after which the stream will switch to sending updates to the orderbook
+The last batch of snapshot data will have `lastPage` set to `true` after which the stream will switch to sending updates of the order book:
 
 
 ```json
@@ -155,9 +155,9 @@ The last batch of snapshot data will have `lastPage` set to `true` after which t
 ```
 
 
-## Adding Filters to Subscriptions
+## Adding filters to subscriptions
 
-Most of the websocket endpoints support filtering such as by-party or by-market. The filters are set as query-parameters on the URL. 
+Most of the websocket endpoints support filtering such as by-party or by-market. The filters are set as query parameters on the URL. 
 
 <Tabs>
 <TabItem value="bash" label="Bash">
