@@ -11,7 +11,7 @@ import EthAddresses from '@site/src/components/EthAddresses';
 <Topic />
 
 ## Introduction
-The Vega protocol forms a blockchain specifically built to support trading of financial products on markets proposed and voted on by members of the Vega community.
+The Vega protocol provides the backbone to form a network specifically built to support trading of financial products on markets proposed and voted on by members of the Vega community.
 
 There are several ways to interact with Vega through APIs and smart contracts, and below you can learn more about the overall technical structure, the reference documentation, and tutorials that are currently available.
 
@@ -49,7 +49,7 @@ When creating any scripts or software to interact with Vega, you'll need a walle
 ## Sending transactions to the chain
 When sending transactions, you'll need a Vega Wallet with at least one keypair, and have the wallet service running. You'll need to have your Vega public key (also known as a party ID) to hand, as well as the relevant transaction data, in order to submit your transaction.
 
-When your client needs to sends a transaction, it fills in the details and passes it to the wallet to be signed, and forwarded to a validator node before being added to a block.
+When your client needs to sends a transaction, it fills in the details and passes it to the wallet. The wallet provides a client-side proof-of-work calculation, signs the transaction and forwards it to a validator node before it is added to a block.
 
 :::note Go deeper
 Read concepts about [transactions on Vega](./../concepts/vega-chain/transactions.md)
@@ -76,7 +76,7 @@ The documentation on this site covers the core software version running on the V
 See the [releases page](../releases/overview.md) for a summary of each software release and links to the full changelog on GitHub. 
 
 ## REST APIs
-REST provides endpoints for querying for trading data, account information, ledger movements, asset and market information, and much more.
+REST provides endpoints for querying for trading data, account information, ledger movements, asset and market information, and much more. The bulk of data can be acquired by querying the trading data API, which is served through data nodes.
 
 * **Trading data API** providers historic information and cumulative data, and covers a wide range of data, including, but not limited to:
   * liquidity provisions
@@ -84,9 +84,9 @@ REST provides endpoints for querying for trading data, account information, ledg
   * information about validator and non-validator nodes
   * reward summaries
   * governance proposals and votes
-* **Core service API**: Provides the minimum state of the chain required to build and send a transaction. This is also exposed in the trading data API.
+* **Core service API**: Provides the minimum state of the chain required to build and send a transaction. This is also exposed in the trading data API, which is the recommended API for querying information.
 * **Explorer API**: Provides transaction details, designed particularly to support the development of block explorers.
-* **Core state API**: This API is specifically for node operators, and may not be exposed by nodes running the network. All methods under this umbrella are also available on the trading data endpoints.
+* **Core state API**: This API is specifically for node operators, and may not be exposed by nodes running the network. All methods under this umbrella are also available on the trading data endpoints, which are recommended for querying for this information generally.
 
 ### Rate limiting 
 To prevent abuse of the APIs provided by data nodes, there are limitations to the rate of API requests that can be enabled by data node operators. Rate limiting is applied on a per-remote-IP-address basis.
