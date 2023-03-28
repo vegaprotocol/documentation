@@ -116,14 +116,14 @@ A post-only order will not incur [fees](./fees-rewards.md) if executed in contin
 
 Once the order reaches the order book, it acts identically to an unconditional limit order set at the same price.
 
-A post-order cannot be active at the same time as a reduce-only limit order on the same market. 
+A post-order cannot be active at the same time as a reduce-only order on the same market. 
 
 ### Reduce-only 
 Reduce-only is only an available option for orders with a non-persistent time-in-force. If set, the order will only be executed if the outcome of the trade moves the trader's position closer to 0. 
 
 In addition, a reduce-only order will not move a position to the opposite side from the trader's current position. For example, if the trader's current position is a short, enabling reduce-only cannot make the trader long as a result. If submitted with an IOC time in force, where the full volume would switch sides, only the amount required to move the position to 0 will be executed.
 
-A reduce-only limit order cannot be active at the same time as a post-only order on the same market. 
+A reduce-only order cannot be active at the same time as a post-only order on the same market. 
 
 ## Batch order
 Order instructions (such as submit, cancel, and/or amend orders) can be batched together in a single transaction, which allows traders to regularly place and maintain the price and size of multiple orders without needing to wait for each order instruction to be processed by the network individually.
@@ -132,7 +132,7 @@ Batches are processed in the following order: all cancellations, then all amendm
 
 They are also processed as if they were standalone order instructions in terms of market behaviour. For example, if an instruction, had it been submitted individually, would trigger entry into or exit from an auction, then the order instruction would set off the auction trigger before the rest of the batch is processed.
 
-Batch order instructions can be used in a liquidity provision strategy to help providers manage their limit orders (and their risk) more efficiently. The limit orders within a batch can also be set as post-only or reduce-only.
+Batch order instructions can be used in a liquidity provision strategy to help providers manage their limit orders (and their risk) more efficiently. The orders within a batch can also have conditions set, as post-only or reduce-only.
 
 To prevent spamming, the total number of instructions in a batch order transaction can be no more than the number set with the network parameter: <NetworkParameter frontMatter={frontMatter} param="network.spam_protection.max.batch.size" />. A batch order transaction with more instructions than allowed will fail.
 
