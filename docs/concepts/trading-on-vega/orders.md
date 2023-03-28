@@ -65,25 +65,6 @@ Limit orders stay on the order book until they are filled, expired or cancelled,
 * **IOC**: An Immediate or Cancel order executes all or part of a trade immediately and cancels any unfilled portion of the order. 
 * **FOK**: A Fill or Kill order either trades completely until the remaining size is 0, or not at all, and is not placed on the order book if it doesn't trade.
 
-#### Conditional limit orders
-Limit orders offer conditions that can be set to determine when and how they're used.
-
-##### Post-only 
-A limit order can be set as post-only if you only want the order to be sent when it can enter the order book, and thus not immediately, neither partly nor entirely, cross with any orders already on the book. If the order would have immediately traded, it is instead stopped, and the party receives a response that the order was stopped to avoid a trade occurring. 
-
-A post-only order will not incur [fees](./fees-rewards.md) if executed in continuous trading. However, if the order trades at an auction uncrossing, it may incur a fraction of liquidity and infrastructure fees.
-
-Once the order reaches the order book, it acts identically to an unconditional limit order set at the same price.
-
-A post-order cannot be active at the same time as a reduce-only limit order on the same market. 
-
-#### Reduce-only 
-Reduce-only is only an available option for non-persistent orders. If set, the order will only be executed if the outcome of the trade moves the trader's position closer to 0. 
-
-In addition, a reduce-only order will not move a position to the opposite side from the trader's current position. For example, if the trader's current position is a short, enabling reduce-only cannot make the trader long as a result. If submitted with an IOC time in force, where the full volume would switch sides, only the amount required to move the position to 0 will be executed.
-
-A reduce-only limit order cannot be active at the same time as a post-only order on the same market. 
-
 ### Market order
 A market order is an instruction to buy or sell at the best available price in the market. Because market orders can only use IOC or FOK times in force, they are never placed on the order book.
 
@@ -124,6 +105,25 @@ When orders return to the book, they are re-priced based on current market price
 Unparked pegged orders will be rejected:
 * If the reference price no longer exists (e.g. no best bid)
 * If the price moves to a value that means it would create an invalid order if the offset was applied
+
+### Conditional order parameters
+Orders with certain parameters offer conditions that can be set to determine when and how they're used.
+
+#### Post-only 
+Post-only is a condition that's only available for limit order can be set as post-only if you only want the order to be sent when it can enter the order book, and thus not immediately, neither partly nor entirely, cross with any orders already on the book. If the order would have immediately traded, it is instead stopped, and the party receives a response that the order was stopped to avoid a trade occurring. 
+
+A post-only order will not incur [fees](./fees-rewards.md) if executed in continuous trading. However, if the order trades at an auction uncrossing, it may incur a fraction of liquidity and infrastructure fees.
+
+Once the order reaches the order book, it acts identically to an unconditional limit order set at the same price.
+
+A post-order cannot be active at the same time as a reduce-only limit order on the same market. 
+
+### Reduce-only 
+Reduce-only is only an available option for orders with a non-persistent time-in-force. If set, the order will only be executed if the outcome of the trade moves the trader's position closer to 0. 
+
+In addition, a reduce-only order will not move a position to the opposite side from the trader's current position. For example, if the trader's current position is a short, enabling reduce-only cannot make the trader long as a result. If submitted with an IOC time in force, where the full volume would switch sides, only the amount required to move the position to 0 will be executed.
+
+A reduce-only limit order cannot be active at the same time as a post-only order on the same market. 
 
 ## Batch order
 Order instructions (such as submit, cancel, and/or amend orders) can be batched together in a single transaction, which allows traders to regularly place and maintain the price and size of multiple orders without needing to wait for each order instruction to be processed by the network individually.
