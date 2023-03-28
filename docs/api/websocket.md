@@ -135,7 +135,7 @@ As an example, when streaming orders the current state of the order book will be
     "result": {
         "snapshot": {
             "orders": [],
-            "lastPage: true
+            "lastPage": true
         }
     }
 }
