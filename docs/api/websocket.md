@@ -220,3 +220,24 @@ client.onmessage = console.dir;
 </Tabs>
 
 The above examples show how to use websockets to stream trades filtering on a `partyId`. The stream will only contain trades where `buyer` or `seller` matches `faf83ce0533a2321ba2c0570844c631d4d888f6cc0e549e5222c1964ed764338`.
+
+
+### Available websocket APIs
+
+The available websocket API are:
+- `/api/v2/stream/accounts`
+- `/api/v2/stream/candles/data`
+- `/api/v2/stream/delegations`
+- `/api/v2/stream/liquidity-provisions`
+- `/api/v2/stream/margin/levels`
+- `/api/v2/stream/markets/depth`
+- `/api/v2/stream/markets/depth/updates`
+- `/api/v2/stream/markets/data`
+- `/api/v2/stream/orders`
+- `/api/v2/stream/positions`
+- `/api/v2/stream/trades`
+- `/api/v2/stream/rewards`
+- `/api/v2/stream/governance`
+- `/api/v2/stream/votes`
+
+
