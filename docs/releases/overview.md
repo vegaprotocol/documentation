@@ -29,7 +29,7 @@ The Vega core software is public on a business-source licence, so you can both v
 ### Pre-release Versions 0.70.0 and 0.70.1 combined | 2023-03-28
 This version was released to the Vega testnet on 28 March 2023.
 
-Version 0.70.0 and 0.70.1 contains the fixes and minor enhancements to verify in testnet before the validators deploy for the Market Simulation #4.
+Version 0.70.0 and 0.70.1 contains the fixes and minor enhancements to verify in Fairground before the validators deploy to the validator-run testnet for the Market Simulation #4 event.
 
 This deployment realises a number of further data node enhancements to aid performance and the management of the stored data. The indexes on the positions table have been reworked in order to maintain the performance of the network history on the data nodes. Additionally, the config for the size of the buffer has been adjusted to best utilise the node memory on startup. Finally, to help manage the volume of data being created, LP orders are no longer sent when resubmitted without any changes, giving a direct data storage benefit.
 
