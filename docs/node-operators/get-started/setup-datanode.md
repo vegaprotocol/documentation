@@ -189,7 +189,7 @@ For more information about setting up a validator node, see the [validator node 
 
 ### Data node configuration
 
-## Data node retention profiles
+#### Data node retention profiles
 When starting a data node, you can choose the data retention configuration for your data node, depending on the use case for the node. The retention policy details can all be fine-tuned manually, as well.
 
 There are 3 retention policy configurations:
@@ -213,7 +213,7 @@ For example:
   DataRetentionPeriod = "7 days"
 ```
 
-## Generate config
+#### Generate config
 To generate the configuration files you need for the data node, you can use the following command:
 
 ```shell
@@ -294,7 +294,7 @@ If you do not have access to, or do not want to use a PostgreSQL database server
 
 This will cause data node to download a specially prepared Postgresql package which is extracted to your local machine if it doesn't exist. A separate Postgresql process will be spawned by data node using the credentials you specified in the database configuration section. Once data node is stopped, the child Postgresql process will be stopped automatically.
 
-You can launch Postgresql in its own separate process using the data node embedded postgresql binaries by running the following command:
+You can launch PostgreSQL in its own separate process using the data node embedded postgresql binaries by running the following command:
 
 ```shell
 vega datanode postgres run --home="YOUR_DATA_NODE_HOME_PATH"
@@ -303,7 +303,7 @@ vega datanode postgres run --home="YOUR_DATA_NODE_HOME_PATH"
 In either case, the files for the database will be stored in the data node `state` folder located at `YOUR_DATA_NODE_HOME_PATH/state.data-node/storage/sqlstore`.
 
 ### Buffered event source
-When a data node is restarted from snapshots, it is possible for the event queue to become flooded causing the Vega core to panic when the event queue is full and stop both the Vega core and data node.
+When a data node is restarted from snapshots, it is possible for the event queue to become flooded, causing the Vega core to panic when the event queue is full and stop both the Vega core and data node.
 
 To prevent this, the buffered event source flag is set to true by default. You can confirm this by looking at the following config section:
 
@@ -433,7 +433,7 @@ You will be notified that the load command will force all existing connections t
 This process may take a very long time depending on how much history you have retrieved and are loading into the database. Some processes in the restoration can take a long time to complete and it may look like the process is not doing anything. Do not try to terminate the process early or you may end up with a corrupted data node database.
 
 
-## Data Node recovery from Network History
+## Data node recovery from network history
 
 It is possible to start a data node and initialize it using network history automatically. By default, this process is disabled, and if enabled will only fetch - if you don't have the snapshot locally - the last segment before loading it into the data node. This is to allow users to quickly initialize a data node without fetching a lot of data and start participating while the data node is fetching more data in the background.
 
@@ -479,15 +479,15 @@ Retries will find segments that have already been downloaded and not try to down
 ```
 
 
-## Network History Troubleshooting
+## Network history troubleshooting
 
-### Network History cannot find any history
+### Network history cannot find any history
 
 When using `latest-history-from-peers` command, the peers returns no history. There can be a number of reasons why this is not working:
 
 1. You have copied a configuration file from another machine and the PeerID has been duplicated.
-2. You are using an out-of-date ChainID
-3. You have not configured any network peers
+2. You are using an out-of-date ChainID.
+3. You have not configured any network peers.
 
 If you have copied a configuration file from another machine and the other machine already exists on the network, running `network-history` commands may fail due to duplicated `PeerID` you have copied to the new machine. You should use the `vega datanode init` command to create a new configuration file, and copy the `PeerID` from that into your configuration file, or update the newly generated configuration file with configuration settings you have obtained from the existing configuration file.
 
@@ -497,7 +497,7 @@ If you have not configured any network peers, follow the instructions found unde
 
 ### Network History Load cannot copy data to the database
 
-This problem commonly occurs when Postgres cannot access the network-history snapshots folders.
+This problem commonly occurs when Postgres cannot access the network history snapshots folders.
 
 If using the embedded-postgres or a full installation of Postgres on your server, make sure the folder permissions are set properly on those snapshot folders (\$DATA_NODE_HOME/state/data-node/networkhistory/snapshotscopyto, \$DATA_NODE_HOME/state/data-node/networkhistory/snapshotscopyfrom). Postgres must have the appropriate permissions on these folders.
 
@@ -636,11 +636,11 @@ The default port (configurable) for the REST API is `3009` and we use a reverse 
 ## Further reading
 For more information about data node and developing on data node please see the data node [README ↗](https://github.com/vegaprotocol/vega/blob/master/datanode/README.md)
 
-## Data Node Troubleshooting
+## Data node troubleshooting
 
 ### Block height on begin block is too high
 
-If you start data-node and you receive an error that looks like:
+If you start data node and you receive an error that looks like:
 
 ```text
 block height on begin block, XXXXXX, is too high, the height of the last processed block is XXXXXX
@@ -652,7 +652,7 @@ There are a number of ways this can happen:
 
 1. Data node has been added and connected to a core node that has been running for a while and no history has been loaded into data node.
 2. Core has been started from a snapshot, but data node has been had no history loaded.
-3. Data node was restarted with `WipeOnStartup` set to true
+3. Data node was restarted with `WipeOnStartup` set to true.
 4. Core has been started from snapshot, and data node has been started from an earlier snapshot than core.
 
 Data node requires that the first block of data it receives from core is no more that the last block height received by data node + 1. If the height of the block received from core is lower than the last block height received by data node, the events from core are ignored until events from the appropriate next block is received.
