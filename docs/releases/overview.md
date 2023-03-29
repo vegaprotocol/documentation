@@ -43,7 +43,7 @@ This deployment realises further data node enhancements to aid performance and i
 Check out a full summary of all the 0.70.0 [breaking changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0700) entries in the changelog. There were no breaking changes in 0.70.1.
 :::
 
-This release contains breaking changes, wallet improvements, bug fixes and minor enhancements. Check out the full details in the Vega core [0.70.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.70.0) and [0.70.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.70.1) release page.
+This release contains breaking changes, bug fixes and minor enhancements. Check out the full details in the Vega core [0.70.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.70.0) and [0.70.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.70.1) release page.
 
 ### Pre-release Version 0.69.0 | 2023-03-15
 This version was released to the Vega testnet on 15 March 2023.
