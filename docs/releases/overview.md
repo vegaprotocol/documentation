@@ -40,7 +40,7 @@ This deployment realises further data node enhancements to aid performance and i
 
 **Rename table `current liquidity provisions` to `live liquidity provisions` and add a `live` option**: During testing it was identified that over time the current liquidity provisions table will continue to grow as LPs are created/deleted. This change will help the management of the data being created by the protocol.
 
-Checkout a full summary of all the 0.70.0 [breaking changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0700) entries in the changelog.
+Check out a full summary of all the 0.70.0 [breaking changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0700) entries in the changelog. There were no breaking changes in 0.70.1.
 :::
 
 This release contains breaking changes, wallet improvements, bug fixes and minor enhancements. Check out the full details in the Vega core [0.70.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.70.0) and [0.70.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.70.1) release page.
