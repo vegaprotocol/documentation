@@ -49,7 +49,7 @@ rpc_servers = "<<rpcServers>>"
 You have to ask someone for tendermint RPC server. The best server is the one you collected trusted block height and hash. But it can be any server which has trusted block.
 :::
 
-### 5. Enable network sync from network history
+### 5. Enable network sync from network history and update network history init timeout
 
 Update the <<home_vega>/config/data-node/config.toml file:
 
@@ -59,6 +59,9 @@ AutoInitialiseFromNetworkHistory = true
 
 [NetworkHistory]
   Enabled = true
+...
+[NetworkHistory.Initialise]
+    TimeOut = "4h"
 ```
 
 ### 6. Check the vega core config
