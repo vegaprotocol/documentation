@@ -17,20 +17,15 @@ Subscribe to orders updates
 
 ```graphql
 orders(
-  marketId: ID
-  partyId: ID
+  filter: OrderByMarketAndPartyIdsFilter
 ): [OrderUpdate!]
 ```
 
 
 ### Arguments
 
-#### [<code style={{ fontWeight: 'normal' }}>orders.<b>marketId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
-> ID of the market from which you want orders updates
-> 
-
-#### [<code style={{ fontWeight: 'normal' }}>orders.<b>partyId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
-> ID of the party from which you want orders updates
+#### [<code style={{ fontWeight: 'normal' }}>orders.<b>filter</b></code>](#)<Bullet />[`OrderByMarketAndPartyIdsFilter`](/testnet/api/graphql/inputs/order-by-market-and-party-ids-filter) <Badge class="secondary" text="input"/>
+> Filter orders
 > 
 
 ### Type

@@ -20,6 +20,7 @@ input OrderFilter {
   status: [OrderStatus!]
   types: [OrderType!]
   timeInForce: [OrderTimeInForce!]
+  dateRange: DateRange
   excludeLiquidity: Boolean
 }
 ```
@@ -39,11 +40,19 @@ input OrderFilter {
 > 
 > 
 
+#### [<code style={{ fontWeight: 'normal' }}>OrderFilter.<b>dateRange</b></code>](#)<Bullet />[`DateRange`](/testnet/api/graphql/inputs/date-range) <Badge class="secondary" text="input"/>
+> Date range to retrieve orders from/to. Start and end time should be expressed as an integer value of nano-seconds past the Unix epoch
+> 
+
 #### [<code style={{ fontWeight: 'normal' }}>OrderFilter.<b>excludeLiquidity</b></code>](#)<Bullet />[`Boolean`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="scalar"/>
 > 
 > 
 
 
+
+### Member of
+
+[`OrderByMarketAndPartyIdsFilter`](/testnet/api/graphql/inputs/order-by-market-and-party-ids-filter)  <Badge class="secondary" text="input"/><Bullet />[`OrderByMarketIdsFilter`](/testnet/api/graphql/inputs/order-by-market-ids-filter)  <Badge class="secondary" text="input"/><Bullet />[`OrderByPartyIdsFilter`](/testnet/api/graphql/inputs/order-by-party-ids-filter)  <Badge class="secondary" text="input"/>
 
 
 
