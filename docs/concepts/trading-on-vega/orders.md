@@ -118,7 +118,7 @@ Once the order reaches the order book, it acts identically to an unconditional l
 
 A post-order cannot be active at the same time as a reduce-only order on the same market. 
 
-### Reduce-only 
+#### Reduce-only 
 Reduce-only is only an available option for orders with a non-persistent time-in-force. If set, the order will only be executed if the outcome of the trade moves the trader's position closer to 0. 
 
 In addition, a reduce-only order will not move a position to the opposite side from the trader's current position. For example, if the trader's current position is a short, enabling reduce-only cannot make the trader long as a result. If submitted with an IOC time in force, where the full volume would switch sides, only the amount required to move the position to 0 will be executed.
