@@ -34,7 +34,7 @@ Version 0.70.0 and 0.70.1 contains the fixes and minor enhancements to verify in
 This deployment realises further data node enhancements to aid performance and improve management of stored data. The indexes on the positions table have been reworked in order to maintain performance of network history on the data nodes. Additionally, the buffer-size config has been adjusted to best utilise the node memory on startup. Finally, to help manage the volume of data being created, LP orders are no longer sent when resubmitted without any changes, giving a direct data storage benefit.
 
 :::caution Breaking changes
-**Add `marketIds` and `partyIds` to orders queries' filter.**: In order to allow getting all orders for a single party or market so that users can more easily find their orders across multiple keys or markets the API filtering has been enhanced.
+**Add `marketIds` and `partyIds` to orders queries' filter.**: In order to allow getting all orders for a single party or market so that users can more easily find their orders across multiple keys or markets, filtering on the orders endpoint has been enhanced.
 
 **Use nanoseconds for one off transfers**: During the Market Sim 3 the data node crashed due to an invalid time input when carrying out an internal transfer. The field now validates for nanoseconds to be consistent with other inputs.
 
