@@ -19,10 +19,8 @@ Represents a party on Vega, could be an ethereum wallet address in the future
 type Party {
   id: ID!
   ordersConnection(
-  dateRange: DateRange
   pagination: Pagination
-  filter: OrderFilter
-  marketId: ID
+  filter: OrderByMarketIdsFilter
 ): OrderConnection
   tradesConnection(
   marketId: ID
@@ -62,6 +60,7 @@ type Party {
   liquidityProvisionsConnection(
   marketId: ID
   reference: String
+  live: Boolean
   pagination: Pagination
 ): LiquidityProvisionsConnection
   delegationsConnection(
@@ -96,20 +95,12 @@ type Party {
 
 #### [<code style={{ fontWeight: 'normal' }}>Party.<b>ordersConnection</b></code>](#)<Bullet />[`OrderConnection`](/testnet/api/graphql/objects/order-connection) <Badge class="secondary" text="object"/>
 > Orders relating to a party
-> ##### [<code style={{ fontWeight: 'normal' }}>Party.ordersConnection.<b>dateRange</b></code>](#)<Bullet />[`DateRange`](/testnet/api/graphql/inputs/date-range) <Badge class="secondary" text="input"/>
-> Date range to retrieve orders from/to. Start and end time should be expressed as an integer value of nano-seconds past the Unix epoch
-> 
-
-##### [<code style={{ fontWeight: 'normal' }}>Party.ordersConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> ##### [<code style={{ fontWeight: 'normal' }}>Party.ordersConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
 > Pagination information
 > 
 
-##### [<code style={{ fontWeight: 'normal' }}>Party.ordersConnection.<b>filter</b></code>](#)<Bullet />[`OrderFilter`](/testnet/api/graphql/inputs/order-filter) <Badge class="secondary" text="input"/>
+##### [<code style={{ fontWeight: 'normal' }}>Party.ordersConnection.<b>filter</b></code>](#)<Bullet />[`OrderByMarketIdsFilter`](/testnet/api/graphql/inputs/order-by-market-ids-filter) <Badge class="secondary" text="input"/>
 > Filter orders
-> 
-
-##### [<code style={{ fontWeight: 'normal' }}>Party.ordersConnection.<b>marketId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
-> Market ID to limit the results to
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Party.<b>tradesConnection</b></code>](#)<Bullet />[`TradeConnection`](/testnet/api/graphql/objects/trade-connection) <Badge class="secondary" text="object"/>
@@ -212,6 +203,10 @@ type Party {
 
 ##### [<code style={{ fontWeight: 'normal' }}>Party.liquidityProvisionsConnection.<b>reference</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
 > An optional reference
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.liquidityProvisionsConnection.<b>live</b></code>](#)<Bullet />[`Boolean`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> An optional live flag to determine whether to list only live LPs or not
 > 
 
 ##### [<code style={{ fontWeight: 'normal' }}>Party.liquidityProvisionsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>

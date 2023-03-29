@@ -39,6 +39,8 @@ type Order {
   updatedAt: Timestamp
   peggedOrder: PeggedOrder
   liquidityProvision: LiquidityProvision
+  postOnly: Boolean
+  reduceOnly: Boolean
 }
 ```
 
@@ -125,6 +127,14 @@ type Order {
 
 #### [<code style={{ fontWeight: 'normal' }}>Order.<b>liquidityProvision</b></code>](#)<Bullet />[`LiquidityProvision`](/testnet/api/graphql/objects/liquidity-provision) <Badge class="secondary" text="object"/>
 > The liquidity provision this order was created from
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>postOnly</b></code>](#)<Bullet />[`Boolean`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> Is this a post only order
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>reduceOnly</b></code>](#)<Bullet />[`Boolean`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> Is this a reduce only order
 > 
 
 
