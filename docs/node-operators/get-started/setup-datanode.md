@@ -332,7 +332,7 @@ vega datanode start --home="YOUR_DATA_NODE_HOME_PATH"
 ## Fetch network history
 After starting a data node, you can load in a segment of network history, if you want your node to have more data than provided by the current height. This is particularly useful if you're running an archive node.
 
-Before you can fetch network history, you will need to update your data node configuration file adding a list of bootstrap peers as by default this is left empty and depends on which network you are connecting to:
+Before you can fetch network history, you will need to update your data node configuration file to add a list of bootstrap peers, as by default this is left empty and depends on which network you are connecting to:
 
 ```toml
 [NetworkHistory]
