@@ -77,7 +77,7 @@ Where:
 - `/host_path/to/snapshotsCopyFrom` is the path on your host machine where you want to store the snapshots that are retrieved from IPFS and can be used to rebuild a data node database from another data node. By default, this folder will be in the `state/data-node/networkhistory/snapshotsCopyFrom` folder under the `--home` folder you set for data node. [See Data Node Configuration](#data-node-configuration)
 
 :::note Snapshot paths
-If you intend to use the Docker version of TimescaleDB and you do not mount the `snapshotsCopyTo` and `snapshotsCopyFrom` paths to the TimescaleDB container, Data Node will panic when trying to start from network history because TimescaleDB is not able to access the network history files Data Node retrieves and tries to import.
+If you intend to use the Docker version of TimescaleDB and you do not mount the `snapshotsCopyTo` and `snapshotsCopyFrom` paths to the TimescaleDB container, Data Node will panic when trying to start from network history because TimescaleDB is not able to access the network history files Data Node retrieves and tries to import. The mounted path in the container must match the path of the `snapshotsCopyTo` and `snapshotsCopyFrom` paths on the Docker host.
 :::
 
 ### PostgreSQL configuration tuning
@@ -450,6 +450,34 @@ AutoInitialiseFromNetworkHistory
   ToSegment = "<segment-id-of-last-segment-you-require>" 
   MinimumBlockCount = <number-of-blocks-before-the-end-of-the-segment-you-require>
 ```
+
+If you are trying to initialise the data node with a large number of blocks, or have a slow internet connection for example, it is possible that the network history download will fail due to a timeout. Your data node logs may see an error such as:
+
+```text
+2023-03-29T14:45:44.516+0100	ERROR	datanode.start.persistentPre	backoff@v2.2.1+incompatible/retry.go:37	failed to fetch history blocks: failed to fetch history:could not write out the fetched history segment: context deadline exceeded
+```
+
+To extend the timeout, you may set the `Timeout` setting for `NetworkHistory.Initialise`:
+
+```toml
+[NetworkHistory.Initialise]
+  Timeout = "15m0s"
+```
+
+Additionally you can also set the `FetchRetryMax` configuration setting:
+
+```toml
+[NetworkHistory.Initialise]
+  FetchRetryMax = 5
+```
+
+Retries will find segments that have already been downloaded and not try to download them again. By default the process will wait 1 second between retries, but you can change this by setting the `RetryTimeout` configuration setting:
+
+```toml
+[NetworkHistory.Initialise]
+  RetryTimeout = "5s"
+```
+
 
 ## Network History Troubleshooting
 
