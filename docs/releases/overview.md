@@ -36,7 +36,7 @@ This deployment realises further data node enhancements to aid performance and i
 :::caution Breaking changes
 **Add `marketIds` and `partyIds` to orders queries' filter.**: In order to allow getting all orders for a single party or market so that users can more easily find their orders across multiple keys or markets, filtering on the orders endpoint has been enhanced.
 
-**Use nanoseconds for one off transfers**: During the Market Sim 3 the data node crashed due to an invalid time input when carrying out an internal transfer. The field now validates for nanoseconds to be consistent with other inputs.
+**Use nanoseconds for one off transfers**: During the Market Simulation #3, the data node crashed due to an invalid time input when carrying out an internal transfer. The field now validates for nanoseconds, which is consistent with other inputs.
 
 **Rename table `current liquidity provisions` to `live liquidity provisions` and add a `live` option** During testing it was identified that over time the current liquidity provisions table will continue to grow as LPs are created/deleted. This change will help the management of the data being created by the protocol.
 
