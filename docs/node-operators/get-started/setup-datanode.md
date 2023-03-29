@@ -444,7 +444,7 @@ If you want to fetch more than the last segment, you may also set the `MinimumBl
 If you want to initialise the data node automatically up to a specific segment and X blocks before it, you can set both the `ToSegment` and `MinimumBlockCount` configuration settings.
 
 ```toml
-AutoInitialiseFromNetworkHistory
+AutoInitialiseFromNetworkHistory = true
 
 [NetworkHistory.Initialise]
   ToSegment = "<segment-id-of-last-segment-you-require>" 
@@ -635,3 +635,26 @@ The default port (configurable) for the REST API is `3009` and we use a reverse 
 
 ## Further reading
 For more information about data node and developing on data node please see the data node [README ↗](https://github.com/vegaprotocol/vega/blob/master/datanode/README.md)
+
+## Data Node Troubleshooting
+
+### Block height on begin block is too high
+
+If you start data-node and you receive an error that looks like:
+
+```text
+block height on begin block, XXXXXX, is too high, the height of the last processed block is XXXXXX
+```
+
+This indicates that the core node is out of sync with the data node it is connected to.
+
+There are a number of ways this can happen:
+
+1. Data node has been added and connected to a core node that has been running for a while and no history has been loaded into data node.
+2. Core has been started from a snapshot, but data node has been had no history loaded.
+3. Data node was restarted with `WipeOnStartup` set to true
+4. Core has been started from snapshot, and data node has been started from an earlier snapshot than core.
+
+Data node requires that the first block of data it receives from core is no more that the last block height received by data node + 1. If the height of the block received from core is lower than the last block height received by data node, the events from core are ignored until events from the appropriate next block is received.
+
+To fix this problem, use the [network-history load](#loading-network-history-into-data-node), or use [AutoInitialiseFromNetworkHistory](#data-node-recovery-from-network-history) to ensure the data-node contains the necessary history before starting the core node.
