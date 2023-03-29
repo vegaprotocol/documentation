@@ -26,6 +26,25 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Pre-release Versions 0.70.0 and 0.70.1 combined | 2023-03-28
+This version was released to the Vega testnet on 28 March 2023.
+
+Version 0.70.0 and 0.70.1 contains the fixes and minor enhancements to verify in Fairground before the validators deploy to the validator-run testnet for the Market Simulation #4 event.
+
+This deployment realises further data node enhancements to aid performance and improve management of stored data. The indexes on the positions table have been reworked in order to maintain performance of network history on the data nodes. Additionally, the buffer-size config has been adjusted to best utilise the node memory on startup. Finally, to help manage the volume of data being created, LP orders are no longer sent when resubmitted without any changes, giving a direct data storage benefit.
+
+:::caution Breaking changes
+**Add `marketIds` and `partyIds` to orders queries' filter.**: In order to allow getting all orders for a single party or market so that users can more easily find their orders across multiple keys or markets, filtering on the orders endpoint has been enhanced.
+
+**Use nanoseconds for one off transfers**: During the Market Simulation #3, the data node crashed due to an invalid time input when carrying out an internal transfer. The field now validates for nanoseconds, which is consistent with other inputs.
+
+**Rename table `current liquidity provisions` to `live liquidity provisions` and add a `live` option**: During testing it was identified that over time the current liquidity provisions table will continue to grow as LPs are created/deleted. This change will help the management of the data being created by the protocol.
+
+Check out a full summary of all the 0.70.0 [breaking changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0700) entries in the changelog. There were no breaking changes in 0.70.1.
+:::
+
+This release contains breaking changes, bug fixes and minor enhancements. Check out the full details in the Vega core [0.70.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.70.0) and [0.70.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.70.1) release page.
+
 ### Pre-release Version 0.69.0 | 2023-03-15
 This version was released to the Vega testnet on 15 March 2023.
 
