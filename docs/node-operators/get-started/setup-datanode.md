@@ -268,7 +268,7 @@ The following will wipe the database on startup, so use with caution.
 
 Once the database has been wiped, data node will reconstruct the database tables and will allow you to repopulate the data from the network chain, however this can take a long time depending on the size of the chain.
 
-Currently the default value for `WipeOnStartup` is `true`. Please ensure this is updated if you do not want the data to be wiped when Data Node starts.
+Currently the default value for `WipeOnStartup` is `true`. Update this if you do not want all data to be wiped when data node starts.
 :::
 
 If you want to wipe the database on startup, you can set the `WipeOnStartup` flag to `true` in the data node configuration file `YOUR_DATA_NODE_HOME_PATH/config/data-node/config.toml`:
