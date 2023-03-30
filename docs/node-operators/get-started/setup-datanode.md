@@ -77,9 +77,8 @@ Where:
 - `/host_path/to/snapshotsCopyFrom` is the path on your host machine where you want to store the snapshots that are retrieved from IPFS and can be used to rebuild a data node database from another data node. By default, this folder will be in the `state/data-node/networkhistory/snapshotsCopyFrom` folder under the `--home` folder you set for data node. [See Data Node Configuration](#data-node-configuration)
 
 :::note Snapshot paths
-If you intend to use the Docker version of TimescaleDB and you do not mount the `snapshotsCopyTo` and `snapshotsCopyFrom` paths to the TimescaleDB container, Data Node will panic when trying to start from network history because TimescaleDB is not able to access the network history files Data Node retrieves and tries to import. The mounted path in the container must match the path of the `snapshotsCopyTo` and `snapshotsCopyFrom` paths on the Docker host.
+If you intend to use the Docker version of TimescaleDB, the mounted path in the container must match the path of the `snapshotsCopyTo` and `snapshotsCopyFrom` paths on the Docker host. If you do not mount the `snapshotsCopyTo` and `snapshotsCopyFrom` paths to the TimescaleDB container, data node will panic when trying to start from network history because TimescaleDB is not able to access the network history files that data node retrieves and tries to import. 
 :::
-
 ### PostgreSQL configuration tuning
 
 The default PostgreSQL configuration is not optimised for memory usage, and can be modified.
@@ -342,7 +341,7 @@ Before you can fetch network history, you will need to update your data node con
   BootstrapPeers = ["/path/to/bootstrap-peer/1","/path/to/bootstrap-peer/2"]
 ```
 
-To get a list of bootstrap peers available for your network, you can make a HTTP request to the API service for your chosen network, for example: `https://api.stagnet1.vega.xyz/api/v2/networkhistory` will retrieve the network peers for `stagnet1`.
+To get a list of bootstrap peers available for your network, you can make a HTTP request to the API service for your chosen network, for example: `https://api.testnet.vega.xyz/api/v2/networkhistory` will retrieve the network peers for `testnet`.
 
 ```json
 {
@@ -363,6 +362,8 @@ To see how much network history your data node has, run the following command:
 vega datanode network-history show --home="YOUR_DATA_NODE_HOME_PATH"
 ```
 
+### Fetching network history for a new data node
+
 If you are building a new data node, you may have no history and you will see this message:
 
 ```shell
@@ -380,7 +381,7 @@ This will return a list of peers you can fetch network history from:
 ```text
 Most Recent History Segments:
 
-Peer:<peer-ip-and-api-port>                    ,  Swarm Key:<swarm-key>, Segment{from_height:75001  to_height:75300  history_segment_id:"some-segment-id"  previous_history_segment_id:"some-other-segment-id"}
+Peer:<peer-ip-and-api-port>, Swarm Key:<swarm-key>, Segment{from_height:75001  to_height:75300  history_segment_id:"some-segment-id"  previous_history_segment_id:"some-other-segment-id"}
 ...
 ```
 
@@ -389,10 +390,10 @@ It is possible that some data peers are behind and may not have the latest data.
 :::
 
 
-To fetch a network history segment, run the command below. Use the ID of the segment you want (for example, the oldest) followed by the number of blocks prior to the segment's height that you want fetch. `2000` is used in the following example. This will result in all blocks from height 3000 to 5000 being retrieved.
+To fetch a network history segment, run the command below. Use the ID of the segment you want (for example, the oldest) followed by the number of blocks prior to the segment's height that you want fetch. `2000` is used in the following example. This will result in all blocks from height N-2000 to N being retrieved.
 
 ```shell
-vega datanode network-history fetch <segment-id-of-segment-at-height-X> 2000 --home="YOUR_DATA_NODE_HOME_PATH"
+vega datanode network-history fetch <segment-id-of-segment-at-height-N> 2000 --home="YOUR_DATA_NODE_HOME_PATH"
 ```
 
 Once the network history segments have been downloaded, running: 
@@ -412,8 +413,7 @@ Contiguous history from block height XXXXX to XXXXX, from segment id: <first-seg
 Datanode contains no data
 ```
 
-### Loading network history into Data Node
-
+### Loading network history into data node
 Now that you have downloaded historical data you can load the history into the data node using:
 
 ```shell
