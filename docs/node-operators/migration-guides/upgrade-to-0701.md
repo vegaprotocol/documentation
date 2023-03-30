@@ -134,7 +134,7 @@ You may also risk losing your wallets, so back them up as well.
 3. Remove the data-node state directory: `rm -f <VEGA-NETWORK-HOME>/state/data-node`
 4. Recreate the PostgreSQL database if you have data within: 
     - a. Call the following command in PostgreSQL terminal: `DROP DATABASE IF EXISTS <VEGA-DB-NAME>`
-    - b.Call the following command in PostgreSQL terminal: `CREATE DATABASE <VEGA-DB-NAME> WITH owner=<VEGA-DB-USER>`. 
+    - b. Call the following command in PostgreSQL terminal: `CREATE DATABASE <VEGA-DB-NAME> WITH owner=<VEGA-DB-USER>`. 
 
 :::note
 If you have to setup postgresql, follow instructions in the step to [Install/Upgrade PostgreSQL instance](./upgrade-node.md#15-installupgrade-postgresql-for-data-node)
