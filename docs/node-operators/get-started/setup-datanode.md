@@ -437,7 +437,9 @@ This process may take a very long time depending on how much history you have re
 
 It is possible to start a data node and initialise it using network history automatically. By default, this process is disabled, and if enabled will only fetch - if you don't have the snapshot locally - the last segment before loading it into the data node. This is to allow users to quickly initialise a data node without fetching a lot of data and start participating while the data node is fetching more data in the background.
 
-To enable this feature set the `AutoInitialiseFromNetworkHistory` setting in the data node configuration file to `true`. It is safe to leave this setting to true. If `WipeOnStartup` is `true`, data node will always restart with the last network history it is able to retrieve. If `WipeOnStartup` is `false`, data node will not reload data if the block height available in the database is equal to or greater than the block height from the network history.
+To enable this feature, set the `AutoInitialiseFromNetworkHistory` setting in the data node configuration file to `true`. It is safe to leave this setting to true. 
+
+If `WipeOnStartup` is `true`, data node will always restart with the last network history it is able to retrieve. If `WipeOnStartup` is `false`, data node will not reload data if the block height available in the database is equal to or greater than the block height from the network history.
 
 If you want to fetch more than the last segment, you may also set the `MinimumBlockCount` configuration setting.
 
