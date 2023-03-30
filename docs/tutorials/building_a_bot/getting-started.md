@@ -425,7 +425,7 @@ def main(
     party_id: str,
     token: str,
     wallet_url: str,
-    max_abs_position=1,
+    max_abs_position: int =1,
 ):
     market_info = client.get_market(node_url=node_rest_url, market_id=market_id)
     market_price_decimals = int(market_info["decimalPlaces"])
