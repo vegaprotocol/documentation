@@ -60,9 +60,7 @@ To build our basic bot we will create a couple of components, upon which we will
 
  - `__init__.py`
  - `wallet.py`
- - `strategy.py`
  - `submission.py`
- - `vega_store.py`
  - `vega_api_client.py`
 
 Within the root directory create two files:
