@@ -8,7 +8,8 @@ This guide describes the steps to upgrade to 0.70.1 using a checkpoint. Find the
 ## Assumptions for the guide
 The instructions below are written for Debian-like Linux operating systems. 
 
-The guide uses systemd commands(`systemctl` and `journalctl`) to control binaries in our setup. If you are using something different, your system's commands may vary.
+The guide uses systemd commands(`systemctl` and `journalctl`) to control binaries in the set-up. If you are using something different, your system's commands may vary.
+
 
 This guide is specifically intended for those who are already running a validator node with version `v0.68.0` or higher.
 
@@ -117,9 +118,10 @@ mv vega <VEGA-BIN>
 mv visor <VISOR-BIN>
 ```
 
-:::node  Manual update for binaries when you are running visor
-Visor cannot automatically restart(or upgrade) binaries because We are restarting the network with the `checkpoint`. Once you stop the Vega network, you must update the old binaries with the downloaded ones. You can find the binary path in the `<VEGAVISOR-HOME>/current/run-config.toml` file. Usually the path is `<VEGAVISOR-HOME>/current/vega`
+:::node  Manual update for binaries when you are running Visor
+Visor cannot automatically restart (or upgrade) binaries because you are restarting the network with a `checkpoint`. Once you stop the Vega network, you must update the old binaries with the downloaded ones. You can find the binary path in the `<VEGAVISOR-HOME>/current/run-config.toml` file. Usually the path is `<VEGAVISOR-HOME>/current/vega`
 :::
+
 
 ### 4. Reset and clear all data
 
@@ -130,11 +132,15 @@ You may also risk losing your wallets, so back them up as well.
 :::
 
 1. Call unsafe reset all for Tendermint: `<VEGA-BIN> tendermint unsafe-reset-all --home <TENDERMINT-HOME>`
-2. Call unsafe reset all for vega core: `<VEGA-BIN> unsafe_reset_all --home <VEGA-NETWORK-HOME>`
-3. Remove the data-node state directory: `rm -f <VEGA-NETWORK-HOME>/state/data-node`
-4. Recreate the PostgreSQL database if you have data within: 
-    - a. Call the following command in PostgreSQL terminal: `DROP DATABASE IF EXISTS <VEGA-DB-NAME>`
-    - b. Call the following command in PostgreSQL terminal: `CREATE DATABASE <VEGA-DB-NAME> WITH owner=<VEGA-DB-USER>`. 
+2. Call unsafe reset all for Vega core: `<VEGA-BIN> unsafe_reset_all --home <VEGA-NETWORK-HOME>`
+
+3. Remove the data node state directory: `rm -f <VEGA-NETWORK-HOME>/state/data-node`
+
+4. Recreate the PostgreSQL database if you have existing data using the following commands in PostgreSQL terminal: 
+
+    - `DROP DATABASE IF EXISTS <VEGA-DB-NAME>`
+    - `CREATE DATABASE <VEGA-DB-NAME> WITH owner=<VEGA-DB-USER>`
+
 
 :::note
 If you have to setup postgresql, follow instructions in the step to [Install/Upgrade PostgreSQL instance](./upgrade-node.md#15-installupgrade-postgresql-for-data-node)
@@ -154,8 +160,10 @@ To load the checkpoint, find more information in the [restart network guide](../
 Make sure, you have correct values for the following parameters in your genesis: `genesis_time`, `time_iota_ms`, `chain_id`, `network_parameters_checkpoint_overwrite`.
 :::
 
-:::note The checkpoint parameters overwrite
-All of the network parameters will be taken from checkpoint except:
+:::note Checkpoint parameters overwrite
+
+All of the network parameters will be taken from checkpoint except those:
+
 - Added since the previous released version
 - Mentioned in the `network_parameters_checkpoint_overwrite` section
 :::
@@ -193,13 +201,14 @@ There is no change required in the `vega core` config. If you have to prepare th
 
 There is no change required in the `tendermint` config. If you have to prepare the `tendermint` config from scratch, use the instruction for (v0.68.2)[(./upgrade-to-0682.md#8-update-tendermint-config)]
 
-### 9. Update data-node config
+### 9. Update data node config
 
-If you were running node in version `v0.68.0+`, the only think you have to update is the `chain_id` in the `data-node` config. If you need to setup data node from scratch, please follow documentation for [v0.68.0](./upgrade-to-0682.md#9-update-data-node-config)
+If you were running a data node in version `v0.68.0+`, the only thing you have to update is the `chain_id` in the `data-node` config. If you need to set up data node from scratch, please follow documentation for [v0.68.0](./upgrade-to-0682.md#9-update-data-node-config)
 
-:::warning Update `chain_id`
-It is important to update the chain_id for your data node config, otherwise your data node will fail.
+:::caution Update `chain_id`
+It is important to update the chain ID for your data node config, otherwise your data node will fail.
 :::
+
 
 ### 10. Start the upgraded network
 
