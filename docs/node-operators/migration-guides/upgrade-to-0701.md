@@ -3,7 +3,8 @@ title: Upgrade to 0.70.1
 sidebar_label: Upgrade to 0.70.1
 ---
 
-This guide describes the steps to upgrade to 0.70.1 using a checkpoint. Find the right page in the [release notes for v0.70.1](https://github.com/vegaprotocol/documentation/blob/main/docs/releases/overview.md#pre-release-versions-0700-and-0701-combined--2023-03-28)
+This guide describes the steps to upgrade to 0.70.1 using a checkpoint. See the [release notes for v0.70.1](https://github.com/vegaprotocol/documentation/blob/main/docs/releases/overview.md#pre-release-versions-0700-and-0701-combined--2023-03-28) for information about breaking changes and other details.
+
 
 ## Assumptions for the guide
 The instructions below are written for Debian-like Linux operating systems. 
