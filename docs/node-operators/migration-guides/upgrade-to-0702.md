@@ -3,7 +3,7 @@ title: Upgrade to 0.70.2
 sidebar_label: Upgrade to 0.70.2
 ---
 
-This guide describes the steps to upgrade to 0.70.2 using a checkpoint. See the [release notes for v0.70]((../../releases/overview#pre-release-versions-0700-0701-and-0702-combined--2023-03-28) for information about breaking changes and other details.
+This guide describes the steps to upgrade to 0.70.2 using a checkpoint. See the [release notes for v0.70](../../releases/overview#pre-release-versions-0700-0701-and-0702-combined--2023-03-28) for information about breaking changes and other details.
 
 ## Assumptions for the guide
 The instructions below are written for Debian-like Linux operating systems. 
