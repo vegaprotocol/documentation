@@ -36,11 +36,6 @@ Before upgrading your node software, read the upgrading file in the Vega repo fo
 
 Review the **[release notes](../../releases/overview.md)** for a list of breaking API changes for each version from the previously released version.
 
-Review the **[upgrading readme ↗](https://github.com/vegaprotocol/vega/blob/develop/UPGRADING.md)** with details on major updates.
-* [Repository changes ↗](https://github.com/vegaprotocol/vega/blob/develop/UPGRADING.md#repository-changes)
-* [Configuration changes ↗](https://github.com/vegaprotocol/vega/blob/develop/UPGRADING.md#configuration-changes)
-* [Command line changes ↗](https://github.com/vegaprotocol/vega/blob/develop/UPGRADING.md#command-line-changes)
-
 ## Upgrade steps
 
 ### 1. Stop the network
@@ -102,7 +97,7 @@ Download new binaries for the upgrade version from the [GitHub releases page ↗
 
 The binaries you need: 
 * Vega binary: Also includes Tendermint and data node as binary subcommands
-* Visor binary: Optional for setting up Visor for protocol upgrades (See the docs listed in [step 7](#7-read-the-visor-documentation) for information on Visor.
+* Visor binary: Optional for setting up Visor for protocol upgrades (See the docs listed in [the previous migration guide](./upgrade-node.md#7-read-the-visor-documentation) for information on Visor.
 
 See example commands for downloading below. You may need to update the version number depending on the version of the binaries you need to update to:
 
