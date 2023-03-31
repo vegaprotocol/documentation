@@ -44,10 +44,10 @@ Finally, to help manage the volume of data being created, LP orders are no longe
 
 **Rename table `current liquidity provisions` to `live liquidity provisions` and add a `live` option**: During testing it was identified that over time the current liquidity provisions table will continue to grow as LPs are created/deleted. This change will help the management of the data being created by the protocol.
 
-Check out a full summary of all the 0.70.0 [breaking changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0700) entries in the changelog. There were no breaking changes in 0.70.1.
+Check out a full summary of all the 0.70.0 [breaking changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0700) entries in the changelog. There were no breaking changes in 0.70.1 or 0.70.2.
 :::
 
-This release contains breaking changes, bug fixes and minor enhancements. Check out the full details in the Vega core [0.70.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.70.0) and [0.70.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.70.1) release page.
+This release contains breaking changes, bug fixes and minor enhancements. Check out the full details in the Vega core [0.70.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.70.0), [0.70.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.70.1) and [0.70.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.70.2) release page.
 
 ### Pre-release Version 0.69.0 | 2023-03-15
 This version was released to the Vega testnet on 15 March 2023.
