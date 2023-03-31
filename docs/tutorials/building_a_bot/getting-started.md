@@ -296,7 +296,7 @@ def get_positions(party_id: str, node_url: str) -> list[dict]:
 
 ```
 
-In general these functions are simply loading JSON results from the APIs defined within the [documentation](https://docs.vega.xyz/testnet/api/rest/overview). However this snippet is worth considering:
+In general these functions are simply loading JSON results from the APIs defined within the [documentation](../../api/rest/overview.md). However this snippet is worth considering:
 
 ```python
     while response_json[key]["pageInfo"]["hasNextPage"]:
