@@ -32,9 +32,7 @@ The following are placeholders for the PostgreSQL connection details for the dat
 This guide will refer to the above paths. The sample paths given above are just examples. We recommend setting the paths that align with the conventions adopted by your organisation.
 
 ## Study the changes between versions
-Before upgrading your node software, read the upgrading file in the Vega repo for a full list of the changes between the two versions, and review the breaking API changes.
-
-Review the **[release notes](../../releases/overview.md)** for a list of breaking API changes for each version from the previously released version.
+Before upgrading your node software, review the **[release notes](../../releases/overview.md)** for a list of breaking API changes for each version from the previously released version, and find links to each release's detailed changelog.
 
 ## Upgrade steps
 
@@ -114,7 +112,7 @@ mv vega <VEGA-BIN>
 mv visor <VISOR-BIN>
 ```
 
-:::node  Manual update for binaries when you are running Visor
+:::note  Manual update for binaries when running Visor
 Visor cannot automatically restart (or upgrade) binaries because you are restarting the network with a `checkpoint`. Once you stop the Vega network, you must update the old binaries with the downloaded ones. You can find the binary path in the `<VEGAVISOR-HOME>/current/run-config.toml` file. Usually the path is `<VEGAVISOR-HOME>/current/vega`
 :::
 
@@ -132,14 +130,14 @@ You may also risk losing your wallets, so back them up as well.
 
 3. Remove the data node state directory: `rm -f <VEGA-NETWORK-HOME>/state/data-node`
 
-4. Recreate the PostgreSQL database if you have existing data using the following commands in PostgreSQL terminal: 
+4. If you have existing data, recreate the PostgreSQL database using the following commands in PostgreSQL terminal: 
 
     - `DROP DATABASE IF EXISTS <VEGA-DB-NAME>`
     - `CREATE DATABASE <VEGA-DB-NAME> WITH owner=<VEGA-DB-USER>`
 
 
 :::note
-If you have to setup postgresql, follow instructions in the step to [Install/Upgrade PostgreSQL instance](./upgrade-node.md#15-installupgrade-postgresql-for-data-node)
+If you have to set up PostgreSQL, follow instructions in the upgrading node guide to [Install/Upgrade PostgreSQL instance](./upgrade-node.md#15-installupgrade-postgresql-for-data-node).
 :::
 
 ### 5. Prepare genesis file
@@ -158,7 +156,7 @@ Make sure, you have correct values for the following parameters in your genesis:
 
 :::note Checkpoint parameters overwrite
 
-All of the network parameters will be taken from checkpoint except those:
+All of the network parameters will be taken from checkpoint except the following:
 
 - Added since the previous released version
 - Mentioned in the `network_parameters_checkpoint_overwrite` section
@@ -191,15 +189,15 @@ cp ./genesis.json <TENDERMINT-HOME>/config/genesis.json
 
 ### 7. Update Vega core config
 
-There is no change required in the `vega core` config. If you have to prepare the `vega` config from scratch, use the instruction for (v0.68.2)[(./upgrade-to-0682.md#7-update-vega-core-config)]
+There is no change required in the `vega core` config. If you have to prepare the `vega` config from scratch, use the instruction for [v0.68.2](./upgrade-to-0682.md#7-update-vega-core-config).
 
 ### 8. Update Tendermint config
 
-There is no change required in the `tendermint` config. If you have to prepare the `tendermint` config from scratch, use the instruction for (v0.68.2)[(./upgrade-to-0682.md#8-update-tendermint-config)]
+There is no change required in the `tendermint` config. If you have to prepare the `tendermint` config from scratch, use the instruction for [v0.68.2](./upgrade-to-0682.md#8-update-tendermint-config).
 
 ### 9. Update data node config
 
-If you were running a data node in version `v0.68.0+`, the only thing you have to update is the `chain_id` in the `data-node` config. If you need to set up data node from scratch, please follow documentation for [v0.68.0](./upgrade-to-0682.md#9-update-data-node-config)
+If you were running a data node in version `v0.68.0+`, the only thing you have to update is the `chain_id` in the `data-node` config. If you need to set up data node from scratch, please follow documentation for [v0.68.0](./upgrade-to-0682.md#9-update-data-node-config).
 
 :::caution Update `chain_id`
 It is important to update the chain ID for your data node config, otherwise your data node will fail.
