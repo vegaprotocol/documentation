@@ -2,7 +2,7 @@
 title: WebSocket streams
 sidebar_label: WebSocket streams
 hide_title: false
-description: Learn how to use the available websocket APIs.
+description: Learn how to use the available WebSocket APIs.
 vega_network: TESTNET
 ---
 import Tabs from '@theme/Tabs';
@@ -85,7 +85,7 @@ client.onmessage = console.dir;
 </TabItem>
 </Tabs>
 
-The above examples show how to use Websockets to stream all ledger movements that occur on the Vega Fairground network. An example payload is shown below:
+The above examples show how to use WebSockets to stream all ledger movements that occur on the Vega Fairground network. An example payload is shown below:
 
 ```json
 {
@@ -127,7 +127,7 @@ The above examples show how to use Websockets to stream all ledger movements tha
 
 All enum values are sent as their integer values and not their string representation. This is to reduce the amount of data in each packet and for speedy performance.
 
-## Snapshot data
+## Snapshots of data
 
 Some of the WebSocket endpoints will send a snapshot of the current state of data when a connection is first made. This allows for an application to build an initial state, creating context for subsequent updates. The snapshot data will be sent in batches after which subsequent messages will only be updates to the snapshot state.
 
