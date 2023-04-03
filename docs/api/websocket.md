@@ -222,22 +222,23 @@ client.onmessage = console.dir;
 The above examples show how to use websockets to stream trades filtering on a `partyId`. The stream will only contain trades where `buyer` or `seller` matches `faf83ce0533a2321ba2c0570844c631d4d888f6cc0e549e5222c1964ed764338`.
 
 
-## Available websocket APIs
+## All websocket APIs
 
-The available websocket API are:
-- `/api/v2/stream/accounts`
-- `/api/v2/stream/candles/data`
-- `/api/v2/stream/delegations`
-- `/api/v2/stream/liquidity-provisions`
-- `/api/v2/stream/margin/levels`
-- `/api/v2/stream/markets/depth`
-- `/api/v2/stream/markets/depth/updates`
-- `/api/v2/stream/markets/data`
-- `/api/v2/stream/orders`
-- `/api/v2/stream/positions`
-- `/api/v2/stream/trades`
-- `/api/v2/stream/rewards`
-- `/api/v2/stream/governance`
-- `/api/v2/stream/votes`
+The available websocket APIs are listed below.
 
-
+| Description | Documentation | Call |
+| ----------- | ----------- | ----------- |
+| Stream account details | [Accounts](../api/rest/data-v2/trading-data-service-observe-accounts.api.mdx)| `/api/v2/stream/accounts`
+| Stream candles data | [Candles](../api/rest/data-v2/trading-data-service-observe-candle-data.api.mdx) | `/api/v2/stream/candles/data`
+| Stream token nominations to validators | [Delegations (aka nominations)](../api/rest/data-v2/trading-data-service-observe-delegations.api.mdx) | `/api/v2/stream/delegations`
+| Stream liquidity provision orders for a given market and party | [Liquidity provisions](../api/rest/data-v2/trading-data-service-observe-liquidity-provisions.api.mdx) | `/api/v2/stream/liquidity-provisions`
+| Stream margin levels for a given party (and optionally market) | [Margin levels](../api/rest/data-v2/trading-data-service-observe-margin-levels.api.mdx) | `/api/v2/stream/margin/levels`
+| Stream data for given markets | [Markets depth](../api/rest/data-v2/trading-data-service-observe-markets-depth.api.mdx) | `/api/v2/stream/markets/depth`
+| Stream updates of market depth for given markets | [Markets depth updates](../api/rest/data-v2/trading-data-service-observe-markets-depth-updates.api.mdx) | `/api/v2/stream/markets/depth/updates`
+| Stream data about given markets | [Markets data](../api/rest/data-v2/trading-data-service-observe-markets-data.api.mdx) | `/api/v2/stream/markets/data`
+| Stream all orders, or optionally for a given market and party | [Orders](../api/rest/data-v2/trading-data-service-observe-orders.api.mdx) | `/api/v2/stream/orders`
+| Stream all positions, or optionally for a given market and party | [Positions](../api/rest/data-v2/trading-data-service-observe-positions.api.mdx) | `/api/v2/stream/positions`
+| Stream all trades, or optionally for a given market and party | [Trades](../api/rest/data-v2/trading-data-service-observe-trades.api.mdx) | `/api/v2/stream/trades`
+| Stream rewards received | [Rewards](../api/rest/data-v2/trading-data-service-observe-rewards.api.mdx) | `/api/v2/stream/rewards`
+| Stream governance proposals | [Governance proposals](../api/rest/data-v2/trading-data-service-observe-governance.api.mdx) | `/api/v2/stream/governance`
+| Stream governance votes for a party | [Governance votes](../api/rest/data-v2/trading-data-service-observe-votes.api.mdx) | `/api/v2/stream/votes`
