@@ -98,7 +98,7 @@ When a third-party application tries to initiate a connection with the user's wa
 :::
 
 ### 2. Set the `Authorization` header
-Now that you got a connection token, you have to be set in the `Authorization` header with the following format:
+Once you have a connection token, it needs to be set in the `Authorization` header using the following format:
 
 ```
 VWT <TOKEN>
