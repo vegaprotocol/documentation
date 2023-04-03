@@ -25,6 +25,8 @@ module.exports = {
   api: [
     'api/overview',
     'api/public-endpoints',
+    'api/websocket',
+
     {
       type: 'category',
       label: 'REST',
