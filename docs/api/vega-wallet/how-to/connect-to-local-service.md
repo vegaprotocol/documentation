@@ -66,8 +66,8 @@ To connect to a wallet, you first need to get a connection, and then set the tok
 ### 1. Get a connection token
 
 There are two options for initiating a connection with the user's wallet:
-* Using API tokens, best suited for headless software like bots and scripts. 
-* Using regular live sessions, best suited for graphical and interactive applications.
+A. Using API tokens, best suited for headless software like bots and scripts. 
+B. Using regular live sessions, best suited for graphical and interactive applications.
 
 The `<TOKEN>` is a randomly generated string of 64 characters using numbers and letters.
 
