@@ -196,13 +196,13 @@ There is no change required in the `tendermint` config. If you have to prepare t
 
 ### 9. Migrate tendermint data when using default home path
 
-:::warning
-You do not need to execute this step when providing the custom `--home` flat for the tendermint. This step MUST be executed when the default tendermint home directory path is used.
+:::caution
+This step MUST be executed when the **default** Tendermint home directory path is used. You do not need to execute this step when providing a custom `--home` flag for Tendermint. 
 :::
 
-The brief background is, We have migrated the Tendermint to the [CometBFT](https://github.com/cometbft/cometbft), which is the fork of tendermint. 
+The Vega implementation of Tendermint has been migrated to using [CometBFT](https://github.com/cometbft/cometbft), which is a fork of Tendermint. 
 
-This change implies a change of the default home directory. If you have not provided the `--home` flag for the tendermint, it determined the default home in the `<USER_HOME>/.tendermint`. Now you should migrate your data into the `<USER_HOME>/.cometbft` directory. You have at least two options to do it:
+This implies a change to the default home directory. If you have not provided the `--home` flag for Tendermint, it determines the default home in the `<USER_HOME>/.tendermint`. Now, you should migrate your data into the `<USER_HOME>/.cometbft` directory. You have at least two options for how to do it:
 
 1. Move directory: `mv ~/.tendermint ~/.cometbft`
 2. Link the old directory to the new location: `ln -s <USER_HOME>/.tendermint <USER_HOME>/.cometbft`
