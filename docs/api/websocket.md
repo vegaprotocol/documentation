@@ -1,6 +1,6 @@
 ---
-title: Websocket streams
-sidebar_label: Websocket streams
+title: WebSocket streams
+sidebar_label: WebSocket streams
 hide_title: false
 description: Learn how to use the available websocket APIs.
 vega_network: TESTNET
@@ -8,17 +8,17 @@ vega_network: TESTNET
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Vega's API contains websocket endpoints that offer real-time updates to changes in the state of the Vega network, allowing subscriptions to events such as per-market trades or changes to a party's position.
+Vega's API contains WebSocket endpoints that offer real-time updates to changes in the state of the Vega network, allowing subscriptions to events such as per-market trades or changes to a party's position.
 
-As Vega is a blockchain, time moves in discrete blocks and so updates will appear as blocks are executed.
+As Vega relies on a blockchain, time moves in discrete blocks and so updates will appear as blocks are executed.
 
 ## Authentication and rate limiting
 
-API tokens are not required to access the API as they are all public. TLS is supported on all websocket endpoints but note that whether it is enabled on a particular data node is a choice made by the data node's operator.
+API tokens are not required to access the API as they are all public. TLS is supported on all WebSocket endpoints but note that whether it is enabled on a particular data node is a choice made by the data node's operator.
 
-Websocket connections are rate limited by a maximum allowed number of subscriptions per IP address. The default maximum is set to 250 connections, but note that this value may differ between data node operators.
+WebSocket connections are rate limited by a maximum allowed number of subscriptions per IP address. The default maximum is set to 250 connections, but note that this value may differ between data node operators.
 
-Subscription to a websocket endpoint happens when the connection is opened and unsubscription occurs when the connection is closed. It is not necessary to send a request through the websocket to initiate the subscription or to prove the liveliness of the connection.
+Subscription to a WebSocket endpoint happens when the connection is opened and unsubscription occurs when the connection is closed. It is not necessary to send a request through the WebSocket to initiate the subscription or to prove the liveliness of the connection.
 
 ## Subscribing using the WebSocket API
 
@@ -85,7 +85,7 @@ client.onmessage = console.dir;
 </TabItem>
 </Tabs>
 
-The above examples show how to use websockets to stream all ledger movements that occur on the Vega Fairground network. An example payload is shown below:
+The above examples show how to use Websockets to stream all ledger movements that occur on the Vega Fairground network. An example payload is shown below:
 
 ```json
 {
@@ -129,7 +129,7 @@ All enum values are sent as their integer values and not their string representa
 
 ## Snapshot data
 
-Some of the websocket endpoints will send a snapshot of the current state of data when a connection is first made. This allows for an application to build an initial state, creating context for subsequent updates. The snapshot data will be sent in batches after which subsequent messages will only be updates to the snapshot state.
+Some of the WebSocket endpoints will send a snapshot of the current state of data when a connection is first made. This allows for an application to build an initial state, creating context for subsequent updates. The snapshot data will be sent in batches after which subsequent messages will only be updates to the snapshot state.
 
 As an example, when streaming orders the current state of the order book will be sent first:
 
@@ -160,7 +160,7 @@ The last batch of snapshot data will have `lastPage` set to `true` after which t
 
 ## Adding filters to subscriptions
 
-Most of the websocket endpoints support filtering such as by-party or by-market. The filters are set as query parameters on the URL. 
+Most of the WebSocket endpoints support filtering such as by-party or by-market. The filters are set as query parameters on the URL. 
 
 <Tabs>
 <TabItem value="bash" label="Bash">
@@ -222,12 +222,12 @@ client.onmessage = console.dir;
 
 </Tabs>
 
-The above examples show how to use websockets to stream trades filtering on a `partyId`. The stream will only contain trades where `buyer` or `seller` matches `faf83ce0533a2321ba2c0570844c631d4d888f6cc0e549e5222c1964ed764338`.
+The above examples show how to use WebSockets to stream trades filtering on a `partyId`. The stream will only contain trades where `buyer` or `seller` matches `faf83ce0533a2321ba2c0570844c631d4d888f6cc0e549e5222c1964ed764338`.
 
 
-## All websocket APIs
+## All WebSocket APIs
 
-The available websocket APIs are listed below.
+The available WebSocket APIs are listed below.
 
 | Description | Documentation | Call |
 | ----------- | ----------- | ----------- |
