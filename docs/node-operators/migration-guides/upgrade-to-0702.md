@@ -194,7 +194,7 @@ There is no change required in the `vega core` config. If you have to prepare th
 
 There is no change required in the `tendermint` config. If you have to prepare the `tendermint` config from scratch, use the instruction for [v0.68.2](./upgrade-to-0682.md#8-update-tendermint-config).
 
-### 9. Migrate tendermint data
+### 9. Migrate tendermint data when using default home path
 
 :::warning
 You do not need to execute this step when providing the custom `--home` flat for the tendermint. This step MUST be executed when the default tendermint home directory path is used.
@@ -208,7 +208,7 @@ This change implies a change of the default home directory. If you have not prov
 2. Link the old directory to the new location: `ln -s <USER_HOME>/.tendermint <USER_HOME>/.cometbft`
 
 
-### 9. Update data node config
+### 10. Update data node config
 
 If you were running a data node in version `v0.68.0+`, the only thing you have to update is the `chain_id` in the `data-node` config. If you need to set up data node from scratch, please follow documentation for [v0.68.0](./upgrade-to-0682.md#9-update-data-node-config).
 
@@ -217,7 +217,7 @@ It is important to update the chain ID for your data node config, otherwise your
 :::
 
 
-### 10. Start the upgraded network
+### 11. Start the upgraded network
 
 #### If you are running Visor
 
