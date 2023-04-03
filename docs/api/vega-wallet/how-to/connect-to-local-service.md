@@ -65,13 +65,13 @@ To connect to a wallet, you first need to get a connection, and then set the tok
 
 ### 1. Get a connection token
 
-There are two ways to initiate a connection with the user's wallet:
-1. Using API tokens, best suited for headless software like bots and scripts.
-2. Using regular live sessions, best suited for graphical and interactive applications.
+There are two options for initiating a connection with the user's wallet:
+A. Using API tokens, best suited for headless software like bots and scripts. 
+B. Using regular live sessions, best suited for graphical and interactive applications.
 
 The `<TOKEN>` is a randomly generated string of 64 characters using numbers and letters.
 
-#### Get an API token
+#### Option A: Get an API token
 First you will need to generate an API token. See the ["Use long-living tokens" guide](./use-long-living-tokens.md).
 
 Once generated, the token can be used in place of a regular session token, as they are interchangeable. Therefore, your application does not need to call the `client.connect_wallet`.
@@ -80,7 +80,7 @@ Once generated, the token can be used in place of a regular session token, as th
 When using API tokens, no interaction from the user is required. That means no connection approval, and no transaction review. This automatic approval is the reason this connection type is best for headless software like bots and scripts.
 :::
 
-#### Get a live session token
+#### Option B: Get a live session token
 To get a connection token, your application has to submit a JSON-RPC request [`client.connect_wallet`](../reference/core/json-rpc.md#clientconnectwallet) to the HTTP endpoint `POST /api/v2/requests`.
 
 **Each session generates a unique connection.** It's not reusable across sessions.
@@ -98,7 +98,7 @@ When a third-party application tries to initiate a connection with the user's wa
 :::
 
 ### 2. Set the `Authorization` header
-Now that you have a connection token, you have to be set in the `Authorization` header with the following format:
+Once you have a connection token, it needs to be set in the `Authorization` header using the following format:
 
 ```
 VWT <TOKEN>
