@@ -144,7 +144,7 @@ We recommend doing this at the beginning of the upgrade procedure, but this can 
 
 To load the checkpoint, find more information in the [restart network guide](../how-to/restart-network.md#load-checkpoint) 
 
-1. One of the validators will adjust [the genesis file ↗](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json) in the [Vega Protocol networks repository ↗](https://github.com/vegaprotocol/networks). You also may ask the vega team member to review it.
+1. One of the validators will adjust [the genesis file ↗](https://github.com/vegaprotocol/networks/blob/master/testnet2/genesis.json) in the [Vega Protocol networks repository ↗](https://github.com/vegaprotocol/networks). You also may ask the vega team member to review it.
 2. The person responsible for updating genesis needs to create a PR with changes.
 3. All of the validators need to accept changes and approve the PR.
 4. Approved PR must be merged by one of the validators.
@@ -174,7 +174,7 @@ An example workflow for reviewing the genesis file may look like following:
 
 ```bash 
 # Download genesis
-wget https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/genesis.json
+wget https://raw.githubusercontent.com/vegaprotocol/networks/master/testnet2/genesis.json
 
 # Move old genesis to a different location
 cp <TENDERMINT-HOME>/config/genesis.json <TENDERMINT-HOME>/config/genesis.json.bk
@@ -193,6 +193,20 @@ There is no change required in the `vega core` config. If you have to prepare th
 ### 8. Update Tendermint config
 
 There is no change required in the `tendermint` config. If you have to prepare the `tendermint` config from scratch, use the instruction for [v0.68.2](./upgrade-to-0682.md#8-update-tendermint-config).
+
+### 9. Migrate tendermint data
+
+:::warning
+You do not need to execute this step when providing the custom `--home` flat for the tendermint. This step MUST be executed when the default tendermint home directory path is used.
+:::
+
+The brief background is, We have migrated the Tendermint to the [CometBFT](https://github.com/cometbft/cometbft), which is the fork of tendermint. 
+
+This change implies a change of the default home directory. If you have not provided the `--home` flag for the tendermint, it determined the default home in the `<USER_HOME>/.tendermint`. Now you should migrate your data into the `<USER_HOME>/.cometbft` directory. You have at least two options to do it:
+
+1. Move directory: `mv ~/.tendermint ~/.cometbft`
+2. Link the old directory to the new location: `ln -s <USER_HOME>/.tendermint <USER_HOME>/.cometbft`
+
 
 ### 9. Update data node config
 
