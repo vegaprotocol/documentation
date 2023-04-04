@@ -1,6 +1,6 @@
 ---
 title: Getting Started
-sidebar_position: 2
+sidebar_position: 1
 hide_title: false
 description: Start development of a bot to trade on Vega
 ---
@@ -596,6 +596,6 @@ We then aggregate these into a batch market instruction. One method to implement
 
 From here you should be able to run your bot with `python -m main` again and watch it trading. You can log into the Fairground Console to see the orders it places and current position. 
 
-If you watch the logs you may see that although we have only a 1s sleep in the loop it is only updating the price every few seconds. This is because each of the API queries we do in the loop takes a short amount of time, and that adds up! In the next guide we will think about ways to tackle that, along with covering how we might add a liquidity commitment to our bot.
+If you watch the logs you may see that although we have only a 1s sleep in the loop it is only updating the price every few seconds. This is because each of the API queries we do in the loop takes a short amount of time, and that adds up! In the [next guide](streaming-data.md) we will think about ways to tackle that, along with covering how we might add a liquidity commitment to our bot.
 
 In the meantime, testing different parameters in terms of how you set the price and volume, or even increasing the number of different buy and sell orders you create to have volumes at different prices you might buy/sell, can be a good way to experiment with the setup.

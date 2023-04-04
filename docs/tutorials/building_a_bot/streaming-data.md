@@ -621,15 +621,6 @@ def _run(
         position = vega_store.get_position_by_market_id(market_id=market_id)
         position = position.open_volume if position is not None else 0
 
-        # position = (
-        #     sub.convert_to_decimals(
-        #         number=int(position[0]["openVolume"]),
-        #         decimal_places=market_pos_decimals,
-        #     )
-        #     if len(position) > 0
-        #     else 0
-        # )
-
         submissions = []
         if position < max_abs_position:
             submissions.append(
@@ -743,4 +734,4 @@ position = vega_store.get_position_by_market_id(market_id=market_id)
 And finally because we are using a dispatcher called `rel` for handling our websockets we call `dispatch` at the end which will hold execution there and run the websocket server. 
 You should now be able to once more run `python -m main` to kick off our bot. This time around you should see that the update frequency is much closer to being solely due to our `1s` sleep, allowing us more control over timing and cutting down on waiting time.
 
-In the next tutorial we will look at how we could add a liquidity commitment to this trader and what requirements that entails.
+The next two tutorials will be independent and focused on different areas of the code. In one, we will look at how we could add a [liquidity commitment](adding-a-liquidity-commitment.md) to this trader and what requirements that entails, whilst in the other we will look at drawing our pricing from an [external source](adding-an-external-price.md) rather than blindly following what is on the Vega Protocol market currently. Either can be followed independently, or both together.
