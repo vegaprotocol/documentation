@@ -148,6 +148,45 @@ From version 0.68, retention policy for any data type can be overridden by creat
     DataRetentionPeriod = "7 days"
 ```
 
+### Hypertable chunk intervals
+
+The data node uses [hypertables ↗](https://docs.timescale.com/latest/using-timescaledb/hypertables) to store data. Hypertables are a TimescaleDB feature that allows you to store large amounts of time-series data in a more efficient way than a regular PostgreSQL table. By default, the chunk interval is set in the database migration scripts and applied when the data node is created or restored.
+
+**Standard data node chunk intervals (default)**
+
+| Hypertable               	| Default chunk interval 	|
+| ------------------------	| -----------------------	|
+| blocks                    | 1 day                   |
+| balances                  | 1 day                   |
+| ledger                    | 1 day                   |
+| orders                    | 1 day                   |
+| trades                    | 1 day                   |
+| market_data               | 1 day                   |
+| delegations               | 1 day                   |
+| markets                   | 1 day                   |
+| deposits                  | 1 day                   |
+| withdrawals               | 1 day                   |
+| margin_levels             | 1 day                   |
+| checkpoints               | 1 day                   |
+| positions                 | 1 day                   |
+| liquidity_provisions      | 1 day                   |
+| rewards                   | 1 day                   |
+
+#### Change chunk intervals
+
+From version 0.70, the chunk interval for any hypertable can be overridden by creating an entry in the config file, under the SQLStore section, as seen below. Once you change the chunk interval, you will need to restart your data node. The new chunk interval will be applied starting from the next chunk. Existing chunks will not be affected.
+
+```toml
+[SQLStore]
+  [[SQLStore.ChunkIntervals]]
+    HypertableOrCaggName = "balances"
+    ChunkInterval = "1 day"
+
+  [[SQLStore.ChunkIntervals]]
+    HypertableOrCaggName = "checkpoints"
+    ChunkInterval = "1 day"
+```
+
 ## Network history
 The daily addition of gigabites of core event data to the data node make it infeasible for a new data node to replay all blocks from the first block. Instead, new nodes can use a feature called network history to recreate the history quickly and get into a state to be able to consume new blocks. 
 

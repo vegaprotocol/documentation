@@ -34,9 +34,9 @@ The **Wallet API** (in alpha) uses JSON-RPC with an HTTP wrapper.
 REST is the ubiquitous protocol for the web. Vega has four REST endpoints: two are served by core nodes, and two are served by data nodes. REST is fairly easy to get started with, and Vega supports nearly all the functionality provided by gRPC and GraphQL on the REST APIs. Note: REST does not support streaming.
 
 **[REST overview](rest/overview.md)**: Read more about data and core node APIs.
-- [Core network state](rest/core/core-service.mdx): Get basic information about the network, such as 'block height' and 'Vega time'.
-- [Core state](rest/state/core-state-service): Get lists of state about the internal Vega system, such as 'list accounts', 'list parties.
-- [Data node (v2)](rest/data-v2/trading-data-service): Get historic information and cumulative data, such as 'governance data for all proposals'. v2 is receiving active development.
+- [Core network state](/testnet/category/api/rest/core/core-service): Get basic information about the network, such as 'block height' and 'Vega time'. 
+- [Core state](/testnet/category/api/rest/state/core-state-service): Get lists of state about the internal Vega system, such as 'list accounts', 'list parties.
+- [Data node (v2)](/testnet/category/api/rest/data-v2/trading-data-service): Get historic information and cumulative data, such as 'governance data for all proposals'. v2 is receiving active development.
 - [Block explorer](/testnet/category/api/rest/explorer/block-explorer): Get information about blocks created on the Vega network.
 
 ## GraphQL for web apps
@@ -53,5 +53,4 @@ gRPC provides fast and efficient communication with Vega’s APIs. gRPC supports
 - [Core state](grpc/vega/api/v1/corestate.proto): Get lists of state about the internal Vega system, such as 'list accounts', 'list parties.
 - [Commands](grpc/vega/commands/v1/commands.proto): Get all transaction types you can submit to the network.
 - [Data](grpc/data-node/api/v2/trading_data.proto.mdx): Interact with all data that the data nodes store, including trading data, interactions between the network and Ethereum, and governance.
-- 
 
