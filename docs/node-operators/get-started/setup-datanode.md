@@ -410,7 +410,7 @@ It is possible that some data peers are behind and may not have the latest data.
 :::
 
 
-To fetch a network history segment, run the command below. Use the ID of the segment you want (for example, the oldest) followed by the number of blocks prior to the segment's height that you want fetch. `2000` is used in the following example. This will result in all blocks from height N-2000 to N being retrieved.
+To fetch a network history segment, run the command below. Use the ID of the segment you want (for example, the latest) followed by the number of blocks prior to the segment's height that you want fetch. `2000` is used in the following example. This will result in all blocks from height N-2000 to N being retrieved.
 
 ```shell
 vega datanode network-history fetch <segment-id-of-segment-at-height-N> 2000 --home="YOUR_DATA_NODE_HOME_PATH"
