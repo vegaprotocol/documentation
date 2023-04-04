@@ -668,7 +668,7 @@ If you start data node and you receive an error that looks like:
 block height on begin block, XXXXXX, is too high, the height of the last processed block is XXXXXX
 ```
 
-This indicates that the core node is out of sync with the data node it is connected to.
+This indicates that the core node block height is ahead of the data node it is connected to.
 
 There are a number of ways this can happen:
 
