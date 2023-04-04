@@ -319,7 +319,7 @@ You can launch PostgreSQL in its own separate process using the data node embedd
 vega datanode postgres run --home="YOUR_DATA_NODE_HOME_PATH"
 ```
 
-In either case, the files for the database will be stored in the data node `state` folder located at `YOUR_DATA_NODE_HOME_PATH/state.data-node/storage/sqlstore`.
+In either case, the files for the database will be stored in the data node `state` folder located at `YOUR_DATA_NODE_HOME_PATH/state/data-node/storage/sqlstore`.
 
 ### Buffered event source
 When a data node is restarted from snapshots, it is possible for the event queue to become flooded, causing the Vega core to panic when the event queue is full and stop both the Vega core and data node.
@@ -472,6 +472,8 @@ AutoInitialiseFromNetworkHistory = true
   ToSegment = "<segment-id-of-last-segment-you-require>" 
   MinimumBlockCount = <number-of-blocks-before-the-end-of-the-segment-you-require>
 ```
+
+To initialise the data node with the latest segment, you can leave `ToSegment` empty. By default, this will ensure you initialise the data node with the latest segment with the number of blocks that are specified in `MinimumBlockCount`. The default `MinimumBlockCount` is 1.
 
 If you are trying to initialise the data node with a large number of blocks, or have a slow internet connection for example, it is possible that the network history download will fail due to a timeout. Your data node logs may see an error such as:
 
