@@ -293,7 +293,7 @@ a.external:after {
 }
 
 .api-method > .menu__link::before {
-  width: 50px;
+  width: 55px;
   height: 20px;
   font-size: 12px;
   line-height: 20px;
@@ -312,6 +312,13 @@ a.external:after {
   background-color: var(--ifm-color-info-contrast-background);
   color: var(--ifm-color-info-contrast-foreground);
   border-color: var(--ifm-color-info-dark);
+}
+
+.get > .menu__link[href*="observe"]::before {
+  content: "stream";
+  background-color: var(--ifm-color-secondary-contrast-background);
+  color: var(--ifm-color-secondary-contrast-foreground);
+  border-color: var(--ifm-color-secondary-dark);
 }
 
 .post > .menu__link::before {
