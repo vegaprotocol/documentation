@@ -5,13 +5,15 @@ hide_title: false
 description: Enhance the bot with a data stream
 ---
 
-This tutorial builds upon the basis of the codebase in [Getting Started](getting-started.md) so ensure you have run through that tutorial first if you want to build a working bot. 
+This tutorial builds upon the basis of the codebase in [Getting Started](getting-started.md), so ensure you have run through that tutorial first if you want to build a working bot. 
 
-In the last tutorial we built a bot which looped infinitely, checking it's position on a market and the live prices before submitting it's own orders based on that. However at the end we noted that despite sleeping for only 1s at the end of each iteration we were only actually running through the loop once every few seconds. This is down to the fact we were having to call out to a REST API for each of these data updates. If we want to speed this up one way is to set up listeners with WebSockets to stream these updates to us live. That is what we will set up in this tutorial.
+In the last tutorial we built a bot that looped infinitely, checking its position on a market and the live prices before submitting its own orders based on that. However, as noted, despite sleeping for only 1s at the end of each iteration we were only actually running through the loop once every few seconds. This is down to the fact it had to call out to a REST API for each of these data updates. 
+
+One way to speed this up is to set up listeners with WebSockets to stream these updates live. That is what will be set up in this tutorial.
 
 ## Listener
 
-We will be using the methods from the [REST API](../../api/rest/data-v2/trading-data-service.mdx) labelled `Subscription` for these streams. To start off with, add these two new lines to the `requirements.txt` file:
+This tutorial will be using the methods from the [REST API](../../api/rest/data-v2/trading-data-service.mdx) labelled `Subscription` for these streams. To start off with, add these two new lines to the `requirements.txt` file:
 
 ```
 rel
@@ -23,7 +25,7 @@ Then with your `venv` activated rerun
 python -m pip install -r requirements.txt
 ```
 
-Now create a file called `models.py` in our `bot` folder and paste the following into it:
+Now create a file called `models.py` in the `bot` folder and paste the following into it:
 
 ```python
 from dataclasses import dataclass
@@ -188,7 +190,7 @@ parsers = {
 
 ```
 
-This file contains various mappings to convert JSON results into dataclasses we can handle locally more easily, and is useful to read through to get a feel for the structure of some of these objects, but doesn't contain too much in the way of new concepts so we will leave you to read through it later.
+This file contains various mappings to convert JSON results into data classes. You can handle them locally more easily, and it is useful to read through to get a feel for the structure of some of these objects, but doesn't contain too much in the way of new concepts so you can read through it later.
 
 Next create a file called `vega_ws_client.py` with the following contents:
 
@@ -266,7 +268,7 @@ class VegaWebSocketClient:
 
 ```
 
-Here we are setting up websocket connections to a few different endpoints on the data node server. These will listen to messages sent actively by the datanode and react to them as soon as they arrive. Taking one example: 
+Next, you can set up WebSocket connections to a few different endpoints on a data node server. These will listen to messages sent actively by the data node and react to them as soon as they arrive. One example: 
 
 ```python
     def subscribe_orders(
@@ -278,7 +280,7 @@ Here we are setting up websocket connections to a few different endpoints on the
         )
 ```
 
-Here we are subscribing to a stream of orders from the given party on the given market. If we take a look at the `subscribe_endpoint` function we can see that it uses the websocket client library to set up a connection to the URL string we generated
+Below shows how to subscribe to a stream of orders from the given party on the given market. If you take a look at the `subscribe_endpoint` function you can see that it uses the WebSocket client library to set up a connection to the URL string you generated:
 
 ```python
     def subscribe_endpoint(self, url: str, callback: Callable[[dict], Any]) -> None:
@@ -290,7 +292,7 @@ Here we are subscribing to a stream of orders from the given party on the given 
         ws.run_forever(dispatcher=rel, reconnect=5)
 ```
 
-This client automatically handles connection management and allows us to pass in an `on_message` handler which we can use to call a function every time a message is received. The messages will generally be received as a string, so our `on_message` function converts that string to a JSON (as we know that the server will be sending JSON objects) and then calls a custom function. We will use this custom function to save the data within our storage object next.
+This client automatically handles connection management and allows us to pass in an `on_message` handler which can be used to call a function every time a message is received. The messages will generally be received as a string, so the `on_message` function converts that string to a JSON (as we know that the server will be sending JSON objects) and then calls a custom function. Use this custom function to save the data within the storage object:
 
 ```python
     def _on_message(
@@ -531,14 +533,14 @@ class VegaStore:
 
 ```
 
-This is a slightly longer module, but generally contains a couple of different patterns repeated for each endpoint. We'll work through the components of one and others should follow from there. We start by initialising a couple of fields in our `__init__`:
+This is a slightly longer module, but generally contains a couple of different patterns repeated for each endpoint. We'll work through the components of one and others should follow from there. Start by initialising a couple of fields in `__init__`:
 
 ```python
         self._orders: dict[str, Order] = {}
         self._orders_lock = Lock()
 ```
 
-Our dictionary is what we will use to store information about all orders which have been fed through the websocket, along with an initial snapshot at the start. We then also create a `Lock` object, which we will use when updating or reading the dictionary to ensure that a read always has access to a point-in-time snapshot. 
+The dictionary is used to store information about all orders that have been fed through the WebSocket, along with an initial snapshot at the start. Then create a `Lock` object, which will be used when updating or reading the dictionary to ensure that a read always has access to a point-in-time snapshot. 
 
 ```python
     def get_orders(self) -> list[Order]:
@@ -546,7 +548,7 @@ Our dictionary is what we will use to store information about all orders which h
             return list(self._orders.values())
 ```
 
-When returning orders like here we want to ensure we don't encourage accessing the dictionary or objects inside it directly. As Python does not have a way of totally ensuring no-one can access values stored on a class the best we can do is discourage by ensuring what we return here is just the order objects themselves (which we replace on each update to the dictionary. If we were to be updating them we would have to also create copies on the `get_orders` function).
+When returning orders, we want to ensure that we don't encourage accessing the dictionary or objects inside it directly. As Python does not have a way of totally ensuring no-one can access values stored on a class, the best option is to discourage it by ensuring what's returned here is just the order objects themselves (which are replaced on each update to the dictionary. If they were being updated, we would have to also create copies on the `get_orders` function).
 
 ```python
 
@@ -573,7 +575,7 @@ When returning orders like here we want to ensure we don't encourage accessing t
                     self._orders[order.order_id] = order
 ```
 
-For our final component we have the `_update_order` function. This is what the websocket listener we created earlier will be calling each time a new order is received. We can see here it expects a dictionary, which will be the JSON-formatted object we received, and then uses our `parsers` functions to convert that into and order object itself. Once we have created these order objects we update the dictionary to include them, alongside removing any orders which are now dead. We keep the order object generation outside of the `_orders_lock` so as to hold the lock for as little time as possible. Finally, our subscribe call in `start` puts the whole thing in motion:
+The final component is the `_update_order` function. This is what the WebSocket listener created earlier will be calling each time a new order is received. See below that it expects a dictionary, which will be the JSON-formatted object received, and it then uses the `parsers` functions to convert that into an order object itself. Once you have created these order objects, update the dictionary to include them, alongside removing any orders which are now dead. The order object generation is kept outside of the `_orders_lock` to hold the lock for as little time as possible. Finally, the subscribe call in `start` puts the whole thing in motion:
 
 ```python
         self._ws_client.subscribe_orders(
@@ -581,7 +583,7 @@ For our final component we have the `_update_order` function. This is what the w
         )
 ```
 
-We're almost there, as a last step update the `main.py` file to now read:
+We're almost there. As a last step, update the `main.py` file to now read:
 
 ```python
 import datetime
@@ -616,7 +618,7 @@ def _run(
     while True:
         latest_data = vega_store.get_market_by_id(market_id=market_id)
 
-        # Our get_positions query here will return an empty list if there
+        # The get_positions query here will return an empty list if there
         # has never been trading on the market, so handle that case.
         position = vega_store.get_position_by_market_id(market_id=market_id)
         position = position.open_volume if position is not None else 0
@@ -719,19 +721,20 @@ if __name__ == "__main__":
 
 ```
 
-We have changed this function up a little bit since our previous tutorial to best use the subscription logic. You may notice a couple of major changes:
+We have changed this function up a little bit since the previous tutorial to best use the subscription logic. You may notice a couple of major changes:
 
-- `_run` is now a separate function. This enables us to spin it off into a separate thread within the `main` function and let it run at the same time as the websocket listener. This is why we needed those `Lock`s earlier. 
-- We are now creating a `VegaStore` instance and starting it up. This store starts up the various websockets we configured earlier and constantly updates its internal dictionaries whenever new values are received. Now, when we need to know the latest state of something we can simply load it from here instead of making a new web request.
+- `_run` is now a separate function. This enables you to spin it off into a separate thread within the `main` function and let it run at the same time as the WebSocket listener. This is why you needed those `Lock`s earlier. 
+- We are now creating a `VegaStore` instance and starting it up. This store starts up the various WebSockets you configured earlier and constantly updates its internal dictionaries whenever new values are received. Now, when you need to know the latest state of something, you can simply load it from here instead of making a new web request.
 
-We have then changed our old queries into simply loading from the store:
+We have also changed the old queries to simply load from the store:
 
 ```python
 latest_data = vega_store.get_market_by_id(market_id=market_id)
 position = vega_store.get_position_by_market_id(market_id=market_id)
 ```
 
-And finally because we are using a dispatcher called `rel` for handling our websockets we call `dispatch` at the end which will hold execution there and run the websocket server. 
-You should now be able to once more run `python -m main` to kick off our bot. This time around you should see that the update frequency is much closer to being solely due to our `1s` sleep, allowing us more control over timing and cutting down on waiting time.
+And finally because you are using a dispatcher called `rel` for handling the WebSockets, call `dispatch` at the end, which will hold execution there and run the WebSocket server.
 
-The next two tutorials will be independent and focused on different areas of the code. In one, we will look at how we could add a [liquidity commitment](adding-a-liquidity-commitment.md) to this trader and what requirements that entails, whilst in the other we will look at drawing our pricing from an [external source](adding-an-external-price.md) rather than blindly following what is on the Vega Protocol market currently. Either can be followed independently, or both together.
+You should now be able to once more run `python -m main` to kick off the bot. This time around you should see that the update frequency is much closer to being solely due to the `1s` sleep, allowing more control over timing and cutting down on waiting time.
+
+The next two tutorials will be independent and focus on different areas of the code. In one, we will look at how to add a [liquidity commitment](adding-a-liquidity-commitment.md) to this trader and what requirements that entails, whilst in the other we will look at drawing pricing from an [external source](adding-an-external-price.md) rather than blindly following what is on the Vega market currently. Either can be followed independently, or both together.
