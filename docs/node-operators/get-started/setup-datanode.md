@@ -12,7 +12,7 @@ The non-validator Vega node will send the events it receives from the network an
 
 Note: If you are running a Vega validator node it is recommended that you do not connect the data node to this node, but to a separate non-validator Vega node.
 
-The database used by the data node is a PostgreSQL database with the Timescale extension installed. The database can be a dedicated database server, a docker container, or an embedded version of PostgreSql with Timescale installed that is provided by Vega.
+The database used by the data node is a PostgreSQL database with the Timescale extension installed. The database can be a dedicated database server, a docker container, or an embedded version of PostgreSQL with Timescale installed that is provided by Vega.
 
 :::note Operating system
 The following instructions assume you are installing on a Ubuntu Linux machine as explained in the [server setup guide](setup-server#os-and-software).
@@ -241,7 +241,7 @@ vega datanode init --home="YOUR_DATA_NODE_HOME_PATH" "CHAIN_ID"
 
 Find the `CHAIN_ID` by going to the relevant network genesis file in the relevant networks repo.
 
-Visit [networks ↗](https://github.com/vegaprotocol/networks/) for mainnet or [networks-internal ↗](https://github.com/vegaprotocol/networks-internal) for a testnet network.
+Visit [networks ↗](https://github.com/vegaprotocol/networks/) for mainnet and other validator-run networks, or [networks-internal ↗](https://github.com/vegaprotocol/networks-internal) for Vega-run testnet networks.
 
 To update your data node configuration, such as to set up ports for the APIs or database credentials, edit the config file:
 
