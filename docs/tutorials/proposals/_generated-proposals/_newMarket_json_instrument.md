@@ -1,9 +1,9 @@
 ```javascript
 {
  // Instrument name
- name: "Oranges Daily",
+ name: "Apples Yearly (2022)",
  // Instrument code, human-readable shortcode used to describe the instrument
- code: "ORANGES.24h",
+ code: "APPLES.22",
  // Future
  future: {
   // Asset ID for the product's settlement asset (string)
@@ -71,7 +71,7 @@
    // this property as settlement data. (string)
    settlementDataProperty: "prices.BTC.value",
    // the name of the property in the data source data that signals termination of trading (string)
-   tradingTerminationProperty: "vega.builtin.timestamp"
+   tradingTerminationProperty: "vegaprotocol.builtin.timestamp"
   }
  }
 ```

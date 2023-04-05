@@ -260,7 +260,7 @@ function generateDataSourceSpecBinding(skeleton) {
 
   const binding = {
     settlementDataProperty: "prices.BTC.value",
-    tradingTerminationProperty: "vega.builtin.timestamp",
+    tradingTerminationProperty: "vegaprotocol.builtin.timestamp",
   };
 
   binding[inspect.custom] = () => {
