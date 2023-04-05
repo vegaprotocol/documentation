@@ -313,7 +313,7 @@ If you do not have access to, or do not want to use a PostgreSQL database server
 
 This will cause data node to download a specially prepared Postgresql package which is extracted to your local machine if it doesn't exist. A separate Postgresql process will be spawned by data node using the credentials you specified in the database configuration section. Once data node is stopped, the child Postgresql process will be stopped automatically.
 
-You can launch PostgreSQL in its own separate process using the data node embedded postgresql binaries by running the following command:
+You can launch PostgreSQL in its own separate process using the data node embedded PostgreSQL binaries by running the following command:
 
 ```shell
 vega datanode postgres run --home="YOUR_DATA_NODE_HOME_PATH"
