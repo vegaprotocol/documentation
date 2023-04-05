@@ -11,7 +11,7 @@ In the last tutorial we built a bot which looped infinitely, checking it's posit
 
 ## Listener
 
-We will be using the methods from the [REST API](../../api/rest/data-v2/) labelled `Subscription` for these streams. To start off with, add these two new lines to the `requirements.txt` file:
+We will be using the methods from the [REST API](../../api/rest/data-v2/trading-data-service.mdx) labelled `Subscription` for these streams. To start off with, add these two new lines to the `requirements.txt` file:
 
 ```
 rel
