@@ -75,7 +75,7 @@ function generateSettlementDataSourceSpec(skeleton) {
           {
             key: {
               name: "prices.BTC.timestamp",
-              type: "TYPE_TIMESTAMP",
+              type: "TYPE_INTEGER",
             },
             conditions: [
               {
@@ -260,7 +260,7 @@ function generateDataSourceSpecBinding(skeleton) {
 
   const binding = {
     settlementDataProperty: "prices.BTC.value",
-    tradingTerminationProperty: "vega.builtin.timestamp",
+    tradingTerminationProperty: "vegaprotocol.builtin.timestamp",
   };
 
   binding[inspect.custom] = () => {

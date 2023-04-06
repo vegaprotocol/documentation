@@ -52,11 +52,11 @@ The following spec would make the market use the BTC value from the [Coinbase Pr
         "filters": [{
             "key": {
                 "name": "prices.BTC.timestamp",
-                "type": "TYPE_TIMESTAMP",
+                "type": "TYPE_INTEGER",
             },
             "conditions": [{
                 "operator": "OPERATOR_GREATER_THAN",
-                "value": "1649265840",
+                "value": "164926584000000",
             }]
         }]
     }

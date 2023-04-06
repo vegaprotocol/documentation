@@ -45,7 +45,7 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
           {^
            \"key\": {^
             \"name\": \"prices.BTC.timestamp\",^
-            \"type\": \"TYPE_TIMESTAMP\"^
+            \"type\": \"TYPE_INTEGER\"^
            },^
            \"conditions\": [^
             {^
@@ -72,7 +72,7 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
       },^
       \"dataSourceSpecBinding\": {^
        \"settlementDataProperty\": \"prices.BTC.value\",^
-       \"tradingTerminationProperty\": \"vega.builtin.timestamp\"^
+       \"tradingTerminationProperty\": \"vegaprotocol.builtin.timestamp\"^
       }^
      }^
     },^
@@ -90,17 +90,17 @@ vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_ke
     },^
     \"logNormal\": {^
      \"tau\": 0.0001140771161,^
-     \"riskAversionParameter\": 0.01,^
+     \"riskAversionParameter\": 0.001,^
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
-      \"sigma\": 0.3^
+      \"sigma\": 1.25^
      }^
     }^
    }^
   },^
-  \"closingTimestamp\": 1681727444000,^
-  \"enactmentTimestamp\": 1681813844000^
+  \"closingTimestamp\": 1682435906000,^
+  \"enactmentTimestamp\": 1682522306000^
  }^
 }^
 }"
