@@ -14,13 +14,13 @@ Take a look at the tutorials for help with using the Vega software.
 | Topic                                                                 |  Description                                                                                                        |
 | ----------------------------------------------------------------------| -------------------------------------------------------------------------------------------------------- |
 | 🫗 [Commit liquidity](./committing-liquidity.md)               | Submitting and amending a liquidity commitment by saving and editing scripts |
-| 🔮 [Sourcing market data for settlement](./using-data-sources.md)               | How data sources for markets are sourced, shaped and submitted |
+| 🔮 [Source market data for settlement](./using-data-sources.md)               | How data sources for markets are sourced, shaped and submitted |
 
 ## Integrating with tokens and assets
 | Topic                                                                 |  Description                                                                                                        |
 | ----------------------------------------------------------------------| -------------------------------------------------------------------------------------------------------- |
-| ⚖️ [Staking tokens](./staking-tokens.md)               | Using the Vega Wallet and smart contracts to stake unlocked tokens |
-| ↔️ [Transferring assets](./transferring-assets.md)               | Transferring assets to fund rewards and between public keys |
+| ⚖️ [Stake tokens](./staking-tokens.md)               | Using the Vega Wallet and smart contracts to stake unlocked tokens |
+| ↔️ [Transfer assets](./transferring-assets.md)               | Transferring assets to fund rewards and between public keys |
 
 
 ## Governance proposals
@@ -37,5 +37,5 @@ Take a look at the tutorials for help with using the Vega software.
 ## Community-created projects
 | Topic                                                                 |  Description                                                                                                        |
 | ----------------------------------------------------------------------| -------------------------------------------------------------------------------------------------------- |
-| 👥 [Community created projects ](./community-created.md)               | Overview of guides, scripts, libraries and tools created by members of the community |
+| 👥 [Community created projects](./community-created.md)               | Overview of guides, scripts, libraries and tools created by members of the community |
 
