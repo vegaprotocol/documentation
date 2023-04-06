@@ -31,7 +31,7 @@ Each network, such as testnet, will have a compatible version of the CLI Wallet 
 You can also sign transactions directly from your application with a signer library if one exists for the language you're using, but this is out of scope of this guide. You can refer to two [example libs in the example code section](#signer-libraries).
 
 :::note Read more
-[Create a wallet](../tools/vega-wallet/cli-wallet/latest/create-wallet): See a step-by-step guide to creating a Vega Wallet for testnet.
+[Create a wallet](../../tools/vega-wallet/cli-wallet/latest/create-wallet): See a step-by-step guide to creating a Vega Wallet for testnet.
 :::
 
 Check the docs site top bar to see what software version the network you need is running on, and download the equivalent version on [GitHub ↗](https://github.com/vegaprotocol/vega/releases).
@@ -62,7 +62,7 @@ The last step will produce an API token that you must save or take note of, as i
 The wallet service needs to know which network it will be connecting to. To do this, download a configuration file from the relevant network repo. The file contains the addresses of the nodes on the network it can connect to.
 
 :::note Read more
-[Manage networks](../tools/vega-wallet/cli-wallet/latest/guides/manage-networks): Read about how to get specific network details and troubleshoot any issues.
+[Manage networks](../../tools/vega-wallet/cli-wallet/latest/guides/manage-networks): Read about how to get specific network details and troubleshoot any issues.
 :::
 
 Download the wallet configuration file for the testnet network called fairground.
@@ -189,7 +189,7 @@ Run the deposit asset function:
 ## Get market information
 If you plan to add orders into the order book using limit orders, rather than have them fill immediately (market orders), then you'll need to know the current state of the market so you can accurately price the new orders you are sending. 
 
-Follow the REST documentation to [query the current market depth for the market](../api/rest/data-v2/trading-data-service-get-latest-market-depth).
+Follow the REST documentation to [query the current market depth for the market](../../api/rest/data-v2/trading-data-service-get-latest-market-depth.api.mdx).
 
 There is also a subscription service available using REST to give you the market depth data in real time as things change in the market.
 
@@ -300,8 +300,8 @@ Send the order cancellation using the following command:
 ## Monitor trades and overall positions
 You can use the curl command to subscribe to the endpoints that return order and position information using REST:
 
-* [Subscribe to positions - reference documentation](../api/rest/data-v2/trading-data-service-observe-positions)
-* [Subscribe to orders - reference documentation](../api/rest/data-v2/trading-data-service-observe-orders)
+* [Subscribe to positions - reference documentation](../../api/rest/data-v2/trading-data-service-observe-positions.api.mdx)
+* [Subscribe to orders - reference documentation](../../api/rest/data-v2/trading-data-service-observe-orders.api.mdx)
 
 ## Example code 
 
