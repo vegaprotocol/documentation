@@ -5,6 +5,8 @@ hide_title: false
 description: Guides and code created by the Vega community.
 ---
 
+Check out the list of guides and tools created by members of the Vega community. If you've created something that you want included on this list, raise an issue on the [documentation GitHub repo](https://github.com/vegaprotocol/documentation/issues/new), with links and a description of what you're submitting. 
+
 ## Community-written guides
 ### Staking on Vega
 Guide to **[staking VEGA tokens for the first time ↗](https://www.commodum.io/blog/vega-staking-guide-gui/)**, including downloading and setting up the Vega Wallet desktop app, written by members of the Commodum validator team.
