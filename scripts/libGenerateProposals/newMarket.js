@@ -75,7 +75,7 @@ function generateSettlementDataSourceSpec(skeleton) {
           {
             key: {
               name: "prices.BTC.timestamp",
-              type: "TYPE_TIMESTAMP",
+              type: "TYPE_INTEGER",
             },
             conditions: [
               {
