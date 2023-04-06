@@ -1,36 +1,35 @@
 ---
-title: Getting Started
+title: Getting started
 sidebar_position: 1
 hide_title: false
-description: Start development of a bot to trade on Vega
+description: Start development of a bot to trade on Vega.
 ---
 
-In this series of tutorials you will work towards building the components of a simple bot which can trade on a Vega Protocol network, and to which you can add your own specific trading logic. In the first section, we will build out the basics of signing transactions, sending order creation and amendment payloads to a node and listening for position and order updates via WebSockets.
+import NetworkParameter from '@site/src/components/NetworkParameter';
+
+In this series of tutorials you will work towards building the components of a simple bot that can trade on a Vega Protocol network, and to which you can add your own specific trading logic. In the first section, we will build out the basics of signing transactions, sending order creation and amendment payloads to a node, and listening for position and order updates via WebSockets.
 
 In later sections we will cover adding a liquidity commitment to the bot and implementing a simple arbitrage strategy between a centralised exchange's prices and the Vega market's taking into account trading fees.
 
 We will be building the bot in Python, however the concepts are transferable and all communication with the wallet and network will be conducted through language-agnostic methods (predominately JSON through REST and WebSockets).
 
-
-## Pre-Setup
-
-If you don't have Python installed already, follow the [official instructions](https://www.python.org/downloads/) to install a recent version.
+## Pre-setup
+If you don't have Python installed already, follow the [Python instructions ↗](https://www.python.org/downloads/) to install a recent version.
 
 Once installed, ensure everything is setup correctly by checking the version:
 `python --version`
 
-Additionally, follow the wallet setup instructions within the [programmatic trading basics](../programmatic-trading-basics.md#set-up-your-vega-wallet) tutorial to ensure you have a working wallet and token. Take a note of your token as you will need it for configuring the bot. If lost, the token can be retrieved by calling `vegawallet api-token list`.
+Next, follow the Vega Wallet setup instructions within the [programmatic trading basics](../programmatic-trading-basics.md#set-up-your-vega-wallet) tutorial to ensure you have a working Vega Wallet and API token. Take a note of your token as you will need it for configuring the bot. If lost, the token can be retrieved by calling `vegawallet api-token list`.
 
 ## Setup
-
-Navigate to the folder you want to place your project folder in and run
+Navigate to the folder you want to place your project folder in and run:
 
 ```bash
 mkdir vega_bot
 cd vega_bot
 ```
 
-Then we will create a basic `venv` with Python which allows us to keep installed requirements and versions contained to an isolated environment. To do this run
+Then create a basic `venv` with Python which allows us to keep installed requirements and versions contained to an isolated environment. To do this, run:
 
 ```bash
 python -m venv ./venv
@@ -40,7 +39,7 @@ This will create an environment within the `venv` folder which you can enter and
 
 To enter the environment, run `source ./venv/bin/activate` whilst in the root of your project. To leave it again, run `deactivate` with no path specified. You will know that the activation has taken place as your terminal line will begin with `(venv)`.
 
-Finally, create a `requirements.txt` file to contain the Python dependencies we will need. The contents of the file should be:
+Finally, create a `requirements.txt` file to contain the Python dependencies you will need. The contents of the file should be:
 
 ```
 requests
@@ -53,10 +52,8 @@ Once you have completed the creation of this file, install the requirements to f
 python -m pip install -r requirements.txt
 ```
 
-
 ## Components
-
-To build our basic bot we will create a couple of components, upon which we will expand as we increase in complexity in later guides. To begin with, create a folder called `bot` and within it create these blank files:
+To build the basic bot we will create a couple of components, upon which we will expand as we increase in complexity in later guides. To begin with, create a folder called `bot` and within it create these blank files:
 
  - `__init__.py`
  - `wallet.py`
@@ -69,8 +66,7 @@ Within the root directory create two files:
  - `main.py`
 
 ## Configuration
-
-Our first version of the bot will be basic. On a fixed timing loop we will check our position on the market, check the market's prices and then place some limit orders based on all that.
+The first version of the bot will be basic. On a fixed timing loop, it will check your position on the market on the Vega Fairground network, check the market's prices and then place some limit orders based on all that.
 
 Firstly populate `.env` with the following:
 
@@ -84,18 +80,20 @@ WALLET_URL=http://localhost:1789
 WALLET_TOKEN=YOUR_WALLET_TOKEN_HERE
 ```
 
-If later in the guide you find you have a connection error to `api.n11.testnet.vega.xyz` select another one from the `API.REST` section of [this](https://github.com/vegaprotocol/networks-internal/blob/main/fairground/vegawallet-fairground.toml) configuration toml.
+If later in the guide you find you have a connection error to `api.n11.testnet.vega.xyz` select another one from the `API.REST` section of [the Fairground configuration TOML ↗](https://github.com/vegaprotocol/networks-internal/blob/main/fairground/vegawallet-fairground.toml).
 
 Populate the rest of the fields like so:
 
-- `PARTY_ID`: This should be your public key (without a `0x` prefix), you will find it in the vegawallet 
-  - [[Image of wallet location here]]
-- `WALLET_TOKEN`: This should be the token you received when setting up the steps in [programmatic trading basics](../programmatic-trading-basics.md#set-up-your-vega-wallet)
-- `MARKET_ID`: For this, navigate to the Fairground [console](https://console.fairground.wtf/#/markets/all) and select a market, ideally choose one whose `Trading mode` is `Continuous` to load one which is actively trading. Once that market is open, navigate to the `Info` tab and within `Market Specification` -> `Key details` take the `Market ID` value and paste it into that section of the config. If you wish to follow the section of this guide in which we place orders ensure it is a market trading with a token you hold on the Fairground testnet.
+- `PARTY_ID`: This should be your public key (without a `0x` prefix). You can find it using your Vega Wallet. 
+- `WALLET_TOKEN`: This is the token you received when setting up the steps in [programmatic trading basics](../programmatic-trading-basics.md#set-up-your-vega-wallet)
+- `MARKET_ID`: For this, navigate to the Fairground [Console ↗](https://console.fairground.wtf/#/markets/all) and select a market. Ideally choose one with a `Trading mode` of `continuous` as it will have active trading. Once you've chosen a market, navigate to the `Info` tab and within `Market Specification` -> `Key details` take the `Market ID` value and paste it into that section of the config. If you wish to follow the section of this guide in which we place orders, ensure it is a market trading with an asset you hold on the Fairground testnet, or follow the [deposit section](../programmatic-trading-basics.md#deposit-assets) in the programmatic trading basics tutorial.
 
-### Building a Submission
+:::tip Query for data
+You can also query for market information by using the [markets endpoint](../../api/rest/data-v2/trading-data-service-list-markets.api.mdx) on REST.
+:::
 
-Now that we have our configuration we can start building the bot itself. Start by populating `submission.py` with the following:
+### Building a submission
+Now that you have the configuration done, it's time to start building the bot itself. Start by populating `submission.py` with the following:
 
 ```python
 from dataclasses import dataclass
@@ -201,20 +199,17 @@ def instruction_to_json(
 
 ```
 
+Here we're defining some boilerplate to convert between the raw JSON that you will send to and receive from the Vega node, and some dataclasses that make it easier to deal with things locally. We also introduce a few factors of which it's important to be aware when building a trading system interacting with Vega Protocol.
 
-Here we're defining some boilerplate to convert between the raw JSON we will send and receive to the Vega node and some dataclasses which make it easier to deal with things locally. We also introduce a few factors of which it's important to be aware when building a trading system interacting with Vega Protocol.
-
-- `BatchMarketInstruction`: A batch market instruction allows you to send multiple order-related actions within one transaction, saving on the number of messages required and allowing you to submit more operations within one block than would otherwise be allowed. Check the network parameter value `"spam.protection.max.batchSize"` to find the maximum number of operations (submissions + amendments + cancellations) which can be submitted in a single batch instruction.
-- `convert_(to/from)_decimals`: As a blockchain it is important for Vega Protocol calculations to be replicable across multiple computers and architectures. To enable that, many numbers are represented as integers, allowing integer arithmetic to be performed and avoiding the representation issues floating point numbers can encounter (which can lead to small numerical differences between computations on different processor types etc). So, for example, a number `50.12` could be represented as `5012` with a decimal precision of `2` or `50120` with a precision of `3`. We can load these precisions from the market and asset specifications but need to convert between floating point numbers and this decimal precision to interact. There are generally three of which to be aware:
-  - `asset`: Precision of the asset when dealing with it specifically (transfers etc)
+- `BatchMarketInstruction`: A batch market instruction allows you to send multiple order-related actions within one transaction, saving on the number of messages required and allowing you to submit more operations within one block than would otherwise be allowed. Check the network parameter value <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.batchSize" />  to see the maximum number of operations (submissions + amendments + cancellations) which can be submitted in a single batch instruction.
+- `convert_(to/from)_decimals`: As a blockchain it is important for Vega Protocol calculations to be replicable across multiple computers and architectures. To enable that, many numbers are represented as integers, allowing integer arithmetic to be performed and avoiding the representation issues floating point numbers can encounter (which can lead to small numerical differences between computations on different processor types, etc). So, for example, a number `50.12` could be represented as `5012` with a decimal precision of `2` or `50120` with a precision of `3`. We can load these precisions from the market and asset specifications but need to convert between floating point numbers and this decimal precision to interact. There are generally three to be aware of:
+  - `asset`: Precision of the asset when dealing with it specifically (transfers, etc)
   - `price`: Precision of the price on a market (e.g. a price of `1243.42` would be `2` precision)
   - `position`: Precision of the position on a market, allowing fractional units (e.g. a precision of `1` would allow lots of `0.1` to be traded)
 
 Other functions are largely for conversion between the types. They are useful to read through, especially if you're newer to Python, but don't contain many Vega specifics.
 
-
 ### REST API
-
 Next we will put together a few REST API calls to load in data from the core. Into `vega_api_client.py` paste the following:
 
 ```python
@@ -234,9 +229,9 @@ def execute_unrollable_get_request(path: str, key: str, node_url: str):
     for edge in edges:
         results.append(edge["node"])
 
-    # Here we unroll any paginated queries.
+    # Here you unroll any paginated queries.
     # Each query will have a 'pageInfo' component which gives details about pagination.
-    # Use the `endCursor` field to start the next query's results
+    # Use the `endCursor` field to start the next query's results.
     while response_json[key]["pageInfo"]["hasNextPage"]:
         response = requests.get(
             query_url
@@ -322,10 +317,9 @@ In general these functions are simply loading JSON results from the APIs defined
             results.append(edge["node"])
 ```
 
-Some APIs return paginated results, which may require several queries to load the full set. Within this loop we read whether there is a further page and step through queries iteratively using the `endCursor` and the `pagination.after` flag until we have loaded them all.
+Some APIs return paginated results, which may require several queries to load the full set. Within this loop, the bot will read whether there is a further page and step through queries iteratively using the `endCursor` and the `pagination.after` flag until we have loaded them all.
 
-### The First Run
-
+### The first run
 Now, moving over to `main.py`, paste in the following content:
 
 ```python
@@ -367,16 +361,14 @@ if __name__ == "__main__":
 
 ```
 
-At this point we're about ready to start our first run. Here we can see the bot will simply loop and each second will load the latest prices, convert them to floating point numbers using the market information then output them to the screen. Our second version will be smarter however for now we will just confirm that everything is set up as we would expect.
+At this point we're about ready to start our first run. Here you can see the bot will simply loop and each second will load the latest prices, convert them to floating point numbers using the market information then output them to the screen. Our second version will be smarter however for now we will just confirm that everything is set up as we would expect.
 
-Run the program by ensuring you have activated the `venv` as covered above then running `python -m main` from within the root folder of your project. If all is well you will see an output once a second of the best prices on your chosen market, if not go back and ensure you've successfully completed all the steps above.
+Run the program by ensuring you have activated the `venv` as covered above then running `python -m main` from within the root folder of your project. If all is well you will see an output once per second of the best prices on your chosen market, if not go back and ensure you've successfully completed all the steps above.
 
 Kill the program using `Ctrl+C` \ `^ + C` and continue on to the next section
 
-### Placing Some Orders
-
-Now that we have our connection up and running it is time to place some orders, and make sure our risk doesn't grow too large. To do this, we'll first need some code to interact with the Vega wallet service. Update `wallet.py` to contain the following:
-
+### Placing some orders
+Now that the connection is up and running, it is time to place some orders, and make sure your risk doesn't grow too large. To do this, we'll first need some code to interact with the Vega wallet service. Update `wallet.py` to contain the following:
 
 ```python
 import requests
@@ -411,9 +403,9 @@ class VegaWallet:
 
 ```
 
-Here we're creating a class to hold connection details for the wallet, our API token and a session with the needed headers. We then have a wrapper to easily submit a transaction to the wallet's submission endpoint, which will then broadcast for us to the network. You will also need to ensure the vegawallet itself is set to the correct network (Fairground in the case of this tutorial) which is determined on startup of the CLI wallet in the wallet documentation.
+Here we're creating a class to hold connection details for the wallet, your API token and a session with the needed headers. We then have a wrapper to easily submit a transaction to the wallet's submission endpoint, which will then broadcast to the network. You will also need to ensure the Vega wallet itself is set to the correct network (Fairground in the case of this tutorial), which is determined on startup of the CLI wallet in the wallet documentation referenced earlier in this guide.
 
-Now, update the `main.py` code to use our new VegaWallet and maintain some orders by changing the code to:
+Now, update the `main.py` code to use your new Vega Wallet and maintain some orders by changing the code to:
 
 ```python
 import datetime
@@ -454,7 +446,7 @@ def main(
             decimal_places=market_price_decimals,
         )
 
-        # Our get_positions query here will return an empty list if there
+        # This get_positions query will return an empty list if there
         # has never been trading on the market, so handle that case.
         position = client.get_positions(
             party_id=party_id, market_id=market_id, node_url=node_rest_url
@@ -536,10 +528,10 @@ We've added a few new sections here, let's highlight a couple of them.
     max_abs_position=1,
 ```
 
-Our market making trader will have a max position at which point it will stop quoting on that side. For example, if our max position is 1, once we have a position of 1 we stop quoting a price to buy any more any only look to sell some.
+The market making trader will have a max position, at which point it will stop quoting on that side. For example, if your max position is 1, once you have a position of 1, you stop quoting a price to buy any more any only look to sell some.
 
 ```python
-        # Our get_positions query here will return an empty list if there
+        # The get_positions query will return an empty list if there
         # has never been trading on the market, so handle that case.
         position = client.get_positions(
             party_id=party_id, market_id=market_id, node_url=node_rest_url
@@ -556,7 +548,7 @@ Our market making trader will have a max position at which point it will stop qu
 
 ```
 
-In each loop we load in the current position so that we can make a decision based on that. The get positions API returns a list of positions, however because we are specifying both market and party we know that the only two options are that the list is empty (if we have never touched the market), or a single position item exists representing our party. If a party has ever touched a market there will be a position record for it, even if that position is now `0`.
+In each loop, we load in the current position so that you can make a decision based on that. The `get positions` endpoint returns a list of positions, however, because you are specifying both market and party, you know that the only two options are that the list is empty (if you have never touched the market), or a single position item exists representing your party. If a party has ever touched a market, there will be a position record for it, even if that position is now `0`.
 
 ```python
 
@@ -590,12 +582,14 @@ In each loop we load in the current position so that we can make a decision base
         )
 ```
 
-Here we check our position and create buy or sell orders depending on what we want to do. We take a price of whatever the current best bid or ask on the market are and a size of 1. Both of these are very simplified for the sake of our example and would likely have more complexity in a real world system, but for the sake of an example they will do. 
+Here the bot checks your position and creates buy or sell orders depending on what you want to do. It takes a price of whatever the current best bid or ask on the market is, and a size of 1. Both of these are very simplified for the sake of the example and would likely have more complexity in a real world system, but for the sake of an example they will do. 
 
-We then aggregate these into a batch market instruction. One method to implement this would be to monitor what our current orders are doing and amend them, however here we take the easier route of simply cancelling whatever is there and replacing the new ones. Within a single batch the orders are placed as first cancellations then amendments then submissions, so we will never have overlapping orders. We also take advantage of that an `OrderCancellation` with only `market_id` specified and no `order_id` will cancel all orders on the given market for your party.
+It then aggregates these into a batch market instruction. One method to implement this would be to monitor what your current orders are doing and amend them. However, here we take the easier route of simply cancelling whatever is there and replacing with new ones.
 
-From here you should be able to run your bot with `python -m main` again and watch it trading. You can log into the Fairground Console to see the orders it places and current position. 
+Within a single batch, the orders are placed first as cancellations, then amendments, then submissions, so you will never have overlapping orders. We also take advantage of the fact that an `OrderCancellation` with only `market_id` specified and no `order_id` will cancel all orders on the given market for your party.
 
-If you watch the logs you may see that although we have only a 1s sleep in the loop it is only updating the price every few seconds. This is because each of the API queries we do in the loop takes a short amount of time, and that adds up! In the [next guide](streaming-data.md) we will think about ways to tackle that, along with covering how we might add a liquidity commitment to our bot.
+From here, you should be able to run your bot with `python -m main` again and watch it trading. You can log into the Fairground [Console ↗](https://console.fairground.wtf) to see the orders it places and current position. 
 
-In the meantime, testing different parameters in terms of how you set the price and volume, or even increasing the number of different buy and sell orders you create to have volumes at different prices you might buy/sell, can be a good way to experiment with the setup.
+If you watch the logs, you may see that although there is only a 1s sleep in the loop it is only updating the price every few seconds. This is because each of the API queries we do in the loop takes a short amount of time, and that adds up! In the [next guide](streaming-data.md) we will think about ways to tackle that, along with covering how we might add a liquidity commitment to our bot.
+
+In the meantime, testing different parameters in terms of how you set the price and volume, or even increasing the number of different buy and sell orders you create to have volumes at different prices you might buy/sell, can be a good way to experiment with the set up.
