@@ -9,14 +9,14 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 
 In this series of tutorials you will work towards building the components of a simple bot that can trade on a Vega Protocol network, and to which you can add your own specific trading logic. In the first section, we will build out the basics of signing transactions, sending order creation and amendment payloads to a node, and listening for position and order updates via WebSockets.
 
-In later sections we will cover adding a liquidity commitment to the bot and implementing a simple arbitrage strategy between a centralised exchange's prices and the Vega market's taking into account trading fees.
+Later sections will cover adding a liquidity commitment to the bot and implementing a simple arbitrage strategy between a centralised exchange's prices and the Vega market's, taking into account trading fees.
 
 We will be building the bot in Python, however the concepts are transferable and all communication with the wallet and network will be conducted through language-agnostic methods (predominately JSON through REST and WebSockets).
 
 ## Pre-setup
 If you don't have Python installed already, follow the [Python instructions ↗](https://www.python.org/downloads/) to install a recent version.
 
-Once installed, ensure everything is setup correctly by checking the version:
+Once installed, ensure everything is set up correctly by checking the version:
 `python --version`
 
 Next, follow the Vega Wallet setup instructions within the [programmatic trading basics](../programmatic-trading-basics.md#set-up-your-vega-wallet) tutorial to ensure you have a working Vega Wallet and API token. Take a note of your token as you will need it for configuring the bot. If lost, the token can be retrieved by calling `vegawallet api-token list`.
@@ -29,7 +29,7 @@ mkdir vega_bot
 cd vega_bot
 ```
 
-Then create a basic `venv` with Python which allows us to keep installed requirements and versions contained to an isolated environment. To do this, run:
+Then create a basic `venv` with Python which allows you to keep installed requirements and versions contained to an isolated environment. To do this, run:
 
 ```bash
 python -m venv ./venv
@@ -53,7 +53,7 @@ python -m pip install -r requirements.txt
 ```
 
 ## Components
-To build the basic bot we will create a couple of components, upon which we will expand as we increase in complexity in later guides. To begin with, create a folder called `bot` and within it create these blank files:
+To build the basic bot we will create a couple of components, upon which we will expand as later guides increase in complexity. To begin with, create a folder called `bot` and within it create these blank files:
 
  - `__init__.py`
  - `wallet.py`

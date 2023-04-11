@@ -1,25 +1,30 @@
 ---
-title: Adding a Liquidity Commitment
+title: Adding a liquidity commitment
 sidebar_position: 3
 hide_title: false
-description: Add a Liquidity Commitment to the bot
+description: Add a liquidity commitment to the bot
 ---
 
-This tutorial builds upon the basis of the codebase in [Streaming Data](streaming-data.md) so ensure you have run through that tutorial first if you want to build a working bot. 
+This tutorial builds upon the basis of the codebase in [streaming data](streaming-data.md), so ensure you have run through that tutorial first if you want to build a working bot. 
 
-In the last tutorial we built a bot which listened to streams of market data to update it's knowledge of position and order state to ensure it could trade with full knowledge without having to make repeated queries and incur that time cost. Now that we have a working bot, in this tutorial we are going to look at how one could extend the bot to have and manage a liquidity commitment. Before reading through this it is strongly advisable to read through the full guide to [liquidity provision on Vega Protocol](../../concepts/liquidity/index.md) to fully understand what a liquidity provision entails alongside the general guide to [providing liquidity](../committing-liquidity.md). However, briefly here, committing liquidity to a Vega Protocol market means that:
+In the last tutorial you built a bot that listened to streams of market data to update its knowledge of position and order state to ensure it could trade with full knowledge without having to make repeated queries and incur that time cost. Now that you have a working bot, this tutorial will look at how one could extend the bot to have and manage a liquidity commitment. 
 
+:::note Pre-reading
+Before reading through this it is strongly advisable to read through the full guide to [liquidity provision on Vega Protocol](../../concepts/liquidity/index.md) to fully understand what a liquidity provision entails and requires of you, alongside the general guide to [committing liquidity](../committing-liquidity.md).
+:::
+
+In brief, committing liquidity to a Vega Protocol market means that:
 - A party makes a commitment to always provide both a bid and ask order for a given market. As a guarantee of this they lock a portion of their funds in a `bond` account, which will remain there untouched so long as their commitments are met. The exact size of orders required is determined by the size of the bond and a further network controlled parameter. 
-- In return for this commitment a party receives a portion of all fees paid on the market, whether they were the maker party in the trade or not. 
-- As part of their commitment message a party must specify orders which should be placed onto the market should their manually placed orders not sufficiently meet their requirement at any time. These are defined in terms of offsets from either the mid price or the best bid/ask prices.
-- To count towards a commitment orders must be within a certain percentage of the midprice on a market. If limit orders are outside these bounds they will not count towards the commitment. If the orders specified in the initial liquidity commitment message are offset such that they are outside these bounds they will be placed just inside the bounds instead.
-- The exact proportion of the fees received is based upon a combination of the commitment bond size relative to others' alongside how competitive the placed limit orders were across the epoch.
+- In return for this commitment, a party receives a portion of all fees paid on the market, whether they were the maker party in the trade or not. 
+- As part of their commitment message, a party must specify orders which should be placed onto the market should their manually placed orders not sufficiently meet their requirement at any time. These are defined in terms of offsets from either the mid price or the best bid/ask prices.
+- To count towards a commitment, orders must be within a certain percentage of the mid price on a market. If limit orders are outside these bounds they will not count towards the commitment. If the orders specified in the initial liquidity commitment message are offset such that they are outside these bounds they will be placed just inside the bounds instead.
+- The exact proportion of the fees received is based upon a combination of the commitment bond size relative to others', alongside how competitive the placed limit orders were across the epoch.
 
-So whilst a liquidity commitment can mean a trader receives fees they would not otherwise have received, they must be aware that it ties them into always offering to buy/sell the instrument whatever market conditions. Whilst in general a liquidity provider can withdraw at any time, if withdrawing their commitment would bring the market below the currently required stake to stay out of auction then this will be impossible.
+Whilst a liquidity commitment can mean a trader receives fees they would not otherwise have received, they must be aware that it ties them into always offering to buy/sell the instrument whatever the market conditions. Whilst in general a liquidity provider can withdraw at any time, if withdrawing their commitment would bring the market below the currently required stake to stay out of auction then this will be impossible.
 
 That said, for the purposes of this tutorial we are comfortable taking on this commitment and will continue.
 
-## Making a Commitment
+## Making a commitment
 
 Open `submission.py` and add to the end:
 
@@ -85,9 +90,9 @@ def _liquidity_provision_base(
 
 ```
 
-Which will be our functions for generating a liquidity provision submission and amending. The structures for the submission and amendment are the same other than the tag on the outer layer. An amendment will totally replace what was there previously, and only one liquidity provision can be active for any given market. Here we are hardcoding our offset to `0` which will mean a liquidity provision would always place its orders at best bid and ask. This could be risky if positions are not monitored, so one potential other solution would be to set these offsets large enough that placed orders were always at the bounds of where they could be. These orders would be unlikely to attract much in the way of fees but would be less likely to trade. 
+Those will be the functions for generating a liquidity provision submission and amending. The structures for the submission and amendment are the same, other than the tag on the outer layer. An amendment will totally replace what was there previously, and only one liquidity provision can be active for any given market. Here we are hardcoding the offset to `0` which will mean a liquidity provision would always place its orders at best bid and ask. This could be risky if positions are not monitored, so one potential alternative solution is to set these offsets large enough that placed orders were always at the bounds of where they could be. These orders would be unlikely to attract much in the way of fees but would be less likely to trade. 
 
-We're almost there with this one, jumping back to `main.py` let's add it into our trading flow.
+We're almost there with this one. Jumping back to `main.py` let's add it into our trading flow.
 
 Just after you've created your wallet within `_run`, add these lines:
 
@@ -133,9 +138,9 @@ Your final code should look like:
     while True:
 ```
 
-Here we're loading some details then creating our liquidity commitment. Once it's created, we don't necessarily need to amend it unless we want to increase, decrease or change our pegged order description. In this tutorial we're keeping it simple so won't be doing any of that, but one particular thing you may want to consider is increasing the commitment if that would get the market out of auction. This will also allow you to set the fee, as the minimum fee required to keep the market out of auction is the one used.
+Here we're loading some details then creating a liquidity commitment. Once it's created, you don't necessarily need to amend it unless you want to increase, decrease, or change the pegged order description. In this tutorial we're keeping it simple and won't be doing any of that, but one particular thing you may want to consider is increasing the commitment if that would get the market out of auction. This will also allow you to set the fee, as the minimum fee required to keep the market out of auction is the one used.
 
-Finally, add a section at the end of `main` after `vega_store.stop()` to cancel the liquidity provision when we exit the trader:
+Finally, add a section at the end of `main` after `vega_store.stop()` to cancel the liquidity provision when you exit the trader:
 
 ```python
     # Cancel Liquidity Commitment
@@ -145,8 +150,8 @@ Finally, add a section at the end of `main` after `vega_store.stop()` to cancel 
     )
 ```
 
-There are obviously occasions currently, such as a crash, which would mean this cancellation was not called. If adapting this setup to run on a production market then it would be wise to make this more robust, or at least have a separate script simply to cancel.
+There are occasions currently, such as a crash, which would mean this cancellation was not called. If adapting this setup to run on a production market, then it would be wise to make this more robust, or at least have a separate script simply to cancel.
 
-Now that we have these two components, you can once more run with `python -m main` and see your liquidity commitment appear on the Console. You may also see some liquidity provision orders be created depending upon what you are quoting in your standard limit orders.
+Now that you have these two components, you can once more run with `python -m main` and see your liquidity commitment appear on Console. You may also see some liquidity provision orders be created depending on what you are quoting in your standard limit orders.
 
-Now that you have a liquidity commitment, and if you haven't already, you may want to look at the [other tutorial](adding-an-external-price.md) at this level where we add in an external price feed to base our pricing on.
+Now that you have a liquidity commitment, and if you haven't already, you may want to look at the [other tutorial](adding-an-external-price.md) at this level where you can add in an external price feed to base pricing on.

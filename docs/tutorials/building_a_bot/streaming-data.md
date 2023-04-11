@@ -1,19 +1,19 @@
 ---
-title: Streaming Data
+title: Streaming data
 sidebar_position: 2
 hide_title: false
-description: Enhance the bot with a data stream
+description: Enhance the bot with a data stream.
 ---
 
 This tutorial builds upon the basis of the codebase in [Getting Started](getting-started.md), so ensure you have run through that tutorial first if you want to build a working bot. 
 
-In the last tutorial we built a bot that looped infinitely, checking its position on a market and the live prices before submitting its own orders based on that. However, as noted, despite sleeping for only 1s at the end of each iteration we were only actually running through the loop once every few seconds. This is down to the fact it had to call out to a REST API for each of these data updates. 
+In the last tutorial we built a bot that looped infinitely, checking its position on a market and the live prices before submitting its own orders based on that. However, as noted, despite sleeping for only 1s at the end of each iteration, it only actually runs through the loop once every few seconds. This is down to the fact it had to call out to a REST API for each of these data updates. 
 
 One way to speed this up is to set up listeners with WebSockets to stream these updates live. That is what will be set up in this tutorial.
 
 ## Listener
 
-This tutorial will be using the methods from the [REST API](../../api/rest/data-v2/trading-data-service.mdx) labelled `Subscription` for these streams. To start off with, add these two new lines to the `requirements.txt` file:
+This tutorial will be using the methods from the [REST API](../../api/rest/data-v2/trading-data-service.mdx) `Subscription` endpoint for these streams. To start off with, add these two new lines to the `requirements.txt` file:
 
 ```
 rel
@@ -190,7 +190,7 @@ parsers = {
 
 ```
 
-This file contains various mappings to convert JSON results into data classes. You can handle them locally more easily, and it is useful to read through to get a feel for the structure of some of these objects, but doesn't contain too much in the way of new concepts so you can read through it later.
+This file contains various mappings to convert JSON results into data classes. You can handle them locally more easily, and it is useful to read through to get a feel for the structure of some of these objects, but it doesn't contain too much in the way of new concepts so you can read through it later.
 
 Next create a file called `vega_ws_client.py` with the following contents:
 
@@ -548,7 +548,7 @@ The dictionary is used to store information about all orders that have been fed 
             return list(self._orders.values())
 ```
 
-When returning orders, we want to ensure that we don't encourage accessing the dictionary or objects inside it directly. As Python does not have a way of totally ensuring no-one can access values stored on a class, the best option is to discourage it by ensuring what's returned here is just the order objects themselves (which are replaced on each update to the dictionary. If they were being updated, we would have to also create copies on the `get_orders` function).
+When returning orders, we want to ensure that it doesn't encourage accessing the dictionary or objects inside it directly. As Python does not have a way of totally ensuring no-one can access values stored on a class, the best option is to discourage it by ensuring what's returned here is just the order objects themselves. (They are replaced on each update to the dictionary. If they were being updated, you would have to also create copies on the `get_orders` function).
 
 ```python
 
@@ -575,7 +575,7 @@ When returning orders, we want to ensure that we don't encourage accessing the d
                     self._orders[order.order_id] = order
 ```
 
-The final component is the `_update_order` function. This is what the WebSocket listener created earlier will be calling each time a new order is received. See below that it expects a dictionary, which will be the JSON-formatted object received, and it then uses the `parsers` functions to convert that into an order object itself. Once you have created these order objects, update the dictionary to include them, alongside removing any orders which are now dead. The order object generation is kept outside of the `_orders_lock` to hold the lock for as little time as possible. Finally, the subscribe call in `start` puts the whole thing in motion:
+The final component is the `_update_order` function. This is what the WebSocket listener created earlier will be calling each time a new order is received. You can see below that it expects a dictionary, which will be the JSON-formatted object received, and it then uses the `parsers` functions to convert that into an order object itself. Once you have created these order objects, update the dictionary to include them, alongside removing any orders which are now dead. The order object generation is kept outside of the `_orders_lock` to hold the lock for as little time as possible. Finally, the subscribe call in `start` puts the whole thing in motion:
 
 ```python
         self._ws_client.subscribe_orders(

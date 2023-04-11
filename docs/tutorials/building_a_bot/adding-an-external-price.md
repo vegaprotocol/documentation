@@ -1,8 +1,8 @@
 ---
-title: Adding an External Price Feed
+title: Adding an external price feed
 sidebar_position: 3
 hide_title: false
-description: Add an external price to the bot
+description: Add an external price feed to the bot.
 ---
 
 
