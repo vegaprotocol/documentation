@@ -315,7 +315,7 @@ a.external:after {
 }
 
 .get > .menu__link[href*="observe"]::before {
-  content: "stream";
+  content: "ws";
   background-color: var(--ifm-color-secondary-contrast-background);
   color: var(--ifm-color-secondary-contrast-foreground);
   border-color: var(--ifm-color-secondary-dark);
