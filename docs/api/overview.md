@@ -35,12 +35,12 @@ This guide will use a wallet server running on localhost to 'write' data, and a 
 ## Core nodes
 Vega's chain is built using the Tendermint consensus mechanism. Read more about Tendermint in their [documentation](https://docs.tendermint.com/). You can see what version of Tendermint the Vega core is using by checking the [statistics endpoint](../api/rest/core/core-service-statistics.api.mdx) for the `chainVersion`.
 
-The Vega core processes each transaction in order, from a block that's been created by Tendermint and then executing the transaction. When the transaction is being executed, it will trigger actions in the core. For example, an order submission could enter the order book, match other orders, trigger trades, etc. The core is comprised of the order books, risk engines, governance mechanisms, market lifecycle, and other essential protocol functions.
+The Vega core processes each transaction in order, from a block that's been created by Tendermint, by validating and then executing the transaction. When the transaction is executed, it will trigger actions in the core. For example, an order submission could enter the order book, match other orders, create trades, etc. The core is comprised of the order books, risk engines, governance mechanisms, market lifecycle, and other essential protocol functions.
 
 ![Simplified view of the transaction flow](/img/concept-diagrams/transactions-flow-easy.png)
 
 ## Authentication
-Authentication takes several forms when interacting with Vega. When requesting data, such as through a query, you don't need to authenticate nor do you need an API token. 
+Authentication takes several forms when interacting with Vega. When requesting data from a standard data node, such as through a query, you don't need to authenticate nor do you need an API token. Service providers offering free or paid data nodes may require you to authenticate, however. If this is the case you will need to refer to the provider's documentation for details of how to do so.
 
 If you want to interact with the network, you'll need to ensure that you have a Vega Wallet, which provides authentication in the form of a signature when sending transactions. 
 
@@ -49,7 +49,7 @@ When creating any scripts or software to interact with Vega, you'll need a walle
 ## Sending transactions to the chain
 When sending transactions, you'll need a Vega Wallet with at least one keypair, and have the wallet service running. You'll need to have your Vega public key (also known as a party ID) to hand, as well as the relevant transaction data, in order to submit your transaction.
 
-When your client needs to sends a transaction, it fills in the details and passes it to the wallet. The wallet provides a client-side proof-of-work calculation, signs the transaction and forwards it to a validator node before it is added to a block.
+When your client wants to send a transaction using the Vega wallet API, it will construct the transaction in JSON and pass it to the wallet. The wallet performs a client-side proof-of-work calculation, signs the transaction and forwards it to a validator node before it is added to a block. It is also possible to have the wallet sign a transaction without sending it, if needed.
 
 :::note Go deeper
 Read concepts about [transactions on Vega](./../concepts/vega-chain/transactions.md)
@@ -58,20 +58,20 @@ You can see a full list of transaction types on the [commands API](./grpc/vega/c
 :::
 
 ### Transaction hashes
-Once a transaction has been successfully submitted to the chain, you receive the transaction's hash from the wallet. A transaction hash is a unique identifier for the transaction, and can be used to find that transaction and check its status on a Vega block explorer. Note that a transaction can only be seen by the block explorer once it's been processed by the network.
+Once a transaction has been successfully submitted to the chain, you receive the transaction's hash from the wallet. A transaction hash is a unique identifier for the transaction, and can be used to find that transaction and check its status on a Vega block explorer. Note that a transaction can only be seen by the block explorer once it's been processed by the network and been propagated to the Vega node on the block explorer backend.
 
 Depending on transaction type, most will be given an ID, derived from the transaction hash, which is specific to the object the transaction creates once it's processed. You can use that object-specific ID with the relevant endpoint to then get richer, more detailed information about it. 
 
 For example, a submitted order will receive an order ID once the transaction to submit the order has been accepted into a block. You can use the REST endpoint to [get order by ID](./rest/data-v2/trading-data-service-get-order.api.mdx).
 
 ## Versioning
-Once the latest code is prepared for a release, it's deployed to a testnet, where the latest features and updates can be trialled. When the validator node operators agree that a version is sufficiently stable to be released to mainnet, all code from that version and the previous versions are used to upgrade the network. 
+Once the latest code is prepared for a release, it's deployed to a testnet, where the latest features and updates can be trialled. When and if the validator node operators agree that a new version contains changes that should be accepted into mainnet, and is sufficiently stable, they will deploy the code on their nodes and vote on chain to signal readiness to upgrade. 
 
 Find out what version a data node is running with the [data node info endpoint](./rest/data-v2/trading-data-service-info.api.mdx).
 
 Breaking APIs changes go through a deprecation cycle, and are announced in the summary for each [release](../releases/overview.md).
 
-The documentation on this site covers the core software version running on the Vega testnet, and the version on the Vega mainnet. Check which version's documentation you're viewing (and switch between them) by referring to the top navigation bar for each page. 
+The documentation on this site covers the core software version running on the Vega Fairground testnet, and the version on the Vega mainnet. Check which version's documentation you're viewing (and switch between them) by referring to the top navigation bar for each page. 
 
 See the [releases page](../releases/overview.md) for a summary of each software release and links to the full changelog on GitHub. 
 
