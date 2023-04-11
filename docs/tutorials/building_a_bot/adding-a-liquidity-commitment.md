@@ -92,6 +92,8 @@ def _liquidity_provision_base(
 
 Those will be the functions for generating a liquidity provision submission and amending. The structures for the submission and amendment are the same, other than the tag on the outer layer. An amendment will totally replace what was there previously, and only one liquidity provision can be active for any given market. Here we are hardcoding the offset to `0` which will mean a liquidity provision would always place its orders at best bid and ask. This could be risky if positions are not monitored, so one potential alternative solution is to set these offsets large enough that placed orders were always at the bounds of where they could be. These orders would be unlikely to attract much in the way of fees but would be less likely to trade. 
 
+### Making the Commitment Live
+
 We're almost there with this one. Jumping back to `main.py` let's add it into our trading flow.
 
 Just after you've created your wallet within `_run`, add these lines:
@@ -139,6 +141,8 @@ Your final code should look like:
 ```
 
 Here we're loading some details then creating a liquidity commitment. Once it's created, you don't necessarily need to amend it unless you want to increase, decrease, or change the pegged order description. In this tutorial we're keeping it simple and won't be doing any of that, but one particular thing you may want to consider is increasing the commitment if that would get the market out of auction. This will also allow you to set the fee, as the minimum fee required to keep the market out of auction is the one used.
+
+### Putting it Together
 
 Finally, add a section at the end of `main` after `vega_store.stop()` to cancel the liquidity provision when you exit the trader:
 

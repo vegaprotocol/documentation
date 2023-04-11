@@ -25,6 +25,9 @@ Then with your `venv` activated rerun
 python -m pip install -r requirements.txt
 ```
 
+
+### Base Models
+
 Now create a file called `models.py` in the `bot` folder and paste the following into it:
 
 ```python
@@ -192,6 +195,8 @@ parsers = {
 
 This file contains various mappings to convert JSON results into data classes. You can handle them locally more easily, and it is useful to read through to get a feel for the structure of some of these objects, but it doesn't contain too much in the way of new concepts so you can read through it later.
 
+### Websocket Connections
+
 Next create a file called `vega_ws_client.py` with the following contents:
 
 ```python
@@ -302,6 +307,8 @@ This client automatically handles connection management and allows us to pass in
     ) -> None:
         callback(json.loads(message)["result"])
 ```
+
+### Storing/Caching the Data Stream
 
 Moving onto the store, create `vega_store.py` and populate with the following:
 
@@ -582,6 +589,8 @@ The final component is the `_update_order` function. This is what the WebSocket 
             market_id=market_id, party_id=party_id, callback=self._update_order
         )
 ```
+
+### Putting it Together
 
 We're almost there. As a last step, update the `main.py` file to now read:
 
