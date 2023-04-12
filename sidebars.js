@@ -24,6 +24,7 @@ module.exports = {
   ],
   api: [
     'api/overview',
+    'api/primary-elements',
     'api/public-endpoints',
     {
       type: 'category',
@@ -33,7 +34,7 @@ module.exports = {
         {
           type: 'doc',
           id: 'api/rest/overview',
-          label: 'Overview'
+          label: 'Using REST'
         },
         datav2,
         explorer,
