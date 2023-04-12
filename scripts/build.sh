@@ -66,7 +66,6 @@ yarn run generate-netparams
 
 yarn run generate-grpc
 yarn run generate-graphql
-yarn run docusaurus clean-api-docs all
 yarn run generate-rest
 
 yarn run generate-proposals

@@ -11,21 +11,24 @@ custom_edit_url: "https://github.com/vegaprotocol/documentation/issues/new?label
 ---
 
 import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiDemoPanel/MethodEndpoint";
 import MimeTabs from "@theme/MimeTabs";
 import ParamsItem from "@theme/ParamsItem";
 import ResponseSamples from "@theme/ResponseSamples";
-import SchemaItem from "@theme/SchemaItem"
+import SchemaItem from "@theme/SchemaItem";
 import SchemaTabs from "@theme/SchemaTabs";
-import DiscriminatorTabs from "@theme/DiscriminatorTabs";
 import TabItem from "@theme/TabItem";
 
-## Tells whether the service is up and running or not.
+<h1 className={"openapi__heading"}>Tells whether the service is up and running or not.</h1>
+
+<MethodEndpoint method={"get"} path={"/v2/health"}></MethodEndpoint>
 
 
 
 If the service is running, this endpoint returns 200, otherwise the endpoint will be unreachable.
 
-<div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+<div><div><ApiTabs><TabItem label={"200"} value={"200"}><div>
 
 The service is alive.
 
@@ -33,4 +36,4 @@ The service is alive.
 
 Something failed internally. Nothing can be done about it.
 
-</div><div></div></TabItem></ApiTabs></div>
+</div><div></div></TabItem></ApiTabs></div></div>
