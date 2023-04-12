@@ -5,11 +5,23 @@
 echo "GraphQL: Remove unused generated sidebar"
 rm -f docs/graphql/sidebar.schema.js
 
-echo "REST: Rename services (improve search results appearance)"
+echo "REST: Rename services (improve search results appearance, remove indexes)"
 sed -i -E 's/CoreService/Core service/g' docs/api/rest/core/sidebar.js
-sed -i -E 's/CoreStateService/Core State/g' docs/api/rest/state/sidebar.js
+sed -i -E 's|{"type":"doc","id":"api/rest/core/vega-core-apis"},||g' docs/api/rest/core/sidebar.js
+
 sed -i -E 's/TradingDataService/Trading Data \(v2\)/g' docs/api/rest/data-v2/sidebar.js
-sed -i -E 's/TradingDataService/Trading Data \(v1\)/g' docs/api/rest/data-v1/sidebar.js
+sed -i -E 's|{"type":"doc","id":"api/rest/data-v2/vega-data-node-apis"},||g' docs/api/rest/data-v2/sidebar.js
+
+sed -i -E 's/CoreStateService/Core State/g' docs/api/rest/state/sidebar.js
+sed -i -E 's|{"type":"doc","id":"api/rest/state/vega-core-state-apis"},||g' docs/api/rest/state/sidebar.js
+
+sed -i -E 's|{"type":"doc","id":"api/rest/explorer/vega-block-explorer-apis"},||g' docs/api/rest/explorer/sidebar.js
+sed -i -E 's|{"type":"doc","id":"api/rest/vega-wallet/reference/local-service/wallet-api"},||g' docs/api/vega-wallet/reference/local-service/sidebar.js
+
+sed -i -E 's|{"type":"doc","id":"version-v0.53/api/rest/core/vega-api-v-1-core-proto"},||g' versioned_docs/version-v0.53/api/rest/core/sidebar.js
+sed -i -E 's|{"type":"doc","id":"version-v0.53/api/rest/data-v1/data-node-api-v-1-trading-data-proto"},||g' versioned_docs/version-v0.53/api/rest/data-v1/sidebar.js
+sed -i -E 's|{"type":"doc","id":"version-v0.53/api/rest/state/vega-api-v-1-corestate-proto"},||g' versioned_docs/version-v0.53/api/rest/core/sidebar.js
+
 
 echo "GRPC: Rename root ('Files' is not useful)"
 sed -i -E 's/Files/GRPC/g' docs/api/grpc/sidebar.js

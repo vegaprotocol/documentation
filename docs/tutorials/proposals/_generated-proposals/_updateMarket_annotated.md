@@ -150,7 +150,7 @@
        tau: 0.0001140771161,
 
        // Risk Aversion Parameter (double as number)
-       riskAversionParameter: "0.0001",
+       riskAversionParameter: "0.01",
 
        // Risk model parameters for log normal
        params: {
@@ -161,7 +161,7 @@
         r: 0.016,
 
         // Sigma parameter, annualised volatility of the underlying asset, must be a strictly non-negative real number (double as number)
-        sigma: 1.25,
+        sigma: 0.5,
        }
       },
      },
@@ -169,11 +169,11 @@
 
     // Timestamp (Unix time in seconds) when voting closes for this proposal,
     // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-    closingTimestamp: 1682941101000,
+    closingTimestamp: 1682955563000,
 
     // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
     // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-    enactmentTimestamp: 1683027501000,
+    enactmentTimestamp: 1683041963000,
    }
   }
 ```
