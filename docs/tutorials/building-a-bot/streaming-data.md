@@ -13,7 +13,7 @@ One way to speed this up is to set up listeners with WebSockets to stream these 
 
 ## Listener
 
-This tutorial will be using the methods from the [REST API](../../api/rest/data-v2/trading-data-service.mdx) `Subscription` endpoint for these streams. To start off with, add these two new lines to the `requirements.txt` file:
+This tutorial will be using the methods from the [WebSocket API](../../api/websocket.md) for these streams. To start off with, add these two new lines to the `requirements.txt` file:
 
 ```
 rel
@@ -26,7 +26,7 @@ python -m pip install -r requirements.txt
 ```
 
 
-### Base Models
+## Base models
 
 Now create a file called `models.py` in the `bot` folder and paste the following into it:
 
@@ -195,7 +195,7 @@ parsers = {
 
 This file contains various mappings to convert JSON results into data classes. You can handle them locally more easily, and it is useful to read through to get a feel for the structure of some of these objects, but it doesn't contain too much in the way of new concepts so you can read through it later.
 
-### Websocket Connections
+## WebSocket connections
 
 Next create a file called `vega_ws_client.py` with the following contents:
 
@@ -308,7 +308,7 @@ This client automatically handles connection management and allows us to pass in
         callback(json.loads(message)["result"])
 ```
 
-### Storing/Caching the Data Stream
+## Storing/caching the data stream
 
 Moving onto the store, create `vega_store.py` and populate with the following:
 
@@ -590,7 +590,7 @@ The final component is the `_update_order` function. This is what the WebSocket 
         )
 ```
 
-### Putting it Together
+## Putting it together
 
 We're almost there. As a last step, update the `main.py` file to now read:
 

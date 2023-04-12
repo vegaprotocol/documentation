@@ -287,7 +287,6 @@ def get_open_orders(party_id: str, node_url: str) -> list[dict]:
     )
 
 
-
 def get_positions(
     party_id: str, node_url: str, market_id: Optional[str] = None
 ) -> list[dict]:
@@ -367,7 +366,7 @@ Run the program by ensuring you have activated the `venv` as covered above then 
 
 Kill the program using `Ctrl+C` \ `^ + C` and continue on to the next section
 
-### Placing some orders
+## Placing some orders
 Now that the connection is up and running, it is time to place some orders, and make sure your risk doesn't grow too large. To do this, we'll first need some code to interact with the Vega wallet service. Update `wallet.py` to contain the following:
 
 ```python
