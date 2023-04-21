@@ -141,6 +141,11 @@ You should do this step only if you are not running Visor.
 2. Unzip the downloaded binary into your file system.
 3. Update your systemd (or any other process manager) to use the new binary.
 4. Reload a systemd service: `systemctl daemon-reload`, or use your own preferred.
+
+Now you are ready for `Protocol Upgrade`, and need to wait for the `upgrade block`.
+
+
+
 5. Wait for the `upgrade block`, then restart the network with the new binary and config after the `upgrade block` is present.
 
 #### Check if Vega core is ready for restart
@@ -172,11 +177,44 @@ In the data node logs, you will see the following message:
 
 ### 4. Restarting nodes (for node operators NOT using Visor)
 
-#### 4a. As a node operator if you are running both a Vega node and a data node:
+The below steps cover both use cases: `core` only (marked `a`) and `core + data-node` (marked `b`).
+
+#### 4.1 Wait for `Protocol Upgrade` block
+
+`(a)`: Monitor `/statistics` until `blockHeight` reaches the `upgrade block` and stops increasing
+`(b)`: Monitor `/statistics` of data-node REST endpoint, until both: `blockHeight` from the body and `x-block-height` response header, both hit `upgrade block`.
+
+#### 4.2 Verify logs if it is safe to restart services
+
+`(a)` and `(b)`: In the Vega core logs, you will see the following messages:
+
+```
+2023-03-02T13:01:04.242+0100	INFO	core.protocol.processor	processor/abci.go:821	waiting for data node to get ready for upgrade
+2023-03-02T13:01:04.242+0100	INFO	tendermint	service/service.go:176	service stop	{"msg": "Stopping Node service", "impl": "Node"}
+2023-03-02T13:01:04.242+0100	INFO	tendermint	node/node.go:1010	Stopping Node
+...
+...
+2023-03-02T13:01:04.380+0100	INFO	core.protocol.protocolupgrade	protocolupgrade/engine.go:356	marking vega core and data node as ready to shut down
+2023-03-02T13:01:05.380+0100	INFO	core.protocol.processor	processor/abci.go:845	application is ready for shutdown
+2023-03-02T13:01:06.380+0100	INFO	core.protocol.processor	processor/abci.go:845	application is ready for shutdown
+2023-03-02T13:01:07.381+0100	INFO	core.protocol.processor	processor/abci.go:845	application is ready for shutdown
+...
+```
+
+`(b)`: In the data node logs, you will see the following message:
+
+```
+2023-03-02T13:01:04.379+0100	INFO	datanode.service	service/protocol_upgrade.go:36	datanode is ready for protocol upgrade
+```
+
+#### 4.3 Restart services
+
+`(a)`: As a node operator if you are only running a Vega node:
+
+1. Start Vega core node with the snapshot file that is equal to the upgrade block height by running the following command: `vega node —-home $VEGA-NETWORK-HOME --snapshot.load-from-block-height $BLOCK-HEIGHT-YOU-AGREED-ON` (TODO: I don't think we need `--snapshot.load-from-block-height`, can someone confirm?)
+
+`(b)`: As a node operator if you are running both a Vega node and a data node:
 
 1. Start the data node with the following command: `vega datanode start`
-3. Once the data node has started, proceed to start the Vega core node with the snapshot file that is equal to the upgrade block height by running the following command: `vega node —-home $VEGA-NETWORK-HOME --snapshot.load-from-block-height $BLOCK-HEIGHT-YOU-AGREED-ON`
+3. Once the data node has started, proceed to start the Vega core node with the snapshot file that is equal to the upgrade block height by running the following command: `vega node —-home $VEGA-NETWORK-HOME --snapshot.load-from-block-height $BLOCK-HEIGHT-YOU-AGREED-ON` (TODO: I don't think we need `--snapshot.load-from-block-height`, can someone confirm?)
 
-#### 4b. As a node operator if you are only running a Vega node:
-
-1. Start Vega core node with the snapshot file that is equal to the upgrade block height by running the following command: `vega node —-home $VEGA-NETWORK-HOME --snapshot.load-from-block-height $BLOCK-HEIGHT-YOU-AGREED-ON`
