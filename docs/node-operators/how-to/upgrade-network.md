@@ -174,9 +174,8 @@ In the data node logs, you will see the following message:
 
 #### 4a. As a node operator if you are running both a Vega node and a data node:
 
-1. Check the latest data node network-history segment block height (`SEGMENT-BLOCK-HEIGHT`) on data node by running: `vega datanode network-history latest-history-segment —home $DATA_NODE_HOME`
-2. Start the data node with the following command: `vega datanode start`
-3. Once the data node has started, proceed to start the Vega core node on the **same block height as data node** with the following command: `vega node —-home $VEGA-NETWORK-HOME --snapshot.load-from-block-height $SEGMENT-BLOCK-HEIGHT`
+1. Start the data node with the following command: `vega datanode start`
+3. Once the data node has started, proceed to start the Vega core node with the snapshot file that is equal to the upgrade block height by running the following command: `vega node —-home $VEGA-NETWORK-HOME --snapshot.load-from-block-height $BLOCK-HEIGHT-YOU-AGREED-ON`
 
 #### 4b. As a node operator if you are only running a Vega node:
 
