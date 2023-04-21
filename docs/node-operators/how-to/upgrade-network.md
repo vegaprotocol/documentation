@@ -144,37 +144,6 @@ You should do this step only if you are not running Visor.
 
 Now you are ready for `Protocol Upgrade`, and need to wait for the `upgrade block`.
 
-
-
-5. Wait for the `upgrade block`, then restart the network with the new binary and config after the `upgrade block` is present.
-
-#### Check if Vega core is ready for restart
-To see when your Vega core node is ready for protocol upgrade, check the Vega-core logs.
-
-In the Vega core logs, you will see the following messages:
-
-```
-2023-03-02T13:01:04.242+0100	INFO	core.protocol.processor	processor/abci.go:821	waiting for data node to get ready for upgrade
-2023-03-02T13:01:04.242+0100	INFO	tendermint	service/service.go:176	service stop	{"msg": "Stopping Node service", "impl": "Node"}
-2023-03-02T13:01:04.242+0100	INFO	tendermint	node/node.go:1010	Stopping Node
-...
-...
-2023-03-02T13:01:04.380+0100	INFO	core.protocol.protocolupgrade	protocolupgrade/engine.go:356	marking vega core and data node as ready to shut down
-2023-03-02T13:01:05.380+0100	INFO	core.protocol.processor	processor/abci.go:845	application is ready for shutdown
-2023-03-02T13:01:06.380+0100	INFO	core.protocol.processor	processor/abci.go:845	application is ready for shutdown
-2023-03-02T13:01:07.381+0100	INFO	core.protocol.processor	processor/abci.go:845	application is ready for shutdown
-...
-```
-
-#### Check if data node is ready for restart
-To see when your data node is ready for protocol upgrade, check the data node logs.
-
-In the data node logs, you will see the following message:
-
-```
-2023-03-02T13:01:04.379+0100	INFO	datanode.service	service/protocol_upgrade.go:36	datanode is ready for protocol upgrade
-```
-
 ### 4. Restarting nodes (for node operators NOT using Visor)
 
 The below steps cover both use cases: `core` only (marked `a`) and `core + data-node` (marked `b`).
