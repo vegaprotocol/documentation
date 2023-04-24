@@ -199,7 +199,7 @@ def instruction_to_json(
 
 ```
 
-Here we're defining some boilerplate to convert between the raw JSON that you will send to and receive from the Vega node, and some dataclasses that make it easier to deal with things locally. We also introduce a few factors of which it's important to be aware when building a trading system interacting with Vega Protocol.
+Here we're defining some boilerplate to convert between the raw JSON that you will send to and receive from the Vega node and wallet, and some data classes that make it easier to deal with things locally. We also introduce a few factors of which it's important to be aware when building a trading system interacting with Vega Protocol.
 
 - `BatchMarketInstruction`: A batch market instruction allows you to send multiple order-related actions within one transaction, saving on the number of messages required and allowing you to submit more operations within one block than would otherwise be allowed. Check the network parameter value <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.batchSize" />  to see the maximum number of operations (submissions + amendments + cancellations) which can be submitted in a single batch instruction.
 - `convert_(to/from)_decimals`: As a blockchain it is important for Vega Protocol calculations to be replicable across multiple computers and architectures. To enable that, many numbers are represented as integers, allowing integer arithmetic to be performed and avoiding the representation issues floating point numbers can encounter (which can lead to small numerical differences between computations on different processor types, etc). So, for example, a number `50.12` could be represented as `5012` with a decimal precision of `2` or `50120` with a precision of `3`. We can load these precisions from the market and asset specifications but need to convert between floating point numbers and this decimal precision to interact. There are generally three to be aware of:
@@ -587,7 +587,7 @@ It then aggregates these into a batch market instruction. One method to implemen
 
 Within a single batch, the orders are placed first as cancellations, then amendments, then submissions, so you will never have overlapping orders. We also take advantage of the fact that an `OrderCancellation` with only `market_id` specified and no `order_id` will cancel all orders on the given market for your party.
 
-From here, you should be able to run your bot with `python -m main` again and watch it trading. You can log into the Fairground [Console ↗](https://console.fairground.wtf) to see the orders it places and current position. 
+From here, you should be able to run your bot with `python -m main` again and watch it trade. You can log into the Fairground [Console ↗](https://console.fairground.wtf) to see the orders it places and current position. 
 
 If you watch the logs, you may see that although there is only a 1s sleep in the loop it is only updating the price every few seconds. This is because each of the API queries we do in the loop takes a short amount of time, and that adds up! In the [next guide](streaming-data.md) we will think about ways to tackle that, along with covering how we might add a liquidity commitment to our bot.
 
