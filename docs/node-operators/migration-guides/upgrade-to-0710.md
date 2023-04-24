@@ -3,7 +3,7 @@ title: Upgrade to 0.71.0
 sidebar_label: Upgrade to 0.71.0
 ---
 
-This guide describes the steps to upgrade to 0.71.0 using a checkpoint. See the [changelog for v0.71.0](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0710) for information about breaking changes and other details.
+This guide describes the steps to upgrade to v0.71.0 using a checkpoint. See the [changelog for v0.71.0](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0710) for information about breaking changes and other details.
 
 ## Assumptions for the guide
 The instructions below are written for Debian-like Linux operating systems. 
@@ -11,7 +11,7 @@ The instructions below are written for Debian-like Linux operating systems.
 The guide uses systemd commands(`systemctl` and `journalctl`) to control binaries in the set-up. If you are using something different, your system's commands may vary.
 
 
-This guide is specifically intended for those who are already running a validator node with version `v0.68.0` or higher.
+This guide is specifically intended for those who are already running a validator node with version `v0.` or higher.
 
 Before you start, note that the instructions use the following variables for file paths:
 
@@ -341,7 +341,7 @@ The excample vegavisor config is:
 maxNumberOfFirstConnectionRetries = 43200
 maxNumberOfRestarts = 3
 restartsDelaySeconds = 5
-stopDelaySeconds = 0
+stopDelaySeconds = 3 
 stopSignalTimeoutSeconds = 15
 
 [upgradeFolders]
@@ -355,6 +355,17 @@ stopSignalTimeoutSeconds = 15
     name = "vega-linux-amd64.zip"
     binaryName = "vega"
 ```
+
+#### Important changes for the vegavisor config
+
+- `stopDelaySeconds` - Number of seconds that Visor waits before it sends a termination signal (SIGTERM) to running processes that are ready for an upgrade. After the time has elapsed, Visor stops the running binaries (SIGTERM).
+
+- `[autoInstall.asset]` - This section has been renamed from `[autoInstall.assets]` and it has been restructured.
+
+:::note Setry node use case
+
+The `stopDelaySeconds` is a useful parameter for sentry nodes. Let's set it for a few seconds to allow the sentry node to forward all the data to other nodes.
+:::
 
 ### 12. Start the upgraded network
 
