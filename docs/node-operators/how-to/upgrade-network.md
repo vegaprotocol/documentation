@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 The Protocol Upgrade feature allows the Node Operators to synchronously update nodes to the next version of the Vega Protocol.
 
-The Protocol Upgrade involves three main parts: 
+A protocol upgrade has three steps: 
 1. Submit a transaction to initiate the upgrade on a specific block (validators only)
 2. Prepare a node for protocol upgrade
 3. Execute an upgrade at the agreed block
