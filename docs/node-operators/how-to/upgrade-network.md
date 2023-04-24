@@ -35,7 +35,7 @@ This step is async, and it involves all validators. First, all validators have t
 The block height must be in the future. When choosing the `upgrade block`, you should give all validators enough time to vote on the upgrade and then prepare the config for a new network.
 
 :::info Example
-Selecting the `current block` + 1000 - should give 1000 blocks * 0.9 seconds (or whatever the average block time is) = 900 secs. That means there will be about 15 minutes for all validators to vote and prepare, which might not be enough.
+Selecting the `current block` + 1000 - should allow for 1000 blocks * 0.9 seconds (or whatever the average block time is) = 900 secs. That means there will be about 15 minutes for all validators to vote and prepare, which might not be enough.
 
 To check the block time on the network, visit the `http://<YOUR-NODE-IP>:3003/statistics` endpoint. Currently, the block time is around ~0.9 seconds, though it may be higher around ~1.5 seconds when there are not many transactions or some validators are missing.
 :::
