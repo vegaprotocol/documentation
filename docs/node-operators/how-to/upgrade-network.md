@@ -199,7 +199,7 @@ In your `core` config (`<VEGA-NETWORK-HOME>/config/node/config.toml`), you will 
     SocketPath = "/path/to/vega.sock"
     HTTPPath = "/my-rpc"
 ```
-Then you can send request:
+Then you can send the following request:
 ```bash
 # Run it from use that has access to /path/to/vega.sock
 sudo -u vega \
