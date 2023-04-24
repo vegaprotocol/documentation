@@ -11,7 +11,7 @@ The Protocol Upgrade feature allows the Node Operators to synchronously update n
 
 The Protocol Upgrade involves three main parts: 
 1. Submit a transaction to initiate the upgrade on a specific block (validators only)
-2. Prepare a Node for Protocol Upgrade
+2. Prepare a node for protocol upgrade
 3. Execute an upgrade at the agreed block
 
 Smooth execution of the Protocol Upgrade is critical to the Vega Network, and any downtime or disruption must be minimised. Using Vega Visor is recommended and will automatically prepare and execute a protocol upgrade. Alternatively, the Node Operator can manually perform an Upgrade at an agreed block height for an agreed Vega software version.
