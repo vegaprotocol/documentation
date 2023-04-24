@@ -190,7 +190,7 @@ The below steps cover both use cases: `core` only (marked `a`) and `core + data-
 
 Vega Visor is designed to perform `Protocol Upgrade` automatically, but you can automate it yourself. The key is to check if `core` is ready for a restart for `Protocol Upgrade`. As described before, it might take some time (seconds) between the node reaching the `Protocol Upgrade` block and marking itself as ready for the restart. That is why you should not rely on block height, e.g. from `/statistics`.
 
-Instead, you need to query `core` using the Admin json rpc endpoint. This is what Vega Visor is doing. Important Note: We do not have any plans, but this might change, so please watch for changes in the Vega Visor.
+Instead, you need to query `core` using the Admin json rpc endpoint as this is what Vega Visor is doing. Note: This might change in the future, so please keep an eye on the release notes for changes in the Vega Visor.
 
 In your `core` config (`<VEGA-NETWORK-HOME>/config/node/config.toml`), you will find:
 ```toml
