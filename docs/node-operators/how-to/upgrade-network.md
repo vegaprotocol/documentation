@@ -7,7 +7,7 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The Protocol Upgrade feature allows the Node Operators to synchronously update nodes to the next version of the Vega Protocol.
+The protocol upgrade feature allows the Node Operators to synchronously update nodes to the next version of the Vega Protocol.
 
 A protocol upgrade has three steps: 
 1. Submit a transaction to initiate the upgrade on a specific block (validators only)
@@ -149,7 +149,7 @@ Now you are ready for the protocol upgrade. Move onto the next step,`3. Execute 
 
 You should perform these steps only if you are NOT running Visor. If you use Visor, it will perform these steps for you automatically.
 
-**Important:** Smooth execution of the Protocol Upgrade is critical to the Vega Network, and any downtime or disruption must be minimised.
+**Important:** Smooth execution of the protocol upgrade is critical to the Vega Network, and any downtime or disruption must be minimised.
 
 The below steps cover two use cases: for those running a core node only (marked `a`) and those running a core and data node (marked `b`).
 
@@ -230,7 +230,7 @@ Example response:
 }
 ```
 
-`ReadyToUpgrade` tells you if `core` is ready for shutdown for `Protocol Upgrade`.
+`ReadyToUpgrade` tells you if core is ready for shutdown for `protocol upgrade`.
 
 
 ## Benefits of using Visor to coordinate upgrades
