@@ -227,7 +227,7 @@ Example response:
 `ReadyToUpgrade` tells you if `core` is ready for shutdown for `Protocol Upgrade`.
 
 
-# Benefits of using Visor to coordinate upgrades
+## Benefits of using Visor to coordinate upgrades
 
 If an upgrade proposal is approved (more than 2/3 of consensus validators have voted on it), those using Visor can rely on it to coordinate the upgrade rollout across all the nodes on the chosen block height. 
 
