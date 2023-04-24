@@ -44,7 +44,7 @@ To check the block time on the network, visit the `http://<YOUR-NODE-IP>:3003/st
 
 All validators must execute this step, regardless of whether or not they are running Vega Visor.
 
-After all the validators agree on the `upgrade block height` and the `desired version` of the Vega, vote on an upgrade. To vote, use the following command:
+After all the validators agree on the `upgrade block height` and the `desired version` of Vega, vote on an upgrade. To vote, use the following command, as an example. Be sure to confirm the release tag and height before you continue:
 
 ```bash
 vega protocol_upgrade_proposal \
@@ -66,17 +66,17 @@ vega protocol_upgrade_proposal \
 	--output "json"
 ```
 
-The Protocol Upgrade proposal is approved if more than 2/3 of consensus validators have voted on it.
+The protocol upgrade proposal is approved if more than 2/3 of consensus validators have voted on it.
 
-Anyone can observe how the voting goes using data node **[protocol upgrade proposals](../../api/rest/data-v2/trading-data-service-list-protocol-upgrade-proposals.api.mdx) endpoint**.
+Anyone can observe how the voting goes using the **[protocol upgrade proposals](../../api/rest/data-v2/trading-data-service-list-protocol-upgrade-proposals.api.mdx) endpoint**.
 
-# 2. Prepare a Node for Protocol Upgrade
+## 2. Prepare node for protocol upgrade
 
-All Node Operators must perform these steps, regardless of whether or not they are using Vega Visor.
+All node operators must perform these steps, regardless of whether or not they are using Vega Visor.
 
-## 2.1 Prepare network configuration (all)
+### 2.1 Prepare network configuration (all)
 
-The Node Operator needs to check if the config needs upgrading. That includes:
+Each node operator needs to check if their config needs updating. That includes:
 
 1. The Vega core configuration (`<VEGA-NETWORK-HOME>/config/node/config.toml`)- only if there were changes
 2. The Tendermint configuration (`<TENDERMINT-HOME>/config/config.toml`)  - only if there were changes
@@ -84,17 +84,17 @@ The Node Operator needs to check if the config needs upgrading. That includes:
 
 Track changes in the configuration between versions in the upgrading readme: [Configuration changes ↗](https://github.com/vegaprotocol/vega/blob/develop/UPGRADING.md#configuration-changes)
 
-## 2.2 Prepare Visor configuration (visor only)
+### 2.2 Prepare Visor configuration, if using Visor
 
-Skip:
-- if you are not using Vega Visor (go to the next point 2.3),
-- if your node has Internet access (Vega Visor will do this for you),
+You can skip this step if:
+* You are not using Vega Visor (go to step 2.3)
+* Your node has internet access (Vega Visor will do this step)
 
-On the other hand, you need to perform this step if your node does not have Internat access.
+If your node does **not** have internet access and you are using Visor, do the following:
 
 1. Create the new version folder in the `<VEGA-VISOR-HOME>`, e.g., for version `v0.71.0`, run the following command: `mkdir -p <VEGA-VISOR-HOME>/v0.71.0`.
 2. Download the new version of the Vega binary from the [releases page ↗](https://github.com/vegaprotocol/vega/releases)
-3. Unzip the downloaded binary into the created directory, e.g. `<VEGA-VISOR-HOME>/v0.71.0/vega` binary.
+3. Unzip the downloaded binary into the created directory, e.g. `<VEGA-VISOR-HOME>/v0.71.0/vega` binary
 4. Create the run configuration and put it in the created directory, e.g. `<VEGA-VISOR-HOME>/v0.71.0/run-config.toml` run config file (see example below)
 
 Example config for the new version with Visor:
@@ -115,7 +115,7 @@ name = "v0.71.0"
     socketPath = "<SOCKET-FOLDER-PATH>/vega.sock"
     httpPath = "/rpc"
 
-# skip below if you don't have data node
+# skip the following if you do not run a data node ```
 [data_node]
   [data_node.binary]
     path = "vega"
@@ -132,35 +132,39 @@ Check the following parameters.
 - `--nodewallet-passphrase-file` flag - Check if the path is correct for your node wallet passphrase.
 - `vega.rpc.socketPath` - Make sure the path to the Vega Unix sock is correct and matches the one in the Vega config.
 
-Once you have performed steps `2.1 Prepare network configuration (all)` and `2.2 Prepare Visor configuration (visor only)`, you don't have to do anything else. The visor will automatically restart the node once the `core` and the `data-node` (if you run one) report they are ready for Protocol Upgrade.
+Once you have performed steps `2.1 Prepare network configuration (all)` and `2.2 Prepare Visor configuration, if using Visor`, you don't have to do anything else. Visor will automatically restart the node once the core and data node (if you run one) report they are ready for the protocol upgrade.
 
-## 2.3 Prepare for an upgrade without Vega Visor (non visor only)
+### 2.3 Prepare for an upgrade if not using Visor
 
-You should perform these steps only if you are NOT running Vega Visor.
+You should perform these steps only if you are NOT running Visor.
 
 1. Download the new version of the Vega binary from the [releases page ↗](https://github.com/vegaprotocol/vega/releases)
 2. Unzip the downloaded binary into your file system.
 3. Update your systemd (or any other process manager) to use the new binary.
 4. Reload a systemd service: `systemctl daemon-reload`, or use your own preferred.
 
-Now you are ready for `Protocol Upgrade`. Please read `3. Execute an upgrade at the agreed block (non visor only)` to know what to do next.
+Now you are ready for the protocol upgrade. Move onto the next step,`3. Execute an upgrade at the agreed block (non-Visor only)` for the next steps.
 
-# 3. Execute an upgrade at the agreed block (non visor only)
+## 3. Execute an upgrade at the agreed block (non-Visor only)
 
-You should perform these steps only if you are NOT running Vega Visor. If you use Vega Visor, it will perform these steps for you automatically.
+You should perform these steps only if you are NOT running Visor. If you use Visor, it will perform these steps for you automatically.
 
 **Important:** Smooth execution of the Protocol Upgrade is critical to the Vega Network, and any downtime or disruption must be minimised.
 
-The below steps cover both use cases: `core` only (marked `a`) and `core + data-node` (marked `b`).
+The below steps cover two use cases: for those running a core node only (marked `a`) and those running a core and data node (marked `b`).
 
-## 3.1 Wait for the `Protocol Upgrade` block
+### 3.1 Wait for the protocol upgrade block
 
-`(a)`: Monitor `/statistics` until `blockHeight` reaches the `upgrade block` and stops increasing
-`(b)`: Monitor `/statistics` of data-node REST endpoint, until both: `blockHeight` from the response body and `x-block-height` response header, both hit `upgrade block`.
+`(a)`: Monitor the `http://<YOUR-NODE-IP>:3003/statistics` endpoint until `blockHeight` reaches the `upgrade block` and stops increasing
+`(b)`: Monitor the `http://<YOUR-NODE-IP>:3003/statistics` for your data node's REST instance, until both `blockHeight` from the response body and `x-block-height` response header, both hit `upgrade block`.
 
-**Important:* both `core` and `data-node` will automatically stop processing blocks at the `Protocol Upgrade` block. Both will process any remaining data and prepare for `Protocol Upgrade` by creating a snapshot and network history segment. Depending on your hardware, it might take a couple of seconds or longer. The `core` and the `data-node` process will not exit. Instead, they both will mark themselves as ready for the upgrade. As a Node Operator, you need to check if `core` is ready for restart for `Protocol Upgrade` (`core` waits for `data-node` before marking itself as ready), then you can safely restart the `core` and `data-node` (if you run one) processes.
+:::note 
+Both the core and data node will automatically stop processing blocks at the protocol upgrade block. Both will process any remaining data and prepare for the protocol upgrade by creating a snapshot and network history segment. 
 
-## 3.2 Verify logs if it is safe to restart services
+Depending on your hardware, it might take 2-3 seconds or longer. The core and data node process will not exit. Instead, they both will mark themselves as ready for the upgrade. As a node operator, you need to check if core is ready to restart for the protocol upgrade. Core waits for data node before marking itself as ready. Then you can safely restart the core and date node (if running) processes.
+:::
+
+### 3.2 Verify from logs if it is safe to restart services
 
 `(a)` and `(b)`: In the Vega core logs, you will see the following messages:
 
@@ -183,16 +187,16 @@ The below steps cover both use cases: `core` only (marked `a`) and `core + data-
 2023-03-02T13:01:04.379+0100	INFO	datanode.service	service/protocol_upgrade.go:36	datanode is ready for protocol upgrade
 ```
 
-## 3.3 Restart services
+### 3.3 Restart services
 
 `(a)`: Restart your `core` process
-`(b)`: When you run both: `core` and `data-node`, you must stop both first, and then you can start both in any order.
+`(b)`: When you run both core and data node, you must stop both first, and then you can start both, in any order.
 
-## 3.4 Automate
+### 3.4 Automate
 
-Vega Visor is designed to perform `Protocol Upgrade` automatically, but you can automate it yourself. The key is to check if `core` is ready for a restart for `Protocol Upgrade`. As described before, it might take some time (seconds) between the node reaching the `Protocol Upgrade` block and marking itself as ready for the restart. That is why you should not rely on block height, e.g. from `/statistics`.
+Visor is designed to perform a protocol upgrade automatically, but you can automate it yourself. The key is to check if core is ready for a restart for a protocol upgrade. As described above, it might take several seconds between the node reaches the protocol upgrade block and marks itself as ready to be restarted. Do not solely rely on block height, e.g. from the `/statistics` endpoint.
 
-Instead, you need to query `core` using the Admin json rpc endpoint as this is what Vega Visor is doing. Note: This might change in the future, so please keep an eye on the release notes for changes in the Vega Visor.
+Instead, query core using the admin JSON-RPC endpoint, as this is what Visor does. Note: This might change in the future, so please keep an eye on the release notes for changes to Visor.
 
 In your `core` config (`<VEGA-NETWORK-HOME>/config/node/config.toml`), you will find:
 ```toml
