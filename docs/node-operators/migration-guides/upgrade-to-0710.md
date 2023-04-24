@@ -1,15 +1,14 @@
 ---
-title: Upgrade to 0.71.0
-sidebar_label: Upgrade to 0.71.0
+title: Upgrade to 0.71.1
+sidebar_label: Upgrade to 0.71.1
 ---
 
-This guide describes the steps to upgrade to v0.71.0 using a checkpoint. See the [changelog for v0.71.0](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0710) for information about breaking changes and other details.
+This guide describes the steps to upgrade to v0.71.1 using a checkpoint. See the [changelogs for v0.71.0](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0710) and [v0.71.1](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0711) for information about breaking changes and other details.
 
 ## Assumptions for the guide
 The instructions below are written for Debian-like Linux operating systems. 
 
 The guide uses systemd commands(`systemctl` and `journalctl`) to control binaries in the set-up. If you are using something different, your system's commands may vary.
-
 
 This guide is specifically intended for those who are already running a validator node with version `v0.` or higher.
 
