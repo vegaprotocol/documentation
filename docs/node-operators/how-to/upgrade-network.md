@@ -224,7 +224,7 @@ Example response:
 }
 ```
 
-`ReadyToUpgrade` tells you if `core` is ready for shutdown for `Protocol Upgrade.
+`ReadyToUpgrade` tells you if `core` is ready for shutdown for `Protocol Upgrade`.
 
 
 # Benefits of using Visor to coordinate upgrades
