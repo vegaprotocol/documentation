@@ -53,35 +53,35 @@ For testnet releases, the time requirement may be relaxed, but mainnet downtime 
 ### 2. Create backup
 
 ```bash
-mkdir -p <BACKUP-FOLDER>/v0.70.2/wallets;
-mkdir -p <BACKUP-FOLDER>/v0.70.2/core-state;
-mkdir -p <BACKUP-FOLDER>/v0.70.2/tm-state;
+mkdir -p <BACKUP-FOLDER>/v0.70.3/wallets;
+mkdir -p <BACKUP-FOLDER>/v0.70.3/core-state;
+mkdir -p <BACKUP-FOLDER>/v0.70.3/tm-state;
 
 # copy genesis
-cp <TENDERMINT-HOME>/config/genesis.json <BACKUP-FOLDER>/v0.70.2/genesis.json
+cp <TENDERMINT-HOME>/config/genesis.json <BACKUP-FOLDER>/v0.70.3/genesis.json
 
 # copy config files
-cp -r <VEGA-NETWORK-HOME>/config <BACKUP-FOLDER>/v0.70.2/vega-config
-cp -r <TENDERMINT-HOME>/config <BACKUP-FOLDER>/v0.70.2/tendermint-config
+cp -r <VEGA-NETWORK-HOME>/config <BACKUP-FOLDER>/v0.70.3/vega-config
+cp -r <TENDERMINT-HOME>/config <BACKUP-FOLDER>/v0.70.3/tendermint-config
 
 # copy wallets
-cp -r <VEGA-NETWORK-HOME>/data/node/wallets <BACKUP-FOLDER>/v0.70.2/wallets
-cp <TENDERMINT-HOME>/node_key.json <BACKUP-FOLDER>/v0.70.2/wallets
-cp <TENDERMINT-HOME>/priv_validator_key.json <BACKUP-FOLDER>/v0.70.2/wallets
-cp <VEGA-NETWORK-HOME>/nodewallet-passphrase.txt <BACKUP-FOLDER>/v0.70.2/wallets  # filename and location might differ, depending on your setup
+cp -r <VEGA-NETWORK-HOME>/data/node/wallets <BACKUP-FOLDER>/v0.70.3/wallets
+cp <TENDERMINT-HOME>/node_key.json <BACKUP-FOLDER>/v0.70.3/wallets
+cp <TENDERMINT-HOME>/priv_validator_key.json <BACKUP-FOLDER>/v0.70.3/wallets
+cp <VEGA-NETWORK-HOME>/nodewallet-passphrase.txt <BACKUP-FOLDER>/v0.70.3/wallets  # filename and location might differ, depending on your setup
 
 # copy network state
-cp -r <VEGA-NETWORK-HOME>/state/node <BACKUP-FOLDER>/v0.70.2/core-state
-cp -r <TENDERMINT-HOME>/data <BACKUP-FOLDER>/v0.70.2/tm-state
+cp -r <VEGA-NETWORK-HOME>/state/node <BACKUP-FOLDER>/v0.70.3/core-state
+cp -r <TENDERMINT-HOME>/data <BACKUP-FOLDER>/v0.70.3/tm-state
 
 # copy vegavisor config if you are running Visor on your node
-cp -r <VEGAVISOR-HOME>/current <BACKUP-FOLDER>/v0.70.2/vegavisor-current
+cp -r <VEGAVISOR-HOME>/current <BACKUP-FOLDER>/v0.70.3/vegavisor-current
 
 # Check if backup has been successfully done*; check if all files has been copied correctly
 tree <BACKUP-FOLDER>
 
 # Backup PostgreSQL if you have been running data node**
-pg_dump --host=localhost --port=5432 --username=<VEGA-DB-USER> --password -Fc -f <BACKUP-FOLDER>/v0.70.2/data_node_db.bak.sql <VEGA-DB-NAME>
+pg_dump --host=localhost --port=5432 --username=<VEGA-DB-USER> --password -Fc -f <BACKUP-FOLDER>/v0.70.3/data_node_db.bak.sql <VEGA-DB-NAME>
 ```
 
 **Notes**: 
@@ -100,8 +100,8 @@ See example commands for downloading below. You may need to update the version n
 
 ```bash
 # Download archives
-wget https://github.com/vegaprotocol/vega/releases/download/v0.70.2/vega-linux-amd64.zip
-wget https://github.com/vegaprotocol/vega/releases/download/v0.70.2/visor-linux-amd64.zip
+wget https://github.com/vegaprotocol/vega/releases/download/v0.70.3/vega-linux-amd64.zip
+wget https://github.com/vegaprotocol/vega/releases/download/v0.70.3/visor-linux-amd64.zip
 
 # Unzip downloaded archives
 unzip vega-linux-amd64.zip
