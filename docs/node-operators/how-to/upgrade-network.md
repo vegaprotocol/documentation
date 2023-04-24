@@ -21,7 +21,9 @@ To help with protocol upgrades, the following endpoints can provide relevant inf
 * To see if the network is ready for upgrade use the **[protocol upgrade status](../../api/rest/data-v2/trading-data-service-get-protocol-upgrade-status.api.mdx) endpoint**.
 
 
-## 1. Submit a transaction to initiate the upgrade on a specific block (validators only)
+## 1. Submit a transaction to initiate the upgrade on a specific block
+
+This step can only be done by consensus validators.
 
 ### 1.1 Select upgrade block height and new Vega version
 
