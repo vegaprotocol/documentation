@@ -70,7 +70,7 @@ function generatePriceMonitoringParameters(skeleton) {
   }
 
   params[inspect.custom] = () => {
-    const splitTitle = skeleton.properties.triggers.items.properties.auctionExtension.title.split('\n')
+    const splitTitle = skeleton.properties.triggers.items.properties.auctionExtension.description.split('\n')
     return `{
           // ${skeleton.properties.triggers.items.title}
           triggers: [
@@ -183,7 +183,7 @@ function updateMarket(skeleton, proposalSoFar) {
   };
 
   /*------- Liquidity Commitment required */
-  const lpLabel = skeleton.properties.changes.properties.lpPriceRange.title.split('\n')
+  const lpLabel = skeleton.properties.changes.properties.lpPriceRange.description.split('\n')
   result.terms.updateMarket[inspect.custom] = () => {
     return `{
         // ${skeleton.properties.marketId.title}

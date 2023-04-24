@@ -58,7 +58,7 @@ function annotator(proposal) {
 
 function addTermsAnnotator(skeleton, terms, type) {
   const splitClosingTitle =
-    skeleton.properties.closingTimestamp.title.split('\n')
+    skeleton.properties.closingTimestamp.description.split('\n')
   if (type === 'newFreeform') {
     return () => {
       return `{
@@ -72,7 +72,7 @@ function addTermsAnnotator(skeleton, terms, type) {
   }
 
   const splitEnactmentTitle =
-    skeleton.properties.enactmentTimestamp.title.split('\n')
+    skeleton.properties.enactmentTimestamp.description.split('\n')
   // Note: ValidationTimestamp is not currently required by core, but defaults incorrectly. Let's populate it anyway.
   if (type === 'newAsset') {
     return () => `{

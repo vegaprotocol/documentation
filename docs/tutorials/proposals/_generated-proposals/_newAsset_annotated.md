@@ -8,44 +8,44 @@
  terms: {
   newAsset: {
    changes: {
-    // Name of the asset (e.g: Great British Pound) (string) 
+    // undefined (string) 
     name: "tDAI TEST",
 
-    // Symbol of the asset (e.g: GBP) (string) 
+    // undefined (string) 
     symbol: "tDAI",
 
-    // Number of decimal / precision handled by this asset (string) 
+    // undefined (string) 
     decimals: "18",
 
-    // The minimum economically meaningful amount in the asset (string) 
+    // undefined (string) 
     quantum: "1",
 
-    // An Ethereum ERC20 asset
+    // ERC20 token based asset, living on the ethereum network
     erc20: {
-     // The address of the contract for the token, on the ethereum network (string)
+     // undefined (string)
      contractAddress: "0x26223f9C67871CFcEa329975f7BC0C9cB8FBDb9b",
 
-     // The maximum you can withdraw instantly. All withdrawals over the threshold will be delayed by the withdrawal delay.
+     // Maximum you can withdraw instantly. All withdrawals over the threshold will be delayed by the withdrawal delay.
      // There’s no limit on the size of a withdrawal (string)
      withdrawThreshold: "10",
 
-     // The lifetime limits deposit per address
-     // note: this is a temporary measure that can be changed by governance (string)
+     // Lifetime limits deposit per address
+     // note: this is a temporary measure that can be changed by governance. (string)
      lifetimeLimit: "10",
     }
    }
   },
 
-  // Timestamp (Unix time in seconds) when voting closes for this proposal,
-  // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-  closingTimestamp: 1682435906000,
+  // Timestamp as Unix time in seconds when voting closes for this proposal,
+  // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
+  closingTimestamp: 1683999913000,
 
-  // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
-  // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-  enactmentTimestamp: 1682522306000,
+  // Timestamp as Unix time in seconds when proposal gets enacted if passed,
+  // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
+  enactmentTimestamp: 1684086313000,
 
-  // Validation timestamp (Unix time in seconds) (int64 as string)
-  validationTimestamp: 1682522306000
+  // undefined (int64 as string)
+  validationTimestamp: 1684086313000
  }
 }
 ```

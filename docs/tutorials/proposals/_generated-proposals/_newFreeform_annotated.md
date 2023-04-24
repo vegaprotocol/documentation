@@ -11,9 +11,9 @@
    // This object remains empty, but is required 
   },
 
-  // Timestamp (Unix time in seconds) when voting closes for this proposal,
-  // constrained by `minClose` and `maxClose` network parameters (int64 as string})
-  closingTimestamp: 1682435906000,
+  // Timestamp as Unix time in seconds when voting closes for this proposal,
+  // constrained by `minClose` and `maxClose` network parameters. (int64 as string})
+  closingTimestamp: 1683999913000,
  }
 }
 ```

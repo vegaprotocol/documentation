@@ -41,8 +41,8 @@ function newAsset(skeleton, proposalSoFar) {
 
  
  result.terms.newAsset[inspect.custom]= () => {
-      const withdrawThresholdSplit = skeleton.properties.changes.properties.erc20.properties.withdrawThreshold.title.split('\n')
-      const lifetimeLimitSplit = skeleton.properties.changes.properties.erc20.properties.lifetimeLimit.title.split('\n')
+      const withdrawThresholdSplit = skeleton.properties.changes.properties.erc20.properties.withdrawThreshold.description.split('\n')
+      const lifetimeLimitSplit = skeleton.properties.changes.properties.erc20.properties.lifetimeLimit.description.split('\n')
       return `{
           changes: {
             // ${skeleton.properties.changes.properties.name.title} (${skeleton.properties.changes.properties.name.type}) 
