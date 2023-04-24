@@ -18,7 +18,7 @@ Smooth execution of a protocol upgrade is critical to the Vega network, and any 
 
 To help with protocol upgrades, the following endpoints can provide relevant information:
 * to view submitted proposals use **[protocol upgrade proposals](../../api/rest/data-v2/trading-data-service-list-protocol-upgrade-proposals.api.mdx) endpoint**,
-* to view if the network is ready for upgrade use **[protocol upgrade status](../../api/rest/data-v2/trading-data-service-get-protocol-upgrade-status.api.mdx) endpoint**.
+* To see if the network is ready for upgrade use the **[protocol upgrade status](../../api/rest/data-v2/trading-data-service-get-protocol-upgrade-status.api.mdx) endpoint**.
 
 
 ## 1. Submit a transaction to initiate the upgrade on a specific block (validators only)
