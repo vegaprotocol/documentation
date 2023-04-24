@@ -201,7 +201,7 @@ In your `core` config (`<VEGA-NETWORK-HOME>/config/node/config.toml`), you will 
 ```
 Then you can send the following request:
 ```bash
-# Run it from use that has access to /path/to/vega.sock
+# Run it from a user that has access to /path/to/vega.sock
 sudo -u vega \
     curl http://localhost/my-rpc \
         --unix-socket /path/to/vega.sock \
