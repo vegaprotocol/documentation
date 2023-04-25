@@ -36,7 +36,7 @@ REST is the ubiquitous protocol for the web. Vega has four REST endpoints: two a
 **[REST overview](rest/overview.md)**: Read more about data and core node APIs.
 - [Core network state](/testnet/category/api/rest/core/core-service): Get basic information about the network, such as 'block height' and 'Vega time'. 
 - [Core state](/testnet/category/api/rest/state/core-state-service): Get lists of state about the internal Vega system, such as 'list accounts', 'list parties.
-- [Data node (v2)](/testnet/category/api/rest/data-v2/trading-data-service): Get historic information and cumulative data, such as 'governance data for all proposals'. v2 is receiving active development.
+- [Data node (v2)](/testnet/api/rest/data-v2/trading-data-service): Get historic information and cumulative data, such as 'governance data for all proposals'. v2 is receiving active development.
 - [Block explorer](/testnet/category/api/rest/explorer/block-explorer): Get information about blocks created on the Vega network.
 
 ## GraphQL for web apps
