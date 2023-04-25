@@ -286,7 +286,7 @@ You should ensure the database configuration matches those of the database you c
 Running the following command will remove all data from the data node and is not recoverable.
 :::
 
-To reset the data node and remove all data execute:
+To reset the data node and remove all data, execute the command:
 
 ```shell
 vega datanode unsafe_reset_all
