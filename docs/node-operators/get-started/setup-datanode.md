@@ -459,7 +459,7 @@ To enable this feature, set the `AutoInitialiseFromNetworkHistory` setting in th
 If the data node already contains data that should be removed before loading from network history this can be done using the following command:
 
 
-`vega data-node unsafe_reset_all`
+`vega datanode unsafe_reset_all`
 
 If you want to fetch more than the last segment, you may also set the `MinimumBlockCount` configuration setting.
 
