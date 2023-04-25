@@ -456,7 +456,9 @@ It is possible to start a data node and initialise it using network history auto
 
 To enable this feature, set the `AutoInitialiseFromNetworkHistory` setting in the data node configuration file to `true`. It is safe to leave this setting to true. 
 
-If `WipeOnStartup` is `true`, data node will always restart with the last network history it is able to retrieve. If `WipeOnStartup` is `false`, data node will not reload data if the block height available in the database is equal to or greater than the block height from the network history.
+If the data node already contains data that should be removed before loading from network history this can be done using the command 
+
+`data-node unsafe_reset_all`
 
 If you want to fetch more than the last segment, you may also set the `MinimumBlockCount` configuration setting.
 
