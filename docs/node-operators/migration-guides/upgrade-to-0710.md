@@ -193,15 +193,15 @@ There is no change required in the `vega core` config. If you have to prepare th
 
 There is no change required in the `tendermint` config. If you have to prepare the `tendermint` config from scratch, use the instruction for [v0.68.2](./upgrade-to-0682.md#8-update-tendermint-config).
 
-### 9. Migrate tendermint data when using default home path
+### 9. Migrate Tendermint data when using default home path
 
-Vega has migrated from the tendermint to its fork, called the [CometBFT](https://cometbft.com). This change has been introduced in the previous version of the vega. If you are using the default home path for the Tendermint(`~/.tendermint`), we recommend migrating it to the default for the CometBFT(`~/.cometbft`). You can read more about the change and required steps in the [previous migration guide](./upgrade-to-0702.md#9-migrate-tendermint-data-when-using-default-home-path)
+Vega has migrated from Tendermint to its fork, called [CometBFT](https://cometbft.com). This change was introduced in the previous version of Vega. If you are using the default home path for Tendermint(`~/.tendermint`), we recommend migrating it to the default for the CometBFT(`~/.cometbft`). You can read more about the change and required steps in the [previous migration guide](./upgrade-to-0702.md#9-migrate-tendermint-data-when-using-default-home-path)
 
 ### 10. Update data node config
 
-#### The Gateway Port settings
+#### Gateway port settings
 
-We have merged the `GraphQL` and the `REST` APIs into a single port. Now you must define the `Port` and `IP` in the `[Gateway]` section instead of its child. Remove the `Port` and `IP` from the `[Gateway.GraphQL]` and `[Gateway.REST]` sections.
+The GraphQL and REST APIs have been merged into a single port. As a result, you now must define the `Port` and `IP` in the `[Gateway]` section instead of its child. Remove the `Port` and `IP` from the `[Gateway.GraphQL]` and `[Gateway.REST]` sections.
 
 ```diff
   [Gateway]
@@ -217,9 +217,9 @@ We have merged the `GraphQL` and the `REST` APIs into a single port. Now you mus
       ...
 ```
 
-#### Enable the TLS on the data node API
+#### Enable TLS on the data node API
 
-The data node can request the TLS certificate for you automatically. The only requirement is to use port 443 for the Gateway component and has this port open to the public internet. You can still use a custom port and some software like Apache or Nginx and proxy pass requests to the data node, but in this case, you are responsible for generating and renewing the certificate.
+The data node can request the TLS certificate for you automatically. The only requirement is to use port 443 for the Gateway component and have this port open to the public online. You can still use a custom port and software like Apache or Nginx and proxy pass requests to the data node, but in this case, you are responsible for generating and renewing the certificate.
 
 Below is an example certificate for the data node auto TLS:
 
@@ -249,13 +249,13 @@ Below is an example certificate for the data node auto TLS:
 ...
 ```
 
-If the `api.vega.example.com` domain points to your data node, it will obtain the certificate from the Let's Encrypt.
+If the `api.vega.example.com` domain points to your data node, it will obtain the certificate from Let's Encrypt.
 
-:::note All the differences
-To see all the differences, we recommend generating a new configuration and compare with your configuration on the node. The procedure is described [here](./upgrade-node.md#16-update-data-node-config)
+:::note Compare differences
+To see all the differences, we recommend generating a new configuration and compare with your configuration on the node. The procedure is described [in step 16 of how to upgrade a node](./upgrade-node.md#16-update-data-node-config)
 :::
 
-### 11. Update the vegavisor configuration
+### 11. Update Visor configuration
 
 ---
 title: Upgrade to 0.71.0
