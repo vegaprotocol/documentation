@@ -281,21 +281,18 @@ Data node database configuration is defined under the `[SQLStore.ConnectionConfi
 
 You should ensure the database configuration matches those of the database you created in the pre-requisite steps.
 
-### Wipe on startup
-:::warning Database wipe
-The following will wipe the database on startup, so use with caution.
-
-Once the database has been wiped, data node will reconstruct the database tables and will allow you to repopulate the data from the network chain, however this can take a long time depending on the size of the chain.
-
-Currently the default value for `WipeOnStartup` is `true`. Update this if you do not want all data to be wiped when data node starts.
+### Resetting the data node
+:::warning
+Running the following command will remove all data from the data node and is not recoverable.
 :::
 
-If you want to wipe the database on startup, you can set the `WipeOnStartup` flag to `true` in the data node configuration file `YOUR_DATA_NODE_HOME_PATH/config/data-node/config.toml`:
+To reset the data node and remove all data execute:
 
-```toml
-[SQLStore]
-  WipeOnStartup = true
+```shell
+vega datanode unsafe_reset_all
 ```
+
+After this is done  you can repopulate the data node by replaying the chain or by initialising it from network history.
 
 ### Embedded Postgres
 :::warning
@@ -420,7 +417,7 @@ Once the network history segments have been downloaded, running:
 
 ```shell
 vega datanode network-history show --home="YOUR_DATA_NODE_HOME_PATH"
-``` 
+```
 
 should display the network history you have:
 
