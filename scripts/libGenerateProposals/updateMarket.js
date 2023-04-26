@@ -33,15 +33,15 @@ function generateInstrument(skeleton) {
 
   instrument[inspect.custom] = () => {
     return `{
-        // ${skeleton.properties.code.title}
+        // ${skeleton.properties.code.description}
         code: "${instrument.code}",
         // ${skeleton.properties.future.title}
         future: {
-          // ${skeleton.properties.future.properties.quoteName.title} (${skeleton.properties.future.properties.quoteName.type})
+          // ${skeleton.properties.future.properties.quoteName.description} (${skeleton.properties.future.properties.quoteName.type})
           quoteName: "${instrument.future.quoteName}",
-          // ${skeleton.properties.future.properties.dataSourceSpecForSettlementData.title} (${skeleton.properties.future.properties.dataSourceSpecForSettlementData.type})
+          // ${skeleton.properties.future.properties.dataSourceSpecForSettlementData.description} (${skeleton.properties.future.properties.dataSourceSpecForSettlementData.type})
           dataSourceSpecForSettlementData: ${inspect(instrument.future.dataSourceSpecForSettlementData, { depth: 5 })},
-          // ${skeleton.properties.future.properties.dataSourceSpecForTradingTermination.title} (${skeleton.properties.future.properties.dataSourceSpecForTradingTermination.type})
+          // ${skeleton.properties.future.properties.dataSourceSpecForTradingTermination.description} (${skeleton.properties.future.properties.dataSourceSpecForTradingTermination.type})
           dataSourceSpecForTradingTermination: ${inspect(instrument.future.dataSourceSpecForTradingTermination, { depth: 5 })},
           // ${skeleton.properties.future.properties.dataSourceSpecBinding.title} (${skeleton.properties.future.properties.dataSourceSpecBinding.type})
           dataSourceSpecBinding: ${inspect(instrument.future.dataSourceSpecBinding, { depth: 5 })}
@@ -70,14 +70,14 @@ function generatePriceMonitoringParameters(skeleton) {
   }
 
   params[inspect.custom] = () => {
-    const splitTitle = skeleton.properties.triggers.items.properties.auctionExtension.title.split('\n')
+    const splitTitle = skeleton.properties.triggers.items.properties.auctionExtension.description.split('\n')
     return `{
           // ${skeleton.properties.triggers.items.title}
           triggers: [
             {
-              // ${skeleton.properties.triggers.items.properties.horizon.title} (${skeleton.properties.triggers.items.properties.horizon.format} as ${skeleton.properties.triggers.items.properties.horizon.type})
+              // ${skeleton.properties.triggers.items.properties.horizon.description} (${skeleton.properties.triggers.items.properties.horizon.format} as ${skeleton.properties.triggers.items.properties.horizon.type})
               horizon: "${params.triggers[0].horizon}",
-              // ${skeleton.properties.triggers.items.properties.probability.title} (${skeleton.properties.triggers.items.properties.probability.type})
+              // ${skeleton.properties.triggers.items.properties.probability.description} (${skeleton.properties.triggers.items.properties.probability.type})
               probability: "${params.triggers[0].probability}",
               // ${splitTitle[0]}
               // ${splitTitle[1]}
@@ -130,17 +130,17 @@ function generateRiskModel(skeleton, riskModelType) {
 
   riskModel[inspect.custom] = () => {
     return `{
-        // ${skeleton.properties.tau.title} (${skeleton.properties.tau.type})
+        // ${skeleton.properties.tau.description} (${skeleton.properties.tau.type})
         tau: ${riskModel.tau},
-        // ${skeleton.properties.riskAversionParameter.title} (${skeleton.properties.riskAversionParameter.format} as ${skeleton.properties.riskAversionParameter.type})
+        // ${skeleton.properties.riskAversionParameter.description} (${skeleton.properties.riskAversionParameter.format} as ${skeleton.properties.riskAversionParameter.type})
         riskAversionParameter: "${riskModel.riskAversionParameter}",
         // ${skeleton.properties.params.title}
         params: {
-          // ${skeleton.properties.params.properties.mu.title} (${skeleton.properties.params.properties.mu.format} as ${skeleton.properties.params.properties.mu.type})
+          // ${skeleton.properties.params.properties.mu.description} (${skeleton.properties.params.properties.mu.format} as ${skeleton.properties.params.properties.mu.type})
           mu: ${riskModel.params.mu},
-          // ${skeleton.properties.params.properties.r.title} (${skeleton.properties.params.properties.r.format} as ${skeleton.properties.params.properties.r.type})
+          // ${skeleton.properties.params.properties.r.description} (${skeleton.properties.params.properties.r.format} as ${skeleton.properties.params.properties.r.type})
           r: ${riskModel.params.r},
-          // ${skeleton.properties.params.properties.sigma.title} (${skeleton.properties.params.properties.sigma.format} as ${skeleton.properties.params.properties.sigma.type})
+          // ${skeleton.properties.params.properties.sigma.description} (${skeleton.properties.params.properties.sigma.format} as ${skeleton.properties.params.properties.sigma.type})
           sigma: ${riskModel.params.sigma},
         }
       }`
@@ -183,22 +183,22 @@ function updateMarket(skeleton, proposalSoFar) {
   };
 
   /*------- Liquidity Commitment required */
-  const lpLabel = skeleton.properties.changes.properties.lpPriceRange.title.split('\n')
+  const lpLabel = skeleton.properties.changes.properties.lpPriceRange.description.split('\n')
   result.terms.updateMarket[inspect.custom] = () => {
     return `{
-        // ${skeleton.properties.marketId.title}
+        // ${skeleton.properties.marketId.description}
         marketId: '123',
         changes: {
           // ${lpLabel[0]}
           // ${lpLabel[1]}
           lpPriceRange: ${result.terms.updateMarket.changes.lpPriceRange},
-          // ${skeleton.properties.changes.properties.linearSlippageFactor.title}
+          // ${skeleton.properties.changes.properties.linearSlippageFactor.description}
           linearSlippageFactor: ${result.terms.updateMarket.changes.linearSlippageFactor},
-          // ${skeleton.properties.changes.properties.quadraticSlippageFactor.title}
+          // ${skeleton.properties.changes.properties.quadraticSlippageFactor.description}
           quadraticSlippageFactor: ${result.terms.updateMarket.changes.quadraticSlippageFactor},
           // ${skeleton.properties.changes.properties.instrument.title}
           instrument: ${inspect(result.terms.updateMarket.changes.instrument, { depth: 19 })},
-          // ${skeleton.properties.changes.properties.metadata.title}
+          // ${skeleton.properties.changes.properties.metadata.description}
           metadata: ${JSON.stringify(result.terms.updateMarket.changes.metadata)},
            // ${skeleton.properties.changes.properties.priceMonitoringParameters.title}
           priceMonitoringParameters: ${inspect(result.terms.updateMarket.changes.priceMonitoringParameters, { depth: 19 })},

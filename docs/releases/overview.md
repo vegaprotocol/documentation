@@ -26,6 +26,21 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Pre-release versions 0.71.0, 0.71.1, and 0.71.2 combined | 2023-04-26
+This version was released to the Vega testnet on 26 April, 2023.
+
+This combined release contains improvements to API documentation, as well as bug fixes and minor enhancements to improve usability.
+
+:::caution Breaking changes
+**Remove WebSocket for rewards**: An unused and unnecessary event stream has been removed to simplify the APIs.
+
+**Remove all offset pagination**: While cursor pagination has been available for a number of releases, some endpoints still also supported offset pagination. This has now been removed for clarity and simplicity. 
+
+Check out a full summary of all the 0.71.0 [breaking changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0710) entries in the changelog. There were no breaking changes in 0.71.1 or 0.71.2.
+:::
+
+This release contains breaking changes, bug fixes and minor enhancements. Check out the full details in the Vega core [0.71.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.71.0), [0.71.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.71.1) and [0.71.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.71.2) release page.
+
 ### Pre-release versions 0.70.0, 0.70.1, and 0.70.2 combined | 2023-03-28
 This version was released to the Vega testnet on 28 March 2023, with the 0.70.2 patch released on 31 March, 2023.
 

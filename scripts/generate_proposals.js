@@ -58,7 +58,7 @@ function annotator(proposal) {
 
 function addTermsAnnotator(skeleton, terms, type) {
   const splitClosingTitle =
-    skeleton.properties.closingTimestamp.title.split('\n')
+    skeleton.properties.closingTimestamp.description.split('\n')
   if (type === 'newFreeform') {
     return () => {
       return `{
@@ -72,7 +72,7 @@ function addTermsAnnotator(skeleton, terms, type) {
   }
 
   const splitEnactmentTitle =
-    skeleton.properties.enactmentTimestamp.title.split('\n')
+    skeleton.properties.enactmentTimestamp.description.split('\n')
   // Note: ValidationTimestamp is not currently required by core, but defaults incorrectly. Let's populate it anyway.
   if (type === 'newAsset') {
     return () => `{
@@ -85,7 +85,7 @@ function addTermsAnnotator(skeleton, terms, type) {
       // ${splitEnactmentTitle[1]} (${skeleton.properties.enactmentTimestamp.format
       } as ${skeleton.properties.enactmentTimestamp.type})
       enactmentTimestamp: ${terms.enactmentTimestamp},
-      // ${skeleton.properties.validationTimestamp.title} (${skeleton.properties.validationTimestamp.format
+      // ${skeleton.properties.validationTimestamp.description} (${skeleton.properties.validationTimestamp.format
       } as ${skeleton.properties.validationTimestamp.type})
       validationTimestamp: ${terms.validationTimestamp}
    }`
@@ -314,10 +314,6 @@ function output(partial, title) {
       writeFileSync(
         `${path}/_${title}_json_priceparams.md`,
         partial.excerpts.priceparams
-      )
-      writeFileSync(
-        `${path}/_${title}_json_liquidity.md`,
-        partial.excerpts.liquidity
       )
     }
   } else {

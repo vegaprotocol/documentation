@@ -128,10 +128,10 @@ serversForNetwork(generateForMainnet).then(servers => {
     console.group(`Opening ${s}`)
     const spec = JSON.parse(fs.readFileSync(s, 'utf-8'))
     if (!!s.match('blockexplorer')) {
-      console.log('**SPECIAL CASE FOR BLOCK EXPLORER: n13**')
+      console.log('**SPECIAL CASE FOR BLOCK EXPLORER: be**')
       spec.servers = [ { url: 'https://be.testnet.vega.xyz/rest', description: 'Block Explorer' }]
     } else if (!!s.match('wallet')) {
-      console.log('**SPECIAL CASE FOR BLOCK EXPLORER: localhost**')
+      console.log('**SPECIAL CASE FOR wallet: localhost**')
       spec.servers = [ { url: 'http://localhost:1789/api/', description: 'Local wallet' }]
     } else if (!!s.match('core')) {
       spec.servers = openApiServers.map(s => {
