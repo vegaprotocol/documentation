@@ -1,9 +1,9 @@
 ---
-title: Upgrade to 0.71.1
-sidebar_label: Upgrade to 0.71.1
+title: Upgrade to 0.71.2
+sidebar_label: Upgrade to 0.71.2
 ---
 
-This guide describes the steps to upgrade to v0.71.1 using a checkpoint. See the [changelogs for v0.71.1](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0710) and [v0.71.1](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0711) for information about breaking changes and other details.
+This guide describes the steps to upgrade to v0.71.2 using a checkpoint. See the [changelogs for v0.71.2](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0710) and [v0.71.2](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0711) for information about breaking changes and other details.
 
 ## Assumptions for the guide
 The instructions below are written for Debian-like Linux operating systems. 
@@ -52,35 +52,35 @@ For testnet releases, the time requirement may be relaxed, but mainnet downtime 
 ### 2. Create backup
 
 ```bash
-mkdir -p <BACKUP-FOLDER>/v0.71.1/wallets;
-mkdir -p <BACKUP-FOLDER>/v0.71.1/core-state;
-mkdir -p <BACKUP-FOLDER>/v0.71.1/tm-state;
+mkdir -p <BACKUP-FOLDER>/v0.71.2/wallets;
+mkdir -p <BACKUP-FOLDER>/v0.71.2/core-state;
+mkdir -p <BACKUP-FOLDER>/v0.71.2/tm-state;
 
 # copy genesis
-cp <TENDERMINT-HOME>/config/genesis.json <BACKUP-FOLDER>/v0.71.1/genesis.json
+cp <TENDERMINT-HOME>/config/genesis.json <BACKUP-FOLDER>/v0.71.2/genesis.json
 
 # copy config files
-cp -r <VEGA-NETWORK-HOME>/config <BACKUP-FOLDER>/v0.71.1/vega-config
-cp -r <TENDERMINT-HOME>/config <BACKUP-FOLDER>/v0.71.1/tendermint-config
+cp -r <VEGA-NETWORK-HOME>/config <BACKUP-FOLDER>/v0.71.2/vega-config
+cp -r <TENDERMINT-HOME>/config <BACKUP-FOLDER>/v0.71.2/tendermint-config
 
 # copy wallets
-cp -r <VEGA-NETWORK-HOME>/data/node/wallets <BACKUP-FOLDER>/v0.71.1/wallets
-cp <TENDERMINT-HOME>/node_key.json <BACKUP-FOLDER>/v0.71.1/wallets
-cp <TENDERMINT-HOME>/priv_validator_key.json <BACKUP-FOLDER>/v0.71.1/wallets
-cp <VEGA-NETWORK-HOME>/nodewallet-passphrase.txt <BACKUP-FOLDER>/v0.71.1/wallets  # filename and location might differ, depending on your setup
+cp -r <VEGA-NETWORK-HOME>/data/node/wallets <BACKUP-FOLDER>/v0.71.2/wallets
+cp <TENDERMINT-HOME>/node_key.json <BACKUP-FOLDER>/v0.71.2/wallets
+cp <TENDERMINT-HOME>/priv_validator_key.json <BACKUP-FOLDER>/v0.71.2/wallets
+cp <VEGA-NETWORK-HOME>/nodewallet-passphrase.txt <BACKUP-FOLDER>/v0.71.2/wallets  # filename and location might differ, depending on your setup
 
 # copy network state
-cp -r <VEGA-NETWORK-HOME>/state/node <BACKUP-FOLDER>/v0.71.1/core-state
-cp -r <TENDERMINT-HOME>/data <BACKUP-FOLDER>/v0.71.1/tm-state
+cp -r <VEGA-NETWORK-HOME>/state/node <BACKUP-FOLDER>/v0.71.2/core-state
+cp -r <TENDERMINT-HOME>/data <BACKUP-FOLDER>/v0.71.2/tm-state
 
 # copy vegavisor config if you are running Visor on your node
-cp -r <VEGAVISOR-HOME>/current <BACKUP-FOLDER>/v0.71.1/vegavisor-current
+cp -r <VEGAVISOR-HOME>/current <BACKUP-FOLDER>/v0.71.2/vegavisor-current
 
 # Check if backup has been successfully done*; check if all files has been copied correctly
 tree <BACKUP-FOLDER>
 
 # Backup PostgreSQL if you have been running data node**
-pg_dump --host=localhost --port=5432 --username=<VEGA-DB-USER> --password -Fc -f <BACKUP-FOLDER>/v0.71.1/data_node_db.bak.sql <VEGA-DB-NAME>
+pg_dump --host=localhost --port=5432 --username=<VEGA-DB-USER> --password -Fc -f <BACKUP-FOLDER>/v0.71.2/data_node_db.bak.sql <VEGA-DB-NAME>
 ```
 
 **Notes**: 
@@ -99,8 +99,8 @@ See example commands for downloading below. You may need to update the version n
 
 ```bash
 # Download archives
-wget https://github.com/vegaprotocol/vega/releases/download/v0.71.1/vega-linux-amd64.zip
-wget https://github.com/vegaprotocol/vega/releases/download/v0.71.1/visor-linux-amd64.zip
+wget https://github.com/vegaprotocol/vega/releases/download/v0.71.2/vega-linux-amd64.zip
+wget https://github.com/vegaprotocol/vega/releases/download/v0.71.2/visor-linux-amd64.zip
 
 # Unzip downloaded archives
 unzip vega-linux-amd64.zip
@@ -257,7 +257,7 @@ To see all the differences, we recommend generating a new configuration and comp
 
 ### 11. Update Visor configuration
 
-We have planned to practice the protocol upgrade from version `v0.70.X` to version v0.71.1. The upgrade procedure is standard for upgrades described on [the protocol upgrade page](../how-to/upgrade-network.md). However, there are some changes to the configuration for the data node and the vegavisor.
+We have planned to practice the protocol upgrade from version `v0.70.X` to version v0.71.2. The upgrade procedure is standard for upgrades described on [the protocol upgrade page](../how-to/upgrade-network.md). However, there are some changes to the configuration for the data node and the vegavisor.
 
 Please follow [the standard protocol upgrade documentation](../how-to/upgrade-network.md). This document has only key points and suggested changes for the vega setup.
 
