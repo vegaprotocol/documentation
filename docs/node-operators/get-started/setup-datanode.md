@@ -281,21 +281,18 @@ Data node database configuration is defined under the `[SQLStore.ConnectionConfi
 
 You should ensure the database configuration matches those of the database you created in the pre-requisite steps.
 
-### Wipe on startup
-:::warning Database wipe
-The following will wipe the database on startup, so use with caution.
-
-Once the database has been wiped, data node will reconstruct the database tables and will allow you to repopulate the data from the network chain, however this can take a long time depending on the size of the chain.
-
-Currently the default value for `WipeOnStartup` is `true`. Update this if you do not want all data to be wiped when data node starts.
+### Resetting the data node
+:::warning
+Running the following command will remove all data from the data node and is not recoverable.
 :::
 
-If you want to wipe the database on startup, you can set the `WipeOnStartup` flag to `true` in the data node configuration file `YOUR_DATA_NODE_HOME_PATH/config/data-node/config.toml`:
+To reset the data node and remove all data, execute the command:
 
-```toml
-[SQLStore]
-  WipeOnStartup = true
+```shell
+vega datanode unsafe_reset_all
 ```
+
+After this is done  you can repopulate the data node by replaying the chain or by initialising it from network history.
 
 ### Embedded Postgres
 :::warning
@@ -420,7 +417,7 @@ Once the network history segments have been downloaded, running:
 
 ```shell
 vega datanode network-history show --home="YOUR_DATA_NODE_HOME_PATH"
-``` 
+```
 
 should display the network history you have:
 
@@ -459,7 +456,10 @@ It is possible to start a data node and initialise it using network history auto
 
 To enable this feature, set the `AutoInitialiseFromNetworkHistory` setting in the data node configuration file to `true`. It is safe to leave this setting to true. 
 
-If `WipeOnStartup` is `true`, data node will always restart with the last network history it is able to retrieve. If `WipeOnStartup` is `false`, data node will not reload data if the block height available in the database is equal to or greater than the block height from the network history.
+If the data node already contains data that should be removed before loading from network history this can be done using the following command:
+
+
+`vega datanode unsafe_reset_all`
 
 If you want to fetch more than the last segment, you may also set the `MinimumBlockCount` configuration setting.
 
