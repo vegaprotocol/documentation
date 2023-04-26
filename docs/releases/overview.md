@@ -32,7 +32,7 @@ This version was released to the Vega testnet on 26 April, 2023.
 This combined release contains improvements to API documentation, as well as bug fixes and minor enhancements to improve usability.
 
 :::caution Breaking changes
-**Remove WebSocket for rewards.**: An unused and unnecessary event stream has been removed to simplify the APIs.
+**Remove WebSocket for rewards**: An unused and unnecessary event stream has been removed to simplify the APIs.
 
 **Remove all offset pagination**: While cursor pagination has been available for a number of releases, some endpoints still also supported offset pagination. This has now been removed for clarity and simplicity. 
 
