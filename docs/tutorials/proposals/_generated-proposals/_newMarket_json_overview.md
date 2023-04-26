@@ -7,35 +7,35 @@
  terms: {
   newMarket: {
    changes: {
-    // Percentage move up and down from the mid price which specifies the range of 
-    // price levels over which automated liquidity provision orders will be deployed
+    // Percentage move up and down from the mid price which specifies the range of
+    // price levels over which automated liquidity provision orders will be deployed.
     lpPriceRange: "10",
-    // Linear slippage factor is used to cap the slippage component of maintainence margin - it is applied to the slippage volume
+    // undefined
     linearSlippageFactor: 0.001,
-    // Quadratic slippage factor is used to cap the slippage component of maintainence margin - it is applied to the square of the slippage volume
+    // undefined
     quadraticSlippageFactor: 0,
-    // Decimal places used for the new market, sets the smallest price increment on the book (uint64 as string)
+    // undefined (uint64 as string)
     decimalPlaces: "5",
-    // Decimal places for order sizes, sets what size the smallest order / position on the market can be (int64 as string)
+    // undefined (int64 as string)
     positionDecimalPlaces: "5",
-    // New market instrument configuration
+    // Instrument configuration
     instrument: {},
-    // Optional new market metadata, tags
+    // undefined
     metadata: [],
-    // Price monitoring parameters
+    // PriceMonitoringParameters contains a collection of triggers to be used for a given market
     priceMonitoringParameters: [],
-    // Liquidity monitoring parameters
+    // LiquidityMonitoringParameters contains settings used for liquidity monitoring
     liquidityMonitoringParameters: {},
-    // Log normal risk model parameters, valid only if MODEL_LOG_NORMAL is selected
+    // Risk model for log normal
     logNormal: {},
    }
   },
-  // Timestamp (Unix time in seconds) when voting closes for this proposal,
-  // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-  closingTimestamp: 1682435906000,
-  // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
-  // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-  enactmentTimestamp: 1682522306000,
+  // Timestamp as Unix time in seconds when voting closes for this proposal,
+  // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
+  closingTimestamp: 1684165890000,
+  // Timestamp as Unix time in seconds when proposal gets enacted if passed,
+  // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
+  enactmentTimestamp: 1684252290000,
  }
 }
 ```

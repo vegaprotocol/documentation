@@ -7,30 +7,30 @@
  },
  terms: {
   updateAsset: {
-   // The ID of the asset to be updated (string)
+   // undefined (string)
    assetId: "ebcd94151ae1f0d39a4bde3b21a9c7ae81a80ea4352fb075a92e07608d9c953d",
    changes: {
-    // The minimum economically meaningful amount in the asset (string)
+    // undefined (string)
     quantum: "1",
     erc20: {
-     // The maximum you can withdraw instantly. All withdrawals over the threshold will be delayed by the withdrawal delay.
+     // Maximum you can withdraw instantly. All withdrawals over the threshold will be delayed by the withdrawal delay.
      // There’s no limit on the size of a withdrawal (string)
      withdrawThreshold: "10",
 
-     // The lifetime limits deposit per address.
+     // Lifetime limits deposit per address.
      // This will be interpreted against the asset decimals. (string)
      lifetimeLimit: "10",
     }
    }
   },
 
-  // Timestamp (Unix time in seconds) when voting closes for this proposal,
-  // constrained by `minClose` and `maxClose` network parameters (int64 as string)
-  closingTimestamp: 1682435906000,
+  // Timestamp as Unix time in seconds when voting closes for this proposal,
+  // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
+  closingTimestamp: 1684165890000,
 
-  // Timestamp (Unix time in seconds) when proposal gets enacted (if passed),
-  // constrained by `minEnact` and `maxEnact` network parameters (int64 as string)
-  enactmentTimestamp: 1682522306000,
+  // Timestamp as Unix time in seconds when proposal gets enacted if passed,
+  // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
+  enactmentTimestamp: 1684252290000,
  }
 }
 ```

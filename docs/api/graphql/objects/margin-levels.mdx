@@ -48,11 +48,11 @@ type MarginLevels {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>MarginLevels.<b>searchLevel</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> If the margin is between maintenance and search, the network will initiate a collateral search (unsigned integer)
+> If the margin is between maintenance and search, the network will initiate a collateral search, expressed as unsigned integer
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>MarginLevels.<b>initialLevel</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> This is the minimum margin required for a party to place a new order on the network (unsigned integer)
+> This is the minimum margin required for a party to place a new order on the network, expressed as unsigned integer
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>MarginLevels.<b>collateralReleaseLevel</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
@@ -68,7 +68,7 @@ the general account of the party for the given asset.
 
 ### Member of
 
-[`MarginEdge`](/testnet/api/graphql/objects/margin-edge)  <Badge class="secondary" text="object"/><Bullet />[`OrderEstimate`](/testnet/api/graphql/objects/order-estimate)  <Badge class="secondary" text="object"/>
+[`Entities`](/testnet/api/graphql/objects/entities)  <Badge class="secondary" text="object"/><Bullet />[`MarginEdge`](/testnet/api/graphql/objects/margin-edge)  <Badge class="secondary" text="object"/><Bullet />[`MarginEstimate`](/testnet/api/graphql/objects/margin-estimate)  <Badge class="secondary" text="object"/><Bullet />[`OrderEstimate`](/testnet/api/graphql/objects/order-estimate)  <Badge class="secondary" text="object"/>
 
 
 

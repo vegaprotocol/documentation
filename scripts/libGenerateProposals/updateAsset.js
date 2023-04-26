@@ -33,11 +33,11 @@ function updateAsset(skeleton, proposalSoFar) {
 
   result.terms.updateAsset[inspect.custom] = () => {
     const withdrawThresholdSplit =
-      skeleton.properties.changes.properties.erc20.properties.withdrawThreshold.title.split(
+      skeleton.properties.changes.properties.erc20.properties.withdrawThreshold.description.split(
         "\n"
       );
     const lifetimeLimitSplit =
-      skeleton.properties.changes.properties.erc20.properties.lifetimeLimit.title.split(
+      skeleton.properties.changes.properties.erc20.properties.lifetimeLimit.description.split(
         "\n"
       );
     return `{

@@ -46,7 +46,7 @@ enum OrderRejectionReason {
   ORDER_ERROR_CANNOT_AMEND_TO_GFA_OR_GFN
   ORDER_ERROR_CANNOT_AMEND_FROM_GFA_OR_GFN
   ORDER_ERROR_CANNOT_SEND_GFN_ORDER_DURING_AN_AUCTION
-  ORDER_ERROR_GFA_CANNOT_SEND_ORDER_DURING_CONTINUOUS_TRADING
+  ORDER_ERROR_CANNOT_SEND_GFA_ORDER_DURING_CONTINUOUS_TRADING
   ORDER_ERROR_CANNOT_SEND_IOC_ORDER_DURING_AUCTION
   ORDER_ERROR_CANNOT_SEND_FOK_ORDER_DURING_AUCTION
   ORDER_ERROR_MUST_BE_LIMIT_ORDER
@@ -61,6 +61,10 @@ enum OrderRejectionReason {
   ORDER_ERROR_UNABLE_TO_REPRICE_PEGGED_ORDER
   ORDER_ERROR_UNABLE_TO_AMEND_PRICE_ON_PEGGED_ORDER
   ORDER_ERROR_NON_PERSISTENT_ORDER_OUT_OF_PRICE_BOUNDS
+  ORDER_ERROR_INCORRECT_MARKET_TYPE
+  ORDER_ERROR_TOO_MANY_PEGGED_ORDERS
+  ORDER_ERROR_REDUCE_ONLY_ORDER_WOULD_NOT_REDUCE
+  ORDER_ERROR_POST_ONLY_ORDER_WOULD_TRADE
 }
 ```
 
@@ -183,7 +187,7 @@ enum OrderRejectionReason {
 > Good for Normal order received during an auction
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_GFA_CANNOT_SEND_ORDER_DURING_CONTINUOUS_TRADING</b></code>](#) 
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_CANNOT_SEND_GFA_ORDER_DURING_CONTINUOUS_TRADING</b></code>](#) 
 > Good for Auction order received during continuous trading
 > 
 
@@ -241,6 +245,22 @@ enum OrderRejectionReason {
 
 #### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_NON_PERSISTENT_ORDER_OUT_OF_PRICE_BOUNDS</b></code>](#) 
 > Non-persistent order exceeds price bounds
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_INCORRECT_MARKET_TYPE</b></code>](#) 
+> Order was submitted with an incorrect or invalid market type
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_TOO_MANY_PEGGED_ORDERS</b></code>](#) 
+> Unable to submit pegged order, temporarily too many pegged orders across all markets
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_REDUCE_ONLY_ORDER_WOULD_NOT_REDUCE</b></code>](#) 
+> A reduce-ony order would not reduce the party's position and thus it has been rejected
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderRejectionReason.<b>ORDER_ERROR_POST_ONLY_ORDER_WOULD_TRADE</b></code>](#) 
+> A post-only order would produce an aggressive trade and thus it has been rejected
 > 
 
 

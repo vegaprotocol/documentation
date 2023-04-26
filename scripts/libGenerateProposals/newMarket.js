@@ -553,7 +553,7 @@ function generatePriceMonitoringParameters(skeleton) {
 
   params[inspect.custom] = () => {
     const splitTitle =
-      skeleton.properties.triggers.items.properties.auctionExtension.title.split(
+      skeleton.properties.triggers.items.properties.auctionExtension.description.split(
         "\n"
       );
     return `{
@@ -742,7 +742,7 @@ function newMarket(skeleton, proposalSoFar) {
   };
 
   /*------- Liquidity Commitment required */
-  const lbLabel = skeleton.properties.changes.properties.lpPriceRange.title.split('\n')
+  const lbLabel = skeleton.properties.changes.properties.lpPriceRange.description.split('\n')
 
   result.terms.newMarket[inspect.custom] = () => {
     return `{
