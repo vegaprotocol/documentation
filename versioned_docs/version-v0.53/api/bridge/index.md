@@ -29,7 +29,7 @@ To read more about how the bridge works, [see this blog post](https://blog.vega.
 
 This is where deposited assets are stored. It is isolated from the Asset Bridge to minimize the chance of bugs in the more complex logic code and allows for painless future upgrades.
 
-To read more about how the bridge works, [see this blog post](https://blog.vega.xyz/vega-erc20-bridge-331a5235efa2). If you're looking for a way to deposit tokens from Sepolia on to the Fairground testnet, head over to [Fairground Console](https://console.fairground.wtf).
+To read more about how the bridge works, [see this blog post](https://blog.vega.xyz/vega-erc20-bridge-331a5235efa2). 
 
 
 ## [Multisig Control](./interfaces/IMultisigControl.md)
