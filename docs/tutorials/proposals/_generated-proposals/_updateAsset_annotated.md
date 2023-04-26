@@ -7,10 +7,10 @@
  },
  terms: {
   updateAsset: {
-   // undefined (string)
+   // Asset ID the update is for. (string)
    assetId: "ebcd94151ae1f0d39a4bde3b21a9c7ae81a80ea4352fb075a92e07608d9c953d",
    changes: {
-    // undefined (string)
+    // Minimum economically meaningful amount in the asset. (string)
     quantum: "1",
     erc20: {
      // Maximum you can withdraw instantly. All withdrawals over the threshold will be delayed by the withdrawal delay.
@@ -26,11 +26,11 @@
 
   // Timestamp as Unix time in seconds when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-  closingTimestamp: 1684165890000,
+  closingTimestamp: 1684172853000,
 
   // Timestamp as Unix time in seconds when proposal gets enacted if passed,
   // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-  enactmentTimestamp: 1684252290000,
+  enactmentTimestamp: 1684259253000,
  }
 }
 ```

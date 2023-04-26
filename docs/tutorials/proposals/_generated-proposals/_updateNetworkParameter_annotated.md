@@ -8,21 +8,21 @@
  terms: {
   updateNetworkParameter: {
    changes: {
-    // undefined (string) 
+    // Unique key of the network parameter. (string) 
     key: "market.fee.factors.infrastructureFee",
 
-    // undefined (string) 
+    // Value for the network parameter. (string) 
     value: "300"
    }
   },
 
   // Timestamp as Unix time in seconds when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-  closingTimestamp: 1684165890000,
+  closingTimestamp: 1684172853000,
 
   // Timestamp as Unix time in seconds when proposal gets enacted if passed,
   // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-  enactmentTimestamp: 1684252290000,
+  enactmentTimestamp: 1684259253000,
  }
 }
 ```

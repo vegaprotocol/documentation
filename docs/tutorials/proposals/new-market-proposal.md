@@ -17,7 +17,6 @@ import NewMarketJSONLiquidityMonitoring from './_generated-proposals/_newMarket_
 import NewMarketJSONPriceMonitoring from './_generated-proposals/_newMarket_json_priceparams.md';
 import NewMarketJSONOracle from './_generated-proposals/_newMarket_json_oracle.md';
 import NewMarketJSONOverview from './_generated-proposals/_newMarket_json_overview.md';
-import NewMarketJSONLiquidityCommitment from './_generated-proposals/_newMarket_json_liquidity.md';
 import NewMarketAnnotated from './_generated-proposals/_newMarket_annotated.md';
 import NewMarketJSON from './_generated-proposals/_newMarket_json.md';
 import NewMarketCMD from './_generated-proposals/_newMarket_cmd.md';

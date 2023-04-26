@@ -8,21 +8,21 @@
  terms: {
   newAsset: {
    changes: {
-    // undefined (string) 
+    // Name of the asset (e.g: Great British Pound). (string) 
     name: "tDAI TEST",
 
-    // undefined (string) 
+    // Symbol of the asset (e.g: GBP). (string) 
     symbol: "tDAI",
 
-    // undefined (string) 
+    // Number of decimal / precision handled by this asset. (string) 
     decimals: "18",
 
-    // undefined (string) 
+    // Minimum economically meaningful amount in the asset. (string) 
     quantum: "1",
 
     // ERC20 token based asset, living on the ethereum network
     erc20: {
-     // undefined (string)
+     // Address of the contract for the token, on the ethereum network. (string)
      contractAddress: "0x26223f9C67871CFcEa329975f7BC0C9cB8FBDb9b",
 
      // Maximum you can withdraw instantly. All withdrawals over the threshold will be delayed by the withdrawal delay.
@@ -38,14 +38,14 @@
 
   // Timestamp as Unix time in seconds when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-  closingTimestamp: 1684165890000,
+  closingTimestamp: 1684172853000,
 
   // Timestamp as Unix time in seconds when proposal gets enacted if passed,
   // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-  enactmentTimestamp: 1684252290000,
+  enactmentTimestamp: 1684259253000,
 
-  // undefined (int64 as string)
-  validationTimestamp: 1684252290000
+  // Validation timestamp as Unix time in seconds. (int64 as string)
+  validationTimestamp: 1684259253000
  }
 }
 ```

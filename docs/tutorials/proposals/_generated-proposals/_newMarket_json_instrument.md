@@ -1,16 +1,16 @@
 ```javascript
 {
- // undefined
- name: "Apples Yearly (2022)",
- // undefined
- code: "APPLES.22",
+ // Instrument name.
+ name: "Oranges Daily",
+ // Instrument code, human-readable shortcode used to describe the instrument.
+ code: "ORANGES.24h",
  // Future product configuration
  future: {
-  // undefined (string)
+  // Asset ID for the product's settlement asset. (string)
   settlementAsset: "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
-  // undefined (string)
+  // Product quote name. (string)
   quoteName: "tEuro",
-  // undefined (object)
+  // Data source spec describing the data source for settlement. (object)
   dataSourceSpecForSettlementData: {
    external: {
     oracle: {
@@ -61,16 +61,15 @@
     ]
    }
   },
-  // undefined (object)
+  // The external data source spec describing the data source of trading termination. (object)
   dataSourceSpecForTradingTermination: {},
   // DataSourceSpecToFutureBinding describes which property of the data source data is to be
   used as settlement data and which to use as the trading terminated trigger(object) dataSourceSpecBinding: {
    // Name of the property in the source data that should be used as settlement data.
    // If it is set to "prices.BTC.value", then the Future will use the value of
-   // this property as settlement data.
-   // undefined (string)
+   // this property as settlement data. (string)
    settlementDataProperty: "prices.BTC.value",
-   // undefined (string)
+   // Name of the property in the data source data that signals termination of trading. (string)
    tradingTerminationProperty: "vegaprotocol.builtin.timestamp"
   }
  }

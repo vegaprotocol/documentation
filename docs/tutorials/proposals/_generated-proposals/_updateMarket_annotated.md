@@ -7,30 +7,30 @@
  },
  terms: {
   updateMarket: {
-   // undefined
+   // Market ID the update is for.
    marketId: "123",
    changes: {
     // Percentage move up and down from the mid price which specifies the range of
     // price levels over which automated liquidity provision orders will be deployed.
     lpPriceRange: 11,
 
-    // undefined
+    // Linear slippage factor is used to cap the slippage component of maintenance margin - it is applied to the slippage volume.
     linearSlippageFactor: 0.001,
 
-    // undefined
+    // Quadratic slippage factor is used to cap the slippage component of maintenance margin - it is applied to the square of the slippage volume.
     quadraticSlippageFactor: 0,
 
     // Instrument configuration
     instrument: {
-     // undefined
+     // Instrument code, human-readable shortcode used to describe the instrument.
      code: "APPLES.22",
 
      // Future product configuration
      future: {
-      // undefined (string)
+      // Human-readable name/abbreviation of the quote name. (string)
       quoteName: "tEuro",
 
-      // undefined (object)
+      // The data source spec describing the data of settlement data. (object)
       dataSourceSpecForSettlementData: {
        external: {
         oracle: {
@@ -87,10 +87,9 @@
        }
       },
 
-      // undefined (object)
+      // The data source spec describing the data source for trading termination. (object)
       dataSourceSpecForTradingTermination: {
        // The data source spec describing the data source for trading termination.
-       // undefined
        internal {
         // DataSourceSpecConfigurationTime is the internal data source used for emitting timestamps.
         time: {
@@ -111,16 +110,15 @@
        used as settlement data and which to use as the trading terminated trigger(object) dataSourceSpecBinding: {
         // Name of the property in the source data that should be used as settlement data.
         // If it is set to "prices.BTC.value", then the Future will use the value of
-        // this property as settlement data.
-        // undefined (string)
+        // this property as settlement data. (string)
         settlementDataProperty: "prices.BTC.value",
 
-        // undefined (string)
+        // Name of the property in the data source data that signals termination of trading. (string)
         tradingTerminationProperty: "vegaprotocol.builtin.timestamp"
        }
       },
 
-      // undefined
+      // Optional market metadata, tags.
       metadata: [
        "source:docs.vega.xyz"
       ],
@@ -130,10 +128,10 @@
        // PriceMonitoringTrigger holds together price projection horizon τ, probability level p, and auction extension duration
        triggers: [
         {
-         // undefined (int64 as string)
+         // Price monitoring projection horizon τ in seconds. (int64 as string)
          horizon: "43200",
 
-         // undefined (string)
+         // Price monitoring probability level p. (string)
          probability: "0.9999999",
 
          // Price monitoring auction extension duration in seconds should the price
@@ -146,22 +144,23 @@
 
       // Risk model for log normal
       logNormal: {
-       // undefined (number)
-       tau: 0.0001140771161,
+       // Tau parameter of the risk model, projection horizon measured as a year fraction used in the expected shortfall
+       calculation to obtain the maintenance margin,
+       must be a strictly non - negative real number.(number) tau: 0.0001140771161,
 
-       // undefined (double as number)
+       // Risk Aversion Parameter. (double as number)
        riskAversionParameter: "0.001",
 
        // Risk model parameters for log normal
        params: {
-        // undefined (double as number)
+        // Mu parameter, annualised growth rate of the underlying asset. (double as number)
         mu: 0,
 
-        // undefined (double as number)
+        // R parameter, annualised growth rate of the risk-free asset, used for discounting of future cash flows, can be any real number. (double as number)
         r: 0.016,
 
-        // undefined (double as number)
-        sigma: 0.5,
+        // Sigma parameter, annualised volatility of the underlying asset, must be a strictly non-negative real number. (double as number)
+        sigma: 0.3,
        }
       },
      },
@@ -169,11 +168,11 @@
 
     // Timestamp as Unix time in seconds when voting closes for this proposal,
     // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-    closingTimestamp: 1684165890000,
+    closingTimestamp: 1684172853000,
 
     // Timestamp as Unix time in seconds when proposal gets enacted if passed,
     // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-    enactmentTimestamp: 1684252290000,
+    enactmentTimestamp: 1684259253000,
    }
   }
 ```

@@ -1,7 +1,6 @@
 ```javascript
 {
  // The external data source spec describing the data source of trading termination.
- // undefined
  internal {
   // DataSourceSpecConfigurationTime is the internal data source used for emitting timestamps.
   time: {
