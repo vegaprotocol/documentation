@@ -7,57 +7,44 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The protocol upgrade feature allows the nodes running a network to automatically update to the latest version of the Vega protocol, without requiring manual intervention. This can be particularly useful in situations where the protocol is critical to the functioning of the system and any downtime or disruption needs to be minimised.
+The protocol upgrade feature allows node operators to automatically update nodes to a new version of the Vega protocol.
 
-Protocol upgrades can be done using Vega Visor, a process runner that manages the the processes of a Vega validator node and a data node. Visor starts and stops node processes, tells the node when to take a snapshot, and coordinates upgrades to the protocol.
+A protocol upgrade has three steps: 
+1. Submit a transaction to initiate the upgrade on a specific block (validators only)
+2. Prepare a node for protocol upgrade
+3. Execute an upgrade at the agreed block
 
-Alternatively, a validator node operator can manually upgrade the protocol at an agreed block height, for an agreed Vega software version.
+Smooth execution of a protocol upgrade is critical to the Vega network, and any downtime or disruption must be minimised. Using Vega Visor is recommended and will automatically prepare and execute a protocol upgrade. Alternatively, a node operator can manually perform an upgrade at an agreed block height for an agreed Vega software version.
 
-A protocol upgrade involves two main parts: 
-* Submitting a transaction to initiate the upgrade on a specific block
-* Using a process manager, Vega Visor, to coordinate the rollout of the upgrade, or manually upgrading at the agreed block height
+To help with protocol upgrades, the following endpoints can provide relevant information:
+* To view submitted proposals use the **[protocol upgrade proposals](../../api/rest/data-v2/trading-data-service-list-protocol-upgrade-proposals.api.mdx) endpoint**
+* To see if the network is ready for upgrade use the **[protocol upgrade status](../../api/rest/data-v2/trading-data-service-get-protocol-upgrade-status.api.mdx) endpoint**.
 
-## Using Visor to coordinate upgrades
-If an upgrade proposal is approved (more than 2/3 of consensus validators have voted on the proposal), those using Visor can rely on it to coordinate the rollout of the upgrade across all the nodes on the chosen block height. 
 
-This includes stopping the currently running nodes, ensuring that the new binaries are the correct software version, and starting new nodes. Visor also includes features such as restart capability, which allows Visor to retry the start-up several times before failing. 
+## 1. Submit a transaction to initiate the upgrade on a specific block
 
-You can configure the number of restart attempts in the Visor config, located at `VISOR_HOME_PATH/config.toml`
+This step can only be done by consensus validators.
 
-### Read more about Visor
-Read detailed information about Vega Visor, including how it works, how the config is set up and how you can edit it in the [full software description ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#readme).
+### 1.1 Select upgrade block height and new Vega version
 
-You can also read the [architecture overview ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#architecture) and [upgrade flow ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#upgrade-flow) topics in the Visor readme.
-
-## API endpoints to help with protocol upgrades
-The data node exposes endpoints for a protocol upgrade. You can use them to see the number of proposals submitted and the protocol upgrade status for the network.
-
-To see proposals submitted for a protocol upgrade, use the **[protocol upgrade proposals](../../api/rest/data-v2/trading-data-service-list-protocol-upgrade-proposals.api.mdx) endpoint**.
-
-To see if the network is ready for a protocol upgrade, use the **[protocol upgrade status](../../api/rest/data-v2/trading-data-service-get-protocol-upgrade-status.api.mdx) endpoint**.
-
-## Protocol upgrade procedure: step by step
-
-### 1. Select upgrade block height and new Vega version
-This step is async and it involves all validators. First, all validators have to agree on the following:
+This step is async, and it involves all validators. First, all validators have to agree on the following:
 
 * The block height to upgrade at
 * The Vega version to upgrade to
 
-The block height must be in the future. When choosing the `upgrade block`, you should give all validators enough time to vote on the upgrade and then prepare config for a new network.
+The block height must be in the future. When choosing the `upgrade block`, you should give all validators enough time to vote on the upgrade and then prepare the config for a new network.
 
 :::info Example
-If you select the `current block` + 1000 - it should give you 1000 blocks * 1.5 seconds (or whatever the average block time is) = 1500 secs. That means you may have about 25 minutes, which may not be enough time for all of the validators to vote and prepare config.
+Selecting the `current block` + 1000 - should allow for 1000 blocks * 0.9 seconds (or whatever the average block time is) = 900 secs. That means there will be about 15 minutes for all validators to vote and prepare, which might not be enough.
 
-To predict the time that you allow for other validators to prepare configs and vote, check the block time on the network. To do that, visit the `http://<YOUR-NODE-IP>:3003/statistics` endpoint. When there are no transactions, the block time is about 1.5 seconds max, though it may be lower, for example, 0.8 seconds.
+To check the block time on the network, visit the `http://<YOUR-NODE-IP>:3003/statistics` endpoint. Currently, the block time is around ~0.9 seconds, though it may be higher around ~1.5 seconds when there are not many transactions or some validators are missing.
 :::
 
-### 2. Perform manual steps required for upgrade
+### 1.2 Vote for an upgrade
 
-#### a. Vote for an upgrade
-All of the validators must execute this step, regardless of whether or not you are running Vega Visor.
+All validators must execute this step, regardless of whether or not they are running Vega Visor.
 
-After all the validators agree on `upgrade block height` and the `desired version` of Vega, vote on an upgrade. To vote, use the following command:
+After all the validators agree on the `upgrade block height` and the `desired version` of Vega, vote on an upgrade. To vote, use the following command, as an example. Be sure to confirm the release tag and height before you continue:
 
 ```bash
 vega protocol_upgrade_proposal \
@@ -74,13 +61,22 @@ Example:
 vega protocol_upgrade_proposal \
 	--home /home/vega/vega_home \
 	--passphrase-file /home/vega/vega_home/nodewallet_passphrase.txt \
-	--vega-release-tag v0.68.2 \
+	--vega-release-tag v0.99.0 \
 	--height 1034000 \
 	--output "json"
 ```
 
-#### b. Prepare network configuration
-After you propose a protocol upgrade, prepare your configuration. 
+The protocol upgrade proposal is approved if more than 2/3 of consensus validators have voted on it.
+
+Anyone can observe how the voting goes using the **[protocol upgrade proposals](../../api/rest/data-v2/trading-data-service-list-protocol-upgrade-proposals.api.mdx) endpoint**.
+
+## 2. Prepare node for protocol upgrade
+
+All node operators must perform these steps, regardless of whether or not they are using Vega Visor.
+
+### 2.1 Prepare network configuration (all)
+
+Each node operator needs to check if their config needs updating. That includes:
 
 1. The Vega core configuration (`<VEGA-NETWORK-HOME>/config/node/config.toml`)- only if there were changes
 2. The Tendermint configuration (`<TENDERMINT-HOME>/config/config.toml`)  - only if there were changes
@@ -88,20 +84,23 @@ After you propose a protocol upgrade, prepare your configuration.
 
 Track changes in the configuration between versions in the upgrading readme: [Configuration changes ↗](https://github.com/vegaprotocol/vega/blob/develop/UPGRADING.md#configuration-changes)
 
-You must prepare the above configs whether you are running vega with a visor or not.
+### 2.2 Prepare Visor configuration, if using Visor
 
-### 3a. Prepare Visor configuration
-You can skip to the next step if you are not running Visor.
+You can skip this step if:
+* You are not using Vega Visor (go to step 2.3)
+* Your node has internet access (Vega Visor will do this step)
 
-1. Create the new version folder in the `<VEGA-VISOR-HOME>`, e.g., for version `v0.68.2`, run the following command: `mkdir -p <VEGA-VISOR-HOME>/v0.68.2`.
-2. Create the run configuration and put it in the folder created in the previous point (see example below)
-3. Download the new version of the Vega binary from the [releases page ↗](https://github.com/vegaprotocol/vega/releases)
-4. Unzip the downloaded binary into the `<VEGA-VISOR-HOME>/v0.68.2` directory.
+If your node does **not** have internet access and you are using Visor, do the following:
+
+1. Create the new version folder in the `<VEGA-VISOR-HOME>`, e.g., for version `v0.71.0`, run the following command: `mkdir -p <VEGA-VISOR-HOME>/v0.71.0`.
+2. Download the new version of the Vega binary from the [releases page ↗](https://github.com/vegaprotocol/vega/releases)
+3. Unzip the downloaded binary into the created directory, e.g. `<VEGA-VISOR-HOME>/v0.71.0/vega` binary
+4. Create the run configuration and put it in the created directory, e.g. `<VEGA-VISOR-HOME>/v0.71.0/run-config.toml` run config file (see example below)
 
 Example config for the new version with Visor:
 
 ```toml
-name = "v0.68.2"
+name = "v0.71.0"
 
 [vega]
   [vega.binary]
@@ -116,6 +115,7 @@ name = "v0.68.2"
     socketPath = "<SOCKET-FOLDER-PATH>/vega.sock"
     httpPath = "/rpc"
 
+# skip the following if you do not run a data node ```
 [data_node]
   [data_node.binary]
     path = "vega"
@@ -127,26 +127,46 @@ name = "v0.68.2"
 
 Check the following parameters.
 
-- `name` - This must match to the  folder name created in `step 3a`
+- `name` - This must match the created directory
 - `vega.binary.path` - It may be an absolute path or a relative (to config folder) path. Change that path when you have unzipped the new binary into a different folder.
 - `--nodewallet-passphrase-file` flag - Check if the path is correct for your node wallet passphrase.
 - `vega.rpc.socketPath` - Make sure the path to the Vega Unix sock is correct and matches the one in the Vega config.
 
-Once you have updated your Visor run config and the network config, you have to wait for the upgrade block. Visor will listen for the upgrade event and restart your binaries. 
+Once you have performed steps `2.1 Prepare network configuration (all)` and `2.2 Prepare Visor configuration, if using Visor`, you don't have to do anything else. Visor will automatically restart the node once the core and data node (if you run one) report they are ready for the protocol upgrade.
 
-### 3b. Prepare upgrade if not running Visor
-You should do this step only if you are not running Visor.
+### 2.3 Prepare for an upgrade if not using Visor
+
+You should perform these steps only if you are NOT running Visor.
 
 1. Download the new version of the Vega binary from the [releases page ↗](https://github.com/vegaprotocol/vega/releases)
 2. Unzip the downloaded binary into your file system.
 3. Update your systemd (or any other process manager) to use the new binary.
 4. Reload a systemd service: `systemctl daemon-reload`, or use your own preferred.
-5. Wait for the `upgrade block`, then restart the network with the new binary and config after the `upgrade block` is present.
 
-#### Check if Vega core is ready for restart
-To see when your Vega core node is ready for protocol upgrade, check the Vega-core logs.
+Now you are ready for the protocol upgrade. Move onto the next step,`3. Execute an upgrade at the agreed block (non-Visor only)` for the next steps.
 
-In the Vega core logs, you will see the following messages:
+## 3. Execute an upgrade at the agreed block (non-Visor only)
+
+You should perform these steps only if you are NOT running Visor. If you use Visor, it will perform these steps for you automatically.
+
+**Important:** Smooth execution of the protocol upgrade is critical to the Vega Network, and any downtime or disruption must be minimised.
+
+The below steps cover two use cases: for those running a core node only (marked `a`) and those running a core and data node (marked `b`).
+
+### 3.1 Wait for the protocol upgrade block
+
+`(a)`: Monitor the `http://<YOUR-NODE-IP>:3003/statistics` endpoint until `blockHeight` reaches the `upgrade block` and stops increasing
+`(b)`: Monitor the `http://<YOUR-NODE-IP>:3003/statistics` for your data node's REST instance, until both `blockHeight` from the response body and `x-block-height` response header, both hit `upgrade block`.
+
+:::note 
+Both the core and data node will automatically stop processing blocks at the protocol upgrade block. Both will process any remaining data and prepare for the protocol upgrade by creating a snapshot and network history segment. 
+
+Depending on your hardware, it might take 2-3 seconds or longer. The core and data node process will not exit. Instead, they both will mark themselves as ready for the upgrade. As a node operator, you need to check if core is ready to restart for the protocol upgrade. Core waits for data node before marking itself as ready. Then you can safely restart the core and date node (if running) processes.
+:::
+
+### 3.2 Verify from logs if it is safe to restart services
+
+`(a)` and `(b)`: In the Vega core logs, you will see the following messages:
 
 ```
 2023-03-02T13:01:04.242+0100	INFO	core.protocol.processor	processor/abci.go:821	waiting for data node to get ready for upgrade
@@ -161,11 +181,67 @@ In the Vega core logs, you will see the following messages:
 ...
 ```
 
-#### Check if data node is ready for restart
-To see when your data node is ready for protocol upgrade, check the data node logs.
-
-In the data node logs, you will see the following message:
+`(b)`: In the data node logs, you will see the following message:
 
 ```
 2023-03-02T13:01:04.379+0100	INFO	datanode.service	service/protocol_upgrade.go:36	datanode is ready for protocol upgrade
 ```
+
+### 3.3 Restart services
+
+`(a)`: Restart your `core` process
+`(b)`: When you run both core and data node, you must stop both first, and then you can start both, in any order.
+
+### 3.4 Automate
+
+Visor is designed to perform a protocol upgrade automatically, but you can automate it yourself. The key is to check if core is ready for a restart for a protocol upgrade. As described above, it might take several seconds between the node reaches the protocol upgrade block and marks itself as ready to be restarted. Do not solely rely on block height, e.g. from the `/statistics` endpoint.
+
+Instead, query core using the admin JSON-RPC endpoint, as this is what Visor does. Note: This might change in the future, so please keep an eye on the Vega repo release notes for changes to Visor.
+
+In your `core` config (`<VEGA-NETWORK-HOME>/config/node/config.toml`), you will find:
+```toml
+[Admin]
+  [Admin.Server]
+    SocketPath = "/path/to/vega.sock"
+    HTTPPath = "/my-rpc"
+```
+Then you can send the following request:
+```bash
+# Run it from a user that has access to /path/to/vega.sock
+sudo -u vega \
+    curl http://localhost/my-rpc \
+        --unix-socket /path/to/vega.sock \
+         -H 'Content-Type: application/json' \
+        --data '{"jsonrpc": "2.0", "method": "protocolupgrade.UpgradeStatus", "params": [], "id": "id"}'
+```
+
+Example response:
+```json
+{
+    "result": {
+        "AcceptedReleaseInfo": {
+            "VegaReleaseTag":"",
+            "UpgradeBlockHeight":0
+        },
+        "ReadyToUpgrade":false
+    },
+    "error":null,
+    "id":"id"
+}
+```
+
+`ReadyToUpgrade` tells you if core is ready to shut down for a protocol upgrade.
+
+
+## Benefits of using Visor to coordinate upgrades
+
+If an upgrade proposal is approved (more than 2/3 of consensus validators have voted on it), those using Visor can rely on it to coordinate the upgrade rollout across all the nodes on the chosen block height. 
+
+This includes stopping the currently running nodes, ensuring the new binaries are the correct software version, and starting new nodes. Visor also includes features such as restart capability, which allows Visor to retry the start-up several times before failing. 
+
+You can configure the number of restart attempts in the Visor config, located at `VISOR_HOME_PATH/config.toml`
+
+### Read more about Visor
+Read detailed information about Vega Visor, including how it works, how the config is set up and how to edit it in the [full software description ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#readme).
+
+You can also read the [architecture overview ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#architecture) and [upgrade flow ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#upgrade-flow) topics in the Visor readme.
