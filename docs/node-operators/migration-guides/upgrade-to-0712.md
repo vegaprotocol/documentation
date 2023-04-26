@@ -199,6 +199,8 @@ Vega has migrated from Tendermint to its fork, called [CometBFT](https://cometbf
 
 ### 10. Update data node config
 
+Once you have `voted` for the protocol upgrade, but `before the protocol upgrade happens`, please update the following sections in the data-node config:
+
 #### Gateway port settings
 
 The GraphQL and REST APIs have been merged into a single port. As a result, you now must define the `Port` and `IP` in the `[Gateway]` section instead of its child. Remove the `Port` and `IP` from the `[Gateway.GraphQL]` and `[Gateway.REST]` sections.
@@ -257,74 +259,7 @@ To see all the differences, we recommend generating a new configuration and comp
 
 ### 11. Update Visor configuration
 
-We have planned to practice the protocol upgrade from version `v0.70.X` to version v0.71.2. The upgrade procedure is standard for upgrades described on [the protocol upgrade page](../how-to/upgrade-network.md). However, there are some changes to the configuration for the data node and the vegavisor.
-
-Please follow [the standard protocol upgrade documentation](../how-to/upgrade-network.md). This document has only key points and suggested changes for the vega setup.
-
-## Data node configuration changes
-
-Once you have `voted` for the protocol upgrade, but `before the protocol upgrade happens`, please update the following sections in the data-node config:
-
-### 1. Gateway Port settings
-
-We have merged the `GraphQL` and the `REST` APIs into a single port. Now you must define the `Port` and `IP` in the `[Gateway]` section instead of its child. Remove the `Port` and `IP` from the `[Gateway.GraphQL]` and `[Gateway.REST]` sections.
-
-```diff
-  [Gateway]
-+   Port = 443
-+   IP = "0.0.0.0"
-    [Gateway.GraphQL]
--     Port = 3008
--     IP = "0.0.0.0" 
-      ...
-    [Gateway.REST]
--     Port = 3008
--     IP = "0.0.0.0" 
-      ...
-```
-
-### 2. Enable the TLS on the data node API
-
-The data node can request the TLS certificate for you automatically. The only requirement is to use port 443 for the Gateway component and has this port open to the public internet. You can still use a custom port and some software like Apache or Nginx and proxy pass requests to the data node, but in this case, you are responsible for generating and renewing the certificate.
-
-Below is an example certificate for the data node auto TLS:
-
-```toml
-[Gateway]
-  Port = 443
-  IP = "0.0.0.0"
-  Level = "Info"
-  Timeout = "5s"
-  SubscriptionRetries = 3
-  GraphQLPlaygroundEnabled = true
-  MaxSubscriptionPerClient = 250
-  HTTPSEnabled = true
-  AutoCertDomain = "api.vega.example.com"
-  CertificateFile = ""
-  KeyFile = ""
-  [Gateway.GraphQL]
-    Enabled = true
-    ComplexityLimit = 0
-    Endpoint = "/graphql"
-  [Gateway.REST]
-    Enabled = true
-    APMEnabled = true
-  [Gateway.CORS]
-    AllowedOrigins = ["*"]
-    MaxAge = 7200
-...
-```
-
-If the `api.vega.example.com` domain points to your data node, it will obtain the certificate from the Let's Encrypt.
-
-:::note All the differences
-To see all the differences, we recommend generating a new configuration and compare with your configuration on the node. The procedure is described [here](./upgrade-node.md#16-update-data-node-config)
-:::
-
-## Visor configuration change
-
 You can still use the old binary for Visor and skip preparing the new configuration, but it's recommended that you upgrade and prepare a new configuration for Visor.
-
 
 :::note Visor documentation
 To read documentation for Visor config, visit [the Visor documentation page](https://github.com/vegaprotocol/vega/blob/develop/visor/visor-config.md)
@@ -358,7 +293,6 @@ stopSignalTimeoutSeconds = 15
 - `[autoInstall.asset]` - This section has been renamed from `[autoInstall.assets]` and it has been restructured.
 
 :::note Sentry node use case
-
 The `stopDelaySeconds` is a useful parameter for sentry nodes. Set it for a few seconds to allow the sentry node to forward all the data to other nodes.
 :::
 
