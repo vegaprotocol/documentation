@@ -3,7 +3,7 @@ title: Upgrade to 0.71.2
 sidebar_label: Upgrade to 0.71.2
 ---
 
-This guide describes the steps to upgrade to v0.71.2 using a checkpoint. See the [changelogs for v0.71.2](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0710) and [v0.71.2](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0711) for information about breaking changes and other details.
+This guide describes the steps to upgrade to v0.71.2 using a checkpoint. See the [changelogs for v0.71.0](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0710), [v0.71.1](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0711) and [v0.71.2](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0711) for information about breaking changes and other details.
 
 ## Assumptions for the guide
 The instructions below are written for Debian-like Linux operating systems. 
@@ -111,7 +111,7 @@ mv visor <VISOR-BIN>
 ```
 
 :::note  Manual update for binaries when running Visor
-Visor cannot automatically restart (or upgrade) binaries because you are restarting the network with a `checkpoint`. Once you stop the Vega network, you must update the old binaries with the downloaded ones. You can find the binary path in the `<VEGAVISOR-HOME>/current/run-config.toml` file. Usually the path is `<VEGAVISOR-HOME>/current/vega`
+Visor cannot automatically restart (or upgrade) binaries because this release requires restarting the network with a `checkpoint`. Once you stop the Vega network, you must update the old binaries with the downloaded ones. You can find the binary path in the `<VEGAVISOR-HOME>/current/run-config.toml` file. Usually the path is `<VEGAVISOR-HOME>/current/vega`
 :::
 
 
@@ -143,7 +143,7 @@ We recommend doing this at the beginning of the upgrade procedure, but this can 
 
 To load the checkpoint, find more information in the [restart network guide](../how-to/restart-network.md#load-checkpoint) 
 
-1. One of the validators will adjust [the genesis file ↗](https://github.com/vegaprotocol/networks/blob/master/testnet2/genesis.json) in the [Vega Protocol networks repository ↗](https://github.com/vegaprotocol/networks). You also may ask the vega team member to review it.
+1. One of the validators will adjust [the genesis file ↗](https://github.com/vegaprotocol/networks/blob/master/testnet2/genesis.json) in the [Vega Protocol networks repository ↗](https://github.com/vegaprotocol/networks). You also may ask a Vega team member to review it.
 2. The person responsible for updating genesis needs to create a PR with changes.
 3. All of the validators need to accept changes and approve the PR.
 4. Approved PR must be merged by one of the validators.
@@ -261,11 +261,11 @@ We have planned to practice the protocol upgrade from version `v0.70.X` to versi
 
 Please follow [the standard protocol upgrade documentation](../how-to/upgrade-network.md). This document has only key points and suggested changes for the vega setup.
 
-## The data node configuration changes
+## Data node configuration changes
 
 Once you have `voted` for the protocol upgrade, but `before the protocol upgrade happens`, please update the following sections in the data-node config:
 
-### 1. The Gateway Port settings
+### 1. Gateway Port settings
 
 We have merged the `GraphQL` and the `REST` APIs into a single port. Now you must define the `Port` and `IP` in the `[Gateway]` section instead of its child. Remove the `Port` and `IP` from the `[Gateway.GraphQL]` and `[Gateway.REST]` sections.
 
@@ -321,15 +321,16 @@ If the `api.vega.example.com` domain points to your data node, it will obtain th
 To see all the differences, we recommend generating a new configuration and compare with your configuration on the node. The procedure is described [here](./upgrade-node.md#16-update-data-node-config)
 :::
 
-## The vegavisor configuration change.
+## Visor configuration change
 
-You can still use the old binary for the vegavisor and skip preparing the new configuration, but We recommend upgrading and preparing a new configuration for the vegavisor.
+You can still use the old binary for Visor and skip preparing the new configuration, but it's recommended that you upgrade and prepare a new configuration for Visor.
 
 
-:::node Documentation
-To read documentation for the vegavisor config visit [the vegavisor documentation page](https://github.com/vegaprotocol/vega/blob/develop/visor/visor-config.md)
+:::note Visor documentation
+To read documentation for Visor config, visit [the Visor documentation page](https://github.com/vegaprotocol/vega/blob/develop/visor/visor-config.md)
+:::
 
-The excample vegavisor config is:
+Example Visor config:
 
 ```toml
 maxNumberOfFirstConnectionRetries = 43200
@@ -350,15 +351,15 @@ stopSignalTimeoutSeconds = 15
     binaryName = "vega"
 ```
 
-#### Important changes for the vegavisor config
+#### Important changes for Visor config
 
 - `stopDelaySeconds` - Number of seconds that Visor waits before it sends a termination signal (SIGTERM) to running processes that are ready for an upgrade. After the time has elapsed, Visor stops the running binaries (SIGTERM).
 
 - `[autoInstall.asset]` - This section has been renamed from `[autoInstall.assets]` and it has been restructured.
 
-:::note Setry node use case
+:::note Sentry node use case
 
-The `stopDelaySeconds` is a useful parameter for sentry nodes. Let's set it for a few seconds to allow the sentry node to forward all the data to other nodes.
+The `stopDelaySeconds` is a useful parameter for sentry nodes. Set it for a few seconds to allow the sentry node to forward all the data to other nodes.
 :::
 
 ### 12. Start the upgraded network
