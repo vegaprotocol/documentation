@@ -199,7 +199,7 @@ Vega has migrated from Tendermint to its fork, called [CometBFT](https://cometbf
 
 ### 10. Update data node config
 
-Once you have `voted` for the protocol upgrade, but `before the protocol upgrade happens`, please update the following sections in the data-node config:
+Once you have **voted** for the protocol upgrade, but **before the protocol upgrade happens**, please update the following sections in the data-node config:
 
 #### Gateway port settings
 
