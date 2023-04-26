@@ -7,7 +7,7 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The protocol upgrade feature allows the Node Operators to synchronously update nodes to the next version of the Vega Protocol.
+The protocol upgrade feature allows node operators to automatically update nodes to a new version of the Vega protocol.
 
 A protocol upgrade has three steps: 
 1. Submit a transaction to initiate the upgrade on a specific block (validators only)
@@ -61,7 +61,7 @@ Example:
 vega protocol_upgrade_proposal \
 	--home /home/vega/vega_home \
 	--passphrase-file /home/vega/vega_home/nodewallet_passphrase.txt \
-	--vega-release-tag v0.71.0 \
+	--vega-release-tag v0.99.0 \
 	--height 1034000 \
 	--output "json"
 ```
@@ -196,7 +196,7 @@ Depending on your hardware, it might take 2-3 seconds or longer. The core and da
 
 Visor is designed to perform a protocol upgrade automatically, but you can automate it yourself. The key is to check if core is ready for a restart for a protocol upgrade. As described above, it might take several seconds between the node reaches the protocol upgrade block and marks itself as ready to be restarted. Do not solely rely on block height, e.g. from the `/statistics` endpoint.
 
-Instead, query core using the admin JSON-RPC endpoint, as this is what Visor does. Note: This might change in the future, so please keep an eye on the release notes for changes to Visor.
+Instead, query core using the admin JSON-RPC endpoint, as this is what Visor does. Note: This might change in the future, so please keep an eye on the Vega repo release notes for changes to Visor.
 
 In your `core` config (`<VEGA-NETWORK-HOME>/config/node/config.toml`), you will find:
 ```toml
@@ -230,7 +230,7 @@ Example response:
 }
 ```
 
-`ReadyToUpgrade` tells you if core is ready for shutdown for `protocol upgrade`.
+`ReadyToUpgrade` tells you if core is ready to shut down for a protocol upgrade.
 
 
 ## Benefits of using Visor to coordinate upgrades
