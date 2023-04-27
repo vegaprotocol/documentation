@@ -7,6 +7,12 @@ description: Start development of a bot to trade on Vega.
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
+:::warning Disclaimer
+As described in the open source license, the Vega Protocol software is provided “as is”, at your own risk, and without warranties of any kind.
+
+The information provided in this tutorial does not constitute investment advice, financial advice, trading advice, or any other sort of advice and you should not treat any of the content as such. Gobalsky Labs Limited does not recommend that any asset should be bought, sold, or held by you. Do conduct your own due diligence and consult your financial advisor before making any investment decisions.
+:::
+
 In this series of tutorials you will work towards building the components of a simple bot that can trade on a Vega Protocol network, and to which you can add your own specific trading logic. In the first section, we will build out the basics of signing transactions, sending order creation and amendment payloads to a node, and listening for position and order updates via WebSockets.
 
 Later sections will cover adding a liquidity commitment to the bot and implementing a simple arbitrage strategy between a centralised exchange's prices and the Vega market's, taking into account trading fees.

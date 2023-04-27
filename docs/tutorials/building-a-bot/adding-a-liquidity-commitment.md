@@ -14,7 +14,7 @@ Before reading through this it is strongly advisable to read through the full gu
 :::
 
 In brief, committing liquidity to a Vega Protocol market means that:
-- A party makes a commitment to always provide both a bid and ask order for a given market. As a guarantee of this they lock a portion of their funds in a `bond` account, which will remain there untouched so long as their commitments are met. The exact size of orders required is determined by the size of the bond and a further network controlled parameter. 
+- A party makes a commitment to always provide both a bid and ask order for a given market. As a guarantee of this they lock a portion of their funds in a bond account, which will remain there untouched so long as their commitments are met. The exact size of orders required is determined by the size of the bond and a further network controlled parameter. 
 - In return for this commitment, a party receives a portion of all fees paid on the market, whether they were the maker party in the trade or not. 
 - As part of their commitment message, a party must specify orders which should be placed onto the market should their manually placed orders not sufficiently meet their requirement at any time. These are defined in terms of offsets from either the mid price or the best bid/ask prices.
 - To count towards a commitment, orders must be within a certain percentage of the mid price on a market. If limit orders are outside these bounds they will not count towards the commitment. If the orders specified in the initial liquidity commitment message are offset such that they are outside these bounds they will be placed just inside the bounds instead.
@@ -23,6 +23,11 @@ In brief, committing liquidity to a Vega Protocol market means that:
 Whilst a liquidity commitment can mean a trader receives fees they would not otherwise have received, they must be aware that it ties them into always offering to buy/sell the instrument whatever the market conditions. Whilst in general a liquidity provider can withdraw at any time, if withdrawing their commitment would bring the market below the currently required stake to stay out of auction then this will be impossible.
 
 That said, for the purposes of this tutorial we are comfortable taking on this commitment and will continue.
+
+:::note Read more
+[Providing liquidity](../../concepts/liquidity/index.md)
+[Liquidity bond accounts](../../concepts/accounts.md#liquidity-bond-accounts)
+:::
 
 ## Making a commitment
 

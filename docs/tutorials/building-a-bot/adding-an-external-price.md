@@ -5,7 +5,6 @@ hide_title: false
 description: Add an external price feed to the bot.
 ---
 
-
 This tutorial builds upon the basis of the codebase in [Streaming Data](streaming-data.md) so ensure you have run through that tutorial first if you want to build a working bot. 
 
 ## Current setup
@@ -37,7 +36,9 @@ if position > -1 * max_abs_position:
     )
 ```
 
-As you can see, we're pretty blindly quoting at whatever the best bid and offer are on the market. That works, but it's not exactly ideal. For one thing, if the market is quoting very incorrect prices we don't really want to be doing the same, and secondly we could even be looking at our own orders, if the rest of the market widens out ours will just sit there until someone trades with them! So let's try and improve that, at least a little, and think about trading fees along the way.
+As you can see, the bot is pretty blindly quoting at whatever the best bid and offer are on the market. That works, but it's not exactly ideal. For one thing, if the market is quoting very incorrect prices they might not be useful, and secondly the bot could even be looking at your own orders, and if the rest of the market widens out those orders will just sit there until someone trades with them! 
+
+The next section offers one possible way to improve that, at least a little, and think about trading fees along the way.
 
 ## Moving to external price
 
