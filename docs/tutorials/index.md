@@ -8,7 +8,7 @@ Take a look at the tutorials for help with using the Vega software.
 ## Building your own software 
 | Topic                                                                 |  Description                                                                                                        |
 | ----------------------------------------------------------------------| -------------------------------------------------------------------------------------------------------- |
-| 🔢 [Programmatic trading basics](./building-on-vega/programmatic-trading-basics.md)| Understand the basics of how to submit trading transactions using the API. |
+| 🔢 [Programmatic trading basics](./programmatic-trading-basics.md)| Understand the basics of how to submit trading transactions using the API. |
 
 ## Interacting with markets
 | Topic                                                                 |  Description                                                                                                        |
