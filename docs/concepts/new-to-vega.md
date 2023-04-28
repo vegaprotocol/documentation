@@ -51,3 +51,4 @@ Its functionality is limited and is riskier than networks that will follow it, a
 ## How can I contribute to Vega?
 * [Bugs and feature requests](https://github.com/vegaprotocol/feedback/discussions/): Raise any bugs you find, or feature requests you have, on Vega's feedback board.
 * [Documentation translation](https://github.com/vegaprotocol/documentation/issues): Raise an issue on the documentation repo to express your interest in translating Vega documentation. 
+* [Share your guides and tools](https://github.com/vegaprotocol/documentation/issues): If you have a guide or code that you've written about or using Vega software, submit it for inclusion on the [community contributions](../tutorials/community-created.md) page.
