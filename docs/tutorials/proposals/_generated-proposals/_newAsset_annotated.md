@@ -38,14 +38,14 @@
 
   // Timestamp as Unix time in seconds when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-  closingTimestamp: 1684336757000,
+  closingTimestamp: 1684339789000,
 
   // Timestamp as Unix time in seconds when proposal gets enacted if passed,
   // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-  enactmentTimestamp: 1684423157000,
+  enactmentTimestamp: 1684426189000,
 
   // Validation timestamp as Unix time in seconds. (int64 as string)
-  validationTimestamp: 1684423157000
+  validationTimestamp: 1684426189000
  }
 }
 ```
