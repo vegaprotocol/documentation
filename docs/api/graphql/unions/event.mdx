@@ -5,15 +5,37 @@ hide_table_of_contents: false
 ---
 
 
-
 export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
 
 export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
 
-export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+export const Badge = (props) => <><span className={'badge badge--' + props.class}>{props.text}</span></>
+
+import { useState } from 'react';
+
+export const Details = ({ dataOpen, dataClose, children, startOpen = false }) => {
+  const [open, setOpen] = useState(startOpen);
+  return (
+    <details {...(open ? { open: true } : {})} className="details" style={{ border:'none', boxShadow:'none', background:'var(--ifm-background-color)' }}>
+      <summary
+        onClick={(e) => {
+          e.preventDefault();
+          setOpen((open) => !open);
+        }}
+        style={{ listStyle:'none' }}
+      >
+      {open ? dataOpen : dataClose}
+      </summary>
+      {open && children}
+    </details>
+  );
+};
+
+
 
 
 Union type for wrapped events in stream PROPOSAL is mapped to governance data, something to keep in mind
+
 
 ```graphql
 union Event = TimeUpdate | Deposit | Withdrawal | TransactionResult
@@ -22,19 +44,19 @@ union Event = TimeUpdate | Deposit | Withdrawal | TransactionResult
 
 ### Possible types
 
-#### [`TimeUpdate`](/testnet/api/graphql/objects/time-update) <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Event.<b>TimeUpdate</b></code>](/testnet/api/graphql/objects/time-update) <Badge class="secondary" text="object"/>
 > 
 > 
 
-#### [`Deposit`](/testnet/api/graphql/objects/deposit) <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Event.<b>Deposit</b></code>](/testnet/api/graphql/objects/deposit) <Badge class="secondary" text="object"/>
 > The details of a deposit processed by Vega
 > 
 
-#### [`Withdrawal`](/testnet/api/graphql/objects/withdrawal) <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Event.<b>Withdrawal</b></code>](/testnet/api/graphql/objects/withdrawal) <Badge class="secondary" text="object"/>
 > The details of a withdrawal processed by Vega
 > 
 
-#### [`TransactionResult`](/testnet/api/graphql/objects/transaction-result) <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Event.<b>TransactionResult</b></code>](/testnet/api/graphql/objects/transaction-result) <Badge class="secondary" text="object"/>
 > The result from processing a transaction
 > 
 
@@ -43,6 +65,4 @@ union Event = TimeUpdate | Deposit | Withdrawal | TransactionResult
 ### Member of
 
 [`BusEvent`](/testnet/api/graphql/objects/bus-event)  <Badge class="secondary" text="object"/>
-
-
 

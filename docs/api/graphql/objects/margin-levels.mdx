@@ -5,15 +5,37 @@ hide_table_of_contents: false
 ---
 
 
-
 export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
 
 export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
 
-export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+export const Badge = (props) => <><span className={'badge badge--' + props.class}>{props.text}</span></>
+
+import { useState } from 'react';
+
+export const Details = ({ dataOpen, dataClose, children, startOpen = false }) => {
+  const [open, setOpen] = useState(startOpen);
+  return (
+    <details {...(open ? { open: true } : {})} className="details" style={{ border:'none', boxShadow:'none', background:'var(--ifm-background-color)' }}>
+      <summary
+        onClick={(e) => {
+          e.preventDefault();
+          setOpen((open) => !open);
+        }}
+        style={{ listStyle:'none' }}
+      >
+      {open ? dataOpen : dataClose}
+      </summary>
+      {open && children}
+    </details>
+  );
+};
+
+
 
 
 Margins for a given a party
+
 
 ```graphql
 type MarginLevels {
@@ -57,7 +79,7 @@ type MarginLevels {
 
 #### [<code style={{ fontWeight: 'normal' }}>MarginLevels.<b>collateralReleaseLevel</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > If the margin of the party is greater than this level, then collateral will be released from the margin account into
-the general account of the party for the given asset.
+> the general account of the party for the given asset.
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>MarginLevels.<b>timestamp</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
@@ -69,6 +91,4 @@ the general account of the party for the given asset.
 ### Member of
 
 [`Entities`](/testnet/api/graphql/objects/entities)  <Badge class="secondary" text="object"/><Bullet />[`MarginEdge`](/testnet/api/graphql/objects/margin-edge)  <Badge class="secondary" text="object"/><Bullet />[`MarginEstimate`](/testnet/api/graphql/objects/margin-estimate)  <Badge class="secondary" text="object"/><Bullet />[`OrderEstimate`](/testnet/api/graphql/objects/order-estimate)  <Badge class="secondary" text="object"/>
-
-
 

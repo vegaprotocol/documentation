@@ -195,6 +195,9 @@ module.exports = {
           toc: true,
           pagination: true,
           index: true
+        },
+        loaders: {
+          GraphQLFileLoader: "@graphql-tools/graphql-file-loader"
         }
       }
     ],

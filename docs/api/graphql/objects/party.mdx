@@ -5,15 +5,37 @@ hide_table_of_contents: false
 ---
 
 
-
 export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
 
 export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
 
-export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+export const Badge = (props) => <><span className={'badge badge--' + props.class}>{props.text}</span></>
+
+import { useState } from 'react';
+
+export const Details = ({ dataOpen, dataClose, children, startOpen = false }) => {
+  const [open, setOpen] = useState(startOpen);
+  return (
+    <details {...(open ? { open: true } : {})} className="details" style={{ border:'none', boxShadow:'none', background:'var(--ifm-background-color)' }}>
+      <summary
+        onClick={(e) => {
+          e.preventDefault();
+          setOpen((open) => !open);
+        }}
+        style={{ listStyle:'none' }}
+      >
+      {open ? dataOpen : dataClose}
+      </summary>
+      {open && children}
+    </details>
+  );
+};
+
+
 
 
 Represents a party on Vega, could be an ethereum wallet address in the future
+
 
 ```graphql
 type Party {
@@ -26,7 +48,7 @@ type Party {
   marketId: ID
   dataRange: DateRange
   pagination: Pagination
-): TradeConnection
+): TradeConnection @deprecated
   accountsConnection(
   marketId: ID
   assetId: ID
@@ -36,7 +58,7 @@ type Party {
   positionsConnection(
   market: ID
   pagination: Pagination
-): PositionConnection
+): PositionConnection @deprecated
   marginsConnection(
   marketId: ID
   pagination: Pagination
@@ -103,7 +125,9 @@ type Party {
 > Filter orders
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Party.<b>tradesConnection</b></code>](#)<Bullet />[`TradeConnection`](/testnet/api/graphql/objects/trade-connection) <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Party.<b>tradesConnection</b></code>](#)<Bullet />[`TradeConnection`](/testnet/api/graphql/objects/trade-connection) <Badge class="secondary" text="deprecated"/> <Badge class="secondary" text="object"/>
+> <Badge class="warning" text="DEPRECATED: Simplify and consolidate trades query and remove nesting. Use trades query instead"/>
+> 
 > 
 > ##### [<code style={{ fontWeight: 'normal' }}>Party.tradesConnection.<b>marketId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > ID of the market you want to get trades for
@@ -135,7 +159,9 @@ type Party {
 > Cursor pagination information
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Party.<b>positionsConnection</b></code>](#)<Bullet />[`PositionConnection`](/testnet/api/graphql/objects/position-connection) <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Party.<b>positionsConnection</b></code>](#)<Bullet />[`PositionConnection`](/testnet/api/graphql/objects/position-connection) <Badge class="secondary" text="deprecated"/> <Badge class="secondary" text="object"/>
+> <Badge class="warning" text="DEPRECATED: Use root positions query instead of sub-query"/>
+> 
 > Trading positions relating to a party
 > ##### [<code style={{ fontWeight: 'normal' }}>Party.positionsConnection.<b>market</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > 
@@ -272,6 +298,4 @@ type Party {
 ### Member of
 
 [`AccountBalance`](/testnet/api/graphql/objects/account-balance)  <Badge class="secondary" text="object"/><Bullet />[`AccountEvent`](/testnet/api/graphql/objects/account-event)  <Badge class="secondary" text="object"/><Bullet />[`Delegation`](/testnet/api/graphql/objects/delegation)  <Badge class="secondary" text="object"/><Bullet />[`Deposit`](/testnet/api/graphql/objects/deposit)  <Badge class="secondary" text="object"/><Bullet />[`Entities`](/testnet/api/graphql/objects/entities)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProviderFeeShare`](/testnet/api/graphql/objects/liquidity-provider-fee-share)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProvision`](/testnet/api/graphql/objects/liquidity-provision)  <Badge class="secondary" text="object"/><Bullet />[`MarginLevels`](/testnet/api/graphql/objects/margin-levels)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/testnet/api/graphql/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`PartyEdge`](/testnet/api/graphql/objects/party-edge)  <Badge class="secondary" text="object"/><Bullet />[`Position`](/testnet/api/graphql/objects/position)  <Badge class="secondary" text="object"/><Bullet />[`Proposal`](/testnet/api/graphql/objects/proposal)  <Badge class="secondary" text="object"/><Bullet />[`ProposalDetail`](/testnet/api/graphql/objects/proposal-detail)  <Badge class="secondary" text="object"/><Bullet />[`Reward`](/testnet/api/graphql/objects/reward)  <Badge class="secondary" text="object"/><Bullet />[`StakeLinking`](/testnet/api/graphql/objects/stake-linking)  <Badge class="secondary" text="object"/><Bullet />[`Trade`](/testnet/api/graphql/objects/trade)  <Badge class="secondary" text="object"/><Bullet />[`Vote`](/testnet/api/graphql/objects/vote)  <Badge class="secondary" text="object"/><Bullet />[`Withdrawal`](/testnet/api/graphql/objects/withdrawal)  <Badge class="secondary" text="object"/>
-
-
 

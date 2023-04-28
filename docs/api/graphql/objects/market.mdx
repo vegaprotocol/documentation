@@ -5,15 +5,37 @@ hide_table_of_contents: false
 ---
 
 
-
 export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
 
 export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
 
-export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+export const Badge = (props) => <><span className={'badge badge--' + props.class}>{props.text}</span></>
+
+import { useState } from 'react';
+
+export const Details = ({ dataOpen, dataClose, children, startOpen = false }) => {
+  const [open, setOpen] = useState(startOpen);
+  return (
+    <details {...(open ? { open: true } : {})} className="details" style={{ border:'none', boxShadow:'none', background:'var(--ifm-background-color)' }}>
+      <summary
+        onClick={(e) => {
+          e.preventDefault();
+          setOpen((open) => !open);
+        }}
+        style={{ listStyle:'none' }}
+      >
+      {open ? dataOpen : dataClose}
+      </summary>
+      {open && children}
+    </details>
+  );
+};
+
+
 
 
 Represents a product & associated parameters that can be traded on Vega, has an associated OrderBook and Trade history
+
 
 ```graphql
 type Market {
@@ -39,7 +61,7 @@ type Market {
   tradesConnection(
   dateRange: DateRange
   pagination: Pagination
-): TradeConnection
+): TradeConnection @deprecated
   depth(
   maxDepth: Int
 ): MarketDepth!
@@ -80,31 +102,31 @@ type Market {
 
 #### [<code style={{ fontWeight: 'normal' }}>Market.<b>decimalPlaces</b></code>](#)<Bullet />[`Int!`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > The number of decimal places that an integer must be shifted by in order to get a correct
-number denominated in the currency of the market. (uint64)
-
-Examples:
-Currency     Balance  decimalPlaces  Real Balance
-GBP              100              0       GBP 100
-GBP              100              2       GBP   1.00
-GBP              100              4       GBP   0.01
-GBP                1              4       GBP   0.0001   (  0.01p  )
-
-GBX (pence)      100              0       GBP   1.00     (100p     )
-GBX (pence)      100              2       GBP   0.01     (  1p     )
-GBX (pence)      100              4       GBP   0.0001   (  0.01p  )
-GBX (pence)        1              4       GBP   0.000001 (  0.0001p)
+> number denominated in the currency of the market. (uint64)
+> 
+> Examples:
+> Currency     Balance  decimalPlaces  Real Balance
+> GBP              100              0       GBP 100
+> GBP              100              2       GBP   1.00
+> GBP              100              4       GBP   0.01
+> GBP                1              4       GBP   0.0001   (  0.01p  )
+> 
+> GBX (pence)      100              0       GBP   1.00     (100p     )
+> GBX (pence)      100              2       GBP   0.01     (  1p     )
+> GBX (pence)      100              4       GBP   0.0001   (  0.01p  )
+> GBX (pence)        1              4       GBP   0.000001 (  0.0001p)
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Market.<b>positionDecimalPlaces</b></code>](#)<Bullet />[`Int!`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > The number of decimal places that an integer must be shifted in order to get a correct size (uint64).
-i.e. 0 means there are no fractional orders for the market, and order sizes are always whole sizes.
-2 means sizes given as 10^2 * desired size, e.g. a desired size of 1.23 is represented as 123 in this market.
-This sets how big the smallest order / position on the market can be.
+> i.e. 0 means there are no fractional orders for the market, and order sizes are always whole sizes.
+> 2 means sizes given as 10^2 * desired size, e.g. a desired size of 1.23 is represented as 123 in this market.
+> This sets how big the smallest order / position on the market can be.
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Market.<b>openingAuction</b></code>](#)<Bullet />[`AuctionDuration!`](/testnet/api/graphql/objects/auction-duration) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > Auction duration specifies how long the opening auction will run (minimum
-duration and optionally a minimum traded volume).
+> duration and optionally a minimum traded volume).
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Market.<b>priceMonitoringSettings</b></code>](#)<Bullet />[`PriceMonitoringSettings!`](/testnet/api/graphql/objects/price-monitoring-settings) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
@@ -147,7 +169,9 @@ duration and optionally a minimum traded volume).
 > Pagination information
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Market.<b>tradesConnection</b></code>](#)<Bullet />[`TradeConnection`](/testnet/api/graphql/objects/trade-connection) <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>tradesConnection</b></code>](#)<Bullet />[`TradeConnection`](/testnet/api/graphql/objects/trade-connection) <Badge class="secondary" text="deprecated"/> <Badge class="secondary" text="object"/>
+> <Badge class="warning" text="DEPRECATED: Simplify and consolidate trades query and remove nesting. Use trades query instead"/>
+> 
 > 
 > ##### [<code style={{ fontWeight: 'normal' }}>Market.tradesConnection.<b>dateRange</b></code>](#)<Bullet />[`DateRange`](/testnet/api/graphql/inputs/date-range) <Badge class="secondary" text="input"/>
 > Date range to retrieve trades from/to. Start and end time should be expressed as an integer value of nano-seconds past the Unix epoch
@@ -228,6 +252,4 @@ duration and optionally a minimum traded volume).
 ### Member of
 
 [`AccountBalance`](/testnet/api/graphql/objects/account-balance)  <Badge class="secondary" text="object"/><Bullet />[`AccountEvent`](/testnet/api/graphql/objects/account-event)  <Badge class="secondary" text="object"/><Bullet />[`Entities`](/testnet/api/graphql/objects/entities)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProvision`](/testnet/api/graphql/objects/liquidity-provision)  <Badge class="secondary" text="object"/><Bullet />[`MarginLevels`](/testnet/api/graphql/objects/margin-levels)  <Badge class="secondary" text="object"/><Bullet />[`MarketData`](/testnet/api/graphql/objects/market-data)  <Badge class="secondary" text="object"/><Bullet />[`MarketDepth`](/testnet/api/graphql/objects/market-depth)  <Badge class="secondary" text="object"/><Bullet />[`MarketDepthUpdate`](/testnet/api/graphql/objects/market-depth-update)  <Badge class="secondary" text="object"/><Bullet />[`MarketEdge`](/testnet/api/graphql/objects/market-edge)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/testnet/api/graphql/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`Position`](/testnet/api/graphql/objects/position)  <Badge class="secondary" text="object"/><Bullet />[`Trade`](/testnet/api/graphql/objects/trade)  <Badge class="secondary" text="object"/>
-
-
 

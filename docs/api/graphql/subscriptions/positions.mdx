@@ -5,15 +5,37 @@ hide_table_of_contents: false
 ---
 
 
-
 export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
 
 export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
 
-export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+export const Badge = (props) => <><span className={'badge badge--' + props.class}>{props.text}</span></>
+
+import { useState } from 'react';
+
+export const Details = ({ dataOpen, dataClose, children, startOpen = false }) => {
+  const [open, setOpen] = useState(startOpen);
+  return (
+    <details {...(open ? { open: true } : {})} className="details" style={{ border:'none', boxShadow:'none', background:'var(--ifm-background-color)' }}>
+      <summary
+        onClick={(e) => {
+          e.preventDefault();
+          setOpen((open) => !open);
+        }}
+        style={{ listStyle:'none' }}
+      >
+      {open ? dataOpen : dataClose}
+      </summary>
+      {open && children}
+    </details>
+  );
+};
+
+
 
 
 Subscribe to the positions updates
+
 
 ```graphql
 positions(
@@ -37,12 +59,10 @@ positions(
 
 #### [`PositionUpdate`](/testnet/api/graphql/objects/position-update) <Badge class="secondary" text="object"/>
 > An individual party at any point in time is considered net long or net short. This refers to their Open Volume,
-calculated using FIFO. This volume is signed as either negative for LONG positions and positive for SHORT positions. A
-single trade may end up "splitting" with some of its volume matched into closed volume and some of its volume
-remaining as open volume. This is why we don't refer to positions being comprised of trades, rather of volume.
+> calculated using FIFO. This volume is signed as either negative for LONG positions and positive for SHORT positions. A
+> single trade may end up "splitting" with some of its volume matched into closed volume and some of its volume
+> remaining as open volume. This is why we don't refer to positions being comprised of trades, rather of volume.
 > 
-
-
 
 
 

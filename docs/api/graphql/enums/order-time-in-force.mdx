@@ -5,15 +5,37 @@ hide_table_of_contents: false
 ---
 
 
-
 export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
 
 export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
 
-export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+export const Badge = (props) => <><span className={'badge badge--' + props.class}>{props.text}</span></>
+
+import { useState } from 'react';
+
+export const Details = ({ dataOpen, dataClose, children, startOpen = false }) => {
+  const [open, setOpen] = useState(startOpen);
+  return (
+    <details {...(open ? { open: true } : {})} className="details" style={{ border:'none', boxShadow:'none', background:'var(--ifm-background-color)' }}>
+      <summary
+        onClick={(e) => {
+          e.preventDefault();
+          setOpen((open) => !open);
+        }}
+        style={{ listStyle:'none' }}
+      >
+      {open ? dataOpen : dataClose}
+      </summary>
+      {open && children}
+    </details>
+  );
+};
+
+
 
 
 Valid order types, these determine what happens when an order is added to the book
+
 
 ```graphql
 enum OrderTimeInForce {
@@ -43,7 +65,7 @@ enum OrderTimeInForce {
 
 #### [<code style={{ fontWeight: 'normal' }}>OrderTimeInForce.<b>TIME_IN_FORCE_GTT</b></code>](#) 
 > Good 'til Time: This order type trades any amount and as much as possible and remains on the book until they either trade completely, are cancelled, or expires at a set time
-NOTE: this may in future be multiple types or have sub types for orders that provide different ways of specifying expiry
+> NOTE: this may in future be multiple types or have sub types for orders that provide different ways of specifying expiry
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>OrderTimeInForce.<b>TIME_IN_FORCE_GFA</b></code>](#) 
@@ -59,6 +81,4 @@ NOTE: this may in future be multiple types or have sub types for orders that pro
 ### Member of
 
 [`estimateFees`](/testnet/api/graphql/queries/estimate-fees)  <Badge class="secondary" text="query"/><Bullet />[`estimateOrder`](/testnet/api/graphql/queries/estimate-order)  <Badge class="secondary" text="query"/><Bullet />[`Order`](/testnet/api/graphql/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`OrderFilter`](/testnet/api/graphql/inputs/order-filter)  <Badge class="secondary" text="input"/><Bullet />[`OrderUpdate`](/testnet/api/graphql/objects/order-update)  <Badge class="secondary" text="object"/>
-
-
 

@@ -5,15 +5,37 @@ hide_table_of_contents: false
 ---
 
 
-
 export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
 
 export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
 
-export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+export const Badge = (props) => <><span className={'badge badge--' + props.class}>{props.text}</span></>
+
+import { useState } from 'react';
+
+export const Details = ({ dataOpen, dataClose, children, startOpen = false }) => {
+  const [open, setOpen] = useState(startOpen);
+  return (
+    <details {...(open ? { open: true } : {})} className="details" style={{ border:'none', boxShadow:'none', background:'var(--ifm-background-color)' }}>
+      <summary
+        onClick={(e) => {
+          e.preventDefault();
+          setOpen((open) => !open);
+        }}
+        style={{ listStyle:'none' }}
+      >
+      {open ? dataOpen : dataClose}
+      </summary>
+      {open && children}
+    </details>
+  );
+};
+
+
 
 
 Response for the signature bundle to allowlist an ERC20 token in the collateral bridge
+
 
 ```graphql
 type Erc20ListAssetBundle {
@@ -41,7 +63,7 @@ type Erc20ListAssetBundle {
 
 #### [<code style={{ fontWeight: 'normal' }}>Erc20ListAssetBundle.<b>signatures</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Signature aggregate from the nodes, in the following format:
-0x + sig1 + sig2 + ... + sigN
+> 0x + sig1 + sig2 + ... + sigN
 > 
 
 
@@ -49,6 +71,4 @@ type Erc20ListAssetBundle {
 ### Returned by
 
 [`erc20ListAssetBundle`](/testnet/api/graphql/queries/erc-20-list-asset-bundle)  <Badge class="secondary" text="query"/>
-
-
 
