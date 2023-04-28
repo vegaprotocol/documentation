@@ -184,7 +184,7 @@ module.exports = {
     [
       // This plugin extends the CLI to give us a generator that takes in our schema and produces
       // markdown files inside the docs folder, so these are included in the versioned docs.
-      require.resolve("@edno/docusaurus2-graphql-doc-generator"),
+      require.resolve("@graphql-markdown/docusaurus"),
       {
         schema: `./specs/v${version}/schema.graphql`,
         rootPath: "docs/api/",
