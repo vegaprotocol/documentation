@@ -6,7 +6,6 @@ You have configured the vega core & data-node
 You can access one of the data nodes to collect its network history.
 You can get trusted block details (I will describe how to do it later)
 
-
 ### 1. Stop the network
 
 ```shell
@@ -47,7 +46,7 @@ rpc_servers = "<<rpcServers>>"
 
 :::note
 You have to ask someone for tendermint RPC server. The best server is the one you collected trusted block height and hash. But it can be any server which has trusted block.
-:::
+:::github.com/
 
 ### 5. Enable network sync from network history and update network history init timeout
 
@@ -78,10 +77,19 @@ Check if you have `StartHeight` set to `-1` in <<vega_home>>/config/node/config.
 
 ### 7. Call unsafe reset all
 
+Reset the chain data state:
+
 ```shell
 vega unsafe_reset_all --home <<vega_home>>
 vega tm unsafe-reset-all --home <<tendermint_home>>
 rm -r <<vega_home>>/state/data-node/*
+```
+
+Recreate the PostgreSQL database:
+
+```sql
+DROP database <<data-node-db-name>>;
+CREATE DATABASE <<data-node-db-name>> WITH owner=<<data-node-db-user>>;
 ```
 
 ### 8. Start your node
