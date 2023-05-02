@@ -32,13 +32,13 @@ You will need:
 
 ## Anatomy of an update market proposal
 
-The `updateMarket` proposal requires the same fields as a `newMarket` proposal. See the descriptions in the [new market proposal tutorial](new-market-proposal.md#fields) for more on each field.
+The update market proposal requires the same fields as a new market proposal. See the descriptions in the [new market proposal tutorial](new-market-proposal.md#anatomy-of-a-market-proposal) for more on each field.
 
-In addition to the parameters you want to change, you must include all existing parameters from the original `newMarket` proposal, even if they are not being changed.
+In addition to the parameters you want to change, you must include all existing parameters from the original new market proposal, even if they are not being changed.
 
 ### Locked fields
 
-The following fields, which you might recognise from `newMarket` proposals, are immutable and cannot be changed. They are not included in the [proposal templates](#templates-and-submitting).
+The following fields, which you might recognise from new market proposals, are immutable and cannot be changed. They are not included in the [proposal templates](#templates-and-submitting).
 
 - `decimalPlaces`
 - `positionDecimalPlaces`

@@ -29,6 +29,17 @@ You will need:
 * A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minProposerBalance" hideName={true} suffix="tokens"/> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens"  formatter="governanceToken" hideName={true} suffix="tokens"/>
 * Familiarity with [governance on Vega](../../concepts/vega-protocol.md#governance), particularly [network parameter governance](../../concepts/vega-protocol#network-parameter-governance)
 
+## Anatomy of a network parameter proposal
+The key inputs on a network parameter proposal are as follows.
+
+The contents of a `changes` object specifies what will be different after the proposal. In this case, these are the changes that will occur on the network.
+
+**Rationale** requires a title and a description. They are free-text fields that describe the purpose of the proposal. Within the description, include links with more information about your proposal (such as to the IPFS content or forum post) that voters can reference to learn more about the asset proposal.
+
+**Key** is the name of the network parameter that you are proposing a change to.
+
+**Value** is the new value you're proposing that the network parameter should have.
+
 ## Templates and submitting
 In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to [submit on the governance dApp](https://governance.fairground.wtf/proposals/propose/network-parameter), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
 Voting and enacting

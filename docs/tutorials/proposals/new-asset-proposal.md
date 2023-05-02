@@ -41,16 +41,20 @@ If an asset that you would like to see on the network is not already available, 
 If the vote passes, the network validators will then enable the asset on the [bridge contract](../../api/bridge/contracts/ERC20_Bridge_Logic#tag/TradingDataService/operation/TradingDataService1_ERC20WithdrawalApproval) which will enable deposits and withdrawals for that token.
 
 ## Anatomy of a new asset proposal
-The key inputs on a new asset proposal are as follows:
+The key inputs on a new asset proposal are as follows.
+
+The contents of a `changes` object specifies what will be different after the proposal. In this case, these are the changes that will occur on the network, in the form of a new market.
+
+**Rationale** requires a title and a description. They are free-text fields that describe the purpose of the proposal. Within the description, include links with more information about your proposal (such as to the IPFS content or forum post) that voters can reference to learn more about the asset proposal.
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
 | `name` | Name of the asset (string) | Testnet DAI |
 | `symbol` | Symbol of the asset (string)  | tDAI |
 | `decimals` | Number of decimal / precision handled by this asset (string)  | 18 |
-| `quantum` | The minimum economically meaningful amount in the asset (string).  This should be the amount of the asset roughly equal to 1 USD.  It is used in a number of ways by the protocol but only requires precision to an order of magnitude level.  eg. for BTC, one BTC = 26,583 USD today; in this case a quantum of 1 / 25,000 or 0.00004 is sufficient, converted to asset decimals so 40000000000000. | 1000000000000000000 |
-| `withdrawThreshold` | The maximum you can withdraw instantly in asset decimals. All withdrawals over the threshold will be delayed by the withdrawal delay, which can be seen on the ERC-20 bridge per asset. Setting this to 0 means all withdrawals will be subject to the delay. | 0 |
-| `lifetimeLimit` | The lifetime deposit limit per address in asset decimals. Users are able to opt out of this functionality using the `exempt_depositor` write function on the ERC20 contract if they wish to. Suggested value: equivalent of 10,000 USD | 10000000000000000000000 |
+| `quantum` | The minimum economically meaningful amount of the asset (string). This should be the amount of the asset roughly equal to 1 USD. It is used in a number of ways by the protocol but only requires precision to an order of magnitude level.  For example, if one BTC = 26,583 USD, then in this case a quantum of 1 / 25,000 or 0.00004 is sufficient. Converted to asset decimals it would be 40000000000000. | 1000000000000000000 |
+| `withdrawThreshold` | The maximum you can withdraw instantly, denoted in asset decimals. All withdrawals over the threshold will be delayed by the withdrawal delay, which can be seen on the ERC-20 bridge per asset. Setting this to 0 means all withdrawals will be subject to the delay. | 0 |
+| `lifetimeLimit` | The lifetime deposit limit per public key, in asset decimals. Users are able to opt out of this functionality using the `exempt_depositor` write function on the ERC20 contract if they wish to. Suggested value: equivalent of 10,000 USD | 10000000000000000000000 |
 
 ## ERC-20 asset validation
 When adding an ERC-20 asset to the bridge, the key details are compared to the smart contract on Ethereum. Specifically:
