@@ -25,3 +25,8 @@ The following example libraries provide code for submitting signed transactions 
 
 ### Bot sample code
 See some sample bot code for how to submit orders using the APIs [github.com/jeremyletang/vegamm ↗](https://github.com/jeremyletang/vegamm). Note that this code may not be actively maintained, so you should to test it before using it on an active network.
+
+### Ask Vega AI
+**[Ask Vega ↗](https://github.com/vega-builders-club/askvega-ai)**: An AI support app for learning about the Vega protocol. 
+
+This tool was built by members of the Vega Builders Club, using ChatGPT trained on the Vega blog and documentation. If you spot any problems or would like to contribute to it, raise an issue on the GitHub repo, or send a message on [Discord ↗](https://vega.xyz/discord) to reach the Builders Club members.
