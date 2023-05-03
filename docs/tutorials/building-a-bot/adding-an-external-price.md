@@ -7,6 +7,14 @@ description: Add an external price feed to the bot.
 
 This tutorial builds upon the basis of the codebase in [Streaming Data](streaming-data.md) so ensure you have run through that tutorial first if you want to build a working bot. 
 
+:::caution Build with care
+As described in the open source license, the Vega Protocol software and supporting documentation is provided “as is”, at your own risk, and without warranties of any kind.
+
+The information provided in this tutorial does not constitute investment advice, financial advice, trading advice, or any other sort of advice and you should not treat any of the content as such. Gobalsky Labs Limited does not recommend that any asset should be bought, sold, or held by you. Do conduct your own due diligence and consult your financial advisor before making any investment decisions.
+
+No developer or entity involved in creating the Vega protocol or supporting documentation will be liable for any claims or damages whatsoever associated with your use, inability to use, or your interaction with other users of the Vega Protocol, including any direct, indirect, incidental, special, exemplary, punitive or consequential damages, or legal costs, loss of profits, cryptocurrencies, tokens, or anything else of value.
+:::
+
 ## Current setup
 
 In the last tutorial we built a bot which listened to streams of market data to update it's knowledge of position and order state to ensure it could trade with full knowledge without having to make repeated queries and incur that time cost. Now that we have a working bot, in this tutorial we will add in a connection to a Binance price feed to make our quoting slightly smarter. Before we do that, let's review how we currently set our prices:

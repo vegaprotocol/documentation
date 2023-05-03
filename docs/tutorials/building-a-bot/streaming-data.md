@@ -5,7 +5,15 @@ hide_title: false
 description: Enhance the bot with a data stream.
 ---
 
-This tutorial builds upon the basis of the codebase in [Getting Started](getting-started.md), so ensure you have run through that tutorial first if you want to build a working bot. 
+This tutorial builds upon the basis of the codebase in [Getting Started](getting-started.md), so ensure you have run through that tutorial first if you want to build a working bot.
+
+:::caution Build with care
+As described in the open source license, the Vega Protocol software and supporting documentation is provided “as is”, at your own risk, and without warranties of any kind.
+
+The information provided in this tutorial does not constitute investment advice, financial advice, trading advice, or any other sort of advice and you should not treat any of the content as such. Gobalsky Labs Limited does not recommend that any asset should be bought, sold, or held by you. Do conduct your own due diligence and consult your financial advisor before making any investment decisions.
+
+No developer or entity involved in creating the Vega protocol or supporting documentation will be liable for any claims or damages whatsoever associated with your use, inability to use, or your interaction with other users of the Vega Protocol, including any direct, indirect, incidental, special, exemplary, punitive or consequential damages, or legal costs, loss of profits, cryptocurrencies, tokens, or anything else of value.
+:::
 
 In the last tutorial we built a bot that looped infinitely, checking its position on a market and the live prices before submitting its own orders based on that. However, as noted, despite sleeping for only 1s at the end of each iteration, it only actually runs through the loop once every few seconds. This is down to the fact it had to call out to a REST API for each of these data updates. 
 
