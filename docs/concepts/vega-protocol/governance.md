@@ -103,7 +103,7 @@ Importantly, these `minimum` levels are themselves network parameters, and there
 :::tip Query for data
 See the current values (in some cases, different per network) on the [block explorer](https://explorer.fairground.wtf). 
 
-Otherwise, [use REST](../api/rest/state/core-state-service-list-network-parameters.api.mdx) to see the network parameters and their values.
+Otherwise, [use REST](../../api/rest/state/core-state-service-list-network-parameters.api.mdx) to see the network parameters and their values.
 :::
 
 ### Example
@@ -127,8 +127,8 @@ The protocol currently supports adding ERC-20 assets. Those ERC-20 assets that a
 After a new asset vote passes, the change has to be submitted to the asset bridge on Ethereum. Until it has been submitted, no one can start depositing that asset. 
 
 See the proposal tutorials to: 
-* [Propose a new asset](../tutorials/proposals/new-asset-proposal.md)
-* [Propose an update to an asset](../tutorials/proposals/update-asset-proposal.md)
+* [Propose a new asset](../../tutorials/proposals/new-asset-proposal.md)
+* [Propose an update to an asset](../../tutorials/proposals/update-asset-proposal.md)
 
 ### ERC-20 asset validation
 When adding an ERC-20 asset to the bridge, the key details are compared to the smart contract on Ethereum. 
@@ -151,8 +151,8 @@ When creating a market governance proposal, whether it is for a new market or to
 
 Read more:
 * [Vega community forum ↗](https://community.vega.xyz): Share your draft proposals for community discussion.
-* [New market proposal ↗](../tutorials/proposals/new-market-proposal.md): Guide to submitting a proposal for a new market using the command line
-* [Update market proposal ↗](../tutorials/proposals/update-market-proposal.md): Guide to submitting a proposal to change a market using the command line
+* [New market proposal ↗](../../tutorials/proposals/new-market-proposal.md): Guide to submitting a proposal for a new market using the command line
+* [Update market proposal ↗](../../tutorials/proposals/update-market-proposal.md): Guide to submitting a proposal to change a market using the command line
 
 ### Propose a new market
 Tokenholders can propose new markets, which then need to be voted on by other tokenholders. The proposer will need to have at least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the market, and staked to a validator. Note, this amount is set through the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true} />.
@@ -175,8 +175,7 @@ Optional fields include:
 * Price monitoring parameters, including the triggers covering the horizon, probability and auction extension time. If left blank these parameters will default to the values set in the network parameters
 
 :::note Read more
-* [Risk models and parameters](#risk-models-and-parameters)
-* [New market proposal](../tutorials/proposals/new-market-proposal.md)
+* [New market proposal tutorial](../../tutorials/proposals/new-market-proposal.md)
 :::
 
 <!--
@@ -245,4 +244,4 @@ A network parameter is defined by:
 * Constraints
 * Governance update policy
 
-**Read more:** [Guide to submitting a network parameter proposal using the command line](../tutorials/proposals/network-parameter-proposal.md)
+**Read more:** [Guide to submitting a network parameter proposal using the command line](../../tutorials/proposals/network-parameter-proposal.md)

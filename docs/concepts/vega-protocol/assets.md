@@ -33,13 +33,22 @@ These fields are all set in the asset's governance proposal, and can also be cha
 ## Ethereum bridges [WIP]
 In order to ensure the safety, security, and allocation of these assets, they must be managed in a fully decentralised and extensible way.
 
+Supporting ERC-20 tokens means that while the asset journey is processed in vega, the tokens are held securely through bridges (make this sensible) ... 
+
 how the new asset framework allow users of the vega network to propose a new asset to be used in the vega network,
 
-
-## Deposits and withdrawals
+## Using assets
+### Deposits and withdrawals
 See the [Deposits and withdrawals](./deposits-withdrawals) page for how they work on Vega.
 
-## Transfer assets to keys or accounts
+### Margin, settlement, and liquidity provision
+See the [positions and margin](../trading-on-vega/positions-margin.md) page for details on how margining works. 
+
+See the [settlement](../trading-on-vega/settlement.md) page for information on how settlement is handled.
+
+See the section on [liquidity provision](../liquidity/index.md) for details on the liquidity provision mechanics.
+
+### Transfer assets to keys or accounts
 Transfers can be used to move assets from one Vega key to another, or from a Vega key to a specific account, such as a reward pool used for the on-chain network treasury.
 
 Anyone with a Vega public key and assets (such as the VEGA token) can set up a transfer. Those transfers can only be done from a general account the party has control of, using their own funds.
@@ -49,7 +58,7 @@ Anyone with a Vega public key and assets (such as the VEGA token) can set up a t
 Transfers can be set up to happen only once, or can happen repeatedly.
 
 :::tip Try it out
-Set up transfers with your Vega wallet using the command line. Find out how in the **[transfers guide](../tutorials/transferring-assets.md)**.
+Set up transfers with your Vega wallet using the command line. Find out how in the **[transfers guide](../../tutorials/transferring-assets.md)**.
 :::
 
 ### Transfer limits
