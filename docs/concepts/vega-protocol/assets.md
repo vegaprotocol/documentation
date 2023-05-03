@@ -30,14 +30,22 @@ These fields are all set in the asset's governance proposal, and can also be cha
 * **Maximum lifetime deposit**: The lifetime deposit limit per public key.
 * **Withdrawal delay threshold**: The maximum that someone with the asset can withdraw instantly. All withdrawals over the threshold will be delayed by the withdrawal delay, which can be seen on the ERC-20 bridge, per asset. For an asset with a threshold of 0, all withdrawals will be subject to the delay.
 
-## Ethereum bridges [WIP]
-In order to ensure the safety, security, and allocation of these assets, they must be managed in a fully decentralised and extensible way.
+## Asset bridges 
+There are thousands of tokens, coins, and assets that could potentially be used to settle markets created on Vega. However, because none of them are native to the Vega chain, there needs to be a mechanism for allowing at least a subset of those assets to be used with Vega.
 
-Supporting ERC-20 tokens means that while the asset journey is processed in vega, the tokens are held securely through bridges (make this sensible) ... 
+Asset bridges facilitate using assets from blockchains that aren't Vega. Bridges allow for managing assets in a fully decentralised and extensible way.
 
-how the new asset framework allow users of the vega network to propose a new asset to be used in the vega network,
+### ERC-20 tokens
+The first Vega asset bridge targets the ERC-20 token standard. Ethereum holds and provides access to the majority of the currencies either natively or bridged and wrapped currencies from other chains. By focusing on Ethereum first, Vega markets get the most value for the least effort and complexity.
+
+ERC-20 is a ubiquitous smart contract interface that allows users to mint, issue, and transfer tokens safely and easily between users, exchanges, and protocols. By creating a bridge first to ERC-20 assets, Vega users can propose using assets like Tether, USDC, Wrapped BTC, Wrapped ETH, and thousands of others.
+
+### Diagram: ERC-20 asset bridge
+
+![ERC-20 asset bridge diagram](/img/concept-diagrams/erc-20-bridge.png)
 
 ## Using assets
+
 ### Deposits and withdrawals
 See the [Deposits and withdrawals](./deposits-withdrawals) page for how they work on Vega.
 
@@ -61,7 +69,7 @@ Transfers can be set up to happen only once, or can happen repeatedly.
 Set up transfers with your Vega wallet using the command line. Find out how in the **[transfers guide](../../tutorials/transferring-assets.md)**.
 :::
 
-### Transfer limits
+#### Transfer limits
 * Each party has a max number of transfers per epoch that they can send, set by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.maxUserTransfersPerEpoch" />. 
 * A minimum transfer amount is controlled by the <NetworkParameter frontMatter={frontMatter} param="transfer.minTransferQuantumMultiple" />, which is dependent on the quantum (smallest possible amount) specified for the asset. To calculate the smallest a transfer can be, multiply the <NetworkParameter frontMatter={frontMatter} param="transfer.minTransferQuantumMultiple" hideValue={true} /> by the asset's quantum.
 
@@ -78,13 +86,14 @@ A recurring transfer transaction needs to contain the following:
 * The percentage of the full amount to pay each epoch, which is defined using the factor - a decimal
   - The amount paid at the end of each epoch is calculated using the following formula: `amount = start amount x factor ^ (current epoch - start epoch)`
 
+#### Recurring transfer limits
+While a party (public key) can have multiple transfers set up to move assets to different accounts, each party can only have one recurring transfer between two given accounts at the same time. For example, a party can transfer from their general account to Public key A and Public key B, but they cannot set up two recurring transfers of different amounts both going to Public key B.
+
+
 ### Cancel or amend transfers
 It's possible to cancel a recurring transfer, but not to amend. If you want to change your transfer, you'll need to cancel the existing transfer and submit a new one.
 
 If the asset used to fund a recurring transfer is depleted, either because the funds have run out or it's less than the <NetworkParameter frontMatter={frontMatter} param="transfer.minTransferQuantumMultiple" />` x quantum`, then the transfer is cancelled automatically. You'll have to set up a new transfer if you want to keep funding the key/account.
-
-### Recurring transfer limits
-While a party (public key) can have multiple transfers set up to move assets to different accounts, each party can only have one recurring transfer between two given accounts at the same time. For example, a party can transfer from their general account to Public key A and Public key B, but they cannot set up two recurring transfers of different amounts both going to Public key B.
 
 ## On-chain network treasury 
 In restricted mainnet, some of the rewards for nominating a validator will be distributed from the on-chain network treasury, in the form of VEGA tokens.
