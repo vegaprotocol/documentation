@@ -32,9 +32,7 @@ Propose a cash-settled futures market on any underlying with a settlement data s
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
 * A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens"/> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>
-* Familiarity with [governance on Vega](../../concepts/vega-protocol.md#governance), particularly [market governance](../../concepts/vega-protocol#market-governance)
-
-<!--[Update an existing market](#update-an-existing-market): change the details of a market that is already enacted.-->
+* Familiarity with [governance on Vega](../../concepts/vega-protocol/governance.md), particularly [market governance](../../concepts/vega-protocol/governance.md#market-governance)
 
 ## Anatomy of a market proposal
 In this section, the [full proposal template](#templates-and-submitting) has been divided into sections to provide more details on what you need to submit.
@@ -145,11 +143,11 @@ Price monitoring uses the following properties:
 | `auctionExtension` | Price monitoring auction extension duration (in seconds) should the price breach its theoretical level over the specified horizon at the specified probability level (set as >0) | 600 |
 
 ### Risk model
-Choose the individual parameters for the [log-normal risk model](../../concepts/vega-protocol.md#log-normal-risk-model). You should ensure the risk model parameters represent the dynamics of the underlying instrument, and that the resulting margins strike the right balance between prudence and capital efficiency. 
+Choose the individual parameters for the [log-normal risk model](../../concepts/vega-protocol/governance.md#log-normal-risk-model). You should ensure the risk model parameters represent the dynamics of the underlying instrument, and that the resulting margins strike the right balance between prudence and capital efficiency. 
 
 While you cannot define exactly how much margin (or leverage) is possible, you can influence the acceptable levels of market volatility.
 
-Read about the [risk models and parameters](../../concepts/vega-protocol.md#risk-models-and-parameters) before choosing your values.
+Read about the [risk models and parameters](../../concepts/vega-protocol/governance.md#risk-models-and-parameters) before choosing your values.
 
 <NewMarketJSONRisk />
 The risk model uses the following properties: 
@@ -186,7 +184,7 @@ In the tabs below you'll see an annotated example, which describes what each fie
 ## Voting and enactment
 All proposals are voted on by the community. To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minVoterBalance" suffix="tokens" hideName={true} formatter="governanceToken" />, or <NetworkParameter formatter="governanceToken" frontMatter={frontMatter} param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated with their Vega key.
 
-Your proposal will need [participation](../../concepts/vega-protocol#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential. If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
+Your proposal will need [participation](../../concepts/vega-protocol/governance.md#how-a-proposals-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential. If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
 
 Building support is down to you. Share your proposal in [the _New Market Proposals_ forum ↗](https://community.vega.xyz/c/fairground-testnet-governance/new-market-proposals-testnet/33) on Vega community, being sure to follow the [post guide ↗](https://community.vega.xyz/t/guide-to-new-market-proposals-on-fairground-testnet/4017). You may also wish to share on [Discord ↗](https://vega.xyz/discord).
 

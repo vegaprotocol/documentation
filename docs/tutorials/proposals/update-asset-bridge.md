@@ -26,7 +26,7 @@ Vega validators automatically create a multisig bundle - a collection of signatu
 ## Requirements
 You will need:
 * An Ethereum wallet
-* Familiarity with [governance on Vega](../../concepts/vega-protocol.md#governance), particularly [assets at a protocol level](../../concepts/vega-protocol#assettoken-management), as well as how the [asset bridge](../../concepts/vega-protocol#assettoken-management) works on Ethereum.
+* Familiarity with [governance on Vega](../../concepts/vega-protocol/governance.md), particularly [assets at a protocol level](../../concepts/vega-protocol/governance.md#asset-governance), as well as how the [asset bridge](../../concepts/vega-protocol/assets.md#asset-bridges) works on Ethereum.
 
 As an alternative to making the transaction yourself, Etherscan provides a simple interface that can be used to submit updates to the bridge. You can access it by visiting the relevant contract page, under 'Contract' > 'Write contract'.
 

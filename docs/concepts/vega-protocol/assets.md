@@ -35,6 +35,8 @@ There are thousands of tokens, coins, and assets that could potentially be used 
 
 Asset bridges facilitate using assets from blockchains that aren't Vega. Bridges allow for managing assets in a fully decentralised and extensible way.
 
+When an asset has successfully been proposed and approved through governance, the asset bridge will then need to be updated. Vega validators automatically create a multisig bundle - a collection of signatures indicating their approval of the update. That bundle is then submitted to the bridge before the asset can be deposited and used.
+
 ### ERC-20 tokens
 The first Vega asset bridge targets the ERC-20 token standard. Ethereum holds and provides access to the majority of the currencies either natively or bridged and wrapped currencies from other chains. By focusing on Ethereum first, Vega markets get the most value for the least effort and complexity.
 
@@ -47,7 +49,7 @@ ERC-20 is a ubiquitous smart contract interface that allows users to mint, issue
 ## Using assets
 
 ### Deposits and withdrawals
-See the [Deposits and withdrawals](./deposits-withdrawals) page for how they work on Vega.
+See the [Deposits and withdrawals](../deposits-withdrawals) page for how they work on Vega.
 
 ### Margin, settlement, and liquidity provision
 See the [positions and margin](../trading-on-vega/positions-margin.md) page for details on how margining works. 

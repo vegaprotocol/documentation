@@ -64,7 +64,7 @@ A proposal is immutable once entered.
 Once a proposal is submitted and accepted, rally the community to vote on the proposal by announcing it on the [forum ↗](https://community.vega.xyz/), [Discord ↗](https://vega.xyz/discord), and through your own networks to vote on the proposal.
 
 :::tip Try it out 
-Read the **[proposals guides](../tutorials/proposals/)** to see what information needs to be in a proposal, and how to submit them using the command line. 
+Read the **[proposals guides](../../tutorials/proposals/index.md)** to see what information needs to be in a proposal, and how to submit them using the command line. 
 :::
 
 #### Validating a proposal
