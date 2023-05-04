@@ -7,7 +7,7 @@ description: Vega supports ERC-20 assets that are added through governance.
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-Vega currently supports using ERC-20 tokens for markets on Vega. Those assets must be proposed through governance and pass the voting threshold, and be enabled on the Vega bridge. ERC-20 tokens originate on the Ethereum chain, not the Vega chain. Inter-chain asset interactions between Vega and Ethereum are facilitated through the Ethereum bridges. 
+Vega currently supports exclusively using ERC-20 tokens for markets on Vega. Those assets must be [proposed through governance](governance.md#asset-governance) and pass the voting threshold, and be enabled on the Vega bridge. ERC-20 tokens originate on the Ethereum chain, not the Vega chain. Inter-chain asset interactions between Vega and Ethereum are facilitated through the Ethereum bridges. 
 
 The assets on Vega are used for margining and settling positions on markets, and supplying liquidity to those markets. Fees incurred and rewards received are also funded using those enabled assets, and can be transferred between keys.
 
@@ -16,17 +16,19 @@ Assets need to be deposited using a bridge contract, and can be withdrawn back i
 ## Asset definition
 Each asset has a set of defined fields: those that are validated against the origin contract and cannot be changed, and those that provide extra settings specifically for use with Vega.
 
-### Contract-level fields
+### Contract-level details
 The following fields come from the asset's smart contract. When proposing an asset, what's described in the proposal must match the originating contract.
 
 * **Name**: Asset name, such as Wrapped Ether.
 * **Symbol**: Short code for the asset, such as WETH.
 * **Total supply**: Total amount of the asset as described on the contract.
+* **Decimal places**: Number of decimal places used by the ERC-20 asset on its originating chain. 
+* **Contract address**: Token contract's address on the Ethereum network.
 
-### Protocol-level fields
+### Protocol-level details
 These fields are all set in the asset's governance proposal, and can also be changed by governance.
 
-* **Quantum:** An approximation of the smallest 'meaningful' amount of that asset, for example the quantity of the asset that would approximately match the value of 1 USD. An asset's quantum is set in the governance proposal that enabled the asset for use on Vega.
+* **Quantum:** A loose approximation of the smallest 'meaningful' amount of that asset, for example the quantity of the asset that would approximately match the value of 1 USD. An asset's quantum is set in the governance proposal that enabled the asset for use on Vega. A quantum should be set to a round value. When a quantum is used for calculations, it will rely on a configurable multiplier so that an asset's volatility doesn't negatively impact the relevant feature.
 * **Maximum lifetime deposit**: The lifetime deposit limit per public key.
 * **Withdrawal delay threshold**: The maximum that someone with the asset can withdraw instantly. All withdrawals over the threshold will be delayed by the withdrawal delay, which can be seen on the ERC-20 bridge, per asset. For an asset with a threshold of 0, all withdrawals will be subject to the delay.
 
@@ -89,8 +91,7 @@ A recurring transfer transaction needs to contain the following:
   - The amount paid at the end of each epoch is calculated using the following formula: `amount = start amount x factor ^ (current epoch - start epoch)`
 
 #### Recurring transfer limits
-While a party (public key) can have multiple transfers set up to move assets to different accounts, each party can only have one recurring transfer between two given accounts at the same time. For example, a party can transfer from their general account to Public key A and Public key B, but they cannot set up two recurring transfers of different amounts both going to Public key B.
-
+While a party (public key) can have multiple transfers set up to move assets to different accounts, each party can only have one recurring transfer between two given accounts at the same time. For example, a party can transfer from their general account to Public Key A and Public Key B, but they cannot set up two recurring transfers of different amounts both going to Public Key B.
 
 ### Cancel or amend transfers
 It's possible to cancel a recurring transfer, but not to amend. If you want to change your transfer, you'll need to cancel the existing transfer and submit a new one.
