@@ -34,7 +34,7 @@ You will need:
 
 - A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
 - A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minProposerBalance" hideName={true} suffix="tokens"/> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true}  formatter="governanceToken" suffix="tokens"/>
-- Familiarity with [governance on Vega](../../concepts/vega-protocol/governance.md), particularly [assets at a protocol level](../../concepts/vega-protocol/governance.md#asset-governance)
+- Familiarity with [governance on Vega](../../concepts/governance.md), particularly [assets at a protocol level](../../concepts/governance.md#asset-governance)
 - After an asset update vote passes, the change has to be submitted to the [asset bridge](./update-asset-bridge.md) on Ethereum.
 
 ## Anatomy of an update asset proposal
@@ -78,7 +78,7 @@ In the tabs below you'll see an annotated example, which describes what each fie
 
 All proposals are voted on by the community. To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minVoterBalance" suffix="tokens" hideName={true} formatter="governanceToken" /> or <NetworkParameter frontMatter={frontMatter} formatter="governanceToken" param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated with their Vega key.
 
-Your proposal will need [participation](../../concepts/vega-protocol#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential. If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
+Your proposal will need [participation](../../concepts/governance.md#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential. If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
 
 Building support is down to you. Share your proposal in [the Fairground governance forum ↗](https://community.vega.xyz/c/fairground-testnet-governance/32) on Vega community. You may also wish to share on [Discord ↗](https://vega.xyz/discord).
 

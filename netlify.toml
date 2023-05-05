@@ -74,3 +74,13 @@
   from = "/testnet/api/vega-wallet/reference/core/openrpc"
   to = "/testnet/api/vega-wallet/reference/core/json-rpc"
   status = 301
+
+[[redirects]]
+  from = "/testnet/concepts/vega-protocol#governance"
+  to = "/testnet/concepts/governance"
+  status = 301
+
+[[redirects]]
+  from = "/testnet/concepts/vega-protocol#assettoken-management"
+  to = "/testnet/concepts/assets"
+  status = 301

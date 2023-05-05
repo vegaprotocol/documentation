@@ -22,7 +22,7 @@ The **binding** tells the market which field contains the value. The **spec** de
 When it's time for a market to settle, someone needs to submit the data that matches the data source spec defined in the market.
 
 :::note Read more: 
-[Market governance concepts:](../concepts/vega-protocol.md)
+[Market governance concepts:](../concepts/governance.md#market-governance)
 [Tutorial - proposing a market:](./proposals/new-market-proposal.md)
 :::
 

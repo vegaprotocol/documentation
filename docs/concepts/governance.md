@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 title: Governance
 vega_network: TESTNET
 hide_title: false
@@ -9,7 +9,7 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 
 Governance allows the Vega network to arrive at on-chain decisions, where tokenholders can create proposals that other tokenholders can vote to approve or reject. 
 
-Vega supports on-chain proposals for creating markets and assets, and changing network parameters, markets and assets. Vega also supports freeform proposals for community suggestions that will not be enacted on-chain. 
+Vega supports on-chain proposals for creating markets and assets, and changing network parameters, markets and assets. Vega also supports freeform proposals for community suggestions that will not be enacted on-chain.
 
 Taking part in governance by voting, or by proposing additions/changes with community support, is a way for tokenholders and community members to contribute to improve the network, and to add value for other network participants.
 
@@ -31,7 +31,7 @@ Tokenolders can vote on a proposal as soon as it passes validation and is active
 * The network compares the weight of all 'for' votes, as a percentage of the weight of all votes cast, to the required majority - `for_rate = SUM (weightings of votes cast for) / SUM (weightings of all votes cast)`
 * If the minimum for both is reached, the proposal is enacted. If at least one is not reached, the proposal fails.
 
-### Proposal outcome: update market
+### Proposal outcome: Update market
 For proposals to update a market, there are additional requirements. The market's liquidity providers can vote with their equity-like share without requiring tokenholder participation. However, if tokenholders vote and participation and majority requirements for this vote are met, then the tokenholders' votes can overrule the liquidity providers' votes.
 
 The network will also calculate:
@@ -73,7 +73,7 @@ A proposal cannot be changed once entered.
 Once a proposal is submitted and accepted, rally the community to vote on the proposal by announcing it on the [forum ↗](https://community.vega.xyz/), [Discord ↗](https://vega.xyz/discord), and through your own networks to vote on the proposal.
 
 :::tip Try it out 
-Read the **[proposals guides](../../tutorials/proposals/index.md)** to see what information needs to be in a proposal, and how to submit them using the command line. 
+Read the **[proposals guides](../tutorials/proposals/index.md)** to see what information needs to be in a proposal, and how to submit them using the command line. 
 :::
 
 #### Validating a proposal
@@ -112,7 +112,7 @@ As these thresholds are network parameters, their values can be changed through 
 :::tip Query for data
 See the current values (in some cases, different per network) on the [block explorer ↗](https://explorer.fairground.wtf). 
 
-Otherwise, [use REST](../../api/rest/state/core-state-service-list-network-parameters.api.mdx) to see the network parameters and their values.
+Otherwise, [use REST](../api/rest/state/core-state-service-list-network-parameters.api.mdx) to see the network parameters and their values.
 :::
 
 ### Example
@@ -133,12 +133,12 @@ The protocol currently supports adding ERC-20 assets. Those ERC-20 assets that a
 
 After a new asset vote passes, the change has to be submitted to the asset bridge on Ethereum. Until it has been submitted, no one can start depositing that asset. 
 
-Certain asset details can also be changed through a governance proposal. While the [contract-level details](./assets.md#contract-level-details) are immutable, the [protocol-level details](./assets.md#protocol-level-details) can be changed.
+Certain asset details can also be changed through a governance proposal. While the [contract-level details](./assets/asset-framework.md#contract-level-details) are immutable, the [protocol-level details](./assets/asset-framework.md#protocol-level-details) can be changed.
 
 :::note Learn more
 See the proposal tutorials to: 
-* [Propose a new asset](../../tutorials/proposals/new-asset-proposal.md)
-* [Propose an update to an asset](../../tutorials/proposals/update-asset-proposal.md)
+* [Propose a new asset](../tutorials/proposals/new-asset-proposal.md)
+* [Propose an update to an asset](../tutorials/proposals/update-asset-proposal.md)
 :::
 
 ### ERC-20 asset validation
@@ -158,8 +158,8 @@ When creating a market governance proposal, whether it is for a new market or to
 
 Read more:
 * [Vega community forum ↗](https://community.vega.xyz): Share your draft proposals for community discussion.
-* [New market proposal ↗](../../tutorials/proposals/new-market-proposal.md): Guide to submitting a proposal for a new market using the command line
-* [Update market proposal ↗](../../tutorials/proposals/update-market-proposal.md): Guide to submitting a proposal to change a market using the command line
+* [New market proposal ↗](../tutorials/proposals/new-market-proposal.md): Guide to submitting a proposal for a new market using the command line
+* [Update market proposal ↗](../tutorials/proposals/update-market-proposal.md): Guide to submitting a proposal to change a market using the command line
 
 ### Propose a new market
 Tokenholders can propose new markets, which then need to be voted on by other tokenholders. The proposer will need to have at least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the market, and staked to a validator. Note, this amount is set through the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true} />.
@@ -182,10 +182,10 @@ Optional fields include:
 * Price monitoring parameters, including the triggers covering the horizon, probability and auction extension time. If left blank these parameters will default to the values set in the network parameters
 
 :::note Read more
-* [New market proposal tutorial](../../tutorials/proposals/new-market-proposal.md)
-* [Data sources](../trading-on-vega/data-sources.md)
-* [Liquidity monitoring parameters](../trading-on-vega/market-protections.md#liquidity-monitoring)
-* [Price monitoring parameters](../trading-on-vega/market-protections.md#price-monitoring)
+* [New market proposal tutorial](../tutorials/proposals/new-market-proposal.md)
+* [Data sources](./trading-on-vega/data-sources.md)
+* [Liquidity monitoring parameters](./trading-on-vega/market-protections.md#liquidity-monitoring)
+* [Price monitoring parameters](./trading-on-vega/market-protections.md#price-monitoring)
 :::
 
 ### Risk models and parameters
@@ -245,5 +245,5 @@ Network parameters can only be added and removed with Vega core software release
 
 :::note Go deeper
 * [Network parameters: See full list on the block explorer  ↗](https://explorer.fairground.wtf/network-parameters)
-* [Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)
+* [Tutorial: Propose a network parameter change](../tutorials/proposals/network-parameter-proposal.md)
 :::

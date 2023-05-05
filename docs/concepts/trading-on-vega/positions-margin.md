@@ -39,7 +39,7 @@ For a futures market created on Vega, marking to market is carried out every tim
 Mark to market settlement instructions are generated based on the change in market value of the open positions of a party. When the mark price changes, the network calculates settlement cash flows for each party, and the process is repeated each time the mark price changes until the maturity date for the market is reached.
 
 :::note Read more
-[Mark to market settlement](./settlement#mark-to-market-settlement): How settlement works when the mark to market price is recalculated.
+[Mark to market settlement](./settlement.md#mark-to-market-settlement): How settlement works when the mark to market price is recalculated.
 :::
 
 
@@ -91,8 +91,8 @@ The `risk factor` will be different for short and long positions; the risk model
 Note that your party's limit orders are included as well and the maintenance margin is calculated for the riskiest long or short combination of orders and position.
 
 :::note Read more
-[Closeouts](./market-protections#closeouts): What triggers a closeout, and what happens in a closeout
-[Risk models](../vega-protocol#risk-models-and-parameters): Details on the risk model parameters for a market
+[Closeouts](./market-protections.md#closeouts): What triggers a closeout, and what happens in a closeout
+[Risk models](../governance.md#risk-models-and-parameters): Details on the risk model parameters for a market
 :::
 
 ### Margin level: Initial
@@ -120,7 +120,7 @@ The search level is scaled from the *maintenance margin* amount. It's calculated
 If there is not enough collateral to provide the required margin, then the position will be closed out.
 
 :::note Read more
-[Closeouts](./market-protections#closeouts): What triggers a closeout, and what happens in a closeout
+[Closeouts](./market-protections.md#closeouts): What triggers a closeout, and what happens in a closeout
 :::
 
 ### Margin level: Releasing collateral

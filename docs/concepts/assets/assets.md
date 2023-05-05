@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Vega Protocol
+title: Collateral management
 vega_network: TESTNET
 hide_title: false
 ---
