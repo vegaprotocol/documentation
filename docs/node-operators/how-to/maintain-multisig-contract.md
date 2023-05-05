@@ -3,19 +3,20 @@ sidebar_position: 10
 title: Maintaining the Multisig Contract
 sidebar_label: Maintaining Multisig Contract
 hide_title: false
+vega_network: TESTNET
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-The [Multisig Control](./interfaces/IMultisigControl.md) contract contains a set of signers whose signatures are required to complete actions on the Ethereum Bridge. The set of signers on the contract should match the set of consensus validators in the network. As validators join or leave the network and the set of consensus validators on the Vega network changes, the signer set on the Multisig Control contract must be updated to alongside those changes to maintain the security of the bridge.
+The [Multisig Control](../../api/bridge/interfaces/IMultisigControl.md) contract contains a set of signers whose signatures are required to complete actions on the Ethereum Bridge. The set of signers on the contract should match the set of consensus validators in the network. As validators join or leave the network and the set of consensus validators on the Vega network changes, the signer set on the Multisig Control contract must be updated to alongside those changes to maintain the security of the bridge.
 
 ## Identifying when to update the contract
 
 The consensus set of validators on the Vega network can change because of the following:
 * The amounts staked to validators change such that a consensus validator is demoted and replaced by a standby validator with more stake
 * A consensus validator is showing poor performance and they are demoted and replaced by a more performant standby validator
-* The value of the network parameter `network.validators.tendermint.number` changes causing the size of the consensus set to increase or decrease
+* The value of the network parameter <NetworkParameter frontMatter={frontMatter} param="network.validators.tendermint.number" hideValue={true} /> changes causing the size of the consensus set to increase or decrease
 
 Changes to the validator set only occur at the end of an epoch. Whether a node has moved into or out of the consensus set can be tracked using this datanode endpoint https://api.n08.testnet.vega.xyz/api/v2/nodes. The values of a node's `rankingScore.status` and `rankingScore.previousStatus` indicates whether it has been promoted or demoted, and what set it is now part of.
 
@@ -48,7 +49,7 @@ If you are a node operator and supplied a `--submitter-address` when announcing 
 ### Getting the Vega network to issue signatures
 
 To get the Vega network to generate a signature bundle that can be used to add/remove a validator from the multisig contract the following CLI command can be used
-```
+```shell
 vega wallet transaction send --network NETWORK --wallet WALLET --pubkey PUBKEY TRANSACTION
 '{"issueSignatures": {"submitter": "ETH_ADDRESS", "validator_node_id": "NODE_ID", "kind": "NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_ADDED"}}'
 ```

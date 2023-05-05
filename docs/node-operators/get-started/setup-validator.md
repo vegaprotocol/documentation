@@ -308,7 +308,7 @@ You'll need to know the [current epoch ↗](https://validator-testnet.governance
 vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" --avatar-url="YOUR_AVATAR_URL" --country="UK" --name="YOUR_NODE_NAME" --from-epoch="CURRENT_EPOCH"
 ```
 
-The optional argument `--submitter-address` can be used to set a Ethereum key that can be used to help maintain the multisig-control contract.
+Setting the optional argument `--submitter-address` triggers the Vega network to automatically issue signature bundles that can be used to update signer set changes on the Multisig Control contract. This means if your node is promoted to a consensus validator it is easier for you to add your node's Ethereum key to the contract and to continue receiving rewards. See [maintaining the multisig contract ↗](../how-to/maintain-multisig-contract.md) for more information.
 
 
 ## Nominate your node
@@ -331,4 +331,4 @@ See the following guides to learn how to:
 * [Rotate Ethereum keys](../how-to/rotate-ethereum-keys.md)
 * [Rotate Vega keys](../how-to/rotate-vega-keys.md)
 * [Use snapshots](../how-to/use-snapshots.md)
-* [Maintain the multisig contract ↗](../how-to/maintaining-multisig-contract.md)
+* [Maintain the multisig contract ↗](../how-to/maintain-multisig-contract.md)
