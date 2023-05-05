@@ -67,14 +67,14 @@ We recommend starting this before the upgrade and having configs ready for when 
 
 There are a few ways to update your existing Vega config. The most practical way is to see what changed in the Vega config between versions, as follows:
 
-1. Backup your existing config (you will need it in step 3), e.g.: `cp <VEGA-NETWORK-HOME>/config/node/config.toml <BACKUP-FOLDER>/core-v0.53-config.toml`
+1. Backup your existing config; you will need it in step 4, e.g.: `cp <VEGA-NETWORK-HOME>/config/node/config.toml <BACKUP-FOLDER>/core-v0.53-config.toml`
 2. Generate the Vega node in a temporary location: `<VEGA-BIN> init --home /tmp/vega-home <TYPE>`. When the terminal asks you for passphrases, type anything. You are interested only in the `config.toml` file. The `<TYPE>` may be different depending on the configuration you are running:
     - a. `validator` - if you are running only the Vega core without a data node, e.g.: `<VEGA-BIN> init --home /tmp/vega-home validator`
     - b. `full` - if you are running Vega core with a data node, e.g.: `<VEGA-BIN> init --home /tmp/vega-home full`
 3. Copy newly generated config to `<VEGA-NETWORK-HOME>`, e.g.: `cp /tmp/vega-home/config/node/config.toml <VEGA-NETWORK-HOME>/config/node/config.toml`
 4. Update the new config `<VEGA-NETWORK-HOME>/config/node/config.toml` with values from old config, e.g.: `diff <VEGA-NETWORK-HOME>/config/node/config.toml <BACKUP-FOLDER>/core-v0.53-config.toml`
 5. Review the new config `<VEGA-NETWORK-HOME>/config/node/config.toml` and update it according to your needs.
-  - *Important:* we strongly recommend using newly generated config as your new config base, then updating it with desired values. Doing the other way around: updating old config to new format, carries high risk of wrong config, that can cause further failures during startup, node restart or Protocol Upgrade.
+  - *Important:* we strongly recommend using newly generated config as your new config base, then updating it with desired values. Doing the other way around: updating old config to new format, carries high risk of mistakes, that can cause further failures during startup, node restart or Protocol Upgrade.
 
 :::warning Config parameters
 We strongly recommend you read the list of configuration changes in the [upgrading file ↗](https://github.com/vegaprotocol/vega/blob/develop/UPGRADING.md#configuration-changes) to understand what config parameters and sections have changed.
@@ -90,9 +90,12 @@ We recommend starting this before the upgrade and having configs ready for when 
 
 The procedure is very similar to updating the Vega config. You should read the [documentation for running Tendermint in production ↗](https://docs.tendermint.com/v0.33/tendermint-core/running-in-production.html) before proceeding.
 
-1. Generate Tendermint node in a temporary location: `<VEGA-BIN> tm init --home /tmp/tendermint-home`
-2. Compare the original Tendermint config with the generated one: `diff /tmp/tendermint-home/config/config.toml <TENDERMINT-HOME>/config/config.toml`
-3. Update your `<TENDERMINT-HOME>/config/config.toml` file based on the above diff
+1. Backup your existing config; you will need it in step 4, e.g.: `cp <TENDERMINT-HOME>/config/config.toml <BACKUP-FOLDER>/tendermint-v0.53-config.toml`
+2. Generate Tendermint node in a temporary location: `<VEGA-BIN> tm init --home /tmp/tendermint-home`
+3. Copy newly generated config to `<TENDERMINT-HOME>`, e.g.: `cp /tmp/tendermint-home/config/config.toml <TENDERMINT-HOME>/config/config.toml`
+4. Update the new config `<TENDERMINT-HOME>/config/config.toml` with values from old config, e.g.: `diff <TENDERMINT-HOME>/config/config.toml <BACKUP-FOLDER>/tendermint-v0.53-config.toml`
+5. Review the new config `<TENDERMINT-HOME>/config/config.toml` and update it according to your needs.
+  - *Important:* we strongly recommend using newly generated config as your new config base, then updating it with desired values. Doing the other way around: updating old config to new format, carries high risk of mistakes, that can cause further failures during startup, node restart or Protocol Upgrade.
 
 :::warning Config parameters
 Discuss Tendermint changes with other validator operators as they are essential for running the network. 
@@ -109,12 +112,14 @@ You are responsible for deciding what parameters you want to use. `vega tm init`
 We recommend starting this before the upgrade and having configs ready for when you need to restart your node. You may do this task asynchronously to another task. This step may be time-consuming, as there have been many changes since v0.53, and there is no automation - it needs to be done by hand. 
 :::
 
-While following the same procedure for a data node as for `vega` and `tendermint` is possible, there are a lot of changes in the data node config, thus we suggest an alternative process:
+The procedure is very similar to updating the Vega and Tendermint configs. Be warned there has been a lot of changes in the data node config.
 
-1. Ensure you have a backup first, then remove the data node state: `rm -r <VEGA-NETWORK-HOME>/state/data-node/`
-2. Save a backup of your old data node config: `cp <VEGA-NETWORK-HOME>config/data-node/config.toml <BACKUP-FOLDER>/data-node-config.toml`
-3. Initiate the data node config: `<VEGA-BIN> datanode init --archive --home=<VEGA-NETWORK-HOME> <CHAIN-ID> --force`
-4. Modify generated data node config: `<VEGA-NETWORK-HOME>config/data-node/config.toml` - see section below for important parameters
+1. Backup your existing config; you will need it in step 4, e.g.: `cp <VEGA-NETWORK-HOME>config/data-node/config.toml <BACKUP-FOLDER>/datanode-v0.53-config.toml`
+2. Generate the Data Node in a temporary location: `<VEGA-BIN> datanode init --home /tmp/datanode-home --archive <CHAIN-ID>`.
+3. Copy newly generated config to `<VEGA-NETWORK-HOME>`, e.g.: `cp /tmp/datanode-home/config/data-node/config.toml <VEGA-NETWORK-HOME>/config/data-node/config.toml`
+4. Update the new config `<VEGA-NETWORK-HOME>/config/data-node/config.toml` with values from old config, e.g.: `diff <VEGA-NETWORK-HOME>/config/data-node/config.toml <BACKUP-FOLDER>/datanode-v0.53-config.toml`
+5. Review the new config `<VEGA-NETWORK-HOME>/config/data-node/config.toml` and update it according to your needs.
+  - *Important:* we strongly recommend using newly generated config as your new config base, then updating it with desired values. Doing the other way around: updating old config to new format, carries high risk of mistakes, that can cause further failures during startup, node restart or Protocol Upgrade.
 
 Use the `--archive` flag to keep all data, forever. Read more about the [data retention modes](../../concepts/vega-chain/data-nodes.md#data-retention-modes) available.
 
