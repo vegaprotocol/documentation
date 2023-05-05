@@ -21,7 +21,7 @@ Review the [wallet config ↗](https://github.com/vegaprotocol/networks/pull/131
 ## Assumptions for the upgrade guide
 The instructions below are written for Debian-like Linux operating systems. 
 
-The guide uses systemd commands(`systemctl` and `journalctl`) to control binaries in our setup. If you are using something different, that article's commands may vary.
+The guide uses systemd commands(`systemctl` and `journalctl`) to control binaries in our setup. If you are using something different, the commands may vary.
 
 This guide is specifically intended for those who are already running a validator node.
 
@@ -46,29 +46,29 @@ The following are placeholders for the PostgreSQL connection details for the dat
 
 We will refer to the above paths in the following guide. The sample paths given above are just examples. We recommend setting the paths that align with the conventions adopted by your organisation.
 
-## The data-node setup
+## Data node setup
 
-We recommend setup the data node for the Vega validators. However, we highly recommend not connecting the data node to the core responsible for validating. Instead of this, consider creating two servers with the following setup:
+We recommend that Vega validators set up a data node, and connect it to a non-validator node. We strongly recommend **not connecting the data node to the core responsible for validating**. Instead, consider creating two servers with the following setup:
 
-- The validator node; is the Vega core running without the data node. It would be best not to expose any API from that node to the public internet to increase your validator's security.
-- The non-validator data node; is the non-validator Vega core running with the data node. This node must not share any private key or wallet with your validator node. You may expose this node to the public internet as this node does not contain any private data. Anyone can start a node with the same functionality. 
+- A validator node is the Vega core running without a data node. It would be best not to expose any API from that node to the public internet to increase your validator's security.
+- A non-validator data node is the non-validator Vega core running with the data node. This node must not share any private keys or wallets with your validator node. You may expose this node to the public internet as this node does not contain any private data. Anyone can start a node with the same functionality. 
 
-The above nodes should be separated and isolated VMs. It means your validator is still safe when your data node is compromised. 
+The above nodes should be separated and isolated VMs. It means your validator will still be safe if your data node is compromised. 
 
-Another significant advantage of the above solution is that your validator node does not depend on the data node, so your validator is still operating when the data node has issues.
+Another significant advantage of the above solution is that when your validator node does not depend on the data node, your validator will still be operating if the data node has issues.
 
 ## Async upgrade steps
 
 ### 1. Update Vega core config
 
 :::note Manual process
-We recommend starting it before the upgrade and having configs ready when you need to restart your node. You may do this task asynchronously to another task. This step may be time-consuming, as We introduced many changes since v0.53, and there is no automation - it needs to be done by hand. 
+We recommend starting this before the upgrade and having configs ready for when you need to restart your node. You may do this task asynchronously to another task. This step may be time-consuming, as there have been many changes since v0.53, and there is no automation - it needs to be done by hand. 
 :::
 
 There are a few ways to update your existing Vega config. The most practical way is to see what changed in the Vega config between versions, as follows:
 
-1. Generate the Vega node in a temporary location: `<VEGA-BIN> init --home /tmp/vega-home <TYPE>`. When the terminal asks you about passphrases, type anything. You are interested only in the `config.toml` file. The `<TYPE>` may be different depending on the configuration you are running:
-    - a. `validator` - if you are running only Vega core without data node, e.g.: `<VEGA-BIN> init --home /tmp/vega-home validator`
+1. Generate the Vega node in a temporary location: `<VEGA-BIN> init --home /tmp/vega-home <TYPE>`. When the terminal asks you for passphrases, type anything. You are interested only in the `config.toml` file. The `<TYPE>` may be different depending on the configuration you are running:
+    - a. `validator` - if you are running only the Vega core without a data node, e.g.: `<VEGA-BIN> init --home /tmp/vega-home validator`
     - b. `full` - if you are running Vega core with a data node, e.g.: `<VEGA-BIN> init --home /tmp/vega-home full`
 2. Compare the old config with the generated one: `diff <VEGA-NETWORK-HOME>/config/node/config.toml /tmp/vega-home/config/node/config.toml`
 3. Update your `<VEGA-NETWORK-HOME>/config/node/config.toml` file based on the above diff
@@ -82,17 +82,17 @@ You are responsible for deciding what parameters you want to use. `vega init` ge
 ### 2. Update Tendermint config
 
 :::note Manual process
-We recommend starting it before the upgrade and having configs ready when you need to restart your node. You may do this task asynchronously to another task. This step may be time-consuming, as We introduced many changes since v0.53, and there is no automation - it needs to be done by hand.
+We recommend starting this before the upgrade and having configs ready for when you need to restart your node. You may do this task asynchronously to another task. This step may be time-consuming, as there have been many changes since v0.53, and there is no automation - it needs to be done by hand. 
 :::
 
-The procedure is very similar to updating the Vega config. We recommend you read the [documentation for running Tendermint in production ↗](https://docs.tendermint.com/v0.33/tendermint-core/running-in-production.html)
+The procedure is very similar to updating the Vega config. You should read the [documentation for running Tendermint in production ↗](https://docs.tendermint.com/v0.33/tendermint-core/running-in-production.html) before proceeding.
 
 1. Generate Tendermint node in a temporary location: `<VEGA-BIN> tm init --home /tmp/tendermint-home`
 2. Compare the original Tendermint config with the generated one: `diff /tmp/tendermint-home/config/config.toml <TENDERMINT-HOME>/config/config.toml`
 3. Update your `<TENDERMINT-HOME>/config/config.toml` file based on the above diff
 
 :::warning Config parameters
-We recommend discussing Tendermint changes with the validator operators as they are essential for running the network. 
+Discuss Tendermint changes with other validator operators as they are essential for running the network. 
 
 It is also important to understand the Tendermint configuration parameters as described in the [Tendermint docs ↗](https://docs.tendermint.com/v0.33/tendermint-core/configuration.html)
 
@@ -103,12 +103,12 @@ You are responsible for deciding what parameters you want to use. `vega tm init`
 ### 3. Update data node config
 
 :::note Manual process
-We recommend starting it before the upgrade and having configs ready when you need to restart your node. You may do this task asynchronously to another task. This step may be time-consuming, as We introduced many changes since v0.53, and there is no automation - it needs to be done by hand.
+We recommend starting this before the upgrade and having configs ready for when you need to restart your node. You may do this task asynchronously to another task. This step may be time-consuming, as there have been many changes since v0.53, and there is no automation - it needs to be done by hand. 
 :::
 
 While following the same procedure for a data node as for `vega` and `tendermint` is possible, there are a lot of changes in the data node config, thus we suggest an alternative process:
 
-1. Ensure you have backup first, then remove the data node state: `rm -r <VEGA-NETWORK-HOME>/state/data-node/`
+1. Ensure you have a backup first, then remove the data node state: `rm -r <VEGA-NETWORK-HOME>/state/data-node/`
 2. Save a backup of your old data node config: `cp <VEGA-NETWORK-HOME>config/data-node/config.toml <BACKUP-FOLDER>/data-node-config.toml`
 3. Initiate the data node config: `<VEGA-BIN> datanode init --archive --home=<VEGA-NETWORK-HOME> <CHAIN-ID> --force`
 4. Modify generated data node config: `<VEGA-NETWORK-HOME>config/data-node/config.toml` - see section below for important parameters
@@ -116,7 +116,7 @@ While following the same procedure for a data node as for `vega` and `tendermint
 Use the `--archive` flag to keep all data, forever. Read more about the [data retention modes](../../concepts/vega-chain/data-nodes.md#data-retention-modes) available.
 
 #### Data node config
-Important config keys that you need to update: 
+Important config keys that you need to update/check: 
 
 - `AutoInitialiseFromNetworkHistory` - We recommend setting it to `false` when you start the network from scratch (e.g. checkpoint restart), or if there is no other data node available.
 - `ChainID` - Make sure it matches the new chain ID for your network.
@@ -126,7 +126,7 @@ Important config keys that you need to update:
 - `SQLStore.wipe_on_startup` - Defines if the data node removes data from the postgreSQL after the restart. We recommend setting it to `false`.
 - `SQLStore.UseEmbedded` - If true, internal (managed by the binary itself) postgreSQL is used. We strongly recommend setting it to `false` for production, as it is intended for testing only.
 - `SQLStore.ConnectionConfig` - Update the entire section, as it is where you set PostgreSQL credentials.
-- `NetworkHistory.Enabled` - Enables IPFS network history. See the [network history](#a-bit-about-network-history) section below.
+- `NetworkHistory.Enabled` - Enables IPFS network history. Ensure this is set to `true`. See the [network history](#a-bit-about-network-history) section below.
 
 #### Example of the PostgreSQL connection section:
 
@@ -164,8 +164,8 @@ The data node can request the TLS certificate for you automatically. You can sti
 
 Requirements for automatic TLS setup:
 
--Use the 443 port for the Gateway component.
--Your server must be accessible on port 443 from the public internet; the ACME verification server sends a few requests to the domain defined in the `AutoCertDomain` to ensure you control the domain you request the TLS certificate for.
+- Use the 443 port for the Gateway component.
+- Your server must be accessible on port 443 from the public internet; the ACME verification server sends a few requests to the domain defined in the `AutoCertDomain` to ensure you control the domain you request the TLS certificate for.
 
 Below is an example certificate for the data node auto TLS:
 
@@ -192,25 +192,24 @@ Below is an example certificate for the data node auto TLS:
 ```
 
 :::note Troubleshooting
-The certificate generation feature has a known issue when your data node cannot obtain a certificate from the ACME, but your config looks correct, but the data node opens the 443 port only on the IPv6 interface. You may see a similar log message:
+The certificate generation feature has a known issue when your data node cannot obtain a certificate from the ACME. Your config will look correct, but the data node opens the 443 port only on the IPv6 interface. You may see a similar log message:
 
 ```log
 http: TLS handshake error from <some_IP>:43076: acme/autocert: unable to satisfy "https://acme-v02.api.letsencrypt.org/acme/authz-v3/223216779077" for domain "<your domain>": no viable challenge type found
 ```
 
-To verify that issue, you may check what protocol is on the opened 443 port:
+To verify that issue, you can check what protocol is on the opened 443 port:
 
 ```shell
 netstat -tulpn | grep ':443'
 tcp6       0      0 :::443                  :::*                    LISTEN      1728852/vega
 ```
 
-If there is only tpc6, to fix this issue, put the empty value for the `Gateway.IP`
+If there is only tpc6, to fix this issue, put an empty value in for the `Gateway.IP`
 :::
 
 
 ## Upgrade steps
-
 
 ### 4. Stop the network
 At this point, validators need to choose and agree on the checkpoint that will be loaded into the network during the next restart, and stop the network as soon as everyone agrees on the selected checkpoint. 
@@ -226,7 +225,7 @@ The reason to quickly stop the network is to avoid producing more checkpoints an
 Versions 0.71+ of Vega do not need to run Tendermint as a separate service. Vega has the Tendermint process incorporated into the Vega command.
 :::
 
-If you run the network with the systemd service, you can call the following commands to stop the network:
+If you run the network with the `systemd` service, you can call the following commands to stop the network:
 
 ```bash
 systemctl stop vega;
@@ -243,7 +242,7 @@ systemctl status data-node
 ### 5. Create backup
 
 :::warning Backup
-You SHOULD back up all the data. You MUST back up at least the private keys and all the wallets for your node; otherwise, You won't be able to operate your node and may lose your funds.
+You SHOULD back up all the data. You MUST back up at least the private keys and all the wallets for your node, otherwise you won't be able to operate your node and may lose your funds.
 :::
 
 ```bash
@@ -311,8 +310,8 @@ You may also risk losing your wallets, so back them up as well.
 :::
 
 1. Call unsafe reset all for Tendermint: `<VEGA-BIN> tendermint unsafe-reset-all --home <TENDERMINT-HOME>`
-2. Call unsafe reset all for vega core: `<VEGA-BIN> unsafe_reset_all --home <VEGA-NETWORK-HOME>`
-3. Remove data-node state. Required for older version of data node (before v0.71.4): `rm -r <VEGA-NETWORK-HOME>/state/data-node`
+2. Call unsafe reset all for Vega core: `<VEGA-BIN> unsafe_reset_all --home <VEGA-NETWORK-HOME>`
+3. Remove data node state. Required for versions of data node set up before v0.71.4: `rm -r <VEGA-NETWORK-HOME>/state/data-node`
 4. Recreate the PostgreSQL database if you have data within: 
     - a. Call the following command in PostgreSQL terminal: `DROP DATABASE IF EXISTS <VEGA-DB-NAME>`
     - b. Follow instructions in the step to [Install/Upgrade PostgreSQL instance](#16-installupgrade-postgresql-for-data-node) (optional for data node setup) to recreate new database
@@ -320,13 +319,12 @@ You may also risk losing your wallets, so back them up as well.
 ### 8. Prepare genesis file
 We recommend doing this at the beginning of the upgrade procedure, but this can happen at any point before validators start the network. After the genesis is prepared, all the validators must use the same `genesis.json` file.
 
-To load the checkpoint, find more information in the [restart network guide](../how-to/restart-network.md#load-checkpoint) 
+To load the checkpoint, find more information in the [restart network guide](../how-to/restart-network.md#load-checkpoint).
 
-1. One of the validator will adjust [the genesis file ↗](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json) in the [Vega Protocol networks repository ↗](https://github.com/vegaprotocol/networks).
+1. One of the validators will need to adjust [the genesis file ↗](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json) in the [Vega Protocol networks repository ↗](https://github.com/vegaprotocol/networks).
 2. The person responsible for updating genesis needs to create a PR with changes.
 3. All of the validators need to accept changes and approve the PR.
 4. Approved PR must be merged by one of the validators.
-
 
 ### 9. Download new genesis file
 After creating a backup and preparing a new genesis file, put it on your server. All the validators **must** use the same genesis file. 
@@ -355,7 +353,7 @@ cp ./genesis.json <TENDERMINT-HOME>/config/genesis.json
 
 
 ### 10. Read the Visor documentation
-While Visor is optional, it is recommended that you install and use Visor to simplify protocol upgrades. The visor is responsible for restarting the network during a restart with the protocol upgrade procedure.
+While Visor is optional, it is recommended that you install and use Visor to simplify protocol upgrades. Visor is responsible for restarting the network during a restart with the protocol upgrade procedure.
 
 - [See the Visor code ↗](https://github.com/vegaprotocol/vega/tree/develop/visor)
 - [Read the Visor documentation ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#readme)
@@ -393,7 +391,6 @@ Use the following pages as a reference:
 - [Documentation for Visor ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#readme)
 - [Visor config documentation ↗](https://github.com/vegaprotocol/vega/blob/develop/visor/visor-config.md)
 
-
 #### Example config
 
 ```toml
@@ -426,8 +423,8 @@ Use the following pages as a reference:
 - [Prepare Visor documentation ↗](../get-started/setup-validator#prepare-initial-visor-run)
 - [Visor run-config documentation on Github ↗](https://github.com/vegaprotocol/vega/blob/develop/visor/run-config.md)
 
-:::warrning Binary location and the binary path
-We recommend putting the vega binary in the same directory where you have your run-config.toml, and then use `path = "./vega"`.
+:::warning Binary location and the binary path
+We recommend putting the Vega binary in the same directory where you have your run-config.toml, and then use `path = "./vega"`.
 :::
 
 
@@ -523,8 +520,8 @@ If you are not using Visor, you have to prepare similar systemd configs as seen 
 - Vega (Tendermint is part of the Vega process in newer versions)
 - Data node (optional)
 
-1. Create the vega systemd service under the location: `/lib/systemd/system/vega.service`
-2. Create the data-node systemd file (if you run a data node): `/lib/systemd/system/data-node.service`
+1. Create the Vega systemd service under the location: `/lib/systemd/system/vega.service`
+2. Create the data node systemd file (if you run a data node): `/lib/systemd/system/data-node.service`
 
 #### Example of the Vega service file
 
@@ -578,10 +575,8 @@ AmbientCapabilities=CAP_NET_BIND_SERVICE
 WantedBy=multi-user.target
 ```
 
-
-
 ### 16. Install/Upgrade PostgreSQL for data node
-If you are running a data node, you will need to install or upgrade PostgreSQL. The PostgreSQL instance must be on the same server as the data node, as the PostgreSQL does data-snapshot in the data node location file space. The data node uses PostgreSQL snapshots for the network history feature.
+If you are running a data node, you will need to install or upgrade PostgreSQL. The PostgreSQL instance must be on the same server as the data node, as the PostgreSQL does the data snapshot in the data node location filespace. The data node uses PostgreSQL snapshots for the network history feature.
 
 Install the following versions of the software:
 - PostgreSQL 14
@@ -591,7 +586,7 @@ If above versions are a mismatch, you should upgrade/downgrade your software to 
 
 The procedure for preparing PostgreSQL:
 1. Install PostgreSQL. As a reference, use the [PostgreSQL documentation ↗](https://www.postgresql.org/download/linux/ubuntu/)
-2. Install TimescaleDB. As a reference, use [the Timescale documentation ↗](https://docs.timescale.com/install/latest/self-hosted/installation-linux/)
+2. Install TimescaleDB. As a reference, use the [Timescale documentation ↗](https://docs.timescale.com/install/latest/self-hosted/installation-linux/)
 3. Apply recommended Timescale tuning unless you want to do it manually - and you know what you are doing: `timescaledb-tune` 
 4. Log in as PostgreSQL superuser: `sudo -u postgres psql`
 5. Create the `<VEGA-DB-USER>` user in PostgreSQL: `create user <VEGA-DB-USER> with encrypted password '<VEGA-DB-PASS>';`
@@ -615,7 +610,7 @@ The result should look similar to:
 
 ```sql
 postgres=# \du
-                                                    List of roles
+                                            List of roles
  Role name         |                         Attributes                         |   Member of
 -------------------+------------------------------------------------------------+----------------
  postgres          | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
@@ -623,9 +618,8 @@ postgres=# \du
 ```
 
 
-
 ### 17. Reload systemd services
-Reload the systemd services to load the previously added Vega Visor, or Vega and data node services. 
+Reload the `systemd` services to load the previously added Vega Visor, or Vega and data node services. 
 
 Use the following command: `sudo systemctl daemon-reload`.
 
