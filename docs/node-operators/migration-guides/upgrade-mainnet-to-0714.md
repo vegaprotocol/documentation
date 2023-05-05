@@ -123,7 +123,7 @@ Important config keys that you need to update/check:
 - `Admin.Server.SocketPath` - Path for the Unix `sock` file; Ensure parent directory exists. Example may be `<VEGA-NETWORK-HOME>/run/datanode.sock`.
 - `API.CoreNodeIP` - IP of the server where the Vega core node is running. Often, it is `127.0.0.1.` (localhost).
 - `API.CoreNodeGRPCPort` - Port you expose for the Vega core gRPC node. Default: `3002`.
-- `SQLStore.wipe_on_startup` - Defines if the data node removes data from the postgreSQL after the restart. We recommend setting it to `false`.
+- `SQLStore.wipe_on_startup` - Defines if the data node removes data from the postgreSQL after the restart. We recommend deleting this if it's in your config, as it has been deprecated and is not needed.
 - `SQLStore.UseEmbedded` - If true, internal (managed by the binary itself) postgreSQL is used. We strongly recommend setting it to `false` for production, as it is intended for testing only.
 - `SQLStore.ConnectionConfig` - Update the entire section, as it is where you set PostgreSQL credentials.
 - `NetworkHistory.Enabled` - Enables IPFS network history. Ensure this is set to `true`. See the [network history](#a-bit-about-network-history) section below.
