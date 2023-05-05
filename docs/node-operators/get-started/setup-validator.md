@@ -322,7 +322,7 @@ Then, associate your tokens and nominate your node using the [governance dApp â†
 Share your profile with the community, for example in [the Validators Discord channel â†—](https://discord.com/channels/720571334798737489/869236034116943903), to attract stakers to nominate your node.
 
 ## Next steps
-Once your node is up and running, you'll need to maintain it, and ensure that it's still taking part in the network. If your node is promoted into the consensus validator set then the Multisig Contract will need to be updated so that you can continue to receive rewards. You may also need to upgrade the software, restart the network and rotate your keys (for security). 
+Once your node is up and running, you'll need to maintain it, and ensure that it's still taking part in the network. If your node is promoted into the consensus validator set then the Multisig Contract will need to be updated so that you and your nominators can continue to receive rewards. You may also need to upgrade the software, restart the network and rotate your keys (for security). 
 
 See the following guides to learn how to: 
 

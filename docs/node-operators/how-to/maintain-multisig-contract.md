@@ -9,7 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-The [Multisig Control](../../api/bridge/interfaces/IMultisigControl.md) contract contains a set of signers whose signatures are required to complete actions on the Ethereum Bridge. The set of signers on the contract should match the set of consensus validators in the network. As validators join or leave the network and the set of consensus validators on the Vega network changes, the signer set on the Multisig Control contract must be updated to alongside those changes to maintain the security of the bridge.
+The [Multisig Control](../../api/bridge/interfaces/IMultisigControl.md) contract contains a set of signers whose signatures are required to complete actions on the Ethereum bridge. The set of signers on the contract should match the set of consensus validators in the network. As validators join or leave the network and the set of consensus validators on the Vega network changes, the signer set on the Multisig Control contract must be updated alongside those changes to maintain the security of the bridge.
 
 ## Identifying when to update the contract
 
@@ -19,7 +19,6 @@ The consensus set of validators on the Vega network can change because of the fo
 * The value of the network parameter <NetworkParameter frontMatter={frontMatter} param="network.validators.tendermint.number" hideValue={true} /> changes causing the size of the consensus set to increase or decrease
 
 Changes to the validator set only occur at the end of an epoch. Whether a node has moved into or out of the consensus set can be tracked using the [List Nodes](../../api/rest/data-v2/trading-data-service-list-nodes.api.mdx) API. The values of a node's `rankingScore.status` and `rankingScore.previousStatus` indicates whether it has been promoted or demoted, and what set it is now part of.
-
 
 A validator with the following ranking score values will have been *promoted* to a consensus validator and will need to be *added* to the multisig control
 ```
@@ -60,7 +59,7 @@ where `TRANSACTION` will be of the following form
 
 NODE_ID: the identifier of the node that needs to be added or removed from the Multisig Control contract
 ETH_ADDRESS: the Ethereum address that will be used to submit the signature bundle to the Multisig Control contract
-KIND: a value that represents whether the node is to be added or remove. It can be either NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_ADDED or NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_REMOVED
+KIND: a value that represents whether the node is to be added or removed. It can be either NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_ADDED or NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_REMOVED
 ```
 
 :::note 
