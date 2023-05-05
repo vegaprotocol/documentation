@@ -302,29 +302,19 @@ Once you have tokens, connect your Ethereum wallet and your Vega Wallet, and ass
 The association will need to be confirmed by both the Ethereum and Vega blockchains, and may take some time.
 
 ## Announce node on-chain
-Use your Ethereum key to announce your node to the network.
-
-You'll need to know the [current epoch ↗](https://validator-testnet.governance.vega.xyz/staking), and have the following data to hand: the URL for your validator website, and URL for the avatar that will show up on the governance dApp next to your node name.
+You'll need to know the [current epoch ↗](https://validator-testnet.governance.vega.xyz/staking), and have the following data to hand: the URL for your validator website, and the URL for the avatar that will show up on the governance dApp next to your node name.
 
 ```shell
-vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" --avatar-url="YOUR_AVATAR_URL" --country="UK" --name="YOUR_NODE_NAME" --from-epoch="CURRENT_EPOCH" --submitter-address="YOUR_ETHEREUM_KEY"
+vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" --avatar-url="YOUR_AVATAR_URL" --country="UK" --name="YOUR_NODE_NAME" --from-epoch="CURRENT_EPOCH"
 ```
+
+The optional argument `--submitter-address` can be used to set a Ethereum key that can be used to help maintain the multisig-control contract.
+
 
 ## Nominate your node
 To move on to self-staking, wait until you see your node on the validator list by querying the API or checking the [governance dApp ↗](https://validator-testnet.governance.vega.xyz/staking/).
 
 Then, associate your tokens and nominate your node using the [governance dApp ↗](https://validator-testnet.governance.vega.xyz/staking/) or by interacting directly with the smart contract.
-
-## Submit signature bundle
-In the epoch after you announced your node, and once your pending validator has seen transactions and sent heartbeats, your node will be added to a signature bundle built by the network: proof from the network that your node can be added to the multisigControl signers.
-
-Use the [add signer tool ↗](https://validator-testnet.tools.vega.xyz/) to submit the signature bundle. You'll need your node ID, which you can find on the latest epoch's [validator list](https://api-validators-testnet.vega.rocks/api/v2/epoch).
-
-Once the signature bundle is accepted, your node will be able to emit signatures to control withdrawals from the bridge.
-
-:::caution
-You need to add your node as a signer by the end of the epoch that the signature is emitted in. If you do not, the node will be demoted and removed from the signer set.
-:::
 
 ## Announce node off-chain
 [Create a validator profile on the forum ↗](https://community.vega.xyz/c/mainnet-validator-candidates/23) describing the experience you have, security practices and policies, how you will ensure maximum uptime, how you'll meet suitable performance standards, your communication channels for questions and the role you intend to take in Vega's governance.
@@ -332,7 +322,7 @@ You need to add your node as a signer by the end of the epoch that the signature
 Share your profile with the community, for example in [the Validators Discord channel ↗](https://discord.com/channels/720571334798737489/869236034116943903), to attract stakers to nominate your node.
 
 ## Next steps
-Once your node is up and running, you'll need to maintain it, and ensure that it's still taking part in the network. You may also need to upgrade the software, restart the network and rotate your keys (for security). 
+Once your node is up and running, you'll need to maintain it, and ensure that it's still taking part in the network. If your node is promoted into the consensus validator set then the Multisig Contract will need to be updated so that you can continue to receive rewards. You may also need to upgrade the software, restart the network and rotate your keys (for security). 
 
 See the following guides to learn how to: 
 
@@ -341,3 +331,4 @@ See the following guides to learn how to:
 * [Rotate Ethereum keys](../how-to/rotate-ethereum-keys.md)
 * [Rotate Vega keys](../how-to/rotate-vega-keys.md)
 * [Use snapshots](../how-to/use-snapshots.md)
+* [Maintain the multisig contract ↗](../how-to/maintaining-multisig-contract.md)
