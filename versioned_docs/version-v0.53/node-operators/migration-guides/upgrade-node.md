@@ -122,7 +122,7 @@ The procedure is very similar to updating the Vega and Tendermint configs. Be wa
 5. Review the new config `<VEGA-NETWORK-HOME>/config/data-node/config.toml` and update it according to your needs.
   - *Important:* we strongly recommend using newly generated config as your new config base, then updating it with desired values. Doing the other way around: updating old config to new format, carries high risk of mistakes, that can cause further failures during startup, node restart or Protocol Upgrade.
 
-Use the `--archive` flag to keep all data, forever. Read more about the [data retention modes](../../concepts/vega-chain/data-nodes.md#data-retention-modes) available.
+Use the `--archive` flag to keep all data, forever. Read more about the [data retention modes (testnet docs)](https://docs.vega.xyz/testnet/concepts/vega-chain/data-nodes#data-retention-modes) available.
 
 #### Data node config
 Important config keys that you need to update/check: 
@@ -328,7 +328,7 @@ You may also risk losing your wallets, so back them up as well.
 ### 8. Prepare genesis file
 We recommend doing this at the beginning of the upgrade procedure, but this can happen at any point before validators start the network. After the genesis is prepared, all the validators must use the same `genesis.json` file.
 
-To load the checkpoint, find more information in the [restart network guide](../how-to/restart-network.md#load-checkpoint).
+To load the checkpoint, find more information in the [restart network guide (testnet docs)](https://docs.vega.xyz/testnet/node-operators/how-to/restart-network#load-checkpoint).
 
 1. One of the validators will need to adjust [the genesis file ↗](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json) in the [Vega Protocol networks repository ↗](https://github.com/vegaprotocol/networks).
 2. The person responsible for updating genesis needs to create a PR with changes.
@@ -429,7 +429,7 @@ Run config is found in the `<VEGAVISOR-HOME>/genesis/run-config.toml`. It is cal
 
 Use the following pages as a reference:
 
-- [Prepare Visor documentation ↗](../get-started/setup-validator#prepare-initial-visor-run)
+- [Prepare Visor documentation (testnet docs) ↗](https://docs.vega.xyz/testnet/node-operators/get-started/setup-validator#prepare-initial-visor-run)
 - [Visor run-config documentation on Github ↗](https://github.com/vegaprotocol/vega/blob/develop/visor/run-config.md)
 
 :::warning Binary location and the binary path
