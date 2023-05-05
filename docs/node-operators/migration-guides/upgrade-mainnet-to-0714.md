@@ -285,7 +285,7 @@ Download new binaries for the upgrade version from the [GitHub releases page ↗
 
 The binaries you need: 
 * Vega binary: Also includes Tendermint and data node as binary subcommands
-* Visor binary: Optional for setting up Visor for protocol upgrades (See the docs listed in [step 7](#7-read-the-visor-documentation) for information on Visor.
+* Visor binary: Optional for setting up Visor for protocol upgrades (See the docs listed in [step 10](#10-read-the-visor-documentation) for information on Visor.
 
 See example commands for downloading below. You may need to update the version number depending on the version of the binaries you need to update to:
 
@@ -315,7 +315,7 @@ You may also risk losing your wallets, so back them up as well.
 3. Remove data-node state. Required for older version of data node (before v0.71.4): `rm -r <VEGA-NETWORK-HOME>/state/data-node`
 4. Recreate the PostgreSQL database if you have data within: 
     - a. Call the following command in PostgreSQL terminal: `DROP DATABASE IF EXISTS <VEGA-DB-NAME>`
-    - b. Follow instructions in the step to [Install/Upgrade PostgreSQL instance](#14-installupgrade-postgresql-instance) (optional for data node setup) to recreate new database
+    - b. Follow instructions in the step to [Install/Upgrade PostgreSQL instance](#16-installupgrade-postgresql-for-data-node) (optional for data node setup) to recreate new database
 
 ### 8. Prepare genesis file
 We recommend doing this at the beginning of the upgrade procedure, but this can happen at any point before validators start the network. After the genesis is prepared, all the validators must use the same `genesis.json` file.
@@ -360,7 +360,7 @@ While Visor is optional, it is recommended that you install and use Visor to sim
 - [See the Visor code ↗](https://github.com/vegaprotocol/vega/tree/develop/visor)
 - [Read the Visor documentation ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#readme)
 
-If you will NOT use Visor, skip to [step 12](#12-create-vega-and-data-node-systemd-services).
+If you will NOT use Visor, skip to [step 15](#15-create-vega-and-data-node-systemd-services).
 
 ### 11. Initiate Visor
 It's strongly recommended that you set up Visor for automatic protocol upgrades, i.e. to upgrade your node to a newer version. With Visor, an upgrade will happen at a predetermined block height without manual intervention.
