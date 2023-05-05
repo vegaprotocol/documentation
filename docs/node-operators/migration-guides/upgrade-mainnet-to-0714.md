@@ -35,7 +35,7 @@ Before you start, note that the instructions use the following variables for fil
 * `<BACKUP-FOLDER>`: the folder where you store backups, e.g., `/home/vega/backups`
 * `<VISOR-BIN>`: the path to the Vega Visor binary, e.g., `/home/vega/bin/visor`
 * `<VEGA-BIN>`: the path to the Vega core binary for `v0.71.4`, e.g., `/home/vega/bin/vega`
-* `<CHAIN-ID>`: new chain ID for network; it is required to pass as an argument for data-node, e.g., current chain ID on mainnet is: `vega-mainnet-0009`
+* `<CHAIN-ID>`: new chain ID for network; it is required to pass as an argument for data-node, e.g., current [proposed](https://github.com/vegaprotocol/networks/pull/171) value is: `vega-mainnet-0011`
 * `<POSTGRESQL-LINUX-USER>`: the user who runs the postgresql process
 
 The following are placeholders for the PostgreSQL connection details for the data node - the ones you put in the data node `config.toml`).
@@ -67,11 +67,14 @@ We recommend starting this before the upgrade and having configs ready for when 
 
 There are a few ways to update your existing Vega config. The most practical way is to see what changed in the Vega config between versions, as follows:
 
-1. Generate the Vega node in a temporary location: `<VEGA-BIN> init --home /tmp/vega-home <TYPE>`. When the terminal asks you for passphrases, type anything. You are interested only in the `config.toml` file. The `<TYPE>` may be different depending on the configuration you are running:
+1. Backup your existing config (you will need it in step 3), e.g.: `cp <VEGA-NETWORK-HOME>/config/node/config.toml <BACKUP-FOLDER>/core-v0.53-config.toml`
+2. Generate the Vega node in a temporary location: `<VEGA-BIN> init --home /tmp/vega-home <TYPE>`. When the terminal asks you for passphrases, type anything. You are interested only in the `config.toml` file. The `<TYPE>` may be different depending on the configuration you are running:
     - a. `validator` - if you are running only the Vega core without a data node, e.g.: `<VEGA-BIN> init --home /tmp/vega-home validator`
     - b. `full` - if you are running Vega core with a data node, e.g.: `<VEGA-BIN> init --home /tmp/vega-home full`
-2. Compare the old config with the generated one: `diff <VEGA-NETWORK-HOME>/config/node/config.toml /tmp/vega-home/config/node/config.toml`
-3. Update your `<VEGA-NETWORK-HOME>/config/node/config.toml` file based on the above diff
+3. Copy newly generated config to `<VEGA-NETWORK-HOME>`, e.g.: `cp /tmp/vega-home/config/node/config.toml <VEGA-NETWORK-HOME>/config/node/config.toml`
+4. Update the new config `<VEGA-NETWORK-HOME>/config/node/config.toml` with values from old config, e.g.: `diff <VEGA-NETWORK-HOME>/config/node/config.toml <BACKUP-FOLDER>/core-v0.53-config.toml`
+5. Review the new config `<VEGA-NETWORK-HOME>/config/node/config.toml` and update it according to your needs.
+  - *Important:* we strongly recommend using newly generated config as your new config base, then updating it with desired values. Doing the other way around: updating old config to new format, carries high risk of wrong config, that can cause further failures during startup, node restart or Protocol Upgrade.
 
 :::warning Config parameters
 We strongly recommend you read the list of configuration changes in the [upgrading file ↗](https://github.com/vegaprotocol/vega/blob/develop/UPGRADING.md#configuration-changes) to understand what config parameters and sections have changed.
