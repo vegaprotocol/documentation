@@ -584,7 +584,7 @@ WantedBy=multi-user.target
 ```
 
 ### 16. Install/Upgrade PostgreSQL for data node
-If you are running a data node, you will need to install or upgrade PostgreSQL. The PostgreSQL instance must be on the same server as the data node, as the PostgreSQL does the data snapshot in the data node location filespace. The data node uses PostgreSQL snapshots for the network history feature.
+If you are running a data node, you will need to install or upgrade PostgreSQL. The PostgreSQL instance must be on the same server as the data node.
 
 Install the following versions of the software:
 - PostgreSQL 14
