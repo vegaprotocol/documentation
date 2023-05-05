@@ -3,7 +3,7 @@ title: Upgrade mainnet to 0.71.4
 sidebar_label: Upgrade mainnet to 0.71.4
 ---
 
-To upgrade your validator node from version 0.53 to version 0.71.4, follow the steps below. 
+Follow the steps below to upgrade your validator node from version 0.53 to version 0.71.4. The procedure describes the checkpoint restart. One of the validators will have to load the checkpoint to the genesis, and the network will start from block 0.
 
 ## Study the changes between versions
 Before upgrading your node software, read the upgrading file in the Vega repo for a full list of the changes between the two versions, review the breaking API changes, and study the `TOML` changes to the networks repo for the validator testnet.
@@ -242,6 +242,10 @@ systemctl status data-node
 
 ### 5. Create backup
 
+:::warning Backup
+You SHOULD back up all the data. You MUST back up at least the private keys and all the wallets for your node; otherwise, You won't be able to operate your node and may lose your funds.
+:::
+
 ```bash
 mkdir -p <BACKUP-FOLDER>/v0.53.0/wallets;
 mkdir -p <BACKUP-FOLDER>/v0.53.0/core-state;
@@ -270,7 +274,7 @@ tree <BACKUP-FOLDER>
 pg_dump --host=localhost --port=5432 --username=<VEGA-DB-USER> --password -Fc -f <BACKUP-FOLDER/data_node_db.bak.sql <VEGA-DB-NAME>
 ```
 
-:::node Notes
+:::note Notes
 * *The `tree` command needs to be installed (e.g. `apt-get install -y tree`) but it is the easiest way to see if backup files match the original files without going too deep into details.
 *  **You might see some errors when running `pg_dump`. To learn if they can be safely ignored, see the [troubleshooting section in the official timescaledb docs ↗](https://docs.timescale.com/timescaledb/latest/how-to-guides/backup-and-restore/troubleshooting/).
 :::
@@ -351,14 +355,14 @@ cp ./genesis.json <TENDERMINT-HOME>/config/genesis.json
 
 
 ### 10. Read the Visor documentation
-While Visor is optional, it is recommended that you install and use Visor to simplify protocol upgrades. 
+While Visor is optional, it is recommended that you install and use Visor to simplify protocol upgrades. The visor is responsible for restarting the network during a restart with the protocol upgrade procedure.
 
 - [See the Visor code ↗](https://github.com/vegaprotocol/vega/tree/develop/visor)
 - [Read the Visor documentation ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#readme)
 
 If you will NOT use Visor, skip to [step 12](#12-create-vega-and-data-node-systemd-services).
 
-### 11. Initiate Visor (optional)
+### 11. Initiate Visor
 It's strongly recommended that you set up Visor for automatic protocol upgrades, i.e. to upgrade your node to a newer version. With Visor, an upgrade will happen at a predetermined block height without manual intervention.
 
 If you have questions about Visor, or would like to suggest enhancements, please raise them in the Validators Discord channel, or as issues on the [Vega repo ↗](https://github.com/vegaprotocol/vega/issues).
@@ -412,8 +416,7 @@ stopSignalTimeoutSeconds = 15
     binaryName = "vega"
 ```
 
-
-### 9. Prepare Visor run config
+### 13. Prepare Visor run config
 The visor `run-config` defines the commands to start the network. 
 
 Run config is found in the `<VEGAVISOR-HOME>/genesis/run-config.toml`. It is called genesis because it is used to start the network for the first Visor run. When you next use it for a protocol upgrade, other run-config may be used.
@@ -487,7 +490,7 @@ There are two **critical parameters**:
 Make sure the parent directory for the `sock` file exists. To check that it does, run: `mkdir -p <USER-HOME>/run/vega.sock`
 
 
-### 11. Prepare systemd service for Visor
+### 14. Prepare systemd service for Visor
 Create the `/lib/systemd/system/vegavisor.service` file with the following content. The file **must** be created with the `root` or a higher permission user:
 
 ```toml
@@ -515,7 +518,7 @@ WantedBy=multi-user.target
 ```
 
 
-### 12. Create Vega and data node systemd services
+### 15. Create Vega and data node systemd services
 If you are not using Visor, you have to prepare similar systemd configs as seen in the step above, for the following services:
 - Vega (Tendermint is part of the Vega process in newer versions)
 - Data node (optional)
@@ -577,7 +580,7 @@ WantedBy=multi-user.target
 
 
 
-### 15. Install/Upgrade PostgreSQL for data node
+### 16. Install/Upgrade PostgreSQL for data node
 If you are running a data node, you will need to install or upgrade PostgreSQL. The PostgreSQL instance must be on the same server as the data node, as the PostgreSQL does data-snapshot in the data node location file space. The data node uses PostgreSQL snapshots for the network history feature.
 
 Install the following versions of the software:
@@ -621,12 +624,12 @@ postgres=# \du
 
 
 
-### 16. Reload systemd services
+### 17. Reload systemd services
 Reload the systemd services to load the previously added Vega Visor, or Vega and data node services. 
 
 Use the following command: `sudo systemctl daemon-reload`.
 
-### 17. Start the upgraded network
+### 18. Start the upgraded network
 
 #### If you are running Visor 
 
