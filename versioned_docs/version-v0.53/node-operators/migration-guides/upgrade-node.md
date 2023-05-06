@@ -14,7 +14,7 @@ Review the **[release notes](../../releases/overview.md)** for a list of breakin
 
 Review the **[upgrading readme ↗](https://github.com/vegaprotocol/vega/blob/develop/UPGRADING.md)** with details on major updates.
 
-Review the [wallet config ↗](https://github.com/vegaprotocol/networks/pull/131) structural and content changes. For mainnet, you will need to review/approve the equivalent PR.
+Review the **[wallet config ↗](https://github.com/vegaprotocol/networks/pull/131)** structural and content changes. For mainnet, you will need to review/approve the equivalent PR.
 
 ## Assumptions for the upgrade guide
 The instructions below are written for Debian-like Linux operating systems. 
@@ -34,7 +34,7 @@ Before you start, note that the instructions use the following variables for fil
 * `<VISOR-BIN>`: the path to the Vega Visor binary, e.g., `/home/vega/bin/visor`
 * `<VEGA-BIN>`: the path to the Vega core binary for `v0.71.4`, e.g., `/home/vega/bin/vega`
 * `<CHAIN-ID>`: new chain ID for network; it is required to pass as an argument for data-node, e.g., current [proposed](https://github.com/vegaprotocol/networks/pull/171) value is: `vega-mainnet-0011`
-* `<POSTGRESQL-LINUX-USER>`: the user who runs the postgresql process
+* `<POSTGRESQL-LINUX-USER>`: the user who runs the PostgreSQL process
 
 The following are placeholders for the PostgreSQL connection details for the data node - the ones you put in the data node `config.toml`).
 
@@ -129,8 +129,8 @@ Important config keys that you need to update/check:
 - `Admin.Server.SocketPath` - Path for the Unix `sock` file; Ensure parent directory exists. Example may be `<VEGA-NETWORK-HOME>/run/datanode.sock`.
 - `API.CoreNodeIP` - IP of the server where the Vega core node is running. Often, it is `127.0.0.1.` (localhost).
 - `API.CoreNodeGRPCPort` - Port you expose for the Vega core gRPC node. Default: `3002`.
-- `SQLStore.wipe_on_startup` - Defines if the data node removes data from the postgreSQL after the restart. We recommend deleting this if it's in your config, as it has been deprecated and is not needed.
-- `SQLStore.UseEmbedded` - If true, internal (managed by the binary itself) postgreSQL is used. We strongly recommend setting it to `false` for production, as it is intended for testing only.
+- `SQLStore.wipe_on_startup` - Defines if the data node removes data from the PostgreSQL after the restart. We recommend deleting this if it's in your config, as it has been deprecated and is not needed.
+- `SQLStore.UseEmbedded` - If true, internal (managed by the binary itself) PostgreSQL is used. We strongly recommend setting it to `false` for production, as it is intended for testing only.
 - `SQLStore.ConnectionConfig` - Update the entire section, as it is where you set PostgreSQL credentials.
 - `NetworkHistory.Enabled` - Enables IPFS network history. Ensure this is set to `true`. See the [network history](#a-bit-about-network-history) section below.
 
@@ -156,9 +156,11 @@ Format of `BootstrapPeers`:
 "/dns/<DATA-NODE-HOST>/tcp/<DATA-NODE-SWARM-PORT>/ipfs/<DATA-NODE-PEER-ID>"
 ```
 
-Example `BootstrapPeers` value:
+:::caution
+Do not use the below bootstrap peers as it is an example from a test network and will not work.
+:::
 
-**Do not use the below bootstrap peers as it is an example from a test network.**
+Example `BootstrapPeers` value:
 
 ```toml
 BootstrapPeers = ["/dns/n05.stagnet1.vega.xyz/tcp/4001/ipfs/12D3KooWHNyJBuN9GmYp23FAdMbL3nmwe5DzixFNL8d4oBTMzxag","/dns/n06.stagnet1.vega.xyz/tcp/4001/ipfs/12D3KooWQpceAbYaEaas65tEt8CJofHgjRPANaojwA7oaQApHTvB"]
@@ -588,7 +590,7 @@ Install the following versions of the software:
 - PostgreSQL 14
 - TimescaleDB: 2.8.0
 
-If above versions are a mismatch, you should upgrade/downgrade your software to meet those.
+If above versions are a mismatch, you should upgrade/downgrade your software to meet those. Important: If you are running Vega core software v0.53, then you will have TimescaleDB version 2.6. You need to upgrade it to 2.8.0.
 
 The procedure for preparing PostgreSQL:
 1. Install PostgreSQL. As a reference, use the [PostgreSQL documentation ↗](https://www.postgresql.org/download/linux/ubuntu/)
