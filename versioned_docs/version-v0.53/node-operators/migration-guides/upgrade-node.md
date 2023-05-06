@@ -13,9 +13,6 @@ Before upgrading your node software, read the upgrading file in the Vega repo fo
 Review the **[release notes](../../releases/overview.md)** for a list of breaking API changes for each version from 0.54 onwards.
 
 Review the **[upgrading readme ↗](https://github.com/vegaprotocol/vega/blob/develop/UPGRADING.md)** with details on major updates.
-* [Repository changes ↗](https://github.com/vegaprotocol/vega/blob/develop/UPGRADING.md#repository-changes)
-* [Configuration changes ↗](https://github.com/vegaprotocol/vega/blob/develop/UPGRADING.md#configuration-changes)
-* [Command line changes ↗](https://github.com/vegaprotocol/vega/blob/develop/UPGRADING.md#command-line-changes)
 
 Review the [wallet config ↗](https://github.com/vegaprotocol/networks/pull/131) structural and content changes. For mainnet, you will need to review/approve the equivalent PR.
 
