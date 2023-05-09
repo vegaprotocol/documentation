@@ -73,11 +73,9 @@ This command *does not allow* the generation of arbitrary add and remove signatu
 
 After sending in the `IssueSignature` command the signatures will become available through a data node API and then can be submitted to Ethereum to update the Multisig Control contract.
 
-#### Adding a signer
-
 If you are trying to *add* a validator node to the contract and set `kind` to `NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_ADDED` in the previous step, then use [List ERC-20 multi-sig signer added bundles](../../api/rest/data-v2/trading-data-service-list-erc-20-multi-sig-signer-added-bundles.api.mdx).
 
-An example repsonse is below, 
+An example repsonse is below
 ```json
 {
   "bundles": {
@@ -103,16 +101,6 @@ An example repsonse is below,
   }
 }
 ```
-
-where the values of the fields `newSigner`, `nonce` and `signatures` will be needed to submit the signatures to Ethereum. This can be done programatically in code using Web3 utilises and packages for your language of choice. 
-
-Alternatively they can also be submitted through Etherscan by naviagating to the contract address <EthAddresses frontMatter={frontMatter} show={["MultisigControl"]} /> and clicking on the tabs `Contract` followed by `Write Contract`, and then expanding then `add_signer` function. 
-
-:::note
-The Ethereum wallet you use to connect to Etherscan, or use to submit the transaction programatically, must have the address that matches the `submitter` fields returned by the data node's API
-:::
-
-#### Removing a signer
 
 If you are trying to *remove* a validator node to the contract and set `kind` to `NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_REMOVED` in the previous step, then use [List ERC-20 multi-sig signer removed bundles](../../api/rest/data-v2/trading-data-service-list-erc-20-multi-sig-signer-removed-bundles.api.mdx).
 
@@ -143,10 +131,12 @@ An example repsonse is below
 }
 ```
 
-where the values of the fields `oldSigner`, `nonce` and `signatures` will be needed to submit the signatures to Ethereum. This can be done programatically in code using Web3 utilises and packages for your language of choice. 
+The values of the fields `newSigner/oldSigner`, `nonce` and `signatures` will be needed to submit the signatures to Ethereum. This can be done programatically in code using Web3 utilities and packages for your language of choice. 
 
-Alternatively they can also be submitted through Etherscan by naviagating to the contract address <EthAddresses frontMatter={frontMatter} show={["MultisigControl"]} /> and clicking on the tabs `Contract` followed by `Write Contract`, and then expanding then `remove_signer` function. 
+<EthAddresses frontMatter={frontMatter} show={["MultisigControl"]} />
 
-:::note
-The Ethereum wallet you use to connect to Etherscan, or use to submit the transaction programatically, must have the address that matches the `submitter` fields returned by the data node's API
+Alternatively they can also be submitted through Etherscan by naviagating to the contract address and clicking on the tabs `Contract` followed by `Write Contract`, and then expanding then `add_signer/remove_signer` function. You can then fill in the required fields using the information retrieved earlier from a data node, connect a Web3 wallet, and then click `Write`.
+
+:::caution Submit using the correct Ethereum keys
+The Ethereum wallet you use to connect to Etherscan, or use to submit the transaction programatically, must have the address that matches the `submitter` fields returned by the data node's API. If it is not then the transaction will fail as the signatures are tied to a the submitter.
 :::
