@@ -34,7 +34,7 @@ That said, for the purposes of this tutorial we are comfortable taking on this c
 
 :::note Read more
 [Providing liquidity](../../concepts/liquidity/index.md)
-[Liquidity bond accounts](../../concepts/accounts.md#liquidity-bond-accounts)
+[Liquidity bond accounts](../../concepts/assets/accounts.md#liquidity-bond-accounts)
 :::
 
 ## Making a commitment
