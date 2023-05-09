@@ -37,59 +37,59 @@ type Proposal {
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>id</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>id</b></code>](#)<Bullet />[`ID`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > Proposal ID that is filled by Vega once proposal reaches the network
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>reference</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>reference</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > A UUID reference to aid tracking proposals on Vega
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>party</b></code>](#)<Bullet />[`Party!`](/testnet/api/graphql/objects/party) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>party</b></code>](#)<Bullet />[`Party!`](/mainnet/api/graphql/objects/party) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > Party that prepared the proposal
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>state</b></code>](#)<Bullet />[`ProposalState!`](/testnet/api/graphql/enums/proposal-state) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>state</b></code>](#)<Bullet />[`ProposalState!`](/mainnet/api/graphql/enums/proposal-state) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
 > State of the proposal
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>datetime</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>datetime</b></code>](#)<Bullet />[`Timestamp!`](/mainnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time and date when the proposal reached Vega network
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>rationale</b></code>](#)<Bullet />[`ProposalRationale!`](/testnet/api/graphql/objects/proposal-rationale) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>rationale</b></code>](#)<Bullet />[`ProposalRationale!`](/mainnet/api/graphql/objects/proposal-rationale) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > Rationale behind the proposal
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>terms</b></code>](#)<Bullet />[`ProposalTerms!`](/testnet/api/graphql/objects/proposal-terms) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>terms</b></code>](#)<Bullet />[`ProposalTerms!`](/mainnet/api/graphql/objects/proposal-terms) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > Terms of the proposal
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>votes</b></code>](#)<Bullet />[`ProposalVotes!`](/testnet/api/graphql/objects/proposal-votes) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>votes</b></code>](#)<Bullet />[`ProposalVotes!`](/mainnet/api/graphql/objects/proposal-votes) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > Votes cast for this proposal
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>rejectionReason</b></code>](#)<Bullet />[`ProposalRejectionReason`](/testnet/api/graphql/enums/proposal-rejection-reason) <Badge class="secondary" text="enum"/>
+#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>rejectionReason</b></code>](#)<Bullet />[`ProposalRejectionReason`](/mainnet/api/graphql/enums/proposal-rejection-reason) <Badge class="secondary" text="enum"/>
 > Why the proposal was rejected by the core
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>errorDetails</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>errorDetails</b></code>](#)<Bullet />[`String`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
 > Error details of the rejectionReason
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>requiredMajority</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>requiredMajority</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Required majority for this proposal to succeed
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>requiredParticipation</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>requiredParticipation</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Required participation for this proposal to succeed
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>requiredLpMajority</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>requiredLpMajority</b></code>](#)<Bullet />[`String`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
 > Equity-like share required for a market amendment proposal to be enacted (if not met, the proposal will not be enacted), represented as a fraction that can be converted to a percentage
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>requiredLpParticipation</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Proposal.<b>requiredLpParticipation</b></code>](#)<Bullet />[`String`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
 > The market share of LPs' equity-like share that must take part in the market amendment vote for the proposal to pass. This means the votes of LPs that have submitted more liquidity to that market, or have been LPs from the start carry more weight. If it requires 50% of a market's equity-like share for a majority, and the proposal receives only YES votes but only LPs with 49% of the equity-like share voted, the proposal will not pass
 > 
 
@@ -97,11 +97,11 @@ type Proposal {
 
 ### Returned by
 
-[`proposal`](/testnet/api/graphql/queries/proposal)  <Badge class="secondary" text="query"/><Bullet />[`proposals`](/testnet/api/graphql/subscriptions/proposals)  <Badge class="secondary" text="subscription"/>
+[`proposal`](/mainnet/api/graphql/queries/proposal)  <Badge class="secondary" text="query"/><Bullet />[`proposals`](/mainnet/api/graphql/subscriptions/proposals)  <Badge class="secondary" text="subscription"/>
 
 ### Member of
 
-[`Market`](/testnet/api/graphql/objects/market)  <Badge class="secondary" text="object"/><Bullet />[`ProposalEdge`](/testnet/api/graphql/objects/proposal-edge)  <Badge class="secondary" text="object"/>
+[`Market`](/mainnet/api/graphql/objects/market)  <Badge class="secondary" text="object"/><Bullet />[`ProposalEdge`](/mainnet/api/graphql/objects/proposal-edge)  <Badge class="secondary" text="object"/>
 
 
 

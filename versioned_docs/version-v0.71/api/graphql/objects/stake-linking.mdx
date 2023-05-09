@@ -32,39 +32,39 @@ type StakeLinking {
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>id</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>id</b></code>](#)<Bullet />[`ID!`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > 
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>type</b></code>](#)<Bullet />[`StakeLinkingType!`](/testnet/api/graphql/enums/stake-linking-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>type</b></code>](#)<Bullet />[`StakeLinkingType!`](/mainnet/api/graphql/enums/stake-linking-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
 > Type of linking: link|unlink
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>timestamp</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>timestamp</b></code>](#)<Bullet />[`Timestamp!`](/mainnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > The time at which the request happened on ethereum
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>party</b></code>](#)<Bullet />[`Party!`](/testnet/api/graphql/objects/party) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>party</b></code>](#)<Bullet />[`Party!`](/mainnet/api/graphql/objects/party) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > The party initiating the stake linking
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>amount</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>amount</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > The amount linked or unlinked
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>status</b></code>](#)<Bullet />[`StakeLinkingStatus!`](/testnet/api/graphql/enums/stake-linking-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>status</b></code>](#)<Bullet />[`StakeLinkingStatus!`](/mainnet/api/graphql/enums/stake-linking-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
 > The status of the linking
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>finalizedAt</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>finalizedAt</b></code>](#)<Bullet />[`Timestamp`](/mainnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
 > The time at which the stake linking was fully processed by the Vega network, null until defined
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>txHash</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>txHash</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > The transaction hash (ethereum) which initiated the link/unlink
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>blockHeight</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinking.<b>blockHeight</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > The (ethereum) block height of the link/unlink
 > 
 
@@ -72,7 +72,7 @@ type StakeLinking {
 
 ### Member of
 
-[`PartyStake`](/testnet/api/graphql/objects/party-stake)  <Badge class="secondary" text="object"/><Bullet />[`StakeLinkingEdge`](/testnet/api/graphql/objects/stake-linking-edge)  <Badge class="secondary" text="object"/>
+[`PartyStake`](/mainnet/api/graphql/objects/party-stake)  <Badge class="secondary" text="object"/><Bullet />[`StakeLinkingEdge`](/mainnet/api/graphql/objects/stake-linking-edge)  <Badge class="secondary" text="object"/>
 
 
 

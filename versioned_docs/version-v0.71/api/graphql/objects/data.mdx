@@ -27,20 +27,20 @@ type Data {
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>Data.<b>signers</b></code>](#)<Bullet />[`[Signer!]`](/testnet/api/graphql/objects/signer) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Data.<b>signers</b></code>](#)<Bullet />[`[Signer!]`](/mainnet/api/graphql/objects/signer) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
 > signers is the list of public keys/ETH addresses that signed the data
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Data.<b>data</b></code>](#)<Bullet />[`[Property!]`](/testnet/api/graphql/objects/property) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Data.<b>data</b></code>](#)<Bullet />[`[Property!]`](/mainnet/api/graphql/objects/property) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
 > properties contains all the properties sent by a data source
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Data.<b>matchedSpecIds</b></code>](#)<Bullet />[`[ID!]`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Data.<b>matchedSpecIds</b></code>](#)<Bullet />[`[ID!]`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
 > List of all the data specs that matched this source data.
 When the array is empty, it means no data spec matched this source data.
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Data.<b>broadcastAt</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Data.<b>broadcastAt</b></code>](#)<Bullet />[`Timestamp!`](/mainnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano formatted date and time for when the data was broadcast to the markets
 with a matching data spec.
 It has no value when the source data does not match any data spec.
@@ -50,7 +50,7 @@ It has no value when the source data does not match any data spec.
 
 ### Member of
 
-[`ExternalData`](/testnet/api/graphql/objects/external-data)  <Badge class="secondary" text="object"/>
+[`ExternalData`](/mainnet/api/graphql/objects/external-data)  <Badge class="secondary" text="object"/>
 
 
 

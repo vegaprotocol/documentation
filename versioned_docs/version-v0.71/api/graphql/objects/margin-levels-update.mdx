@@ -31,36 +31,36 @@ type MarginLevelsUpdate {
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>MarginLevelsUpdate.<b>marketId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>MarginLevelsUpdate.<b>marketId</b></code>](#)<Bullet />[`ID!`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Market in which the margin is required for this party
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>MarginLevelsUpdate.<b>asset</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>MarginLevelsUpdate.<b>asset</b></code>](#)<Bullet />[`ID!`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Asset for the current margins
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>MarginLevelsUpdate.<b>partyId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>MarginLevelsUpdate.<b>partyId</b></code>](#)<Bullet />[`ID!`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > The party for this margin
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>MarginLevelsUpdate.<b>maintenanceLevel</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>MarginLevelsUpdate.<b>maintenanceLevel</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Minimal margin for the position to be maintained in the network (unsigned integer)
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>MarginLevelsUpdate.<b>searchLevel</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>MarginLevelsUpdate.<b>searchLevel</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > If the margin is between maintenance and search, the network will initiate a collateral search (unsigned integer)
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>MarginLevelsUpdate.<b>initialLevel</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>MarginLevelsUpdate.<b>initialLevel</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > This is the minimum margin required for a party to place a new order on the network (unsigned integer)
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>MarginLevelsUpdate.<b>collateralReleaseLevel</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>MarginLevelsUpdate.<b>collateralReleaseLevel</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > If the margin of the party is greater than this level, then collateral will be released from the margin account into
 the general account of the party for the given asset.
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>MarginLevelsUpdate.<b>timestamp</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>MarginLevelsUpdate.<b>timestamp</b></code>](#)<Bullet />[`Timestamp!`](/mainnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time from at which this margin level was relevant
 > 
 
@@ -68,7 +68,7 @@ the general account of the party for the given asset.
 
 ### Returned by
 
-[`margins`](/testnet/api/graphql/subscriptions/margins)  <Badge class="secondary" text="subscription"/>
+[`margins`](/mainnet/api/graphql/subscriptions/margins)  <Badge class="secondary" text="subscription"/>
 
 
 

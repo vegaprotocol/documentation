@@ -26,15 +26,15 @@ type LogNormalRiskModel {
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>LogNormalRiskModel.<b>riskAversionParameter</b></code>](#)<Bullet />[`Float!`](/testnet/api/graphql/scalars/float) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>LogNormalRiskModel.<b>riskAversionParameter</b></code>](#)<Bullet />[`Float!`](/mainnet/api/graphql/scalars/float) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Lambda parameter of the risk model, probability confidence level used in expected shortfall calculation when obtaining the maintenance margin level, must be strictly greater than 0 and strictly smaller than 1
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>LogNormalRiskModel.<b>tau</b></code>](#)<Bullet />[`Float!`](/testnet/api/graphql/scalars/float) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>LogNormalRiskModel.<b>tau</b></code>](#)<Bullet />[`Float!`](/mainnet/api/graphql/scalars/float) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Tau parameter of the risk model, projection horizon measured as a year fraction used in the expected shortfall calculation to obtain the maintenance margin, must be a strictly non-negative real number
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>LogNormalRiskModel.<b>params</b></code>](#)<Bullet />[`LogNormalModelParams!`](/testnet/api/graphql/objects/log-normal-model-params) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>LogNormalRiskModel.<b>params</b></code>](#)<Bullet />[`LogNormalModelParams!`](/mainnet/api/graphql/objects/log-normal-model-params) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > Parameters for the log normal risk model
 > 
 
@@ -42,11 +42,11 @@ type LogNormalRiskModel {
 
 ### Member of
 
-[`UpdateMarketLogNormalRiskModel`](/testnet/api/graphql/objects/update-market-log-normal-risk-model)  <Badge class="secondary" text="object"/>
+[`UpdateMarketLogNormalRiskModel`](/mainnet/api/graphql/objects/update-market-log-normal-risk-model)  <Badge class="secondary" text="object"/>
 
 ### Implemented by
 
-[`RiskModel`](/testnet/api/graphql/unions/risk-model)  <Badge class="secondary" text="union"/>
+[`RiskModel`](/mainnet/api/graphql/unions/risk-model)  <Badge class="secondary" text="union"/>
 
 
 

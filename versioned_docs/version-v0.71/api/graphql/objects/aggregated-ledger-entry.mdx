@@ -35,51 +35,51 @@ type AggregatedLedgerEntry {
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>vegaTime</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>vegaTime</b></code>](#)<Bullet />[`Timestamp!`](/mainnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time from at which this ledger entries records were relevant
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>quantity</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>quantity</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Net amount of ledger entries for the accounts specified in the filter at this time
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>assetId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>assetId</b></code>](#)<Bullet />[`ID`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > Asset identifier, if query was grouped by asset - else null
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>transferType</b></code>](#)<Bullet />[`TransferType`](/testnet/api/graphql/enums/transfer-type) <Badge class="secondary" text="enum"/>
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>transferType</b></code>](#)<Bullet />[`TransferType`](/mainnet/api/graphql/enums/transfer-type) <Badge class="secondary" text="enum"/>
 > Type of the transfer for this ledger entry
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>fromAccountPartyId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>fromAccountPartyId</b></code>](#)<Bullet />[`ID`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > Party identifier, if query was grouped by sender party - else null
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>toAccountPartyId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>toAccountPartyId</b></code>](#)<Bullet />[`ID`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > Party identifier, if query was grouped by receiver party - else null
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>fromAccountMarketId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>fromAccountMarketId</b></code>](#)<Bullet />[`ID`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > Market identifier, if query was grouped by sender market - else null
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>toAccountMarketId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>toAccountMarketId</b></code>](#)<Bullet />[`ID`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > Market identifier, if query was grouped by receiver market - else null
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>fromAccountType</b></code>](#)<Bullet />[`AccountType`](/testnet/api/graphql/enums/account-type) <Badge class="secondary" text="enum"/>
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>fromAccountType</b></code>](#)<Bullet />[`AccountType`](/mainnet/api/graphql/enums/account-type) <Badge class="secondary" text="enum"/>
 > Account type, if query was grouped by sender account type - else null
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>toAccountType</b></code>](#)<Bullet />[`AccountType`](/testnet/api/graphql/enums/account-type) <Badge class="secondary" text="enum"/>
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>toAccountType</b></code>](#)<Bullet />[`AccountType`](/mainnet/api/graphql/enums/account-type) <Badge class="secondary" text="enum"/>
 > Account type, if query was grouped by receiver account type - else null
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>fromAccountBalance</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>fromAccountBalance</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Sender account balance after the transfer
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>toAccountBalance</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>AggregatedLedgerEntry.<b>toAccountBalance</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Receiver account balance after the transfer
 > 
 
@@ -87,7 +87,7 @@ type AggregatedLedgerEntry {
 
 ### Member of
 
-[`AggregatedLedgerEntriesEdge`](/testnet/api/graphql/objects/aggregated-ledger-entries-edge)  <Badge class="secondary" text="object"/>
+[`AggregatedLedgerEntriesEdge`](/mainnet/api/graphql/objects/aggregated-ledger-entries-edge)  <Badge class="secondary" text="object"/>
 
 
 

@@ -25,17 +25,17 @@ positions(
 
 ### Arguments
 
-#### [<code style={{ fontWeight: 'normal' }}>positions.<b>partyId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>positions.<b>partyId</b></code>](#)<Bullet />[`ID`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > ID of the party from you want updates for
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>positions.<b>marketId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>positions.<b>marketId</b></code>](#)<Bullet />[`ID`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > ID of the market from which you want position updates
 > 
 
 ### Type
 
-#### [`PositionUpdate`](/testnet/api/graphql/objects/position-update) <Badge class="secondary" text="object"/>
+#### [`PositionUpdate`](/mainnet/api/graphql/objects/position-update) <Badge class="secondary" text="object"/>
 > An individual party at any point in time is considered net long or net short. This refers to their Open Volume,
 calculated using FIFO. This volume is signed as either negative for LONG positions and positive for SHORT positions. A
 single trade may end up "splitting" with some of its volume matched into closed volume and some of its volume

@@ -7,7 +7,7 @@ echo "Vaguer run"
 
 ## Mainnet block - hardcoded to 1.2.0 while it is 0.53.0
 echo " - Fetching mainnet"
-SUPPORT_053=true JSON=true npx --yes --silent github:vegaprotocol/vaguer mainnet1 > "./specs/mainnet_vaguer_temp.json"
+JSON=true npx --yes --silent github:vegaprotocol/vaguer mainnet1 > "./specs/mainnet_vaguer_temp.json"
 mainnet_temp_good=$(jq '[.[] | select(."🥇" == "🥇")] | length' ./specs/mainnet_vaguer_temp.json)
 mainnet_current_good=$(jq '[.[] | select(."🥇" == "🥇")] | length' ./specs/mainnet_vaguer.json)
 
@@ -32,7 +32,7 @@ JSON=true npx --yes --silent github:vegaprotocol/vaguer fairground > "./specs/te
 testnet_temp_good=$(jq '[.[] | select(."🥇" == "🥇")] | length' ./specs/testnet_vaguer_temp.json)
 testnet_current_good=$(jq '[.[] | select(."🥇" == "🥇")] | length' ./specs/testnet_vaguer.json)
 
-if ((testnet_temp_good >= 3)); then
+if ((testnet_temp_good >= 1)); then
   echo "   - New run ${testnet_temp_good}, old run: ${testnet_current_good}"
   rm "./specs/testnet_vaguer.json"
   mv "./specs/testnet_vaguer_temp.json" "./specs/testnet_vaguer.json"
