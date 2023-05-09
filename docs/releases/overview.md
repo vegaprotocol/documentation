@@ -29,7 +29,7 @@ The Vega core software is public on a business-source licence, so you can both v
 ### Pre-release versions 0.71.3, and 0.71.4 combined | 2023-05-05
 This version was released to the Vega testnet on 05 May, 2023.
 
-This combined release contains fixes for two bugs found in data node during the final community incentive run on the alpha mainnet release candidate software version.
+This combined release contains fixes for two bugs found in data node during the final community incentive run on the alpha mainnet release candidate.
 
 A bug was identified in the way expired orders were handled by the protocol. Orders were being inserted into the databases with different sequence numbers; this resulted in the logic to expire orders being unable to get deterministic data across the network. This issue was resolved by querying the data by `id` to ensure the correct sequencing on all nodes in the network. See the full details of this bug fix in issue [8251 ↗](https://github.com/vegaprotocol/vega/issues/8251)
 
