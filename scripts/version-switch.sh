@@ -12,11 +12,14 @@
 # -----
 
 # Mainnet docs
-## Ensure all docs in the versioned folder link to /mainnet/
-find 'versioned_docs/version-v0.71/api/graphql' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/\/docs\/testnet\/api\/graphql/\/docs\/mainnet\/api\/graphql/g' {} +
+find 'versioned_docs' -type f -name '*.md' -exec sed -i -E 's#title: Schema Documentation#title: Graphql Schema Documentation#g' {} +
+find 'docs' -type f -name '*.md' -exec sed -i -E 's#title: Schema Documentation#title: Graphql Schema Documentation#g' {} +
 
 ## Ensure all docs in the versioned folder link to /mainnet/
-find 'versioned_docs/version-v0.71/api/grpc' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/\/docs\/testnet\/api\/grpc/\/docs\/mainnet\/api\/grpc/g' {} +
+find 'versioned_docs' -type f -name '*.mdx' -exec sed -i -E 's#testnet/api/graphql#mainnet/api/graphql#g' {} +
+
+## Ensure all docs in the versioned folder link to /mainnet/
+find 'versioned_docs' -type f -name '*.mdx' -exec sed -i -E 's#testnet/api/grpc#mainnet/api/grpc#g' {} +
 
 ## Sidebar fixup
 sed -i -E 's/\/docs\/testnet\//\/docs\/mainnet\//g' versioned_sidebars/version-v0.71-sidebars.json 
@@ -28,17 +31,16 @@ find 'docs/api/graphql' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/graphql
 find 'docs/api/grpc' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/grpc/\/docs\/testnet\/grpc/g' {} +
 
 ## Ensure frontmatter for non-testnet docs is set to mainnets
-find 'versioned_docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/vega_network: TESTNET/vega_network: MAINNET/g' {} +
-find 'versioned_docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/ethereum_network: SEPOLIA/ethereum_network: MAINNET/g' {} +
-
-## Do the inverse, just in case
-find 'docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/vega_network: MAINNET/vega_network: TESTNET/g' {} +
-find 'docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/ethereum_network: MAINNET/ethereum_network: SEPOLIA/g' {} +
+find 'versioned_docs' -type f -name '*.mdx' -exec sed -i -E 's/vega_network: TESTNET/vega_network: MAINNET/g' {} +
+find 'versioned_docs' -type f -name '*.md' -exec sed -i -E 's/vega_network: TESTNET/vega_network: MAINNET/g' {} +
 
 ## Fix tutorials
-find 'versioned_docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/--network fairground/--network mainnet1/g' {} +
+find 'versioned_docs' -type f -name '*.mdx' -exec sed -i -E 's/--network fairground/--network mainnet1/g' {} +
+find 'versioned_docs' -type f -name '*.md' -exec sed -i -E 's/--network fairground/--network mainnet1/g' {} +
+
 ## Explorer links
-find 'versioned_docs' -type f -name '*.mdx' -o -name '*.md' -exec gsed -i -E 's/https:\/\/explorer.fairground.wtf/https:\/\/explorer.vega.xyz/g' {} +
+find 'versioned_docs' -type f -name '*.mdx' -exec gsed -i -E 's/https:\/\/explorer.fairground.wtf/https:\/\/explorer.vega.xyz/g' {} +
+find 'versioned_docs' -type f -name '*.md' -exec gsed -i -E 's/https:\/\/explorer.fairground.wtf/https:\/\/explorer.vega.xyz/g' {} +
 
 
 # Tidy up any stray backup files from seds (non-gnused)
