@@ -1,7 +1,7 @@
 ---
 id: schema
 slug: /graphql
-title: Graphql Schema Documentation
+title: GraphQL Schema Documentation
 sidebar_position: 1
 hide_table_of_contents: true
 pagination_next: null
