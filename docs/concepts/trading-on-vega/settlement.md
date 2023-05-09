@@ -24,11 +24,10 @@ In addition to the settlement asset, a market's proposal also specifies the data
 
 At the point when a market arrives at its specified expiry, trading terminates, and then the data sources provide the final settlement value. The protocol settles all open positions on the market using the price provided by the data source.
 
-<!--
 :::note Read more
-[Data sources]
+**[Data sources](./data-sources.md)**
 :::
--->
+
  
 ## Settlement at market expiry
 After a market reaches its maturity date and time, a final settlement is carried out. That settlement is dependent on the pre-defined data source publishing data that triggers the market’s expiry.
@@ -47,11 +46,9 @@ After all positions are closed when the market expires, they are ‘forgotten’
 ### Expiry example
 A cash-settled futures market reaches its expiry date and time. If the last mark price before settlement is 100, but the oracle price feed emits data that the price is 115, then a trader with a position of 1 long is paid 15. Another trader that has a position of 1 short, pays 15.
 
-<!--
 :::note Read more
-[Data sources](./data-sources)
+**[Data sources](./data-sources.md)**
 :::
--->
 
 ## Mark to market settlement
 Settlement instructions are generated based on the change in market value of the open positions of a party. 
@@ -60,11 +57,9 @@ When the mark price changes, the protocol calculates settlement cash flows for e
 
 Each time the mark price for a given market changes, all the open positions are marked to market, resulting in interim partial payments that are calculated by the protocol. Those payments go directly to the relevant trader's margin account. 
 
-<!--
 :::note Read more
-[Mark to market]
+[Mark to market](./positions-margin.md#mark-to-market)
 :::
--->
 
 ## Settlement execution
 The protocol executes settlement using a two step process: Collection and distribution.
@@ -80,7 +75,7 @@ When collateral is collected, ledger entries that adhere to double-entry account
 If all the requested amounts are successfully transferred to the settlement account, then the amount collected will match the amount to be distributed and the participants whose moves were positive receive what they're owed in their margin accounts. 
 
 :::note Read more 
-* [Insurance pools](/testnet/concepts/trading-on-vega/market-protections#insurance-pools)
-* [Loss socialisation](/testnet/concepts/trading-on-vega/market-protections#loss-socialisation)
-* [Settlement account](./../accounts#settlement-accounts)
+* [Insurance pools](../trading-on-vega/market-protections.md#insurance-pools)
+* [Loss socialisation](../trading-on-vega/market-protections.md#loss-socialisation)
+* [Settlement account](../assets/accounts.md#settlement-accounts)
 :::
