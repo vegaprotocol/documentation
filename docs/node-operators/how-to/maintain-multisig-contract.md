@@ -33,7 +33,9 @@ rankingScore.status != VALIDATOR_NODE_STATUS_TENDERMINT
 rankingScore.previousStatus == VALIDATOR_NODE_STATUS_TENDERMINT
 ```
 
-Seeing any validator with the above combination of ranking-score statuses means that action must be taken to prevent rewards from being withheld by the network. If the contract is still not updated and further changes to the consensus set occur then identifying the nodes to add or remove becomes harder.
+:::caution Rewards will be withheld
+Seeing any validator with the above combination of ranking-score statuses means the Multisig Control must be updated to prevent rewards from being withheld by the network. If the contract is still not updated and further changes to the consensus set occur then identifying the nodes to add or remove becomes harder.
+:::
 
 ## How to update the contract
 
