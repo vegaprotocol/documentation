@@ -19,7 +19,7 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 
 [**Vega Desktop Wallet on GitHub** ↗](https://github.com/vegaprotocol/vegawallet-desktop/releases) - The code for the Vega Wallet desktop app is open source, and you can read the contents of each release on the repo.
 
-[**Governance dApp on GitHub** ↗](https://github.com/vegaprotocol/frontend-monorepo/releases) - The Governance dApp, which provides an interface for interacting with governance proposals, VEGA tokens, and staking to validators; Console, a trading interface; and the Vega Block Explorer are open-source and you see more about them in the frontend monorepo.
+<!--[**Governance dApp on GitHub** ↗](https://github.com/vegaprotocol/frontend-monorepo/releases) - The Governance dApp, which provides an interface for interacting with governance proposals, VEGA tokens, and staking to validators; Console, a trading interface; and the Vega Block Explorer are open-source and you see more about them in the frontend monorepo.-->
 
 [**Vega Capsule on GitHub** ↗](https://github.com/vegaprotocol/vegacapsule/releases) - Vega Capsule, which lets you create an instance of the Vega network on your computer to experiment with using the protocol, is public and you can read the contents of each release on GitHub.
 

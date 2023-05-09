@@ -27,11 +27,6 @@ To use assets on the Vega network, for example to take part in markets, you'll n
 * You'll need to approve the deposit to the Ethereum network, which gives the Vega bridge access to that asset in your Ethereum wallet
 * After approving, choose an amount to deposit. This deposit will have to accepted on the Ethereum network and the Vega network before the assets can be used
 
-
-:::info Try it out
-Deposit assets using the [Vega Console trading interface ↗](https://console.fairground.wtf), in the Portfolio section.
-:::
-
 The first assets that will be available for interacting with markets on Vega will be ERC-20 assets, the only bridge currently available. An asset's ERC-20 token contract needs to be available on the bridge before it can be used, which happens in the governance and enactment process for new assets.
 
 An asset can then be deposited into the ERC-20 bridge contract. The funds in that smart contract will then be made available to the user's chosen Vega public key. 
@@ -121,7 +116,7 @@ VEGA (an ERC20 token) used for staking is associated with a Vega key. To withdra
 Rewards accrued through staking are not associated automatically. To stake those tokens or transfer them, they need to be withdrawn from the Vega key that the rewards are credited to, and sent to an Ethereum wallet.
 
 :::tip Try it
-Track and withdraw testnet staking rewards on the [Vega token withdrawals page for testnet ↗](https://governance.fairground.wtf/token/withdraw).
+Track and withdraw staking rewards on the [Vega token withdrawals page ↗](https://governance.vega.xyz/token/withdraw).
 
 Alternatively, use the [smart contract](../../api/bridge/contracts/ERC20_Bridge_Logic#withdraw_asset) and an Ethereum RPC node to run the withdraw function.
 :::

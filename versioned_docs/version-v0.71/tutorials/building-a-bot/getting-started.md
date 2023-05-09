@@ -21,6 +21,8 @@ Later sections will cover adding a liquidity commitment to the bot and implement
 
 We will be building the bot in Python, however the concepts are transferable and all communication with the wallet and network will be conducted through language-agnostic methods (predominately JSON through REST and WebSockets).
 
+This guide uses Fairground, the Vega testnet, as it's suggested that you get comfortable with these tutorials on a test network.
+
 ## Pre-setup
 If you don't have Python installed already, follow the [Python instructions ↗](https://www.python.org/downloads/) to install a recent version.
 

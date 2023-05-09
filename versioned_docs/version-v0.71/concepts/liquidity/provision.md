@@ -91,9 +91,11 @@ A liquidity commitment order type has a specific set of features that set it apa
 * *Sits on the order book*: The orders are always priced limit orders that sit on the order book (unless the market is in auction), and do not trade on entry
 * *Returns to the order book after being filled*: The order is always refreshed after it trades, based on the above requirements so that the full commitment is always supplied
 
+<!--
 :::tip Try it out
 [Tutorial for committing liquidity](../../tutorials/committing-liquidity.md): Use helper scripts to set up and manage a liquidity commitment.
 :::
+-->
 
 ### Order shapes
 A liquidity commitment uses a special order type that automatically updates price and size as needed to meet the commitment, and automatically refreshes its volume after trading to ensure continuous liquidity provision.

@@ -1,5 +1,5 @@
 ---
-vega_network: TESTNET
+vega_network: MAINNET
 ---
 import Topic from '/docs/topics/_topic-development.mdx'
 import DataNodes from '@site/src/components/DataNodes';

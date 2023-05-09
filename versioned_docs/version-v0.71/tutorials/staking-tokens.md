@@ -2,7 +2,7 @@
 title: Stake tokens
 sidebar_position: 5
 hide_title: false
-vega_network: TESTNET
+vega_network: MAINNET
 description: Stake unlocked tokens with Vega Wallet and smart contracts
 ---
 
@@ -14,7 +14,7 @@ import TabItem from '@theme/TabItem';
 <Topic />
 
 :::tip
-This tutorial describes how to stake using the smart contracts, the APIs, an Ethereum wallet, and a Vega Wallet. If you're looking for the easiest way to stake tokens, visit [governance.fairground.wtf ↗](https://governance.fairground.wtf/token)
+This tutorial describes how to stake using the smart contracts, the APIs, an Ethereum wallet, and a Vega Wallet. If you're looking for the easiest way to stake tokens, visit [governance.vega.xyz ↗](https://governance.vega.xyz/token)
 :::
 
 * Tokenholders can stake tokens to [validators on the Vega chain](../concepts/vega-chain#delegated-proof-of-stake), also known as nominating validators.
@@ -51,7 +51,7 @@ Nominate a validator by sending a transaction with the Vega Wallet:
   <TabItem value="cmd" label="Command line (Linux / OSX)">
 
 ```bash
-vegawallet transaction send --wallet "WALLET_NAME" --pubkey "VEGA_PUBKEY" --network fairground '{
+vegawallet transaction send --wallet "WALLET_NAME" --pubkey "VEGA_PUBKEY" --network "NETWORK_NAME" '{
   "delegateSubmission": {
     "nodeId":"INSERT_NODE_ID_FOR_NOMINATION",
     "amount":"1000000000000000000"
@@ -63,7 +63,7 @@ vegawallet transaction send --wallet "WALLET_NAME" --pubkey "VEGA_PUBKEY" --netw
   <TabItem value="win" label="Command line (Windows)">
 
 ```bash
-vegawallet.exe transaction send --wallet "WALLET_NAME" --pubkey "VEGA_PUBKEY" --network fairground ^
+vegawallet.exe transaction send --wallet "WALLET_NAME" --pubkey "VEGA_PUBKEY" --network "NETWORK_NAME" ^
 "{\"delegateSubmission\": ^
     { ^
         \"nodeId\":\"INSERT_NODE_ID_FOR_NOMINATION", ^

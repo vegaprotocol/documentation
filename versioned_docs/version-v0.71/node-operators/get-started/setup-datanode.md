@@ -352,7 +352,7 @@ Before you can fetch network history, you will need to update your data node con
   BootstrapPeers = ["/path/to/bootstrap-peer/1","/path/to/bootstrap-peer/2"]
 ```
 
-To get a list of bootstrap peers available for your network, you can make a HTTP request to the API service for your chosen network, for example: `https://api.testnet.vega.xyz/api/v2/networkhistory` will retrieve the network peers for `testnet`.
+To get a list of bootstrap peers available for your network, you can make a HTTP request to the API service for your chosen network: `/api/v2/networkhistory`.
 
 ```json
 {

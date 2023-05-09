@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 title: Asset framework
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 description: Vega supports ERC-20 assets that are added through governance.
 ---

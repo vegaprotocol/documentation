@@ -7,7 +7,7 @@ sidebar_position: 1
 Follow the steps below to upgrade your validator node from version 0.53.2 to version 0.71.4. The procedure describes the checkpoint restart. One of the validators will have to load the checkpoint to the genesis, and the network will start from block 0.
 
 ## Study the changes between versions
-Before upgrading your node software, read the upgrading file in the Vega repo for a full list of the changes between the two versions, review the breaking API changes, and study the `TOML` changes to the networks repo for the validator testnet.
+Before upgrading your node software, read the upgrading file in the Vega repo for a full list of the changes between the two versions, review the breaking API changes, and study the `TOML` changes to the networks repo.
 
 Review the **[release notes](../../releases/overview.md)** for a list of breaking API changes for each version from 0.54 onwards.
 

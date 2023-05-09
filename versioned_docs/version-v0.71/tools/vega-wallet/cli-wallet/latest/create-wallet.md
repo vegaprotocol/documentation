@@ -3,7 +3,7 @@ sidebar_position: 1
 title: Create a wallet
 hide_title: false
 description: Set up your first wallet and keypair using the CLI wallet app
-vega_network: TESTNET
+vega_network: MAINNET
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,7 +19,7 @@ To download Vega Wallet and create your wallet, follow the step-by-step instruct
 This software is frequently updated. As of August 2022, the Vega Wallet software has moved from `vegawallet` to [`vega` ↗](https://github.com/vegaprotocol/vega/releases/) on GitHub, and the version numbers have changed. 
 
 :::caution Wallet version
-These instructions cover Vega Wallet version 0.71.2, which is compatible with Vega network(s) that are on v0.71.2. If you need a Vega Wallet for mainnet, see [Create a wallet (mainnet)](https://docs.vega.xyz/docs/mainnet/tools/vega-wallet/cli-wallet/latest/create-wallet).
+These instructions cover Vega Wallet version 0.71.4, which is compatible with Vega network(s) that are on v0.71.4. If you need a Vega Wallet for testnet, see [Create a wallet (mainnet)](https://docs.vega.xyz/docs/testnet/tools/vega-wallet/cli-wallet/latest/create-wallet).
 :::
 
 Note: If you are looking for instructions for connecting your hardware wallet to MetaMask, see [MetaMask's guide ↗](https://metamask.zendesk.com/hc/en-us/articles/360020394612-How-to-connect-a-Trezor-or-Ledger-Hardware-Wallet).
@@ -162,7 +162,7 @@ Import the following network configurations:
 * **Fairground** network: <NetworkConfigAddress frontMatter={frontMatter} label="fairground.toml" network="fairground"/>
 
 :::info
-To update your networks list, see [manage networks](/testnet/tools/vega-wallet/cli-wallet/latest/guides/manage-networks#update-networks) for instructions.
+To update your networks list, see [manage networks](./guides/manage-networks.md) for instructions.
 ::: 
 
 #### Import networks from URL

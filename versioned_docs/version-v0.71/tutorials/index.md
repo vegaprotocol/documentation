@@ -13,7 +13,6 @@ Take a look at the tutorials for help with using the Vega software.
 ## Interacting with markets
 | Topic                                                                 |  Description                                                                                                        |
 | ----------------------------------------------------------------------| -------------------------------------------------------------------------------------------------------- |
-| 🫗 [Commit liquidity](./committing-liquidity.md)               | Submitting and amending a liquidity commitment by saving and editing scripts |
 | 🔮 [Source market data for settlement](./using-data-sources.md)               | How data sources for markets are sourced, shaped and submitted |
 
 ## Integrating with tokens and assets

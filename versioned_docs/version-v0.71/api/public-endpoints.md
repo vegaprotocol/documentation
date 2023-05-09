@@ -2,7 +2,7 @@
 title: Public endpoints
 hide_title: false
 description: Vega's APIs are served over public endpoints.
-vega_network: TESTNET
+vega_network: MAINNET
 ---
 
 import Topic from '/docs/topics/_topic-development.mdx'
@@ -20,33 +20,5 @@ Below, find a list of all the public servers available for this network, and use
 [Data nodes](../concepts/vega-chain/data-nodes.md): Find out what a data node is, and if setting one up for yourself is right for you.
 :::
 
-## Node API endpoints: Fairground
+## Node API endpoints: Mainnet
 <DataNodes frontMatter={frontMatter} />
-
-## Node API endpoints: Validator testnet
-
-<Tabs groupId="servers">
-<TabItem value="REST" label="REST">
-
-| Name        | Address     |
-| ----------- | ----------- |
-| api-validators-testnet | `https://api-validators-testnet.vega.rocks/` |
-
-</TabItem>
-
-<TabItem value="GraphQL" label="GraphQL">
-
-| Name        | Address     |
-| ----------- | ----------- |
-| api-validators-testnet | `https://api-validators-testnet.vega.rocks/graphql/`|
-
-</TabItem>
-
-<TabItem value="gRPC" label="gRPC">
-
-| Name        | Address     |
-| ----------- | ----------- |
-| api.validators-testnet      | `api.validators-testnet.vega.rocks:3007`|
-
-</TabItem>
-</Tabs>

@@ -2,7 +2,7 @@
 sidebar_position: 4
 title: Propose new asset
 hide_title: false
-vega_network: TESTNET
+vega_network: MAINNET
 keywords:
 - proposal
 - governance
@@ -65,7 +65,7 @@ When adding an ERC-20 asset to the bridge, the key details are compared to the s
 Validation happens according to the `validationTimestamp` parameter. In most situations, this should be early on in the voting period so that any validation errors are caught before token holders start voting. However you could push the validation later if the contract is not yet deployed.
 
 ## Templates and submitting
-In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to [submit on the governance dApp ↗](https://governance.fairground.wtf/proposals/propose/new-asset), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
+In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to [submit on the governance dApp ↗](https://governance.vega.xyz/proposals/propose/new-asset), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
 
 <Tabs groupId="newAssetProposal">
   <TabItem value="annotated" label="Annotated example">
@@ -90,6 +90,6 @@ All proposals are voted on by the community. To vote, community members need, at
 
 Your proposal will need [participation](../../concepts/governance.md#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential. If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
 
-Building support is down to you. Share your proposal in [the Fairground governance forum ↗](https://community.vega.xyz/c/fairground-testnet-governance/32) on Vega community. You may also wish to share on [Discord ↗](https://vega.xyz/discord).
+Building support is down to you. Share your proposal in [the governance forum ↗](https://community.vega.xyz/) on Vega community. You may also wish to share on [Discord ↗](https://vega.xyz/discord).
 
 Proposers who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.

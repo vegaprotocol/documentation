@@ -73,6 +73,10 @@ You will also need the hash of the block at the height you want to load the snap
 
 To get the current trust height and trust hash, you'll need to ask the validator community. See the [community page](./../requirements/community.md) for guidance.
 
+:::note
+The following example uses addresses from Fairground, the Vega-run testnet. Make sure to use an address of a node on the network you are willing to join.
+:::
+
 Update the following Tendermint configuration section:
 ```Toml
 [statesync]
@@ -81,10 +85,6 @@ rpc_servers = "n01.testnet.vega.xyz:26657,n02.testnet.vega.xyz:26657" # a comma 
 trust_height = 901 # the height of the block you want to join at
 trust_hash = "5E1501B89463A9F23C454A58DB92913D960E47DCA76D1FC1EA03988A6C6D0C30" # the hash of the block
 ```
-
-:::note
-The previous example uses addresses from the Vega testnet (fairground) make sure to use an address of a node on the network you are willing to join.
-:::
 
 Other settings are available to configure snapshots, however, those described in this documentation are the only ones required to start the node from a given block. You can get more details on snapshots from the [Tendermint documentation](https://docs.tendermint.com/master/spec/abci/apps.html#state-sync).
 

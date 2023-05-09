@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 title: Delegated proof of stake
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 ---
 
