@@ -44,12 +44,5 @@ If you have trouble connecting, especially after a software release to the netwo
 
 Once you remove the network and restart the app, the app will download the latest version of the config for you.
 
-## No networks available
-If you chose not to import the available networks when setting up the wallet app, you will need to import them manually. Use the .toml URLs below to import a network.
-
-* **Mainnet** network (run by validators): <NetworkConfigAddress frontMatter={frontMatter} label="mainnet1.toml" network="mainnet"/>
-* **Fairground** network: <NetworkConfigAddress frontMatter={frontMatter} label="fairground.toml" network="fairground"/>
-* **Validator testnet** network: [testnet2.toml ↗](https://raw.githubusercontent.com/vegaprotocol/networks/master/testnet2/testnet2.toml)
-
 ## Reporting bugs
 **[Report on the feedback board](https://github.com/vegaprotocol/feedback/discussions/)**: If you discover a bug or are having problems with the Desktop Wallet app, report them on Vega's feedback board. 
