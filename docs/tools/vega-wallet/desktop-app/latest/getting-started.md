@@ -1,4 +1,5 @@
 ---
+sidebar_position: 1
 title: Get started with Vega Wallet
 hide_title: false
 ---
@@ -54,12 +55,12 @@ If you do not have WebView2 installed on your computer, you will be prompted to 
 
 You'll need MacOS 10.13 (High Sierra) or newer to use the desktop app.
 
-Download `vegawallet-desktop-darwin-amd64.zip`
+Download the `macos-intel` zip file of the wallet for the network.
 
 **For Macs with an M1 processor** ([See Apple guidance](https://support.apple.com/en-us/HT211814)): 
 
-Download `vegawallet-desktop-darwin-arm64.zip`
-  
+Download the `macos-apple-silicon` zip file of the wallet for the network.
+
 </TabItem>
 
 <TabItem value="linux" label="Linux">
@@ -114,33 +115,5 @@ To update to the latest version:
 
 
 ## Troubleshooting
-The Vega Wallet desktop app does not yet have the full functionality of the CLI wallet app.
+If you're having trouble, see the [troubleshooting](./troubleshooting.md) page for guidance.
 
-### Not yet supported
-To do any of the following, you will need to use the **[CLI wallet](../../cli-wallet)** app:
-* Customise key details
-* Isolate keys
-* Build and send transactions 
-
-### 'Wallet already exists' error when recovering wallet
-#### Problem
-You recover a wallet using your recovery phrase. When you enter the wallet name, you get an error of `Wallet with this name already exists`. 
-
-#### Solution
-The wallet you are trying to recover already exists on your device. You can use your existing wallet with the Vega Wallet desktop app. On the onboarding screen, choose `Use existing` to connect to an existing Vega wallet. 
-
-If you see the error message `Wallet with this name already exists` but you do not see that wallet on the Wallets screen, then report the issue on the **[feedback board](https://github.com/vegaprotocol/feedback/discussions/)**. 
-
-### Wallet recovery provides wrong keys 
-#### Problem
-You recover a wallet using your recovery phrase, and the public key you see doesn't match the key you expect (such as if you expected that key to have assets associated with it, and it doesn't). 
-
-#### Possible solutions
-* Choose the alternate wallet version number alongside your recovery phrase. If you recovered and chose "version 2", then you should try using the same recovery phrase but choose "version 1".
-* Ensure that your recovery phrase includes the exact same words, in the exact same order, as they were provided to you when you first created your wallet.
-
-## No networks available
-If you chose not to import the available networks when setting up the wallet app, you will need to import them manually. Use the .toml URLs in the [manage networks guide](../../cli-wallet/latest/guides/manage-networks#network-urls) to import a network.
-
-### Reporting bugs
-**[Report on the feedback board](https://github.com/vegaprotocol/feedback/discussions/)**: If you discover a bug or are having problems with the Desktop Wallet app, report them on Vega's feedback board. 
