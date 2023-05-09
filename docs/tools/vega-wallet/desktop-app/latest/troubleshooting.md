@@ -9,7 +9,17 @@ import { NetworkConfigAddress, NetworkConfigAddressText } from '@site/src/compon
 import CodeBlock from '@theme/CodeBlock';
 
 
-If you have issues with the Vega Wallet desktop app, you may find the solution below. If not, see the [reporting bugs](#reporting-bugs) section below. 
+If you have issues with the Vega Wallet desktop app, you may find the solution below. If not, see the [reporting bugs](#reporting-bugs) section below.
+
+## Wallet will not connect
+If you have trouble connecting, especially after a software release to the network you're using, you may need to delete your network configuration and use the default configuration. This is particularly likely after the 0.71.4 release as most of the node endpoints have changed.
+
+### Possible solution
+1. Navigate to `Manage network`.
+2. Remove the network.
+3. Restart the app.
+
+Once you remove the network and restart the app, the app will download the latest version of the config for you.
 
 ## Missing features
 To do any of the following, you will need to use the **[CLI wallet](../../cli-wallet)** app:
@@ -33,16 +43,6 @@ You recover a wallet using your recovery phrase, and the public key you see does
 ### Possible solutions
 * Choose the alternate key derivation version number alongside your recovery phrase. If you recovered and chose "version 2", then you should try using the same recovery phrase but choose "version 1".
 * Ensure that your recovery phrase includes the exact same words, in the exact same order, as they were provided to you when you first created your wallet.
-
-## Wallet will not connect
-If you have trouble connecting, especially after a software release to the network you're using, you may need to delete your network configuration and use the default configuration. This is particularly likely after the 0.71.4 release.
-
-### Possible solution
-1. Navigate to `Manage network`.
-2. Remove the network.
-3. Restart the app.
-
-Once you remove the network and restart the app, the app will download the latest version of the config for you.
 
 ## Reporting bugs
 **[Report on the feedback board](https://github.com/vegaprotocol/feedback/discussions/)**: If you discover a bug or are having problems with the Desktop Wallet app, report them on Vega's feedback board. 
