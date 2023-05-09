@@ -1,0 +1,55 @@
+---
+id: bus-events
+title: busEvents
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Subscribe to event data from the event bus
+
+```graphql
+busEvents(
+  types: [BusEventType!]!
+  marketId: ID
+  partyId: ID
+  batchSize: Int!
+): [BusEvent!]
+```
+
+
+### Arguments
+
+#### [<code style={{ fontWeight: 'normal' }}>busEvents.<b>types</b></code>](#)<Bullet />[`[BusEventType!]!`](/mainnet/api/graphql/enums/bus-event-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The types to subscribe to has to be an array
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>busEvents.<b>marketId</b></code>](#)<Bullet />[`ID`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> Optional filter by market ID
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>busEvents.<b>partyId</b></code>](#)<Bullet />[`ID`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> Optional filter by party ID
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>busEvents.<b>batchSize</b></code>](#)<Bullet />[`Int!`](/mainnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Specifies the size that the client will receive events in. Using 0 results in a variable batch size being sent. The stream will be closed if the client fails to read a batch within 5 seconds
+> 
+
+### Type
+
+#### [`BusEvent`](/mainnet/api/graphql/objects/bus-event) <Badge class="secondary" text="object"/>
+> 
+> 
+
+
+
+
+

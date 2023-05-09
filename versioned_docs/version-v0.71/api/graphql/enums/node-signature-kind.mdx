@@ -1,0 +1,58 @@
+---
+id: node-signature-kind
+title: NodeSignatureKind
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Represents the type of signature provided by a node
+
+```graphql
+enum NodeSignatureKind {
+  NODE_SIGNATURE_KIND_ASSET_NEW
+  NODE_SIGNATURE_KIND_ASSET_WITHDRAWAL
+  NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_ADDED
+  NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_REMOVED
+  NODE_SIGNATURE_KIND_ASSET_UPDATE
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>NodeSignatureKind.<b>NODE_SIGNATURE_KIND_ASSET_NEW</b></code>](#) 
+> A signature for proposing a new asset into the network
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NodeSignatureKind.<b>NODE_SIGNATURE_KIND_ASSET_WITHDRAWAL</b></code>](#) 
+> A signature for allowing funds withdrawal
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NodeSignatureKind.<b>NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_ADDED</b></code>](#) 
+> A signature to add a new validator to the ERC20 bridge
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NodeSignatureKind.<b>NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_REMOVED</b></code>](#) 
+> A signature to remove a validator from the ERC20 bridge
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NodeSignatureKind.<b>NODE_SIGNATURE_KIND_ASSET_UPDATE</b></code>](#) 
+> A signature to update limits of an ERC20 asset
+> 
+
+
+
+### Member of
+
+[`NodeSignature`](/mainnet/api/graphql/objects/node-signature)  <Badge class="secondary" text="object"/>
+
+
+

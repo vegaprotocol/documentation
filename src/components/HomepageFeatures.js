@@ -10,7 +10,7 @@ const FeatureList = [
     href: `./${latestVersion}/concepts/new-to-vega`,
     description: (
       <>
-        Restricted mainnet is a decentralised network run by a set of
+        Alpha mainnet is a decentralised network run by a set of
         validators. Read about the underlying framework under{" "}
         <a href={`./docs/${latestVersion}/concepts/new-to-vega`}>concepts</a>.
       </>
@@ -33,7 +33,7 @@ const FeatureList = [
     description: (
       <>
         Several tools are available for interacting with the functionality Vega
-        provides. See tools available for restricted mainnet under{" "}
+        provides. See tools available for mainnet under{" "}
         <a href={`./docs/${latestVersion}/tools`}>tools</a>.
       </>
     ),
@@ -46,7 +46,7 @@ const FeatureList = [
         Download the{" "}
         <a href={`./docs/${latestVersion}/tools/vega-wallet/desktop-app`}>
           {" "}
-          Vega wallet desktop app
+          Vega Wallet desktop app
         </a>{" "}
         to easily interact with your keys. More advanced users may prefer the{" "}
         <a href={`./docs/${latestVersion}/tools/vega-wallet/cli-wallet`}>

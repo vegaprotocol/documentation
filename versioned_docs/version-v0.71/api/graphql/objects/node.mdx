@@ -1,0 +1,131 @@
+---
+id: node
+title: Node
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Information available for a node
+
+```graphql
+type Node {
+  id: ID!
+  pubkey: String!
+  tmPubkey: String!
+  ethereumAddress: String!
+  infoUrl: String!
+  location: String!
+  stakedByOperator: String!
+  stakedByDelegates: String!
+  stakedTotal: String!
+  pendingStake: String!
+  epochData: EpochData
+  status: NodeStatus!
+  delegationsConnection(
+  partyId: ID
+  pagination: Pagination
+): DelegationsConnection
+  rewardScore: RewardScore
+  rankingScore: RankingScore!
+  name: String!
+  avatarUrl: String
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Node.<b>id</b></code>](#)<Bullet />[`ID!`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The node URL eg n01.vega.xyz
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Node.<b>pubkey</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Public key of the node operator
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Node.<b>tmPubkey</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Tendermint public key of the node
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Node.<b>ethereumAddress</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Ethereum public key of the node
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Node.<b>infoUrl</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> URL from which you can get more info about the node.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Node.<b>location</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Country code for the location of the node
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Node.<b>stakedByOperator</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The amount of stake the node has put up themselves
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Node.<b>stakedByDelegates</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The amount of stake that has been delegated by token holders
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Node.<b>stakedTotal</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Total amount staked on node
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Node.<b>pendingStake</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Amount of stake on the next epoch
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Node.<b>epochData</b></code>](#)<Bullet />[`EpochData`](/mainnet/api/graphql/objects/epoch-data) <Badge class="secondary" text="object"/>
+> Summary of epoch data across all nodes
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Node.<b>status</b></code>](#)<Bullet />[`NodeStatus!`](/mainnet/api/graphql/enums/node-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Validator status of the node
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Node.<b>delegationsConnection</b></code>](#)<Bullet />[`DelegationsConnection`](/mainnet/api/graphql/objects/delegations-connection) <Badge class="secondary" text="object"/>
+> All delegation for a node by a given party if specified, or all delegations.
+> ##### [<code style={{ fontWeight: 'normal' }}>Node.delegationsConnection.<b>partyId</b></code>](#)<Bullet />[`ID`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Node.delegationsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/mainnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Node.<b>rewardScore</b></code>](#)<Bullet />[`RewardScore`](/mainnet/api/graphql/objects/reward-score) <Badge class="secondary" text="object"/>
+> Reward scores for the current epoch for the validator
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Node.<b>rankingScore</b></code>](#)<Bullet />[`RankingScore!`](/mainnet/api/graphql/objects/ranking-score) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Ranking scores and status for the validator for the current epoch
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Node.<b>name</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Node.<b>avatarUrl</b></code>](#)<Bullet />[`String`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+
+
+### Returned by
+
+[`node`](/mainnet/api/graphql/queries/node)  <Badge class="secondary" text="query"/>
+
+### Member of
+
+[`Delegation`](/mainnet/api/graphql/objects/delegation)  <Badge class="secondary" text="object"/><Bullet />[`NodeEdge`](/mainnet/api/graphql/objects/node-edge)  <Badge class="secondary" text="object"/>
+
+
+

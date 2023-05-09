@@ -1,0 +1,43 @@
+---
+id: core-snapshot-connection
+title: CoreSnapshotConnection
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Connection type for retrieving cursor-based paginated core snapshot data
+
+```graphql
+type CoreSnapshotConnection {
+  edges: [CoreSnapshotEdge!]
+  pageInfo: PageInfo
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>CoreSnapshotConnection.<b>edges</b></code>](#)<Bullet />[`[CoreSnapshotEdge!]`](/mainnet/api/graphql/objects/core-snapshot-edge) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> The positions in this connection
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>CoreSnapshotConnection.<b>pageInfo</b></code>](#)<Bullet />[`PageInfo`](/mainnet/api/graphql/objects/page-info) <Badge class="secondary" text="object"/>
+> The pagination information
+> 
+
+
+
+### Returned by
+
+[`coreSnapshots`](/mainnet/api/graphql/queries/core-snapshots)  <Badge class="secondary" text="query"/>
+
+
+

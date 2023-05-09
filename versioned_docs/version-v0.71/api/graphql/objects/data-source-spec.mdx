@@ -1,0 +1,59 @@
+---
+id: data-source-spec
+title: DataSourceSpec
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+An data source specification describes the data source data that a product (or a risk model)
+wants to get from the oracle engine.
+
+```graphql
+type DataSourceSpec {
+  id: ID!
+  createdAt: Timestamp!
+  updatedAt: Timestamp
+  data: DataSourceDefinition!
+  status: DataSourceSpecStatus!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>DataSourceSpec.<b>id</b></code>](#)<Bullet />[`ID!`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> ID is a hash generated from the DataSourceSpec data.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DataSourceSpec.<b>createdAt</b></code>](#)<Bullet />[`Timestamp!`](/mainnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano creation date time
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DataSourceSpec.<b>updatedAt</b></code>](#)<Bullet />[`Timestamp`](/mainnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
+> RFC3339Nano last updated timestamp
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DataSourceSpec.<b>data</b></code>](#)<Bullet />[`DataSourceDefinition!`](/mainnet/api/graphql/objects/data-source-definition) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DataSourceSpec.<b>status</b></code>](#)<Bullet />[`DataSourceSpecStatus!`](/mainnet/api/graphql/enums/data-source-spec-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Status describes the status of the data source spec
+> 
+
+
+
+### Member of
+
+[`ExternalDataSourceSpec`](/mainnet/api/graphql/objects/external-data-source-spec)  <Badge class="secondary" text="object"/><Bullet />[`Future`](/mainnet/api/graphql/objects/future)  <Badge class="secondary" text="object"/>
+
+
+

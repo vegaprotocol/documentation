@@ -1,0 +1,38 @@
+---
+id: update-market-simple-risk-model
+title: UpdateMarketSimpleRiskModel
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+type UpdateMarketSimpleRiskModel {
+  simple: SimpleRiskModelParams
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>UpdateMarketSimpleRiskModel.<b>simple</b></code>](#)<Bullet />[`SimpleRiskModelParams`](/mainnet/api/graphql/objects/simple-risk-model-params) <Badge class="secondary" text="object"/>
+> 
+> 
+
+
+
+### Implemented by
+
+[`UpdateMarketRiskParameters`](/mainnet/api/graphql/unions/update-market-risk-parameters)  <Badge class="secondary" text="union"/>
+
+
+

@@ -1,0 +1,173 @@
+---
+id: entities
+title: Entities
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+List of all entities created by transaction hash
+
+```graphql
+type Entities {
+  accounts: [AccountEvent]
+  orders: [Order]
+  positions: [Position]
+  ledgerEntries: [LedgerEntry]
+  balanceChanges: [AccountBalance]
+  transfers: [Transfer]
+  votes: [Vote]
+  erc20MultiSigSignerAddedBundles: [ERC20MultiSigSignerAddedBundle]
+  erc20MultiSigSignerRemovedBundles: [ERC20MultiSigSignerRemovedBundle]
+  trades: [Trade]
+  oracleSpecs: [OracleSpec]
+  oracleData: [OracleData]
+  markets: [Market]
+  parties: [Party]
+  marginLevels: [MarginLevels]
+  rewards: [Reward]
+  deposits: [Deposit]
+  withdrawals: [Withdrawal]
+  assets: [Asset]
+  liquidityProvisions: [LiquidityProvision]
+  proposals: [ProposalDetail]
+  delegations: [Delegation]
+  nodes: [NodeBasic]
+  nodeSignatures: [NodeSignature]
+  networkParameters: [NetworkParameter]
+  keyRotations: [KeyRotation]
+  ethereumKeyRotations: [EthereumKeyRotation]
+  protocolUpgradeProposals: [ProtocolUpgradeProposal]
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>accounts</b></code>](#)<Bullet />[`[AccountEvent]`](/mainnet/api/graphql/objects/account-event) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of accounts created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>orders</b></code>](#)<Bullet />[`[Order]`](/mainnet/api/graphql/objects/order) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of orders created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>positions</b></code>](#)<Bullet />[`[Position]`](/mainnet/api/graphql/objects/position) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of positions created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>ledgerEntries</b></code>](#)<Bullet />[`[LedgerEntry]`](/mainnet/api/graphql/objects/ledger-entry) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of ledger entries created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>balanceChanges</b></code>](#)<Bullet />[`[AccountBalance]`](/mainnet/api/graphql/objects/account-balance) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of balance changes created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>transfers</b></code>](#)<Bullet />[`[Transfer]`](/mainnet/api/graphql/objects/transfer) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of transfers created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>votes</b></code>](#)<Bullet />[`[Vote]`](/mainnet/api/graphql/objects/vote) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of votes created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>erc20MultiSigSignerAddedBundles</b></code>](#)<Bullet />[`[ERC20MultiSigSignerAddedBundle]`](/mainnet/api/graphql/objects/erc20-multi-sig-signer-added-bundle) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of ERC-20 multisig signer added bundles created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>erc20MultiSigSignerRemovedBundles</b></code>](#)<Bullet />[`[ERC20MultiSigSignerRemovedBundle]`](/mainnet/api/graphql/objects/erc20-multi-sig-signer-removed-bundle) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of ERC-20 multisig signer removed bundles created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>trades</b></code>](#)<Bullet />[`[Trade]`](/mainnet/api/graphql/objects/trade) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of trades created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>oracleSpecs</b></code>](#)<Bullet />[`[OracleSpec]`](/mainnet/api/graphql/objects/oracle-spec) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of oracle specs created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>oracleData</b></code>](#)<Bullet />[`[OracleData]`](/mainnet/api/graphql/objects/oracle-data) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of oracle data created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>markets</b></code>](#)<Bullet />[`[Market]`](/mainnet/api/graphql/objects/market) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of markets created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>parties</b></code>](#)<Bullet />[`[Party]`](/mainnet/api/graphql/objects/party) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of parties created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>marginLevels</b></code>](#)<Bullet />[`[MarginLevels]`](/mainnet/api/graphql/objects/margin-levels) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of margin levels created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>rewards</b></code>](#)<Bullet />[`[Reward]`](/mainnet/api/graphql/objects/reward) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of rewards created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>deposits</b></code>](#)<Bullet />[`[Deposit]`](/mainnet/api/graphql/objects/deposit) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of deposits created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>withdrawals</b></code>](#)<Bullet />[`[Withdrawal]`](/mainnet/api/graphql/objects/withdrawal) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of withdrawals created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>assets</b></code>](#)<Bullet />[`[Asset]`](/mainnet/api/graphql/objects/asset) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of assets created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>liquidityProvisions</b></code>](#)<Bullet />[`[LiquidityProvision]`](/mainnet/api/graphql/objects/liquidity-provision) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of liquidity provisions created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>proposals</b></code>](#)<Bullet />[`[ProposalDetail]`](/mainnet/api/graphql/objects/proposal-detail) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of proposals created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>delegations</b></code>](#)<Bullet />[`[Delegation]`](/mainnet/api/graphql/objects/delegation) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of delegations created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>nodes</b></code>](#)<Bullet />[`[NodeBasic]`](/mainnet/api/graphql/objects/node-basic) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of nodes created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>nodeSignatures</b></code>](#)<Bullet />[`[NodeSignature]`](/mainnet/api/graphql/objects/node-signature) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of node signatures created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>networkParameters</b></code>](#)<Bullet />[`[NetworkParameter]`](/mainnet/api/graphql/objects/network-parameter) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of network parameters created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>keyRotations</b></code>](#)<Bullet />[`[KeyRotation]`](/mainnet/api/graphql/objects/key-rotation) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of key rotations created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>ethereumKeyRotations</b></code>](#)<Bullet />[`[EthereumKeyRotation]`](/mainnet/api/graphql/objects/ethereum-key-rotation) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of ethereum key rotations created by the transaction hash
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Entities.<b>protocolUpgradeProposals</b></code>](#)<Bullet />[`[ProtocolUpgradeProposal]`](/mainnet/api/graphql/objects/protocol-upgrade-proposal) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of protocol upgrade proposals created by the transaction hash
+> 
+
+
+
+### Returned by
+
+[`entities`](/mainnet/api/graphql/queries/entities)  <Badge class="secondary" text="query"/>
+
+
+

@@ -66,6 +66,6 @@ See the section on [liquidity provision](../liquidity/index.md) for details on t
 
 
 ## On-chain network treasury 
-In restricted mainnet, some of the rewards for nominating a validator will be distributed from the on-chain network treasury, in the form of VEGA tokens.
+Some of the rewards for nominating a validator will be distributed from the on-chain network treasury, in the form of VEGA tokens.
 
 The on-chain network treasury is a set of accounts that are funded by parties, deposits, or by direct transfers to allocate funds for rewards, grants, and other initiatives.

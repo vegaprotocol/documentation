@@ -1,0 +1,43 @@
+---
+id: stake-linking-type
+title: StakeLinkingType
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The type of stake linking
+
+```graphql
+enum StakeLinkingType {
+  TYPE_LINK
+  TYPE_UNLINK
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinkingType.<b>TYPE_LINK</b></code>](#) 
+> The stake is being linked (deposited) to a Vega stake account
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StakeLinkingType.<b>TYPE_UNLINK</b></code>](#) 
+> The stake is being unlinked (removed) from a Vega stake account
+> 
+
+
+
+### Member of
+
+[`StakeLinking`](/mainnet/api/graphql/objects/stake-linking)  <Badge class="secondary" text="object"/>
+
+
+

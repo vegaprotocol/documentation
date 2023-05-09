@@ -1,0 +1,43 @@
+---
+id: liquidation-estimate
+title: LiquidationEstimate
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Liquidation estimate for both worst and best case possible
+
+```graphql
+type LiquidationEstimate {
+  worstCase: LiquidationPrice!
+  bestCase: LiquidationPrice!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>LiquidationEstimate.<b>worstCase</b></code>](#)<Bullet />[`LiquidationPrice!`](/mainnet/api/graphql/objects/liquidation-price) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Liquidation price estimate assuming slippage cap is applied
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LiquidationEstimate.<b>bestCase</b></code>](#)<Bullet />[`LiquidationPrice!`](/mainnet/api/graphql/objects/liquidation-price) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Liquidation price estimate assuming no slippage
+> 
+
+
+
+### Member of
+
+[`PositionEstimate`](/mainnet/api/graphql/objects/position-estimate)  <Badge class="secondary" text="object"/>
+
+
+

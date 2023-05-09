@@ -1,0 +1,48 @@
+---
+id: trade-type
+title: TradeType
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Valid trade types
+
+```graphql
+enum TradeType {
+  TYPE_DEFAULT
+  TYPE_NETWORK_CLOSE_OUT_BAD
+  TYPE_NETWORK_CLOSE_OUT_GOOD
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>TradeType.<b>TYPE_DEFAULT</b></code>](#) 
+> Default trade type
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TradeType.<b>TYPE_NETWORK_CLOSE_OUT_BAD</b></code>](#) 
+> Network close-out - good
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TradeType.<b>TYPE_NETWORK_CLOSE_OUT_GOOD</b></code>](#) 
+> Network close-out - bad
+> 
+
+
+
+### Member of
+
+[`Trade`](/mainnet/api/graphql/objects/trade)  <Badge class="secondary" text="object"/><Bullet />[`TradeUpdate`](/mainnet/api/graphql/objects/trade-update)  <Badge class="secondary" text="object"/>
+
+
+

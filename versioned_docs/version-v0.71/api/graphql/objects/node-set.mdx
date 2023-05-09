@@ -1,0 +1,58 @@
+---
+id: node-set
+title: NodeSet
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Details on the collection of nodes for particular validator status
+
+```graphql
+type NodeSet {
+  total: Int!
+  inactive: Int!
+  promoted: [String!]
+  demoted: [String!]
+  maximum: Int
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>NodeSet.<b>total</b></code>](#)<Bullet />[`Int!`](/mainnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Total number of nodes in the node set
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NodeSet.<b>inactive</b></code>](#)<Bullet />[`Int!`](/mainnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Number of nodes in the node set that had a performance score of 0 at the end of the last epoch
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NodeSet.<b>promoted</b></code>](#)<Bullet />[`[String!]`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> IDs of the nodes that were promoted into this node set at the start of the epoch
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NodeSet.<b>demoted</b></code>](#)<Bullet />[`[String!]`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> IDs of the nodes that were demoted into this node set at the start of the epoch
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NodeSet.<b>maximum</b></code>](#)<Bullet />[`Int`](/mainnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
+> Total number of nodes allowed in the node set
+> 
+
+
+
+### Member of
+
+[`NodeData`](/mainnet/api/graphql/objects/node-data)  <Badge class="secondary" text="object"/>
+
+
+

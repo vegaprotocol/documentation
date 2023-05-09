@@ -1,0 +1,90 @@
+---
+id: position
+title: Position
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+An individual party at any point in time is considered net long or net short. This refers to their Open Volume,
+calculated using FIFO. This volume is signed as either negative for LONG positions and positive for SHORT positions. A
+single trade may end up "splitting" with some of its volume matched into closed volume and some of its volume
+remaining as open volume. This is why we don't refer to positions being comprised of trades, rather of volume.
+
+```graphql
+type Position {
+  market: Market!
+  party: Party!
+  openVolume: String!
+  realisedPNL: String!
+  unrealisedPNL: String!
+  averageEntryPrice: String!
+  lossSocializationAmount: String!
+  positionStatus: PositionStatus!
+  marginsConnection(
+  pagination: Pagination
+): MarginConnection
+  updatedAt: Timestamp
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>market</b></code>](#)<Bullet />[`Market!`](/mainnet/api/graphql/objects/market) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Market relating to this position
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>party</b></code>](#)<Bullet />[`Party!`](/mainnet/api/graphql/objects/party) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The party holding this position
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>openVolume</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Open volume (int64)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>realisedPNL</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Realised Profit and Loss (int64)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>unrealisedPNL</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Unrealised Profit and Loss (int64)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>averageEntryPrice</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Average entry price for this position
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>lossSocializationAmount</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The total amount of profit and loss that was not transferred due to loss socialisation
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>positionStatus</b></code>](#)<Bullet />[`PositionStatus!`](/mainnet/api/graphql/enums/position-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Enum set if the position was closed out or orders were removed because party was distressed
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>marginsConnection</b></code>](#)<Bullet />[`MarginConnection`](/mainnet/api/graphql/objects/margin-connection) <Badge class="secondary" text="object"/>
+> Margins of the party for the given position
+> ##### [<code style={{ fontWeight: 'normal' }}>Position.marginsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/mainnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>updatedAt</b></code>](#)<Bullet />[`Timestamp`](/mainnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
+> RFC3339Nano time the position was updated
+> 
+
+
+
+### Member of
+
+[`Entities`](/mainnet/api/graphql/objects/entities)  <Badge class="secondary" text="object"/><Bullet />[`PositionEdge`](/mainnet/api/graphql/objects/position-edge)  <Badge class="secondary" text="object"/>
+
+
+

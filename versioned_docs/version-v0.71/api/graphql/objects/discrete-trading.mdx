@@ -1,0 +1,39 @@
+---
+id: discrete-trading
+title: DiscreteTrading
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Frequent batch auctions trading mode
+
+```graphql
+type DiscreteTrading {
+  duration: Int!
+  tickSize: String!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>DiscreteTrading.<b>duration</b></code>](#)<Bullet />[`Int!`](/mainnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Duration of the discrete trading batch in nanoseconds. Maximum 1 month.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DiscreteTrading.<b>tickSize</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Size of an increment in price in terms of the quote currency
+> 
+
+
+
+
+

@@ -1,0 +1,43 @@
+---
+id: delegation-edge
+title: DelegationEdge
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Edge type containing the delegation and cursor information returned by a DelegationsConnection
+
+```graphql
+type DelegationEdge {
+  node: Delegation!
+  cursor: String!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>DelegationEdge.<b>node</b></code>](#)<Bullet />[`Delegation!`](/mainnet/api/graphql/objects/delegation) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The delegation information
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DelegationEdge.<b>cursor</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The cursor for the data item
+> 
+
+
+
+### Member of
+
+[`DelegationsConnection`](/mainnet/api/graphql/objects/delegations-connection)  <Badge class="secondary" text="object"/>
+
+
+

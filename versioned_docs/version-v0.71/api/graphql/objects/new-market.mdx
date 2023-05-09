@@ -1,0 +1,83 @@
+---
+id: new-market
+title: NewMarket
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+type NewMarket {
+  instrument: InstrumentConfiguration!
+  decimalPlaces: Int!
+  riskParameters: RiskModel!
+  metadata: [String!]
+  priceMonitoringParameters: PriceMonitoringParameters!
+  liquidityMonitoringParameters: LiquidityMonitoringParameters!
+  positionDecimalPlaces: Int!
+  lpPriceRange: String!
+  linearSlippageFactor: String!
+  quadraticSlippageFactor: String!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>instrument</b></code>](#)<Bullet />[`InstrumentConfiguration!`](/mainnet/api/graphql/objects/instrument-configuration) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> New market instrument configuration
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>decimalPlaces</b></code>](#)<Bullet />[`Int!`](/mainnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Decimal places used for the new market, sets the smallest price increment on the book
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>riskParameters</b></code>](#)<Bullet />[`RiskModel!`](/mainnet/api/graphql/unions/risk-model) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="union"/>
+> New market risk configuration
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>metadata</b></code>](#)<Bullet />[`[String!]`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> Metadata for this instrument, tags
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>priceMonitoringParameters</b></code>](#)<Bullet />[`PriceMonitoringParameters!`](/mainnet/api/graphql/objects/price-monitoring-parameters) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Price monitoring parameters
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>liquidityMonitoringParameters</b></code>](#)<Bullet />[`LiquidityMonitoringParameters!`](/mainnet/api/graphql/objects/liquidity-monitoring-parameters) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Liquidity monitoring parameters
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>positionDecimalPlaces</b></code>](#)<Bullet />[`Int!`](/mainnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Decimal places for order sizes, sets what size the smallest order / position on the market can be
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>lpPriceRange</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Liquidity Provision order price range
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>linearSlippageFactor</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Linear slippage factor is used to cap the slippage component of maintainence margin - it is applied to the slippage volume
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>quadraticSlippageFactor</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Quadratic slippage factor is used to cap the slippage component of maintainence margin - it is applied to the square of the slippage volume
+> 
+
+
+
+### Implemented by
+
+[`ProposalChange`](/mainnet/api/graphql/unions/proposal-change)  <Badge class="secondary" text="union"/>
+
+
+
