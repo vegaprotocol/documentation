@@ -1,7 +1,7 @@
 ---
 sidebar_position: 10
-title: Maintaining the Multisig Contract
-sidebar_label: Maintaining Multisig Contract
+title: Maintain the Multisig contract
+sidebar_label: Maintain Multisig contract
 hide_title: false
 vega_network: TESTNET
 ---
@@ -27,7 +27,7 @@ rankingScore.status == VALIDATOR_NODE_STATUS_TENDERMINT
 rankingScore.previousStatus != VALIDATOR_NODE_STATUS_TENDERMINT
 ```
 
-A validator with the following ranking score values will have been *demoted* to a consensus validator and will need to be *removed* to the multisig control
+A validator with the following ranking score values will have been *demoted* to a consensus validator and will need to be *removed* from the multisig control
 ```
 rankingScore.status != VALIDATOR_NODE_STATUS_TENDERMINT
 rankingScore.previousStatus == VALIDATOR_NODE_STATUS_TENDERMINT
@@ -66,7 +66,7 @@ KIND: a value that represents whether the node is to be added or removed. It can
 ```
 
 :::note 
-This command *does not allow* the generation of arbitrary add and remove signatures. The Vega network is aware of which nodes need to be added or removed and the transaction will fail if submitted when it's not required.
+This command *does not allow* the generation of arbitrary add and remove signatures requests. The Vega network is aware of which nodes need to be added or removed and the transaction will fail if submitted when it's not required.
 :::
 
 ### Submit the signatures to the contract
@@ -102,7 +102,7 @@ An example repsonse is below
 }
 ```
 
-If you are trying to *remove* a validator node to the contract and set `kind` to `NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_REMOVED` in the previous step, then use [List ERC-20 multi-sig signer removed bundles](../../api/rest/data-v2/trading-data-service-list-erc-20-multi-sig-signer-removed-bundles.api.mdx).
+If you are trying to *remove* a validator node from the contract and set `kind` to `NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_REMOVED` in the previous step, then use [List ERC-20 multi-sig signer removed bundles](../../api/rest/data-v2/trading-data-service-list-erc-20-multi-sig-signer-removed-bundles.api.mdx).
 
 An example repsonse is below
 ```json
@@ -138,5 +138,5 @@ The values of the fields `newSigner/oldSigner`, `nonce` and `signatures` will be
 Alternatively they can also be submitted through Etherscan by naviagating to the contract address and clicking on the tabs `Contract` followed by `Write Contract`, and then expanding then `add_signer/remove_signer` function. You can then fill in the required fields using the information retrieved earlier from a data node, connect a Web3 wallet, and then click `Write`.
 
 :::caution Submit using the correct Ethereum keys
-The Ethereum wallet you use to connect to Etherscan, or use to submit the transaction programatically, must have the address that matches the `submitter` fields returned by the data node's API. If it is not then the transaction will fail as the signatures are tied to a the submitter.
+The Ethereum wallet you use to connect to Etherscan, or use to submit the transaction programatically, must have the address that matches the `submitter` fields returned by the data node's API. If it is not then the transaction will fail as the signatures are tied to the submitter.
 :::
