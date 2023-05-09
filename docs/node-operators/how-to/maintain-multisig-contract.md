@@ -7,6 +7,7 @@ vega_network: TESTNET
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import EthAddresses from '@site/src/components/EthAddresses';
 
 
 The [Multisig Control](../../api/bridge/interfaces/IMultisigControl.md) contract contains a set of signers whose signatures are required to complete actions on the Ethereum bridge. The set of signers on the contract should match the set of consensus validators in the network. As validators join or leave the network and the set of consensus validators on the Vega network changes, the signer set on the Multisig Control contract must be updated alongside those changes to maintain the security of the bridge.
@@ -37,7 +38,7 @@ Seeing any validator with the above combination of ranking-score statuses means 
 ## How to update the contract
 
 To update the multisig contract by adding or removing a validator, there are two steps:
-- Send an `IssueSignatures` transaction into the Vega network to prompt it to issue signatures to add/remove a signer. This signature bundle can be retrieve from a data node
+- Send an `IssueSignatures` transaction into the Vega network to prompt it to issue signatures to add/remove a signer. This signature bundle can be retrieved from a data node
 - Submit that signaure bundle to the Multisig Control contract on Ethereum to update the contract
 
 
@@ -66,6 +67,84 @@ KIND: a value that represents whether the node is to be added or removed. It can
 This command *does not allow* the generation of arbitrary add and remove signatures. The Vega network is aware of which nodes need to be added or removed and the transaction will fail if submitted when it's not required.
 :::
 
-### Submitting the signature bundles to update the contract
+### Submit the signatures to the contract
 
-The next step involves submitting the issued signature bundle to the Multisig Control to perform the updates. This can be done using the [multisig signer tool ↗](https://validator-testnet.tools.vega.xyz/). For the transaction to be successful, the Ethereum wallet that you use to connect to the tool *must* must have the same address as the value of `ETH_ADDRESS` used in the previous step.
+After sending in the `IssueSignature` command the signatures will become available through a data node API and then can be submitted to Ethereum to update the Multisig Control contract.
+
+#### Adding a signer
+
+If you are trying to *add* a validator node to the contract and set `kind` to `NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_ADDED` in the previous step, then use [List ERC-20 multi-sig signer added bundles](../../api/rest/data-v2/trading-data-service-list-erc-20-multi-sig-signer-added-bundles.api.mdx).
+
+An example repsonse is below, 
+```json
+{
+  "bundles": {
+    "edges": [
+      {
+        "cursor": "string",
+        "node": {
+          "epochSeq": "string",
+          "nonce": "string",
+          "newSigner": "string",
+          "signatures": "string",
+          "submitter": "string",
+          "timestamp": "string"
+        }
+      }
+    ],
+    "pageInfo": {
+      "endCursor": "string",
+      "hasNextPage": true,
+      "hasPreviousPage": true,
+      "startCursor": "string"
+    }
+  }
+}
+```
+
+where the values of the fields `newSigner`, `nonce` and `signatures` will be needed to submit the signatures to Ethereum. This can be done programatically in code using Web3 utilises and packages for your language of choice. 
+
+Alternatively they can also be submitted through Etherscan by naviagating to the contract address <EthAddresses frontMatter={frontMatter} show={["MultisigControl"]} /> and clicking on the tabs `Contract` followed by `Write Contract`, and then expanding then `add_signer` function. 
+
+:::note
+The Ethereum wallet you use to connect to Etherscan, or use to submit the transaction programatically, must have the address that matches the `submitter` fields returned by the data node's API
+:::
+
+#### Removing a signer
+
+If you are trying to *remove* a validator node to the contract and set `kind` to `NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_REMOVED` in the previous step, then use [List ERC-20 multi-sig signer removed bundles](../../api/rest/data-v2/trading-data-service-list-erc-20-multi-sig-signer-removed-bundles.api.mdx).
+
+An example repsonse is below
+```json
+{
+  "bundles": {
+    "edges": [
+      {
+        "cursor": "string",
+        "node": {
+          "epochSeq": "string",
+          "nonce": "string",
+          "oldSigner": "string",
+          "signatures": "string",
+          "submitter": "string",
+          "timestamp": "string"
+        }
+      }
+    ],
+    "pageInfo": {
+      "endCursor": "string",
+      "hasNextPage": true,
+      "hasPreviousPage": true,
+      "startCursor": "string"
+    }
+  }
+}
+```
+
+where the values of the fields `oldSigner`, `nonce` and `signatures` will be needed to submit the signatures to Ethereum. This can be done programatically in code using Web3 utilises and packages for your language of choice. 
+
+Alternatively they can also be submitted through Etherscan by naviagating to the contract address <EthAddresses frontMatter={frontMatter} show={["MultisigControl"]} /> and clicking on the tabs `Contract` followed by `Write Contract`, and then expanding then `remove_signer` function. 
+
+:::note
+The Ethereum wallet you use to connect to Etherscan, or use to submit the transaction programatically, must have the address that matches the `submitter` fields returned by the data node's API
+:::
