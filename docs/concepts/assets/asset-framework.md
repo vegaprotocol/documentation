@@ -9,7 +9,7 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 
 Vega currently supports exclusively using ERC-20 tokens for markets on Vega. Those assets must be [proposed through governance](../governance.md#asset-governance) and pass the voting threshold, and be enabled on the Vega bridge. ERC-20 tokens originate on the Ethereum chain, not the Vega chain. Inter-chain asset interactions between Vega and Ethereum are facilitated through the Ethereum bridges. 
 
-The assets on Vega are used for margining and settling positions on markets, and supplying liquidity to those markets. Fees incurred and rewards received are also funded using those enabled assets, and can be transferred between keys.
+The assets on Vega are used for margining and settling positions, paying fees, and supplying liquidity on markets. Assets can also be transferred between keys and accounts.
 
 Assets need to be deposited using a bridge contract, and can be withdrawn back into an Ethereum wallet if they are not being used for margin or a liquidity commitment.
 
