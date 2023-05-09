@@ -26,6 +26,17 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Pre-release versions 0.71.3, and 0.71.4 combined | 2023-05-05
+This version was released to the Vega testnet on 05 May, 2023.
+
+This combined release contains fixes for two bugs found in data node during the final community incentive run on the alpha mainnet release candidate.
+
+A bug was identified in the way expired orders were handled by the protocol. Orders were being inserted into the databases with different sequence numbers; this resulted in the logic to expire orders being unable to get deterministic data across the network. This issue was resolved by querying the data by `id` to ensure the correct sequencing on all nodes in the network. See the full details of this bug fix in issue [8251 ↗](https://github.com/vegaprotocol/vega/issues/8251)
+
+The network history status endpoint was found to be unresponsive due to a recent name change in the functions that get the network history peers and the status. The function names were updated, reinstating the functionality of the `GetNetworkHistoryStatus` API endpoint. See the full details of this bug fix in issue [8231 ↗](https://github.com/vegaprotocol/vega/issues/8231)
+
+This release contains the two aforementioned bug fixes and minor enhancements and makes up the software version recommended to the validators to deploy for the release of alpha mainnet. Check out the full details of these patch releases in the Vega core [0.71.3 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.71.3) and [0.71.4 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.71.4) release page.
+
 ### Pre-release versions 0.71.0, 0.71.1, and 0.71.2 combined | 2023-04-26
 This version was released to the Vega testnet on 26 April, 2023.
 
