@@ -76,11 +76,6 @@
   status = 301
 
 [[redirects]]
-  from = "/testnet/concepts/vega-protocol#governance"
+  from = "/testnet/concepts/vega-protocol"
   to = "/testnet/concepts/governance"
-  status = 301
-
-[[redirects]]
-  from = "/testnet/concepts/vega-protocol#assettoken-management"
-  to = "/testnet/concepts/assets"
   status = 301
