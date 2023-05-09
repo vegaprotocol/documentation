@@ -72,7 +72,7 @@ export default function Home() {
             <ul>
               <li><Link href={`${base}/concepts/new-to-vega`}>Introduction to Vega</Link></li>
               <li>Get a <Link to={`${base}/tools/vega-wallet`}>Vega wallet</Link>, on <Link to={`${base}/tools/vega-wallet/desktop-app`}>desktop</Link> or for <Link to={`${base}/tools/vega-wallet/cli-wallet`}>command line</Link></li>
-              <li><Link className="external" base="https://github.com/orgs/vegaprotocol/projects/114/views/4" target="_blank">Roadmap</Link></li>
+              <li><Link className="external" href="https://github.com/orgs/vegaprotocol/projects/114/views/4" target="_blank">Roadmap</Link></li>
             </ul>
           </article>
           <article>
@@ -81,7 +81,7 @@ export default function Home() {
             <ul>
               <li><Link to={`${base}/concepts/governance`}>Introduction to governance</Link></li>
               <li><Link to={`${base}/tutorials/proposals`}>Tutorials: Governance proposals</Link></li>
-              <li><Link className="external" href="https://token.vega.xyz/governance" target="_blank">Governance dApp</Link></li>
+              <li><Link className="external" href="https://governance.vega.xyz" target="_blank">Governance dApp</Link></li>
             </ul>
           </article>
           <article>
