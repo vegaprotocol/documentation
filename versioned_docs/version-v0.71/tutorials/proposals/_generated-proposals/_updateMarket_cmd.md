@@ -1,6 +1,6 @@
 
   ```bash
-./vegawallet transaction send --wallet your_walletname --pubkey your_public_key --network fairground '{
+./vegawallet transaction send --wallet your_walletname --pubkey your_public_key --network mainnet1 '{
  "proposalSubmission": {
   "rationale": {
    "title": "Update Lorem Ipsum market",

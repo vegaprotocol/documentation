@@ -38,45 +38,45 @@ type Position {
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>Position.<b>market</b></code>](#)<Bullet />[`Market!`](/testnet/api/graphql/objects/market) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>market</b></code>](#)<Bullet />[`Market!`](/mainnet/api/graphql/objects/market) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > Market relating to this position
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Position.<b>party</b></code>](#)<Bullet />[`Party!`](/testnet/api/graphql/objects/party) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>party</b></code>](#)<Bullet />[`Party!`](/mainnet/api/graphql/objects/party) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > The party holding this position
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Position.<b>openVolume</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>openVolume</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Open volume (int64)
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Position.<b>realisedPNL</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>realisedPNL</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Realised Profit and Loss (int64)
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Position.<b>unrealisedPNL</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>unrealisedPNL</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Unrealised Profit and Loss (int64)
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Position.<b>averageEntryPrice</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>averageEntryPrice</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Average entry price for this position
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Position.<b>lossSocializationAmount</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>lossSocializationAmount</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > The total amount of profit and loss that was not transferred due to loss socialisation
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Position.<b>positionStatus</b></code>](#)<Bullet />[`PositionStatus!`](/testnet/api/graphql/enums/position-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>positionStatus</b></code>](#)<Bullet />[`PositionStatus!`](/mainnet/api/graphql/enums/position-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
 > Enum set if the position was closed out or orders were removed because party was distressed
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Position.<b>marginsConnection</b></code>](#)<Bullet />[`MarginConnection`](/testnet/api/graphql/objects/margin-connection) <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>marginsConnection</b></code>](#)<Bullet />[`MarginConnection`](/mainnet/api/graphql/objects/margin-connection) <Badge class="secondary" text="object"/>
 > Margins of the party for the given position
-> ##### [<code style={{ fontWeight: 'normal' }}>Position.marginsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> ##### [<code style={{ fontWeight: 'normal' }}>Position.marginsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/mainnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
 > 
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Position.<b>updatedAt</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Position.<b>updatedAt</b></code>](#)<Bullet />[`Timestamp`](/mainnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time the position was updated
 > 
 
@@ -84,7 +84,7 @@ type Position {
 
 ### Member of
 
-[`Entities`](/testnet/api/graphql/objects/entities)  <Badge class="secondary" text="object"/><Bullet />[`PositionEdge`](/testnet/api/graphql/objects/position-edge)  <Badge class="secondary" text="object"/>
+[`Entities`](/mainnet/api/graphql/objects/entities)  <Badge class="secondary" text="object"/><Bullet />[`PositionEdge`](/mainnet/api/graphql/objects/position-edge)  <Badge class="secondary" text="object"/>
 
 
 

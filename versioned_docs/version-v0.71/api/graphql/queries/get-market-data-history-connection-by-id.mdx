@@ -27,29 +27,29 @@ getMarketDataHistoryConnectionByID(
 
 ### Arguments
 
-#### [<code style={{ fontWeight: 'normal' }}>getMarketDataHistoryConnectionByID.<b>id</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>getMarketDataHistoryConnectionByID.<b>id</b></code>](#)<Bullet />[`ID!`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > 
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>getMarketDataHistoryConnectionByID.<b>start</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>getMarketDataHistoryConnectionByID.<b>start</b></code>](#)<Bullet />[`Timestamp`](/mainnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
 > Optional start date time for the historic data query.
 If both the start and end date is not provided, only the latest snapshot will be returned.
 If only the start date is provided, all market data for the market from the start date forward will be returned.
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>getMarketDataHistoryConnectionByID.<b>end</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>getMarketDataHistoryConnectionByID.<b>end</b></code>](#)<Bullet />[`Timestamp`](/mainnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
 > Optional end date time for the historic data query.
 If both the start and end date is not provided, only the latest snapshot will be returned.
 If only the end date is provided, all market data for the market up to and including the end date will be returned.
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>getMarketDataHistoryConnectionByID.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+#### [<code style={{ fontWeight: 'normal' }}>getMarketDataHistoryConnectionByID.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/mainnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
 > Optional Pagination
 > 
 
 ### Type
 
-#### [`MarketDataConnection`](/testnet/api/graphql/objects/market-data-connection) <Badge class="secondary" text="object"/>
+#### [`MarketDataConnection`](/mainnet/api/graphql/objects/market-data-connection) <Badge class="secondary" text="object"/>
 > Connection type for retrieving cursor-based paginated market data information
 > 
 

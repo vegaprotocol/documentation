@@ -28,23 +28,23 @@ type AccountUpdate {
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>AccountUpdate.<b>balance</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>AccountUpdate.<b>balance</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Balance as string - current account balance (approx. as balances can be updated several times per second)
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AccountUpdate.<b>assetId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>AccountUpdate.<b>assetId</b></code>](#)<Bullet />[`ID!`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Asset id, the 'currency'
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AccountUpdate.<b>type</b></code>](#)<Bullet />[`AccountType!`](/testnet/api/graphql/enums/account-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+#### [<code style={{ fontWeight: 'normal' }}>AccountUpdate.<b>type</b></code>](#)<Bullet />[`AccountType!`](/mainnet/api/graphql/enums/account-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
 > Account type (General, Margin, etc)
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AccountUpdate.<b>marketId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>AccountUpdate.<b>marketId</b></code>](#)<Bullet />[`ID`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > Market id (only relevant to margin accounts)
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>AccountUpdate.<b>partyId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>AccountUpdate.<b>partyId</b></code>](#)<Bullet />[`ID!`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > The party owning the account
 > 
 
@@ -52,7 +52,7 @@ type AccountUpdate {
 
 ### Returned by
 
-[`accounts`](/testnet/api/graphql/subscriptions/accounts)  <Badge class="secondary" text="subscription"/>
+[`accounts`](/mainnet/api/graphql/subscriptions/accounts)  <Badge class="secondary" text="subscription"/>
 
 
 

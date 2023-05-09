@@ -12,8 +12,8 @@
 # -----
 
 # Mainnet docs
-find 'versioned_docs' -type f -name '*.md' -exec sed -i -E 's#title: Schema Documentation#title: Graphql Schema Documentation#g' {} +
-find 'docs' -type f -name '*.md' -exec sed -i -E 's#title: Schema Documentation#title: Graphql Schema Documentation#g' {} +
+find 'versioned_docs' -type f -name '*.md' -exec sed -i -E 's#title: Schema Documentation#title: GraphQL Schema Documentation#g' {} +
+find 'docs' -type f -name '*.md' -exec sed -i -E 's#title: Schema Documentation#title: GraphQL Schema Documentation#g' {} +
 
 ## Ensure all docs in the versioned folder link to /mainnet/
 find 'versioned_docs' -type f -name '*.mdx' -exec sed -i -E 's#testnet/api/graphql#mainnet/api/graphql#g' {} +

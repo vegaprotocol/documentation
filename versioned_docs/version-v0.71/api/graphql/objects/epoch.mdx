@@ -33,31 +33,31 @@ type Epoch {
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>Epoch.<b>id</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>Epoch.<b>id</b></code>](#)<Bullet />[`ID!`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Numeric sequence number used to identify the epoch
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Epoch.<b>timestamps</b></code>](#)<Bullet />[`EpochTimestamps!`](/testnet/api/graphql/objects/epoch-timestamps) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Epoch.<b>timestamps</b></code>](#)<Bullet />[`EpochTimestamps!`](/mainnet/api/graphql/objects/epoch-timestamps) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > Timestamps for start and end of epochs
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Epoch.<b>validatorsConnection</b></code>](#)<Bullet />[`NodesConnection`](/testnet/api/graphql/objects/nodes-connection) <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Epoch.<b>validatorsConnection</b></code>](#)<Bullet />[`NodesConnection`](/mainnet/api/graphql/objects/nodes-connection) <Badge class="secondary" text="object"/>
 > Validators that participated in this epoch
-> ##### [<code style={{ fontWeight: 'normal' }}>Epoch.validatorsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> ##### [<code style={{ fontWeight: 'normal' }}>Epoch.validatorsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/mainnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
 > 
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>Epoch.<b>delegationsConnection</b></code>](#)<Bullet />[`DelegationsConnection`](/testnet/api/graphql/objects/delegations-connection) <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>Epoch.<b>delegationsConnection</b></code>](#)<Bullet />[`DelegationsConnection`](/mainnet/api/graphql/objects/delegations-connection) <Badge class="secondary" text="object"/>
 > Delegations data for this epoch
-> ##### [<code style={{ fontWeight: 'normal' }}>Epoch.delegationsConnection.<b>partyId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> ##### [<code style={{ fontWeight: 'normal' }}>Epoch.delegationsConnection.<b>partyId</b></code>](#)<Bullet />[`ID`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > Optional party ID to filter on
 > 
 
-##### [<code style={{ fontWeight: 'normal' }}>Epoch.delegationsConnection.<b>nodeId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+##### [<code style={{ fontWeight: 'normal' }}>Epoch.delegationsConnection.<b>nodeId</b></code>](#)<Bullet />[`ID`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > Optional node ID to filter on
 > 
 
-##### [<code style={{ fontWeight: 'normal' }}>Epoch.delegationsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+##### [<code style={{ fontWeight: 'normal' }}>Epoch.delegationsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/mainnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
 > Pagination information
 > 
 
@@ -65,11 +65,11 @@ type Epoch {
 
 ### Returned by
 
-[`epoch`](/testnet/api/graphql/queries/epoch)  <Badge class="secondary" text="query"/>
+[`epoch`](/mainnet/api/graphql/queries/epoch)  <Badge class="secondary" text="query"/>
 
 ### Member of
 
-[`EpochParticipation`](/testnet/api/graphql/objects/epoch-participation)  <Badge class="secondary" text="object"/><Bullet />[`Reward`](/testnet/api/graphql/objects/reward)  <Badge class="secondary" text="object"/>
+[`EpochParticipation`](/mainnet/api/graphql/objects/epoch-participation)  <Badge class="secondary" text="object"/><Bullet />[`Reward`](/mainnet/api/graphql/objects/reward)  <Badge class="secondary" text="object"/>
 
 
 

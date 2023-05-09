@@ -27,25 +27,25 @@ estimatePosition(
 
 ### Arguments
 
-#### [<code style={{ fontWeight: 'normal' }}>estimatePosition.<b>marketId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>estimatePosition.<b>marketId</b></code>](#)<Bullet />[`ID!`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > ID of the market to place the order on
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>estimatePosition.<b>openVolume</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>estimatePosition.<b>openVolume</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Open volume - negative for short position (int64)
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>estimatePosition.<b>orders</b></code>](#)<Bullet />[`[OrderInfo!]`](/testnet/api/graphql/inputs/order-info) <Badge class="secondary" text="list"/> <Badge class="secondary" text="input"/>
+#### [<code style={{ fontWeight: 'normal' }}>estimatePosition.<b>orders</b></code>](#)<Bullet />[`[OrderInfo!]`](/mainnet/api/graphql/inputs/order-info) <Badge class="secondary" text="list"/> <Badge class="secondary" text="input"/>
 > Open and/or hypothetical orders
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>estimatePosition.<b>collateralAvailable</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>estimatePosition.<b>collateralAvailable</b></code>](#)<Bullet />[`String`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
 > Optional argument specifying collateral available for the position, if provided then response will contain the liquidation price estimate
 > 
 
 ### Type
 
-#### [`PositionEstimate`](/testnet/api/graphql/objects/position-estimate) <Badge class="secondary" text="object"/>
+#### [`PositionEstimate`](/mainnet/api/graphql/objects/position-estimate) <Badge class="secondary" text="object"/>
 > Response for the estimate of the margin level and, if available, collateral was provided in the request, liqudation price for the specified position
 > 
 

@@ -30,31 +30,31 @@ type NodeData {
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>NodeData.<b>stakedTotal</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>NodeData.<b>stakedTotal</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Total staked amount across all nodes
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>NodeData.<b>totalNodes</b></code>](#)<Bullet />[`Int!`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>NodeData.<b>totalNodes</b></code>](#)<Bullet />[`Int!`](/mainnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Total number of nodes across all node sets
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>NodeData.<b>inactiveNodes</b></code>](#)<Bullet />[`Int!`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>NodeData.<b>inactiveNodes</b></code>](#)<Bullet />[`Int!`](/mainnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Total number of nodes that had a performance score of 0 at the end of the last epoch
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>NodeData.<b>tendermintNodes</b></code>](#)<Bullet />[`NodeSet!`](/testnet/api/graphql/objects/node-set) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>NodeData.<b>tendermintNodes</b></code>](#)<Bullet />[`NodeSet!`](/mainnet/api/graphql/objects/node-set) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > Details on the set of consensus nodes in the network
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>NodeData.<b>ersatzNodes</b></code>](#)<Bullet />[`NodeSet`](/testnet/api/graphql/objects/node-set) <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>NodeData.<b>ersatzNodes</b></code>](#)<Bullet />[`NodeSet`](/mainnet/api/graphql/objects/node-set) <Badge class="secondary" text="object"/>
 > Details on the set of ersatz (standby) nodes in the network
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>NodeData.<b>pendingNodes</b></code>](#)<Bullet />[`NodeSet`](/testnet/api/graphql/objects/node-set) <Badge class="secondary" text="object"/>
+#### [<code style={{ fontWeight: 'normal' }}>NodeData.<b>pendingNodes</b></code>](#)<Bullet />[`NodeSet`](/mainnet/api/graphql/objects/node-set) <Badge class="secondary" text="object"/>
 > Details on the set of pending nodes in the network
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>NodeData.<b>uptime</b></code>](#)<Bullet />[`Float!`](/testnet/api/graphql/scalars/float) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>NodeData.<b>uptime</b></code>](#)<Bullet />[`Float!`](/mainnet/api/graphql/scalars/float) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Total uptime for all epochs across all nodes. Or specify a number of epochs
 > 
 
@@ -62,7 +62,7 @@ type NodeData {
 
 ### Returned by
 
-[`nodeData`](/testnet/api/graphql/queries/node-data)  <Badge class="secondary" text="query"/>
+[`nodeData`](/mainnet/api/graphql/queries/node-data)  <Badge class="secondary" text="query"/>
 
 
 

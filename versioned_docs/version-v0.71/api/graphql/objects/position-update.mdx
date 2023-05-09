@@ -35,39 +35,39 @@ type PositionUpdate {
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>PositionUpdate.<b>marketId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>PositionUpdate.<b>marketId</b></code>](#)<Bullet />[`ID!`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Market relating to this position
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>PositionUpdate.<b>partyId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>PositionUpdate.<b>partyId</b></code>](#)<Bullet />[`ID!`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > The party holding this position
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>PositionUpdate.<b>openVolume</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>PositionUpdate.<b>openVolume</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Open volume (int64)
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>PositionUpdate.<b>realisedPNL</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>PositionUpdate.<b>realisedPNL</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Realised Profit and Loss (int64)
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>PositionUpdate.<b>unrealisedPNL</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>PositionUpdate.<b>unrealisedPNL</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Unrealised Profit and Loss (int64)
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>PositionUpdate.<b>averageEntryPrice</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>PositionUpdate.<b>averageEntryPrice</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Average entry price for this position
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>PositionUpdate.<b>updatedAt</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>PositionUpdate.<b>updatedAt</b></code>](#)<Bullet />[`Timestamp`](/mainnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time the position was updated
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>PositionUpdate.<b>lossSocializationAmount</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>PositionUpdate.<b>lossSocializationAmount</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > The total amount of profit and loss that was not transferred due to loss socialisation
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>PositionUpdate.<b>positionStatus</b></code>](#)<Bullet />[`PositionStatus!`](/testnet/api/graphql/enums/position-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+#### [<code style={{ fontWeight: 'normal' }}>PositionUpdate.<b>positionStatus</b></code>](#)<Bullet />[`PositionStatus!`](/mainnet/api/graphql/enums/position-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
 > Enum set if the position was closed out or orders were removed because party was distressed
 > 
 
@@ -75,7 +75,7 @@ type PositionUpdate {
 
 ### Returned by
 
-[`positions`](/testnet/api/graphql/subscriptions/positions)  <Badge class="secondary" text="subscription"/>
+[`positions`](/mainnet/api/graphql/subscriptions/positions)  <Badge class="secondary" text="subscription"/>
 
 
 
