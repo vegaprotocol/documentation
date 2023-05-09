@@ -5,6 +5,8 @@ hide_title: false
 description: Transfers are used to move assets between keys or to accounts.
 ---
 
+import NetworkParameter from '@site/src/components/NetworkParameter';
+
 ### Transfer assets to keys or accounts
 Transfers can be used to move assets from one Vega key to another, or from a Vega key to a specific account, such as a reward pool used for the on-chain network treasury.
 

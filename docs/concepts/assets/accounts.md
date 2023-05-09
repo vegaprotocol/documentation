@@ -5,6 +5,8 @@ hide_title: false
 description: Accounts hold assets for different purposes.
 ---
 
+import NetworkParameter from '@site/src/components/NetworkParameter';
+
 ## Accounting system
 Vega uses accounts in various situations to ensure funds are never lost or double spent. The amounts in each account, as well as the transactions that were added to and removed from those accounts, are all recorded and stored on-chain. Double entry accounting is maintained at all points.
 
