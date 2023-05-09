@@ -50,10 +50,10 @@ function getVersionNumber(vegaNetwork, siteConfig, siteMetadata) {
   } else {
     // Extract version number from docs preset config instead
     // Very very brittle, hacked together for 0.56.0
-    const d = siteConfig.presets[0][1].doc;
+    const d = siteConfig.presets[0][1].docs;
     
     const version = d.versions[d.lastVersion]
-    const vVersion = p.versions[version].className;
+    const vVersion = version.className;
 
     return formatVersionNumber(vVersion, version);
   }

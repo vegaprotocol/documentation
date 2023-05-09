@@ -1,0 +1,47 @@
+---
+id: trade-connection
+title: TradeConnection
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Connection type for retrieving cursor-based paginated trade information
+
+```graphql
+type TradeConnection {
+  edges: [TradeEdge!]!
+  pageInfo: PageInfo!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>TradeConnection.<b>edges</b></code>](#)<Bullet />[`[TradeEdge!]!`](/testnet/api/graphql/objects/trade-edge) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The trade in this connection
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TradeConnection.<b>pageInfo</b></code>](#)<Bullet />[`PageInfo!`](/testnet/api/graphql/objects/page-info) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The pagination information
+> 
+
+
+
+### Returned by
+
+[`trades`](/testnet/api/graphql/queries/trades)  <Badge class="secondary" text="query"/>
+
+### Member of
+
+[`Market`](/testnet/api/graphql/objects/market)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/testnet/api/graphql/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`Party`](/testnet/api/graphql/objects/party)  <Badge class="secondary" text="object"/>
+
+
+

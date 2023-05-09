@@ -1,0 +1,40 @@
+---
+id: risk-model
+title: RiskModel
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+union RiskModel = LogNormalRiskModel | SimpleRiskModel
+```
+
+
+### Possible types
+
+#### [`LogNormalRiskModel`](/testnet/api/graphql/objects/log-normal-risk-model) <Badge class="secondary" text="object"/>
+> A type of risk model for futures trading
+> 
+
+#### [`SimpleRiskModel`](/testnet/api/graphql/objects/simple-risk-model) <Badge class="secondary" text="object"/>
+> A type of simple/dummy risk model where you can specify the risk factor long and short in params
+> 
+
+
+
+### Member of
+
+[`NewMarket`](/testnet/api/graphql/objects/new-market)  <Badge class="secondary" text="object"/><Bullet />[`TradableInstrument`](/testnet/api/graphql/objects/tradable-instrument)  <Badge class="secondary" text="object"/>
+
+
+

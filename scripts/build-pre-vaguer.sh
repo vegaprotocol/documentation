@@ -7,7 +7,7 @@ echo "Vaguer run"
 
 ## Mainnet block - hardcoded to 1.2.0 while it is 0.53.0
 echo " - Fetching mainnet"
-JSON=true npx --yes --silent github:vegaprotocol/vaguer#semver:^1.2.0 mainnet1 > "./specs/mainnet_vaguer_temp.json"
+SUPPORT_053=true JSON=true npx --yes --silent github:vegaprotocol/vaguer mainnet1 > "./specs/mainnet_vaguer_temp.json"
 mainnet_temp_good=$(jq '[.[] | select(."🥇" == "🥇")] | length' ./specs/mainnet_vaguer_temp.json)
 mainnet_current_good=$(jq '[.[] | select(."🥇" == "🥇")] | length' ./specs/mainnet_vaguer.json)
 

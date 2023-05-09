@@ -1,0 +1,43 @@
+---
+id: network-parameters-connection
+title: NetworkParametersConnection
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Connection type for retrieving cursor-based paginated network parameters information
+
+```graphql
+type NetworkParametersConnection {
+  edges: [NetworkParameterEdge]
+  pageInfo: PageInfo!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>NetworkParametersConnection.<b>edges</b></code>](#)<Bullet />[`[NetworkParameterEdge]`](/testnet/api/graphql/objects/network-parameter-edge) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> List of network parameters available for the connection
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NetworkParametersConnection.<b>pageInfo</b></code>](#)<Bullet />[`PageInfo!`](/testnet/api/graphql/objects/page-info) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Page information for the connection
+> 
+
+
+
+### Returned by
+
+[`networkParametersConnection`](/testnet/api/graphql/queries/network-parameters-connection)  <Badge class="secondary" text="query"/>
+
+
+

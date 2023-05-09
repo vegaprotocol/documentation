@@ -1,0 +1,48 @@
+---
+id: risk-factor
+title: RiskFactor
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A risk factor emitted by the risk model for a given market
+
+```graphql
+type RiskFactor {
+  market: String!
+  short: String!
+  long: String!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>RiskFactor.<b>market</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Market the risk factor was emitted for
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>RiskFactor.<b>short</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Short factor
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>RiskFactor.<b>long</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Long factor
+> 
+
+
+
+### Member of
+
+[`Market`](/testnet/api/graphql/objects/market)  <Badge class="secondary" text="object"/>
+
+
+

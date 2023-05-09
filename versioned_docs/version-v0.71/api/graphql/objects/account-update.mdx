@@ -1,0 +1,58 @@
+---
+id: account-update
+title: AccountUpdate
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+An account record used for subscriptions
+
+```graphql
+type AccountUpdate {
+  balance: String!
+  assetId: ID!
+  type: AccountType!
+  marketId: ID
+  partyId: ID!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountUpdate.<b>balance</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Balance as string - current account balance (approx. as balances can be updated several times per second)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountUpdate.<b>assetId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Asset id, the 'currency'
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountUpdate.<b>type</b></code>](#)<Bullet />[`AccountType!`](/testnet/api/graphql/enums/account-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Account type (General, Margin, etc)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountUpdate.<b>marketId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> Market id (only relevant to margin accounts)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountUpdate.<b>partyId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The party owning the account
+> 
+
+
+
+### Returned by
+
+[`accounts`](/testnet/api/graphql/subscriptions/accounts)  <Badge class="secondary" text="subscription"/>
+
+
+

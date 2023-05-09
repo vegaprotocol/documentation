@@ -1,0 +1,47 @@
+---
+id: proposal-rationale
+title: ProposalRationale
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+type ProposalRationale {
+  description: String!
+  title: String!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>ProposalRationale.<b>description</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Description to show a short title / something in case the link goes offline.
+This is to be between 0 and 20k unicode characters.
+This is mandatory for all proposals.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProposalRationale.<b>title</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Title to be used to give a short description of the proposal in lists.
+This is to be between 0 and 100 unicode characters.
+This is mandatory for all proposals.
+> 
+
+
+
+### Member of
+
+[`Proposal`](/testnet/api/graphql/objects/proposal)  <Badge class="secondary" text="object"/><Bullet />[`ProposalDetail`](/testnet/api/graphql/objects/proposal-detail)  <Badge class="secondary" text="object"/>
+
+
+

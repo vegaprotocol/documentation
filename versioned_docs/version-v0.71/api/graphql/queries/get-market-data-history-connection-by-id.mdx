@@ -1,0 +1,59 @@
+---
+id: get-market-data-history-connection-by-id
+title: getMarketDataHistoryConnectionByID
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Get market data history for a specific market. If no dates are given, the latest snapshot will be returned. If only the start date is provided all history from the given date will be provided, and if only the end date is provided, all history from the start up to and including the end date will be provided.
+
+```graphql
+getMarketDataHistoryConnectionByID(
+  id: ID!
+  start: Timestamp
+  end: Timestamp
+  pagination: Pagination
+): MarketDataConnection
+```
+
+
+### Arguments
+
+#### [<code style={{ fontWeight: 'normal' }}>getMarketDataHistoryConnectionByID.<b>id</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>getMarketDataHistoryConnectionByID.<b>start</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
+> Optional start date time for the historic data query.
+If both the start and end date is not provided, only the latest snapshot will be returned.
+If only the start date is provided, all market data for the market from the start date forward will be returned.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>getMarketDataHistoryConnectionByID.<b>end</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
+> Optional end date time for the historic data query.
+If both the start and end date is not provided, only the latest snapshot will be returned.
+If only the end date is provided, all market data for the market up to and including the end date will be returned.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>getMarketDataHistoryConnectionByID.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Optional Pagination
+> 
+
+### Type
+
+#### [`MarketDataConnection`](/testnet/api/graphql/objects/market-data-connection) <Badge class="secondary" text="object"/>
+> Connection type for retrieving cursor-based paginated market data information
+> 
+
+
+
+
+

@@ -1,0 +1,47 @@
+---
+id: data-source-spec-configuration
+title: DataSourceSpecConfiguration
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+DataSourceSpecConfiguration describes the source data that an instrument wants to get from the
+sourcing engine.
+
+```graphql
+type DataSourceSpecConfiguration {
+  signers: [Signer!]
+  filters: [Filter!]
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>DataSourceSpecConfiguration.<b>signers</b></code>](#)<Bullet />[`[Signer!]`](/testnet/api/graphql/objects/signer) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> Signers is the list of authorized signatures that signed the data for this
+data source. All the public keys in the data should be contained in this
+list.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DataSourceSpecConfiguration.<b>filters</b></code>](#)<Bullet />[`[Filter!]`](/testnet/api/graphql/objects/filter) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> Filters describes which source data are considered of interest or not for
+the product (or the risk model).
+> 
+
+
+
+### Implemented by
+
+[`ExternalDataSourceKind`](/testnet/api/graphql/unions/external-data-source-kind)  <Badge class="secondary" text="union"/>
+
+
+

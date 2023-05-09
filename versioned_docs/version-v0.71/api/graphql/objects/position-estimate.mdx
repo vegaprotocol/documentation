@@ -1,0 +1,43 @@
+---
+id: position-estimate
+title: PositionEstimate
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Response for the estimate of the margin level and, if available, collateral was provided in the request, liqudation price for the specified position
+
+```graphql
+type PositionEstimate {
+  margin: MarginEstimate!
+  liquidation: LiquidationEstimate
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>PositionEstimate.<b>margin</b></code>](#)<Bullet />[`MarginEstimate!`](/testnet/api/graphql/objects/margin-estimate) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Margin level range estimate for the specified position
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>PositionEstimate.<b>liquidation</b></code>](#)<Bullet />[`LiquidationEstimate`](/testnet/api/graphql/objects/liquidation-estimate) <Badge class="secondary" text="object"/>
+> Liquidation price range estimate for the specified position. Only populated if available collateral was specified in the request
+> 
+
+
+
+### Returned by
+
+[`estimatePosition`](/testnet/api/graphql/queries/estimate-position)  <Badge class="secondary" text="query"/>
+
+
+

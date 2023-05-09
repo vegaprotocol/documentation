@@ -1,0 +1,277 @@
+---
+id: party
+title: Party
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Represents a party on Vega, could be an ethereum wallet address in the future
+
+```graphql
+type Party {
+  id: ID!
+  ordersConnection(
+  pagination: Pagination
+  filter: OrderByMarketIdsFilter
+): OrderConnection
+  tradesConnection(
+  marketId: ID
+  dataRange: DateRange
+  pagination: Pagination
+): TradeConnection
+  accountsConnection(
+  marketId: ID
+  assetId: ID
+  type: AccountType
+  pagination: Pagination
+): AccountsConnection
+  positionsConnection(
+  market: ID
+  pagination: Pagination
+): PositionConnection
+  marginsConnection(
+  marketId: ID
+  pagination: Pagination
+): MarginConnection
+  proposalsConnection(
+  proposalType: ProposalType
+  inState: ProposalState
+  pagination: Pagination
+): ProposalsConnection
+  votesConnection(
+  pagination: Pagination
+): ProposalVoteConnection
+  withdrawalsConnection(
+  dateRange: DateRange
+  pagination: Pagination
+): WithdrawalsConnection
+  depositsConnection(
+  dateRange: DateRange
+  pagination: Pagination
+): DepositsConnection
+  liquidityProvisionsConnection(
+  marketId: ID
+  reference: String
+  live: Boolean
+  pagination: Pagination
+): LiquidityProvisionsConnection
+  delegationsConnection(
+  nodeId: ID
+  pagination: Pagination
+): DelegationsConnection
+  stakingSummary(
+  pagination: Pagination
+): StakingSummary!
+  rewardsConnection(
+  assetId: ID
+  pagination: Pagination
+  fromEpoch: Int
+  toEpoch: Int
+): RewardsConnection
+  rewardSummaries(
+  assetId: ID
+): [RewardSummary]
+  transfersConnection(
+  direction: TransferDirection
+  pagination: Pagination
+): TransferConnection
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Party.<b>id</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Party identifier
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Party.<b>ordersConnection</b></code>](#)<Bullet />[`OrderConnection`](/testnet/api/graphql/objects/order-connection) <Badge class="secondary" text="object"/>
+> Orders relating to a party
+> ##### [<code style={{ fontWeight: 'normal' }}>Party.ordersConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Pagination information
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.ordersConnection.<b>filter</b></code>](#)<Bullet />[`OrderByMarketIdsFilter`](/testnet/api/graphql/inputs/order-by-market-ids-filter) <Badge class="secondary" text="input"/>
+> Filter orders
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Party.<b>tradesConnection</b></code>](#)<Bullet />[`TradeConnection`](/testnet/api/graphql/objects/trade-connection) <Badge class="secondary" text="object"/>
+> 
+> ##### [<code style={{ fontWeight: 'normal' }}>Party.tradesConnection.<b>marketId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> ID of the market you want to get trades for
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.tradesConnection.<b>dataRange</b></code>](#)<Bullet />[`DateRange`](/testnet/api/graphql/inputs/date-range) <Badge class="secondary" text="input"/>
+> Date range to retrieve trades from/to. Start and end time should be expressed as an integer value of nano-seconds past the Unix epoch
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.tradesConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Pagination information
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Party.<b>accountsConnection</b></code>](#)<Bullet />[`AccountsConnection`](/testnet/api/graphql/objects/accounts-connection) <Badge class="secondary" text="object"/>
+> Collateral accounts relating to a party
+> ##### [<code style={{ fontWeight: 'normal' }}>Party.accountsConnection.<b>marketId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> Market ID - specify what market accounts for the party to return
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.accountsConnection.<b>assetId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> Asset ID
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.accountsConnection.<b>type</b></code>](#)<Bullet />[`AccountType`](/testnet/api/graphql/enums/account-type) <Badge class="secondary" text="enum"/>
+> Filter accounts by type (General account, margin account, etc...)
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.accountsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Cursor pagination information
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Party.<b>positionsConnection</b></code>](#)<Bullet />[`PositionConnection`](/testnet/api/graphql/objects/position-connection) <Badge class="secondary" text="object"/>
+> Trading positions relating to a party
+> ##### [<code style={{ fontWeight: 'normal' }}>Party.positionsConnection.<b>market</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> 
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.positionsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Party.<b>marginsConnection</b></code>](#)<Bullet />[`MarginConnection`](/testnet/api/graphql/objects/margin-connection) <Badge class="secondary" text="object"/>
+> Margin levels for a market
+> ##### [<code style={{ fontWeight: 'normal' }}>Party.marginsConnection.<b>marketId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> market ID for the requested margin levels, nil if all markets
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.marginsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Optional Pagination information
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Party.<b>proposalsConnection</b></code>](#)<Bullet />[`ProposalsConnection`](/testnet/api/graphql/objects/proposals-connection) <Badge class="secondary" text="object"/>
+> All governance proposals in the Vega network
+> ##### [<code style={{ fontWeight: 'normal' }}>Party.proposalsConnection.<b>proposalType</b></code>](#)<Bullet />[`ProposalType`](/testnet/api/graphql/enums/proposal-type) <Badge class="secondary" text="enum"/>
+> Optional type of proposal to retrieve data for
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.proposalsConnection.<b>inState</b></code>](#)<Bullet />[`ProposalState`](/testnet/api/graphql/enums/proposal-state) <Badge class="secondary" text="enum"/>
+> Returns only proposals in the specified state. Leave out to get all proposals
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.proposalsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Optional Pagination information
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Party.<b>votesConnection</b></code>](#)<Bullet />[`ProposalVoteConnection`](/testnet/api/graphql/objects/proposal-vote-connection) <Badge class="secondary" text="object"/>
+> All votes on proposals in the Vega network by the given party
+> ##### [<code style={{ fontWeight: 'normal' }}>Party.votesConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Optional Pagination information
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Party.<b>withdrawalsConnection</b></code>](#)<Bullet />[`WithdrawalsConnection`](/testnet/api/graphql/objects/withdrawals-connection) <Badge class="secondary" text="object"/>
+> The list of all withdrawals initiated by the party
+> ##### [<code style={{ fontWeight: 'normal' }}>Party.withdrawalsConnection.<b>dateRange</b></code>](#)<Bullet />[`DateRange`](/testnet/api/graphql/inputs/date-range) <Badge class="secondary" text="input"/>
+> Date range to retrieve withdrawals from/to. Start and end time should be expressed as an integer value of nano-seconds past the Unix epoch
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.withdrawalsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Optional Pagination information
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Party.<b>depositsConnection</b></code>](#)<Bullet />[`DepositsConnection`](/testnet/api/graphql/objects/deposits-connection) <Badge class="secondary" text="object"/>
+> The list of all deposits for a party by the party
+> ##### [<code style={{ fontWeight: 'normal' }}>Party.depositsConnection.<b>dateRange</b></code>](#)<Bullet />[`DateRange`](/testnet/api/graphql/inputs/date-range) <Badge class="secondary" text="input"/>
+> Date range to retrieve deposits from/to. Start and end time should be expressed as an integer value of nano-seconds past the Unix epoch
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.depositsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Optional Pagination information
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Party.<b>liquidityProvisionsConnection</b></code>](#)<Bullet />[`LiquidityProvisionsConnection`](/testnet/api/graphql/objects/liquidity-provisions-connection) <Badge class="secondary" text="object"/>
+> The list of the liquidity provision commitment for this party
+> ##### [<code style={{ fontWeight: 'normal' }}>Party.liquidityProvisionsConnection.<b>marketId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> An optional market ID
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.liquidityProvisionsConnection.<b>reference</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> An optional reference
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.liquidityProvisionsConnection.<b>live</b></code>](#)<Bullet />[`Boolean`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> An optional live flag to determine whether to list only live LPs or not
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.liquidityProvisionsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Optional Pagination information
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Party.<b>delegationsConnection</b></code>](#)<Bullet />[`DelegationsConnection`](/testnet/api/graphql/objects/delegations-connection) <Badge class="secondary" text="object"/>
+> 
+> ##### [<code style={{ fontWeight: 'normal' }}>Party.delegationsConnection.<b>nodeId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> Optional node ID
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.delegationsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Pagination information
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Party.<b>stakingSummary</b></code>](#)<Bullet />[`StakingSummary!`](/testnet/api/graphql/objects/staking-summary) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The staking information for this Party
+> ##### [<code style={{ fontWeight: 'normal' }}>Party.stakingSummary.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Party.<b>rewardsConnection</b></code>](#)<Bullet />[`RewardsConnection`](/testnet/api/graphql/objects/rewards-connection) <Badge class="secondary" text="object"/>
+> Rewards information for the party
+> ##### [<code style={{ fontWeight: 'normal' }}>Party.rewardsConnection.<b>assetId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> An asset ID (optional)
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.rewardsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Optional pagination information
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.rewardsConnection.<b>fromEpoch</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
+> Optionally only return rewards &#x003E;= this epoch
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.rewardsConnection.<b>toEpoch</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
+> Optionally only return rewards &#x003C;= this epoch
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Party.<b>rewardSummaries</b></code>](#)<Bullet />[`[RewardSummary]`](/testnet/api/graphql/objects/reward-summary) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> Return net reward information
+> ##### [<code style={{ fontWeight: 'normal' }}>Party.rewardSummaries.<b>assetId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> An asset ID (optional)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Party.<b>transfersConnection</b></code>](#)<Bullet />[`TransferConnection`](/testnet/api/graphql/objects/transfer-connection) <Badge class="secondary" text="object"/>
+> All transfers for a public key
+> ##### [<code style={{ fontWeight: 'normal' }}>Party.transfersConnection.<b>direction</b></code>](#)<Bullet />[`TransferDirection`](/testnet/api/graphql/enums/transfer-direction) <Badge class="secondary" text="enum"/>
+> direction of the transfer with respect to the public key
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.transfersConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Pagination information
+> 
+
+
+
+### Returned by
+
+[`party`](/testnet/api/graphql/queries/party)  <Badge class="secondary" text="query"/>
+
+### Member of
+
+[`AccountBalance`](/testnet/api/graphql/objects/account-balance)  <Badge class="secondary" text="object"/><Bullet />[`AccountEvent`](/testnet/api/graphql/objects/account-event)  <Badge class="secondary" text="object"/><Bullet />[`Delegation`](/testnet/api/graphql/objects/delegation)  <Badge class="secondary" text="object"/><Bullet />[`Deposit`](/testnet/api/graphql/objects/deposit)  <Badge class="secondary" text="object"/><Bullet />[`Entities`](/testnet/api/graphql/objects/entities)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProviderFeeShare`](/testnet/api/graphql/objects/liquidity-provider-fee-share)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProvision`](/testnet/api/graphql/objects/liquidity-provision)  <Badge class="secondary" text="object"/><Bullet />[`MarginLevels`](/testnet/api/graphql/objects/margin-levels)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/testnet/api/graphql/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`PartyEdge`](/testnet/api/graphql/objects/party-edge)  <Badge class="secondary" text="object"/><Bullet />[`Position`](/testnet/api/graphql/objects/position)  <Badge class="secondary" text="object"/><Bullet />[`Proposal`](/testnet/api/graphql/objects/proposal)  <Badge class="secondary" text="object"/><Bullet />[`ProposalDetail`](/testnet/api/graphql/objects/proposal-detail)  <Badge class="secondary" text="object"/><Bullet />[`Reward`](/testnet/api/graphql/objects/reward)  <Badge class="secondary" text="object"/><Bullet />[`StakeLinking`](/testnet/api/graphql/objects/stake-linking)  <Badge class="secondary" text="object"/><Bullet />[`Trade`](/testnet/api/graphql/objects/trade)  <Badge class="secondary" text="object"/><Bullet />[`Vote`](/testnet/api/graphql/objects/vote)  <Badge class="secondary" text="object"/><Bullet />[`Withdrawal`](/testnet/api/graphql/objects/withdrawal)  <Badge class="secondary" text="object"/>
+
+
+

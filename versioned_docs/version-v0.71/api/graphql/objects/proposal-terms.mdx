@@ -1,0 +1,56 @@
+---
+id: proposal-terms
+title: ProposalTerms
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The rationale behind the proposal
+
+```graphql
+type ProposalTerms {
+  closingDatetime: Timestamp!
+  enactmentDatetime: Timestamp
+  validationDatetime: Timestamp
+  change: ProposalChange!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>ProposalTerms.<b>closingDatetime</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano time and date when voting closes for this proposal.
+Constrained by "minClose" and "maxClose" network parameters.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProposalTerms.<b>enactmentDatetime</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
+> RFC3339Nano time and date when this proposal is executed (if passed). Note that it has to be after closing date time.
+Constrained by "minEnactInSeconds" and "maxEnactInSeconds" network parameters.
+Note: Optional as free form proposals do not require it.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProposalTerms.<b>validationDatetime</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
+> RFC3339Nano time and when node validation of the proposal stops, accepted only with new asset proposals
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProposalTerms.<b>change</b></code>](#)<Bullet />[`ProposalChange!`](/testnet/api/graphql/unions/proposal-change) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="union"/>
+> Actual change being introduced by the proposal - action the proposal triggers if passed and enacted.
+> 
+
+
+
+### Member of
+
+[`Proposal`](/testnet/api/graphql/objects/proposal)  <Badge class="secondary" text="object"/><Bullet />[`ProposalDetail`](/testnet/api/graphql/objects/proposal-detail)  <Badge class="secondary" text="object"/>
+
+
+

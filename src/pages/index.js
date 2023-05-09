@@ -79,7 +79,7 @@ export default function Home() {
             <h2>Governance</h2>
             <p>The network is governed by the community. Take part by voting on proposals and proposing changes.</p>
             <ul>
-              <li><Link to={`${base}/concepts/vega-protocol#governance`}>Introduction to governance</Link></li>
+              <li><Link to={`${base}/concepts/governance`}>Introduction to governance</Link></li>
               <li><Link to={`${base}/tutorials/proposals`}>Tutorials: Governance proposals</Link></li>
               <li><Link className="external" href="https://token.vega.xyz/governance" target="_blank">Governance dApp</Link></li>
             </ul>

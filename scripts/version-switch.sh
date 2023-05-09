@@ -13,26 +13,27 @@
 
 # Mainnet docs
 ## Ensure all docs in the versioned folder link to /mainnet/
-find 'versioned_docs/version-v0.53/graphql' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/\/docs\/testnet\/graphql/\/docs\/mainnet\/graphql/g' {} +
+find 'versioned_docs/version-v0.71/api/graphql' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/\/docs\/testnet\/api\/graphql/\/docs\/mainnet\/api\/graphql/g' {} +
 
 ## Ensure all docs in the versioned folder link to /mainnet/
-find 'versioned_docs/version-v0.53/grpc' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/\/docs\/testnet\/grpc/\/docs\/mainnet\/grpc/g' {} +
+find 'versioned_docs/version-v0.71/api/grpc' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/\/docs\/testnet\/api\/grpc/\/docs\/mainnet\/api\/grpc/g' {} +
 
 ## Sidebar fixup
-sed -i -E 's/\/docs\/testnet\//\/docs\/mainnet\//g' versioned_sidebars/version-v0.53-sidebars.json 
+sed -i -E 's/\/docs\/testnet\//\/docs\/mainnet\//g' versioned_sidebars/version-v0.71-sidebars.json 
 
 # Testnet docs
 ## Ensure graphql pages in /docs/ link to /testnet/
-find 'docs/graphql' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/graphql/\/docs\/testnet\/graphql/g' {} +
+find 'docs/api/graphql' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/graphql/\/docs\/testnet\/graphql/g' {} +
 ## Ensure grpc pages in /docs/ link to /testnet/
-find 'docs/grpc' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/grpc/\/docs\/testnet\/grpc/g' {} +
+find 'docs/api/grpc' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/grpc/\/docs\/testnet\/grpc/g' {} +
 
 ## Ensure frontmatter for non-testnet docs is set to mainnets
 find 'versioned_docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/vega_network: TESTNET/vega_network: MAINNET/g' {} +
+find 'versioned_docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/ethereum_network: SEPOLIA/ethereum_network: MAINNET/g' {} +
 
 ## Do the inverse, just in case
 find 'docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/vega_network: MAINNET/vega_network: TESTNET/g' {} +
-find 'docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/ethereum_network: MAINNET/ethereum_network: ROPSTEN/g' {} +
+find 'docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/ethereum_network: MAINNET/ethereum_network: SEPOLIA/g' {} +
 
 ## Fix tutorials
 find 'versioned_docs' -type f -name '*.mdx' -o -name '*.md' -exec sed -i -E 's/--network fairground/--network mainnet1/g' {} +
