@@ -70,6 +70,9 @@ And then the node can be started as usual, syncing into the network at a recent 
 
 ```
 vega start --home="YOUR_VEGA_HOME" --tendermint-home="YOUR_TENDERMINT_HOME" --network-url="NETWORK_URL"
+
+# if using visor
+visor run --home "VISOR_HOME_PATH"
 ```
 
 ## Restart a node using local snapshots
@@ -113,10 +116,6 @@ Please consult a member of the Vega engineering team if you are unsure about res
 
 ## Inspect the contents of a snapshot
  
-:::note
-This section is not required to run a node.
-:::
-
 A debug tool exists that allows the contents of a snapshot for a particular block to be written to a json file. This can contain useful information that can help to understand problems with the Vega network and something a member of the development team may ask for to help debug an issue.
 
 
@@ -125,3 +124,7 @@ The below command will create a file called `snapshot.json` containing all of th
 ``` shell
 vega tools snapshot --snapshot-contents --output=snapshot.json --block-height=SNAPSHOT_BLOCK_HEIGHT
 ```
+
+:::note
+This section is not required to run a node.
+:::
