@@ -54,7 +54,7 @@ If you prefer to run PostgreSQL and TimescaleDB in a docker container, you can u
 
 This guide assumes you already have Docker installed on your system. For full installation guide consult Docker's [documentation ↗](https://docs.docker.com/engine/install/ubuntu/).
 
-```Shell
+```shell
 docker run -d \
     --rm \
     --name MY_LOVELY_DB_CONTAINER \
@@ -72,6 +72,52 @@ Where:
 - `database_name` is the name of the database you want to use for storing the data.
 - `localdb_port` is the port you want to use to connect to the database on your local machine. (5432 is the default port for Postgresql database server and may not be available if you already have a postgresql database server running on your machine and want to use Docker for testing).
 
+#### Docker-compose version
+
+```yaml
+version: '3.1'
+
+services:
+
+  db:
+    image: timescale/timescaledb:2.8.0-pg14
+    restart: always
+    environment:
+      POSTGRES_USER: vega
+      POSTGRES_DB: data_node_db
+      POSTGRES_PASSWORD: example
+    command: [
+      "postgres",
+      "-c", "max_connections=50",
+      "-c", "log_destination=stderr",
+      "-c", "work_mem=5MB",
+      "-c", "huge_pages=off",
+      "-c", "shared_memory_type=sysv",
+      "-c", "dynamic_shared_memory_type=sysv",
+      "-c", "shared_buffers=2GB",
+      "-c", "temp_buffers=5MB",
+    ]
+    ports:
+      - 5432:5432
+    volumes: 
+      - pgdata:/var/lib/postgresql/data
+
+  # Adminer can be used for debugging. We recommend dissabling it for production
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8082:8080
+
+
+volumes:
+  pgdata:
+    driver: local
+```
+
+:::note
+See tunning parameters section below to adjust your runtime configuration
+:::
 
 ### PostgreSQL configuration tuning
 
@@ -541,9 +587,11 @@ Queries can be tested using the GraphQL playground app which is bundled with a n
 The GraphQL default port and other configuration options can be found in the data node configuration file `YOUR_DATA_NODE_HOME_PATH/config/data-node/config.toml` under the `Gateway.GraphQL` section:
 
 ```toml
-  [Gateway.GraphQL]
+  [Gateway]
     Port = 3008
     IP = "0.0.0.0"
+    # ...
+  [Gateway.GraphQL]
     Enabled = true
     ComplexityLimit = 0
     HTTPSEnabled = false
@@ -588,26 +636,20 @@ Data node can optionally perform a similar role to `certbot` and manage creation
     AutoCertDomain = "my.lovely.domain.com"
 ```
 
-**It is a hard requirement of the `LetsEncrypt` validation process that the the server answering its challenge is running on the standard HTTPS port (443).** By default, the GraphQL API listens on port 3008, and the REST API runs on 3009, so the validation will not succeed. This means if you wish to make use of data node's automatic certificate management, you must do one of the following:
+**It is a hard requirement of the `LetsEncrypt` validation process that the the server answering its challenge is running on the standard HTTPS port (443).** By default, the GraphQL API and the REST API run on 3008, so the validation will not succeed. This means if you wish to make use of data node's automatic certificate management, you must do one of the following:
 
 * Forward port 443 on your machine to the GraphQL or REST API port using `iptables` or similar other network configuration CLI. Example: `iptables`: `iptables -A PREROUTING -t nat -p tcp --dport 443 -j DNAT --to-destination :3008`
 * Proxy pass to port 3008 by using reverse proxy server. Some example sources on how to set one up:
   - [`caddy`](https://caddyserver.com/docs/quick-starts/reverse-proxy)
   - [`nginx`](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
   - [`httpd`](https://httpd.apache.org/docs/2.4/howto/reverse_proxy.html)
-* Directly listen on port 443 instead of the default with either the GraphQL or REST gateways in data node by specifying the following configuration:
+* Directly listen on port 443 instead of the default with the gateway in data node by specifying the following configuration:
 
 ```toml
-  [Gateway.GraphQL]
+  [Gateway]
     Port = 443
 ```
 
-or
-
-```toml
-  [Gateway.REST]
-    Port = 443
-```
 Note that Linux systems generally require processes listening on ports under 1024 to either run as root, or be specifically granted permission, e.g. by launching with the following:
 
 ```shell
@@ -641,10 +683,58 @@ The GraphQL will return error for queries that have complexity above the set lim
 ### REST
 REST provides a standard between computer systems on the web, making it easier for systems to communicate with each other. It is arguably simpler to work with than gRPC and GraphQL. In Vega the REST API is a reverse proxy to the gRPC API, however it does not support streaming.
 
-The default port (configurable) for the REST API is `3009` and we use a reverse proxy to the gRPC API to deliver the REST API implementation.
+The default port (configurable) for the REST API is `3008` and we use a reverse proxy to the gRPC API to deliver the REST API implementation. You can change the port with the `Gateway.Port` parameter in your `config.toml`.
 
 ## Further reading
 For more information about data node and developing on data node please see the data node [README ↗](https://github.com/vegaprotocol/vega/blob/master/datanode/README.md)
+
+### Testing your data-node public setup
+
+It is required to expose the following things from the data node:
+
+- GraphQL API
+- REST API
+- GRPC API
+
+Rest endpoints can be closed.
+
+You must expose the GraphQL and the REST API on your domain with a valid TLS certificate. It means you either 
+
+- set the 443 port for the data node and set up the auto cert for your data node(see instruction above)
+- set the reverse proxy for the `Gateway.Port` in external software like Nginx/Apache/Caddy.
+
+You also have to open the GRPC port on your server; by default, it is `3007`. You can change the GRPC port with the `API.Port` parameter in your data node `config.toml`.
+
+Assuming you have correct setup for the Gateway port(REST & GQL APIs), and the API port set to 3007, and domain `api` points to your server, both requests should return the correct response:
+
+```shell
+# REST API
+curl https://api0.vega.community/api/v2/info
+# Example output is: {"version":"v0.71.4","commitHash":"61d1f77ee360bf1679d5eb0e0efdb1cce977c9db"}
+
+# GraphQL API
+curl 'https://api0.vega.community/graphql' \
+  -H 'content-type: application/json' \
+  --data-raw '{"query":"query {\tstatistics { appVersion, appVersionHash } }"}' \
+
+# Example output is: {"data":{"statistics":{"appVersion":"v0.71.4","appVersionHash":"61d1f77ee360bf1679d5eb0e0efdb1cce977c9db"}}}
+
+# GRPC API
+
+# You have to insstall GRPC client e.g.: grpc-client-cli
+go install github.com/vadimi/grpc-client-cli/cmd/grpc-client-cli@v1.18.0
+
+echo "{}" | grpc-client-cli -service datanode.api.v2.TradingDataService -method Info api0.vega.community:3007
+
+# Example response is:
+# {
+#  "version": "v0.71.4",
+#  "commit_hash": "61d1f77ee360bf1679d5eb0e0efdb1cce977c9db"
+# }
+```
+
+
+
 
 ## Data node troubleshooting
 
