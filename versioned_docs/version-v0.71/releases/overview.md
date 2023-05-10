@@ -26,7 +26,7 @@ The Vega core software is public on a business-source licence, so you can both v
 
 Version 0.71.4 was released to the Vega mainnet on 09 May 2023.
 
-This version brings the alpha mainnet planned features to mainnet, making the protocol ready to remove restrictions for the community to propose assets and markets. This deployment brings some key features built upon the restricted mainnet version:
+This version brings the planned features for the alpha mainnet phase to mainnet, making the protocol ready to remove restrictions for the community to propose assets and markets. This deployment brings some key features built upon the restricted mainnet version:
 
 **Data node network history**
 In a similar way to core snapshots, the data node can now obtain data node history after downtime without the need to replay the chain. Nodes can reach out to peer nodes to fetch the most recent history, as well as older history if desired, such that it can quickly get itself up to the latest block height of the network and start to consume events for the latest block from the Vega core. This feature is key in speeding up time-to-be-operational for new nodes joining the network.
@@ -45,7 +45,7 @@ If a transaction requires data from the chain for it to be validated, the networ
 
 In order to mitigate this, spam protection will remove the offending transactions after the block is scheduled, i.e., not process them. The state can then be updated once a block is finalised and block transactions are based on the new state. The protection can then delete transactions from every (honest) validator’s mempool based on the new state.
 
-More information is available in the [spam protection concepts](../concepts/vega-chain/network#spam-protection) pages.
+More information is available in the [spam protection concepts](../concepts/vega-chain/network.md#spam-protection) pages.
 
 **Freeform governance proposals**
 Building on the governance features in restricted mainnet, the community can now propose freeform proposals. These differ from other proposals as when the enactment time comes, no changes are auto-enacted on the network if a proposal is successful. However, a record of how token holders voted will be stored on-chain and enactment will come at a future time, e.g., a code change that will come in a future deployment.
@@ -54,7 +54,7 @@ Find out more about [freeform ↗](https://github.com/vegaprotocol/specs/blob/ma
 
 **Vega transaction gas costs and priorities**
 Vega doesn't charge users gas costs per transaction. However, the system processing capacity is still limited; in order to ensure liveness, each transaction will have an associated gas cost. Each block will contain only transactions up to a certain block gas limit. Transactions with higher priorities will get scheduled first.
-More information on transaction gas costs and priorities in the [Vega chain concept](../concepts/vega-chain/transactions#filling-a-block-transaction-gas-value) pages.
+More information on transaction gas costs and priorities in the [Vega chain concept](../concepts/vega-chain/transactions.md#filling-a-block-transaction-gas-value) pages.
 
 **Vega wallet v2 APIs**
 The Vega wallet APIs have been updated to version 2 and now offers JSON-RPC API support. This allows users and UIs to more easily interact with wallets and their keys, and sign and send transactions. This is the core of the wallet backend and is consistent across all implementations.
