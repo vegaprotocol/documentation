@@ -92,9 +92,9 @@ The changes below may affect any automations, scripts or workflows you'll have s
 
 **Removed: Wallet command removals** [v0.66 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.66.0): A number of the CLI wallet APIs have been deprecated. To find out how to see all the current CLI wallet commands please refer to the [CLI wallet documentation](../tools/vega-wallet/cli-wallet/latest/guides/get-help.md).
 
-**Network parameter name change** [v0.66 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.66.0): The network parameter `stakeToCcySiskas` has been renamed to `stakeToCcyVolume`.
+**Renamed: Network parameter** [v0.66 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.66.0): The network parameter `stakeToCcySiskas` has been renamed to `stakeToCcyVolume`.
 
-**Network parameter name change** [v0.66 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.66.0): The `triggeringRatio` field has been changed from `double` to a `string`. When proposing a market, using a float value would lead to a passing proposal, however the response from the APIs was incorrect. This has been resolved by changing the accepted data format.
+**Format change: triggering ratio parameter** [v0.66 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.66.0): The `triggeringRatio` field has been changed from `double` to a `string`. When proposing a market, using a float value would lead to a passing proposal, however the response from the APIs was incorrect. This has been resolved by changing the accepted data format.
 
 **Market definition API** [v0.65 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.65.0): The market definition API has been extended with the new field for LP price range, this has resulted in a breaking change.
 
@@ -115,7 +115,7 @@ To harden the security of Vega key management for node operators, a different pa
 **Output from nodewallet reload is now more useful JSON** [v.0.59 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.59.0):
 The output from `vega nodewallet reload --output=json` was not structured in a manner that was easy to use. This change creates a better UX for anyone interacting with the JSON output of the command.
 
-**Rename get bundles API function `GetMultiSigSigner` to `ListMultiSigSigner`** [v.0.59 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.59.0):
+**Renamed API: get bundles function `GetMultiSigSigner` to `ListMultiSigSigner`** [v.0.59 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.59.0):
 In order to be consistent with v2 APIs and return context aware results, the get bundles API function name has been changed from `GetMultiSigSigner` to `ListMultiSigSigner`.
 
 **Swap places of PID and date in log files in the wallet service** [v.0.59 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.59.0):
@@ -127,7 +127,7 @@ The API field `GetBalanceHistory` has been renamed to `ListBalanceHistory` and h
 **Negative position decimal places for market** [v.0.59 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.59.0):
 In order to maintain spam protection, a market with a price of 10^-3 should only allow the smallest position of something like 10000 so the position decimal places would equal -4 meaning an order size of 1 => 10000.
 
-**Data node API field name changes** [v.0.58 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.58.0):
+**Renamed API: settlement price decimals** [v.0.58 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.58.0):
 The market proposal (data source) field `settlementPriceDecimals` was changed to `settlementDataDecimals` to be future-proofed for when settlement data isn’t just driven by prices. To ensure consistency throughout the APIs the field `oracleSpecForSettlementPrice` has now also been changed to `oracleSpecForSettlementData`.
 
 **Require signature from new Ethereum key to validate key rotation submission** [v.0.58 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.58.0):
@@ -149,13 +149,13 @@ The `Nodewallet.ETH` section of the config has been removed, and as a consequenc
 **Fork: Clef forked so signatures are readable** [v.0.57 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.57.0):
 When a clef wallet was used with a validator node, the validator heartbeats sent out, signed by the clef wallet, could not be verified when received by the network. This was being caused by the message being hashed clef before signing when using clef for validator heartbeats. The Vega team has created a fork of the Clef software to resolve this issue. This was done under issue [6187 ↗](https://github.com/vegaprotocol/vega/issues/6187)
 
-**Removal: Clean up unused network parameters** [v.0.57 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.57.0):
+**Removed: Clean up unused network parameters** [v.0.57 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.57.0):
 A number of network parameters have been replaced or removed as they were not required.
 
-**Data node API field name changes** [v.0.56 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.56.0):
+**Renamed fields: settlement price data** [v.0.56 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.56.0):
 To ensure that the settlement API field name can scale to non-cash products, for example, where settlement data is not necessarily a price, the API field name has been changed from `SettlementPriceDecimals` to `SettlementDataDecimals`.
 
-**Positions WebSocket API** [v.0.56 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.56.0):
+**Renamed API: Positions WebSocket** [v.0.56 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.56.0):
 To ensure clarity of the positions subscription API the field name `Position` has been updated to `PositionUpdate`.
 
 **Use the latest local snapshot as default behaviour when restarting a node** [v.0.55 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.55.0):
@@ -169,7 +169,7 @@ Vega is now a built-in application. This means that Tendermint does not need to 
 - The `Blockchain.Tendermint.ClientAddr` configuration field has been renamed to `Blockchain.Tendermint.RPCAddr`. 
 - The `init` command now also generates the configuration for tendermint, and also has the newly introduced flags `--no-tendermint`,` --tendermint-home` and `--tendermint-key`.
 
-**Remove wallet support for launching a proxy in front of dApps** [v.0.54 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.54.0):
+**Removed: Wallet support for launching a proxy in front of dApps** [v.0.54 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.54.0):
 Introducing the proxy was a way to navigate the browser security that prevents web apps from being able to talk to local web servers; this is now no longer required and therefore has been removed.
 
 ### Versions 0.53.1 and 0.53.2 combined | 2023-03-22
