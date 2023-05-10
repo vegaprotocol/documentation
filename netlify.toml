@@ -79,3 +79,8 @@
   from = "/testnet/concepts/vega-protocol"
   to = "/testnet/concepts/governance"
   status = 301
+
+  [[redirects]]
+  from = "/mainnet/concepts/vega-protocol"
+  to = "/mainnet/concepts/governance"
+  status = 301
