@@ -45,7 +45,7 @@ If a transaction requires data from the chain for it to be validated, the networ
 
 In order to mitigate this, spam protection will remove the offending transactions after the block is scheduled, i.e., not process them. The state can then be updated once a block is finalised and block transactions are based on the new state. The protection can then delete transactions from every (honest) validator’s mempool based on the new state.
 
-More information is available in both the [spam protection ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0062-SPAM-spam_protection.md) and [spam protection PoW ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0072-SPPW-spam-protection-PoW.md) specs.
+More information is available in the [spam protection concepts](../concepts/vega-chain/network#spam-protection) pages.
 
 **Freeform governance proposals**
 Building on the governance features in restricted mainnet, the community can now propose freeform proposals. These differ from other proposals as when the enactment time comes, no changes are auto-enacted on the network if a proposal is successful. However, a record of how token holders voted will be stored on-chain and enactment will come at a future time, e.g., a code change that will come in a future deployment.
