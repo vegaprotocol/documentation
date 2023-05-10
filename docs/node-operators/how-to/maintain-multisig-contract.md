@@ -19,7 +19,7 @@ The consensus set of validators on the Vega network can change because of the fo
 * A consensus validator is showing poor performance and they are demoted and replaced by a more performant standby validator
 * The value of the network parameter <NetworkParameter frontMatter={frontMatter} param="network.validators.tendermint.number" hideValue={true} /> changes causing the size of the consensus set to increase or decrease
 
-Changes to the validator set only occur at the end of an epoch. Whether a node has moved into or out of the consensus set can be tracked using the [List Nodes](../../api/rest/data-v2/trading-data-service-list-nodes.api.mdx) API. The values of a node's `rankingScore.status` and `rankingScore.previousStatus` indicates whether it has been promoted or demoted, and what set it is now part of.
+Changes to the validator set only occur at the end of an epoch. Whether a node has moved into or out of the consensus set can be tracked using the [list nodes](../../api/rest/data-v2/trading-data-service-list-nodes.api.mdx) API. The values of a node's `rankingScore.status` and `rankingScore.previousStatus` indicates whether it has been promoted or demoted, and what set it is now part of.
 
 A validator with the following ranking score values will have been *promoted* to a consensus validator and will need to be *added* to the multisig control
 ```
