@@ -696,7 +696,6 @@ It is required to expose the following things from the data node:
 - REST API
 - GRPC API
 
-Rest endpoints can be closed.
 
 You must expose the GraphQL and the REST API on your domain with a valid TLS certificate. It means you either 
 
@@ -705,7 +704,11 @@ You must expose the GraphQL and the REST API on your domain with a valid TLS cer
 
 You also have to open the gRPC port on your server. By default, it is `3007`. You can change the gRPC port in the `API.Port` parameter in your data node `config.toml`.
 
-Assuming you have the correct setup for the Gateway port (REST & GraphQL APIs), and the API port set to 3007, and domain `api` points to your server, both requests should return the correct response:
+Assuming you have the correct setup for 
+- the Gateway port (REST & GraphQL APIs) and it is exposed on port 443 with valid TLS certificate,
+- the API port set to 3007, and a domain(in examples below we use `api0.vega.community`) points to your server,
+
+We can execute the below commands to verify our setup:
 
 ```shell
 # REST API
@@ -719,7 +722,7 @@ curl 'https://api0.vega.community/graphql' \
 
 # Example output is: {"data":{"statistics":{"appVersion":"v0.71.4","appVersionHash":"61d1f77ee360bf1679d5eb0e0efdb1cce977c9db"}}}
 
-# GRPC API
+# gRPC API
 
 # You have to install gRPC client e.g.: grpc-client-cli
 go install github.com/vadimi/grpc-client-cli/cmd/grpc-client-cli@v1.18.0
