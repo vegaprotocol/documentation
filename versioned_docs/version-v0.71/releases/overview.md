@@ -26,16 +26,17 @@ The Vega core software is public on a business-source licence, so you can both v
 
 Version 0.71.4 was released to the Vega mainnet on 09 May 2023.
 
-This version brings mainnet to the alpha mainnet version making the protocol ready to remove restrictions for the community to propose assets and markets. This deployment brings some key features built upon the restricted mainnet version:
+This version brings the alpha mainnet planned features to mainnet, making the protocol ready to remove restrictions for the community to propose assets and markets. This deployment brings some key features built upon the restricted mainnet version:
 
 **Data node network history**
-In a similar way to core snapshots the data node network history allows the data node to obtain data node history after downtime without the need to replay the chain. Nodes can reach out to peer nodes to fetch the most recent history, as well as older history if desired, such that it can quickly get itself up to the latest block height of the network and start to consume events for the latest block from the Vega core. This feature is key in speeding up time-to-be-operational for new nodes joining the network as they can gather data from the network much faster than replaying the whole chain.
+In a similar way to core snapshots, the data node can now obtain data node history after downtime without the need to replay the chain. Nodes can reach out to peer nodes to fetch the most recent history, as well as older history if desired, such that it can quickly get itself up to the latest block height of the network and start to consume events for the latest block from the Vega core. This feature is key in speeding up time-to-be-operational for new nodes joining the network.
 Take a look at the data node [network history ↗](https://github.com/vegaprotocol/vega/blob/develop/datanode/networkhistory/README.md) readme file for more information.
 
-**Protocol upgrades (visor)**
-Until alpha mainnet an upgrade of the network had to be carried out with a network checkpoint restore. This requires a synchronous restart, with all nodes having to be restarted within a short time period so all state can be restored from Ethereum, and the network can start correctly.
-The implementation of the protocol upgrade process, that Vega visor can orchestrate, means the network upgrades can be done in an asynchronous manner. Validators can choose a software version and at a predetermined block height the upgrade will take place.
-Read [the spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0075-PLUP-protocol_upgrades.md) to understand more about visor and the protocol upgrade process.
+**Protocol upgrades using Visor**
+Until alpha mainnet, an upgrade of the network had to be carried out with a network checkpoint restore. This required a synchronous restart, with all nodes having to be restarted within a short time period so all state could be restored from Ethereum, and the network could start correctly.
+
+With the implementation of the protocol upgrade process, which Vega Visor can orchestrate, the network upgrades can be done in an automated manner. Validators can choose a software version and at a predetermined block height the upgrade will take place.
+Read [the spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0075-PLUP-protocol_upgrades.md) to understand more about Visor and the protocol upgrade process.
 
 **Spam protection improvements**
 Mitigating the risk of spam on the Vega blockchain requires both active monitoring for spamming transactions and a rate-limiting mechanism to keep the blocks from becoming clogged with malicious transactions.
@@ -46,19 +47,17 @@ In order to mitigate this, spam protection will remove the offending transaction
 
 More information is available in both the [spam protection ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0062-SPAM-spam_protection.md) and [spam protection PoW ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0072-SPPW-spam-protection-PoW.md) specs.
 
-**Free-form governance proposals**
-Governance is a key feature for the community to propose and vote upon changes allowing the vega network to arrive at the on-chain decisions and reject or enact accordingly.
+**Freeform governance proposals**
+Building on the governance features in restricted mainnet, the community can now propose freeform proposals. These differ from other proposals as when the enactment time comes, no changes are auto-enacted on the network if a proposal is successful. However, a record of how token holders voted will be stored on-chain and enactment will come at a future time, e.g., a code change that will come in a future deployment.
 
-Building on the governance features in restricted mainnet, the community can now propose free-form proposals. These differ from other proposals as when the enactment time comes no changes are auto-enacted on the network for a successful proposal. However, a record of how token holders voted will be stored on chain and enactment will come at a future time e.g., a code change that will come in a future deployment.
-
-Find out more about [free-form ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0028-GOVE-governance.md#6-freeform-governance-proposal) governance proposals in the specs.
+Find out more about [freeform ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0028-GOVE-governance.md#6-freeform-governance-proposal) governance proposals in the specs.
 
 **Vega transaction gas costs and priorities**
-Vega doesn't charge users gas costs per transaction. However, the system processing capacity is still limited; in order to ensure liveness each transaction will have associated gas cost. Each block will contain only transactions up to a certain block gas limit. Transactions with higher priorities will get scheduled first.
+Vega doesn't charge users gas costs per transaction. However, the system processing capacity is still limited; in order to ensure liveness, each transaction will have an associated gas cost. Each block will contain only transactions up to a certain block gas limit. Transactions with higher priorities will get scheduled first.
 Check out the transaction gas costs and priorities [spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0079-TGAP-transaction_gas_and_priority.md) for more information.
 
 **Vega wallet v2 APIs**
-The Vega wallet APIs have been updated to version 2 and now offers JSON-RPC API support. This allows users to manage the wallets and their keys, and sign and send transactions. This is the core of the wallet backend and is consistent across all implementations.
+The Vega wallet APIs have been updated to version 2 and now offers JSON-RPC API support. This allows users and UIs to more easily interact with wallets and their keys, and sign and send transactions. This is the core of the wallet backend and is consistent across all implementations.
 Find out more about the latest wallet API updates in the [API docs](../api/vega-wallet/reference/core/index.md)
 
 **Migration from Tendermint to CometBFT**
