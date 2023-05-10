@@ -10,133 +10,121 @@ import TabItem from '@theme/TabItem';
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-This section will take you through using the state snapshots. These allow a node to be started without having to replay the whole chain in order to catch up with the current block height of the network.
 
-A node can be started by using a local snapshot (state of the chain built by the current node). This can be useful when the node has been running with the network, has built their own state locally, but had to shutdown for maintenance or upgrade for example.
+Snapshots are a mechanism that allow a node be restarted, or join the network from an empty state, without having to replay the whole chain from genesis. A snapshot is taken by the network periodically after every <NetworkParameter frontMatter={frontMatter} param="snapshot.interval.length" hideName={true} /> blocks and contains all of a node's active state for that particular block. Every node participating in the network will produce identical snapshots and they will be stored locally on each node's machines.
 
-The snapshots can also be retrieved from the network without any previous local state. This would be useful when a node is joining the network after the bootstrap of the network.
+There are two ways to start a node from a snapshot, either by using a local snapshot or a snapshot provided by the network. Which to use depends on whether you are a new node operator or a node with existing block data.
 
-All of the network's nodes will take a snapshot of the state at the same block height. This is configured globally using the following network parameter: <NetworkParameter frontMatter={frontMatter} param="snapshot.interval.length" hideValue={false} />
+## Check locally for snapshot data
 
-:::note Using Visor
-If you're using Visor for protocol upgrades, you'll need to use it to stop and start the node software.
-:::
-
-## List available snapshots
-The vega toolchain offers a subcommand to list all snapshots available locally. Once your node has been running for a while, you should be able to see them using the following command:
+Before starting a node you should check whether any local snapshot data exists. This can be done using the following command
+```shell
+vega tools snapshot --home="YOUR_VEGA_HOME"
 ```
-vega tools snapshot --show=list --home="YOUR_VEGA_HOME"
+
+Any output listing available snapshots like that seen below, indicates that local snapshot data exists.
+
+```shell
 Snapshots available: 2
 	Height 901, version: 4, size 92, hash: 562414bb5be3ccc8403fbd030d06eebc799bfef5ca25b02ad360fec349cb4bc8
 	Height 601, version: 3, size 92, hash: 72a2edd960cf3340ae94bf092991f923850738144789959124590675798fefd9
 ```
-Here we can see that our node took two snapshots, at the block 901 and 601.
 
-You can set how many blocks you want the note to retain through the Vega configuration:
-```Toml
-[Snapshot]
-  ...
-  KeepRecent = 10
-  ...
-```
-With this setting a node will always keep the last 10 snapshots in its database.
+This means you should follow the section for how to restart a node using a local snapshot.
 
-## Using a local snapshot
-Using the `vega snapshots` command line we can get a list of all snapshots available locally.
-
-You can then start your node using a snapshot either directly from the command line or with the configuration file by specifying the block height.
-
-If you don't specify a block height it will load from the latest local snapshot.
-
-From the command line:
-```
-vega node --home=YOUR_VEGA_HOME --snapshot.load-from-block-height=901
+If you have no snapshot data locally you may see an error such as:
+```shell
+failed to open database located at /vega/node/snapshots : file does not exist
 ```
 
-Alternatively, add the block height in the configuration file in the Snapshot section:
+This means you should follow the section for joining as a new node using a network snapshot.
+
+## Start a new node using network snapshots
+
+If you are a new node wanting to join the Vega network you can ask the network to provide snapshot data for a recent block. This will reduce the number of blocks that will need to be replayed, and completely avoid having to replay the entire chain from genesis.
+
+To start a node from a network snapshot you will need the following:
+- The block height and hash of a recent block
+- The RPC server addresses of at least two nodes currently part of the network
+
+A recent block height and block hash can be found by using the [Statistics](../../api/rest/core/core-service-statistics.api.mdx) API of a data node. Below is an example of the two relevant fields from the API response
+```json
+{
+  "blockHeight": "569531",
+  "blockHash": "13d9caa536cbc6d2f422840b631ef623ce5e188845030a6ac75a341433b2eed9"
+}
 ```
-[Snapshot]
-  ...
-  StartHeight = 901
-  ...
-```
 
-## Snapshots from the network
+To find the RPC addresses of exisiting nodes you will need to ask the validator community. See the [community page](./../requirements/community.md) for guidance.
 
-:::note
-When loading snapshots from the network, the steps described previously to load them locally are not necessary. You will need to get the snapshots information from another node operator in the network (e.g, at which block height a snapshot was taken).
-:::
-
-Tendermint offers the possibility to gossip about snapshots taken by other nodes. This can be enabled via the tendermint configuration. 
-
-You will also need the hash of the block at the height you want to load the snapshot, but also a list of trusted tendermint RPC servers (the default port on the node should be 26657).
-
-To get the current trust height and trust hash, you'll need to ask the validator community. See the [community page](./../requirements/community.md) for guidance.
-
-Update the following Tendermint configuration section:
+Using these values the `statesync` section of the Tendermint configuration file can be updated
 ```Toml
 [statesync]
 enable = true # this default to false, set it to true
-rpc_servers = "n01.testnet.vega.xyz:26657,n02.testnet.vega.xyz:26657" # a comma separated list of tendermint rpc
-trust_height = 901 # the height of the block you want to join at
-trust_hash = "5E1501B89463A9F23C454A58DB92913D960E47DCA76D1FC1EA03988A6C6D0C30" # the hash of the block
+rpc_servers = "RPC_ADDRESS_1:RPC_PORT_1,RPC_ADDRESS_2:RPC_PORT_2" # a comma separated list of rpc addresses
+trust_height = BLOCK_HEIGHT
+trust_hash = "BLOCK_HASH"
 ```
 
-:::note
-The previous example uses addresses from the Vega testnet (fairground) make sure to use an address of a node on the network you are willing to join.
-:::
-
-Other settings are available to configure snapshots, however, those described in this documentation are the only ones required to start the node from a given block. You can get more details on snapshots from the [Tendermint documentation](https://docs.tendermint.com/master/spec/abci/apps.html#state-sync).
-
-Once you update the Tendermint config, restart the node by running:
+And then the node can be started as usual, syncing into the network at a recent block height.
 
 ```
 vega start --home="YOUR_VEGA_HOME" --tendermint-home="YOUR_TENDERMINT_HOME" --network-url="NETWORK_URL"
+
+# if using visor
+visor run --home "VISOR_HOME_PATH"
 ```
-If you need to reset the Tendermint and Vega nodes, use the following commands. They will remove all chain-related data and keep node wallets, private keys and saved config. 
 
-You can now remove all previous states of the chain by running the reset commands, either together or separately.
+## Restart a node using local snapshots
 
-:::caution Reset clears all data
-Ensure that your Vega and Tendermint config homes are different, as this command will delete everything within the home folder. If, for example, you reset Tendermint and everything is in the same folder or choose the Vega home path rather than Tendermint, it will also delete your Vega config and saved keys.
+The default action when starting a node is for it to load from the latest snapshot that exists locally. This means if you have stopped your node for any reason, and simply want to catch up with the network then there is nothing to do.
+
+As an example, if the local snapshot list looks like the below:
+```shell
+Snapshots available: 2
+	Height 901, version: 4, size 92, hash: 562414bb5be3ccc8403fbd030d06eebc799bfef5ca25b02ad360fec349cb4bc8
+	Height 601, version: 3, size 92, hash: 72a2edd960cf3340ae94bf092991f923850738144789959124590675798fefd9
+```
+
+then starting a node as follows will mean that it will start processing from block height `901`
+```
+vega start --home="YOUR_VEGA_HOME" --tendermint-home="YOUR_TENDERMINT_HOME"
+```
+
+To start a node from a more historic snapshot the CLI option `--snapshot.load-from-block-height=` can be used. For example the following will start the node from a block height of `601`
+```
+vega start --snapshot.load-from-block-height=601 --home="YOUR_VEGA_HOME" --tendermint-home="YOUR_TENDERMINT_HOME"
+```
+
+
+## Restarting a node using a network snapshot
+
+:::caution Avoid using network snapshots if local snapshots exist
+Restarting a node from a network snapshot requires the removal of all existing Tendermint block data and Vega state data. This should only be done if **absolutely necessary**. Replaying from a local snapshot is always preferred.
 :::
 
+Restarting an existing node from a network snapshot requires removal of all existing local node data. This can be done by running the below commands and then following the above section for starting a new node using network snapshots. Note that there are very few reasons that a node operator will need to do this.
 
 ```
-vega tendermint unsafe_reset_all --home="YOUR_TENDERMINT_HOME"
+vega tendermint unsafe-reset-all --home="YOUR_TENDERMINT_HOME"
 vega unsafe_reset_all --home="YOUR_VEGA_HOME"
 ```
 
-## Inspect snapshots data using vegatools
+:::caution Unsafe resets should not be used to fix configuration problems
+Please consult a member of the Vega engineering team if you are unsure about resetting your node's local state.
+:::
+
+## Inspect the contents of a snapshot
  
-:::note
-This is not required to deploy / use the snapshots. This section shows how to use `vega tools` to inspect the data stored in the snapshot.
-:::
+A debug tool exists that allows the contents of a snapshot for a particular block to be written to a json file. This can contain useful information that can help to understand problems with the Vega network and something a member of the development team may ask for to help debug an issue.
 
-Vega tools offer basic utilities to read the data from a snapshots and dump it into json format.
 
-If you have `go` and `git` configured on your environment you can install vegatools like so:
-```
-git clone git@github.com:vegaprotocol/vegatools.git && cd vegatools && go install
-```
+The below command will create a file called `snapshot.json` containing all of the core state for the given block height.
 
-Then using the vegatools command line you can inspect the state of the snapshot at a given height:
-```
-vega tools snapshot --db-path=/path/to/the/snapshot.db --block-height=901
+``` shell
+vega tools snapshot --snapshot-contents --output=snapshot.json --block-height=SNAPSHOT_BLOCK_HEIGHT
 ```
 
 :::note
-In the previous example you will find the node snapshot database at the following path `YOUR_VEGA_HOME/state/node/snapshots/`
+This section is not required to run a node.
 :::
-
-## Example configuration
-
-```Toml
-[Snapshot]
-  Level = "Info"
-  KeepRecent = 10 # keeps the last 10 snapshots in the snapshot DB
-  RetryLimit = 5
-  Storage = "GOLevelDB" # Use the level db storage, recommended for production
-  DBPath = "" # specify an optional database path, recommended not to change this for production and keep the default
-  StartHeight = 0 # the height to start the chain from, -1 for latest block, 0 to start from genesis, or a block height from a recent snapshot
-```
