@@ -118,7 +118,6 @@ Use that address in your node's Vega config `YOUR_VEGA_HOME_PATH/config/node/con
     RPCAddr = "tcp://your.rpc.address"
 ```
 
-
 ### Point to Ethereum node
 In order to validate events happening on the Ethereum bridge, each Vega validator node needs to be connected to an **Ethereum archive node** (not a full node). The core software connects to the `eth_getLogs` endpoint, which is only available on archive nodes. This allows the Vega node to verify that an event happened on Ethereum (e.g: a deposit or a withdrawal).
 
@@ -241,7 +240,6 @@ persistent_peers = "55b8ac477ddd6c0c9bae411dfa6ebfb46e7b4022@veganodeoperator.co
 
 Under `Mempool Configuration Option`, ensure that `broadcast = true`.
 
-
 ### Update Tendermint genesis
 To start successfully, tendermint needs the genesis file from the network you will be trying to join. This file need to be located in `YOUR_TENDERMINT_HOME/config/genesis.json`. Download the genesis file and use it to replace the genesis in your config.
 
@@ -309,7 +307,6 @@ vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" 
 ```
 
 Setting the optional argument `--submitter-address` triggers the Vega network to automatically issue signature bundles that can be used to update signer set changes on the Multisig Control contract. This means if your node is promoted to a consensus validator it is easier for you to add your node's Ethereum key to the contract and to continue receiving rewards. See [maintaining the multisig contract ↗](../how-to/maintain-multisig-contract.md) for more information.
-
 
 ## Nominate your node
 To move on to self-staking, wait until you see your node on the validator list by querying the API or checking the [governance dApp ↗](https://validator-testnet.governance.vega.xyz/staking/).
