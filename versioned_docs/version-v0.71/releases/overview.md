@@ -23,9 +23,154 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
 ### Versions 0.54.0 through to 0.71.4 combined | 2023-05-09
-Version 0.71.4 was released to the Vega mainnet on 9 May, 2023.
-​
-This version brings the alpha mainnet planned features to mainnet, making the protocol ready to remove restrictions for the community to propose assets and markets. This deployment brings some key features built upon the restricted mainnet version.
+
+Version 0.71.4 was released to the Vega mainnet on 09 May 2023.
+
+This version brings the planned features for the alpha mainnet phase to mainnet, making the protocol ready to remove restrictions for the community to propose assets and markets. This deployment brings some key features built upon the restricted mainnet version:
+
+**Data node network history**
+In a similar way to core snapshots, the data node can now obtain data node history after downtime without the need to replay the chain. Nodes can reach out to peer nodes to fetch the most recent history, as well as older history if desired, such that it can quickly get itself up to the latest block height of the network and start to consume events for the latest block from the Vega core. This feature is key in speeding up time-to-be-operational for new nodes joining the network.
+Take a look at the data node [network history ↗](https://github.com/vegaprotocol/vega/blob/develop/datanode/networkhistory/README.md) readme file for more information.
+
+**Protocol upgrades using Visor**
+Until alpha mainnet, an upgrade of the network had to be carried out with a network checkpoint restore. This required a synchronous restart, with all nodes having to be restarted within a short time period so all state could be restored from Ethereum, and the network could start correctly.
+
+With the implementation of the protocol upgrade process, which Vega Visor can orchestrate, the network upgrades can be done in an automated manner. Validators can choose a software version and at a predetermined block height the upgrade will take place.
+Read [the spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0075-PLUP-protocol_upgrades.md) to understand more about Visor and the protocol upgrade process.
+
+**Spam protection improvements**
+Mitigating the risk of spam on the Vega blockchain requires both active monitoring for spamming transactions and a rate-limiting mechanism to keep the blocks from becoming clogged with malicious transactions.
+
+If a transaction requires data from the chain for it to be validated, the network defers any checks for validity until it’s executed, meaning it cannot exclude all spam transactions from a block. This means it is possible that one spammer could essentially fill a block.
+
+In order to mitigate this, spam protection will remove the offending transactions after the block is scheduled, i.e., not process them. The state can then be updated once a block is finalised and block transactions are based on the new state. The protection can then delete transactions from every (honest) validator’s mempool based on the new state.
+
+More information is available in the [spam protection concepts](../concepts/vega-chain/network.md#spam-protection) pages.
+
+**Freeform governance proposals**
+Building on the governance features in restricted mainnet, the community can now propose freeform proposals. These differ from other proposals as when the enactment time comes, no changes are auto-enacted on the network if a proposal is successful. However, a record of how token holders voted will be stored on-chain and enactment will come at a future time, e.g., a code change that will come in a future deployment.
+
+Find out more about [freeform ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0028-GOVE-governance.md#6-freeform-governance-proposal) governance proposals in the specs.
+
+**Vega transaction gas costs and priorities**
+Vega doesn't charge users gas costs per transaction. However, the system processing capacity is still limited; in order to ensure liveness, each transaction will have an associated gas cost. Each block will contain only transactions up to a certain block gas limit. Transactions with higher priorities will get scheduled first.
+More information on transaction gas costs and priorities in the [Vega chain concept](../concepts/vega-chain/transactions.md#filling-a-block-transaction-gas-value) pages.
+
+**Vega wallet v2 APIs**
+The Vega wallet APIs have been updated to version 2 and now offers JSON-RPC API support. This allows users and UIs to more easily interact with wallets and their keys, and sign and send transactions. This is the core of the wallet backend and is consistent across all implementations.
+Find out more about the latest wallet API updates in the [API docs](../api/vega-wallet/reference/core/index.md)
+
+**Migration from Tendermint to CometBFT**
+The consensus layer has been migrated from Tendermint to [CometBFT ↗](https://github.com/cometbft/cometbft/). This change has been implemented in order to ensure that the consensus layer used by Vega remains in support and that Vega can leverage the benefits of future developments. To find out more about the successor to Tendermint check out [this blog ↗](https://medium.com/the-interchain-foundation/cosmos-meet-cometbft-d89f5dce60dd).
+
+**Network wide limits**
+Network wide limits are aimed at keeping the protocol performant and responsive as usage increases. Vega has been designed with low-latency in mind so that the responsiveness of the network doesn't unduly impact the user's experience. Furthermore, the current implementation relies on an interplay between the execution layer (core) and the data consumption layer (data node).
+
+For more information on Network Limits see the [spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0078-NWLI-network_wide_limits.md)
+
+#### Breaking changes and deprecations
+
+:::caution Breaking changes 
+The changes below may affect any automations, scripts or workflows you'll have set up for Vega mainnet before this release. Review the following changes carefully. 
+:::
+
+**Add `marketIds` and `partyIds` to orders queries' filter** (v0.70): To allow getting all orders for a single party or market so that users can more easily find their orders across multiple keys or markets, filtering on the orders endpoint has been enhanced.
+
+**Use nanoseconds for one-off transfers** [(v0.70)↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0700): The time input field now validates for nanoseconds, which is consistent with other inputs.
+
+**Require slippage factors in market proposals** [(v0.69)↗](https://github.com/vegaprotocol/vega/releases/tag/v0.69.0): When creating a new market proposal the `linear` and `quadratic` slippage factor fields have been changed from optional to required.
+
+**Data node API rate limiting** [(v0.68)↗](https://github.com/vegaprotocol/vega/releases/tag/v0.68.0): Rate limiting has been introduced for the gRPC, REST and GraphQL APIs. Users will be warned, and where required, banned from submitting more requests. Should the user continue to breach the API rate limits, the ban length will increase exponentially.
+
+**`IssueSignatures` command** [(v0.68)↗](https://github.com/vegaprotocol/vega/releases/tag/v0.68.0): The `IssueSignatures` command is no longer limited to validators, and can now be used by any member of the community. It is also now covered by spam protection rules.
+
+**Removed: `Grpc-Metadata-` headers** [(v0.68)↗](https://github.com/vegaprotocol/vega/releases/tag/v0.68.0): The deprecated headers with the `Grpc-Metadata-` prefix in datanode API and REST and GraphQL gateways have been removed.
+
+**Removed: Network API fields removed**[(v0.68)↗](https://github.com/vegaprotocol/vega/releases/tag/v0.68.0): Legacy fields from network API have now been removed.
+
+**Deprecated: `X-Vega-Connection` HTTP header**[(v0.68)↗](https://github.com/vegaprotocol/vega/releases/tag/v0.68.0): The `X-Vega-Connection` HTTP header in data node API and REST and GraphQL gateways has been deprecated and will be removed in a future release.
+
+**Removed: Wallet command removals** [v0.66 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.66.0): A number of the CLI wallet APIs have been deprecated. To find out how to see all the current CLI wallet commands please refer to the [CLI wallet documentation](../tools/vega-wallet/cli-wallet/latest/guides/get-help.md).
+
+**Renamed: Network parameter** [v0.66 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.66.0): The network parameter `stakeToCcySiskas` has been renamed to `stakeToCcyVolume`.
+
+**Format change: triggering ratio parameter** [v0.66 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.66.0): The `triggeringRatio` field has been changed from `double` to a `string`. When proposing a market, using a float value would lead to a passing proposal, however the response from the APIs was incorrect. This has been resolved by changing the accepted data format.
+
+**Market definition API** [v0.65 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.65.0): The market definition API has been extended with the new field for LP price range, this has resulted in a breaking change.
+
+**Data source decimal places** [v0.65 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.65.0): The decimal places are now defined in the oracle data source and removed from the market definition resulting in a breaking change.
+
+**Vega tools** [v0.62 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.62.0): The `vegatools` snapshot command has been updated to be consistent with other CLI options. The change also formats the json output so that it can be parsed and used programmatically.
+
+**Data sourcing** [v0.61 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.61.0): The data sourcing types have been updated to account for multiple types of data in the future. Data types are generalised as much as possible, as in the future data will be sourced from more than the currently implemented 'price' data - this is now represented by the types `DataSpec` and `ExternalData`.
+
+**Deprecation: Wallet API v1** v0.62: For most use cases, the v2 [wallet API](../api/vega-wallet/before-you-start.md) will soon be the only one available for interacting with the Vega Wallet. V1 will continue to be used for the testnet-only hosted wallet for testing and incentives, for slightly longer.
+
+**Data node `init` now requires the `ChainID` parameter** [v.0.59 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.59.0):
+To share data across the network, all data nodes for a given network (chain) will be part of the same IPFS Swarm. The IPFS Swarm key is generated using the node's chain ID. Therefore, when initialising the data node, it is a requirement that the `ChainID` parameter is passed in the command.
+
+**User can now specify a different passphrase when isolating a key** [v.0.59 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.59.0):
+To harden the security of Vega key management for node operators, a different passphrase can be used to protect an isolated wallet. This ensures that the risk of the "full" wallet's passphrase being exposed is minimised. Before this change, when isolating a wallet, its passphrase was inherited from the original wallet, and there was no option to choose a different one.
+
+**Output from nodewallet reload is now more useful JSON** [v.0.59 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.59.0):
+The output from `vega nodewallet reload --output=json` was not structured in a manner that was easy to use. This change creates a better UX for anyone interacting with the JSON output of the command.
+
+**Renamed API: get bundles function `GetMultiSigSigner` to `ListMultiSigSigner`** [v.0.59 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.59.0):
+In order to be consistent with v2 APIs and return context aware results, the get bundles API function name has been changed from `GetMultiSigSigner` to `ListMultiSigSigner`.
+
+**Swap places of PID and date in log files in the wallet service** [v.0.59 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.59.0):
+Before the implementation of this change wallet log files were named with the PID first e.g. `47060-2022-10-13-19-49-02.log`. This makes log files easy to search for if you have the PID but less so if you do not. In order to be able to easily sort the log files by date the file format name has been changed to start with the date e.g. `2022-10-13-19-49-02-47060.log`.
+
+**Renamed API: Balance history** [v.0.59 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.59.0):
+The API field `GetBalanceHistory` has been renamed to `ListBalanceHistory` and has had improvements in the documentation to help users understand APIs the 'grouping' feature. This change also fixes an issue with leaking account IDs.
+
+**Negative position decimal places for market** [v.0.59 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.59.0):
+In order to maintain spam protection, a market with a price of 10^-3 should only allow the smallest position of something like 10000 so the position decimal places would equal -4 meaning an order size of 1 => 10000.
+
+**Renamed API: settlement price decimals** [v.0.58 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.58.0):
+The market proposal (data source) field `settlementPriceDecimals` was changed to `settlementDataDecimals` to be future-proofed for when settlement data isn’t just driven by prices. To ensure consistency throughout the APIs the field `oracleSpecForSettlementPrice` has now also been changed to `oracleSpecForSettlementData`.
+
+**Require signature from new Ethereum key to validate key rotation submission** [v.0.58 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.58.0):
+To ensure that a compromised old key cannot validate a key rotation, a new CLI command has been introduced to send in an Ethereum key rotation submission that contains a signature generated with the new Ethereum key.
+
+**Improve the estimate fee and margin APIs** [v.0.58 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.58.0):
+The changes implemented to improve the estimate fee and margin APIs now mean that you only have to pass in the actual parameters required for the estimation calculation. This change also makes the required parameters mandatory.
+
+**Wallet improvements** [v.0.58 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.58.0):
+The approve/reject transaction interaction has been updated to accept a "mode" instead of a simple boolean. The boolean has changed from `yes` | `no` to mode `APPROVED_ONLY_THIS_TIME` | `REJECTED_ONLY_THIS_TIME`.
+
+Whatever the state of the sent transaction, the `TransactionStatus` was updated with an `error` field that was filled on error, and a transaction hash field that was filled on success. To create a better developer experience this has been split in two distinct notifications: `TransactionFailed` with the `error` field, and `TransactionSucceeded` with `txHash` field.
+
+To make the framework clearer, the name `pipeline` has been updated to `interactor`.
+
+**Changing clef address requires re-importing config** [v.0.57 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.57.0):
+The `Nodewallet.ETH` section of the config has been removed, and as a consequence some CLI arguments have changed when using clef. Before, when starting a Vega node with a clef wallet, Vega would read whatever clef address was in nodewallet.ETH, whereas after this change, the network will only ever use the value set for the clef address when the key was imported/generated.
+
+**Fork: Clef forked so signatures are readable** [v.0.57 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.57.0):
+When a clef wallet was used with a validator node, the validator heartbeats sent out, signed by the clef wallet, could not be verified when received by the network. This was being caused by the message being hashed clef before signing when using clef for validator heartbeats. The Vega team has created a fork of the Clef software to resolve this issue. This was done under issue [6187 ↗](https://github.com/vegaprotocol/vega/issues/6187)
+
+**Removed: Clean up unused network parameters** [v.0.57 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.57.0):
+A number of network parameters have been replaced or removed as they were not required.
+
+**Renamed fields: settlement price data** [v.0.56 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.56.0):
+To ensure that the settlement API field name can scale to non-cash products, for example, where settlement data is not necessarily a price, the API field name has been changed from `SettlementPriceDecimals` to `SettlementDataDecimals`.
+
+**Renamed API: Positions WebSocket** [v.0.56 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.56.0):
+To ensure clarity of the positions subscription API the field name `Position` has been updated to `PositionUpdate`.
+
+**Use the latest local snapshot as default behaviour when restarting a node** [v.0.55 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.55.0):
+The best experience for restarting a node is to load from the highest possible block before the node was stopped. This is most important when a node was started using state-sync and the tendermint block store does not contain enough history to replay the chain from block zero. To avoid any issues with not being able to reply from block zero, the default behaviour is now to always start from the most recent local snapshot.
+
+**Vega as a built-in application** [v.0.54 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.54.0):
+Vega is now a built-in application. This means that Tendermint does not need to be started separately, providing a simpler, streamlined user experience for node operators. This introduces some breaking changes to the commands used when running a node:
+
+- The `vega node` command has been renamed to `vega start`. 
+- The `vega tm` command has been renamed to `vega tendermint`. 
+- The `Blockchain.Tendermint.ClientAddr` configuration field has been renamed to `Blockchain.Tendermint.RPCAddr`. 
+- The `init` command now also generates the configuration for tendermint, and also has the newly introduced flags `--no-tendermint`,` --tendermint-home` and `--tendermint-key`.
+
+**Removed: Wallet support for launching a proxy in front of dApps** [v.0.54 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.54.0):
+Introducing the proxy was a way to navigate the browser security that prevents web apps from being able to talk to local web servers; this is now no longer required and therefore has been removed.
 
 ### Versions 0.53.1 and 0.53.2 combined | 2023-03-22
 This version was released to the Vega mainnet on 22 March 2023.
