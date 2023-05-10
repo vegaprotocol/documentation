@@ -118,7 +118,6 @@ Use that address in your node's Vega config `YOUR_VEGA_HOME_PATH/config/node/con
     RPCAddr = "tcp://your.rpc.address"
 ```
 
-
 ### Point to Ethereum node
 In order to validate events happening on the Ethereum bridge, each Vega validator node needs to be connected to an **Ethereum archive node** (not a full node). The core software connects to the `eth_getLogs` endpoint, which is only available on archive nodes. This allows the Vega node to verify that an event happened on Ethereum (e.g: a deposit or a withdrawal).
 
@@ -241,7 +240,6 @@ persistent_peers = "55b8ac477ddd6c0c9bae411dfa6ebfb46e7b4022@veganodeoperator.co
 
 Under `Mempool Configuration Option`, ensure that `broadcast = true`.
 
-
 ### Update Tendermint genesis
 To start successfully, tendermint needs the genesis file from the network you will be trying to join. This file need to be located in `YOUR_TENDERMINT_HOME/config/genesis.json`. Download the genesis file and use it to replace the genesis in your config.
 
@@ -302,29 +300,18 @@ Once you have tokens, connect your Ethereum wallet and your Vega Wallet, and ass
 The association will need to be confirmed by both the Ethereum and Vega blockchains, and may take some time.
 
 ## Announce node on-chain
-Use your Ethereum key to announce your node to the network.
-
-You'll need to know the [current epoch ↗](https://validator-testnet.governance.vega.xyz/staking), and have the following data to hand: the URL for your validator website, and URL for the avatar that will show up on the governance dApp next to your node name.
+You'll need to know the [current epoch ↗](https://validator-testnet.governance.vega.xyz/staking), and have the following data to hand: the URL for your validator website, and the URL for the avatar that will show up on the governance dApp next to your node name.
 
 ```shell
-vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" --avatar-url="YOUR_AVATAR_URL" --country="UK" --name="YOUR_NODE_NAME" --from-epoch="CURRENT_EPOCH" --submitter-address="YOUR_ETHEREUM_KEY"
+vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" --avatar-url="YOUR_AVATAR_URL" --country="UK" --name="YOUR_NODE_NAME" --from-epoch="CURRENT_EPOCH"
 ```
+
+Setting the optional argument `--submitter-address` triggers the Vega network to automatically issue signature bundles that can be used to update signer set changes on the Multisig Control contract. This means if your node is promoted to a consensus validator it is easier for you to add your node's Ethereum key to the contract and to continue receiving rewards. See [maintaining the multisig contract](../how-to/maintain-multisig-contract.md) for more information.
 
 ## Nominate your node
 To move on to self-staking, wait until you see your node on the validator list by querying the API or checking the [governance dApp ↗](https://validator-testnet.governance.vega.xyz/staking/).
 
 Then, associate your tokens and nominate your node using the [governance dApp ↗](https://validator-testnet.governance.vega.xyz/staking/) or by interacting directly with the smart contract.
-
-## Submit signature bundle
-In the epoch after you announced your node, and once your pending validator has seen transactions and sent heartbeats, your node will be added to a signature bundle built by the network: proof from the network that your node can be added to the multisigControl signers.
-
-Use the [add signer tool ↗](https://validator-testnet.tools.vega.xyz/) to submit the signature bundle. You'll need your node ID, which you can find on the latest epoch's [validator list](https://api-validators-testnet.vega.rocks/api/v2/epoch).
-
-Once the signature bundle is accepted, your node will be able to emit signatures to control withdrawals from the bridge.
-
-:::caution
-You need to add your node as a signer by the end of the epoch that the signature is emitted in. If you do not, the node will be demoted and removed from the signer set.
-:::
 
 ## Announce node off-chain
 [Create a validator profile on the forum ↗](https://community.vega.xyz/c/mainnet-validator-candidates/23) describing the experience you have, security practices and policies, how you will ensure maximum uptime, how you'll meet suitable performance standards, your communication channels for questions and the role you intend to take in Vega's governance.
@@ -332,7 +319,7 @@ You need to add your node as a signer by the end of the epoch that the signature
 Share your profile with the community, for example in [the Validators Discord channel ↗](https://discord.com/channels/720571334798737489/869236034116943903), to attract stakers to nominate your node.
 
 ## Next steps
-Once your node is up and running, you'll need to maintain it, and ensure that it's still taking part in the network. You may also need to upgrade the software, restart the network and rotate your keys (for security). 
+Once your node is up and running, you'll need to maintain it, and ensure that it's still taking part in the network. If your node is promoted into the consensus validator set then the Multisig Contract will need to be updated so that you and your nominators can continue to receive rewards. You may also need to upgrade the software, restart the network and rotate your keys (for security). 
 
 See the following guides to learn how to: 
 
@@ -341,3 +328,4 @@ See the following guides to learn how to:
 * [Rotate Ethereum keys](../how-to/rotate-ethereum-keys.md)
 * [Rotate Vega keys](../how-to/rotate-vega-keys.md)
 * [Use snapshots](../how-to/use-snapshots.md)
+* [Maintain the multisig contract](../how-to/maintain-multisig-contract.md)
