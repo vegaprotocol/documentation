@@ -116,7 +116,7 @@ volumes:
 ```
 
 :::note
-See tunning parameters section below to adjust your runtime configuration
+See tuning parameters section below to adjust your runtime configuration.
 :::
 
 ### PostgreSQL configuration tuning
@@ -683,7 +683,7 @@ The GraphQL will return error for queries that have complexity above the set lim
 ### REST
 REST provides a standard between computer systems on the web, making it easier for systems to communicate with each other. It is arguably simpler to work with than gRPC and GraphQL. In Vega the REST API is a reverse proxy to the gRPC API, however it does not support streaming.
 
-The default port (configurable) for the REST API is `3008` and we use a reverse proxy to the gRPC API to deliver the REST API implementation. You can change the port with the `Gateway.Port` parameter in your `config.toml`.
+The default port (configurable) for the REST API is `3008` and we use a reverse proxy to the gRPC API to deliver the REST API implementation. You can change the port in the `Gateway.Port` parameter in your `config.toml`.
 
 ## Further reading
 For more information about data node and developing on data node please see the data node [README ↗](https://github.com/vegaprotocol/vega/blob/master/datanode/README.md)
@@ -700,12 +700,12 @@ Rest endpoints can be closed.
 
 You must expose the GraphQL and the REST API on your domain with a valid TLS certificate. It means you either 
 
-- set the 443 port for the data node and set up the auto cert for your data node(see instruction above)
-- set the reverse proxy for the `Gateway.Port` in external software like Nginx/Apache/Caddy.
+- Set the 443 port for the data node and set up the auto cert for your data node, as per the instructions above
+- Set the reverse proxy for the `Gateway.Port` using external software like Nginx/Apache/Caddy.
 
-You also have to open the GRPC port on your server; by default, it is `3007`. You can change the GRPC port with the `API.Port` parameter in your data node `config.toml`.
+You also have to open the gRPC port on your server. By default, it is `3007`. You can change the gRPC port in the `API.Port` parameter in your data node `config.toml`.
 
-Assuming you have correct setup for the Gateway port(REST & GQL APIs), and the API port set to 3007, and domain `api` points to your server, both requests should return the correct response:
+Assuming you have the correct setup for the Gateway port (REST & GraphQL APIs), and the API port set to 3007, and domain `api` points to your server, both requests should return the correct response:
 
 ```shell
 # REST API
@@ -721,7 +721,7 @@ curl 'https://api0.vega.community/graphql' \
 
 # GRPC API
 
-# You have to insstall GRPC client e.g.: grpc-client-cli
+# You have to install gRPC client e.g.: grpc-client-cli
 go install github.com/vadimi/grpc-client-cli/cmd/grpc-client-cli@v1.18.0
 
 echo "{}" | grpc-client-cli -service datanode.api.v2.TradingDataService -method Info api0.vega.community:3007
