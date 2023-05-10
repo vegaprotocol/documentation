@@ -708,7 +708,7 @@ Assuming you have the correct setup for
 - the Gateway port (REST & GraphQL APIs) and it is exposed on port 443 with valid TLS certificate,
 - the API port set to 3007, and a domain(in examples below we use `api0.vega.community`) points to your server,
 
-We can execute the below commands to verify our setup:
+You can execute the below commands to verify your setup:
 
 ```shell
 # REST API
