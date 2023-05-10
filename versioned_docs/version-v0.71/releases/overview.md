@@ -54,7 +54,7 @@ Find out more about [freeform ↗](https://github.com/vegaprotocol/specs/blob/ma
 
 **Vega transaction gas costs and priorities**
 Vega doesn't charge users gas costs per transaction. However, the system processing capacity is still limited; in order to ensure liveness, each transaction will have an associated gas cost. Each block will contain only transactions up to a certain block gas limit. Transactions with higher priorities will get scheduled first.
-Check out the transaction gas costs and priorities [spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0079-TGAP-transaction_gas_and_priority.md) for more information.
+More information on transaction gas costs and priorities in the [Vega chain concept](../concepts/vega-chain/transactions#filling-a-block-transaction-gas-value) pages.
 
 **Vega wallet v2 APIs**
 The Vega wallet APIs have been updated to version 2 and now offers JSON-RPC API support. This allows users and UIs to more easily interact with wallets and their keys, and sign and send transactions. This is the core of the wallet backend and is consistent across all implementations.
