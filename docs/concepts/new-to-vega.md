@@ -37,7 +37,7 @@ Its functionality is limited and is riskier than networks that will follow it, a
 * [Get a Vega Wallet](../tools/vega-wallet/cli-wallet/latest/create-wallet): You'll need it for staking, and you can connect it to Fairground, and use it for trading on Vega Console (through the wallet). 
 
 #### Token management and network governance 
-* [Mainnet token interface](https://token.vega.xyz): Interact with your $VEGA tokens on the token interface.
+* [Mainnet token interface](https://governance.vega.xyz/): Interact with your $VEGA tokens on the token interface.
 * [Fairground token interface](https://governance.fairground.wtf): You can also try out the interface using testnet tokens, if you want to familiarise yourself with it first.
 
 #### Fairground, Vega's testnet

@@ -41,8 +41,8 @@ The contents of a `changes` object specifies what will be different after the pr
 **Value** is the new value you're proposing that the network parameter should have.
 
 ## Templates and submitting
-In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to [submit on the governance dApp](https://governance.vega.xyz/proposals/propose/network-parameter), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
-Voting and enacting
+In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example, and command line examples for different operating systems. The Governance dApp has a [tool to help you put together a Network Parameter update proposal](https://governance.fairground.wtf/proposals/propose/network-parameter). When you have your proposal ready you can [submit it on the governance dApp](https://governance.vega.xyz/proposals/propose/raw). 
+
 <Tabs groupId="updateNetworkParameter">
   <TabItem value="annotated" label="Annotated example">
     <UpdateNetworkParameterAnnotated />

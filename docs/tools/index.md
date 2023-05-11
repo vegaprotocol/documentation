@@ -15,8 +15,8 @@ There are two apps available to interact with a Vega Wallet:
 ### Console
 Use **[Vega Console](https://console.fairground.wtf)** to try trading on a testnet trading interface. The Fairground network is set up to provide a fairly realistic experience where you can place orders, provide liquidity, and see how the market mechanics work.
 
-### $VEGA Token website
-Use **[$VEGA Token website](https://token.vega.xyz)** to stake your tokens to nominate the validators that run the network, participate in network goveranance, and earn and claim rewards.
+### Governance dApp
+Use the **[Vega Governance dApp](https://governance.vega.xyz)** to stake your tokens to nominate the validators that run the network, participate in network goveranance, and earn and claim rewards.
 
 ### Block explorer
 The block explorer allows you to query transactions, network parameters, available assets (and their IDs) and more.
