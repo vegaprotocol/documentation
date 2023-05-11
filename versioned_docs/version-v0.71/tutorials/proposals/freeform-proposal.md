@@ -30,12 +30,12 @@ At enactment time, no changes are effected on the system, but the record of how 
 
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
-* A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.freeform.minProposerBalance" hideName={true} suffix="tokens"/> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" formatter="governanceToken" hideName={true} suffix="tokens"/>
+* A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.freeform.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" formatter="governanceToken" hideName={true} suffix="tokens"/>
 * Familiarity with [governance on Vega](../../concepts/governance.md)
 
 ## Templates and submitting
 
-In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to [submit on the governance dApp](https://governance.vega.xyz/proposals/propose/freeform), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
+In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example, and command line examples for different operating systems. The Governance dApp has a [tool to help you put together a Freeform proposal](https://governance.fairground.wtf/proposals/propose/network-parameter). When you have your proposal ready you can [submit it on the governance dApp](https://governance.vega.xyz/proposals/propose/raw).
 
 <Tabs groupId="newFreeform">
   <TabItem value="annotated" label="Annotated example">
