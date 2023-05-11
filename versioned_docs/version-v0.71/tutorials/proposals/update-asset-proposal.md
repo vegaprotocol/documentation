@@ -33,7 +33,7 @@ The underlying contract, asset name and symbol cannot be changed.
 You will need:
 
 - A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
-- A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minProposerBalance" hideName={true} suffix="tokens"/> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true}  formatter="governanceToken" suffix="tokens"/>
+- A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true}  formatter="governanceToken" suffix="tokens"/>
 - Familiarity with [governance on Vega](../../concepts/governance.md), particularly [assets at a protocol level](../../concepts/governance.md#asset-governance)
 - After an asset update vote passes, the change has to be submitted to the [asset bridge](./update-asset-bridge.md) on Ethereum.
 
