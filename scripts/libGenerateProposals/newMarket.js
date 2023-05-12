@@ -2,7 +2,7 @@ const sample = require("lodash/sample");
 const random = require("lodash/random");
 const assert = require("assert").strict;
 const { inspect } = require("util");
-const { format } = require("date-fns");
+const { format, fromUnixTime } = require("date-fns");
 
 // Shortcut for deeply nested stuff
 const p = 'properties'
@@ -618,8 +618,8 @@ function generateLiquidityMonitoringParameters(skeleton) {
 
 function generateMetadata(skeleton, proposalSoFar) {
   const dateFormat = "yyyy-MM-dd\'T\'HH:mm:ss"
-  const settlement = format(proposalSoFar.terms.closingTimestamp, dateFormat)
-  const enactment = format(proposalSoFar.terms.enactmentTimestamp, dateFormat)
+  const settlement = format(fromUnixTime(proposalSoFar.terms.closingTimestamp), dateFormat)
+  const enactment = format(fromUnixTime(proposalSoFar.terms.enactmentTimestamp), dateFormat)
 
   assert.equal(
     skeleton.type,
