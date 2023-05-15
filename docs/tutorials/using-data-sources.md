@@ -56,7 +56,7 @@ The following spec would make the market use the BTC value from the [Coinbase Pr
             },
             "conditions": [{
                 "operator": "OPERATOR_GREATER_THAN",
-                "value": "164926584000000",
+                "value": "1649265840",
             }]
         }]
     }

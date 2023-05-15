@@ -52,7 +52,7 @@
             "conditions": [
              {
               "operator": "OPERATOR_GREATER_THAN",
-              "value": "1648684800000000000"
+              "value": "1648684800"
              }
             ]
            }
@@ -66,7 +66,7 @@
           "conditions": [
            {
             "operator": "OPERATOR_GREATER_THAN_OR_EQUAL",
-            "value": "1648684800000000000"
+            "value": "1648684800"
            }
           ]
          }
