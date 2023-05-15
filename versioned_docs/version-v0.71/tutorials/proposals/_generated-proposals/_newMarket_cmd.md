@@ -33,7 +33,7 @@
           "filters": [
            {
             "key": {
-             "name": "prices.BTC.value",
+             "name": "prices.ORANGES.value",
              "type": "TYPE_INTEGER",
              "numberDecimalPlaces": "5"
             },
@@ -46,7 +46,7 @@
            },
            {
             "key": {
-             "name": "prices.BTC.timestamp",
+             "name": "prices.ORANGES.timestamp",
              "type": "TYPE_INTEGER"
             },
             "conditions": [
@@ -73,7 +73,7 @@
         }
        },
        "dataSourceSpecBinding": {
-        "settlementDataProperty": "prices.BTC.value",
+        "settlementDataProperty": "prices.ORANGES.value",
         "tradingTerminationProperty": "vegaprotocol.builtin.timestamp"
        }
       }

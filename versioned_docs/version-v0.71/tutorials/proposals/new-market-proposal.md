@@ -84,7 +84,7 @@ An instrument contains the following properties:
 | `future` | An object that provides details about the futures market to be proposed. |
 | `settlementAsset` | Settlement asset requires the ID of the asset that the market will be margined in and settle in. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID. |  |
 | `quoteName` | The quote name is the human-readable name/abbreviation of the settlement asset. Example: In BTCUSD, USD is the quote. | tEuro |
-| `dataSourceSpecForSettlementData` | This defines the data source that will be used to identify the settlement price when the market expires. | prices.BTC.value |
+| `dataSourceSpecForSettlementData` | This defines the data source that will be used to identify the settlement price when the market expires. | prices.ORANGES.value |
 | `dataSourceSpecForTradingTermination` | The fields that define the data source used for terminating trading on the market. | vegaprotocol.builtin.timestamp |
 | `dataSourceSpecBinding` | The fields describe how specific information provided by the data source is used. For example, they can identify the specific name of the settlement price output, or the specific name of the trading termination property. |
 
