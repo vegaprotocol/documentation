@@ -54,7 +54,7 @@
       conditions: [
        {
         operator: "OPERATOR_GREATER_THAN",
-        value: "1648684800000000000",
+        value: "1648684800",
        }
       ]
      }
