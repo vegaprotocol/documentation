@@ -61,7 +61,7 @@ function generateSettlementDataSourceSpec(skeleton) {
         filters: [
           {
             key: {
-              name: "prices.BTC.value",
+              name: "prices.ORANGES.value",
               type: "TYPE_INTEGER",
               numberDecimalPlaces: "5"
             },
@@ -74,13 +74,13 @@ function generateSettlementDataSourceSpec(skeleton) {
           },
           {
             key: {
-              name: "prices.BTC.timestamp",
+              name: "prices.ORANGES.timestamp",
               type: "TYPE_INTEGER",
             },
             conditions: [
               {
                 operator: "OPERATOR_GREATER_THAN",
-                value: "1648684800000000000",
+                value: "1648684800",
               },
             ],
           },
@@ -207,7 +207,7 @@ function generateTerminationDataSourceSpec(skeleton) {
         conditions: [
           {
             operator: "OPERATOR_GREATER_THAN_OR_EQUAL",
-            value: "1648684800000000000",
+            value: "1648684800",
           },
         ],
       }
@@ -258,7 +258,7 @@ function generateDataSourceSpecBinding(skeleton) {
   );
 
   const binding = {
-    settlementDataProperty: "prices.BTC.value",
+    settlementDataProperty: "prices.ORANGES.value",
     tradingTerminationProperty: "vegaprotocol.builtin.timestamp",
   };
 
@@ -664,7 +664,7 @@ function generateRiskModel(skeleton, riskModelType) {
       // Ditto
       r: 0.016,
       // This is a random array based on what was live on Fairground at the time
-      sigma: 0.5,
+      sigma: 0.15,
     },
   };
 

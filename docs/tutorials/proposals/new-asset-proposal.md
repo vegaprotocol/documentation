@@ -25,9 +25,9 @@ This page provides a tutorial for submitting a proposal for a new ERC-20 asset t
 
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
-* A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minProposerBalance" hideName={true} suffix="tokens"/> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true}  formatter="governanceToken" suffix="tokens"/>
+* A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minProposerBalance" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
 * Familiarity with [governance on Vega](../../concepts/governance.md), particularly [assets at a protocol level](../../concepts/governance.md#asset-governance)
-- After a new asset vote passes, the change has to be submitted to the [asset bridge](../../concepts/assets/asset-framework.md#asset-bridges) on Ethereum. Until it has been submitted, no one can start depositing that asset.
+* After a new asset vote passes, the change has to be submitted to the [asset bridge](../../concepts/assets/asset-framework.md#asset-bridges) on Ethereum. Until it has been submitted, no one can start depositing that asset.
 
 ## Overview
 Vega currently supports adding [ERC-20 assets ↗](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/#top). ERC-20 assets that pass a governance vote can be enabled [via the Vega bridge](../../api/bridge/index.md) - which is to say that they are deposited from and withdrawn to Ethereum. More token standards and chains are on the roadmap.
@@ -62,7 +62,7 @@ When adding an ERC-20 asset to the bridge, the key details are compared to the s
 - The contract **must** be an ERC-20 asset
 - There cannot be multiple assets on a Vega network for the same ERC-20 asset
 
-Validation happens according to the `validationTimestamp` parameter. In most situations, this should be early on in the voting period so that any validation errors are caught before token holders start voting. However you could push the validation later if the contract is not yet deployed.
+Validation happens according to the `validationTimestamp` parameter.  The validation timestamp must be within the range between 1 second and 2 days from the time of submission. In most situations, this should be early on in the voting period so that any validation errors are caught before token holders start voting. However you could push the validation later in that range if the contract is not yet deployed. 
 
 ## Templates and submitting
 In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to [submit on the governance dApp ↗](https://governance.fairground.wtf/proposals/propose/new-asset), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**

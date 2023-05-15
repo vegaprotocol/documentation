@@ -1,6 +1,6 @@
 
   ```bash
-./vegawallet transaction send --wallet your_walletname --pubkey your_public_key --network fairground '{
+./vegawallet transaction send --wallet YOUR-WALLETNAME --pubkey YOUR-PUBLIC-KEY --network NETWORK-NAME '{
  "proposalSubmission": {
   "rationale": {
    "title": "Update Lorem Ipsum market",
@@ -30,7 +30,7 @@
           "filters": [
            {
             "key": {
-             "name": "prices.BTC.value",
+             "name": "prices.ORANGES.value",
              "type": "TYPE_INTEGER",
              "numberDecimalPlaces": "5"
             },
@@ -43,13 +43,13 @@
            },
            {
             "key": {
-             "name": "prices.BTC.timestamp",
+             "name": "prices.ORANGES.timestamp",
              "type": "TYPE_INTEGER"
             },
             "conditions": [
              {
               "operator": "OPERATOR_GREATER_THAN",
-              "value": "1648684800000000000"
+              "value": "1648684800"
              }
             ]
            }
@@ -63,14 +63,14 @@
           "conditions": [
            {
             "operator": "OPERATOR_GREATER_THAN_OR_EQUAL",
-            "value": "1648684800000000000"
+            "value": "1648684800"
            }
           ]
          }
         }
        },
        "dataSourceSpecBinding": {
-        "settlementDataProperty": "prices.BTC.value",
+        "settlementDataProperty": "prices.ORANGES.value",
         "tradingTerminationProperty": "vegaprotocol.builtin.timestamp"
        }
       }

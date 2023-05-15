@@ -59,7 +59,7 @@
          filters: [
           key: {
            // Name of the property. (string)
-           name: "prices.BTC.value",
+           name: "prices.ORANGES.value",
 
            // Data type of the property. (string)
            type: "TYPE_INTEGER",
@@ -83,13 +83,13 @@
          },
          {
           key: {
-           name: "prices.BTC.timestamp",
+           name: "prices.ORANGES.timestamp",
            type: "TYPE_INTEGER",
           },
           conditions: [
            {
             operator: "OPERATOR_GREATER_THAN",
-            value: "1648684800000000000",
+            value: "1648684800",
            }
           ]
          }
@@ -110,7 +110,7 @@
            operator: "OPERATOR_GREATER_THAN_OR_EQUAL",
 
            // Value to be compared with by the operator. (string)
-           value: "1648684800000000000",
+           value: "1648684800",
           }
          ]
         }
@@ -119,9 +119,9 @@
        // DataSourceSpecToFutureBinding describes which property of the data source data is to be
        used as settlement data and which to use as the trading terminated trigger(object) dataSourceSpecBinding: {
         // Name of the property in the source data that should be used as settlement data.
-        // If it is set to "prices.BTC.value", then the Future will use the value of
+        // If it is set to "prices.ORANGES.value", then the Future will use the value of
         // this property as settlement data. (string)
-        settlementDataProperty: "prices.BTC.value",
+        settlementDataProperty: "prices.ORANGES.value",
 
         // Name of the property in the data source data that signals termination of trading. (string)
         tradingTerminationProperty: "vegaprotocol.builtin.timestamp"
@@ -130,8 +130,8 @@
 
       // Optional new market metadata, tags.
       metadata: [
-       "enactment:2023-05-29T09:25:45Z",
-       "settlement:2023-05-28T09:25:45Z",
+       "enactment:2023-06-01T18:10:47Z",
+       "settlement:2023-05-31T18:10:47Z",
        "source:docs.vega.xyz"
       ],
 
@@ -199,11 +199,11 @@
 
    // Timestamp as Unix time in seconds when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-   closingTimestamp: 1685262345000,
+   closingTimestamp: 1685553047,
 
    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-   enactmentTimestamp: 1685348745000,
+   enactmentTimestamp: 1685639447,
   }
  }
 ```

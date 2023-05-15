@@ -32,7 +32,7 @@
                   "filters": [
                     {
                       "key": {
-                        "name": "prices.BTC.value",
+                        "name": "prices.ORANGES.value",
                         "type": "TYPE_INTEGER",
                         "numberDecimalPlaces": "5"
                       },
@@ -45,13 +45,13 @@
                     },
                     {
                       "key": {
-                        "name": "prices.BTC.timestamp",
+                        "name": "prices.ORANGES.timestamp",
                         "type": "TYPE_INTEGER"
                       },
                       "conditions": [
                         {
                           "operator": "OPERATOR_GREATER_THAN",
-                          "value": "1648684800000000000"
+                          "value": "1648684800"
                         }
                       ]
                     }
@@ -65,14 +65,14 @@
                   "conditions": [
                     {
                       "operator": "OPERATOR_GREATER_THAN_OR_EQUAL",
-                      "value": "1648684800000000000"
+                      "value": "1648684800"
                     }
                   ]
                 }
               }
             },
             "dataSourceSpecBinding": {
-              "settlementDataProperty": "prices.BTC.value",
+              "settlementDataProperty": "prices.ORANGES.value",
               "tradingTerminationProperty": "vegaprotocol.builtin.timestamp"
             }
           }
@@ -105,7 +105,7 @@
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 0.5
+            "sigma": 0.15
           }
         }
       }

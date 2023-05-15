@@ -10,7 +10,7 @@
      // Type of comparison to make on the value. (string)
      operator: "OPERATOR_GREATER_THAN_OR_EQUAL",
      // Value to be compared with by the operator. (string)
-     value: "1648684800000000000",
+     value: "1648684800",
     }
    ]
   }

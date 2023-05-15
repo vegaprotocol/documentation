@@ -29,7 +29,7 @@
                   "filters": [
                     {
                       "key": {
-                        "name": "prices.BTC.value",
+                        "name": "prices.ORANGES.value",
                         "type": "TYPE_INTEGER",
                         "numberDecimalPlaces": "5"
                       },
@@ -42,13 +42,13 @@
                     },
                     {
                       "key": {
-                        "name": "prices.BTC.timestamp",
+                        "name": "prices.ORANGES.timestamp",
                         "type": "TYPE_INTEGER"
                       },
                       "conditions": [
                         {
                           "operator": "OPERATOR_GREATER_THAN",
-                          "value": "1648684800000000000"
+                          "value": "1648684800"
                         }
                       ]
                     }
@@ -62,14 +62,14 @@
                   "conditions": [
                     {
                       "operator": "OPERATOR_GREATER_THAN_OR_EQUAL",
-                      "value": "1648684800000000000"
+                      "value": "1648684800"
                     }
                   ]
                 }
               }
             },
             "dataSourceSpecBinding": {
-              "settlementDataProperty": "prices.BTC.value",
+              "settlementDataProperty": "prices.ORANGES.value",
               "tradingTerminationProperty": "vegaprotocol.builtin.timestamp"
             }
           }
@@ -88,17 +88,17 @@
         },
         "logNormal": {
           "tau": 0.0001140771161,
-          "riskAversionParameter": 0.001,
+          "riskAversionParameter": 0.0001,
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 0.8
+            "sigma": 1.25
           }
         }
       }
     },
-    "closingTimestamp": 1685262345000,
-    "enactmentTimestamp": 1685348745000
+    "closingTimestamp": 1685553047,
+    "enactmentTimestamp": 1685639447
   }
 }
 ```

@@ -1,6 +1,6 @@
 
   ```bash
-./vegawallet transaction send --wallet your_walletname --pubkey your_public_key --network mainnet1 '{
+./vegawallet transaction send --wallet YOUR-WALLETNAME --pubkey YOUR-PUBLIC-KEY --network NETWORK-NAME '{
  "proposalSubmission": {
   "rationale": {
    "title": "Add tDAI TEST (tDAI)",
@@ -20,9 +20,9 @@
      }
     }
    },
-   "closingTimestamp": 1685262345000,
-   "enactmentTimestamp": 1685348745000,
-   "validationTimestamp": 1685348745000
+   "closingTimestamp": 1685553047,
+   "enactmentTimestamp": 1685639447,
+   "validationTimestamp": 1685639447
   }
  }
 }'

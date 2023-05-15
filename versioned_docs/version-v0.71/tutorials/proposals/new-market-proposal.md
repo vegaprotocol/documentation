@@ -31,7 +31,7 @@ Propose a cash-settled futures market on any underlying with a settlement data s
 
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
-* A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>
+* A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
 * Familiarity with [governance on Vega](../../concepts/governance.md), particularly [market governance](../../concepts/governance.md#market-governance)
 
 ## Anatomy of a market proposal
@@ -79,12 +79,12 @@ An instrument contains the following properties:
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
-| `name` | A string for the market name. Best practice is to include a full and fairly descriptive name for the instrument. | BTC/USD DEC18. |
+| `name` | A string for the market name. Best practice is to include a full and fairly descriptive name for the instrument. | Oranges DEC18. |
 | `code`  (instrument) | This is a shortcode used to easily describe the instrument. The more information you add, the easier it is for people to know what the market offers. | FX:BTCUSD/DEC18 |
 | `future` | An object that provides details about the futures market to be proposed. |
 | `settlementAsset` | Settlement asset requires the ID of the asset that the market will be margined in and settle in. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID. |  |
 | `quoteName` | The quote name is the human-readable name/abbreviation of the settlement asset. Example: In BTCUSD, USD is the quote. | tEuro |
-| `dataSourceSpecForSettlementData` | This defines the data source that will be used to identify the settlement price when the market expires. | prices.BTC.value |
+| `dataSourceSpecForSettlementData` | This defines the data source that will be used to identify the settlement price when the market expires. | prices.ORANGES.value |
 | `dataSourceSpecForTradingTermination` | The fields that define the data source used for terminating trading on the market. | vegaprotocol.builtin.timestamp |
 | `dataSourceSpecBinding` | The fields describe how specific information provided by the data source is used. For example, they can identify the specific name of the settlement price output, or the specific name of the trading termination property. |
 
@@ -108,7 +108,7 @@ Data source bindings include the following properties:
 | `numberDecimalPlaces` | Optional field to specify the precision in which numerical data is emitted. Use when data is numerical | 18 |
 | `conditions` | A filter for the data. The conditions that should to be matched by the data to be considered. This is an optional set of fields. For example you could use an operator and a value to denote that a price should be greater than zero |
 | `operator` | This adds a constraint to the value, such as LESS_THAN, GREATER_THAN. For example if you wanted to ensure that the price would always be above zero, you would set the operator to ‘GREATER_THAN’ and the Value to be ‘0’ | GREATER_THAN |
-| `value` | A number that is constrained by the operator | 0 |
+| `value` | A number that is constrained by the operator. If providing a timestamp, use the Unix time in seconds | 0 |
 
 :::info Submitting data
 Learn how to find and submit data in the [submitting data sources tutorial](../using-data-sources.md).

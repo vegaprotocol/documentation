@@ -1,6 +1,6 @@
 
   ```bash
-./vegawallet transaction send --wallet your_walletname --pubkey your_public_key --network mainnet1 '{
+./vegawallet transaction send --wallet YOUR-WALLETNAME --pubkey YOUR-PUBLIC-KEY --network NETWORK-NAME '{
  "proposalSubmission": {
   "rationale": {
    "title": "Add Lorem Ipsum market",
@@ -33,7 +33,7 @@
           "filters": [
            {
             "key": {
-             "name": "prices.BTC.value",
+             "name": "prices.ORANGES.value",
              "type": "TYPE_INTEGER",
              "numberDecimalPlaces": "5"
             },
@@ -46,13 +46,13 @@
            },
            {
             "key": {
-             "name": "prices.BTC.timestamp",
+             "name": "prices.ORANGES.timestamp",
              "type": "TYPE_INTEGER"
             },
             "conditions": [
              {
               "operator": "OPERATOR_GREATER_THAN",
-              "value": "1648684800000000000"
+              "value": "1648684800"
              }
             ]
            }
@@ -66,21 +66,21 @@
           "conditions": [
            {
             "operator": "OPERATOR_GREATER_THAN_OR_EQUAL",
-            "value": "1648684800000000000"
+            "value": "1648684800"
            }
           ]
          }
         }
        },
        "dataSourceSpecBinding": {
-        "settlementDataProperty": "prices.BTC.value",
+        "settlementDataProperty": "prices.ORANGES.value",
         "tradingTerminationProperty": "vegaprotocol.builtin.timestamp"
        }
       }
      },
      "metadata": [
-      "enactment:2023-05-29T09:25:45Z",
-      "settlement:2023-05-28T09:25:45Z",
+      "enactment:2023-06-01T18:10:47Z",
+      "settlement:2023-05-31T18:10:47Z",
       "source:docs.vega.xyz"
      ],
      "priceMonitoringParameters": {
@@ -106,13 +106,13 @@
       "params": {
        "mu": 0,
        "r": 0.016,
-       "sigma": 0.5
+       "sigma": 0.15
       }
      }
     }
    },
-   "closingTimestamp": 1685262345000,
-   "enactmentTimestamp": 1685348745000
+   "closingTimestamp": 1685553047,
+   "enactmentTimestamp": 1685639447
   }
  }
 }'
