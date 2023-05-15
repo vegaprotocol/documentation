@@ -154,7 +154,7 @@ ${'```'}
   `
   const cmd = `
   ${'```bash'}
-./vegawallet transaction send --wallet your_walletname --pubkey your_public_key --network fairground '${JSON.stringify(
+./vegawallet transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KEY --network NETWORK_NAME '${JSON.stringify(
     { proposalSubmission: proposal },
     null,
     ' '
@@ -163,7 +163,7 @@ ${'```'}
   `
   const win = `
   ${'```bash'}
-vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_key --network fairground ^\n"${JSON.stringify(
+vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KEY --network NETWORK_NAME ^\n"${JSON.stringify(
     { proposalSubmission: proposal },
     null,
     ' '
