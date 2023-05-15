@@ -80,8 +80,8 @@ vegawallet.exe transaction send --wallet YOUR-WALLETNAME --pubkey YOUR-PUBLIC-KE
      }^
     },^
     \"metadata\": [^
-     \"enactment:2023-05-29T09:25:45Z\",^
-     \"settlement:2023-05-28T09:25:45Z\",^
+     \"enactment:2023-06-01T18:10:47Z\",^
+     \"settlement:2023-05-31T18:10:47Z\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -112,8 +112,8 @@ vegawallet.exe transaction send --wallet YOUR-WALLETNAME --pubkey YOUR-PUBLIC-KE
     }^
    }^
   },^
-  \"closingTimestamp\": 1685262345000,^
-  \"enactmentTimestamp\": 1685348745000^
+  \"closingTimestamp\": 1685553047,^
+  \"enactmentTimestamp\": 1685639447^
  }^
 }^
 }"

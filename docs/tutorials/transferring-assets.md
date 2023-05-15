@@ -26,7 +26,7 @@ Transfers to fund reward pools can only be recurring, though they can be set up 
 A key-to-key transfer allows you to transfer assets between two Vega keys. You'll need enough of the asset to transfer the nominated amount, as well as enough to pay the transfer fee.
 
 ### One-off transfer to Vega key
-Use `deliverOn` to set a **delivery date/time** for when the transfer arrives with the recipient account. `deliverOn` only accepts Unix time in seconds. Setting it to 0 means the transfer will be completed immediately. Note: when you delay a transfer, the amount leaves your account immediately but is not delivered until the date/time you chose.
+Use `deliverOn` to set a **delivery date/time** for when the transfer arrives with the recipient account. `deliverOn` only accepts Unix time in nanoseconds. Setting it to 0 means the transfer will be completed immediately. Note: when you delay a transfer, the amount leaves your account immediately but is not delivered until the date/time you chose.
 
 A one-off transfer **cannot be cancelled** by you, regardless of when the transfer is scheduled to arrive. If you do not have enough of the asset to cover the amount and the fees, it will be automatically cancelled.
 

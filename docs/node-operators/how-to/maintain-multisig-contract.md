@@ -52,7 +52,7 @@ If you are a node operator and supplied a `--submitter-address` when announcing 
 
 To get the Vega network to generate a signature bundle that can be used to add/remove a validator from the multisig contract the following CLI command can be used
 ```shell
-vega wallet transaction send --network NETWORK --wallet WALLET --pubkey PUBKEY TRANSACTION
+vega wallet transaction send --network NETWORK-NAME --wallet WALLET-NAME --pubkey PUBKEY TRANSACTION
 '{"issueSignatures": {"submitter": "ETH_ADDRESS", "validator_node_id": "NODE_ID", "kind": "NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_ADDED"}}'
 ```
 
