@@ -1,7 +1,6 @@
 ---
 title: Using the APIs
 sidebar_position: 2
-vega_network: TESTNET
 description: See the frameworks and how to use the APIs.
 vega_network: TESTNET
 ---
