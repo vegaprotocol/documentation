@@ -1,10 +1,12 @@
 ---
-sidebar_position: 2
 title: Primary elements
+sidebar_position: 3
 hide_title: false
 description: Building blocks of data and their endpoints.
 vega_network: TESTNET
 ---
+
+Below you can see a list of the primary elements, and their API calls, that you'll want to understand to interact with Vega. 
 
 ## Parties
 A party is a single user, defined as a Vega public key. As one person or entity can have many public keys, this is a unique identifier as far as an individual key's actions.  A party ID and a Vega public key (pubkey) are equivalent, and can be used interchangeably.
@@ -52,6 +54,19 @@ Markets have accounts, are created with proposals, and allow parties to place or
 |||
 | Understanding the concepts: market lifecycle | [Market lifecycle](../concepts/trading-on-vega/market-lifecycle.md) | 
 
+## Orders and positions
+An order is an instruction to buy or sell on a specific market, and it can go long or short on the market's price. Placing an order does not guarantee it gets filled, but if it is filled, it will result in a position, which will require collateral to use for margin to keep that position open.
+
+| Description | Documentation | Call |
+| ----------- | ----------- | ----------- |
+| Get information about an order using its ID | [Order](../api/rest/data-v2/trading-data-service-get-order.api.mdx) | `GET /api/v2/order/:orderId` |
+| Get a list of orders that have been filtered based on information you provide |[List orders](../api/rest/data-v2/trading-data-service-list-orders.api.mdx) | `GET /api/v2/orders`
+| Get a list of all positions for a specific party ID | [List positions](../api/rest/data-v2/trading-data-service-list-all-positions.api.mdx) | `GET /api/v2/positions` 
+| Get a paginated list of all trades, optionally filtered by party, market, or order | [List trades](/api/rest/data-v2/trading-data-service-list-trades.api.mdx) | `GET /api/v2/trades`
+|||
+| Understand the concepts: orders | [Orders](../concepts/trading-on-vega/orders.md) |
+| Understand the concepts: positions | [Positions](../concepts/trading-on-vega/positions-margin.md)|
+
 ## Governance proposals and voting
 Governance proposals used to add new assets and markets, as well as to suggest changes to assets, markets, and network parameters, as well as off-chain suggestions. VEGA tokens need to be associated to the Vega public key that wants to take part in governance.
 
@@ -72,16 +87,3 @@ VEGA token are used for taking part in network, market, asset and freeform gover
 |||
 | How to nominate validators using the smart contracts | [Stake tokens](../tutorials/staking-tokens.md) | 
 | Understand the concepts: Governance | [Vega governance](../concepts/vega-protocol.md) | 
-
-## Orders and positions
-An order is an instruction to buy or sell on a specific market, and it can go long or short on the market's price. Placing an order does not guarantee it gets filled, but if it is filled, it will result in a position, which will require collateral to use for margin to keep that position open.
-
-| Description | Documentation | Call |
-| ----------- | ----------- | ----------- |
-| Get information about an order using its ID | [Order](../api/rest/data-v2/trading-data-service-get-order.api.mdx) | `GET /api/v2/order/:orderId` |
-| Get a list of orders that have been filtered based on information you provide |[List orders](../api/rest/data-v2/trading-data-service-list-orders.api.mdx) | `GET /api/v2/orders`
-| Get a list of all positions for a specific party ID | [List positions](../api/rest/data-v2/trading-data-service-list-all-positions.api.mdx) | `GET /api/v2/positions` 
-| Get a paginated list of all trades, optionally filtered by party, market, or order | [List trades](/api/rest/data-v2/trading-data-service-list-trades.api.mdx) | `GET /api/v2/trades`
-|||
-| Understand the concepts: orders | [Orders](../concepts/trading-on-vega/orders.md) |
-| Understand the concepts: positions | [Positions](../concepts/trading-on-vega/positions-margin.md)|
