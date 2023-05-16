@@ -6,7 +6,7 @@ description: Building blocks of data and their endpoints.
 vega_network: TESTNET
 ---
 
-Below you can see a list of the primary elements, and their API calls, that you'll want to understand to interact with Vega. 
+While there are hundreds of available endpoints, the categories below cover the basics to get you started with understanding what you need to interact with Vega. 
 
 ## Parties
 A party is a single user, defined as a Vega public key. As one person or entity can have many public keys, this is a unique identifier as far as an individual key's actions.  A party ID and a Vega public key (pubkey) are equivalent, and can be used interchangeably.

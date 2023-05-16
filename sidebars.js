@@ -24,6 +24,7 @@ module.exports = {
   ],
   api: [
     'api/overview',
+    'api/using-the-apis',
     'api/primary-elements',
     'api/public-endpoints',
     {
@@ -84,7 +85,7 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Ethereum bridge',
+      label: 'Ethereum bridges and contracts',
       collapsed: true,
       items: [
         {
