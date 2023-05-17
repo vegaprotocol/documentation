@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 import NetworkParameter from '@site/src/components/NetworkParameter';
 import EthAddresses from '@site/src/components/EthAddresses';
 
-The easiest way to withdraw assets is to use the Console trading interface, which will walk you through the process and notify you of progress. However, if you'd like to interact with the smart contracts instead, use the instructions below.
+The easiest way to withdraw assets is to use the Console trading interface, which will walk you through the process and notify you of progress. However, if you'd like to interact directly with Etherscan instead, use the instructions below.
 
 :::caution Completing a withdrawal
 Before beginning a withdrawal, it is worth confirming that there's no scheduled network restart or upgrade in the following 48 hours.
