@@ -55,8 +55,11 @@ Note that some network parameters may differ, such as the limits on how long the
 | `enactmentTimestamp ` | Timestamp (Unix time in seconds) when proposal gets enacted (if passed). The chosen time must be between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minEnact" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.maxEnact" hideName={true} /> after `closingTimestamp`. (int64 as string)         |
 
 ## Templates and submitting
+In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example, and command line examples for different operating systems.
 
-In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to [submit on the governance dApp ↗](https://governance.fairground.wtf/proposals/propose/update-market), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
+The governance dApp has a [tool to help you put together a proposal ↗](https://governance.fairground.wtf/proposals/propose/update-market). When you have your proposal ready you can [submit the JSON on the governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw).
+
+**Replace the example data with the relevant details before submitting.**
 
 <Tabs groupId="updateMarket">
   <TabItem value="annotated" label="Annotated example">

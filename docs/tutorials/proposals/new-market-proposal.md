@@ -161,8 +161,11 @@ The risk model uses the following properties:
 | `param: sigma` | Annualised volatility of the underlying asset. <br/><br/>Accepted values: any strictly non-negative real number; suggested value: asset dependent, should be derived from the historical time-series of prices. | 0.8 (converts to 80%) |
 
 ## Templates and submitting
-In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used as the basis to [submit on the governance dApp ↗](https://governance.fairground.wtf/proposals/propose/new-market), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
+In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example, and command line examples for different operating systems.
 
+The governance dApp has a [tool to help you put together a proposal ↗](https://governance.fairground.wtf/proposals/propose/new-market). When you have your proposal ready you can [submit the JSON on the governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw).
+
+**Replace the example data with the relevant details before submitting.**
 <Tabs groupId="newMarket">
   <TabItem value="annotated" label="Annotated example">
     <NewMarketAnnotated />
