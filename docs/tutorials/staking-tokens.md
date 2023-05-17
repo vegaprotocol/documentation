@@ -1,6 +1,6 @@
 ---
 title: Stake tokens
-sidebar_position: 5
+sidebar_position: 6
 hide_title: false
 vega_network: TESTNET
 description: Stake unlocked tokens with Vega Wallet and smart contracts

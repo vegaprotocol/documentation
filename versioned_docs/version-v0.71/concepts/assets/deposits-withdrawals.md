@@ -89,13 +89,13 @@ If it's a successful withdrawal transaction, the ERC20 bridge will emit an `Asse
 Withdrawals can have limits associated with them, where trying to withdraw above a certain amount will cause that withdrawal to be delayed by a set time. If a validator is compromised or otherwise issues a bad withdrawal, the delay gives Vega a chance to stop the withdrawal before it's too late.
 
 The two parts of a withdrawal limit are:
-* **Withdrawal threshold**: Set per asset through governance, requesting to withdraw that amount (and above) will trigger a withdrawal delay. Initially this will be 1, which denotes the smallest decimal position for the market's asset. All withdrawals will be subject to some delay to reduce the risk of bridge and other exploits draining the protocol.
+* **Withdrawal threshold**: Set per asset through governance, requesting to withdraw that amount (and above) will trigger a withdrawal delay. If the threshold is 1, that denotes the smallest decimal position for the market's asset, and thus all withdrawals will have a delay. All withdrawals will be subject to some delay to reduce the risk of bridge and other exploits draining the protocol.
 * **Withdrawal delay**: Set for all assets on the ERC-20 bridge, this is the time that a withdrawal is delayed before it's completed
-* [Query for asset details](../../api/rest/data-v2/trading-data-service-get-asset.api.mdx) (under erc20) for each asset's threshold and delay.
+* [Query for asset details](../../api/rest/data-v2/trading-data-service-get-asset.api.mdx) (under erc20) for each asset's delay threshold.
 
 If you choose an amount to withdraw that is higher than the withdrawal threshold, the multi-signature bundle will only be usable after the withdrawal delay has passed, after which the assets can be moved into an Ethereum wallet.
 
-Once the delay time has passed, and the bundle is valid, **the withdrawal must be completed by submitting the bundle to Ethereum and paying the gas fee required. Usually this will be done by the party wishing to receive the funds**. This can be done using Vega Console or another user interface, or manually using the [smart contract](../../api/bridge/contracts/ERC20_Bridge_Logic.md) and an Ethereum RPC node.
+Once the delay time has passed, and the bundle is valid, **the withdrawal must be completed by submitting the bundle to Ethereum and paying the gas fee required**. Usually this will be done by the party wishing to receive the funds. This can be done using Vega Console or another user interface, or manually using the [smart contract](../../api/bridge/contracts/ERC20_Bridge_Logic.md) and an Ethereum RPC node.
 
 :::tip Query for data
 You can see the threshold and delay for withdrawals in [Vega Console ↗](https://console.fairground.wtf).
