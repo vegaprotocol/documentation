@@ -38,9 +38,11 @@ Once the delay time has passed, and if the bundle is valid, the withdrawal **mus
 
 ## Withdraw using Etherscan
 
-### Prepare and send withdrawal transaction [WIP]
+### Prepare and send withdrawal transaction
 
-You'll need to prepare a transaction to send using your Vega Wallet. You can use the following transaction template (formatted for Linux/MacOS):
+You'll need to prepare a withdrawal transaction to send using your Vega Wallet app.
+
+You can use the following transaction template (formatted for Linux/MacOS):
 
 ```bash
 ./vegawallet transaction send --wallet YOUR-WALLETNAME --pubkey YOUR-PUBLIC-KEY --network NETWORK-NAME '{
