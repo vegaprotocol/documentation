@@ -166,6 +166,7 @@ In the tabs below you'll see an annotated example, which describes what each fie
 The governance dApp has a [tool to help you put together a proposal ↗](https://governance.fairground.wtf/proposals/propose/new-market). When you have your proposal ready you can [submit the JSON on the governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw).
 
 **Replace the example data with the relevant details before submitting.**
+
 <Tabs groupId="newMarket">
   <TabItem value="annotated" label="Annotated example">
     <NewMarketAnnotated />
