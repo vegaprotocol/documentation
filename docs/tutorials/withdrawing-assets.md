@@ -91,11 +91,11 @@ Once the withdrawal delay has passed, you can carry on with the following steps.
 
 ✅ Your withdrawal is then complete and your assets will be in your Ethereum wallet.
 
-## Complete withdrawal transaction after reset/upgrade
+## Complete withdrawal after reset/upgrade
 
-If your withdrawal transaction was not completed before the Vega network was restarted or upgraded, follow the steps below. 
+If your withdrawal transaction was not completed before the Vega network was restarted or upgraded, follow the steps below.
 
-Before a network upgrade or planned restart, the Vega team saves a snapshot of the network to help anyone who has an unfinished withdrawal. 
+Before a network upgrade or planned restart, the Vega team saves a snapshot of the network to help anyone who has an unfinished withdrawal.
 
 ### Get transaction data
 1. Find the public key that you started the withdrawal from. Ask the Vega team for the JSON of your transaction. Ask on [Discord ↗](https://vega.xyz/discord) or email `hi@vega.xyz`. **Confirm that you are in contact with someone from the actual Vega team.**
