@@ -1,6 +1,6 @@
 ---
 title: Community-created guides
-sidebar_position: 6
+sidebar_position: 8
 hide_title: false
 description: Guides and code created by the Vega community.
 ---

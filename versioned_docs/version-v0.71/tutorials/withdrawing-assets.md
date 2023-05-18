@@ -3,7 +3,7 @@ title: Withdraw assets
 sidebar_position: 4
 hide_title: false
 description: How to withdraw assets from Vega back to an Ethereum wallet.
-vega_network: TESTNET
+vega_network: MAINNET
 ---
 
 import Tabs from '@theme/Tabs';

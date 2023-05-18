@@ -1,6 +1,6 @@
 ---
 title: Programmatic trading basics
-sidebar_position: 2
+sidebar_position: 1
 hide_title: false
 description: Start bot development for submitting orders with this guide.
 ---
