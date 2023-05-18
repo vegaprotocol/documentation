@@ -1,8 +1,8 @@
 ---
-title: Primary elements
-sidebar_position: 3
+title: Commonly used data types [WIP]
+sidebar_position: 4
 hide_title: false
-description: Building blocks of data and their endpoints.
+description: Building blocks of data and their APIs.
 vega_network: TESTNET
 ---
 

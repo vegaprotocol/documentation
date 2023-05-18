@@ -22,6 +22,10 @@ To use the Vega APIs, a developer will need access to a network-compatible insta
 
 **Fairground**: The project team operate a number of nodes and data nodes with publicly available endpoints for the Vega-run testnet. Each Fairground wallet app release is pre-configured with known nodes, including those operated by the project team, at the time of release.
 
+## Rate limiting [WIP]
+
+Take content from existing information and distill !! 
+
 ## Available frameworks [WIP]
 
 ### REST
@@ -36,7 +40,7 @@ WebSocket endpoints offer real-time updates to changes in the state of the Vega 
 gRPC provides fast and efficient communication, and supports near real time streaming of updates from Vega.
 
 ### GraphQL
-GraphQL is used for building UIs that require complex queries. 
+GraphQL is an alternative to REST, that can be used to craft more complex queries. 
 
 ## Ethereum bridges
 Vega uses ERC-20 assets from Ethereum, and to facilitate inter-chain interactions between Vega and Ethereum, those assets are then transferred through a series of smart contract bridges. These bridges provide a seamless experience for users, allowing them to use Ethereum assets on the (non-Ethereum) Vega chain.
