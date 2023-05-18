@@ -39,7 +39,7 @@ An asset can then be deposited into the ERC-20 bridge contract. The funds in tha
 Note: Associated and deposited are not equivalent, as deposited tokens are held within the ERC-20 bridge contract, and associated tokens are held in the staking bridge contract (or in the vesting contract for locked/unredeemed tokens). The difference is that tokens deposited to the ERC-20 bridge are under the control of the Vega network whereas those associated with a Vega key remain solely in the control of the original holder -- you cannot lose your associated/staked tokens.
 
 ### Lifetime deposit limits 
-During alpha mainnet, the ERC-20 bridge smart contract limits how much can ever be deposited from an Ethereum address. This is done in an abundance of caution, to assure users in the face of recent bridge hacks that they would have only a small amount at risk at any point. 
+During alpha mainnet, the ERC-20 bridge smart contract limits how much can ever be deposited from an Ethereum address. This is done in an abundance of caution, to assure users in the face of recent bridge hacks on other projects, that they would have only a small amount at risk at any point. 
 
 If, however, a user wanted to bypass those limits and understood the risks to their assets, they could run `exempt_depositor()` on the [ERC-20 bridge contract](../../api/bridge/contracts/index.md) for each asset, after which transactions greater than deposit limit for the asset would be allowed.
 
