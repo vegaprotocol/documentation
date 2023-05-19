@@ -70,7 +70,7 @@ Reward proceeds are paid directly to the recipient's general account.
 Rewards are independent from fees, which are paid to validators, liquidity providers, and price makers on each trade.
 
 :::tip Try it out
-[Set up a reward transfer](../../tutorials/transferring-assets.md): Choose an activity to reward and set up a one-off or recurring transfer to fund it.
+[Set up a reward transfer](../../tutorials/assets-tokens/transferring-assets.md): Choose an activity to reward and set up a one-off or recurring transfer to fund it.
 :::
 
 ## Setting rewards

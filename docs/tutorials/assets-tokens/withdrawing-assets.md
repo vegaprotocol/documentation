@@ -3,7 +3,7 @@ title: Withdraw assets
 sidebar_position: 4
 hide_title: false
 description: How to withdraw assets from Vega back to an Ethereum wallet.
-vega_network: MAINNET
+vega_network: TESTNET
 ---
 
 import Tabs from '@theme/Tabs';
@@ -19,6 +19,14 @@ Before beginning a withdrawal, it is worth confirming that there's no scheduled 
 :::
 
 The easiest way to withdraw assets is to use the Console trading interface, which will walk you through the process and notify you of progress. However, if you'd like to interact directly with Etherscan instead, use the instructions below.
+
+## What you need
+You'll need the following information available:
+* Vega public key you want to withdraw from
+* Vega Wallet connection details (wallet name, passphrase)
+* ERC-20 bridge logic address
+* Vega asset ID
+* Receiver Ethereum address for the withdrawal
 
 ### Bridge address 
 The ERC-20 bridge address shown is for the Ethereum network that is compatible with the Vega network these docs are pointing to. 
