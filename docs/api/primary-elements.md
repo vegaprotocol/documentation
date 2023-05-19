@@ -20,7 +20,7 @@ Assets can only be added to the network to be used as a market settlement asset 
 
 | Description | Documentation | Call |
 | ----------- | ----------- | ----------- |
-| See all assets that can be used on the network | [List assets](../api/rest/data-v2/trading-data-service-list-assets.api.mdx)| `GET /api/v2/deposits`
+| See all assets that can be used on the network | [List assets](../api/rest/data-v2/trading-data-service-list-assets.api.mdx)| `GET /api/v2/assets`
 | Show a specific asset's details | [Asset](../api/rest/data-v2/trading-data-service-get-asset.api.mdx) | `GET /api/v2/asset/:assetId`
 
 ## Deposits and withdrawals
