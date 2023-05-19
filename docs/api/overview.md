@@ -28,9 +28,9 @@ Authentication takes several forms when interacting with Vega. When requesting d
 
 Data node operators offering free or paid data nodes may require you to authenticate, and if this is the case you will need to refer to the provider's documentation for details of how to do so.
 
-If you want to submit transactions to the network, you'll need to ensure that you have a Vega Wallet, which provides authentication in the form of a signature when sending transactions.
+If you want to submit transactions to the network, all you need is a Vega wallet or signer library to sign the transaction using your keys.
 
-When creating any scripts or software to interact with Vega, you'll need a wallet authentication token. 
+However, if you want to integrate the official Vega wallet implementation with your web application or script, you'll need to use the connection layer built into the wallet API, and a wallet API authentication token.
 
 :::note Go deeper
 **[Wallet API guides](./vega-wallet/before-you-start.md)**: See the wallet API documentation for more on authentication tokens.
