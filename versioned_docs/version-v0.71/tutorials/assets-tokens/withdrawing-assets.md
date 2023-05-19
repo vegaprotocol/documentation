@@ -38,7 +38,7 @@ Assets can have a withdrawal delay, as well as a withdrawal delay threshold.
 
 **Withdrawal delay**: Set on the ERC-20 bridge for all assets. It is the time that a withdrawal is delayed, once it's begun, before it can be completed. You can see the delay by looking at the ERC-20 bridge contract. 
 
-**Withdrawal delay threshold**: Set per asset in its governance proposal. Requesting to withdraw that amount (and above) will trigger a withdrawal delay. If the threshold is 1, that denotes the smallest decimal position for the market's asset, and thus all withdrawals will have a delay. [Query for an asset's details](../api/rest/data-v2/trading-data-service-get-asset.api.mdx) (under erc20) to see each asset's delay threshold.
+**Withdrawal delay threshold**: Set per asset in its governance proposal. Requesting to withdraw that amount (and above) will trigger a withdrawal delay. If the threshold is 1, that denotes the smallest decimal position for the market's asset, and thus all withdrawals will have a delay. [Query for an asset's details](../../api/rest/data-v2/trading-data-service-get-asset.api.mdx) (under erc20) to see each asset's delay threshold.
 
 If your withdrawal amount is higher than the withdrawal threshold, the multi-signature bundle will only be usable *after* the withdrawal delay has passed, after which the assets can be moved into an Ethereum wallet.
 
@@ -67,7 +67,7 @@ You can use the following transaction template (formatted for Linux/MacOS):
 
 ### Query for withdrawal ID
 
-1. Query for your withdrawal ID, using the [list withdrawals API](../api/rest/data-v2/trading-data-service-list-withdrawals.api.mdx). 
+1. Query for your withdrawal ID, using the [list withdrawals API](../../api/rest/data-v2/trading-data-service-list-withdrawals.api.mdx). 
 
 You could, instead, calculate it from the transaction signature by generating a sha3 hash in the format:
 
@@ -79,7 +79,7 @@ Once the withdrawal delay has passed, you can carry on with the following steps.
 
 ### Retrieve signature bundle
 
-2. Retrieve the signature bundle using the [get withdrawal API](../api/rest/data-v2/trading-data-service-get-withdrawal.api.mdx). You'll need the withdrawal ID from the step above to do this.
+2. Retrieve the signature bundle using the [get withdrawal API](../../api/rest/data-v2/trading-data-service-get-withdrawal.api.mdx). You'll need the withdrawal ID from the step above to do this.
 
 ### Run asset withdrawal 
 
