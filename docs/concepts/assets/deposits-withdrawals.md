@@ -79,7 +79,7 @@ Once the transaction is verified, the Vega public key submitted in the transacti
 
 **VEGA tokens** can only be withdrawn from the staking bridge if they are not staked and/or locked.
 
-To remove assets from the Vega network, submit a withdrawal request via a Vega app, such as the Vega Console trading interface, or using [the smart contract](../../api/bridge/index.md).
+To remove assets from the Vega network, submit a withdrawal request via a Vega app, such as the Vega Console trading interface, or using [Etherscan](../../tutorials/assets-tokens/withdrawing-assets.md). 
 
 This request, if valid, will be put through consensus - the validators sign a multi-signature withdrawal order bundle for the ERC-20 bridge. The bridge validates the bundle and then releases the funds to the chosen Ethereum wallet.
 
@@ -87,7 +87,8 @@ This request, if valid, will be put through consensus - the validators sign a mu
 If it's a successful withdrawal transaction, the ERC20 bridge will emit an `Asset_Withdrawn` event, and confirm to the Vega network that the withdrawal has been completed.
 
 :::note Read more
-[ERC20 bridge logic API documentation](../../api/bridge/contracts/ERC20_Bridge_Logic.md#withdraw_asset)
+* [Withdrawing assets using Etherscan](../../tutorials/assets-tokens/withdrawing-assets.md)
+* [ERC20 bridge logic API documentation](../../api/bridge/contracts/ERC20_Bridge_Logic.md#withdraw_asset)
 :::
 
 ### Withdrawal limits

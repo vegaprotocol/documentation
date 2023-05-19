@@ -15,7 +15,7 @@ import EthAddresses from '@site/src/components/EthAddresses';
 Before beginning a withdrawal, it is worth confirming that there's no scheduled network restart or upgrade in the following 48 hours.
 
 * Withdrawals may be subject to a delay once started.
-* Any withdrawals that are left 'in progress' during a network restart or upgrade will not be visible in any UI or API request. **Your assets will be safe** but you will need to request the JSON of your transaction. See the instructions below for how to do this.
+* Any withdrawals that are left 'in progress' during a network restart or upgrade will not be visible in any UI or API request. **Your assets will be safe** but you will need to get the details of your transaction. See the instructions below for how to do this.
 :::
 
 The easiest way to withdraw assets is to use the Console trading interface, which will walk you through the process and notify you of progress. However, if you'd like to interact directly with Etherscan instead, use the instructions below.
@@ -103,7 +103,7 @@ Once the withdrawal delay has passed, you can carry on with the following steps.
 
 If your withdrawal transaction was not completed before the Vega network was restarted or upgraded, follow the steps below.
 
-Before a network upgrade or planned restart, the Vega team saves a snapshot of the network to help anyone who has an unfinished withdrawal.
+Before a network upgrade or planned restart, a snapshot is taken of the network, which can be used to retrieve the details of an an unfinished withdrawal.
 
 ### Get transaction data
 1. Find the public key that you started the withdrawal from. Ask the Vega team for the JSON of your transaction. Ask on [Discord ↗](https://vega.xyz/discord) or email `hi@vega.xyz`. **Confirm that you are in contact with someone from the actual Vega team.**
