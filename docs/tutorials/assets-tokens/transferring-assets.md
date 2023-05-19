@@ -18,8 +18,8 @@ Transfers to fund reward pools can only be recurring, though they can be set up 
 ### Requirements
 * **Enough of the asset** to transfer and pay the transfer fee each time
 * **Vega public key** the assets are sent from. The **same key pair** must sign the transaction
-* **Public key or [account type](../api/grpc/vega/vega.proto.mdx#accounttype)** the assets are going to. (Either the number or `ACCOUNT_TYPE_.."`)
-* **[Asset ID](../api/graphql/queries/assets-connection.mdx)** for the asset to transfer
+* **Public key or [account type](../../api/grpc/vega/vega.proto.mdx#accounttype)** the assets are going to. (Either the number or `ACCOUNT_TYPE_.."`)
+* **[Asset ID](../../api/rest/data-v2/trading-data-service-list-assets.api.mdx)** for the asset to transfer
 * **Transfer amount**. It must be written with no decimal point, but include all decimal places. Note: The amount in the below examples is based on an 18 decimal point asset, and so these would transfer 1 tVEGA
 
 ## Key-to-key transfers
@@ -129,14 +129,14 @@ Trading rewards can be used to incentivise:
 * Creating markets that attract good trading volume (determined based on value of <NetworkParameter frontMatter={frontMatter} param="rewards.marketCreationQuantumMultiple" hideValue={true} />, and the settlement asset's quantum)
 
 :::info Read more
-[Trading rewards](../concepts/trading-on-vega/fees-rewards): Read about trading rewards, including the different rewards you can contribute to.
+[Trading rewards](../../concepts/trading-on-vega/fees-rewards): Read about trading rewards, including the different rewards you can contribute to.
 :::
 
 You'll need the following information to set up a reward: 
 * `startEpoch`: The number of the epoch in which you want the first transfer to be made. It will initiate at the end of that epoch.
 * `factor`: Written as a decimal less than 1.0. Factor is used to determine what portion of the full `amount` is transferred in each epoch. Think of it like a percentage, so the number you include, when multiplied by 100, will equal what percentage of the amount will be transferred each time. 
 
-Recurring transfers can also set a [dispatch strategy](../api/grpc/vega/vega.proto.mdx#dispatchstrategy) to distribute rewards based on [dispatch metrics](../api/grpc/vega/vega.proto.mdx#dispatchmetric) that are tracked by the system. The recurring reward transfer below would reward the public key that proposed the markets specified, depending on their value.
+Recurring transfers can also set a [dispatch strategy](../../api/grpc/vega/vega.proto.mdx#dispatchstrategy) to distribute rewards based on [dispatch metrics](../../api/grpc/vega/vega.proto.mdx#dispatchmetric) that are tracked by the system. The recurring reward transfer below would reward the public key that proposed the markets specified, depending on their value.
 
 The transfer will run indefinitely, unless you add the optional paramter to specify when to stop:
 * `endEpoch`: The number of the epoch in which you want the last transfer to be made.
@@ -197,7 +197,7 @@ vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --netwo
 Once you've funded a reward pool, you can promote the reward, and the market it's relevant for, by sharing it with the community on [Discord ↗](https://vega.xyz/discord) and on the [Vega forum ↗](https://community.vega.xyz).
 
 ## Cancelling recurring transfers
-To cancel a recurring transfer, you'll need the transfer's ID. To see the ID for every transfer your public key makes, [run a transfers GraphQL query](../api/graphql/queries/transfers-connection.mdx).
+To cancel a recurring transfer, you'll need the transfer's ID. To see the ID for every transfer your public key makes, [run a transfers REST query](../../api/rest/data-v2/trading-data-service-list-transfers.api.mdx).
 
 One-off transfers cannot be cancelled.
 

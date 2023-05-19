@@ -39,7 +39,7 @@ An asset can then be deposited into the ERC-20 bridge contract. The funds in tha
 Note: Associated and deposited are not equivalent, as deposited tokens are held within the ERC-20 bridge contract, and associated tokens are held in the staking bridge contract (or in the vesting contract for locked/unredeemed tokens). The difference is that tokens deposited to the ERC-20 bridge are under the control of the Vega network whereas those associated with a Vega key remain solely in the control of the original holder -- you cannot lose your associated/staked tokens.
 
 ### Lifetime deposit limits 
-During alpha mainnet, the ERC-20 bridge smart contract limits how much can ever be deposited from an Ethereum address. This is done in an abundance of caution, to assure users in the face of recent bridge hacks that they would have only a small amount at risk at any point. 
+During alpha mainnet, the ERC-20 bridge smart contract limits how much can ever be deposited from an Ethereum address. This is done in an abundance of caution, to assure users in the face of recent bridge hacks on other projects, that they would have only a small amount at risk at any point. 
 
 If, however, a user wanted to bypass those limits and understood the risks to their assets, they could run `exempt_depositor()` on the [ERC-20 bridge contract](../../api/bridge/contracts/index.md) for each asset, after which transactions greater than deposit limit for the asset would be allowed.
 
@@ -79,7 +79,7 @@ Once the transaction is verified, the Vega public key submitted in the transacti
 
 **VEGA tokens** can only be withdrawn from the staking bridge if they are not staked and/or locked.
 
-To remove assets from the Vega network, submit a withdrawal request via a Vega app, such as the Vega Console trading interface, or using [the smart contract](../../api/bridge/index.md).
+To remove assets from the Vega network, submit a withdrawal request via a Vega app, such as the Vega Console trading interface, or using [Etherscan](../../tutorials/assets-tokens/withdrawing-assets.md). 
 
 This request, if valid, will be put through consensus - the validators sign a multi-signature withdrawal order bundle for the ERC-20 bridge. The bridge validates the bundle and then releases the funds to the chosen Ethereum wallet.
 
@@ -87,14 +87,15 @@ This request, if valid, will be put through consensus - the validators sign a mu
 If it's a successful withdrawal transaction, the ERC20 bridge will emit an `Asset_Withdrawn` event, and confirm to the Vega network that the withdrawal has been completed.
 
 :::note Read more
-[ERC20 bridge logic API documentation](../../api/bridge/contracts/ERC20_Bridge_Logic.md#withdraw_asset)
+* [Withdrawing assets using Etherscan](../../tutorials/assets-tokens/withdrawing-assets.md)
+* [ERC20 bridge logic API documentation](../../api/bridge/contracts/ERC20_Bridge_Logic.md#withdraw_asset)
 :::
 
 ### Withdrawal limits
 Withdrawals can have limits associated with them, where trying to withdraw above a certain amount will cause that withdrawal to be delayed by a set time. If a validator is compromised or otherwise issues a bad withdrawal, the delay gives Vega a chance to stop the withdrawal before it's too late.
 
 The two parts of a withdrawal limit are:
-* **Withdrawal threshold**: Set per asset through governance, requesting to withdraw that amount (and above) will trigger a withdrawal delay. Initially this will be 1, which denotes the smallest decimal position for the market's asset. All withdrawals will be subject to some delay to reduce the risk of bridge and other exploits draining the protocol.
+* **Withdrawal threshold**: Set per asset through governance, requesting to withdraw that amount (and above) will trigger a withdrawal delay. If the threshold is 1, that denotes the smallest decimal position for the market's asset, and thus all withdrawals will have a delay. All withdrawals will be subject to some delay to reduce the risk of bridge and other exploits draining the protocol.
 * **Withdrawal delay**: Set for all assets on the ERC-20 bridge, this is the time that a withdrawal is delayed before it's completed
 * [Query for asset details](../../api/rest/data-v2/trading-data-service-get-asset.api.mdx) (under erc20) for each asset's threshold and delay.
 

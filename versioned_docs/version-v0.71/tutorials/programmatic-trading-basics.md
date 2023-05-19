@@ -1,6 +1,6 @@
 ---
 title: Programmatic trading basics
-sidebar_position: 2
+sidebar_position: 1
 hide_title: false
 description: Start bot development for submitting orders with this guide.
 ---
@@ -147,7 +147,7 @@ You'll need Sepolia ETH to pay for the Ethereum transaction gas.
 
 After the transaction is confirmed, the assets will be deposited and you will see a new entry in the Deposits tab for your assets. They are now ready to be used for trading.
 
-### Deposit using smart contracts
+### Deposit using Etherscan
 You'll need the following information available:
 * Vega public key you want to deposit to
 * ERC-20 bridge logic address
