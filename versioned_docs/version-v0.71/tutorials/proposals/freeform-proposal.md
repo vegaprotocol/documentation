@@ -35,7 +35,11 @@ You will need:
 
 ## Templates and submitting
 
-In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example, and command line examples for different operating systems. The Governance dApp has a [tool to help you put together a Freeform proposal](https://governance.vega.xyz/proposals/propose/freeform). When you have your proposal ready you can [submit it on the governance dApp](https://governance.vega.xyz/proposals/propose/raw).
+In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example, and command line examples for different operating systems.
+
+The governance dApp has a [tool to help you put together a proposal ↗](https://governance.vega.xyz/proposals/propose/freeform). When you have your proposal ready you can [submit the JSON on the governance dApp ↗](https://governance.vega.xyz/proposals/propose/raw).
+
+**Replace the example data with the relevant details before submitting.**
 
 <Tabs groupId="newFreeform">
   <TabItem value="annotated" label="Annotated example">

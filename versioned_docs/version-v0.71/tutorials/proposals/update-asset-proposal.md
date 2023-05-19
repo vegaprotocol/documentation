@@ -52,7 +52,11 @@ In addition to the parameters you want to change, you must include the existing 
 
 ## Templates and submitting
 
-In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to [submit on the governance dApp ↗](https://governance.vega.xyz/proposals/propose/raw), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
+In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example, and command line examples for different operating systems.
+
+The governance dApp has a [tool to help you put together a proposal ↗](https://governance.vega.xyz/proposals/propose/update-asset). When you have your proposal ready you can [submit the JSON on the governance dApp ↗](https://governance.vega.xyz/proposals/propose/raw).
+
+**Replace the example data with the relevant details before submitting.**
 
 <Tabs groupId="updateAssetProposal">
   <TabItem value="annotated" label="Annotated example">

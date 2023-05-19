@@ -8,7 +8,7 @@ description: Start bot development for submitting orders with this guide.
 In this tutorial you'll learn the basics about how to use Vega and the Vega Wallet to submit orders using the APIs, so you can build bots or other software to interact with the network.
 
 :::note Network for tutorial
-This guide suggests using Fairground, the Vega testnet, for testing purposes.
+This guide suggests using Fairground, the Vega testnet, as well as Sepolia (test Ethereum) for testing purposes.
 :::
 
 This guide covers how to:
