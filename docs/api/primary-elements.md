@@ -9,14 +9,14 @@ vega_network: TESTNET
 While there are hundreds of available endpoints, the categories below cover the basics to get you started with understanding what you need to interact with Vega. 
 
 ## Parties
-A party is a single user, defined as a Vega public key. As one person or entity can have many public keys, this is a unique identifier as far as an individual key's actions.  A party ID and a Vega public key (pubkey) are equivalent, and can be used interchangeably.
+A party is a single user, defined as a Vega public key. As one person or entity can have many public keys, this is a unique identifier as far as an individual key's actions.  Party ID and public key (pubkey) are all names for the same thing.
 
 Show a paginated list of parties using the **[parties endpoint](../api/rest/data-v2/trading-data-service-list-parties.api.mdx)**.
 
 ## Assets
 Assets used on Vega (to start) are all ERC-20 tokens, and thus originate on the Ethereum chain, not the Vega chain. Inter-chain asset interactions between Vega and Ethereum are facilitated through the [Ethereum bridges](#ethereum-bridges). 
 
-Assets can only be added to the network to be used as a market settlement asset through a governance action, and a follow-on update to the asset bridge.
+Assets can only be added to the network to be used as collateral through a successful governance proposal and enactment, and a follow-on update to the asset bridge.
 
 | Description | Documentation | Call |
 | ----------- | ----------- | ----------- |

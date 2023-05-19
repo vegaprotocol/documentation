@@ -24,9 +24,11 @@ Anyone that plans to build significant integrations, trading bots, or power back
 :::
 
 ## Authentication
-Authentication takes several forms when interacting with Vega. When requesting data from a standard data node, such as through a query, you don't need to authenticate nor do you need an API token. Service providers offering free or paid data nodes may require you to authenticate, however. If this is the case you will need to refer to the provider's documentation for details of how to do so.
+Authentication takes several forms when interacting with Vega. When requesting data from a standard data node, such as through a query, you don't need to authenticate nor do you need an API token. 
 
-If you want to submit transactions to the network, you'll need to ensure that you have a Vega Wallet, which provides authentication in the form of a signature when sending transactions. 
+Data node operators offering free or paid data nodes may require you to authenticate, and if this is the case you will need to refer to the provider's documentation for details of how to do so.
+
+If you want to submit transactions to the network, you'll need to ensure that you have a Vega Wallet, which provides authentication in the form of a signature when sending transactions.
 
 When creating any scripts or software to interact with Vega, you'll need a wallet authentication token. 
 
@@ -39,7 +41,7 @@ When sending transactions, you'll need a Vega Wallet with at least one keypair, 
 
 To access the Vega network, the wallet needs to be configured with the location of one of more [data nodes](./architecture.md#data-nodes).
 
-When your client wants to send a transaction using the Vega wallet API, it will construct the transaction in JSON and pass it to the wallet. The wallet performs a client-side proof-of-work calculation, signs the transaction and forwards it to a validator node before it is added to a block. It is also possible to have the wallet sign a transaction without sending it, if needed. Alternatively, you can build the signer into your client, though you'll need to account for the PoW calculations.
+When your client wants to send a transaction using the Vega wallet API, it will construct the transaction in JSON and pass it to the wallet. The wallet performs a client-side proof-of-work calculation, signs the transaction and forwards it to a node on the network before it is added to a block. It is also possible to have the wallet sign a transaction without sending it, if needed. Alternatively, you can build the signer into your client, though you'll need to account for the PoW calculations.
 
 :::note Go deeper
 * **[Transactions](./../concepts/vega-chain/transactions.md)**: Learn about transactions, commands, validation, and ordering.
@@ -49,7 +51,7 @@ When your client wants to send a transaction using the Vega wallet API, it will 
 ### Transaction hashes
 Once a transaction has been successfully submitted to the chain, you receive the transaction's hash from the wallet. A transaction hash is a unique identifier for the transaction, and can be used to find that transaction and check its status on a Vega block explorer. Note that a transaction can only be seen by the block explorer once it's been processed by the network and been propagated to the Vega node on the block explorer backend.
 
-Depending on transaction type, most will be given a deterministic ID, derived from the transaction hash, which is specific to the object the transaction creates once it's processed. You can use that object-specific ID with the relevant endpoint to then get richer, more detailed information about it. 
+Depending on transaction type, most will be given a deterministic ID, derived from the signature, which is specific to the object the transaction creates once it's processed. You can use that object-specific ID with the relevant endpoint to then get richer, more detailed information about it. 
 
 For example, a submitted order will receive an order ID once the transaction to submit the order has been accepted into a block. You can use the REST endpoint to [get order by ID](./rest/data-v2/trading-data-service-get-order.api.mdx).
 

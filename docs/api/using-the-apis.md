@@ -22,25 +22,35 @@ To use the Vega APIs, a developer will need access to a network-compatible insta
 
 **Fairground**: The project team operate a number of nodes and data nodes with publicly available endpoints for the Vega-run testnet. Each Fairground wallet app release is pre-configured with known nodes, including those operated by the project team, at the time of release.
 
-## Rate limiting [WIP]
+## Rate limiting
+Some rate limiting is implemented with default limitations on the APIs. For specific details, see the [REST overview](./rest/overview.md) and WebSocket streams page.
 
-Take content from existing information and distill !! 
+## Available frameworks
 
-## Available frameworks [WIP]
+### REST for easy API access
+[REST](./rest/overview.md) provides endpoints for querying for trading data, account information, ledger movements, asset and market information, and much more. While the data provided through REST can come from three different places, the bulk of data can be acquired by querying the trading data API, which is served through data nodes. 
 
-### REST
-REST provides endpoints for querying for trading data, account information, ledger movements, asset and market information, and much more. While the data provided through REST can come from three different places, the bulk of data can be acquired by querying the trading data API, which is served through data nodes.
+REST is easy to get started with, and Vega supports nearly all the functionality provided by gRPC and GraphQL though REST.
 
-[Using REST](./rest/overview.md): Read the REST overview for everything you need to know before using the endpoints.
+**[Using REST](./rest/overview.md)**: Read the REST overview for everything you need to know before using the endpoints, like the default rate limits and pagination.
 
-### WebSocket
+### WebSockets for streaming
 WebSocket endpoints offer real-time updates to changes in the state of the Vega network, allowing subscriptions to events such as per-market trades or changes to a party's position.
 
-### gRPC
-gRPC provides fast and efficient communication, and supports near real time streaming of updates from Vega.
+### gRPC for fast interactions
+**[gRPC](./grpc/overview.md)** provides fast and efficient communication, and supports near real time streaming of updates from Vega.
 
-### GraphQL
-GraphQL is an alternative to REST, that can be used to craft more complex queries. 
+### GraphQL for web apps
+**[GraphQL](./graphql/generated.md)** is an alternative to REST that can be used to craft more complex queries.
+
+Try out queries and learn the structure with the [GraphQL playground ↗](https://api.testnet.vega.xyz/graphql/)
+
+## Vega Wallet integration
+If you're looking to integrate the Vega Wallet with a dApp or bots, you'll most likely need to use the wallet API, as the Vega Wallet can be used to authenticate and send transactions to the network.
+
+The **Wallet API** uses JSON-RPC with an HTTP wrapper. Find out [how to use the API](./vega-wallet/before-you-start.md) before jumping into the reference docs. 
+
+[Download a Vega Wallet](../tools/vega-wallet/index.md) to use the Wallet API to programmatically interact with the network for your own transactions.
 
 ## Ethereum bridges
 Vega uses ERC-20 assets from Ethereum, and to facilitate inter-chain interactions between Vega and Ethereum, those assets are then transferred through a series of smart contract bridges. These bridges provide a seamless experience for users, allowing them to use Ethereum assets on the (non-Ethereum) Vega chain.
@@ -48,6 +58,7 @@ Vega uses ERC-20 assets from Ethereum, and to facilitate inter-chain interaction
 Moreover, these smart contract bridges operate just like any other smart contract on Ethereum, meaning that users can interact with them directly using an Ethereum JSON-RPC node or a service like [Etherscan ↗](https://etherscan.io/), which provides a user-friendly interface for exploring and interacting with Ethereum smart contracts.
 
 ### Smart contracts
+**[Smart contracts overview](./bridge/index.md)**: Explore the contracts.
 
 * [ERC20 Bridge Logic](./bridge/contracts/ERC20_Bridge_Logic.md)
   * Contains the functions necessary to deposit, withdraw, list assets, etc. It's controlled by Multisig Control and controls Asset Pool.
@@ -65,11 +76,3 @@ Moreover, these smart contract bridges operate just like any other smart contrac
 ### Ethereum addresses
 <EthAddresses frontMatter={frontMatter} />
 
-**[Smart contracts overview](./bridge/index.md)**: Start exploring the contracts.
-
-## Vega Wallet integration
-If you're looking to integrate the Vega Wallet with a dApp or bots, you'll most likely need to use the wallet API, as the Vega Wallet can be used to authenticate and send transactions to the network.
-
-The **Wallet API** uses JSON-RPC with an HTTP wrapper. You can review the [guidance on how to use the API](./vega-wallet/before-you-start.md) before jumping into the reference documentation. 
-
-To use the Wallet API to programmatically interact with the network for your own transactions, [download a Vega Wallet](../tools/vega-wallet/index.md) before starting.
