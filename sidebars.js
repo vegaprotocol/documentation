@@ -25,6 +25,7 @@ module.exports = {
   api: [
     'api/overview',
     'api/using-the-apis',
+    'api/architecture',
     'api/building-blocks',
     'api/public-endpoints',
     {
