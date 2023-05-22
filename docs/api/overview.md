@@ -1,5 +1,5 @@
 ---
-title: Start developing
+title: Before you start
 sidebar_position: 1
 vega_network: TESTNET
 ---
@@ -10,25 +10,28 @@ import EthAddresses from '@site/src/components/EthAddresses';
 
 <Topic />
 
-This page describes how authentication and transactions work, and the versioning process.
+This page describes what you need to know before you start developing on Vega: How authentication and transactions work, and the versioning process.
 
 ## Decentralised network
-The Vega protocol provides the backbone to form a network specifically built to support trading of financial products on markets proposed and voted on by members of the Vega community.
+The Vega protocol provides the backbone to form a network specifically built to support proposing and creating markets for trading financial products. Markets can be proposed and voted on through governance by VEGA tokenholders.
 
 Vega is a public, decentralised network run by independent validators. 
 
-There are a number of different servers that you'll need to interact while working with the network - data will generally be recieved from one service and transactions will be sent to another using data nodes. See the [data flow section on the architecture page](./architecture.md#data-flow).
+There are several different servers you'll need to interact while working with the network. Data will generally be recieved from one service and transactions will be sent to another using data nodes. See the [data flow section on the architecture page](./architecture.md#data-flow) for more info.
 
 :::caution Supplying your own data
 Anyone that plans to build significant integrations, trading bots, or power backed services should expect to run their own data node, or collaborate with a data node provider, if one exists. 
 :::
 
+## Viewing the code
+Explore the code that makes up Vega by visiting the [Vega Protocol GitHub organisation](https://github.com/vegaprotocol), and more specifically the [Vega repo](https://github.com/vegaprotocol/vega) for core, data node and API code.
+
 ## Authentication
-Authentication takes several forms when interacting with Vega. When requesting data from a public, validator-run data node, such as through a query, you don't need to authenticate nor do you need an API token. 
+When requesting data from a public, validator-run data node, such as through a query, you don't need to authenticate nor do you need an API token. 
 
 Other data node operators may require you to authenticate, and if this is the case you will need to refer to the provider's documentation for details of how to do so.
 
-If you want to submit transactions to the network, all you need is a Vega wallet or signer library to sign the transaction using your keys.
+If you want to send transactions to the network, all you need is a [Vega wallet](../tools/vega-wallet/index.md) to sign the transaction using your Vega keys.
 
 However, if you want to integrate the official Vega wallet implementation with your web application or script, you'll need to use the connection layer built into the wallet API, and a wallet API authentication token.
 
@@ -41,7 +44,7 @@ When sending transactions, you'll need a Vega Wallet with at least one keypair, 
 
 To access the Vega network, the wallet needs to be configured with the location of one of more [data nodes](./architecture.md#data-nodes).
 
-When your client wants to send a transaction using the Vega wallet API, it will construct the transaction in JSON and pass it to the wallet. The wallet performs a client-side proof-of-work calculation, signs the transaction and forwards it to a node on the network before it is added to a block. It is also possible to have the wallet sign a transaction without sending it, if needed. Alternatively, you can build the signer into your client, though you'll need to account for the PoW calculations.
+If you have a client that you want use to send a transaction using the Vega wallet API, it will construct the transaction in JSON and pass it to the wallet. The wallet performs a client-side proof-of-work calculation, signs the transaction and forwards it to a node on the network before it is added to a block. It is also possible to have the wallet sign a transaction without sending it, if needed. Alternatively, you can build the signer into your client, though you'll need to account for the PoW calculations.
 
 :::note Go deeper
 * **[Transactions](./../concepts/vega-chain/transactions.md)**: Learn about transactions, commands, validation, and ordering.

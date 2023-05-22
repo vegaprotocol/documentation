@@ -16,11 +16,11 @@ As most of the APIs are designed to be used for trading-related queries, the bes
 
 To use the Vega APIs, a developer will need access to a network-compatible instance of the relevant software, depending on their goals: core node, data node, and/or Vega Wallet.
 
-**Mainnet**: The consensus validators may provide public endpoints for accessing the mainnet APIs, however that does not mean they should be relied upon for constant uptime and full access to all APIs. Each Vega Wallet release for mainnet wallet is pre-configured with any publicly announced nodes at the time of release.
+**Mainnet**: Consensus validators may provide public endpoints for accessing the mainnet APIs, however that does not mean they should be relied upon for constant uptime and full access to all APIs. Each Vega Wallet release for mainnet wallet is pre-configured with any publicly announced nodes at the time of release.
 
 **Validator testnet**: Some consensus validators may provide public endpoints for accessing the APIs on the validator testnet network, however that does not mean they should be relied on for constant uptime or full access to APIs.
 
-**Fairground**: The project team operate a number of nodes and data nodes with publicly available endpoints for the Vega-run testnet. Each Fairground wallet app release is pre-configured with known nodes, including those operated by the project team, at the time of release.
+**Fairground**: The project team operate a number of data nodes with publicly available endpoints for the Vega-run testnet, called Fairground. Each Fairground wallet app release is pre-configured with known nodes, including those operated by the project team, at the time of release.
 
 ## Rate limiting
 Some rate limiting is implemented with default limitations on the APIs. For specific details, see the [REST overview](./rest/overview.md) and WebSocket streams page.
@@ -46,7 +46,7 @@ WebSocket endpoints offer real-time updates to changes in the state of the Vega 
 Try out queries and learn the structure with the [GraphQL playground ↗](https://api.testnet.vega.xyz/graphql/)
 
 ## Vega Wallet integration
-If you're looking to integrate the Vega Wallet with a dApp or bots, you'll most likely need to use the wallet API, as the Vega Wallet can be used to authenticate and send transactions to the network.
+To integrate the Vega Wallet with a dApp or bots, you'll likely need to use the wallet API.
 
 The **Wallet API** uses JSON-RPC with an HTTP wrapper. Find out [how to use the API](./vega-wallet/before-you-start.md) before jumping into the reference docs. 
 
