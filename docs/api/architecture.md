@@ -45,7 +45,7 @@ Anyone who wants to can run a data node.
 ## Next steps
 Once you have a high-level understanding, read through the following topics.
 
-* **[Primary elements](./primary-elements.md)**: The basic building blocks you should know about.
-* **[Using the APIs](./using-the-apis.md)**: All the API frameworks and smart contracts in one place, plus tips on connecting.
+* **[Building blocks](./building-blocks.md)**: The basic building blocks you should know about.
+* **[Using the APIs](./using-the-apis.md)**: Quick intro to all the frameworks and smart contracts to help you find what you need.
 * **[Public endpoints](./public-endpoints.md)**: Public endpoints that are currently available for interacting with the APIs on the testnets.
 * **[Tutorials](../tutorials/index.md)**: Each tutorial includes info about the protocol that you need to use the guide, as well as instructions on how to interact with scripts, API calls, or other code.

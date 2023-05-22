@@ -1,5 +1,5 @@
 ---
-title: Commonly used data types [WIP]
+title: Building blocks
 sidebar_position: 4
 hide_title: false
 description: Building blocks of data and their APIs.
@@ -11,7 +11,9 @@ While there are hundreds of available endpoints, the categories below cover the 
 ## Parties
 A party is a single user, defined as a Vega public key. As one person or entity can have many public keys, this is a unique identifier as far as an individual key's actions.  Party ID and public key (pubkey) are all names for the same thing.
 
-Show a paginated list of parties using the **[parties endpoint](../api/rest/data-v2/trading-data-service-list-parties.api.mdx)**.
+| Description | Documentation | Call |
+| ----------- | ----------- | ----------- |
+| See a paginated list of parties | [List parties](../api/rest/data-v2/trading-data-service-list-parties.api.mdx) |  `GET /api/v2/parties` |
 
 ## Assets
 Assets used on Vega (to start) are all ERC-20 tokens, and thus originate on the Ethereum chain, not the Vega chain. Inter-chain asset interactions between Vega and Ethereum are facilitated through the [Ethereum bridges](#ethereum-bridges). 
@@ -21,7 +23,7 @@ Assets can only be added to the network to be used as collateral through a succe
 | Description | Documentation | Call |
 | ----------- | ----------- | ----------- |
 | See all assets that can be used on the network | [List assets](../api/rest/data-v2/trading-data-service-list-assets.api.mdx)| `GET /api/v2/assets`
-| Show a specific asset's details | [Asset](../api/rest/data-v2/trading-data-service-get-asset.api.mdx) | `GET /api/v2/asset/:assetId`
+| Show a specific asset's details | [Asset](../api/rest/data-v2/trading-data-service-get-asset.api.mdx) | `GET /api/v2/asset/:assetId` |
 
 ## Deposits and withdrawals
 Assets used on the Vega network need to be deposited from an Ethereum wallet using the [bridge contracts](#ethereum-bridges), and can be withdrawn back into an Ethereum wallet if they are not being used for margin or liquidity commitments.
