@@ -24,9 +24,9 @@ Anyone that plans to build significant integrations, trading bots, or power back
 :::
 
 ## Authentication
-Authentication takes several forms when interacting with Vega. When requesting data from a standard data node, such as through a query, you don't need to authenticate nor do you need an API token. 
+Authentication takes several forms when interacting with Vega. When requesting data from a public, validator-run data node, such as through a query, you don't need to authenticate nor do you need an API token. 
 
-Data node operators offering free or paid data nodes may require you to authenticate, and if this is the case you will need to refer to the provider's documentation for details of how to do so.
+Other data node operators may require you to authenticate, and if this is the case you will need to refer to the provider's documentation for details of how to do so.
 
 If you want to submit transactions to the network, all you need is a Vega wallet or signer library to sign the transaction using your keys.
 

@@ -34,6 +34,15 @@ Below, find a list of all the known public servers available for this network, a
 | Name        | Address     |
 | ----------- | ----------- |
 | api-validators-testnet | `https://api-validators-testnet.vega.rocks/` |
+| rest.venom.tm.p2p.org | `https://rest.venom.tm.p2p.org` |
+| vega-testnet.anyvalid.com | `https://vega-testnet.anyvalid.com` |
+| testnet.vega.xprv.io/datanode | `https://testnet.vega.xprv.io/datanode` |
+| rest.venom.tm.p2p.org | `https://rest.venom.tm.p2p.org` |
+| vega-testnet.nodes.guru:3008 | `https://vega-testnet.nodes.guru:3008` |
+| testnet.vega.greenfield.xyz | `https://testnet.vega.greenfield.xyz` |
+| vega-testnet-data.commodum.io | `https://vega-testnet-data.commodum.io` |
+| vega-rest.testnet.lovali.xyz | `https://vega-rest.testnet.lovali.xyz` |
+| vega-test-data.bharvest.io | `https://vega-test-data.bharvest.io:3009` |
 
 </TabItem>
 
@@ -42,6 +51,15 @@ Below, find a list of all the known public servers available for this network, a
 | Name        | Address     |
 | ----------- | ----------- |
 | api-validators-testnet | `https://api-validators-testnet.vega.rocks/graphql/`|
+| gql.venom.tm.p2p.org | `https://gql.venom.tm.p2p.org/graphql`|
+| vega-testnet.anyvalid.com/graphql | `https://vega-testnet.anyvalid.com/graphql`|
+| testnet.vega.xprv.io/datanode/query | `https://testnet.vega.xprv.io/datanode/query`|
+| vega-testnet.anyvalid.com/graphql | `https://vega-testnet.anyvalid.com/graphql`|
+| vega-testnet.nodes.guru | `https://vega-testnet.nodes.guru:3008/graphql`|
+| testnet.vega.greenfield.xyz | `https://testnet.vega.greenfield.xyz/graphql`|
+| vega-testnet-data.commodum.io | `https://vega-testnet-data.commodum.io/graphql`|
+| vega-query.testnet.lovali.xyz | `https://vega-query.testnet.lovali.xyz:433/query`|
+| vega-test-data.bharvest.io/graphql | `https://vega-test-data.bharvest.io/graphql`|
 
 </TabItem>
 
@@ -50,6 +68,14 @@ Below, find a list of all the known public servers available for this network, a
 | Name        | Address     |
 | ----------- | ----------- |
 | api.validators-testnet      | `api.validators-testnet.vega.rocks:3007`|
+| grpc.venom.tm.p2p.org | `tls://grpc.venom.tm.p2p.org:443` |
+| vega-testnet.anyvalid.com | `vega-testnet.anyvalid.com:3007`|
+| testnet.grpc.vega.xprv.io | `tls://testnet.grpc.vega.xprv.io:443`|
+| vega-testnet.nodes.guru | `vega-testnet.nodes.guru:3007`|
+| testnet.vega.greenfield.xyz | `testnet.vega.greenfield.xyz:3007`|
+| vega-testnet-data.commodum.io | `vega-testnet-data.commodum.io:3007`|
+| vega-grpc.testnet.lovali.xyz | `tls://vega-grpc.testnet.lovali.xyz:433`|
+| vega-test-data.bharvest.io | `vega-test-data.bharvest.io:3007`|
 
 </TabItem>
 </Tabs>
