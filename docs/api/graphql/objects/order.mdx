@@ -39,6 +39,8 @@ type Order {
   updatedAt: Timestamp
   peggedOrder: PeggedOrder
   liquidityProvision: LiquidityProvision
+  postOnly: Boolean
+  reduceOnly: Boolean
 }
 ```
 
@@ -127,6 +129,14 @@ type Order {
 > The liquidity provision this order was created from
 > 
 
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>postOnly</b></code>](#)<Bullet />[`Boolean`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> Is this a post only order
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>reduceOnly</b></code>](#)<Bullet />[`Boolean`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> Is this a reduce only order
+> 
+
 
 
 ### Returned by
@@ -135,7 +145,7 @@ type Order {
 
 ### Member of
 
-[`LiquidityOrderReference`](/testnet/api/graphql/objects/liquidity-order-reference)  <Badge class="secondary" text="object"/><Bullet />[`OrderEdge`](/testnet/api/graphql/objects/order-edge)  <Badge class="secondary" text="object"/>
+[`Entities`](/testnet/api/graphql/objects/entities)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityOrderReference`](/testnet/api/graphql/objects/liquidity-order-reference)  <Badge class="secondary" text="object"/><Bullet />[`OrderEdge`](/testnet/api/graphql/objects/order-edge)  <Badge class="secondary" text="object"/>
 
 
 

@@ -1,0 +1,45 @@
+---
+id: parties-connection
+title: partiesConnection
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+One or more entities that are trading on the Vega network
+
+```graphql
+partiesConnection(
+  id: ID
+  pagination: Pagination
+): PartyConnection
+```
+
+
+### Arguments
+
+#### [<code style={{ fontWeight: 'normal' }}>partiesConnection.<b>id</b></code>](#)<Bullet />[`ID`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> Optional ID of a party to retrieve
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>partiesConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/mainnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Optional pagination information
+> 
+
+### Type
+
+#### [`PartyConnection`](/mainnet/api/graphql/objects/party-connection) <Badge class="secondary" text="object"/>
+> Connection type for retrieving cursor-based paginated party information
+> 
+
+
+
+
+

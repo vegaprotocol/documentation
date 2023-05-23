@@ -26,19 +26,19 @@ Make changes to an existing market.
 
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
-* A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minProposerBalance" hideName={true} suffix="tokens"/> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>
+* A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minProposerBalance" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
 * A minimum equity-like share in the market of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minProposerEquityLikeShare" hideName={true} />
-* Familiarity with [governance on Vega](../../concepts/vega-protocol.md#governance), particularly off-chain activities
+* Familiarity with [governance on Vega](../../concepts/governance.md), particularly off-chain activities
 
 ## Anatomy of an update market proposal
 
-The `updateMarket` proposal requires the same fields as a `newMarket` proposal. See the descriptions in the [new market proposal tutorial](new-market-proposal.md#fields) for more on each field.
+The update market proposal requires the same fields as a new market proposal. See the descriptions in the [new market proposal tutorial](new-market-proposal.md#anatomy-of-a-market-proposal) for more on each field.
 
-In addition to the parameters you want to change, you must include all existing parameters from the original `newMarket` proposal, even if they are not being changed.
+In addition to the parameters you want to change, you must include all existing parameters from the original new market proposal, even if they are not being changed.
 
 ### Locked fields
 
-The following fields, which you might recognise from `newMarket` proposals, are immutable and cannot be changed. They are not included in the [proposal templates](#templates-and-submitting).
+The following fields, which you might recognise from new market proposals, are immutable and cannot be changed. They are not included in the [proposal templates](#templates-and-submitting).
 
 - `decimalPlaces`
 - `positionDecimalPlaces`
@@ -55,8 +55,11 @@ Note that some network parameters may differ, such as the limits on how long the
 | `enactmentTimestamp ` | Timestamp (Unix time in seconds) when proposal gets enacted (if passed). The chosen time must be between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minEnact" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.maxEnact" hideName={true} /> after `closingTimestamp`. (int64 as string)         |
 
 ## Templates and submitting
+In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example, and command line examples for different operating systems.
 
-In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used to [submit on the governance dApp ↗](https://governance.fairground.wtf/proposals/propose/update-market), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
+The governance dApp has a [tool to help you put together a proposal ↗](https://governance.fairground.wtf/proposals/propose/update-market). When you have your proposal ready you can [submit the JSON on the governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw).
+
+**Replace the example data with the relevant details before submitting.**
 
 <Tabs groupId="updateMarket">
   <TabItem value="annotated" label="Annotated example">
@@ -79,7 +82,7 @@ In the tabs below you'll see an annotated example, which describes what each fie
 ## Voting and enactment
 All proposals are voted on by the community. To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minVoterBalance" formatter="governanceToken" suffix="tokens" hideName={true} /> or <NetworkParameter frontMatter={frontMatter} formatter="governanceToken" param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated to their Vega key.
 
-Your proposal will need [participation](../../concepts/vega-protocol#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential. If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
+Your proposal will need [participation](../../concepts/governance.md#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential. If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
 
 Building support is down to you. Share your proposal in [the _Update Market Proposals_ forum ↗](https://community.vega.xyz/c/fairground-testnet-governance/update-market-proposals-testnet/38) on Vega community, being sure to follow the [post guide ↗](https://community.vega.xyz/t/guide-to-update-market-proposals/4178). You may also wish to share on [Discord ↗](https://vega.xyz/discord).
 

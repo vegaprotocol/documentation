@@ -8,7 +8,7 @@ let loadingMutex = false;
 // Where to link to if the user clicks on the component
 const networkApiUrl = {
 	TESTNET: "https://api.testnet.vega.xyz/api/v2/network/parameters",
-	MAINNET: "https://api.token.vega.xyz/network/parameters",
+	MAINNET: "https://api.vega.community/api/v2/network/parameters",
 };
 
 // Context contains all network parameters

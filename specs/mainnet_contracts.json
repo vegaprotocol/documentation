@@ -1,11 +1,11 @@
 {
 	"network": "mainnet",
 	"MultisigControl": {
-		"address": "0x164D322B2377C0fdDB73Cd32f24e972A7d9C72F9",
+		"address": "0xDD2df0E7583ff2acfed5e49Df4a424129cA9B58F",
 		"version": "v2"
 	},
 	"ERC20Bridge": {
-		"address": "0xCd403f722b76366f7d609842C589906ca051310f",
+		"address": "0x124Dd8a6044ef048614AEA0AAC86643a8Ae1312D",
 		"version": "v2"
 	},
 	"ERC20AssetPool": {

@@ -1,0 +1,48 @@
+---
+id: tradable-instrument
+title: TradableInstrument
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A tradable instrument is a combination of an instrument and a risk model
+
+```graphql
+type TradableInstrument {
+  instrument: Instrument!
+  riskModel: RiskModel!
+  marginCalculator: MarginCalculator
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>TradableInstrument.<b>instrument</b></code>](#)<Bullet />[`Instrument!`](/mainnet/api/graphql/objects/instrument) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> An instance of, or reference to, a fully specified instrument.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TradableInstrument.<b>riskModel</b></code>](#)<Bullet />[`RiskModel!`](/mainnet/api/graphql/unions/risk-model) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="union"/>
+> A reference to a risk model that is valid for the instrument
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TradableInstrument.<b>marginCalculator</b></code>](#)<Bullet />[`MarginCalculator`](/mainnet/api/graphql/objects/margin-calculator) <Badge class="secondary" text="object"/>
+> Margin calculation info, currently only the scaling factors (search, initial, release) for this tradable instrument
+> 
+
+
+
+### Member of
+
+[`Market`](/mainnet/api/graphql/objects/market)  <Badge class="secondary" text="object"/>
+
+
+

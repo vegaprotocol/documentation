@@ -17,6 +17,7 @@ Whether the placer of an order is aiming to buy or sell on the market
 
 ```graphql
 enum Side {
+  SIDE_UNSPECIFIED
   SIDE_BUY
   SIDE_SELL
 }
@@ -24,6 +25,10 @@ enum Side {
 
 
 ### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>Side.<b>SIDE_UNSPECIFIED</b></code>](#) 
+> Unspecified is only used for trades at the end of an auction, where neither party acts as the aggressor.
+> 
 
 #### [<code style={{ fontWeight: 'normal' }}>Side.<b>SIDE_BUY</b></code>](#) 
 > The placer of the order is aiming to buy
@@ -37,7 +42,7 @@ enum Side {
 
 ### Member of
 
-[`estimateOrder`](/testnet/api/graphql/queries/estimate-order)  <Badge class="secondary" text="query"/><Bullet />[`Order`](/testnet/api/graphql/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`OrderUpdate`](/testnet/api/graphql/objects/order-update)  <Badge class="secondary" text="object"/><Bullet />[`Trade`](/testnet/api/graphql/objects/trade)  <Badge class="secondary" text="object"/><Bullet />[`TradeUpdate`](/testnet/api/graphql/objects/trade-update)  <Badge class="secondary" text="object"/>
+[`estimateFees`](/testnet/api/graphql/queries/estimate-fees)  <Badge class="secondary" text="query"/><Bullet />[`estimateOrder`](/testnet/api/graphql/queries/estimate-order)  <Badge class="secondary" text="query"/><Bullet />[`Order`](/testnet/api/graphql/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`OrderInfo`](/testnet/api/graphql/inputs/order-info)  <Badge class="secondary" text="input"/><Bullet />[`OrderUpdate`](/testnet/api/graphql/objects/order-update)  <Badge class="secondary" text="object"/><Bullet />[`Trade`](/testnet/api/graphql/objects/trade)  <Badge class="secondary" text="object"/><Bullet />[`TradeUpdate`](/testnet/api/graphql/objects/trade-update)  <Badge class="secondary" text="object"/>
 
 
 

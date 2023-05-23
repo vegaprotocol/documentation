@@ -1,0 +1,173 @@
+---
+id: observable-market-data
+title: ObservableMarketData
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Live data of a Market
+
+```graphql
+type ObservableMarketData {
+  marketId: ID!
+  markPrice: String!
+  bestBidPrice: String!
+  bestBidVolume: String!
+  bestOfferPrice: String!
+  bestOfferVolume: String!
+  bestStaticBidPrice: String!
+  bestStaticBidVolume: String!
+  bestStaticOfferPrice: String!
+  bestStaticOfferVolume: String!
+  midPrice: String!
+  staticMidPrice: String!
+  timestamp: Timestamp!
+  openInterest: String!
+  auctionEnd: String
+  auctionStart: String
+  indicativePrice: String!
+  indicativeVolume: String!
+  marketTradingMode: MarketTradingMode!
+  marketState: MarketState!
+  trigger: AuctionTrigger!
+  extensionTrigger: AuctionTrigger!
+  targetStake: String
+  suppliedStake: String
+  priceMonitoringBounds: [PriceMonitoringBounds!]
+  marketValueProxy: String!
+  liquidityProviderFeeShare: [ObservableLiquidityProviderFeeShare!]
+  nextMarkToMarket: String!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>marketId</b></code>](#)<Bullet />[`ID!`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Market ID of the associated mark price
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>markPrice</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The mark price (an unsigned integer)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>bestBidPrice</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The highest price level on an order book for buy orders.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>bestBidVolume</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The aggregated volume being bid at the best bid price.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>bestOfferPrice</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The lowest price level on an order book for offer orders.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>bestOfferVolume</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The aggregated volume being offered at the best offer price.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>bestStaticBidPrice</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The highest price level on an order book for buy orders not including pegged orders.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>bestStaticBidVolume</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The aggregated volume being offered at the best static bid price, excluding pegged orders
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>bestStaticOfferPrice</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The lowest price level on an order book for offer orders not including pegged orders
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>bestStaticOfferVolume</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The aggregated volume being offered at the best static offer price, excluding pegged orders
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>midPrice</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The arithmetic average of the best bid price and best offer price
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>staticMidPrice</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The arithmetic average of the best static bid price and best static offer price
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>timestamp</b></code>](#)<Bullet />[`Timestamp!`](/mainnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano time at which this market price was relevant
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>openInterest</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The sum of the size of all positions greater than 0
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>auctionEnd</b></code>](#)<Bullet />[`String`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> RFC3339Nano time at which the auction will stop (null if not in auction mode)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>auctionStart</b></code>](#)<Bullet />[`String`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> RFC3339Nano time at which the next auction will start (null if none is scheduled)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>indicativePrice</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Indicative price if the auction ended now, 0 if not in auction mode
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>indicativeVolume</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Indicative volume if the auction ended now, 0 if not in auction mode
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>marketTradingMode</b></code>](#)<Bullet />[`MarketTradingMode!`](/mainnet/api/graphql/enums/market-trading-mode) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> What mode the market is in (auction, continuous etc)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>marketState</b></code>](#)<Bullet />[`MarketState!`](/mainnet/api/graphql/enums/market-state) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Current state of the market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>trigger</b></code>](#)<Bullet />[`AuctionTrigger!`](/mainnet/api/graphql/enums/auction-trigger) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> What triggered an auction (if an auction was started)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>extensionTrigger</b></code>](#)<Bullet />[`AuctionTrigger!`](/mainnet/api/graphql/enums/auction-trigger) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> What extended the ongoing auction (if an auction was extended)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>targetStake</b></code>](#)<Bullet />[`String`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> The amount of stake targeted for this market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>suppliedStake</b></code>](#)<Bullet />[`String`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> The supplied stake for the market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>priceMonitoringBounds</b></code>](#)<Bullet />[`[PriceMonitoringBounds!]`](/mainnet/api/graphql/objects/price-monitoring-bounds) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> A list of valid price ranges per associated trigger
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>marketValueProxy</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The market value proxy
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>liquidityProviderFeeShare</b></code>](#)<Bullet />[`[ObservableLiquidityProviderFeeShare!]`](/mainnet/api/graphql/objects/observable-liquidity-provider-fee-share) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> The equity like share of liquidity fee for each liquidity provider
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>nextMarkToMarket</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano time indicating the next time positions will be marked to market
+> 
+
+
+
+### Returned by
+
+[`marketsData`](/mainnet/api/graphql/subscriptions/markets-data)  <Badge class="secondary" text="subscription"/>
+
+
+

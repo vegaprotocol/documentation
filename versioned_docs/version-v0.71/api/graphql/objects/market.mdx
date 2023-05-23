@@ -1,0 +1,233 @@
+---
+id: market
+title: Market
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Represents a product & associated parameters that can be traded on Vega, has an associated OrderBook and Trade history
+
+```graphql
+type Market {
+  id: ID!
+  fees: Fees!
+  tradableInstrument: TradableInstrument!
+  decimalPlaces: Int!
+  positionDecimalPlaces: Int!
+  openingAuction: AuctionDuration!
+  priceMonitoringSettings: PriceMonitoringSettings!
+  liquidityMonitoringParameters: LiquidityMonitoringParameters!
+  tradingMode: MarketTradingMode!
+  state: MarketState!
+  proposal: Proposal
+  ordersConnection(
+  pagination: Pagination
+  filter: OrderByPartyIdsFilter
+): OrderConnection
+  accountsConnection(
+  partyId: ID
+  pagination: Pagination
+): AccountsConnection
+  tradesConnection(
+  dateRange: DateRange
+  pagination: Pagination
+): TradeConnection
+  depth(
+  maxDepth: Int
+): MarketDepth!
+  candlesConnection(
+  since: String!
+  to: String
+  interval: Interval!
+  pagination: Pagination
+): CandleDataConnection
+  data: MarketData
+  liquidityProvisionsConnection(
+  partyId: ID
+  live: Boolean
+  pagination: Pagination
+): LiquidityProvisionsConnection
+  marketTimestamps: MarketTimestamps!
+  riskFactors: RiskFactor
+  lpPriceRange: String!
+  linearSlippageFactor: String!
+  quadraticSlippageFactor: String!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>id</b></code>](#)<Bullet />[`ID!`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Market ID
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>fees</b></code>](#)<Bullet />[`Fees!`](/mainnet/api/graphql/objects/fees) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Fees related data
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>tradableInstrument</b></code>](#)<Bullet />[`TradableInstrument!`](/mainnet/api/graphql/objects/tradable-instrument) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> An instance of, or reference to, a tradable instrument.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>decimalPlaces</b></code>](#)<Bullet />[`Int!`](/mainnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The number of decimal places that an integer must be shifted by in order to get a correct
+number denominated in the currency of the market. (uint64)
+
+Examples:
+Currency     Balance  decimalPlaces  Real Balance
+GBP              100              0       GBP 100
+GBP              100              2       GBP   1.00
+GBP              100              4       GBP   0.01
+GBP                1              4       GBP   0.0001   (  0.01p  )
+
+GBX (pence)      100              0       GBP   1.00     (100p     )
+GBX (pence)      100              2       GBP   0.01     (  1p     )
+GBX (pence)      100              4       GBP   0.0001   (  0.01p  )
+GBX (pence)        1              4       GBP   0.000001 (  0.0001p)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>positionDecimalPlaces</b></code>](#)<Bullet />[`Int!`](/mainnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The number of decimal places that an integer must be shifted in order to get a correct size (uint64).
+i.e. 0 means there are no fractional orders for the market, and order sizes are always whole sizes.
+2 means sizes given as 10^2 * desired size, e.g. a desired size of 1.23 is represented as 123 in this market.
+This sets how big the smallest order / position on the market can be.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>openingAuction</b></code>](#)<Bullet />[`AuctionDuration!`](/mainnet/api/graphql/objects/auction-duration) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Auction duration specifies how long the opening auction will run (minimum
+duration and optionally a minimum traded volume).
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>priceMonitoringSettings</b></code>](#)<Bullet />[`PriceMonitoringSettings!`](/mainnet/api/graphql/objects/price-monitoring-settings) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Price monitoring settings for the market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>liquidityMonitoringParameters</b></code>](#)<Bullet />[`LiquidityMonitoringParameters!`](/mainnet/api/graphql/objects/liquidity-monitoring-parameters) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Liquidity monitoring parameters for the market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>tradingMode</b></code>](#)<Bullet />[`MarketTradingMode!`](/mainnet/api/graphql/enums/market-trading-mode) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Current mode of execution of the market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>state</b></code>](#)<Bullet />[`MarketState!`](/mainnet/api/graphql/enums/market-state) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Current state of the market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>proposal</b></code>](#)<Bullet />[`Proposal`](/mainnet/api/graphql/objects/proposal) <Badge class="secondary" text="object"/>
+> The proposal that initiated this market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>ordersConnection</b></code>](#)<Bullet />[`OrderConnection`](/mainnet/api/graphql/objects/order-connection) <Badge class="secondary" text="object"/>
+> Orders on a market
+> ##### [<code style={{ fontWeight: 'normal' }}>Market.ordersConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/mainnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Pagination information
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Market.ordersConnection.<b>filter</b></code>](#)<Bullet />[`OrderByPartyIdsFilter`](/mainnet/api/graphql/inputs/order-by-party-ids-filter) <Badge class="secondary" text="input"/>
+> Filter orders
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>accountsConnection</b></code>](#)<Bullet />[`AccountsConnection`](/mainnet/api/graphql/objects/accounts-connection) <Badge class="secondary" text="object"/>
+> Get account for a party or market
+> ##### [<code style={{ fontWeight: 'normal' }}>Market.accountsConnection.<b>partyId</b></code>](#)<Bullet />[`ID`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> ID of the party to get the margin account for
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Market.accountsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/mainnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Pagination information
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>tradesConnection</b></code>](#)<Bullet />[`TradeConnection`](/mainnet/api/graphql/objects/trade-connection) <Badge class="secondary" text="object"/>
+> 
+> ##### [<code style={{ fontWeight: 'normal' }}>Market.tradesConnection.<b>dateRange</b></code>](#)<Bullet />[`DateRange`](/mainnet/api/graphql/inputs/date-range) <Badge class="secondary" text="input"/>
+> Date range to retrieve trades from/to. Start and end time should be expressed as an integer value of nano-seconds past the Unix epoch
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Market.tradesConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/mainnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Pagination information
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>depth</b></code>](#)<Bullet />[`MarketDepth!`](/mainnet/api/graphql/objects/market-depth) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Current depth on the order book for this market
+> ##### [<code style={{ fontWeight: 'normal' }}>Market.depth.<b>maxDepth</b></code>](#)<Bullet />[`Int`](/mainnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
+> Maximum market order book depth (returns whole order book if omitted)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>candlesConnection</b></code>](#)<Bullet />[`CandleDataConnection`](/mainnet/api/graphql/objects/candle-data-connection) <Badge class="secondary" text="object"/>
+> Candles on a market, for the 'last' n candles, at 'interval' seconds as specified by parameters using cursor based pagination
+> ##### [<code style={{ fontWeight: 'normal' }}>Market.candlesConnection.<b>since</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano encoded time to get candles from
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Market.candlesConnection.<b>to</b></code>](#)<Bullet />[`String`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> Optional: RFC3339Nano encoded time to get candles to
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Market.candlesConnection.<b>interval</b></code>](#)<Bullet />[`Interval!`](/mainnet/api/graphql/enums/interval) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Interval of the candles
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Market.candlesConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/mainnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Pagination information
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>data</b></code>](#)<Bullet />[`MarketData`](/mainnet/api/graphql/objects/market-data) <Badge class="secondary" text="object"/>
+> marketData for the given market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>liquidityProvisionsConnection</b></code>](#)<Bullet />[`LiquidityProvisionsConnection`](/mainnet/api/graphql/objects/liquidity-provisions-connection) <Badge class="secondary" text="object"/>
+> The list of the liquidity provision commitments for this market
+> ##### [<code style={{ fontWeight: 'normal' }}>Market.liquidityProvisionsConnection.<b>partyId</b></code>](#)<Bullet />[`ID`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> An optional party ID
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Market.liquidityProvisionsConnection.<b>live</b></code>](#)<Bullet />[`Boolean`](/mainnet/api/graphql/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> An optional live flag to determine whether to list only live LPs or not
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Market.liquidityProvisionsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/mainnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Pagination information
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>marketTimestamps</b></code>](#)<Bullet />[`MarketTimestamps!`](/mainnet/api/graphql/objects/market-timestamps) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Timestamps for state changes in the market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>riskFactors</b></code>](#)<Bullet />[`RiskFactor`](/mainnet/api/graphql/objects/risk-factor) <Badge class="secondary" text="object"/>
+> Risk factors for the market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>lpPriceRange</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Liquidity Provision order price range
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>linearSlippageFactor</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Linear slippage factor is used to cap the slippage component of maintainence margin - it is applied to the slippage volume
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>quadraticSlippageFactor</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Quadratic slippage factor is used to cap the slippage component of maintainence margin - it is applied to the square of the slippage volume
+> 
+
+
+
+### Returned by
+
+[`market`](/mainnet/api/graphql/queries/market)  <Badge class="secondary" text="query"/>
+
+### Member of
+
+[`AccountBalance`](/mainnet/api/graphql/objects/account-balance)  <Badge class="secondary" text="object"/><Bullet />[`AccountEvent`](/mainnet/api/graphql/objects/account-event)  <Badge class="secondary" text="object"/><Bullet />[`Entities`](/mainnet/api/graphql/objects/entities)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProvision`](/mainnet/api/graphql/objects/liquidity-provision)  <Badge class="secondary" text="object"/><Bullet />[`MarginLevels`](/mainnet/api/graphql/objects/margin-levels)  <Badge class="secondary" text="object"/><Bullet />[`MarketData`](/mainnet/api/graphql/objects/market-data)  <Badge class="secondary" text="object"/><Bullet />[`MarketDepth`](/mainnet/api/graphql/objects/market-depth)  <Badge class="secondary" text="object"/><Bullet />[`MarketDepthUpdate`](/mainnet/api/graphql/objects/market-depth-update)  <Badge class="secondary" text="object"/><Bullet />[`MarketEdge`](/mainnet/api/graphql/objects/market-edge)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/mainnet/api/graphql/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`Position`](/mainnet/api/graphql/objects/position)  <Badge class="secondary" text="object"/><Bullet />[`Trade`](/mainnet/api/graphql/objects/trade)  <Badge class="secondary" text="object"/>
+
+
+

@@ -1,0 +1,43 @@
+---
+id: liquidity-provisions-connection
+title: LiquidityProvisionsConnection
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Connection type for retrieving cursor-based paginated liquidity provision information
+
+```graphql
+type LiquidityProvisionsConnection {
+  edges: [LiquidityProvisionsEdge]
+  pageInfo: PageInfo!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvisionsConnection.<b>edges</b></code>](#)<Bullet />[`[LiquidityProvisionsEdge]`](/mainnet/api/graphql/objects/liquidity-provisions-edge) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> 
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvisionsConnection.<b>pageInfo</b></code>](#)<Bullet />[`PageInfo!`](/mainnet/api/graphql/objects/page-info) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> 
+> 
+
+
+
+### Member of
+
+[`Market`](/mainnet/api/graphql/objects/market)  <Badge class="secondary" text="object"/><Bullet />[`Party`](/mainnet/api/graphql/objects/party)  <Badge class="secondary" text="object"/>
+
+
+

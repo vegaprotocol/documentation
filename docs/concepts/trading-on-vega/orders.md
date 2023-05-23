@@ -106,6 +106,25 @@ Unparked pegged orders will be rejected:
 * If the reference price no longer exists (e.g. no best bid)
 * If the price moves to a value that means it would create an invalid order if the offset was applied
 
+### Conditional order parameters
+Orders with certain parameters offer conditions that can be set to determine when and how they're used.
+
+#### Post-only 
+Post-only is a condition that's only available for limit order can be set as post-only if you only want the order to be sent when it can enter the order book, and thus not immediately, neither partly nor entirely, cross with any orders already on the book. If the order would have immediately traded, it is instead stopped, and the party receives a response that the order was stopped to avoid a trade occurring. 
+
+A post-only order will not incur [fees](./fees-rewards.md) if executed in continuous trading. However, if the order trades at an auction uncrossing, it may incur a fraction of liquidity and infrastructure fees.
+
+Once the order reaches the order book, it acts identically to an unconditional limit order set at the same price.
+
+A post-order cannot be active at the same time as a reduce-only order on the same market. 
+
+#### Reduce-only 
+Reduce-only is only an available option for orders with a non-persistent time-in-force. If set, the order will only be executed if the outcome of the trade moves the trader's position closer to 0. 
+
+In addition, a reduce-only order will not move a position to the opposite side from the trader's current position. For example, if the trader's current position is a short, enabling reduce-only cannot make the trader long as a result. If submitted with an IOC time in force, where the full volume would switch sides, only the amount required to move the position to 0 will be executed.
+
+A reduce-only order cannot be active at the same time as a post-only order on the same market. 
+
 ## Batch order
 Order instructions (such as submit, cancel, and/or amend orders) can be batched together in a single transaction, which allows traders to regularly place and maintain the price and size of multiple orders without needing to wait for each order instruction to be processed by the network individually.
 
@@ -113,7 +132,7 @@ Batches are processed in the following order: all cancellations, then all amendm
 
 They are also processed as if they were standalone order instructions in terms of market behaviour. For example, if an instruction, had it been submitted individually, would trigger entry into or exit from an auction, then the order instruction would set off the auction trigger before the rest of the batch is processed.
 
-Batch order instructions can be used in a liquidity provision strategy to help providers manage their limit orders (and their risk) more efficiently.
+Batch order instructions can be used in a liquidity provision strategy to help providers manage their limit orders (and their risk) more efficiently. The orders within a batch can also have conditions set, as post-only or reduce-only.
 
 To prevent spamming, the total number of instructions in a batch order transaction can be no more than the number set with the network parameter: <NetworkParameter frontMatter={frontMatter} param="network.spam_protection.max.batch.size" />. A batch order transaction with more instructions than allowed will fail.
 

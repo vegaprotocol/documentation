@@ -1,0 +1,48 @@
+---
+id: liquidity-monitoring-parameters
+title: LiquidityMonitoringParameters
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Configuration of a market liquidity monitoring parameters
+
+```graphql
+type LiquidityMonitoringParameters {
+  targetStakeParameters: TargetStakeParameters!
+  triggeringRatio: String!
+  auctionExtensionSecs: Int!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityMonitoringParameters.<b>targetStakeParameters</b></code>](#)<Bullet />[`TargetStakeParameters!`](/mainnet/api/graphql/objects/target-stake-parameters) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Specifies parameters related to target stake calculation
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityMonitoringParameters.<b>triggeringRatio</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Specifies the triggering ratio for entering liquidity auction
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityMonitoringParameters.<b>auctionExtensionSecs</b></code>](#)<Bullet />[`Int!`](/mainnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Specifies by how many seconds an auction should be extended if leaving the auction were to trigger a liquidity auction
+> 
+
+
+
+### Member of
+
+[`Market`](/mainnet/api/graphql/objects/market)  <Badge class="secondary" text="object"/><Bullet />[`NewMarket`](/mainnet/api/graphql/objects/new-market)  <Badge class="secondary" text="object"/><Bullet />[`UpdateMarketConfiguration`](/mainnet/api/graphql/objects/update-market-configuration)  <Badge class="secondary" text="object"/>
+
+
+

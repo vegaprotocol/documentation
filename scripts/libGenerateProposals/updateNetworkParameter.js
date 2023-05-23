@@ -28,9 +28,9 @@ function updateNetworkParameter(skeleton, proposalSoFar) {
  result.terms.updateNetworkParameter[inspect.custom]= () => {
    return `{
       changes: {
-        // ${skeleton.properties.changes.properties.key.title} (${skeleton.properties.changes.properties.key.type}) 
+        // ${skeleton.properties.changes.properties.key.description} (${skeleton.properties.changes.properties.key.type}) 
         key: "${result.terms.updateNetworkParameter.changes.key}",
-        // ${skeleton.properties.changes.properties.value.title} (${skeleton.properties.changes.properties.value.type}) 
+        // ${skeleton.properties.changes.properties.value.description} (${skeleton.properties.changes.properties.value.type}) 
         value: "${result.terms.updateNetworkParameter.changes.value}"
       }
     }`

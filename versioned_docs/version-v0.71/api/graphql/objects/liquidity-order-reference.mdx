@@ -1,0 +1,43 @@
+---
+id: liquidity-order-reference
+title: LiquidityOrderReference
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+type LiquidityOrderReference {
+  order: Order
+  liquidityOrder: LiquidityOrder!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityOrderReference.<b>order</b></code>](#)<Bullet />[`Order`](/mainnet/api/graphql/objects/order) <Badge class="secondary" text="object"/>
+> The pegged order generated to fulfill this commitment
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityOrderReference.<b>liquidityOrder</b></code>](#)<Bullet />[`LiquidityOrder!`](/mainnet/api/graphql/objects/liquidity-order) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The liquidity order
+> 
+
+
+
+### Member of
+
+[`LiquidityProvision`](/mainnet/api/graphql/objects/liquidity-provision)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProvisionUpdate`](/mainnet/api/graphql/objects/liquidity-provision-update)  <Badge class="secondary" text="object"/><Bullet />[`MarketDataCommitments`](/mainnet/api/graphql/objects/market-data-commitments)  <Badge class="secondary" text="object"/>
+
+
+

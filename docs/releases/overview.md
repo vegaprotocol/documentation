@@ -19,12 +19,61 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 
 [**Vega Desktop Wallet on GitHub** ↗](https://github.com/vegaprotocol/vegawallet-desktop/releases) - The code for the Vega Wallet desktop app is open source, and you can read the contents of each release on the repo.
 
-[**Governance dApp on GitHub** ↗](https://github.com/vegaprotocol/frontend-monorepo/releases) - The Governance dApp, which provides an interface for interacting with governance proposals, VEGA tokens, and staking to validators; Console, a trading interface; and the Vega Block Explorer are open-source and you see more about them in the frontend monorepo.
+<!--[**Governance dApp on GitHub** ↗](https://github.com/vegaprotocol/frontend-monorepo/releases) - The Governance dApp, which provides an interface for interacting with governance proposals, VEGA tokens, and staking to validators; Console, a trading interface; and the Vega Block Explorer are open-source and you see more about them in the frontend monorepo.-->
 
 [**Vega Capsule on GitHub** ↗](https://github.com/vegaprotocol/vegacapsule/releases) - Vega Capsule, which lets you create an instance of the Vega network on your computer to experiment with using the protocol, is public and you can read the contents of each release on GitHub.
 
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
+
+### Pre-release versions 0.71.3, and 0.71.4 combined | 2023-05-05
+This version was released to the Vega testnet on 05 May, 2023.
+
+This combined release contains fixes for two bugs found in data node during the final community incentive run on the alpha mainnet release candidate.
+
+A bug was identified in the way expired orders were handled by the protocol. Orders were being inserted into the databases with different sequence numbers; this resulted in the logic to expire orders being unable to get deterministic data across the network. This issue was resolved by querying the data by `id` to ensure the correct sequencing on all nodes in the network. See the full details of this bug fix in issue [8251 ↗](https://github.com/vegaprotocol/vega/issues/8251)
+
+The network history status endpoint was found to be unresponsive due to a recent name change in the functions that get the network history peers and the status. The function names were updated, reinstating the functionality of the `GetNetworkHistoryStatus` API endpoint. See the full details of this bug fix in issue [8231 ↗](https://github.com/vegaprotocol/vega/issues/8231)
+
+This release contains the two aforementioned bug fixes and minor enhancements and makes up the software version recommended to the validators to deploy for the release of alpha mainnet. Check out the full details of these patch releases in the Vega core [0.71.3 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.71.3) and [0.71.4 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.71.4) release page.
+
+### Pre-release versions 0.71.0, 0.71.1, and 0.71.2 combined | 2023-04-26
+This version was released to the Vega testnet on 26 April, 2023.
+
+This combined release contains improvements to API documentation, as well as bug fixes and minor enhancements to improve usability.
+
+:::caution Breaking changes
+**Remove WebSocket for rewards**: An unused and unnecessary event stream has been removed to simplify the APIs.
+
+**Remove all offset pagination**: While cursor pagination has been available for a number of releases, some endpoints still also supported offset pagination. This has now been removed for clarity and simplicity. 
+
+Check out a full summary of all the 0.71.0 [breaking changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0710) entries in the changelog. There were no breaking changes in 0.71.1 or 0.71.2.
+:::
+
+This release contains breaking changes, bug fixes and minor enhancements. Check out the full details in the Vega core [0.71.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.71.0), [0.71.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.71.1) and [0.71.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.71.2) release page.
+
+### Pre-release versions 0.70.0, 0.70.1, and 0.70.2 combined | 2023-03-28
+This version was released to the Vega testnet on 28 March 2023, with the 0.70.2 patch released on 31 March, 2023.
+
+Versions 0.70.0-0.70.3 contain the fixes and minor enhancements to verify in Fairground before the validators deploy to the validator-run testnet for the Market Simulation #4 event.
+
+Several new features were released with these versions: the addition of post-only and reduce-only options for certain order types. In addition, bugs in restoring deposits after checkpoints and order subscriptions were also fixed. 
+
+These deployments also realised further data node enhancements to aid performance and improve management of stored data. The indexes on the positions table have been reworked in order to maintain performance of network history on the data nodes. Additionally, the buffer-size config has been adjusted to best utilise the node memory on startup.
+
+Finally, to help manage the volume of data being created, LP orders are no longer sent when resubmitted without any changes, giving a direct data storage benefit.
+
+:::caution Breaking changes
+**Add `marketIds` and `partyIds` to orders queries' filter.**: In order to allow getting all orders for a single party or market so that users can more easily find their orders across multiple keys or markets, filtering on the orders endpoint has been enhanced.
+
+**Use nanoseconds for one off transfers**: During the Market Simulation #3, the data node crashed due to an invalid time input when carrying out an internal transfer. The field now validates for nanoseconds, which is consistent with other inputs.
+
+**Rename table `current liquidity provisions` to `live liquidity provisions` and add a `live` option**: During testing it was identified that over time the current liquidity provisions table will continue to grow as LPs are created/deleted. This change will help the management of the data being created by the protocol.
+
+Check out a full summary of all the 0.70.0 [breaking changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0700) entries in the changelog. There were no breaking changes in 0.70.1 or 0.70.2.
+:::
+
+This release contains breaking changes, bug fixes and minor enhancements. Check out the full details in the Vega core [0.70.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.70.0), [0.70.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.70.1) and [0.70.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.70.2) release page.
 
 ### Pre-release Version 0.69.0 | 2023-03-15
 This version was released to the Vega testnet on 15 March 2023.

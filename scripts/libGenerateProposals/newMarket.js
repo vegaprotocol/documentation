@@ -2,7 +2,7 @@ const sample = require("lodash/sample");
 const random = require("lodash/random");
 const assert = require("assert").strict;
 const { inspect } = require("util");
-const { format } = require("date-fns");
+const { format, fromUnixTime } = require("date-fns");
 
 // Shortcut for deeply nested stuff
 const p = 'properties'
@@ -61,7 +61,7 @@ function generateSettlementDataSourceSpec(skeleton) {
         filters: [
           {
             key: {
-              name: "prices.BTC.value",
+              name: "prices.ORANGES.value",
               type: "TYPE_INTEGER",
               numberDecimalPlaces: "5"
             },
@@ -74,13 +74,13 @@ function generateSettlementDataSourceSpec(skeleton) {
           },
           {
             key: {
-              name: "prices.BTC.timestamp",
-              type: "TYPE_TIMESTAMP",
+              name: "prices.ORANGES.timestamp",
+              type: "TYPE_INTEGER",
             },
             conditions: [
               {
                 operator: "OPERATOR_GREATER_THAN",
-                value: "1648684800000000000",
+                value: "1648684800",
               },
             ],
           },
@@ -207,7 +207,7 @@ function generateTerminationDataSourceSpec(skeleton) {
         conditions: [
           {
             operator: "OPERATOR_GREATER_THAN_OR_EQUAL",
-            value: "1648684800000000000",
+            value: "1648684800",
           },
         ],
       }
@@ -223,7 +223,6 @@ function generateTerminationDataSourceSpec(skeleton) {
       );
     return `{
         // ${splitDescription[0]}
-        // ${splitDescription[1]}
         internal {
             // ${skeleton[p].internal[p].time.description}
             time: {
@@ -259,8 +258,8 @@ function generateDataSourceSpecBinding(skeleton) {
   );
 
   const binding = {
-    settlementDataProperty: "prices.BTC.value",
-    tradingTerminationProperty: "vega.builtin.timestamp",
+    settlementDataProperty: "prices.ORANGES.value",
+    tradingTerminationProperty: "vegaprotocol.builtin.timestamp",
   };
 
   binding[inspect.custom] = () => {
@@ -270,10 +269,9 @@ function generateDataSourceSpecBinding(skeleton) {
     return `{
             // ${splitSettle[0]}
             // ${splitSettle[1]}
-            // ${splitSettle[2]}
-            // ${splitSettle[3]} (${skeleton.properties.settlementDataProperty.type})
+            // ${splitSettle[2]} (${skeleton.properties.settlementDataProperty.type})
             settlementDataProperty: "${binding.settlementDataProperty}",
-            // ${skeleton.properties.tradingTerminationProperty.title} (${skeleton.properties.tradingTerminationProperty.type})
+            // ${skeleton.properties.tradingTerminationProperty.description} (${skeleton.properties.tradingTerminationProperty.type})
             tradingTerminationProperty: "${binding.tradingTerminationProperty}"
           }`;
   };
@@ -333,20 +331,20 @@ function generateInstrument(skeleton) {
 
   instrument[inspect.custom] = () => {
     return `{
-        // ${skeleton.properties.name.title}
+        // ${skeleton.properties.name.description}
         name: "${instrument.name}",
-        // ${skeleton.properties.code.title}
+        // ${skeleton.properties.code.description}
         code: "${instrument.code}",
         // ${skeleton.properties.future.title}
         future: {
-          // ${skeleton.properties.future.properties.settlementAsset.title} (${skeleton.properties.future.properties.settlementAsset.type
+          // ${skeleton.properties.future.properties.settlementAsset.description} (${skeleton.properties.future.properties.settlementAsset.type
       })
           settlementAsset: "${instrument.future.settlementAsset}",
-          // ${skeleton.properties.future.properties.quoteName.title} (${skeleton.properties.future.properties.quoteName.type
+          // ${skeleton.properties.future.properties.quoteName.description} (${skeleton.properties.future.properties.quoteName.type
       })
           quoteName: "${instrument.future.quoteName}",
           // ${skeleton.properties.future.properties.dataSourceSpecForSettlementData
-        .title
+        .description
       } (${skeleton.properties.future.properties.dataSourceSpecForSettlementData.type
       })
           dataSourceSpecForSettlementData: ${inspect(
@@ -354,7 +352,7 @@ function generateInstrument(skeleton) {
         { depth: 5 }
       )},
           // ${skeleton.properties.future.properties
-        .dataSourceSpecForTradingTermination.title
+        .dataSourceSpecForTradingTermination.description
       } (${skeleton.properties.future.properties.dataSourceSpecForTradingTermination.type
       })
           dataSourceSpecForTradingTermination: ${inspect(
@@ -553,16 +551,16 @@ function generatePriceMonitoringParameters(skeleton) {
 
   params[inspect.custom] = () => {
     const splitTitle =
-      skeleton.properties.triggers.items.properties.auctionExtension.title.split(
+      skeleton.properties.triggers.items.properties.auctionExtension.description.split(
         "\n"
       );
     return `{
           // ${skeleton.properties.triggers.items.title}
           triggers: [
             {
-              // ${skeleton.properties.triggers.items.properties.horizon.title} (${skeleton.properties.triggers.items.properties.horizon.format} as ${skeleton.properties.triggers.items.properties.horizon.type})
+              // ${skeleton.properties.triggers.items.properties.horizon.description} (${skeleton.properties.triggers.items.properties.horizon.format} as ${skeleton.properties.triggers.items.properties.horizon.type})
               horizon: "${params.triggers[0].horizon}",
-              // ${skeleton.properties.triggers.items.properties.probability.title} (${skeleton.properties.triggers.items.properties.probability.type})
+              // ${skeleton.properties.triggers.items.properties.probability.description} (${skeleton.properties.triggers.items.properties.probability.type})
               probability: "${params.triggers[0].probability}",
               // ${splitTitle[0]}
               // ${splitTitle[1]}
@@ -603,14 +601,14 @@ function generateLiquidityMonitoringParameters(skeleton) {
     return `{
         // ${skeleton.properties.targetStakeParameters.title}
         targetStakeParameters: {
-          // ${skeleton.properties.targetStakeParameters.properties.timeWindow.title} (${skeleton.properties.targetStakeParameters.properties.timeWindow.type})
+          // ${skeleton.properties.targetStakeParameters.properties.timeWindow.description} (${skeleton.properties.targetStakeParameters.properties.timeWindow.type})
           timeWindow: "${params.targetStakeParameters.timeWindow}",
-          // ${skeleton.properties.targetStakeParameters.properties.scalingFactor.title} (${skeleton.properties.targetStakeParameters.properties.scalingFactor.type})
+          // ${skeleton.properties.targetStakeParameters.properties.scalingFactor.description} (${skeleton.properties.targetStakeParameters.properties.scalingFactor.type})
           scalingFactor: ${params.targetStakeParameters.scalingFactor}
         },
-        // ${skeleton.properties.triggeringRatio.title} (${skeleton.properties.triggeringRatio.format} as ${skeleton.properties.triggeringRatio.type})
+        // ${skeleton.properties.triggeringRatio.description} (${skeleton.properties.triggeringRatio.type})
         triggeringRatio: "${params.triggeringRatio}",
-        // ${skeleton.properties.auctionExtension.title} (${skeleton.properties.auctionExtension.format} as ${skeleton.properties.auctionExtension.type})
+        // ${skeleton.properties.auctionExtension.description} (${skeleton.properties.auctionExtension.format} as ${skeleton.properties.auctionExtension.type})
         auctionExtension: "${params.auctionExtension}",
       }}`;
   };
@@ -620,8 +618,8 @@ function generateLiquidityMonitoringParameters(skeleton) {
 
 function generateMetadata(skeleton, proposalSoFar) {
   const dateFormat = "yyyy-MM-dd\'T\'HH:mm:ss"
-  const settlement = format(proposalSoFar.terms.closingTimestamp, dateFormat)
-  const enactment = format(proposalSoFar.terms.enactmentTimestamp, dateFormat)
+  const settlement = format(fromUnixTime(proposalSoFar.terms.closingTimestamp), dateFormat)
+  const enactment = format(fromUnixTime(proposalSoFar.terms.enactmentTimestamp), dateFormat)
 
   assert.equal(
     skeleton.type,
@@ -666,23 +664,23 @@ function generateRiskModel(skeleton, riskModelType) {
       // Ditto
       r: 0.016,
       // This is a random array based on what was live on Fairground at the time
-      sigma: 0.5,
+      sigma: 0.15,
     },
   };
 
   riskModel[inspect.custom] = () => {
     return `{
-        // ${skeleton.properties.tau.title} (${skeleton.properties.tau.type})
+        // ${skeleton.properties.tau.description} (${skeleton.properties.tau.type})
         tau: ${riskModel.tau},
-        // ${skeleton.properties.riskAversionParameter.title} (${skeleton.properties.riskAversionParameter.format} as ${skeleton.properties.riskAversionParameter.type})
+        // ${skeleton.properties.riskAversionParameter.description} (${skeleton.properties.riskAversionParameter.format} as ${skeleton.properties.riskAversionParameter.type})
         riskAversionParameter: "${riskModel.riskAversionParameter}",
         // ${skeleton.properties.params.title}
         params: {
-          // ${skeleton.properties.params.properties.mu.title} (${skeleton.properties.params.properties.mu.format} as ${skeleton.properties.params.properties.mu.type})
+          // ${skeleton.properties.params.properties.mu.description} (${skeleton.properties.params.properties.mu.format} as ${skeleton.properties.params.properties.mu.type})
           mu: ${riskModel.params.mu},
-          // ${skeleton.properties.params.properties.r.title} (${skeleton.properties.params.properties.r.format} as ${skeleton.properties.params.properties.r.type})
+          // ${skeleton.properties.params.properties.r.description} (${skeleton.properties.params.properties.r.format} as ${skeleton.properties.params.properties.r.type})
           r: ${riskModel.params.r},
-          // ${skeleton.properties.params.properties.sigma.title} (${skeleton.properties.params.properties.sigma.format} as ${skeleton.properties.params.properties.sigma.type})
+          // ${skeleton.properties.params.properties.sigma.description} (${skeleton.properties.params.properties.sigma.format} as ${skeleton.properties.params.properties.sigma.type})
           sigma: ${riskModel.params.sigma},
         }
       }`;
@@ -742,7 +740,7 @@ function newMarket(skeleton, proposalSoFar) {
   };
 
   /*------- Liquidity Commitment required */
-  const lbLabel = skeleton.properties.changes.properties.lpPriceRange.title.split('\n')
+  const lbLabel = skeleton.properties.changes.properties.lpPriceRange.description.split('\n')
 
   result.terms.newMarket[inspect.custom] = () => {
     return `{
@@ -751,15 +749,15 @@ function newMarket(skeleton, proposalSoFar) {
           // ${lbLabel[1]}
           lpPriceRange: "${result.terms.newMarket.changes.lpPriceRange}",
 
-          // ${skeleton.properties.changes.properties.linearSlippageFactor.title}
+          // ${skeleton.properties.changes.properties.linearSlippageFactor.description}
           linearSlippageFactor: ${result.terms.newMarket.changes.linearSlippageFactor},
-          // ${skeleton.properties.changes.properties.quadraticSlippageFactor.title}
+          // ${skeleton.properties.changes.properties.quadraticSlippageFactor.description}
           quadraticSlippageFactor: ${result.terms.newMarket.changes.quadraticSlippageFactor},
 
-          // ${skeleton.properties.changes.properties.decimalPlaces.title} (${skeleton.properties.changes.properties.decimalPlaces.format
+          // ${skeleton.properties.changes.properties.decimalPlaces.description} (${skeleton.properties.changes.properties.decimalPlaces.format
       } as ${skeleton.properties.changes.properties.decimalPlaces.type})
           decimalPlaces: "${result.terms.newMarket.changes.decimalPlaces}",
-          // ${skeleton.properties.changes.properties.positionDecimalPlaces.title
+          // ${skeleton.properties.changes.properties.positionDecimalPlaces.description
       } (${skeleton.properties.changes.properties.positionDecimalPlaces.format
       } as ${skeleton.properties.changes.properties.positionDecimalPlaces.type})
           positionDecimalPlaces: "${result.terms.newMarket.changes.positionDecimalPlaces
@@ -768,7 +766,7 @@ function newMarket(skeleton, proposalSoFar) {
           instrument: ${inspect(result.terms.newMarket.changes.instrument, {
         depth: 19,
       })},
-          // ${skeleton.properties.changes.properties.metadata.title}
+          // ${skeleton.properties.changes.properties.metadata.description}
           metadata: ${JSON.stringify(result.terms.newMarket.changes.metadata)},
           // ${skeleton.properties.changes.properties.priceMonitoringParameters
         .title

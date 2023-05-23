@@ -1,6 +1,6 @@
 ---
 title: Programmatic trading basics
-sidebar_position: 2
+sidebar_position: 1
 hide_title: false
 description: Start bot development for submitting orders with this guide.
 ---
@@ -143,7 +143,7 @@ You'll need Sepolia ETH to pay for the Ethereum transaction gas.
 
 After the transaction is confirmed, the assets will be deposited and you will see a new entry in the Deposits tab for your assets. They are now ready to be used for trading.
 
-### Deposit using smart contracts
+### Deposit using Etherscan
 You'll need the following information available:
 * Vega public key you want to deposit to
 * ERC-20 bridge logic address
@@ -189,7 +189,7 @@ Run the deposit asset function:
 ## Get market information
 If you plan to add orders into the order book using limit orders, rather than have them fill immediately (market orders), then you'll need to know the current state of the market so you can accurately price the new orders you are sending. 
 
-Follow the REST documentation to [query the current market depth for the market](../api/rest/data-v2/trading-data-service-get-latest-market-depth).
+Follow the REST documentation to [query the current market depth for the market](../api/rest/data-v2/trading-data-service-get-latest-market-depth.api.mdx).
 
 There is also a subscription service available using REST to give you the market depth data in real time as things change in the market.
 
@@ -300,8 +300,8 @@ Send the order cancellation using the following command:
 ## Monitor trades and overall positions
 You can use the curl command to subscribe to the endpoints that return order and position information using REST:
 
-* [Subscribe to positions - reference documentation](../api/rest/data-v2/trading-data-service-observe-positions)
-* [Subscribe to orders - reference documentation](../api/rest/data-v2/trading-data-service-observe-orders)
+* [Subscribe to positions - reference documentation](../api/rest/data-v2/trading-data-service-observe-positions.api.mdx)
+* [Subscribe to orders - reference documentation](../api/rest/data-v2/trading-data-service-observe-orders.api.mdx)
 
 ## Example code 
 

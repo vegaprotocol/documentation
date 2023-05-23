@@ -1,0 +1,91 @@
+---
+id: withdrawal
+title: Withdrawal
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The details of a withdrawal processed by Vega
+
+```graphql
+type Withdrawal {
+  id: ID!
+  party: Party!
+  amount: String!
+  asset: Asset!
+  status: WithdrawalStatus!
+  ref: String!
+  createdTimestamp: Timestamp!
+  withdrawnTimestamp: Timestamp
+  txHash: String
+  details: WithdrawalDetails
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Withdrawal.<b>id</b></code>](#)<Bullet />[`ID!`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The Vega internal ID of the withdrawal
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Withdrawal.<b>party</b></code>](#)<Bullet />[`Party!`](/mainnet/api/graphql/objects/party) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The Party initiating the withdrawal
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Withdrawal.<b>amount</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The amount to be withdrawn
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Withdrawal.<b>asset</b></code>](#)<Bullet />[`Asset!`](/mainnet/api/graphql/objects/asset) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The asset to be withdrawn
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Withdrawal.<b>status</b></code>](#)<Bullet />[`WithdrawalStatus!`](/mainnet/api/graphql/enums/withdrawal-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The current status of the withdrawal
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Withdrawal.<b>ref</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> A reference the foreign chain can use to refer to when processing the withdrawal
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Withdrawal.<b>createdTimestamp</b></code>](#)<Bullet />[`Timestamp!`](/mainnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano time at which the withdrawal was created
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Withdrawal.<b>withdrawnTimestamp</b></code>](#)<Bullet />[`Timestamp`](/mainnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
+> RFC3339Nano time at which the withdrawal was finalised
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Withdrawal.<b>txHash</b></code>](#)<Bullet />[`String`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> Hash of the transaction on the foreign chain
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Withdrawal.<b>details</b></code>](#)<Bullet />[`WithdrawalDetails`](/mainnet/api/graphql/unions/withdrawal-details) <Badge class="secondary" text="union"/>
+> Foreign chain specific details about the withdrawal
+> 
+
+
+
+### Returned by
+
+[`withdrawal`](/mainnet/api/graphql/queries/withdrawal)  <Badge class="secondary" text="query"/>
+
+### Member of
+
+[`Entities`](/mainnet/api/graphql/objects/entities)  <Badge class="secondary" text="object"/><Bullet />[`WithdrawalEdge`](/mainnet/api/graphql/objects/withdrawal-edge)  <Badge class="secondary" text="object"/>
+
+### Implemented by
+
+[`Event`](/mainnet/api/graphql/unions/event)  <Badge class="secondary" text="union"/>
+
+
+

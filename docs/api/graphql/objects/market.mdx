@@ -29,9 +29,8 @@ type Market {
   state: MarketState!
   proposal: Proposal
   ordersConnection(
-  dateRange: DateRange
   pagination: Pagination
-  filter: OrderFilter
+  filter: OrderByPartyIdsFilter
 ): OrderConnection
   accountsConnection(
   partyId: ID
@@ -53,6 +52,7 @@ type Market {
   data: MarketData
   liquidityProvisionsConnection(
   partyId: ID
+  live: Boolean
   pagination: Pagination
 ): LiquidityProvisionsConnection
   marketTimestamps: MarketTimestamps!
@@ -129,15 +129,11 @@ duration and optionally a minimum traded volume).
 
 #### [<code style={{ fontWeight: 'normal' }}>Market.<b>ordersConnection</b></code>](#)<Bullet />[`OrderConnection`](/testnet/api/graphql/objects/order-connection) <Badge class="secondary" text="object"/>
 > Orders on a market
-> ##### [<code style={{ fontWeight: 'normal' }}>Market.ordersConnection.<b>dateRange</b></code>](#)<Bullet />[`DateRange`](/testnet/api/graphql/inputs/date-range) <Badge class="secondary" text="input"/>
-> Date range to retrieve orders from/to. Start and end time should be expressed as an integer value of nano-seconds past the Unix epoch
-> 
-
-##### [<code style={{ fontWeight: 'normal' }}>Market.ordersConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> ##### [<code style={{ fontWeight: 'normal' }}>Market.ordersConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
 > Pagination information
 > 
 
-##### [<code style={{ fontWeight: 'normal' }}>Market.ordersConnection.<b>filter</b></code>](#)<Bullet />[`OrderFilter`](/testnet/api/graphql/inputs/order-filter) <Badge class="secondary" text="input"/>
+##### [<code style={{ fontWeight: 'normal' }}>Market.ordersConnection.<b>filter</b></code>](#)<Bullet />[`OrderByPartyIdsFilter`](/testnet/api/graphql/inputs/order-by-party-ids-filter) <Badge class="secondary" text="input"/>
 > Filter orders
 > 
 
@@ -195,6 +191,10 @@ duration and optionally a minimum traded volume).
 > An optional party ID
 > 
 
+##### [<code style={{ fontWeight: 'normal' }}>Market.liquidityProvisionsConnection.<b>live</b></code>](#)<Bullet />[`Boolean`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> An optional live flag to determine whether to list only live LPs or not
+> 
+
 ##### [<code style={{ fontWeight: 'normal' }}>Market.liquidityProvisionsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
 > Pagination information
 > 
@@ -227,7 +227,7 @@ duration and optionally a minimum traded volume).
 
 ### Member of
 
-[`AccountBalance`](/testnet/api/graphql/objects/account-balance)  <Badge class="secondary" text="object"/><Bullet />[`AccountEvent`](/testnet/api/graphql/objects/account-event)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProvision`](/testnet/api/graphql/objects/liquidity-provision)  <Badge class="secondary" text="object"/><Bullet />[`MarginLevels`](/testnet/api/graphql/objects/margin-levels)  <Badge class="secondary" text="object"/><Bullet />[`MarketData`](/testnet/api/graphql/objects/market-data)  <Badge class="secondary" text="object"/><Bullet />[`MarketDepth`](/testnet/api/graphql/objects/market-depth)  <Badge class="secondary" text="object"/><Bullet />[`MarketDepthUpdate`](/testnet/api/graphql/objects/market-depth-update)  <Badge class="secondary" text="object"/><Bullet />[`MarketEdge`](/testnet/api/graphql/objects/market-edge)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/testnet/api/graphql/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`Position`](/testnet/api/graphql/objects/position)  <Badge class="secondary" text="object"/><Bullet />[`Trade`](/testnet/api/graphql/objects/trade)  <Badge class="secondary" text="object"/>
+[`AccountBalance`](/testnet/api/graphql/objects/account-balance)  <Badge class="secondary" text="object"/><Bullet />[`AccountEvent`](/testnet/api/graphql/objects/account-event)  <Badge class="secondary" text="object"/><Bullet />[`Entities`](/testnet/api/graphql/objects/entities)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProvision`](/testnet/api/graphql/objects/liquidity-provision)  <Badge class="secondary" text="object"/><Bullet />[`MarginLevels`](/testnet/api/graphql/objects/margin-levels)  <Badge class="secondary" text="object"/><Bullet />[`MarketData`](/testnet/api/graphql/objects/market-data)  <Badge class="secondary" text="object"/><Bullet />[`MarketDepth`](/testnet/api/graphql/objects/market-depth)  <Badge class="secondary" text="object"/><Bullet />[`MarketDepthUpdate`](/testnet/api/graphql/objects/market-depth-update)  <Badge class="secondary" text="object"/><Bullet />[`MarketEdge`](/testnet/api/graphql/objects/market-edge)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/testnet/api/graphql/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`Position`](/testnet/api/graphql/objects/position)  <Badge class="secondary" text="object"/><Bullet />[`Trade`](/testnet/api/graphql/objects/trade)  <Badge class="secondary" text="object"/>
 
 
 

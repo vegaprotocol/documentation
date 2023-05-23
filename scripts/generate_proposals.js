@@ -58,7 +58,7 @@ function annotator(proposal) {
 
 function addTermsAnnotator(skeleton, terms, type) {
   const splitClosingTitle =
-    skeleton.properties.closingTimestamp.title.split('\n')
+    skeleton.properties.closingTimestamp.description.split('\n')
   if (type === 'newFreeform') {
     return () => {
       return `{
@@ -72,7 +72,7 @@ function addTermsAnnotator(skeleton, terms, type) {
   }
 
   const splitEnactmentTitle =
-    skeleton.properties.enactmentTimestamp.title.split('\n')
+    skeleton.properties.enactmentTimestamp.description.split('\n')
   // Note: ValidationTimestamp is not currently required by core, but defaults incorrectly. Let's populate it anyway.
   if (type === 'newAsset') {
     return () => `{
@@ -85,7 +85,7 @@ function addTermsAnnotator(skeleton, terms, type) {
       // ${splitEnactmentTitle[1]} (${skeleton.properties.enactmentTimestamp.format
       } as ${skeleton.properties.enactmentTimestamp.type})
       enactmentTimestamp: ${terms.enactmentTimestamp},
-      // ${skeleton.properties.validationTimestamp.title} (${skeleton.properties.validationTimestamp.format
+      // ${skeleton.properties.validationTimestamp.description} (${skeleton.properties.validationTimestamp.format
       } as ${skeleton.properties.validationTimestamp.type})
       validationTimestamp: ${terms.validationTimestamp}
    }`
@@ -114,30 +114,30 @@ function addTermsAnnotator(skeleton, terms, type) {
 function daysInTheFuture(daysToAdd) {
   const date = Date.now()
   const d = addDays(new Date(date), daysToAdd)
-  // Unix Timestamp nano
-  return getUnixTime(d) * 1000
+  // Unix Timestamp
+  return getUnixTime(d)
 }
 
 function newProposal(p, skeleton, type, partialProposal) {
-  
+
   assert.ok(skeleton.properties.closingTimestamp)
   assert.ok(skeleton.properties.enactmentTimestamp)
 
   const proposal = p
   proposal.terms.closingTimestamp = partialProposal.terms.closingTimestamp
-      
+
   // Freeform proposals don't get enacted, so they can't have this
   if (type !== 'newFreeform') {
     proposal.terms.enactmentTimestamp = partialProposal.terms.enactmentTimestamp
   }
   if (type === 'newAsset') {
     proposal.terms.validationTimestamp = partialProposal.terms.enactmentTimestamp
-  }  
+  }
   proposal.terms[inspect.custom] = addTermsAnnotator(
     skeleton,
     proposal.terms,
     type)
-  
+
   const formatOptions = {
     indent: ' '
   }
@@ -154,7 +154,7 @@ ${'```'}
   `
   const cmd = `
   ${'```bash'}
-./vegawallet transaction send --wallet your_walletname --pubkey your_public_key --network fairground '${JSON.stringify(
+./vegawallet transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KEY --network NETWORK_NAME '${JSON.stringify(
     { proposalSubmission: proposal },
     null,
     ' '
@@ -163,7 +163,7 @@ ${'```'}
   `
   const win = `
   ${'```bash'}
-vegawallet.exe transaction send --wallet your_walletname --pubkey your_public_key --network fairground ^\n"${JSON.stringify(
+vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KEY --network NETWORK_NAME ^\n"${JSON.stringify(
     { proposalSubmission: proposal },
     null,
     ' '
@@ -260,7 +260,7 @@ function parse(api) {
       if (ProposalGenerator.has(type)) {
         const proposal = { terms: {} }
         proposal.terms.closingTimestamp = daysInTheFuture(19)
-      
+
         // Freeform proposals don't get enacted, so they can't have this
         if (type !== 'newFreeform') {
           proposal.terms.enactmentTimestamp = daysInTheFuture(20)
@@ -268,7 +268,7 @@ function parse(api) {
         if (type === 'newAsset') {
           proposal.terms.validationTimestamp = daysInTheFuture(18)
         }
-            
+
         // TODO move in to new Proposal so we can use dates in metadata
         const changes = ProposalGenerator.get(type)(proposalTypes[type], proposal)
         output(
@@ -314,10 +314,6 @@ function output(partial, title) {
       writeFileSync(
         `${path}/_${title}_json_priceparams.md`,
         partial.excerpts.priceparams
-      )
-      writeFileSync(
-        `${path}/_${title}_json_liquidity.md`,
-        partial.excerpts.liquidity
       )
     }
   } else {

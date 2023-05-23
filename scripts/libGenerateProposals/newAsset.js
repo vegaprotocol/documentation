@@ -41,21 +41,21 @@ function newAsset(skeleton, proposalSoFar) {
 
  
  result.terms.newAsset[inspect.custom]= () => {
-      const withdrawThresholdSplit = skeleton.properties.changes.properties.erc20.properties.withdrawThreshold.title.split('\n')
-      const lifetimeLimitSplit = skeleton.properties.changes.properties.erc20.properties.lifetimeLimit.title.split('\n')
+      const withdrawThresholdSplit = skeleton.properties.changes.properties.erc20.properties.withdrawThreshold.description.split('\n')
+      const lifetimeLimitSplit = skeleton.properties.changes.properties.erc20.properties.lifetimeLimit.description.split('\n')
       return `{
           changes: {
-            // ${skeleton.properties.changes.properties.name.title} (${skeleton.properties.changes.properties.name.type}) 
+            // ${skeleton.properties.changes.properties.name.description} (${skeleton.properties.changes.properties.name.type}) 
             name: "${result.terms.newAsset.changes.name}",
-            // ${skeleton.properties.changes.properties.symbol.title} (${skeleton.properties.changes.properties.symbol.type}) 
+            // ${skeleton.properties.changes.properties.symbol.description} (${skeleton.properties.changes.properties.symbol.type}) 
             symbol: "${result.terms.newAsset.changes.symbol}",
-            // ${skeleton.properties.changes.properties.decimals.title} (${skeleton.properties.changes.properties.decimals.type}) 
+            // ${skeleton.properties.changes.properties.decimals.description} (${skeleton.properties.changes.properties.decimals.type}) 
             decimals: "${result.terms.newAsset.changes.decimals}",
-            // ${skeleton.properties.changes.properties.quantum.title} (${skeleton.properties.changes.properties.quantum.type}) 
+            // ${skeleton.properties.changes.properties.quantum.description} (${skeleton.properties.changes.properties.quantum.type}) 
             quantum: "${result.terms.newAsset.changes.quantum}",
             // ${skeleton.properties.changes.properties.erc20.title}
             erc20: {
-              // ${skeleton.properties.changes.properties.erc20.properties.contractAddress.title} (${skeleton.properties.changes.properties.erc20.properties.contractAddress.type})
+              // ${skeleton.properties.changes.properties.erc20.properties.contractAddress.description} (${skeleton.properties.changes.properties.erc20.properties.contractAddress.type})
               contractAddress: "${result.terms.newAsset.changes.erc20.contractAddress}",
               // ${withdrawThresholdSplit[0]}
               // ${withdrawThresholdSplit[1]} (${skeleton.properties.changes.properties.erc20.properties.withdrawThreshold.type})

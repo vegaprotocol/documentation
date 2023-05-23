@@ -9,7 +9,7 @@ const { writeFileSync } = require('fs')
 // Config
 const networks = [
   { name: 'testnet', url: 'https://api.n07.testnet.vega.xyz/api/v2/network/parameters', dest: 'testnet_network_parameters.json' },
-  { name: 'mainnet', url: 'https://api.vega.xyz/network/parameters', dest: 'mainnet_network_parameters.json' }
+  { name: 'mainnet', url: 'https://api.vega.community/api/v2/network/parameters', dest: 'mainnet_network_parameters.json' }
 ]
 
 networks.forEach(getParams)

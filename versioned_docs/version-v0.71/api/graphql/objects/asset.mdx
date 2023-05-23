@@ -1,0 +1,102 @@
+---
+id: asset
+title: Asset
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Represents an asset in Vega
+
+```graphql
+type Asset {
+  id: ID!
+  name: String!
+  symbol: String!
+  decimals: Int!
+  quantum: String!
+  source: AssetSource!
+  status: AssetStatus!
+  infrastructureFeeAccount: AccountBalance
+  globalRewardPoolAccount: AccountBalance
+  takerFeeRewardAccount: AccountBalance
+  makerFeeRewardAccount: AccountBalance
+  lpFeeRewardAccount: AccountBalance
+  marketProposerRewardAccount: AccountBalance
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>id</b></code>](#)<Bullet />[`ID!`](/mainnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The ID of the asset
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>name</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The full name of the asset (e.g: Great British Pound)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>symbol</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The symbol of the asset (e.g: GBP)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>decimals</b></code>](#)<Bullet />[`Int!`](/mainnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The precision of the asset. Should match the decimal precision of the asset on its native chain, e.g: for ERC20 assets, it is often 18
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>quantum</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The minimum economically meaningful amount in the asset
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>source</b></code>](#)<Bullet />[`AssetSource!`](/mainnet/api/graphql/unions/asset-source) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="union"/>
+> The origin source of the asset (e.g: an ERC20 asset)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>status</b></code>](#)<Bullet />[`AssetStatus!`](/mainnet/api/graphql/enums/asset-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The status of the asset in the Vega network
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>infrastructureFeeAccount</b></code>](#)<Bullet />[`AccountBalance`](/mainnet/api/graphql/objects/account-balance) <Badge class="secondary" text="object"/>
+> The infrastructure fee account for this asset
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>globalRewardPoolAccount</b></code>](#)<Bullet />[`AccountBalance`](/mainnet/api/graphql/objects/account-balance) <Badge class="secondary" text="object"/>
+> The global reward pool account for this asset
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>takerFeeRewardAccount</b></code>](#)<Bullet />[`AccountBalance`](/mainnet/api/graphql/objects/account-balance) <Badge class="secondary" text="object"/>
+> The taker fee reward account for this asset
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>makerFeeRewardAccount</b></code>](#)<Bullet />[`AccountBalance`](/mainnet/api/graphql/objects/account-balance) <Badge class="secondary" text="object"/>
+> The maker fee reward account for this asset
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>lpFeeRewardAccount</b></code>](#)<Bullet />[`AccountBalance`](/mainnet/api/graphql/objects/account-balance) <Badge class="secondary" text="object"/>
+> The liquidity provision reward account for this asset
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Asset.<b>marketProposerRewardAccount</b></code>](#)<Bullet />[`AccountBalance`](/mainnet/api/graphql/objects/account-balance) <Badge class="secondary" text="object"/>
+> The market proposer reward account for this asset
+> 
+
+
+
+### Returned by
+
+[`asset`](/mainnet/api/graphql/queries/asset)  <Badge class="secondary" text="query"/>
+
+### Member of
+
+[`AccountBalance`](/mainnet/api/graphql/objects/account-balance)  <Badge class="secondary" text="object"/><Bullet />[`AccountEvent`](/mainnet/api/graphql/objects/account-event)  <Badge class="secondary" text="object"/><Bullet />[`AssetEdge`](/mainnet/api/graphql/objects/asset-edge)  <Badge class="secondary" text="object"/><Bullet />[`Deposit`](/mainnet/api/graphql/objects/deposit)  <Badge class="secondary" text="object"/><Bullet />[`Entities`](/mainnet/api/graphql/objects/entities)  <Badge class="secondary" text="object"/><Bullet />[`Future`](/mainnet/api/graphql/objects/future)  <Badge class="secondary" text="object"/><Bullet />[`FutureProduct`](/mainnet/api/graphql/objects/future-product)  <Badge class="secondary" text="object"/><Bullet />[`MarginLevels`](/mainnet/api/graphql/objects/margin-levels)  <Badge class="secondary" text="object"/><Bullet />[`Reward`](/mainnet/api/graphql/objects/reward)  <Badge class="secondary" text="object"/><Bullet />[`RewardSummary`](/mainnet/api/graphql/objects/reward-summary)  <Badge class="secondary" text="object"/><Bullet />[`Transfer`](/mainnet/api/graphql/objects/transfer)  <Badge class="secondary" text="object"/><Bullet />[`Withdrawal`](/mainnet/api/graphql/objects/withdrawal)  <Badge class="secondary" text="object"/>
+
+
+

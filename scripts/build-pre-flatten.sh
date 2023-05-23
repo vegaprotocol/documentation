@@ -45,13 +45,13 @@ corestate_swagger="./vega/swagger/vega/api/v1/corestate.swagger.json"
 corestate_swagger_dest="corestate.swagger.json"
 movePlease "$corestate_swagger" "$corestate_swagger_dest"
 
-blocks_swagger="./blockexplorer/swagger/blockexplorer/blockexplorer.swagger.json"
+blocks_swagger="./blockexplorer/swagger/blockexplorer/api/v1/blockexplorer.swagger.json"
 blocks_swagger_dest="blockexplorer.swagger.json"
 movePlease "$blocks_swagger" "$blocks_swagger_dest"
 
-wallet_openapi="./wallet/service/openapi.json"
+wallet_openapi="./wallet/api/wallet.openapi.json"
 wallet_openapi_dest="wallet.openapi.json"
-movePlease "$blocks_swagger" "$blocks_swagger_dest"
+movePlease "$wallet_openapi" "$wallet_openapi_dest"
 
 #
 # Non-swagger/openapi - omits the third param to movePlease so no openapi stuff is done

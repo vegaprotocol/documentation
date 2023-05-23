@@ -28,6 +28,8 @@ module.exports = {
     'api/architecture',
     'api/building-blocks',
     'api/public-endpoints',
+    'api/websocket',
+
     {
       type: 'category',
       label: 'REST',

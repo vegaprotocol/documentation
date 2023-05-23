@@ -1,0 +1,43 @@
+---
+id: protocol-upgrade-proposal-connection
+title: ProtocolUpgradeProposalConnection
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Connection type for retrieving cursor-based paginated protocol upgrade proposals
+
+```graphql
+type ProtocolUpgradeProposalConnection {
+  edges: [ProtocolUpgradeProposalEdge!]
+  pageInfo: PageInfo
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>ProtocolUpgradeProposalConnection.<b>edges</b></code>](#)<Bullet />[`[ProtocolUpgradeProposalEdge!]`](/mainnet/api/graphql/objects/protocol-upgrade-proposal-edge) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> The positions in this connection
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProtocolUpgradeProposalConnection.<b>pageInfo</b></code>](#)<Bullet />[`PageInfo`](/mainnet/api/graphql/objects/page-info) <Badge class="secondary" text="object"/>
+> The pagination information
+> 
+
+
+
+### Returned by
+
+[`protocolUpgradeProposals`](/mainnet/api/graphql/queries/protocol-upgrade-proposals)  <Badge class="secondary" text="query"/>
+
+
+

@@ -17,7 +17,6 @@ import NewMarketJSONLiquidityMonitoring from './_generated-proposals/_newMarket_
 import NewMarketJSONPriceMonitoring from './_generated-proposals/_newMarket_json_priceparams.md';
 import NewMarketJSONOracle from './_generated-proposals/_newMarket_json_oracle.md';
 import NewMarketJSONOverview from './_generated-proposals/_newMarket_json_overview.md';
-import NewMarketJSONLiquidityCommitment from './_generated-proposals/_newMarket_json_liquidity.md';
 import NewMarketAnnotated from './_generated-proposals/_newMarket_annotated.md';
 import NewMarketJSON from './_generated-proposals/_newMarket_json.md';
 import NewMarketCMD from './_generated-proposals/_newMarket_cmd.md';
@@ -32,10 +31,8 @@ Propose a cash-settled futures market on any underlying with a settlement data s
 
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
-* A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens"/> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>
-* Familiarity with [governance on Vega](../../concepts/vega-protocol.md#governance), particularly [market governance](../../concepts/vega-protocol#market-governance)
-
-<!--[Update an existing market](#update-an-existing-market): change the details of a market that is already enacted.-->
+* A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true}/>   (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
+* Familiarity with [governance on Vega](../../concepts/governance.md), particularly [market governance](../../concepts/governance.md#market-governance)
 
 ## Anatomy of a market proposal
 In this section, the [full proposal template](#templates-and-submitting) has been divided into sections to provide more details on what you need to submit.
@@ -49,7 +46,7 @@ The contents of a `changes` object specifies what will be different after the pr
 
 Instrument, liquidity monitoring parameters, price monitoring parameters, data sources, and liquidity commitment are all described in more detail below.
 
-**Rationale** requires a description, which is a free-text field that describes the purpose of the proposal. Include links with more information about your proposal (such as to the IPFS content or forum post) that voters can reference to learn more about the market.
+**Rationale** requires a title and description, which is are free-text fields that describe the purpose of the proposal.  Within the description, include links with more information about your proposal (such as to the IPFS content or forum post) that voters can reference to learn more about the market proposal.
 
 **LP price range** is a number that, when multiplied by 100, determines the percentage move up and down from the mid price, which determines the range of price levels over which automated [liquidity commitment orders](../../concepts/liquidity/provision.md) will be deployed. An accepted value is > 0 and <= 100.
 
@@ -82,12 +79,12 @@ An instrument contains the following properties:
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
-| `name` | A string for the market name. Best practice is to include a full and fairly descriptive name for the instrument. | BTC/USD DEC18. |
+| `name` | A string for the market name. Best practice is to include a full and fairly descriptive name for the instrument. | Oranges DEC18. |
 | `code`  (instrument) | This is a shortcode used to easily describe the instrument. The more information you add, the easier it is for people to know what the market offers. | FX:BTCUSD/DEC18 |
 | `future` | An object that provides details about the futures market to be proposed. |
 | `settlementAsset` | Settlement asset requires the ID of the asset that the market will be margined in and settle in. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID. |  |
 | `quoteName` | The quote name is the human-readable name/abbreviation of the settlement asset. Example: In BTCUSD, USD is the quote. | tEuro |
-| `dataSourceSpecForSettlementData` | This defines the data source that will be used to identify the settlement price when the market expires. | prices.BTC.value |
+| `dataSourceSpecForSettlementData` | This defines the data source that will be used to identify the settlement price when the market expires. | prices.ORANGES.value |
 | `dataSourceSpecForTradingTermination` | The fields that define the data source used for terminating trading on the market. | vegaprotocol.builtin.timestamp |
 | `dataSourceSpecBinding` | The fields describe how specific information provided by the data source is used. For example, they can identify the specific name of the settlement price output, or the specific name of the trading termination property. |
 
@@ -111,7 +108,7 @@ Data source bindings include the following properties:
 | `numberDecimalPlaces` | Optional field to specify the precision in which numerical data is emitted. Use when data is numerical | 18 |
 | `conditions` | A filter for the data. The conditions that should to be matched by the data to be considered. This is an optional set of fields. For example you could use an operator and a value to denote that a price should be greater than zero |
 | `operator` | This adds a constraint to the value, such as LESS_THAN, GREATER_THAN. For example if you wanted to ensure that the price would always be above zero, you would set the operator to ‘GREATER_THAN’ and the Value to be ‘0’ | GREATER_THAN |
-| `value` | A number that is constrained by the operator | 0 |
+| `value` | A number that is constrained by the operator. If providing a timestamp, use the Unix time in seconds | 0 |
 
 :::info Submitting data
 Learn how to find and submit data in the [submitting data sources tutorial](../using-data-sources.md).
@@ -146,11 +143,11 @@ Price monitoring uses the following properties:
 | `auctionExtension` | Price monitoring auction extension duration (in seconds) should the price breach its theoretical level over the specified horizon at the specified probability level (set as >0) | 600 |
 
 ### Risk model
-Choose the individual parameters for the [log-normal risk model](../../concepts/vega-protocol.md#log-normal-risk-model). You should ensure the risk model parameters represent the dynamics of the underlying instrument, and that the resulting margins strike the right balance between prudence and capital efficiency. 
+Choose the individual parameters for the [log-normal risk model](../../concepts/governance.md#log-normal-risk-model). You should ensure the risk model parameters represent the dynamics of the underlying instrument, and that the resulting margins strike the right balance between prudence and capital efficiency. 
 
 While you cannot define exactly how much margin (or leverage) is possible, you can influence the acceptable levels of market volatility.
 
-Read about the [risk models and parameters](../../concepts/vega-protocol.md#risk-models-and-parameters) before choosing your values.
+Read about the [risk models and parameters](../../concepts/governance.md#risk-models-and-parameters) before choosing your values.
 
 <NewMarketJSONRisk />
 The risk model uses the following properties: 
@@ -164,7 +161,11 @@ The risk model uses the following properties:
 | `param: sigma` | Annualised volatility of the underlying asset. <br/><br/>Accepted values: any strictly non-negative real number; suggested value: asset dependent, should be derived from the historical time-series of prices. | 0.8 (converts to 80%) |
 
 ## Templates and submitting
-In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example that can be used as the basis to [submit on the governance dApp ↗](https://governance.fairground.wtf/proposals/propose/new-market), and command line examples for different operating systems. **You'll need to replace the example data with the relevant details before submitting.**
+In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example, and command line examples for different operating systems.
+
+The governance dApp has a [tool to help you put together a proposal ↗](https://governance.fairground.wtf/proposals/propose/new-market). When you have your proposal ready you can [submit the JSON on the governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw).
+
+**Replace the example data with the relevant details before submitting.**
 
 <Tabs groupId="newMarket">
   <TabItem value="annotated" label="Annotated example">
@@ -187,7 +188,7 @@ In the tabs below you'll see an annotated example, which describes what each fie
 ## Voting and enactment
 All proposals are voted on by the community. To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minVoterBalance" suffix="tokens" hideName={true} formatter="governanceToken" />, or <NetworkParameter formatter="governanceToken" frontMatter={frontMatter} param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated with their Vega key.
 
-Your proposal will need [participation](../../concepts/vega-protocol#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential. If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
+Your proposal will need [participation](../../concepts/governance.md#how-a-proposals-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential. If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
 
 Building support is down to you. Share your proposal in [the _New Market Proposals_ forum ↗](https://community.vega.xyz/c/fairground-testnet-governance/new-market-proposals-testnet/33) on Vega community, being sure to follow the [post guide ↗](https://community.vega.xyz/t/guide-to-new-market-proposals-on-fairground-testnet/4017). You may also wish to share on [Discord ↗](https://vega.xyz/discord).
 

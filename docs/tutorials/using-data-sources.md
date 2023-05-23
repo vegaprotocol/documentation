@@ -1,6 +1,6 @@
 ---
 title: Using data sources
-sidebar_position: 4
+sidebar_position: 8
 hide_title: false
 description: Include oracle details in a proposal and submit data to settle and terminate a market
 ---
@@ -22,7 +22,7 @@ The **binding** tells the market which field contains the value. The **spec** de
 When it's time for a market to settle, someone needs to submit the data that matches the data source spec defined in the market.
 
 :::note Read more: 
-[Market governance concepts:](../concepts/vega-protocol.md)
+[Market governance concepts:](../concepts/governance.md#market-governance)
 [Tutorial - proposing a market:](./proposals/new-market-proposal.md)
 :::
 
@@ -52,7 +52,7 @@ The following spec would make the market use the BTC value from the [Coinbase Pr
         "filters": [{
             "key": {
                 "name": "prices.BTC.timestamp",
-                "type": "TYPE_TIMESTAMP",
+                "type": "TYPE_INTEGER",
             },
             "conditions": [{
                 "operator": "OPERATOR_GREATER_THAN",
