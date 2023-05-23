@@ -55,7 +55,22 @@ If you have a client that you want use to send a transaction using the Vega wall
 ### Transaction hashes
 Once a transaction has been successfully submitted to the chain, you receive the transaction's hash from the wallet. A transaction hash is a unique identifier for the transaction, and can be used to find that transaction and check its status on a Vega block explorer. Note that a transaction can only be seen by the block explorer once it's been processed by the network and been propagated to the Vega node on the block explorer backend.
 
-Depending on transaction type, most will be given a deterministic ID, derived from the signature, which is specific to the object the transaction creates once it's processed. You can use that object-specific ID with the relevant endpoint to then get richer, more detailed information about it. 
+Depending on transaction type, most will be given a deterministic ID, which can be derived by calculating the SHA-3-256 hash of the signature in the transaction, and is specific to the object the transaction creates once it's processed. 
+
+You can use that object-specific ID with the relevant endpoint to then get richer, more detailed information about it.
+
+The following IDs are derived deterministically:
+
+* Chain event
+* Asset transfer
+* Order submission
+* Order amendment
+* Order cancellation 
+* Withdrawal
+* Governance proposal
+* Liquidity provision 
+* Liquidity provision amendment 
+* Batch market order
 
 For example, a submitted order will receive an order ID once the transaction to submit the order has been accepted into a block. You can use the REST endpoint to [get order by ID](./rest/data-v2/trading-data-service-get-order.api.mdx).
 
