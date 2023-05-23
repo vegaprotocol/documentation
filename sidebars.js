@@ -24,6 +24,9 @@ module.exports = {
   ],
   api: [
     'api/overview',
+    'api/using-the-apis',
+    'api/architecture',
+    'api/building-blocks',
     'api/public-endpoints',
     'api/websocket',
 
@@ -35,7 +38,7 @@ module.exports = {
         {
           type: 'doc',
           id: 'api/rest/overview',
-          label: 'Overview'
+          label: 'Using REST'
         },
         datav2,
         explorer,
@@ -85,7 +88,7 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Ethereum bridge',
+      label: 'Ethereum bridges and contracts',
       collapsed: true,
       items: [
         {

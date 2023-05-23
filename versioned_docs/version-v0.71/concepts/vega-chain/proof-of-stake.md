@@ -12,7 +12,7 @@ Vega runs on a delegated proof of stake blockchain.
 
 Validator nodes run the Vega network, and they decide on the validity of the blocks containing the network's transactions and thus execute those transactions. The validators who run validator nodes are required to own a minimum amount of <NetworkParameter frontMatter={frontMatter} param="validators.delegation.minAmount" hideName={true} suffix="tokens" formatter="governanceToken" /> that they stake to themselves.
 
-Read more: [Validator nodes](#validating-nodes)
+Read more: [Validator nodes](./validator-nodes.md)
 
 **Participants who hold a balance of VEGA, the governance asset, can use their tokens to nominate validator nodes.** This is done by associating those tokens to a Vega key to use as stake, and then nominating one or more validators they trust to help secure the network. Nominating validators loans the consensus voting weight of the VEGA tokens to endorse a validator's trustworthiness. 
 
@@ -20,11 +20,9 @@ Tokens, in addition to their use for nominating validators, also grant tokenhold
 
 Everyone participating in keeping the network secure, robust and reliable, including nominators, is **rewarded** for keeping the network running. Not meeting the requirements of running the network can lead to penalties, such as **rewards being withheld**.
 
-Read more: [Rewards](#rewards)
+Read more: [Rewards](./validator-scores-and-rewards.md)
 
-Vega is non-slashing -- there is no mechanism through which a tokenholder can lose a staked token through a validator being punished. Any measures to that end use different mechanisms that will affect a bad validator's (and potentially their delegators') revenue, but does not affect the delegated tokens themselves.
-
-Read more: [Penalties](#penalties)
+Vega is non-slashing -- there is no mechanism through which a tokenholder can lose a staked token through a validator being punished. Any measures to that end use different mechanisms that will affect a bad validator's and their nominators' rewards, but does not affect the delegated tokens themselves.
 
 ## VEGA token
 Vega uses the VEGA ERC20 token for governance, which includes nominating validators to run nodes, and creating and voting on governance proposals.
@@ -38,7 +36,7 @@ A VEGA token (or fraction) can be either dissociated or associated with a Vega k
 
 **All tokens can be used for staking and voting** on governance proposals. This includes tokens that are locked in the vesting contract. Tokens that are staked can be used to vote, and tokens used to vote can be staked.
 
-Read more: [Governance of Vega](#governance)
+Read more: [Governance of Vega](../governance.md)
 
 :::tip
 A user's VEGA tokens must first be associated with a Vega key before they can be used for governance and staking.
@@ -84,7 +82,7 @@ Tokenholders can nominate validators to encourage a diverse set of reliable node
 When a tokenholder chooses a validator (or validators) to nominate with their tokens, the amount is immediately subtracted from their available balance, and is used at the start of the next epoch to actively nominate those validator(s).
 
 ### Spam protection: nominations
-There are two [spam pretection](./network#spam-protection) measures related to nominating validators.
+There are two [spam pretection](./network.md#spam-protection) measures related to nominating validators.
 * A participant who wants to submit a nomination (delegation) transaction, needs to have a balance of at least  <NetworkParameter frontMatter={frontMatter} param="spam.protection.delegation.min.tokens" hideName={true} suffix="tokens" formatter="governanceToken" />  to be able to submit the transaction.
 * A participant cannot send more than <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.delegations" hideName={true} /> nomination (delegation) transactions per day.
 
