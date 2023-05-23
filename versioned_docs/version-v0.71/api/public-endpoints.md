@@ -1,4 +1,5 @@
 ---
+sidebar_position: 5
 title: Public endpoints
 hide_title: false
 description: Vega's APIs are served over public endpoints.
@@ -14,7 +15,9 @@ Due to the distributed nature of Vega, most of the APIs are served from a data n
 
 This differs from centralised services, as you can't connect to an API server run by a single company, nor does it require a specific access token. When you want to perform an action on the network you'll need to sign the message containing the transaction details with a [wallet app](../tools/vega-wallet/index.md) or a signer library.
 
-Below, find a list of all the public servers available for this network, and use them to connect to the API endpoints.
+Validators, community members, and other service providers may operate public data nodes. These may have usage restrictions, rate limits, limited data retention, or other restrictions or terms. Check with the individual operator if you have specific needs.
+
+Below, find a list of all the known public servers available for this network, and use them to connect to the API endpoints.
 
 :::note Read more
 [Data nodes](../concepts/vega-chain/data-nodes.md): Find out what a data node is, and if setting one up for yourself is right for you.

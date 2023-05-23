@@ -17,7 +17,7 @@
         {
           "type": "doc",
           "id": "api/rest/overview",
-          "label": "Overview"
+          "label": "Using REST"
         },
         [
           {
@@ -1102,7 +1102,7 @@
     },
     {
       "type": "category",
-      "label": "Ethereum bridge",
+      "label": "Ethereum bridges and contracts",
       "collapsed": true,
       "items": [
         {

@@ -1,52 +1,85 @@
 ---
+title: Before you start
+sidebar_position: 1
 vega_network: MAINNET
 ---
+
 import Topic from '/docs/topics/_topic-development.mdx'
 import DataNodes from '@site/src/components/DataNodes';
-
-# Using the APIs
+import EthAddresses from '@site/src/components/EthAddresses';
 
 <Topic />
 
-There are a number of ways to interact with Vega through APIs and Ethereum bridge contracts, and below you can learn more about the reference documentation and tutorials that are currently available.
+This page describes what you need to know before you start developing on Vega: How authentication and transactions work, and the versioning process.
 
-As most of the APIs are designed to use for trading-related queries, the best place to try them out is on the testnet network, also known as Fairground. 
+## Decentralised network
+The Vega protocol provides the backbone to form a network specifically built to support proposing and creating markets for trading financial products. Markets can be proposed and voted on through governance by VEGA tokenholders.
 
-## Tutorials
-Tutorials provide the information you'll need about the protocol to understand and use the guide, as well as instructions on how to interact with scripts, API calls, or other code. 
+Vega is a public, decentralised network run by independent validators. 
 
-**[Tutorials](../tutorials)**: See the tutorial(s) currently available for this network.
+There are several different servers you'll need to interact while working with the network. Data will generally be recieved from one service and transactions will be sent to another using data nodes. See the [data flow section on the architecture page](./architecture.md#data-flow) for more info.
 
-## Ethereum bridges
-You can also interact with the Ethereum smart contracts, which allow for bridging between Vega and Ethereum.
+:::caution Supplying your own data
+Anyone that plans to build significant integrations, trading bots, or power backed services should expect to run their own data node, or collaborate with a data node provider, if one exists. 
+:::
 
-**[Smart contracts overview](./bridge/index.md)**: Start exploring the bridge.
+## Viewing the code
+Explore the code that makes up Vega by visiting the [Vega Protocol GitHub organisation](https://github.com/vegaprotocol), and more specifically the [Vega repo](https://github.com/vegaprotocol/vega) for core, data node and API code.
 
-## Vega Wallet API to connect a wallet
-If you're looking to integrate a dApp, website, or bots with the Vega Wallet, you'll need to use a wallet API. The wallet is also how you authenticate and send transactions to the network. If you're looking to use the API to programmatically interact with the network for your own transactions, you'll need to [get a Vega Wallet](../tools/vega-wallet/index.md).
+## Authentication
+When requesting data from a public, validator-run data node, such as through a query, you don't need to authenticate nor do you need an API token. 
 
-The **Wallet API** (in alpha) uses JSON-RPC with an HTTP wrapper.
+Other data node operators may require you to authenticate, and if this is the case you will need to refer to the provider's documentation for details of how to do so.
 
-* [JSON-RPC Wallet API](./vega-wallet/reference/core/json-rpc-basics): An overview of the API
-* [JSON-RPC playground](./vega-wallet/reference/core/json-rpc-api-playground): See what methods the wallet API calls and try it out
+If you want to send transactions to the network, all you need is a [Vega wallet](../tools/vega-wallet/index.md) to sign the transaction using your Vega keys.
 
-## REST for learning the APIs
-REST is the ubiquitous protocol for the web. REST is fairly easy to get started with, and Vega supports nearly all the functionality provided by gRPC and GraphQL on the REST APIs. Note: REST does not support streaming.
+However, if you want to integrate the official Vega wallet implementation with your web application or script, you'll need to use the connection layer built into the wallet API, and a wallet API authentication token.
 
-**[REST overview](rest/overview.md)**: Read more about what data served by data and core node APIs. Use the sidebar to navigate through the different categories available through REST.
+:::note Go deeper
+**[Wallet API guides](./vega-wallet/before-you-start.md)**: See the wallet API documentation for more on authentication tokens.
+:::
 
-## GraphQL for web apps
-If you’re writing a web app, GraphQL is flexible and allows efficient data retrieval. Like gRPC, GraphQL supports near real time streaming of updates from Vega. It uses websockets under the hood but follows the specification for streaming as set by GraphQL.
+## Sending transactions to the chain
+When sending transactions, you'll need a Vega Wallet with at least one keypair, and have the wallet service running. You'll need to have your Vega public key (also known as a party ID) to hand, as well as the relevant transaction data, in order to submit your transaction.
 
-**[GraphQL overview](./graphql/generated.md)**: See what GraphQL covers. 
+To access the Vega network, the wallet needs to be configured with the location of one of more [data nodes](./architecture.md#data-nodes).
 
-**[GraphQL Playground](https://api.testnet.vega.xyz/graphql/)**: Try out GraphQL queries. 
+If you have a client that you want use to send a transaction using the Vega wallet API, it will construct the transaction in JSON and pass it to the wallet. The wallet performs a client-side proof-of-work calculation, signs the transaction and forwards it to a node on the network before it is added to a block. It is also possible to have the wallet sign a transaction without sending it, if needed. Alternatively, you can build the signer into your client, though you'll need to account for the PoW calculations.
 
-## gRPC for fast interactions
-gRPC provides fast and efficient communication with Vega’s APIs. gRPC supports near real time streaming of updates from Vega. gRPC/Protobuf is the transport of choice for many web3 apps.
+:::note Go deeper
+* **[How to build and send transactions](../tools/vega-wallet/cli-wallet/latest/guides/build-send-transactions.md)**: See how to build and send transactions using the Vega Wallet.
+* **[Concepts: transactions](./../concepts/vega-chain/transactions.md)**: Learn about the concepts of transactions, commands, validation, and ordering.
+* **[Commands API](./grpc/vega/commands/v1/commands.proto)** See a full list of transaction types. 
+:::
 
-**[gRPC](grpc/vega/vega.proto)**: Explore the gRPC reference documentation.
-- [Core state](grpc/vega/api/v1/corestate.proto): Get lists of state about the internal Vega system, such as 'list accounts', 'list parties.
-- [Commands](grpc/vega/commands/v1/commands.proto): Get all transaction types you can submit to the network.
-- [Data](grpc/data-node/api/v2/trading_data.proto.mdx): Interact with all data that the data nodes store, including trading data, interactions between the network and Ethereum, and governance.
+### Transaction hashes
+Once a transaction has been successfully submitted to the chain, you receive the transaction's hash from the wallet. A transaction hash is a unique identifier for the transaction, and can be used to find that transaction and check its status on a Vega block explorer. Note that a transaction can only be seen by the block explorer once it's been processed by the network and been propagated to the Vega node on the block explorer backend.
 
+Depending on transaction type, most will be given a deterministic ID, derived from the signature, which is specific to the object the transaction creates once it's processed. You can use that object-specific ID with the relevant endpoint to then get richer, more detailed information about it. 
+
+For example, a submitted order will receive an order ID once the transaction to submit the order has been accepted into a block. You can use the REST endpoint to [get order by ID](./rest/data-v2/trading-data-service-get-order.api.mdx).
+
+## Versioning
+
+:::tip Network software versions 
+You can switch between documentation of the networks' software versions in the top menu bar on every page.
+:::
+
+Once the latest code is prepared for a release, it's deployed to a testnet, where the latest features and updates can be trialled. When and if the validator node operators agree that a new version contains changes that should be accepted into mainnet, and is sufficiently stable, they will deploy the code on their nodes and vote on chain to signal readiness to upgrade. 
+
+Find out what version a data node is running with the [data node info endpoint](./rest/data-v2/trading-data-service-info.api.mdx).
+
+Breaking APIs changes go through a deprecation cycle, and are announced in the summary for each [release](../releases/overview.md).
+
+The documentation on this site covers the core software version running on the Vega Fairground testnet, and the version on the validator-run Vega mainnet. Check which version's documentation you're viewing (and switch between them) by referring to the top navigation bar on each page. 
+
+See the [releases page](../releases/overview.md) for a summary of each software release and links to the full changelog on GitHub. 
+
+## Next steps
+To learn more about developing on Vega, read through the following topics.
+
+* **[Using the APIs](./using-the-apis.md)**: All the API frameworks and smart contracts in one place, plus tips on connecting.
+* **[Architecture](./architecture.md)**: Explore the architecture of the Vega network.
+* **[Building blocks](./building-blocks.md)**: The basic building blocks you should know about.
+* **[Public endpoints](./public-endpoints.md)**: Public endpoints that are currently available for interacting with the APIs on the testnets.
+* **[Tutorials](../tutorials/index.md)**: Each tutorial includes info about the protocol that you need to use the guide, as well as instructions on how to interact with scripts, API calls, or other code.

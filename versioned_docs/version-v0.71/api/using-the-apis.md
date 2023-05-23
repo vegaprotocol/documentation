@@ -2,7 +2,7 @@
 title: Using the APIs
 sidebar_position: 2
 description: See the frameworks and how to use the APIs.
-vega_network: TESTNET
+vega_network: MAINNET
 ---
 
 import Topic from '/docs/topics/_topic-development.mdx'

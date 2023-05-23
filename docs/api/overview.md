@@ -47,7 +47,8 @@ To access the Vega network, the wallet needs to be configured with the location 
 If you have a client that you want use to send a transaction using the Vega wallet API, it will construct the transaction in JSON and pass it to the wallet. The wallet performs a client-side proof-of-work calculation, signs the transaction and forwards it to a node on the network before it is added to a block. It is also possible to have the wallet sign a transaction without sending it, if needed. Alternatively, you can build the signer into your client, though you'll need to account for the PoW calculations.
 
 :::note Go deeper
-* **[Transactions](./../concepts/vega-chain/transactions.md)**: Learn about transactions, commands, validation, and ordering.
+* **[How to build and send transactions](../tools/vega-wallet/cli-wallet/latest/guides/build-send-transactions.md)**: See how to build and send transactions using the Vega Wallet.
+* **[Concepts: transactions](./../concepts/vega-chain/transactions.md)**: Learn about the concepts of transactions, commands, validation, and ordering.
 * **[Commands API](./grpc/vega/commands/v1/commands.proto)** See a full list of transaction types. 
 :::
 
