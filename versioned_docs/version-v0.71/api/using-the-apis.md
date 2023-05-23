@@ -25,6 +25,20 @@ To use the Vega APIs, a developer will need access to a network-compatible insta
 ## Rate limiting
 Some rate limiting is implemented with default limitations on the APIs. For specific details, see the [REST overview](./rest/overview.md) and [WebSocket streams](./websocket.md) pages.
 
+## Formatting and field conventions
+
+### Strings vs numbers format
+When using an API, in many cases the field is described as requiring a number but the data type is a string. Numerical fields are passed in string format so that there is no loss of precision, or risk of integer overflow for large numbers.
+
+### Decimal precision
+The APIs don't provide or accept decimal points in numbers or strings, so the decimal precision must be calculated and the number represented in integers, depending on what decimal precision the number needs. 
+
+* For quotes and prices, use the *market decimal places* to calculate, which can be found by [querying for a market's parameters](../api/rest/data-v2/trading-data-service-get-market.api.mdx) and using `decimalPlaces`
+* For fees, margin, liquidity, and notional, use the *settlement asset decimal places* to calculate, which can be found by [querying an asset's parameters](../api/rest/data-v2/trading-data-service-get-asset.api.mdx) and using `decimals`
+
+### Timestamps
+Unless otherwise specified, response timestamps, are encoded as a Unix timestamp, which is counted from midnight on 1 January, 1970. Requests that require timestamps will also need to be submitted in Unix time. Whether it's a nanosecond, second, or other, is signposted in the tutorial or API reference documentation.
+
 ## Available frameworks
 
 ### REST for easy API access

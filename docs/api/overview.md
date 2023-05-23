@@ -73,7 +73,7 @@ Breaking APIs changes go through a deprecation cycle, and are announced in the s
 
 The documentation on this site covers the core software version running on the Vega Fairground testnet, and the version on the validator-run Vega mainnet. Check which version's documentation you're viewing (and switch between them) by referring to the top navigation bar on each page. 
 
-See the [releases page](../releases/overview.md) for a summary of each software release and links to the full changelog on GitHub. 
+See the [releases page](../releases/overview.md) for a summary of each software release and links to the full changelog on GitHub.
 
 ## Next steps
 To learn more about developing on Vega, read through the following topics.
