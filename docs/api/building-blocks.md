@@ -33,8 +33,8 @@ Assets used on the Vega network need to be deposited from an Ethereum wallet usi
 | See all deposits for a specific public key | [List deposits](../api/rest/data-v2/trading-data-service-list-deposits.api.mdx) | `GET /api/v2/deposits`
 |See a specific deposit using its ID |[Deposit](../api/rest/data-v2/trading-data-service-get-deposit.api.mdx)| `GET /api/v2/deposit/:id`
 |||
-| Understanding the concepts: accounts | [Accounts](../concepts/accounts.md) | 
-| Understanding the concepts: deposits and withdrawals | [Deposits and withdrawals](../concepts/deposits-withdrawals.md) |
+| Understanding the concepts: accounts | [Accounts](../concepts/assets/accounts.md) | 
+| Understanding the concepts: deposits and withdrawals | [Deposits and withdrawals](../concepts/assets/deposits-withdrawals.md) |
 
 ## Accounts
 Vega relies on accounts to ensure funds are never lost or double spent. The amounts in each account, as well as the transactions that were added to and removed from those accounts, are all recorded and stored on-chain. Accounts are used either to hold assets that the public key holder is in control of using — such as deposited collateral, or for setting money aside that only the network can manage — to fulfil margin requirements, for example, or to store assets that are earmarked for rewards or paying out fees.
@@ -43,7 +43,7 @@ Vega relies on accounts to ensure funds are never lost or double spent. The amou
 | ----------- | ----------- | ----------- |
 | List accounts based on chosen filters | [List accounts](../api/rest/data-v2/trading-data-service-list-accounts.api.mdx) | `GET /api/v2/accounts`
 |||
-| Understanding the concepts: accounts | [Accounts](../concepts/accounts.md) | 
+| Understanding the concepts: accounts | [Accounts](../concepts/assets/accounts.md) | 
 
 ## Markets
 Markets have accounts, are created with proposals, and allow parties to place orders with assets.
@@ -78,7 +78,7 @@ Governance proposals used to add new assets and markets, as well as to suggest c
 | Get detailed information about a specific governance proposal using its ID | [Proposal](../api/rest/data-v2/trading-data-service-get-governance-data.api.mdx) | `GET /api/v2/governance`
 |||
 |How to submit proposals using command line | [Submitting proposals](../tutorials/proposals/index.md) | |
-| Understanding the concepts: Governance | [Vega governance](../concepts/vega-protocol.md) | 
+| Understanding the concepts: Governance | [Vega governance](../concepts/governance.md) | 
 
 ### Governance token
 VEGA token are used for taking part in network, market, asset and freeform governance, and to secure the network by nominating validators that run the network.
@@ -87,5 +87,5 @@ VEGA token are used for taking part in network, market, asset and freeform gover
 | ----------- | ----------- | ----------- |
 | See a list of votes | [List votes](../api/rest/data-v2/trading-data-service-list-votes.api.mdx) | `GET /api/v2/votes` |
 |||
-| How to nominate validators using the smart contracts | [Stake tokens](../tutorials/staking-tokens.md) | 
-| Understand the concepts: Governance | [Vega governance](../concepts/vega-protocol.md) | 
+| How to nominate validators using the smart contracts | [Stake tokens](../tutorials/assets-tokens/staking-tokens.md) | 
+| Understand the concepts: Governance | [Vega governance](../concepts/governance.md) | 
