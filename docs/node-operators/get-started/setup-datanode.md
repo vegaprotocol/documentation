@@ -341,9 +341,9 @@ Data node database configuration is defined under the `[SQLStore.ConnectionConfi
   [SQLStore.ConnectionConfig]
     Host = "localhost"
     Port = 5432
-    Username = "vega"
-    Password = "vega"
-    Database = "vega"
+    Username = "USERNAME"
+    Password = "PASSWORD"
+    Database = "DATABASE_NAME"
     MaxConnLifetime = "30m0s"
     MaxConnLifetimeJitter = "5m0s"
 ```
