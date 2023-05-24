@@ -112,7 +112,7 @@ services:
     image: timescale/timescaledb:2.8.0-pg14
     restart: always
     environment:
-      POSTGRES_USER: vega
+      POSTGRES_USER: username
       POSTGRES_DB: data_node_db
       POSTGRES_PASSWORD: example
     command: [
