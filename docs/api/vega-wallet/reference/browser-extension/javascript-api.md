@@ -122,6 +122,8 @@ and optional values can be set to `null` to signify explicit absence.
 
 Below are sample transactions and links to their corresponding `.d.ts` files and
 protobuf comments.
+The full list of transaction types (commands) understood by the Vega browser
+wallet can be seen in the following [Type Definition](https://github.com/vegaprotocol/js-protos/blob/main/dist/vega/commands/v1/InputData.d.ts#L34-L60)
 
 #### Transfer
 
@@ -133,24 +135,26 @@ vega keys' general account to another keys' general account.
 
 ```js
 {
-  // string | number; One of the account types
-  fromAccountType: 'ACCOUNT_TYPE_GENERAL',
-  // string; hex encoded vega public key
-  to: '',
-  toAccounType: 'ACCOUNT_TYPE_GENERAL',
-  // string; $VEGA (fairground) asset id
-  asset: 'fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55',
-  // string; 1 $VEGA
-  amount: (1n * 18n).toString(),
-  // string; optional reference
-  reference: 'My first transfer!',
-  // Make this a one-off transfer
-  kind: { 
-    oneOff: {
-      // bigint (u64); Optional delivery time in nanoseconds since UNIX epoch
-      // defaults to 0 (deliver now)
-      deliveryOn: 0n
-    } 
+  transfer: {
+    // string | number; One of the account types
+    fromAccountType: 'ACCOUNT_TYPE_GENERAL',
+    // string; hex encoded vega public key
+    to: '',
+    toAccounType: 'ACCOUNT_TYPE_GENERAL',
+    // string; $VEGA (fairground) asset id
+    asset: 'fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55',
+    // string; 1 $VEGA
+    amount: (1n * 18n).toString(),
+    // string; optional reference
+    reference: 'My first transfer!',
+    // Make this a one-off transfer
+    kind: { 
+      oneOff: {
+        // bigint (u64); Optional delivery time in nanoseconds since UNIX epoch
+        // defaults to 0 (deliver now)
+        deliveryOn: 0n
+      } 
+    }
   }
 }
 ```
@@ -165,10 +169,12 @@ the validator Marvin on Fairground.
 
 ```js
 {
-  // string; Stake to Marvin on Fairground
-  nodeId: 'bb1822715aa86ce0e205aa4c78e9b71cdeaec94596ce72d366f0d50589eb1bf5',
-  // string; 1 $VEGA
-  amount: (1n * 18n).toString()
+  delegateSubmission: {
+    // string; Stake to Marvin on Fairground
+    nodeId: 'bb1822715aa86ce0e205aa4c78e9b71cdeaec94596ce72d366f0d50589eb1bf5',
+    // string; 1 $VEGA
+    amount: (1n * 18n).toString()
+  }
 }
 ```
 
@@ -186,14 +192,16 @@ specific value. Consult the Protobuf Definition to see the exact rules.
 
 ```js
 {
-  marketId: '',
-  price: '',
-  size: 1n,
-  side: 'SIDE_BUY',
-  timeInForce: 'TIME_IN_FORCE_GTC',
-  type: 'TYPE_LIMIT',
-  reference: '',
-  postOnly: true
+  orderSubmission: {
+    marketId: '',
+    price: '',
+    size: 1n,
+    side: 'SIDE_BUY',
+    timeInForce: 'TIME_IN_FORCE_GTC',
+    type: 'TYPE_LIMIT',
+    reference: '',
+    postOnly: true
+  }
 }
 
 ```
@@ -208,9 +216,11 @@ Protobuf Definition
 
 ```js
 {
-  orderId: '',
-  marketId: '',
-  sizeDelta: 1n
+  orderAmmendment: {
+    orderId: '',
+    marketId: '',
+    sizeDelta: 1n
+  }
 }
 ```
 
@@ -223,8 +233,10 @@ Order cancellation only requires the `orderId` and `marketId`.
 
 ```js
 {
-  orderId: '',
-  marketId: ''
+  orderCancellation: {
+    orderId: '',
+    marketId: ''
+  }
 }
 ```
 
