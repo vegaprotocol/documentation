@@ -55,6 +55,8 @@ If you prefer to run PostgreSQL and TimescaleDB in a docker container, you can u
 This guide assumes you already have Docker installed on your system. For full installation guide consult Docker's [documentation ↗](https://docs.docker.com/engine/install/ubuntu/).
 
 ```Shell
+docker volume create vega_pgdata
+
 docker run -d \
     --rm \
     --name MY_LOVELY_DB_CONTAINER \
@@ -62,6 +64,7 @@ docker run -d \
     -e POSTGRES_PASSWORD=DATABASE_PASSWORD \
     -e POSTGRES_DB=DATABASE_NAME \
     -p LOCALDB_PORT:5432 \
+    -v vega_pgdata:/var/lib/postgresql/data \
     timescale/timescaledb:2.8.0-pg14
 ```
 
@@ -70,8 +73,33 @@ Where:
 - `database_user` is the user name you want to use to connect to the database.
 - `database_password` is the password you want to use to connect to the database.
 - `database_name` is the name of the database you want to use for storing the data.
-- `localdb_port` is the port you want to use to connect to the database on your local machine. (5432 is the default port for Postgresql database server and may not be available if you already have a postgresql database server running on your machine and want to use Docker for testing).
+- `localdb_port` is the port you want to use to connect to the database on your local machine. (5432 is the default port for Postgresql database server and may not be available if you already have a PostgreSQL database server running on your machine and want to use Docker for testing).
 
+You should also consider [PostgreSQL configuration tuning](#postgresql-configuration-tuning).
+
+Example command to start PostgreSQL:
+
+```shell
+docker volume create vega_pgdata
+
+docker run -d \
+    --rm \
+    --name vega_postgresql \
+    -e POSTGRES_USER=DATABASE_USER \
+    -e POSTGRES_PASSWORD=DATABASE_PASSWORD \
+    -e POSTGRES_DB=DATABASE_NAME \
+    -p 5432:5432 \
+    -v vega_pgdata:/var/lib/postgresql/data \
+    timescale/timescaledb:2.8.0-pg14 \
+        -c "max_connections=50" \
+        -c "log_destination=stderr" \
+        -c "work_mem=5MB" \
+        -c "huge_pages=off" \
+        -c "shared_memory_type=sysv" \
+        -c "dynamic_shared_memory_type=sysv" \
+        -c "shared_buffers=2GB" \
+        -c "temp_buffers=5MB"
+```
 
 ### PostgreSQL configuration tuning
 
@@ -266,9 +294,9 @@ Data node database configuration is defined under the `[SQLStore.ConnectionConfi
   [SQLStore.ConnectionConfig]
     Host = "localhost"
     Port = 5432
-    Username = "vega"
-    Password = "vega"
-    Database = "vega"
+    Username = "USER_NAME"
+    Password = "PASSWORD"
+    Database = "DATABASE_NAME"
     MaxConnLifetime = "30m0s"
     MaxConnLifetimeJitter = "5m0s"
 ```
