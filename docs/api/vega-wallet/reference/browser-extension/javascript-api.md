@@ -64,7 +64,7 @@ A dApp can detect the network in use by checking the `chainID` in use:
 const { chainID } = await vega.getChainId()
 ```
 
-Note that `chainID` is not an indefinate constant but may change with
+Note that `chainID` is not an indefinite constant but may change with
 network restarts. However it can assumed to constant during a session.
 
 If the dApp is using data from other data-nodes, the `chainID` is a
