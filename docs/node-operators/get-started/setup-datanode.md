@@ -85,9 +85,9 @@ docker volume create vega_pgdata
 docker run -d \
     --rm \
     --name vega_postgresql \
-    -e POSTGRES_USER=vega \
-    -e POSTGRES_PASSWORD=vega \
-    -e POSTGRES_DB=vega \
+    -e POSTGRES_USER=DATABASE_USER \
+    -e POSTGRES_PASSWORD=DATABASE_PASSWORD \
+    -e POSTGRES_DB=DATABASE_NAME \
     -p 5432:5432 \
     -v vega_pgdata:/var/lib/postgresql/data \
     timescale/timescaledb:2.8.0-pg14 \
