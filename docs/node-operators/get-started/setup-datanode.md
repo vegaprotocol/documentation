@@ -73,11 +73,11 @@ Where:
 - `database_user` is the user name you want to use to connect to the database.
 - `database_password` is the password you want to use to connect to the database.
 - `database_name` is the name of the database you want to use for storing the data.
-- `localdb_port` is the port you want to use to connect to the database on your local machine. (5432 is the default port for Postgresql database server and may not be available if you already have a postgresql database server running on your machine and want to use Docker for testing).
+- `localdb_port` is the port you want to use to connect to the database on your local machine. (5432 is the default port for Postgresql database server and may not be available if you already have a PostgreSQL database server running on your machine and want to use Docker for testing).
 
 You should also consider [PostgreSQL configuration tuning](#postgresql-configuration-tuning).
 
-Example command to start the postgreSQL can be:
+Example command to start PostgreSQL:
 
 ```shell
 docker volume create vega_pgdata
