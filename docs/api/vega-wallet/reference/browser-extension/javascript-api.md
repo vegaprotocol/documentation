@@ -21,7 +21,7 @@ hence the presence of the extension can be detected by checking that
 this object is defined:
 
 ```js
-if (globalThis.vega != null) {
+if (window.vega != null) {
     // Vega is installed
 } else {
     // Prompt the user to install the extension
