@@ -41,12 +41,8 @@ try {
 }
 ```
 
-The first time a dApp tries to connect to a wallet, the user will be
-prompted to approve the connection and select which keys they will
-allow the dApp to see. Only appoved keys will be available to the dApp.
-
-Subsequent connect attempts will resolve automatically, unless the user
-has removed the connection in the meantime.
+Connecting to the wallet may require user intervention in the extension,
+eg. reviewing permissions.
 
 Once a dApp is finished talking to the wallet it can call 
 `await vega.disconnectWallet()`.

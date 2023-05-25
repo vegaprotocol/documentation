@@ -18,16 +18,14 @@ ie. `window`.
 - Returns: `Promise<void>` Fulfills with `undefined` upon success
 
 To start using subsequent methods, a dApp or website first needs to initiate
-a connection, which requires user approval. The promise rejects if the user
-denies the connection attempt. Explicit user approval is only required on the
-first connection from a given origin. Subsequent connection attempts resolve
-automatically. Any errors thrown will be of [`?`](#?)
+a connection, which may require user approval. The promise rejects if the
+connection attempt is denied. Any errors thrown will be of [`?`](#?)
 
 ### `await vega.disconnectWallet()`
 
 - Returns: `Promise<void>` Fulfills with `undefined`
 
-This closes any open connection from the dApp to the wallet
+This closes any open connection from the dApp to the wallet.
 
 ### `const keys = await vega.listKeys()`
 
@@ -35,9 +33,10 @@ This closes any open connection from the dApp to the wallet
     * User chosen `name` for the key pair
     * Hex encoded `publicKey`
 
-After successfully connecting, users will select which keys and wallets they
-will allow to be seen and used by the connecting dApp. Only keys contained in
-the list are available for other operations such as `vega.sendTransaction`.
+After successfully connecting, dApps can list keys that the user has allowed to
+be visible. The list may change over time and can therefore not be expected to
+be static. Only keys contained in the list are available for other operations 
+such as `vega.sendTransaction`.
 Any errors thrown will be of [`?`](#?)
 
 ```js
