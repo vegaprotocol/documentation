@@ -54,7 +54,7 @@ Currently, two transaction types can be limited:
 If either parameter's value is decreased (through a governance proposal and vote), then the change does not affect existing orders on the market, but only new orders/liquidity commitments placed after the change is enacted. 
 
 ## Spam protection
-On a decentralised and pseudonymous network, there's always a possibility that a malicious actor will attempt to spam blocks and fill them with meaningless transactions. To mitigate that risk, there are spam protections enabled to protect the Vega network, in particular enforced minimums and maximums for certain transactions sent to the Vega network, and a client-side proof of work requirement to mitigate transaction spam.
+On a decentralised and pseudonymous network, there's always a possibility that a malicious actor or a misconfigured client will attempt to spam blocks and fill them with meaningless transactions. As Vega allows for some transactions to be issued without requiring gas cost, this issue requires special care. To mitigate that risk, there are spam protections enabled to protect the Vega network, in particular enforced minimums and maximums for certain transactions sent to the Vega network, and a client-side proof of work requirement to mitigate transaction spam.
 
 The Vega Wallet software prevents you from sending in a transaction that will trigger a spam violation and cause your public key to be banned.
 
@@ -72,7 +72,7 @@ Governance transactions have several limits in order to mitigate the potential s
 * Minimum number of governance tokens associated to the proposing public key required to submit the proposal is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" suffix="tokens" formatter="governanceToken" />
 
 **Votes on proposals** and **submitting governance proposals** also have limitations on the max number of each per epoch: 
-* Maximum number of votes per public key, on each proposal per epoch is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.votes" />
+* Maximum number of votes per public key, on each proposal per epoch is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.votes" />. Thus, this parameter limits how often you can change your mind on a proposal.
 * Maximum number of proposals per public key, per epoch is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.proposals" hideName={true} />
 
 #### Mitigating spam attacks
