@@ -35,7 +35,7 @@ These parameters can differ between networks. In other words, the same network p
 
 :::note Go deeper
 * [Network parameters: See full list on the block explorer  ↗](https://explorer.fairground.wtf/network-parameters)
-* [Tutorial: Propose a network parameter change](../tutorials/proposals/network-parameter-proposal.md)
+* [Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)
 :::
 
 
@@ -61,7 +61,7 @@ The Vega Wallet software prevents you from sending in a transaction that will tr
 The values of all [spam protection network parameters](#spam-protection-parameters) can be changed through a governance vote. If a parameter change passes governance, it takes effect in the epoch after it passes.
 
 :::tip Query for data
-Use the [spam statistics API](../../api/rest/core/core-service-get-spam-statistics) to see a public key's spam count. This could be useful if you're building wallet software for use with Vega, to stop accidental spamming.
+Use the [spam statistics API](../../api/rest/core/core-service-get-spam-statistics.api.mdx) to see a public key's spam count. This could be useful if you're building wallet software for use with Vega, to stop accidental spamming.
 :::
 
 ### Spam limits: Governance
