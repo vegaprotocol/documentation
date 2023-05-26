@@ -135,6 +135,7 @@ To correct the configuration, any validator or tokenholder can submit a transact
 :::
 
 ## Reward allocation
+
 :::caution 
 The Vega network does not prevent tokenholders from nominating validators with an amount that would cause a node to be overstaked. Tokenholders must actively manage their stake and keep track of the nodes they support.
 :::
@@ -149,4 +150,4 @@ If the validator does not have sufficient self-stake as defined by <NetworkParam
 
 The remaining rewards are then distributed to the tokenholders nominating the validator node in proportion to their share of nomination on that node.
 
-No rewards will be paid if the multisig control is incorrectly configured or outdated. Read more in [multisig score](#multisig-score).
+Rewards will not be paid to a validator if the multisig control is incorrectly configured or outdated and leads to that validator having a zero-score. Read more in [multisig score](#multisig-score).
