@@ -27,7 +27,7 @@ The information needed by Vega to process an order:
 | Expires at | If the order has a Good 'til Time TIF, the specific time the order will expire | Chosen by user|
 | [Type](#order-types)	  | Type of order (such as limit or market)                                   | Chosen by user|
 | [Pegged order](#pegged-order) | Details about a pegged order, if an order uses pegs                 |Chosen by user|
-| [Liquidity provision](./../../tutorials/committing-liquidity.md) | Provides details if an order is a liquidity commitment order   |Chosen by user|
+| [Liquidity provision](../../tutorials/building-a-bot/adding-a-liquidity-commitment.md) | Provides details if an order is a liquidity commitment order   |Chosen by user|
 | Order ID | Unique deterministic ID, can be used to query but only exists after consensus      |Determined by network|
 | [Order status](#order-status)	  | Whether an order is filled, partially filled, stopped or cancelled |Determined by network|
 | Reference | Unique order reference, used to retrieve an order submitted through consensus |Determined by network|
@@ -217,8 +217,10 @@ Good for Normal orders are cancelled if the market moves into an auction.
 
 ## Submitting, amending and cancelling orders
 This section is specific to market and limit orders. 
-
-See [pegged orders](#pegged-order) and [liquidity commitment orders](./../../tutorials/committing-liquidity) for information on how to manage those order types.
+:::tip Try it out
+[Tutorial for committing liquidity](../../tutorials/building-a-bot/adding-a-liquidity-commitment.md): See sample bot code for setting up and managing a liquidity commitment.
+:::
+See [pegged orders](#pegged-order) and [liquidity provision](../liquidity/provision.md) for information on how to manage those order types.
 
 ### Submit an order 
 Orders can be submitted into any market that is active - not expired or settled. Orders will only be accepted if sufficient margin can be allocated from a trader's available collateral. Not all orders can be submitted in all trading modes. 

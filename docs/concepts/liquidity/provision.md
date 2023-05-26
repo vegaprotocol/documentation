@@ -92,7 +92,7 @@ A liquidity commitment order type has a specific set of features that set it apa
 * *Returns to the order book after being filled*: The order is always refreshed after it trades, based on the above requirements so that the full commitment is always supplied
 
 :::tip Try it out
-[Tutorial for committing liquidity](../../tutorials/committing-liquidity.md): Use helper scripts to set up and manage a liquidity commitment.
+[Tutorial for committing liquidity](../../tutorials/building-a-bot/adding-a-liquidity-commitment.md): See sample bot code for setting up and managing a liquidity commitment.
 :::
 
 ### Order shapes
