@@ -10,7 +10,34 @@ import Topic from '/docs/topics/_topic-staking.mdx'
 
 The Vega mainnet network is operated by a number of independent validators, who each run a [validator node](validator-nodes.md), and may also run [data nodes](data-nodes.md). 
 
-The Vega project team runs one testnet network, also known as Fairground (enabled with trading). The mainnet validators also run a testnet network, in addition to the Vega mainnet network.
+The Vega project team runs one testnet network, also known as Fairground (enabled with trading). The mainnet validators also run a testnet network, in addition to the mainnet network.
+
+## Parameters
+There are certain parameters that influence the behaviour of the system, such as how many tokens are required to make a particular governance proposal, or what percentage infrastructure fees should be.
+
+Network parameters can be changed by on-chain governance, so that the community can define the optimal network configuration for each feature. They can only be added or removed with Vega core software releases.
+
+Each network parameter has a 'key', or a name, and a 'value', which is what the parameter is set to.
+
+Loosely, network parameters fall into several categories: 
+* Governance proposals: `governance.proposal.asset.minVoterBalance`, `governance.proposal.updateMarket.minEnact`, for example
+* Auctions: `market.auction.minimumDuration`, `market.monitor.price.defaultParameters`, for example
+* Fees: `transfer.fee.factor`, `market.fee.factors.makerFee`, for example
+* Margin: `market.margin.scalingFactors`
+* Network checkpoints and snapshots: `network.checkpoint.timeElapsedBetweenCheckpoints`, `snapshot.interval.length`, for example
+* Spam protection: `spam.pow.difficulty`, `spam.protection.max.proposals`, for example
+* Liquidity: `market.liquidity.bondPenaltyParameter`, `market.liquidity.targetstake.triggering.ratio`, for example
+* Validators: `network.validators.multisig.numberOfSigners`, `validators.delegation.minAmount`, for example 
+* Rewards: `rewards.marketCreationQuantumMultiple`, `reward.staking.delegation.minimumValidatorStake`, for example
+* Transfers: `transfer.minTransferQuantumMultiple`
+
+These parameters can differ between networks. In other words, the same network parameter key could have different values on mainnet, Fairground, and the validator-run testnet.
+
+:::note Go deeper
+* [Network parameters: See full list on the block explorer  ↗](https://explorer.fairground.wtf/network-parameters)
+* [Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)
+:::
+
 
 ## Network-wide limits
 Some limits have been introduced to the protocol in an aim to keep the overall system performant and responsive, with low-latency. As the system relies on both a lean core and a data node that consumes and provides data, having limits allows the option to somewhat control how many computations and how much data is generated, while also allowing full use of the protocol's functionality. 
@@ -27,14 +54,14 @@ Currently, two transaction types can be limited:
 If either parameter's value is decreased (through a governance proposal and vote), then the change does not affect existing orders on the market, but only new orders/liquidity commitments placed after the change is enacted. 
 
 ## Spam protection
-On a decentralised and pseudonymous network, there's always a possibility that a malicious actor will attempt to spam blocks and fill them with meaningless transactions. To mitigate that risk, there are spam protections enabled to protect the Vega network, in particular enforced minimums and maximums for certain transactions sent to the Vega network, and a client-side proof of work requirement to mitigate transaction spam.
+On a decentralised and pseudonymous network, there's always a possibility that a malicious actor or a misconfigured client will attempt to spam blocks and fill them with meaningless transactions. As Vega allows for some transactions to be issued without requiring gas cost, this issue requires special care. To mitigate that risk, there are spam protections enabled to protect the Vega network, in particular enforced minimums and maximums for certain transactions sent to the Vega network, and a client-side proof of work requirement to mitigate transaction spam.
 
 The Vega Wallet software prevents you from sending in a transaction that will trigger a spam violation and cause your public key to be banned.
 
 The values of all [spam protection network parameters](#spam-protection-parameters) can be changed through a governance vote. If a parameter change passes governance, it takes effect in the epoch after it passes.
 
 :::tip Query for data
-Use the [spam statistics API](../../api/rest/core/core-service-get-spam-statistics) to see a public key's spam count. This could be useful if you're building wallet software for use with Vega, to stop accidental spamming.
+Use the [spam statistics API](../../api/rest/core/core-service-get-spam-statistics.api.mdx) to see a public key's spam count. This could be useful if you're building wallet software for use with Vega, to stop accidental spamming.
 :::
 
 ### Spam limits: Governance
@@ -45,7 +72,7 @@ Governance transactions have several limits in order to mitigate the potential s
 * Minimum number of governance tokens associated to the proposing public key required to submit the proposal is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" suffix="tokens" formatter="governanceToken" />
 
 **Votes on proposals** and **submitting governance proposals** also have limitations on the max number of each per epoch: 
-* Maximum number of votes per public key, on each proposal per epoch is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.votes" />
+* Maximum number of votes per public key, on each proposal per epoch is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.votes" />. Thus, this parameter limits how often you can change your mind on a proposal.
 * Maximum number of proposals per public key, per epoch is determined by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.proposals" hideName={true} />
 
 #### Mitigating spam attacks
@@ -54,11 +81,9 @@ If the network perceives it is under attack based on the amount of rejected gove
 If three blocks in a row are filled with spam, for example if parties continue to send substantially more than three votes on one proposal, then the number of required tokens is doubled, up to a maximum of 1600 tokens.
 
 ### Spam limits: Transfers 
-Each party (public key) has a limitation on how many transfer transactions it can submit per epoch, set by the network parameter
-<NetworkParameter frontMatter={frontMatter} param="spam.protection.maxUserTransfersPerEpoch" hideValue={true} />.
+Each party (public key) has a limitation on how many transfer transactions it can submit per epoch, set by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.maxUserTransfersPerEpoch" hideValue={true} />.
 
 Once that transfer limit is reached for a key, any subsequent transactions are rejected until the epoch switches over.
-<!-- (mention in transfers area) -->
 
 ### Spam limits: Staking
 Staking to any number validators is subject to minimum token requirements and a limit on the number of delegations per epoch:
