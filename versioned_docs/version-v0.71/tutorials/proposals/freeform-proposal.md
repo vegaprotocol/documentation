@@ -33,11 +33,15 @@ You will need:
 * A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.freeform.minProposerBalance" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.freeform.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
 * Familiarity with [governance on Vega](../../concepts/governance.md)
 
+You should also share your proposal idea in the [_Freeform Proposals_ forum section ↗](https://community.vega.xyz/c/governance/free-form-proposals/31) before submitting it to the network.
+
 ## Templates and submitting
 
-In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example, and command line examples for different operating systems.
+In the tabs below you'll see:
 
-The governance dApp has a [tool to help you put together a proposal ↗](https://governance.vega.xyz/proposals/propose/freeform). When you have your proposal ready you can [submit the JSON on the governance dApp ↗](https://governance.vega.xyz/proposals/propose/raw).
+* Annotated example describing what each field is for
+* JSON example that can be submitted with the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw)
+* Command line examples for different operating systems
 
 **Replace the example data with the relevant details before submitting.**
 
@@ -46,7 +50,7 @@ The governance dApp has a [tool to help you put together a proposal ↗](https:/
     <NewFreeformAnnotated />
   </TabItem>
   <TabItem value="json" label="Governance dApp (JSON)">
-		<JSONInstructions />
+    <JSONInstructions />
 		<NewFreeformJSON />
   </TabItem>
   <TabItem value="cmd" label="Command line (Linux / OSX)">
@@ -59,11 +63,11 @@ The governance dApp has a [tool to help you put together a proposal ↗](https:/
   </TabItem>
 </Tabs>
 
-## Voting and enactment
+## Voting
 All proposals are voted on by the community. To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> or <NetworkParameter frontMatter={frontMatter} param="governance.proposal.freeform.minVoterBalance" suffix="tokens" hideName={true} />, associated to their Vega key. 
 
 Your proposal will need [participation](../../concepts/governance.md#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.freeform.requiredParticipation" formatter="percent" hideName={true} /> and a voting majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.freeform.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential.
 
-Building support is down to you. Share your proposal in [the _Free Form Proposals_ forum ↗](https://community.vega.xyz/c/governance/25) on Vega community. You may also wish to share on [Discord ↗](https://vega.xyz/discord).
+Building support is down to you. Share your proposal in the [_Freeform Proposals_ section ↗](https://community.vega.xyz/c/governance/free-form-proposals/31) on the Vega community forum. You may also wish to share on [Discord ↗](https://vega.xyz/discord).
 
 Proposers who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.

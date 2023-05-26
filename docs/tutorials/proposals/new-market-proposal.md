@@ -32,7 +32,7 @@ Propose a cash-settled futures market on any underlying with a settlement data s
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
 * A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true}/>   (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
-* Familiarity with [governance on Vega](../../concepts/governance.md), particularly [market governance](../../concepts/governance.md#market-governance)
+* Familiarity with [market governance](../../concepts/governance.md#market-governance) on Vega
 
 ## Anatomy of a market proposal
 In this section, the [full proposal template](#templates-and-submitting) has been divided into sections to provide more details on what you need to submit.
@@ -161,9 +161,11 @@ The risk model uses the following properties:
 | `param: sigma` | Annualised volatility of the underlying asset. <br/><br/>Accepted values: any strictly non-negative real number; suggested value: asset dependent, should be derived from the historical time-series of prices. | 0.8 (converts to 80%) |
 
 ## Templates and submitting
-In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example, and command line examples for different operating systems.
+In the tabs below you'll see:
 
-The governance dApp has a [tool to help you put together a proposal ↗](https://governance.fairground.wtf/proposals/propose/new-market). When you have your proposal ready you can [submit the JSON on the governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw).
+* Annotated example describing what each field is for
+* JSON example that can be submitted with the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw)
+* Command line examples for different operating systems that can be submitted with a Vega Wallet app.
 
 **Replace the example data with the relevant details before submitting.**
 
@@ -172,7 +174,7 @@ The governance dApp has a [tool to help you put together a proposal ↗](https:/
     <NewMarketAnnotated />
   </TabItem>
   <TabItem value="json" label="Governance dApp (JSON)">
-		<JSONInstructions />
+  	<JSONInstructions />
 		<NewMarketJSON />
   </TabItem>
   <TabItem value="cmd" label="Command line (Linux / OSX)">
@@ -180,16 +182,17 @@ The governance dApp has a [tool to help you put together a proposal ↗](https:/
 		<NewMarketCMD />
   </TabItem>
   <TabItem value="win" label="Command line (Windows)">
-		<TerminalInstructions />
+  <TerminalInstructions />
 		<NewMarketWin />
   </TabItem>
 </Tabs>
 
-## Voting and enactment
+## Voting
 All proposals are voted on by the community. To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minVoterBalance" suffix="tokens" hideName={true} formatter="governanceToken" />, or <NetworkParameter formatter="governanceToken" frontMatter={frontMatter} param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated with their Vega key.
 
-Your proposal will need [participation](../../concepts/governance.md#how-a-proposals-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential. If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
-
-Building support is down to you. Share your proposal in [the _New Market Proposals_ forum ↗](https://community.vega.xyz/c/fairground-testnet-governance/new-market-proposals-testnet/33) on Vega community, being sure to follow the [post guide ↗](https://community.vega.xyz/t/guide-to-new-market-proposals-on-fairground-testnet/4017). You may also wish to share on [Discord ↗](https://vega.xyz/discord).
+Your proposal will need [participation](../../concepts/governance.md#how-a-proposals-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential.
 
 Proposers who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.
+
+## Enactment 
+If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
