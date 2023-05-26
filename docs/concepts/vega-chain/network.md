@@ -10,7 +10,7 @@ import Topic from '/docs/topics/_topic-staking.mdx'
 
 The Vega mainnet network is operated by a number of independent validators, who each run a [validator node](validator-nodes.md), and may also run [data nodes](data-nodes.md). 
 
-The Vega project team runs one testnet network, also known as Fairground (enabled with trading). The mainnet validators also run a testnet network, in addition to the Vega mainnet network.
+The Vega project team runs one testnet network, also known as Fairground (enabled with trading). The mainnet validators also run a testnet network, in addition to the mainnet network.
 
 ## Parameters
 There are certain parameters that influence the behaviour of the system, such as how many tokens are required to make a particular governance proposal, or what percentage infrastructure fees should be.
@@ -84,7 +84,6 @@ If three blocks in a row are filled with spam, for example if parties continue t
 Each party (public key) has a limitation on how many transfer transactions it can submit per epoch, set by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.maxUserTransfersPerEpoch" hideValue={true} />.
 
 Once that transfer limit is reached for a key, any subsequent transactions are rejected until the epoch switches over.
-<!-- (mention in transfers area) -->
 
 ### Spam limits: Staking
 Staking to any number validators is subject to minimum token requirements and a limit on the number of delegations per epoch:
