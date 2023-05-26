@@ -42,8 +42,8 @@ jobs:
 
   lint-test-build:
     timeout-minutes: 60
-    needs: node-modules
-    runs-on: ubuntu-22.04
+    # docs need a lot of memory to run
+    runs-on: self-hosted-runner
     name: '(CI) lint + unit test + build'
     steps:
       - name: Checkout
