@@ -149,4 +149,4 @@ If the validator does not have sufficient self-stake as defined by <NetworkParam
 
 The remaining rewards are then distributed to the tokenholders nominating the validator node in proportion to their share of nomination on that node.
 
-No rewards will be paid if the multisig control is incorrectly configured or outdated. Read more in [multisig score](#multisig-score).
+Rewards will not be paid to a validator if the multisig control is incorrectly configured or outdated and leads to that validator having a zero-score. Read more in [multisig score](#multisig-score).

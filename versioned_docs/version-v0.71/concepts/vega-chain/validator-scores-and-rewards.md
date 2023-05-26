@@ -111,11 +111,28 @@ The network will keep track of the last 10 times a standby validator was meant t
 ## Validator score and voting power
 The validator score for the epoch is calculated as:
 
-`validator_score` = `raw_validator_score` x `performance_score` x `multisig_bonus`
+`validator_score` = `raw_validator_score` x `performance_score` x `multisig_score`
 
-Where `multisig_bonus` is used to ensure consensus validators are registered to the [multisig contract](../../api/bridge/contracts/MultisigControl). If a consensus validator is not registered to the multisig they will get a score of zero, otherwise they get 1. Non-consensus validators are always awarded a `multisig_bonus` of 1 since they are not required to be registered to the multisig.
+The validator score is normalised to sum to 1. This `normalised score` is then used to define a node's `voting power` in the next epoch. Note that the `voting power` is multiplied by 10,000 and rounded to integer values, to meet Tendermint/CometBFT requirements.
 
-Finally, the validator score is normalised to sum to 1. This `normalised score` is then used to define a node's `voting power` in the next epoch. Note that the `voting power` is multiplied by 10,000 and rounded to integer values, to meet Tendermint requirements.
+### Multisig score
+The multisig score is used to ensure all (and only) consensus validators are registered to the [multisig control contract](../../api/bridge/contracts/MultisigControl.md).
+
+If any *consensus validator is missing* from the multisig, then each missing validator will receive a multisig score of zero until it is added to the multisig contract. 
+
+If any *non-consensus* validator is in the multisig, then all consensus validators are given a multisig score of zero. 
+
+The multisig score is used in the calculation of rewards. For each validator that gets a multisig score of zero, **no staking rewards** are paid to that consensus validators and their nominators until the epoch following the one in which the configuration issue is resolved. 
+
+This mechanism is designed to ensure that the validators are incentivised to keep the multisig control up to date as validators join and leave, because if it is not correctly configured, the Vega chain cannot interact with the Ethereum chain and crucial operations like associating/staking tokens will not work.
+
+Standby and candidate validators always receive a multisig score of 1 since they are not required to be in the multisig list.
+
+To correct the configuration, any validator or tokenholder can submit a transaction bundle to the network. It will then be verified by the validators.
+
+:::info Try it out
+[How to correct the multisig contract](../../node-operators/how-to/maintain-multisig-contract.md)
+:::
 
 ## Reward allocation
 :::caution 
@@ -132,3 +149,4 @@ If the validator does not have sufficient self-stake as defined by <NetworkParam
 
 The remaining rewards are then distributed to the tokenholders nominating the validator node in proportion to their share of nomination on that node.
 
+No rewards will be paid if the multisig control is incorrectly configured or outdated. Read more in [multisig score](#multisig-score).
