@@ -76,7 +76,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: build
-          key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-cache-dist-${{ hashFiles('yarn.lock') }}
 
   publish-dist:
     needs:
@@ -94,7 +94,10 @@ jobs:
         uses: actions/cache@v3
         with:
           path: build
-          key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('yarn.lock') }}
+          key: ${{ runner.os }}-cache-dist-${{ hashFiles('yarn.lock') }}
+
+      - name: List files
+        run: ls -al
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
