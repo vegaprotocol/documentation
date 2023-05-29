@@ -91,16 +91,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Download a single artifact
+      - name: Download all workflow run artifacts
         uses: actions/download-artifact@v3
+
+      # delete-artifact
+      - uses: geekyeggo/delete-artifact@v2
         with:
-          name: build
+            name: build
 
       - name: List files
         run: ls -al
-
-      - name: Download all workflow run artifacts
-        uses: actions/download-artifact@v3
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
