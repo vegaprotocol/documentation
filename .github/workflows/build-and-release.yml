@@ -13,7 +13,7 @@ on:
 jobs:
   node-modules:
     runs-on: ubuntu-22.04
-    name: 'Cache yarn modules'
+    name: '(CI) cache yarn modules'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -41,10 +41,12 @@ jobs:
         run: yarn install --pure-lockfile
 
   build-dist:
+    needs:
+      - node-modules
     timeout-minutes: 60
     # docs need a lot of memory to run
     runs-on: self-hosted-runner
-    name: '(CI) lint + unit test + build'
+    name: '(CI) build dist on self hosted runner'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -77,7 +79,10 @@ jobs:
           key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('yarn.lock') }}
 
   publish-dist:
+    needs:
+      - build-dist
     timeout-minutes: 60
+    name: '(CD) publish dist'
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
