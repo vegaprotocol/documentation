@@ -22,9 +22,22 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Version 0.71.5 | 2023-05-26
+
+Version 0.71.5 was released, by the validators, to mainnet on 26 May 2023.
+
+Whilst investigating a failed withdrawal, a bug was identified in the Vega asset pool smart contract. This bug could cause assets to become stuck in the bridge and therefore required a rapid patch release. New versions of the bridge and asset pool contracts were deployed on the Ethereum mainnet and are in the control of the Vega network.
+
+New bridge contracts:
+
+- Bridge: `0x23872549cE10B40e31D6577e0A920088B0E0666a`
+- Asset pool: `0xa226e2a13e07e750efbd2e5839c5c3be80fe7d4d`
+
+Take a look at the [incident report](https://medium.com/vegaprotocol/incident-report-incident-under-investigation-d41cb2815de0) for full details regarding this patch release.
+
 ### Versions 0.54.0 through to 0.71.4 combined | 2023-05-09
 
-Version 0.71.4 was released to the Vega mainnet on 09 May 2023.
+Version 0.71.4 was released, by the validators, to mainnet on 09 May 2023.
 
 This version brings the planned features for the alpha mainnet phase to mainnet, making the protocol ready to remove restrictions for the community to propose assets and markets. This deployment brings some key features built upon the restricted mainnet version:
 
@@ -70,8 +83,8 @@ For more information on Network Limits see the [spec ↗](https://github.com/veg
 
 #### Breaking changes and deprecations
 
-:::caution Breaking changes 
-The changes below may affect any automations, scripts or workflows you'll have set up for Vega mainnet before this release. Review the following changes carefully. 
+:::caution Breaking changes
+The changes below may affect any automations, scripts or workflows you'll have set up for Vega mainnet before this release. Review the following changes carefully.
 :::
 
 **Add `marketIds` and `partyIds` to orders queries' filter** (v0.70): To allow getting all orders for a single party or market so that users can more easily find their orders across multiple keys or markets, filtering on the orders endpoint has been enhanced.
@@ -164,16 +177,16 @@ The best experience for restarting a node is to load from the highest possible b
 **Vega as a built-in application** [v.0.54 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.54.0):
 Vega is now a built-in application. This means that Tendermint does not need to be started separately, providing a simpler, streamlined user experience for node operators. This introduces some breaking changes to the commands used when running a node:
 
-- The `vega node` command has been renamed to `vega start`. 
-- The `vega tm` command has been renamed to `vega tendermint`. 
-- The `Blockchain.Tendermint.ClientAddr` configuration field has been renamed to `Blockchain.Tendermint.RPCAddr`. 
+- The `vega node` command has been renamed to `vega start`.
+- The `vega tm` command has been renamed to `vega tendermint`.
+- The `Blockchain.Tendermint.ClientAddr` configuration field has been renamed to `Blockchain.Tendermint.RPCAddr`.
 - The `init` command now also generates the configuration for tendermint, and also has the newly introduced flags `--no-tendermint`,` --tendermint-home` and `--tendermint-key`.
 
 **Removed: Wallet support for launching a proxy in front of dApps** [v.0.54 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.54.0):
 Introducing the proxy was a way to navigate the browser security that prevents web apps from being able to talk to local web servers; this is now no longer required and therefore has been removed.
 
 ### Versions 0.53.1 and 0.53.2 combined | 2023-03-22
-This version was released to the Vega mainnet on 22 March 2023.
+This version was released, by the validators, to mainnet on 22 March 2023.
 
 This deployment addresses a critical mainnet issue. A bug has been identified that caused a network outage at the time that the protocol was promoting a new validator to consensus validator status. The issue was caused by insufficient validation of the Tendermint public keys specified in the `announce node` command.
 
@@ -182,7 +195,7 @@ The fix introduced both resolved the issue and enhances the validation so that t
 To find out more please see the issue [7936 ↗](https://github.com/vegaprotocol/vega/issues/7936) and the [incident blog ↗](https://blog.vega.xyz/incident-report-validator-nodes-down-in-mainnet-2ac2f724d67e)
 
 ### Versions 0.53-0.51 | 2022-08-15
-This version was released to mainnet by the validators on 15 August, 2022.
+This version was released, by the validators, to mainnet on 15 August, 2022.
 
 #### 0.53.0 (14 July 2022)
 
@@ -190,12 +203,12 @@ This version was released to mainnet by the validators on 15 August, 2022.
 With the upgrade of the network to version v0.53 there was upgrade of the smart contracts. The multisig control contract and the collateral bridge will thus increase users' control over the funds they deposit (opt-out) and include performance improvements, such as decreasing gas cost when using the bridge. The Vega asset pool contract will not be upgraded. Once the new contracts are properly set up on Ethereum, the validators will migrate the asset pool to use the new contracts.
 
 **Checkpoint commands:**
-From version 0.53.0, checkpoints are always loaded via the genesis. To facilitate this the  `--genesis-file` option has been added to the `load_checkpoint` command. 
+From version 0.53.0, checkpoints are always loaded via the genesis. To facilitate this the  `--genesis-file` option has been added to the `load_checkpoint` command.
 
 With the introduction of this, the restore checkpoint command has now been deprecated and removed.
 
 **Vega wallet in core repo:**
-The core and Vega Wallet codebases have been unified. This reduces the risk that core and Vega Wallet software changes get out of sync. Users of the CLI wallet app can easily confirm if the version of their wallet is compatible with  the core Vega software version as they will be built and released together, and thus have the same version number. 
+The core and Vega Wallet codebases have been unified. This reduces the risk that core and Vega Wallet software changes get out of sync. Users of the CLI wallet app can easily confirm if the version of their wallet is compatible with  the core Vega software version as they will be built and released together, and thus have the same version number.
 
 In the short term, the CLI wallet app will still be available to download from the Vega Wallet repo, but it will not be supported for future releases.
 
@@ -221,7 +234,7 @@ Part of testing the network version compatibility is to deploy the latest versio
 **Incorrect prices returned from depth endpoint in data node API:**
 The depth value in the data node API appeared to occasionally become desynchronised from the 'true' prices. This was observed on testnet when a market’s prices of the 'bids' values were much higher than those of 'ask' and did not tally with values from best bid/ask.
 
-In V1 of the data node (which will be replaced with V2) there is a check which relies on the Vega time (block time) being correctly set. However, as the V1 broker is multi-threaded per event type, there is no guarantee that the time event that sets the Vega time will arrive at the market depth subscriber with the orders to which the time corresponds. This change sends the Vega time of the block along with the order event in the V1 broker to ensure that a correct sequence number is generated for each order event. 
+In V1 of the data node (which will be replaced with V2) there is a check which relies on the Vega time (block time) being correctly set. However, as the V1 broker is multi-threaded per event type, there is no guarantee that the time event that sets the Vega time will arrive at the market depth subscriber with the orders to which the time corresponds. This change sends the Vega time of the block along with the order event in the V1 broker to ensure that a correct sequence number is generated for each order event.
 
 Note: this issue affects the V1 APIs which will be deprecated and replaced by V2 which is single threaded and thus could not have this bug.
 
@@ -236,9 +249,9 @@ Full details can be seen in issue [730](https://github.com/vegaprotocol/data-nod
 To ensure that this does not affect existing transactions the protocol verifies proof of work with the parameters as they were configured at the time of the block of the transaction.
 
 #### 0.51.2 (10 June 2022)
-Version 0.51 of the Vega software implements some key changes to the features of governance and rewards as well as smart contracts. In addition, work continues on the data-node to transition to the time-series `PostGres` data storage and the migrated APIs which will help the data-node scale as usage increases on the network. 
+Version 0.51 of the Vega software implements some key changes to the features of governance and rewards as well as smart contracts. In addition, work continues on the data-node to transition to the time-series `PostGres` data storage and the migrated APIs which will help the data-node scale as usage increases on the network.
 
-**Breaking change - asset governance:** In release 0.51.2, a breaking change has been introduced that may affect governance proposals that refer to assets. The function used to request the asset bundle before proposing an asset has been renamed to be clearer, as in the future there will be an option for removing assets. 
+**Breaking change - asset governance:** In release 0.51.2, a breaking change has been introduced that may affect governance proposals that refer to assets. The function used to request the asset bundle before proposing an asset has been renamed to be clearer, as in the future there will be an option for removing assets.
 
 The following method names have been updated:
 * `GetERC20AssetBundleRequest` is now `GetERC20ListAssetBundleRequest`
@@ -246,7 +259,7 @@ The following method names have been updated:
 
 **Breaking change - governance:** There has been a breaking change made to the governance process. A rationale is now required for all governance proposals. Every proposal transaction must contain a link to a text file in markdown format which summarises the proposed change and links back to the complete proposed change.
 
-**Smart contract allow-listing:** The `MultisigControl` smart contracts have been updated to permit allow listing oneself to deposit above the specified deposit limits. This change both ensures that there are steps to protect users of the network during the early period of trading being enabled and also gives control to the user to allow list themselves if they understand the risks. 
+**Smart contract allow-listing:** The `MultisigControl` smart contracts have been updated to permit allow listing oneself to deposit above the specified deposit limits. This change both ensures that there are steps to protect users of the network during the early period of trading being enabled and also gives control to the user to allow list themselves if they understand the risks.
 
 The contract changes have recently been through an audit of which the final version will be published alongside the deployment of the contracts into testnet. As confidence in the network is established, it is expected that governance proposals will be made to increase the deposit limits.
 
@@ -254,9 +267,9 @@ The contract changes have recently been through an audit of which the final vers
 
 When transferring to a reward account, it is possible to define the reward metric, the reward metric asset, and a subset of markets. Should a market not be defined when initiating the transfer the protocol proceeds with all the markets that settle in the reward metric asset.
 
-**Snapshots:** A snapshot is generated every N blocks, and that information is stored in a `GoLevelDB` file on the local file system. By default a node will always start up in normal mode in which it connects to Tendermint and replays any historic blocks before catching up and running at the same pace as the existing nodes on the network. 
+**Snapshots:** A snapshot is generated every N blocks, and that information is stored in a `GoLevelDB` file on the local file system. By default a node will always start up in normal mode in which it connects to Tendermint and replays any historic blocks before catching up and running at the same pace as the existing nodes on the network.
 
-The snapshot system will keep by default 10 versions of the snapshots. When it has created 10 it will remove the oldest each time it creates a new snapshot. Extensive testing of snapshots has been conducted and is ready for use by the validators for stopping and starting nodes. 
+The snapshot system will keep by default 10 versions of the snapshots. When it has created 10 it will remove the oldest each time it creates a new snapshot. Extensive testing of snapshots has been conducted and is ready for use by the validators for stopping and starting nodes.
 
 There has also been an array of fixes implemented for snapshots that ensure that a node restored from a snapshot always maintains consensus.
 
@@ -277,13 +290,13 @@ This release was shared with validators on 27 April, 2022. The validators releas
 
 The primary focus of this and the next upcoming releases has been to complete the final remaining features, progress data-node improvements for scalability and to add test coverage and fix bugs.
 
-Note: While many of the features below are related to trading, it is not yet enabled on mainnet. 
+Note: While many of the features below are related to trading, it is not yet enabled on mainnet.
 
 **Proposals to change market parameters**: After a market has been proposed and enacted, changes to the market parameters can be proposed in a different governance action. Tokenholders will be able to submit proposals to change market parameters.
 
 To change any market parameter, the proposer will submit the same data as if they were to create a market, except for the liquidity commitment, however this submission would contain the desired updates to the fields / structures that they wish to be changed. Some of the market parameters will not be able to be changed: market decimal places, position decimal places, settlement asset and the market name.
 
-Read more: 
+Read more:
 * [Market framework spec](https://github.com/vegaprotocol/specs/blob/master/protocol/0001-MKTF-market_framework.md#market)
 * [Change market parameters](https://github.com/vegaprotocol/specs/blob/master/protocol/0028-GOVE-governance.md#2-change-market-parameters)
 
@@ -306,13 +319,13 @@ Read more: [Key management](https://github.com/vegaprotocol/specs/blob/master/pr
 * A fix has been implemented to ensure that the margin is correctly released when an LP order is cancelled
 * With the introduction of the market decimal places feature (see below), an issue was found related to decimal places and price bounds. This fix ensures that LP orders are adjusted to the min/max price according to the market precision
 
-**Tendermint**: The current version of Tendermint being used by Vega has a bug where a transaction would pass `checkTx` but was never added to the memory pool. Tendermint has fixed the bug and the protocol is now able to use `sendTx` sync successfully. Therefore, if any transactions are rejected by the memory pool an error is raised to indicate why this has happened. 
+**Tendermint**: The current version of Tendermint being used by Vega has a bug where a transaction would pass `checkTx` but was never added to the memory pool. Tendermint has fixed the bug and the protocol is now able to use `sendTx` sync successfully. Therefore, if any transactions are rejected by the memory pool an error is raised to indicate why this has happened.
 
 **EEF internalising**: The Ethereum Event Forwarder is functionality inside Vega that allows the network to be aware of activity on the Ethereum network. When the forwarder service is aware of events, such as the staking or unlocking of tokens, it translates and passes the events to the tendermint blockchain in Vega. Originally this was deployed as a single service alongside the Vega node, with the node needing to be configured to accept events from the forwarder service. This has now been rewritten and internalised into the Vega node, which simplifies the configuration of running a Vega node and makes it easier to deploy. Other benefits of doing this include it being easier to maintain and add future enhancements, which will be described in future release notes.
 
 **Data node**: In order to have a scalable solution for accessing data, work has begun on migrating the datastore into a postgres with time-series database. Migrations of assets, accounts, markets, market data, orders and trades have been done. The changes have been made to the codebase and live in parallel with the existing solution. As the remaining APIs are migrated and testing is completed, the old datastore and APIs will be removed.
 
-**Market decimal places**: In this release, the protocol now makes it possible to configure a market for which orders can only be priced in increments of a specific size. This is done by specifying a different (smaller) number of decimal places than its settlement asset supports. To explain this, consider a market that settles in GBP. This market can now be configured to have 0 decimal places so that the price levels on the orderbook will be separated by at least £1, rather than the default £0.01. 
+**Market decimal places**: In this release, the protocol now makes it possible to configure a market for which orders can only be priced in increments of a specific size. This is done by specifying a different (smaller) number of decimal places than its settlement asset supports. To explain this, consider a market that settles in GBP. This market can now be configured to have 0 decimal places so that the price levels on the orderbook will be separated by at least £1, rather than the default £0.01.
 
 Read more: [Market decimal places](https://github.com/vegaprotocol/specs/blob/master/protocol/0070-MKTD-market-decimal-places.md)
 
@@ -320,7 +333,7 @@ Read more: [Market decimal places](https://github.com/vegaprotocol/specs/blob/ma
 
 Read more: [Pegged orders](https://github.com/vegaprotocol/specs/blob/master/protocol/0037-OPEG-pegged_orders.md)
 
-**Liquidity provision improvements**: The `LiquidityProvisionSubmission` API was used for submitting, amending and cancelling liquidity provision.  To both simplify the code and have a more explicit user experience a breaking change has been implemented to split these into three API commands. 
+**Liquidity provision improvements**: The `LiquidityProvisionSubmission` API was used for submitting, amending and cancelling liquidity provision.  To both simplify the code and have a more explicit user experience a breaking change has been implemented to split these into three API commands.
 
 **Floating point determinism**: Computations within a blockchain-based system need to be deterministic as the application state between nodes replicating it can start to differ potentially resulting in consensus failure. The protocol has been improved so that if the system has a differing floating point value there is a resolution strategy to reach consensus on the value that should be used. This is key due to the fact that validators will be running different hardware that could increase the chances of this happening.
 
@@ -332,11 +345,11 @@ Read more: [Floating point consensus](https://github.com/vegaprotocol/specs/blob
 
 An on-chain treasury, per asset type, has been implemented where the balance of the insurance pool is transferred when the market closes. To enable this transfers between Vega Wallets has been enabled, this not only is a feature of the on-chain treasury/rewards system but also allows people using the protocol to be able to transfer assets between wallets. With this feature there have been other changes around the rewards system meaning the full amount of the global reward pool will be distributed in all assets at the end of each epoch.
 
-Read more: 
+Read more:
 * [On-chain treasury](https://github.com/vegaprotocol/specs/blob/master/protocol/0055-TREA-on_chain_treasury.md)
 * [Transfers](https://github.com/vegaprotocol/specs/blob/master/protocol/0057-TRAN-transfers.md)
 
-**Validators joining and leaving, and standby validators**: 
+**Validators joining and leaving, and standby validators**:
 In addition to the consensus validators, there is now functionality on testnet to allow a set of ersatz, or standby validators. These are validators that will  not contribute to the chain, but are on standby to jump in if a current validator drops off or their performance drops below a certain threshold. In order to be considered as an ersatz validator, the node operators need to meet certain criteria, including a minimum self-stake as well as stake nominated by other token holders.
 
 Note: The network will be set to allow 0 standby validators for alpha mainnet, and increase the validator numbers via governance as early alpha mainnet progresses.
