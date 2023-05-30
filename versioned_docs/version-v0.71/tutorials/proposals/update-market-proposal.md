@@ -60,7 +60,7 @@ Note that some network parameters may differ, such as the limits on how long the
 In the tabs below you'll see:
 
 * Annotated example describing what each field is for
-* JSON example that can be submitted with the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw)
+* JSON example that can be shared with the community and then submitted with the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw)
 * Command line examples for different operating systems
 
 **Replace the example data with the relevant details before submitting.**
