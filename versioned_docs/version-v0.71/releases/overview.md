@@ -24,7 +24,7 @@ The Vega core software is public on a business-source licence, so you can both v
 
 ### Version 0.71.5 | 2023-05-26
 
-Version 0.71.5 was released to the Vega mainnet on 26 May 2023.
+Version 0.71.5 was released, by the validators, to mainnet on 26 May 2023.
 
 Whilst investigating a failed withdrawal, a bug was identified in the Vega asset pool smart contract. This bug could cause assets to become stuck in the bridge and therefore required a rapid patch release. New versions of the bridge and asset pool contracts were deployed on the Ethereum mainnet and are in the control of the Vega network.
 
@@ -37,7 +37,7 @@ Take a look at the [incident report](https://medium.com/vegaprotocol/incident-re
 
 ### Versions 0.54.0 through to 0.71.4 combined | 2023-05-09
 
-Version 0.71.4 was released to the Vega mainnet on 09 May 2023.
+Version 0.71.4 was released, by the validators, to mainnet on 09 May 2023.
 
 This version brings the planned features for the alpha mainnet phase to mainnet, making the protocol ready to remove restrictions for the community to propose assets and markets. This deployment brings some key features built upon the restricted mainnet version:
 
@@ -186,7 +186,7 @@ Vega is now a built-in application. This means that Tendermint does not need to 
 Introducing the proxy was a way to navigate the browser security that prevents web apps from being able to talk to local web servers; this is now no longer required and therefore has been removed.
 
 ### Versions 0.53.1 and 0.53.2 combined | 2023-03-22
-This version was released to the Vega mainnet on 22 March 2023.
+This version was released, by the validators, to mainnet on 22 March 2023.
 
 This deployment addresses a critical mainnet issue. A bug has been identified that caused a network outage at the time that the protocol was promoting a new validator to consensus validator status. The issue was caused by insufficient validation of the Tendermint public keys specified in the `announce node` command.
 
@@ -195,7 +195,7 @@ The fix introduced both resolved the issue and enhances the validation so that t
 To find out more please see the issue [7936 ↗](https://github.com/vegaprotocol/vega/issues/7936) and the [incident blog ↗](https://blog.vega.xyz/incident-report-validator-nodes-down-in-mainnet-2ac2f724d67e)
 
 ### Versions 0.53-0.51 | 2022-08-15
-This version was released to mainnet by the validators on 15 August, 2022.
+This version was released, by the validators, to mainnet on 15 August, 2022.
 
 #### 0.53.0 (14 July 2022)
 
