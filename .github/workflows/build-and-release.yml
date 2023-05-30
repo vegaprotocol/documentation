@@ -50,13 +50,28 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --pure-lockfile
 
+      - name: Cache node modules
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: .docosaurus
+          key: ${{ runner.os }}-cache-docosaurus-${{ hashFiles('yarn.lock') }}
+          # comment out "restore-keys" if you need to rebuild docosaurus from 0
+          restore-keys: |
+            ${{ runner.os }}-cache-docosaurus-
+
       - name: Build
         run: |
           which node
           node -v
           which yarn
           yarn -v
-          yarn build || (yarn install && yarn build)
+          if [[ "${{ github.event_name == 'pull_request' && 'yes' }}" = "yes" ]]; then
+            yarn build:quick || (yarn install && yarn build:quick)
+          else
+            export DOCUSAURUS_SSR_CONCURRENCY=8
+            yarn build || (yarn install && yarn build)
+          fi
 
       - name: Build and export to local Docker
         if: ${{ github.event_name == 'pull_request' }}
