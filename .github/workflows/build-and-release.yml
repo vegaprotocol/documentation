@@ -50,14 +50,14 @@ jobs:
         run: yarn install --pure-lockfile
 
       - name: Cache node modules
-        id: cache-docosaurus
+        id: cache-docusaurus
         uses: actions/cache@v3
         with:
-          path: .docosaurus
-          key: ${{ runner.os }}-cache-docosaurus-${{ hashFiles('yarn.lock') }}
-          # comment out "restore-keys" if you need to rebuild docosaurus from 0
+          path: .docusaurus
+          key: ${{ runner.os }}-cache-docusaurus-${{ hashFiles('yarn.lock') }}
+          # comment out "restore-keys" if you need to rebuild docusaurus from 0
           restore-keys: |
-            ${{ runner.os }}-cache-docosaurus-
+            ${{ runner.os }}-cache-docusaurus-
 
       - name: Build
         run: |
