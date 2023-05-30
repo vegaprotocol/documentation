@@ -11,9 +11,9 @@ on:
       - edited
       - synchronize
 jobs:
-  node-modules:
-    runs-on: ubuntu-22.04
-    name: '(CI) cache yarn modules'
+  publish-dist:
+    runs-on: ubuntu-22.04-4core
+    name: '(CI) build and publish dist'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -40,30 +40,6 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --pure-lockfile
 
-  build-dist:
-    needs:
-      - node-modules
-    timeout-minutes: 60
-    # docs need a lot of memory to run
-    runs-on: self-hosted-runner
-    name: '(CI) build dist on self hosted runner'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version-file: '.nvmrc'
-
-      - name: Cache node modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-cache-node-modules-${{ hashFiles('yarn.lock') }}
-
       - name: Build
         run: |
           which node
@@ -71,36 +47,6 @@ jobs:
           which yarn
           yarn -v
           yarn build || (yarn install && yarn build)
-
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: build
-          path: |
-            build
-
-  publish-dist:
-    needs:
-      - build-dist
-    timeout-minutes: 60
-    name: '(CD) publish dist'
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Download all workflow run artifacts
-        uses: actions/download-artifact@v3
-
-      # delete-artifact
-      - uses: geekyeggo/delete-artifact@v2
-        with:
-            name: build
-
-      - name: List files
-        run: ls -al
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
