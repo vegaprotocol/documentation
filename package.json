@@ -26,6 +26,7 @@
     "generate-netparams": "node --no-warnings --experimental-fetch scripts/generate_netparams.js",
     "start": "docusaurus start",
     "build": "docusaurus build",
+    "build:quick": "DOCUSAURUS_SSR_CONCURRENCY=8 docusaurus build --no-minify",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -58,11 +59,13 @@
     "prism-react-renderer": "^1.3.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "swc-loader": "^0.2.3",
     "toml": "^3.0.0",
     "url-loader": "4.1.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^2.2.0"
+    "@docusaurus/module-type-aliases": "^2.2.0",
+    "@swc/core": "^1.3.61"
   },
   "browserslist": {
     "production": [
