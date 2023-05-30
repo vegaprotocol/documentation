@@ -40,11 +40,10 @@ jobs:
 
       - name: Setup node
         uses: actions/setup-node@v3
-        if: steps.cache-yarn.outputs.cache-hit != 'true'
         with:
           node-version-file: '.nvmrc'
           # https://stackoverflow.com/questions/61010294/how-to-cache-yarn-packages-in-github-actions
-          cache: yarn
+          cache: ${{ steps.cache-yarn.outputs.cache-hit && '' || 'yarn' }}
 
       - name: yarn install
         if: steps.cache-yarn.outputs.cache-hit != 'true'
@@ -62,16 +61,13 @@ jobs:
 
       - name: Build
         run: |
+          export DOCUSAURUS_SSR_CONCURRENCY=8
           which node
           node -v
           which yarn
           yarn -v
-          if [[ "${{ github.event_name == 'pull_request' && 'yes' }}" = "yes" ]]; then
-            yarn build:quick || (yarn install && yarn build:quick)
-          else
-            export DOCUSAURUS_SSR_CONCURRENCY=8
-            yarn build || (yarn install && yarn build)
-          fi
+          flags="${{ github.event_name == 'pull_request' && '--no-minify' || '' }}"
+          yarn build $flags || (yarn install && yarn build $flags)
 
       - name: Build and export to local Docker
         if: ${{ github.event_name == 'pull_request' }}
