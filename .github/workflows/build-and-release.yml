@@ -29,7 +29,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Cache node modules
-        id: cache
+        id: cache-yarn
         uses: actions/cache@v3
         with:
           path: node_modules
@@ -40,18 +40,18 @@ jobs:
 
       - name: Setup node
         uses: actions/setup-node@v3
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.cache-yarn.outputs.cache-hit != 'true'
         with:
           node-version-file: '.nvmrc'
           # https://stackoverflow.com/questions/61010294/how-to-cache-yarn-packages-in-github-actions
           cache: yarn
 
       - name: yarn install
-        if: steps.cache.outputs.cache-hit != 'true'
+        if: steps.cache-yarn.outputs.cache-hit != 'true'
         run: yarn install --pure-lockfile
 
       - name: Cache node modules
-        id: cache
+        id: cache-docosaurus
         uses: actions/cache@v3
         with:
           path: .docosaurus
