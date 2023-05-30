@@ -12,7 +12,7 @@ on:
       - synchronize
 jobs:
   publish-dist:
-    runs-on: ubuntu-22.04-4core
+    runs-on: self-hosted
     name: '(CI) build and publish dist'
     steps:
       - name: Checkout
