@@ -12,7 +12,7 @@ on:
       - synchronize
 jobs:
   publish-dist:
-    runs-on: self-hosted
+    runs-on: 4-cores
     name: '(CI) build and publish dist'
     steps:
       - name: Checkout
