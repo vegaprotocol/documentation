@@ -1,9 +1,9 @@
 terraform {
   backend "remote" {
-    hostname              = "app.terraform.io"
-    organization          = "vega"
+    hostname     = "app.terraform.io"
+    organization = "vega"
     workspaces {
-      prefix              = "docs-redirect-"
+      prefix = "docs-redirect-"
     }
   }
   required_providers {
@@ -15,7 +15,7 @@ terraform {
 }
 
 variable "name" {
-    type = string
+  type = string
 }
 
 resource "aws_cloudfront_function" "docs_redirects" {
@@ -26,5 +26,5 @@ resource "aws_cloudfront_function" "docs_redirects" {
 }
 
 output "arn" {
-    value = aws_cloudfront_function.docs_redirects.arn
+  value = aws_cloudfront_function.docs_redirects.arn
 }
