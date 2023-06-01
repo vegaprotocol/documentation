@@ -244,6 +244,6 @@ There are certain parameters within Vega that influence the behaviour of the sys
 Network parameters can only be added and removed with Vega core software releases.
 
 :::note Go deeper
-* [Network parameters: See full list on the block explorer  ↗](https://explorer.fairground.wtf/network-parameters)
+* [Network parameters: See full list on the block explorer ↗](https://explorer.fairground.wtf/network-parameters)
 * [Tutorial: Propose a network parameter change](../tutorials/proposals/network-parameter-proposal.md)
 :::
