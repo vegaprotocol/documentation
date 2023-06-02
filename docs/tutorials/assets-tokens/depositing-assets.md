@@ -11,7 +11,9 @@ import TabItem from '@theme/TabItem';
 import NetworkParameter from '@site/src/components/NetworkParameter';
 import EthAddresses from '@site/src/components/EthAddresses';
 
-## What you need
+## Manually depositing using Etherscan
+
+### What you need
 You'll need the following information available:
 * Vega public key you want to deposit to
 * ERC-20 bridge logic address
@@ -24,7 +26,7 @@ The ERC-20 bridge logic address shown is for the Ethereum network that is compat
 
 Contract and bridge addresses for the **validator-run testnet networks**, and for **mainnet**, in the [networks repo on GitHub ↗](https://github.com/vegaprotocol/networks).
 
-## Confirm asset
+### Confirm asset
 Ensure the token you want to deposit is listed:
 
 * Go to etherscan.io/address/[erc20_bridge_logic_address]
@@ -34,7 +36,7 @@ Ensure the token you want to deposit is listed:
 * Paste in the ERC20 token address and click "Query"
 * Ensure the result says "true"
 
-## Approve spend
+### Approve spend
 Approve bridge to 'spend' the token:
 
 * Go to etherscan.io/address/[erc20_token_address]
@@ -46,7 +48,7 @@ Approve bridge to 'spend' the token:
 * Under "amount" enter the amount you want to deposit (ensure the correct number of zeroes to account for the asset's decimals)
 * Click "Write" and follow the wallet prompts
 
-## Run deposit function
+### Run deposit function
 Run the deposit asset function:
 
 * Go to etherscan.io/address/[erc20_bridge_logic_address]
@@ -60,3 +62,120 @@ Run the deposit asset function:
 * Click "Write" and follow the wallet prompts
 
 ✅ Your deposit is then complete and your assets will be available to use on Vega.
+
+
+## Code samples for depositing
+If you want to build a UI or script for depositing, see the following code samples to get started with building your integration.
+
+The code samples below use testnet networks on Vega and Ethereum.
+
+### What you need
+You'll need the following information available:
+* Vega public key you want to deposit to
+* ERC-20 bridge logic address
+* Token address for the asset
+
+* where to get abi json
+* You'll need to have set up an Infura, Pokt or other Ethereum (?) rpc endpoint
+* how to find the chain ID
+
+Don't save your private key in github or any other publicly available place.
+
+### JavaScript code samples 
+
+#### Approve spend
+
+```
+const { ethers, Contract, Wallet } = require("ethers");
+const tokenABI = require("./abis/erc20.json");
+
+// you'll need to get an ethereum rpc endpoint
+const URL = "https://sepolia.infura.io/v3/<your infura key>";
+
+// the chain you are interacting with
+const CHAIN_ID = 11155111; // seplio
+
+// ethereum wallet private key
+const PRIVATE_KEY = "<your private key>";
+
+// testnet VEGA
+const ASSET_ADDRESS = "0xdf1B0F223cb8c7aB3Ef8469e529fe81E73089BD9";
+
+// spender is the collateral bridge address
+const SPENDER = "0xcC68d87cAEF9580E3F383d6438F7B3F2C71E3fe5";
+
+// amount in lowest denomination this is is equivalient to
+// 0.000000000000000001 VEGA
+const AMOUNT = "1";
+
+// create json rpc provider
+const provider = new ethers.JsonRpcProvider(URL, CHAIN_ID);
+
+// create signer
+const signer = new Wallet(PRIVATE_KEY, provider);
+
+// instantiate token contract
+const tokenContract = new Contract(ASSET_ADDRESS, tokenABI, signer);
+
+const tx = await tokenContract.approve(SPENDER, AMOUNT);
+
+console.log("approve tx", tx);
+```
+
+## Run deposit
+
+```
+const { ethers, Contract, Wallet } = require("ethers");
+const collateralABI = require("./abis/collateral-bridge.json");
+
+// you'll need to get an ethereum rpc endpoint
+const URL = "https://sepolia.infura.io/v3/<your infura key>";
+
+// the chain you are interacting with
+const CHAIN_ID = 11155111; // sepolia
+
+// address of the Vega collateral bridge smart contract
+const VEGA_COLLATERAL_BRIDGE_ADDRESS =
+  "0xcC68d87cAEF9580E3F383d6438F7B3F2C71E3fe5";
+
+// ethereum wallet private key
+const PRIVATE_KEY = "<your private key>";
+
+// testnet VEGA
+const ASSET_ADDRESS = "0xdf1B0F223cb8c7aB3Ef8469e529fe81E73089BD9";
+
+// amount in lowest denomination this is is equivalient to
+// 0.000000000000000001 VEGA
+const AMOUNT = "1";
+
+// public key you wish to send assets to
+const VEGA_PUBLIC_KEY =
+  "a4b6e3de5d7ef4e31ae1b090be49d1a2ef7bcefff60cccf7658a0d4922651cce";
+
+// create json rpc provider
+const provider = new ethers.JsonRpcProvider(URL, CHAIN_ID);
+
+// create signer
+const signer = new Wallet(PRIVATE_KEY, provider);
+
+// instantiate bridge contract
+const bridgeContract = new Contract(
+  VEGA_COLLATERAL_BRIDGE_ADDRESS,
+  collateralABI,
+  signer
+);
+
+// amount must be lowest denomination
+// note you won't see the asset in your Vega account immediately because
+//
+// - you must wait for the necessary number of confirmations on the Ethereum
+//   chain. This is set by the newtork parameter: blockChains.ethereumConfig.confirmations
+// - you must wait for Vega to pick up the successful deposit and credit your account
+const tx = await bridgeContract.deposit_asset(
+  ASSET_ADDRESS,
+  AMOUNT,
+  "0x" + VEGA_PUBLIC_KEY
+);
+
+console.log("deposit tx", tx);
+```
