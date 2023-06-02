@@ -2,11 +2,9 @@
 title: Using GraphQL
 hide_title: false
 ---
-GraphQL support is built into the data nodes, and some Vega data nodes may have a GraphQL interface enabled. GraphQL is an alternative to REST that provides more flexibility for building custom queries.
+GraphQL provides read-only queries and subscriptions for getting data from Vega. Support is built into the data nodes, and some Vega data nodes may have a GraphQL interface enabled. GraphQL is an alternative to REST that provides more flexibility for building custom queries.
 
 While REST provides multiple endpoints with small amounts of data, GraphQL provides a single endpoint that inputs complex queries and outputs as much information as is needed for the query.
-
-The two primary ways to interact with a GraphQL server are queries and subscriptions. 
 
 ## Queries
 Here is a very simple query to fetch the current block height and Vega time from a data node:
@@ -153,6 +151,9 @@ subscription {
   }
 }
 ```
+
+### Bus event subscription 
+The bus event subscription is different from other subscriptions in one particular way. It has an extra filter for batch size. If you choose 0, then the subscription will deliver each event as it occurs. Otherwise, if you pick 10, for example, you'll receive results in batches of 10, but no response until there are 10 results.
 
 ## GraphQL playground
 For a more approachable interface, GraphQL playground provides an interactive environment for you to build up queries with full integrated documentation. 
