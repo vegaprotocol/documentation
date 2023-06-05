@@ -69,13 +69,12 @@ jobs:
           which yarn
           yarn -v
           echo "branch: ${{ github.ref_name }}"
-          echo "commit: ${{ github.event.pull_request_target.head.sha }}"
           echo "commit: ${{ github.event.pull_request.head.sha }}"
-          flags="${{ github.event_name == 'pull_request' && '--no-minify' || '' }}"
+          flags="${{ github.event_name == 'pull_request_target' && '--no-minify' || '' }}"
           yarn build $flags || (yarn install && yarn build $flags)
 
       - name: Build and export to local Docker
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ github.event_name == 'pull_request_target' }}
         id: docker_build
         uses: docker/build-push-action@v3
         with:
@@ -83,10 +82,10 @@ jobs:
           file: docker/Dockerfile
           push: true
           tags: |
-            ghcr.io/vegaprotocol/documentation:${{ github.event.pull_request_target.head.sha }}
+            ghcr.io/vegaprotocol/documentation:${{ github.event.pull_request.head.sha }}
 
       - name: 'Define preview vars'
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ github.event_name == 'pull_request_target' }}
         run: |
           branch_slug="$(echo '${{ github.head_ref || github.ref_name }}' | sed -r s/[^a-zA-Z0-9]+/-/g | sed -r s/^-+\|-+$//g | cut -c 1-50 )"
           echo "Branch slug: ${branch_slug}"
@@ -95,12 +94,12 @@ jobs:
 
 
       - name: Image digest
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ github.event_name == 'pull_request_target' }}
         run: echo ${{ steps.docker_build.outputs.digest }}
 
       - name: Add preview label
         uses: actions-ecosystem/action-add-labels@v1
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ github.event_name == 'pull_request_target' }}
         with:
           labels: docs-preview
           number: ${{ github.event.number }}
@@ -125,7 +124,7 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - publish-dist
-    if: ${{ github.event_name == 'pull_request' }}
+    if: ${{ github.event_name == 'pull_request_target' }}
     timeout-minutes: 60
     name: '(CD) comment preview links'
     steps:
