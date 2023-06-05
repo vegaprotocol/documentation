@@ -73,7 +73,8 @@ jobs:
           echo "branch: ${{ github.ref_name }}"
           echo "commit: ${{ github.event.pull_request.head.sha }}"
           flags="${{ github.event_name == 'pull_request_target' && '--no-minify' || '' }}"
-          yarn build $flags || (yarn install && yarn build $flags)
+          yarn install
+          yarn build $flags
 
       - name: Build and export to local Docker
         if: ${{ github.event_name == 'pull_request_target' }}
