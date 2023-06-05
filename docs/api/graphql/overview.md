@@ -126,8 +126,7 @@ After fetching this result, it's clear that there are more proposals. You can us
 ```
 
 ## Subscriptions
-
-As you would expect, subscriptions are like queries that keep returning data as it updates. These work similarly to the Observe endpoints in the REST service. 
+Subscriptions are like queries that keep returning data as it updates. These work similarly to the Observe endpoints in the REST service. 
 
 For example, the following query would show a result only when a new proposal came in:
 
@@ -154,6 +153,35 @@ subscription {
 
 ### Bus event subscription 
 The bus event subscription is different from other subscriptions in one particular way. It has an extra filter for batch size. If you choose 0, then the subscription will deliver each event as it occurs. Otherwise, if you pick 10, for example, you'll receive results in batches of 10, but no response until there are 10 results.
+
+Example that would provide an immediate result from the event bus query:
+
+```
+subscription {
+  busEvents(types: [TimeUpdate], batchSize: 0) {
+    event {
+      ... on TimeUpdate {
+        timestamp
+      }
+    }
+  }
+}
+```
+
+```
+
+{
+  "data": {
+    "busEvents": [
+      {
+        "event": {
+          "timestamp": "2023-03-05T15:05:33.177819749Z"
+        }
+      }
+    ]
+  }
+}
+```
 
 ## GraphQL playground
 For a more approachable interface, GraphQL playground provides an interactive environment for you to build up queries with full integrated documentation. 
