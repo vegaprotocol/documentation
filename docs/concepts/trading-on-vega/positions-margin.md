@@ -7,6 +7,8 @@ description: Dynamic margining maximises collateral usage and market solvency.
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
+test preview 
+
 Trading margined derivatives (such as futures) allows you to create leveraged positions, meaning you only need some of the notional value of an instrument to place orders on a market on Vega. 
 
 Margin is the amount of the settlement asset of the market required to keep your positions open and orders funded. You can think of margin as the 'down payment' to open a position. Leverage, meanwhile, describes how many times larger is the notional value of that position compared to the margin you have dedicated to it. For example, if you need 20 DAI to open a position worth 100 DAI: your leverage is 5x and your initial margin is 20% of the full value.
