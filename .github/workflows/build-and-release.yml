@@ -5,7 +5,8 @@ on:
     branches:
       - main
       - redirects
-  pull_request_target:
+  pull_request:
+  # pull_request_target:
     types:
       - opened
       - ready_for_review
