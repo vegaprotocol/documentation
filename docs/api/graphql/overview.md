@@ -6,6 +6,10 @@ GraphQL provides read-only queries and subscriptions for getting data from Vega.
 
 While REST provides multiple endpoints with small amounts of data, GraphQL provides a single endpoint that inputs complex queries and outputs as much information as is needed for the query.
 
+:::note Intro to the APIs
+For general guidance and info you need to know about the APIs provided by Vega, read the [Using the APIs](../using-the-apis.md) page.
+:::
+
 ## Queries
 Here is a very simple query to fetch the current block height and Vega time from a data node:
 
