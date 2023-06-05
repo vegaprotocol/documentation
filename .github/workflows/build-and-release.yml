@@ -13,8 +13,6 @@ on:
       - synchronize
 jobs:
   publish-dist:
-    permissions:
-      packages: write
     runs-on: 8-cores
     name: '(CI) build and publish dist'
     steps:
