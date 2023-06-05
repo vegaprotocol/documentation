@@ -65,7 +65,6 @@ jobs:
       - name: Build
         run: |
           set -eu
-          set -o PIPEFAIL
           export DOCUSAURUS_SSR_CONCURRENCY=8
           which node
           node -v
