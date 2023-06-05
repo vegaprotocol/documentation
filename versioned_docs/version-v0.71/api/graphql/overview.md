@@ -41,7 +41,7 @@ GraphQL queries send requests to an endpoint using the POST method.
 
 While you could use cURL:
 ```
-curl ‘https://api.vega.community/graphql’ -X POST -H ‘content-type: application/json’ --data-raw ‘{"query":"{ statistics { blockHeight vegaTime }}"}’
+curl ‘https://api.n06.testnet.vega.xyz/graphql’ -X POST -H ‘content-type: application/json’ --data-raw ‘{"query":"{ statistics { blockHeight vegaTime }}"}’
 ```
 
 It’s more likely that you’ll use a library for building queries, for example [URQL ↗](https://formidable.com/open-source/urql/docs/). 
