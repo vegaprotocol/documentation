@@ -6,6 +6,12 @@ on:
       - main
       - redirects
   pull_request_target:
+    types:
+      - opened
+      - ready_for_review
+      - reopened
+      - edited
+      - synchronize
 jobs:
   publish-dist:
     runs-on: 8-cores
