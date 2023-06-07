@@ -1,5 +1,67 @@
 {
   "github": {
-    "silent": true
-   }
+    "silent": false
+   },
+   "redirects": [
+    {
+      "source": "https://docs.testnet.vega.xyx/:path",
+      "destination": "https://docs.vega.xyz/:path"
+    },
+    {
+      "source": "https://docs.fairground.vega.xyz/:path",
+      "destination": "https://docs.vega.xyz/:path"
+    },
+    {
+      "source": "https://docs.testnet.vega.xyx/:path",
+      "destination": "https://docs.vega.xyz/:path"
+    },
+    {
+      "source": "/docs/testnet/grpc/:path",
+      "destination": "/testnet/api/grpc/:path"
+    },
+    {
+      "source": "/docs/mainnet/grpc/:path",
+      "destination": "/mainnet/api/grpc/:path"
+    },
+    {
+      "source": "/docs/testnet/graphql/:path",
+      "destination": "/testnet/api/graphql/:path"
+    },
+    {
+      "source": "/docs/mainnet/graphql/:path",
+      "destination": "/mainnet/api/graphql/:path"
+    },
+    {
+      "source": "/docs/:path",
+      "destination": "/:path"
+    },
+    {
+      "source": "/testnet/api/vega-wallet/v2-api/get-started",
+      "destination": "/testnet/api/vega-wallet/accessing-api"
+    },
+    {
+      "source": "/testnet/api/vega-wallet/v2-api",
+      "destination": "/testnet/category/api/wallet-api"
+    },
+    {
+      "source": "/testnet/api/vega-wallet/v2-api/integrate-wallet-service",
+      "destination": "/testnet/api/vega-wallet/how-to/bootstrap-local-service"
+    },
+    {
+      "source": "/testnet/api/vega-wallet/v2-api/openrpc",
+      "destination": "/testnet/api/vega-wallet/reference/core/json-rpc"
+    },
+    {
+      "source": "/testnet/api/vega-wallet/reference/core/openrpc",
+      "destination": "/testnet/api/vega-wallet/reference/core/json-rpc"
+    },
+    {
+      "source": "/testnet/concepts/vega-protocol",
+      "destination": "/testnet/concepts/governance"
+    },
+    {
+      "source": "/mainnet/concepts/vega-protocol",
+      "destination": "/mainnet/concepts/governance"
+    } 
+  ]
 }
