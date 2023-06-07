@@ -4,18 +4,6 @@
    },
    "redirects": [
     {
-      "source": "https://docs.testnet.vega.xyx/:path",
-      "destination": "https://docs.vega.xyz/:path"
-    },
-    {
-      "source": "https://docs.fairground.vega.xyz/:path",
-      "destination": "https://docs.vega.xyz/:path"
-    },
-    {
-      "source": "https://docs.testnet.vega.xyx/:path",
-      "destination": "https://docs.vega.xyz/:path"
-    },
-    {
       "source": "/docs/testnet/grpc/:path",
       "destination": "/testnet/api/grpc/:path"
     },
