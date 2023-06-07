@@ -4,24 +4,24 @@
    },
    "redirects": [
     {
-      "source": "/docs/testnet/grpc/:path",
-      "destination": "/testnet/api/grpc/:path"
+      "source": "/docs/testnet/grpc/:path*",
+      "destination": "/testnet/api/grpc/:path*"
     },
     {
-      "source": "/docs/mainnet/grpc/:path",
-      "destination": "/mainnet/api/grpc/:path"
+      "source": "/docs/mainnet/grpc/:path*",
+      "destination": "/mainnet/api/grpc/:path*"
     },
     {
-      "source": "/docs/testnet/graphql/:path",
-      "destination": "/testnet/api/graphql/:path"
+      "source": "/docs/testnet/graphql/:path*",
+      "destination": "/testnet/api/graphql/:path*"
     },
     {
-      "source": "/docs/mainnet/graphql/:path",
-      "destination": "/mainnet/api/graphql/:path"
+      "source": "/docs/mainnet/graphql/:path*",
+      "destination": "/mainnet/api/graphql/:path*"
     },
     {
-      "source": "/docs/:path",
-      "destination": "/:path"
+      "source": "/docs/:path*",
+      "destination": "/:path*"
     },
     {
       "source": "/testnet/api/vega-wallet/v2-api/get-started",
