@@ -25,16 +25,18 @@ Fees are calculated when a trade is filled, and paid in the market's settlement 
 
 The fee is divided between the maker for the trade, the infrastructure providers, and the liquidity provider(s) for each market.
 
-#### Maker fee
+### Maker fee
 The maker portion of the fee is paid by the aggressive party in a trade (the taker), and transferred to the non-aggressive, or passive party in the trade (the maker, as opposed to the taker). This is done as soon as the trade settles.
 
-#### Infrastructure fee
+### Infrastructure fee
 The infrastructure portion of the fee is paid to validators as a reward for running the network infrastructure, and transferred to the infrastructure fee pool for the market's settlement asset. It is then distributed to the validators at the end of each epoch, in proportion to the number of tokens they represent. 
 
 Some of the infrastructure fee paid to validators is then distributed to the validators' nominators.
 
-#### Liquidity fee
-The liquidity portion of the fee is paid by a participant who hits an order on the order book, and is paid to those participants who commit liquidity to the market. It's transferred to a liquidity fee account, and distributed to each liquidity provider's margin account at a defined time (based on network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providers.fee.distributionTimeStep" />), and depending on how much their liquidity commitments have contributed to the market.
+### Liquidity fee
+The liquidity portion of the fee is paid by a participant who hits an order on the order book, and is paid to those participants who [commit liquidity](../liquidity/provision.md#liquidity-commitments) to the market.
+
+It's transferred to a liquidity fee account, and distributed to each liquidity provider's margin account at a defined time (based on network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providers.fee.distributionTimeStep" />), and depending on how much their liquidity commitments have contributed to the market.
 
 ### Fee calculations
 At a high level, the trading fee is calculated using the following formulas:
