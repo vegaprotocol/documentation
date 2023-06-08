@@ -1,8 +1,9 @@
 {
   "github": {
-    "silent": false,
-    "trailingSlashes": true
+    "silent": false
    },
+   "trailingSlash": false,
+   "cleanUrls": true,
    "redirects": [
     {
       "source": "/docs/testnet/grpc/:path*",
