@@ -9,11 +9,11 @@ Take a look at the tutorials for help with using the Vega software.
 | Topic                                                                 |  Description                                                                                                        |
 | ----------------------------------------------------------------------| -------------------------------------------------------------------------------------------------------- |
 | 🔢 [Programmatic trading basics](./programmatic-trading-basics.md)| Understand the basics of how to submit trading transactions using the API. |
+| 🤖 [Building a bot](./building-a-bot/index.md) | Walk through a sample bot that can be customised to provide liquidity, stream data, and consider strategies. |
 
 ## Interacting with markets
 | Topic                                                                 |  Description                                                                                                        |
 | ----------------------------------------------------------------------| -------------------------------------------------------------------------------------------------------- |
-| 🫗 [Commit liquidity](./committing-liquidity.md)               | Submitting and amending a liquidity commitment by saving and editing scripts |
 | 🔮 [Source market data for settlement](./using-data-sources.md)               | How data sources for markets are sourced, shaped and submitted |
 
 ## Integrating with tokens and assets

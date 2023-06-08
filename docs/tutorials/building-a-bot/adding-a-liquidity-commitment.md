@@ -18,7 +18,7 @@ No developer or entity involved in creating the Vega protocol or supporting docu
 In the last tutorial you built a bot that listened to streams of market data to update its knowledge of position and order state to ensure it could trade with full knowledge without having to make repeated queries and incur that time cost. Now that you have a working bot, this tutorial will look at how one could extend the bot to have and manage a liquidity commitment. 
 
 :::note Pre-reading
-Before reading through this it is strongly advisable to read through the full guide to [liquidity provision on Vega Protocol](../../concepts/liquidity/index.md) to fully understand what a liquidity provision entails and requires of you, alongside the general guide to [committing liquidity](../committing-liquidity.md).
+Before reading through this it is strongly advisable to read through the full guide to [liquidity provision on Vega Protocol](../../concepts/liquidity/index.md) to fully understand what a liquidity provision entails and requires of you.
 :::
 
 In brief, committing liquidity to a Vega Protocol market means that:

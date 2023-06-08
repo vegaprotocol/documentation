@@ -35,35 +35,35 @@ You will need:
 
 ## Templates and submitting
 
-In the tabs below you'll see an annotated example, which describes what each field is for, a JSON example, and command line examples for different operating systems.
+In the tabs below you'll see:
 
-The Governance dApp has a [tool to help you put together a proposal ↗](https://governance.fairground.wtf/proposals/propose/freeform). When you have your proposal ready you can [submit the JSON on the governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw).
+* Annotated example describing what each field is for
+* JSON example that can be submitted with the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw)
+* Command line examples for different operating systems
 
-**Replace the example data with the relevant details before submitting.**
+**Replace the example data with the relevant details.**
 
 <Tabs groupId="newFreeform">
   <TabItem value="annotated" label="Annotated example">
     <NewFreeformAnnotated />
   </TabItem>
   <TabItem value="json" label="Governance dApp (JSON)">
-		<JSONInstructions />
-		<NewFreeformJSON />
+    <JSONInstructions />
+    <NewFreeformJSON />
   </TabItem>
   <TabItem value="cmd" label="Command line (Linux / OSX)">
-		<TerminalInstructions />
-		<NewFreeformCMD />
+    <TerminalInstructions />
+    <NewFreeformCMD />
   </TabItem>
   <TabItem value="win" label="Command line (Windows)">
-		<TerminalInstructions />
-		<NewFreeformWin />
+    <TerminalInstructions />
+    <NewFreeformWin />
   </TabItem>
 </Tabs>
 
-## Voting and enactment
+## Voting
 All proposals are voted on by the community. To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> or <NetworkParameter frontMatter={frontMatter} param="governance.proposal.freeform.minVoterBalance" suffix="tokens" hideName={true} />, associated to their Vega key. 
 
 Your proposal will need [participation](../../concepts/governance.md#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.freeform.requiredParticipation" formatter="percent" hideName={true} /> and a voting majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.freeform.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential.
-
-Building support is down to you. Share your proposal in [the _Free Form Proposals_ forum ↗](https://community.vega.xyz/c/fairground-testnet-governance/free-form-proposals-testnet/36) on Vega community. You may also wish to share on [Discord ↗](https://vega.xyz/discord).
 
 Proposers who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.
