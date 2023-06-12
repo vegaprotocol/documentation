@@ -24,7 +24,11 @@ The following example libraries provide code for submitting signed transactions 
 * [Authenticator (Java) ↗](https://github.com/MM0819/vega-protocol-auth-java)
 
 ### Bot sample code
-See some sample bot code for how to submit orders using the APIs [github.com/jeremyletang/vegamm ↗](https://github.com/jeremyletang/vegamm). Note that this code may not be actively maintained, so you should to test it before using it on an active network.
+Sample code for submitting orders using the APIs: [github.com/jeremyletang/vegamm ↗](https://github.com/jeremyletang/vegamm).
+
+Example Python setup code for running a simple market maker: [github.com/MM0819/vega-protocol-market-maker-python ↗](https://github.com/MM0819/vega-protocol-market-maker-python)
+
+Note that these repos and the code within them may not be actively maintained, so you should to test it before using it on an active network.
 
 ### Ask Vega AI
 **[Ask Vega ↗](https://github.com/vega-builders-club/askvega-ai)**: An AI support app for learning about the Vega protocol. 
