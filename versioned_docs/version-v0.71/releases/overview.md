@@ -33,7 +33,7 @@ New bridge contracts:
 - Bridge: `0x23872549cE10B40e31D6577e0A920088B0E0666a`
 - Asset pool: `0xa226e2a13e07e750efbd2e5839c5c3be80fe7d4d`
 
-Take a look at the [incident report](https://medium.com/vegaprotocol/incident-report-incident-under-investigation-d41cb2815de0) for full details regarding this patch release.
+Take a look at the [incident report](https://medium.com/vegaprotocol/incident-report-incident-under-investigation-d41cb2815de0) for information regarding the requirement for this patch release. Check out the full details in the Vega core [0.71.5 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.71.5) release page.
 
 ### Versions 0.54.0 through to 0.71.4 combined | 2023-05-09
 
@@ -87,7 +87,7 @@ For more information on Network Limits see the [spec ↗](https://github.com/veg
 The changes below may affect any automations, scripts or workflows you'll have set up for Vega mainnet before this release. Review the following changes carefully.
 :::
 
-**Add `marketIds` and `partyIds` to orders queries' filter** (v0.70): To allow getting all orders for a single party or market so that users can more easily find their orders across multiple keys or markets, filtering on the orders endpoint has been enhanced.
+**Update `marketId` and `partyId` in the orders queries' filter** [(v0.70)↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0700): To allow getting all orders for a single party or market so that users can more easily find their orders across multiple keys or markets, filtering on the orders endpoint has been enhanced. The API fields `party_id` and `market_id` have been changed to `party_ids` and `market_ids` respectively.
 
 **Use nanoseconds for one-off transfers** [(v0.70)↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0700): The time input field now validates for nanoseconds, which is consistent with other inputs.
 
