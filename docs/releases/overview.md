@@ -6,7 +6,7 @@ import Topic from '/docs/topics/_topic-development.mdx'
 
 <Topic />
 
-The Vega software is publicly available on [GitHub ↗](https://github.com/vegaprotocol). Below find summaries of key released features and breaking changes, as well as links to release notes in GitHub. 
+The Vega software is publicly available on [GitHub ↗](https://github.com/vegaprotocol). Below find summaries of key released features and breaking changes, as well as links to release notes in GitHub.
 
 [**Vega core software**](#vega-core-software) - Below, find a summary of each version's features and breaking changes.
 
@@ -45,7 +45,7 @@ This combined release contains improvements to API documentation, as well as bug
 :::caution Breaking changes
 **Remove WebSocket for rewards**: An unused and unnecessary event stream has been removed to simplify the APIs.
 
-**Remove all offset pagination**: While cursor pagination has been available for a number of releases, some endpoints still also supported offset pagination. This has now been removed for clarity and simplicity. 
+**Remove all offset pagination**: While cursor pagination has been available for a number of releases, some endpoints still also supported offset pagination. This has now been removed for clarity and simplicity.
 
 Check out a full summary of all the 0.71.0 [breaking changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0710) entries in the changelog. There were no breaking changes in 0.71.1 or 0.71.2.
 :::
@@ -57,14 +57,14 @@ This version was released to the Vega testnet on 28 March 2023, with the 0.70.2 
 
 Versions 0.70.0-0.70.3 contain the fixes and minor enhancements to verify in Fairground before the validators deploy to the validator-run testnet for the Market Simulation #4 event.
 
-Several new features were released with these versions: the addition of post-only and reduce-only options for certain order types. In addition, bugs in restoring deposits after checkpoints and order subscriptions were also fixed. 
+Several new features were released with these versions: the addition of post-only and reduce-only options for certain order types. In addition, bugs in restoring deposits after checkpoints and order subscriptions were also fixed.
 
 These deployments also realised further data node enhancements to aid performance and improve management of stored data. The indexes on the positions table have been reworked in order to maintain performance of network history on the data nodes. Additionally, the buffer-size config has been adjusted to best utilise the node memory on startup.
 
 Finally, to help manage the volume of data being created, LP orders are no longer sent when resubmitted without any changes, giving a direct data storage benefit.
 
 :::caution Breaking changes
-**Add `marketIds` and `partyIds` to orders queries' filter.**: In order to allow getting all orders for a single party or market so that users can more easily find their orders across multiple keys or markets, filtering on the orders endpoint has been enhanced.
+**Rename `marketId` and `partyId` in the orders queries' filter** [(v0.70)↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0700): To allow getting all orders for a single party or market so that users can more easily find their orders across multiple keys or markets, filtering on the orders endpoint has been enhanced. The API fields `party_id` and `market_id` have been changed to `party_ids` and `market_ids` respectively.
 
 **Use nanoseconds for one off transfers**: During the Market Simulation #3, the data node crashed due to an invalid time input when carrying out an internal transfer. The field now validates for nanoseconds, which is consistent with other inputs.
 
@@ -78,7 +78,7 @@ This release contains breaking changes, bug fixes and minor enhancements. Check 
 ### Pre-release Version 0.69.0 | 2023-03-15
 This version was released to the Vega testnet on 15 March 2023.
 
-Version 0.69.0 is a large release that incorporates both fixes from the Market Simulation activities and many improvements to the protocol. 
+Version 0.69.0 is a large release that incorporates both fixes from the Market Simulation activities and many improvements to the protocol.
 
 One of the key improvements in this version has been to the process of restoring data from network history. The insert query time for the orders table was continually increasing, eventually resulting in the data node falling behind the core. This has been resolved by optimising the query and replacing the ‘current order’ flag with some SQL magic and carefully crafted indexing.
 
@@ -143,7 +143,7 @@ This version was released to the Vega testnet on 6 January 2023.
 
 Happy New Year from the Vega team.
 
-The first testnet deployment of 2023 brings with it the final planned data node stability improvements ahead of the market simulations. Using the data from the last incentive, the team has made changes to the way the snapshot metadata is stored, which has significantly improved RAM usage during snapshot file creation. In addition to the memory usage optimisations, a panic when fetching data segment history has been resolved. 
+The first testnet deployment of 2023 brings with it the final planned data node stability improvements ahead of the market simulations. Using the data from the last incentive, the team has made changes to the way the snapshot metadata is stored, which has significantly improved RAM usage during snapshot file creation. In addition to the memory usage optimisations, a panic when fetching data segment history has been resolved.
 
 These fixes and stability improvements bring the data node software into a state of readiness for the Alpha Mainnet market simulations.
 
@@ -178,7 +178,7 @@ To find out more please see these issues [6955 ↗](https://github.com/vegaproto
 :::
 
 :::warning Deprecations
-**Vega Wallet**: A number of recent changes have deprecated commands in the Vega CLI wallet, these will be removed in the next release. 
+**Vega Wallet**: A number of recent changes have deprecated commands in the Vega CLI wallet, these will be removed in the next release.
 
 To find out more please see these issues [6887 ↗](https://github.com/vegaprotocol/vega/issues/6887), [6957 ↗](https://github.com/vegaprotocol/vega/issues/6957), [6963 ↗](https://github.com/vegaprotocol/vega/issues/6963), [7067 ↗](https://github.com/vegaprotocol/vega/issues/7067), [7069 ↗](https://github.com/vegaprotocol/vega/issues/7069) and [7079 ↗](https://github.com/vegaprotocol/vega/issues/7079)
 :::
@@ -195,15 +195,15 @@ This deployment brings with it many other fixes and improvements leading up to A
 
 
 :::warning Deprecations
-**Vega Wallet**: A number of changes have been introduced resulting in the deprecation of commands in the Vega CLI wallet. 
+**Vega Wallet**: A number of changes have been introduced resulting in the deprecation of commands in the Vega CLI wallet.
 
-These will be removed in the next release. 
+These will be removed in the next release.
 
 To find out more please see the issues [7065 ↗](https://github.com/vegaprotocol/vega/issues/7065), [7066 ↗](https://github.com/vegaprotocol/vega/issues/7066) and [7068 ↗](https://github.com/vegaprotocol/vega/issues/7068)
 :::
 
 :::caution Breaking changes
-**Data node V1 APIs removed**: As flagged previously, the data node V1 APIs have now been removed. 
+**Data node V1 APIs removed**: As flagged previously, the data node V1 APIs have now been removed.
 
 This release also introduces a number of [breaking  changes ↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0630) that should be reviewed if you are using data node APIs or starting to use the V2 wallet APIs.
 :::
@@ -212,7 +212,7 @@ This release also introduces a number of [breaking  changes ↗](https://github.
 ### Pre-release Versions 0.61.0, 0.62.0 and 0.62.1 combined | 2022-11-11
 This version was released to the Vega testnet on 11 November, 2022.
 
-As the software gets closer to being ready for Alpha Mainnet, all focus is on testing, bug fixing and measuring performace to ensure a stable network. The team has been running performance tests and gathering metrics to enhance both the core and the data node. This release brings enhancements to the data node ensuring performant operation, and the all-important accuracy of every APIs response. 
+As the software gets closer to being ready for Alpha Mainnet, all focus is on testing, bug fixing and measuring performace to ensure a stable network. The team has been running performance tests and gathering metrics to enhance both the core and the data node. This release brings enhancements to the data node ensuring performant operation, and the all-important accuracy of every APIs response.
 
 The last three weeks have seen unfortunate delays to the usual weekly testnet release cadence. This was caused by a large refactor of the `oracleSpec`, clarifying the naming and distinctions between oracles and the data they provide. Why do this now? The team wanted to mitigate against large breaking changes in the months after Alpha Mainnet when new features will be developed, and building on top of Vega gets into full swing... you can thank us later.
 
@@ -321,7 +321,7 @@ The final breaking change for the wallet in 0.58 improves the wallet interaction
 #### Critical Bug fixes
 
 #### Error if the same node is announced twice
-During testing it was found that there was no error should a single node be announced to the network more than once. The core was not flagging the second announced (duplicate) node as added. The work completed in [6444 ↗](https://github.com/vegaprotocol/vega/issues/6444) ensures that the core will return an error if adding a node fails. 
+During testing it was found that there was no error should a single node be announced to the network more than once. The core was not flagging the second announced (duplicate) node as added. The work completed in [6444 ↗](https://github.com/vegaprotocol/vega/issues/6444) ensures that the core will return an error if adding a node fails.
 
 #### Failed to extract orders as not enough volume within price limits
 During testing, `cumlativeVolumeAndPrice` caused a panic with the error "Failed to extract orders as not enough volume within price limits". To resolve this, the protocol resets `minPrice` and `maxPrice` once the cumulative volume is built if it is recalculated. This work was done in [6406 ↗](https://github.com/vegaprotocol/vega/issues/6406).
@@ -335,7 +335,7 @@ When the wallet name is capitalised, the wallet would fail saying that is is not
 #### New features: Core
 
 #### Add `GetTransaction` API call for block explorer
-In release 0.57 the new Block Explorer service code and APIs were created. This has now been enhanced to include the `GetTransaction` API call. This work was done in [6435 ↗](https://github.com/vegaprotocol/vega/issues/6435). 
+In release 0.57 the new Block Explorer service code and APIs were created. This has now been enhanced to include the `GetTransaction` API call. This work was done in [6435 ↗](https://github.com/vegaprotocol/vega/issues/6435).
 
 :::info
 The service to be able to interact with the block explorer API will be enabled in testnet before 0.59. Details on configuring and running will also part of the validator deployment instructions for mainnet, when it is applicable.
@@ -353,7 +353,7 @@ In order for the data node snapshots feature to work in alignment with core and 
 This change introduces an API to query the `LedgerEntry` schema. `LedgerEntry` objects can be filtered by asset ID, market ID, or party ID for sending and receiving accounts, as well as on transfer types. This API was implemented under issue [6368 ↗](https://github.com/vegaprotocol/vega/issues/6368).
 
 #### New features: Wallet
-Version 0.58 brings with it a number of improvements to the wallet both for the end user and developers that will use the wallet APIs. The full list of wallet changes and improvements can be seen in the [0.58.0 release page ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.58.0) issues that are also labeled with `wallet`. 
+Version 0.58 brings with it a number of improvements to the wallet both for the end user and developers that will use the wallet APIs. The full list of wallet changes and improvements can be seen in the [0.58.0 release page ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.58.0) issues that are also labeled with `wallet`.
 
 #### Support parallel requests in wallet API version 2
 This change brings with it the ability to support parallel requests, which from a CLI application point of view is ok, however may limit UX with the desktop wallet and any future UI based wallets. The work done to implement this improvement was done in [6308 ↗](https://github.com/vegaprotocol/vega/issues/6308).
@@ -369,7 +369,7 @@ For full details see the vega core [0.57.0 release page ↗](https://github.com/
 The primary focus of this release has been to improve the stability of the network, add functionality for better exploring the blockchain, and implement data node snapshots ahead of this feature being used for protocol upgrades and new nodes joining the network.
 
 #### Breaking Changes
-The release of [0.57 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.57.0) brings with it a small number of breaking changes. 
+The release of [0.57 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.57.0) brings with it a small number of breaking changes.
 
 #### Changing clef address now requires re-importing config
 The Nodewallet.ETH section of the config has been removed, and as a consequence some CLI arguments have changed when using clef. Before, when starting a Vega node with a clef wallet, Vega would read whatever clef address was in nodewallet.ETH, whereas after this change, the network only ever uses the value set for the clef address when the key was imported/generated. This work was done under issue [6291 ↗](https://github.com/vegaprotocol/vega/issues/6291)
@@ -407,7 +407,7 @@ For full details see the vega core [0.56.0 release page ↗](https://github.com/
 The primary focus of this release has been to resolve a number of critical bugs that have caused stability issues.
 
 #### Breaking Changes
-The release of [0.56 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.56.0) brings with it a small number of breaking changes. 
+The release of [0.56 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.56.0) brings with it a small number of breaking changes.
 
 #### Clef wallet signatures not readable by network
 When a clef wallet was used with a validator node, the validator heartbeats sent out, signed by the clef wallet, could not be verified when received by the network. This was being caused by the message being hashed clef before signing when using clef for validator heartbeats. The Vega team has created a fork of the Clef software to resolve this issue. This was done under issue [6187 ↗](https://github.com/vegaprotocol/vega/issues/6187)
@@ -463,7 +463,7 @@ The primary focus of this release has been to progress work on the data node ens
 :::
 
 #### Breaking Changes
-The release of [0.55 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.55.0) brings with it a small number of breaking changes. 
+The release of [0.55 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.55.0) brings with it a small number of breaking changes.
 
 #### Remove liquidity commitment from market proposal
 Before the deployment of 0.55 liquidity commitment was optional on a market proposal. This change removes the option for any liquidity commitment completely from the market proposal. This work was done in issue [5989 ↗](https://github.com/vegaprotocol/vega/issues/5989).
@@ -551,9 +551,9 @@ For full details see the vega core [0.54.0 release page ↗](https://github.com/
 **Vega as a built-in application:**
 Vega is now a built-in application, this means that Tendermint does not need to be started separately, providing a simpler, streamlined user experience for node operators. This introduces some breaking changes to the commands used when running a node:
 
-- The `vega node` command has been renamed to `vega start`. 
-- The `vega tm` command has been renamed to `vega tendermint`. 
-- The `Blockchain.Tendermint.ClientAddr` configuration field has been renamed to `Blockchain.Tendermint.RPCAddr`. 
+- The `vega node` command has been renamed to `vega start`.
+- The `vega tm` command has been renamed to `vega tendermint`.
+- The `Blockchain.Tendermint.ClientAddr` configuration field has been renamed to `Blockchain.Tendermint.RPCAddr`.
 - The `init` command now also generates the configuration for tendermint, and also has the newly introduced flags `--no-tendermint`,` --tendermint-home` and `--tendermint-key`.
 This work was all done in issue [5579 ↗](https://github.com/vegaprotocol/vega/issues/5579)
 
@@ -599,7 +599,7 @@ In order to ensure API parity between the API types the gRPC endpoints have all 
 
 #### Wallet
 
-The Vega Wallet API has been completely rewritten to support all authentication happening within the wallet apps, rather than on the UI-side. These changes have been implemented to provide better wallet security. The wallet has also had some updates in order to provide more meaningful responses when a transaction fails providing a better UX for wallet users. The implementation has been carried out in issues [5439 ↗](https://github.com/vegaprotocol/vega/issues/5439), [5541 ↗](https://github.com/vegaprotocol/vega/issues/5541) and [5503 ↗](https://github.com/vegaprotocol/vega/issues/5503). 
+The Vega Wallet API has been completely rewritten to support all authentication happening within the wallet apps, rather than on the UI-side. These changes have been implemented to provide better wallet security. The wallet has also had some updates in order to provide more meaningful responses when a transaction fails providing a better UX for wallet users. The implementation has been carried out in issues [5439 ↗](https://github.com/vegaprotocol/vega/issues/5439), [5541 ↗](https://github.com/vegaprotocol/vega/issues/5541) and [5503 ↗](https://github.com/vegaprotocol/vega/issues/5503).
 
 Further information on these changes can be found in the updated documentation implemented in issues [5618 ↗](https://github.com/vegaprotocol/vega/issues/5618) and [5619 ↗](https://github.com/vegaprotocol/vega/issues/5619).
 
@@ -622,12 +622,12 @@ This version was released to mainnet by the validators on 15 August, 2022.
 With the upgrade of the network to version v0.53 will come an upgrade of the smart contracts. The multisig control contract and the collateral bridge will thus increase users' control over the funds they deposit (opt-out) and include performance improvements, such as decreasing gas cost when using the bridge. The Vega asset pool contract will not be upgraded. Once the new contracts are properly set up on Ethereum, the validators will migrate the asset pool to use the new contracts.
 
 **Checkpoint commands:**
-From version 0.53.0, checkpoints are always loaded via the genesis. To facilitate this the  `--genesis-file` option has been added to the `load_checkpoint` command. 
+From version 0.53.0, checkpoints are always loaded via the genesis. To facilitate this the  `--genesis-file` option has been added to the `load_checkpoint` command.
 
 With the introduction of this, the restore checkpoint command has now been deprecated and removed.
 
 **Vega wallet in core repo:**
-The core and Vega Wallet codebases have been unified. This reduces the risk that core and Vega Wallet software changes get out of sync. Users of the CLI wallet app can easily confirm if the version of their wallet is compatible with  the core Vega software version as they will be built and released together, and thus have the same version number. 
+The core and Vega Wallet codebases have been unified. This reduces the risk that core and Vega Wallet software changes get out of sync. Users of the CLI wallet app can easily confirm if the version of their wallet is compatible with  the core Vega software version as they will be built and released together, and thus have the same version number.
 
 In the short term, the CLI wallet app will still be available to download from the Vega Wallet repo, but it will not be supported for future releases.
 
@@ -653,7 +653,7 @@ Part of testing the network version compatibility is to deploy the latest versio
 **Incorrect prices returned from depth endpoint in data node API:**
 The depth value in the data node API appeared to occasionally become desynchronised from the 'true' prices. This was observed on testnet when a market’s prices of the 'bids' values were much higher than those of 'ask' and did not tally with values from best bid/ask.
 
-In V1 of the data node (which will be replaced with V2) there is a check which relies on the Vega time (block time) being correctly set. However, as the V1 broker is multi-threaded per event type, there is no guarantee that the time event that sets the Vega time will arrive at the market depth subscriber with the orders to which the time corresponds. This change sends the Vega time of the block along with the order event in the V1 broker to ensure that a correct sequence number is generated for each order event. 
+In V1 of the data node (which will be replaced with V2) there is a check which relies on the Vega time (block time) being correctly set. However, as the V1 broker is multi-threaded per event type, there is no guarantee that the time event that sets the Vega time will arrive at the market depth subscriber with the orders to which the time corresponds. This change sends the Vega time of the block along with the order event in the V1 broker to ensure that a correct sequence number is generated for each order event.
 
 Note: this issue affects the V1 APIs which will be deprecated and replaced by V2 which is single threaded and thus could not have this bug.
 
@@ -668,9 +668,9 @@ Full details can be seen in issue [730 ↗](https://github.com/vegaprotocol/data
 To ensure that this does not affect existing transactions the protocol verifies proof of work with the parameters as they were configured at the time of the block of the transaction.
 
 #### 0.51.2 (10 June 2022)
-Version 0.51 of the Vega software implements some key changes to the features of governance and rewards as well as smart contracts. In addition, work continues on the data node to transition to the time-series `PostGres` data storage and the migrated APIs which will help the data node scale as usage increases on the network. 
+Version 0.51 of the Vega software implements some key changes to the features of governance and rewards as well as smart contracts. In addition, work continues on the data node to transition to the time-series `PostGres` data storage and the migrated APIs which will help the data node scale as usage increases on the network.
 
-**Breaking change - asset governance:** In release 0.51.2, a breaking change has been introduced that may affect governance proposals that refer to assets. The function used to request the asset bundle before proposing an asset has been renamed to be clearer, as in the future there will be an option for removing assets. 
+**Breaking change - asset governance:** In release 0.51.2, a breaking change has been introduced that may affect governance proposals that refer to assets. The function used to request the asset bundle before proposing an asset has been renamed to be clearer, as in the future there will be an option for removing assets.
 
 The following method names have been updated:
 * `GetERC20AssetBundleRequest` is now `GetERC20ListAssetBundleRequest`
@@ -678,7 +678,7 @@ The following method names have been updated:
 
 **Breaking change - governance:** There has been a breaking change made to the governance process. A rationale is now required for all governance proposals. Every proposal transaction must contain a link to a text file in markdown format which summarises the proposed change and links back to the complete proposed change.
 
-**Smart contract allow-listing:** The `MultisigControl` smart contracts have been updated to permit allow listing oneself to deposit above the specified deposit limits. This change both ensures that there are steps to protect users of the network during the early period of trading being enabled and also gives control to the user to allow list themselves if they understand the risks. 
+**Smart contract allow-listing:** The `MultisigControl` smart contracts have been updated to permit allow listing oneself to deposit above the specified deposit limits. This change both ensures that there are steps to protect users of the network during the early period of trading being enabled and also gives control to the user to allow list themselves if they understand the risks.
 
 The contract changes have recently been through an audit of which the final version will be published alongside the deployment of the contracts into testnet. As confidence in the network is established, it is expected that governance proposals will be made to increase the deposit limits.
 
@@ -686,9 +686,9 @@ The contract changes have recently been through an audit of which the final vers
 
 When transferring to a reward account, it is possible to define the reward metric, the reward metric asset, and a subset of markets. Should a market not be defined when initiating the transfer the protocol proceeds with all the markets that settle in the reward metric asset.
 
-**Snapshots:** A snapshot is generated every N blocks, and that information is stored in a `GoLevelDB` file on the local file system. By default a node will always start up in normal mode in which it connects to Tendermint and replays any historic blocks before catching up and running at the same pace as the existing nodes on the network. 
+**Snapshots:** A snapshot is generated every N blocks, and that information is stored in a `GoLevelDB` file on the local file system. By default a node will always start up in normal mode in which it connects to Tendermint and replays any historic blocks before catching up and running at the same pace as the existing nodes on the network.
 
-The snapshot system will keep by default 10 versions of the snapshots. When it has created 10 it will remove the oldest each time it creates a new snapshot. Extensive testing of snapshots has been conducted and is ready for use by the validators for stopping and starting nodes. 
+The snapshot system will keep by default 10 versions of the snapshots. When it has created 10 it will remove the oldest each time it creates a new snapshot. Extensive testing of snapshots has been conducted and is ready for use by the validators for stopping and starting nodes.
 
 There has also been an array of fixes implemented for snapshots that ensure that a node restored from a snapshot always maintains consensus.
 
@@ -709,13 +709,13 @@ This release was shared with validators on 27 April, 2022. The validators releas
 
 The primary focus of this and the next upcoming releases has been to complete the final remaining features, progress data node improvements for scalability and to add test coverage and fix bugs.
 
-Note: While many of the features below are related to trading, it is not yet enabled on mainnet. 
+Note: While many of the features below are related to trading, it is not yet enabled on mainnet.
 
 **Proposals to change market parameters**: After a market has been proposed and enacted, changes to the market parameters can be proposed in a different governance action. Tokenholders will be able to submit proposals to change market parameters.
 
 To change any market parameter, the proposer will submit the same data as if they were to create a market, except for the liquidity commitment, however this submission would contain the desired updates to the fields / structures that they wish to be changed. Some of the market parameters will not be able to be changed: market decimal places, position decimal places, settlement asset and the market name.
 
-Read more: 
+Read more:
 * [Market framework spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0001-MKTF-market_framework.md#market)
 * [Change market parameters ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0028-GOVE-governance.md#2-change-market-parameters)
 
@@ -738,13 +738,13 @@ Read more: [Key management ↗](https://github.com/vegaprotocol/specs/blob/maste
 * A fix has been implemented to ensure that the margin is correctly released when an LP order is cancelled
 * With the introduction of the market decimal places feature (see below), an issue was found related to decimal places and price bounds. This fix ensures that LP orders are adjusted to the min/max price according to the market precision
 
-**Tendermint**: The current version of Tendermint being used by Vega has a bug where a transaction would pass `checkTx` but was never added to the memory pool. Tendermint has fixed the bug and the protocol is now able to use `sendTx` sync successfully. Therefore, if any transactions are rejected by the memory pool an error is raised to indicate why this has happened. 
+**Tendermint**: The current version of Tendermint being used by Vega has a bug where a transaction would pass `checkTx` but was never added to the memory pool. Tendermint has fixed the bug and the protocol is now able to use `sendTx` sync successfully. Therefore, if any transactions are rejected by the memory pool an error is raised to indicate why this has happened.
 
 **EEF internalising**: The Ethereum Event Forwarder is functionality inside Vega that allows the network to be aware of activity on the Ethereum network. When the forwarder service is aware of events, such as the staking or unlocking of tokens, it translates and passes the events to the tendermint blockchain in Vega. Originally this was deployed as a single service alongside the Vega node, with the node needing to be configured to accept events from the forwarder service. This has now been rewritten and internalised into the Vega node, which simplifies the configuration of running a Vega node and makes it easier to deploy. Other benefits of doing this include it being easier to maintain and add future enhancements, which will be described in future release notes.
 
 **Data node**: In order to have a scalable solution for accessing data, work has begun on migrating the datastore into a postgres with time-series database. Migrations of assets, accounts, markets, market data, orders and trades have been done. The changes have been made to the codebase and live in parallel with the existing solution. As the remaining APIs are migrated and testing is completed, the old datastore and APIs will be removed.
 
-**Market decimal places**: In this release, the protocol now makes it possible to configure a market for which orders can only be priced in increments of a specific size. This is done by specifying a different (smaller) number of decimal places than its settlement asset supports. To explain this, consider a market that settles in GBP. This market can now be configured to have 0 decimal places so that the price levels on the orderbook will be separated by at least £1, rather than the default £0.01. 
+**Market decimal places**: In this release, the protocol now makes it possible to configure a market for which orders can only be priced in increments of a specific size. This is done by specifying a different (smaller) number of decimal places than its settlement asset supports. To explain this, consider a market that settles in GBP. This market can now be configured to have 0 decimal places so that the price levels on the orderbook will be separated by at least £1, rather than the default £0.01.
 
 Read more: [Market decimal places ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0070-MKTD-market-decimal-places.md)
 
@@ -752,7 +752,7 @@ Read more: [Market decimal places ↗](https://github.com/vegaprotocol/specs/blo
 
 Read more: [Pegged orders ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0037-OPEG-pegged_orders.md)
 
-**Liquidity provision improvements**: The `LiquidityProvisionSubmission` API was used for submitting, amending and cancelling liquidity provision.  To both simplify the code and have a more explicit user experience a breaking change has been implemented to split these into three API commands. 
+**Liquidity provision improvements**: The `LiquidityProvisionSubmission` API was used for submitting, amending and cancelling liquidity provision.  To both simplify the code and have a more explicit user experience a breaking change has been implemented to split these into three API commands.
 
 **Floating point determinism**: Computations within a blockchain-based system need to be deterministic as the application state between nodes replicating it can start to differ potentially resulting in consensus failure. The protocol has been improved so that if the system has a differing floating point value there is a resolution strategy to reach consensus on the value that should be used. This is key due to the fact that validators will be running different hardware that could increase the chances of this happening.
 
@@ -764,11 +764,11 @@ Read more: [Floating point consensus ↗](https://github.com/vegaprotocol/specs/
 
 An on-chain treasury, per asset type, has been implemented where the balance of the insurance pool is transferred when the market closes. To enable this transfers between Vega Wallets has been enabled, this not only is a feature of the on-chain treasury/rewards system but also allows people using the protocol to be able to transfer assets between wallets. With this feature there have been other changes around the rewards system meaning the full amount of the global reward pool will be distributed in all assets at the end of each epoch.
 
-Read more: 
+Read more:
 * [On-chain treasury spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0055-TREA-on_chain_treasury.md)
 * [Transfers spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0057-TRAN-transfers.md)
 
-**Validators joining and leaving, and standby validators**: 
+**Validators joining and leaving, and standby validators**:
 In addition to the consensus validators, there is now functionality on testnet to allow a set of ersatz, or standby validators. These are validators that will  not contribute to the chain, but are on standby to jump in if a current validator drops off or their performance drops below a certain threshold. In order to be considered as an ersatz validator, the node operators need to meet certain criteria, including a minimum self-stake as well as stake nominated by other token holders.
 
 Note: The network will be set to allow 0 standby validators for alpha mainnet, and increase the validator numbers via governance as early alpha mainnet progresses.
