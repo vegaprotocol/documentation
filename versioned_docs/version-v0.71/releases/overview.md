@@ -87,7 +87,7 @@ For more information on Network Limits see the [spec ↗](https://github.com/veg
 The changes below may affect any automations, scripts or workflows you'll have set up for Vega mainnet before this release. Review the following changes carefully.
 :::
 
-**Update `marketId` and `partyId` in the orders queries' filter** [(v0.70)↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0700): To allow getting all orders for a single party or market so that users can more easily find their orders across multiple keys or markets, filtering on the orders endpoint has been enhanced. The API fields `party_id` and `market_id` have been changed to `party_ids` and `market_ids` respectively.
+**Rename `marketId` and `partyId` in the orders queries' filter** [(v0.70)↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0700): To allow getting all orders for a single party or market so that users can more easily find their orders across multiple keys or markets, filtering on the orders endpoint has been enhanced. The API fields `party_id` and `market_id` have been changed to `party_ids` and `market_ids` respectively.
 
 **Use nanoseconds for one-off transfers** [(v0.70)↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0700): The time input field now validates for nanoseconds, which is consistent with other inputs.
 

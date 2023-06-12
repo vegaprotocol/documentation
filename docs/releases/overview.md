@@ -64,7 +64,7 @@ These deployments also realised further data node enhancements to aid performanc
 Finally, to help manage the volume of data being created, LP orders are no longer sent when resubmitted without any changes, giving a direct data storage benefit.
 
 :::caution Breaking changes
-**Update `marketId` and `partyId` in the orders queries' filter** [(v0.70)↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0700): To allow getting all orders for a single party or market so that users can more easily find their orders across multiple keys or markets, filtering on the orders endpoint has been enhanced. The API fields `party_id` and `market_id` have been changed to `party_ids` and `market_ids` respectively.
+**Rename `marketId` and `partyId` in the orders queries' filter** [(v0.70)↗](https://github.com/vegaprotocol/vega/blob/develop/CHANGELOG.md#0700): To allow getting all orders for a single party or market so that users can more easily find their orders across multiple keys or markets, filtering on the orders endpoint has been enhanced. The API fields `party_id` and `market_id` have been changed to `party_ids` and `market_ids` respectively.
 
 **Use nanoseconds for one off transfers**: During the Market Simulation #3, the data node crashed due to an invalid time input when carrying out an internal transfer. The field now validates for nanoseconds, which is consistent with other inputs.
 
