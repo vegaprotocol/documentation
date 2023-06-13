@@ -82,6 +82,8 @@ By providing the `first` and `after` properties in the pagination object, you ca
 
 By default, results will be returned in newest to oldest order, i.e you will always see the newest data at the top of your results. Therefore if you request the first 10 records, you will receive the 10 newest records, while requesting the last 10 records will return the 10 oldest records.
 
+If no pagination information is provided, by default any paginated API will return the `first` 1000 results, or all if there are less than 1000 results.
+
 ### Paginated results
 
 Most queries for Vega data could return a lot of results. To help navigate this, Vega’s GraphQL schema implements [cursor based pagination ↗](https://graphql.org/learn/pagination/#pagination-and-edges), which gives the user a unique string that can be passed back to the server to fetch data relative to the last request.
