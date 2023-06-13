@@ -166,7 +166,7 @@ The risk model uses the following properties:
 In the tabs below you'll see:
 
 * Annotated example describing what each field is for
-* JSON example that can be shared with the community and then submitted with the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw)
+* JSON example that can be shared with the community and then submitted with the [governance dApp ↗](https://governance.vega.xyz/proposals/propose/raw)
 * Command line examples for different operating systems
 
 **Replace the example data with the relevant details before submitting.**

@@ -46,7 +46,7 @@ The contents of a `changes` object specifies what will be different after the pr
 In the tabs below you'll see:
 
 * Annotated example describing what each field is for
-* JSON example that can be shared with the community and then submitted with the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw)
+* JSON example that can be shared with the community and then submitted with the [governance dApp ↗](https://governance.vega.xyz/proposals/propose/raw)
 * Command line examples for different operating systems
 
 The governance dApp has a [tool ↗](https://governance.vega.xyz/proposals/propose/network-parameter) to help you build a network parameter proposal.
