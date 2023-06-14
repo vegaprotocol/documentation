@@ -5,6 +5,7 @@ hide_title: false
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Topic from '/docs/topics/_topic-data-nodes.mdx';
 
 To set up a data node, you must first have followed the guide to [install and set up a Vega node](setup-server.md). A data node must be run in conjunction with a **non-validator Vega node**.
 
