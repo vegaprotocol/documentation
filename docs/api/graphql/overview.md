@@ -3,9 +3,9 @@ title: Using GraphQL
 hide_title: false
 sidebar_position: 1
 ---
-GraphQL provides read-only queries and subscriptions for getting data from Vega. Support is built into the data nodes, and some Vega data nodes may have a GraphQL interface enabled. GraphQL is an alternative to REST that provides more flexibility for building custom queries.
+Vega's GraphQL API provides read-only queries and subscriptions for getting data. Support is built into the data nodes, and some Vega data nodes may have a GraphQL interface enabled. GraphQL is an alternative to REST that provides more flexibility for building custom queries. The availability of the GraphQL API is determined by the node operator.
 
-While REST provides multiple endpoints with small amounts of data, GraphQL provides a single endpoint that inputs complex queries and outputs as much information as is needed for the query.
+While REST provides multiple endpoints with small amounts of data, GraphQL provides a single endpoint that allows users to input complex queries and outputs as much information as is needed for the query.
 
 :::note Intro to the APIs
 For general guidance and info you need to know about the APIs provided by Vega, read the [Using the APIs](../using-the-apis.md) page.
@@ -15,7 +15,7 @@ For general guidance and info you need to know about the APIs provided by Vega, 
 
 Here is a simple query to fetch the current block height and Vega time from a data node:
 
-```json
+```graphql
 {
   statistics {
     blockHeight
@@ -90,7 +90,7 @@ Most queries for Vega data could return a lot of results. To help navigate this,
 
 Before getting into cursor passing, let’s look at a paginated result. You can guess a result will be paginated if the query name ends with `Connection`.
 
-```json
+```graphql
 {
   proposalsConnection(pagination: { first: 1 }) {
     pageInfo {
@@ -142,13 +142,12 @@ Whereas with the paginated connections, the results contain extra nesting that i
 
 This nesting includes a `pageInfo` property with some information about the data set. Here, you can see that with the current limit of 1, there is another page. You can also see the cursor for the last item in the result.
 
-There's also an edges property that contains nodes. The data under node shows a proposal, information you would get by querying for a proposal by ID.
+There's also an edges property that contains an array of edges. Each edge is made up of a node and a cursor. The data under node shows a proposal, information you would get by querying for a proposal by ID, while the cursor is a unique pointer that identifies the node of data.
 
-Paginated results use this added nesting to provide the extra information you need to navigate the data. Each edge item in the array also has a cursor property you could select if you need to.
 
-After fetching this result, it's clear that there are more proposals. You can use `endCursor` from the first result to fetch the next one, which will return the next 1 proposal, and a new cursor:
+After fetching this result, it's clear from the `pageInfo` that there are more proposals. You can use `endCursor` from the first result's `pageInfo`, or the cursor from the edge record (they should be the same) to fetch the next one, which will return the next 1 proposal, and a new cursor:
 
-```json
+```graphql
 {
   proposalsConnection(pagination: { first: 1, after: "eyJzdGF0ZSI6NiwidmVnYV90aW1lIjoiMjAyMy0wNS0yNFQxNDowMDowMS4wMjk3MTZaIiwiaWQiOiI4NDAyNWU2ODM4N2NmNjFjMmI5MTIyOGQ3NjhkY2RkNGYxMGE5ZWU1Y2QyODI0ZmRlYTM1YjI1OTk3NmY1OWMxIn0="}) {
     pageInfo {
@@ -173,7 +172,7 @@ Subscriptions are like queries that keep returning data as it updates. These wor
 
 For example, the following query would show a result only when a new proposal came in:
 
-```json
+```graphql
 subscription {
   proposals {
     id
@@ -186,7 +185,7 @@ subscription {
 
 A more useful query might be the following one, which receives an update every time the mid-price of the specified market updates:
 
-```json
+```graphql
 subscription {
   marketsData(marketIds: "2dca7baa5f7269b08d053668bca03f97f72e9a162327eebd941c54f1f9fb8f80") {
     midPrice
@@ -200,7 +199,7 @@ The bus event subscription is different from other subscriptions in one particul
 
 Example that would provide an immediate result from the event bus query:
 
-```json
+```graphql
 subscription {
   busEvents(types: [TimeUpdate], batchSize: 0) {
     event {
