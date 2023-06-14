@@ -8,6 +8,8 @@ hide_title: false
 import NetworkParameter from '@site/src/components/NetworkParameter';
 import Topic from '/docs/topics/_topic-data-nodes.mdx';
 
+<Topic />
+
 This page covers the minimum and recommended hardware requirements, and the software requirements for running a data node connecting to the Vega network.
 
 The best hardware may vary depending on how you set up your node and database service, and how you intend to use the data node.

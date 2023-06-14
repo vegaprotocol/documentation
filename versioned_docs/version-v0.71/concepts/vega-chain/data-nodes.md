@@ -8,6 +8,8 @@ hide_title: false
 import NetworkParameter from '@site/src/components/NetworkParameter';
 import Topic from '/docs/topics/_topic-data-nodes.mdx';
 
+<Topic />
+
 Protocol users need to see and interact with data, such as price history, market changes, validator scores, and more. While the core emits events when states change, it does not store the data about those events. The core is responsible for processing transations for the chain and ensuring correctness. 
 
 Any processing that isn't required to make the next block is done by the data node. The data node collects, stores, and relates the events, and makes them available through API queries that can be used directly, and through dapps and other tools.

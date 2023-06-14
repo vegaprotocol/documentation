@@ -47,4 +47,4 @@ For production use, we recommend using the Linux binary on Ubuntu as this is the
 You'll need 'go' version 1.19.1 or newer.
 
 ### Vega Wallet
-You'll need a version of the Vega Wallet that matches with the version of software you're using to install your node. You can get this when you install Vega. 
+You'll need a version of the Vega Wallet that matches with the version of software you're using to install your node. You can get this when you install Vega.

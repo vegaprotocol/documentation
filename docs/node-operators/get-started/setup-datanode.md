@@ -7,6 +7,8 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Topic from '/docs/topics/_topic-data-nodes.mdx';
 
+<Topic />
+
 To set up a data node, you must first have followed the guide to [install and set up a Vega node](setup-server.md). A data node must be run in conjunction with a **non-validator Vega node**.
 
 The non-validator Vega node will send the events it receives from the network and the events it creates to the data node, which will then store them in a database. An API is provided to query the data stored by the data node.

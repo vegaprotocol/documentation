@@ -6,7 +6,6 @@ hide_title: false
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
-import Topic from '/docs/topics/_topic-staking.mdx'
 
 The Vega mainnet network is operated by a number of independent validators, who each run a [validator node](validator-nodes.md), and may also run [data nodes](data-nodes.md). 
 

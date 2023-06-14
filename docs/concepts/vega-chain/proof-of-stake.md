@@ -8,6 +8,8 @@ hide_title: false
 import NetworkParameter from '@site/src/components/NetworkParameter';
 import Topic from '/docs/topics/_topic-staking.mdx'
 
+<Topic />
+
 Vega runs on a delegated proof of stake blockchain. 
 
 Validator nodes run the Vega network, and they decide on the validity of the blocks containing the network's transactions and thus execute those transactions. The validators who run validator nodes are required to own a minimum amount of <NetworkParameter frontMatter={frontMatter} param="validators.delegation.minAmount" hideName={true} suffix="tokens" formatter="governanceToken" /> that they stake to themselves.

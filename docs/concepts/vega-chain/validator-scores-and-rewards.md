@@ -8,6 +8,8 @@ hide_title: false
 import NetworkParameter from '@site/src/components/NetworkParameter';
 import Topic from '/docs/topics/_topic-staking.mdx'
 
+<Topic />
+
 # Validator scoring and rewards
 Validators and nominators both receive revenue for securing the network. The amount, rewarded as VEGA and infrastructure fees, depends on factors including how much stake is nominated to the validator.
 
