@@ -135,25 +135,6 @@ An iceberg order can be amended. The remaining amount can be increased or decrea
 
 Amending an iceberg does not affect the peak size's time priority.
 
-### Conditional order parameters
-Orders with certain parameters offer conditions that can be set to determine when and how they're used.
-
-#### Post-only 
-Post-only is a condition that's only available for limit orders. A limit order can be set as post-only if you only want the order to be sent when it can enter the order book, and thus not immediately, neither partly nor entirely, cross with any orders already on the book. If the order would have immediately traded, it is instead stopped, and the party receives a response that the order was stopped to avoid a trade occurring. 
-
-A post-only order will not incur [fees](./fees-rewards.md) if executed in continuous trading. However, if the order trades at an auction uncrossing, it may incur a fraction of liquidity and infrastructure fees.
-
-Once the order reaches the order book, it acts identically to an unconditional limit order set at the same price.
-
-A post-order cannot be active at the same time as a reduce-only order on the same market. 
-
-#### Reduce-only 
-Reduce-only is only an available option for orders with a non-persistent time-in-force. If set, the order will only be executed if the outcome of the trade moves the trader's position closer to 0. 
-
-In addition, a reduce-only order will not move a position to the opposite side from the trader's current position. For example, if the trader's current position is a short, enabling reduce-only cannot make the trader long as a result. If submitted with an IOC time in force, where the full volume would switch sides, only the amount required to move the position to 0 will be executed.
-
-A reduce-only order cannot be active at the same time as a post-only order on the same market. 
-
 ### Batch order
 Order instructions, such as submit, cancel, and/or amend orders, can be batched together in a single transaction, which allows traders to regularly place and maintain the price and size of multiple orders without needing to wait for each order instruction to be processed by the network individually.
 
@@ -176,6 +157,25 @@ A network order is triggered by the Vega network to close out a distressed trade
 :::note Read more
 [Position resolution](#position-resolution)
 :::
+
+### Conditional order parameters
+Orders with certain parameters offer conditions that can be set to determine when and how they're used.
+
+#### Post-only 
+Post-only is a condition that's only available for limit orders. A limit order can be set as post-only if you only want the order to be sent when it can enter the order book, and thus not immediately, neither partly nor entirely, cross with any orders already on the book. If the order would have immediately traded, it is instead stopped, and the party receives a response that the order was stopped to avoid a trade occurring. 
+
+A post-only order will not incur [fees](./fees-rewards.md) if executed in continuous trading. However, if the order trades at an auction uncrossing, it may incur a fraction of liquidity and infrastructure fees.
+
+Once the order reaches the order book, it acts identically to an unconditional limit order set at the same price.
+
+A post-order cannot be active at the same time as a reduce-only order on the same market. 
+
+#### Reduce-only 
+Reduce-only is only an available option for orders with a non-persistent time-in-force. If set, the order will only be executed if the outcome of the trade moves the trader's position closer to 0. 
+
+In addition, a reduce-only order will not move a position to the opposite side from the trader's current position. For example, if the trader's current position is a short, enabling reduce-only cannot make the trader long as a result. If submitted with an IOC time in force, where the full volume would switch sides, only the amount required to move the position to 0 will be executed.
+
+A reduce-only order cannot be active at the same time as a post-only order on the same market. 
 
 ## Order status
 * **Filled**: Orders can be fully or partially filled. If the entire order amount has traded, it's `fully filled`. If only some of the order has traded, it's `partially filled`
