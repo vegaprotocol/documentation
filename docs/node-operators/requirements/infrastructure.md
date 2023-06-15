@@ -25,18 +25,19 @@ The impact of using fewer cores than recommended is that the critical parts (dat
 The impact of having slower cores than recommended (or older cores that have a reduced IPC rate compared to modern Zen3 cores) is that the maximum throughput will be reduced due to the bottlenecks being single threaded.
 
 ### Storage recommendations 
-Performance testing on NVMe SSD, SATA SSD and traditional HDD (5400rpm) storage devices was done to see how they handled the workload of running a validator node. The testing included running the node for an hour and measuring the number of blocks it replayed, and the service time of the storage device.
 
 |     | NVMe SSD  | SATA SSD | HDD 5400 rpm | 
 | Blocks Per Minute | 1415 | 851 | 68 |  
 | Blocks Per Second | 24  | 14 | 1 |
 | Drive Service Time | 15% | 60% | 99% |
 
-Traditional HDDs are not a good fit for this workload. They would be unable to catch up with a live blockchain as they cannot handle processing blocks faster than real time.
+NVMe devices are the fastest and best option if available. Their very low service time means other processes can be run on the same server without impacting the performance of the core.
 
 SATA attached SSDs perform well and have the advantage of supporting larger sizes and also more devices per server.
 
-NVMe devices are the fastest and best option if available. Their very low service time means other processes can be run on the same server without impacting the performance of the core. 
+Traditional HDDs are not a good fit for this workload. They would be unable to catch up with a live blockchain as they cannot handle processing blocks faster than real time.
+
+Performance testing on NVMe SSD, SATA SSD and traditional HDD (5400rpm) storage devices was done to see how they handled the workload of running a validator node. The testing included running the node for an hour and measuring the number of blocks it replayed, and the service time of the storage device.
 
 ## Software requirements
 

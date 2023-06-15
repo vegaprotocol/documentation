@@ -20,7 +20,7 @@ Those data node operators running archive nodes, which retain all chain informat
 
 ## Hardware recommendations
 
-### System requirements
+### System architecture requirements
 | Resource    | Minimum     | Recommended |
 | ----------- | ----------- | ----------- |
 | CPU | 6 cores at >= 3Ghz | 12 cores at >= 4Ghz|
@@ -32,7 +32,7 @@ The impact of using fewer cores than recommended is that the critical parts (dat
 The impact of having slower cores than recommended (or older cores that have a reduced IPC rate compared to modern Zen3 cores) is that the maximum throughput will be reduced due to the bottlenecks being single threaded.
 
 ### File system performance testing
-In benchmark testing using the default Ubuntu file system of EXT4 against ZFS with zstd compression turned on, it was determined that ZFS has an impact on performance when using NVMe drives, while the opposite is seen in SATA drives.
+In benchmark testing using the default Ubuntu file system of EXT4 against ZFS with zstd compression turned on, it was determined that ZFS has an impact on performance when using NVMe drives, while the opposite is seen in SATA drives. More blocks per minute (bpm) is better.
 
 |     | NVMe SSD (bpm)  | Service Time | SATA SSD (bpm) | Service Time |
 | ----------- | ----------- | ----------- | ----------- |
@@ -45,7 +45,7 @@ In benchmark testing using the default Ubuntu file system of EXT4 against ZFS wi
 ### Cores performance testing 
 Benchmark testing shows that ZFS with zstd helps reduce the amount of data stored on the drives, but has a negative impact on the amount of CPU resources required. This is due to the compression/decompression of the data as it is written and read from disk. 
 
-Below are results of replay tests showing how different amounts of available CPU cores change the average block processing rate.
+Below are results of replay tests showing how different amounts of available CPU cores change the average block processing rate. More blocks per minute (bpm) is better.
 
 | Cores | EXT4 (bpm) | ZFS + zstd (bpm) |
 | ----------- | ----------- | ----------- |
@@ -65,9 +65,6 @@ For production use, we recommend using the Linux binary on Ubuntu as this is the
 
 ### Golang
 You'll need 'go' version 1.19.1 or newer.
-
-### Vega Wallet
-You'll need a version of the Vega Wallet that matches with the version of software you're using to install your node. You can get this when you install Vega. 
 
 ### Data node PostgreSQL
 After building, to run your data node, you will have to run a PostgreSQL server.
