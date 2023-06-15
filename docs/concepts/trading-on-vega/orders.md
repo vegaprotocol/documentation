@@ -21,13 +21,14 @@ The information needed by Vega to process an order:
 | [Price](#limit-order)|Price to buy or sell at, for a limit order. Market orders use the best available price|Chosen by user|
 | [Time in force](#times-in-force)	  | Instructions for how the order must behave                    |Chosen by user|
 | Side	  | Buy or sell                                                                               |Chosen by user|
-| Market	  | Name or ID of the market the order is placed in                                       | Chosen by user|
-| [Size](#order-sizes)	  | How much to buy or sell                                                   | Chosen by user|
-| Party	  | Vega public key of the party placing the order                                            | Chosen by user|
-| Expires at | If the order has a Good 'til Time TIF, the specific time the order will expire | Chosen by user|
-| [Type](#order-types)	  | Type of order (such as limit or market)                                   | Chosen by user|
-| [Pegged order](#pegged-order) | Details about a pegged order, if an order uses pegs                 |Chosen by user|
+| Market	  | Name or ID of the market the order is placed in                                       | Chosen by user |
+| [Size](#order-sizes)	  | How much to buy or sell                                                   | Chosen by user |
+| Party	  | Vega public key of the party placing the order                                            | Chosen by user |
+| Expires at | If the order has a Good 'til Time TIF, the specific time the order will expire | Chosen by user |
+| [Type](#order-types)	  | Type of order (such as limit or market)                                   | Chosen by user |
+| [Pegged order](#pegged-order) | Details about a pegged order, if an order uses pegs                 | Chosen by user|
 | [Liquidity provision](../../tutorials/building-a-bot/adding-a-liquidity-commitment.md) | Provides details if an order is a liquidity commitment order   |Chosen by user|
+| [Iceberg order](#iceberg-order) | Provides details for an iceberg order, if applicable | Chosen by user |
 | Order ID | Unique deterministic ID, can be used to query but only exists after consensus      |Determined by network|
 | [Order status](#order-status)	  | Whether an order is filled, partially filled, stopped or cancelled |Determined by network|
 | Reference | Unique order reference, used to retrieve an order submitted through consensus |Determined by network|
@@ -58,12 +59,12 @@ A limit order is an instruction that allows you to specify the minimum price at 
 Limit orders stay on the order book until they are filled, expired or cancelled, unless they use IOC or FOK times in force.
 
 #### Times in force available for limit orders
-* **GTC**: A Good 'til Cancelled order trades at a specific price until it is filled or cancelled. 
-* **GTT**: A Good 'til Time order is a GTC order with an additional predefined cancellation time. 
-* **GFN**: A Good for Normal order is an order that will only trade in a continuous market. The order can act like either a GTC or GTT order depending on whether the expiry field is set.
-* **GFA**: A Good for Auction order will only be accepted during an auction period, otherwise it will be rejected. The order can act like either a GTC or GTT order depending on whether an expiry is set.
-* **IOC**: An Immediate or Cancel order executes all or part of a trade immediately and cancels any unfilled portion of the order. 
-* **FOK**: A Fill or Kill order either trades completely until the remaining size is 0, or not at all, and is not placed on the order book if it doesn't trade.
+* **GTC**: A Good 'til Cancelled order trades at a specific price until it is filled or cancelled. GTC orders are persistent.
+* **GTT**: A Good 'til Time order is a GTC order with an additional predefined cancellation time. GTT orders are persistent.
+* **GFN**: A Good for Normal order is an order that will only trade in a continuous market. The order can act like either a GTC or GTT order depending on whether the expiry field is set. GFN orders are persistent.
+* **GFA**: A Good for Auction order will only be accepted during an auction period, otherwise it will be rejected. The order can act like either a GTC or GTT order depending on whether an expiry is set. GFA orders are persistent.
+* **IOC**: An Immediate or Cancel order executes all or part of a trade immediately and cancels any unfilled portion of the order. IOC orders are non-persistent.
+* **FOK**: A Fill or Kill order either trades completely until the remaining size is 0, or not at all, and is not placed on the order book if it doesn't trade. FOK orders are non-persistent.
 
 ### Market order
 A market order is an instruction to buy or sell at the best available price in the market. Because market orders can only use IOC or FOK times in force, they are never placed on the order book.
@@ -106,11 +107,39 @@ Unparked pegged orders will be rejected:
 * If the reference price no longer exists (e.g. no best bid)
 * If the price moves to a value that means it would create an invalid order if the offset was applied
 
+### Iceberg order
+An iceberg order is a limit order for a large amount that, rather than being entered as a single large order of that size, is placed on the book as a smaller order that is replenished as that order amount is filled. The peak / 'visible' amount can be filled with one trade, while the reserve is used to support the smaller order amount.
+
+In other words, an iceberg order allows for the smaller order amount, known as the peak size, to be replenished from a 'hidden' total size. An iceberg's peak size is replenished in full until the whole iceberg's volume trades away, or the order is cancelled or expires. It's replenished whenever the peak drops below the minimum visible size, set when submitting the order. If the reserve amount becomes lower than the peak size, the peak size is then set to the full remaining amount, with nothing in reserve.
+
+While on a centralised exchange the full size of an iceberg order would be hidden, as Vega is a fully public blockchain, the entire order can be deduced. However, even publicly visible iceberg orders allow a trader to remain competitively present on the order book without needing to supply excess volume into a large aggressive order.
+
+#### Submit an iceberg order
+An iceberg order is submitted by populating the following optional fields in an order submission:
+* Peak size - Size of the order that is visible and be filled by a single order.
+* Minimum visible size - Amount the peak size needs to drop to before it is refreshed.
+
+An iceberg order must have a persistent [time in force](#times-in-force): GTC, GTT, GFA, GFN.
+
+The price for an iceberg order can be set like a standard limit order, or it can be pegged to a reference price.
+
+#### Iceberg order execution
+If an iceberg order, on entry, crosses with the best bid/ask price, it will trade using its full quantity, **not** the peak size. This prevents an iceberg order from being crossed after refreshing.
+
+When the iceberg order enters the order book passively, it trades like a typical persistent order, where the peak size is the displayed size.
+
+On refresh, the replenished order will get a new time priority, as it's treated like a new order.
+
+#### Amend an iceberg order
+An iceberg order can be amended. The remaining amount can be increased or decreased, while the peak size will stay the same. If the amended remaining amount is smaller than the peak size, the peak size is automatically reduced to be the same as the amended remaining amount.
+
+Amending an iceberg does not affect the peak size's time priority.
+
 ### Conditional order parameters
 Orders with certain parameters offer conditions that can be set to determine when and how they're used.
 
 #### Post-only 
-Post-only is a condition that's only available for limit order can be set as post-only if you only want the order to be sent when it can enter the order book, and thus not immediately, neither partly nor entirely, cross with any orders already on the book. If the order would have immediately traded, it is instead stopped, and the party receives a response that the order was stopped to avoid a trade occurring. 
+Post-only is a condition that's only available for limit orders. A limit order can be set as post-only if you only want the order to be sent when it can enter the order book, and thus not immediately, neither partly nor entirely, cross with any orders already on the book. If the order would have immediately traded, it is instead stopped, and the party receives a response that the order was stopped to avoid a trade occurring. 
 
 A post-only order will not incur [fees](./fees-rewards.md) if executed in continuous trading. However, if the order trades at an auction uncrossing, it may incur a fraction of liquidity and infrastructure fees.
 
@@ -125,14 +154,14 @@ In addition, a reduce-only order will not move a position to the opposite side f
 
 A reduce-only order cannot be active at the same time as a post-only order on the same market. 
 
-## Batch order
-Order instructions (such as submit, cancel, and/or amend orders) can be batched together in a single transaction, which allows traders to regularly place and maintain the price and size of multiple orders without needing to wait for each order instruction to be processed by the network individually.
+### Batch order
+Order instructions, such as submit, cancel, and/or amend orders, can be batched together in a single transaction, which allows traders to regularly place and maintain the price and size of multiple orders without needing to wait for each order instruction to be processed by the network individually.
 
 Batches are processed in the following order: all cancellations, then all amendments, then all submissions. 
 
 They are also processed as if they were standalone order instructions in terms of market behaviour. For example, if an instruction, had it been submitted individually, would trigger entry into or exit from an auction, then the order instruction would set off the auction trigger before the rest of the batch is processed.
 
-Batch order instructions can be used in a liquidity provision strategy to help providers manage their limit orders (and their risk) more efficiently. The orders within a batch can also have conditions set, as post-only or reduce-only.
+Batch order instructions can be used in a liquidity provision strategy to help providers manage their limit orders (and their risk) more efficiently. The orders within a batch can also have conditions set, as post-only or reduce-only. Iceberg orders can also be submitted in a batch.
 
 To prevent spamming, the total number of instructions in a batch order transaction can be no more than the number set with the network parameter: <NetworkParameter frontMatter={frontMatter} param="network.spam_protection.max.batch.size" />. A batch order transaction with more instructions than allowed will fail.
 

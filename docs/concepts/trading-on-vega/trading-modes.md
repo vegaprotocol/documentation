@@ -105,7 +105,7 @@ During the auction call period, no trades are created, but all orders are queued
 At the conclusion of the call period, trades are produced in a single action known as an auction uncrossing. During the uncrossing, auctions always try to maximise the traded volume, subject to the requirements of the orders placed.
 
 ### Orders accepted during auctions
-When a market is in an auction, only certain order types and times in force can be used. Market orders are not permitted.
+When a market is in an auction, only certain order types and times in force can be used. Market orders are not permitted. An iceberg order can be entered, or carried into an auction, if its underlying time in force is supported.
 
 
 | Pricing method | GTT | GTC | IOC | FOK | GFA | GFN |
