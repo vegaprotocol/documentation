@@ -178,3 +178,7 @@ Open the `<vega_home>/config/data-node/config.toml` file and update the followin
 [SQLStore]
   WipeOnStartup = false
 ```
+
+:::info
+Do not restart your node. Just update config to avoid issues in the future restarts.
+:::
