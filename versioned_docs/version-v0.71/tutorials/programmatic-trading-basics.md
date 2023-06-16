@@ -91,7 +91,7 @@ vegawallet --home=/$HOME/vega/wallet service run --network=testnet --load-tokens
 ### Find a market using the API
 To place a trade, rather than the market name, you'll need to find the market ID of the market you want to trade on. 
 
-Get a list of all the markets by using a node URL and the markets endpoint. For example, for testnet you can use: `https://n08.testnet.vega.xyz/markets`. 
+Get a list of all the markets by using a node URL and the markets endpoint. For example, for testnet you can use: `https://n08.testnet.vega.xyz/api/v2/markets`. 
 
 From this JSON output, you can see the market ID, as well as the asset ID for the market's settlement asset.
 
