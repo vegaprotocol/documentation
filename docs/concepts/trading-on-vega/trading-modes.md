@@ -26,6 +26,7 @@ Most, but not all, order types and times in force are accepted during continuous
 | Limit          |  ✅ | ✅  | ☑️  | ☑️  | ❌   | ✅   |
 | Pegged         |  ✅ | ✅  | 🛑   | 🛑 | ❌   | ✅   |
 | Market         | ❌  | ❌  | ✅   | ✅   | ❌   | ❌   |
+| Stop           | ✅  | ✅  | ✅   | ✅   | ❌   | ✅   |
 
 ☑️ - IOC/FOK LIMIT orders never rest on the book, if they do not match immediately they are cancelled/stopped.<br/>
 🛑 - IOC/FOK PEGGED orders are not currently supported as they will always result in the cancelled/stopped state. This may change in the future if pegged orders are allowed to have negative offsets that can result in an immediate match.
@@ -113,6 +114,7 @@ When a market is in an auction, only certain order types and times in force can 
 | Limit          | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ |
 | Pegged         | ☑️ | ☑️ | ❌ | ❌ | ☑️ | ❌ |
 | Market         | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Stop          | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
 
 ☑️ - Pegged orders will be [parked](./orders#parked-pegged-orders) if placed during an auction, with time priority preserved.
 
@@ -120,10 +122,12 @@ When a market is in an auction, only certain order types and times in force can 
 * Pegged orders are parked
 * Limit orders stay on the book - unless they have a time in force of Good For Normal trading, in which case they're cancelled
 * Non-persistent orders (Fill Or Kill and Immediate Or Cancel) are not accepted
+* Stop orders are accepted 
 
 **Upon exiting an auction:**
 * Pegged orders (all types, including liquidity commitment orders) are reinstated to the order book 
 * Limit orders stay on the book - unless they have a time in force of Good For Auction, in which case they're cancelled
+* Stop orders can be triggered by the auction uncrossing price if the auction results in a trade
 
 ### Exiting an auction
 Auctions end, orders are uncrossed and resulting trades are created when:

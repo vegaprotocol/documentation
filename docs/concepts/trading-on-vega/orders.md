@@ -7,7 +7,7 @@ description: See the order types and when they're applicable for a market.
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-An order is an instruction to buy or sell on a specific market, and it can go long or short on the market's price. Placing an order does not guarantee it gets filled. 
+An order is an instruction to buy or sell on a specific market, and it can go long or short on the market's price. Placing an order does not guarantee it gets filled.
 
 :::info Try it out
 Place orders on markets using [Vega Console ↗](https://console.fairground.wtf), configured to the Fairground network, which only uses testnet assets.
@@ -49,9 +49,9 @@ Order sizes can be whole numbers or fractional, as long as the order is within t
 If a market requires that orders are specified using integers, fractional order sizes do not apply and 1 is the smallest increment.
 
 ## Order types
-There are three order types available to traders: limit orders, market orders, and pegged orders. One order type is automatically triggered to close out positions for distressed traders - that's called a network order.
+There are four order types available to traders: limit orders, market orders, stop orders, and pegged orders. One order type is automatically triggered to close out positions for distressed traders - that's called a network order.
 
-Orders can be persistent (stay on the order book) or non-persistent (never hit the order book). Some order types in Vega depend on the market state. 
+Orders can be persistent (stay on the order book) or non-persistent (never enter the order book). Some order types in Vega depend on the market state. 
 
 ### Limit order
 A limit order is an instruction that allows you to specify the minimum price at which you will sell, or the maximum at which you will buy.
@@ -134,6 +134,23 @@ On refresh, the replenished order will get a new time priority, as it's treated 
 An iceberg order can be amended. The remaining amount can be increased or decreased, while the peak size will stay the same. If the amended remaining amount is smaller than the peak size, the peak size is automatically reduced to be the same as the amended remaining amount.
 
 Amending an iceberg does not affect the peak size's time priority.
+
+### Stop order
+A stop order is an order to buy or sell once the price reaches a specified price, known as the trigger price. Stop orders can be used to help a trader limit losses (stop loss), or capitalise on a gain (take profit) automatically when they already have an open position.
+
+Stop orders can only be used to bring a trader's position closer to zero, and thus make use of the [reduce only](#reduce-only) condition and will only be accepted if the trader already has an open position on the market.
+
+A stop order must include a trigger price - for a take profit stop order, or percentage - for a trailing stop, and whether to deploy the order once the last traded price "rises above" or "falls below" the given stop price/percentage. It can, but doesn't need to, have an expiry date and time, or an execution time (???) at which point the order will be filled if possible.
+
+While a stop order can be a single instruction, it could alternatively be a pair of stop orders where one cancels the other (OCO). Using the OCO option allows a trader to have a stop loss and a take profit/trailing stop instruction for the same position. If one of the pair is triggered, cancelled, deleted, or rejected, the other one is automatically cancelled.
+
+If a trader's position size moves to zero and there are no open orders, the trader's stop orders for that position are cancelled.
+
+#### Spam parameter [WIP]
+
+Not yet implemented. 
+
+A network parameter will control the maximum number of stop orders per party.
 
 ### Batch order
 Order instructions, such as submit, cancel, and/or amend orders, can be batched together in a single transaction, which allows traders to regularly place and maintain the price and size of multiple orders without needing to wait for each order instruction to be processed by the network individually.
