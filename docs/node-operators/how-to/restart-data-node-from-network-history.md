@@ -4,6 +4,8 @@ title: How to restart data-node from the network history
 sidebar_label: Restart data-node from the network history
 hide_title: false
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 
 ## Why would you start/restart your data node from network history?
@@ -64,6 +66,11 @@ vega tm unsafe_reset_all --home <tendermint-home>
 
 The config is located in the `<vega_home>/config/data-node/config.toml`. Update the following parameters in your `config.toml` file for the data node:
 
+
+<Tabs groupId="network">
+<TabItem value="mainnet" label="Mainnet">
+
+
 ```toml
 AutoInitialiseFromNetworkHistory = true
 
@@ -80,9 +87,30 @@ AutoInitialiseFromNetworkHistory = true
     TimeOut = "4h"
 ```
 
+</TabItem>
+
+<TabItem value="fairground" label="Fairground">
+
+TBD for fairground
+
+</TabItem>
+
+<TabItem value="validators-testnet" label="Validator testnet">
+
+TBD for validators-testnet
+
+</TabItem>
+
+</Tabs>
+
 #### b. The vega core config
 
 The config is located in the `<vega_home>/config/node/config.toml`. Update the following parameters in your `config.toml` file for the vega core:
+
+<Tabs groupId="network">
+
+<TabItem value="mainnet" label="Mainnet">
+
 
 ```toml
 [Snapshot]
@@ -92,6 +120,22 @@ The config is located in the `<vega_home>/config/node/config.toml`. Update the f
   [Broker.Socket]
     DialTimeout = "4h"
 ```
+
+</TabItem>
+
+<TabItem value="fairground" label="Fairground">
+
+TBD for fairground
+
+</TabItem>
+
+<TabItem value="validators-testnet" label="Validator testnet">
+
+TBD for validators-testnet
+
+</TabItem>
+
+</Tabs>
 
 #### c. Tendermint config
 
@@ -105,6 +149,11 @@ To update tendermint, you have to know the trust block and height. To collect th
 Then select one of the latest pair for block height and hash
 
 Once you have thrusted block, you can update the following parameters in the `<tendermint_home>/config/config.toml` file:
+
+<Tabs groupId="network">
+
+<TabItem value="mainnet" label="Mainnet">
+
 
 ```toml
 [statesync]
@@ -127,6 +176,44 @@ rpc_servers = "api0.vega.community:26657,api1.vega.community:26657,api2.vega.com
 trust_height = 3040600
 trust_hash = "b4b500d8fc84cce3a42b141193db7ba23ff03cc80b70cc817f6536582ebd5eda"
 ```
+
+</TabItem>
+
+<TabItem value="fairground" label="Fairground">
+
+```toml
+[statesync]
+enable = true
+rpc_servers = "n00.testnet.vega.rocks:26657,n06.testnet.vega.rocks:26657,n07.testnet.vega.rocks:26657"
+trust_height = &lt;height for collected block&gt;
+trust_hash = "&lt;hash for collected block&gt;"
+```
+
+Example config:
+
+:::warning
+Do not use below block. Please select newer block!
+:::
+
+```toml
+[statesync]
+enable = true
+rpc_servers = "api0.vega.community:26657,api1.vega.community:26657,api2.vega.community:26657,api7.vega.community:26657"
+trust_height = 3040600
+trust_hash = "b4b500d8fc84cce3a42b141193db7ba23ff03cc80b70cc817f6536582ebd5eda"
+```
+
+
+
+</TabItem>
+
+<TabItem value="validators-testnet" label="Validator testnet">
+
+TBD for validators-testnet
+
+</TabItem>
+
+</Tabs>
 
 ### 4. Start your node
 
