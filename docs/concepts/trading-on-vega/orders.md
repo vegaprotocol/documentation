@@ -146,11 +146,7 @@ While a stop order can be a single instruction, it could alternatively be a pair
 
 If a trader's position size moves to zero and there are no open orders, the trader's stop orders for that position are cancelled.
 
-#### Spam parameter [WIP]
-
-Not yet implemented. 
-
-A network parameter will control the maximum number of stop orders per party.
+There's a limit to how many stop orders that one public key can have active at one time, set by the 'spam.protection.max.stopOrdersPerMarket' network parameter.
 
 ### Batch order
 Order instructions, such as submit, cancel, and/or amend orders, can be batched together in a single transaction, which allows traders to regularly place and maintain the price and size of multiple orders without needing to wait for each order instruction to be processed by the network individually.
