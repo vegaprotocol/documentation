@@ -101,12 +101,12 @@ const res = await vega.sendTransaction({
 ```
 
 `sendingMode` decides when the Vega node returns a response to the transaction
-submission. `TYPE_ASYNC` will run validation checks by the network in cases 
-where this is possible, but will return fast. `TYPE_SYNC` is the perferred mode.
-This mode will return once the transaction has passed validation checks and 
-entered the mempool.  `MODE_COMMIT` is only available for debug purposes and 
-will require your own node with this mode enabled. This will cause the 
-submission to wait until the transaction has been mined.
+submission. `TYPE_SYNC` is the perferred mode. This mode will return once the 
+transaction has passed validation checks and entered the mempool. `TYPE_ASYNC` 
+will run validation checks by the network in cases where this is possible, but
+will return fast. `MODE_COMMIT` is only available for debug purposes and will 
+require your own node with this mode enabled. This will cause the submission to
+wait until the transaction has been mined.
 
 `publicKey` must be a key the user has made available to the dApp, otherwise
 the wallet will error with unknown public key.

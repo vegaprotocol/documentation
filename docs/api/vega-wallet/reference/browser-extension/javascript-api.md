@@ -62,7 +62,7 @@ Any errors thrown will be of [`?`](#?)
 
 ### `const res = await vega.sendTransaction({ sendingMode, publicKey, transaction })`
 
-- `sendingMode` `TYPE_ASYNC` | `TYPE_SYNC` | `TYPE_COMMIT`
+- `sendingMode` `TYPE_SYNC` | `TYPE_ASYNC` | `TYPE_COMMIT`
 - `publicKey` `string`
 - `transaction` `Object`
 - Returns: `Promise<Object>`
