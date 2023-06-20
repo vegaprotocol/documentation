@@ -26,6 +26,29 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Pre-release patch version 0.71.6 | 2023-06-19
+This version was released to the Vega testnet on 19 June, 2023.
+
+This patch release contains a number of critical fixes and minor but important enhancements.
+
+A fix has been implemented to avoid a potential division by 0 error when calculating the fees accrued by each party in the a market. If the total fees are 0, the protocol will now return 0 rather than trying to divide by 0 [8402 ↗](https://github.com/vegaprotocol/vega/issues/8402).
+
+The orders subscription API was not emitting data for all active orders. When querying for some orders it would indicate that they have been updated, however, the message notifying the client that that order was updated was never received. This bug was resolved with [8414 ↗](https://github.com/vegaprotocol/vega/issues/8414).
+
+On the 9th of May, the protocol processed an auto delegation where a party had increased their stake during the epoch. As they were eligible for auto delegation their new stake was auto delegated to the validators they already had stake to; this led to events in a random order across the different validators. The issue [8412 ↗](https://github.com/vegaprotocol/vega/issues/8412) fixes this bug.
+
+The liquidation price estimate API now works when the open volume is 0 [8313 ↗](https://github.com/vegaprotocol/vega/issues/8313).
+
+When creating database metadata on an empty database, the data node software was attempting to query timescale tables that did not yet exist. This fix returns an empty metadata object in this scenario. See [8226 ↗](https://github.com/vegaprotocol/vega/issues/8226).
+
+Since the deployment of the Alpha Mainnet release there has been some user feedback on improving the ledger entry CSV export. This has been carried out in [8353 ↗](https://github.com/vegaprotocol/vega/issues/8353).
+
+Trying to view a transaction in the block explorer API returned an error. Replay protection is now available and fixes the problem as of [8358 ↗](https://github.com/vegaprotocol/vega/issues/8358).
+
+A fix has been added to address an invalid auction duration for new market proposals. Auction durations now start from the closing time of the proposal, and run through until the proposal enactment time [8451 ↗](https://github.com/vegaprotocol/vega/issues/8451).
+
+An issue that was spotted during a snapshot test run has been addressed so that all combinations of core state in any snapshots taken are valid when used to restore a node [8471 ↗](https://github.com/vegaprotocol/vega/issues/8471).
+
 ### Pre-release versions 0.71.3, and 0.71.4 combined | 2023-05-05
 This version was released to the Vega testnet on 05 May, 2023.
 
