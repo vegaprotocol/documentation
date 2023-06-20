@@ -17,15 +17,18 @@ import TabItem from '@theme/TabItem';
 
 Network history is a mechanism in the data node software that allows for sharing chunks of information between other data nodes connected to the network. For example, when you are interested in a specific period of data from the Vega network, you can use network history to download this data from other nodes **if they have it**. Usually, you are interested in the last few blocks required to start a new data node or a data node after a crash - in those cases, you do not need the full network history.
 
-## What information do you need to restart the data node from the network history?
+## Requirements
 
+Information you need to start or restart the data node from network history:
 - Tendermint RPC servers for the state sync
 - Trust block hash and height from one node you are going to sync with
 - Bootstrap peers for data node
 
 This guide will explain how to get the trust block hash and height further down.
 
-## Steps to start/restart node with network history
+## Start/restart node with network history
+
+Follow the steps below to start up, or restart, your data node using network history.
 
 :::warning Data node must be configured
 You must have a data node already configured and running. If you do not have one already, see the guide on [setting up a data node](../get-started/setup-datanode.md).
@@ -37,7 +40,7 @@ If you're using Visor, you must stop it to control your node.
 
 Otherwise, you must stop the Vega and data node processes.
 
-Example:
+Example commands:
 
 ```shell
 # visor:
@@ -227,7 +230,7 @@ trust_hash = "9edf8b5779aa79e96ac95256a7c671b855990be518a9c7cbb98eb8694918b004"
 
 ### 4. Start your node
 
-:::warning
+:::caution Start data node first
 If you are not using Visor, you MUST start your data node before starting the Vega core.
 :::
 
@@ -243,7 +246,7 @@ systemctl start vega;
 Your node should start in a several minutes.
 
 :::info
-If you use Visor, you may see the following messages in the logs; please ignore them. It is just visor checking if node has already started:
+If you use Visor, you may see the following messages in the logs; please ignore them. It is just Visor checking if node has already started:
 
 ```log
 Jun 16 22:21:10 vega visor[1876]: 2023-06-16T22:21:10.125Z        DEBUG        visor        visor/visor.go:171        failed to get upgrade status from API        {"error": "failed to call protocolupgrade.UpgradeStatus method: failed to post data \"{\\\"method\\\":\\\"protocolupgrade.UpgradeStatus\\\",\\\"params\\\":[null],\\\"id\\\":8485730894528034258}\": Post \"http://unix/rpc\": dial unix /tmp/vega.sock: connect: no such file or directory"}
