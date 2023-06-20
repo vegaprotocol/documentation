@@ -67,11 +67,7 @@ vega tm unsafe_reset_all --home <tendermint-home>
 
 Data node config is located in the `<vega_home>/config/data-node/config.toml` file. 
 
-Update the following parameters in your `config.toml` file for the data node:
-
-
-<Tabs groupId="network">
-<TabItem value="fairground" label="Fairground">
+Update the following parameters in your `config.toml` file for the mainnet data node:
 
 ```toml
 AutoInitialiseFromNetworkHistory = true
@@ -82,41 +78,17 @@ AutoInitialiseFromNetworkHistory = true
 [NetworkHistory]
   Enabled = true
   [NetworkHistory.Store]
-    BootstrapPeers = ["/dns/n00.testnet.vega.rocks/tcp/4001/ipfs/12D3KooWNiWcT93S3P3eiHqGq4a6feaD2cUfbWw9AxgdVt8RzTHJ","/dns/n06.testnet.vega.rocks/tcp/4001/ipfs/12D3KooWMSaQevxg1JcaFxWTpxMjKw1J13bLVLmoxbeSJ5gpXjRh","/dns/n07.testnet.vega.rocks/tcp/4001/ipfs/12D3KooWACJuzchZQH8Tz1zNmkGCatgcS2DUoiQnMFaALVMo7DpC"]
+    BootstrapPeers = ["/dns/api1.vega.community/tcp/4001/ipfs/12D3KooWDZrusS1p2XyJDbCaWkVDCk2wJaKi6tNb4bjgSHo9yi5Q","/dns/api2.vega.community/tcp/4001/ipfs/12D3KooWEH9pQd6P7RgNEpwbRyavWcwrAdiy9etivXqQZzd7Jkrh","/dns/api0.vega.community/tcp/4001/ipfs/12D3KooWAHkKJfX7rt1pAuGebP9g2BGTT5w7peFGyWd2QbpyZwaw","/dns/api7.vega.community/tcp/4001/ipfs/12D3KooWBqVQPjJur5EvjrizCyKG2d6eyCX8hxkvVXeUQHMjbWj9"]
+
 
   [NetworkHistory.Initialise]
     TimeOut = "4h"
 ```
 
-</TabItem>
-
-<TabItem value="validators-testnet" label="Validator testnet">
-
-```toml
-AutoInitialiseFromNetworkHistory = true
-
-[SQLStore]
-  WipeOnStartup = true
-
-[NetworkHistory]
-  Enabled = true
-  [NetworkHistory.Store]
-    BootstrapPeers = ["/dns/n00.validators-testnet.vega.rocks/tcp/4001/ipfs/12D3KooWQbCMy5echT1sMKwRQh8GJJk5zmHmg6VNg1qEbpysNACN","/dns/n02.validators-testnet.vega.rocks/tcp/4001/ipfs/12D3KooWHffX2tdw2phH7ai8GCo2K3ehJfnLRATve5otVr4D3ggK","/dns/metabase00.validators-testnet.vega.rocks/tcp/4001/ipfs/12D3KooWKPDZ1s5FM8YewZVeRb9XwaQ7PdaoyD84hFnKmVbn94gN"]
-
-  [NetworkHistory.Initialise]
-    TimeOut = "4h"
-```
-
-</TabItem>
-
-</Tabs>
 
 #### b. Vega core node config
 
-The config is located in the `<vega_home>/config/node/config.toml`. Update the following parameters in your `config.toml` file for the Vega core:
-
-<Tabs groupId="network">
-<TabItem value="fairground" label="Fairground">
+The config is located in the `<vega_home>/config/node/config.toml`. Update the following parameters in your `config.toml` file for the Vega core for mainnet:
 
 ```toml
 [Snapshot]
@@ -126,57 +98,25 @@ The config is located in the `<vega_home>/config/node/config.toml`. Update the f
   [Broker.Socket]
     DialTimeout = "4h"
 ```
-
-</TabItem>
-
-<TabItem value="validators-testnet" label="Validator testnet">
-
-```toml
-[Snapshot]
-  StartHeight = -1
-
-[Broker]
-  [Broker.Socket]
-    DialTimeout = "4h"
-```
-
-</TabItem>
-
-</Tabs>
 
 #### c. Tendermint config
 
 To update Tendermint, you need to know the trust block and height. To collect the above information, please visit one of the following links:
 
-<Tabs groupId="network">
-<TabItem value="fairground" label="Fairground">
+- https://api0.vega.community/api/v2/snapshots
+- https://api1.vega.community/api/v2/snapshots
+- https://api2.vega.community/api/v2/snapshots
+- https://api3.vega.community/api/v2/snapshots
 
-- https://api.n00.testnet.vega.rocks/api/v2/snapshots
-- https://api.n06.testnet.vega.rocks/api/v2/snapshots
-- https://api.n07.testnet.vega.rocks/api/v2/snapshots
-
-</TabItem>
-
-<TabItem value="validators-testnet" label="Validator testnet">
-
-- https://api.n00.validators-testnet.vega.rocks/api/v2/snapshots
-- https://api.n02.validators-testnet.vega.rocks/api/v2/snapshots
-
-</TabItem>
-
-</Tabs>
 
 Then select one of the latest pairs for block height and hash.
 
 Once you have the trusted block, you can update the following parameters in the `<tendermint_home>/config/config.toml` file:
 
-<Tabs groupId="network">
-<TabItem value="fairground" label="Fairground">
-
 ```toml
 [statesync]
 enable = true
-rpc_servers = "n00.testnet.vega.rocks:26657,n06.testnet.vega.rocks:26657,n07.testnet.vega.rocks:26657"
+rpc_servers = "api0.vega.community:26657,api1.vega.community:26657,api2.vega.community:26657,api7.vega.community:26657"
 trust_height = <height for collected block>
 trust_hash = "<hash for collected block>"
 ```
@@ -190,21 +130,9 @@ Do not use the below block. Select a newer block!
 ```toml
 [statesync]
 enable = true
-rpc_servers = "n00.testnet.vega.rocks:26657,n06.testnet.vega.rocks:26657,n07.testnet.vega.rocks:26657777777"
-trust_height = 5103884
-trust_hash = "ac6670c5e37a3b8f90e1380d03fe83c3021bab77acf93c203d26152693877732"
-```
-
-</TabItem>
-
-<TabItem value="validators-testnet" label="Validator testnet">
-
-```toml
-[statesync]
-enable = true
-rpc_servers = "n00.validators-testnet.vega.rocks:26657,n02.validators-testnet.vega.rocks:26657"
-trust_height = <height for collected block>
-trust_hash = "<hash for collected block>"
+rpc_servers = "api0.vega.community:26657,api1.vega.community:26657,api2.vega.community:26657,api7.vega.community:26657"
+trust_height = 3040600
+trust_hash = "b4b500d8fc84cce3a42b141193db7ba23ff03cc80b70cc817f6536582ebd5eda"
 ```
 
 Example config:
@@ -220,10 +148,6 @@ rpc_servers = "n00.validators-testnet.vega.rocks:26657,n02.validators-testnet.ve
 trust_height = 3896400
 trust_hash = "9edf8b5779aa79e96ac95256a7c671b855990be518a9c7cbb98eb8694918b004"
 ```
-
-</TabItem>
-
-</Tabs>
 
 ### 4. Start your node
 
