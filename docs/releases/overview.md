@@ -34,7 +34,7 @@ This patch release contains a security vulnerability fix, a number of critical f
 #### Security vulnerability
 
 :::caution Security vulnerability
-A security vulnerability was identified that allows a malicious validator (consensus or pending) to trick the Vega network into re-processing past Ethereum events from Vega’s Ethereum bridge. To find out more please see the [security advisory - GHSA-8rc9-vxjh-qjf2](https://github.com/vegaprotocol/vega/security/advisories/GHSA-8rc9-vxjh-qjf2). Please ensure, if running a node, the version has been upgraded to 0.71.6.
+A security vulnerability was identified that allows a malicious validator (consensus or pending) to trick the Vega network into re-processing past Ethereum events from Vega’s Ethereum bridge. To find out more please see the [security advisory - GHSA-8rc9-vxjh-qjf2](https://github.com/vegaprotocol/vega/security/advisories/GHSA-8rc9-vxjh-qjf2). Please ensure, if running a node, the version has been upgraded to 0.71.6, in which the vulnerability has been fixed.
 :::
 
 #### Critical fixes

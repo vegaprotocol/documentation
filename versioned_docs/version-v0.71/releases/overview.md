@@ -23,15 +23,15 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
 
-### Pre-release patch version 0.71.6 | 2023-06-19
-This version was released to the Vega testnet on 19 June, 2023.
+### Version 0.71.6 (patch) | 2023-06-19
+This version was released to the Vega mainnet by validators on 19 June, 2023.
 
 This patch release contains a security vulnerability fix, a number of critical fixes and minor but important enhancements.
 
 #### Security vulnerability
 
 :::caution Security vulnerability
-A security vulnerability was identified that allows a malicious validator (consensus or pending) to trick the Vega network into re-processing past Ethereum events from Vega’s Ethereum bridge. To find out more please see the [security advisory - GHSA-8rc9-vxjh-qjf2](https://github.com/vegaprotocol/vega/security/advisories/GHSA-8rc9-vxjh-qjf2). Please ensure, if running a node, the version has been upgraded to 0.71.6.
+A security vulnerability was identified that allows a malicious validator (consensus or pending) to trick the Vega network into re-processing past Ethereum events from Vega’s Ethereum bridge. To find out more please see the [security advisory - GHSA-8rc9-vxjh-qjf2](https://github.com/vegaprotocol/vega/security/advisories/GHSA-8rc9-vxjh-qjf2). Please ensure, if running a node, the version has been upgraded to 0.71.6, in which the vulnerability has been fixed.
 :::
 
 #### Critical fixes
