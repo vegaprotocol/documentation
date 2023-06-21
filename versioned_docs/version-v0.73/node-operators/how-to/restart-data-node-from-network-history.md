@@ -183,6 +183,8 @@ enable = false
 Open the `<vega_home>/config/data-node/config.toml` file and update the following parmater:
 
 ```toml
+AutoInitialiseFromNetworkHistory = false
+
 [SQLStore]
   WipeOnStartup = false
 ```
