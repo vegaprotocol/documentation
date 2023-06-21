@@ -122,7 +122,7 @@ Visor manages protocol upgrades, allowing the nodes running a network to automat
 Download and install the [Visor binary ↗](https://github.com/vegaprotocol/vega/releases) that matches the release version of Vega you built.
 
 #### Pre-reading
-Get a quick overview of Visor, and what it does on the [Visor overview](../visor.md) page.
+Get a quick description of Visor and what it does, and see common questions on the [Visor overview](../visor.md) page.
 
 Read detailed information about Vega Visor, including how it works, how the config is set up and how you can edit it in the [full software description ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#readme).
 

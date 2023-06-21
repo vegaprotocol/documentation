@@ -117,10 +117,13 @@ In order to run the `vega` command from any folder you should move the binary to
 :::
 
 ### Install Visor
-Visor manages protocol upgrades, allowing the nodes running a network to automatically update to the latest agreed version of the Vega protocol, without requiring manual intervention at the upgrade time. Using Visor is optional, but recommended. 
+Visor manages protocol upgrades, allowing the nodes running a network to automatically update to the latest agreed version of the Vega protocol, without requiring manual intervention at the upgrade time. Using Visor is optional, but recommended.
 
 Download and install the [Visor binary ↗](https://github.com/vegaprotocol/vega/releases) that matches the release version of Vega you built.
-#### Prerequisite
+
+#### Pre-reading
+Get a quick description of Visor and what it does, and see common questions on the [Visor overview](../visor.md) page.
+
 Read detailed information about Vega Visor, including how it works, how the config is set up and how you can edit it in the [full software description ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#readme).
 
 See the [architecture overview ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#architecture) and [upgrade flow ↗](https://github.com/vegaprotocol/vega/tree/develop/visor#upgrade-flow) topics in the Visor readme before setting it up.

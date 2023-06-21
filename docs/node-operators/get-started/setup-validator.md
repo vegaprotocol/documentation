@@ -30,7 +30,7 @@ Visor manages protocol upgrades, allowing the nodes running a network to automat
 * Get a quick overview of Visor, and what it does on the [Visor overview](../visor.md) page.
 * See instructions for how to [upgrade your node](../how-to/upgrade-network.md).
 
-The command to initialise Visor will vary depending on whether you want to use Visor with only a validator node, or with a data node. 
+The command to initialise Visor will vary depending on whether you want to use Visor with a validator node or with non-validator connected to a data node. 
 
 Run the initialisation command to generate Visor’s home folder, with a generated home folder structure, to your provided `VISOR_HOME_PATH`:
 
@@ -40,7 +40,7 @@ Run the initialisation command to generate Visor’s home folder, with a generat
 visor init --home VISOR_HOME_PATH
 ```
 
-**With data node**
+**With non-validator connected to data node**
 
 ```shell
 visor init --home VISOR_HOME_PATH --with-data-node
