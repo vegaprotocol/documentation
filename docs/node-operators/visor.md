@@ -12,18 +12,18 @@ As the protocol develops, bugs are fixed and new features are added, the develop
 
 Without Visor, each node operator would need to be prompted to stop their nodes and upgrade their software when required. This is an error prone and tricky process as not all node operators work on the same time zone, and data node operators may not even be actively aware of an upgrade. Validator node operators who need to restart their nodes manually can lead to a delay in getting the network back up again. 
 
-Two things have been added to improve this process. 
+Two things have been added to improve this process:
 
 First, a vote takes place among consensus node operators to set a block height on which the network should be upgraded. 
 
-Second, Visor watches the status of a node and when it sees the node flag an upgrade, it automatically shuts it down, downloads the correct new version and restarts the node with the new version. This allows the node to be kept up to date without any need for node operator interaction.
+Second, Visor constantly monitors the node's status. If a protocol upgrade is proposed, Visor takes care of the process automatically. It will shut down the node, install the new version, and restart the node with the updated version. As a result, node operators don't have to do anything to ensure nodes are up-to-date.
 
 Learn more about this process in the [upgrade network guide](./how-to/upgrade-network.md).
 
 ## How does Visor watch the core node?
-When the core node is configured, a socket port is set along with a URL, which together give it an admin point that Visor can connect to and query. When a node is ready to be shut down for an upgrade, Visor will know this from the details shared on this admin point.
+When the core node is configured, a socket port is set along with a URL, which together give it an admin endpoint that Visor can connect to and query. When a node is ready to be shut down for an upgrade, Visor will know this from the details shared on this admin endpoint.
 
-The part of the config.toml file that is used by the core node to specify the admin point is here:
+The part of the config.toml file that is used by the core node to specify the admin endpoint is here:
 
 ```
 [Admin]
