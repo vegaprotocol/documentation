@@ -27,9 +27,6 @@ YOUR_VEGA_HOME_PATH/config/node/config.toml
 ## Initialise Visor for smooth protocol upgrades
 Visor manages protocol upgrades, allowing the nodes running a network to automatically update to the latest version of the Vega protocol, without requiring manual intervention. Using Visor is optional, but recommended. 
 
-## Initialise Visor for smooth protocol upgrades
-Visor manages protocol upgrades, allowing the nodes running a network to automatically update to the latest version of the Vega protocol, without requiring manual intervention. Using Visor is optional, but recommended. 
-
 * Get a quick overview of Visor, and what it does on the [Visor overview](../visor.md) page.
 * See instructions for how to [upgrade your node](../how-to/upgrade-network.md).
 
