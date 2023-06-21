@@ -80,7 +80,7 @@ AutoInitialiseFromNetworkHistory = true
 [NetworkHistory]
   Enabled = true
   [NetworkHistory.Store]
-    BootstrapPeers = ["/dns/api1.vega.community/tcp/4001/ipfs/12D3KooWDZrusS1p2XyJDbCaWkVDCk2wJaKi6tNb4bjgSHo9yi5Q","/dns/api2.vega.community/tcp/4001/ipfs/12D3KooWEH9pQd6P7RgNEpwbRyavWcwrAdiy9etivXqQZzd7Jkrh","/dns/api0.vega.community/tcp/4001/ipfs/12D3KooWAHkKJfX7rt1pAuGebP9g2BGTT5w7peFGyWd2QbpyZwaw","/dns/api7.vega.community/tcp/4001/ipfs/12D3KooWBqVQPjJur5EvjrizCyKG2d6eyCX8hxkvVXeUQHMjbWj9"]
+    BootstrapPeers = ["/dns/api1.vega.community/tcp/4001/ipfs/12D3KooWDZrusS1p2XyJDbCaWkVDCk2wJaKi6tNb4bjgSHo9yi5Q","/dns/api2.vega.community/tcp/4001/ipfs/12D3KooWEH9pQd6P7RgNEpwbRyavWcwrAdiy9etivXqQZzd7Jkrh","/dns/api0.vega.community/tcp/4001/ipfs/12D3KooWAHkKJfX7rt1pAuGebP9g2BGTT5w7peFGyWd2QbpyZwaw"]
 
 
   [NetworkHistory.Initialise]
@@ -108,7 +108,6 @@ To update Tendermint, you need to know the trust block and height. To collect th
 - https://api0.vega.community/api/v2/snapshots
 - https://api1.vega.community/api/v2/snapshots
 - https://api2.vega.community/api/v2/snapshots
-- https://api3.vega.community/api/v2/snapshots
 
 
 Then select one of the latest pairs for block height and hash.
@@ -118,7 +117,7 @@ Once you have the trusted block, you can update the following parameters in the 
 ```toml
 [statesync]
 enable = true
-rpc_servers = "api0.vega.community:26657,api1.vega.community:26657,api2.vega.community:26657,api7.vega.community:26657"
+rpc_servers = "api0.vega.community:26657,api1.vega.community:26657,api2.vega.community:26657"
 trust_height = <height for collected block>
 trust_hash = "<hash for collected block>"
 ```
@@ -132,23 +131,9 @@ Do not use the below block. Select a newer block!
 ```toml
 [statesync]
 enable = true
-rpc_servers = "api0.vega.community:26657,api1.vega.community:26657,api2.vega.community:26657,api7.vega.community:26657"
+rpc_servers = "api0.vega.community:26657,api1.vega.community:26657,api2.vega.community:26657"
 trust_height = 3040600
 trust_hash = "b4b500d8fc84cce3a42b141193db7ba23ff03cc80b70cc817f6536582ebd5eda"
-```
-
-Example config:
-
-:::warning
-Do not use the below block. Select a newer block!
-:::
-
-```toml
-[statesync]
-enable = true
-rpc_servers = "n00.validators-testnet.vega.rocks:26657,n02.validators-testnet.vega.rocks:26657"
-trust_height = 3896400
-trust_hash = "9edf8b5779aa79e96ac95256a7c671b855990be518a9c7cbb98eb8694918b004"
 ```
 
 ### 4. Start your node
