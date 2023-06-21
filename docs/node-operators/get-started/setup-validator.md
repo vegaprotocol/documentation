@@ -24,12 +24,13 @@ To update your node configuration, such as to set up ports for the APIs, edit th
 YOUR_VEGA_HOME_PATH/config/node/config.toml
 ```
 
-## Initialise Visor (for smooth protocol upgrades)
+## Initialise Visor for smooth protocol upgrades
 Visor manages protocol upgrades, allowing the nodes running a network to automatically update to the latest version of the Vega protocol, without requiring manual intervention. Using Visor is optional, but recommended. 
 
-Read more about how to [upgrade your node](../how-to/upgrade-network.md).
+* Get a quick overview of Visor, and what it does on the [Visor overview](../visor.md) page.
+* See instructions for how to [upgrade your node](../how-to/upgrade-network.md).
 
-The command to initialise Visor will vary depending on whether you want to use Visor with only a validator node, or also a data node. 
+The command to initialise Visor will vary depending on whether you want to use Visor with a validator node or with non-validator connected to a data node. 
 
 Run the initialisation command to generate Visor’s home folder, with a generated home folder structure, to your provided `VISOR_HOME_PATH`:
 
@@ -39,7 +40,7 @@ Run the initialisation command to generate Visor’s home folder, with a generat
 visor init --home VISOR_HOME_PATH
 ```
 
-**With data node**
+**With non-validator connected to data node**
 
 ```shell
 visor init --home VISOR_HOME_PATH --with-data-node
