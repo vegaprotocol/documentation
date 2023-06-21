@@ -237,7 +237,7 @@ Note: A GraphQL playground may not be available on mainnet data nodes. It's reco
 
 ## Next steps
 
-* Visit the official [GraphQL documentation ↗](https://graphql.org/learn/) for more information about building queries
-* Try out queries on Testnet using the [Playground ↗](https://api.n07.testnet.vega.xyz/graphql/)
 * Check out the latest GraphQL schema in the [Vega code ↗](https://github.com/vegaprotocol/vega/blob/develop/datanode/gateway/graphql/schema.graphql)
+* Try out queries on Testnet using the [Playground ↗](https://api.n07.testnet.vega.xyz/graphql/)
+* Visit the official [GraphQL documentation ↗](https://graphql.org/learn/) for more information about building queries
 * Choose a library to start building with on the [GraphQL site ↗](https://graphql.org/code/)
