@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
 title: Running a secure validator
-sidebar_label: Security
+sidebar_label: Validator security
 hide_title: false
 ---
 Validators are the most important part of the Vega network. Without them, the network is unable to generate new blocks and thus process any transactions. It is therefore important that the validator nodes are protected so that they can run correctly and perform their designated tasks.

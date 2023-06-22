@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 title: Infrastructure requirements
-sidebar_label: Infrastructure
+sidebar_label: Validator infrastructure
 vega_network: MAINNET
 hide_title: false
 ---
@@ -24,6 +24,21 @@ The impact of using fewer cores than recommended is that the critical parts (dat
 
 The impact of having slower cores than recommended (or older cores that have a reduced IPC rate compared to modern Zen3 cores) is that the maximum throughput will be reduced due to the bottlenecks being single threaded.
 
+### Storage recommendations 
+
+|     | NVMe SSD  | SATA SSD | HDD 5400 rpm | 
+| Blocks Per Minute | 1415 | 851 | 68 |  
+| Blocks Per Second | 24  | 14 | 1 |
+| Drive Service Time | 15% | 60% | 99% |
+
+NVMe devices are the fastest and best option if available. Their very low service time means other processes can be run on the same server without impacting the performance of the core.
+
+SATA attached SSDs perform well and have the advantage of supporting larger sizes and also more devices per server.
+
+Traditional HDDs are not a good fit for this workload. They would be unable to catch up with a live blockchain as they cannot handle processing blocks faster than real time, thus your validator node may not be quick enough to take part in consensus and then demoted from the consensus validator set.
+
+Performance testing on NVMe SSD, SATA SSD and traditional HDD (5400rpm) storage devices was done to see how they handled the workload of running a validator node. The testing included running the node for an hour and measuring the number of blocks it replayed, and the service time of the storage device.
+
 ## Software requirements
 
 ### Operating system 
@@ -34,12 +49,3 @@ You'll need 'go' version 1.19.1 or newer.
 
 ### Vega Wallet
 You'll need a version of the Vega Wallet that matches with the version of software you're using to install your node. You can get this when you install Vega. 
-
-### Data node PostgreSQL
-After building, to run your data node, you will have to run a PostgreSQL server.
-
-There are several ways to do this:
-**From 0.54.x onwards:**
-- As described in the [data node readme](https://github.com/vegaprotocol/vega/blob/develop/datanode/README.md). The simplest and recommended way to do this is [using docker](https://github.com/vegaprotocol/vega/blob/develop/datanode/README.md#using-docker), which is also described in the data node readme.
-
-<!-- ### Block explorer PostgresSQL [WIP] -->
