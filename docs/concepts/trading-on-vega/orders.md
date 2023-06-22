@@ -140,13 +140,13 @@ A stop order is an order to buy or sell once the price reaches a specified price
 
 Stop orders can only be used to bring a trader's position closer to zero, and thus make use of the [reduce only](#reduce-only) condition and will only be accepted if the trader already has an open position on the market.
 
-A stop order must include a trigger price - for a take profit stop order, or percentage - for a trailing stop, and whether to deploy the order once the last traded price "rises above" or "falls below" the given stop price/percentage. It can, but doesn't need to, have an expiry date and time, or an execution time (???) at which point the order will be filled if possible.
+A stop order must include a trigger price at a fixed level, or it can be a percentage for a trailing stop. It must also include whether to deploy the order once the last traded price "rises above" or "falls below" the given stop price/percentage. It can, but doesn't need to, have an expiry date and time, or an execution time at which point the order will be filled, if possible.
 
 While a stop order can be a single instruction, it could alternatively be a pair of stop orders where one cancels the other (OCO). Using the OCO option allows a trader to have a stop loss and a take profit/trailing stop instruction for the same position. If one of the pair is triggered, cancelled, deleted, or rejected, the other one is automatically cancelled.
 
-If a trader's position size moves to zero and there are no open orders, the trader's stop orders for that position are cancelled.
+If a trader's position size moves to zero and there are no open orders, the trader's stop orders for that market are cancelled.
 
-There's a limit to how many stop orders that one public key can have active at one time, set by the 'spam.protection.max.stopOrdersPerMarket' network parameter.
+There's a limit to how many stop orders any one public key can have active at one time, set by the 'spam.protection.max.stopOrdersPerMarket' network parameter.
 
 ### Batch order
 Order instructions, such as submit, cancel, and/or amend orders, can be batched together in a single transaction, which allows traders to regularly place and maintain the price and size of multiple orders without needing to wait for each order instruction to be processed by the network individually.
