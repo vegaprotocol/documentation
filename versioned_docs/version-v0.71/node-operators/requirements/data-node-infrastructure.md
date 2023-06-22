@@ -67,7 +67,7 @@ For production use, we recommend using the Linux binary on Ubuntu as this is the
 You'll need 'go' version 1.19.1 or newer.
 
 ### Data node PostgreSQL
-After building, to run your data node, you will have to run a PostgreSQL server.
+If you plan to run a data node, you will also need to run a PostgreSQL server.
 
 There are several ways to do this:
 - As described in the [data node readme](https://github.com/vegaprotocol/vega/blob/develop/datanode/README.md). 
