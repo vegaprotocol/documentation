@@ -137,32 +137,12 @@ docker run -d \
 
 The non-validator Vega node will send the events it receives from the network and the events it creates to the data node, which will then store them in a database. An API is provided to query the data stored by the data node.
 
-
-:::note Operating system
-The following instructions assume you are installing on a Ubuntu Linux machine as explained in the [server setup guide](setup-server#os-and-software).
-:::
-
 ```shell
 visor run --home "VISOR_HOME_PATH"
 ```
 
-
-## Configure data node APIs
-In order for clients to communicate with data nodes, we expose a set of APIs and methods for reading data.
-
-There are currently three protocols to communicate with the data node APIs:
-
-#### HTTPS
-The REST and GraphQL API gateway can be configured to use secure http connections.
-
-**GraphQL subscriptions do not work properly unless the HTTPS is enabled**.
-
-You will need your data node to be reachable over the internet with a proper fully qualified domain name, and a valid signed certificate. You may either:
-
-* Provide data node with a path to an existing signed certificate and corresponding private key
-* Configure data node to create a certificate for you, and automatically request a signature via `LetsEncrypt`
-
-In the former case, where you already have a certificate and corresponding private key file, you can specify them as follows:
+## Configure data node SSL certificate
+You will need your data node to be reachable over the internet with a proper fully qualified domain name, and a valid signed certificate. You may provide data node with a path to an existing signed certificate and corresponding private key
 
 ```toml
   [Gateway]
@@ -171,39 +151,10 @@ In the former case, where you already have a certificate and corresponding priva
     KeyFile = "/path/to/key/file"
 ```
 
-You can buy a certificate from a verified source and save the obtained file to your preferred location. It is advised that the certificate and key files have a permission mask of `0600` and the directory where they are located as `0700`.
-
 Many administrators prefer to use a tool called `certbot` for generating and signing free certificates via `LetsEncrypt`. To obtain a signed certificate with this method:
 * [Install certbot ↗](https://www.inmotionhosting.com/support/website/ssl/lets-encrypt-ssl-ubuntu-with-certbot/)
 * Run `certbot certonly --standalone` to generate certificate
 * Place the generated `fullchain.pem` into the `Gateway.CertificateFile` location and corresponding `privkey.pem` to `Gateway.KeyFile`.
-* Read the [configuration considerations](https://serverfault.com/questions/790772/best-practices-for-setting-a-cron-job-for-lets-encrypt-certbot-renewal) for certbot in crontab.
 
-Data node can optionally perform a similar role to `certbot` and manage creation and signing of certificates automatically via LetsEncrypt. To enable this feature, specify an `AutoCertDomain` instead of `CertificateFile` and `KeyFile` paths in the `[Gateway]` section data node's configuration file. For example:
-
-```toml
-  [Gateway]
-    HTTPSEnabled = true
-    AutoCertDomain = "my.lovely.domain.com"
-```
-
-**It is a hard requirement of the `LetsEncrypt` validation process that the the server answering its challenge is running on the standard HTTPS port (443).** By default, the GraphQL API and the REST API run on 3008, so the validation will not succeed. This means if you wish to make use of data node's automatic certificate management, you must do one of the following:
-
-* Forward port 443 on your machine to the GraphQL or REST API port using `iptables` or similar other network configuration CLI. Example: `iptables`: `iptables -A PREROUTING -t nat -p tcp --dport 443 -j DNAT --to-destination :3008`
-* Proxy pass to port 3008 by using reverse proxy server. Some example sources on how to set one up:
-  - [`caddy`](https://caddyserver.com/docs/quick-starts/reverse-proxy)
-  - [`nginx`](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
-  - [`httpd`](https://httpd.apache.org/docs/2.4/howto/reverse_proxy.html)
-* Directly listen on port 443 instead of the default with the gateway in data node by specifying the following configuration:
-
-```toml
-  [Gateway]
-    Port = 443
-```
-
-Note that Linux systems generally require processes listening on ports under 1024 to either run as root, or be specifically granted permission, e.g. by launching with the following:
-
-```shell
-setcap cap_net_bind_service=ep vega datanode run
-```
+**It is a hard requirement of the `LetsEncrypt` validation process that the tool answering its challenge is running on the standard HTTPS port (443). Therefore if you are running behind a fireway you should port forward 443 to the machine generating the certificate for the duration of the creation process** 
 
