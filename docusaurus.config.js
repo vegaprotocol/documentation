@@ -199,23 +199,6 @@ module.exports = {
   },
   plugins: [
     [
-      // This plugin extends the CLI to give us a generator that takes in our schema and produces
-      // markdown files inside the docs folder, so these are included in the versioned docs.
-      require.resolve("@edno/docusaurus2-graphql-doc-generator"),
-      {
-        schema: `./specs/v${version}/schema.graphql`,
-        rootPath: "docs/api/",
-        baseURL: "graphql",
-        linkRoot: "/testnet/api/",
-        diffMethod: "none",
-        docOptions: {
-          toc: true,
-          pagination: true,
-          index: true
-        }
-      }
-    ],
-    [
       // An alternative to algolia
       require.resolve("@easyops-cn/docusaurus-search-local"),
       {
