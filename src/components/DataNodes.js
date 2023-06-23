@@ -49,7 +49,6 @@ function TableForNodes(listOfNodes, vaguerResult) {
     return (<table>
       <thead>
         <tr>
-          <th>Name</th>
           <th>Address</th>
           <th>Connectivity</th>
           <th>SSL</th>
@@ -60,7 +59,6 @@ function TableForNodes(listOfNodes, vaguerResult) {
             .map(n => {
               return (
                 <tr>
-                    <td>{n.name}</td>
                     <td>
                         <code>{n.host}</code>
                     </td>
