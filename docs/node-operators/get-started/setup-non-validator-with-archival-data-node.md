@@ -156,5 +156,5 @@ Many administrators prefer to use a tool called `certbot` for generating and sig
 * Run `certbot certonly --standalone` to generate certificate
 * Place the generated `fullchain.pem` into the `Gateway.CertificateFile` location and corresponding `privkey.pem` to `Gateway.KeyFile`.
 
-**It is a hard requirement of the `LetsEncrypt` validation process that the tool answering its challenge is running on the standard HTTPS port (443). Therefore if you are running behind a fireway you should port forward 443 to the machine generating the certificate for the duration of the creation process** 
+**It is a hard requirement of the `LetsEncrypt` validation process that the tool answering its challenge is running on the standard HTTP/HTTPS ports(80, 443). Therefore if you are running behind a firewall you should port forward 80+443 to the machine generating the certificate for the duration of the creation process** 
 
