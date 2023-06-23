@@ -28,9 +28,11 @@ function vaguerList(listOfNodes, vaguerResult) {
         const name = getHostname(host)
         const res = getVaguerResultForName(name, vaguerResult)
         const good = (res && res['🥇'] === '🥇' ? true : false) 
+        const https = (res && res['https'] === '✓' ? true : false) 
         return Object.assign({}, {
             name: name.replace('.vega.xyz', ''),
             host,
+            https,
             good 
         })
     })
@@ -43,7 +45,7 @@ function vaguerList(listOfNodes, vaguerResult) {
     return [...goodList.sort(alphabetical), ...badList.sort(alphabetical)]
 }
 
-function TableForNodes(listOfNodes, vaguerResult) {
+function TableForNodes(listOfNodes, vaguerResult, type) {
     const listOfNodesPlusVaguer = vaguerList(listOfNodes, vaguerResult)
 
     return (<table>
@@ -51,19 +53,26 @@ function TableForNodes(listOfNodes, vaguerResult) {
         <tr>
           <th>Address</th>
           <th>Connectivity</th>
-          <th>SSL</th>
+          { type !== 'grpc' ? <th>SSL</th> : null }
         </tr>
       </thead>
       <tbody>
         {listOfNodesPlusVaguer
             .map(n => {
+              let https = n.https === true ? '🔐' : ''
+              if (https === '') {
+                if (n.host.indexOf('https://') !== -1) {
+                  https = '🔒'
+                }
+              }
+
               return (
                 <tr>
                     <td>
                         <code>{n.host}</code>
                     </td>
                     <td align="center">{n.good === true ? '⭐' : ''}</td>
-                    <td align="center">{n.https === '✓' ? '🔐' : ''}</td>
+                    {type !== 'grpc' ? <td align="center">{https}</td> : null}
                 </tr>
                 );
             })}
@@ -98,9 +107,9 @@ export default function DataNodes({ frontMatter }) {
   return (
     <div className="DataNodeList">
         <Tabs>
-            <TabItem value="rest" label="REST">{TableForNodes(addresses.REST.Hosts, vaguer)}</TabItem>
-            <TabItem value="grpc" label="GRPC">{TableForNodes(addresses.GRPC.Hosts, vaguer)}</TabItem>
-            <TabItem value="graphql" label="GraphQL">{TableForNodes(addresses.GraphQL.Hosts, vaguer)}</TabItem>
+            <TabItem value="rest" label="REST">{TableForNodes(addresses.REST.Hosts, vaguer, 'rest')}</TabItem>
+            <TabItem value="grpc" label="GRPC">{TableForNodes(addresses.GRPC.Hosts, vaguer, 'grpc')}</TabItem>
+            <TabItem value="graphql" label="GraphQL">{TableForNodes(addresses.GraphQL.Hosts, vaguer, 'graphql')}</TabItem>
         </Tabs>
         <p style={{fontSize: "0.7em", marginTop: '0'}}><strong>Source:</strong> <a href={source} className="external" target="_blank" rel="noopener nofollow">{source.replace('https://', '')}</a><br />
         <strong>Last refreshed:</strong> <em>{d.date}</em></p>
