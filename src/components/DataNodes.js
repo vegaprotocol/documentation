@@ -52,6 +52,7 @@ function TableForNodes(listOfNodes, vaguerResult) {
           <th>Name</th>
           <th>Address</th>
           <th>Connectivity</th>
+          <th>SSL</th>
         </tr>
       </thead>
       <tbody>
@@ -64,6 +65,7 @@ function TableForNodes(listOfNodes, vaguerResult) {
                         <code>{n.host}</code>
                     </td>
                     <td align="center">{n.good === true ? '⭐' : ''}</td>
+                    <td align="center">{n.https === '✓' ? '🔐' : ''}</td>
                 </tr>
                 );
             })}
