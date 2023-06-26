@@ -311,13 +311,21 @@ To move on to self-staking, wait until you see your node on the validator list b
 
 Then, associate your tokens and nominate your node using the [governance dApp ↗](https://governance.vega.xyz/staking/) or by interacting directly with the smart contract.
 
+
+## Forwarding Ethereum events
+Once your node is up and running, you'll need to maintain it, and ensure that it continues to take part in the network.
+
+Every time a method is called successfully on the smart contracts, for example a deposit on the collateral bridge, an event is emitted by the smart contract. Your validator node will be monitoring all blocks created by Ethereum and look for these events, and then forward them to all other validator nodes.
+
+For your node to be eligible for promotion, it will need to forward a number of those Ethereum events. The number is set by a network parameter, with a value of <NetworkParameter frontMatter={frontMatter} param="network.validators.minimumEthereumEventsForNewValidator" />.
+
 ## Announce node off-chain
 [Create a validator profile on the forum ↗](https://community.vega.xyz/c/mainnet-validator-candidates/23) describing the experience you have, security practices and policies, how you will ensure maximum uptime, how you'll meet suitable performance standards, your communication channels for questions and the role you intend to take in Vega's governance.
 
 Share your profile with the community, for example in [the Validators Discord channel ↗](https://discord.com/channels/720571334798737489/869236034116943903), to attract stakers to nominate your node.
 
 ## Next steps
-Once your node is up and running, you'll need to maintain it, and ensure that it's still taking part in the network. If your node is promoted into the consensus validator set then the Multisig Contract will need to be updated so that you and your nominators can continue to receive rewards. You may also need to upgrade the software, restart the network and rotate your keys (for security).
+If your node is promoted into the consensus validator set then the Multisig Contract will need to be updated so that you and your nominators can continue to receive rewards. You may also need to upgrade the software, restart the network and rotate your keys (for security).
 
 See the following guides to learn how to: 
 

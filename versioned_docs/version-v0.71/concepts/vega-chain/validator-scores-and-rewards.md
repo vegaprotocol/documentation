@@ -70,7 +70,9 @@ In other words, the network calculates an optimal stake that represents an even 
 :::
 
 ## Performance score
-For the network to run effectively, it requires nodes that are highly available, highly performant, and process the transactions expected of them. Therefore a performance score is calculated for all validator nodes. This calculation of performance score differs slightly between consensus and standby validators. Candidate validators do not receive a performance score.
+For the network to run effectively, it requires nodes that are highly available, highly performant, and process the transactions expected of them. Therefore a performance score is calculated for all validator nodes. This calculation of performance score differs slightly between consensus and standby validators. 
+
+Candidate validators start with a performance score of 0. Then their score will increase to 1, as long as they have sufficient self stake, their node stays up for an entire epoch, and the node has forwarded enough Ethereum events.
 
 ### Consensus validators 
 In tendermint consensus, the number of times a consensus validator can be expected to propose a block is roughly proportional to their voting power from the previous epoch. Therefore, in order to assess the performance of a node, the protocol compares the number of times that node was expected to propose a block in the previous epoch against the number of blocks it actually proposed.
