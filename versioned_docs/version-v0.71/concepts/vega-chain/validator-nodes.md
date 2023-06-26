@@ -61,11 +61,12 @@ To become a standby validator, a candidate (described as 'Pending' in the APIs) 
 If there are free slots for one or more standby validators, they are added as standby validators in the next epoch. If a node that submits the transaction to join has a higher validator score than the lowest scoring standby validator, then it will become a standby validator and the lowest scoring standby validator is removed from the standby set. As with consensus validators, if there are no free slots then only one node can replace a standby validator per epoch.
 
 ## Candidate validators
-Any other nodes on the network are known as candidate (pending) validators. Nodes could be in this status for three reasons:
+Any other nodes on the network are known as candidate (pending) validators. Nodes could be in this status for several reasons:
 
 1. The node has not sent the necessary transaction to announce itself to the network
 2. The node has sent the transaction, but does not have enough total stake to make become a standby or consensus validator
-3. The node has not yet seen and thus not yet forwarded enough Ethereum bridge transactions, based on the network parameter <NetworkParameter frontMatter={frontMatter} param="network.validators.minimumEthereumEventsForNewValidator" />
+3. The node has not yet seen, been selected to forward, and then forwarded enough Ethereum bridge transactions, based on the network parameter <NetworkParameter frontMatter={frontMatter} param="network.validators.minimumEthereumEventsForNewValidator" />
+4. Their ranking score is lower than the worst ranking score of the set of validators above
 
 When assessing which nodes will be promoted to standby, and potentially later consensus status, if two validators have the same performance score then the network places higher the one that has been validator for longer. Similarly if two validators who joined at the same time have the same score, the priority goes to the one who submitted the transaction to become validator first.
 
