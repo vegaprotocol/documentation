@@ -68,7 +68,7 @@ Any other nodes on the network are known as candidate (pending) validators. Node
 1. The node has not sent the necessary transaction to announce itself to the network
 2. The node has sent the transaction, but does not have enough total stake to make become a standby or consensus validator
 3. The node has not yet seen, been selected to forward, and then forwarded enough Ethereum bridge transactions, based on the network parameter <NetworkParameter frontMatter={frontMatter} param="network.validators.minimumEthereumEventsForNewValidator" />
-4. Their ranking score is lower than the worst ranking score of the set of validators above
+4. Their ranking score is lower than the worst ranking score of the standby validator set
 
 When assessing which nodes will be promoted to standby, and potentially later consensus status, if two validators have the same performance score then the network places higher the one that has been validator for longer. Similarly if two validators who joined at the same time have the same score, the priority goes to the one who submitted the transaction to become validator first.
 

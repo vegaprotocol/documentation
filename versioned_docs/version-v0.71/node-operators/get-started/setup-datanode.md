@@ -247,7 +247,7 @@ For example:
   ChunkInterval = "2 hours"
 ```
 
-Note: The retention policy for each table that has one is logged out by the data node when it starts. If you change the retention policy for a table, you'll be able to check the logs and confirm the new policies have been applied.
+Note: The retention policy for each table that has one is logged by the data node when it starts. If you change the retention policy for a table, you'll be able to check the logs and confirm the new policies have been applied.
 
 ## Generate config
 To generate the configuration files you need for the data node, you can use the following command:

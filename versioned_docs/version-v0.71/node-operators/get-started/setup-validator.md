@@ -315,7 +315,7 @@ Then, associate your tokens and nominate your node using the [governance dApp â†
 ## Forwarding Ethereum events
 Once your node is up and running, you'll need to maintain it, and ensure that it continues to take part in the network.
 
-Every time a method is called successfully on the smart contracts, for example a deposit on the collateral bridge, an event is emitted by the smart contract. Your validator node will need to be monitoring all blocks created by Ethereum and look for these events, and ready to forward them to the Vega chain if selected.
+Every time a method is called successfully on the smart contracts, for example a deposit on the collateral bridge, an event is emitted by the smart contract. Your validator node will need to be monitoring all blocks created by Ethereum and look for these events, and be ready to forward them to the Vega chain if selected.
 
 For your node to be eligible for promotion, it will need to forward a number of those Ethereum events. The number is set by a network parameter, with a value of <NetworkParameter frontMatter={frontMatter} param="network.validators.minimumEthereumEventsForNewValidator" />.
 
