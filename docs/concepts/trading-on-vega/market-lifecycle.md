@@ -71,6 +71,12 @@ When a market proposal is successful at the end of the voting period, the market
 - A market is no longer pending when any of the following occur:
 - Enactment date is reached, the conditions for exiting the auction are met, and at least one trade will be generated when uncrossing the auction. The auction is uncrossed during this transition → [Active](#market-status-active) 
 
+<!--
+## Market status: Cancelled [WIP]
+
+After market.liquidity.successorLaunchWindowLength has elapsed since cancellation any insurance pool balance should be transferred into the network treasury account for that asset.
+-->
+
 ## Market status: Active
 Once the enactment date is reached, the other conditions specified to exit the pending state are met, and the opening auction uncrosses, then the market becomes `active`.
 
