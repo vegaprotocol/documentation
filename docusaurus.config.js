@@ -146,14 +146,14 @@ module.exports = {
           ],
         },
         {
-          title: "Fairground",
+          title: "Fairground, Vega testnet",
           items: [
             {
               label: "Home",
               to: "https://fairground.wtf/",
             },
             {
-              label: "Vega Console",
+              label: "Console (Fairground)",
               to: "https://console.fairground.wtf/",
             },
           ],
