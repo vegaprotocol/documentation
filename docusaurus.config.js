@@ -82,6 +82,10 @@ module.exports = {
           title: "Vega Protocol",
           items: [
             {
+              label: "Vega Console",
+              to: "http://console.vega.xyz/",
+            },
+            {
               label: "Website",
               to: "http://vega.xyz/",
             },
