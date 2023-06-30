@@ -236,15 +236,19 @@ Another parameter is
 <!--### Changing models [WIP]  -->
 
 ### Propose a successor market
-A successor market is a market that will carry on after the original market, or parent, that it is based on has settled - though a parent and successor market can be active simultaneously. Proposing a new successor market that follows from an existing market allows liquidity providers to keep their [equity-like share](./liquidity/rewards-penalties.md#how-liquidity-fees-are-split) on the new market, where creating an entirely new market with no parent doesn't offer the same benefit.
+A successor market is a market that will carry on after the original market, or parent, that it is based on has settled - though a parent and successor market can be active simultaneously. Proposing a new successor market that follows from an existing market allows liquidity providers to the option to keep their [equity-like share](./liquidity/rewards-penalties.md#how-liquidity-fees-are-split) on the new market, even when the original market expires. Creating an entirely new market with no parent doesn't offer the same benefit.
 
 In terms of the proposal format, there are only two differences between a succesor market proposal and that for a regular market.  
-* Market ID of the intended parent market **must** be defined
+* Market ID of the parent market **must** be defined
 * Insurance pool percentage: A percentage of the parent market's insurance pool, up to 100%, can be earmarked for transfer to the successor market
 
 The following details will need to match between parent and successor:
 * Settlement asset
 * Quote: Determined from the data source
+
+For a successor market to be enacted, the parent market must be in one of the following states: proposed, pending, active, suspended or trading terminated. 
+
+The parent market can be settled or cancelled when the successor market reaches enactment time, as long as the time it's been settled/cancelled is equal to or less than the parent market's settlement time plus the `market.liquidity.successorLaunchWindowLength` - determined by a network parameter. This parameter specifies for how long after a market has settled, the liquidity provider's equity-like share data are retained and the insurance pool is left undistributed to allow a successor to be defined. If the successor is proposed after that time, then nothing is transferred over and the market opens as a standard market. 
 
 ### Propose updates to a market
 Most details about a market can be changed through governance. Those includes risk models, monitoring triggers, and the settlement and termination data sources.

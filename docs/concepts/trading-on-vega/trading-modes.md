@@ -45,7 +45,11 @@ Currently, all auctions are triggered automatically based on market conditions. 
 * Not enough liquidity on a market; this could also indicate missing best static bid / ask as without those liquidity provision orders cannot be deployed, even if liquidity providers have committed liquidity. 
 
 ### Auction type: Opening
-Every continuous trading market opens with an auction. Their purpose is to calibrate a market and help with price discovery by determining a fair mid-price to start off continuous trading. 
+Every continuous trading market opens with an auction. Their purpose is to calibrate a market and help with price discovery by determining a fair mid-price to start off continuous trading.
+
+While a market is in opening auction, liquidity commitments can be submitted to it. Those who start committing earlier will receive a greater [equity-like share](../liquidity/rewards-penalties.md#how-the-fee-is-derived) in the market, which influences the amount of fee revenue they receive.
+
+In the case of a [successor market](../governance.md#propose-a-successor-market), any liquidity provider can submit liquidity commitments to it but those that had been providing liquidity to the parent market will have their equity-like share, and thus its benefits, carried over.
 
 #### Entry into an opening auction 
 A new market’s opening auction begins at the proposal’s closing date.
@@ -54,6 +58,8 @@ A new market’s opening auction begins at the proposal’s closing date.
 A market’s opening auction ends at the market enactment time, unless an opening price can't be determined because no orders would uncross. In that case, the auction is extended by <NetworkParameter frontMatter={frontMatter} param="market.auction.minimumDuration" hideName={true} />. At the end of each extension time, the system looks for orders that would uncross.
 
 When a market leaves its opening auction, it will use the mid-price within the range of auction bids that would result in the highest trade volume for its normal trading mode. For example, if the volume maximising range is 98-102, the market would price all trades in the uncrossing at 100. The order book would then be uncrossed at that price and the trades follow the normal flow.
+
+When a [successor market](../governance.md#propose-a-successor-market) leaves its opening auction, the insurance pool fraction (multiplied by the parent market's insurance pool balance) that was defined in its market proposal is transferred to the successor market's insurance pool. Once the parent market settles, the rest of the parent's insurance pool is transferred to the successor market.
 
 ### Auction type: Price monitoring
 Sometimes low liquidity and/or a large quantity of order volume can cause a market's price to diverge from the true price. The Vega protocol is designed to assume that relatively small moves are 'real' and that larger moves might not be. The market's risk model and price monitoring settings are used to determine what the boundaries are between small, acceptable moves and large, unrealistic ones.
