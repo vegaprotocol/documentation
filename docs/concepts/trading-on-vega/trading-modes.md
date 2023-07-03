@@ -59,7 +59,7 @@ A market’s opening auction ends at the market enactment time, unless an openin
 
 When a market leaves its opening auction, it will use the mid-price within the range of auction bids that would result in the highest trade volume for its normal trading mode. For example, if the volume maximising range is 98-102, the market would price all trades in the uncrossing at 100. The order book would then be uncrossed at that price and the trades follow the normal flow.
 
-When a [successor market](../governance.md#propose-a-successor-market) leaves its opening auction, the insurance pool fraction (multiplied by the parent market's insurance pool balance) that was defined in its market proposal is transferred to the successor market's insurance pool. Once the parent market settles, the rest of the parent's insurance pool is transferred to the successor market.
+When a [successor market](../governance.md#propose-a-successor-market) leaves its opening auction, the insurance pool fraction (multiplied by the parent market's insurance pool balance) that was defined in its market proposal is transferred to the successor market's insurance pool.
 
 ### Auction type: Price monitoring
 Sometimes low liquidity and/or a large quantity of order volume can cause a market's price to diverge from the true price. The Vega protocol is designed to assume that relatively small moves are 'real' and that larger moves might not be. The market's risk model and price monitoring settings are used to determine what the boundaries are between small, acceptable moves and large, unrealistic ones.

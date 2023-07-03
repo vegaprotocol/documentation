@@ -67,7 +67,7 @@ There are insurance pool accounts per market and per asset.
 
 The insurance pool holds funds that have been collected if a liquidity provider pays a penalty for not providing their committed liquidity, or if a trader is closed out. The funds in the pool are called on if a market's events cause extreme movements, and traders become too distressed to cover their losses. 
 
-Once a market settles and terminates, any amount left in a market's insurance pool is transferred to the asset insurance pool, which can then be drawn on by other markets that use the same settlement asset.
+Once a market settles and terminates, any amount left in a market's insurance pool is transferred to the asset insurance pool, which can then be drawn on by other markets that use the same settlement asset. However, the behaviour is different when a market is defined as a parent to a successor. In a successor market proposal, a portion of a market's insurance pool can be earmarked for transfer to the successor market.
 
 :::note Read more
 * [Market lifecycle](../trading-on-vega/market-lifecycle.md)

@@ -238,6 +238,8 @@ Another parameter is
 ### Propose a successor market
 A successor market is a market that will carry on after the original market, or parent, that it is based on has settled - though a parent and successor market can be active simultaneously. Proposing a new successor market that follows from an existing market allows liquidity providers to the option to keep their [equity-like share](./liquidity/rewards-penalties.md#how-liquidity-fees-are-split) on the new market, even when the original market expires. Creating an entirely new market with no parent doesn't offer the same benefit.
 
+Each market can have only one active successor.
+
 In terms of the proposal format, there are only two differences between a succesor market proposal and that for a regular market.  
 * Market ID of the parent market **must** be defined
 * Insurance pool percentage: A percentage of the parent market's insurance pool, up to 100%, can be earmarked for transfer to the successor market

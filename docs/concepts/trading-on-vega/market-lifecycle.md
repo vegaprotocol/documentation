@@ -13,6 +13,7 @@ The market lifecycle begins when a proposal for a new market is accepted, and is
 | [Proposed](#market-status-proposed)           |   ✅          | No trading          | Governance proposal valid and accepted                                       | Governance proposal voting period ends
 | [Rejected](#market-status-rejected)           |   ❌           | No trading          | Outcome of governance votes is to reject the market             | N/A                                                    
 | [Pending](#market-status-pending)            |   ✅          | Opening auction     | Governance vote passes                                     | Governance vote OR enactment date reached
+| [Cancelled](#market-status-cancelled)            |   ❌          | No trading     | Market trigger for a cancellation       | N/A
 | [Active](#market-status-active)             |   ✅          | Normal trading (such as continuous)     | Enactment date reached and usual auction exit checks pass       | Maturity of market      
 | [Suspended](#market-status-suspended)          |   ✅          | Exceptional auction | Price monitoring or liquidity monitoring trigger, or product lifecycle trigger                | Exit conditions met per monitoring spec. that triggered it, no other monitoring triggered or governance vote if allowed (see below)
 | [Trading Terminated](#market-status-trading-terminated) |   ❌           | No trading          | Defined by the product (i.e. from a product parameter, specified in market definition, giving close date/time) | Settlement event commences                       
@@ -71,11 +72,23 @@ When a market proposal is successful at the end of the voting period, the market
 - A market is no longer pending when any of the following occur:
 - Enactment date is reached, the conditions for exiting the auction are met, and at least one trade will be generated when uncrossing the auction. The auction is uncrossed during this transition → [Active](#market-status-active) 
 
-<!--
-## Market status: Cancelled [WIP]
 
-After market.liquidity.successorLaunchWindowLength has elapsed since cancellation any insurance pool balance should be transferred into the network treasury account for that asset.
--->
+## Market status: Cancelled
+A market can be `cancelled` if it cannot leave `pending` before the maximum opening auction duration is reached, or if an update market proposal changes the market's parameters such that it enters [trading terminated](#market-status-trading-terminated) before it leaves `pending`.
+
+### Enters cancelled state
+- Market does not have enough trading to leave opening auction before <NetworkParameter frontMatter={frontMatter} param="market.auction.maximumDuration" hideValue={true} />
+- Market's enactment date has passed without trading, and parameters that would lead to trading terminated are triggered
+- An update governance proposal with a market parameter change that would result in the market being closed passes its governance vote
+- Auction orders are cancelled and no uncrossing occurs
+- After `market.liquidity.successorLaunchWindowLength` has elapsed since a market's cancellation, that means a market does not have a successor, and any insurance pool balance is transferred into the network treasury account for that asset
+- All margin and liquidity boond is returned to users' general accounts
+
+### What is and isn't possible
+- Once a market is cancelled, it cannot be traded on
+
+### Exits cancelled state
+- There is no way to exit this state, as nothing more can be done with this market
 
 ## Market status: Active
 Once the enactment date is reached, the other conditions specified to exit the pending state are met, and the opening auction uncrosses, then the market becomes `active`.
