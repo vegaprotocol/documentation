@@ -241,8 +241,8 @@ A successor market is a market that will carry on after the original market, or 
 Each market can have only one active successor.
 
 In terms of the proposal format, there are only two differences between a succesor market proposal and that for a regular market.  
-* Market ID of the parent market **must** be defined
-* Insurance pool percentage: A percentage of the parent market's insurance pool, up to 100%, can be earmarked for transfer to the successor market
+* Parent market ID: Required to define the proposal as for a successor market
+* Insurance pool percentage: Required percentage of the parent market's insurance pool, up to 100%, can be earmarked for transfer to the successor market. It is submitted as a number between and including 0 and 1, which represents the factor for the percentage.
 
 The following details will need to match between parent and successor:
 * Settlement asset
