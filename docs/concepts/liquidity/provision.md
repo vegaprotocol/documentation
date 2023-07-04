@@ -34,7 +34,7 @@ Liquidity providers need to be able to support their liquidity commitment - thei
 
 Participants who want to commit liquidity to a market can enter their commitments as soon as a market proposal is submitted and accepted, even before the governance vote to create the market concludes, as well as at any time while the market is trading. Committing earlier in a market's lifecycle leads to a higher [equity-like share](rewards-penalties.md#liquidity-fees) in that market, assuming the trading volume on the market increases with time. 
 
-A liquidity provider's equity-like share is then carried over to the successor market of the market they've provided liquidity for, if a successor market comes to exist. The provider will then need to provide liquidity on the successor market while it's [pending](../trading-on-vega/market-lifecycle.md#market-status-pending)to keep that equity-like share active.
+A liquidity provider's equity-like share is then carried over to the successor market of the market they've provided liquidity for, if a successor market comes to exist. The provider will then need to provide liquidity on the successor market while it's [pending](../trading-on-vega/market-lifecycle.md#market-status-pending) to keep that equity-like share active.
 
 ### Liquidity bond
 When a provider commits liquidity, the amount of their commitment is set aside as bond, and the orders created by their commitment are funded by their unbonded collateral. Bond functions like an extra margin requirement to back up the provider's commitment to stay with the market, whether it's well supplied or under-supplied with liquidity. In return for that commitment, liquidity providers are rewarded with fees paid by traders that are not available to other market participants. 
