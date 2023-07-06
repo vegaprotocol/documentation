@@ -52,9 +52,9 @@ ERC-20 is a ubiquitous smart contract interface that allows users to mint, issue
 Assets need to be proposed and pass a governance vote before they can be used on the Vega network. After a new asset vote passes, the change has to be submitted to the asset bridge on Ethereum. Until it has been submitted, no one can start depositing that asset. 
 
 :::note Read more
-[Asset governance]
-[Tutorial: Proposing an asset]
-[Tutorial: Proposing a change to an asset]
+* [Asset governance](../governance.md#asset-governance)
+* [Tutorial: Proposing an asset](../../tutorials/proposals/new-asset-proposal.md)
+* [Tutorial: Proposing a change to an asset](../../tutorials/proposals/update-asset-proposal.md)
 :::
 
 ## Margin, settlement, and liquidity provision

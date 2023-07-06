@@ -9,7 +9,7 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 
 Governance allows the Vega network to arrive at on-chain decisions, where tokenholders can create proposals that other tokenholders can vote to approve or reject. 
 
-Vega supports on-chain proposals for creating markets and assets, and changing network parameters, markets and assets. Vega also supports freeform proposals for community suggestions that will not be enacted on-chain.
+Vega supports on-chain proposals for creating markets and assets, changing network parameters, markets and assets, and transferring assets between some network-managed accounts. Vega also supports freeform proposals for community suggestions that will not be enacted on-chain.
 
 Taking part in governance by voting, or by proposing additions/changes with community support, is a way for tokenholders and community members to contribute to improve the network, and to add value for other network participants.
 
@@ -155,6 +155,67 @@ Specifically:
 * The contract must be an ERC-20 asset
 * The name and symbol must match the contract
 * There cannot be multiple assets on a Vega network for the same ERC-20 asset
+
+### Transferring assets 
+Transferring assets from certain account types can only be initiated by on-chain governance proposals. 
+
+Those transfers can be one-off or recurring. A recurring transfer that's initiated by governance can only be cancelled when a governance proposal to cancel it is submitted and passes the governance vote.
+
+The table below highlights which types of transfers can only be done through a governance proposal and vote.
+
+| Source account | Destination account | Proposal required |
+| --- | --- | --- |
+| Network treasury | Party general account(s) | Yes |
+| Network treasury | Party other account types | No |
+| Network treasury | Market insurance pool account | Yes |
+| Network treasury | Network treasury | No  |
+| Network treasury | Any other account | No |
+| Market insurance pool account | Party account(s) | Yes  |
+| Market insurance pool account | Network treasury | Yes  |
+| Market insurance pool account | Market insurance pool account | Yes |
+| Market insurance pool account | Any other account | No |
+| Party account (any type) | Any | No |
+| Any other account | Any | No |
+
+:::info Read more
+[Transfers](./assets/transfers.md): Learn more about transferring assets.
+:::
+
+### network parameters [WIP]
+governance.transfer.max.amount specifies the maximum amount that can be transferred from a source account in a proposal
+governance.transfer.max.fraction specifies the maximum fraction of the balance that can be transferred from a source account.
+
+### Propose an asset transfer
+Tokenholders can propose asset transfers from certain accounts, which then need to be voted on by other tokenholders.
+
+		GovernanceProposalTransferMinClose:              NewDuration(gte1s, lte1y).Mutable(true).MustUpdate("48h0m0s"),
+		GovernanceProposalTransferMaxClose:              NewDuration(gte1s, lte1y).Mutable(true).MustUpdate("8760h0m0s"),
+		GovernanceProposalTransferRequiredParticipation: NewDecimal(gteD0, lteD1).Mutable(true).MustUpdate("0.00001"),
+		GovernanceProposalTransferMinEnact:              NewDuration(gte1s, lte1y).Mutable(true).MustUpdate("48h0m0s"),
+		GovernanceProposalTransferMaxEnact:              NewDuration(gte1s, lte1y).Mutable(true).MustUpdate("8760h0m0s"),
+
+The proposer will need to have at least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the market, and staked to a validator. Note, this amount is set through the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.minProposerBalance" hideValue={true} />.
+
+If the proposal gets a <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.requiredMajority" hideName={true} formatter="percent"/> majority of tokenholder support, then it will be enacted. The required majority is defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.requiredMajority" hideValue={true} />.
+
+To propose assets be transferred, you'll need to provide the details required for the transfer to be successful. While some of the fields are free-text, others are constrained by a range set through network parameters, to ensure that the values provided are fit for purpose.
+
+[WIP]
+Required fields include:
+* Source account type: The type of account that the assets are to be transferred from, such as the network treasury
+* Source: The actual account ID. For network treasury, leave it blank.
+* Transfer type, which can be 'all or nothing' or 'best effort'
+  * All or nothing: Transfers the specified amount, or nothing 
+  * Best effort: Transfers the specified amount or the max allowable amount if it's less than the specified amount
+* Amount: The amount to transfer (optional?)
+* Asset: Asset to transfer
+* Fraction of balance: the maximum fraction of the source account's balance to transfer as a decimal (i.e. 0.1 = 10% of the balance) (optional?)
+* Destination type: Type of account to transfer to, such as reward pool, individual party, market insurance pool
+* Destination: Specific account to transfer to, using an ID or public key. For network treasury, leave it blank.
+
+Contingent fields: 
+* If the proposal is for a one-off transfer, it can optionally define a time, based on Vega time, for delivery. If there is no delivery time, it will execute immediately
+* If the proposal is for a recurring transfer, it must include a start epoch. It can optionally include an end epoch for the last transfer
 
 ## Market governance
 Markets are proposed and voted into existence by Vega tokenholders. The parameters for a market all need to be defined in the proposal.
