@@ -10,7 +10,7 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 ## Transfer assets to keys or accounts
 Standard transfers can be used to move assets from one Vega key to another, or from a Vega key to a specific account, such as a reward pool used for the on-chain network treasury.
 
-Transfers from certain account types must be proposed through [governance](#governance-initiated-transfers), as they are network-managed accounts.
+Transfers from certain account types must be proposed through [governance](#governance-initiated-transfers), as they affect network-managed accounts and moving assets to/from those accounts needs to be agreed by the community.
 
 Anyone with a Vega public key and assets (such as the VEGA token) can set up a standard transfer. Those transfers can only be done from a general account the party has control of, using their own funds. Anyone with a Vega public key and enough VEGA tokens can propose assets be transferred from those specific network accounts.
 
