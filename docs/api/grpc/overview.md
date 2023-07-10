@@ -19,14 +19,19 @@ This means that Vega's gRPC API is fully defined by its protobuf definitions, an
 ### Data node API
 Data nodes aggregate the outputs from core nodes and produce more meaningful APIs. They are stateful and build up a bigger view of the system from the events emitted from the core nodes. The data nodes give the end user a way to query historic information without the need to be always connected to the network. The data node also builds cumulative data which allows the end user to get a snapshot of the current state of a part of the system.
 
-The protobuf definitions for the data node API can be found [here](https://github.com/vegaprotocol/vega/blob/develop/protos/sources/data-node/api/v2/trading_data.proto). They allow for read-only queries for trading data and historic states of the network. 
+The latest protobuf definitions for the data node API can be found [here](https://github.com/vegaprotocol/vega/blob/develop/protos/sources/data-node/api/v2/trading_data.proto). They allow for read-only queries for trading data and historic states of the network. 
 
 ### Core node API
 Core nodes are responsible for ensuring the consensus rules are met and that a consistent view of the network is seen. They present endpoints that give access to the basic state of the network (block time, block height etc), allow transactions to be submitted to the network and to subscribe to event streams so that changes of internal state can be seen.
 
-The protobuf definitions for the core node API can be found [here](https://github.com/vegaprotocol/vega/blob/develop/protos/sources/vega/api/v1/core.proto). They allow for interacting with the network and sending in transactions.
+The latest protobuf definitions for the core node API can be found [here](https://github.com/vegaprotocol/vega/blob/develop/protos/sources/vega/api/v1/core.proto). They allow for interacting with the network and sending in transactions.
 
 As a data node acts as a proxy to its core node, all `CoreService` API such a sending in transactions are also available from the data node's RPC address.
+
+
+:::note Make sure you use the correct version
+Before using the protobuf definitions linked above be sure to check out the version that matches the network you want to interact with. This can find this out by using the [statistics endpoint](../api/rest/core/core-service-statistics.api.mdx) and reading the `appVersion` field. From Vega's git repository you can then do `git checkout ${appVersion}`.
+:::
 
 ## Client stub examples
 
@@ -87,7 +92,7 @@ order = resp.Order
 
 <TabItem value="go" label="Golang">
 
-```golang
+```go
 package main
 
 import (
