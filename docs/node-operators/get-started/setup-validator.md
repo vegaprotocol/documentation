@@ -244,9 +244,9 @@ Under `Mempool Configuration Option`, ensure that `broadcast = true`.
 ### Update Tendermint genesis
 To start successfully, tendermint needs the genesis file from the network you will be trying to join. This file need to be located in `YOUR_TENDERMINT_HOME/config/genesis.json`. Download the genesis file and use it to replace the genesis in your config.
 
-You can find genesis files in the [networks repository ↗](https://github.com/vegaprotocol/networks) for the mainnet and validator-run testnet networks. 
+You can find genesis files in the [networks repository ↗](https://github.com/vegaprotocol/networks) for mainnet and for testnet, visit [networks internal ↗](https://github.com/vegaprotocol/networks-internal). 
 
-Note: For validator-run testnet, the genesis must be a URL to a remote file, not saved locally on disk.
+Note: For testnet, the genesis must be a URL to a remote file, not saved locally on disk.
 
 For example, to join mainnet you will need the following [genesis file ↗](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json).
 
@@ -290,18 +290,18 @@ Once your node is synchronised, you'll need to self-stake, and then announce the
 ## Associate tokens to your Vega key
 Before you announce your node, you will need to have <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={true} formatter="governanceToken" suffix="tokens"/> Vega associated to your Vega key to self-stake (below).
 
-Use the [Sepolia VEGA contract address on the governance dApp ↗](https://validator-testnet.governance.vega.xyz/) to call the contract and faucet tokens to your Ethereum key. 
+Use the [Sepolia VEGA contract address on the governance dApp ↗](https://governance.fairground.wtf/) to call the contract and faucet tokens to your Ethereum key. 
 
 The tokens that you want to use for self-staking must be available on an Ethereum wallet, and then associated to the same Vega public key you used to set up the node. 
 
 You can do this by [importing the Vega Wallet](../../tools/vega-wallet/cli-wallet/latest/guides/restore-wallet) you created for your node wallet, onto your local computer using the Vega Wallet recovery phrase.
 
-Once you have tokens, connect your Ethereum wallet and your Vega Wallet, and associate the tokens to your Vega public key using the [governance dApp ↗](https://validator-testnet.governance.vega.xyz/staking/). Below, you'll self-nominate (self-stake) to your node.
+Once you have tokens, connect your Ethereum wallet and your Vega Wallet, and associate the tokens to your Vega public key using the [governance dApp ↗](https://governance.fairground.wtf/validators). Below, you'll self-nominate (self-stake) to your node.
 
 The association will need to be confirmed by both the Ethereum and Vega blockchains, and may take some time.
 
 ## Announce node on-chain
-You'll need to know the [current epoch ↗](https://validator-testnet.governance.vega.xyz/staking), and have the following data to hand: the URL for your validator website, and the URL for the avatar that will show up on the governance dApp next to your node name.
+You'll need to know the [current epoch ↗](https://governance.fairground.wtf/validators), and have the following data to hand: the URL for your validator website, and the URL for the avatar that will show up on the governance dApp next to your node name.
 
 ```shell
 vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" --avatar-url="YOUR_AVATAR_URL" --country="UK" --name="YOUR_NODE_NAME" --from-epoch="CURRENT_EPOCH"
@@ -310,9 +310,9 @@ vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" 
 Setting the optional argument `--submitter-address` triggers the Vega network to automatically issue signature bundles that can be used to update signer set changes on the Multisig Control contract. This means if your node is promoted to a consensus validator it is easier for you to add your node's Ethereum key to the contract and to continue receiving rewards. See [maintaining the multisig contract](../how-to/maintain-multisig-contract.md) for more information.
 
 ## Nominate your node
-To move on to self-staking, wait until you see your node on the validator list by querying the API or checking the [governance dApp ↗](https://validator-testnet.governance.vega.xyz/staking/).
+To move on to self-staking, wait until you see your node on the validator list by querying the API or checking the [governance dApp ↗](https://governance.fairground.wtf/validators).
 
-Then, associate your tokens and nominate your node using the [governance dApp ↗](https://validator-testnet.governance.vega.xyz/staking/) or by interacting directly with the smart contract.
+Then, associate your tokens and nominate your node using the [governance dApp ↗](https://governance.fairground.wtf/validators) or by interacting directly with the smart contract.
 
 ## Forwarding Ethereum events
 Once your node is up and running, you'll need to maintain it, and ensure that it continues to take part in the network.
