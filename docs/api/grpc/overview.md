@@ -11,10 +11,14 @@ import TabItem from '@theme/TabItem';
 gRPC is a low-latency, highly efficient communication method that allows a client and a server to send data over HTTP. Vega supports a gRPC API for interacting with the network and querying for and filtering data. 
 
 ## gRPC API and Protocol Buffers
-
 gRPC uses Protocol Buffers (protobufs) as its underlying data definition. Protobuf messages are language-neutral data definitions that are used to generate language-specific data structures. Code generation of a protobuf message also generates functions to serialise each message so that they can be sent through gRPC to each RPC service endpoint.
 
 This means that Vega's gRPC API is fully defined by its protobuf definitions, and so the protobuf definitions themselves provide complete documentation.
+
+## Relationship to REST API
+The buf ecosystem contains plugins that also allow automatic generation of REST API endpoints from the protobuf definitions. The result is that Vega's gRPC and REST API match exactly in both structure and functionality.
+
+As REST is a more familiar way to interact with a product than gRPC, experiencing Vega first through the REST API and using the REST documentation may help ease an initial integration, without any loss of functionality. Migrating later to using gRPC is then trivial since the mapping between REST and gRPC is 1-to-1.
 
 ### Data node API
 Data nodes aggregate the outputs from core nodes and produce more meaningful APIs. They are stateful and build up a bigger view of the system from the events emitted from the core nodes. The data nodes give the end user a way to query historic information without the need to be always connected to the network. The data node also builds cumulative data which allows the end user to get a snapshot of the current state of a part of the system.
@@ -22,20 +26,19 @@ Data nodes aggregate the outputs from core nodes and produce more meaningful API
 The latest protobuf definitions for the data node API can be found [here](https://github.com/vegaprotocol/vega/blob/develop/protos/sources/data-node/api/v2/trading_data.proto). They allow for read-only queries for trading data and historic states of the network. 
 
 ### Core node API
-Core nodes are responsible for ensuring the consensus rules are met and that a consistent view of the network is seen. They present endpoints that give access to the basic state of the network (block time, block height etc), allow transactions to be submitted to the network and to subscribe to event streams so that changes of internal state can be seen.
+Core nodes are responsible for ensuring the consensus rules are met and that a consistent view of the network is seen. They present endpoints that give access to the basic state of the network, such as block time and block height, allow transactions to be submitted to the network, and allow subscribing to event streams so that changes of internal state can be seen.
 
-The latest protobuf definitions for the core node API can be found [here](https://github.com/vegaprotocol/vega/blob/develop/protos/sources/vega/api/v1/core.proto). They allow for interacting with the network and sending in transactions.
+The latest protobuf definitions for the core node API can be found [on the Vega GitHub repo](https://github.com/vegaprotocol/vega/blob/develop/protos/sources/vega/api/v1/core.proto). They allow for interacting with the network and sending in transactions.
 
 As a data node acts as a proxy to its core node, all `CoreService` API such as sending in transactions are also available from the data node's RPC address.
 
-
-:::note Make sure you use the correct version
+:::caution Make sure you use the correct version
 Before using the protobuf definitions linked above be sure to check out the version that matches the network you want to interact with. This can be found by using the [statistics endpoint](../rest/core/core-service-statistics.api.mdx) and reading the `appVersion` field. From Vega's git repository you can then do `git checkout ${appVersion}`.
 :::
 
 ## Client stub examples
+As an example, the below is an RPC endpoint and messages for querying an order defined with Protocol Buffers:
 
-As an example, the below is an RPC endpoint and messages for querying an order defined with protocol-buffers:
 ```proto
 // Get order
 //
@@ -59,10 +62,10 @@ message GetOrderResponse {
 }
 ```
 
-The above protobuf definitions can be used to generate client and server code in a given language. This can be done by using the protocol-compiler `protoc` directly and supplying an output language, or by using CLI tools from the buf-ecosystem, namely `buf generate`. As an example, YAML configuration for compiling Vega's protobuf definition into Golang using `buf generate` can be found here [here](https://github.com/vegaprotocol/vega/blob/develop/buf.gen.yaml)
+The above protobuf definitions can be used to generate client and server code in a given language. This can be done by using the protocol-compiler `protoc` directly and supplying an output language, or by using CLI tools from the buf ecosystem, namely `buf generate`. As an example, YAML configuration for compiling Vega's protobuf definition into Golang using `buf generate` can be found [on the Vega repo](https://github.com/vegaprotocol/vega/blob/develop/buf.gen.yaml)
 
 
-Once generated they can imported and used from the generated language specific client stubs as follows:
+Once generated they can be imported and used from the generated language specific client stubs as follows:
 
 <Tabs>
 <TabItem value="py" label="Python">
@@ -81,7 +84,7 @@ trading_data_stub = trading_data_grpc.TradingDataServiceStub(ch)
 order_id = "03bac81ff8ee067c2fcbfe1ec29f6eee071fd12f399f0f6d5bed634299f84390"
 request = trading_data.GetOrderRequest(order_id=order_id))
 
-# call into the datanode using the GetOrder endpoint
+# call into the data node using the GetOrder endpoint
 response = trading_data_stub.GetOrder(request)
 
 # read the response
@@ -114,7 +117,7 @@ func main() {
     orderID := "03bac81ff8ee067c2fcbfe1ec29f6eee071fd12f399f0f6d5bed634299f84390"
     request := &datanode.GetOrderRequest{OrderId: orderID}
 
-    // call into the datanode using the GetOrder endpoint
+    // call into the data node using the GetOrder endpoint
     response, err := dataNode.GetOrder(context.Background(), request)
     if err != nil {
         panic("unable to call data node endpoint")
@@ -129,38 +132,7 @@ func main() {
 
 </Tabs>
 
-## Relationship to REST API
-
-The buf-ecosystem contains plugins that also allow automatic generation of REST API from the protobuf-definitions. The result is that Vega's gRPC and REST API match exactly in both structure and functionality.
-
-As REST is a more familiar way to interact with a product than gRPC, experiencing Vega first through the REST API and using the REST documentation may help ease an initial integration, without any loss of functionality. Migrating later to using gRPC is then trivial since the mapping between REST and gRPC is 1-to-1.
-
 ## Rate limiting
 To prevent abuse of the APIs provided by data nodes, there are limitations to the rate of API requests that can be enabled by data node operators. Rate limiting is applied on a per-remote-IP-address basis.
 
-Read about the rate limits on the [API overview page](../../api/using-the-apis.md#rate-limiting). 
-
-Each IP address that connects to a data node is assigned a bucket of tokens. That bucket has a maximum capacity, and begins full of tokens. Each API request costs one token, which is removed from the bucket when the call is made. The data node adds a number of tokens every second (the rate of the limiter) to the bucket up to its maximum capacity.
-
-On average over time, this enforces the average rate of API requests to not exceed rate requests/second. It also allows temporary periods of more intensive use; the maximum rate being to use the entire capacity of the bucket within one second.
-
-Clients can use the IETF-RFC compliant-headers to see their rate limiting status. (Read about the [IETF RFC standards↗](https://datatracker.ietf.org/doc/html/draft-ietf-httpapi-ratelimit-headers). 
-
-It's implemented with the following headers in each API response:
-* `RateLimit-Limit` The maximum request limit within the time window (1s)
-* `RateLimit-Reset` The rate-limiter time window duration in seconds (always 1s)
-* `RateLimit-Remaining` The remaining tokens
-
-Upon rejection, the following HTTP response headers are available:
-* `X-Rate-Limit-Limit` The maximum request limit
-* `X-Rate-Limit-Duration` The rate-limiter duration
-* `X-Rate-Limit-Request-Forwarded-For` The rejected request X-Forwarded-For.
-* `X-Rate-Limit-Request-Remote-Addr` The rejected request RemoteAddr.
-
-If a client continues to make requests despite having no tokens available, the response will be the gRPC response `14 Unavailable` for all the gRPC API.
-
-Each unsuccessful response will deduct a token from a separate bucket with the same refill rate and capacity as the requests bucket. Exhausting the supply of tokens in this second bucket will result in the client's IP address being banned for a period of time determined by the data node operators, with 10 minutes as the default.
-
-Read more about rate limiting in the [rate limiting README ↗](https://github.com/vegaprotocol/vega/blob/develop/datanode/ratelimit/README.md) on GitHub.
-
-gRPC streaming connections are rate limited by a maximum allowed number of subscriptions per IP address. The default maximum is set to 250 connections, but note that this value may differ between data node operators.
+Read about the rate limits on the [API overview page](../../api/using-the-apis.md#rate-limiting).
