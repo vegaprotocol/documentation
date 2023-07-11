@@ -16,7 +16,9 @@ REST provides endpoints for querying for trading data, account information, ledg
 * **Core state API**: This API is specifically for node operators, and may not be exposed by nodes running the network. All methods under this umbrella are also available on the trading data endpoints, which are recommended for querying for this information generally.
 
 ## Rate limiting
-For the specifics on WebSocket connections, see [WebSocket streams](./websocket.md) page.
+To prevent abuse of the APIs provided by data nodes, there are limitations to the rate of API requests that can be enabled by data node operators. Rate limiting is applied on a per-remote-IP-address basis.
+
+Read about the rate limits on the [API overview page](../../api/using-the-apis.md#rate-limiting). For the specifics on WebSocket connections, see [WebSocket streams](../websocket.md) page.
 
 ## Pagination
 Pagination in REST is cursor-based. To query data, you can make a GET request to an endpoint. As an example, this section will use the `/transactions` endpoint. Use the query with the desired query parameters. If the query response contains more objects than the specified limit, you can use the `before` or `after` parameter to paginate through the results.
