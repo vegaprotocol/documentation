@@ -30,7 +30,7 @@ Transfers can be set up to happen only once, or can happen repeatedly.
 A one-off transfer can happen immediately (as soon as it is validated), or be set to happen at a specific time. When you set a delay, the transfer funds are removed from the account immediately and stored in a pool, and then distributed to the destination account once the time you chose is reached.
 
 ## Recurring transfers
-A party can also set up, or propose via governance, recurring transfers that will happen at the end of each epoch, and before the next one starts.
+A party can also set up, or depending on the account [propose via governance](#governance-initiated-transfers), recurring transfers that will happen at the end of each epoch, and before the next one starts.
 
 A recurring transfer transaction needs to contain the following:
 * How much is available to transfer

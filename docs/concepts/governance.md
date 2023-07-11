@@ -182,17 +182,11 @@ The table below highlights which types of transfers can only be done through a g
 :::
 
 ### Propose an asset transfer
-Tokenholders can propose asset transfers from certain accounts, which then need to be voted on by other tokenholders.
-
-		GovernanceProposalTransferMinClose:              NewDuration(gte1s, lte1y).Mutable(true).MustUpdate("48h0m0s"),
-		GovernanceProposalTransferMaxClose:              NewDuration(gte1s, lte1y).Mutable(true).MustUpdate("8760h0m0s"),
-		GovernanceProposalTransferRequiredParticipation: NewDecimal(gteD0, lteD1).Mutable(true).MustUpdate("0.00001"),
-		GovernanceProposalTransferMinEnact:              NewDuration(gte1s, lte1y).Mutable(true).MustUpdate("48h0m0s"),
-		GovernanceProposalTransferMaxEnact:              NewDuration(gte1s, lte1y).Mutable(true).MustUpdate("8760h0m0s"),
+Tokenholders can propose asset transfers from certain accounts, which then need to be voted on by other tokenholders. Not all transfers need to be proposed by governance.
 
 The proposer will need to have at least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the market, and staked to a validator. Note, this amount is set through the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.minProposerBalance" hideValue={true} />.
 
-If the proposal gets a <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.requiredMajority" hideName={true} formatter="percent"/> majority of tokenholder support, then it will be enacted. The required majority is defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.requiredMajority" hideValue={true} />.
+If the proposal gets a <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.requiredMajority" hideName={true} formatter="percent"/> majority of tokenholder support, then it will be enacted. The required majority is defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.requiredMajority" hideValue={true} />. It would also need to pass the required participation threshold: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.requiredParticipation" hideName={true} formatter="percent" />.
 
 To propose assets be transferred, you'll need to provide the details required for the transfer to be successful. While some of the fields are free-text, others are constrained by a range set through network parameters, to ensure that the values provided are fit for purpose.
 
@@ -212,17 +206,17 @@ Proposal fields include:
 
 #### Calculating amount to be transferred
 The final amount transferred is determined based on the inputs into the proposal as well as the values of the relevant network parameters:
-* `governance.transfer.max.amount` specifies the maximum amount that can be transferred from a source account in a proposal
-* `governance.transfer.max.fraction` specifies the maximum fraction of the balance that can be transferred from a source account.
+* <NetworkParameter frontMatter={frontMatter} param="governance.transfer.max.amount" /> specifies the maximum amount that can be transferred from a source account in a proposal
+* <NetworkParameter frontMatter={frontMatter} param="governance.transfer.max.fraction" /> specifies the maximum fraction of the balance that can be transferred from a source account.
 
-The amount is calculated with the following formula:
+The final amount is calculated with the following formula:
 
 ```
   transfer_amount = min(
     proposal.fraction_of_balance * source.balance,
     proposal.amount,
-    NETWORK_MAX_AMOUNT,
-    NETWORK_MAX_FRACTION * source.balance )
+    governance.transfer.max.amount,
+    governance.transfer.max.fraction * source.balance )
 ```
 
 ## Market governance
