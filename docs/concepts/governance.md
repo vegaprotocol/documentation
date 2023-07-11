@@ -47,7 +47,7 @@ For proposals adding a new successor market, the outcome of the proposal can cha
 
 If a parent market is still in its proposed state, its successor market cannot be enacted, even if it passes the vote.
 
-Two proposals that name the same parent can be submitted and pass a governance vote. Whichever market clears its [opening auction](./trading-on-vega/trading-modes.md#auction-type-opening) first gets the share of the insurance pool, and the liquidity providers' equity-like share is moved to that market. The second market will still open for normal trading, assuming it gets out of opening auction, but it will not be considered a successor market.
+Two proposals that name the same parent can be submitted and pass a governance vote. Whichever market clears its [opening auction](./trading-on-vega/trading-modes.md#auction-type-opening) first gets the share of the insurance pool, and the liquidity providers' equity-like share is moved to that market. The second market will then be [rejected](./trading-on-vega/market-lifecycle.md#market-status-rejected).
 
 :::tip Try it out
 Vote on active proposals on the **[Vega governance dApp ↗](https://governance.fairground.wtf)**.
