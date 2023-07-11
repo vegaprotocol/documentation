@@ -10,9 +10,9 @@ import TabItem from '@theme/TabItem';
 
 gRPC is a low-latency, highly efficient communication method that allows a client and a server to send data over HTTP. Vega supports a gRPC API for interacting with the network and querying for and filtering data. 
 
-## gRPC API and protocol-buffers
+## gRPC API and Protocol Buffers
 
-gRPC uses protocol-buffers (protobufs) as its underlying data defintion. Protobuf messages are language-neutral data defintions that are used to generate lanugage-specific data-structures. Code generation of a protobuf message also generates functions to serialise each message so that they can be sent through gRPC to each RPC service endpoint.
+gRPC uses Protocol Buffers (protobufs) as its underlying data definition. Protobuf messages are language-neutral data definitions that are used to generate language-specific data structures. Code generation of a protobuf message also generates functions to serialise each message so that they can be sent through gRPC to each RPC service endpoint.
 
 This means that Vega's gRPC API is fully defined by its protobuf definitions, and so the protobuf definitions themselves provide complete documentation.
 
@@ -26,7 +26,7 @@ Core nodes are responsible for ensuring the consensus rules are met and that a c
 
 The latest protobuf definitions for the core node API can be found [here](https://github.com/vegaprotocol/vega/blob/develop/protos/sources/vega/api/v1/core.proto). They allow for interacting with the network and sending in transactions.
 
-As a data node acts as a proxy to its core node, all `CoreService` API such a sending in transactions are also available from the data node's RPC address.
+As a data node acts as a proxy to its core node, all `CoreService` API such as sending in transactions are also available from the data node's RPC address.
 
 
 :::note Make sure you use the correct version
@@ -59,7 +59,7 @@ message GetOrderResponse {
 }
 ```
 
-The above protobuf definitions can be used to generate client and server code in a given language. This can be done by using the protocol-compiler `protoc` directly and supplier a output language, or by using CLI tools from the buf-ecosystem, namely `buf generate`. As an example, YAML configuration for compiling Vega's protobuf definition into Golang using `buf genreate` can be found here [here](https://github.com/vegaprotocol/vega/blob/develop/buf.gen.yaml)
+The above protobuf definitions can be used to generate client and server code in a given language. This can be done by using the protocol-compiler `protoc` directly and supplying an output language, or by using CLI tools from the buf-ecosystem, namely `buf generate`. As an example, YAML configuration for compiling Vega's protobuf definition into Golang using `buf generate` can be found here [here](https://github.com/vegaprotocol/vega/blob/develop/buf.gen.yaml)
 
 
 Once generated they can imported and used from the generated language specific client stubs as follows:
@@ -131,17 +131,16 @@ func main() {
 
 ## Relationship to REST API
 
-The buf-ecosystem contains plugins that also allow automatic generation of REST API from the protobuf-definitions. The result is that the Vega's gRPC and REST API matches exactly in both structure and functionality.
+The buf-ecosystem contains plugins that also allow automatic generation of REST API from the protobuf-definitions. The result is that Vega's gRPC and REST API match exactly in both structure and functionality.
 
-As REST is a more familiar way interact with a product than gRPC, experiencing Vega first through the REST API and using the REST documentation may help ease an initial integration, without any loss of functionality. Migrating later to using gRPC is then trivial since the mapping between REST and gRPC is 1-to-1.
+As REST is a more familiar way to interact with a product than gRPC, experiencing Vega first through the REST API and using the REST documentation may help ease an initial integration, without any loss of functionality. Migrating later to using gRPC is then trivial since the mapping between REST and gRPC is 1-to-1.
 
-## Rate limits 
-
-TODO: I copied this directly from the REST API overview and it applies *almost* exactly. But maybe we want to combine it somewhere else? I'm unsure how much this applies to GraphQL so I'm unsure if we can just throw it in the top level "overview" instead.
-
+## Rate limiting
 To prevent abuse of the APIs provided by data nodes, there are limitations to the rate of API requests that can be enabled by data node operators. Rate limiting is applied on a per-remote-IP-address basis.
 
-Each IP address that connects to data node is assigned a bucket of tokens. That bucket has a maximum capacity, and begins full of tokens. Each API request costs one token, which is removed from the bucket when the call is made. The data node adds a number of tokens every second (the rate of the limiter) to the bucket up to its maximum capacity.
+Read about the rate limits on the [API overview page](../../api/using-the-apis.md#rate-limiting). 
+
+Each IP address that connects to a data node is assigned a bucket of tokens. That bucket has a maximum capacity, and begins full of tokens. Each API request costs one token, which is removed from the bucket when the call is made. The data node adds a number of tokens every second (the rate of the limiter) to the bucket up to its maximum capacity.
 
 On average over time, this enforces the average rate of API requests to not exceed rate requests/second. It also allows temporary periods of more intensive use; the maximum rate being to use the entire capacity of the bucket within one second.
 
