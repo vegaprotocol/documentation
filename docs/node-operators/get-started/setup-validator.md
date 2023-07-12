@@ -326,8 +326,13 @@ For your node to be eligible for promotion, it will need to forward a number of 
 
 Share your profile with the community, for example in [the Validators Discord channel ↗](https://discord.com/channels/720571334798737489/869236034116943903), to attract stakers to nominate your node.
 
+## Update multisig contract
+If your node is promoted into the consensus validator set, then the multisig contract will need to be updated so that you and your nominators can continue to receive rewards.
+
+Read the guide on how to [maintain the multisig contract](../how-to/maintain-multisig-contract.md).
+
 ## Next steps
-If your node is promoted into the consensus validator set then the Multisig Contract will need to be updated so that you and your nominators can continue to receive rewards. You may also need to upgrade the software, restart the network and rotate your keys (for security). 
+Once your validator node is up and running, you will eventually need to upgrade the software, restart the network and rotate your keys (for security).
 
 See the following guides to learn how to: 
 
@@ -336,4 +341,3 @@ See the following guides to learn how to:
 * [Rotate Ethereum keys](../how-to/rotate-ethereum-keys.md)
 * [Rotate Vega keys](../how-to/rotate-vega-keys.md)
 * [Use snapshots](../how-to/use-snapshots.md)
-* [Maintain the multisig contract](../how-to/maintain-multisig-contract.md)
