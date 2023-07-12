@@ -35,6 +35,7 @@ type OrderUpdate {
   updatedAt: Timestamp
   peggedOrder: PeggedOrder
   liquidityProvisionId: ID
+  icebergOrder: IcebergOrder
 }
 ```
 
@@ -111,6 +112,10 @@ type OrderUpdate {
 
 #### [<code style={{ fontWeight: 'normal' }}>OrderUpdate.<b>liquidityProvisionId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
 > The liquidity provision this order was created from
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderUpdate.<b>icebergOrder</b></code>](#)<Bullet />[`IcebergOrder`](/testnet/api/graphql/objects/iceberg-order) <Badge class="secondary" text="object"/>
+> Details of an iceberg order
 > 
 
 

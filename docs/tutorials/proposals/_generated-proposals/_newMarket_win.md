@@ -1,6 +1,6 @@
 
   ```bash
-vegawallet.exe transaction send --wallet YOUR-WALLETNAME --pubkey YOUR-PUBLIC-KEY --network NETWORK-NAME ^
+vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KEY --network NETWORK_NAME ^
 "{^
 \"proposalSubmission\": {^
  \"rationale\": {^
@@ -80,8 +80,8 @@ vegawallet.exe transaction send --wallet YOUR-WALLETNAME --pubkey YOUR-PUBLIC-KE
      }^
     },^
     \"metadata\": [^
-     \"enactment:2023-06-01T18:10:47Z\",^
-     \"settlement:2023-05-31T18:10:47Z\",^
+     \"enactment:2023-08-01T13:57:37Z\",^
+     \"settlement:2023-07-31T13:57:37Z\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -107,13 +107,13 @@ vegawallet.exe transaction send --wallet YOUR-WALLETNAME --pubkey YOUR-PUBLIC-KE
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
-      \"sigma\": 0.5^
+      \"sigma\": 0.15^
      }^
     }^
    }^
   },^
-  \"closingTimestamp\": 1685553047,^
-  \"enactmentTimestamp\": 1685639447^
+  \"closingTimestamp\": 1690808257,^
+  \"enactmentTimestamp\": 1690894657^
  }^
 }^
 }"

@@ -16,7 +16,7 @@ export const Badge = (props) => <><span class={'badge badge--' + props.class}>{p
 No description
 
 ```graphql
-union ProposalChange = NewMarket | UpdateMarket | UpdateNetworkParameter | NewAsset | UpdateAsset | NewFreeform
+union ProposalChange = NewMarket | UpdateMarket | UpdateNetworkParameter | NewAsset | UpdateAsset | NewFreeform | NewTransfer | CancelTransfer
 ```
 
 
@@ -46,6 +46,14 @@ TODO: complete the type
 #### [`NewFreeform`](/testnet/api/graphql/objects/new-freeform) <Badge class="secondary" text="object"/>
 > A new freeform proposal change. It has no properties on purpose. Use proposal
 rationale, instead.
+> 
+
+#### [`NewTransfer`](/testnet/api/graphql/objects/new-transfer) <Badge class="secondary" text="object"/>
+> 
+> 
+
+#### [`CancelTransfer`](/testnet/api/graphql/objects/cancel-transfer) <Badge class="secondary" text="object"/>
+> Allows for cancellation of an existing governance transfer
 > 
 
 

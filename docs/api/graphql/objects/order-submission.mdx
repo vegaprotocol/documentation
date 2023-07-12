@@ -1,0 +1,93 @@
+---
+id: order-submission
+title: OrderSubmission
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Details of the order that will be submitted when the stop order is triggered.
+
+```graphql
+type OrderSubmission {
+  marketId: ID!
+  price: String!
+  size: String!
+  side: Side!
+  timeInForce: OrderTimeInForce!
+  expiresAt: Timestamp!
+  type: OrderType!
+  reference: String
+  peggedOrder: PeggedOrder
+  postOnly: Boolean
+  reduceOnly: Boolean
+  icebergOrder: IcebergOrder
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderSubmission.<b>marketId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Market the order is for.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderSubmission.<b>price</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The worst price the order will trade at (e.g. buy for price or less, sell for price or more) (uint64)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderSubmission.<b>size</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Total number of units that may be bought or sold (immutable) (uint64)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderSubmission.<b>side</b></code>](#)<Bullet />[`Side!`](/testnet/api/graphql/enums/side) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> Whether the order is to buy or sell
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderSubmission.<b>timeInForce</b></code>](#)<Bullet />[`OrderTimeInForce!`](/testnet/api/graphql/enums/order-time-in-force) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The timeInForce of order (determines how and if it executes, and whether it persists on the book)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderSubmission.<b>expiresAt</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Expiration time of this order (ISO-8601 RFC3339+Nano formatted date)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderSubmission.<b>type</b></code>](#)<Bullet />[`OrderType!`](/testnet/api/graphql/enums/order-type) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
+> The order type
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderSubmission.<b>reference</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> The external reference (if available) for the order
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderSubmission.<b>peggedOrder</b></code>](#)<Bullet />[`PeggedOrder`](/testnet/api/graphql/objects/pegged-order) <Badge class="secondary" text="object"/>
+> PeggedOrder contains the details about a pegged order
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderSubmission.<b>postOnly</b></code>](#)<Bullet />[`Boolean`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> Is this a post only order
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderSubmission.<b>reduceOnly</b></code>](#)<Bullet />[`Boolean`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> Is this a reduce only order
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderSubmission.<b>icebergOrder</b></code>](#)<Bullet />[`IcebergOrder`](/testnet/api/graphql/objects/iceberg-order) <Badge class="secondary" text="object"/>
+> Details of an iceberg order
+> 
+
+
+
+### Member of
+
+[`StopOrder`](/testnet/api/graphql/objects/stop-order)  <Badge class="secondary" text="object"/>
+
+
+

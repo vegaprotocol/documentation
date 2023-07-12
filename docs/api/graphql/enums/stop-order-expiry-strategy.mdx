@@ -1,0 +1,48 @@
+---
+id: stop-order-expiry-strategy
+title: StopOrderExpiryStrategy
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Valid stop order expiry strategies. The expiry strategy determines what happens to a stop order when it expires.
+
+```graphql
+enum StopOrderExpiryStrategy {
+  EXPIRY_STRATEGY_UNSPECIFIED
+  EXPIRY_STRATEGY_CANCELS
+  EXPIRY_STRATEGY_SUBMIT
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>StopOrderExpiryStrategy.<b>EXPIRY_STRATEGY_UNSPECIFIED</b></code>](#) 
+> The stop order expiry strategy has not been specified by the trader.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StopOrderExpiryStrategy.<b>EXPIRY_STRATEGY_CANCELS</b></code>](#) 
+> The stop order will be cancelled when it expires.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StopOrderExpiryStrategy.<b>EXPIRY_STRATEGY_SUBMIT</b></code>](#) 
+> The stop order will be submitted when the expiry time is reached.
+> 
+
+
+
+### Member of
+
+[`StopOrder`](/testnet/api/graphql/objects/stop-order)  <Badge class="secondary" text="object"/><Bullet />[`StopOrderFilter`](/testnet/api/graphql/inputs/stop-order-filter)  <Badge class="secondary" text="input"/>
+
+
+

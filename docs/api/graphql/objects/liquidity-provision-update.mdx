@@ -17,7 +17,7 @@ The command to be sent to the chain for a liquidity provision submission
 
 ```graphql
 type LiquidityProvisionUpdate {
-  id: ID
+  id: ID!
   partyID: ID!
   createdAt: Timestamp!
   updatedAt: Timestamp
@@ -35,7 +35,7 @@ type LiquidityProvisionUpdate {
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvisionUpdate.<b>id</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvisionUpdate.<b>id</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Unique identifier for the order (set by the system after consensus)
 > 
 

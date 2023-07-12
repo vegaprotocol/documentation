@@ -16,7 +16,7 @@ export const Badge = (props) => <><span class={'badge badge--' + props.class}>{p
 No description
 
 ```graphql
-union TransferKind = OneOffTransfer | RecurringTransfer
+union TransferKind = OneOffTransfer | RecurringTransfer | OneOffGovernanceTransfer | RecurringGovernanceTransfer
 ```
 
 
@@ -28,6 +28,14 @@ union TransferKind = OneOffTransfer | RecurringTransfer
 
 #### [`RecurringTransfer`](/testnet/api/graphql/objects/recurring-transfer) <Badge class="secondary" text="object"/>
 > The specific details for a recurring transfer
+> 
+
+#### [`OneOffGovernanceTransfer`](/testnet/api/graphql/objects/one-off-governance-transfer) <Badge class="secondary" text="object"/>
+> The specific details for a one-off governance transfer
+> 
+
+#### [`RecurringGovernanceTransfer`](/testnet/api/graphql/objects/recurring-governance-transfer) <Badge class="secondary" text="object"/>
+> The specific details for a recurring governance transfer
 > 
 
 
