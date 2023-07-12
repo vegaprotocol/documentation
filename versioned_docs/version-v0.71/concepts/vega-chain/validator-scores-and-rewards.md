@@ -45,7 +45,7 @@ See below for how the validator score is calculated.
 > 
 > `num_validators` = actual number of validators running nodes on Vega
 > 
-> `comp_level` = value of the network parameter that defines the competition level
+> `comp_level` = value of the network parameter that defines the competition level¹
 > 
 > `total_stake` = sum of all stake across all validators and their nominations
 > 
@@ -63,7 +63,9 @@ The **raw validator score** is calculated as follows:
 
 `raw_validator_score` = (`validator_stake_i` - `flat_penalty` - `higher_penalty`) / `total_stake`
 
-In other words, the network calculates an optimal stake that represents an even distribution of stake for the current number of consensus validators and the desired competition level. It then penalises any validators that have stake that exceeds that amount. The raw validator score is then the resulting amount divided by the total stake on the network.
+In other words, the network calculates an optimal stake that represents an even distribution of stake for the current number of consensus validators and the desired competition level*. It then penalises any validators that have stake that exceeds that amount. The raw validator score is then the resulting amount divided by the total stake on the network.
+
+¹ The network parameter <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.competitionLevel" /> influences how much stake is needed for all validators to reach optimal revenue.
 
 :::note Go deeper
 [Proof of stake rewards spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0061-REWP-pos_rewards.md): Read the full details on how scores are calculated.
