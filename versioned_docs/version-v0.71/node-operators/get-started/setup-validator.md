@@ -325,7 +325,9 @@ For your node to be eligible for promotion, it will need to forward a number of 
 Share your profile with the community, for example in [the Validators Discord channel ↗](https://discord.com/channels/720571334798737489/869236034116943903), to attract stakers to nominate your node.
 
 ## Update multisig contract
-If your node is promoted into the consensus validator set, then the multisig contract will need to be updated so that you and your nominators can continue to receive rewards.
+If your node is promoted into the consensus validator set, then the multisig contract **must be updated**, or you and your nominators will not receive rewards. 
+
+If you have replaced another validator at the end of an epoch, then failure to add your node **and** remove the node yours has replaced means rewards will be withheld from all consensus validators and their nominators until this is resolved.
 
 Read the guide on how to [maintain the multisig contract](../how-to/maintain-multisig-contract.md).
 
