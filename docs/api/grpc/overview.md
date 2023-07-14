@@ -99,33 +99,45 @@ order = resp.Order
 package main
 
 import (
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials/insecure"
+	"context"
+	"fmt"
+
 	datanode "code.vegaprotocol.io/vega/protos/data-node/api/v2"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/credentials/insecure"
+	"google.golang.org/grpc/status"
 )
 
 func main() {
-    // set up a grpc connection
-    grpcAddress = ""
-    conn, err := grpc.Dial(grpcAddress, grpc.WithTransportCredentials(insecure.NewCredentials()))
-    if err != nil {
-        panic("unable to connect to data node")
-    }
-    tradingDataClient := datanode.NewTradingDataServiceClient(connection)
+	// set up a grpc connection
+	grpcAddress := "api.n00.devnet1.vega.rocks:3007"
+	conn, err := grpc.Dial(grpcAddress, grpc.WithTransportCredentials(insecure.NewCredentials()))
+	if err != nil {
+		panic("unable to connect to data node")
+	}
+	tradingDataClient := datanode.NewTradingDataServiceClient(conn)
 
-    // fill in a request to get an order by its ID
-    orderID := "03bac81ff8ee067c2fcbfe1ec29f6eee071fd12f399f0f6d5bed634299f84390"
-    request := &datanode.GetOrderRequest{OrderId: orderID}
+	// fill in a request to get an order by its ID
+	orderID := "03bac81ff8ee067c2fcbfe1ec29f6eee071fd12f399f0f6d5bed634299f84390"
+	request := &datanode.GetOrderRequest{OrderId: orderID}
 
-    // call into the data node using the GetOrder endpoint
-    response, err := dataNode.GetOrder(context.Background(), request)
-    if err != nil {
-        panic("unable to call data node endpoint")
-    }
-
-    // read the response
-    order := response.Order
+	// call into the data node using the GetOrder endpoint
+	response, err := tradingDataClient.GetOrder(context.Background(), request)
+	if err != nil {
+		switch status.Code(err) {
+		case codes.OK:
+			fmt.Println("found order:", response.Order)
+			return
+		case codes.NotFound:
+			fmt.Println("order not found")
+			return
+		default:
+			fmt.Println("unable to get order from a data node")
+		}
+	}
 }
+
 ```
 
 </TabItem>
