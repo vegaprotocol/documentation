@@ -81,14 +81,18 @@ grpc.channel_ready_future(ch).result(timeout=10)
 trading_data_stub = trading_data_grpc.TradingDataServiceStub(ch)
 
 # fill in a request to get an order by its ID
-order_id = "03bac81ff8ee067c2fcbfe1ec29f6eee071fd12f399f0f6d5bed634299f84390"
-request = trading_data.GetOrderRequest(order_id=order_id))
+order_id = "01c25933750f9c3e35f38da9ee65c8b3eda165e914e86cad743b9effe826f2dc"
+request = trading_data.GetOrderRequest(order_id=order_id)
 
 # call into the data node using the GetOrder endpoint
-response = trading_data_stub.GetOrder(request)
-
-# read the response
-order = resp.Order
+try:
+    response = trading_data_stub.GetOrder(request)
+    print(response.order)
+except grpc.RpcError as rpc_error:
+    if rpc_error.code() == grpc.StatusCode.NOT_FOUND:
+        print("order was not found")
+    else:
+        print("unable to get order from a data node:", rpc_error)
 ```
 
 </TabItem>
@@ -111,33 +115,31 @@ import (
 
 func main() {
 	// set up a grpc connection
-	grpcAddress := "api.n00.devnet1.vega.rocks:3007"
+	grpcAddress := ""
 	conn, err := grpc.Dial(grpcAddress, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
-		panic("unable to connect to data node")
+		fmt.Println("unable to connect to data node", err)
+		return
 	}
 	tradingDataClient := datanode.NewTradingDataServiceClient(conn)
 
 	// fill in a request to get an order by its ID
-	orderID := "03bac81ff8ee067c2fcbfe1ec29f6eee071fd12f399f0f6d5bed634299f84390"
+	orderID := "01c25933750f9c3e35f38da9ee65c8b3eda165e914e86cad743b9effe826f2dc"
 	request := &datanode.GetOrderRequest{OrderId: orderID}
 
 	// call into the data node using the GetOrder endpoint
 	response, err := tradingDataClient.GetOrder(context.Background(), request)
-	if err != nil {
-		switch status.Code(err) {
-		case codes.OK:
-			fmt.Println("found order:", response.Order)
-			return
-		case codes.NotFound:
-			fmt.Println("order not found")
-			return
-		default:
-			fmt.Println("unable to get order from a data node")
-		}
+	switch status.Code(err) {
+	case codes.OK:
+		fmt.Println("found order:", response.Order)
+		return
+	case codes.NotFound:
+		fmt.Println("order not found")
+		return
+	default:
+		fmt.Println("unable to get order from a data node:", err)
 	}
 }
-
 ```
 
 </TabItem>
