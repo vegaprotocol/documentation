@@ -59,6 +59,8 @@ The table below highlights which types of transfers can be done through a govern
 | Network treasury | Market insurance pool account | Yes |
 | Network treasury | Network treasury | No  |
 | Network treasury | Any other account | No |
+| Network treasury | Reward pool account | Yes |
+| Market insurance pool account | Reward pool account | Yes  |
 | Market insurance pool account | Party account(s) | Yes  |
 | Market insurance pool account | Network treasury | Yes  |
 | Market insurance pool account | Market insurance pool account | Yes |
