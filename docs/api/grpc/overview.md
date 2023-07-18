@@ -23,7 +23,7 @@ As REST is a more familiar way to interact with a product than gRPC, experiencin
 ### Data node API
 Data nodes aggregate the outputs from core nodes and produce more meaningful APIs. They are stateful and build up a bigger view of the system from the events emitted from the core nodes. The data nodes give the end user a way to query historic information without the need to be always connected to the network. The data node also builds cumulative data which allows the end user to get a snapshot of the current state of a part of the system.
 
-The latest protobuf definitions for the data node API can be found [here](https://github.com/vegaprotocol/vega/blob/develop/protos/sources/data-node/api/v2/trading_data.proto). They allow for read-only queries for trading data and historic states of the network. 
+The latest protobuf definitions for the data node API can be found [in the Vega repo](https://github.com/vegaprotocol/vega/blob/develop/protos/sources/data-node/api/v2/trading_data.proto). They allow for read-only queries for trading data and historic states of the network. 
 
 ### Core node API
 Core nodes are responsible for ensuring the consensus rules are met and that a consistent view of the network is seen. They present endpoints that give access to the basic state of the network, such as block time and block height, allow transactions to be submitted to the network, and allow subscribing to event streams so that changes of internal state can be seen.
