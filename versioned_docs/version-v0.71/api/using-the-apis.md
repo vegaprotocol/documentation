@@ -23,7 +23,40 @@ To use the Vega APIs, a developer will need access to a network-compatible insta
 **Fairground**: The project team operate a number of data nodes with publicly available endpoints for the Vega-run testnet, called Fairground. Each Fairground wallet app release is pre-configured with known nodes, including those operated by the project team, at the time of release.
 
 ## Rate limiting
-Some rate limiting is implemented with default limitations on the APIs. For specific details, see the [REST overview](./rest/overview.md) and [WebSocket streams](./websocket.md) pages.
+Some rate limiting is implemented with default limitations on the APIs.
+
+For the specifics on WebSocket connections, see [WebSocket streams](./websocket.md) page.
+
+To prevent abuse of the APIs provided by data nodes, there are limitations to the rate of API requests that can be enabled by data node operators. Rate limiting is applied on a per-remote-IP-address basis.
+
+Each IP address that connects to a data node is assigned a bucket of tokens. That bucket has a maximum capacity, and begins full of tokens. Each API request costs one token, which is removed from the bucket when the call is made. The data node adds a number of tokens every second (the rate of the limiter) to the bucket up to its maximum capacity.
+
+On average over time, this enforces the average rate of API requests to not exceed rate requests/second. It also allows temporary periods of more intensive use; the maximum rate being to use the entire capacity of the bucket within one second.
+
+Clients can use the IETF-RFC compliant-headers to see their rate limiting status. (Read about the [IETF RFC standards↗](https://datatracker.ietf.org/doc/html/draft-ietf-httpapi-ratelimit-headers). 
+
+It's implemented with the following headers in each API response:
+* `RateLimit-Limit` The maximum request limit within the time window (1s)
+* `RateLimit-Reset` The rate-limiter time window duration in seconds (always 1s)
+* `RateLimit-Remaining` The remaining tokens
+
+Upon rejection, the following HTTP response headers are available:
+* `X-Rate-Limit-Limit` The maximum request limit
+* `X-Rate-Limit-Duration` The rate-limiter duration
+* `X-Rate-Limit-Request-Forwarded-For` The rejected request X-Forwarded-For.
+* `X-Rate-Limit-Request-Remote-Addr` The rejected request RemoteAddr.
+
+If a client continues to make requests despite having no tokens available, the response will be:
+* REST: `HTTP 429 StatusTooManyRequests for HTTP APIs`
+* gRPC: `14 Unavailable`
+
+Each unsuccessful response will deduct a token from a separate bucket with the same refill rate and capacity as the requests bucket. Exhausting the supply of tokens in this second bucket will result in the client's IP address being banned for a period of time determined by the data node operators, with 10 minutes as the default.
+
+If banned, the response will be `HTTP 403 Forbidden for HTTP APIs`.
+
+Read more about rate limiting in the [rate limiting README ↗](https://github.com/vegaprotocol/vega/blob/develop/datanode/ratelimit/README.md) on GitHub.
+
+
 
 ## Formatting and field conventions
 
@@ -89,4 +122,3 @@ Moreover, these smart contract bridges operate just like any other smart contrac
 
 ### Ethereum addresses
 <EthAddresses frontMatter={frontMatter} />
-
