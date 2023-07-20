@@ -74,7 +74,7 @@ Don't save your private key in GitHub or any other publicly available place.
 :::
 
 ### What you need
-You'll need the following information available:
+Collect the following information:
 * Vega public key you want to deposit to
 * ERC-20 bridge logic address
 * Token address for the asset
