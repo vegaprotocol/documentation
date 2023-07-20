@@ -27,7 +27,7 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
 ### Pre-release version 0.72.5 | 2023-07-20
-This version was released to the Vega testnet on XX July, 2023.
+This version was released to the Vega testnet on 20 July, 2023.
 
 This pre-release contains several new features, including the ability to propose successor markets, submit stop orders, submit iceberg orders, and initiate transfers between certain accounts through governance. It also includes some basic work to support future features.
 
