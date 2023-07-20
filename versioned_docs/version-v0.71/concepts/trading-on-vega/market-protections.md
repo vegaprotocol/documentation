@@ -14,12 +14,7 @@ The Vega protocol has been designed with rules to detect dangerous market condit
 Margin calculations take into account the probability of the liquidation value of a position falling short of the available capital. The network is also designed to frequently re-evaluate each individual's risk, and preemptively close positions.
 
 Some of those measures include price monitoring, liquidity monitoring, and frequent mark to market calculations.
-<!--
-:::note Read more
-* [Margin on Vega](./positions-margin#margin)
-* [Mark to market](./positions-margin#mark-to-market)
-:::
--->
+
 :::warning A note on risk
 
 Derivatives markets are financially risky, by design. If a market has no liquidity, it won't be possible to get out of a position.
@@ -41,7 +36,7 @@ A market's risk model can be used to obtain the price distribution at a future p
 Note: A market's risk model is defined within the market proposal.
 
 ### Price monitoring triggers
-Each market has a set of price monitoring triggers. When those points are breached, the market will enter a price monitoring auction. Price monitoring triggers are defined in a market's proposal, and a governance proposal to change them can be raised and voted on by tokenholders.
+Each market has a set of price monitoring triggers. When those points are breached, the market will enter a price monitoring auction. Price monitoring triggers are defined in a market's proposal, and a governance proposal to change them can be raised and voted on by tokenholders. . Each market can have a maximum of 5 sets of price monitoring triggers for a market.
 
 Each trigger contains:
 * *Horizon*: Time horizon of the price projection in seconds
@@ -157,3 +152,7 @@ When a market expires, the funds from that market's insurance pool go into a big
 Insurance pools grow in two scenarios:
 * If a trader is closed out because they do not have enough collateral to support an open positions
 * If a liquidity provider pays a penalty for failing to provide their committed liquidity
+
+## Related topics
+* [Margin on Vega](./positions-margin#margin)
+* [Mark to market](./positions-margin#mark-to-market)

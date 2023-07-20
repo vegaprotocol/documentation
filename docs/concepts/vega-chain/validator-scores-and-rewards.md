@@ -53,7 +53,7 @@ See below for how the validator score is calculated.
 > 
 > `optimal_stake` = total nomination divided by the greater of `min_validators`, OR (`num_validators` / `comp_level`): Optimal stake is how much stake each validator is expected to have, at most
 > 
-> `optimal_stake_multiplier` = value defined by <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.optimalStakeMultiplier" hideValue={true} />), which indicates how many times the optimal stake a validator is penalised for, if they are further than the optimal stake
+> `optimal_stake_multiplier` = value defined by <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.optimalStakeMultiplier" hideValue={true} />), which indicates how many times the optimal stake a validator is penalised for, if they are further than the optimal stake¹
 > 
 >`validator_stake_i` = stake of the given validator whose score is being calculated
 >
@@ -65,9 +65,9 @@ The **raw validator score** is calculated as follows:
 
 `raw_validator_score` = (`validator_stake_i` - `flat_penalty` - `higher_penalty`) / `total_stake`
 
-In other words, the network calculates an optimal stake that represents an even distribution of stake for the current number of consensus validators and the desired competition level*. It then penalises any validators that have stake that exceeds that amount. The raw validator score is then the resulting amount divided by the total stake on the network.
+In other words, the network calculates an optimal stake set so that not all validators can reach it, so if the distribution is completely even, no validator has reached the optimum.¹ Optimal stake enures that validators have no financial benefit from becoming over-proportionally large. It then penalises any validators that have stake that exceeds the optimal stake amount. The raw validator score is then the resulting amount divided by the total stake on the network.
 
-¹ The network parameter <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.competitionLevel" /> influences how much stake is needed for all validators to reach optimal revenue.
+¹ The network parameter <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.competitionLevel" /> influences how much stake is needed for all validators to reach optimal stake.
 
 :::note Go deeper
 [Proof of stake rewards spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0061-REWP-pos_rewards.md): Read the full details on how scores are calculated.
