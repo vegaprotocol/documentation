@@ -69,21 +69,32 @@ If you want to build a UI or script for depositing, see the following code sampl
 
 The code samples below use testnet networks on Vega and Ethereum.
 
+:::warn Keep your keys safe
+Don't save your private key in GitHub or any other publicly available place.
+:::
+
 ### What you need
 You'll need the following information available:
 * Vega public key you want to deposit to
 * ERC-20 bridge logic address
 * Token address for the asset
+* Bridge smart contract ABI in JSON
+* Chain ID - See the [wallet API instructions](../../api/vega-wallet/how-to/connect-to-local-service.md#3-verify-which-network-the-service-is-connected-to)
 
-* where to get abi json
-* You'll need to have set up an Infura, Pokt or other Ethereum (?) rpc endpoint
+To get the contract ABI JSON
+1. Visit the smart contract. Confirm you are using the correct smart contract.
+* [Sepolia testnet]
+* [Ethereum mainnet](https://etherscan.io/address/0x23872549cE10B40e31D6577e0A920088B0E0666a#code)
+2. Scroll down to Contract ABI
+3. Click on Export ABI and choose JSON Format
+
 * how to find the chain ID
 
-Don't save your private key in github or any other publicly available place.
+You'll also need to have set up an Infura, Pokt or another Ethereum rpc endpoint.
 
 ### JavaScript code samples 
 
-#### Approve spend
+### Approve spend
 
 ```
 const { ethers, Contract, Wallet } = require("ethers");
@@ -122,7 +133,7 @@ const tx = await tokenContract.approve(SPENDER, AMOUNT);
 console.log("approve tx", tx);
 ```
 
-## Run deposit
+### Run deposit
 
 ```
 const { ethers, Contract, Wallet } = require("ethers");
