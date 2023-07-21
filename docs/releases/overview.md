@@ -49,15 +49,13 @@ A successor market is a market that will carry on after the original market, or 
 #### Fixes
 Profit and loss data was flickering between different values when subscribed to. This is fixed in [8362](https://github.com/vegaprotocol/vega/issues/8362).
 
-Data in the orders table across different data nodes was observed to diverge, because the logic to expire orders relied on a method that did return the orders in a deterministic way. This is now fixed in [8251]https://github.com/vegaprotocol/vega/issues/8251.
-
-Trying to export ledger entries as CSV would fail. This is fixed in [8203](https://github.com/vegaprotocol/vega/issues/8203).
-
 Settled markets did not have a close timestamp available in the API. Fixed in [8186](https://github.com/vegaprotocol/vega/issues/8186).
 
 Added number of decimal places to data source events, so it can be determined how many decimal places are being referenced. Done in [8206](https://github.com/vegaprotocol/vega/issues/8206).
 
 The estimate positions endpoint did not correctly validate data, meaning it would accept values that it could not use. Fixed in [8222](https://github.com/vegaprotocol/vega/issues/8222).
+
+Check out the full details of the main pre-release and the patch bug fixes in the Vega core [0.72.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.0), [0.72.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.1), [0.72.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.2), [0.72.3 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.3), [0.72.4 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.4), [0.72.5 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.5) release pages.
 
 ### Pre-release patch version 0.71.6 | 2023-06-19
 This version was released to the Vega testnet on 19 June, 2023.
