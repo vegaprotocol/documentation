@@ -1,7 +1,7 @@
 ---
 id: schema
 slug: /graphql
-title: Schema Documentation
+title: GraphQL Schema Documentation
 sidebar_position: 1
 hide_table_of_contents: true
 pagination_next: null
@@ -11,6 +11,7 @@ sidebar_class_name: navbar__toggle
 
 This documentation has been automatically generated from the GraphQL schema.
 
+Try out queries and learn the structure with the [GraphQL playground ↗](https://api.testnet.vega.xyz/graphql/)
 Use the docs in the sidebar to find out how to use the schema:
 
 - **Allowed operations**: queries and mutations.
