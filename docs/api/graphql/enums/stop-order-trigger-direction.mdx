@@ -1,0 +1,43 @@
+---
+id: stop-order-trigger-direction
+title: StopOrderTriggerDirection
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Valid stop order trigger direction. The trigger direction determines whether the price should rise above or fall below the stop order trigger.
+
+```graphql
+enum StopOrderTriggerDirection {
+  TRIGGER_DIRECTION_RISES_ABOVE
+  TRIGGER_DIRECTION_FALLS_BELOW
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>StopOrderTriggerDirection.<b>TRIGGER_DIRECTION_RISES_ABOVE</b></code>](#) 
+> The price should rise above the trigger.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StopOrderTriggerDirection.<b>TRIGGER_DIRECTION_FALLS_BELOW</b></code>](#) 
+> The price should fall below the trigger.
+> 
+
+
+
+### Member of
+
+[`StopOrder`](/testnet/api/graphql/objects/stop-order)  <Badge class="secondary" text="object"/>
+
+
+

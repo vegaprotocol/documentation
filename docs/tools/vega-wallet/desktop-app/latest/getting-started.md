@@ -12,6 +12,8 @@ Set-up takes less than 5 minutes, from downloading the software to connecting to
 
 :::caution Software version compatibility
 The Vega Wallet desktop app has release and pre-release versions available. The newest pre-release version is generally the version compatible with the latest testnet release, while the release version is compatible with the Vega mainnet.
+
+Check the wallet release description for more details.
 :::
 
 ## Download and start the Vega Wallet desktop app

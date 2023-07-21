@@ -46,6 +46,8 @@ type MarketData {
   marketValueProxy: String!
   liquidityProviderFeeShare: [LiquidityProviderFeeShare!]
   nextMarkToMarket: String!
+  marketGrowth: String!
+  lastTradedPrice: String!
 }
 ```
 
@@ -166,6 +168,14 @@ type MarketData {
 
 #### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>nextMarkToMarket</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time indicating the next time positions will be marked to market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>marketGrowth</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The market growth factor for the last market time window
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>lastTradedPrice</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The last traded price (an unsigned integer)
 > 
 
 

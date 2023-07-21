@@ -92,15 +92,15 @@ You can skip this step if:
 
 If your node does **not** have internet access and you are using Visor, do the following:
 
-1. Create the new version folder in the `<VEGA-VISOR-HOME>`, e.g., for version `v0.71.0`, run the following command: `mkdir -p <VEGA-VISOR-HOME>/v0.71.0`.
+1. Create the new version folder in the `<VEGA-VISOR-HOME>`, e.g., for version `v0.72.5`, run the following command: `mkdir -p <VEGA-VISOR-HOME>/v0.72.5`.
 2. Download the new version of the Vega binary from the [releases page ↗](https://github.com/vegaprotocol/vega/releases)
-3. Unzip the downloaded binary into the created directory, e.g. `<VEGA-VISOR-HOME>/v0.71.0/vega` binary
-4. Create the run configuration and put it in the created directory, e.g. `<VEGA-VISOR-HOME>/v0.71.0/run-config.toml` run config file (see example below)
+3. Unzip the downloaded binary into the created directory, e.g. `<VEGA-VISOR-HOME>/v0.72.5/vega` binary
+4. Create the run configuration and put it in the created directory, e.g. `<VEGA-VISOR-HOME>/v0.72.5/run-config.toml` run config file (see example below)
 
 Example config for the new version with Visor:
 
 ```toml
-name = "v0.71.0"
+name = "v0.72.5"
 
 [vega]
   [vega.binary]

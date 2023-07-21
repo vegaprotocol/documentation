@@ -41,6 +41,7 @@ type Order {
   liquidityProvision: LiquidityProvision
   postOnly: Boolean
   reduceOnly: Boolean
+  icebergOrder: IcebergOrder
 }
 ```
 
@@ -135,6 +136,10 @@ type Order {
 
 #### [<code style={{ fontWeight: 'normal' }}>Order.<b>reduceOnly</b></code>](#)<Bullet />[`Boolean`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="scalar"/>
 > Is this a reduce only order
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Order.<b>icebergOrder</b></code>](#)<Bullet />[`IcebergOrder`](/testnet/api/graphql/objects/iceberg-order) <Badge class="secondary" text="object"/>
+> Details of an iceberg order
 > 
 
 

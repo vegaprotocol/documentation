@@ -109,7 +109,7 @@
        // DataSourceSpecToFutureBinding describes which property of the data source data is to be
        used as settlement data and which to use as the trading terminated trigger(object) dataSourceSpecBinding: {
         // Name of the property in the source data that should be used as settlement data.
-        // If it is set to "prices.ORANGES.value", then the Future will use the value of
+        // If it is set to "prices.BTC.value", then the Future will use the value of
         // this property as settlement data. (string)
         settlementDataProperty: "prices.ORANGES.value",
 
@@ -118,7 +118,7 @@
        }
       },
 
-      // Optional market metadata, tags.
+      // Optional futures market metadata, tags.
       metadata: [
        "source:docs.vega.xyz"
       ],
@@ -160,7 +160,7 @@
         r: 0.016,
 
         // Sigma parameter, annualised volatility of the underlying asset, must be a strictly non-negative real number. (double as number)
-        sigma: 1.25,
+        sigma: 0.8,
        }
       },
      },
@@ -168,11 +168,11 @@
 
     // Timestamp as Unix time in seconds when voting closes for this proposal,
     // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-    closingTimestamp: 1685553047,
+    closingTimestamp: 1690808257,
 
     // Timestamp as Unix time in seconds when proposal gets enacted if passed,
     // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-    enactmentTimestamp: 1685639447,
+    enactmentTimestamp: 1690894657,
    }
   }
 ```

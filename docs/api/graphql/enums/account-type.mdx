@@ -33,6 +33,8 @@ enum AccountType {
   ACCOUNT_TYPE_REWARD_MAKER_RECEIVED_FEES
   ACCOUNT_TYPE_REWARD_LP_RECEIVED_FEES
   ACCOUNT_TYPE_REWARD_MARKET_PROPOSERS
+  ACCOUNT_TYPE_HOLDING
+  ACCOUNT_TYPE_LP_LIQUIDITY_FEES
 }
 ```
 
@@ -108,11 +110,19 @@ to ensure they are never lost or 'double spent'
 > RewardMarketProposers - an account holding rewards for market proposers
 > 
 
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_HOLDING</b></code>](#) 
+> AccountTypeHolding - an account for holding funds covering for active unfilled orders
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_LP_LIQUIDITY_FEES</b></code>](#) 
+> Per liquidity provider, per market account for holding LPs' fees before distribution
+> 
+
 
 
 ### Member of
 
-[`AccountBalance`](/testnet/api/graphql/objects/account-balance)  <Badge class="secondary" text="object"/><Bullet />[`AccountDetails`](/testnet/api/graphql/objects/account-details)  <Badge class="secondary" text="object"/><Bullet />[`AccountEvent`](/testnet/api/graphql/objects/account-event)  <Badge class="secondary" text="object"/><Bullet />[`AccountFilter`](/testnet/api/graphql/inputs/account-filter)  <Badge class="secondary" text="input"/><Bullet />[`accounts`](/testnet/api/graphql/subscriptions/accounts)  <Badge class="secondary" text="subscription"/><Bullet />[`AccountUpdate`](/testnet/api/graphql/objects/account-update)  <Badge class="secondary" text="object"/><Bullet />[`AggregatedBalance`](/testnet/api/graphql/objects/aggregated-balance)  <Badge class="secondary" text="object"/><Bullet />[`AggregatedLedgerEntry`](/testnet/api/graphql/objects/aggregated-ledger-entry)  <Badge class="secondary" text="object"/><Bullet />[`EpochRewardSummary`](/testnet/api/graphql/objects/epoch-reward-summary)  <Badge class="secondary" text="object"/><Bullet />[`Reward`](/testnet/api/graphql/objects/reward)  <Badge class="secondary" text="object"/><Bullet />[`Transfer`](/testnet/api/graphql/objects/transfer)  <Badge class="secondary" text="object"/>
+[`AccountBalance`](/testnet/api/graphql/objects/account-balance)  <Badge class="secondary" text="object"/><Bullet />[`AccountDetails`](/testnet/api/graphql/objects/account-details)  <Badge class="secondary" text="object"/><Bullet />[`AccountEvent`](/testnet/api/graphql/objects/account-event)  <Badge class="secondary" text="object"/><Bullet />[`AccountFilter`](/testnet/api/graphql/inputs/account-filter)  <Badge class="secondary" text="input"/><Bullet />[`accounts`](/testnet/api/graphql/subscriptions/accounts)  <Badge class="secondary" text="subscription"/><Bullet />[`AccountUpdate`](/testnet/api/graphql/objects/account-update)  <Badge class="secondary" text="object"/><Bullet />[`AggregatedBalance`](/testnet/api/graphql/objects/aggregated-balance)  <Badge class="secondary" text="object"/><Bullet />[`AggregatedLedgerEntry`](/testnet/api/graphql/objects/aggregated-ledger-entry)  <Badge class="secondary" text="object"/><Bullet />[`EpochRewardSummary`](/testnet/api/graphql/objects/epoch-reward-summary)  <Badge class="secondary" text="object"/><Bullet />[`NewTransfer`](/testnet/api/graphql/objects/new-transfer)  <Badge class="secondary" text="object"/><Bullet />[`Reward`](/testnet/api/graphql/objects/reward)  <Badge class="secondary" text="object"/><Bullet />[`Transfer`](/testnet/api/graphql/objects/transfer)  <Badge class="secondary" text="object"/>
 
 
 

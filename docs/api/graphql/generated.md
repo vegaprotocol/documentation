@@ -12,10 +12,9 @@ sidebar_class_name: navbar__toggle
 This documentation has been automatically generated from the GraphQL schema.
 
 Try out queries and learn the structure with the [GraphQL playground ↗](https://api.testnet.vega.xyz/graphql/)
-
 Use the docs in the sidebar to find out how to use the schema:
 
 - **Allowed operations**: queries and mutations.
 - **Schema-defined types**: scalars, objects, enums, interfaces, unions, and input objects.
 
-<small><i>Generated on 09/05/2023, 20:00:38.</i></small>
+<small><i>Generated on 12/07/2023, 13:57:33.</i></small>

@@ -27,6 +27,7 @@ type NewMarket {
   lpPriceRange: String!
   linearSlippageFactor: String!
   quadraticSlippageFactor: String!
+  successorConfiguration: SuccessorConfiguration
 }
 ```
 
@@ -66,11 +67,15 @@ type NewMarket {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>linearSlippageFactor</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> Linear slippage factor is used to cap the slippage component of maintainence margin - it is applied to the slippage volume
+> Linear slippage factor is used to cap the slippage component of maintenance margin - it is applied to the slippage volume
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>quadraticSlippageFactor</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> Quadratic slippage factor is used to cap the slippage component of maintainence margin - it is applied to the square of the slippage volume
+> Quadratic slippage factor is used to cap the slippage component of maintenance margin - it is applied to the square of the slippage volume
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>NewMarket.<b>successorConfiguration</b></code>](#)<Bullet />[`SuccessorConfiguration`](/testnet/api/graphql/objects/successor-configuration) <Badge class="secondary" text="object"/>
+> Successor market configuration. If this proposed market is meant to succeed a given market, then this needs to be set.
 > 
 
 

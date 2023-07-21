@@ -66,7 +66,7 @@
   // DataSourceSpecToFutureBinding describes which property of the data source data is to be
   used as settlement data and which to use as the trading terminated trigger(object) dataSourceSpecBinding: {
    // Name of the property in the source data that should be used as settlement data.
-   // If it is set to "prices.ORANGES.value", then the Future will use the value of
+   // If it is set to "prices.BTC.value", then the Future will use the value of
    // this property as settlement data. (string)
    settlementDataProperty: "prices.ORANGES.value",
    // Name of the property in the data source data that signals termination of trading. (string)

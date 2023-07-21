@@ -41,6 +41,9 @@ enum TransferType {
   TRANSFER_TYPE_TRANSFER_FUNDS_DISTRIBUTE
   TRANSFER_TYPE_CLEAR_ACCOUNT
   TRANSFER_TYPE_CHECKPOINT_BALANCE_RESTORE
+  TRANSFER_TYPE_SPOT
+  TRANSFER_TYPE_HOLDING_LOCK
+  TRANSFER_TYPE_HOLDING_RELEASE
 }
 ```
 
@@ -141,6 +144,18 @@ enum TransferType {
 
 #### [<code style={{ fontWeight: 'normal' }}>TransferType.<b>TRANSFER_TYPE_CHECKPOINT_BALANCE_RESTORE</b></code>](#) 
 > Balances are being restored to the user's account following a checkpoint restart of the network
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TransferType.<b>TRANSFER_TYPE_SPOT</b></code>](#) 
+> Spot trade delivery
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TransferType.<b>TRANSFER_TYPE_HOLDING_LOCK</b></code>](#) 
+> An internal instruction to transfer a quantity corresponding to an active spot order from a general account into a party holding account
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TransferType.<b>TRANSFER_TYPE_HOLDING_RELEASE</b></code>](#) 
+> An internal instruction to transfer an excess quantity corresponding to an active spot order from a holding account into a party general account
 > 
 
 
