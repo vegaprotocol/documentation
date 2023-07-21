@@ -46,9 +46,6 @@ An iceberg order is a limit order for a large amount that, rather than being ent
 **Successor markets**
 A successor market is a market that will carry on after the original market, or parent, that it is based on has settled, which offers liquidity providers the option to keep their equity-like share on the new market, even after the original market expires.
 
-**Governance-initiated transfers**
-Transfers to/from certain network-managed account types can now be proposed through governance. Previously, it was not possible to move assets to/from certain network-managed accounts.
-
 #### Fixes
 Profit and loss data was flickering between different values when subscribed to. This is fixed in [8362](https://github.com/vegaprotocol/vega/issues/8362).
 
