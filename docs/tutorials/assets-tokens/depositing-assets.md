@@ -45,7 +45,7 @@ Approve bridge to 'spend' the token:
 * Click "Connect to Web3" and follow instructions
 * Click "approve"
 * Under "spender" paste the erc20_bridge_logic_address
-* Under "amount" enter the amount you want to deposit (ensure the correct number of zeroes to account for the asset's decimals)
+* Under "amount" enter the amount you want to deposit (ensure the correct number of zeros to account for the asset's decimals)
 * Click "Write" and follow the wallet prompts
 
 ### Run deposit function
@@ -57,7 +57,7 @@ Run the deposit asset function:
 * Click "Connect to Web3" and follow instructions
 * Click "deposit_asset"
 * Under "asset_source" paste in erc20_token_address
-* Under "amount" enter the amount you want to deposit (ensure the correct number of zeroes)
+* Under "amount" enter the amount you want to deposit (ensure the correct number of zeros)
 * Under "vega_public_key" paste in your Vega wallet public key
 * Click "Write" and follow the wallet prompts
 
@@ -67,7 +67,7 @@ Run the deposit asset function:
 ## Code samples for depositing
 If you want to build a UI or script for depositing, see the following code samples to get started with building your integration.
 
-The code samples below use testnet networks on Vega and Ethereum.
+The code samples below use testnet networks on Vega and Ethereum to approve and deposit testnet VEGA.
 
 :::warn Keep your keys safe
 Don't save your private key in GitHub or any other publicly available place.
@@ -98,13 +98,13 @@ You'll also need to have set up an Infura, Pokt or another Ethereum rpc endpoint
 const { ethers, Contract, Wallet } = require("ethers");
 const tokenABI = require("./abis/erc20.json");
 
-// you'll need an ethereum rpc endpoint
+// you'll need an Ethereum rpc endpoint
 const URL = "https://sepolia.infura.io/v3/<your infura key>";
 
 // the Ethereum chain you are interacting with
 const ETHEREUM_CHAIN_ID = 11155111; // sepolia
 
-// ethereum wallet private key
+// Ethereum wallet private key
 const PRIVATE_KEY = "<your private key>";
 
 // testnet VEGA
@@ -113,7 +113,7 @@ const ASSET_ADDRESS = "0xdf1B0F223cb8c7aB3Ef8469e529fe81E73089BD9";
 // spender is the collateral bridge address
 const SPENDER = "0xcC68d87cAEF9580E3F383d6438F7B3F2C71E3fe5";
 
-// amount in lowest denomination this is equivalient to
+// amount in lowest denomination this is equivalent to
 // 0.000000000000000001 VEGA
 const AMOUNT = "1";
 
@@ -147,13 +147,13 @@ const ETHEREUM_CHAIN_ID = 11155111; // sepolia
 const VEGA_COLLATERAL_BRIDGE_ADDRESS =
   "0xcC68d87cAEF9580E3F383d6438F7B3F2C71E3fe5";
 
-// ethereum wallet private key
+// Ethereum wallet private key
 const PRIVATE_KEY = "<your private key>";
 
 // testnet VEGA
 const ASSET_ADDRESS = "0xdf1B0F223cb8c7aB3Ef8469e529fe81E73089BD9";
 
-// amount in lowest denomination this is equivalient to
+// amount in lowest denomination this is equivalent to
 // 0.000000000000000001 VEGA
 const AMOUNT = "1";
 
@@ -174,10 +174,10 @@ const bridgeContract = new Contract(
   signer
 );
 
-// amount must be lowest denomination
-// note you won't see the asset in your Vega account immediately because
+// Amount must be lowest denomination.
+// Note, you won't see the asset on your Vega key immediately because
 // you must wait for the necessary number of confirmations on the Ethereum
-// chain. This is set by the newtork parameter: blockChains.ethereumConfig.confirmations.
+// chain. This is set by the network parameter blockChains.ethereumConfig.confirmations.
 // You must wait for Vega to pick up the successful deposit and credit your account
 const tx = await bridgeContract.deposit_asset(
   ASSET_ADDRESS,
