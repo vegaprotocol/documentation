@@ -101,8 +101,8 @@ const tokenABI = require("./abis/erc20.json");
 // you'll need an ethereum rpc endpoint
 const URL = "https://sepolia.infura.io/v3/<your infura key>";
 
-// the chain you are interacting with
-const CHAIN_ID = 11155111; // sepolia
+// the Ethereum chain you are interacting with
+const ETHEREUM_CHAIN_ID = 11155111; // sepolia
 
 // ethereum wallet private key
 const PRIVATE_KEY = "<your private key>";
@@ -118,7 +118,7 @@ const SPENDER = "0xcC68d87cAEF9580E3F383d6438F7B3F2C71E3fe5";
 const AMOUNT = "1";
 
 // create json rpc provider
-const provider = new ethers.JsonRpcProvider(URL, CHAIN_ID);
+const provider = new ethers.JsonRpcProvider(URL, ETHEREUM_CHAIN_ID);
 
 // create signer
 const signer = new Wallet(PRIVATE_KEY, provider);
@@ -140,8 +140,8 @@ const collateralABI = require("./abis/collateral-bridge.json");
 // you'll need an ethereum rpc endpoint
 const URL = "https://sepolia.infura.io/v3/<your infura key>";
 
-// the chain you are interacting with
-const CHAIN_ID = 11155111; // sepolia
+// the Ethereum chain you are interacting with
+const ETHEREUM_CHAIN_ID = 11155111; // sepolia
 
 // address of the Vega collateral bridge smart contract
 const VEGA_COLLATERAL_BRIDGE_ADDRESS =
@@ -162,7 +162,7 @@ const VEGA_PUBLIC_KEY =
   "a4b6e3de5d7ef4e31ae1b090be49d1a2ef7bcefff60cccf7658a0d4922651cce";
 
 // create json rpc provider
-const provider = new ethers.JsonRpcProvider(URL, CHAIN_ID);
+const provider = new ethers.JsonRpcProvider(URL, ETHEREUM_CHAIN_ID);
 
 // create signer
 const signer = new Wallet(PRIVATE_KEY, provider);
