@@ -79,7 +79,7 @@ Collect the following information:
 * ERC-20 bridge logic address
 * Token address for the asset
 * Bridge smart contract ABI in JSON
-* Chain ID - See the [wallet API instructions](../../api/vega-wallet/how-to/connect-to-local-service.md#3-verify-which-network-the-service-is-connected-to)
+* Ethereum chain ID
 
 To get the contract ABI JSON
 1. Visit the smart contract. Confirm you are using the correct smart contract.
@@ -87,8 +87,6 @@ To get the contract ABI JSON
 * [Ethereum mainnet](https://etherscan.io/address/0x23872549cE10B40e31D6577e0A920088B0E0666a#code)
 2. Scroll down to Contract ABI
 3. Click on Export ABI and choose JSON Format
-
-* how to find the chain ID
 
 You'll also need to have set up an Infura, Pokt or another Ethereum rpc endpoint.
 
@@ -100,11 +98,11 @@ You'll also need to have set up an Infura, Pokt or another Ethereum rpc endpoint
 const { ethers, Contract, Wallet } = require("ethers");
 const tokenABI = require("./abis/erc20.json");
 
-// you'll need to get an ethereum rpc endpoint
+// you'll need an ethereum rpc endpoint
 const URL = "https://sepolia.infura.io/v3/<your infura key>";
 
 // the chain you are interacting with
-const CHAIN_ID = 11155111; // seplio
+const CHAIN_ID = 11155111; // sepolia
 
 // ethereum wallet private key
 const PRIVATE_KEY = "<your private key>";
@@ -115,7 +113,7 @@ const ASSET_ADDRESS = "0xdf1B0F223cb8c7aB3Ef8469e529fe81E73089BD9";
 // spender is the collateral bridge address
 const SPENDER = "0xcC68d87cAEF9580E3F383d6438F7B3F2C71E3fe5";
 
-// amount in lowest denomination this is is equivalient to
+// amount in lowest denomination this is equivalient to
 // 0.000000000000000001 VEGA
 const AMOUNT = "1";
 
@@ -139,7 +137,7 @@ console.log("approve tx", tx);
 const { ethers, Contract, Wallet } = require("ethers");
 const collateralABI = require("./abis/collateral-bridge.json");
 
-// you'll need to get an ethereum rpc endpoint
+// you'll need an ethereum rpc endpoint
 const URL = "https://sepolia.infura.io/v3/<your infura key>";
 
 // the chain you are interacting with
@@ -155,7 +153,7 @@ const PRIVATE_KEY = "<your private key>";
 // testnet VEGA
 const ASSET_ADDRESS = "0xdf1B0F223cb8c7aB3Ef8469e529fe81E73089BD9";
 
-// amount in lowest denomination this is is equivalient to
+// amount in lowest denomination this is equivalient to
 // 0.000000000000000001 VEGA
 const AMOUNT = "1";
 
@@ -178,10 +176,9 @@ const bridgeContract = new Contract(
 
 // amount must be lowest denomination
 // note you won't see the asset in your Vega account immediately because
-//
-// - you must wait for the necessary number of confirmations on the Ethereum
-//   chain. This is set by the newtork parameter: blockChains.ethereumConfig.confirmations
-// - you must wait for Vega to pick up the successful deposit and credit your account
+// you must wait for the necessary number of confirmations on the Ethereum
+// chain. This is set by the newtork parameter: blockChains.ethereumConfig.confirmations.
+// You must wait for Vega to pick up the successful deposit and credit your account
 const tx = await bridgeContract.deposit_asset(
   ASSET_ADDRESS,
   AMOUNT,
