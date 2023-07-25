@@ -36,7 +36,7 @@ A market's risk model can be used to obtain the price distribution at a future p
 Note: A market's risk model is defined within the market proposal.
 
 ### Price monitoring triggers
-Each market has a set of price monitoring triggers. When those points are breached, the market will enter a price monitoring auction. Price monitoring triggers are defined in a market's proposal, and a governance proposal to change them can be raised and voted on by tokenholders. . Each market can have a maximum of 5 sets of price monitoring triggers for a market.
+Each market has a set of price monitoring triggers. When those points are breached, the market will enter a price monitoring auction. Price monitoring triggers are defined in a market's proposal, and a governance proposal to change them can be raised and voted on by tokenholders. Each market can have a maximum of 5 sets of price monitoring triggers for a market.
 
 Each trigger contains:
 * *Horizon*: Time horizon of the price projection in seconds
