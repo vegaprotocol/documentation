@@ -187,3 +187,161 @@ const tx = await bridgeContract.deposit_asset(
 
 console.log("deposit tx", tx);
 ```
+
+
+### Python [WIP]
+
+steps:
+1. set up web3 object (tutorial etc code that someone else has done, ideally connecting to infura)
+2. create the contract object from web3 (which contract you want to work with)
+3. contractobject . function . build transaction (working with the contract)
+
+this part actually takes care of both doing deposit and checking if it appears in vega
+```
+def erc20_deposits(
+        self, context, token, trader, trader_eth, amount, confirm_event=True, confirm_wallet=True, already_scaled=False
+    ):
+        logging.info("erc20 Token deposit - start")
+        if "str" in str(type(token)):
+            token = Token(token)
+        erc20_asset_id = self.get_vega_asset_id(token.address).strip("0x")
+        pre_deposit_balance = accountsMod.GetPartyAccountBal(context, trader, "General", erc20_asset_id)
+        pubkey = context["pubkeys"][trader]
+        if not already_scaled:
+            deposit_amt = token.erc20_token_formatter(fixed=amount)
+        else:
+            deposit_amt = amount
+        logging.info(f"ERC20 Deposit {deposit_amt=} from eth account {trader_eth=} to {pubkey=}")
+
+        start = get_time()
+        deposit_logs = self.erc20_deposit_workflow(
+            token, wallet_public_key=pubkey, test_eth_account=trader_eth, no_of_tokens_to_mint_override=deposit_amt
+        )
+
+
+    @timefunc
+    def erc20_deposit_workflow(
+        self,
+        token, (object that represents the token - internal, includes address)
+        wallet_public_key, (vega wallet)
+        eth_account, (eth key to deposit from)
+    ):
+        asset_id = self.get_vega_asset_id(token.address)
+        # Get balance of account [0] wallet
+
+        pre_issue_eth_token_balance = token.getTokenWalletBalance(test_eth_account)
+        logging.info(f"Token pre-issue balance={pre_issue_eth_token_balance}")
+        if no_of_tokens_to_mint_override is not None:
+            tokens = no_of_tokens_to_mint_override
+        else:
+            tokens = token.erc20_token_formatter()  # generate random tokens#
+
+```
+
+```
+# use token contract to approve the bridge to spend
+        approval_receipt = token.approve_transaction(self.address, tokens, test_eth_account)
+        assert approval_receipt.status == 1, "unable to get receipt for erc20 token approval"
+# use bridge contract instance to deposit tokens
+        deposit_receipt, txn_hash = self.depositTokentoVegaWallet(
+            token.address, tokens, wallet_public_key, test_eth_account
+        )
+        assert txn_hash, f"Failed to deposit ERC20 token with error: {deposit_receipt}"
+```
+
+the python bit
+```
+    def approve_transaction(self, contract_address, tokens_to_approve, ethereum_wallet, signer_key=None, timeout=10):
+        """
+        With erc20 token, it's very rare that you as the user iniate moving funds.
+        it's usually another contract which is gonna transfer funds from your wallet to somewhere else.
+        So we tell the contract of the erc20 token (e.g: DAI) that contract at address 0x....
+        is allowed to transfer tokens from your eth wallet for a given amount.
+        """
+        txn_hash = None
+        try:
+            if signer_key is not None:  # Ganache, or hosted key case.
+                txn = self.instance.functions.approve(contract_address, tokens_to_approve).build_transaction(
+                    {
+                        "from": ethereum_wallet,
+                        "nonce": get_w3().eth.get_transaction_count(ethereum_wallet),
+                        "gas": 75000,  # Apparently a reasonable upper limit for this transaction
+                    }
+                )
+                signed_txn = get_w3().eth.account.sign_transaction(txn, signer_key)
+                txn_hash = get_w3().eth.send_raw_transaction(signed_txn.rawTransaction)
+            else:
+                txn_hash = self.instance.functions.approve(contract_address, tokens_to_approve).transact(
+                    {"from": ethereum_wallet}
+                )
+        except exceptions.ContractLogicError as exc:
+            raise Exception(
+                f"ContractLogicError / failed to approve {tokens_to_approve} contract {contract_address} using {ethereum_wallet} {exc}"
+            ) from exc
+        except Exception as error:
+            raise Exception(
+                f"failed to approve {tokens_to_approve} contract {contract_address} using {ethereum_wallet} {error}"
+            ) from error
+
+        approve_receipt = None
+        count = 0
+        while approve_receipt is None and (count < timeout):
+            logging.debug("No receipt")
+            try:
+                count += 1
+                approve_receipt = get_w3().eth.get_transaction_receipt(txn_hash)
+                break
+            except exceptions.ContractLogicError as error:
+                logging.info(
+                    f"get_w3().eth.get_transaction_receipt {txn_hash.hex()} produces ContractLogicError {error}"
+                )
+                pass
+            except Exception as err:
+                logging.info(f"get_w3().eth.get_transaction_receipt wia{txn_hash.hex()} produces error {err}")
+                pass
+            time.sleep(0.2)
+        assert approve_receipt is not None, f"No contract receipt found for txn_hash {txn_hash.hex()}"
+        assert approve_receipt.status == 1
+        logging.info(f"Contract receipt generated with completed status")
+        logging.info(f"Ethereum address {ethereum_wallet} approves transfer of {tokens_to_approve} tokens")
+        event = self.process_approval_receipt(approve_receipt)
+        assert event["value"] == tokens_to_approve
+        return approve_receipt
+        ```
+
+
+        ```
+            def process_approval_receipt(self, receipt):
+        logging.info("Waiting for logs from approval receipt...")
+        c = 0
+        logs = None
+        log_dict = {}
+        while c < 25 and logs is None:
+            logs = self.instance.events.Approval().process_receipt(receipt)
+            logs_args = logs[0].get("args")
+            log_dict = dict(logs_args)
+            c += 1
+            time.sleep(0.2)
+        assert log_dict is not {}
+        logging.info(f"Received logs from approval receipt...took {c} attempt(s)")
+        return log_dict
+        ```
+
+
+  try:
+            if signer_key is not None:  # Ganache, or hosted key case.
+                txn = self.instance.functions.approve(contract_address, tokens_to_approve).build_transaction(
+                    {
+                        "from": ethereum_wallet,
+                        "nonce": xxxxxxxxx, # Choose a nonce that's used only once for this transaction
+                        "gas": XXXXXXX,  # Choose a reasonable upper limit for this transaction
+                    }
+                )
+                signed_txn = get_w3().eth.account.sign_transaction(txn, signer_key)
+                txn_hash = get_w3().eth.send_raw_transaction(signed_txn.rawTransaction)
+            else:
+                txn_hash = self.instance.functions.approve(contract_address, tokens_to_approve).transact(
+                    {"from": ethereum_wallet}
+                )
+
+```
