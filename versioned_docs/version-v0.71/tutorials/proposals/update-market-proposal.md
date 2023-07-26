@@ -54,7 +54,16 @@ Note that some network parameters may differ, such as the limits on how long the
 | Field                 | Description                                                                                                                                                                                                                                                                                                                                                                                        |
 | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `closingTimestamp`    | Timestamp (Unix time in seconds) when voting closes for this proposal. The chosen time must be between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minClose" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.maxClose" hideName={true} /> after the proposal submission time. (int64 as string) |
-| `enactmentTimestamp ` | Timestamp (Unix time in seconds) when proposal gets enacted (if passed). The chosen time must be between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minEnact" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.maxEnact" hideName={true} /> after `closingTimestamp`. (int64 as string)         |
+| `enactmentTimestamp` | Timestamp (Unix time in seconds) when proposal gets enacted (if passed). The chosen time must be between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minEnact" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.maxEnact" hideName={true} /> after `closingTimestamp`. (int64 as string)         |
+
+## Submitting a community-verified price for settlement
+If a market proposal was submitted to accept a [community-verified price](new-market-proposal.md#submitting-a-community-verified-price), once that market has reached its termination time, you can submit an update to the market using the verified price.
+
+Under `dataSourceSpecForSettlementData`:
+* Set the `conditions` to `OPERATOR_EQUALS`, and set the verified price under `value` with the correct decimal precision based on the data source's decimal precision, which should also match `numberDecimalPlaces`
+* Set the `time` to be the same as this proposal's `enactmentTimestamp`
+
+Once the proposal passes the governance vote, the nominated Vega key (`dataSourceSpecForSettlementData` -> `signers` -> `pubkey`) will need to [submit the price to the network](../using-data-sources.md#submitting-JSON-data).
 
 ## Templates and submitting
 In the tabs below you'll see:
