@@ -192,11 +192,23 @@ console.log("deposit tx", tx);
 ### Python [WIP]
 
 steps:
-1. set up web3 object (tutorial etc code that someone else has done, ideally connecting to infura)
+1. set up web3 object (tutorial, code, etc, that someone else has done, ideally connecting to infura)
 2. create the contract object from web3 (which contract you want to work with)
 3. contractobject . function . build transaction (working with the contract)
 
+
+```
+from web3 import Web3
+url = "http://blah"
+w3 = Web3(Web3.HTTPProvider(url))
+```
+
+```
+contractMod.w3 = Web3(Web3.HTTPProvider(settings.BASE_URL["url"]))
+```
+
 this part actually takes care of both doing deposit and checking if it appears in vega
+
 ```
 def erc20_deposits(
         self, context, token, trader, trader_eth, amount, confirm_event=True, confirm_wallet=True, already_scaled=False
