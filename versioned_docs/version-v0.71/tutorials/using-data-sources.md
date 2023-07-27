@@ -187,7 +187,7 @@ Use the command line to submit a JSON message as a transaction that is signed by
 
 :::info API note
 - Data should be encoded as strings. `true` should be `"true"`, `12` should be `"12"`
-- In the API responses, the `pubKeys` field for JSON oracle data submissions is set to the VEGA public key of the submitter.
+- In the API responses, the `pubKeys` field for JSON oracle data submissions is set to the Vega public key of the submitter.
 :::
 
 ### 1. Define your JSON structure
@@ -199,11 +199,17 @@ JSON data should be submitted as a single object of attributes and primitive val
 }
 ```
 
+:::tip Submitting a verified settlement price
+If you're submitting a verified price to settle a market: 
+
+In the JSON structure, replace "moonwalkers" in the example above with the value supplied in the market's proposal under `dataSourceSpecForSettlementData` > `filters` > `key` > `name`. Use the verified price as the integer. Don't forget to take the data source's decimal precision into account.
+:::
+
 ### 2. Encode the message
-All `OracleDataSubmission` data is `base64` encoded. Here's how to do that on Linux or OSX:
+All `OracleDataSubmission` data is `base64` encoded. Here's how to do that on Linux or MacOS:
 
 <Tabs groupId="encodeJsonOracle">
-  <TabItem value="cmd" label="Linux / OSX command line">
+  <TabItem value="cmd" label="Linux / MacOS command line">
 
 ```bash
 echo '{"moonwalkers":"12"}' | base64
@@ -229,16 +235,16 @@ certutil -encode raw.txt encoded.txt
 
 `encoded.txt` now contains your encoded message.
 
-  </TabItem>
+</TabItem>
 </Tabs>
 
 ### 3. Submit the message to the chain
 When submitting the `OracleDataSubmission`, make sure to specify the `source` field as `ORACLE_SOURCE_JSON`.
 
 <Tabs groupId="submitJsonOracle">
-  <TabItem value="cmd" label="Linux / OSX command line">
+<TabItem value="cmd" label="Linux / MacOS command line">
 
-```bash title="Linux/OSX command line example"
+```bash title="Linux/MacOS command line example"
 vegawallet transaction send \
     --wallet oracle-wallet \
     --pubkey 123abc \
@@ -249,7 +255,7 @@ vegawallet transaction send \
   </TabItem>
   <TabItem value="win" label="Windows command line">
 
-```bash title="Linux/OSX command line example"
+```bash title="Linux/MacOS command line example"
 vegawallet.exe transaction send \
     --wallet oracle-wallet \
     --pubkey 123abc \
@@ -257,7 +263,7 @@ vegawallet.exe transaction send \
     '{"oracleDataSubmission": { "source": "ORACLE_SOURCE_JSON", "payload":"RESPONSE_PAYLOAD" }}'
 ```
 
-  </TabItem>
+</TabItem>
 </Tabs>
 
 ### Querying an existing data source spec

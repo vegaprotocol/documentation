@@ -112,6 +112,15 @@ Data source bindings include the following properties:
 | `operator` | This adds a constraint to the value, such as LESS_THAN, GREATER_THAN. For example if you wanted to ensure that the price would always be above zero, you would set the operator to ‘GREATER_THAN’ and the Value to be ‘0’ | GREATER_THAN |
 | `value` | A number that is constrained by the operator. If providing a timestamp, use the Unix time in seconds | 0 |
 
+### Submitting a verified settlement price
+If you want the community to vote on the verified price used to settle the market:
+* Supply your own Vega public key as the oracle signer under `pubkeys`
+* Set the `conditions` to `OPERATOR_GREATER_THAN` 0 **and** `OPERATOR_LESS_THAN` 0 so no price will be accepted
+
+After the market has terminated, update the price by: 
+1. Submitting an [update market proposal](./update-market-proposal.md#submitting-a-verified-settlement-price) with the verified price 
+2. Sending the [settlement transaction](../using-data-sources.md#1-define-your-json-structure).
+
 :::info Submitting data
 Learn how to find and submit data in the [using data sources tutorial](../using-data-sources.md).
 :::
