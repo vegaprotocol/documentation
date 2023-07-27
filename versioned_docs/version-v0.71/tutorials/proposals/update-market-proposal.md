@@ -57,7 +57,7 @@ Note that some network parameters may differ, such as the limits on how long the
 | `enactmentTimestamp` | Timestamp (Unix time in seconds) when proposal gets enacted (if passed). The chosen time must be between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minEnact" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.maxEnact" hideName={true} /> after `closingTimestamp`. (int64 as string)         |
 
 ## Submitting a verified settlement price
-If a market proposal was submitted to accept a [community-verified price](new-market-proposal.md#submitting-a-community-verified-price), once that market has reached its termination time, you can submit an update to the market using the verified price.
+If a market proposal was submitted to accept a [community-verified price](new-market-proposal.md#submitting-a-verified-settlement-price), once that market has reached its termination time, you can submit an update to the market using the verified price.
 
 Under `dataSourceSpecForSettlementData`:
 * Set the `conditions` to `OPERATOR_EQUALS`, and set the verified price under `value` with the correct decimal precision based on the data source's decimal precision, which should also match `numberDecimalPlaces`

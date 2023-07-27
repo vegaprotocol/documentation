@@ -118,7 +118,7 @@ If you want the community to vote on the verified price used to settle the marke
 * Set the `conditions` to `OPERATOR_GREATER_THAN` 0 **and** `OPERATOR_LESS_THAN` 0 so no price will be accepted
 
 After the market has terminated, update the price by: 
-1. Submitting an [update market proposal](./update-market-proposal.md#submitting-a-community-verified-price-for-settlement) with the verified price 
+1. Submitting an [update market proposal](./update-market-proposal.md#submitting-a-verified-settlement-price) with the verified price 
 2. Sending the [settlement transaction](../using-data-sources.md#1-define-your-json-structure).
 
 :::info Submitting data

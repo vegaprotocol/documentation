@@ -202,7 +202,7 @@ JSON data should be submitted as a single object of attributes and primitive val
 :::tip Submitting a verified settlement price
 If you're submitting a verified price to settle a market: 
 
-In the JSON structure, replace "moonwalkers" in the example above with the value supplied in the market's proposal under `dataSourceSpecForSettlementData` > `filters` > `key` > `name`. Use the verified price as the integer.
+In the JSON structure, replace "moonwalkers" in the example above with the value supplied in the market's proposal under `dataSourceSpecForSettlementData` > `filters` > `key` > `name`. Use the verified price as the integer. Don't forget to take the data source's decimal precision into account.
 :::
 
 ### 2. Encode the message
