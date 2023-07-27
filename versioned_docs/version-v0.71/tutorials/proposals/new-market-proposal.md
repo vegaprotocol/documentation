@@ -112,7 +112,7 @@ Data source bindings include the following properties:
 | `operator` | This adds a constraint to the value, such as LESS_THAN, GREATER_THAN. For example if you wanted to ensure that the price would always be above zero, you would set the operator to ‘GREATER_THAN’ and the Value to be ‘0’ | GREATER_THAN |
 | `value` | A number that is constrained by the operator. If providing a timestamp, use the Unix time in seconds | 0 |
 
-### Submitting a community-verified price
+### Submitting a verified settlement price
 If you want the community to vote on the verified price used to settle the market:
 * Supply your own Vega public key as the oracle signer under `pubkeys`
 * Set the `conditions` to `OPERATOR_GREATER_THAN` 0 **and** `OPERATOR_LESS_THAN` 0 so no price will be accepted
