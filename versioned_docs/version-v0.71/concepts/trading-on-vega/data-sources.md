@@ -151,7 +151,7 @@ To do this, the market proposer will need to do the following steps throughout t
 
 1. Set the data source parameters in the [new market proposal](../../tutorials/proposals/new-market-proposal.md#submitting-a-verified-settlement-price) to supply the Vega public key of the user who will submit the verified price at termination.
 
-2. Set the conditions in the new market proposal such that no price will be accepted.
+2. Set the settlement price required to be both more than 0 and less than 0, which will mean no settlement price will be accepted without an update to the market.
 
 3. If the new market proposal passes governance and then enters into continuous trading, wait for it to reach its termination date.
 
