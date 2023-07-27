@@ -8,7 +8,19 @@ import Topic from '/docs/topics/_topic-wallet.mdx'
 
 A Vega Wallet is essential for interacting with Vega, whether it's for staking or trading. The Vega Wallet apps allow you to manage wallets and key pairs, deposit and withdraw assets, stake and sign transactions.
 
-You can interact with a Vega wallet and its keys through two different apps, or integrate using the API. 
+You can interact with a Vega wallet and its keys through two different apps, or integrate using the API.
+
+## Vega Wallet browser extension
+The Vega Wallet browser extension is an early stage implementation of the Vega Wallet, available for Chrome and Firefox.
+
+**[Chrome extension ↗](https://chrome.google.com/webstore/detail/vega-wallet-fairground/nmmjkiafpmphlikhefgjbblebfgclikn)**
+
+**[Firefox extension ↗](https://addons.mozilla.org/en-GB/firefox/addon/vega-wallet/)**
+
+The browser extension lets you connect to a Vega Wallet right in your browser, rather than having to install a separate app. It allows you to:
+* Create a new wallet and public keys
+* Import an existing wallet and its keys
+* Connect to Vega dApps, such as Console and the governance dApp
 
 ## Vega Wallet desktop app
 The **[desktop wallet](./desktop-app/index.md)** provides a visual interface to: 
