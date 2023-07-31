@@ -8,7 +8,8 @@ Vega provides several apps and tools to make it easier to interact with the prot
 ### Vega Wallet
 Use **[Vega Wallet](./vega-wallet/index.md)** to connect to a network to associate tokens for staking, and to sign messages. Using the Vega Wallet ensures your keys will be completely disassociated from your personal identity, and Vega will have no way to connect them with you, unless you share your public key for any reason.
 
-There are two apps available to interact with a Vega Wallet: 
+There are several ways to interact with a Vega Wallet: 
+* **[Browser extension (Alpha version)](./vega-wallet/index.md#vega-wallet-browser-extension)**
 * **[CLI wallet app](./vega-wallet/cli-wallet/index.md)**
 * **[Desktop wallet app](./vega-wallet/desktop-app/index.md)**
 
