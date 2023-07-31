@@ -113,32 +113,34 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-func main() {
-	// set up a grpc connection
+const (
+	// order ID to get
+	orderID := "01c25933750f9c3e35f38da9ee65c8b3eda165e914e86cad743b9effe826f2dc"
+	// gRPC of a data node
 	grpcAddress := ""
+)
+
+func main() {
 	conn, err := grpc.Dial(grpcAddress, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
-		fmt.Println("unable to connect to data node", err)
-		return
+		log.Fatalf("unable to connect to data node", err)
 	}
 	tradingDataClient := datanode.NewTradingDataServiceClient(conn)
 
-	// fill in a request to get an order by its ID
-	orderID := "01c25933750f9c3e35f38da9ee65c8b3eda165e914e86cad743b9effe826f2dc"
-	request := &datanode.GetOrderRequest{OrderId: orderID}
-
 	// call into the data node using the GetOrder endpoint
+	request := &datanode.GetOrderRequest{OrderId: orderID}
 	response, err := tradingDataClient.GetOrder(context.Background(), request)
-	switch status.Code(err) {
-	case codes.OK:
-		fmt.Println("found order:", response.Order)
-		return
-	case codes.NotFound:
-		fmt.Println("order not found")
-		return
-	default:
-		fmt.Println("unable to get order from a data node:", err)
+	if err != nil {
+		switch status.Code(err) {
+		case codes.NotFound:
+			log.Fatal("order not found")
+		default:
+			log.Fatalf("unable to get order from a data node:", err)
+		}
 	}
+
+	// order was found
+	fmt.Printf("%#v\n", response)
 }
 ```
 
