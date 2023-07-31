@@ -21,6 +21,7 @@ The browser extension lets you connect to a Vega Wallet right in your browser, r
 * Create a new wallet and public keys
 * Import an existing wallet and its keys
 * Connect to Vega dApps, such as Console and the governance dApp
+* Approve or reject transactions
 
 ## Vega Wallet desktop app
 The **[desktop wallet](./desktop-app/index.md)** provides a visual interface to: 
