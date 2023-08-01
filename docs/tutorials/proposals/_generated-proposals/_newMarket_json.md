@@ -14,8 +14,8 @@
         "decimalPlaces": "5",
         "positionDecimalPlaces": "5",
         "instrument": {
-          "name": "Oranges Daily",
-          "code": "ORANGES.24h",
+          "name": "Apples Yearly (2022)",
+          "code": "APPLES.22",
           "future": {
             "settlementAsset": "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
             "quoteName": "tEuro",
@@ -78,8 +78,8 @@
           }
         },
         "metadata": [
-          "enactment:2023-08-01T13:57:37Z",
-          "settlement:2023-07-31T13:57:37Z",
+          "enactment:2023-08-21T18:56:33Z",
+          "settlement:2023-08-20T18:56:33Z",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -110,8 +110,8 @@
         }
       }
     },
-    "closingTimestamp": 1690808257,
-    "enactmentTimestamp": 1690894657
+    "closingTimestamp": 1692554193,
+    "enactmentTimestamp": 1692640593
   }
 }
 ```
