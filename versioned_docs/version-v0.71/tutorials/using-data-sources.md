@@ -2,7 +2,7 @@
 title: Using data sources
 sidebar_position: 8
 hide_title: false
-description: Include oracle details in a proposal and submit data to settle and terminate a market
+description: Include data source details in a proposal and submit data to settle and terminate a market
 ---
 
 import Tabs from '@theme/Tabs';
@@ -148,7 +148,7 @@ vegawallet.exe transaction send \
 You will be able to see this data by querying the API for `OracleData`. In the API response you will be able to check which markets had filters that matched this data.
 
 ### Querying the data
-The [Oracle Data list REST endpoint](../api/rest/data-v2/trading-data-service-list-oracle-data) shows previous data submissions, which can be useful for confirming that data submission was sucessful, and/or determining the fields that a market's oracle spec requires.
+The [Oracle Data list REST endpoint](../api/rest/data-v2/trading-data-service-list-oracle-data) shows previous data submissions, which can be useful for confirming that data submission was sucessful, and/or determining the fields that a market's data source spec requires.
 
 ## JSON signed message data
 [JSON ↗](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON) messages are a simpler, more configurable alternative to Open Oracle data. They can be totally custom objects, as long as they are valid JSON. As they are not attested by any off-chain source in the way that Open Oracle messages are, and so it's generally advisable to check for an Open Oracle price source before choosing JSON data. The Vega key that signs the message will be referred to as the source for the data. 
@@ -157,7 +157,7 @@ The [Oracle Data list REST endpoint](../api/rest/data-v2/trading-data-service-li
 For the binding, use the `name` field of the data. In the following example, the market is settled based on the number of people who have walked on the moon.
 
 ```javascript
-"oracleSpecBinding": {
+"dataSourceSpecBinding": {
   "settlementDataProperty": "moonwalkers",
   "tradingTerminationProperty": "vegaprotocol.builtin.timestamp"
 }
@@ -166,7 +166,7 @@ For the binding, use the `name` field of the data. In the following example, the
 The Oracle Specification that would bind to the `moonwalkers` property would be as follows:
 
 ```javascript
-   "oracleSpecForSettlementData": {
+   "dataSourceSpecForForSettlementData": {
         "signers": [{ "pubKey":{ "key": "123abc" }}],
         "filters": [{
             "key": {
@@ -280,7 +280,7 @@ It's possible to settle on any data source field - for instance checking if a `b
 When using the built-in time source, **use greater than or equals**, rather than solely equals. This will help to avoid missing the time if no event is emitted with the precise required timestamp.
 
 ```javascript
-"oracleSpecForTradingTermination": {
+"dataSourceSpecForTradingTermination": {
     // pubKeys is empty as this is using a built in oracle
     "pubKeys": [],
     "filters": [{
