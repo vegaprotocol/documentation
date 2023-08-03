@@ -119,25 +119,32 @@ Once generated they can be imported and used from the generated language specifi
 import grpc
 from data_node.api.v2 import trading_data_pb2 as trading_data, trading_data_pb2_grpc as trading_data_grpc
 
-# set up a grpc connection
-grpc_address = ""
-ch = grpc.insecure_channel(grpc_address)
-grpc.channel_ready_future(ch).result(timeout=10)
-trading_data_stub = trading_data_grpc.TradingDataServiceStub(ch)
+# order ID to get
+ORDER_ID = "01c25933750f9c3e35f38da9ee65c8b3eda165e914e86cad743b9effe826f2dc"
+# gRPC of a data node
+GRPC_ADDRESS = ""
 
-# fill in a request to get an order by its ID
-order_id = "01c25933750f9c3e35f38da9ee65c8b3eda165e914e86cad743b9effe826f2dc"
-request = trading_data.GetOrderRequest(order_id=order_id)
+def main():
+	# set up a grpc connection
+	ch = grpc.insecure_channel(GRPC_ADDRESS)
+	grpc.channel_ready_future(ch).result(timeout=10)
+	trading_data_stub = trading_data_grpc.TradingDataServiceStub(ch)
 
-# call into the data node using the GetOrder endpoint
-try:
-    response = trading_data_stub.GetOrder(request)
-    print(response.order)
-except grpc.RpcError as rpc_error:
-    if rpc_error.code() == grpc.StatusCode.NOT_FOUND:
-        print("order was not found")
-    else:
-        print("unable to get order from a data node:", rpc_error)
+	# fill in a request to get an order by its ID
+	request = trading_data.GetOrderRequest(order_id=ORDER_ID)
+
+	# call into the data node using the GetOrder endpoint
+	try:
+		response = trading_data_stub.GetOrder(request)
+		print(response.order)
+	except grpc.RpcError as rpc_error:
+		if rpc_error.code() == grpc.StatusCode.NOT_FOUND:
+			print("order was not found")
+		else:
+			print("unable to get order from a data node:", rpc_error)
+
+if __name__ "__main__":
+	main()
 ```
 
 </TabItem>
