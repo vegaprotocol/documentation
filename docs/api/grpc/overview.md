@@ -20,7 +20,7 @@ The buf ecosystem contains plugins that also allow automatic generation of REST 
 
 If you are new to interacting with gRPC, using REST may be a more familiar way to interact with the APIs. Experiencing Vega first through the REST API and using the REST documentation may help ease an initial integration, without any loss of functionality. Migrating later to using gRPC will then require minimal changes since the input parameters and responses contain the same data.
 
-As an example to show the similarities, below are two Python snippets of how to list transfers using both REST and gRPC:
+As an example to show the similarities, below are two Python snippets for how to list transfers using both REST and gRPC:
 <Tabs>
 <TabItem value="REST" label="REST">
 
