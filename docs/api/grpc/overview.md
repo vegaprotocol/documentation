@@ -33,8 +33,7 @@ def list_transfers(base_url, pubkey, direction):
     }
 
     r = requests.get(
-        base_url + "/transfers", 
-        params=params,
+        base_url + "/transfers", params=params,
     )
 
     return r.json()
@@ -44,17 +43,16 @@ def list_transfers(base_url, pubkey, direction):
 <TabItem value="gRPC" label="gRPC">
 
 ```py
-def list_transfers(client, pubkey, direction):
+def list_transfers(rpc_conn, pubkey, direction):
 
 	request = trading_data.ListTransfersRequest(
 		pubkey=pubkey,
 		direction=direction,
 	)
 
-	r = client.ListTransfers(
+	r = grpc_conn.ListTransfers(
 		request,
 	)
-
 
     return MessageToDict(r)
 ```
