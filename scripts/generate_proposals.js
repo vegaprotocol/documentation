@@ -11,6 +11,7 @@ const {
 const { updateAsset } = require('./libGenerateProposals/updateAsset')
 const { updateMarket } = require('./libGenerateProposals/updateMarket')
 const { newFreeform } = require('./libGenerateProposals/newFreeform')
+const { newSuccessorMarket } = require('./libGenerateProposals/newSuccessorMarket')
 const { newAsset } = require('./libGenerateProposals/newAsset')
 const {
   updateNetworkParameter
@@ -38,17 +39,8 @@ const notProposalTypes = [
   'title',
   'type'
 ]
-const excludeUnimplementedTypes = []
-
-// Output: Used to put a nice title on the output
-const nameByType = {
-  newFreeform: 'New Freeform Proposal',
-  updateNetworkParameter: 'Update a network parameter',
-  newAsset: 'New asset (ERC20)',
-  updateAsset: 'Update asset (ERC20)',
-  newMarket: 'New market',
-  updateMarket: 'Update market'
-}
+const excludeUnimplementedTypes = ['newSpotMarket', 'updateSpotMarket', 'newTransfer', 'cancelTransfer']
+const syntheticProposalTypes = ['newSuccessorMarket']
 
 function annotator(proposal) {
   const res = inspect(proposal, { depth: null })
@@ -245,6 +237,7 @@ const ProposalGenerator = new Map([
   ['updateNetworkParameter', updateNetworkParameter],
   ['newAsset', newAsset],
   ['newMarket', newMarket],
+  ['newSuccessorMarket', newSuccessorMarket],
   ['updateMarket', updateMarket],
   ['updateAsset', updateAsset]
 ])
@@ -255,6 +248,11 @@ function parse(api) {
     notProposalTypes
   )
 
+  // Looks generic, is really hardcoded to cloning new market proposals
+  syntheticProposalTypes.forEach((type) => {
+    proposalTypes[type] = Object.assign({}, proposalTypes.newMarket)
+  })
+  
   const partials = Object.keys(proposalTypes).map((type) => {
     if (excludeUnimplementedTypes.indexOf(type) === -1) {
       if (ProposalGenerator.has(type)) {

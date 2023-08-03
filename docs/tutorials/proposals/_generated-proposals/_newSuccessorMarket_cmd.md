@@ -3,20 +3,24 @@
 ./vegawallet transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KEY --network NETWORK_NAME '{
  "proposalSubmission": {
   "rationale": {
-   "title": "Add Lorem Ipsum market",
-   "description": "An example proposal to add Lorem Ipsum market"
+   "title": "Lorem Ipsum market successor",
+   "description": "A successor to nnnnn"
   },
   "terms": {
    "newMarket": {
     "changes": {
+     "successor": {
+      "parent_market_id": "nnnnnnnn",
+      "insurance_pool_fraction": "1"
+     },
      "lpPriceRange": "10",
      "linearSlippageFactor": "0.001",
      "quadraticSlippageFactor": "0",
      "decimalPlaces": "5",
      "positionDecimalPlaces": "5",
      "instrument": {
-      "name": "Apples Yearly (2022)",
-      "code": "APPLES.22",
+      "name": "Oranges Daily",
+      "code": "ORANGES.24h",
       "future": {
        "settlementAsset": "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
        "quoteName": "tEuro",
@@ -79,8 +83,8 @@
       }
      },
      "metadata": [
-      "enactment:2023-08-21T18:56:33Z",
-      "settlement:2023-08-20T18:56:33Z",
+      "enactment:2023-08-23T17:28:46Z",
+      "settlement:2023-08-22T17:28:46Z",
       "source:docs.vega.xyz"
      ],
      "priceMonitoringParameters": {
@@ -111,8 +115,8 @@
      }
     }
    },
-   "closingTimestamp": 1692554193,
-   "enactmentTimestamp": 1692640593
+   "closingTimestamp": 1692721726,
+   "enactmentTimestamp": 1692808126
   }
  }
 }'
