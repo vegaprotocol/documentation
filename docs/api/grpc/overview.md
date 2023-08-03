@@ -18,7 +18,55 @@ This means that Vega's gRPC API is fully defined by its protobuf definitions, an
 ## Relationship to REST API
 The buf ecosystem contains plugins that also allow automatic generation of REST API endpoints from the protobuf definitions. The result is that Vega's gRPC and REST API match exactly in both structure and functionality.
 
-As REST is a more familiar way to interact with a product than gRPC, experiencing Vega first through the REST API and using the REST documentation may help ease an initial integration, without any loss of functionality. Migrating later to using gRPC is then trivial since the mapping between REST and gRPC is 1-to-1.
+If you are new to interacting with gRPC, using REST may be a more familiar way to interact with the APIs. Experiencing Vega first through the REST API and using the REST documentation may help ease an initial integration, without any loss of functionality. Migrating later to using gRPC will then require minimal changes since the the input parameters and responses are contain the same data.
+
+As an example to show the similarities, below are two Python snippets of how to list transfers using both REST and gRPC:
+<Tabs>
+<TabItem value="REST" label="REST">
+
+```py
+def list_transfers(base_url, pubkey, direction):
+
+    params = {
+        "pubkey": pubkey,
+        "direction": direction,
+    }
+
+    r = requests.get(
+        base_url + "/transfers", 
+        params=params,
+    )
+
+    return r.json()
+```
+</TabItem>
+
+<TabItem value="gRPC" label="gRPC">
+
+```py
+def list_transfers(client, pubkey, direction):
+
+	request = trading_data.ListTransfersRequest(
+		pubkey=pubkey,
+		direction=direction,
+	)
+
+	r = client.ListTransfers(
+		request,
+	)
+
+
+    return MessageToDict(r)
+```
+
+To find the name of a gRPC call from a REST url, or vice versa, a YAML file containing the mappings can be found [on the Vega GitHub repo](https://github.com/vegaprotocol/vega/blob/develop/protos/sources/data-node/grpc-rest-bindings.yml). Also note that for REST end-points with path parameters, the gRPC equivalent will supply that parameter in the request object.
+
+
+If you think using the REST API maybe be a better starting point, then see the documentation [for using REST](../rest/overview.mdx).
+
+</TabItem>
+
+</Tabs>
 
 ### Data node API
 Data nodes aggregate the outputs from core nodes and produce more meaningful APIs. They are stateful and build up a bigger view of the system from the events emitted from the core nodes. The data nodes give the end user a way to query historic information without the need to be always connected to the network. The data node also builds cumulative data which allows the end user to get a snapshot of the current state of a part of the system.
