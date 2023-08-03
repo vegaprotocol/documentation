@@ -18,7 +18,7 @@ This means that Vega's gRPC API is fully defined by its protobuf definitions, an
 ## Relationship to REST API
 The buf ecosystem contains plugins that also allow automatic generation of REST API endpoints from the protobuf definitions. The result is that Vega's gRPC and REST API match exactly in both structure and functionality.
 
-If you are new to interacting with gRPC, using REST may be a more familiar way to interact with the APIs. Experiencing Vega first through the REST API and using the REST documentation may help ease an initial integration, without any loss of functionality. Migrating later to using gRPC will then require minimal changes since the the input parameters and responses are contain the same data.
+If you are new to interacting with gRPC, using REST may be a more familiar way to interact with the APIs. Experiencing Vega first through the REST API and using the REST documentation may help ease an initial integration, without any loss of functionality. Migrating later to using gRPC will then require minimal changes since the input parameters and responses contain the same data.
 
 As an example to show the similarities, below are two Python snippets of how to list transfers using both REST and gRPC:
 <Tabs>
