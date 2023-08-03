@@ -62,7 +62,7 @@ def list_transfers(client, pubkey, direction):
 To find the name of a gRPC call from a REST url, or vice versa, a YAML file containing the mappings can be found [on the Vega GitHub repo](https://github.com/vegaprotocol/vega/blob/develop/protos/sources/data-node/grpc-rest-bindings.yml). Also note that for REST end-points with path parameters, the gRPC equivalent will supply that parameter in the request object.
 
 
-If you think using the REST API maybe be a better starting point, then see the documentation [for using REST](../rest/overview.mdx).
+If you think using the REST API maybe be a better starting point, then see the documentation [for using REST](../rest/overview.md).
 
 </TabItem>
 
