@@ -166,6 +166,7 @@ When creating a market governance proposal, whether it is for a new market, a ne
 Read more:
 * [Vega community forum ↗](https://community.vega.xyz): Share your draft proposals for community discussion.
 * [New market proposal ↗](../tutorials/proposals/new-market-proposal.md): Guide to submitting a proposal for a new market using the command line
+* [New successor market proposal ↗](../tutorials/proposals/new-successor-market-proposal.md): Guide to submitting a proposal for a new successor market using the command line
 * [Update market proposal ↗](../tutorials/proposals/update-market-proposal.md): Guide to submitting a proposal to change a market using the command line
 
 ### Propose a new market
