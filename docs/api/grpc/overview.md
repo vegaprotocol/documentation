@@ -59,14 +59,13 @@ def list_transfers(client, pubkey, direction):
     return MessageToDict(r)
 ```
 
-To find the name of a gRPC call from a REST url, or vice versa, a YAML file containing the mappings can be found [on the Vega GitHub repo](https://github.com/vegaprotocol/vega/blob/develop/protos/sources/data-node/grpc-rest-bindings.yml). Also note that for REST end-points with path parameters, the gRPC equivalent will supply that parameter in the request object.
-
-
-If you think using the REST API maybe be a better starting point, then see the documentation [for using REST](../rest/overview.md).
-
 </TabItem>
 
 </Tabs>
+
+To find the name of a gRPC call from a REST url, or vice versa, a YAML file containing the mappings can be found [on the Vega GitHub repo](https://github.com/vegaprotocol/vega/blob/develop/protos/sources/data-node/grpc-rest-bindings.yml). Also note that for REST end-points with path parameters, the gRPC equivalent will supply that parameter in the request object.
+
+If you think using the REST API maybe be a better starting point, then see the documentation [for using REST](../rest/overview.md).
 
 ### Data node API
 Data nodes aggregate the outputs from core nodes and produce more meaningful APIs. They are stateful and build up a bigger view of the system from the events emitted from the core nodes. The data nodes give the end user a way to query historic information without the need to be always connected to the network. The data node also builds cumulative data which allows the end user to get a snapshot of the current state of a part of the system.
