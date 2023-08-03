@@ -40,6 +40,8 @@ const notProposalTypes = [
   'type'
 ]
 const excludeUnimplementedTypes = ['newSpotMarket', 'updateSpotMarket', 'newTransfer', 'cancelTransfer']
+
+// Synthetic proposal types are not in the schema, but are different types of newMarket proposal
 const syntheticProposalTypes = ['newSuccessorMarket']
 
 function annotator(proposal) {
@@ -252,7 +254,7 @@ function parse(api) {
   syntheticProposalTypes.forEach((type) => {
     proposalTypes[type] = Object.assign({}, proposalTypes.newMarket)
   })
-  
+
   const partials = Object.keys(proposalTypes).map((type) => {
     if (excludeUnimplementedTypes.indexOf(type) === -1) {
       if (ProposalGenerator.has(type)) {
@@ -269,8 +271,11 @@ function parse(api) {
 
         // TODO move in to new Proposal so we can use dates in metadata
         const changes = ProposalGenerator.get(type)(proposalTypes[type], proposal)
+        
+        const typeOrSyntheticType = syntheticProposalTypes.includes(type) ? 'newMarket' : type
+
         output(
-          newProposal(changes, api.definitions.vegaProposalTerms, type, proposal),
+          newProposal(changes, api.definitions.vegaProposalTerms, typeOrSyntheticType, proposal),
           type
         )
       } else {
