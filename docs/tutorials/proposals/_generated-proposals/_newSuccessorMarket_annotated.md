@@ -2,17 +2,24 @@
   ```javascript
 {
  rationale: {
-  title: "Update Lorem Ipsum market",
-  description: "A proposal to update Lorem Ipsum market"
+  title: "Lorem Ipsum market successor",
+  description: "A successor to nnnnn"
  },
  terms: {
-  updateMarket: {
-   // Market ID the update is for.
-   marketId: "123",
+  newMarket: {
    changes: {
+    // Successor configuration. If this proposal is meant to succeed a given market, then this should be set.
+    successor: {
+     // ID of the market that the successor should take over from.
+     parentMarketId: "nnnnnnnn",
+
+     // A decimal value between or equal to 0 and 1, specifying the fraction of the insurance pool balance that is carried over from the parent market to the successor.
+     insurancePoolFraction: "1}"
+    },
+
     // Percentage move up and down from the mid price which specifies the range of
     // price levels over which automated liquidity provision orders will be deployed.
-    lpPriceRange: 11,
+    lpPriceRange: "10",
 
     // Linear slippage factor is used to cap the slippage component of maintenance margin - it is applied to the slippage volume.
     linearSlippageFactor: 0.001,
@@ -20,17 +27,29 @@
     // Quadratic slippage factor is used to cap the slippage component of maintenance margin - it is applied to the square of the slippage volume.
     quadraticSlippageFactor: 0,
 
+    // Decimal places used for the new futures market, sets the smallest price increment on the book. (uint64 as string)
+    decimalPlaces: "5",
+
+    // Decimal places for order sizes, sets what size the smallest order / position on the futures market can be. (int64 as string)
+    positionDecimalPlaces: "5",
+
     // Instrument configuration
     instrument: {
+     // Instrument name.
+     name: "Apples Yearly (2022)",
+
      // Instrument code, human-readable shortcode used to describe the instrument.
      code: "APPLES.22",
 
      // Future product configuration
      future: {
-      // Human-readable name/abbreviation of the quote name. (string)
+      // Asset ID for the product's settlement asset. (string)
+      settlementAsset: "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
+
+      // Product quote name. (string)
       quoteName: "tEuro",
 
-      // The data source spec describing the data of settlement data. (object)
+      // Data source spec describing the data source for settlement. (object)
       dataSourceSpecForSettlementData: {
        external: {
         oracle: {
@@ -87,9 +106,9 @@
        }
       },
 
-      // The data source spec describing the data source for trading termination. (object)
+      // The external data source spec describing the data source of trading termination. (object)
       dataSourceSpecForTradingTermination: {
-       // The data source spec describing the data source for trading termination.
+       // The external data source spec describing the data source of trading termination.
        internal {
         // DataSourceSpecConfigurationTime is the internal data source used for emitting timestamps.
         time: {
@@ -118,8 +137,10 @@
        }
       },
 
-      // Optional futures market metadata, tags.
+      // Optional new futures market metadata, tags.
       metadata: [
+       "enactment:2023-08-24T13:13:37Z",
+       "settlement:2023-08-23T13:13:37Z",
        "source:docs.vega.xyz"
       ],
 
@@ -142,37 +163,56 @@
        ]
       },
 
-      // Risk model for log normal
-      logNormal: {
-       // Tau parameter of the risk model, projection horizon measured as a year fraction used in the expected shortfall
-       calculation to obtain the maintenance margin,
-       must be a strictly non - negative real number.(number) tau: 0.0001140771161,
+      // LiquidityMonitoringParameters contains settings used for liquidity monitoring
+      liquidityMonitoringParameters: {
+       // TargetStakeParameters contains parameters used in target stake calculation
+       targetStakeParameters: {
+        // Specifies length of time window expressed in seconds for target stake calculation. (string)
+        timeWindow: "3600",
 
-       // Risk Aversion Parameter. (double as number)
-       riskAversionParameter: "0.01",
+        // Specifies scaling factors used in target stake calculation. (number)
+        scalingFactor: 10
+       },
 
-       // Risk model parameters for log normal
-       params: {
-        // Mu parameter, annualised growth rate of the underlying asset. (double as number)
-        mu: 0,
+       // Specifies the triggering ratio for entering liquidity auction. (string)
+       triggeringRatio: "0.7",
 
-        // R parameter, annualised growth rate of the risk-free asset, used for discounting of future cash flows, can be any real number. (double as number)
-        r: 0.016,
-
-        // Sigma parameter, annualised volatility of the underlying asset, must be a strictly non-negative real number. (double as number)
-        sigma: 0.8,
-       }
-      },
+       // Specifies by how many seconds an auction should be extended if leaving the auction were to trigger a liquidity auction. (int64 as string)
+       auctionExtension: "1",
+      }
      },
-    },
 
-    // Timestamp as Unix time in seconds when voting closes for this proposal,
-    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-    closingTimestamp: 1692792817,
+     // Risk model for log normal
+     logNormal: {
+      // Tau parameter of the risk model, projection horizon measured as a year fraction used in the expected shortfall
+      calculation to obtain the maintenance margin,
+      must be a strictly non - negative real number.(number) tau: 0.0001140771161,
 
-    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
-    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-    enactmentTimestamp: 1692879217,
-   }
+      // Risk Aversion Parameter. (double as number)
+      riskAversionParameter: "0.01",
+
+      // Risk model parameters for log normal
+      params: {
+       // Mu parameter, annualised growth rate of the underlying asset. (double as number)
+       mu: 0,
+
+       // R parameter, annualised growth rate of the risk-free asset, used for discounting of future cash flows, can be any real number. (double as number)
+       r: 0.016,
+
+       // Sigma parameter, annualised volatility of the underlying asset, must be a strictly non-negative real number. (double as number)
+       sigma: 0.15,
+      }
+     },
+    }
+   },
+
+   // Timestamp as Unix time in seconds when voting closes for this proposal,
+   // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
+   closingTimestamp: 1692792817,
+
+   // Timestamp as Unix time in seconds when proposal gets enacted if passed,
+   // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
+   enactmentTimestamp: 1692879217,
   }
+ }
 ```

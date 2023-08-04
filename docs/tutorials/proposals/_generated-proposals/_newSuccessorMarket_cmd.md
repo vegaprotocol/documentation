@@ -3,20 +3,24 @@
 ./vegawallet transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KEY --network NETWORK_NAME '{
  "proposalSubmission": {
   "rationale": {
-   "title": "Add Lorem Ipsum market",
-   "description": "An example proposal to add Lorem Ipsum market"
+   "title": "Lorem Ipsum market successor",
+   "description": "A successor to nnnnn"
   },
   "terms": {
    "newMarket": {
     "changes": {
+     "successor": {
+      "parentMarketId": "nnnnnnnn",
+      "insurancePoolFraction": "1"
+     },
      "lpPriceRange": "10",
      "linearSlippageFactor": "0.001",
      "quadraticSlippageFactor": "0",
      "decimalPlaces": "5",
      "positionDecimalPlaces": "5",
      "instrument": {
-      "name": "Oranges Daily",
-      "code": "ORANGES.24h",
+      "name": "Apples Yearly (2022)",
+      "code": "APPLES.22",
       "future": {
        "settlementAsset": "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
        "quoteName": "tEuro",
