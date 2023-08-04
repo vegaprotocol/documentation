@@ -12,7 +12,7 @@ const explorerUrl = {
 const factor = Math.pow(10, 18)
 const formatters = {
   governanceToken: (value) => parseInt(value) / factor,
-  percent: (value) => `${value * 100}%`
+  percent: (value) => `${Math.round(value * 100)}%`
 }
 
 /**
