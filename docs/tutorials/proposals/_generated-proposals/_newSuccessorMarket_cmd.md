@@ -10,8 +10,8 @@
    "newMarket": {
     "changes": {
      "successor": {
-      "parent_market_id": "nnnnnnnn",
-      "insurance_pool_fraction": "1"
+      "parentMarketId": "nnnnnnnn",
+      "insurancePoolFraction": "1"
      },
      "lpPriceRange": "10",
      "linearSlippageFactor": "0.001",
@@ -83,8 +83,8 @@
       }
      },
      "metadata": [
-      "enactment:2023-08-23T18:30:46Z",
-      "settlement:2023-08-22T18:30:46Z",
+      "enactment:2023-08-24T13:13:37Z",
+      "settlement:2023-08-23T13:13:37Z",
       "source:docs.vega.xyz"
      ],
      "priceMonitoringParameters": {
@@ -115,8 +115,8 @@
      }
     }
    },
-   "closingTimestamp": 1692725446,
-   "enactmentTimestamp": 1692811846
+   "closingTimestamp": 1692792817,
+   "enactmentTimestamp": 1692879217
   }
  }
 }'

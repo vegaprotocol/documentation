@@ -8,6 +8,15 @@
  terms: {
   newMarket: {
    changes: {
+    // Successor configuration. If this proposal is meant to succeed a given market, then this should be set.
+    successor: {
+     // ID of the market that the successor should take over from.
+     parentMarketId: "nnnnnnnn",
+
+     // A decimal value between or equal to 0 and 1, specifying the fraction of the insurance pool balance that is carried over from the parent market to the successor.
+     insurancePoolFraction: "1}"
+    },
+
     // Percentage move up and down from the mid price which specifies the range of
     // price levels over which automated liquidity provision orders will be deployed.
     lpPriceRange: "10",
@@ -130,8 +139,8 @@
 
       // Optional new futures market metadata, tags.
       metadata: [
-       "enactment:2023-08-23T18:30:46Z",
-       "settlement:2023-08-22T18:30:46Z",
+       "enactment:2023-08-24T13:13:37Z",
+       "settlement:2023-08-23T13:13:37Z",
        "source:docs.vega.xyz"
       ],
 
@@ -199,11 +208,11 @@
 
    // Timestamp as Unix time in seconds when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-   closingTimestamp: 1692725446,
+   closingTimestamp: 1692792817,
 
    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-   enactmentTimestamp: 1692811846,
+   enactmentTimestamp: 1692879217,
   }
  }
 ```
