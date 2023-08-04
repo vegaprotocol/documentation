@@ -28,17 +28,23 @@ function newSuccessorMarket(skeleton, proposalSoFar) {
 
   const result = {
     rationale: {
-      title: `Add Lorem Ipsum market`,
-      description: `An example proposal to add Lorem Ipsum market`,
+      title: `Lorem Ipsum market successor`,
+      description: `A successor to nnnnn`,
     },
     terms: {
       newMarket: {
         changes: {
+          successor: {
+            parent_market_id: "nnnnnnnn",
+            insurance_pool_fraction: "1"
+          },
           lpPriceRange: "10",
           linearSlippageFactor: "0.001",
           quadraticSlippageFactor: "0",
           decimalPlaces: "5",
           positionDecimalPlaces: "5",
+
+
           instrument: generateInstrument(
             skeleton.properties.changes.properties.instrument
           ),
