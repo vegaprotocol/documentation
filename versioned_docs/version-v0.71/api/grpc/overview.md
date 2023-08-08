@@ -18,7 +18,52 @@ This means that Vega's gRPC API is fully defined by its protobuf definitions, an
 ## Relationship to REST API
 The buf ecosystem contains plugins that also allow automatic generation of REST API endpoints from the protobuf definitions. The result is that Vega's gRPC and REST API match exactly in both structure and functionality.
 
-As REST is a more familiar way to interact with a product than gRPC, experiencing Vega first through the REST API and using the REST documentation may help ease an initial integration, without any loss of functionality. Migrating later to using gRPC is then trivial since the mapping between REST and gRPC is 1-to-1.
+If you are new to interacting with gRPC, using REST may be a more familiar way to interact with the APIs. Experiencing Vega first through the REST API and using the REST documentation may help ease an initial integration, without any loss of functionality. Migrating later to using gRPC will then require minimal changes since the input parameters and responses contain the same data.
+
+As an example to show the similarities, below are two Python snippets for how to list transfers using both REST and gRPC:
+<Tabs>
+<TabItem value="REST" label="REST">
+
+```py
+def list_transfers(base_url, pubkey, direction):
+
+    params = {
+        "pubkey": pubkey,
+        "direction": direction,
+    }
+
+    r = requests.get(
+        base_url + "/transfers", params=params,
+    )
+
+    return r.json()
+```
+</TabItem>
+
+<TabItem value="gRPC" label="gRPC">
+
+```py
+def list_transfers(rpc_conn, pubkey, direction):
+
+	request = trading_data.ListTransfersRequest(
+		pubkey=pubkey,
+		direction=direction,
+	)
+
+	r = rpc_conn.ListTransfers(
+		request,
+	)
+
+    return MessageToDict(r)
+```
+
+</TabItem>
+
+</Tabs>
+
+To find the name of a gRPC call from a REST url, or vice versa, a YAML file containing the mappings can be found [on the Vega GitHub repo](https://github.com/vegaprotocol/vega/blob/develop/protos/sources/data-node/grpc-rest-bindings.yml). Also note that for REST end-points with path parameters, the gRPC equivalent will supply that parameter in the request object.
+
+If you think using the REST API maybe be a better starting point, then see the documentation [for using REST](../rest/overview.md).
 
 ### Data node API
 Data nodes aggregate the outputs from core nodes and produce more meaningful APIs. They are stateful and build up a bigger view of the system from the events emitted from the core nodes. The data nodes give the end user a way to query historic information without the need to be always connected to the network. The data node also builds cumulative data which allows the end user to get a snapshot of the current state of a part of the system.
@@ -74,25 +119,32 @@ Once generated they can be imported and used from the generated language specifi
 import grpc
 from data_node.api.v2 import trading_data_pb2 as trading_data, trading_data_pb2_grpc as trading_data_grpc
 
-# set up a grpc connection
-grpc_address = ""
-ch = grpc.insecure_channel(grpc_address)
-grpc.channel_ready_future(ch).result(timeout=10)
-trading_data_stub = trading_data_grpc.TradingDataServiceStub(ch)
+# order ID to get
+ORDER_ID = "01c25933750f9c3e35f38da9ee65c8b3eda165e914e86cad743b9effe826f2dc"
+# gRPC of a data node
+GRPC_ADDRESS = ""
 
-# fill in a request to get an order by its ID
-order_id = "01c25933750f9c3e35f38da9ee65c8b3eda165e914e86cad743b9effe826f2dc"
-request = trading_data.GetOrderRequest(order_id=order_id)
+def main():
+	# set up a grpc connection
+	ch = grpc.insecure_channel(GRPC_ADDRESS)
+	grpc.channel_ready_future(ch).result(timeout=10)
+	trading_data_stub = trading_data_grpc.TradingDataServiceStub(ch)
 
-# call into the data node using the GetOrder endpoint
-try:
-    response = trading_data_stub.GetOrder(request)
-    print(response.order)
-except grpc.RpcError as rpc_error:
-    if rpc_error.code() == grpc.StatusCode.NOT_FOUND:
-        print("order was not found")
-    else:
-        print("unable to get order from a data node:", rpc_error)
+	# fill in a request to get an order by its ID
+	request = trading_data.GetOrderRequest(order_id=ORDER_ID)
+
+	# call into the data node using the GetOrder endpoint
+	try:
+		response = trading_data_stub.GetOrder(request)
+		print(response.order)
+	except grpc.RpcError as rpc_error:
+		if rpc_error.code() == grpc.StatusCode.NOT_FOUND:
+			print("order was not found")
+		else:
+			print("unable to get order from a data node:", rpc_error)
+
+if __name__ "__main__":
+	main()
 ```
 
 </TabItem>
@@ -113,32 +165,34 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-func main() {
-	// set up a grpc connection
+const (
+	// order ID to get
+	orderID := "01c25933750f9c3e35f38da9ee65c8b3eda165e914e86cad743b9effe826f2dc"
+	// gRPC of a data node
 	grpcAddress := ""
+)
+
+func main() {
 	conn, err := grpc.Dial(grpcAddress, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
-		fmt.Println("unable to connect to data node", err)
-		return
+		log.Fatalf("unable to connect to data node", err)
 	}
 	tradingDataClient := datanode.NewTradingDataServiceClient(conn)
 
-	// fill in a request to get an order by its ID
-	orderID := "01c25933750f9c3e35f38da9ee65c8b3eda165e914e86cad743b9effe826f2dc"
-	request := &datanode.GetOrderRequest{OrderId: orderID}
-
 	// call into the data node using the GetOrder endpoint
+	request := &datanode.GetOrderRequest{OrderId: orderID}
 	response, err := tradingDataClient.GetOrder(context.Background(), request)
-	switch status.Code(err) {
-	case codes.OK:
-		fmt.Println("found order:", response.Order)
-		return
-	case codes.NotFound:
-		fmt.Println("order not found")
-		return
-	default:
-		fmt.Println("unable to get order from a data node:", err)
+	if err != nil {
+		switch status.Code(err) {
+		case codes.NotFound:
+			log.Fatal("order not found")
+		default:
+			log.Fatalf("unable to get order from a data node:", err)
+		}
 	}
+
+	// order was found
+	fmt.Printf("%#v\n", response)
 }
 ```
 
