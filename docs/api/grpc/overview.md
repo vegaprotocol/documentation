@@ -50,7 +50,7 @@ def list_transfers(rpc_conn, pubkey, direction):
 		direction=direction,
 	)
 
-	r = grpc_conn.ListTransfers(
+	r = rpc_conn.ListTransfers(
 		request,
 	)
 
