@@ -238,7 +238,6 @@ Here's an example:
 persistent_peers = "55b8ac477ddd6c0c9bae411dfa6ebfb46e7b4022@veganodeoperator.com:26656,2d1bbf1229bd7f8e57e89c61346ab6928d61881b@127.0.0.1:26656"
 ```
 
-
 Under `Mempool Configuration Option`, ensure that `broadcast = true`.
 
 ### Update Tendermint genesis
