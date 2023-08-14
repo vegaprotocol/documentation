@@ -2,6 +2,7 @@
 sidebar_position: 2
 title: Positions and margin
 hide_title: false
+vega_network: MAINNET
 description: Dynamic margining maximises collateral usage and market solvency.
 ---
 

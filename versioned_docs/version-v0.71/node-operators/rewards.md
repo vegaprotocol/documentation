@@ -2,6 +2,7 @@
 sidebar_position: 8
 title: Earning validator rewards
 sidebar_label: Validator rewards
+vega_network: MAINNET
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
 

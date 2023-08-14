@@ -105,7 +105,7 @@ export default function NetworkParameter (props) {
         className={`networkparameter networkparameter--${type}`}
         title={`Network parameter '${props.param}' is '${value}'`}
       >
-        <span className='networkparametericon'>👀</span>
+        <span className='networkparametericon'>🔗</span>
         {hideName ? null : <span className='networkparametername'>{name}</span>}
         {hideName || hideValue ? '' : ': '}
         {hideValue

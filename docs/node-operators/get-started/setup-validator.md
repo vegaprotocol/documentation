@@ -238,7 +238,6 @@ Here's an example:
 persistent_peers = "55b8ac477ddd6c0c9bae411dfa6ebfb46e7b4022@veganodeoperator.com:26656,2d1bbf1229bd7f8e57e89c61346ab6928d61881b@127.0.0.1:26656"
 ```
 
-
 Under `Mempool Configuration Option`, ensure that `broadcast = true`.
 
 ### Update Tendermint genesis
@@ -296,9 +295,11 @@ The tokens that you want to use for self-staking must be available on an Ethereu
 
 You can do this by [importing the Vega Wallet](../../tools/vega-wallet/cli-wallet/latest/guides/restore-wallet) you created for your node wallet, onto your local computer using the Vega Wallet recovery phrase.
 
-Once you have tokens, connect your Ethereum wallet and your Vega Wallet, and associate the tokens to your Vega public key using the [governance dApp ↗](https://governance.fairground.wtf/validators). Below, you'll self-nominate (self-stake) to your node.
+Once you have tokens, connect your Ethereum wallet and your Vega Wallet, and associate the tokens to your Vega public key using the [governance dApp ↗](https://governance.fairground.wtf/validators). 
 
 The association will need to be confirmed by both the Ethereum and Vega blockchains, and may take some time.
+
+Below are the instructions to self-nominate (self-stake) to your node.
 
 ## Announce node on-chain
 You'll need to know the [current epoch ↗](https://governance.fairground.wtf/validators), and have the following data to hand: the URL for your validator website, and the URL for the avatar that will show up on the governance dApp next to your node name.
@@ -310,16 +311,18 @@ vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" 
 Setting the optional argument `--submitter-address` triggers the Vega network to automatically issue signature bundles that can be used to update signer set changes on the Multisig Control contract. This means if your node is promoted to a consensus validator it is easier for you to add your node's Ethereum key to the contract and to continue receiving rewards. See [maintaining the multisig contract](../how-to/maintain-multisig-contract.md) for more information.
 
 ## Nominate your node
-To move on to self-staking, wait until you see your node on the validator list by querying the API or checking the [governance dApp ↗](https://governance.fairground.wtf/validators).
+To move on to self-staking, wait until you see your node on the validator list by [querying the API](../../api/rest/data-v2/trading-data-service-list-nodes.api.mdx).
 
-Then, associate your tokens and nominate your node using the [governance dApp ↗](https://governance.fairground.wtf/validators) or by interacting directly with the smart contract.
+Then, associate your tokens and nominate your node using the governance dApp: `https://governance.fairground.wtf/validators/<NODE'S_VEGA_PUBKEY>`. Alternatively you can interact directly with the smart contract.
+
+Your node will be visible on the governance dApp in the epoch after you self-stake.
 
 ## Forwarding Ethereum events
 Once your node is up and running, you'll need to maintain it, and ensure that it continues to take part in the network.
 
-Every time a method is called successfully on the smart contracts, for example a deposit on the collateral bridge, an event is emitted by the smart contract. Your validator node will need to be monitoring all blocks created by Ethereum and look for these events, and be ready to forward them to the Vega chain if selected.
+Every time a method is called successfully on the smart contracts, an event is emitted by the smart contract. One example is a deposit on the collateral bridge. Your validator node will need to monitor all blocks created by Ethereum and look for these events, and be ready to forward them to the Vega chain if selected.
 
-For your node to be eligible for promotion, it will need to forward a number of those Ethereum events. The number is set by a network parameter, with a value of <NetworkParameter frontMatter={frontMatter} param="network.validators.minimumEthereumEventsForNewValidator" />.
+For your node to be eligible for promotion, it will need to forward <NetworkParameter frontMatter={frontMatter} param="network.validators.minimumEthereumEventsForNewValidator" hideName={true} /> of those Ethereum events. The number is set by a network parameter.
 
 ## Announce node off-chain
 [Create a validator profile on the forum ↗](https://community.vega.xyz/c/mainnet-validator-candidates/23) describing the experience you have, security practices and policies, how you will ensure maximum uptime, how you'll meet suitable performance standards, your communication channels for questions and the role you intend to take in Vega's governance.
