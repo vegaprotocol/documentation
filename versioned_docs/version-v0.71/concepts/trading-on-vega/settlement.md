@@ -2,6 +2,7 @@
 sidebar_position: 6
 title: Settlement
 hide_title: false
+vega_network: MAINNET
 description: The automated settlement process is facilitated by the protocol.
 ---
 Vega can be used to create cash-settled futures markets, meaning they are margined and settled in a single asset, as opposed to being settled in the actual (physical) underlying asset.

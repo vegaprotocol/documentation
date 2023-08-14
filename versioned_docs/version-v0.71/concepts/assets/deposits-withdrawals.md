@@ -2,6 +2,7 @@
 sidebar_position: 4
 title: Deposits and withdrawals
 hide_title: false
+vega_network: MAINNET
 description: Deposits and withdrawals go through a bridge contract.
 ---
 

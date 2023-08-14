@@ -2,6 +2,7 @@
 sidebar_position: 1
 title: Trading modes
 hide_title: false
+vega_network: MAINNET
 description: Find out what trading modes the protocol supports.
 ---
 

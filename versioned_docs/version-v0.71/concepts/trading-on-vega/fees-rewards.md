@@ -2,6 +2,7 @@
 sidebar_position: 3
 title: Fees and trading rewards
 hide_title: false
+vega_network: MAINNET
 description: Trades can incur fees as well as get rewards.
 ---
 

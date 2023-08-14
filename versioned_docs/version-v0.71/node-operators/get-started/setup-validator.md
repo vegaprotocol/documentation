@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 title: Set up validator node
+vega_network: MAINNET
 hide_title: false
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';

@@ -2,6 +2,7 @@
 sidebar_position: 7
 title: How to use snapshots
 sidebar_label: Use snapshots
+vega_network: MAINNET
 hide_title: false
 ---
 
