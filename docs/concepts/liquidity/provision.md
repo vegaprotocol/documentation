@@ -34,7 +34,7 @@ Liquidity providers need to have enough available assets to cover the margin for
 ## Liquidity commitments [WIP]
 If you want to provide liquidity and receive a portion of liquidity fees paid, you need to submit a liquidity commitment transaction. The commitment is the amount of stake an LP places as bond on the market, to earn rewards.
 
-You will need enough of the settlement asset to fulfill their orders. 
+You will need enough of the settlement asset to fulfill your orders to meet your commitment. 
 
 **Liquidity providers will need to actively manage their commitment.** 
 
@@ -50,7 +50,9 @@ That is calculated by:
 Once an LP commits to a market, they need to meet the minimum set by the [liquidity SLA] LINK. Exceeding the minimum means they’ll receive more fee revenue.
 
 ## When to commit liquidity
-You can submit the liquidity commit transaction and start putting orders on the book as soon as a market’s governance proposal is submitted and accepted. That means it can be done even before the governance voting period concludes, as well as at any time while the market is trading. 
+You can commit liquidity to a market at any time in the [market's lifecycle](../trading-on-vega/market-lifecycle.md) when it is accepting orders.
+
+It's even possible to submit the liquidity commit transaction and start putting orders on the book as soon as a market’s governance proposal is submitted and accepted. That means it can be done even before the governance voting period concludes, as well as at any time while the market is trading. Doing so will give you a higher equity-like share on the market, which can lead to a higher share of fee revenue.
 
 ### Equity-like share
 By committing liquidity, a liquidity provider gets a share of the market's fees. Liquidity providers who get into a market early benefit from helping to grow the market. Their share of the market, called the equity-like share, allows them to earn a larger share of the market's trading fees than their actual commitment would imply, assuming the trading volume on the market increases with time. This is called an LP’s equity-like share, and it is used to divide fee revenue between LPs.
