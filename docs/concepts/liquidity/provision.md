@@ -12,11 +12,9 @@ LPs who take a bigger risk on newer markets with less liquidity are rewarded for
 
 **[Liquidity fees](rewards-penalties.md#earning-liquidity-fees)** are determined based on the commitments and proposed fee levels chosen by the providers, not by the protocol.
 
-To be eligible to receive a portion of the liquidity fees, you will need to submit a liquidity commitment transaction. It includes the market to provide for, the amount of the market’s settlement asset that will be held as bond, and the proposed fee level.
+To be eligible to receive any liquidity fee revenue, you will need to submit a [liquidity commitment transaction](#liquidity-commitments), and then place orders to support that commitment.
 
-Once an LP commits to a market, they need to have (market.liquidity.slaCompetitionFactor %) of their commitment amount on the order book for (net param % market.liquidity.commitmentMinTimeFraction) of each epoch to receive a portion of the liquidity fees. This is known as the liquidity SLA (sla link) Exceeding that leads to more accrued fees.
-
-It sets a minimum requirement for what percentage of an LP’s liquidity bond is used to provide orders on the book, and for what percentage of an epoch orders need to be on the book.
+Once an LP commits to a market, to receive fee revenue, they need to have (market.liquidity.slaCompetitionFactor %) of their commitment amount on the order book for (net param % market.liquidity.commitmentMinTimeFraction) of each [epoch](../vega-chain/network.md#epochs). These minimums are known as the [liquidity SLA](./rewards-penalties.md#liquidity-sla). Doing better than the SLA leads to more accrued fees.
 
 ## Tactics for providing liquidity
 Providing liquidity can be done using: 
@@ -31,7 +29,8 @@ Anyone that supplies limit orders is eligible to receive maker fees when volume 
 
 Liquidity providers need to have enough available assets to cover the margin for their orders and the positions that will be generated from trades.
 
-## Liquidity commitments [WIP]
+## Liquidity commitments 
+[WIP]
 If you want to provide liquidity and receive a portion of liquidity fees paid, you need to submit a liquidity commitment transaction. The commitment is the amount of stake an LP places as bond on the market, to earn rewards.
 
 You will need enough of the settlement asset to fulfill your orders to meet your commitment. 
@@ -102,7 +101,8 @@ The formula above uses these network parameters:
 [Liquidity mechanics spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0044-LIME-lp_mechanics.md) Explore liquidity calculations in more depth.
 :::
 
-#### Amending and cancelling a liquidity commitment [WIP]
+#### Amending and cancelling a liquidity commitment 
+[WIP]
 You can also amend or cancel a liquidity commitment. You can submit the transaction at any time but when it goes into effect depends on what you’ve changed.
 
 * Increasing a liquidity commitment happens immediately

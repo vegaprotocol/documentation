@@ -37,6 +37,11 @@ These parameters can differ between networks. In other words, the same network p
 * [Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)
 :::
 
+## Epochs
+An epoch is a time period during which network changes, such as changing validator nominations, [liquidity provisions](../liquidity/provision.md#amending-and-cancelling-a-liquidity-commitment), [recurring transfers](../assets/transfers.md#recurring-transfers), and community-funded rewards can be announced and then implemented. Changes that are announced in one epoch will only be executed in the following epoch, or in the epoch nominated for the change, with the exception of ['un-nominate now'](./proof-of-stake#un-nominate-now). 
+
+The length of an epoch is <NetworkParameter frontMatter={frontMatter} param="validators.epoch.length" hideName={true} />, which is set by a network parameter.
+
 ## Network-wide limits
 Some limits have been introduced to the protocol in an aim to keep the overall system performant and responsive, with low-latency. As the system relies on both a lean core and a data node that consumes and provides data, having limits allows the option to somewhat control how many computations and how much data is generated, while also allowing full use of the protocol's functionality. 
 
