@@ -27,8 +27,9 @@ type StopOrder {
   updatedAt: Timestamp
   partyId: ID!
   marketId: ID!
-  trigger: StopOrderTrigger
+  trigger: StopOrderTrigger!
   submission: OrderSubmission!
+  order: Order
 }
 ```
 
@@ -75,12 +76,16 @@ type StopOrder {
 > Market the stop order is for.
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>StopOrder.<b>trigger</b></code>](#)<Bullet />[`StopOrderTrigger`](/testnet/api/graphql/unions/stop-order-trigger) <Badge class="secondary" text="union"/>
+#### [<code style={{ fontWeight: 'normal' }}>StopOrder.<b>trigger</b></code>](#)<Bullet />[`StopOrderTrigger!`](/testnet/api/graphql/unions/stop-order-trigger) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="union"/>
 > Price movement that will trigger the stop order
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>StopOrder.<b>submission</b></code>](#)<Bullet />[`OrderSubmission!`](/testnet/api/graphql/objects/order-submission) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > Order to submit when the stop order is triggered.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StopOrder.<b>order</b></code>](#)<Bullet />[`Order`](/testnet/api/graphql/objects/order) <Badge class="secondary" text="object"/>
+> The order that was created when triggered.
 > 
 
 
