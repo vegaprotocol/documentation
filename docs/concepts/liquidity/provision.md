@@ -30,17 +30,16 @@ Anyone that supplies limit orders is eligible to receive maker fees when volume 
 Liquidity providers need to have enough available assets to cover the margin for their orders and the positions that will be generated from trades.
 
 ## Liquidity commitments 
-[WIP]
 If you want to provide liquidity and receive a portion of liquidity fees paid, you need to submit a liquidity commitment transaction. The commitment is the amount of stake an LP places as bond on the market, to earn rewards.
 
-You will need enough of the settlement asset to fulfill your orders to meet your commitment. 
+You will need enough of the settlement asset to set aside as bond and then to fulfill the orders to meet your commitment. 
 
 **Liquidity providers will need to actively manage their commitment.** 
 
 The commitment transaction needs to contain:
 * Market ID
-* Liquidity fee factor
 * Commitment amount, to be held as [bond](#liquidity-bond)
+* [Liquidity fee factor](../liquidity/rewards-penalties.md#determining-the-liquidity-fee-percentage)
 
 The amount an LP will actually need to have available on the order book is called the ‘liquidity obligation’.
 
@@ -51,7 +50,11 @@ Once an LP commits to a market, they need to meet the minimum set by the [liquid
 ## When to commit liquidity
 You can commit liquidity to a market at any time in the [market's lifecycle](../trading-on-vega/market-lifecycle.md) when it is accepting orders.
 
-It's even possible to submit the liquidity commit transaction and start putting orders on the book as soon as a market’s governance proposal is submitted and accepted. That means it can be done even before the governance voting period concludes, as well as at any time while the market is trading. Doing so will give you a higher equity-like share on the market, which can lead to a higher share of fee revenue.
+**When a market is in opening auction**: It's possible to submit the liquidity commit transaction and start putting orders on the book as soon as a market’s governance proposal is submitted and accepted. That means it can be done even before the governance voting period concludes, as well as at any time while the market is trading. Doing so will give you a higher equity-like share on the market, which can lead to a higher share of fee revenue. 
+
+You'll need to submit your orders from the end of the opening auction.
+
+**When a market is in normal trading**: If you commit once a market is already open for trading, you'll need to submit your orders by the start of the next epoch. SLA performance will be measured from the epoch after the one in which you submitted your liquidity commitment transaction.
 
 ### Equity-like share
 By committing liquidity, a liquidity provider gets a share of the market's fees. Liquidity providers who get into a market early benefit from helping to grow the market. Their share of the market, called the equity-like share, allows them to earn a larger share of the market's trading fees than their actual commitment would imply, assuming the trading volume on the market increases with time. This is called an LP’s equity-like share, and it is used to divide fee revenue between LPs.
@@ -102,8 +105,7 @@ The formula above uses these network parameters:
 :::
 
 #### Amending and cancelling a liquidity commitment 
-[WIP]
-You can also amend or cancel a liquidity commitment. You can submit the transaction at any time but when it goes into effect depends on what you’ve changed.
+You can also amend or cancel a liquidity commitment. You can submit the transaction at any time, but when it goes into effect depends on what you’ve changed.
 
 * Increasing a liquidity commitment happens immediately
 * Decreasing a liquidity commitment only happens at the end of the epoch
@@ -114,3 +116,5 @@ Decreasing or cancelling your liquidity commitment will lead to penalties if the
 Your equity-like share is also reduced in line with a liquidity commitment decrease. 
 
 If there are any open positions that were created from your orders, they will not be closed when your liquidity commitment is cancelled.
+
+The transaction to amend a liquidity commitment includes the same fields as submitting a commitment, just modify the fields you want to be amended with your new values. The cancel transaction only requires the market ID for the market that you want stop committing on.  
