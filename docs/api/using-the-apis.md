@@ -88,7 +88,7 @@ REST is easy to get started with, and Vega supports nearly all the functionality
 **[gRPC](./grpc/overview.md)** provides fast and efficient communication, and supports near real time streaming of updates from Vega.
 
 ### GraphQL for web apps
-**[GraphQL](../api/graphql/overview.md)** is an alternative to REST that can be used to craft more complex queries.
+**[GraphQL](./graphql/overview.md)** is an alternative to REST that can be used to craft more complex queries.
 
 Try out queries and learn the structure with the [GraphQL playground ↗](https://api.testnet.vega.xyz/graphql/)
 
