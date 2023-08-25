@@ -10,6 +10,11 @@ import TabItem from '@theme/TabItem';
 
 A non validator node is similar to a validator node except it does not take part in the consensus process and does not require staking or wallets. It will receive all the same blockchain events as the validator nodes and will process them in the same way but it does not affect how the network runs. The main reason to run a non validator node is to support a data node. It is strongly recommended not to run a data node with a validator node.
 
+## OS and software
+For production use, we recommend using the Linux binary on Ubuntu as this is the platform used by nodes on Fairground, the Vega testnet, and is the most widely tested so far.
+
+See the [infrastructure requirements](../requirements/infrastructure.md) page for a full list of what you need to run various parts of the Vega toolchain.
+
 There are 2 ways to start up a non validator node, the first is to replay the full chain from the start. The second is to use a snapshot from the existing network to jump start the node at a point closer to the current block height. 
 
 ## Starting a node from block 0
@@ -82,7 +87,7 @@ vega start --home=$VEGA_PATH --tendermint-home=$TENDERMINT_PATH --network-url=ht
 ```
 
 ## Using visor to control and upgrade your node
-We strongly recommend using the tool `visor` to start up the vega node as it will transparently take care of upgrading the node as new versions of the software are required. During the replay process, the node will require newer versions of the software athte same block height that the nodes were upgraded previously.
+We strongly recommend using the tool `visor` to start up the vega node as it will transparently take care of upgrading the node as new versions of the software are required. During the replay process, the node will require newer versions of the software at the same block height that the nodes were upgraded previously.
 
 1. Download the latest version of visor from here ([vega](https://github.com/vegaprotocol/vega/releases/)). Unzip it and make sure it is in your command path.
 1. Test it with the command
@@ -110,6 +115,8 @@ name = "genesis"
     socketPath = "/tmp/vega.sock"
     httpPath = "/rpc"
 ```
+
+See the [Visor config documentation](https://github.com/vegaprotocol/vega/blob/develop/visor/visor-config.md) for more details on what you can configure and why.
 
 5. Start the node by running the command
 ```script

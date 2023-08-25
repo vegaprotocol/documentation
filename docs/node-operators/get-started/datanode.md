@@ -13,7 +13,7 @@ A data node gives the users a way to query the state of the network and included
 A data node can be started in 2 ways, first it can be connected to a node which is replaying the chain from block 0. Secondly it can connect to a node which is starting from a specific snapshot in the chains history. The advantage of performing a full replay of the chain is that the data node can contain all historic information from the beginning of chain, however it takes a considerable amount of time to replay and process the chain. As a rough estimate it can take around 1 full day to replay the blocks generated over a 2 month period. The advantage of the second option is that the data node can be started up very quickly to allow clients to access the current live information within an hour but the historic information will not be available.
 
 # Running the backend database
-The data node relies on the postgres database with a timescaledb plugin to hold all it's information. The easiest way to run this is using docker. Here is an example script that will start up the database in a way we can use it
+The data node relies on the postgres database with a timescaledb plugin to hold all it's information. The easiest way to run this is using docker. Here is an example script that will start up the database in a way we can use it. We currently support Postgres 14 and TimescaleDB 2.8.0.
 
 ```script
 docker run -d \
@@ -31,7 +31,7 @@ docker run -d \
         -c "huge_pages=off" \
         -c "shared_memory_type=sysv" \
         -c "dynamic_shared_memory_type=sysv" \
-        -c "shared_buffers=256MB" \
+        -c "shared_buffers=2GB" \
         -c "temp_buffers=5MB"
 ```
 Make sure this is working correctly before continuing with the later steps.
@@ -45,7 +45,92 @@ Type "help" for help.
 vega=#
 ```
 
+The `POSTGRES_?` values set above need to match with the values specified in the data node configuration file. If you want to change from the default values above, make sure you update the values in both places.
 
+# PostgreSQL configuration tuning (optional)
+The default PostgreSQL configuration is not optimised for memory usage, and can be modified.
+
+Find the PostgreSQL parameters in the `postgresq.conf` file. The default file path for Linux and PostgreSQL 14 is: `/etc/postgresql/14/main/postgresql.conf`.
+
+:::note Memory usage
+Total memory usage for PostgreSQL is predictable. To determine the values of the parameters below, you must know how PostgreSQL uses the memory.
+There is a `shared_memory` that is used between all connections and background workers.
+
+Each background worker and connection has its own smaller chunk of memory:
+
+- `work_mem` - memory available for the query buffers in the connection session.
+- `temp_buffers` - memory available for accessing temporary tables by the connection session.
+
+You can assume that `Max RAM` utilisation can be rounded to: `shared_buffer + (temp_buffers + work_mem) * max_connections`.
+:::
+
+The suggested parameters are below.
+
+#### Max connections
+
+New value:
+
+```conf
+max_connections = 50
+```
+
+Limiting the maximum number of connections reduces the memory usage by PostgreSQL.
+
+#### Huge pages
+
+New value:
+
+```conf
+huge_pages = off
+```
+
+The default value of the `huge_pages` config is `try`. Setting it to `off` usually reduces the RAM usage, however, it increases the CPU usage on the machine.
+
+#### Work mem
+
+New value:
+
+```conf
+work_mem = 5MB
+```
+
+#### Temp buffers
+
+New value:
+
+```conf
+temp_buffers = 5MB
+```
+
+#### Shared buffers
+
+New value:
+
+```conf
+shared_buffers = 2GB
+```
+
+This value should be set to 25% of your server’s physical memory. The 2GB value would work for a server with 8GB physical memory.
+
+#### Dynamic shared memory type
+
+New value:
+
+```conf
+dynamic_shared_memory_type = sysv
+```
+
+#### Shared memory type
+
+New value:
+
+```conf
+shared_memory_type = sysv
+```
+
+The two above parameters determine how your operating system manages the shared memory.
+
+If your operating system supports the POSIX standard, you may want to use the `map` value both for the `dynamic_shared_memory_type` and `shared_memory_type`. But the `sysv` value is more portable than `map`. There is no significant difference in [performance ↗](https://lists.dragonflybsd.org/pipermail/kernel/attachments/20120913/317c1aab/attachment-0001.pdf).
 
 
 ## Starting a data node from block 0
@@ -57,6 +142,10 @@ If a data node is going to be started from block zero, the non validator node mu
 ```
 vega datanode init --home=$DATANODE_PATH "vega-mainnet-0011" --archive
 ```
+
+We have three retention policies that can be set during the init process. `--archive` as used above will retain everything. FOr details about the other settings please see the section below about retention policies.
+
+
 3. Start the data node
 ```
 vega datanode start --home=/vega/datanode
@@ -114,3 +203,60 @@ Many administrators prefer to use a tool called `certbot` for generating and sig
 * Place the generated `fullchain.pem` into the `Gateway.CertificateFile` location and corresponding `privkey.pem` to `Gateway.KeyFile`.
 
 **It is a hard requirement of the `LetsEncrypt` validation process that the tool answering its challenge is running on the standard HTTP/HTTPS ports(80, 443). Therefore if you are running behind a firewall you should port forward 80+443 to the machine generating the certificate for the duration of the creation process** 
+
+## Data node retention profiles
+When starting a data node, you can choose the data retention configuration for your data node, depending on the use case for the node. The retention policy details can all be fine-tuned manually, as well.
+
+There are 3 retention policy configurations:
+* **Standard (default)**: The node retains data according to the default retention policies, which assume a data node retains some data over time, but not all data
+* **Lite**: The node retains enough data to be able to provide the latest state to clients, and produce network history segments. This mode saves enough to provide the current state of accounts, assets, balances, delegations, liquidity provisions, live orders, margin levels, markets, network limits, network parameters, node details, parties, positions
+* **Archive**: The node retains all data
+
+To run a node that doesn't use the standard default retention, use one of the following flags when running the `init` command:
+
+* For a standard node, no flag
+* For an archive node, use `--archive`
+* For a lite node, use `--lite`
+
+If you want to tweak the retention policy once the initial configuration has been generated, set it on per-table basis in the data node's `config.toml`.
+
+For example:
+
+```toml
+[[SQLStore.RetentionPolicies]]
+  HypertableOrCaggName = "balances"
+  DataRetentionPeriod = "7 days"
+```
+
+Additionally, you can set the chunk interval for Timescale hypertables that are used to store historical data. Default values are chosen by Vega and are applied when the database migrations are run. The chunk interval determines how much data is stored in each chunk and affects the amount of RAM used by the database, as recent chunks are kept in memory in order to make querying faster. To change the chunk interval, set it on a per-table basis in the data node's `config.toml`.
+
+For example:
+
+```toml
+[[SQLStore.ChunkIntervals]]
+  HypertableName = "orders"
+  ChunkInterval = "2 hours"
+```
+
+Additionally, you can set the chunk interval for Timescale hypertables that are used to store historical data. Default values are chosen by Vega and are applied when the database migrations are run. The chunk interval determines how much data is stored in each chunk and affects the amount of RAM used by the database, as recent chunks are kept in memory in order to make querying faster. To change the chunk interval, set it on a per-table basis in the data node's `config.toml`.
+
+For example:
+
+```toml
+[[SQLStore.ChunkIntervals]]
+  HypertableName = "orders"
+  ChunkInterval = "2 hours"
+```
+
+## Resetting the data node
+:::warning
+Running the following command will remove all data from the data node and is not recoverable.
+:::
+
+To reset the data node and remove all data, execute the command:
+
+```shell
+vega datanode unsafe_reset_all
+```
+
+After this is done  you can repopulate the data node by replaying the chain or by initialising it from network history.
