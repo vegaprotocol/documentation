@@ -18,5 +18,10 @@ Before upgrading your node software, review the **[changelog](https://github.com
 ## Upgrade steps
 To upgrade the network follow the [protocol upgrade procedure documentation](../how-to/upgrade-network.md).
 
+:::warning Long data-node migration
+
+We have a long migration on the current upgrade. It may take up to 1 hour to run all the migrations - tested on 8vCPU 32 GB RAM, SSD disk.
+:::
+
 ## Common issues
 When you are having some issues, please refer to the [frequent problems in our documentation](../how-to/solve-frequent-issues.md)
