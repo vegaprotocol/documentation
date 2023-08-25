@@ -61,7 +61,7 @@ Example:
 vega protocol_upgrade_proposal \
 	--home /home/vega/vega_home \
 	--passphrase-file /home/vega/vega_home/nodewallet_passphrase.txt \
-	--vega-release-tag v0.99.0 \
+	--vega-release-tag v0.72.11 \
 	--height 1034000 \
 	--output "json"
 ```
@@ -88,19 +88,19 @@ Track changes in the configuration between versions in the upgrading readme: [Co
 
 You can skip this step if:
 * You are not using Vega Visor (go to step 2.3)
-* Your node has internet access (Vega Visor will do this step)
+* Your node has internet access and the `autoInstall.enabled = true `(Vega Visor will do this step)
 
-If your node does **not** have internet access and you are using Visor, do the following:
+If your node does **not** have internet access or the `autoInstall` is **disabled** and you are using Visor, do the following:
 
-1. Create the new version folder in the `<VEGA-VISOR-HOME>`, e.g., for version `v0.72.5`, run the following command: `mkdir -p <VEGA-VISOR-HOME>/v0.72.5`.
+1. Create the new version folder in the `<VEGA-VISOR-HOME>`, e.g., for version `v0.72.11`, run the following command: `mkdir -p <VEGA-VISOR-HOME>/v0.72.11`.
 2. Download the new version of the Vega binary from the [releases page ↗](https://github.com/vegaprotocol/vega/releases)
-3. Unzip the downloaded binary into the created directory, e.g. `<VEGA-VISOR-HOME>/v0.72.5/vega` binary
-4. Create the run configuration and put it in the created directory, e.g. `<VEGA-VISOR-HOME>/v0.72.5/run-config.toml` run config file (see example below)
+3. Unzip the downloaded binary into the created directory, e.g. `<VEGA-VISOR-HOME>/v0.72.11/vega` binary
+4. Create the run configuration and put it in the created directory, e.g. `<VEGA-VISOR-HOME>/v0.72.11/run-config.toml` run config file (see example below)
 
 Example config for the new version with Visor:
 
 ```toml
-name = "v0.72.5"
+name = "v0.72.11"
 
 [vega]
   [vega.binary]
@@ -115,7 +115,7 @@ name = "v0.72.5"
     socketPath = "<SOCKET-FOLDER-PATH>/vega.sock"
     httpPath = "/rpc"
 
-# skip the following if you do not run a data node ```
+# skip the following if you do not run a data node
 [data_node]
   [data_node.binary]
     path = "vega"
@@ -131,6 +131,8 @@ Check the following parameters.
 - `vega.binary.path` - It may be an absolute path or a relative (to config folder) path. Change that path when you have unzipped the new binary into a different folder.
 - `--nodewallet-passphrase-file` flag - Check if the path is correct for your node wallet passphrase.
 - `vega.rpc.socketPath` - Make sure the path to the Vega Unix sock is correct and matches the one in the Vega config.
+
+**Hint:** It's good practice to copy config from previous version, for example when you are upgrading the network from `v0.71.6` to `v0.72.11`, you can copy the run-config from `<VEGA-VISOR-HOME>/v0.71.6/run-config.toml` to `<VEGA-VISOR-HOME>/v0.72.11/run-config.toml`, then make sure you have correct binary version in your new folder.
 
 Once you have performed steps `2.1 Prepare network configuration (all)` and `2.2 Prepare Visor configuration, if using Visor`, you don't have to do anything else. Visor will automatically restart the node once the core and data node (if you run one) report they are ready for the protocol upgrade.
 
