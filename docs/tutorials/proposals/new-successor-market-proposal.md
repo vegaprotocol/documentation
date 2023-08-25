@@ -30,16 +30,19 @@ You will need:
 * Familiarity with [successor market governance](../../concepts/governance.md#propose-a-successor-market) on Vega
 
 ## Anatomy of a new successor market proposal
-The new successor market proposal requires the same fields as a new market proposal, with the addition of two fields described below. See the descriptions in the [new market proposal tutorial](new-market-proposal.md#anatomy-of-a-market-proposal) for more on each field.
+The new successor market proposal requires the same fields as a new market proposal, with the addition of two fields described below. 
 
-The settlement asset must match that of the parent market.
+See the [new market proposal tutorial](new-market-proposal.md#anatomy-of-a-market-proposal) for what each field accepts and needs to contain.
+
+* Settlement asset must match that of the parent market.
+* Instrument name and code should be different to the parent market.
 
 ### Successor market fields
-
 The following `successor` parameters need to be used if you are proposing a market that will succeed an existing market. A successor market that passes governance and is enacted will take the LPs' equity-like share from the parent market, and whatever percentage of the insurance market you choose in the proposal.
 
 * Parent market ID: Required to define the proposal as for a successor market
 * Insurance pool fraction: Required percentage of the parent market's insurance pool, up to 100%, can be earmarked for transfer to the successor market. It is submitted as a number between and including 0 and 1, which represents the factor for the percentage.
+
 
 ## Templates and submitting
 In the tabs below you'll see:
