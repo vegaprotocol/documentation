@@ -1,6 +1,6 @@
 ---
-sidebar_position: 4
-title: Set up a data node
+sidebar_position: 5
+title: Set up a data node (old)
 hide_title: false
 ---
 import Tabs from '@theme/Tabs';

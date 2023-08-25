@@ -1,3 +1,11 @@
+---
+sidebar_position: 3
+title: Set up a non validator
+hide_title: false
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Running a non validator node
 
 A non validator node is similar to a validator node except it does not take part in the consensus process and does not require staking or wallets. It will receive all the same blockchain events as the validator nodes and will process them in the same way but it does not affect how the network runs. The main reason to run a non validator node is to support a data node. It is strongly recommended not to run a data node with a validator node.

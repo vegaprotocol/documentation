@@ -1,3 +1,11 @@
+---
+sidebar_position: 4
+title: Set up data node
+hide_title: false
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Running a data node
 
 A data node gives the users a way to query the state of the network and included historic information about the objects over the lifetime of the blockchain. A data node connects to a non validator node and receives a stream of events as state is altered in the node. The data node stores these events and uses them to generate rich information which can be queried via APIs.
