@@ -66,7 +66,7 @@ If network history is to be used to get the current state of the data node, we n
 vega datanode init --home=$DATANODE_PATH "vega-mainnet-0011" --archive
 ```
 3. Edit the data node configuration file at $DATANODE_PATH/config/data-node/config.toml and set `AutoInitialiseFromNetworkHistory` = true
-4. Find out the list of network history bootstrap nodes by going to a URL like this (https://api.vega.community/api/v2/networkhistory/bootstrap)
+4. Find out the list of network history bootstrap nodes by going to a URL like this ([bootstrap nodes](https://api.vega.community/api/v2/networkhistory/bootstrap))
 5. Paste the list into the section [NetworkHistory]->[NetworkHistory.Store]->BootstrapPeers
 6. Start the data node
 ```
