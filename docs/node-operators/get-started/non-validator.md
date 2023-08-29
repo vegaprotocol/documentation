@@ -35,20 +35,29 @@ Vega CLI v0.71.4 (8e5767b20902097c79e8c846cf37f2b5d01dbff8)
 3. Initialise the node 
 
 ```
-vega init --home=$VEGA_PATH --tendermint-home=$TENDERMINT_PATH full
+vega init --home=$YOUR_VEGA_HOME_PATH --tendermint-home=$YOUR_TENDERMINT_HOME_PATH full
 ```
 
 This creates a set of configuration files which we now need to alter for our specific instance.
 
-3. Edit the file $TENDERMINT_PATH/config/config.toml and find the RPC address located in the configuration point [rpc]->laddr
-1. Use this value to update the address in the file $VEGA_PATH/config/node/config.toml [Blockchain.tendermint]->RPCAddr
+4. Edit the file $YOUR_TENDERMINT_HOME_PATH/config/config.toml and find the RPC address located in the configuration point [rpc]->laddr
+1. Use this value to update the address in the file $YOUR_VEGA_HOME_PATH/config/node/config.toml
+```toml
+ [Blockchain.tendermint]
+    RPCAddr = <RPC address>
+```
 1. Build a list of tendermint peers by loading the file located at ([peers](https://github.com/vegaprotocol/ansible/blob/master/inventories/mainnet.yaml)) and copying all the values under the `tendermint_extra_peers` section into a comma seperated list.
-1. Open the config file $TENDERMINT_PATH/config/config.toml and update the value `persistent_peers` with the list created above
-1. Set the option [p2p]->max_packet_msg_payload_size=16384
-1. Set the option [Mempool Configuration Option]->broadcast = true
+1. Open the config file $YOUR_TENDERMINT_HOME_PATH/config/config.toml and update the value `persistent_peers` with the list created above
+1. Set the following options
+```toml
+  [p2p]
+    max_packet_msg_payload_size=16384
+  [Mempool Configuration Option]
+    broadcast = true
+``` 
 1. Now start the core with the command
 ```script
-vega start --home=$VEGA_PATH --tendermint-home=$TENDERMINT_PATH --network-url=https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/genesis.json
+vega start --home=$YOUR_VEGA_HOME_PATH --tendermint-home=$YOUR_TENDERMINT_HOME_PATH --network-url=https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/genesis.json
 ```
 
 
@@ -65,25 +74,35 @@ Vega CLI v0.71.6 (7a23f5e2f0fb4981c8318253142e2e23e3aa4f7c)
 4. Initialise the node 
 
 ```script
-vega init --home=$VEGA_PATH --tendermint-home=$TENDERMINT_PATH full
+vega init --home=$YOUR_VEGA_HOME_PATH --tendermint-home=$YOUR_TENDERMINT_HOME_PATH full
 ```
 
 This creates a set of configuration files which we now need to alter for our specific instance.
 
-5. Edit the file $TENDERMINT_PATH/config/config.toml and find the RPC address located in the configuration point [rpc]->laddr
-1. Use this value to update the address in the file $VEGA_PATH/config/node/config.toml [Blockchain.tendermint].RPCAddr
+5. Edit the file $YOUR_TENDERMINT_HOME_PATH/config/config.toml and find the RPC address located in the configuration point [rpc]->laddr
+1. Use this value to update the address in the file $VEGA_PATH/config/node/config.toml
+```toml
+  [Blockchain.tendermint]
+    RPCAddr = <RPC address>
+```
 1. Build a list of tendermint peers by loading the file located at ([peers](https://github.com/vegaprotocol/ansible/blob/master/inventories/mainnet.yaml)) and copying all the values under the `tendermint_extra_peers` section into a comma seperated list.
 1. Open the config file $TENDERMINT_PATH/config/config.toml and update the value [p2p]->persistent_peers with the list created above
-1. Set [p2p]->max_packet_msg_payload_size=16384
-1. Set [Mempool Configuration Option]->broadcast = true
-1. Set [statesync]->enable = true
-1. Set [statesync]->trust_height = blockHeight from step 1
-1. Set [statesync]->trust_hash = Blockhash from step 1
-1. Set [statesync]->rpc_servers = "m3.vega.community:26657,api1.vega.community:26657"
+1. Set the following values
+```toml
+  [p2p]
+    max_packet_msg_payload_size=16384
+  [Mempool Configuration Option]
+    broadcast = true
+  [statesync]
+    enable = true
+    trust_height = blockHeight from step 1
+    trust_hash = Blockhash from step 1
+    rpc_servers = "m3.vega.community:26657,api1.vega.community:26657"
+```
 
 1. Now start the core with the command
 ```script
-vega start --home=$VEGA_PATH --tendermint-home=$TENDERMINT_PATH --network-url=https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/genesis.json
+vega start --home=$YOUR_VEGA_HOME_PATH --tendermint-home=$YOUR_TENDERMINT_HOME_PATH --network-url=https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/genesis.json
 ```
 
 ## Using visor to control and upgrade your node
@@ -97,9 +116,9 @@ Vega Visor CLI v0.72.10 (26afd41a2fe4cb20f3fffeae0d4cfe523fc35614)
 ```
 3.  Initialise visor
 ```script
-visor init --home=$VISOR_PATH
+visor init --home=$YOUR_VISOR_HOME_PATH
 ```
-4. Edit the file $VISOR_PATH/genesis/run-config.toml
+4. Edit the file $YOUR_VISOR_HOME_PATH/genesis/run-config.toml
 
 ```toml
 name = "genesis"
@@ -109,7 +128,7 @@ name = "genesis"
     path = "vega"
     args = ["start",
             "--home=$VEGA_PATH",
-            "--tendermint-home=$TENDERMINT_PATH",
+            "--tendermint-home=$YOUR_TENDERMINT_HOME_PATH",
             "--network-url=https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/genesis.json"]
   [vega.rpc]
     socketPath = "/tmp/vega.sock"
@@ -120,6 +139,6 @@ See the [Visor config documentation](https://github.com/vegaprotocol/vega/blob/d
 
 5. Start the node by running the command
 ```script
-visor --home=$VISOR_PATH run
+visor --home=$YOUR_VISOR_HOME_PATH run
 ```
 
