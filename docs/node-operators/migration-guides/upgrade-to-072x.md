@@ -16,23 +16,23 @@ This guide is specifically intended for those who are already running a validato
 Before upgrading your node software, review the **[changelogs](https://github.com/vegaprotocol/vega/blob/release/v0.72.x/CHANGELOG.md)** for a list of breaking API changes for each version compared to the previously released version.
 
 ## Upgrade steps
-To upgrade the network follow the [protocol upgrade documentation](../how-to/upgrade-network.md).
 
-### Timeout config changes
-You will need to update the timeout defaults for this release.
+1. You will need to update the timeout defaults for this release. This will allow the nodes more time to upgrade before timing out.
 
-If using Visor change the following config:
+a. If using Visor change the following config to:
 
 ```
-maxNumberOfFirstConnectionRetries = 10
+maxNumberOfFirstConnectionRetries = 43200
 ```
 
-For your core node, change:
+b. For your core node, change the config to:
 
 ```
 [Broker.Socket]
-  DialTimeout = "2m0s"
+  DialTimeout = "24h0m0s"
 ```
+
+2. To upgrade the network follow the [protocol upgrade documentation](../how-to/upgrade-network.md).
 
 :::warning Long data-node migration
 
