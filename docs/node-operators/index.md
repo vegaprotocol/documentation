@@ -19,11 +19,10 @@ You must be able to handle and act on technical issues with your node. Being a v
 <!--**[Validator node overview](/docs/testnet/concepts/vega-chain#validator-nodes)**: Before beginning the process, learn how nodes work on Vega. Explore the different types of validator nodes that run a Vega network, how they're chosen, and what impact their scores have on their status.-->
 
 ## Getting started
-Setting up and running a validator can be broken down into three parts:
+Setting up and running a validator can be broken down into these parts:
 
-1. [Setting up the server and building the software](./get-started/setup-server.md)
-2. [Configuring the components](./get-started/setup-validator.md)
-3. [Joining the network and the validator set](./get-started/setup-validator.md#synchronise-your-node)
+1. [Configuring the components](./get-started/setup-validator.md)
+2. [Joining the network and the validator set](./get-started/setup-validator.md#synchronise-your-node)
 
 ## Maintaining your node
 To keep your node and its related components functioning and up-to-date, refer to the how-tos below.
