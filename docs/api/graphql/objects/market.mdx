@@ -60,6 +60,9 @@ type Market {
   lpPriceRange: String!
   linearSlippageFactor: String!
   quadraticSlippageFactor: String!
+  parentMarketID: ID
+  insurancePoolFraction: String
+  successorMarketID: ID
 }
 ```
 
@@ -219,6 +222,19 @@ duration and optionally a minimum traded volume).
 > Quadratic slippage factor is used to cap the slippage component of maintainence margin - it is applied to the square of the slippage volume
 > 
 
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>parentMarketID</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> Optional: Parent market ID. A market can be a successor to another market. If this market is a successor to a previous market,
+this field will be populated with the ID of the previous market.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>insurancePoolFraction</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> Optional: When a successor market is created, a fraction of the parent market's insurance pool can be transferred to the successor market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>successorMarketID</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> Optional: Market ID of the successor to this market if one exists
+> 
+
 
 
 ### Returned by
@@ -227,7 +243,7 @@ duration and optionally a minimum traded volume).
 
 ### Member of
 
-[`AccountBalance`](/testnet/api/graphql/objects/account-balance)  <Badge class="secondary" text="object"/><Bullet />[`AccountEvent`](/testnet/api/graphql/objects/account-event)  <Badge class="secondary" text="object"/><Bullet />[`Entities`](/testnet/api/graphql/objects/entities)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProvision`](/testnet/api/graphql/objects/liquidity-provision)  <Badge class="secondary" text="object"/><Bullet />[`MarginLevels`](/testnet/api/graphql/objects/margin-levels)  <Badge class="secondary" text="object"/><Bullet />[`MarketData`](/testnet/api/graphql/objects/market-data)  <Badge class="secondary" text="object"/><Bullet />[`MarketDepth`](/testnet/api/graphql/objects/market-depth)  <Badge class="secondary" text="object"/><Bullet />[`MarketDepthUpdate`](/testnet/api/graphql/objects/market-depth-update)  <Badge class="secondary" text="object"/><Bullet />[`MarketEdge`](/testnet/api/graphql/objects/market-edge)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/testnet/api/graphql/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`Position`](/testnet/api/graphql/objects/position)  <Badge class="secondary" text="object"/><Bullet />[`Trade`](/testnet/api/graphql/objects/trade)  <Badge class="secondary" text="object"/>
+[`AccountBalance`](/testnet/api/graphql/objects/account-balance)  <Badge class="secondary" text="object"/><Bullet />[`AccountEvent`](/testnet/api/graphql/objects/account-event)  <Badge class="secondary" text="object"/><Bullet />[`Entities`](/testnet/api/graphql/objects/entities)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProvision`](/testnet/api/graphql/objects/liquidity-provision)  <Badge class="secondary" text="object"/><Bullet />[`MarginLevels`](/testnet/api/graphql/objects/margin-levels)  <Badge class="secondary" text="object"/><Bullet />[`MarketData`](/testnet/api/graphql/objects/market-data)  <Badge class="secondary" text="object"/><Bullet />[`MarketDepth`](/testnet/api/graphql/objects/market-depth)  <Badge class="secondary" text="object"/><Bullet />[`MarketDepthUpdate`](/testnet/api/graphql/objects/market-depth-update)  <Badge class="secondary" text="object"/><Bullet />[`MarketEdge`](/testnet/api/graphql/objects/market-edge)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/testnet/api/graphql/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`Position`](/testnet/api/graphql/objects/position)  <Badge class="secondary" text="object"/><Bullet />[`SuccessorMarket`](/testnet/api/graphql/objects/successor-market)  <Badge class="secondary" text="object"/><Bullet />[`Trade`](/testnet/api/graphql/objects/trade)  <Badge class="secondary" text="object"/>
 
 
 

@@ -141,3 +141,22 @@ The data can be broadcast at any and all points, but if the market isn't looking
 :::tip Try it out
 The **[submitting data and configuring markets](./../../tutorials/using-data-sources.md)** guide describes how to encode oracle data and configure a market to use it. 
 :::
+
+### Submitting a verified settlement price
+You can set up a market so that it has no settlement price and can be updated via governance with a settlement price after the market terminates. This requires using a [signed JSON message](#signed-json-message).
+
+This allows a market's settlement price to be based on the actual price from a verified data source at the time of the market's termination, and gives the community and the market's liquidity providers the opportunity to vote on the governance proposal that sets the settlement price. 
+
+To do this, the market proposer will need to do the following steps throughout the market's lifecycle. 
+
+1. Set the data source parameters in the [new market proposal](../../tutorials/proposals/new-market-proposal.md#submitting-a-verified-settlement-price) to supply the Vega public key of the user who will submit the verified price at termination.
+
+2. Set the settlement price required to be both more than 0 and less than 0, which will mean no settlement price will be accepted without an update to the market.
+
+3. If the new market proposal passes governance and then enters into continuous trading, wait for it to reach its termination date.
+
+4. After the market has terminated, update the price by submitting an [update market proposal](../../tutorials/proposals/update-market-proposal.md#submitting-a-verified-settlement-price) with the verified price. 
+
+5. Once that update market governance proposal has passed and been enacted, the user with the public key in the market proposal will need to send the [signed JSON message with the settlement price](../../tutorials/using-data-sources.md#1-define-your-json-structure).
+
+For more details on how to accomplish each step, follow the linked tutorials.

@@ -41,7 +41,7 @@ A market's risk model can be used to obtain the price distribution at a future p
 Note: A market's risk model is defined within the market proposal.
 
 ### Price monitoring triggers
-Each market has a set of price monitoring triggers. When those points are breached, the market will enter a price monitoring auction. Price monitoring triggers are defined in a market's proposal, and a governance proposal to change them can be raised and voted on by tokenholders.
+Each market has a set of price monitoring triggers. When those points are breached, the market will enter a price monitoring auction. Price monitoring triggers are defined in a market's proposal, and a governance proposal to change them can be raised and voted on by tokenholders. Each market can have a maximum of 5 sets of price monitoring triggers for a market.
 
 Each trigger contains:
 * *Horizon*: Time horizon of the price projection in seconds
@@ -152,7 +152,7 @@ distribute_amount[trader] = mtm_gain[trader] * ( actual_collected_amount / targe
 ### Insurance pools
 Each market has its own insurance pool, and each asset has its own general insurance pool. Insurance pools are available in case there are unreasonable market events, and traders are closed out and unable to cover their losses.
 
-When a market expires, the funds from that market's insurance pool go into a bigger asset insurance pool, which other markets that use the same settlement asset can pull from. 
+When a market expires, the funds from that market's insurance pool go into a bigger asset insurance pool, which other markets that use the same settlement asset can pull from. However, in a successor market proposal, a portion of a market's insurance pool can be earmarked for transfer to the successor market.
 
 Insurance pools grow in two scenarios:
 * If a trader is closed out because they do not have enough collateral to support an open positions

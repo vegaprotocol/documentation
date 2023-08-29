@@ -820,4 +820,9 @@ module.exports = {
   generateSettlementDataSourceSpec,
   produceOverview,
   produceInstrument,
+  generateInstrument,
+  generateMetadata,
+  generatePriceMonitoringParameters,
+  generateLiquidityMonitoringParameters,
+  generateRiskModel
 };

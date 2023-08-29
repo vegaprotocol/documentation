@@ -1,14 +1,14 @@
 ---
 sidebar_position: 10
-title: Maintain the Multisig contract
-sidebar_label: Maintain Multisig contract
+title: Maintain the multisig contract
+sidebar_label: Maintain multisig contract
 hide_title: false
-vega_network: TESTNET
+vega_network: MAINNET
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import EthAddresses from '@site/src/components/EthAddresses';
-
+import NetworkParameter from '@site/src/components/NetworkParameter';
 
 The [Multisig Control](../../api/bridge/interfaces/IMultisigControl.md) contract contains a set of signers whose signatures are required to complete actions on the Ethereum bridge. The set of signers on the contract should match the set of consensus validators in the network. As validators join or leave the network and the set of consensus validators on the Vega network changes, the signer set on the Multisig Control contract must be updated alongside those changes to maintain the security of the bridge.
 

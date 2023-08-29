@@ -58,7 +58,9 @@ In the example below, there are 3 liquidity providers all bidding for their chos
 </details>
 
 ### How liquidity fees are split
-By committing liquidity, a liquidity provider gets a share of the market's fees that depends on how trading has grown on the market. This is known as the equity-like share. Liquidity providers who get into a market early benefit from helping to grow the market by earning a larger share of the market's trading fees than their actual commitment would imply.
+By committing liquidity, a liquidity provider gets a share of the market's fees that depends on how trading has grown on the market. This is known as the **equity-like share**. Liquidity providers who get into a market early benefit from helping to grow the market by earning a larger share of the market's trading fees than their actual commitment would imply. 
+
+Once a liquidity provider has equity-like share of a market, that provider will also have the same equity-like share on a successor market to that parent market, though they will need to provide liquidity to that successor market, while it's [pending](../trading-on-vega/market-lifecycle.md#market-status-pending), to keep equity-like share. The equity-like share for a successor market is calculated using the difference between the physical stake present on the parent market and the stake committed to the successor market.
 
 The market's liquidity fee and the trading volume determine how big the liquidity fee pool is. A provider's equity-like share of the market and their liquidity score determine how that pool is distributed.
 

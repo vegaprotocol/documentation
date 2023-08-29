@@ -12,7 +12,7 @@ const explorerUrl = {
 const factor = Math.pow(10, 18)
 const formatters = {
   governanceToken: (value) => parseInt(value) / factor,
-  percent: (value) => `${value * 100}%`
+  percent: (value) => `${Math.round(value * 100)}%`
 }
 
 /**
@@ -105,7 +105,7 @@ export default function NetworkParameter (props) {
         className={`networkparameter networkparameter--${type}`}
         title={`Network parameter '${props.param}' is '${value}'`}
       >
-        <span className='networkparametericon'>👀</span>
+        <span className='networkparametericon'>🔗</span>
         {hideName ? null : <span className='networkparametername'>{name}</span>}
         {hideName || hideValue ? '' : ': '}
         {hideValue

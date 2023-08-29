@@ -26,6 +26,37 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Pre-release version 0.72.5 | 2023-07-20
+This version was released to the Vega testnet on 20 July, 2023.
+
+This pre-release contains several new features, including the ability to propose successor markets, submit stop orders, submit iceberg orders, and initiate transfers between certain accounts through governance. It also includes some basic work to support future features.
+
+It also includes fixes to several APIs, including the API for exporting ledger entries.
+
+#### Deprecation
+The unused rewards-related network parameter `reward.staking.delegation.payoutFraction` has been deprecated and will be removed in the next release. This was done in [8280](https://github.com/vegaprotocol/vega/issues/8280).
+
+#### New features
+**Stop orders**
+A stop order is an order to buy or sell once the price reaches a specified price, known as the trigger price. Stop orders can be used to help a trader limit losses (stop loss), or capitalise on a gain (take profit) automatically when they already have an open position. Stop orders can be submitted as a single stop order trigger or an OCO (one cancels the other) pair.
+
+**Iceberg orders**
+An iceberg order is a limit order for a large amount that, rather than being entered as a single large order of that size, is placed on the book as a smaller order that is replenished as that order amount is filled. The peak / 'visible' amount can be filled with one trade, while the reserve is used to support the smaller order amount. As the Vega network is a public one, the iceberg amount below the peak can still be deduced.
+
+**Successor markets**
+A successor market is a market that will carry on after the original market, or parent, that it is based on has settled, which offers liquidity providers the option to keep their equity-like share on the new market, even after the original market expires.
+
+#### Fixes
+Profit and loss data was flickering between different values when subscribed to. This is fixed in [8362](https://github.com/vegaprotocol/vega/issues/8362).
+
+Settled markets did not have a close timestamp available in the API. Fixed in [8186](https://github.com/vegaprotocol/vega/issues/8186).
+
+Added number of decimal places to data source events, so it can be determined how many decimal places are being referenced. Done in [8206](https://github.com/vegaprotocol/vega/issues/8206).
+
+The estimate positions endpoint did not correctly validate data, meaning it would accept values that it could not use. Fixed in [8222](https://github.com/vegaprotocol/vega/issues/8222).
+
+Check out the full details of the main pre-release and the patch bug fixes in the Vega core [0.72.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.0), [0.72.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.1), [0.72.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.2), [0.72.3 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.3), [0.72.4 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.4), [0.72.5 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.5) release pages.
+
 ### Pre-release patch version 0.71.6 | 2023-06-19
 This version was released to the Vega testnet on 19 June, 2023.
 

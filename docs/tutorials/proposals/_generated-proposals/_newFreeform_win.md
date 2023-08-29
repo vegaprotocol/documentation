@@ -1,6 +1,6 @@
 
   ```bash
-vegawallet.exe transaction send --wallet YOUR-WALLETNAME --pubkey YOUR-PUBLIC-KEY --network NETWORK-NAME ^
+vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KEY --network NETWORK_NAME ^
 "{^
 \"proposalSubmission\": {^
  \"rationale\": {^
@@ -9,7 +9,7 @@ vegawallet.exe transaction send --wallet YOUR-WALLETNAME --pubkey YOUR-PUBLIC-KE
  },^
  \"terms\": {^
   \"newFreeform\": {},^
-  \"closingTimestamp\": 1685553047^
+  \"closingTimestamp\": 1694527973^
  }^
 }^
 }"

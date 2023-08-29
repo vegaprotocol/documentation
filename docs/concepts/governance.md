@@ -41,7 +41,14 @@ The network will also calculate:
 The proposal will pass if one of the two scenarios occur: 
 1. The tokenholder vote meets or exceeds the minimum set by <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredParticipation" hideValue={true} />,  and the votes in favour are greater than the amount set by <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredMajority" hideValue={true} />. In this case the market's liquidity providers were overridden by governance token holders.
 2. The governance tokenholder vote does not reach participation threshold, but the liquidity providers' votes do, and there are enough votes in favour. The participation rate must be greater than/equal to <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredParticipation" hideValue={true} />, and the liquidity providers' participation rate must be greater than/equal to <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredParticipationLP" hideValue={true} />, and the liquidity providers' votes in favour is greater than/equal to <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredMajorityLP" hideValue={true} />
-    
+
+### Proposal outcome: Successor market
+For proposals adding a new successor market, the outcome of the proposal can change even after it's been approved. 
+
+If a parent market is still in its proposed state, its successor market cannot be enacted, even if it passes the vote.
+
+Two proposals that name the same parent can be submitted and pass a governance vote. Whichever market clears its [opening auction](./trading-on-vega/trading-modes.md#auction-type-opening) first gets the share of the insurance pool, and the liquidity providers' equity-like share is moved to that market. The second market will then be [rejected](./trading-on-vega/market-lifecycle.md#market-status-rejected).
+
 :::tip Try it out
 Vote on active proposals on the **[Vega governance dApp ↗](https://governance.fairground.wtf)**.
 :::
@@ -154,11 +161,12 @@ Markets are proposed and voted into existence by Vega tokenholders. The paramete
 
 Some market parameters can also be changed. They can only be proposed by a liquidity provider with enough equity-like share in the market, and need to be voted for by a sufficient number of tokenholders and/or liquidity providers.
 
-When creating a market governance proposal, whether it is for a new market or to change parameters for an existing market, it's recommended that you sense check the proposal and share the final details with the tokenholder community before proposing, so that you can garner support and make any necessary amends. 
+When creating a market governance proposal, whether it is for a new market, a new successor market, or to change parameters for an existing market, it's recommended that you sense check the proposal and share the final details with the tokenholder community before proposing, so that you can garner support and make any necessary amends. 
 
 Read more:
 * [Vega community forum ↗](https://community.vega.xyz): Share your draft proposals for community discussion.
 * [New market proposal ↗](../tutorials/proposals/new-market-proposal.md): Guide to submitting a proposal for a new market using the command line
+* [New successor market proposal ↗](../tutorials/proposals/new-successor-market-proposal.md): Guide to submitting a proposal for a new successor market using the command line
 * [Update market proposal ↗](../tutorials/proposals/update-market-proposal.md): Guide to submitting a proposal to change a market using the command line
 
 ### Propose a new market
@@ -217,7 +225,7 @@ The remaining, model specific parameters are covered below.
 
 #### Log-normal risk model
 The log-normal model assumes that the logarithm of the price increments are normally distributed. The main model parameter is   
-* `Volatility (Sigma)` - annualised volatility of the underlying asset:
+* `Volatility (Sigma)` - annualised historical volatility of the underlying asset:
   * accepted values: **any strictly non-negative real number**,
   * suggested value: asset dependent, should be derived from the historical time-series of prices, and a typical value would be 0.8 = 80%
 
@@ -227,6 +235,20 @@ Another parameter is
   * suggested value: in almost all situations `0` is the value to use
 
 <!--### Changing models [WIP]  -->
+
+### Propose a successor market
+A successor market is a market that will carry on after the original market, or parent, that it is based on has settled - though a parent and successor market can be active simultaneously. Proposing a new successor market that follows from an existing market offers liquidity providers the option to keep their [equity-like share](./liquidity/rewards-penalties.md#how-liquidity-fees-are-split) on the new market, even when the original market expires. Creating an entirely new market with no parent doesn't offer the same benefit.
+
+Each market can have only one active successor. A successor market can also be a parent market.
+
+In terms of the proposal format, there are only two differences between a succesor market proposal and that for a regular market, and one field that ties the successor to the parent market.
+* Parent market ID: Required to define the proposal as for a successor market
+* Insurance pool percentage: Required percentage of the parent market's insurance pool, up to 100%, can be earmarked for transfer to the successor market. It is submitted as a number between and including 0 and 1, which represents the factor for the percentage.
+* Settlement asset validation: The settlement asset needs to match that of the parent market
+
+For a successor market to be enacted, the parent market must be in one of the following states: proposed, pending, active, suspended or trading terminated. 
+
+The parent market can be settled or cancelled when the successor market reaches enactment time, as long as the time it's been settled/cancelled is equal to or less than the parent market's settlement time plus the `market.liquidity.successorLaunchWindowLength` - determined by a network parameter. This parameter specifies for how long after a market has settled, the liquidity provider's equity-like share data are retained and the insurance pool is left undistributed to allow a successor to be defined. If the successor is proposed after that time, then it's rejected and any assets committed to the market are returned.
 
 ### Propose updates to a market
 Most details about a market can be changed through governance. Those includes risk models, monitoring triggers, and the settlement and termination data sources.
@@ -244,6 +266,17 @@ There are certain parameters within Vega that influence the behaviour of the sys
 Network parameters can only be added and removed with Vega core software releases.
 
 :::note Go deeper
-* [Network parameters: See full list on the block explorer  ↗](https://explorer.fairground.wtf/network-parameters)
+* [Concepts: Network parameters](../concepts/vega-chain/network.md#parameters)
+* [Network parameters: See full list on the block explorer ↗](https://explorer.fairground.wtf/network-parameters)
 * [Tutorial: Propose a network parameter change](../tutorials/proposals/network-parameter-proposal.md)
 :::
+
+### Suggested ranges for parameters
+Some network parameters have minimum/maximum boundaries to ensure they aren't supplied with nonsensical values. The table below contains those parameters, to be used as guidance when proposing changes to any of those parameters.
+
+| Parameter name                                    | Minimum/Maximum |
+|---------------------------------------------------|-----------------|
+| `reward.staking.delegation.competitionLevel`      | Minimum value 1 (inclusive), no maximum. |
+| `governance.proposal.(TYPE).minEnact`             | Must be greater than / equal to the corresponding `minClose`, proposal can't be enacted before voting on it has closed. |
+| `governance.proposal.(TYPE).requiredMajority`     | Minimum 0.0, maximum 1.0. Is multiplied by 100 to get percentage. |
+| `governance.proposal.(TYPE).requiredParticipation`| Minimum 0.0, maximum 1.0. Is multiplied by 100 to get percentage. |

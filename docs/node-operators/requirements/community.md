@@ -1,7 +1,7 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 title: Validator community
-sidebar_label: Community
+sidebar_label: Validator community
 vega_network: TESTNET
 hide_title: false
 ---

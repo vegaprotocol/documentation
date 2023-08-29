@@ -217,7 +217,7 @@ The remaining, model specific parameters are covered below.
 
 #### Log-normal risk model
 The log-normal model assumes that the logarithm of the price increments are normally distributed. The main model parameter is   
-* `Volatility (Sigma)` - annualised volatility of the underlying asset:
+* `Volatility (Sigma)` - annualised historical volatility of the underlying asset:
   * accepted values: **any strictly non-negative real number**,
   * suggested value: asset dependent, should be derived from the historical time-series of prices, and a typical value would be 0.8 = 80%
 
@@ -247,3 +247,13 @@ Network parameters can only be added and removed with Vega core software release
 * [Network parameters: See full list on the block explorer  ↗](https://explorer.vega.xyz/network-parameters)
 * [Tutorial: Propose a network parameter change](../tutorials/proposals/network-parameter-proposal.md)
 :::
+
+### Suggested ranges for parameters
+Some network parameters have minimum/maximum boundaries to ensure they aren't supplied with nonsensical values. The table below contains those parameters, to be used as guidance when proposing changes to any of those parameters.
+
+| Parameter name                                    | Minimum/Maximum |
+|---------------------------------------------------|-----------------|
+| `reward.staking.delegation.competitionLevel`      | Minimum value 1 (inclusive), no maximum. |
+| `governance.proposal.(TYPE).minEnact`             | Must be greater than / equal to the corresponding `minClose`, proposal can't be enacted before voting on it has closed. |
+| `governance.proposal.(TYPE).requiredMajority`     | Minimum 0.0, maximum 1.0. Is multiplied by 100 to get percentage. |
+| `governance.proposal.(TYPE).requiredParticipation`| Minimum 0.0, maximum 1.0. Is multiplied by 100 to get percentage. |

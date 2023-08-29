@@ -2,6 +2,7 @@
 sidebar_position: 5
 title: Rewards and penalties
 hide_title: false
+vega_network: MAINNET
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
@@ -58,7 +59,7 @@ In the example below, there are 3 liquidity providers all bidding for their chos
 </details>
 
 ### How liquidity fees are split
-By committing liquidity, a liquidity provider gets a share of the market's fees that depends on how trading has grown on the market. This is known as the equity-like share. Liquidity providers who get into a market early benefit from helping to grow the market by earning a larger share of the market's trading fees than their actual commitment would imply.
+By committing liquidity, a liquidity provider gets a share of the market's fees that depends on how trading has grown on the market. This is known as the **equity-like share**. Liquidity providers who get into a market early benefit from helping to grow the market by earning a larger share of the market's trading fees than their actual commitment would imply.
 
 The market's liquidity fee and the trading volume determine how big the liquidity fee pool is. A provider's equity-like share of the market and their liquidity score determine how that pool is distributed.
 

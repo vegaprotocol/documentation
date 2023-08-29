@@ -2,6 +2,7 @@
 sidebar_position: 5
 title: Transfer assets
 hide_title: false
+vega_network: MAINNET
 description: Transfers are used to move assets between keys or to accounts.
 ---
 

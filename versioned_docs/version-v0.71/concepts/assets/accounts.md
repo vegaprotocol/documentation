@@ -2,6 +2,7 @@
 sidebar_position: 3
 title: Accounts
 hide_title: false
+vega_network: MAINNET
 description: Accounts hold assets for different purposes.
 ---
 

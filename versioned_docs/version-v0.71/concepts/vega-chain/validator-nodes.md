@@ -61,11 +61,12 @@ To become a standby validator, a candidate (described as 'Pending' in the APIs) 
 If there are free slots for one or more standby validators, they are added as standby validators in the next epoch. If a node that submits the transaction to join has a higher validator score than the lowest scoring standby validator, then it will become a standby validator and the lowest scoring standby validator is removed from the standby set. As with consensus validators, if there are no free slots then only one node can replace a standby validator per epoch.
 
 ## Candidate validators
-Any other nodes on the network are known as candidate (pending) validators. Nodes could be in this status for three reasons:
+Any other nodes on the network are known as candidate (pending) validators. Nodes could be in this status for several reasons:
 
 1. The node has not sent the necessary transaction to announce itself to the network
 2. The node has sent the transaction, but does not have enough total stake to make become a standby or consensus validator
-3. The node has not yet seen and then reported on enough Ethereum bridge transactions
+3. The node has not yet seen, been selected to forward, and then forwarded enough Ethereum bridge transactions, based on the network parameter <NetworkParameter frontMatter={frontMatter} param="network.validators.minimumEthereumEventsForNewValidator" />
+4. Their ranking score is lower than the worst ranking score of the standby validator set
 
 When assessing which nodes will be promoted to standby, and potentially later consensus status, if two validators have the same performance score then the network places higher the one that has been validator for longer. Similarly if two validators who joined at the same time have the same score, the priority goes to the one who submitted the transaction to become validator first.
 
@@ -76,7 +77,8 @@ A node operator that wants to express interest in running a validator node for V
 2. Submit a transaction using their keys, announcing they want to validate, and receive a response that the network has verified key ownership
 3. Self-stake to their validator Vega key at least <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" formatter="governanceToken" suffix="tokens" hideName={true} />
 4. Send heartbeat transactions to show that the node is online and connected to the network - this is done automatically if the node is set up correctly
-5. Wait for others to nominate them. Validators are advised to introduce themselves to the Vega community on [Discord ↗](https://vega.xyz/discord), and create a profile on the [forums ↗](https://community.vega.xyz/c/mainnet-validator-candidates/23)
+5. See and forward enough Ethereum transactions events to be eligible for promotion
+6. Wait for others to nominate them. Validators are advised to introduce themselves to the Vega community on [Discord ↗](https://vega.xyz/discord), and create a profile on the [forums ↗](https://community.vega.xyz/c/mainnet-validator-candidates/23)
 
 :::note Read more
 [Node operator guides](../../node-operators/index.md): See the full set of instructions for setting up and running a node.

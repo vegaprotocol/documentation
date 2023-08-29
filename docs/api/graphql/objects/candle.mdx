@@ -24,6 +24,7 @@ type Candle {
   open: String!
   close: String!
   volume: String!
+  notional: String!
 }
 ```
 
@@ -56,6 +57,10 @@ type Candle {
 
 #### [<code style={{ fontWeight: 'normal' }}>Candle.<b>volume</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Volume price (uint64)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Candle.<b>notional</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Total notional value of trades (uint64)
 > 
 
 

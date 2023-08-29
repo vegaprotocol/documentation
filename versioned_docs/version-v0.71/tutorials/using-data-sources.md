@@ -2,7 +2,7 @@
 title: Using data sources
 sidebar_position: 8
 hide_title: false
-description: Include oracle details in a proposal and submit data to settle and terminate a market
+description: Include data source details in a proposal and submit data to settle and terminate a market
 ---
 
 import Tabs from '@theme/Tabs';
@@ -148,7 +148,7 @@ vegawallet.exe transaction send \
 You will be able to see this data by querying the API for `OracleData`. In the API response you will be able to check which markets had filters that matched this data.
 
 ### Querying the data
-The [Oracle Data list REST endpoint](../api/rest/data-v2/trading-data-service-list-oracle-data) shows previous data submissions, which can be useful for confirming that data submission was sucessful, and/or determining the fields that a market's oracle spec requires.
+The [Oracle Data list REST endpoint](../api/rest/data-v2/trading-data-service-list-oracle-data) shows previous data submissions, which can be useful for confirming that data submission was sucessful, and/or determining the fields that a market's data source spec requires.
 
 ## JSON signed message data
 [JSON ↗](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON) messages are a simpler, more configurable alternative to Open Oracle data. They can be totally custom objects, as long as they are valid JSON. As they are not attested by any off-chain source in the way that Open Oracle messages are, and so it's generally advisable to check for an Open Oracle price source before choosing JSON data. The Vega key that signs the message will be referred to as the source for the data. 
@@ -157,7 +157,7 @@ The [Oracle Data list REST endpoint](../api/rest/data-v2/trading-data-service-li
 For the binding, use the `name` field of the data. In the following example, the market is settled based on the number of people who have walked on the moon.
 
 ```javascript
-"oracleSpecBinding": {
+"dataSourceSpecBinding": {
   "settlementDataProperty": "moonwalkers",
   "tradingTerminationProperty": "vegaprotocol.builtin.timestamp"
 }
@@ -166,7 +166,7 @@ For the binding, use the `name` field of the data. In the following example, the
 The Oracle Specification that would bind to the `moonwalkers` property would be as follows:
 
 ```javascript
-   "oracleSpecForSettlementData": {
+   "dataSourceSpecForForSettlementData": {
         "signers": [{ "pubKey":{ "key": "123abc" }}],
         "filters": [{
             "key": {
@@ -187,7 +187,7 @@ Use the command line to submit a JSON message as a transaction that is signed by
 
 :::info API note
 - Data should be encoded as strings. `true` should be `"true"`, `12` should be `"12"`
-- In the API responses, the `pubKeys` field for JSON oracle data submissions is set to the VEGA public key of the submitter.
+- In the API responses, the `pubKeys` field for JSON oracle data submissions is set to the Vega public key of the submitter.
 :::
 
 ### 1. Define your JSON structure
@@ -199,11 +199,17 @@ JSON data should be submitted as a single object of attributes and primitive val
 }
 ```
 
+:::tip Submitting a verified settlement price
+If you're submitting a verified price to settle a market: 
+
+In the JSON structure, replace "moonwalkers" in the example above with the value supplied in the market's proposal under `dataSourceSpecForSettlementData` > `filters` > `key` > `name`. Use the verified price as the integer. Don't forget to take the data source's decimal precision into account.
+:::
+
 ### 2. Encode the message
-All `OracleDataSubmission` data is `base64` encoded. Here's how to do that on Linux or OSX:
+All `OracleDataSubmission` data is `base64` encoded. Here's how to do that on Linux or MacOS:
 
 <Tabs groupId="encodeJsonOracle">
-  <TabItem value="cmd" label="Linux / OSX command line">
+  <TabItem value="cmd" label="Linux / MacOS command line">
 
 ```bash
 echo '{"moonwalkers":"12"}' | base64
@@ -229,16 +235,16 @@ certutil -encode raw.txt encoded.txt
 
 `encoded.txt` now contains your encoded message.
 
-  </TabItem>
+</TabItem>
 </Tabs>
 
 ### 3. Submit the message to the chain
 When submitting the `OracleDataSubmission`, make sure to specify the `source` field as `ORACLE_SOURCE_JSON`.
 
 <Tabs groupId="submitJsonOracle">
-  <TabItem value="cmd" label="Linux / OSX command line">
+<TabItem value="cmd" label="Linux / MacOS command line">
 
-```bash title="Linux/OSX command line example"
+```bash title="Linux/MacOS command line example"
 vegawallet transaction send \
     --wallet oracle-wallet \
     --pubkey 123abc \
@@ -249,7 +255,7 @@ vegawallet transaction send \
   </TabItem>
   <TabItem value="win" label="Windows command line">
 
-```bash title="Linux/OSX command line example"
+```bash title="Linux/MacOS command line example"
 vegawallet.exe transaction send \
     --wallet oracle-wallet \
     --pubkey 123abc \
@@ -257,7 +263,7 @@ vegawallet.exe transaction send \
     '{"oracleDataSubmission": { "source": "ORACLE_SOURCE_JSON", "payload":"RESPONSE_PAYLOAD" }}'
 ```
 
-  </TabItem>
+</TabItem>
 </Tabs>
 
 ### Querying an existing data source spec
@@ -274,7 +280,7 @@ It's possible to settle on any data source field - for instance checking if a `b
 When using the built-in time source, **use greater than or equals**, rather than solely equals. This will help to avoid missing the time if no event is emitted with the precise required timestamp.
 
 ```javascript
-"oracleSpecForTradingTermination": {
+"dataSourceSpecForTradingTermination": {
     // pubKeys is empty as this is using a built in oracle
     "pubKeys": [],
     "filters": [{

@@ -2,6 +2,7 @@
 sidebar_position: 5
 title: Providing liquidity
 hide_title: false
+vega_network: MAINNET
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';

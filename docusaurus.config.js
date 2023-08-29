@@ -82,6 +82,10 @@ module.exports = {
           title: "Vega Protocol",
           items: [
             {
+              label: "Vega Console",
+              to: "http://console.vega.xyz/",
+            },
+            {
               label: "Website",
               to: "http://vega.xyz/",
             },
@@ -142,14 +146,14 @@ module.exports = {
           ],
         },
         {
-          title: "Fairground",
+          title: "Fairground, Vega testnet",
           items: [
             {
               label: "Home",
               to: "https://fairground.wtf/",
             },
             {
-              label: "Vega Console",
+              label: "Console (Fairground)",
               to: "https://console.fairground.wtf/",
             },
           ],

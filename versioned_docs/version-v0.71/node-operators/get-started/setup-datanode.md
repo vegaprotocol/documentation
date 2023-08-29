@@ -5,6 +5,9 @@ hide_title: false
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Topic from '/docs/topics/_topic-data-nodes.mdx';
+
+<Topic />
 
 To set up a data node, you must first have followed the guide to [install and set up a Vega node](setup-server.md). A data node must be run in conjunction with a **non-validator Vega node**.
 
@@ -218,7 +221,7 @@ There are 3 retention policy configurations:
 * **Lite**: The node retains enough data to be able to provide the latest state to clients, and produce network history segments. This mode saves enough to provide the current state of accounts, assets, balances, delegations, liquidity provisions, live orders, margin levels, markets, network limits, network parameters, node details, parties, positions
 * **Archive**: The node retains all data
 
-To run a node that doesn't use the standard default retention, use one of the following flags when running the `init` command:
+To run a node that doesn't use the standard default retention, use one of the following flags when running the `vega datanode init` command:
 
 * For a standard node, no flag
 * For an archive node, use `--archive`
@@ -244,15 +247,7 @@ For example:
   ChunkInterval = "2 hours"
 ```
 
-Additionally, you can set the chunk interval for Timescale hypertables that are used to store historical data. Default values are chosen by Vega and are applied when the database migrations are run. The chunk interval determines how much data is stored in each chunk and affects the amount of RAM used by the database, as recent chunks are kept in memory in order to make querying faster. To change the chunk interval, set it on a per-table basis in the data node's `config.toml`.
-
-For example:
-
-```toml
-[[SQLStore.ChunkIntervals]]
-  HypertableName = "orders"
-  ChunkInterval = "2 hours"
-```
+Note: The retention policy for each table that has one is logged by the data node when it starts. If you change the retention policy for a table, you'll be able to check the logs and confirm the new policies have been applied.
 
 ## Generate config
 To generate the configuration files you need for the data node, you can use the following command:
