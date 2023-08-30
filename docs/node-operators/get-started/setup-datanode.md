@@ -6,13 +6,15 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Running a data node
+Before you set up a data node, you'll need to have a [non-validator node](./setup-non-validator.md) and confirmed it's running correctly. 
+
+## Running a data node
 
 A data node gives the users a way to query the state of the network and included historic information about the objects over the lifetime of the blockchain. A data node connects to a non validator node and receives a stream of events as state is altered in the node. The data node stores these events and uses them to generate rich information which can be queried via APIs.
 
 A data node can be started in 2 ways, first it can be connected to a node which is replaying the chain from block 0. Secondly it can connect to a node which is starting from a specific snapshot in the chains history. The advantage of performing a full replay of the chain is that the data node can contain all historic information from the beginning of chain, however it takes a considerable amount of time to replay and process the chain. As a rough estimate it can take around 1 full day to replay the blocks generated over a 2 month period. The advantage of the second option is that the data node can be started up very quickly to allow clients to access the current live information within an hour but the historic information will not be available.
 
-# Running the backend database
+## Running the backend database
 The data node relies on the postgres database with a timescaledb plugin to hold all it's information. The easiest way to run this is using docker. Here is an example script that will start up the database in a way we can use it. We currently support Postgres 14 and TimescaleDB 2.8.0.
 
 ```script
@@ -47,7 +49,7 @@ vega=#
 
 The `POSTGRES_?` values set above need to match with the values specified in the data node configuration file. If you want to change from the default values above, make sure you update the values in both places.
 
-# PostgreSQL configuration tuning (optional)
+## PostgreSQL configuration tuning (optional)
 The default PostgreSQL configuration is not optimised for memory usage, and can be modified.
 
 Find the PostgreSQL parameters in the `postgresq.conf` file. The default file path for Linux and PostgreSQL 14 is: `/etc/postgresql/14/main/postgresql.conf`.
