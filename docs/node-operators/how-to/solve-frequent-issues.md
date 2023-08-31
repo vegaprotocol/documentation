@@ -8,7 +8,6 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 Below is a list of common issues with running validator and data nodes, and their solutions. 
 
 If you come across an issue you don't see addressed here - share it in the validator Discord channel, or on the [feedback board](https://github.com/vegaprotocol/feedback).

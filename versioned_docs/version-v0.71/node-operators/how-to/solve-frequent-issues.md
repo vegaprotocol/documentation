@@ -8,7 +8,6 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-
 Below is a list of common issues with running validator and data nodes, and their solutions. 
 
 If you come across an issue you don't see addressed here - share it in the validator Discord channel, or on the [feedback board](https://github.com/vegaprotocol/feedback).
@@ -33,7 +32,7 @@ failed to initialize datanode from network history: failed to fetch history bloc
 If the above issue happens, try to start the data node one more time.
 
 
-## Problem: Data-node fails to start up with the following panic
+## Problem: Data node fails to start up with the following panic
 
 You may see the following information in your panic log.
 
@@ -91,3 +90,29 @@ Possible cause: You may have run the following command when connected as a diffe
 # list all the local snapshots
 sudo ./vega tools snapshot
 ```
+
+## Problem: panic: state.AppHash does not match AppHash after replay. Got XXXXXXXXXX, expected YYYYYYYYYY.
+
+After a protocol upgrade you may get the above error, for example:
+
+```log
+core        node/node.go:225        Vega shutdown complete        {"version": "v0.72.10", "version-hash":
+"26afd41a2fe4cb20f3fffeae0d4cfe523fc35614"}
+Aug 23 14:01:50 vega-testnet visor[3605726]: panic: state.AppHash does not match AppHash after replay. Got
+Aug 23 14:01:50 vega-testnet visor[3605726]: FA62EFCF5AAA70B26FB2D746B5BD7FC3709CBA2132A7597D796DD9DC16B65EE0, expected D8CDD4DC0B1133EFF36985B76A9D5FE4DF904933FC85F6B306A00E1357CEF94F.
+
+Did you reset CometBFT without resetting your application's data?
+```
+
+### Solution: Start from a snapshot before the protocol upgrade.
+
+1. List all of the local snapshots on your node: `vega tools snapshot --home <vega_home>`
+2. Get the snapshot height for snapshot before the protocol upgrade
+3. If you are using Visor, make sure that directories for a new release exist in the `<vegavisor-home>`
+3. Rollback a single tendermint block: `vega tm rollback --home <tendermint_home>`
+4. Start the previous binary version with additional flag `--snapshot.load-from-block-height=<selected-snapshot-height>`, e.g.: `./vega start --snapshot.load-from-block-height=7885400 --home <vega-home> --tendermint-home <tendermint-home`. If you are using Visor, you need to add the above flag to the `run-config.toml`(e.g: `<vegavisor-home>/v0.71.6/run-config.toml`).
+5. Wait for upgrade. New node may start automatically if you are using Visor, but it is not guaranteed.
+6. Remove the previously added flag (`--snapshot.load-from-block-height`).
+7. If your node did not restart automatically:
+   a. For Visor: Stop Visor, link correct version to `<vegavisor-home>/current`, and restart your node, and start Visor
+   b. For non-Visor setup: Stop the node, start the node with new binary
