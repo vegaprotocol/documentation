@@ -23,9 +23,9 @@ There are 2 ways to start up a non validator node:
 
 Replay the full chain if you want all history. Use a snapshot if you want to start running quickly and don't need the history.
 
-## Start a node from block 0 [WIP]
+## Start a node from block 0
 
-1. Download the correct version of the Vega executable. The version used to replay the chain must be the same version used when the latest mainnet chain started. You can find it under the latest version of releases in the [Vega GitHub repo ↗](https://github.com/vegaprotocol/vega/releases). Unzip this file and make sure it is in your command line path.
+1. Download version 0.71.4 of the Vega executable. You can find it on its release page in the [Vega GitHub repo ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.71.4%2Bfix). Unzip this file and make sure it is in your command line path.
 
 If you prefer to build the code yourself, the instructions can be found inside the code repo at [BUILDING ↗](https://github.com/vegaprotocol/vega/blob/develop/BUILDING.md).
 
@@ -129,7 +129,7 @@ vega start --home=$YOUR_VEGA_HOME_PATH --tendermint-home=$YOUR_TENDERMINT_HOME_P
 ## Upgrade your node using Visor
 We strongly recommend using the tool `Visor` to start up the Vega node as it will transparently take care of upgrading the node as new versions of the software are required. Learn more about it on the [Visor page](../visor.md).
 
-During the replay process, the node will require newer versions of the software at the same block height that the nodes were upgraded previously.
+During the replay process, the node will require newer versions of the software at the same block height that the nodes were upgraded previously. As an example: If the chain was upgraded from version 0.12.3 to 0.12.4 at block 123456, everyone running this network would need to have version 0.12.3 when they process block 123456 and then have version 0.12.4 when they process block 123457.
 
 1. Download the latest version of Visor from the [Vega releases page ↗](https://github.com/vegaprotocol/vega/releases/). Unzip it and make sure it is in your command path.
 
