@@ -10,6 +10,7 @@ Use **[Vega Wallet](./vega-wallet/index.md)** to connect to a network to associa
 
 There are several ways to interact with a Vega Wallet: 
 * **[Browser extension (Alpha version)](./vega-wallet/index.md#vega-wallet-browser-extension)**
+* **[MetaMask Snap](./tools/vega-wallet/metamask-snap)**
 * **[CLI wallet app](./vega-wallet/cli-wallet/index.md)**
 * **[Desktop wallet app](./vega-wallet/desktop-app/index.md)**
 
