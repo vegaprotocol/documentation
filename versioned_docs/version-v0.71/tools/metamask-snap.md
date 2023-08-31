@@ -17,7 +17,7 @@ When you start using MetaMask Snaps, you'll be creating a new Vega key, so if yo
 5. `Confirm` that you want Vega Protocol to control your account.
 6. Use the Vega dApp `Connect` dialog to `Connect via MetaMask Snap`
 
-You're now readyto deposit or transfer assets and use your new Vega keypair.
+You're now ready to deposit or transfer assets and use your new Vega keypair.
 
 ## Snaps features
 What can you do with a snap? If you're already a MetaMask user, you won't need to create a Vega Wallet.
