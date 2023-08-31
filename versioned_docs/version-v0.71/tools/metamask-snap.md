@@ -3,21 +3,24 @@ title: MetaMask Snaps
 hide_title: false
 ---
 
-MetaMask Snaps lets you quickly set up a Vega keypair for trading and to otherwise interact with the network, no Vega Wallet software required.
+MetaMask Snaps lets you quickly set up a Vega keypair for trading, staking tokens, and sending other transactions. No Vega Wallet software required.
 
-## Set up a snap for Vega
-The easiest way to set up a snap is with [Vega Console](https://console.vega.xyz) or the Vega [governance dApp](https://governance.vega.xyz).
+## Set up your snap for Vega
+Once you have MetaMask installed, the easiest way to set up a snap is by using [Vega Console ↗](https://console.vega.xyz) or the Vega [governance dApp ↗](https://governance.vega.xyz).
 
 When you start using MetaMask Snaps, you'll be creating a new Vega key, so if you have assets or VEGA tokens on an existing key, you'll need to transfer them to the new key to use them.
 
-1. Open the 'Connect' dialog in Vega Console or the governance dApp. 
+1. Open the `Connect` dialog in Vega Console or the governance dApp. 
 2. If you have a version of MetaMask that supports Snaps, you'll see a button labelled `Install Vega MetaMask Snap`.
-3. Snap will create a new Vega keypair, and you'll immediately be able to deposit or transfer assets and use your new key.
+3. MetaMask will open a Connection request pop-up. Click `Connect`.
+4. `Install` Snaps using the MetaMask pop-up.
+5. `Confirm` that you want Vega Protocol to control your account.
+6. Use the Vega dApp `Connect` dialog to `Connect via MetaMask Snap`
+
+You're now readyto deposit or transfer assets and use your new Vega keypair.
 
 ## Snaps features
-What can you do with a Snap for Vega?
-
-If you're already a MetaMask user, you won't need to create a Vega Wallet.
+What can you do with a snap? If you're already a MetaMask user, you won't need to create a Vega Wallet.
 
 The snap lets you:
 - Derive Vega cryptographic keys that can be used on the Vega network
@@ -38,21 +41,22 @@ A snap cannot:
 ### Can't see assets I've previously deposited
 If this is your first time using Snap with Vega, but you have previously deposited assets on a different Vega key, you'll need to transfer your assets to the new keys created by your Snap instance, or deposit new assets. You can copy your Vega snap public key from within Vega Console.
 
-### How to recover my Snaps-created Vega keys
-The Vega keys created with Snaps are derived from the MetaMask seed. You'll need to use your MetaMask recovery phrase to recover those Vega keys, and any assets added to them.
+### How do I recover my Vega keys?
+The Vega keys created with snap are derived from the MetaMask seed. You'll need to use your MetaMask recovery phrase to recover those Vega keys, and any assets added to them.
 
-If you're still having issues, ask on Vega's dedicated [Snaps Discord channel](https://discord.com/channels/720571334798737489/1111311863213473843/1111313848788602981).
+If you're still having issues, ask on Vega's dedicated [Snaps Discord channel ↗](https://discord.com/channels/720571334798737489/1111311863213473843/1111313848788602981).
 
-## Report issues or share feedback
-If you have any trouble with using Snaps for Vega, or have questions about how it works, ask on the dedicated [Discord channel](https://discord.com/channels/720571334798737489/1111311863213473843/1111313848788602981).
+## Any questions?
+If you have any trouble with using Snaps for Vega, or have questions about how it works, ask on the dedicated [Discord channel ↗](https://discord.com/channels/720571334798737489/1111311863213473843/1111313848788602981).
 
-Share your [feedback](https://github.com/vegaprotocol/feedback/discussions) on GitHub.
+Share your feedback on Vega's [GitHub discussions ↗](https://github.com/vegaprotocol/feedback/discussions).
 
-## Snaps source code
-The source code for Vega's Snaps integration is available on [GitHub](https://github.com/vegaprotocol/vega-snap).
+## Snaps resources
+The source code for Vega's Snaps integration is available on [GitHub ↗](https://github.com/vegaprotocol/vega-snap).
 
-## Alternative software for Vega keys
-The [Vega Wallet browser extension](./index.md#vega-wallet-browser-extension) is also available for Firefox and Chrome. 
+Read more about it the [MetaMask Snaps ↗](https://metamask.io/snaps/) site.
 
-For a full list of alternatives, check out [Vega Wallets](./vega-wallet/index.md).
+## Other ways to set up Vega keys
+You could instead use the [Vega Wallet browser extension](./index.md#vega-wallet-browser-extension) for Firefox and Chrome. 
 
+For a full list of the alternatives, check out the [Vega Wallet](./vega-wallet/index.md) intro page.
