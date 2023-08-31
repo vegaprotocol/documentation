@@ -1,5 +1,5 @@
 ---
-title: MetaMask Snaps
+title: MetaMask Snap
 hide_title: false
 ---
 
