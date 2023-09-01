@@ -15,6 +15,25 @@ This guide is specifically intended for those who are already running a validato
 ## Study the changes between versions
 Before upgrading your node software, **review the changelogs** for [v0.72.0](https://github.com/vegaprotocol/vega/releases/tag/v0.72.0) and [onwards](https://github.com/vegaprotocol/vega/releases/) for a list of breaking API changes compared to the previously released version.
 
+## Before upgrade
+There is a long migration in the current release. The duration of the migration depending on the amount of data in the database. To prevent the node downtime (especially if you connect the data-node to the validator core), We should change retenrion policy to "standard".
+
+We have tested migration duration on machine with 8vCPU, 32GB RAM, SSD disk and ZFS file system. Times are the following:
+
+- archival node: ~2 hours
+- standard node: ~5 minutes
+
+When you connects the data-node to the validator core, and migration takes very long time, your validator won't start before the data node. It may impact your performance score and increase penalties.
+
+To minimize the downtime of your node, you should change the configuration of your data-node.
+
+You should to execute this step at least a few hours before the mainnet upgrade to be safe.
+
+Follow the below instructions:
+
+1. Update the `<vega_home>/config/data-node/config.toml`: `SQLStore.RetentionPeriod = "standard"`
+2. Restart your node
+
 ## Upgrade steps
 To upgrade the network follow the [protocol upgrade documentation](../how-to/upgrade-network.md).
 
