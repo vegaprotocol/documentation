@@ -23,7 +23,7 @@ There are 2 ways to start up a non validator node:
 
 Replay the full chain if you want all history. Use a snapshot if you want to start running quickly and don't need the history.
 
-## Start a node from block 0
+## Start node from block 0
 
 1. Download version 0.71.4 of the Vega executable. You can find it on its release page in the [Vega GitHub repo ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.71.4%2Bfix). Unzip this file and make sure it is in your command line path.
 
