@@ -5,10 +5,10 @@ hide_title: false
 
 Vega provides several apps and tools to make it easier to interact with the protocol. 
 
-## MetaMask Snaps for Vega
-Use Snaps to create a Vega keypair from within MetaMask. For MetaMask users, it's the quickest way to use your assets or tokens to trade, nominate validators, and sign and send transactions.
+## Vega Protocol snap
+Create a Vega keypair from within MetaMask using the Vega Protocol snap. For MetaMask users, it's the quickest way to use your assets or tokens to trade, nominate validators, and sign and send transactions.
 
-* **[How to use Snap](./metamask-snap.md)**
+* **[How to use Snap](./vega-protocol-snap.md)**
 
 ## Vega Wallet
 Use **[Vega Wallet](./vega-wallet/index.md)** to connect to a network to associate tokens for staking, and to sign messages. Using the Vega Wallet ensures your keys will be completely disassociated from your personal identity, and Vega will have no way to connect them with you, unless you share your public key for any reason.
