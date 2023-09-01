@@ -1,4 +1,3 @@
-
 ---
 title: Vega Protocol Snap
 hide_title: false
