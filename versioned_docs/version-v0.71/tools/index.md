@@ -1,9 +1,9 @@
 ---
-title: Vega Apps and Tools
+title: Apps and Tools
 hide_title: false
 ---
 
-Vega provides several apps and tools to make it easier to interact with the protocol. 
+Check out the list of apps and tools to make it easier to interact with the Vega protocol.
 
 ## Vega Protocol snap
 Create a Vega keypair from within MetaMask using the Vega Protocol snap. For MetaMask users, it's the quickest way to use your assets or tokens to trade, nominate validators, and sign and send transactions.
