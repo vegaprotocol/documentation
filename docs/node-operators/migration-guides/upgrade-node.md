@@ -15,32 +15,29 @@ This guide is specifically intended for those who are already running a validato
 ## Study the changes between versions
 Before upgrading your node software, **review the changelogs** for [v0.72.0](https://github.com/vegaprotocol/vega/releases/tag/v0.72.0) and [onwards](https://github.com/vegaprotocol/vega/releases/) for a list of breaking API changes compared to the previously released version.
 
-## Before upgrade
-There is a long migration in the current release. The duration of the migration depending on the amount of data in the database. To prevent the node downtime (especially if you connect the data-node to the validator core), We should change retenrion policy to "standard".
+## Before you upgrade
+This release has a long migration time, but how long it will be depends on the amount of data in the database. To prevent the node downtime, especially if you connect the data node to your validator node, we recommend you change the data node's retention policy to "standard" before the upgrade.
 
-We have tested migration duration on machine with 8vCPU, 32GB RAM, SSD disk and ZFS file system. Times are the following:
-
+We have tested the migration time on a machine with 8vCPU, 32GB RAM, SSD disk and ZFS file system. 
+Migration times were:
 - archival node: ~2 hours
 - standard node: ~5 minutes
 
-When you connects the data-node to the validator core, and migration takes very long time, your validator won't start before the data node. It may impact your performance score and increase penalties.
+When you connect the data node to the validator node, and migration takes very long time, your validator **will not start** before the data node. This may impact your performance score and increase penalties.
 
-To minimize the downtime of your node, you should change the configuration of your data-node.
+Changing the retention policy of your data node will minimise your validator node's downtime.
 
-You should to execute this step at least a few hours before the mainnet upgrade to be safe.
+Execute this step at least a few hours before the mainnet upgrade.
 
 Follow the below instructions:
 
 1. Update the `<vega_home>/config/data-node/config.toml`: `SQLStore.RetentionPeriod = "standard"`
-2. Restart your node
+2. Restart your data node
 
-## Upgrade steps
+Note: You are strongly recommended to only run a data node with a non-validator node, not a validator node.
+
+## Upgrade your node
 To upgrade the network follow the [protocol upgrade documentation](../how-to/upgrade-network.md).
-
-:::warning Long data-node migration
-
-This software upgrade has a long migration time. It may take up to 1 hour to run all the migrations. This was tested on 8vCPU 32 GB RAM, SSD disk. Your system setup may mean the migration takes longer.
-:::
 
 ## Common issues
 If you come across any problems, please refer to the [frequent issues](../how-to/solve-frequent-issues.md) solutions before requesting help.
