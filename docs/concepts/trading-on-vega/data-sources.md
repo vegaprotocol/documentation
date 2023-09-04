@@ -3,16 +3,27 @@ sidebar_position: 8
 title: Data sourcing
 hide_title: false
 ---
-Vega's data sourcing framework is the system that enables the acquisition and consumption of data by the Vega protocol, for example, for terminating trading at expiry or settling markets. It consists of a number of source types, initially including off-chain data signed by a known key and data from Vega itself. In future it will include more data types and sources, as well as the ability to source data from other chains, starting with Ethereum.
 
-The data sourcing framework also includes the ability to process data by selecting specific fields from a larger data object, filtering out irrelevant or potentially erroneous data, etc. In future there will also be additional processing options available to transform, aggregate, and perform additional checks on data, among other things.
+Vega's data sourcing framework enables the Vega protocol to acquire and consume data, for example, to settle a market, or to terminate trading at a market's expiry. 
 
-The information produced by data sourcing is relevant to market settlement, risk models, and other features that require specific data which must come from somewhere, often completely external to Vega. For example, a market based on the price of Bitcoin on a specific date needs a trustworthy and reliable source of the price of Bitcoin in order to settle.
+It accepts data from several source types, including Ethereum, off-chain data signed by a known key, and data from Vega itself.
 
-The types of data sources that Vega can accept in the current implementation is limited to those listed below. As mentioned above, the APIs and protocol are expected to support a wider range of data sources and processing capabilities in the future.
+The data sourcing framework can also process data from specific, selected fields out of a larger data object, filtering out irrelevant or potentially erroneous data.
+ 
+The information produced by data sourcing is relevant to market settlement, risk models, and other features that require specific data which must come from somewhere, often completely external to Vega. For example, a perpetuals market based on the price of Bitcoin needs a trustworthy and reliable source of the price of Bitcoin for its settlement schedule to calculate funding payments.
+
+The types of data sources that Vega can accept are described below.
+
+## Choosing and verifying data
+Whether it's when voting for a market, or when choosing a market to trade on, it's important to verify the data source specification for the market. Voters and traders should verify that you trust the public key signing the data, as well as the data filters being used.
+
+Those proposing a market/providing data should verify that the data source they're using is reliable and will provide accurate information for network participants.
+
+For a market proposer looking to choose which data source is best for their market, it's recommended to use data that's already on Ethereum or in Open Oracle format with a signature, if it exists. If the relevant market/asset data doesn't exist on Ethereum or in Open Oracle, then create and use a signed JSON message.
 
 ## Sources of data
 Inputs to the data sourcing framework can come from:
+* Ethereum smart contracts
 * Signed message data source, part of the [Open Oracle ↗](https://github.com/compound-finance/open-oracle) feed
 * Specially formatted and signed JSON messages
 * Data internal to Vega's state (for example the latest block timestamp)
@@ -20,7 +31,7 @@ Inputs to the data sourcing framework can come from:
 When looking for or building a data source, ensure the following information is provided if you're looking to verify the source, or searching for/creating a data source to use for a market proposal.
 
 Data sources must provide:
-* Type of data source (e.g. `vega.builtin.timestamps`, `Open Oracle`)
+* Type of data source (e.g. `vega.builtin.timestamps`, `Open Oracle`, `Ethereum Event`)
 * Data type (e.g. float for a price)
 * Data source specific details
 
@@ -33,7 +44,26 @@ Data sources must be able to emit the following data types:
 * Number - for prices or in filter comparisons
 * String - to be used to compare against in filters
 * Date/Time - to compare against in filters
-* Structured data records - such as a set of key value pairs (inputs to filters)
+* Structured data records - such as a set of key and value pairs (inputs to filters)
+
+## Ethereum data sources [WIP]
+Ethereum oracles provide a source of Ethereum chain data. The specific smart contract, filters and event type are defined in the market's governance proposal. 
+
+Ethereum data can include events and contract reads.
+
+When the filtered data is emitted on the Ethereum network, Vega validator nodes read the selected data from Ethereum and submit a transaction that includes the filtered data. The market's data source specification listener(?) then acts on the submitted data.
+
+An Ethereum data source specification must include:
+- Ethereum contract address
+- ABI in JSON format for the contract (or a subset, covering the relevant parts)
+- Name of the event type to be listened for or the function to be read, along with any parameters that must be passed through
+(how do people know what name is accepted?)
+
+This data can be used for filters, or used as the oracle data itself.
+
+All data sourced from Ethereum is structured as an object containing both a payload and Ethereum chain metadata. Specifically:
+- Ethereum block height at which the data was observed/event occurred
+- Ethereum block timestamp when the data was observed/event occurred
 
 ## Signed message data sources
 Signed message data sources are a source of off-chain data. They introduce a Vega transaction that represents a data result that is validated by ensuring the signed message is provided by the Vega or Ethereum public key provided in the market’s proposal.
@@ -45,13 +75,6 @@ A signed message data source specification must include:
 Vega supports two signed message data sources:
 * Open Oracle data source
 * JSON messages 
-
-## Choosing and verifying data
-Whether it's when voting for a market, or when choosing a market to trade on, it's important to verify the data source specification for the market. Voters and traders should verify that you trust the public key signing the data, as well as the data filters being used.
-
-Those proposing a market/providing data should verify that the data source they're using is reliable and will provide accurate information for network participants.
-
-For a market proposer looking to choose which signed message data source is best for their market, it's recommended to use data that's already in Open Oracle format, with a signature, if it exists. If the relevant market/asset data doesn't exist in Open Oracle, then create and use a signed JSON message.
 
 ### Open Oracle data
 The signer of the signed message data source is equivalent to the reporter in [Compound’s Open Price Feed](https://medium.com/compound-finance/announcing-compound-open-oracle-development-cff36f06aad3). As Open Oracle reports include signatures, the data can still be verified against its source. The poster equivalent is the Vega key that submits the signed message to the Vega chain for the market to act on it.
@@ -127,14 +150,16 @@ For example, a single timestamp event will appear as follows. Note: the precise 
 ## Using a data source: Filtering
 Data source filters allow the market proposer to specify, for a given "root" data source (for example all messages signed by a given public key), which of its messages are relevant.
 
-Products on Vega use data to drive actions like settlement and to progress through the market lifecycle. The two key transitions controlled by data sources for cash settled futures are the termination of trading, and settlement of the market. These are both configured when the market is proposed by providing a data source specification that covers the root source and any filters required to select the specific data or trigger event.
+Products on Vega use data to drive actions like settlement and to progress through the market lifecycle. The two key transitions controlled by data sources for cash settled futures are the termination of trading, and settlement of the market. For cash settled perpetuals markets, the data source provides prices for the settlement schedule. These are configured when the market is proposed by providing a data source specification that covers the root source and any filters required to select the specific data or trigger event.
 
-As a public key may provide many messages, a filter is used to extract the required message - for example trading could terminate at a specific date and time, and so the filters would ensure that only data provided on or after the specified date and time would trigger termination. Similarly for settlement, only price data *after* trading has terminated would be relevant.
+As an Ethereum contract or a public key may provide many messages, a filter is used to extract the required message - for example trading on a futures market could terminate at a specific date and time, and so the filters would ensure that only data provided on or after the specified date and time would trigger termination.
 
 When a market is proposed, the market proposal must include details for filters to be applied to the chosen data source(s). Those filters are applied to the source of structured data records that are used as input and determine how data is emitted: such as the specific value for a named field, to return `BTCUSD_PRICE` from a record containing many prices, for example; or price data on/after a certain time.
 
 ## Submitting data for a market
-Any Vega keypair can submit settlement and market termination data to the chain. The creator of an instrument for a market has chosen in advance a price source, which data fields the market requires to settle and terminate, and filters that determine when the data is used.
+When using an Ethereum oracle, there is no need to submit data once the Ethereum oracle is specified in the market proposal.
+
+For other data source types, any Vega keypair can submit settlement and market termination data to the chain. The creator of an instrument for a market has chosen in advance a price source, which data fields the market requires to settle and terminate, and filters that determine when the data is used.
 
 The data can be broadcast at any and all points, but if the market isn't looking for data, based on the filters, then the data doesn't make it to the chain and has no effect. The market is only listening when the filters signal that the data should be processed and used.
 
