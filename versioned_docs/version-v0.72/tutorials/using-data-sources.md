@@ -84,7 +84,7 @@ Below, find instructions on how to submit Open Oracle data as a signed message. 
 
 ### 2. Encode the Open Oracle message
 <Tabs groupId="encodeOpenOracle">
-  <TabItem value="cmd" label="Linux / OSX command line">
+  <TabItem value="cmd" label="Linux / MacOS command line">
 
 ```bash
   echo '{"timestamp":"1649265840","messages":["0x000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000624dccb000000000000000000000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000000000a2e04f5f00000000000000000000000000000000000000000000000000000000000000006707269636573000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000034254430000000000000000000000000000000000000000000000000000000000"],"signatures":["0x8362a456997287a6b89e2de52e26c2aca423ab0ed401f9a23c81da2e2c56a5db27365adcb478d7b36558df58ca5dd240191a0f08a7f0ed79ee23cec77521e5c2000000000000000000000000000000000000000000000000000000000000001b"],"prices":{"BTC":"43721.75"}}' | base64
@@ -120,7 +120,7 @@ certutil -encode raw.txt encoded.txt
 When submitting the `OracleDataSubmission`, make sure to specify the `source` field as `ORACLE_SOURCE_OPEN_ORACLE`.
 
 <Tabs groupId="submitOpenOracle">
-  <TabItem value="cmd" label="Linux / OSX command line">
+  <TabItem value="cmd" label="Linux / MacOS command line">
 
 ```bash
 vegawallet transaction send \
@@ -200,10 +200,10 @@ JSON data should be submitted as a single object of attributes and primitive val
 ```
 
 ### 2. Encode the message
-All `OracleDataSubmission` data is `base64` encoded. Here's how to do that on Linux or OSX:
+All `OracleDataSubmission` data is `base64` encoded. Here's how to do that on Linux or MacOS:
 
 <Tabs groupId="encodeJsonOracle">
-  <TabItem value="cmd" label="Linux / OSX command line">
+  <TabItem value="cmd" label="Linux / MacOS command line">
 
 ```bash
 echo '{"moonwalkers":"12"}' | base64
@@ -236,9 +236,9 @@ certutil -encode raw.txt encoded.txt
 When submitting the `OracleDataSubmission`, make sure to specify the `source` field as `ORACLE_SOURCE_JSON`.
 
 <Tabs groupId="submitJsonOracle">
-  <TabItem value="cmd" label="Linux / OSX command line">
+  <TabItem value="cmd" label="Linux / MacOS command line">
 
-```bash title="Linux/OSX command line example"
+```bash title="Linux/MacOS command line example"
 vegawallet transaction send \
     --wallet oracle-wallet \
     --pubkey 123abc \
@@ -249,7 +249,7 @@ vegawallet transaction send \
   </TabItem>
   <TabItem value="win" label="Windows command line">
 
-```bash title="Linux/OSX command line example"
+```bash title="Linux/MacOS command line example"
 vegawallet.exe transaction send \
     --wallet oracle-wallet \
     --pubkey 123abc \
