@@ -285,13 +285,13 @@ module.exports = {
               // Hacky: Classname used for full version number, v prefix. Used for OpenrpcPlayground
               className: `v${version}`
             },
-            "v0.71": {
+            "v0.72": {
               banner: "none",
               label: `mainnet (v${shortenVersion(mainnetVersion)})`,
               path: "mainnet",
               // Hacky: Classname used for full version number, v prefix. Used for OpenrpcPlayground
               className: `v${mainnetVersion}`
-            }
+            },
           },
         },
         // Vega specific theme overrides go here

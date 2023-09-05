@@ -139,8 +139,8 @@
 
       // Optional new futures market metadata, tags.
       metadata: [
-       "enactment:2023-09-13T15:12:53Z",
-       "settlement:2023-09-12T15:12:53Z",
+       "enactment:2023-09-25T11:15:20Z",
+       "settlement:2023-09-24T11:15:20Z",
        "source:docs.vega.xyz"
       ],
 
@@ -208,11 +208,11 @@
 
    // Timestamp as Unix time in seconds when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-   closingTimestamp: 1694527973,
+   closingTimestamp: 1695550520,
 
    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-   enactmentTimestamp: 1694614373,
+   enactmentTimestamp: 1695636920,
   }
  }
 ```
