@@ -1,6 +1,7 @@
 ---
 sidebar_position: 4
 title: Deposits and withdrawals
+vega_network: MAINNET
 hide_title: false
 description: Deposits and withdrawals go through a bridge contract.
 ---
@@ -29,10 +30,10 @@ To use assets on the Vega network, for example to take part in markets, you'll n
 
 
 :::info Try it out
-Deposit assets using the [Vega Console trading interface ↗](https://console.fairground.wtf), in the Portfolio section.
+Deposit assets using the [Vega Console trading interface ↗](https://console.vega.xyz/), in the Portfolio section.
 :::
 
-The first assets that will be available for interacting with markets on Vega will be ERC-20 assets, the only bridge currently available. An asset's ERC-20 token contract needs to be available on the bridge before it can be used, which happens in the governance and enactment process for new assets.
+The first assets available for interacting with markets on Vega are ERC-20 assets, the only bridge currently available. An asset's ERC-20 token contract needs to be available on the bridge before it can be used, which happens in the governance and enactment process for new assets.
 
 An asset can then be deposited into the ERC-20 bridge contract. The funds in that smart contract will then be made available to the user's chosen Vega public key. 
 
@@ -41,7 +42,7 @@ Note: Associated and deposited are not equivalent, as deposited tokens are held 
 ### Lifetime deposit limits 
 During alpha mainnet, the ERC-20 bridge smart contract limits how much can ever be deposited from an Ethereum address. This is done in an abundance of caution, to assure users in the face of recent bridge hacks on other projects, that they would have only a small amount at risk at any point. 
 
-If, however, a user wanted to bypass those limits and understood the risks to their assets, they could run `exempt_depositor()` for an asset on the [ERC-20 bridge contract](../../api/bridge/index.md), after which transactions greater than deposit limit for the asset would be allowed.
+If, however, a user wanted to bypass those limits and **understood the risks to their assets**, they could run `exempt_depositor()` for an asset on the [ERC-20 bridge contract ↗](https://etherscan.io/address/0x23872549ce10b40e31d6577e0a920088b0e0666a/advanced#writeContract), after which transactions greater than the deposit limit for the asset would be allowed.
 
 ### Depositing ERC-20 assets
 Deposits go through the ERC-20 bridge smart contract. Every type of asset supported by and voted into Vega will have a bridge, but for the time being there is only an ERC-20 bridge.
@@ -83,7 +84,6 @@ To remove assets from the Vega network, submit a withdrawal request via a Vega a
 
 This request, if valid, will be put through consensus - the validators sign a multi-signature withdrawal order bundle for the ERC-20 bridge. The bridge validates the bundle and then releases the funds to the chosen Ethereum wallet.
 
-
 If it's a successful withdrawal transaction, the ERC20 bridge will emit an `Asset_Withdrawn` event, and confirm to the Vega network that the withdrawal has been completed.
 
 :::note Read more
@@ -101,7 +101,7 @@ The two parts of a withdrawal limit are:
 
 If you choose an amount to withdraw that is higher than the withdrawal threshold, the multi-signature bundle will only be usable after the withdrawal delay has passed, after which the assets can be moved into an Ethereum wallet.
 
-Once the delay time has passed, and the bundle is valid, **the withdrawal must be completed by submitting the bundle to Ethereum and paying the gas fee required. Usually this will be done by the party wishing to receive the funds**. This can be done using Vega Console or another user interface, or manually using the [smart contract](../../api/bridge/contracts/ERC20_Bridge_Logic.md) and an Ethereum RPC node.
+Once the delay time has passed, and the bundle is valid, **the withdrawal must be completed by submitting the bundle to Ethereum and paying the gas fee required**. Usually this will be done by the party wishing to receive the funds. This can be done using Vega Console or another user interface, or manually using the [smart contract](../../api/bridge/contracts/ERC20_Bridge_Logic.md) and an Ethereum RPC node.
 
 :::tip Query for data
 You can see the threshold and delay for withdrawals in [Vega Console ↗](https://console.fairground.wtf).
@@ -121,8 +121,8 @@ VEGA (an ERC20 token) used for staking is associated with a Vega key. To withdra
 
 Rewards accrued through staking are not associated automatically. To stake those tokens or transfer them, they need to be withdrawn from the Vega key that the rewards are credited to, and sent to an Ethereum wallet.
 
-:::tip Try it
-Track and withdraw testnet staking rewards on the [Vega token withdrawals page for testnet ↗](https://governance.fairground.wtf/token/withdraw).
+:::tip Try it out
+Track and withdraw staking rewards on the [Vega token withdrawals page ↗](https://governance.vega.xyz/token/withdraw).
 
 Alternatively, use the [smart contract](../../api/bridge/contracts/ERC20_Bridge_Logic#withdraw_asset) and an Ethereum RPC node to run the withdraw function.
 :::
