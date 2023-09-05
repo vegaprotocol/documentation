@@ -16,7 +16,7 @@ Validators and nominators both receive revenue for securing the network. The amo
 **To be considered for staking rewards, a tokenholder must associate VEGA to a Vega key and nominate one or more validators.**
 
 :::info Try it out
-Use **[governance.fairground.wtf](https://governance.fairground.wtf)** to try out associating testnet tokens and nominating validators. Staking rewards are paid into your Vega wallet after each epoch ends.
+Use **[governance.vega.xyz](https://governance.vega.xyz)** to associate tokens and nominate validators. Staking rewards are paid into your Vega wallet after each epoch ends.
 
 VEGA received as staking rewards must be withdrawn to an Ethereum wallet, and then associated to a Vega wallet, before they can be staked.
 :::
