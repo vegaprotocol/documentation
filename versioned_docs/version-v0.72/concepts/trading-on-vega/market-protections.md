@@ -14,14 +14,8 @@ The Vega protocol has been designed with rules to detect dangerous market condit
 Margin calculations take into account the probability of the liquidation value of a position falling short of the available capital. The network is also designed to frequently re-evaluate each individual's risk, and preemptively close positions.
 
 Some of those measures include price monitoring, liquidity monitoring, and frequent mark to market calculations.
-<!--
-:::note Read more
-* [Margin on Vega](./positions-margin#margin)
-* [Mark to market](./positions-margin#mark-to-market)
-:::
--->
-:::warning A note on risk
 
+:::warning A note on risk
 Derivatives markets are financially risky, by design. If a market has no liquidity, it won't be possible to get out of a position.
 
 Vega is not a retail or brokerage platform with third-parties to guarantee positions can always be exited. Vega provides a protocol for users to create markets that put traders directly in the market, with incentives built into the protocol to maximise the potential that a trader can get out of a position quickly. This, however, is not a guarantee.
@@ -157,3 +151,8 @@ When a market expires, the funds from that market's insurance pool go into a big
 Insurance pools grow in two scenarios:
 * If a trader is closed out because they do not have enough collateral to support an open positions
 * If a liquidity provider pays a penalty for failing to provide their committed liquidity
+
+:::note Related topics
+[Margin on Vega](./positions-margin#margin)
+[Mark to market](./positions-margin#mark-to-market)
+:::
