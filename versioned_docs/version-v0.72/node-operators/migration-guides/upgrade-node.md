@@ -1,6 +1,7 @@
 ---
 title: Upgrade to 0.72.14
 sidebar_label: Upgrade to 0.72.14
+sidebar_position: 1
 ---
 
 This guide describes the steps to upgrade from v0.71.6 to v0.72.14 using the protocol upgrade mechanism. See the changelogs for [v0.72.0](https://github.com/vegaprotocol/vega/releases/tag/v0.72.0) and [onwards](https://github.com/vegaprotocol/vega/releases/), for information about breaking changes and new features.
