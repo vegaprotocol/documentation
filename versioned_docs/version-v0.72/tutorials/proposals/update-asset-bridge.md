@@ -3,7 +3,7 @@ sidebar_position: 4
 title: Update asset bridge
 hide_title: false
 vega_network: MAINNET
-ethereum_network: Ropsten
+ethereum_network: Mainnet
 keywords:
   - proposal
   - governance
