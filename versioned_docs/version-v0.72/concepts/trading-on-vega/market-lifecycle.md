@@ -2,6 +2,7 @@
 sidebar_position: 7
 title: Market lifecycle
 hide_title: false
+vega_network: MAINNET
 description: See every stage possible for a proposed or live market.
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
