@@ -35,7 +35,7 @@ NVMe devices are the fastest and best option if available. Their very low servic
 
 SATA attached SSDs perform well and have the advantage of supporting larger sizes and also more devices per server.
 
-Traditional HDDs are not a good fit for this workload. They would be unable to catch up with a live blockchain as they cannot handle processing blocks faster than real time.
+Traditional HDDs are not a good fit for this workload. They would be unable to catch up with a live blockchain as they cannot handle processing blocks faster than real time, thus your validator node may not be quick enough to take part in consensus and then demoted from the consensus validator set.
 
 Performance testing on NVMe SSD, SATA SSD and traditional HDD (5400rpm) storage devices was done to see how they handled the workload of running a validator node. The testing included running the node for an hour and measuring the number of blocks it replayed, and the service time of the storage device.
 
