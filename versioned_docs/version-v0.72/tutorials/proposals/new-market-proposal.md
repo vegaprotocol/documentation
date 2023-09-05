@@ -34,6 +34,8 @@ You will need:
 * A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true}/>   (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
 * Familiarity with [market governance](../../concepts/governance.md#market-governance) on Vega
 
+You should also share your proposal idea in the [_Market Proposals_ forum section ↗](https://community.vega.xyz/c/governance/market-proposals/28) before submitting it to the network.
+
 ## Anatomy of a market proposal
 In this section, the [full proposal template](#templates-and-submitting) has been divided into sections to provide more details on what you need to submit.
 
@@ -110,8 +112,17 @@ Data source bindings include the following properties:
 | `operator` | This adds a constraint to the value, such as LESS_THAN, GREATER_THAN. For example if you wanted to ensure that the price would always be above zero, you would set the operator to ‘GREATER_THAN’ and the Value to be ‘0’ | GREATER_THAN |
 | `value` | A number that is constrained by the operator. If providing a timestamp, use the Unix time in seconds | 0 |
 
+### Submitting a verified settlement price
+If you want the community to vote on the verified price used to settle the market:
+* Supply your own Vega public key as the oracle signer under `pubkeys`
+* Set the `conditions` to `OPERATOR_GREATER_THAN` 0 **and** `OPERATOR_LESS_THAN` 0 so no price will be accepted
+
+After the market has terminated, update the price by: 
+1. Submitting an [update market proposal](./update-market-proposal.md#submitting-a-verified-settlement-price) with the verified price 
+2. Sending the [settlement transaction](../using-data-sources.md#1-define-your-json-structure).
+
 :::info Submitting data
-Learn how to find and submit data in the [submitting data sources tutorial](../using-data-sources.md).
+Learn how to find and submit data in the [using data sources tutorial](../using-data-sources.md).
 :::
 
 ### Liquidity monitoring
@@ -166,7 +177,7 @@ The risk model uses the following properties:
 In the tabs below you'll see:
 
 * Annotated example describing what each field is for
-* JSON example that can be submitted with the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw)
+* JSON example that can be shared with the community and then submitted with the [governance dApp ↗](https://governance.vega.xyz/proposals/propose/raw)
 * Command line examples for different operating systems that can be submitted with a Vega Wallet app.
 
 **Replace the example data with the relevant details before submitting.**
@@ -190,11 +201,13 @@ In the tabs below you'll see:
 </Tabs>
 
 ## Voting
-All proposals are voted on by the community. A vote can be submitted with a [transaction](../../api/grpc/vega/commands/v1/commands.proto.mdx#votesubmission) on the command line, or by using the [governance dApp](https://governance.fairground.wtf/proposals).
+All proposals are voted on by the community. A vote can be submitted with a [transaction](../../api/grpc/vega/commands/v1/commands.proto.mdx#votesubmission) on the command line, or by using the [governance dApp](https://governance.vega.xyz/proposals).
 
 To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minVoterBalance" suffix="tokens" hideName={true} formatter="governanceToken" />, or <NetworkParameter formatter="governanceToken" frontMatter={frontMatter} param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated with their Vega key.
 
 Your proposal will need [participation](../../concepts/governance.md#how-a-proposals-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential.
+
+Building support is down to you. Share your proposal in [the _Market Proposals_ section ↗](https://community.vega.xyz/c/governance/market-proposals/28) on the community forum. You may also wish to share on [Discord ↗](https://vega.xyz/discord).
 
 Proposers who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.
 
