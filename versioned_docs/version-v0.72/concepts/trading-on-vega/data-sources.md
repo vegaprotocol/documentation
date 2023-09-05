@@ -155,10 +155,8 @@ To do this, the market proposer will need to do the following steps throughout t
 
 3. If the new market proposal passes governance and then enters into continuous trading, wait for it to reach its termination date.
 
-4. After the market has terminated, update the price by submitting an [update market proposal](../../tutorials/proposals/update-market-p
-roposal.md#submitting-a-verified-settlement-price) with the verified price. 
+4. After the market has terminated, update the price by submitting an [update market proposal](../../tutorials/proposals/update-market-proposal.md#submitting-a-verified-settlement-price) with the verified price. 
 
 5. Once that update market governance proposal has passed and been enacted, the user with the public key in the market proposal will need to send the [signed JSON message with the settlement price](../../tutorials/using-data-sources.md#1-define-your-json-structure).
 
 For more details on how to accomplish each step, follow the linked tutorials.
-:::
