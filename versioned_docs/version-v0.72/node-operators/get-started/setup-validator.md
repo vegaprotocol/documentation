@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 title: Set up validator node
+vega_network: MAINNET
 hide_title: false
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
@@ -243,9 +244,7 @@ Under `Mempool Configuration Option`, ensure that `broadcast = true`.
 ### Update Tendermint genesis
 To start successfully, tendermint needs the genesis file from the network you will be trying to join. This file need to be located in `YOUR_TENDERMINT_HOME/config/genesis.json`. Download the genesis file and use it to replace the genesis in your config.
 
-You can find genesis files in the [networks repository ↗](https://github.com/vegaprotocol/networks) for mainnet and for testnet, visit [networks internal ↗](https://github.com/vegaprotocol/networks-internal). 
-
-Note: For testnet, the genesis must be a URL to a remote file, not saved locally on disk.
+You can find genesis files in the [networks repository ↗](https://github.com/vegaprotocol/networks) for the mainnet and validator-run testnet networks.
 
 For example, to join mainnet you will need the following [genesis file ↗](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json).
 
@@ -263,19 +262,19 @@ After you choose the snapshot you're starting from:
 visor run --home "VISOR_HOME_PATH"
 ```
 
-**If you're not using Visor**, start your node by running the following command e.g. for the validator-run testnet:
+**If you're not using Visor**, start your node by running the following command
 
 ```shell
-vega start --home="YOUR_VEGA_HOME_PATH" --nodewallet-passphrase-file="YOUR_PASSPHRASE_FILE_PATH" --network=testnet2
+vega start --home="YOUR_VEGA_HOME_PATH" --nodewallet-passphrase-file="YOUR_PASSPHRASE_FILE_PATH" --network=mainnet1
 ```
 
 ### Replay from genesis
 To replay all history from genesis: 
 
-You can set a genesis file when starting the node with the following command, e.g. for the validator-run testnet:
+You can set a genesis file when starting the node with the following command, e.g. for mainnet:
 
 ```shell
-vega start --home="YOUR_VEGA_HOME_PATH" --nodewallet-passphrase-file="YOUR_PASSPHRASE_FILE_PATH" --network=testnet2
+vega start --home="YOUR_VEGA_HOME_PATH" --nodewallet-passphrase-file="YOUR_PASSPHRASE_FILE_PATH" --network=mainnet1
 ```
 
 If using Visor, configure the node with Visor, including the required args (flags) for network, etc, and then start Visor with the service manager of your choice using the following command:
@@ -287,22 +286,22 @@ visor run --home "VISOR_HOME_PATH"
 Once your node is synchronised, you'll need to self-stake, and then announce the node to the network and then the community.
 
 ## Associate tokens to your Vega key
-Before you announce your node, you will need to have <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={true} formatter="governanceToken" suffix="tokens"/> Vega associated to your Vega key to self-stake (below).
+Before you announce your node, you will need to have <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={true} formatter="governanceToken" suffix="tokens"/> associated to your Vega key, and then nominate (self-stake) your node with that VEGA.
 
-Use the [Sepolia VEGA contract address on the governance dApp ↗](https://governance.fairground.wtf/) to call the contract and faucet tokens to your Ethereum key. 
+The tokens must be available on an Ethereum wallet, and then associated to the same Vega public key you used to set up the node.
 
-The tokens that you want to use for self-staking must be available on an Ethereum wallet, and then associated to the same Vega public key you used to set up the node. 
+Do this by [importing the Vega Wallet](../../tools/vega-wallet/cli-wallet/latest/guides/restore-wallet) you created for your node wallet, onto your local computer using the Vega Wallet recovery phrase.
 
-You can do this by [importing the Vega Wallet](../../tools/vega-wallet/cli-wallet/latest/guides/restore-wallet) you created for your node wallet, onto your local computer using the Vega Wallet recovery phrase.
-
-Once you have tokens, connect your Ethereum wallet and your Vega Wallet, and associate the tokens to your Vega public key using the [governance dApp ↗](https://governance.fairground.wtf/validators). 
+Once you have tokens, connect your Ethereum wallet and your Vega Wallet, and associate the tokens to your Vega public key using the [governance dApp ↗](https://governance.vega.xyz/validators).
 
 The association will need to be confirmed by both the Ethereum and Vega blockchains, and may take some time.
 
 Below are the instructions to self-nominate (self-stake) to your node.
 
 ## Announce node on-chain
-You'll need to know the [current epoch ↗](https://governance.fairground.wtf/validators), and have the following data to hand: the URL for your validator website, and the URL for the avatar that will show up on the governance dApp next to your node name.
+You'll need to know the [current epoch ↗](https://governance.vega.xyz/validators), and have the following data to hand: 
+* URL for your validator website
+* URL for the avatar that will show up next to your node name
 
 ```shell
 vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" --avatar-url="YOUR_AVATAR_URL" --country="UK" --name="YOUR_NODE_NAME" --from-epoch="CURRENT_EPOCH"
@@ -311,9 +310,9 @@ vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" 
 Setting the optional argument `--submitter-address` triggers the Vega network to automatically issue signature bundles that can be used to update signer set changes on the Multisig Control contract. This means if your node is promoted to a consensus validator it is easier for you to add your node's Ethereum key to the contract and to continue receiving rewards. See [maintaining the multisig contract](../how-to/maintain-multisig-contract.md) for more information.
 
 ## Nominate your node
-To move on to self-staking, wait until you see your node on the validator list by [querying the API](../../api/rest/data-v2/trading-data-service-list-nodes.api.mdx).
+You can self-stake once you see your node on the validator list: [Query the list nodes API](../../api/rest/data-v2/trading-data-service-list-nodes.api.mdx).
 
-Then, associate your tokens and nominate your node using the governance dApp: `https://governance.fairground.wtf/validators/<NODE'S_VEGA_PUBKEY>`. Alternatively you can interact directly with the smart contract.
+Then, associate your tokens and nominate your node using the governance dApp: `https://governance.vega.xyz/validators/<NODE'S_VEGA_PUBKEY>`. Alternatively you can interact directly with the smart contract.
 
 Your node will be visible on the governance dApp in the epoch after you self-stake.
 
