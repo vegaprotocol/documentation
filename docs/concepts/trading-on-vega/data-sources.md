@@ -147,6 +147,11 @@ For example, a single timestamp event will appear as follows. Note: the precise 
 ]
 ```
 
+### Repeating time trigger
+The repeating time triggered oracle is another internal data source, specifically for perpetual futures markets. Defining a set of repeating times allows for scheduling when price data is delivered. It can be a repeating, predictable schedule or a fixed number of events at pre-determined times.
+
+For example, a scheduled time trigger could be every day at 04:00, 12:00 and 20:00. A fixed number could be 01/02/2023 at 08:52, 11/03/2023 at 15:45, 20/04/2023 at 21:37. 
+
 ## Using a data source: Filtering
 Data source filters allow the market proposer to specify, for a given "root" data source (for example all messages signed by a given public key), which of its messages are relevant.
 
