@@ -116,3 +116,69 @@ Did you reset CometBFT without resetting your application's data?
 7. If your node did not restart automatically:
    a. For Visor: Stop Visor, link correct version to `<vegavisor-home>/current`, and restart your node, and start Visor
    b. For non-Visor setup: Stop the node, start the node with new binary
+
+## Problem: Data Node is at block 0, while Core is processing blocks ok
+
+When you request `/statistics` from your Data Node REST API, you will get:
+- `blockHeight` and `vegaTime` from response body - this is the information about `core` and it looks ok
+- `X-Block-Height` and `X-Block-Timestamp` response headers - this is the information about `data node`, and you get `X-Block-Height: 0`
+  - you might also get non-zero value, that is way behind `core` block height, and it is not increasing (if it increases, then it is a different issue)
+
+It means your `core` process is working ok, but it is not sending any data to the `data node` process.
+
+### Solution: Fix config and restart from remote network history
+
+1. Check your data node's broker IP and port `config.toml`
+```toml
+[Broker]
+  # ...
+  [Broker.SocketConfig]
+    IP = "0.0.0.0"   # 0.0.0.0 will serve on all network interfaces
+    Port = 3005  # make sure it matches core config
+```
+2. Verify that core has the broker enabled, and pointed to the correct IP and port `config.toml`
+```toml
+[Broker]
+  # ...
+  [Broker.Socket]
+    # ...
+    Address = "127.0.0.1"  # your Data Node endpoint
+    Port = 3005  # your Data Node listening port
+    Enabled = true  # send data to the Data Node
+```
+3. If you didn't have to change your config, that means you have a different issue
+3a. If you changed your config (either fixed port, or set `Entabled` to `true`), then please continue
+4. Stop your `core` and `data node` (or just `vegavisor`)
+5. Configure `data node` to start from remote Network History. For this, modify data node `config.toml`
+```toml
+AutoInitialiseFromNetworkHistory = true
+# ...
+[SQLStore]
+  WipeOnStartup = true  # IMPORTANT: remember to change this back to false once node is started
+# ...
+[NetworkHistory]
+  # ...
+  Enabled = true
+  WipeOnStartup = true  # IMPORTANT: remember to change this back to false once node is started
+  # ...
+  [NetworkHistory.Store]
+    # ...
+    BootstrapPeers = [you need to put at least one trusted peer here]
+    # ...
+  [NetworkHistory.Initialise]
+    # ...
+    TimeOut = "1h"  # Make sure the timeout is not too small
+```
+6. Make sure `core` timeout is not too small. For that modify core `config.toml`
+```toml
+[Broker]
+  # ...
+  [Broker.Socket]
+    DialTimeout = "1h"  # Make sure the timeout is not too small
+```
+7. If you are using `vega visor` make sure the timeout is not too small. For that modify visor `config.toml`
+```toml
+# Try every 2 seconds, 1800 retries is 1h
+maxNumberOfFirstConnectionRetries = 1800
+```
+8. Start `vegavisor` or `core + date node` (order doesn't matter)
