@@ -43,7 +43,7 @@ Auctions aggregate participation over time, up to a pre-set time when the market
 Currently, all auctions are triggered automatically based on market conditions. Market conditions that could trigger an auction:
 * A market has opened for trading, which means it needs a defined price to start trading from 
 * Price swing on a market is perceived, based on risk models, to be extreme and unrealistic
-* Not enough liquidity on a market; this could also indicate missing best static bid / ask as without those liquidity provision orders cannot be deployed, even if liquidity providers have committed liquidity. 
+* Not enough liquidity on a market 
 
 ### Auction type: Opening
 Every continuous trading market opens with an auction. Their purpose is to calibrate a market and help with price discovery by determining a fair mid-price to start off continuous trading.
@@ -124,7 +124,7 @@ When a market is in an auction, only certain order types and times in force can 
 * Stop orders are accepted 
 
 **Upon exiting an auction:**
-* Pegged orders (all types, including liquidity commitment orders) are reinstated to the order book 
+* Pegged orders are reinstated to the order book 
 * Limit orders stay on the book - unless they have a time in force of Good For Auction, in which case they're cancelled
 * Stop orders can be triggered by the auction uncrossing price if the auction results in a trade
 

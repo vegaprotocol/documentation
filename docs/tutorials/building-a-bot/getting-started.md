@@ -17,7 +17,7 @@ No developer or entity involved in creating the Vega protocol or supporting docu
 
 In this series of tutorials you will work towards building the components of a simple bot that can trade on a Vega Protocol network, and to which you can add your own specific trading logic. In the first section, we will build out the basics of signing transactions, sending order creation and amendment payloads to a node, and listening for position and order updates via WebSockets.
 
-Later sections will cover adding a liquidity commitment to the bot and implementing a simple arbitrage strategy between a centralised exchange's prices and the Vega market's, taking into account trading fees.
+Later sections will cover adding liquidity to the bot and implementing a simple arbitrage strategy between a centralised exchange's prices and the Vega market's, taking into account trading fees.
 
 We will be building the bot in Python, however the concepts are transferable and all communication with the wallet and network will be conducted through language-agnostic methods (predominately JSON through REST and WebSockets).
 
@@ -597,6 +597,6 @@ Within a single batch, the orders are placed first as cancellations, then amendm
 
 From here, you should be able to run your bot with `python -m main` again and watch it trade. You can log into the Fairground [Console ↗](https://console.fairground.wtf) to see the orders it places and current position. 
 
-If you watch the logs, you may see that although there is only a 1s sleep in the loop it is only updating the price every few seconds. This is because each of the API queries we do in the loop takes a short amount of time, and that adds up! In the [next guide](streaming-data.md) we will think about ways to tackle that, along with covering how we might add a liquidity commitment to our bot.
+If you watch the logs, you may see that although there is only a 1s sleep in the loop it is only updating the price every few seconds. This is because each of the API queries we do in the loop takes a short amount of time, and that adds up! In the [next guide](streaming-data.md) we will think about ways to tackle that, along with covering how we might add liquidity to our bot.
 
 In the meantime, testing different parameters in terms of how you set the price and volume, or even increasing the number of different buy and sell orders you create to have volumes at different prices you might buy/sell, can be a good way to experiment with the set up.

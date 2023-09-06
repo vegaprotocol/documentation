@@ -56,7 +56,7 @@ Every transaction has a Tendermint gas value assigned to it, which goes into det
 
 Most transactions will have a set gas value of <NetworkParameter frontMatter={frontMatter} param="network.transaction.defaultgas" hideName={true} />, set through a network parameter - though the gas values of orders-related transactions can vary.
 
-The gas for order-related transactions is calculated based on current market factors, such as existing orders, positions, and liquidity commmitment orders already on the market.
+The gas for order-related transactions is calculated based on current market factors, such as existing orders and positions already on the market.
 
 :::note Go deeper
 See the full list of gas cost calculations and exceptions in the [transaction gas and priority spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0079-TGAP-transaction_gas_and_priority.md#dynamic-transactions-costs).

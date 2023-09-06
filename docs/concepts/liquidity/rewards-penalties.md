@@ -122,9 +122,10 @@ Thus, the following amounts are then transferred to each LP's margin account onc
 ## Penalties for not fulfilling liquidity commitment
 
 ### Penalties for not meeting SLA
-Not meeting the SLA deprives an LP of all liquidity fee revenue, but no extra penalties are applied. However, not meeting the SLA will affect future fee revenue even in epochs when the SLA is met. 
 
-The number of epochs over which past performance will continue to affect rewards is determined by the network parameter: `market.liquidity.performanceHysteresisEpochs`
+Not meeting the SLA deprives an LP of all liquidity fee revenue, and a sliding penalty is applied, how much is based on the value of the `market.liquidity.sla.nonPerformanceBondPenaltySlope` network parameter. The penalty that can be charged is capped by the `market.liquidity.sla.nonPerformanceBondPenaltyMax` network parameter.
+
+Not meeting the SLA will also affect future fee revenue even in epochs when the SLA is met. The number of epochs over which past performance will continue to affect rewards is determined by the network parameter: `market.liquidity.performanceHysteresisEpochs`
 
 <!--
 Go deeper: link to spec for calculations (still cosmic elevator branch)
