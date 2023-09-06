@@ -45,7 +45,7 @@ This tutorial describes how to create, amend or cancel, and send a liquidity com
 
 **The liquidity commitment submission must include**:
 * The **market’s unique ID**, denoted as `marketId` - Confirm that the market is in a state to accept liquidity commitment, and is not a rejected market, has not had trading terminated, or has not been settled 
-* **Liquidity commitment amount**: The amount of funds that you want to allocate to providing liquidity. The amount will be moved into a bond account during the duration of your liquidity commitment, denoted as `commitmentAmount`
+* **Liquidity commitment amount**: The amount of funds that you want to allocate to providing liquidity. The amount will be moved into a bond account for the duration of your liquidity commitment, denoted as `commitmentAmount`
 * **Proposed liquidity fee**: The scaling factor for the fee you are bidding to receive when your order is matched, on a scale between 0 and the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.maximumLiquidityFeeFactorLevel" />. For example, a fee level of 0.01 would mean `0.01 * total trade amount` is charged. Note: Your proposed fee is used along with other proposed fees and commitments to determine the actual fee percentage for the market. [Learn how all proposed fee levels influence the market's fees]). Denoted as `fee` Denoted as `fee`
 
 **To submit the liquidity commitment message, you'll also need**: 
@@ -75,7 +75,7 @@ Providing liquidity can be done using:
 
 Anyone that supplies limit orders is eligible to receive maker fees when volume they place on the book is hit. However, a liquidity commitment also makes an LP eligible to receive a portion of the liquidity fee from every trade in the market, on top of the maker fee.
 
-Liquidity providers need to have enough available assets to cover the margin for their orders and the positions that will be generated from trades.
+Liquidity providers need to have enough available assets within their general and margin accounts to cover the margin for their orders and the positions that will be generated from trades. The funds within the bond account are held separate unless the combined general and margin accounts are insufficient, at which point funds from the bond account may be used. However this may come with a penalty.
 
 Ensure your orders to provide liquidity will earn from liquidity fees by meeting those requirements. Check these parameters for the market you're targeting:
 - `market.liquidity.priceRange`: Range that the liquidity orders need to be priced within
@@ -84,7 +84,7 @@ Ensure your orders to provide liquidity will earn from liquidity fees by meeting
 :::info Read more
 [Building a bot tutorial](./building-a-bot/adding-a-liquidity-commitment.md): Basics on how to incorporate liquidity orders into an automated trading setup.
 
-[Rewards and penalties](../concepts/liquidity/rewards-penalties.md): LPs receive rewards (through fees paid by traders) when they meet the liquidity SLA. Fees are withheld, and they can be further penalised for not meeting their commitment.
+[Rewards and penalties](../concepts/liquidity/rewards-penalties.md): LPs receive rewards (through fees paid by traders) when they meet the liquidity SLA. If the SLA is not met, fees are withheld and they may be further penalised for not meeting their commitment.
 :::
 
 ## Amending a liquidity commitment [WIP]
