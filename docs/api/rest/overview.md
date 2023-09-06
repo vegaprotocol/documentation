@@ -11,6 +11,7 @@ REST provides endpoints for querying for trading data, account information, ledg
   * reward summaries
   * governance proposals and votes
   * orders and positions
+  * liquidity commitments and fee bids
 * **Core service API**: Provides the minimum state of the chain required to build and send a transaction. This is also exposed in the trading data API, which is the recommended API for querying information.
 * **Explorer API**: Provides transaction details, designed particularly to support the development of block explorers.
 * **Core state API**: This API is specifically for node operators, and may not be exposed by nodes running the network. All methods under this umbrella are also available on the trading data endpoints, which are recommended for querying for this information generally.

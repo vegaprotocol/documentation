@@ -5,13 +5,21 @@ hide_title: false
 description: Commit liquidity onto a market and manage that commitment
 ---
 
+import NetworkParameter from '@site/src/components/NetworkParameter';
+
 In this tutorial, you'll find:
 * Resources about how liquidity works on Vega
 * How to prepare and submit a liquidity commitment to express your desire to provide liquidity on a live market created with Vega
 * High-level tactics for placing orders to meet your commitment
 * How to change your commitment amount by amending and/or cancelling
 
-At the end of the tutorial, find troubleshooting tips as well as more resources for understanding the mechanics of liquidity provision on Vega. 
+At the end of the tutorial, find troubleshooting tips as well as more resources for understanding the mechanics of liquidity provision on Vega.
+
+:::caution
+Providing liquidity is a significant and active commitment to providing orders on a Vega market. Failure to meet the commitment may result in penalties up to losing your entire bonded amount.
+
+[Read about the risks below.](#what-can-go-wrong-when-providing-liquidity?)
+:::
 
 ## Rewarding liquidity providers
 Participants who provide enough liquidity to meet the [liquidity SLA](../concepts/liquidity/rewards-penalties.md#liquidity-sla) earn from liquidity fees, which are paid by the *price takers* on each trade. The SLA requires that you provide a specified amount of liquidity for a specified amount of time in order to receive any liquidity fee revenue.
@@ -38,7 +46,7 @@ This tutorial describes how to create, amend or cancel, and send a liquidity com
 **The liquidity commitment submission must include**:
 * The **market’s unique ID**, denoted as `marketId` - Confirm that the market is in a state to accept liquidity commitment, and is not a rejected market, has not had trading terminated, or has not been settled 
 * **Liquidity commitment amount**: The amount of funds that you want to allocate to providing liquidity. The amount will be moved into a bond account during the duration of your liquidity commitment, denoted as `commitmentAmount`
-* **Proposed liquidity fee**: The scaling factor for the fee you are bidding to receive when your order is matched, on a scale between 0 and 1. For example, a fee level of 0.01 would mean `0.01 * total trade amount` is charged. Note: Your proposed fee is used along with other proposed fees and commitments to determine the actual fee percentage for the market. [Learn how all proposed fee levels influence the market's fees]). Denoted as `fee` Denoted as `fee`
+* **Proposed liquidity fee**: The scaling factor for the fee you are bidding to receive when your order is matched, on a scale between 0 and the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.maximumLiquidityFeeFactorLevel" />. For example, a fee level of 0.01 would mean `0.01 * total trade amount` is charged. Note: Your proposed fee is used along with other proposed fees and commitments to determine the actual fee percentage for the market. [Learn how all proposed fee levels influence the market's fees]). Denoted as `fee` Denoted as `fee`
 
 **To submit the liquidity commitment message, you'll also need**: 
 
@@ -60,7 +68,7 @@ submission = {
     "propagate": True
 }
 ```
-## Tactics for providing liquidity [WIP]
+## Methods for providing liquidity [WIP]
 Providing liquidity can be done using: 
 * Standard limit orders, which give you the most control over your strategy. The [batch orders transaction](../concepts/trading-on-vega/orders#batch-order) is designed to enable this efficiently
 * [Iceberg orders](../concepts/trading-on-vega/orders.md#iceberg-order) allow LPs to remain competitively present on the order book without needing to supply excessive volume to a large aggressive order
@@ -68,6 +76,10 @@ Providing liquidity can be done using:
 Anyone that supplies limit orders is eligible to receive maker fees when volume they place on the book is hit. However, a liquidity commitment also makes an LP eligible to receive a portion of the liquidity fee from every trade in the market, on top of the maker fee.
 
 Liquidity providers need to have enough available assets to cover the margin for their orders and the positions that will be generated from trades.
+
+Ensure your orders to provide liquidity will earn from liquidity fees by meeting those requirements. Check these parameters for the market you're targeting:
+- `market.liquidity.priceRange`: Range that the liquidity orders need to be priced within
+- `market.liquidity.commitmentMinTimeFraction`: How much time per epoch (as a percentage) that the liquidity needs to be supplied for to meet the SLA
 
 :::info Read more
 [Building a bot tutorial](./building-a-bot/adding-a-liquidity-commitment.md): Basics on how to incorporate liquidity orders into an automated trading setup.
