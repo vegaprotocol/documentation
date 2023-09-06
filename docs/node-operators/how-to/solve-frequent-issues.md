@@ -128,7 +128,15 @@ It means your `core` process is working ok, but it is not sending any data to th
 
 ### Solution: Fix config and restart from remote network history
 
-1. Verify core `config.toml`
+1. Check your data node's broker IP and port `config.toml`
+```toml
+[Broker]
+  # ...
+  [Broker.SocketConfig]
+    IP = "0.0.0.0"   # 0.0.0.0 will serve on all network interfaces
+    Port = 3005  # make sure it matches core config
+```
+2. Verify that core has the broker enabled, and pointed to the correct IP and port `config.toml`
 ```toml
 [Broker]
   # ...
@@ -137,14 +145,6 @@ It means your `core` process is working ok, but it is not sending any data to th
     Address = "127.0.0.1"  # your Data Node endpoint
     Port = 3005  # your Data Node listening port
     Enabled = true  # send data to the Data Node
-```
-2. Verify data node `config.toml`
-```toml
-[Broker]
-  # ...
-  [Broker.SocketConfig]
-    IP = "0.0.0.0"
-    Port = 3005  # make sure it matches core config
 ```
 3. If you didn't have to change your config, that means you have a different issue
 3a. If you changed your config (either fixed port, or set `Entabled` to `true`), then please continue
