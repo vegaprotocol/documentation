@@ -3,31 +3,35 @@ title: Apps and Tools
 hide_title: false
 ---
 
-Vega provides several apps and tools to make it easier to interact with the protocol. 
+Check out the list of apps and tools to make it easier to interact with the Vega protocol.
 
-### Vega Wallet
+## Vega Protocol snap
+Create a Vega keypair from within MetaMask using the Vega Protocol snap. For MetaMask users, it's the quickest way to use your assets or tokens to trade, nominate validators, and sign and send transactions.
+
+* **[How to use Snap](./vega-protocol-snap.md)**
+
+## Vega Wallet
 Use **[Vega Wallet](./vega-wallet/index.md)** to connect to a network to associate tokens for staking, and to sign messages. Using the Vega Wallet ensures your keys will be completely disassociated from your personal identity, and Vega will have no way to connect them with you, unless you share your public key for any reason.
 
-There are several ways to interact with a Vega Wallet: 
-* **[Browser extension (Alpha version)](./vega-wallet/index.md#vega-wallet-browser-extension)**
+There are two apps available to interact with a Vega Wallet: 
 * **[CLI wallet app](./vega-wallet/cli-wallet/index.md)**
 * **[Desktop wallet app](./vega-wallet/desktop-app/index.md)**
 
-### Console
+## Console
 Use **[Vega Console](https://console.vega.xyz)** to trade on markets created with Vega.
 
 * **[Host Console on IPFS](./vega-console.md#hosting-console-on-ipfs)**
 
-### Governance dApp
+## Governance dApp
 Use the **[Vega Governance dApp](https://governance.vega.xyz)** to stake your tokens to nominate the validators that run the network, participate in network goveranance, and earn and claim rewards.
 
-### Block explorer
+## Block explorer
 The block explorer allows you to query transactions, network parameters, available assets (and their IDs) and more.
 
 * **[Block explorer for mainnet](https://explorer.vega.xyz/)**
 * **[Block explorer for fairground](https://explorer.fairground.wtf/)**
 
-### Vega Capsule
+## Vega Capsule
 Use **[Vega Capsule](https://github.com/vegaprotocol/vegacapsule)** to create an instance of the Vega network on your computer to experiment with using the protocol. 
 
 [Set up Vega Capsule](https://github.com/vegaprotocol/vegacapsule#vegacapsule): The Vega Capsule `readme` file in the repo provides information on the prerequisites you need, and details on how to set up Capsule. 
@@ -38,5 +42,5 @@ Use **[Vega Capsule](https://github.com/vegaprotocol/vegacapsule)** to create an
 * Simulate network conditions ahead of putting forward a network configuration change proposal
 * Simulate market conditions or price scenarios without being concerned about unexpected user behaviour
 
-### Vega Tools repo
-The **[Vega Tools repo](https://github.com/vegaprotocol/vegatools)** provides a set of utilities for inspecting and interacting with a Vega network through the APIs. 
+## Vega Tools repo
+The **[Vega Tools repo](https://github.com/vegaprotocol/vegatools)** provides a set of utilities for inspecting and interacting with a Vega network through the APIs.
