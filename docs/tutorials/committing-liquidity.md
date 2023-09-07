@@ -33,14 +33,18 @@ Your proposed fee factor is used, with other proposed fee factors, to determine 
 [Liquidity rewards](../concepts/liquidity/rewards-penalties.md)
 :::
 
-#### List available markets [WIP]
-You'll need to identify which market you want to supply liquidity to, and add the market ID to the submission transaction. 
+#### List available markets
 
-API LINK
-```bash
+Identify which market you want to supply liquidity to, and add the market ID to the submission transaction. Use REST to [list all markets](../api/rest/data-v2/trading-data-service-list-markets.api.mdx).
+
+Choosing a market that is still pending / in opening auction means you're more likely to get a greater equity-like share of the market, which will impact the fee revenue you receive.
+
+```
+curl -L -X GET 'https://api.n00.testnet.vega.rocks/api/v2/markets' \
+-H 'Accept: application/json'
 ```
 
-## Creating a liquidity commitment
+## Creating a liquidity commitment [WIP]
 This tutorial describes how to create, amend or cancel, and send a liquidity commitment submission.
 
 **The liquidity commitment submission must include**:
@@ -68,7 +72,7 @@ submission = {
     "propagate": True
 }
 ```
-## Methods for providing liquidity [WIP]
+## Methods for providing liquidity
 Providing liquidity can be done using: 
 * Standard limit orders, which give you the most control over your strategy. The [batch orders transaction](../concepts/trading-on-vega/orders#batch-order) is designed to enable this efficiently
 * [Iceberg orders](../concepts/trading-on-vega/orders.md#iceberg-order) allow LPs to remain competitively present on the order book without needing to supply excessive volume to a large aggressive order
@@ -129,26 +133,10 @@ submission = {
 ```
 
 ## Viewing existing liquidity provisions
-You can view the list of participants supplying liquidity to a market in two ways: using the endpoint or a Vega Tool. 
+You can view the list of participants supplying liquidity to a market using the REST endpoint. 
 
-**Use the endpoint**
-
-Querying the REST endpoint for a node given the partyID (public key) and marketID:
+You'll need the party ID (public key) and market ID:
 `https://<node address>/liquidity-provisions/party/{party}/market/{market}`
-
-**Use the Vega Tool**
-
-Using the `vegatools` command line tool to view the liquidity providers for a given market. 
-
-[Vega Tools repo](https://github.com/vegaprotocol/vegatools): Try the liquidity commitment tool, under the `liquiditycommitment` folder. Check the **[README.md](https://github.com/vegaprotocol/vegatools#vegatools)** file for how to set up the Vega Tools.  
-
-To see the current liquidity commitments for a market on testnet, use this command line:
-
-```bash
-vegatools liquiditycommitment -a=n06.testnet.vega.xyz:3007
-```
-
-![Vega Tool for liquidity commitment](/img/tutorials/vegatools-liquidity-commitment.png)
 
 ## What can go wrong when providing liquidity?
 
