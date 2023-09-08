@@ -94,7 +94,8 @@ Ensure your orders to provide liquidity will earn from liquidity fees by meeting
 ## Amending a liquidity commitment [WIP]
 When amending a liquidity commitment, the network will allow you to provide more bond for your liquidity immediately. However, if you reduce your liquidity commitment, it will only be enacted in the epoch after you submitted the amendment transaction.
 
-If you reduce your commitment to the point where the market would drop below its required [target stake](./../concepts/liquidity/provision.md#target-stake), then you may be penalised.
+If you reduce your commitment to the point where the market would drop below its required [target stake](./../concepts/liquidity/provision.md#target-stake), then you will be penalised: <NetworkParameter frontMatter={frontMatter} param="market.liquidity.earlyExitPenalty" hideName={true} formatter="percent /> will be deducted from your bond.
+
 
 ### Transaction template
 
@@ -112,10 +113,10 @@ submission = {
 }
 ```
 
-## Cancelling a liquidity commitment [WIP]
-If you no longer want to keep a liquidity commitment open for a market, you can cancel your commitment using the `liquidityProvisionCancellation`. This will remove the commitment requirement from your public key, and return the bond amount back into your general account.
+## Cancelling a liquidity commitment
+If you no longer want to keep a liquidity commitment open for a market, you can cancel your commitment using the `liquidityProvisionCancellation` transaction. This will remove the commitment requirement from your public key, and return the bond amount back into your general account.
 
-If cancelling a commitment would leave a market without enough liquidity, then you will be penalised.
+If cancelling a commitment would leave a market without enough liquidity, then you will be penalised. Specifically, if removing your liquidity will put the market below its [target stake](./../concepts/liquidity/provision.md#target-stake), <NetworkParameter frontMatter={frontMatter} param="market.liquidity.earlyExitPenalty" hideName={true} formatter="percent/> will be deducted from your bond.
 
 Any open positions will not be cancelled.
 
