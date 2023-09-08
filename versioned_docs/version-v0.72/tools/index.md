@@ -1,5 +1,5 @@
 ---
-title: Vega Apps and Tools
+title: Apps and Tools
 hide_title: false
 ---
 
