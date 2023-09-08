@@ -8,7 +8,7 @@ description: Vega Console build instructions and IPFS hosting
 ## IPFS Hosting
 IPFS, the [Interplanetary File System](https://ipfs.tech) is a decentralised file storage system. Hosting Vega Console on IPFS involves ‘pinning’ a JavaScript bundle that contains the dApp. Everyone who pins an identical version of the Console ensures the bundle is quick to retrieve for any user wherever they are. IPFS ensures the dApp has not been tampered with.
 
-If you’re interested in building the app so you can try it out locally, fix bugs or build features, you can follow the much simpler guide at x. These steps are only important for IPFS.
+If you’re interested in running Console locally, check out [the Community Guides section for instructions](../tutorials/community-created#self-hosting-console). These following steps are only important for IPFS hosting.
 
 ### Quick start
 
@@ -31,8 +31,6 @@ You have joined the swarm of nodes making the Console available on IPFS!
 ### From scratch
 
 If you don’t want to depend on the Dockerhub image and instead build it from scratch, you can run the same build process locally. To provide reproducible builds, Console uses another Docker file that ensures that builds are consistent. Specifically, identical JavaScript dependencies, build tools versions, and CPU architecture. Any changes to any of those factors will produce a slightly different JavaScript bundle, which would produce a different IPFS CID.
-
-[https://github.com/vegaprotocol/frontend-monorepo#nx-build-inside-the-docker](build)
 
 ```shell
 # Get the source for Console and it's related libraries
