@@ -4,15 +4,16 @@ vega_network: MAINNET
 hide_title: false
 description: Vega Console build instructions and IPFS hosting
 ---
+[Vega Console ↗](https://console.vega.xyz) is a user interface designed for using the Vega protocol software to interact with markets. See existing markets, place trades and see your portfolio and positions.
 
-## IPFS Hosting
-IPFS, the [Interplanetary File System](https://ipfs.tech) is a decentralised file storage system. Hosting Vega Console on IPFS involves ‘pinning’ a JavaScript bundle that contains the dApp. Everyone who pins an identical version of the Console ensures the bundle is quick to retrieve for any user wherever they are. IPFS ensures the dApp has not been tampered with.
+If you’re interested in running Console locally, check out [the Community Guides section for instructions](../tutorials/community-created#self-hosting-console). The following section will guide you to hosting Console on IPFS.
 
-If you’re interested in running Console locally, check out [the Community Guides section for instructions](../tutorials/community-created#self-hosting-console). These following steps are only important for IPFS hosting.
+## Hosting Console on IPFS
+IPFS, the [Interplanetary File System ↗](https://ipfs.tech) is a decentralised file storage system. Hosting Vega Console on IPFS involves ‘pinning’ a JavaScript bundle that contains the dApp. Everyone who pins an identical version of the Console ensures the bundle is quick to retrieve for any user wherever they are. IPFS ensures the dApp has not been tampered with.
 
 ### Quick start
 
-Every time a version of Console is ready for a release, a docker image containing a deployment bundle gets built. This gets pushed [to Dockerhub with a tag of `mainnet`](https://hub.docker.com/r/vegaprotocol/trading/tags?page=1&name=mainnet).
+Every time a version of Console is ready for a release, a docker image containing a deployment bundle gets built. This gets pushed to [Dockerhub with a tag of `mainnet` ↗](https://hub.docker.com/r/vegaprotocol/trading/tags?page=1&name=mainnet).
 
 ```shell
 # Fetch the latest tagged version
@@ -24,16 +25,18 @@ ipfs add -rQ html
 # Start IPFS node
 ipfs daemon
 ```
-> **¹**  The IPFS CIDv0 & CIDv1 are shown on each individual release page (for example: [v0.20.24-core-0.71.6](https://github.com/vegaprotocol/frontend-monorepo/releases/tag/v0.20.24-core-0.71.6))
+> **¹**  The IPFS CIDv0 & CIDv1 are shown on each individual release page. For example: [v0.20.24-core-0.71.6 ↗](https://github.com/vegaprotocol/frontend-monorepo/releases/tag/v0.20.24-core-0.71.6))
 
 You have joined the swarm of nodes making the Console available on IPFS!
 
-### From scratch
+### Build from scratch
 
-If you don’t want to depend on the Dockerhub image and instead build it from scratch, you can run the same build process locally. To provide reproducible builds, Console uses another Docker file that ensures that builds are consistent. Specifically, identical JavaScript dependencies, build tools versions, and CPU architecture. Any changes to any of those factors will produce a slightly different JavaScript bundle, which would produce a different IPFS CID.
+If you don’t want to depend on the Dockerhub image and instead want to build it from scratch, you can run the same build process locally. 
+
+To provide reproducible builds, Console uses another Docker file that ensures that builds are consistent. Specifically this allows for identical JavaScript dependencies, build tools versions, and CPU architecture. Changes to **any** of those factors will produce a slightly different JavaScript bundle, which would produce a different IPFS CID.
 
 ```shell
-# Get the source for Console and it's related libraries
+# Get the source for Console and its related libraries
 git clone https://github.com/vegaprotocol/frontend-monorepo
 # Move in to the folder
 cd frontend-monorepo
@@ -53,11 +56,11 @@ ipfs add dist
 ipfs daemon
 ```
 
-> **¹**  Find the tag you’re interested in [on the Releases page](https://github.com/vegaprotocol/frontend-monorepo/releases), or by running:
+> **¹**  Find the tag want on the Vega front-end monorepo [Releases page ↗](https://github.com/vegaprotocol/frontend-monorepo/releases), or by running:
 > ```shell
 > git describe --tags $(git rev-list --tags --max-count=3)
 > ```
 > 
-> **²**  The IPFS CIDv0 & CIDv1 are shown on each individual release page (for example: [v0.20.24-core-0.71.6](https://github.com/vegaprotocol/frontend-monorepo/releases/tag/v0.20.24-core-0.71.6))
+> **²**  The IPFS CIDv0 & CIDv1 are shown on each individual release page. For example: [v0.20.24-core-0.71.6 ↗](https://github.com/vegaprotocol/frontend-monorepo/releases/tag/v0.20.24-core-0.71.6))
 
-This is like the [Quick Start version above](#quick-start), but the whole process is happening on your machine, in a standardised build container. It will take a little longer than the Quick Start version. You can inspect the details of the build container by [viewing `docker/node-inside-docker.Dockerfile`](https://github.com/vegaprotocol/frontend-monorepo/blob/develop/docker/node-inside-docker.Dockerfile).
+This is like the [Quick Start version above](#quick-start), but the whole process happens on your machine, in a standardised build container. It will take a little longer than the Quick Start version. Inspect the details of the build container by [viewing `docker/node-inside-docker.Dockerfile` ↗](https://github.com/vegaprotocol/frontend-monorepo/blob/develop/docker/node-inside-docker.Dockerfile).
