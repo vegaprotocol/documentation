@@ -24,9 +24,9 @@ Providing liquidity is a significant and active commitment to providing orders o
 ## Rewarding liquidity providers
 Participants who provide enough liquidity to meet the [liquidity SLA](../concepts/liquidity/rewards-penalties.md#liquidity-sla) earn from liquidity fees, which are paid by the *price takers* on each trade. The SLA requires that you provide a specified amount of liquidity for a specified amount of time in order to receive any liquidity fee revenue.
 
-The percentage charged to each price taker is determined by sorting all the proposed fee factors. In your liquidity commitment submission, you need to propose a *fee factor*, as a decimalised number that is converted to percentage. 
+The percentage charged to each price taker is determined by sorting all the proposed fee factors. In your liquidity commitment submission, you need to propose a *fee factor*, as a decimalised number that is converted to a percentage. 
 
-Your proposed fee factor is used, with other proposed fee factors, to determine the market's liquidity fee. Once the fee for the market is set, all liquidity orders charge that fee, regardless of whether the provider's submitted fee was higher or lower, and whether you propose a higher (or lower) factor, you are still a liquidity provider. The proposed fees are used to calculate the actual fee each participant will pay on a trade in that market.
+Your proposed fee factor is used, with other proposed fee factors, to determine the market's liquidity fee. Once the fee for the market is set, all liquidity orders charge that fee, regardless of whether the provider's submitted fee was higher or lower, and whether you propose a higher (or lower) factor, you are still a liquidity provider. The proposed fee factors are used to calculate the actual fee each participant will pay on a trade in that market.
 
 :::note Read more 
 [Proposing liquidity fee](../concepts/liquidity/rewards-penalties.md#determining-the-liquidity-fee-percentage)
@@ -83,7 +83,7 @@ Liquidity providers need to have enough available assets within their general an
 
 Ensure your orders to provide liquidity will earn from liquidity fees by meeting those requirements. Check these parameters for the market you're targeting:
 - `market.liquidity.priceRange`: Range that the liquidity orders need to be priced within
-- `market.liquidity.commitmentMinTimeFraction`: How much time per epoch (as a percentage) that the liquidity needs to be supplied for to meet the SLA
+- `market.liquidity.commitmentMinTimeFraction`: How much time per epoch (as a percentage) that the liquidity needs to be supplied for it to meet the SLA
 
 :::info Read more
 [Building a bot tutorial](./building-a-bot/adding-a-liquidity-commitment.md): Basics on how to incorporate liquidity orders into an automated trading setup.
