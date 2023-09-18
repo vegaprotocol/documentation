@@ -43,7 +43,6 @@ The following `successor` parameters need to be used if you are proposing a mark
 * Parent market ID: Required to define the proposal as for a successor market
 * Insurance pool fraction: Required percentage of the parent market's insurance pool, up to 100%, can be earmarked for transfer to the successor market. It is submitted as a number between and including 0 and 1, which represents the factor for the percentage.
 
-
 ## Templates and submitting
 In the tabs below you'll see:
 
