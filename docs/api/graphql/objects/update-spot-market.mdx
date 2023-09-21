@@ -1,0 +1,43 @@
+---
+id: update-spot-market
+title: UpdateSpotMarket
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Update an existing spot market on Vega
+
+```graphql
+type UpdateSpotMarket {
+  marketId: ID!
+  updateSpotMarketConfiguration: UpdateSpotMarketConfiguration!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>UpdateSpotMarket.<b>marketId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Market ID the update is for
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>UpdateSpotMarket.<b>updateSpotMarketConfiguration</b></code>](#)<Bullet />[`UpdateSpotMarketConfiguration!`](/testnet/api/graphql/objects/update-spot-market-configuration) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Updated configuration of the spot market
+> 
+
+
+
+### Implemented by
+
+[`ProposalChange`](/testnet/api/graphql/unions/proposal-change)  <Badge class="secondary" text="union"/>
+
+
+

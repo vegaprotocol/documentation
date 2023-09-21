@@ -30,6 +30,7 @@ type StopOrder {
   trigger: StopOrderTrigger!
   submission: OrderSubmission!
   order: Order
+  rejectionReason: StopOrderRejectionReason
 }
 ```
 
@@ -45,7 +46,7 @@ type StopOrder {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>StopOrder.<b>expiresAt</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
-> Time at which the order will expire if an expiry time is set.
+> RFC3339Nano time at which the order will expire if an expiry time is set.
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>StopOrder.<b>expiryStrategy</b></code>](#)<Bullet />[`StopOrderExpiryStrategy`](/testnet/api/graphql/enums/stop-order-expiry-strategy) <Badge class="secondary" text="enum"/>
@@ -61,11 +62,11 @@ type StopOrder {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>StopOrder.<b>createdAt</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> Time the stop order was created.
+> RFC3339Nano time the stop order was created.
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>StopOrder.<b>updatedAt</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
-> Time the stop order was last updated.
+> RFC3339Nano time the stop order was last updated.
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>StopOrder.<b>partyId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
@@ -86,6 +87,10 @@ type StopOrder {
 
 #### [<code style={{ fontWeight: 'normal' }}>StopOrder.<b>order</b></code>](#)<Bullet />[`Order`](/testnet/api/graphql/objects/order) <Badge class="secondary" text="object"/>
 > The order that was created when triggered.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StopOrder.<b>rejectionReason</b></code>](#)<Bullet />[`StopOrderRejectionReason`](/testnet/api/graphql/enums/stop-order-rejection-reason) <Badge class="secondary" text="enum"/>
+> Optional rejection reason for an order
 > 
 
 

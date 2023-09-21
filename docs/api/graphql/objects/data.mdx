@@ -19,6 +19,7 @@ A data source contains the data sent by a data source
 type Data {
   signers: [Signer!]
   data: [Property!]
+  metaData: [Property]
   matchedSpecIds: [ID!]
   broadcastAt: Timestamp!
 }
@@ -33,6 +34,10 @@ type Data {
 
 #### [<code style={{ fontWeight: 'normal' }}>Data.<b>data</b></code>](#)<Bullet />[`[Property!]`](/testnet/api/graphql/objects/property) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
 > properties contains all the properties sent by a data source
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Data.<b>metaData</b></code>](#)<Bullet />[`[Property]`](/testnet/api/graphql/objects/property) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> 
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Data.<b>matchedSpecIds</b></code>](#)<Bullet />[`[ID!]`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>

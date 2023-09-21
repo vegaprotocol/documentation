@@ -23,6 +23,7 @@ enum AuctionTrigger {
   AUCTION_TRIGGER_PRICE
   AUCTION_TRIGGER_LIQUIDITY_TARGET_NOT_MET
   AUCTION_TRIGGER_UNABLE_TO_DEPLOY_LP_ORDERS
+  AUCTION_TRIGGER_GOVERNANCE_SUSPENSION
 }
 ```
 
@@ -51,6 +52,10 @@ enum AuctionTrigger {
 
 #### [<code style={{ fontWeight: 'normal' }}>AuctionTrigger.<b>AUCTION_TRIGGER_UNABLE_TO_DEPLOY_LP_ORDERS</b></code>](#) 
 > Liquidity monitoring due to not being able to deploy LP orders because there's nothing to peg on one or both sides of the book
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AuctionTrigger.<b>AUCTION_TRIGGER_GOVERNANCE_SUSPENSION</b></code>](#) 
+> Auction triggered by governance market suspension
 > 
 
 

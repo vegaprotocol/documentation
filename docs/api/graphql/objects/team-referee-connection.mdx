@@ -1,0 +1,43 @@
+---
+id: team-referee-connection
+title: TeamRefereeConnection
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Connection type for retrieving cursor-based paginated team referee data
+
+```graphql
+type TeamRefereeConnection {
+  edges: [TeamRefereeEdge!]!
+  pageInfo: PageInfo!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>TeamRefereeConnection.<b>edges</b></code>](#)<Bullet />[`[TeamRefereeEdge!]!`](/testnet/api/graphql/objects/team-referee-edge) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Team referees in this connection
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TeamRefereeConnection.<b>pageInfo</b></code>](#)<Bullet />[`PageInfo!`](/testnet/api/graphql/objects/page-info) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Pagination information
+> 
+
+
+
+### Returned by
+
+[`teamReferees`](/testnet/api/graphql/queries/team-referees)  <Badge class="secondary" text="query"/>
+
+
+
