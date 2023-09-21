@@ -10,11 +10,6 @@ The Vega software is publicly available on [GitHub ↗](https://github.com/vegap
 
 [**Vega core software**](#vega-core-software) - Below, find a summary of each version's features and breaking changes.
 
-From 0.54.0 the [core repository ↗](https://github.com/vegaprotocol/vega) also holds the data node and CLI wallet code, therefore the following code is included in the releases:
-
-- The data node APIs allow for querying for historic information and for snapshots of the current state of the systems.
-- The code for the Vega Wallet CLI app is now in the Vega repo, where a full list of changes can be found.
-
 See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/releases).
 
 [**Vega Desktop Wallet on GitHub** ↗](https://github.com/vegaprotocol/vegawallet-desktop/releases) - The code for the Vega Wallet desktop app is open source, and you can read the contents of each release on the repo.
@@ -29,45 +24,45 @@ The Vega core software is public on a business-source licence, so you can both v
 ### Pre-release version 0.73.0-preview-6 | 2023-09-20
 This version was released to the Vega testnet on 20 September 2023.
 
-This pre-release contains several new features, including the new product type perpetuals, Ethereum oracles and a refactored SLA liquidity mechanism.
+This pre-release contains several new features, including the new product type perpetuals, Ethereum oracles and a refactored liquidity mechanism.
 
 #### Breaking changes
 
-The snapshot configuration `load-from-block-height` no longer accepts -1 as  a value. From 0.73.0 onwards, the value of 0 must be used to reload from the latest snapshot. Along with this change the snapshot configuration `snapshot-keep-recent` only accepts values from 1 to 10 inclusive. These changes have been included in the issue [8679](https://github.com/vegaprotocol/vega/issues/8679) and will be documented in the 0.73.x mainnet deployment instructions.
+The snapshot configuration `load-from-block-height` no longer accepts -1 as a value. From 0.73.0 onwards, the value of 0 must be used to reload from the latest snapshot. Along with this change the snapshot configuration `snapshot-keep-recent` only accepts values from 1 to 10 inclusive. These changes have been included in the issue [8679](https://github.com/vegaprotocol/vega/issues/8679) and will be documented in 0.73 deployment instructions.
 
-The `AssetID` field on the `ExportLedgerEntriesRequest` gRPC API, for exporting ledger entries, has had its type changed in order to make it optional. This change has been inlcuded in the issue [8944](https://github.com/vegaprotocol/vega/issues/8944)
+The `AssetID` field on the `ExportLedgerEntriesRequest` gRPC API, for exporting ledger entries, has had its type changed in order to make it optional. This change has been included in the issue [8944](https://github.com/vegaprotocol/vega/issues/8944)
 
 #### New features
 **Perpetual markets**
 Perpetual markets
 
-In finance, a perpetual futures contract, also known as a perpetual swap, is an agreement to non-optionally buy or sell an asset at an unspecified point in the future. Perpetual futures are cash-settled, and differ from regular futures in that they lack a pre-specified “delivery” date, and can thus be held indefinitely without the need to roll over holdings as they approach expiration.
+A perpetual futures contract, also known as a perpetual swap, is an agreement to non-optionally buy or sell an asset at an unspecified point in the future. Perpetual futures are cash-settled, and differ from regular futures in that they lack a pre-specified “delivery” date, and can thus be held indefinitely without the need to roll over holdings as they approach expiration.
 
 Payments are periodically exchanged between holders of the two sides, long and short, with the direction and magnitude of the settlement based on the difference between the latest mark price and that of the underlying asset, as well as, if applicable, the difference in leverage between the two sides.
 
-Along with this new product, there has been some updates to market governance enhancements which give the ability to suspend, resume and terminate a market via a community proposal and vote should it be required.
+Along with this new product, there are new market governance options that provide the option to suspend, resume or terminate a market via a community proposal and vote.
 
-To see more about the introduction of perpetual markets to Vega chat out the [spec](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0053-PERP-product_builtin_perpetual_future.md). The work items completed on this feature can be seen on issues are pull requests with the [`perpetual`](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Aperpetual) label.
+To learn more about the implementation of perpetual markets on Vega see the [spec](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0053-PERP-product_builtin_perpetual_future.md). The work items completed on this feature can be seen on issues are pull requests with the [`perpetual`](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Aperpetual) label.
 
-**SLA liquidity**
-At a high level, this change replaces the legacy system that forces LPs to be on the book all the time.  The new implementation can be summarised with the following changes:
+**New iquidity mechanism**
+At a high level, this change replaces the legacy system that requires LPs to be on the book all the time. The new implementation, called SLA liquidity can be summarised as follows:
 
-Requires LPs to meet an SLA (i.e. % of time spent providing liquidity within some range) to be rewarded, ensuring LP remains a defined and useful role.
-Rewards LPs more for better performance against the SLA (already done for price, this would add similar for time spent providing liquidity), ensuring there is an incentive to do more than the bare minimum if market conditions allow.
-Penalises LPs that commit and do not meet the SLA, to reduce the attractiveness of opportunism/leeching style attacks.
+LPs that meet an SLA (i.e. % of time spent providing liquidity within a range) are rewarded.
+LPs that have a better performance against the SLA receibe more rewards, ensuring there is an incentive to do more than the bare minimum if market conditions allow.
+LPs that commit and do not meet the SLA are penalised.
 
-To see lower leave details of how the new SLA liquidity functions check out the following [spec](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0044-LIME-lp_mechanics.md). The work items completed on this feature can be seen on issues are pull requests with the [`liquidity-sla`](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Aliquidity-sla+) label.
+To see lower level details of how the new SLA liquidity feature is designed check out the following [spec](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0044-LIME-lp_mechanics.md). The work items completed on this feature can be seen on issues are pull requests with the [`liquidity-sla`](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Aliquidity-sla+) label.
 
 **Ethereum oracles**
-In the current mainnet state, the markets on Vega are settled and terminated via Oracles that come from centralised sources. This was the first feature to be started since the Validator deployed alpha mainnet to allow users to specify oracles via smart contracts on the Ethereum chain. Prime candidates to be used are the Chainlink and Uniswapv3.
+In the current mainnet state, the markets on Vega are settled and terminated with data that come from centralised sources.
 
-Once this flexible Ethereum oracle framework is implemented, it will add a new way of sourcing data from the Ethereum blockchain allowing for arbitrary data from the Ethereum blockchain to be ingested as a data source. This is in addition to the existing Ethereum bridge, which is unchanged by this change.
+With this more flexible Ethereum oracle framework, there will be a new way to source data from the Ethereum blockchain, allowing for arbitrary data from Ethereum to be ingested as a data source. This had no impact on the already-existing Ethereum bridge.
 
 To see more details check out this [spec](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0082-ETHD-ethereum-data-source.md). The work items completed on this feature can be seen on issues are pull requests with the [`ethereum-oracles`](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Aethereum-oracles+) label.
 
 **Referral Program**
 
-To incentivise users of the protocol and community members to refer new traders, the on-chain referral program gives users the ability to vote for programs that provide benefits for referrers and referees.
+To incentivise users of the protocol and community members to refer new users, the on-chain referral program gives users the ability to vote for programs that provide benefits for referrers and referees.
 
 A party will be able to create a referral code and share this code with referees. Referees who apply the code will be added to the referrer's "referral set".
 
@@ -76,7 +71,7 @@ Whilst a referral program is active, the following benefits may be available to 
 - a referrer may receive a proportion of all referee taker fees as a reward.
 - a referee may be eligible for a discount on any taker fees they incur.
 
-Providing a party has been associated with a referral set for long enough, they will become eligible for greater benefits as their referral sets running taker volume increases. To see more details check out this [spec](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0083-RFPR-on_chain_referral_program.md). The work items completed on this feature can be seen on issues are pull requests with the [`referral `](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Areferral+) label.
+Providing a party has been associated with a referral set for long enough, they will become eligible for greater benefits as their referral set's running taker volume increases. To see more details check out this [spec](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0083-RFPR-on_chain_referral_program.md). The work items completed on this feature can be seen on issues are pull requests with the [`referral `](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Areferral+) label.
 
 ### Pre-release version 0.72.5 | 2023-07-20
 This version was released to the Vega testnet on 20 July, 2023.
