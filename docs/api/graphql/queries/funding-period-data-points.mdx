@@ -1,0 +1,58 @@
+---
+id: funding-period-data-points
+title: fundingPeriodDataPoints
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Funding period data points for a perpetual market. The data points within a funding period are used to calculate the
+time-weighted average price (TWAP), funding rate and funding payments for each funding period.
+
+```graphql
+fundingPeriodDataPoints(
+  marketId: ID!
+  dateRange: DateRange
+  source: FundingPeriodDataPointSource
+  pagination: Pagination
+): FundingPeriodDataPointConnection!
+```
+
+
+### Arguments
+
+#### [<code style={{ fontWeight: 'normal' }}>fundingPeriodDataPoints.<b>marketId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> ID of the perpetual market to get funding periods for
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>fundingPeriodDataPoints.<b>dateRange</b></code>](#)<Bullet />[`DateRange`](/testnet/api/graphql/inputs/date-range) <Badge class="secondary" text="input"/>
+> Optional date range to filter funding period data points from/to.
+The funding period's start date will be used to determine if the funding period's data points should be included in the results.
+Start and end time should be expressed as an integer value of Unix nanoseconds.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>fundingPeriodDataPoints.<b>source</b></code>](#)<Bullet />[`FundingPeriodDataPointSource`](/testnet/api/graphql/enums/funding-period-data-point-source) <Badge class="secondary" text="enum"/>
+> Optional filter to only return data points from a specific data source. If omitted, no filtering is applied.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>fundingPeriodDataPoints.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Pagination control
+> 
+
+### Type
+
+#### [`FundingPeriodDataPointConnection`](/testnet/api/graphql/objects/funding-period-data-point-connection) <Badge class="secondary" text="object"/>
+> Connection type for funding period data points
+> 
+
+
+
+
+

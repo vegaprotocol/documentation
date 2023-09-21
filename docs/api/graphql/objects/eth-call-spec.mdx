@@ -1,0 +1,77 @@
+---
+id: eth-call-spec
+title: EthCallSpec
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Specifies a data source that derives its content from calling a read method
+on an Ethereum contract.
+
+```graphql
+type EthCallSpec {
+  address: String!
+  abi: [String!]
+  method: String!
+  args: [String!]
+  trigger: EthCallTrigger!
+  requiredConfirmations: Int!
+  normalisers: [Normaliser!]
+  filters: [Filter!]
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>EthCallSpec.<b>address</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Ethereum address of the contract to call.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>EthCallSpec.<b>abi</b></code>](#)<Bullet />[`[String!]`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> The ABI of that contract.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>EthCallSpec.<b>method</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Name of the method on the contract to call.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>EthCallSpec.<b>args</b></code>](#)<Bullet />[`[String!]`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> List of arguments to pass to method call.
+Protobuf 'Value' wraps an arbitrary JSON type that is mapped to an Ethereum
+type according to the ABI.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>EthCallSpec.<b>trigger</b></code>](#)<Bullet />[`EthCallTrigger!`](/testnet/api/graphql/objects/eth-call-trigger) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Conditions for determining when to call the contract method.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>EthCallSpec.<b>requiredConfirmations</b></code>](#)<Bullet />[`Int!`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Number of confirmations required before the query is considered verified.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>EthCallSpec.<b>normalisers</b></code>](#)<Bullet />[`[Normaliser!]`](/testnet/api/graphql/objects/normaliser) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> Normalisers are used to convert the data returned from the contract method
+into a standard format.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>EthCallSpec.<b>filters</b></code>](#)<Bullet />[`[Filter!]`](/testnet/api/graphql/objects/filter) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> Filters the data returned from the contract method.
+> 
+
+
+
+### Implemented by
+
+[`ExternalDataSourceKind`](/testnet/api/graphql/unions/external-data-source-kind)  <Badge class="secondary" text="union"/>
+
+
+

@@ -48,6 +48,7 @@ type MarketData {
   nextMarkToMarket: String!
   marketGrowth: String!
   lastTradedPrice: String!
+  productData: ProductData
 }
 ```
 
@@ -176,6 +177,10 @@ type MarketData {
 
 #### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>lastTradedPrice</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > The last traded price (an unsigned integer)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>productData</b></code>](#)<Bullet />[`ProductData`](/testnet/api/graphql/unions/product-data) <Badge class="secondary" text="union"/>
+> The current funding rate. This applies only to a perpetual market
 > 
 
 

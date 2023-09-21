@@ -2,7 +2,7 @@
 {
  // The external data source spec describing the data source of trading termination.
  internal {
-  // DataSourceSpecConfigurationTime is the internal data source used for emitting timestamps.
+  // Internal data source used for emitting timestamps.
   time: {
    // Conditions that the timestamps should meet in order to be considered.
    conditions: [

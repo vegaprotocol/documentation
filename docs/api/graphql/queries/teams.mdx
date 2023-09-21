@@ -1,0 +1,54 @@
+---
+id: teams
+title: teams
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+List information about all teams or filter for a specific team ID or referrer, or referee's party ID
+If no filter is provided all teams will be listed.
+If a team ID is provided, only the team with that ID will be returned
+If a party ID is provided, the team whose referrer party ID or a referee's party ID matches will be return
+If both team ID and party ID is provided, only the team ID will be used.
+
+```graphql
+teams(
+  teamId: ID
+  partyId: ID
+  pagination: Pagination
+): TeamConnection
+```
+
+
+### Arguments
+
+#### [<code style={{ fontWeight: 'normal' }}>teams.<b>teamId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> Optional team ID to filter for
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>teams.<b>partyId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> Optional referrer, or team referee to filter for
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>teams.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Optional pagination information
+> 
+
+### Type
+
+#### [`TeamConnection`](/testnet/api/graphql/objects/team-connection) <Badge class="secondary" text="object"/>
+> Connection type for retrieving cursor-based paginated team data
+> 
+
+
+
+
+

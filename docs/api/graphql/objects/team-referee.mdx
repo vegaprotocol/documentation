@@ -1,0 +1,53 @@
+---
+id: team-referee
+title: TeamReferee
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+A team's referee info
+
+```graphql
+type TeamReferee {
+  teamId: ID!
+  referee: ID!
+  joinedAt: Timestamp!
+  joinedAtEpoch: Int!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>TeamReferee.<b>teamId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Team ID.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TeamReferee.<b>referee</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Party ID of the referee
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TeamReferee.<b>joinedAt</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Time in RFC3339Nano format when the referee joined the team.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TeamReferee.<b>joinedAtEpoch</b></code>](#)<Bullet />[`Int!`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Epoch at which the referee joined the team.
+> 
+
+
+
+### Member of
+
+[`TeamRefereeEdge`](/testnet/api/graphql/objects/team-referee-edge)  <Badge class="secondary" text="object"/>
+
+
+

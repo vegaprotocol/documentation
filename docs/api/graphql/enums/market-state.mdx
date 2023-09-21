@@ -23,6 +23,7 @@ enum MarketState {
   STATE_CANCELLED
   STATE_ACTIVE
   STATE_SUSPENDED
+  STATE_SUSPENDED_VIA_GOVERNANCE
   STATE_CLOSED
   STATE_TRADING_TERMINATED
   STATE_SETTLED
@@ -55,6 +56,10 @@ votes to close before market becomes Active
 
 #### [<code style={{ fontWeight: 'normal' }}>MarketState.<b>STATE_SUSPENDED</b></code>](#) 
 > Price monitoring or liquidity monitoring trigger
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MarketState.<b>STATE_SUSPENDED_VIA_GOVERNANCE</b></code>](#) 
+> Market suspended via governance
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>MarketState.<b>STATE_CLOSED</b></code>](#) 

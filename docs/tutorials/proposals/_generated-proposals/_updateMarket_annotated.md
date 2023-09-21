@@ -10,8 +10,8 @@
    // Market ID the update is for.
    marketId: "123",
    changes: {
+    // DEPRECATED: Use liquidity SLA parameters instead.
     // Percentage move up and down from the mid price which specifies the range of
-    // price levels over which automated liquidity provision orders will be deployed.
     lpPriceRange: 11,
 
     // Linear slippage factor is used to cap the slippage component of maintenance margin - it is applied to the slippage volume.
@@ -35,7 +35,7 @@
        external: {
         oracle: {
          // Signers is the list of authorized signatures that signed the data for this
-         // source. All the signatures in the data source data should be contained in this (array of objects)
+         // source. All the signatures in the data source data should be contained in (array of objects)
          signers: [
           {
            ethAddress: {
@@ -91,7 +91,7 @@
       dataSourceSpecForTradingTermination: {
        // The data source spec describing the data source for trading termination.
        internal {
-        // DataSourceSpecConfigurationTime is the internal data source used for emitting timestamps.
+        // Internal data source used for emitting timestamps.
         time: {
          // Conditions that the timestamps should meet in order to be considered.
          conditions: [
@@ -149,7 +149,7 @@
        must be a strictly non - negative real number.(number) tau: 0.0001140771161,
 
        // Risk Aversion Parameter. (double as number)
-       riskAversionParameter: "0.001",
+       riskAversionParameter: "0.0001",
 
        // Risk model parameters for log normal
        params: {
@@ -160,7 +160,7 @@
         r: 0.016,
 
         // Sigma parameter, annualised volatility of the underlying asset, must be a strictly non-negative real number. (double as number)
-        sigma: 0.3,
+        sigma: 1.25,
        }
       },
      },
@@ -168,11 +168,11 @@
 
     // Timestamp as Unix time in seconds when voting closes for this proposal,
     // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-    closingTimestamp: 1695550520,
+    closingTimestamp: 1696941757,
 
     // Timestamp as Unix time in seconds when proposal gets enacted if passed,
     // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-    enactmentTimestamp: 1695636920,
+    enactmentTimestamp: 1697028157,
    }
   }
 ```
