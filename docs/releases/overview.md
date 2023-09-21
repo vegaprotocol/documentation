@@ -33,45 +33,44 @@ The snapshot configuration `load-from-block-height` no longer accepts -1 as a va
 The `AssetID` field on the `ExportLedgerEntriesRequest` gRPC API, for exporting ledger entries, has had its type changed in order to make it optional. This change has been included in the issue [8944](https://github.com/vegaprotocol/vega/issues/8944)
 
 #### New features
-**Perpetual markets**
-Perpetual markets
+**Perpetual futures markets**
 
-A perpetual futures contract, also known as a perpetual swap, is an agreement to non-optionally buy or sell an asset at an unspecified point in the future. Perpetual futures are cash-settled, and differ from regular futures in that they lack a pre-specified “delivery” date, and can thus be held indefinitely without the need to roll over holdings as they approach expiration.
+Perpetual futures markets are cash-settled and do not have a pre-specified “delivery” date/market expiry, so positions can be held indefinitely.
 
-Payments are periodically exchanged between holders of the two sides, long and short, with the direction and magnitude of the settlement based on the difference between the latest mark price and that of the underlying asset, as well as, if applicable, the difference in leverage between the two sides.
+Payments are periodically exchanged between holders of the two sides, long and short, with the direction and magnitude of the settlement based on the difference between the latest mark price and that of the underlying asset, as well as, if applicable, the difference in margin between the two sides.
 
 Along with this new product, there are new market governance options that provide the option to suspend, resume or terminate a market via a community proposal and vote.
 
-To learn more about the implementation of perpetual markets on Vega see the [spec](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0053-PERP-product_builtin_perpetual_future.md). The work items completed on this feature can be seen on issues are pull requests with the [`perpetual`](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Aperpetual) label.
+To learn more about the implementation of perpetual markets on Vega see the [spec](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0053-PERP-product_builtin_perpetual_future.md). The work items completed on this feature can be seen on issues and pull requests with the [`perpetual`](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Aperpetual) label.
 
-**New iquidity mechanism**
+**New liquidity mechanism**
 At a high level, this change replaces the legacy system that requires LPs to be on the book all the time. The new implementation, called SLA liquidity can be summarised as follows:
 
-LPs that meet an SLA (i.e. % of time spent providing liquidity within a range) are rewarded.
-LPs that have a better performance against the SLA receibe more rewards, ensuring there is an incentive to do more than the bare minimum if market conditions allow.
-LPs that commit and do not meet the SLA are penalised.
+- LPs that meet an SLA (i.e. % of time spent providing liquidity within a range) are rewarded.
+- LPs that have a better performance against the SLA receive more rewards, ensuring there is an incentive to do more than the bare minimum if market conditions allow.
+- LPs that commit and do not meet the SLA are penalised.
 
-To see lower level details of how the new SLA liquidity feature is designed check out the following [spec](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0044-LIME-lp_mechanics.md). The work items completed on this feature can be seen on issues are pull requests with the [`liquidity-sla`](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Aliquidity-sla+) label.
+To see lower level details of how the new SLA liquidity feature is designed check out the following [spec](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0044-LIME-lp_mechanics.md). The work items completed on this feature can be seen on issues and pull requests with the [`liquidity-sla`](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Aliquidity-sla+) label.
 
 **Ethereum oracles**
 In the current mainnet state, the markets on Vega are settled and terminated with data that come from centralised sources.
 
 With this more flexible Ethereum oracle framework, there will be a new way to source data from the Ethereum blockchain, allowing for arbitrary data from Ethereum to be ingested as a data source. This had no impact on the already-existing Ethereum bridge.
 
-To see more details check out this [spec](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0082-ETHD-ethereum-data-source.md). The work items completed on this feature can be seen on issues are pull requests with the [`ethereum-oracles`](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Aethereum-oracles+) label.
+To see more details check out this [spec](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0082-ETHD-ethereum-data-source.md). The work items completed on this feature can be seen on issues and pull requests with the [`ethereum-oracles`](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Aethereum-oracles+) label.
 
 **Referral Program**
 
-To incentivise users of the protocol and community members to refer new users, the on-chain referral program gives users the ability to vote for programs that provide benefits for referrers and referees.
+To incentivise existing users of the protocol/community members to refer new users, the on-chain referral program lets participants vote for programs that provide benefits for referrers and referees.
 
 A party will be able to create a referral code and share this code with referees. Referees who apply the code will be added to the referrer's "referral set".
 
 Whilst a referral program is active, the following benefits may be available to participants in the referral program.
 
-- a referrer may receive a proportion of all referee taker fees as a reward.
-- a referee may be eligible for a discount on any taker fees they incur.
+- A referrer may receive a proportion of all referee taker fees as a reward.
+- A referee may be eligible for a discount on any taker fees they incur.
 
-Providing a party has been associated with a referral set for long enough, they will become eligible for greater benefits as their referral set's running taker volume increases. To see more details check out this [spec](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0083-RFPR-on_chain_referral_program.md). The work items completed on this feature can be seen on issues are pull requests with the [`referral `](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Areferral+) label.
+Providing a party has been associated with a referral set for long enough, they will become eligible for greater benefits as their referral set's running taker volume increases. To see more details check out this [spec](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0083-RFPR-on_chain_referral_program.md). The work items completed on this feature can be seen on issues and pull requests with the [`referral `](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Areferral+) label.
 
 ### Pre-release version 0.72.5 | 2023-07-20
 This version was released to the Vega testnet on 20 July, 2023.
