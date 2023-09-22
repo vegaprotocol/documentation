@@ -29,8 +29,8 @@ The percentage charged to each price taker is determined by sorting all the prop
 Your proposed fee factor is used, with other proposed fee factors, to determine the market's liquidity fee. Once the fee for the market is set, all liquidity orders charge that fee, regardless of whether the provider's submitted fee was higher or lower, and whether you propose a higher (or lower) factor, you are still a liquidity provider. The proposed fee factors are used to calculate the actual fee each participant will pay on a trade in that market.
 
 :::note Read more 
-[Proposing liquidity fee](../concepts/liquidity/rewards-penalties.md#determining-the-liquidity-fee-percentage)
-[Liquidity rewards](../concepts/liquidity/rewards-penalties.md)
+* [Proposing liquidity fee](../concepts/liquidity/rewards-penalties.md#determining-the-liquidity-fee-percentage)
+* [Liquidity rewards](../concepts/liquidity/rewards-penalties.md)
 :::
 
 #### List available markets
@@ -44,7 +44,7 @@ curl -L -X GET 'https://api.n00.testnet.vega.rocks/api/v2/markets' \
 -H 'Accept: application/json'
 ```
 
-## Creating a liquidity commitment [WIP]
+## Creating a liquidity commitment
 This tutorial describes how to create, amend or cancel, and send a liquidity commitment submission.
 
 **The liquidity commitment submission must include**:
@@ -91,10 +91,10 @@ Ensure your orders to provide liquidity will earn from liquidity fees by meeting
 [Rewards and penalties](../concepts/liquidity/rewards-penalties.md): LPs receive rewards (through fees paid by traders) when they meet the liquidity SLA. If the SLA is not met, fees are withheld and they may be further penalised for not meeting their commitment.
 :::
 
-## Amending a liquidity commitment [WIP]
+## Amending a liquidity commitment
 When amending a liquidity commitment, the network will allow you to provide more bond for your liquidity immediately. However, if you reduce your liquidity commitment, it will only be enacted in the epoch after you submitted the amendment transaction.
 
-If you reduce your commitment to the point where the market would drop below its required [target stake](./../concepts/liquidity/provision.md#target-stake), then you will be penalised: <NetworkParameter frontMatter={frontMatter} param="market.liquidity.earlyExitPenalty" hideName={true} formatter="percent /> will be deducted from your bond.
+If you reduce your commitment to the point where the market would drop below its required [target stake](./../concepts/liquidity/provision.md#target-stake), then you will be penalised: <NetworkParameter frontMatter={frontMatter} param="market.liquidity.earlyExitPenalty" hideName={true} formatter="percent" /> will be deducted from your bond.
 
 
 ### Transaction template
@@ -116,7 +116,7 @@ submission = {
 ## Cancelling a liquidity commitment
 If you no longer want to keep a liquidity commitment open for a market, you can cancel your commitment using the `liquidityProvisionCancellation` transaction. This will remove the commitment requirement from your public key, and return the bond amount back into your general account.
 
-If cancelling a commitment would leave a market without enough liquidity, then you will be penalised. Specifically, if removing your liquidity will put the market below its [target stake](./../concepts/liquidity/provision.md#target-stake), <NetworkParameter frontMatter={frontMatter} param="market.liquidity.earlyExitPenalty" hideName={true} formatter="percent/> will be deducted from your bond.
+If cancelling a commitment would leave a market without enough liquidity, then you will be penalised. Specifically, if removing your liquidity will put the market below its [target stake](./../concepts/liquidity/provision.md#target-stake), <NetworkParameter frontMatter={frontMatter} param="market.liquidity.earlyExitPenalty" hideName={true} formatter="percent" /> will be deducted from your bond.
 
 Any open positions will not be cancelled.
 
