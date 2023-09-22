@@ -46,22 +46,25 @@ Data sources must be able to emit the following data types:
 * Date/Time - to compare against in filters
 * Structured data records - such as a set of key and value pairs (inputs to filters)
 
-## Ethereum data sources [WIP]
-Ethereum oracles provide a source of Ethereum chain data. The specific smart contract, filters and event type are defined in the market's governance proposal. 
+## Ethereum data sources
+Ethereum oracles bridge Ethereum based data sources such as [Chainlink ↗](https://chain.link/) and [UMA ↗](https://uma.xyz/) in to Vega, enabling markets to be settled or priced using data that is verified on Ethereum. The interface is flexible enough that it allows for any Ethereum smart contract to be used as a data source.
 
-Ethereum data can include events and contract reads.
+:::note
+Currently data can only be read from a smart contract based on a timed trigger. In future Vega will also support events emitted by contracts.
+:::
 
-When the filtered data is emitted on the Ethereum network, Vega validator nodes read the selected data from Ethereum and submit a transaction that includes the filtered data. The market's data source specification listener(?) then acts on the submitted data.
+When the contract call is triggered by the data source, Vega validator nodes read the selected data from Ethereum and submit a transaction that includes the filtered data. When that data is verified by enough validators, the market's data source specification then acts on the submitted data.
 
 An Ethereum data source specification must include:
+
 - Ethereum contract address
-- ABI in JSON format for the contract (or a subset, covering the relevant parts)
-- Name of the event type to be listened for or the function to be read, along with any parameters that must be passed through
-(how do people know what name is accepted?)
+- ABI in JSON format for the contract (or a subset, covering the parts relevant to fetching data)
+- Name of the function call, along with any parameters that must be passed through
 
 This data can be used for filters, or used as the oracle data itself.
 
 All data sourced from Ethereum is structured as an object containing both a payload and Ethereum chain metadata. Specifically:
+
 - Ethereum block height at which the data was observed/event occurred
 - Ethereum block timestamp when the data was observed/event occurred
 
@@ -77,9 +80,9 @@ Vega supports two signed message data sources:
 * JSON messages 
 
 ### Open Oracle data
-The signer of the signed message data source is equivalent to the reporter in [Compound’s Open Price Feed](https://medium.com/compound-finance/announcing-compound-open-oracle-development-cff36f06aad3). As Open Oracle reports include signatures, the data can still be verified against its source. The poster equivalent is the Vega key that submits the signed message to the Vega chain for the market to act on it.
+The signer of the signed message data source is equivalent to the reporter in [Compound’s Open Price Feed ↗](https://medium.com/compound-finance/announcing-compound-open-oracle-development-cff36f06aad3). As Open Oracle reports include signatures, the data can still be verified against its source. The poster equivalent is the Vega key that submits the signed message to the Vega chain for the market to act on it.
 
-For example, a [message taken from Coinbase's Price Oracle](https://blog.coinbase.com/introducing-the-coinbase-price-oracle-6d1ee22c7068) would have the signatures verified, and the ABI encoded data will be transformed into the following format (note: the precise representation will vary based on which API you're using):
+For example, a [message taken from Coinbase's Price Oracle ↗](https://blog.coinbase.com/introducing-the-coinbase-price-oracle-6d1ee22c7068) would have the signatures verified, and the ABI encoded data will be transformed into the following format (note: the precise representation will vary based on which API you're using):
 
 ```json
 [
