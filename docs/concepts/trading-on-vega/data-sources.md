@@ -31,7 +31,7 @@ Inputs to the data sourcing framework can come from:
 When looking for or building a data source, ensure the following information is provided if you're looking to verify the source, or searching for/creating a data source to use for a market proposal.
 
 Data sources must provide:
-* Type of data source (e.g. `vega.builtin.timestamps`, `Open Oracle`, `Ethereum Event`)
+* Type of data source (e.g. `vega.builtin.timestamps`, `Open Oracle`, `Ethereum Call`)
 * Data type (e.g. float for a price)
 * Data source specific details
 
