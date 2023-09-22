@@ -6,28 +6,30 @@ hide_title: false
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-Each market has its own liquidity. Liquidity providers earn for providing by receiving a cut of the liquidity fee paid by traders on a market that they’re providing liquidity to. LPs can also receive [rewards funded by members of the community](./rewards-penalties.md#community-funded-lp-rewards).
+Each market has its own liquidity. Liquidity providers earn fee revenue from participants trading on the market they're providing liquidity to. LPs receive a cut of the liquidity fee paid by traders on the market. In addition, they can receive [rewards funded by members of the community](./rewards-penalties.md#community-funded-lp-rewards).
 
-LPs who take a bigger risk on newer markets with less liquidity are rewarded for taking a bigger risk because they can earn more per trade. Markets where there are many participants committing liquidity benefit from lower fees for traders, because there is more competition for the fee percentage paid by traders.
+LPs who take a bigger risk on newer markets with less liquidity are rewarded for taking a bigger risk because you can earn more per trade. Markets where there are many participants committing liquidity benefit from lower fees for traders, because there is more competition for the fee percentage paid by traders.
 
 **[Liquidity fees](rewards-penalties.md#earning-liquidity-fees)** are determined based on the commitments and proposed fee levels chosen by the providers, not by the protocol.
 
 To be eligible to receive any liquidity fee revenue, you will need to submit a [liquidity commitment transaction](#liquidity-commitments), and then place orders to support that commitment.
 
-Once an LP commits to a market, to receive fee revenue, they need to have (market.liquidity.slaCompetitionFactor %) of their commitment amount on the order book for (net param % market.liquidity.commitmentMinTimeFraction) of each [epoch](../vega-chain/network.md#epochs). These minimums are known as the [liquidity SLA](./rewards-penalties.md#liquidity-sla). Doing better than the SLA leads to more accrued fees.
+Once you commit to a market, to receive fee revenue, you need to have a certain percentage of your commitment amount on the order book for a minimum amount of time in each [epoch](../vega-chain/network.md#epochs). 
+
+These minimums are known as the [liquidity SLA](./rewards-penalties.md#liquidity-sla). The better your performance is against the SLA, the more fee revenue you'll receive. Not meeting the SLA will result in fee payments being withheld for that epoch, and it will have an impact on [future fee revenue earnings](./rewards-penalties.md#penalties-for-not-meeting-sla). 
 
 ## Tactics for providing liquidity
 Providing liquidity can be done using: 
 * Standard limit orders, which give you the most control over your strategy. The [batch orders transaction](./../trading-on-vega/orders#batch-order) is designed to enable this efficiently
 * [Iceberg orders](../trading-on-vega/orders.md#iceberg-order) allow LPs to remain competitively present on the order book without needing to supply excessive volume to a large aggressive order
 
-Anyone that supplies limit orders is eligible to receive maker fees when volume they place on the book is hit. However, a liquidity commitment also makes an LP eligible to receive a portion of the liquidity fee from every trade in the market, on top of the maker fee.
+Anyone that supplies limit orders is eligible to receive maker fees when volume you place on the book is hit. However, a liquidity commitment also makes an LP eligible to receive a portion of the liquidity fee from every trade in the market, on top of the maker fee.
 
 :::info Read more
 [Rewards and penalties](rewards-penalties.md): LPs receive rewards (through fees paid by traders) when they meet their commitment. Fees are withheld, and they can be further penalised for not meeting their commitment.
 :::
 
-Liquidity providers need to have enough available assets to cover the margin for their orders and the positions that will be generated from trades.
+You need to have enough available assets to cover the margin for your orders and the positions that will be generated from trades.
 
 ## Liquidity commitments 
 If you want to provide liquidity and receive a portion of liquidity fees paid, you need to submit a liquidity commitment transaction. The commitment is the amount of stake an LP places as bond on the market, to earn rewards.
@@ -45,7 +47,8 @@ The amount an LP will actually need to have available on the order book is calle
 
 That is calculated by:
 `Commitment * market.liquidity.stakeToCcyVolume`, measured in `price level x volume`, i.e. settlement currency of the market.
-Once an LP commits to a market, they need to meet the minimum set by the [liquidity SLA] LINK. Exceeding the minimum means they’ll receive more fee revenue.
+
+Once you commit to a market, you need to meet the minimum set by the [liquidity SLA](./rewards-penalties.md#liquidity-sla). Exceeding the minimum leads to more fee revenue. Not meeting the minimum means fee revenue is withheld, plus extra penalties.
 
 ## When to commit liquidity
 You can commit liquidity to a market at any time in the [market's lifecycle](../trading-on-vega/market-lifecycle.md) when it is accepting orders.
@@ -82,7 +85,7 @@ How much a market aims to have in liquidity is called the target stake. It depen
 
 Target stake is used by the protocol to:
 * Calculate the market's liquidity fee level from the liquidity commitments
-* Determines the maximum amount an LP can reduce their commitment before being penalised for providing too little liquidity
+* Determine the maximum amount an LP can reduce their commitment before being penalised for providing too little liquidity
 * Potentially trigger a [liquidity monitoring auction](../trading-on-vega/market-protections#liquidity-monitoring) if there's an imbalance between target stake and total stake
  * This can depend on the value of the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.targetstake.triggering.ratio" hideValue={true} /> network parameter, which defines how sensitive the auction trigger is
 

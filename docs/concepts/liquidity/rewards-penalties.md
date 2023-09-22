@@ -7,18 +7,18 @@ hide_title: false
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-Liquidity providers earn [rewards](#rewarding-liquidity-providers) for providing enough liquidity. LPs who can’t support their liquidity commitment financially are [penalised](#penalties-for-not-fulfilling-liquidity-commitment). If an LP doesn’t have liquidity on the book to meet the minimums required by the [SLA](#liquidity-sla), they won’t receive any rewards.
+Liquidity providers earn [rewards](#rewarding-liquidity-providers) for providing enough liquidity. If you are an LP and you can’t support your liquidity commitment financially, you will be [penalised](#penalties-for-not-fulfilling-liquidity-commitment). If you don't have liquidity on the book to meet the minimums required by the [SLA](#liquidity-sla), you won’t receive any rewards and will also be [penalised](#penalties-for-not-meeting-sla).
 
 ## Rewarding liquidity providers
-Liquidity providers earn from the fees paid by takers on the market. How much LPs are rewarded depends on: 
-* A provider's relative commitment
-* How early in the market’s lifecycle they committed 
-* How they perform against the liquidity SLA
+Liquidity providers earn from the fees paid by takers on the market. How much you are rewarded depends on: 
+* Your relative commitment
+* How early in the market’s lifecycle you committed 
+* How you perform against the liquidity SLA
 
-Note: During an auction uncrossing, an LP’s orders will not need to provide liquidity or enable trades. However, they must maintain their liquidity commitment and their orders are placed back on the order book when normal trading resumes.
+Note: During an auction uncrossing, an LP’s orders will not need to provide liquidity or enable trades. However, you must maintain your liquidity commitment, and orders are placed back on the order book when normal trading resumes.
 
 ## Community-funded LP rewards
-In addition to the income made from fees, anyone can fund reward pools that will pay out to liquidity providers at the end of each [epoch](../vega-chain/network.md#epochs), based on the proportion of fees they have received.
+In addition to the income made from fees, anyone can fund reward pools that will pay out to liquidity providers at the end of each [epoch](../vega-chain/network.md#epochs), based on the proportion of fees the LPs have received.
 
 :::Read more
 Learn more about this, and trading rewards in general on the [fees and rewards](../trading-on-vega/fees-rewards) page.
@@ -28,21 +28,21 @@ Learn more about this, and trading rewards in general on the [fees and rewards](
 Liquidity providers receive a cut of the fees paid by price takers on each trade.
  
 The amount each liquidity provider receives depends on:
-* The percentage of a trade's value that is collected from the price taker for each trade, and combined in a pool to be paid to liquidity providers. This is called the liquidity fee (link to derived)
-* Their performance against the [liquidity SLA](#liquidity-sla), which defines what percentage of an LP’s bond is used to provide orders, and for how long it needs to be on the book. If an LP does not meet the SLA minimum, they do not get any revenue from the liquidity fee
-* LP’s equity-like share of the market, which is based on the relative size of their commitment amount, and when they committed liquidity to the market. Liquidity providers who commit to a market early benefit from helping to grow the market by getting a higher share of the fee revenue
+* The percentage of a trade's value that is collected from the price taker for each trade, and combined in a pool to be paid to liquidity providers. This is called the liquidity fee
+* Performance against the [liquidity SLA](#liquidity-sla), which defines what percentage of your bond is used to provide orders, and for how long it needs to be on the book. If you do not meet the SLA minimum, you do not get any revenue from the liquidity fee
+* Your equity-like share of the market, which is based on the relative size of their commitment amount, and when you committed liquidity to the market. Liquidity providers who commit to a market early benefit from helping to grow the market by getting a higher share of the fee revenue
 * LP’s liquidity score, which is the average volume-weighted probability of trading of all their orders within the [liquidity order price range](provision.md#price-range-for-liquidity-orders)
  
 Read more about how it works: [Dividing liquidity fees among LPs](#dividing-liquidity-fees-among-lps) 
 
 ### Liquidity SLA
-When committing to provide liquidity, an LP enters into an agreement to receive a portion of fees paid by traders in return for keeping the market liquid.
+When committing to provide liquidity, you enter into an agreement to receive a portion of fees paid by traders in return for keeping the market liquid.
 
 The terms of that agreement, called the liquidity SLA, are that each LP needs to have a certain percentage of their commitment amount on the order book for a minimum amount of time in each epoch. 
 
 The commitment amount and minimum time are set for each individual market. You can [query a market details](../../api/rest/data-v2/trading-data-service-get-market.api.mdx) or review a market's [governance proposal](../../api/rest/data-v2/trading-data-service-list-governance-data.api.mdx) to see the SLA requirements.
 
-Doing less than the minimum means liquidity fee payments being withheld for that epoch, and it will have an impact on [future fee revenue earnings](#penalties-for-not-meeting-sla). Everything at or above the minimum means some amount of the LP’s accrued fee amount will be paid to them. The better an LP does against the SLA, the more fee revenue they’ll receive. 
+Doing less than the minimum means liquidity fee payments will be withheld for that epoch, and it will have an impact on [future fee revenue earnings](#penalties-for-not-meeting-sla). Everything at, or above, the minimum means some amount of your accrued fee amount will be paid. The better you do against the SLA, the more fee revenue you'll receive. 
 
 <!--
 Read more: How SLA performance is calculated (spec when out of CE branch)
@@ -79,14 +79,14 @@ In the example below, there are 3 liquidity providers all bidding for their chos
 ### Dividing liquidity fees among LPs
 The market's liquidity fee and the trading volume determine how big the market’s liquidity fee pool is.
 
-How the pool’s assets are divided depends on the liquidity provider’s:
+How the pool’s assets are divided depends on your:
 * [Equity-like share](./provision.md#equity-like-share) of the market
 * Ability to meet the [SLA](#liquidity-sla)
 * Liquidity score
 
-Equity-like share: Because an LP who committed to a market early provided a larger proportion of the commitment earlier on, they continue to keep that larger share of fees even once other parties are also committing liquidity to the market, assuming they meet the SLA.
+Equity-like share: Because an LP who committed to a market early provided a larger proportion of the commitment earlier on, you continue to keep that larger share of fees even once other parties are also committing liquidity to the market, assuming you meet the SLA.
 
-Liquidity score: An LP’s liquidity score is the average volume-weighted probability of trading of all their orders within the [liquidity order price range](provision.md#price-range-for-liquidity-orders), averaged over the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providers.fee.calculationTimeStep" hideName={false} />. It's calculated for all orders placed by the liquidity provider.
+Liquidity score: Your liquidity score is the average volume-weighted probability of trading of all the orders within the [liquidity order price range](provision.md#price-range-for-liquidity-orders), averaged over the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providers.fee.calculationTimeStep" hideName={false} />. It's calculated for all orders placed by the liquidity provider.
 
 Generally speaking, an order's probability of trading decreases the further away from the mid-price it is placed, so all other things being constant, the provider who places orders closer to the mid-price will receive a higher fraction of the fees than someone who places orders further away. Furthermore, the probability of trading is set to 0 outside the narrowest price monitoring bounds, so any orders deployed there will decrease the liquidity score.
 
@@ -98,7 +98,7 @@ Generally speaking, an order's probability of trading decreases the further away
 ### How liquidity fees are distributed
 The liquidity fee amount is collected from traders on every trade, and held in a separate account. This account is under the network’s control.
 
-How often fees are distributed is defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providers.fee.calculationTimeStep" hideName={false} />. Starting with the end of the market's opening auction, every time the time-step has been hit, the balance in the account is transferred to each liquidity provider's margin account for the market, depending on their share and how well they met the SLA.
+How often fees are distributed is defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providers.fee.calculationTimeStep" hideName={false} />. Starting with the end of the market's opening auction, every time the time-step has been hit, the balance in the account is transferred to each liquidity provider's margin account for the market. This depends on your share and how well you performed against the SLA.
 
 <details><summary>Fee distribution example</summary>
 <p>
@@ -125,7 +125,7 @@ Thus, the following amounts are then transferred to each LP's margin account onc
 
 ### Penalties for not meeting SLA
 
-Not meeting the SLA deprives an LP of all liquidity fee revenue, and a sliding penalty is applied, how much is based on the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltySlope" />. The penalty that can be charged is capped by the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltyMax" /> network parameter.
+Not meeting the SLA deprives you of all liquidity fee revenue, and a sliding penalty is applied. How much penalty is based on the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltySlope" />. The penalty that can be charged is capped by the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltyMax" /> network parameter.
 
 See the full calculation in the [setting fees and rewarding LPs spec ↗](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#calculating-the-sla-performance-penalty-for-a-single-epoch).
 
@@ -136,11 +136,11 @@ You can [query a market details](../../api/rest/data-v2/trading-data-service-get
 ### Penalties for not supporting orders 
 Not being able to support the orders you posted using funds in your general and/or margin accounts will put you at risk of closeout, and can put the market into a situation where there is not enough liquidity.
 
-If the liquidity provider's margin account doesn't have enough funds to support their orders, the protocol will take funds from their liquidity commitment bond to cover the shortfall. A penalty will be applied, and funds to cover the shortfall and pay the penalty will be transferred from the provider’s bond to the market's insurance pool.
+If the liquidity provider's margin account doesn't have enough funds to support the orders, the protocol will take funds from your liquidity commitment bond to cover the shortfall. A penalty will be applied, and funds to cover the shortfall and pay the penalty will be transferred from the provider’s bond to the market's insurance pool.
 
-The liquidity obligation will remain unchanged and the protocol will periodically search the liquidity provider's general account and attempt to top up the bond account to the amount specified in their liquidity commitment.
+The liquidity obligation will remain unchanged and the protocol will periodically search the liquidity provider's general account and attempt to top up the bond account to the amount specified in your liquidity commitment.
 
-Should the funds in the bond account drop to 0, the liquidity provider will be marked for closeout and their orders will be cancelled. If this puts the market into a state where it isn’t meeting the target stake, the market will go into a liquidity monitoring auction. If this happens while the market is transitioning from auction mode to continuous trading, a penalty will not be applied.
+Should the funds in the bond account drop to 0, you will be marked for closeout and your orders will be cancelled. If this puts the market into a state where it isn’t meeting the target stake, the market will go into a liquidity monitoring auction. If this happens while the market is transitioning from auction mode to continuous trading, you will not be penalised.
 
 :::note Read more
 [Liquidity monitoring](./../trading-on-vega/market-protections#liquidity-monitoring)
@@ -152,4 +152,7 @@ The penalty formula defines how much will be removed from the bond account:
 `bond penalty = market.liquidity.bondPenaltyParameter ⨉ shortfall`
 
 * <NetworkParameter frontMatter={frontMatter} param="market.liquidity.bondPenaltyParameter" hideName={false} hideValue={true} /> can be changed through governance
-* shortfall refers to the absolute value of the funds that either the liquidity provider was unable to cover through their margin and general accounts, are needed for settlement, or are needed to meet their margin requirements
+* shortfall refers to the absolute value of the funds that: 
+  * the liquidity provider was unable to cover through margin and general accounts
+  * are needed for settlement
+  * are needed to meet the margin requirements
