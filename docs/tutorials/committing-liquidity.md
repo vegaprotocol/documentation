@@ -18,7 +18,7 @@ At the end of the tutorial, find troubleshooting tips as well as more resources 
 :::caution
 Providing liquidity is a significant and active commitment to providing orders on a Vega market. Failure to meet the commitment may result in penalties up to losing your entire bonded amount.
 
-[Read about the risks below.](#what-can-go-wrong-when-providing-liquidity?)
+[Read about the risks below.](#what-can-go-wrong-when-providing-liquidity)
 :::
 
 ## Rewarding liquidity providers
@@ -137,6 +137,7 @@ submission = {
 You can view the list of participants supplying liquidity to a market using the REST endpoint. 
 
 You'll need the party ID (public key) and market ID:
+
 `https://<node address>/liquidity-provisions/party/{party}/market/{market}`
 
 ## What can go wrong when providing liquidity?
