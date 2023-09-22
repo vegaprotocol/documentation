@@ -7,7 +7,11 @@ hide_title: false
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-Liquidity providers earn [rewards](#rewarding-liquidity-providers) for providing enough liquidity. If you are an LP and you can’t support your liquidity commitment financially, you will be [penalised](#penalties-for-not-fulfilling-liquidity-commitment). If you don't have liquidity on the book to meet the minimums required by the [SLA](#liquidity-sla), you won’t receive any rewards and will also be [penalised](#penalties-for-not-meeting-sla).
+Liquidity providers earn [rewards](#rewarding-liquidity-providers) for providing enough liquidity. 
+
+If you are an LP and you can’t support your liquidity commitment financially, you will be [penalised](#penalties-for-not-supporting-orders). 
+
+If you don't have liquidity on the book to meet the minimums required by the [SLA](#liquidity-sla), you won’t receive any rewards and will also be [penalised](#penalties-for-not-meeting-sla).
 
 ## Rewarding liquidity providers
 Liquidity providers earn from the fees paid by takers on the market. How much you are rewarded depends on: 
@@ -20,7 +24,7 @@ Note: During an auction uncrossing, an LP’s orders will not need to provide li
 ## Community-funded LP rewards
 In addition to the income made from fees, anyone can fund reward pools that will pay out to liquidity providers at the end of each [epoch](../vega-chain/network.md#epochs), based on the proportion of fees the LPs have received.
 
-:::Read more
+:::note Read more
 Learn more about this, and trading rewards in general on the [fees and rewards](../trading-on-vega/fees-rewards) page.
 :::
 
@@ -86,7 +90,7 @@ How the pool’s assets are divided depends on your:
 
 Equity-like share: Because an LP who committed to a market early provided a larger proportion of the commitment earlier on, you continue to keep that larger share of fees even once other parties are also committing liquidity to the market, assuming you meet the SLA.
 
-Liquidity score: Your liquidity score is the average volume-weighted probability of trading of all the orders within the [liquidity order price range](provision.md#price-range-for-liquidity-orders), averaged over the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providers.fee.calculationTimeStep" hideName={false} />. It's calculated for all orders placed by the liquidity provider.
+Liquidity score: Your liquidity score is the average volume-weighted probability of trading of all the orders within the [liquidity order price range](provision.md#price-range-for-liquidity-orders), averaged over the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providersFeeCalculationTimeStep" hideName={false} />. It's calculated for all orders placed by the liquidity provider.
 
 Generally speaking, an order's probability of trading decreases the further away from the mid-price it is placed, so all other things being constant, the provider who places orders closer to the mid-price will receive a higher fraction of the fees than someone who places orders further away. Furthermore, the probability of trading is set to 0 outside the narrowest price monitoring bounds, so any orders deployed there will decrease the liquidity score.
 
@@ -98,7 +102,7 @@ Generally speaking, an order's probability of trading decreases the further away
 ### How liquidity fees are distributed
 The liquidity fee amount is collected from traders on every trade, and held in a separate account. This account is under the network’s control.
 
-How often fees are distributed is defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providers.fee.calculationTimeStep" hideName={false} />. Starting with the end of the market's opening auction, every time the time-step has been hit, the balance in the account is transferred to each liquidity provider's margin account for the market. This depends on your share and how well you performed against the SLA.
+How often fees are distributed is defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providersFeeCalculationTimeStep" hideName={false} />. Starting with the end of the market's opening auction, every time the time-step has been hit, the balance in the account is transferred to each liquidity provider's margin account for the market. This depends on your share and how well you performed against the SLA.
 
 <details><summary>Fee distribution example</summary>
 <p>

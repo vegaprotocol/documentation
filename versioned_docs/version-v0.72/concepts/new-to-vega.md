@@ -42,7 +42,6 @@ Its functionality is limited and is riskier than networks that will follow it, a
 You'll also need an Ethereum wallet with Ethereum for paying gas fees for depositing assets onto the Vega chain.
 
 #### Trading on mainnet
-* [Vega Console](https://console.vega.xyz): Use the trading interface (hosted on IPFS) to place trades and follow your positions. 
 * [Vega Console](https://console.vega.xyz): Use the trading interface (hosted on IPFS) to deposit assets, place trades and follow your positions.
 * [Programmatic trading basics](../tutorials/programmatic-trading-basics.md): Find out what you need to trade using Vega's APIs and tools.
 * [Build a trading bot](../tutorials/building-a-bot/index.md): Read a set of tutorials to guide you through [building your own trading bot.
