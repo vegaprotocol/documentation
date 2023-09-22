@@ -131,7 +131,7 @@ They are also processed as if they were standalone order instructions in terms o
 
 Batch order instructions can be used in a liquidity provision strategy to help providers manage their limit orders (and their risk) more efficiently. The orders within a batch can also have conditions set, as post-only or reduce-only.
 
-To prevent spamming, the total number of instructions in a batch order transaction can be no more than the number set with the network parameter: <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.batchSize" />. A batch order transaction with more instructions than allowed will fail.
+To prevent spamming, the total number of instructions in a batch order transaction can be no more than the number set with the network parameter: <NetworkParameter frontMatter={frontMatter} param="network.spam_protection.max.batch.size" />. A batch order transaction with more instructions than allowed will fail.
 
 :::note Read more
 * [Auctions](trading-modes.md#auctions)

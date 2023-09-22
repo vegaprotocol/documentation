@@ -1,6 +1,7 @@
 ---
 sidebar_position: 5
 title: Rewards and penalties
+vega_network: TESTNET
 hide_title: false
 ---
 
@@ -35,12 +36,13 @@ The amount each liquidity provider receives depends on:
 Read more about how it works: [Dividing liquidity fees among LPs](#dividing-liquidity-fees-among-lps) 
 
 ### Liquidity SLA
-[WIP]
 When committing to provide liquidity, an LP enters into an agreement to receive a portion of fees paid by traders in return for keeping the market liquid.
 
-The terms of that agreement, called the liquidity SLA, are that each LP needs to have (market.liquidity.slaCompetitionFactor %) of their commitment amount on the order book for (net param % market.liquidity.commitmentMinTimeFraction) of each epoch.
+The terms of that agreement, called the liquidity SLA, are that each LP needs to have a certain percentage of their commitment amount on the order book for a minimum amount of time in each epoch. 
 
-Doing less than the minimum means liquidity fee payments being withheld for that epoch, and it will have an impact on future fee revenue earnings (hysteresis link). Everything at or above the minimum means some amount of the LP’s accrued fee amount will be paid to them. The better an LP does against the SLA, the more fee revenue they’ll receive. 
+The commitment amount and minimum time are set for each individual market. You can [query a market details](../../api/rest/data-v2/trading-data-service-get-market.api.mdx) or review a market's [governance proposal](../../api/rest/data-v2/trading-data-service-list-governance-data.api.mdx) to see the SLA requirements.
+
+Doing less than the minimum means liquidity fee payments being withheld for that epoch, and it will have an impact on [future fee revenue earnings](#penalties-for-not-meeting-sla). Everything at or above the minimum means some amount of the LP’s accrued fee amount will be paid to them. The better an LP does against the SLA, the more fee revenue they’ll receive. 
 
 <!--
 Read more: How SLA performance is calculated (spec when out of CE branch)
@@ -89,8 +91,8 @@ Liquidity score: An LP’s liquidity score is the average volume-weighted probab
 Generally speaking, an order's probability of trading decreases the further away from the mid-price it is placed, so all other things being constant, the provider who places orders closer to the mid-price will receive a higher fraction of the fees than someone who places orders further away. Furthermore, the probability of trading is set to 0 outside the narrowest price monitoring bounds, so any orders deployed there will decrease the liquidity score.
 
 :::note Go deeper
-* [LP equity-like share calculations](https://github.com/vegaprotocol/specs/blob/master/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#calculating-liquidity-provider-equity-like-share): See the variables that go into calculating a liquidity provider's share.
-* [Average volume-weighted probability of trading](https://github.com/vegaprotocol/specs/blob/master/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#calculating-the-liquidity-score): Learn more about how liquidity score is calculated and used.
+* [LP equity-like share calculations ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#calculating-liquidity-provider-equity-like-share): See the variables that go into calculating a liquidity provider's share.
+* [Average volume-weighted probability of trading ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#calculating-the-liquidity-score): Learn more about how liquidity score is calculated and used.
 :::
 
 ### How liquidity fees are distributed
@@ -123,13 +125,13 @@ Thus, the following amounts are then transferred to each LP's margin account onc
 
 ### Penalties for not meeting SLA
 
-Not meeting the SLA deprives an LP of all liquidity fee revenue, and a sliding penalty is applied, how much is based on the value of the `market.liquidity.sla.nonPerformanceBondPenaltySlope` network parameter. The penalty that can be charged is capped by the `market.liquidity.sla.nonPerformanceBondPenaltyMax` network parameter.
+Not meeting the SLA deprives an LP of all liquidity fee revenue, and a sliding penalty is applied, how much is based on the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltySlope" />. The penalty that can be charged is capped by the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltyMax" /> network parameter.
 
-Not meeting the SLA will also affect future fee revenue even in epochs when the SLA is met. The number of epochs over which past performance will continue to affect rewards is determined by the network parameter: `market.liquidity.performanceHysteresisEpochs`
+See the full calculation in the [setting fees and rewarding LPs spec ↗](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#calculating-the-sla-performance-penalty-for-a-single-epoch).
 
-<!--
-Go deeper: link to spec for calculations (still cosmic elevator branch)
--->
+Not meeting the SLA will also affect future fee revenue, even in epochs when the SLA is met. The number of epochs that are used to determine performance is called the `performanceHysteresisEpochs`. This number is defined in a market's parameters. If the parameter is set to 0, it will only count the just-completed epoch. If set to 1, the fee revenue is impacted by the just-completed epoch and the one before.
+
+You can [query a market details](../../api/rest/data-v2/trading-data-service-get-market.api.mdx) or review a market's [governance proposal](../../api/rest/data-v2/trading-data-service-list-governance-data.api.mdx) to see how the past performance will impact rewards.
 
 ### Penalties for not supporting orders 
 Not being able to support the orders you posted using funds in your general and/or margin accounts will put you at risk of closeout, and can put the market into a situation where there is not enough liquidity.
