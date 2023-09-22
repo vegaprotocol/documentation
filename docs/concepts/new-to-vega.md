@@ -35,11 +35,14 @@ Its functionality is limited and is riskier than networks that will follow it, a
 
 ## How can I use Vega?
 
-#### Vega Wallet
-* [Get a Vega Wallet](../tools/vega-wallet/cli-wallet/latest/create-wallet): You'll need it for trading and staking tokens.
+#### Create a Vega keypair
+* [Get a Vega Wallet](../tools/vega-wallet/index.md): You'll need it for trading and staking tokens. The Vega Wallet is available as a browser extension, or you can download an app.
+* [Use Vega Snap](../tools/vega-protocol-snap.md): The quickest way to create a Vega keypair is to use MetaMask Snap. 
+
+You'll also need an **Ethereum wallet with Ethereum** for paying gas fees for depositing assets onto the Vega chain.
 
 #### Trading on mainnet
-* [Vega Console](https://console.vega.xyz): Use the trading interface (hosted on IPFS) to place trades and follow your positions. 
+* [Vega Console](https://console.vega.xyz): Use the trading interface (hosted on IPFS) to deposit assets, place trades and follow your positions.
 * [Programmatic trading basics](../tutorials/programmatic-trading-basics.md): Find out what you need to trade using Vega's APIs and tools.
 * [Build a trading bot](../tutorials/building-a-bot/index.md): Read a set of tutorials to guide you through [building your own trading bot.
 

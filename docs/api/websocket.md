@@ -233,7 +233,7 @@ The available WebSocket APIs are listed below.
 | ----------- | ----------- | ----------- |
 | Stream account details | [Accounts](./rest/data-v2/trading-data-service-observe-accounts.api.mdx)| `/api/v2/stream/accounts`
 | Stream candles data | [Candles](./rest/data-v2/trading-data-service-observe-candle-data.api.mdx) | `/api/v2/stream/candles/data`
-| Stream liquidity provision orders for a given market and party | [Liquidity provisions](./rest/data-v2/trading-data-service-observe-liquidity-provisions.api.mdx) | `/api/v2/stream/liquidity-provisions`
+| Stream liquidity provisions for a given market and party | [Liquidity provisions](./rest/data-v2/trading-data-service-observe-liquidity-provisions.api.mdx) | `/api/v2/stream/liquidity-provisions`
 | Stream margin levels for a given party (and optionally market) | [Margin levels](./rest/data-v2/trading-data-service-observe-margin-levels.api.mdx) | `/api/v2/stream/margin/levels`
 | Stream data for given markets | [Markets depth](./rest/data-v2/trading-data-service-observe-markets-depth.api.mdx) | `/api/v2/stream/markets/depth`
 | Stream updates of market depth for given markets | [Markets depth updates](./rest/data-v2/trading-data-service-observe-markets-depth-updates.api.mdx) | `/api/v2/stream/markets/depth/updates`

@@ -21,7 +21,7 @@ Use **[governance.fairground.wtf](https://governance.fairground.wtf)** to try ou
 VEGA received as staking rewards must be withdrawn to an Ethereum wallet, and then associated to a Vega wallet, before they can be staked.
 :::
 
-In each epoch, rewards are distributed among validators in proportion to the number of tokens they represent (i.e., their total stake). The total stake includes a validator's own stake and the tokens nominated to that validator. Of this reward, a fixed amount is distributed among the tokenholders the validator represents. The proportion of staking rewards distributed to nominators is <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.delegatorShare" hideName={true} />.
+In each [epoch](./network.md#epochs), rewards are distributed among validators in proportion to the number of tokens they represent (i.e., their total stake). The total stake includes a validator's own stake and the tokens nominated to that validator. Of this reward, a fixed amount is distributed among the tokenholders the validator represents. The proportion of staking rewards distributed to nominators is <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.delegatorShare" hideName={true} />.
 
 The reward received by each validator, and therefore passed onto their nominators at the end of each epoch, is based on their validator scores. The score accounts for any penalties. However, there is no token slashing, i.e., a validator or a tokenholder will not lose tokens through any validator actions or poor performance.
 
