@@ -1,0 +1,45 @@
+---
+id: stop-orders
+title: stopOrders
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Get a list of stop orders. If provided, the filter will be applied to the list of stop orders to restrict the results.
+
+```graphql
+stopOrders(
+  filter: StopOrderFilter
+  pagination: Pagination
+): StopOrderConnection
+```
+
+
+### Arguments
+
+#### [<code style={{ fontWeight: 'normal' }}>stopOrders.<b>filter</b></code>](#)<Bullet />[`StopOrderFilter`](/mainnet/api/graphql/inputs/stop-order-filter) <Badge class="secondary" text="input"/>
+> Optional filter to restrict the results of the list.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>stopOrders.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/mainnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Optional pagination information
+> 
+
+### Type
+
+#### [`StopOrderConnection`](/mainnet/api/graphql/objects/stop-order-connection) <Badge class="secondary" text="object"/>
+> Connection type for retrieving cursory-based paginated stop order information
+> 
+
+
+
+
+

@@ -1,0 +1,47 @@
+---
+id: data-source-spec-perpetual-binding
+title: DataSourceSpecPerpetualBinding
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Bindings to describe which property of the data source data is to be used as settlement data
+and which is to be used as the trading termination trigger.
+
+```graphql
+type DataSourceSpecPerpetualBinding {
+  settlementDataProperty: String!
+  settlementScheduleProperty: String!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>DataSourceSpecPerpetualBinding.<b>settlementDataProperty</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Name of the property in the source data that should be used as settlement data.
+For example, if it is set to "prices.BTC.value", then the perpetual market will use the value of this property
+as settlement data.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DataSourceSpecPerpetualBinding.<b>settlementScheduleProperty</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Name of the property in the source data that should be used as settlement schedule.
+For example, if it is set to "prices.BTC.timestamp", then the perpetual market will use the value of this property
+> 
+
+
+
+### Member of
+
+[`Perpetual`](/testnet/api/graphql/objects/perpetual)  <Badge class="secondary" text="object"/><Bullet />[`PerpetualProduct`](/testnet/api/graphql/objects/perpetual-product)  <Badge class="secondary" text="object"/><Bullet />[`UpdatePerpetualProduct`](/testnet/api/graphql/objects/update-perpetual-product)  <Badge class="secondary" text="object"/>
+
+
+

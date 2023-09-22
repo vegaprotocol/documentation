@@ -8,8 +8,8 @@
  terms: {
   newMarket: {
    changes: {
+    // DEPRECATED: Use liquidity SLA parameters instead.
     // Percentage move up and down from the mid price which specifies the range of
-    // price levels over which automated liquidity provision orders will be deployed.
     lpPriceRange: "10",
 
     // Linear slippage factor is used to cap the slippage component of maintenance margin - it is applied to the slippage volume.
@@ -45,7 +45,7 @@
        external: {
         oracle: {
          // Signers is the list of authorized signatures that signed the data for this
-         // source. All the signatures in the data source data should be contained in this (array of objects)
+         // source. All the signatures in the data source data should be contained in (array of objects)
          signers: [
           {
            ethAddress: {
@@ -101,7 +101,7 @@
       dataSourceSpecForTradingTermination: {
        // The external data source spec describing the data source of trading termination.
        internal {
-        // DataSourceSpecConfigurationTime is the internal data source used for emitting timestamps.
+        // Internal data source used for emitting timestamps.
         time: {
          // Conditions that the timestamps should meet in order to be considered.
          conditions: [
@@ -130,8 +130,8 @@
 
       // Optional new futures market metadata, tags.
       metadata: [
-       "enactment:2023-08-24T13:13:37Z",
-       "settlement:2023-08-23T13:13:37Z",
+       "enactment:2023-10-11T13:42:37Z",
+       "settlement:2023-10-10T13:42:37Z",
        "source:docs.vega.xyz"
       ],
 
@@ -199,11 +199,11 @@
 
    // Timestamp as Unix time in seconds when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-   closingTimestamp: 1692792817,
+   closingTimestamp: 1696941757,
 
    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-   enactmentTimestamp: 1692879217,
+   enactmentTimestamp: 1697028157,
   }
  }
 ```

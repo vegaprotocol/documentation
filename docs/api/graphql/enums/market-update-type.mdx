@@ -1,0 +1,53 @@
+---
+id: market-update-type
+title: MarketUpdateType
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+enum MarketUpdateType {
+  MARKET_STATE_UPDATE_TYPE_UNSPECIFIED
+  MARKET_STATE_UPDATE_TYPE_TERMINATE
+  MARKET_STATE_UPDATE_TYPE_SUSPEND
+  MARKET_STATE_UPDATE_TYPE_RESUME
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>MarketUpdateType.<b>MARKET_STATE_UPDATE_TYPE_UNSPECIFIED</b></code>](#) 
+> Default value, always invalid
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MarketUpdateType.<b>MARKET_STATE_UPDATE_TYPE_TERMINATE</b></code>](#) 
+> Terminate the market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MarketUpdateType.<b>MARKET_STATE_UPDATE_TYPE_SUSPEND</b></code>](#) 
+> Suspend the market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MarketUpdateType.<b>MARKET_STATE_UPDATE_TYPE_RESUME</b></code>](#) 
+> Resume a suspended market
+> 
+
+
+
+### Member of
+
+[`UpdateMarketState`](/testnet/api/graphql/objects/update-market-state)  <Badge class="secondary" text="object"/>
+
+
+

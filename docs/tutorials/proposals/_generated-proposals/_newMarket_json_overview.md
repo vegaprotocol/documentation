@@ -7,8 +7,8 @@
  terms: {
   newMarket: {
    changes: {
+    // DEPRECATED: Use liquidity SLA parameters instead.
     // Percentage move up and down from the mid price which specifies the range of
-    // price levels over which automated liquidity provision orders will be deployed.
     lpPriceRange: "10",
     // Linear slippage factor is used to cap the slippage component of maintenance margin - it is applied to the slippage volume.
     linearSlippageFactor: 0.001,
@@ -32,10 +32,10 @@
   },
   // Timestamp as Unix time in seconds when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-  closingTimestamp: 1692792817,
+  closingTimestamp: 1696941757,
   // Timestamp as Unix time in seconds when proposal gets enacted if passed,
   // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-  enactmentTimestamp: 1692879217,
+  enactmentTimestamp: 1697028157,
  }
 }
 ```

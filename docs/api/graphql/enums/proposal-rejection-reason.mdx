@@ -62,6 +62,10 @@ enum ProposalRejectionReason {
   PROPOSAL_ERROR_INVALID_SPOT
   PROPOSAL_ERROR_SPOT_PRODUCT_DISABLED
   PROPOSAL_ERROR_INVALID_SUCCESSOR_MARKET
+  PROPOSAL_ERROR_INVALID_MARKET_STATE_UPDATE
+  PROPOSAL_ERROR_MISSING_SLA_PARAMS
+  PROPOSAL_ERROR_INVALID_SLA_PARAMS
+  PROPOSAL_ERROR_INVALID_PERPETUAL_PRODUCT
 }
 ```
 
@@ -246,6 +250,22 @@ enum ProposalRejectionReason {
 
 #### [<code style={{ fontWeight: 'normal' }}>ProposalRejectionReason.<b>PROPOSAL_ERROR_INVALID_SUCCESSOR_MARKET</b></code>](#) 
 > Validation of successor market has failed
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProposalRejectionReason.<b>PROPOSAL_ERROR_INVALID_MARKET_STATE_UPDATE</b></code>](#) 
+> Validation of market state update has failed
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProposalRejectionReason.<b>PROPOSAL_ERROR_MISSING_SLA_PARAMS</b></code>](#) 
+> Validation of liquidity provision SLA parameters has failed
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProposalRejectionReason.<b>PROPOSAL_ERROR_INVALID_SLA_PARAMS</b></code>](#) 
+> Mandatory liquidity provision SLA parameters are missing from the proposal
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProposalRejectionReason.<b>PROPOSAL_ERROR_INVALID_PERPETUAL_PRODUCT</b></code>](#) 
+> Perpetual market proposal contained invalid product definition
 > 
 
 

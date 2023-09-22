@@ -16,7 +16,7 @@ export const Badge = (props) => <><span class={'badge badge--' + props.class}>{p
 No description
 
 ```graphql
-union ExternalDataSourceKind = DataSourceSpecConfiguration
+union ExternalDataSourceKind = DataSourceSpecConfiguration | EthCallSpec
 ```
 
 
@@ -25,6 +25,11 @@ union ExternalDataSourceKind = DataSourceSpecConfiguration
 #### [`DataSourceSpecConfiguration`](/testnet/api/graphql/objects/data-source-spec-configuration) <Badge class="secondary" text="object"/>
 > DataSourceSpecConfiguration describes the source data that an instrument wants to get from the
 sourcing engine.
+> 
+
+#### [`EthCallSpec`](/testnet/api/graphql/objects/eth-call-spec) <Badge class="secondary" text="object"/>
+> Specifies a data source that derives its content from calling a read method
+on an Ethereum contract.
 > 
 
 

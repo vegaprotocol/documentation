@@ -1,0 +1,38 @@
+---
+id: eth-call-trigger
+title: EthCallTrigger
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+EthCallTrigger is the type of trigger used to make calls to Ethereum network.
+
+```graphql
+type EthCallTrigger {
+  trigger: TriggerKind!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>EthCallTrigger.<b>trigger</b></code>](#)<Bullet />[`TriggerKind!`](/testnet/api/graphql/unions/trigger-kind) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="union"/>
+> 
+> 
+
+
+
+### Member of
+
+[`EthCallSpec`](/testnet/api/graphql/objects/eth-call-spec)  <Badge class="secondary" text="object"/>
+
+
+

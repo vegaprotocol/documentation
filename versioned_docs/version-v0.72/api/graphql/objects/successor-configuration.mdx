@@ -1,0 +1,43 @@
+---
+id: successor-configuration
+title: SuccessorConfiguration
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+type SuccessorConfiguration {
+  parentMarketId: String!
+  insurancePoolFraction: String!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>SuccessorConfiguration.<b>parentMarketId</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> ID of the market this proposal will succeed
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>SuccessorConfiguration.<b>insurancePoolFraction</b></code>](#)<Bullet />[`String!`](/mainnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Decimal value between 0 and 1, specifying the fraction of the insurance pool balance is carried over from the parent market to the successor.
+> 
+
+
+
+### Member of
+
+[`NewMarket`](/mainnet/api/graphql/objects/new-market)  <Badge class="secondary" text="object"/>
+
+
+

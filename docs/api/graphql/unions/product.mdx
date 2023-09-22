@@ -16,7 +16,7 @@ export const Badge = (props) => <><span class={'badge badge--' + props.class}>{p
 No description
 
 ```graphql
-union Product = Future
+union Product = Future | Spot | Perpetual
 ```
 
 
@@ -24,6 +24,14 @@ union Product = Future
 
 #### [`Future`](/testnet/api/graphql/objects/future) <Badge class="secondary" text="object"/>
 > A Future product
+> 
+
+#### [`Spot`](/testnet/api/graphql/objects/spot) <Badge class="secondary" text="object"/>
+> Spot FX product
+> 
+
+#### [`Perpetual`](/testnet/api/graphql/objects/perpetual) <Badge class="secondary" text="object"/>
+> Perpetual future product
 > 
 
 

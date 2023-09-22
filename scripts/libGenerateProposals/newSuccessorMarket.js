@@ -79,7 +79,7 @@ function newSuccessorMarket(skeleton, proposalSoFar) {
             // ${skeleton.properties.changes.properties.successor.properties.parentMarketId.description}
             parentMarketId: "${result.terms.newMarket.changes.successor.parentMarketId}",
             // ${skeleton.properties.changes.properties.successor.properties.insurancePoolFraction.description}
-            insurancePoolFraction: "${result.terms.newMarket.changes.successor.insurancePoolFraction}}"
+            insurancePoolFraction: "${result.terms.newMarket.changes.successor.insurancePoolFraction}"
           },
           // ${lbLabel[0]}
           // ${lbLabel[1]}

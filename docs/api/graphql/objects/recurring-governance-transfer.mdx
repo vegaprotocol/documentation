@@ -19,6 +19,7 @@ The specific details for a recurring governance transfer
 type RecurringGovernanceTransfer {
   startEpoch: Int!
   endEpoch: Int
+  dispatchStrategy: DispatchStrategy
 }
 ```
 
@@ -31,6 +32,10 @@ type RecurringGovernanceTransfer {
 
 #### [<code style={{ fontWeight: 'normal' }}>RecurringGovernanceTransfer.<b>endEpoch</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
 > An optional epoch at which this transfer will stop
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>RecurringGovernanceTransfer.<b>dispatchStrategy</b></code>](#)<Bullet />[`DispatchStrategy`](/testnet/api/graphql/objects/dispatch-strategy) <Badge class="secondary" text="object"/>
+> An optional dispatch strategy for the recurring transfer
 > 
 
 

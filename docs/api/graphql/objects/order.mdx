@@ -85,7 +85,7 @@ type Order {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Order.<b>expiresAt</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
-> Expiration time of this order (ISO-8601 RFC3339+Nano formatted date)
+> RFC3339Nano expiration time of this order
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Order.<b>status</b></code>](#)<Bullet />[`OrderStatus!`](/testnet/api/graphql/enums/order-status) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="enum"/>
@@ -99,7 +99,7 @@ type Order {
 #### [<code style={{ fontWeight: 'normal' }}>Order.<b>tradesConnection</b></code>](#)<Bullet />[`TradeConnection`](/testnet/api/graphql/objects/trade-connection) <Badge class="secondary" text="object"/>
 > Trades relating to this order
 > ##### [<code style={{ fontWeight: 'normal' }}>Order.tradesConnection.<b>dateRange</b></code>](#)<Bullet />[`DateRange`](/testnet/api/graphql/inputs/date-range) <Badge class="secondary" text="input"/>
-> Date range to retrieve trades from/to. Start and end time should be expressed as an integer value of nano-seconds past the Unix epoch
+> Date range to retrieve trades from/to. Start and end time should be expressed as an integer value Unix nanoseconds
 > 
 
 ##### [<code style={{ fontWeight: 'normal' }}>Order.tradesConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
@@ -150,7 +150,7 @@ type Order {
 
 ### Member of
 
-[`Entities`](/testnet/api/graphql/objects/entities)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityOrderReference`](/testnet/api/graphql/objects/liquidity-order-reference)  <Badge class="secondary" text="object"/><Bullet />[`OrderEdge`](/testnet/api/graphql/objects/order-edge)  <Badge class="secondary" text="object"/>
+[`Entities`](/testnet/api/graphql/objects/entities)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityOrderReference`](/testnet/api/graphql/objects/liquidity-order-reference)  <Badge class="secondary" text="object"/><Bullet />[`OrderEdge`](/testnet/api/graphql/objects/order-edge)  <Badge class="secondary" text="object"/><Bullet />[`StopOrder`](/testnet/api/graphql/objects/stop-order)  <Badge class="secondary" text="object"/>
 
 
 

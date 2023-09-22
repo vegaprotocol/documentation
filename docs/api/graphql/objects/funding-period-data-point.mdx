@@ -1,0 +1,63 @@
+---
+id: funding-period-data-point
+title: FundingPeriodDataPoint
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Data point for a funding period.
+
+```graphql
+type FundingPeriodDataPoint {
+  marketId: ID!
+  seq: Int!
+  dataPointSource: FundingPeriodDataPointSource
+  price: String!
+  twap: String
+  timestamp: Timestamp!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>FundingPeriodDataPoint.<b>marketId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Market the data point applies to.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>FundingPeriodDataPoint.<b>seq</b></code>](#)<Bullet />[`Int!`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Sequence number of the funding period the data point belongs to.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>FundingPeriodDataPoint.<b>dataPointSource</b></code>](#)<Bullet />[`FundingPeriodDataPointSource`](/testnet/api/graphql/enums/funding-period-data-point-source) <Badge class="secondary" text="enum"/>
+> Source of the data point.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>FundingPeriodDataPoint.<b>price</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Price of the asset as seen by this data point.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>FundingPeriodDataPoint.<b>twap</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> Time-weighted average price calculated from data points for this period from the data source.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>FundingPeriodDataPoint.<b>timestamp</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> RFC3339Nano timestamp when the data point was received.
+> 
+
+
+
+### Member of
+
+[`FundingPeriodDataPointEdge`](/testnet/api/graphql/objects/funding-period-data-point-edge)  <Badge class="secondary" text="object"/>
+
+
+
