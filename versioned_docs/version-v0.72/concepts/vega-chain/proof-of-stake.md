@@ -71,17 +71,14 @@ All events (including the above, plus stake per validator and others) are only r
 
 <Topic />
 
-Vega networks use the ERC20 token VEGA for staking. Staking requires the combined action of associating VEGA tokens (or fractions of a token) to the Vega staking bridge contract; and using those token(s) to nominate one or more validators. 
-
-### Epochs
-An epoch is a time period during which staking changes can be announced and then implemented. Changes that are announced in one epoch will only be executed in the following epoch (excepting ['un-nominate now'](#un-nominate-now)). The length of an epoch is <NetworkParameter frontMatter={frontMatter} param="validators.epoch.length" hideName={true} />.
+Vega networks use the ERC20 token VEGA for staking. Staking requires the combined action of associating VEGA tokens (or fractions of a token) to the Vega staking bridge contract; and using those token(s) to nominate one or more validators.
 
 ## Nominating validators
 Using tokens to nominate validators keeps the decentralised network functioning. 
 
 Tokenholders can nominate validators to encourage a diverse set of reliable nodes running the network, and to give the community the opportunity to disincentivise and/or remove bad validators. Tokenholders who nominate validators are also eligible for rewards. 
 
-When a tokenholder chooses a validator (or validators) to nominate with their tokens, the amount is immediately subtracted from their available balance, and is used at the start of the next epoch to actively nominate those validator(s).
+When a tokenholder chooses a validator (or validators) to nominate with their tokens, the amount is immediately subtracted from their available balance, and is used at the start of the next [epoch](./network.md#epochs) to actively nominate those validator(s).
 
 ### Spam protection: nominations
 There are two [spam pretection](./network#spam-protection) measures related to nominating validators.
@@ -92,11 +89,11 @@ There are two [spam pretection](./network#spam-protection) measures related to n
 Automatic nomination is triggered when an individual tokenholder has manually nominated 95%+ of their associated tokens. At that point, any newly associated tokens will automatically be nominated to the same validators, in the same proportion.
 
 Exceptions to automatic nomination: 
-* If, ahead of the next epoch a participant uses their available tokens to nominate validators manually, that takes precedence over automatic nomination. 
+* If, ahead of the next [epoch](./network.md#epochs) a participant uses their available tokens to nominate validators manually, that takes precedence over automatic nomination. 
 * For the epoch after un-nominating validators (see below), tokens are not auto-nominated, to provide time to change the delegation / remove tokens.  
 
 ## Un-nominating validators
-Participants can remove their nomination at the end of an epoch, or immediately. The un-nominated tokens will be restored back to the participant's associated token balance. 
+Participants can remove their nomination at the end of an [epoch](./network.md#epochs), or immediately. The un-nominated tokens will be restored back to the participant's associated token balance. 
 
 If nominated tokens are moved to a different Ethereum address, they are un-nominated immediately, (equivalent to ['un-nominate now'](#un-nominate-now)) and rewards are forfeited for that epoch. In this case, or any case in which you dissociate tokens without first removing the nomination from a particular validator, the tokens are un-nominated from each validator you've nominated, in proportion to the nomination. 
 
