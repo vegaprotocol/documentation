@@ -24,3 +24,43 @@ Assumptions:
 - You have got configured and running or ready to start data node service.
 - You have the spare domain pointing to your server.
 - You have free 443 port on your server where the data node is running.
+
+
+## Use nginx as proxy service
+
+Assumptions
+
+- You have got `nginx` >= `1.13` to use the `grpc_proxy` feature.
+- You have got `certbot` with the nginx extension
+
+
+### Example config
+
+```nginx
+server {
+    server_name grpc.vega.mainnet.community;
+
+    location / {
+        grpc_pass grpc://10.8.0.202:3007;
+
+    }
+    
+    listen 80 http2;
+}
+
+server {
+    server_name vega.mainnet.community;
+
+    location / {
+        proxy_pass http://10.8.0.202:3008;
+
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+        proxy_set_header Host $host;
+    }
+
+    listen 80; # managed by Certbot
+}
+```
+
