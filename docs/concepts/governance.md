@@ -168,17 +168,25 @@ The table below highlights which types of transfers can only be done through a g
 | Network treasury | Party general account(s) | Yes |
 | Network treasury | Party other account types | No |
 | Network treasury | Market insurance pool account | Yes |
+| Network treasury | Asset insurance pool account | Yes |
 | Network treasury | Network treasury | No  |
 | Network treasury | Any other account | No |
-| Market insurance pool account | Party account(s) | Yes  |
+| Asset insurance pool account | Party general account(s) | Yes  |
+| Asset insurance pool account | Network treasury | Yes  |
+| Asset insurance pool account | Market insurance pool account | Yes |
+| Asset insurance pool account | Reward account | Yes |
+| Asset insurance pool account | Any other account | No |
+| Market insurance pool account | Party general account(s) | Yes  |
 | Market insurance pool account | Network treasury | Yes  |
+| Market insurance pool account | Asset insurance pool account | Yes |
 | Market insurance pool account | Market insurance pool account | Yes |
 | Market insurance pool account | Any other account | No |
 | Party account (any type) | Any | No |
 | Any other account | Any | No |
 
 :::info Read more
-[Transfers](./assets/transfers.md): Learn more about transferring assets.
+* **[Transfers](./assets/transfers.md)**: See more about transferring assets.
+* **[Tutorial: Asset transfer proposal](../tutorials/proposals/asset-transfer-proposal.md)**: Learn how to propose transferring assets and get a template.
 :::
 
 ### Propose an asset transfer

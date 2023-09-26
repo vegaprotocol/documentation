@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 title: Propose updates to an asset
 hide_title: false
 vega_network: TESTNET

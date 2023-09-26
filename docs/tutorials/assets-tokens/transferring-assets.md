@@ -120,13 +120,14 @@ vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --netwo
 </TabItem>
 </Tabs>
 
-## Funding trading rewards
-Trading rewards are funded using recurring transfers to a reward account, which holds the assets for reward pools. The assets move from your account to the nominated reward account at the end of each epoch.
+## Funding trading and validator metric rewards
+Trading rewards, as well as validator metric-based rewards, are funded using recurring transfers to a reward account, which holds the assets for reward pools. The assets move from your account to the nominated reward account at the end of each epoch.
 
-Trading rewards can be used to incentivise:
+These rewards can be used to incentivise:
 * Placing market/limit orders that are filled (determined by amount of maker fees a party paid or received) 
 * Submitting liquidity provision orders to the book that are hit (determined by amount of liquidity fees a party received)
 * Creating markets that attract good trading volume (determined based on value of <NetworkParameter frontMatter={frontMatter} param="rewards.marketCreationQuantumMultiple" hideValue={true} />, and the settlement asset's quantum)
+* Consensus and standby validators that have a ranking score higher than 0
 
 :::info Read more
 [Trading rewards](../../concepts/trading-on-vega/fees-rewards): Read about trading rewards, including the different rewards you can contribute to.
@@ -193,8 +194,8 @@ vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --netwo
 </TabItem>
 </Tabs>
 
-### Publicising trading rewards
-Once you've funded a reward pool, you can promote the reward, and the market it's relevant for, by sharing it with the community on [Discord ↗](https://vega.xyz/discord) and on the [Vega forum ↗](https://community.vega.xyz).
+### Publicising trading and validator metric rewards
+Once you've funded a reward pool, you can promote the reward, and what it's relevant for, by sharing it with the community on [Discord ↗](https://vega.xyz/discord) and on the [Vega forum ↗](https://community.vega.xyz).
 
 ## Cancelling recurring transfers
 To cancel a recurring transfer, you'll need the transfer's ID. To see the ID for every transfer your public key makes, [run a transfers REST query](../../api/rest/data-v2/trading-data-service-list-transfers.api.mdx).

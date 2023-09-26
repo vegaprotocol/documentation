@@ -139,7 +139,7 @@ The network generates a set of trades with all the distressed traders, all at th
 All of the remaining collateral in each distressed trader's margin account for that market is confiscated to the market's insurance pool.
 
 ### Loss socialisation 
-Loss socialisation occurs when there are traders that don't have sufficient collateral to handle the price moves of their open position(s), and the insurance pool cannot cover their shortfall. 
+Loss socialisation occurs when there are traders that don't have sufficient collateral to handle the price moves of their open position(s), and the market's insurance pool cannot cover their shortfall. 
 
 This situation would mean collection transfers are not able to supply the full amount to the market settlement account, and not enough funds can be collected to distribute the full amount of mark to market gains made by traders on the other side. 
 

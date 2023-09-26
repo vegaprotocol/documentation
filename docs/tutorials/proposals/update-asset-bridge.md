@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 6
 title: Update asset bridge
 hide_title: false
 vega_network: TESTNET

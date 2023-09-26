@@ -83,6 +83,8 @@ Trading rewards are defined by three things:
 * An amount to reward
 * How long a reward is offered
 
+Extra rewards for validators can also be set up. Learn more about them on the [validator scores and rewards page](../vega-chain/validator-scores-and-rewards.md#validator-metric-based-rewards).
+
 ### Trading rewards dispatch metrics
 As rewards are distributed based on certain criteria, they need to be defined and measured. Each reward dispatch metric is calculated per party, once at the end of each epoch.
 
