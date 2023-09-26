@@ -15,6 +15,7 @@ A secure server needs to meet the following requirements:
 
 1. Must be either a secure VM or a bare metal machine in which physical access is protected and controlled by the validator. A bare metal machine that is not physically protected can be rebooted, turned off or manipulated by a third party which at best can reduce the rewards times for a validator and at worst can allow malicious software to be installed and potentially stealing of assets and tokens.
 2. Firewall controlled remote access to prevent unknown third parties from logging into the server and performing malicious tasks. Ideally the server will be solely used to run the validator software and would only have the ports required for this to run open to the outside World. The firewall could also be set up to restrict access to a known set of IP addresses to further reduce the chance of a rogue user gaining access to it.
+3. The vega core node contains a small gRPC API that can be used by the operator. Remote access to these API's should be restricted, or disabled all together. This API is meant to be used by the node operator, or trusted parties of the operator, and should not be open to the public.
 
 ## Planning for maximum uptime and connectivity
 
