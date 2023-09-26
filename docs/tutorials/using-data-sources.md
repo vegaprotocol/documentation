@@ -11,16 +11,22 @@ import TabItem from '@theme/TabItem';
 ## Choosing a data source when proposing a market [WIP]
 A market proposal must specify details about the data it requires in the market creation governance proposal. When configuring a market's instrument, you will need to select the data source for different events depending on the product type.
 
-Perpetuals market:
+The data source needs to be able to provide the following information depending on the market type.
+
+Perpetual futures market:
+- Spot price for underlying asset in the market
 - Settlement schedule
-- ?
 
 Futures market:
-- Final settlement 
+- Final settlement
 - Trading termination
 
 [WIP]
-This is done by:
+What needs to be done to define the data source depends on the market type.
+
+Perpetual futures:
+
+Futures:
 1. Defining a data source spec binding for settlement price
 2. Configuring a data source spec for settlement price values
 3. Defining a data source spec binding for trading termination
@@ -64,6 +70,68 @@ data
 				name	"eth.price"
 				expression	"$[0]"
 ```
+
+
+"dataSourceSpecForSettlementData": {
+                                    "external": {
+                                        "ethOracle": {
+                                            "address": "0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43",
+                                            "abi": "[{\"inputs\":[],\"name\":\"latestAnswer\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+                                            "method": "latestAnswer",
+                                            "normalisers": [
+                                                {
+                                                    "name": "btc.price",
+                                                    "expression": "$[0]"
+                                                }
+                                            ],
+                                            "requiredConfirmations": 3,
+                                            "trigger": {
+                                                "timeTrigger": {
+                                                    "every": 30
+                                                }
+                                            },
+                                            "filters": [
+                                                {
+                                                    "key": {
+                                                        "name": "btc.price",
+                                                        "type": "TYPE_INTEGER",
+                                                        "numberDecimalPlaces": 8
+                                                    },
+                                                    "conditions": [
+                                                        {
+                                                            "operator": "OPERATOR_GREATER_THAN_OR_EQUAL",
+                                                            "value": "0"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                "dataSourceSpecForSettlementSchedule": {
+                                    "internal": {
+                                        "timeTrigger": {
+                                            "conditions": [
+                                                {
+                                                    "operator": "OPERATOR_GREATER_THAN_OR_EQUAL",
+                                                    "value": "0"
+                                                }
+                                            ],
+                                            "triggers": [
+                                                {
+                                                    "every": 1800
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                "dataSourceSpecBinding": {
+                                    "settlementDataProperty": "btc.price",
+                                    "settlementScheduleProperty": "vegaprotocol.builtin.timetrigger"
+                                }
+                            }
+
+                    },
 
 ## Submitting data
 Markets that use Ethereum data sources don't need anyone to submit data. 
