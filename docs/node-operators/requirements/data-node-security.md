@@ -26,7 +26,7 @@ Assumptions:
 - You have free 443 port on your server where the data node is running.
 
 
-## Use nginx as proxy service
+## Use the Nginx as proxy service
 
 Assumptions
 
@@ -36,12 +36,14 @@ Assumptions
 
 ### Example config
 
+If you are going to use the certbot, you have to prepare the following configuration for the Nginx:
+
 ```nginx
 server {
-    server_name grpc.vega.mainnet.community;
+    server_name <grpc-domain>; # e.g server_name gprc.vega.mainnet.community;
 
     location / {
-        grpc_pass grpc://10.8.0.202:3007;
+        grpc_pass grpc://127.0.0.1:3007; # it must point to your GRPC port on the  data-node
 
     }
     
@@ -49,10 +51,10 @@ server {
 }
 
 server {
-    server_name vega.mainnet.community;
+    server_name <gateway-domain>; # e.g server_name vega.mainnet.community;
 
     location / {
-        proxy_pass http://10.8.0.202:3008;
+        proxy_pass http://127.0.0.1:3008; # This must point to your Gateway port on the data-node
 
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
@@ -60,7 +62,134 @@ server {
         proxy_set_header Host $host;
     }
 
-    listen 80; # managed by Certbot
+    listen 80;
 }
 ```
 
+Then you have to generate certificates for your domains. To do it, just execute the `certbot` command. Once certificates have been generated, you have to update the `listen 443 ...` line on your GRPC server to the following line `listen 442 http2;`. 
+
+So final config may looks like below:
+
+```nginx
+server {
+    server_name grpc.vega.mainnet.community;
+
+    location / {
+        grpc_pass grpc://127.0.0.1:3007;
+
+    }
+
+    listen 443 http2; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/grpc.vega.mainnet.community/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/grpc.vega.mainnet.community/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+
+server {
+    server_name vega.mainnet.community;
+
+    location / {
+        proxy_pass http://127.0.0.1:3008;
+
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+        proxy_set_header Host $host;
+    }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/grpc.vega.mainnet.community/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/grpc.vega.mainnet.community/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+
+server {
+    if ($host = vega.mainnet.community) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    server_name vega.mainnet.community;
+
+    listen 80;
+    return 404; # managed by Certbot
+}
+
+server {
+    if ($host = grpc.vega.mainnet.community) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    server_name grpc.vega.mainnet.community;
+
+    listen 80;
+    return 404; # managed by Certbot
+}
+```
+
+## Use the caddy as a proxy service
+
+Assumptions:
+
+- Caddy 1.17+ installed
+
+
+### Example config
+
+```caddyfile
+{
+        email <admin-email-for-tls-purposes>
+}
+
+
+<gateway-domain>:443 {
+        # REST & GQL
+        route / {
+                reverse_proxy http://127.0.0.1:3008
+        }
+        route /* {
+                reverse_proxy http://127.0.0.1:3008
+        }
+}
+
+<grpc-domain>:443 {
+        reverse_proxy {
+                to h2c://127.0.0.1:3007
+                transport http {
+                        versions h2c 2
+                }
+        }
+}
+```
+
+Final config may be following:
+
+
+```caddyfile
+{
+        email admin@vega.mainnet.community
+}
+
+
+vega.mainnet.community:443 {
+        # REST & GQL
+        route / {
+                reverse_proxy http://127.0.0.1:3008
+        }
+        route /* {
+                reverse_proxy http://127.0.0.1:3008
+        }
+}
+
+grpc.vega.mainnet.community:443 {
+        reverse_proxy {
+                to h2c://127.0.0.1:3007
+                transport http {
+                        versions h2c 2
+                }
+        }
+
+}
+```
