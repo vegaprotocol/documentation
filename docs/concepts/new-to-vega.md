@@ -25,7 +25,6 @@ The Vega mainnet is run by a set of [validator nodes](./vega-chain/validator-nod
 ## What stage is Vega's mainnet?
 The current version of mainnet is the second decentralised phase of the Vega network. The second step of a three-stage launch process, it will be followed by more feature-rich mainnet, pending software development and validators choosing to release it.
 
-* **Trade on cash-settled futures markets** - Trade on markets proposed and voted in by the community. <br/>
 ## What can you do on the Vega mainnet?
 
 * **Trade on cash-settled futures and perpetuals markets** - Trade on markets proposed and voted in by the community programmatically or by using [Console](https://console.vega.xyz) or another UI.<br/>
