@@ -35,6 +35,10 @@ Once everything is up and running it is important to monitor the server to make 
 
 Over time a user will be able to understand when things are running inside normal parameters and when things are behaving differently at which point further investigation can take place to ensure the system remains up and functioning.
 
+## Exposing APIs
+
+We do not recommend to expose any API from the validator. If you wish to expose the Vega API, please consider starting the separate non-validator vega-core and data node. You can expose the API from the data node. To securely expose the data node APIs, please read the [Secure data node documentation](./data-node-security.md)
+
 ## Best practices for Tendermint
 Read about the best practices for using Tendermint with your node. 
 
