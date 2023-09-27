@@ -78,8 +78,8 @@
           }
         },
         "metadata": [
-          "enactment:2023-10-11T13:42:37Z",
-          "settlement:2023-10-10T13:42:37Z",
+          "enactment:2023-10-17T16:35:25Z",
+          "settlement:2023-10-16T16:35:25Z",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -107,11 +107,17 @@
             "r": 0.016,
             "sigma": 0.15
           }
+        },
+        "liquiditySlaParameters": {
+          "priceRange": "0.1",
+          "commitmentMinTimeFraction": "0.1",
+          "performanceHysteresisEpochs": "10",
+          "slaCompetitionFactor": "0.2"
         }
       }
     },
-    "closingTimestamp": 1696941757,
-    "enactmentTimestamp": 1697028157
+    "closingTimestamp": 1697470525,
+    "enactmentTimestamp": 1697556925
   }
 }
 ```

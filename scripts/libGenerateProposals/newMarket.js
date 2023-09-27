@@ -370,6 +370,55 @@ function generateInstrument(skeleton) {
   return instrument;
 }
 
+function generateLiquiditySlaParameters(skeleton) {
+  assert.equal(
+    skeleton.properties.priceRange.type,
+    "string",
+    "Liquidity SLA Parameters: expected range to be a string"
+  );
+  assert.equal(
+    skeleton.properties.commitmentMinTimeFraction.type,
+    "string",
+    "Liquidity SLA Parameters: expected min commitment time to be a string"
+  );
+  assert.equal(
+    skeleton.properties.performanceHysteresisEpochs.type,
+    "string",
+    "Liquidity SLA Parameters: expected performanceHysteresisEpochs to be a string"
+  );
+
+  assert.equal(
+    skeleton.properties.slaCompetitionFactor.type,
+    "string",
+    "Liquidity SLA Parameters: expected slaCompetitionFactor to be a string"
+  );
+
+  const slaParams = {
+    priceRange: "0.1",
+    commitmentMinTimeFraction: "0.1",
+    performanceHysteresisEpochs: "10",
+    slaCompetitionFactor: "0.2"
+  };
+
+  const compLabel = skeleton.properties.slaCompetitionFactor.description.split('\n')
+
+  slaParams[inspect.custom] = () => {
+    return `{
+        // (${skeleton.properties.priceRange.type})
+        priceRange: ${slaParams.priceRange},
+        // ${skeleton.properties.commitmentMinTimeFraction.description} (${skeleton.properties.commitmentMinTimeFraction.type})
+        commitmentMinTimeFraction: "${slaParams.commitmentMinTimeFraction}",
+        // ${skeleton.properties.performanceHysteresisEpochs.description} (${skeleton.properties.performanceHysteresisEpochs.format} as ${skeleton.properties.performanceHysteresisEpochs.type})
+        performanceHysteresisEpochs: "${slaParams.performanceHysteresisEpochs}",
+        // ${compLabel[0]}
+        // ${compLabel[1]} (${skeleton.properties.slaCompetitionFactor.type})
+        slaCompetitionFactor: "${slaParams.slaCompetitionFactor}",
+      }`;
+  };
+
+  return slaParams;
+}
+
 function generatePeggedOrder(skeleton, side, customInspect = false) {
   const order = {
     offset: random(1, 100).toString(),
@@ -691,6 +740,7 @@ function generateRiskModel(skeleton, riskModelType) {
 
 function newMarket(skeleton, proposalSoFar) {
   assert.ok(skeleton.properties.changes);
+  assert.ok(skeleton.properties.changes.properties.liquiditySlaParameters);
   assert.ok(skeleton.properties.changes.properties.decimalPlaces);
   assert.ok(skeleton.properties.changes.properties.quadraticSlippageFactor);
   assert.ok(skeleton.properties.changes.properties.linearSlippageFactor);
@@ -733,6 +783,9 @@ function newMarket(skeleton, proposalSoFar) {
           logNormal: generateRiskModel(
             skeleton.properties.changes.properties.logNormal,
             "logNormal"
+          ),
+          liquiditySlaParameters: generateLiquiditySlaParameters(
+            skeleton.properties.changes.properties.liquiditySlaParameters
           ),
         },
       },
@@ -786,6 +839,10 @@ function newMarket(skeleton, proposalSoFar) {
           logNormal: ${inspect(result.terms.newMarket.changes.logNormal, {
         depth: 19,
       })},
+      // ${skeleton.properties.changes.properties.liquiditySlaParameters.title}
+      liquiditySlaParameters: ${inspect(result.terms.newMarket.changes.liquiditySlaParameters, {
+      depth: 19,
+    })},
         }
     }`;
   };
