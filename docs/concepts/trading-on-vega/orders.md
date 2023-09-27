@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 6
 title: Orders
 hide_title: false
 description: See the order types and when they're applicable for a market.

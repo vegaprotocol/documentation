@@ -14,7 +14,7 @@ If you have questions, join our community on [Discord](https://vega.xyz/discord)
 ## What is Vega?​
 Vega is a protocol for creating and trading derivatives on a fully decentralised network. 
 
-Currently, Vega is in alpha mainnet, which is run by a set of validators. There's also a Vega testnet called Fairground, where it's possible to try trading cash-settled futures on a test network.
+The Vega mainnet is run by a set of [validator nodes](./vega-chain/validator-nodes.md). There's also a Vega testnet called Fairground, where it's possible to try trading cash-settled futures and perpetuals on a test network.
 
 ### Learn more 
 * [Vega whitepaper](https://vega.xyz/papers/vega-protocol-whitepaper.pdf): A high-level overview of the protocol
@@ -22,21 +22,24 @@ Currently, Vega is in alpha mainnet, which is run by a set of validators. There'
 * [Vega on YouTube](https://youtube.com/vegaprotocol): Video walkthroughs and conversations with Vega contributors
 * [Engineering roadmap](https://github.com/orgs/vegaprotocol/projects/114/views/4): Board showing the features the team has planned and their current status
 
-## What is Vega's alpha mainnet? 
-Alpha mainnet is the second decentralised version of the Vega network. The second step of a three-stage launch process, it will be followed by v1 mainnet.
+## What stage is Vega's mainnet?
+The current version of mainnet is the second decentralised phase of the Vega network. The second step of a three-stage launch process, it will be followed by more feature-rich mainnet, pending software development and validators choosing to release it.
 
 * **Trade on cash-settled futures markets** - Trade on markets proposed and voted in by the community. <br/>
-* **Tokenholders can nominate validators** - Tokenholders earn staking rewards for securing the network.  <br/>
-* **Network governance is encouraged** - Tokenholders can take part in proposing and voting on changes to network configuration to define the optimal network configuration in preparation for the alpha release. <br/>
+## What can you do on the Vega mainnet?
 
-Its functionality is limited and is riskier than networks that will follow it, and involves regularly scheduled software upgrades and downtime. There will probably be some growing pains as the network is stress-tested and upgrades are rolled out.
+* **Trade on cash-settled futures and perpetuals markets** - Trade on markets proposed and voted in by the community programmatically or by using [Console](https://console.vega.xyz) or another UI.<br/>
+* **Tokenholders can nominate validators** - Earn staking rewards for securing the network using the [governance dApp](https://governance.vega.xyz). <br/>
+* **Take part in network governance** - Tokenholders can propose and vote on new markets, as well as changes to markets and network configuration. <br/>
+
+You'll need a wallet that connects to the Vega network to trade, nominate validators, and take part in governance. See all the options under [apps](../tools/index.md).
 
 **[Mainnet incidents](https://blog.vega.xyz/tagged/vega-incident-reports)**: Vega publishes information about mainnet incidents and their resolutions on the blog.
 
-## How can I use Vega?
+## How you can use Vega
 
 #### Vega Wallet
-* [Get a Vega Wallet](../tools/vega-wallet/cli-wallet/latest/create-wallet): You'll need it for trading and staking tokens.
+* [Get a Vega Wallet](../tools/vega-wallet/cli-wallet/latest/create-wallet): You'll need it for trading and for staking tokens.
 
 #### Trading on mainnet
 * [Vega Console](https://console.vega.xyz): Use the trading interface (hosted on IPFS) to place trades and follow your positions. 

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 title: Positions and margin
 hide_title: false
 description: Dynamic margining maximises collateral usage and market solvency.
@@ -7,7 +7,7 @@ description: Dynamic margining maximises collateral usage and market solvency.
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-Trading margined derivatives (such as futures) allows you to create leveraged positions, meaning you only need some of the notional value of an instrument to place orders on a market on Vega. 
+Trading margined derivatives (such as futures) allows you to create leveraged positions, meaning you only need some of the notional value of an instrument to place orders. 
 
 Margin is the amount of the settlement asset of the market required to keep your positions open and orders funded. You can think of margin as the 'down payment' to open a position. Leverage, meanwhile, describes how many times larger is the notional value of that position compared to the margin you have dedicated to it. For example, if you need 20 DAI to open a position worth 100 DAI: your leverage is 5x and your initial margin is 20% of the full value.
 
@@ -34,14 +34,13 @@ Marking to market refers to settling gains and losses due to changes in the mark
 
 If the market price goes up, traders that hold long positions receive money into their margin account – equal to the change in the notional value of their positions – from traders that hold short positions, and conversely if the value goes down, the holders of short positions receive money from the holders of long positions.
 
-For a futures market created on Vega, marking to market is carried out every time the price moves, and is based on the last traded price. This is in contrast to traditional futures markets, for which marking to market may occur only once per day. One exception is when the market settles at expiry, at which point the mark to market price comes from the market data source's final settlement price.
+For a derivatives market created on Vega, marking to market is carried out every time the price moves, and is based on the last traded price. This is in contrast to traditional derivatives markets, for which marking to market may occur only once per day. One exception is when a futures market settles at expiry, at which point the mark to market price comes from the market data source's final settlement price.
 
 Mark to market settlement instructions are generated based on the change in market value of the open positions of a party. When the mark price changes, the network calculates settlement cash flows for each party, and the process is repeated each time the mark price changes until the maturity date for the market is reached.
 
 :::note Read more
 [Mark to market settlement](./settlement.md#mark-to-market-settlement): How settlement works when the mark to market price is recalculated.
 :::
-
 
 ## Margin
 Margin is the amount of collateral required to keep your position open. It can change depending on how your position is impacted by your own actions and market movement.
@@ -60,7 +59,7 @@ Vega's margining system provides automated cross margining. Cross margining, whi
 To more closely control how much is risked on a position, it's possible to replicate the effects of isolated margin by using one party (public key) per market.
 
 :::note Go deeper
-**[Automated cross margining](https://vega.xyz/papers/vega-protocol-whitepaper.pdf#page21)** - Section 6 of the protocol whitepaper.
+**[Automated cross margining ↗](https://vega.xyz/papers/vega-protocol-whitepaper.pdf#page21)** - Section 6 of the protocol whitepaper.
 :::
 
 ### Margin requirements
@@ -74,6 +73,12 @@ Throughout the life of an open position, the minimum required amount to keep a p
 The amount a trader will have held aside as maintenance margin is derived from the market's risk model. Specifically, it's based on a risk measure called the expected shortfall, used to evaluate the market risk of the position and any open orders.
 
 If the margin balance drops below the maintenance margin level, the position closeout process gets initiated.
+
+For [perpetual futures markets](./market-types.md#perpetual-futures), the margin calculations contain additional term to capture the exposure of a given position to an upcoming funding payment. The market proposal includes a margin funding factor that determines to what degree the funding payment amount impacts a trader's maintenance margin.
+
+:::note Go deeper
+**[Perpetual futures spec ↗](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0053-PERP-product_builtin_perpetual_future.md#funding-payment-calculation)**: The spec on GitHub has details on the calculations.
+:::
 
 #### Margin slippage
 Maintenance margin is calculated as: 

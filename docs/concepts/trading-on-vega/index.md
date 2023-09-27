@@ -6,9 +6,15 @@ hide_title: false
 import DocCardList from '@theme/DocCardList';
 import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
 
-The Vega protocol software is built to provide a framework for creating markets for trading financial instruments that are based on the values of their underlying assets. All markets created using the Vega protocol have been initiated and voted on by tokenholders. To start, the Vega protocol exclusively supports creating cash-settled futures markets. ([Learn about cash settlement on Investopedia. ↗](https://www.investopedia.com/terms/c/cashsettlement.asp))
+The Vega protocol software is built to provide a framework for creating markets for trading financial instruments that are based on the values of their underlying assets. All markets created using the Vega protocol have been initiated and voted on by tokenholders. 
 
-Participants that interact with a futures market created using Vega software can submit market, limit, pegged and liquidity commitment orders.
+Currently, the Vega protocol supports creating the following cash-settled products:
+* futures markets
+* perpetual futures markets
+
+[Learn about cash settlement on Investopedia. ↗](https://www.investopedia.com/terms/c/cashsettlement.asp)
+
+Participants that interact with a market created using Vega software can submit market, limit, pegged and liquidity commitment orders.
 
 The topics in this section are in progress and will continue to cover more of the trading framework.
 
