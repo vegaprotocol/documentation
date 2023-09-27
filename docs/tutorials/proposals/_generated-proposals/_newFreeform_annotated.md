@@ -13,7 +13,7 @@
 
   // Timestamp as Unix time in seconds when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters. (int64 as string})
-  closingTimestamp: 1697476776,
+  closingTimestamp: 1697478239,
  }
 }
 ```

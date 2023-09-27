@@ -11,6 +11,7 @@ const {
 const { updateAsset } = require('./libGenerateProposals/updateAsset')
 const { newTransfer } = require('./libGenerateProposals/newTransfer')
 const { updateMarket } = require('./libGenerateProposals/updateMarket')
+const { updateMarketState } = require('./libGenerateProposals/updateMarketState')
 const { newFreeform } = require('./libGenerateProposals/newFreeform')
 const { newSuccessorMarket } = require('./libGenerateProposals/newSuccessorMarket')
 const { newAsset } = require('./libGenerateProposals/newAsset')
@@ -40,7 +41,7 @@ const notProposalTypes = [
   'title',
   'type'
 ]
-const excludeUnimplementedTypes = ['newSpotMarket', 'updateSpotMarket', 'cancelTransfer', 'updateMarketState', 'updateReferralProgram', 'updateVolumeDiscountProgram']
+const excludeUnimplementedTypes = ['newSpotMarket', 'updateSpotMarket', 'cancelTransfer', 'updateReferralProgram', 'updateVolumeDiscountProgram']
 
 // Synthetic proposal types are not in the schema, but are different types of newMarket proposal
 const syntheticProposalTypes = ['newSuccessorMarket']
@@ -242,6 +243,7 @@ const ProposalGenerator = new Map([
   ['newMarket', newMarket],
   ['newSuccessorMarket', newSuccessorMarket],
   ['updateMarket', updateMarket],
+  ['updateMarketState', updateMarketState],
   ['updateAsset', updateAsset],
   ['newTransfer', newTransfer]
 ])
