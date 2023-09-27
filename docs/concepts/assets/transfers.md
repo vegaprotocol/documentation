@@ -75,5 +75,5 @@ The table below highlights which types of transfers can be done through a govern
 
 :::note Read more
 * **[Transfers initiated by governance](../governance.md#transferring-assets)**: Learn about the governance mechanics involved in transfers.
-* **[Tutorial: Asset transfer proposal](../tutorials/proposals/asset-transfer-proposal.md)**: Learn how to propose transferring assets and get a template.
+* **[Tutorial: Asset transfer proposal](../../tutorials/proposals/asset-transfer-proposal.md)**: Learn how to propose transferring assets and get a template.
 :::

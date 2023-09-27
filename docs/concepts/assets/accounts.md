@@ -105,9 +105,7 @@ There is also a global rewards account, which is used for validator rewards on t
 :::
 
 ### Validator reward accounts
-Validator reward accounts are used to distribute rewards to validators based on their ranking. These accounts can be funded through [deposits](./deposits-withdrawals.md) or [transfers](./transfers.md).
-
- Please refer to the [subsection of the rewards spec](./0056-REWA-rewards_overview.md#validator-ranking-metric) for details around distribution of funds from that account.
+Validator reward accounts are used to distribute rewards, if they're funded, to consensus and standby validators based on their ranking score. These accounts can be funded through [deposits](./deposits-withdrawals.md) or [transfers](./transfers.md).
 
 The assets in the validator reward accounts can only otherwise move if a [governance-initiated transfer](./transfers.md#governance-initiated-transfers) is enacted, meaning a governance proposal to move assets has passed the vote.
 
