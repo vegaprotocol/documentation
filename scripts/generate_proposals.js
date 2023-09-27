@@ -9,6 +9,7 @@ const {
   produceInstrument
 } = require('./libGenerateProposals/newMarket')
 const { updateAsset } = require('./libGenerateProposals/updateAsset')
+const { newTransfer } = require('./libGenerateProposals/newTransfer')
 const { updateMarket } = require('./libGenerateProposals/updateMarket')
 const { newFreeform } = require('./libGenerateProposals/newFreeform')
 const { newSuccessorMarket } = require('./libGenerateProposals/newSuccessorMarket')
@@ -39,7 +40,7 @@ const notProposalTypes = [
   'title',
   'type'
 ]
-const excludeUnimplementedTypes = ['newSpotMarket', 'updateSpotMarket', 'newTransfer', 'cancelTransfer']
+const excludeUnimplementedTypes = ['newSpotMarket', 'updateSpotMarket', 'cancelTransfer', 'updateMarketState', 'updateReferralProgram', 'updateVolumeDiscountProgram']
 
 // Synthetic proposal types are not in the schema, but are different types of newMarket proposal
 const syntheticProposalTypes = ['newSuccessorMarket']
@@ -241,7 +242,8 @@ const ProposalGenerator = new Map([
   ['newMarket', newMarket],
   ['newSuccessorMarket', newSuccessorMarket],
   ['updateMarket', updateMarket],
-  ['updateAsset', updateAsset]
+  ['updateAsset', updateAsset],
+  ['newTransfer', newTransfer]
 ])
 
 function parse(api) {
