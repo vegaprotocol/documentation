@@ -2,8 +2,8 @@
   ```javascript
  {
   rationale: {
-   title: "Close market X",
-   description: "Market X should be closed as it is no longer relevant. Termination price set in proposal."
+   title: "Terminate market X",
+   description: "Market X should be terminated as it is no longer relevant. Termination price set in proposal."
   }
  },
   terms: {
@@ -22,11 +22,11 @@
 
   // Timestamp as Unix time in seconds when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-  closingTimestamp: 1697478239,
+  closingTimestamp: 1697478345,
 
   // Timestamp as Unix time in seconds when proposal gets enacted if passed,
   // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-  enactmentTimestamp: 1697564639,
+  enactmentTimestamp: 1697564745,
  }
 }
 ```

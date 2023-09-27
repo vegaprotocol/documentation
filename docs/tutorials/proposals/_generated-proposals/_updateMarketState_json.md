@@ -2,8 +2,8 @@
   ```json
 {
   "rationale": {
-    "title": "Close market X",
-    "description": "Market X should be closed as it is no longer relevant. Termination price set in proposal."
+    "title": "Terminate market X",
+    "description": "Market X should be terminated as it is no longer relevant. Termination price set in proposal."
   },
   "terms": {
     "updateMarketState": {
@@ -13,8 +13,8 @@
         "price": "123456"
       }
     },
-    "closingTimestamp": 1697478239,
-    "enactmentTimestamp": 1697564639
+    "closingTimestamp": 1697478345,
+    "enactmentTimestamp": 1697564745
   }
 }
 ```
