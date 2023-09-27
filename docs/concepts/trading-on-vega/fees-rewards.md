@@ -34,12 +34,12 @@ The infrastructure portion of the fee is paid to validators as a reward for runn
 Some of the infrastructure fee paid to validators is then distributed to the validators' nominators.
 
 ### Liquidity fee
-The liquidity portion of the fee is paid by a participant who hits an order on the order book, and is paid to those participants who [commit liquidity](../liquidity/provision.md#liquidity-commitments) to the market.
+The liquidity portion of the fee is paid by a trader who hits an order on the order book, and is paid to those who [commit liquidity](../liquidity/provision.md#liquidity-commitments) to the market.
 
-It's transferred to a liquidity fee account, and distributed to each liquidity provider's margin account at a defined time (based on network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providers.fee.distributionTimeStep" />), and depending on how much their liquidity commitments have contributed to the market.
+It's transferred to a liquidity fee account, and distributed to each liquidity provider's margin account at a defined time (based on network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providers.fee.distributionTimeStep" />), and depending on how much liquidity they have contributed to the market.
 
 ### Fee calculations
-At a high level, the trading fee is calculated using the following formulas:
+At a high level, the trading fee that someone pays is calculated using the following formulas:
 
 * Total fee = (infrastructure fee factor + maker fee factor + liquidity fee factor) x trade value for fee purposes
 * Trade value for fee purposes = notional value of the trade = size of trade x price of trade
@@ -62,7 +62,7 @@ The fee is calculated by multiplying the transfer amount and the <NetworkParamet
 ## Trading rewards
 Market participants can also receive rewards for their trading, liquidity commitment, and market creation activity.
 
-Depending on the rewards available, traders can receive bonuses for placing market and/or limit orders that are filled. Liquidity providers can receive rewards for placing liquidity orders that are likely to match, and market proposers can receive rewards for proposing markets that draw in trading volume. 
+Depending on the rewards available, traders can receive bonuses for placing market and/or limit orders that are filled. Liquidity providers can receive rewards for placing orders that are likely to match, and market proposers can receive rewards for proposing markets that draw in trading volume. 
 
 Reward proceeds are paid directly to the recipient's general account.
 

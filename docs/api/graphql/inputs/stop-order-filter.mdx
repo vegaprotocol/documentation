@@ -22,6 +22,7 @@ input StopOrderFilter {
   status: [StopOrderStatus!]
   expiryStrategy: [StopOrderExpiryStrategy!]
   dateRange: DateRange
+  liveOnly: Boolean
 }
 ```
 
@@ -45,7 +46,11 @@ input StopOrderFilter {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>StopOrderFilter.<b>dateRange</b></code>](#)<Bullet />[`DateRange`](/testnet/api/graphql/inputs/date-range) <Badge class="secondary" text="input"/>
-> Date range to retrieve order from/to. Start and end time should be expressed as an integer value of nano-seconds past the Unix epoch
+> Date range to retrieve order from/to. Start and end time should be expressed as an integer value of Unix nanoseconds
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>StopOrderFilter.<b>liveOnly</b></code>](#)<Bullet />[`Boolean`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> Filter for live stop orders only
 > 
 
 

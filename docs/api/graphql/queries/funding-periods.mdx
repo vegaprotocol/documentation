@@ -1,0 +1,52 @@
+---
+id: funding-periods
+title: fundingPeriods
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Funding periods for perpetual markets
+
+```graphql
+fundingPeriods(
+  marketId: ID!
+  dateRange: DateRange
+  pagination: Pagination
+): FundingPeriodConnection!
+```
+
+
+### Arguments
+
+#### [<code style={{ fontWeight: 'normal' }}>fundingPeriods.<b>marketId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> ID of the perpetual market to get funding periods for
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>fundingPeriods.<b>dateRange</b></code>](#)<Bullet />[`DateRange`](/testnet/api/graphql/inputs/date-range) <Badge class="secondary" text="input"/>
+> Optional: Date range to retrieve funding periods from/to.
+The funding period start time will be used to determine whether to include the funding period in the results.
+Start and end time should be expressed as an integer value of Unix nanoseconds.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>fundingPeriods.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Pagination control
+> 
+
+### Type
+
+#### [`FundingPeriodConnection`](/testnet/api/graphql/objects/funding-period-connection) <Badge class="secondary" text="object"/>
+> Connection type for retrieving cursor-based paginated funding period data for perpetual markets
+> 
+
+
+
+
+

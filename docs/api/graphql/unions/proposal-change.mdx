@@ -16,7 +16,7 @@ export const Badge = (props) => <><span class={'badge badge--' + props.class}>{p
 No description
 
 ```graphql
-union ProposalChange = NewMarket | UpdateMarket | UpdateNetworkParameter | NewAsset | UpdateAsset | NewFreeform | NewTransfer | CancelTransfer
+union ProposalChange = NewMarket | UpdateMarket | UpdateNetworkParameter | NewAsset | UpdateAsset | NewFreeform | NewTransfer | CancelTransfer | UpdateMarketState | NewSpotMarket | UpdateSpotMarket | UpdateVolumeDiscountProgram | UpdateReferralProgram
 ```
 
 
@@ -54,6 +54,26 @@ rationale, instead.
 
 #### [`CancelTransfer`](/testnet/api/graphql/objects/cancel-transfer) <Badge class="secondary" text="object"/>
 > Allows for cancellation of an existing governance transfer
+> 
+
+#### [`UpdateMarketState`](/testnet/api/graphql/objects/update-market-state) <Badge class="secondary" text="object"/>
+> 
+> 
+
+#### [`NewSpotMarket`](/testnet/api/graphql/objects/new-spot-market) <Badge class="secondary" text="object"/>
+> Configuration for a new spot market on Vega
+> 
+
+#### [`UpdateSpotMarket`](/testnet/api/graphql/objects/update-spot-market) <Badge class="secondary" text="object"/>
+> Update an existing spot market on Vega
+> 
+
+#### [`UpdateVolumeDiscountProgram`](/testnet/api/graphql/objects/update-volume-discount-program) <Badge class="secondary" text="object"/>
+> 
+> 
+
+#### [`UpdateReferralProgram`](/testnet/api/graphql/objects/update-referral-program) <Badge class="secondary" text="object"/>
+> 
 > 
 
 

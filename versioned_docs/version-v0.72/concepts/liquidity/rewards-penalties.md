@@ -103,7 +103,7 @@ Thus, the following amounts are then transferred to each LP's margin account onc
 ## Community-funded LP rewards 
 In addition to the income made from fees, anyone can fund reward pools that will pay out to liquidity providers at the end of each epoch, based on the proportion of fees they have received. 
 
-:::Read more 
+:::note Read more 
 Learn more about this, and trading rewards in general on the [fees and rewards](../trading-on-vega/fees-rewards) page.
 :::
 

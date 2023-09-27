@@ -57,7 +57,7 @@ Other types of data that the data node makes queryable include (but are not limi
 * Governance proposals: All proposals submitted, the 'yes' and 'no' votes, and the parameter changes proposed
 * Trading related data: Prices current and historical such as best bid/ask, mid, mark price; open interest, trade price/volume, closeout trades, loss socialisation events, position mark-to-market events; indicative auction uncrossing price and volume
 * Market lifecycle events: Auction start, end, reason for entering, type of auction; settlement, trading terminated
-* Liquidity provision data: liquidity commitment order submissions, changes in equity-like share, target stake, supplied stake
+* Liquidity provision data: liquidity commitment submissions, changes in equity-like share, target stake, supplied stake
 * Risk data: Margin level events, Model parameter changes, Risk factor changes, Price monitoring bound setting changes, Price monitoring bounds
 * Candle data: Data that corresponds to trades during a certain time period: first trade, highest traded price, lowest traded price
 

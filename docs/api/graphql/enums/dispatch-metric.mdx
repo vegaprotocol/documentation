@@ -21,6 +21,10 @@ enum DispatchMetric {
   DISPATCH_METRIC_MAKER_FEES_RECEIVED
   DISPATCH_METRIC_LP_FEES_RECEIVED
   DISPATCH_METRIC_MARKET_VALUE
+  DISPATCH_METRIC_AVERAGE_POSITION
+  DISPATCH_METRIC_RELATIVE_RETURN
+  DISPATCH_METRIC_RETURN_VOLATILITY
+  DISPATCH_METRIC_VALIDATOR_RANKING
 }
 ```
 
@@ -41,6 +45,22 @@ enum DispatchMetric {
 
 #### [<code style={{ fontWeight: 'normal' }}>DispatchMetric.<b>DISPATCH_METRIC_MARKET_VALUE</b></code>](#) 
 > Dispatch metric that uses the total value of the market if above the required threshold and not paid given proposer bonus yet
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DispatchMetric.<b>DISPATCH_METRIC_AVERAGE_POSITION</b></code>](#) 
+> Dispatch metric that uses the time weighted position of the party in the market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DispatchMetric.<b>DISPATCH_METRIC_RELATIVE_RETURN</b></code>](#) 
+> Dispatch metric that uses the relative PNL of the party in the market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DispatchMetric.<b>DISPATCH_METRIC_RETURN_VOLATILITY</b></code>](#) 
+> Dispatch metric that uses return volatility of the party in the market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>DispatchMetric.<b>DISPATCH_METRIC_VALIDATOR_RANKING</b></code>](#) 
+> Dispatch metric that uses the validator ranking of the validator as metric
 > 
 
 

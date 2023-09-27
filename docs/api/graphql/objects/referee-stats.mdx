@@ -1,0 +1,48 @@
+---
+id: referee-stats
+title: RefereeStats
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+type RefereeStats {
+  partyId: ID!
+  discountFactor: String!
+  rewardFactor: String!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>RefereeStats.<b>partyId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Unique ID of the party.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>RefereeStats.<b>discountFactor</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Discount factor applied to the party.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>RefereeStats.<b>rewardFactor</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Reward factor applied to the party.
+> 
+
+
+
+### Member of
+
+[`ReferralSetStats`](/testnet/api/graphql/objects/referral-set-stats)  <Badge class="secondary" text="object"/>
+
+
+

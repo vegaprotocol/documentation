@@ -27,7 +27,6 @@ The information needed by Vega to process an order:
 | Expires at | If the order has a Good 'til Time TIF, the specific time the order will expire | Chosen by user |
 | [Type](#order-types)	  | Type of order (such as limit or market)                                   | Chosen by user |
 | [Pegged order](#pegged-order) | Details about a pegged order, if an order uses pegs                 | Chosen by user|
-| [Liquidity provision](../../tutorials/building-a-bot/adding-a-liquidity-commitment.md) | Provides details if an order is a liquidity commitment order   |Chosen by user|
 | [Iceberg order](#iceberg-order) | Provides details for an iceberg order, if applicable | Chosen by user |
 | Order ID | Unique deterministic ID, can be used to query but only exists after consensus      |Determined by network|
 | [Order status](#order-status)	  | Whether an order is filled, partially filled, stopped or cancelled |Determined by network|
@@ -262,7 +261,7 @@ This section is specific to market and limit orders.
 :::tip Try it out
 [Tutorial for committing liquidity](../../tutorials/building-a-bot/adding-a-liquidity-commitment.md): See sample bot code for setting up and managing a liquidity commitment.
 :::
-See [pegged orders](#pegged-order) and [liquidity provision](../liquidity/provision.md) for information on how to manage those order types.
+See [pegged orders](#pegged-order) and [liquidity provision](../liquidity/provision.md) for information on how to manage those orders.
 
 ### Submit an order 
 Orders can be submitted into any market that is active - not expired or settled. Orders will only be accepted if sufficient margin can be allocated from a trader's available collateral. Not all orders can be submitted in all trading modes. 
@@ -270,7 +269,7 @@ Orders can be submitted into any market that is active - not expired or settled.
 If, during continuous trading, an order is going to be matched with another order on the book for the same party (also known as a wash trade), the order will be stopped, cancelled, and removed from the order book.
 
 #### Opening auctions
-Liquidity commitment orders, and [Good For Auction](#good-for-auction) orders can be submitted to markets that are in a pending state, and thus in opening auction. 
+Orders to sustain a liquidity commitment, and [Good For Auction](#good-for-auction) orders can be submitted to markets that are in a pending state, and thus in opening auction. 
 
 Pegged orders can also be placed, but will be parked until the market is out of auction. 
 
@@ -286,7 +285,5 @@ If your amendment will change the price you're seeking or increase the order siz
 
 ### Cancel an order
 Market, limit and pegged orders that have not been fully filled can be cancelled. 
-
-Liquidity commitment orders can be cancelled, but the cancellation will only be accepted if there's enough liquidity on the market without those commitment orders.
 
 When trading using the APIs, a trader can cancel individual orders, all orders for their public key across all markets, or all orders for their public key on a single market.

@@ -34,7 +34,7 @@ Voting begins and its state is `proposed`. Not every market that is proposed (an
 ### What is and isn't possible
 - Participants can vote for or against the market proposal
 - Liquidity providers can submit, amend, or cancel liquidity commitments 
-- No trading is possible. No orders can be placed (except the buy/sell order shapes that form part of a liquidity commitment)
+- No trading is possible
 - No market data (price, etc.) is emitted, no positions exist on the market, and no risk management occurs
 
 ### Exits proposed state
@@ -45,7 +45,7 @@ Voting begins and its state is `proposed`. Not every market that is proposed (an
 ## Market status: Rejected
 If a market proposal is not successful, i.e., does not get the required amount of 'yes' votes, its state is `rejected`. 
 
-Any collateral in the bond account for liquidity commitments is returned to the general accounts of the party/parties that submitted liquidity commitment orders.
+Any collateral in the bond account for liquidity commitments is returned to the general accounts of the party/parties that submitted a liquidity commitment transaction.
 
 ### Enters rejected state
 - Voting period ends

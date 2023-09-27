@@ -43,7 +43,7 @@ Auctions aggregate participation over time, up to a pre-set time when the market
 Currently, all auctions are triggered automatically based on market conditions. Market conditions that could trigger an auction:
 * A market has opened for trading, which means it needs a defined price to start trading from 
 * Price swing on a market is perceived, based on risk models, to be extreme and unrealistic
-* Not enough liquidity on a market; this could also indicate missing best static bid / ask as without those liquidity provision orders cannot be deployed, even if liquidity providers have committed liquidity. 
+* Not enough liquidity on a market 
 
 ### Auction type: Opening
 Every continuous trading market opens with an auction. Their purpose is to calibrate a market and help with price discovery by determining a fair mid-price to start off continuous trading.
@@ -80,20 +80,13 @@ If no one places orders in the price monitoring auction, the auction is exited a
 :::
 
 ### Auction type: Liquidity monitoring
-In order to ensure there is enough liquidity to keep a market active and protect against insolvent parties, the network will detect when the market's liquidity is too low, and if it is too low, will stop continuous trading and put the market into a liquidity monitoring auction. 
-
-This also happens when the best static bid / ask is not present after all transactions with the same timestamp have been processed, as without those liquidity provision orders cannot be deployed, even if liquidity providers have committed liquidity. 
+In order to ensure there is enough liquidity to keep a market active and protect against insolvent parties, the network will detect when the market's liquidity is too low, and if it is too low, will stop continuous trading and put the market into a liquidity monitoring auction.
 
 #### Entry into liquidity monitoring auction 
-A market will go into a liquidity monitoring auction if the total commitment from liquidity providers (total stake) drops too low relative to the estimate of the market's liquidity demand (target stake), or if there are no best bid and/or best ask prices on the market.
+A market will go into a liquidity monitoring auction if the total commitment from liquidity providers (total stake) drops too low relative to the estimate of the market's liquidity demand (target stake).
 
 The trigger for entering a liquidity monitoring auction is: 
-
 `sum of LPs commitment amounts < target stake x triggering ratio`
-
-The market will also enter a liquidity auction if there are no static bids or static asks on the order book (as that means that the liquidity that LPs committed to be deployed at a given distance from the specified pegs cannot be deployed).
-
-The market will also enter a liquidity monitoring auction under other technical conditions, for example if the best static bid / best static ask are wider than the tightest price monitoring bounds. 
 
 The triggering ratio above is set by the <NetworkParameter frontMatter={frontMatter} param="network parameter market.liquidity.targetstake.triggering.ratio" hideName={false} />.
 
@@ -131,7 +124,7 @@ When a market is in an auction, only certain order types and times in force can 
 * Stop orders are accepted 
 
 **Upon exiting an auction:**
-* Pegged orders (all types, including liquidity commitment orders) are reinstated to the order book 
+* Pegged orders are reinstated to the order book 
 * Limit orders stay on the book - unless they have a time in force of Good For Auction, in which case they're cancelled
 * Stop orders can be triggered by the auction uncrossing price if the auction results in a trade
 

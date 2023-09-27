@@ -204,7 +204,7 @@ def main(
     binance_store.stop()  # Adding a stop here for the Binance store too
 ```
 
-(don't forget to retain the section cancelling the liquidity commitment if you have already run through that tutorial) and finally pass in the required market by updating our call to `main` to be:
+Don't forget to retain the section cancelling the liquidity commitment if you have already run through that tutorial and finally pass in the required market by updating our call to `main` to be:
 
 ```python
 main(

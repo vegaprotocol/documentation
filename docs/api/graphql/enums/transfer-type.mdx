@@ -44,6 +44,16 @@ enum TransferType {
   TRANSFER_TYPE_SPOT
   TRANSFER_TYPE_HOLDING_LOCK
   TRANSFER_TYPE_HOLDING_RELEASE
+  TRANSFER_TYPE_SUCCESSOR_INSURANCE_FRACTION
+  TRANSFER_TYPE_LIQUIDITY_FEE_ALLOCATE
+  TRANSFER_TYPE_LIQUIDITY_FEE_NET_DISTRIBUTE
+  TRANSFER_TYPE_SLA_PENALTY_BOND_APPLY
+  TRANSFER_TYPE_SLA_PENALTY_LP_FEE_APPLY
+  TRANSFER_TYPE_LIQUIDITY_FEE_UNPAID_COLLECT
+  TRANSFER_TYPE_SLA_PERFORMANCE_BONUS_DISTRIBUTE
+  TRANSFER_TYPE_PERPETUALS_FUNDING_LOSS
+  TRANSFER_TYPE_PERPETUALS_FUNDING_WIN
+  TRANSFER_TYPE_REWARDS_VESTED
 }
 ```
 
@@ -156,6 +166,46 @@ enum TransferType {
 
 #### [<code style={{ fontWeight: 'normal' }}>TransferType.<b>TRANSFER_TYPE_HOLDING_RELEASE</b></code>](#) 
 > An internal instruction to transfer an excess quantity corresponding to an active spot order from a holding account into a party general account
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TransferType.<b>TRANSFER_TYPE_SUCCESSOR_INSURANCE_FRACTION</b></code>](#) 
+> Insurance pool fraction transfer from parent to successor market.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TransferType.<b>TRANSFER_TYPE_LIQUIDITY_FEE_ALLOCATE</b></code>](#) 
+> Allocates liquidity fee earnings to each liquidity provider's network controlled liquidity fee account.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TransferType.<b>TRANSFER_TYPE_LIQUIDITY_FEE_NET_DISTRIBUTE</b></code>](#) 
+> Distributes net fee earnings from liquidity provider's fee account to their general account.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TransferType.<b>TRANSFER_TYPE_SLA_PENALTY_BOND_APPLY</b></code>](#) 
+> Applies SLA penalty by moving funds from party's bond account to market's insurance pool.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TransferType.<b>TRANSFER_TYPE_SLA_PENALTY_LP_FEE_APPLY</b></code>](#) 
+> Applies SLA penalty by moving funds from the liquidity provider's fee account to market insurance pool.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TransferType.<b>TRANSFER_TYPE_LIQUIDITY_FEE_UNPAID_COLLECT</b></code>](#) 
+> Collects penalties from the liquidity provider's fee account before the fee revenue is paid, and transfers it to the market's bonus distribution account.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TransferType.<b>TRANSFER_TYPE_SLA_PERFORMANCE_BONUS_DISTRIBUTE</b></code>](#) 
+> Distributes performance bonus from market bonus to liquidity provider's general account.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TransferType.<b>TRANSFER_TYPE_PERPETUALS_FUNDING_LOSS</b></code>](#) 
+> Funds deducted from margin account after a perpetuals funding loss.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TransferType.<b>TRANSFER_TYPE_PERPETUALS_FUNDING_WIN</b></code>](#) 
+> Funds added to margin account after a perpetuals funding gain.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TransferType.<b>TRANSFER_TYPE_REWARDS_VESTED</b></code>](#) 
+> Funds moved from the vesting account to the vested account once the vesting period is reached.
 > 
 
 
