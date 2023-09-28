@@ -73,9 +73,6 @@ All events (including the above, plus stake per validator and others) are only r
 
 Vega networks use the ERC20 token VEGA for staking. Staking requires the combined action of associating VEGA tokens (or fractions of a token) to the Vega staking bridge contract; and using those token(s) to nominate one or more validators. 
 
-### Epochs
-An epoch is a time period during which staking changes can be announced and then implemented. Changes that are announced in one epoch will only be executed in the following epoch (excepting ['un-nominate now'](#un-nominate-now)). The length of an epoch is <NetworkParameter frontMatter={frontMatter} param="validators.epoch.length" hideName={true} />.
-
 ## Nominating validators
 Using tokens to nominate validators keeps the decentralised network functioning. 
 

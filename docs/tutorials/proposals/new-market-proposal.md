@@ -44,11 +44,9 @@ The general shape is as follows:
 
 The contents of a `changes` object specifies what will be different after the proposal. In this case, these are the changes that will occur on the network, in the form of a new market.
 
-Instrument, liquidity monitoring parameters, price monitoring parameters, data sources, and liquidity commitment are all described in more detail below.
+Instrument, liquidity monitoring parameters, price monitoring parameters, and data sources are all described in more detail below.
 
 **Rationale** requires a title and description, which is are free-text fields that describe the purpose of the proposal.  Within the description, include links with more information about your proposal (such as to the IPFS content or forum post) that voters can reference to learn more about the market proposal. Formatting your rationale with markdown makes it easier to read when it's displayed.
-
-**LP price range** is a number that, when multiplied by 100, determines the percentage move up and down from the mid price, which determines the range of price levels over which automated [liquidity commitment orders](../../concepts/liquidity/provision.md) will be deployed. An accepted value is > 0 and <= 100.
 
 **Decimal places** need to be defined for both order sizes and the market. A market cannot specify more decimal places than its settlement asset supports.
 

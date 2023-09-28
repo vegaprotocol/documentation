@@ -1,0 +1,49 @@
+---
+id: order-type
+title: OrderType
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Types of orders
+
+```graphql
+enum OrderType {
+  TYPE_MARKET
+  TYPE_LIMIT
+  TYPE_NETWORK
+}
+```
+
+
+### Values
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderType.<b>TYPE_MARKET</b></code>](#) 
+> An order to buy or sell at the market's current best available price
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderType.<b>TYPE_LIMIT</b></code>](#) 
+> Order that uses a pre-specified price to buy or sell
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>OrderType.<b>TYPE_NETWORK</b></code>](#) 
+> Used for distressed parties, an order placed by the network to close out distressed parties
+similar to market order, only no party is attached to the order.
+> 
+
+
+
+### Member of
+
+[`estimateFees`](/mainnet/api/graphql/queries/estimate-fees)  <Badge class="secondary" text="query"/><Bullet />[`estimateOrder`](/mainnet/api/graphql/queries/estimate-order)  <Badge class="secondary" text="query"/><Bullet />[`Order`](/mainnet/api/graphql/objects/order)  <Badge class="secondary" text="object"/><Bullet />[`OrderFilter`](/mainnet/api/graphql/inputs/order-filter)  <Badge class="secondary" text="input"/><Bullet />[`OrderSubmission`](/mainnet/api/graphql/objects/order-submission)  <Badge class="secondary" text="object"/><Bullet />[`OrderUpdate`](/mainnet/api/graphql/objects/order-update)  <Badge class="secondary" text="object"/>
+
+
+

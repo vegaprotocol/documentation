@@ -32,13 +32,13 @@ getMarketDataHistoryConnectionByID(
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>getMarketDataHistoryConnectionByID.<b>start</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
-> Optional start date time for the historic data query.
+> Optional RFC3339Nano start date time for the historic data query.
 If both the start and end date is not provided, only the latest snapshot will be returned.
 If only the start date is provided, all market data for the market from the start date forward will be returned.
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>getMarketDataHistoryConnectionByID.<b>end</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
-> Optional end date time for the historic data query.
+> Optional RFC3339Nano end date time for the historic data query.
 If both the start and end date is not provided, only the latest snapshot will be returned.
 If only the end date is provided, all market data for the market up to and including the end date will be returned.
 > 

@@ -15,7 +15,7 @@
    external: {
     oracle: {
      // Signers is the list of authorized signatures that signed the data for this
-     // source. All the signatures in the data source data should be contained in this (array of objects)
+     // source. All the signatures in the data source data should be contained in (array of objects)
      signers: [
       {
        ethAddress: {

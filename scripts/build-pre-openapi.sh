@@ -11,7 +11,7 @@ convert () {
             else
               echo "  Generating openapi from swagger ($1 to $2).."
             fi
-            npx api-spec-converter --from=swagger_2 --to=openapi_3 "$1" > "$2"
+            npm exec api-spec-converter -- --from=swagger_2 --to=openapi_3 "$1" > "$2"
         fi
     fi
 }

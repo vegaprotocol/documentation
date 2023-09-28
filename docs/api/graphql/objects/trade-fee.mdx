@@ -20,6 +20,12 @@ type TradeFee {
   makerFee: String!
   infrastructureFee: String!
   liquidityFee: String!
+  makerFeeReferralDiscount: String
+  makerFeeVolumeDiscount: String
+  infrastructureFeeReferralDiscount: String
+  infrastructureFeeVolumeDiscount: String
+  liquidityFeeReferralDiscount: String
+  liquidityFeeVolumeDiscount: String
 }
 ```
 
@@ -36,6 +42,30 @@ type TradeFee {
 
 #### [<code style={{ fontWeight: 'normal' }}>TradeFee.<b>liquidityFee</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > The fee paid to the liquidity providers that committed liquidity to the market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TradeFee.<b>makerFeeReferralDiscount</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> Referral discount on maker fees for the trade
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TradeFee.<b>makerFeeVolumeDiscount</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> Volume discount on maker fees for the trade
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TradeFee.<b>infrastructureFeeReferralDiscount</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> Referral discount on infrastructure fees for the trade
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TradeFee.<b>infrastructureFeeVolumeDiscount</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> Volume discount on infrastructure fees for the trade
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TradeFee.<b>liquidityFeeReferralDiscount</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> Referral discount on liquidity fees for the trade
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>TradeFee.<b>liquidityFeeVolumeDiscount</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> Volume discount on liquidity fees for the trade
 > 
 
 

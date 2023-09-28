@@ -15,6 +15,11 @@ if (!version.match(/^(?:(\d+)\.)?(?:(\d+)\.)?(\*|\d+)$/)) {
   throw new Error('Version incorrectly formatted')
 }
 
+if (!mainnetVersion.match(/^(?:(\d+)\.)?(?:(\d+)\.)?(\*|\d+)$/)) {
+  throw new Error('Mainnet Version incorrectly formatted')
+}
+
+
 module.exports = {
   version,
   mainnetVersion,

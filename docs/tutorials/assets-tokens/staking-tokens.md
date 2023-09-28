@@ -26,7 +26,7 @@ This tutorial describes how to stake using the smart contracts, the APIs, an Eth
 Staking tokens from a tokenholder's Ethereum wallet follows the below process:
 1. On Ethereum, the tokens need to be associated with a Vega key
 2. On Vega, the Vega key is used to nominate a validator (stake)
-3. At the end of each epoch, rewards are paid out to the Vega key
+3. At the end of each [epoch](../../concepts/vega-chain/network.md#epochs), rewards are paid out to the Vega key
 
 ## Withdrawing unlocked and unassociated tokens
 1. On Vega, rewards and unassociated tokens can be withdrawn by submitting a withdrawal transaction

@@ -27,7 +27,6 @@ The information needed by Vega to process an order:
 | Expires at | If the order has a Good 'til Time TIF, the specific time the order will expire | Chosen by user |
 | [Type](#order-types)	  | Type of order (such as limit or market)                                   | Chosen by user |
 | [Pegged order](#pegged-order) | Details about a pegged order, if an order uses pegs                 | Chosen by user|
-| [Liquidity provision](../../tutorials/building-a-bot/adding-a-liquidity-commitment.md) | Provides details if an order is a liquidity commitment order   |Chosen by user|
 | [Iceberg order](#iceberg-order) | Provides details for an iceberg order, if applicable | Chosen by user |
 | Order ID | Unique deterministic ID, can be used to query but only exists after consensus      |Determined by network|
 | [Order status](#order-status)	  | Whether an order is filled, partially filled, stopped or cancelled |Determined by network|
@@ -149,15 +148,15 @@ If a trader's position size moves to zero and there are no open orders, the trad
 There's a limit to how many stop orders any one public key can have active at one time, set by the 'spam.protection.max.stopOrdersPerMarket' network parameter.
 
 ### Batch order
-Order instructions, such as submit, cancel, and/or amend orders, can be batched together in a single transaction, which allows traders to regularly place and maintain the price and size of multiple orders without needing to wait for each order instruction to be processed by the network individually.
+Order instructions, such as submit, cancel, and/or amend orders, as well as stop order instructions, can be batched together in a single transaction, which allows traders to regularly place and maintain the price and size of multiple orders without needing to wait for each order instruction to be processed by the network individually.
 
-Batches are processed in the following order: all cancellations, then all amendments, then all submissions. 
+Batches are processed in the following order: all cancellations, then all amendments, then all submissions. Stop order instructions are processed after standard order instructions.
 
 They are also processed as if they were standalone order instructions in terms of market behaviour. For example, if an instruction, had it been submitted individually, would trigger entry into or exit from an auction, then the order instruction would set off the auction trigger before the rest of the batch is processed.
 
 Batch order instructions can be used in a liquidity provision strategy to help providers manage their limit orders (and their risk) more efficiently. The orders within a batch can also have conditions set, as post-only or reduce-only. Iceberg orders can also be submitted in a batch.
 
-To prevent spamming, the total number of instructions in a batch order transaction can be no more than the number set with the network parameter: <NetworkParameter frontMatter={frontMatter} param="network.spam_protection.max.batch.size" />. A batch order transaction with more instructions than allowed will fail.
+To prevent spamming, the total number of instructions in a batch order transaction can be no more than the number set with the network parameter: <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.batchSize" />. A batch order transaction with more instructions than allowed will fail.
 
 :::note Read more
 * [Auctions](trading-modes.md#auctions)
@@ -262,7 +261,7 @@ This section is specific to market and limit orders.
 :::tip Try it out
 [Tutorial for committing liquidity](../../tutorials/building-a-bot/adding-a-liquidity-commitment.md): See sample bot code for setting up and managing a liquidity commitment.
 :::
-See [pegged orders](#pegged-order) and [liquidity provision](../liquidity/provision.md) for information on how to manage those order types.
+See [pegged orders](#pegged-order) and [liquidity provision](../liquidity/provision.md) for information on how to manage those orders.
 
 ### Submit an order 
 Orders can be submitted into any market that is active - not expired or settled. Orders will only be accepted if sufficient margin can be allocated from a trader's available collateral. Not all orders can be submitted in all trading modes. 
@@ -270,7 +269,7 @@ Orders can be submitted into any market that is active - not expired or settled.
 If, during continuous trading, an order is going to be matched with another order on the book for the same party (also known as a wash trade), the order will be stopped, cancelled, and removed from the order book.
 
 #### Opening auctions
-Liquidity commitment orders, and [Good For Auction](#good-for-auction) orders can be submitted to markets that are in a pending state, and thus in opening auction. 
+Orders to sustain a liquidity commitment, and [Good For Auction](#good-for-auction) orders can be submitted to markets that are in a pending state, and thus in opening auction. 
 
 Pegged orders can also be placed, but will be parked until the market is out of auction. 
 
@@ -286,7 +285,5 @@ If your amendment will change the price you're seeking or increase the order siz
 
 ### Cancel an order
 Market, limit and pegged orders that have not been fully filled can be cancelled. 
-
-Liquidity commitment orders can be cancelled, but the cancellation will only be accepted if there's enough liquidity on the market without those commitment orders.
 
 When trading using the APIs, a trader can cancel individual orders, all orders for their public key across all markets, or all orders for their public key on a single market.
