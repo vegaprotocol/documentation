@@ -234,7 +234,7 @@ visor --home=$YOUR_VISOR_HOME_PATH run
 ## Configure the data node SSL certificate
 You will need your data node to be reachable over the internet with a proper fully qualified domain name, and a valid signed certificate. 
 
-You can provide the data node with a path to an existing signed certificate and corresponding private key but updating this section in the file `$YOUR_DATANODE_HOME_PATH/config/data-node/config.toml`:
+You can provide the data node with a path to an existing signed certificate and corresponding private key by updating this section in the file `$YOUR_DATANODE_HOME_PATH/config/data-node/config.toml`:
 
 ```toml
   [Gateway]
