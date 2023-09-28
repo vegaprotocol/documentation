@@ -51,7 +51,7 @@ The funding rate formula is as follows:
 Read more on the funding payment below.
 
 :::tip Query for data
-See a market's historical funding rates using the [REST API](../../api/rest/data-v2/trading-data-service-list-funding-period-data-points.api.mdx).
+See a market's historical funding rates using the [REST API](../../api/rest/data-v2/trading-data-service-list-funding-periods.api.mdx).
 :::
 
 ### Funding payment
