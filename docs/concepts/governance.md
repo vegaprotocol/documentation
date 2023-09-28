@@ -182,11 +182,10 @@ Required fields include:
 * Product specifics including the settlement asset and quote name
 * Decimal places for the market and positions. (Note: A market cannot specify more decimal places than its settlement asset supports)
 * Oracle details, including the oracle's public key, specifications for the settlement price and trading termination, and data filters
-* Liquidity monitoring parameters, including the target stake parameters, triggering ratio and auction extension
+* Liquidity monitoring parameters, including the target stake
 
 Optional fields include: 
 * Metadata so that people can easily interpret the market's details - while this is optional, it's highly recommended that you include metadata for the market
-* Liquidity commitment: the amount committed, proposed fee level, and the buy and sell order shapes. Note: Once a market is proposed, it can accept liquidity commitments from any party
 * Price monitoring parameters, including the triggers covering the horizon, probability and auction extension time. If left blank these parameters will default to the values set in the network parameters
 
 :::note Read more

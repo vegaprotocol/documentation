@@ -24,7 +24,7 @@ Parties who meet the [requirements](requirements) and correctly [set up and run 
 
 The number of standby validators is limited to <NetworkParameter frontMatter={frontMatter} param="network.validators.ersatz.multipleOfTendermintValidators" hideName={true} formatter="percent" /> of <NetworkParameter frontMatter={frontMatter} param="network.validators.multisig.numberOfSigners" name="the number of consensus validators" />.
 
-If there are free slots for one or more standby validators, and there are candidate nodes that have submitted the transaction to join (and satisfy all joining conditions), they are added as standby validators in the next epoch.
+If there are free slots for one or more standby validators, and there are candidate nodes that have submitted the transaction to join (and satisfy all joining conditions), they are added as standby validators in the next [epoch](../concepts/vega-chain/network.md#epochs).
 
 If a node that submits the transaction to join has a higher score than the lowest scoring standby validator (scaled up by the incumbent factor), then it will become a standby validator and the lowest scoring standby validator is removed from the standby set.
 

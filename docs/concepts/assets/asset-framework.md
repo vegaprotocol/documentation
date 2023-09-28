@@ -11,7 +11,7 @@ Vega currently supports exclusively using ERC-20 tokens for markets on Vega. Tho
 
 The assets on Vega are used for margining and settling positions, paying fees, and supplying liquidity on markets. Assets can also be transferred between keys and accounts.
 
-Assets need to be deposited using a bridge contract, and can be withdrawn back into an Ethereum wallet if they are not being used for margin or a liquidity commitment.
+Assets need to be deposited using a bridge contract, and can be withdrawn back into an Ethereum wallet if they are not being used for margin or a liquidity bond.
 
 ## Asset definition
 Each asset has a set of defined fields: those that are validated against the origin contract and cannot be changed, and those that provide extra settings specifically for use with Vega.
@@ -52,9 +52,9 @@ ERC-20 is a ubiquitous smart contract interface that allows users to mint, issue
 Assets need to be proposed and pass a governance vote before they can be used on the Vega network. After a new asset vote passes, the change has to be submitted to the asset bridge on Ethereum. Until it has been submitted, no one can start depositing that asset. 
 
 :::note Read more
-[Asset governance]
-[Tutorial: Proposing an asset]
-[Tutorial: Proposing a change to an asset]
+[Asset governance](../governance.md#asset-governance)
+[Tutorial: Proposing an asset](../../tutorials/proposals/new-asset-proposal.md)
+[Tutorial: Proposing a change to an asset](../../tutorials/proposals/update-asset-proposal.md)
 :::
 
 ## Margin, settlement, and liquidity provision
