@@ -60,9 +60,7 @@ Type "help" for help.
 vega=#
 ```
 
-The `POSTGRES_?` values set above need to match with the values specified in the data node configuration file. If you want to change from the default values above, make sure you update the values in both places.
-
-[WIP] - where, config.toml? More specific?
+The `POSTGRES_?` values set above need to match with the values specified in the data node configuration file (`$YOUR_DATANODE_HOME_PATH/config/data-node/config.toml`). If you want to change from the default values above, make sure you update the values in both places.
 
 ### PostgreSQL configuration tuning (optional)
 The default PostgreSQL configuration is not optimised for memory usage, and can be modified.
@@ -173,9 +171,7 @@ There are three retention policies. If you don't want the default, you'll need t
 ```
 vega datanode start --home=$YOUR_DATANODE_HOME_PATH
 ```
-4. Now start the node and confirm that both apps are running and you can see the block height increasing on both.
-
-[WIP] Start what node? Non validator? Could use instructions.
+4. Now start the non validator node and confirm that both apps are running and you can see the block height increasing on both. 
 
 
 ## Starting the data node from network history
@@ -198,7 +194,7 @@ vega datanode init --home=$YOUR_DATANODE_HOME_PATH "vega-mainnet-0011" --archive
 
 4. Find the list of network history bootstrap nodes by querying the network history bootstrap API. For example: `https://api.vega.community/api/v2/networkhistory/bootstrap``
 
-5. Paste the list of nodes into the section:
+5. Still in your data node configuration file, paste the list of nodes into the section:
 
 ```toml
   [NetworkHistory]
@@ -238,7 +234,7 @@ visor --home=$YOUR_VISOR_HOME_PATH run
 ## Configure the data node SSL certificate
 You will need your data node to be reachable over the internet with a proper fully qualified domain name, and a valid signed certificate. 
 
-You can provide the data node with a path to an existing signed certificate and corresponding private key:
+You can provide the data node with a path to an existing signed certificate and corresponding private key but updating this section in the file `$YOUR_DATANODE_HOME_PATH/config/data-node/config.toml`:
 
 ```toml
   [Gateway]
@@ -246,7 +242,6 @@ You can provide the data node with a path to an existing signed certificate and 
     CertificateFile = "/path/to/certificate/file"
     KeyFile = "/path/to/key/file"
 ```
-[WIP] what file?
 
 Many administrators prefer to use a tool called `certbot` for generating and signing free certificates via `LetsEncrypt`. To obtain a signed certificate with this method:
 * [Install certbot](https://www.inmotionhosting.com/support/website/ssl/lets-encrypt-ssl-ubuntu-with-certbot/)
