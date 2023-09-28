@@ -6,8 +6,6 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-[WIP] don't forget to move this page into mainnet v.
-
 The main reason to run a non validator node is to support a data node. We strongly discourage you from running a data node with a validator node.
 
 A non validator node is similar to a validator node except it does not take part in the consensus process and does not require staking or wallets. It will receive all the same blockchain events as the validator nodes and will process them in the same way but it does not affect how the network runs. 
@@ -53,8 +51,8 @@ This creates a set of configuration files which you then need to alter for your 
  [Blockchain.tendermint]
     RPCAddr = <RPC address>
 ```
-## [WIP]
-6. Build a list of tendermint peers by loading the file located at [peers](https://github.com/vegaprotocol/ansible/blob/master/inventories/mainnet.yaml) and copying all the values under the `tendermint_extra_peers` section into a comma separated list.
+## Request peers
+6. Build a list of Tendermint peers by reaching out to existing node operators as they can provide the data, on the [Vega Discord](https://vega.xyz/discord) for example. You'll need to format the peers data as a comma separated list.
 
 7. Open the config file `$YOUR_TENDERMINT_HOME_PATH/config/config.toml` and update the value `persistent_peers` with the list created above.
 
@@ -101,8 +99,8 @@ This creates a set of configuration files which you then need to alter for your 
   [Blockchain.tendermint]
     RPCAddr = <RPC address>
 ```
-## [WIP]
-7. Build a list of tendermint peers by loading the file located at [peers](https://github.com/vegaprotocol/ansible/blob/master/inventories/mainnet.yaml) and copying all the values under the `tendermint_extra_peers` section into a comma separated list.
+## Request peers
+7. Build a list of Tendermint peers by reaching out to existing node operators as they can provide the data, on the [Vega Discord](https://vega.xyz/discord) for example. You'll need to format the peers data as a comma separated list.
 
 8. Open the config file `$TENDERMINT_PATH/config/config.toml` and update the value `[p2p] -> persistent_peers` with the list created above
 
