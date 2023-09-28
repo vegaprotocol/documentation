@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-title: Set up data node
+title: Set up a data node
 hide_title: false
 ---
 import Tabs from '@theme/Tabs';
@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 Before you set up a data node, you'll need to have a [non-validator node](./setup-non-validator.md) and confirmed it's running correctly. 
 
-## What is a data node
+## What is a data node?
 A data node gives you and potentially other users a way to query the state of the network and historic information over the lifetime of the blockchain. 
 
 A data node connects to a non validator node and receives a stream of events as state is altered in the node. The data node stores these events and uses them to generate rich information that can be queried via APIs.
@@ -208,7 +208,6 @@ vega datanode start --home=$YOUR_DATANODE_HOME_PATH
 ```
 
 7. Start the non validator node. Confirm that both nodes are running and you can see the block height increasing on both.
-[WIP] confirm this is correct
 
 ## Using Visor to control and upgrade your data node
 

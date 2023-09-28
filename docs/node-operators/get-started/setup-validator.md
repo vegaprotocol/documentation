@@ -5,6 +5,50 @@ hide_title: false
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
+The Vega node is the implementation of the Vega protocol. It secures the network using VEGA, the network's governance and staking token, and relies on a BFT consensus engine now known as CometBFT, formerly Tendermint.
+
+## OS and software
+For production use, we recommend using the Linux binary on Ubuntu as this is the platform used by nodes on Fairground, the Vega testnet, and is the most widely tested so far.
+
+See the [infrastructure requirements](../requirements/infrastructure.md) page for a full list of what you need to run various parts of the Vega toolchain.
+
+There are 2 ways to start up a validator node:
+* Replay the full chain from the start
+* Use a snapshot from the existing network to jumpstart the node at a point closer to the current block height
+
+Replay the full chain if you want all history. Use a snapshot if you want to start running quickly and don't need the history.
+
+## Start node from block 0
+
+1. Download version 0.71.4 of the Vega executable. You can find it on its release page in the [Vega GitHub repo ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.71.4%2Bfix). Unzip this file and make sure it is in your command line path.
+
+If you prefer to build the code yourself, the instructions can be found inside the code repo at [BUILDING ↗](https://github.com/vegaprotocol/vega/blob/develop/BUILDING.md).
+
+2. Check it is working by trying:
+
+```
+user@veganode:~/vega/bin$ vega version
+Vega CLI v0.71.4 (8e5767b20902097c79e8c846cf37f2b5d01dbff8)
+
+```
+
+3. Initialise the node 
+
+```
+vega init --home=$YOUR_VEGA_HOME_PATH --tendermint-home=$YOUR_TENDERMINT_HOME_PATH full
+```
+
+This creates a set of configuration files which you then need to alter for your specific instance.
+
+4. Edit the file `$YOUR_TENDERMINT_HOME_PATH/config/config.toml`. Find the RPC address located in the configuration point `[rpc]->laddr`
+ 
+5. Use this value to update the address in the file `$YOUR_VEGA_HOME_PATH/config/node/config.toml`
+
+```toml
+ [Blockchain.tendermint]
+    RPCAddr = <RPC address>
+```
+
 ## Configure the components and run it
 Once you have all the executables you need, you must configure them to run correctly and to connect to the existing network. 
 
