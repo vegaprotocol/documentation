@@ -2,24 +2,20 @@
   ```json
 {
   "rationale": {
-    "title": "Lorem Ipsum market successor",
-    "description": "A successor to nnnnn"
+    "title": "Lorem Ipsum perp",
+    "description": "A perpetual settled with an Ethereum oracle"
   },
   "terms": {
     "newMarket": {
       "changes": {
-        "successor": {
-          "parentMarketId": "nnnnnnnn",
-          "insurancePoolFraction": "1"
-        },
         "lpPriceRange": "10",
         "linearSlippageFactor": "0.001",
         "quadraticSlippageFactor": "0",
         "decimalPlaces": "5",
         "positionDecimalPlaces": "5",
         "instrument": {
-          "name": "Oranges Daily",
-          "code": "ORANGES.24h",
+          "name": "Apples Yearly (2022)",
+          "code": "APPLES.22",
           "future": {
             "settlementAsset": "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
             "quoteName": "tEuro",
@@ -82,8 +78,8 @@
           }
         },
         "metadata": [
-          "enactment:2023-10-17T18:45:45Z",
-          "settlement:2023-10-16T18:45:45Z",
+          "enactment:2023-10-18T17:31:01Z",
+          "settlement:2023-10-17T17:31:01Z",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -114,8 +110,8 @@
         }
       }
     },
-    "closingTimestamp": 1697478345,
-    "enactmentTimestamp": 1697564745
+    "closingTimestamp": 1697560261,
+    "enactmentTimestamp": 1697646661
   }
 }
 ```

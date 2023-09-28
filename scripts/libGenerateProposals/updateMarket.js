@@ -11,7 +11,7 @@ const instruments = [
 ];
 
 // This is slightly smaller than the one in newMarket
-function generateInstrument(skeleton) {
+function generateFutureInstrument(skeleton) {
   const randomInstrument = sample(instruments)
 
   // The properties of an instrument
@@ -173,7 +173,7 @@ function updateMarket(skeleton, proposalSoFar) {
           lpPriceRange: "11",
           linearSlippageFactor: "0.001",
           quadraticSlippageFactor: "0",
-          instrument: generateInstrument(skeleton.properties.changes.properties.instrument),
+          instrument: generateFutureInstrument(skeleton.properties.changes.properties.instrument),
           metadata: generateMetadata(skeleton.properties.changes.properties.metadata),
           priceMonitoringParameters: generatePriceMonitoringParameters(skeleton.properties.changes.properties.priceMonitoringParameters),
           logNormal: generateRiskModel(skeleton.properties.changes.properties.logNormal, 'logNormal')

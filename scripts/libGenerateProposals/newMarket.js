@@ -279,7 +279,7 @@ function generateDataSourceSpecBinding(skeleton) {
   return binding;
 }
 
-function generateInstrument(skeleton) {
+function generateFutureInstrument(skeleton) {
   const randomInstrument = sample(instruments);
   // This is tEuro
   const idForAnExistingVegaAsset =
@@ -767,7 +767,7 @@ function newMarket(skeleton, proposalSoFar) {
           quadraticSlippageFactor: "0",
           decimalPlaces: "5",
           positionDecimalPlaces: "5",
-          instrument: generateInstrument(
+          instrument: generateFutureInstrument(
             skeleton.properties.changes.properties.instrument
           ),
           metadata: generateMetadata(
@@ -877,7 +877,7 @@ module.exports = {
   generateSettlementDataSourceSpec,
   produceOverview,
   produceInstrument,
-  generateInstrument,
+  generateFutureInstrument,
   generateMetadata,
   generatePriceMonitoringParameters,
   generateLiquidityMonitoringParameters,

@@ -1,7 +1,7 @@
 const assert = require("assert").strict;
 const { inspect } = require("util");
 const {
-  generateInstrument,
+  generateFutureInstrument,
   generateMetadata,
   generatePriceMonitoringParameters,
   generateLiquidityMonitoringParameters,
@@ -28,24 +28,19 @@ function newSuccessorMarket(skeleton, proposalSoFar) {
 
   const result = {
     rationale: {
-      title: `Lorem Ipsum market successor`,
-      description: `A successor to nnnnn`,
+      title: `Lorem Ipsum perp`,
+      description: `A perpetual settled with an Ethereum oracle`,
     },
     terms: {
       newMarket: {
         changes: {
-          successor: {
-            parentMarketId: "nnnnnnnn",
-            insurancePoolFraction: "1"
-          },
           lpPriceRange: "10",
           linearSlippageFactor: "0.001",
           quadraticSlippageFactor: "0",
           decimalPlaces: "5",
           positionDecimalPlaces: "5",
 
-
-          instrument: generateInstrument(
+          instrument: generateFutureInstrument(
             skeleton.properties.changes.properties.instrument
           ),
           metadata: generateMetadata(
@@ -74,13 +69,6 @@ function newSuccessorMarket(skeleton, proposalSoFar) {
     return `{
         changes: {
 
-          // ${skeleton.properties.changes.properties.successor.description}
-          successor: {
-            // ${skeleton.properties.changes.properties.successor.properties.parentMarketId.description}
-            parentMarketId: "${result.terms.newMarket.changes.successor.parentMarketId}",
-            // ${skeleton.properties.changes.properties.successor.properties.insurancePoolFraction.description}
-            insurancePoolFraction: "${result.terms.newMarket.changes.successor.insurancePoolFraction}"
-          },
           // ${lbLabel[0]}
           // ${lbLabel[1]}
           lpPriceRange: "${result.terms.newMarket.changes.lpPriceRange}",

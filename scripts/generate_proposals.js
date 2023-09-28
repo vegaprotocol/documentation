@@ -13,6 +13,7 @@ const { newTransfer } = require('./libGenerateProposals/newTransfer')
 const { updateMarket } = require('./libGenerateProposals/updateMarket')
 const { updateMarketState } = require('./libGenerateProposals/updateMarketState')
 const { newFreeform } = require('./libGenerateProposals/newFreeform')
+const { newPerpetualMarket } = require('./libGenerateProposals/newPerpetualMarket')
 const { newSuccessorMarket } = require('./libGenerateProposals/newSuccessorMarket')
 const { newAsset } = require('./libGenerateProposals/newAsset')
 const {
@@ -44,7 +45,7 @@ const notProposalTypes = [
 const excludeUnimplementedTypes = ['newSpotMarket', 'updateSpotMarket', 'cancelTransfer', 'updateReferralProgram', 'updateVolumeDiscountProgram']
 
 // Synthetic proposal types are not in the schema, but are different types of newMarket proposal
-const syntheticProposalTypes = ['newSuccessorMarket']
+const syntheticProposalTypes = ['newSuccessorMarket', 'newPerpetualMarket']
 
 function annotator(proposal) {
   const res = inspect(proposal, { depth: null })
@@ -114,7 +115,7 @@ function daysInTheFuture(daysToAdd) {
   return getUnixTime(d)
 }
 
-function newProposal(p, skeleton, type, partialProposal) {
+function newProposal(p, skeleton, type, partialProposal, actualType) {
 
   assert.ok(skeleton.properties.closingTimestamp)
   assert.ok(skeleton.properties.enactmentTimestamp)
@@ -171,7 +172,7 @@ ${'```'}
   `
 
   const excerpts = {}
-  if (type === 'newMarket') {
+  if (type === 'newMarket' && actualType !== 'newPerpetualMarket') {
     // This is pretty lazy custom code for one type. If more proposal types require excerpts, rethink this
     const removeBlankLines = /^\s*\n/gm
 
@@ -242,6 +243,7 @@ const ProposalGenerator = new Map([
   ['newAsset', newAsset],
   ['newMarket', newMarket],
   ['newSuccessorMarket', newSuccessorMarket],
+  ['newPerpetualMarket', newPerpetualMarket],
   ['updateMarket', updateMarket],
   ['updateMarketState', updateMarketState],
   ['updateAsset', updateAsset],
@@ -279,7 +281,7 @@ function parse(api) {
         const typeOrSyntheticType = syntheticProposalTypes.includes(type) ? 'newMarket' : type
 
         output(
-          newProposal(changes, api.definitions.vegaProposalTerms, typeOrSyntheticType, proposal),
+          newProposal(changes, api.definitions.vegaProposalTerms, typeOrSyntheticType, proposal, type),
           type
         )
       } else {

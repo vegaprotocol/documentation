@@ -2,21 +2,12 @@
   ```javascript
 {
  rationale: {
-  title: "Lorem Ipsum market successor",
-  description: "A successor to nnnnn"
+  title: "Lorem Ipsum perp",
+  description: "A perpetual settled with an Ethereum oracle"
  },
  terms: {
   newMarket: {
    changes: {
-    // Successor configuration. If this proposal is meant to succeed a given market, then this should be set.
-    successor: {
-     // ID of the market that the successor should take over from.
-     parentMarketId: "nnnnnnnn",
-
-     // A decimal value between or equal to 0 and 1, specifying the fraction of the insurance pool balance that is carried over from the parent market to the successor.
-     insurancePoolFraction: "1"
-    },
-
     // DEPRECATED: Use liquidity SLA parameters instead.
     // Percentage move up and down from the mid price which specifies the range of
     lpPriceRange: "10",
@@ -36,10 +27,10 @@
     // Instrument configuration
     instrument: {
      // Instrument name.
-     name: "Oranges Daily",
+     name: "Apples Yearly (2022)",
 
      // Instrument code, human-readable shortcode used to describe the instrument.
-     code: "ORANGES.24h",
+     code: "APPLES.22",
 
      // Future product configuration
      future: {
@@ -139,8 +130,8 @@
 
       // Optional new futures market metadata, tags.
       metadata: [
-       "enactment:2023-10-17T18:45:45Z",
-       "settlement:2023-10-16T18:45:45Z",
+       "enactment:2023-10-18T17:31:01Z",
+       "settlement:2023-10-17T17:31:01Z",
        "source:docs.vega.xyz"
       ],
 
@@ -208,11 +199,11 @@
 
    // Timestamp as Unix time in seconds when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-   closingTimestamp: 1697478345,
+   closingTimestamp: 1697560261,
 
    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-   enactmentTimestamp: 1697564745,
+   enactmentTimestamp: 1697646661,
   }
  }
 ```
