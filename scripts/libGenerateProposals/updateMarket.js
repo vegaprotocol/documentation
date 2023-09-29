@@ -155,7 +155,6 @@ function updateMarket(skeleton, proposalSoFar) {
   assert.ok(skeleton.properties.changes.properties.instrument);
   assert.ok(skeleton.properties.changes.properties.quadraticSlippageFactor);
   assert.ok(skeleton.properties.changes.properties.linearSlippageFactor);
-  assert.ok(skeleton.properties.changes.properties.lpPriceRange);
   assert.equal(skeleton.properties.changes.properties.metadata.type, 'array');
   assert.ok(skeleton.properties.changes.properties.priceMonitoringParameters);
   assert.ok(skeleton.properties.changes.properties.liquidityMonitoringParameters);
@@ -170,7 +169,6 @@ function updateMarket(skeleton, proposalSoFar) {
       updateMarket: {
         marketId: '123',
         changes: {
-          lpPriceRange: "11",
           linearSlippageFactor: "0.001",
           quadraticSlippageFactor: "0",
           instrument: generateFutureInstrument(skeleton.properties.changes.properties.instrument),
@@ -183,15 +181,11 @@ function updateMarket(skeleton, proposalSoFar) {
   };
 
   /*------- Liquidity Commitment required */
-  const lpLabel = skeleton.properties.changes.properties.lpPriceRange.description.split('\n')
   result.terms.updateMarket[inspect.custom] = () => {
     return `{
         // ${skeleton.properties.marketId.description}
         marketId: '123',
         changes: {
-          // ${lpLabel[0]}
-          // ${lpLabel[1]}
-          lpPriceRange: ${result.terms.updateMarket.changes.lpPriceRange},
           // ${skeleton.properties.changes.properties.linearSlippageFactor.description}
           linearSlippageFactor: ${result.terms.updateMarket.changes.linearSlippageFactor},
           // ${skeleton.properties.changes.properties.quadraticSlippageFactor.description}

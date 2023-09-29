@@ -202,7 +202,6 @@ function newPerpetualMarket(skeleton, proposalSoFar) {
   assert.ok(skeleton[p].changes[p].linearSlippageFactor);
   assert.ok(skeleton[p].changes[p].positionDecimalPlaces);
   assert.ok(skeleton[p].changes[p].instrument);
-  assert.ok(skeleton[p].changes[p].lpPriceRange);
   assert.equal(skeleton[p].changes[p].metadata.type, "array");
   assert.ok(skeleton[p].changes[p].priceMonitoringParameters);
   assert.ok(
@@ -218,7 +217,6 @@ function newPerpetualMarket(skeleton, proposalSoFar) {
     terms: {
       newMarket: {
         changes: {
-          lpPriceRange: "10",
           linearSlippageFactor: "0.001",
           quadraticSlippageFactor: "0",
           decimalPlaces: "5",
@@ -247,15 +245,9 @@ function newPerpetualMarket(skeleton, proposalSoFar) {
   };
 
   /*------- Liquidity Commitment required */
-  const lbLabel = skeleton.properties.changes.properties.lpPriceRange.description.split('\n')
-
   result.terms.newMarket[inspect.custom] = () => {
     return `{
         changes: {
-          // ${lbLabel[0]}
-          // ${lbLabel[1]}
-          lpPriceRange: "${result.terms.newMarket.changes.lpPriceRange}",
-
           // ${skeleton.properties.changes.properties.linearSlippageFactor.description}
           linearSlippageFactor: ${result.terms.newMarket.changes.linearSlippageFactor},
           // ${skeleton.properties.changes.properties.quadraticSlippageFactor.description}

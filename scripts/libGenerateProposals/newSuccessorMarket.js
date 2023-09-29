@@ -18,7 +18,6 @@ function newSuccessorMarket(skeleton, proposalSoFar) {
   assert.ok(skeleton.properties.changes.properties.linearSlippageFactor);
   assert.ok(skeleton.properties.changes.properties.positionDecimalPlaces);
   assert.ok(skeleton.properties.changes.properties.instrument);
-  assert.ok(skeleton.properties.changes.properties.lpPriceRange);
   assert.equal(skeleton.properties.changes.properties.metadata.type, "array");
   assert.ok(skeleton.properties.changes.properties.priceMonitoringParameters);
   assert.ok(
@@ -34,7 +33,6 @@ function newSuccessorMarket(skeleton, proposalSoFar) {
     terms: {
       newMarket: {
         changes: {
-          lpPriceRange: "10",
           linearSlippageFactor: "0.001",
           quadraticSlippageFactor: "0",
           decimalPlaces: "5",
@@ -63,16 +61,10 @@ function newSuccessorMarket(skeleton, proposalSoFar) {
   };
 
   /*------- Liquidity Commitment required */
-  const lbLabel = skeleton.properties.changes.properties.lpPriceRange.description.split('\n')
 
   result.terms.newMarket[inspect.custom] = () => {
     return `{
         changes: {
-
-          // ${lbLabel[0]}
-          // ${lbLabel[1]}
-          lpPriceRange: "${result.terms.newMarket.changes.lpPriceRange}",
-
           // ${skeleton.properties.changes.properties.linearSlippageFactor.description}
           linearSlippageFactor: ${result.terms.newMarket.changes.linearSlippageFactor},
           // ${skeleton.properties.changes.properties.quadraticSlippageFactor.description}
