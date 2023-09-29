@@ -254,7 +254,7 @@ In terms of the proposal format, there are only two differences between a succes
 
 For a successor market to be enacted, the parent market must be in one of the following states: proposed, pending, active, suspended or trading terminated.
 
-The parent market can be settled, cancelled, or closed when the successor market reaches enactment time, as long as the time it's been ended is equal to or less than the parent market's settlement/closure time plus the `market.liquidity.successorLaunchWindowLength` - determined by a network parameter. This parameter specifies for how long after a market has settled, the liquidity provider's equity-like share data are retained and the insurance pool is left undistributed to allow a successor to be defined. If the successor is proposed after that time, then it's rejected and any assets committed to the market are returned.
+The parent market can be settled, cancelled, or closed when the successor market reaches enactment time, as long as the time it's been ended is less than the value of <NetworkParameter frontMatter={frontMatter} param="market.liquidity.successorLaunchWindowLength" />. This network parameter specifies for how long after a market has settled, the liquidity provider's equity-like share data are retained and the insurance pool is left undistributed to allow a successor to be defined. If the successor is proposed after that time, then it's rejected and any assets committed to the market are returned.
 
 ### Propose updates to a market
 Most details about a market can be changed through governance. Those includes risk models, monitoring triggers, and the settlement and termination data sources.
