@@ -2,25 +2,12 @@
   ```javascript
 {
  rationale: {
-  title: "Lorem Ipsum market successor",
-  description: "A successor to nnnnn"
+  title: "Lorem Ipsum successor",
+  description: "A successor market"
  },
  terms: {
   newMarket: {
    changes: {
-    // Successor configuration. If this proposal is meant to succeed a given market, then this should be set.
-    successor: {
-     // ID of the market that the successor should take over from.
-     parentMarketId: "nnnnnnnn",
-
-     // A decimal value between or equal to 0 and 1, specifying the fraction of the insurance pool balance that is carried over from the parent market to the successor.
-     insurancePoolFraction: "1"
-    },
-
-    // DEPRECATED: Use liquidity SLA parameters instead.
-    // Percentage move up and down from the mid price which specifies the range of
-    lpPriceRange: "10",
-
     // Linear slippage factor is used to cap the slippage component of maintenance margin - it is applied to the slippage volume.
     linearSlippageFactor: 0.001,
 
@@ -36,10 +23,10 @@
     // Instrument configuration
     instrument: {
      // Instrument name.
-     name: "Apples Yearly (2022)",
+     name: "Oranges Daily",
 
      // Instrument code, human-readable shortcode used to describe the instrument.
-     code: "APPLES.22",
+     code: "ORANGES.24h",
 
      // Future product configuration
      future: {
@@ -139,8 +126,8 @@
 
       // Optional new futures market metadata, tags.
       metadata: [
-       "enactment:2023-10-11T13:42:37Z",
-       "settlement:2023-10-10T13:42:37Z",
+       "enactment:2023-10-19T20:45:39Z",
+       "settlement:2023-10-18T20:45:39Z",
        "source:docs.vega.xyz"
       ],
 
@@ -203,16 +190,32 @@
        sigma: 0.15,
       }
      },
+
+     // Liquidity SLA parameters
+     liquiditySlaParameters: {
+      // (string)
+      priceRange: 0.1,
+
+      // Specifies the minimum fraction of time LPs must spend "on the book" providing their committed liquidity. (string)
+      commitmentMinTimeFraction: "0.1",
+
+      // Specifies the number of liquidity epochs over which past performance will continue to affect rewards. (uint64 as string)
+      performanceHysteresisEpochs: "10",
+
+      // Specifies the maximum fraction of their accrued fees an LP that meets the SLA implied by market.liquidity.commitmentMinTimeFraction will lose to liquidity providers
+      // that achieved a higher SLA performance than them. (string)
+      slaCompetitionFactor: "0.2",
+     },
     }
    },
 
    // Timestamp as Unix time in seconds when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-   closingTimestamp: 1696941757,
+   closingTimestamp: 1697658339,
 
    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-   enactmentTimestamp: 1697028157,
+   enactmentTimestamp: 1697744739,
   }
  }
 ```

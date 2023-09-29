@@ -4,8 +4,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
 "{^
 \"proposalSubmission\": {^
  \"rationale\": {^
-  \"title\": \"Add Lorem Ipsum market\",^
-  \"description\": \"An example proposal to add Lorem Ipsum market\"^
+  \"title\": \"Lorem Ipsum perpetual\",^
+  \"description\": \"An orange perpetual market\"^
  },^
  \"terms\": {^
   \"newMarket\": {^
@@ -15,44 +15,40 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
     \"decimalPlaces\": \"5\",^
     \"positionDecimalPlaces\": \"5\",^
     \"instrument\": {^
-     \"name\": \"Apples Yearly (2022)\",^
-     \"code\": \"APPLES.22\",^
-     \"future\": {^
+     \"name\": \"Oranges Perpetual\",^
+     \"code\": \"ORANGES.PERP\",^
+     \"perpetual\": {^
       \"settlementAsset\": \"8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4\",^
       \"quoteName\": \"tEuro\",^
       \"dataSourceSpecForSettlementData\": {^
        \"external\": {^
-        \"oracle\": {^
-         \"signers\": [^
+        \"ethOracle\": {^
+         \"address\": \"0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43\",^
+         \"abi\": \"[{\\"inputs\\":[],\\"name\\":\\"latestAnswer\\",\\"outputs\\":[{\\"internalType\\":\\"int256\\",\\"name\\":\\"\\",\\"type\\":\\"int256\\"}],\\"stateMutability\\":\\"view\\",\\"type\\":\\"function\\"}]\",^
+         \"method\": \"latestAnswer\",^
+         \"normalisers\": [^
           {^
-           \"ethAddress\": {^
-            \"address\": \"0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC\"^
-           }^
+           \"name\": \"btc.price\",^
+           \"expression\": \"$[0]\"^
           }^
          ],^
+         \"requiredConfirmations\": 3,^
+         \"trigger\": {^
+          \"timeTrigger\": {^
+           \"every\": 30^
+          }^
+         },^
          \"filters\": [^
           {^
            \"key\": {^
-            \"name\": \"prices.ORANGES.value\",^
+            \"name\": \"btc.price\",^
             \"type\": \"TYPE_INTEGER\",^
-            \"numberDecimalPlaces\": \"5\"^
+            \"numberDecimalPlaces\": 8^
            },^
            \"conditions\": [^
             {^
-             \"operator\": \"OPERATOR_GREATER_THAN\",^
+             \"operator\": \"OPERATOR_GREATER_THAN_OR_EQUAL\",^
              \"value\": \"0\"^
-            }^
-           ]^
-          },^
-          {^
-           \"key\": {^
-            \"name\": \"prices.ORANGES.timestamp\",^
-            \"type\": \"TYPE_INTEGER\"^
-           },^
-           \"conditions\": [^
-            {^
-             \"operator\": \"OPERATOR_GREATER_THAN\",^
-             \"value\": \"1648684800\"^
             }^
            ]^
           }^
@@ -60,13 +56,18 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
         }^
        }^
       },^
-      \"dataSourceSpecForTradingTermination\": {^
+      \"settlementScheduleProperty\": {^
        \"internal\": {^
-        \"time\": {^
+        \"timeTrigger\": {^
          \"conditions\": [^
           {^
            \"operator\": \"OPERATOR_GREATER_THAN_OR_EQUAL\",^
-           \"value\": \"1648684800\"^
+           \"value\": \"0\"^
+          }^
+         ],^
+         \"triggers\": [^
+          {^
+           \"every\": 1800^
           }^
          ]^
         }^
@@ -74,7 +75,7 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
       },^
       \"dataSourceSpecBinding\": {^
        \"settlementDataProperty\": \"prices.ORANGES.value\",^
-       \"tradingTerminationProperty\": \"vegaprotocol.builtin.timestamp\"^
+       \"settlementScheduleProperty\": \"vegaprotocol.builtin.timetrigger\"^
       }^
      }^
     },^
