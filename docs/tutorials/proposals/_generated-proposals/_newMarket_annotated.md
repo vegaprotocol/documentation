@@ -8,10 +8,6 @@
  terms: {
   newMarket: {
    changes: {
-    // DEPRECATED: Use liquidity SLA parameters instead.
-    // Percentage move up and down from the mid price which specifies the range of
-    lpPriceRange: "10",
-
     // Linear slippage factor is used to cap the slippage component of maintenance margin - it is applied to the slippage volume.
     linearSlippageFactor: 0.001,
 
@@ -130,8 +126,8 @@
 
       // Optional new futures market metadata, tags.
       metadata: [
-       "enactment:2023-10-19T19:46:02Z",
-       "settlement:2023-10-18T19:46:02Z",
+       "enactment:2023-10-19T20:45:39Z",
+       "settlement:2023-10-18T20:45:39Z",
        "source:docs.vega.xyz"
       ],
 
@@ -215,11 +211,11 @@
 
    // Timestamp as Unix time in seconds when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-   closingTimestamp: 1697654762,
+   closingTimestamp: 1697658339,
 
    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-   enactmentTimestamp: 1697741162,
+   enactmentTimestamp: 1697744739,
   }
  }
 ```

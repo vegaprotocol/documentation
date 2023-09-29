@@ -1,6 +1,7 @@
 const assert = require("assert").strict;
 const { inspect } = require("util");
 const {
+  generateLiquiditySlaParameters,
   generateFutureInstrument,
   generateMetadata,
   generatePriceMonitoringParameters,
@@ -55,6 +56,9 @@ function newSuccessorMarket(skeleton, proposalSoFar) {
             skeleton.properties.changes.properties.logNormal,
             "logNormal"
           ),
+          liquiditySlaParameters: generateLiquiditySlaParameters(
+            skeleton.properties.changes.properties.liquiditySlaParameters
+          ),
         },
       },
     },
@@ -102,6 +106,10 @@ function newSuccessorMarket(skeleton, proposalSoFar) {
           logNormal: ${inspect(result.terms.newMarket.changes.logNormal, {
         depth: 19,
       })},
+      // ${skeleton.properties.changes.properties.liquiditySlaParameters.title}
+      liquiditySlaParameters: ${inspect(result.terms.newMarket.changes.liquiditySlaParameters, {
+   depth: 19,
+ })},
         }
     }`;
   };

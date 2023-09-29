@@ -8,7 +8,6 @@
   "terms": {
     "newMarket": {
       "changes": {
-        "lpPriceRange": "10",
         "linearSlippageFactor": "0.001",
         "quadraticSlippageFactor": "0",
         "decimalPlaces": "5",
@@ -78,8 +77,8 @@
           }
         },
         "metadata": [
-          "enactment:2023-10-19T19:46:02Z",
-          "settlement:2023-10-18T19:46:02Z",
+          "enactment:2023-10-19T20:45:39Z",
+          "settlement:2023-10-18T20:45:39Z",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -116,8 +115,8 @@
         }
       }
     },
-    "closingTimestamp": 1697654762,
-    "enactmentTimestamp": 1697741162
+    "closingTimestamp": 1697658339,
+    "enactmentTimestamp": 1697744739
   }
 }
 ```

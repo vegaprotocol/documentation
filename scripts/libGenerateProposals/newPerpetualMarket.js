@@ -5,7 +5,8 @@ const {
   generateMetadata,
   generatePriceMonitoringParameters,
   generateLiquidityMonitoringParameters,
-  generateRiskModel
+  generateRiskModel,
+  generateLiquiditySlaParameters
 } = require('./newMarket')
 
 const instruments = [
@@ -14,7 +15,6 @@ const instruments = [
 
 // Shortcut for deeply nested stuff
 const p = 'properties'
-
 
 function generatePerpetualSettlementDataSourceSpec(skeleton) {
   const spec = {
@@ -106,7 +106,6 @@ function generatePerpetualDataSourceSpecBinding(skeleton) {
             /* ${skeleton[p].settlementDataProperty.description} */
             settlementDataProperty: "${binding.settlementDataProperty}",
 
-            /* ${skeleton[p].settlementScheduleProperty.description} */
             settlementScheduleProperty: "${binding.settlementScheduleProperty}"
           }`;
   };
@@ -239,6 +238,9 @@ function newPerpetualMarket(skeleton, proposalSoFar) {
             skeleton.properties.changes.properties.logNormal,
             "logNormal"
           ),
+          liquiditySlaParameters: generateLiquiditySlaParameters(
+            skeleton.properties.changes.properties.liquiditySlaParameters
+          ),
         },
       },
     },
@@ -285,6 +287,10 @@ function newPerpetualMarket(skeleton, proposalSoFar) {
           logNormal: ${inspect(result.terms.newMarket.changes.logNormal, {
         depth: 19,
       })},
+      // ${skeleton.properties.changes.properties.liquiditySlaParameters.title}
+         liquiditySlaParameters: ${inspect(result.terms.newMarket.changes.liquiditySlaParameters, {
+      depth: 19,
+    })},
         }
     }`;
   };

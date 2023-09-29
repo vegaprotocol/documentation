@@ -1,7 +1,7 @@
 const sample = require('lodash/sample');
 const random = require('lodash/random');
 const sampleSize = require('lodash/sampleSize');
-const { generateSettlementDataSourceSpec, generateTerminationDataSourceSpec, generateDataSourceSpecBinding } = require('./newMarket')
+const { generateSettlementDataSourceSpec, generateTerminationDataSourceSpec, generateDataSourceSpecBinding, generateLiquiditySlaParameters } = require('./newMarket')
 const assert = require('assert').strict;
 const { inspect } = require('util');
 
@@ -174,7 +174,10 @@ function updateMarket(skeleton, proposalSoFar) {
           instrument: generateFutureInstrument(skeleton.properties.changes.properties.instrument),
           metadata: generateMetadata(skeleton.properties.changes.properties.metadata),
           priceMonitoringParameters: generatePriceMonitoringParameters(skeleton.properties.changes.properties.priceMonitoringParameters),
-          logNormal: generateRiskModel(skeleton.properties.changes.properties.logNormal, 'logNormal')
+          logNormal: generateRiskModel(skeleton.properties.changes.properties.logNormal, 'logNormal'),
+          liquiditySlaParameters: generateLiquiditySlaParameters(
+            skeleton.properties.changes.properties.liquiditySlaParameters
+          ),
         },
       }
     }
@@ -198,6 +201,10 @@ function updateMarket(skeleton, proposalSoFar) {
           priceMonitoringParameters: ${inspect(result.terms.updateMarket.changes.priceMonitoringParameters, { depth: 19 })},
           // ${skeleton.properties.changes.properties.logNormal.title}
           logNormal: ${inspect(result.terms.updateMarket.changes.logNormal, { depth: 19 })},
+          // ${skeleton.properties.changes.properties.liquiditySlaParameters.title}
+          liquiditySlaParameters: ${inspect(result.terms.updateMarket.changes.liquiditySlaParameters, {
+       depth: 19,
+     })},
         },
     }`
   }

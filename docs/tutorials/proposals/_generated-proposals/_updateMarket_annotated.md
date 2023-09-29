@@ -10,10 +10,6 @@
    // Market ID the update is for.
    marketId: "123",
    changes: {
-    // DEPRECATED: Use liquidity SLA parameters instead.
-    // Percentage move up and down from the mid price which specifies the range of
-    lpPriceRange: 11,
-
     // Linear slippage factor is used to cap the slippage component of maintenance margin - it is applied to the slippage volume.
     linearSlippageFactor: 0.001,
 
@@ -163,16 +159,32 @@
         sigma: 0.5,
        }
       },
+
+      // Liquidity SLA parameters
+      liquiditySlaParameters: {
+       // (string)
+       priceRange: 0.1,
+
+       // Specifies the minimum fraction of time LPs must spend "on the book" providing their committed liquidity. (string)
+       commitmentMinTimeFraction: "0.1",
+
+       // Specifies the number of liquidity epochs over which past performance will continue to affect rewards. (uint64 as string)
+       performanceHysteresisEpochs: "10",
+
+       // Specifies the maximum fraction of their accrued fees an LP that meets the SLA implied by market.liquidity.commitmentMinTimeFraction will lose to liquidity providers
+       // that achieved a higher SLA performance than them. (string)
+       slaCompetitionFactor: "0.2",
+      },
      },
     },
 
     // Timestamp as Unix time in seconds when voting closes for this proposal,
     // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-    closingTimestamp: 1697654762,
+    closingTimestamp: 1697658339,
 
     // Timestamp as Unix time in seconds when proposal gets enacted if passed,
     // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-    enactmentTimestamp: 1697741162,
+    enactmentTimestamp: 1697744739,
    }
   }
 ```

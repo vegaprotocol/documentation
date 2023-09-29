@@ -832,7 +832,7 @@ function newMarket(skeleton, proposalSoFar) {
         depth: 19,
       })},
       // ${skeleton.properties.changes.properties.liquiditySlaParameters.title}
-      liquiditySlaParameters: ${inspect(result.terms.newMarket.changes.liquiditySlaParameters, {
+         liquiditySlaParameters: ${inspect(result.terms.newMarket.changes.liquiditySlaParameters, {
       depth: 19,
     })},
         }
@@ -873,5 +873,6 @@ module.exports = {
   generateMetadata,
   generatePriceMonitoringParameters,
   generateLiquidityMonitoringParameters,
-  generateRiskModel
+  generateRiskModel,
+  generateLiquiditySlaParameters
 };
