@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 title: Fees and trading rewards
 hide_title: false
 description: Trades can incur fees as well as get rewards.
@@ -45,7 +45,7 @@ At a high level, the trading fee that someone pays is calculated using the follo
 * Trade value for fee purposes = notional value of the trade = size of trade x price of trade
   
 #### Fee calculation example
-* Trade value for fee purposes: If you were to place an order for 100 futures at USDC50, the trade value for fee purposes is: *100 x USDC50 = USDC5000*. 
+* Trade value for fee purposes: If you were to place an order for 100 at USDC50, the trade value for fee purposes is: *100 x USDC50 = USDC5000*. 
 * Fee factor: For this example, each of the 3 fees is *0.001*, meaning total fee factor is *0.003*.
 * Trade value and fee factor: *USDC5000 x 0.003 = USDC15*
 * The fee is the same regardless of the number of transactions the order needs to be completely filled, as long as they trade at the same price.
