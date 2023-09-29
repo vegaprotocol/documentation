@@ -68,7 +68,7 @@ export default function Home() {
         <section id="topics">
           <article>
             <h2>Getting started</h2>
-            <p>Learn about the Vega framework and get set up to take part.</p>
+            <p>Learn about the Vega framework and how you can take part.</p>
             <ul>
               <li><Link href={`${base}/concepts/new-to-vega`}>Introduction to Vega</Link></li>
               <li>Get a <Link to={`${base}/tools/vega-wallet`}>Vega wallet</Link>, on <Link to={`${base}/tools/vega-wallet/desktop-app`}>desktop</Link> or for <Link to={`${base}/tools/vega-wallet/cli-wallet`}>command line</Link></li>
@@ -76,20 +76,21 @@ export default function Home() {
             </ul>
           </article>
           <article>
+            <h2>Trading</h2>
+            <p>See the live cash-settled futures markets and place orders using a trading dApp for Vega software. You'll need a Vega Wallet.</p>
+            <ul>
+              <li><Link className="external" href="https://console.vega.xyz/" target="_blank">Mainnet trading dApp</Link></li>
+              <li><Link className="external" href="https://console.fairground.wtf/" target="_blank">Testnet trading dApp</Link></li>
+              <li><Link to={`${base}/tools/vega-wallet/`}>Vega Wallet software</Link></li>
+            </ul>
+          </article>
+          <article>
             <h2>Governance</h2>
-            <p>The network is governed by the community. Take part by voting on proposals and proposing changes.</p>
+            <p>The network is governed by the community. Use your tokens to vote on proposals and propose changes.</p>
             <ul>
               <li><Link to={`${base}/concepts/governance`}>Introduction to governance</Link></li>
               <li><Link to={`${base}/tutorials/proposals`}>Tutorials: Governance proposals</Link></li>
               <li><Link className="external" href="https://governance.vega.xyz" target="_blank">Governance dApp</Link></li>
-            </ul>
-          </article>
-          <article>
-            <h2>Trading</h2>
-            <p>Explore the risk-free Vega testnet, Fairground. Mainnet trading launching soon, starting with cash settled futures.</p>
-            <ul>
-              <li><Link className="external" href="https://console.fairground.wtf/" target="_blank">Fairground trading console</Link></li>
-              <li><Link href="https://docs.vega.xyz/testnet/concepts/new-to-vega" target="_blank">Fairground docs</Link></li>
             </ul>
           </article>
         </section>

@@ -10,8 +10,8 @@
    // Market ID the update is for.
    marketId: "123",
    changes: {
+    // DEPRECATED: Use liquidity SLA parameters instead.
     // Percentage move up and down from the mid price which specifies the range of
-    // price levels over which automated liquidity provision orders will be deployed.
     lpPriceRange: 11,
 
     // Linear slippage factor is used to cap the slippage component of maintenance margin - it is applied to the slippage volume.
@@ -35,7 +35,7 @@
        external: {
         oracle: {
          // Signers is the list of authorized signatures that signed the data for this
-         // source. All the signatures in the data source data should be contained in this (array of objects)
+         // source. All the signatures in the data source data should be contained in (array of objects)
          signers: [
           {
            ethAddress: {
@@ -91,7 +91,7 @@
       dataSourceSpecForTradingTermination: {
        // The data source spec describing the data source for trading termination.
        internal {
-        // DataSourceSpecConfigurationTime is the internal data source used for emitting timestamps.
+        // Internal data source used for emitting timestamps.
         time: {
          // Conditions that the timestamps should meet in order to be considered.
          conditions: [
@@ -109,7 +109,7 @@
        // DataSourceSpecToFutureBinding describes which property of the data source data is to be
        used as settlement data and which to use as the trading terminated trigger(object) dataSourceSpecBinding: {
         // Name of the property in the source data that should be used as settlement data.
-        // If it is set to "prices.ORANGES.value", then the Future will use the value of
+        // If it is set to "prices.BTC.value", then the Future will use the value of
         // this property as settlement data. (string)
         settlementDataProperty: "prices.ORANGES.value",
 
@@ -118,7 +118,7 @@
        }
       },
 
-      // Optional market metadata, tags.
+      // Optional futures market metadata, tags.
       metadata: [
        "source:docs.vega.xyz"
       ],
@@ -168,11 +168,11 @@
 
     // Timestamp as Unix time in seconds when voting closes for this proposal,
     // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-    closingTimestamp: 1685553047,
+    closingTimestamp: 1696941757,
 
     // Timestamp as Unix time in seconds when proposal gets enacted if passed,
     // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-    enactmentTimestamp: 1685639447,
+    enactmentTimestamp: 1697028157,
    }
   }
 ```

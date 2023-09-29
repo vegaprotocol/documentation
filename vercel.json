@@ -52,6 +52,14 @@
     {
       "source": "/mainnet/concepts/vega-protocol",
       "destination": "/mainnet/concepts/governance"
-    } 
+    },
+    {
+      "source": "/mainnet/node-operators/get-started/setup-server",
+      "destination": "/mainnet/node-operators/get-started/setup-validator"
+    },
+    {
+      "source": "/testnet/node-operators/get-started/setup-server",
+      "destination": "/testnet/node-operators/get-started/setup-validator"
+    }
   ]
 }

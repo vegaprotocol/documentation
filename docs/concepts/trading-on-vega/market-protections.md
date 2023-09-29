@@ -41,7 +41,7 @@ A market's risk model can be used to obtain the price distribution at a future p
 Note: A market's risk model is defined within the market proposal.
 
 ### Price monitoring triggers
-Each market has a set of price monitoring triggers. When those points are breached, the market will enter a price monitoring auction. Price monitoring triggers are defined in a market's proposal, and a governance proposal to change them can be raised and voted on by tokenholders.
+Each market has a set of price monitoring triggers. When those points are breached, the market will enter a price monitoring auction. Price monitoring triggers are defined in a market's proposal, and a governance proposal to change them can be raised and voted on by tokenholders. Each market can have a maximum of 5 sets of price monitoring triggers for a market.
 
 Each trigger contains:
 * *Horizon*: Time horizon of the price projection in seconds
@@ -97,11 +97,7 @@ In order to ensure there is enough liquidity to keep a market active and protect
 
 The liquidity mechanics of the Vega protocol mean there is an incentive (through fee-setting) to provide the necessary liquidity.
 
-Another risk mitigation comes in how LPs commit liquidity. As long as there are static bid and ask orders on the book, the system deploys enough volume, at the specified offsets that are within price monitoring bounds, and that have at least the minimum probability of trading set by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.minimum.probabilityOfTrading.lpOrders" />.
-
-As a consequence, a market may only become illiquid in two cases: 
-* The total supplied stake by all liquidity providers is below the target stake (a multiple of the maximum open interest over a period of time set by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.stake.target.timeWindow" />). 
-* The best static bid or best static ask prices are missing from the order book, meaning the volume implied by a liquidity provider's commitment cannot be deployed.
+Another risk mitigation is the use of liquidity monitoring auctions to seek more liquidity orders. This happens when the total supplied stake by all liquidity providers is below the target stake (a multiple of the maximum open interest over a period of time set by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.stake.target.timeWindow" />). 
 
 How likely a market is to enter into a liquidity monitoring auction is also dependent on the value of the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.targetstake.triggering.ratio" hideValue={true} /> network parameter, which defines how sensitive the auction trigger is.
 

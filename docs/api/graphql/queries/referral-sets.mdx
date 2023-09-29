@@ -1,0 +1,55 @@
+---
+id: referral-sets
+title: referralSets
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+List referral sets
+
+```graphql
+referralSets(
+  id: ID
+  referrer: ID
+  referee: ID
+  pagination: Pagination
+): ReferralSetConnection!
+```
+
+
+### Arguments
+
+#### [<code style={{ fontWeight: 'normal' }}>referralSets.<b>id</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> Optional referral set ID to fetch information for
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>referralSets.<b>referrer</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> Optional referrer party ID to filter for. If referral set ID is provided, this parameter is ignored.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>referralSets.<b>referee</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> Optional referee party ID to filter for. If referral set ID, or referrer is provided, this parameter is ignored.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>referralSets.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Optional pagination information
+> 
+
+### Type
+
+#### [`ReferralSetConnection`](/testnet/api/graphql/objects/referral-set-connection) <Badge class="secondary" text="object"/>
+> Connection type for retrieving cursor-based paginated referral set information
+> 
+
+
+
+
+

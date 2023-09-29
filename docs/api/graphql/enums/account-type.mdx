@@ -33,6 +33,16 @@ enum AccountType {
   ACCOUNT_TYPE_REWARD_MAKER_RECEIVED_FEES
   ACCOUNT_TYPE_REWARD_LP_RECEIVED_FEES
   ACCOUNT_TYPE_REWARD_MARKET_PROPOSERS
+  ACCOUNT_TYPE_HOLDING
+  ACCOUNT_TYPE_LP_LIQUIDITY_FEES
+  ACCOUNT_TYPE_NETWORK_TREASURY
+  ACCOUNT_TYPE_VESTING_REWARDS
+  ACCOUNT_TYPE_VESTED_REWARDS
+  ACCOUNT_TYPE_REWARD_AVERAGE_POSITION
+  ACCOUNT_TYPE_REWARD_RELATIVE_RETURN
+  ACCOUNT_TYPE_REWARD_RETURN_VOLATILITY
+  ACCOUNT_TYPE_REWARD_VALIDATOR_RANKING
+  ACCOUNT_TYPE_PENDING_FEE_REFERRAL_REWARD
 }
 ```
 
@@ -108,11 +118,51 @@ to ensure they are never lost or 'double spent'
 > RewardMarketProposers - an account holding rewards for market proposers
 > 
 
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_HOLDING</b></code>](#) 
+> AccountTypeHolding - an account for holding funds covering for active unfilled orders
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_LP_LIQUIDITY_FEES</b></code>](#) 
+> Per liquidity provider, per market account for holding LPs' fees before distribution
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_NETWORK_TREASURY</b></code>](#) 
+> Network treasury, per-asset treasury controlled by the network
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_VESTING_REWARDS</b></code>](#) 
+> Vesting reward account is a per party per asset account for locked reward funds waiting to be vested
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_VESTED_REWARDS</b></code>](#) 
+> Vested reward account is a per party per asset account for vested reward funds
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_REWARD_AVERAGE_POSITION</b></code>](#) 
+> Average position reward account is a per asset per market account for average position reward funds
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_REWARD_RELATIVE_RETURN</b></code>](#) 
+> Relative return reward account is a per asset per market account for relative return reward funds
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_REWARD_RETURN_VOLATILITY</b></code>](#) 
+> Return volatility reward account is a per asset per market account for return volatility reward funds
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_REWARD_VALIDATOR_RANKING</b></code>](#) 
+> Validator ranking reward account is a per asset account for validator ranking reward funds
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>AccountType.<b>ACCOUNT_TYPE_PENDING_FEE_REFERRAL_REWARD</b></code>](#) 
+> Holds pending rewards to be paid to the referrer of a party out of fees paid by the taker
+> 
+
 
 
 ### Member of
 
-[`AccountBalance`](/testnet/api/graphql/objects/account-balance)  <Badge class="secondary" text="object"/><Bullet />[`AccountDetails`](/testnet/api/graphql/objects/account-details)  <Badge class="secondary" text="object"/><Bullet />[`AccountEvent`](/testnet/api/graphql/objects/account-event)  <Badge class="secondary" text="object"/><Bullet />[`AccountFilter`](/testnet/api/graphql/inputs/account-filter)  <Badge class="secondary" text="input"/><Bullet />[`accounts`](/testnet/api/graphql/subscriptions/accounts)  <Badge class="secondary" text="subscription"/><Bullet />[`AccountUpdate`](/testnet/api/graphql/objects/account-update)  <Badge class="secondary" text="object"/><Bullet />[`AggregatedBalance`](/testnet/api/graphql/objects/aggregated-balance)  <Badge class="secondary" text="object"/><Bullet />[`AggregatedLedgerEntry`](/testnet/api/graphql/objects/aggregated-ledger-entry)  <Badge class="secondary" text="object"/><Bullet />[`EpochRewardSummary`](/testnet/api/graphql/objects/epoch-reward-summary)  <Badge class="secondary" text="object"/><Bullet />[`Reward`](/testnet/api/graphql/objects/reward)  <Badge class="secondary" text="object"/><Bullet />[`Transfer`](/testnet/api/graphql/objects/transfer)  <Badge class="secondary" text="object"/>
+[`AccountBalance`](/testnet/api/graphql/objects/account-balance)  <Badge class="secondary" text="object"/><Bullet />[`AccountDetails`](/testnet/api/graphql/objects/account-details)  <Badge class="secondary" text="object"/><Bullet />[`AccountEvent`](/testnet/api/graphql/objects/account-event)  <Badge class="secondary" text="object"/><Bullet />[`AccountFilter`](/testnet/api/graphql/inputs/account-filter)  <Badge class="secondary" text="input"/><Bullet />[`accounts`](/testnet/api/graphql/subscriptions/accounts)  <Badge class="secondary" text="subscription"/><Bullet />[`AccountUpdate`](/testnet/api/graphql/objects/account-update)  <Badge class="secondary" text="object"/><Bullet />[`AggregatedBalance`](/testnet/api/graphql/objects/aggregated-balance)  <Badge class="secondary" text="object"/><Bullet />[`AggregatedLedgerEntry`](/testnet/api/graphql/objects/aggregated-ledger-entry)  <Badge class="secondary" text="object"/><Bullet />[`EpochRewardSummary`](/testnet/api/graphql/objects/epoch-reward-summary)  <Badge class="secondary" text="object"/><Bullet />[`NewTransfer`](/testnet/api/graphql/objects/new-transfer)  <Badge class="secondary" text="object"/><Bullet />[`Reward`](/testnet/api/graphql/objects/reward)  <Badge class="secondary" text="object"/><Bullet />[`Transfer`](/testnet/api/graphql/objects/transfer)  <Badge class="secondary" text="object"/>
 
 
 

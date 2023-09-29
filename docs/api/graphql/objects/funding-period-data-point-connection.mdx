@@ -1,0 +1,43 @@
+---
+id: funding-period-data-point-connection
+title: FundingPeriodDataPointConnection
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Connection type for funding period data points
+
+```graphql
+type FundingPeriodDataPointConnection {
+  edges: [FundingPeriodDataPointEdge!]!
+  pageInfo: PageInfo!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>FundingPeriodDataPointConnection.<b>edges</b></code>](#)<Bullet />[`[FundingPeriodDataPointEdge!]!`](/testnet/api/graphql/objects/funding-period-data-point-edge) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> List of funding period data points
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>FundingPeriodDataPointConnection.<b>pageInfo</b></code>](#)<Bullet />[`PageInfo!`](/testnet/api/graphql/objects/page-info) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Pagination information
+> 
+
+
+
+### Returned by
+
+[`fundingPeriodDataPoints`](/testnet/api/graphql/queries/funding-period-data-points)  <Badge class="secondary" text="query"/>
+
+
+

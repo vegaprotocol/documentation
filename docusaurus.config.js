@@ -82,6 +82,10 @@ module.exports = {
           title: "Vega Protocol",
           items: [
             {
+              label: "Vega Console",
+              to: "http://console.vega.xyz/",
+            },
+            {
               label: "Website",
               to: "http://vega.xyz/",
             },
@@ -142,14 +146,14 @@ module.exports = {
           ],
         },
         {
-          title: "Fairground",
+          title: "Fairground, Vega testnet",
           items: [
             {
               label: "Home",
               to: "https://fairground.wtf/",
             },
             {
-              label: "Vega Console",
+              label: "Console (Fairground)",
               to: "https://console.fairground.wtf/",
             },
           ],
@@ -281,13 +285,13 @@ module.exports = {
               // Hacky: Classname used for full version number, v prefix. Used for OpenrpcPlayground
               className: `v${version}`
             },
-            "v0.71": {
+            "v0.72": {
               banner: "none",
               label: `mainnet (v${shortenVersion(mainnetVersion)})`,
               path: "mainnet",
               // Hacky: Classname used for full version number, v prefix. Used for OpenrpcPlayground
               className: `v${mainnetVersion}`
-            }
+            },
           },
         },
         // Vega specific theme overrides go here

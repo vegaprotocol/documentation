@@ -37,6 +37,10 @@ These parameters can differ between networks. In other words, the same network p
 * [Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)
 :::
 
+## Epochs
+An epoch is a time period during which network changes, such as changing validator nominations, [liquidity provisions](../liquidity/provision.md#amending-and-cancelling-a-liquidity-commitment), [recurring transfers](../assets/transfers.md#recurring-transfers), and community-funded rewards can be announced and then implemented. Changes that are announced in one epoch will only be executed in the following epoch, or in the epoch nominated for the change. There is one exception, ['un-nominate now'](./proof-of-stake#un-nominate-now).
+
+The length of an epoch is <NetworkParameter frontMatter={frontMatter} param="validators.epoch.length" hideName={true} />, which is set by a network parameter.
 
 ## Network-wide limits
 Some limits have been introduced to the protocol in an aim to keep the overall system performant and responsive, with low-latency. As the system relies on both a lean core and a data node that consumes and provides data, having limits allows the option to somewhat control how many computations and how much data is generated, while also allowing full use of the protocol's functionality. 
@@ -45,12 +49,11 @@ These limits are adjustable, so each network can be set up for maximum flexibili
 
 These limits are not totally dissimilar to the spam controls that are also implemented, which aim to mitigate the possibility of malicious actors deliberately flooding the system with junk requests. 
 
-### Maximum pegged orders and liquidity commitment shapes
-Currently, two transaction types can be limited:
+### Maximum pegged orders
+Currently, one transaction type can be limited:
 * Total number of pegged orders on all active markets: controlled by network parameter <NetworkParameter frontMatter={frontMatter} param="limits.markets.maxPeggedOrders" />
-* Number of offsets in each liquidity commitment order shape (per side), controlled by <NetworkParameter frontMatter={frontMatter} param="market.liquidityProvision.shapes.maxSize" />
 
-If either parameter's value is decreased (through a governance proposal and vote), then the change does not affect existing orders on the market, but only new orders/liquidity commitments placed after the change is enacted. 
+If the parameter's value is decreased through a governance proposal and vote, then the change does not affect existing orders on the market, but only new orders placed after the change is enacted. 
 
 ## Spam protection
 On a decentralised and pseudonymous network, there's always a possibility that a malicious actor or a misconfigured client will attempt to spam blocks and fill them with meaningless transactions. As Vega allows for some transactions to be issued without requiring gas cost, this issue requires special care. To mitigate that risk, there are spam protections enabled to protect the Vega network, in particular enforced minimums and maximums for certain transactions sent to the Vega network, and a client-side proof of work requirement to mitigate transaction spam.

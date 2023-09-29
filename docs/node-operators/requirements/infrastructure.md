@@ -45,7 +45,7 @@ Performance testing on NVMe SSD, SATA SSD and traditional HDD (5400rpm) storage 
 For production use, we recommend using the Linux binary on Ubuntu as this is the platform used by nodes on Fairground, the Vega testnet, and is the most widely tested so far. 
 
 ### Golang
-You'll need 'go' version 1.19.1 or newer.
+You'll need 'go' version 1.20.0 or newer.
 
 ### Vega Wallet
 You'll need a version of the Vega Wallet that matches with the version of software you're using to install your node. You can get this when you install Vega.

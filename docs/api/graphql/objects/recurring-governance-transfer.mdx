@@ -1,0 +1,48 @@
+---
+id: recurring-governance-transfer
+title: RecurringGovernanceTransfer
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The specific details for a recurring governance transfer
+
+```graphql
+type RecurringGovernanceTransfer {
+  startEpoch: Int!
+  endEpoch: Int
+  dispatchStrategy: DispatchStrategy
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>RecurringGovernanceTransfer.<b>startEpoch</b></code>](#)<Bullet />[`Int!`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The epoch at which this recurring transfer will start
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>RecurringGovernanceTransfer.<b>endEpoch</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
+> An optional epoch at which this transfer will stop
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>RecurringGovernanceTransfer.<b>dispatchStrategy</b></code>](#)<Bullet />[`DispatchStrategy`](/testnet/api/graphql/objects/dispatch-strategy) <Badge class="secondary" text="object"/>
+> An optional dispatch strategy for the recurring transfer
+> 
+
+
+
+### Implemented by
+
+[`GovernanceTransferKind`](/testnet/api/graphql/unions/governance-transfer-kind)  <Badge class="secondary" text="union"/><Bullet />[`TransferKind`](/testnet/api/graphql/unions/transfer-kind)  <Badge class="secondary" text="union"/>
+
+
+

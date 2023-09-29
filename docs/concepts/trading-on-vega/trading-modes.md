@@ -26,6 +26,7 @@ Most, but not all, order types and times in force are accepted during continuous
 | Limit          |  ✅ | ✅  | ☑️  | ☑️  | ❌   | ✅   |
 | Pegged         |  ✅ | ✅  | 🛑   | 🛑 | ❌   | ✅   |
 | Market         | ❌  | ❌  | ✅   | ✅   | ❌   | ❌   |
+| Stop           | ✅  | ✅  | ✅   | ✅   | ❌   | ✅   |
 
 ☑️ - IOC/FOK LIMIT orders never rest on the book, if they do not match immediately they are cancelled/stopped.<br/>
 🛑 - IOC/FOK PEGGED orders are not currently supported as they will always result in the cancelled/stopped state. This may change in the future if pegged orders are allowed to have negative offsets that can result in an immediate match.
@@ -42,7 +43,7 @@ Auctions aggregate participation over time, up to a pre-set time when the market
 Currently, all auctions are triggered automatically based on market conditions. Market conditions that could trigger an auction:
 * A market has opened for trading, which means it needs a defined price to start trading from 
 * Price swing on a market is perceived, based on risk models, to be extreme and unrealistic
-* Not enough liquidity on a market; this could also indicate missing best static bid / ask as without those liquidity provision orders cannot be deployed, even if liquidity providers have committed liquidity. 
+* Not enough liquidity on a market 
 
 ### Auction type: Opening
 Every continuous trading market opens with an auction. Their purpose is to calibrate a market and help with price discovery by determining a fair mid-price to start off continuous trading.
@@ -79,20 +80,13 @@ If no one places orders in the price monitoring auction, the auction is exited a
 :::
 
 ### Auction type: Liquidity monitoring
-In order to ensure there is enough liquidity to keep a market active and protect against insolvent parties, the network will detect when the market's liquidity is too low, and if it is too low, will stop continuous trading and put the market into a liquidity monitoring auction. 
-
-This also happens when the best static bid / ask is not present after all transactions with the same timestamp have been processed, as without those liquidity provision orders cannot be deployed, even if liquidity providers have committed liquidity. 
+In order to ensure there is enough liquidity to keep a market active and protect against insolvent parties, the network will detect when the market's liquidity is too low, and if it is too low, will stop continuous trading and put the market into a liquidity monitoring auction.
 
 #### Entry into liquidity monitoring auction 
-A market will go into a liquidity monitoring auction if the total commitment from liquidity providers (total stake) drops too low relative to the estimate of the market's liquidity demand (target stake), or if there are no best bid and/or best ask prices on the market.
+A market will go into a liquidity monitoring auction if the total commitment from liquidity providers (total stake) drops too low relative to the estimate of the market's liquidity demand (target stake).
 
 The trigger for entering a liquidity monitoring auction is: 
-
 `sum of LPs commitment amounts < target stake x triggering ratio`
-
-The market will also enter a liquidity auction if there are no static bids or static asks on the order book (as that means that the liquidity that LPs committed to be deployed at a given distance from the specified pegs cannot be deployed).
-
-The market will also enter a liquidity monitoring auction under other technical conditions, for example if the best static bid / best static ask are wider than the tightest price monitoring bounds. 
 
 The triggering ratio above is set by the <NetworkParameter frontMatter={frontMatter} param="network parameter market.liquidity.targetstake.triggering.ratio" hideName={false} />.
 
@@ -111,7 +105,7 @@ During the auction call period, no trades are created, but all orders are queued
 At the conclusion of the call period, trades are produced in a single action known as an auction uncrossing. During the uncrossing, auctions always try to maximise the traded volume, subject to the requirements of the orders placed.
 
 ### Orders accepted during auctions
-When a market is in an auction, only certain order types and times in force can be used. Market orders are not permitted.
+When a market is in an auction, only certain order types and times in force can be used. Market orders are not permitted. An iceberg order can be entered, or carried into an auction, if its underlying time in force is supported.
 
 
 | Pricing method | GTT | GTC | IOC | FOK | GFA | GFN |
@@ -119,6 +113,7 @@ When a market is in an auction, only certain order types and times in force can 
 | Limit          | ✅ | ✅ | ❌ | ❌ | ✅ | ❌ |
 | Pegged         | ☑️ | ☑️ | ❌ | ❌ | ☑️ | ❌ |
 | Market         | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Stop          | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
 
 ☑️ - Pegged orders will be [parked](./orders#parked-pegged-orders) if placed during an auction, with time priority preserved.
 
@@ -126,10 +121,12 @@ When a market is in an auction, only certain order types and times in force can 
 * Pegged orders are parked
 * Limit orders stay on the book - unless they have a time in force of Good For Normal trading, in which case they're cancelled
 * Non-persistent orders (Fill Or Kill and Immediate Or Cancel) are not accepted
+* Stop orders are accepted 
 
 **Upon exiting an auction:**
-* Pegged orders (all types, including liquidity commitment orders) are reinstated to the order book 
+* Pegged orders are reinstated to the order book 
 * Limit orders stay on the book - unless they have a time in force of Good For Auction, in which case they're cancelled
+* Stop orders can be triggered by the auction uncrossing price if the auction results in a trade
 
 ### Exiting an auction
 Auctions end, orders are uncrossed and resulting trades are created when:

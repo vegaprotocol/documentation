@@ -21,6 +21,7 @@ type LiquidityProviderFeeShare {
   equityLikeShare: String!
   averageEntryValuation: String!
   averageScore: String!
+  virtualStake: String!
 }
 ```
 
@@ -32,7 +33,7 @@ type LiquidityProviderFeeShare {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>LiquidityProviderFeeShare.<b>equityLikeShare</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> The share owned by this liquidity provider (float)
+> The share owned by this liquidity provider
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>LiquidityProviderFeeShare.<b>averageEntryValuation</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
@@ -43,11 +44,15 @@ type LiquidityProviderFeeShare {
 > The average liquidity score
 > 
 
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProviderFeeShare.<b>virtualStake</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The virtual stake for this liquidity provider
+> 
+
 
 
 ### Member of
 
-[`MarketData`](/testnet/api/graphql/objects/market-data)  <Badge class="secondary" text="object"/>
+[`LiquidityProvider`](/testnet/api/graphql/objects/liquidity-provider)  <Badge class="secondary" text="object"/><Bullet />[`MarketData`](/testnet/api/graphql/objects/market-data)  <Badge class="secondary" text="object"/>
 
 
 

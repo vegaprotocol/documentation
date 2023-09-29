@@ -1,6 +1,6 @@
 
   ```bash
-./vegawallet transaction send --wallet YOUR-WALLETNAME --pubkey YOUR-PUBLIC-KEY --network NETWORK-NAME '{
+./vegawallet transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KEY --network NETWORK_NAME '{
  "proposalSubmission": {
   "rationale": {
    "title": "An example freeform proposal",
@@ -8,7 +8,7 @@
   },
   "terms": {
    "newFreeform": {},
-   "closingTimestamp": 1685553047
+   "closingTimestamp": 1696941757
   }
  }
 }'

@@ -1,0 +1,43 @@
+---
+id: funding-period-data-point-edge
+title: FundingPeriodDataPointEdge
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Edge type for funding period data point
+
+```graphql
+type FundingPeriodDataPointEdge {
+  node: FundingPeriodDataPoint!
+  cursor: String!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>FundingPeriodDataPointEdge.<b>node</b></code>](#)<Bullet />[`FundingPeriodDataPoint!`](/testnet/api/graphql/objects/funding-period-data-point) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The funding period data point
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>FundingPeriodDataPointEdge.<b>cursor</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Cursor identifying the funding period data point
+> 
+
+
+
+### Member of
+
+[`FundingPeriodDataPointConnection`](/testnet/api/graphql/objects/funding-period-data-point-connection)  <Badge class="secondary" text="object"/>
+
+
+

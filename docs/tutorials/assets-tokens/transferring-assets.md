@@ -69,7 +69,7 @@ vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --netwo
 </Tabs>
 
 ### Recurring transfer to Vega key
-In a recurring transfer, the assets move from your account to the nominated account at the end of each epoch.
+In a recurring transfer, the assets move from your account to the nominated account at the end of each [epoch](../../concepts/vega-chain/network.md#epochs).
 
 You'll need the following information to set up a recurring transfer: 
 * `startEpoch`: The number of the epoch in which you want the first transfer to be made. It will initiate at the end of that epoch.
@@ -125,7 +125,7 @@ Trading rewards, as well as validator metric-based rewards, are funded using rec
 
 These rewards can be used to incentivise:
 * Placing market/limit orders that are filled (determined by amount of maker fees a party paid or received) 
-* Submitting liquidity provision orders to the book that are hit (determined by amount of liquidity fees a party received)
+* Providing liquidity by submitting orders to the book, which are then hit (determined by amount of liquidity fees a party received)
 * Creating markets that attract good trading volume (determined based on value of <NetworkParameter frontMatter={frontMatter} param="rewards.marketCreationQuantumMultiple" hideValue={true} />, and the settlement asset's quantum)
 * Consensus and standby validators that have a ranking score higher than 0
 

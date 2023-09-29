@@ -1,6 +1,6 @@
 
   ```bash
-./vegawallet transaction send --wallet YOUR-WALLETNAME --pubkey YOUR-PUBLIC-KEY --network NETWORK-NAME '{
+./vegawallet transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KEY --network NETWORK_NAME '{
  "proposalSubmission": {
   "rationale": {
    "title": "Update Lorem Ipsum market",
@@ -98,8 +98,8 @@
      }
     }
    },
-   "closingTimestamp": 1685553047,
-   "enactmentTimestamp": 1685639447
+   "closingTimestamp": 1696941757,
+   "enactmentTimestamp": 1697028157
   }
  }
 }'

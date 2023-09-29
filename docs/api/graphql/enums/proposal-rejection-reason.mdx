@@ -56,6 +56,16 @@ enum ProposalRejectionReason {
   PROPOSAL_ERROR_UNKNOWN_RISK_PARAMETER_TYPE
   PROPOSAL_ERROR_INVALID_FREEFORM
   PROPOSAL_ERROR_ERC20_ADDRESS_ALREADY_IN_USE
+  PROPOSAL_ERROR_GOVERNANCE_TRANSFER_PROPOSAL_INVALID
+  PROPOSAL_ERROR_GOVERNANCE_TRANSFER_PROPOSAL_FAILED
+  PROPOSAL_ERROR_GOVERNANCE_CANCEL_TRANSFER_PROPOSAL_INVALID
+  PROPOSAL_ERROR_INVALID_SPOT
+  PROPOSAL_ERROR_SPOT_PRODUCT_DISABLED
+  PROPOSAL_ERROR_INVALID_SUCCESSOR_MARKET
+  PROPOSAL_ERROR_INVALID_MARKET_STATE_UPDATE
+  PROPOSAL_ERROR_MISSING_SLA_PARAMS
+  PROPOSAL_ERROR_INVALID_SLA_PARAMS
+  PROPOSAL_ERROR_INVALID_PERPETUAL_PRODUCT
 }
 ```
 
@@ -216,6 +226,46 @@ enum ProposalRejectionReason {
 
 #### [<code style={{ fontWeight: 'normal' }}>ProposalRejectionReason.<b>PROPOSAL_ERROR_ERC20_ADDRESS_ALREADY_IN_USE</b></code>](#) 
 > The ERC-20 address specified by this proposal is already in use by another asset
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProposalRejectionReason.<b>PROPOSAL_ERROR_GOVERNANCE_TRANSFER_PROPOSAL_INVALID</b></code>](#) 
+> The governance transfer proposal is invalid
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProposalRejectionReason.<b>PROPOSAL_ERROR_GOVERNANCE_TRANSFER_PROPOSAL_FAILED</b></code>](#) 
+> The governance transfer proposal has failed
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProposalRejectionReason.<b>PROPOSAL_ERROR_GOVERNANCE_CANCEL_TRANSFER_PROPOSAL_INVALID</b></code>](#) 
+> The proposal for cancellation of an active governance transfer has failed
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProposalRejectionReason.<b>PROPOSAL_ERROR_INVALID_SPOT</b></code>](#) 
+> Validation of spot market proposal failed
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProposalRejectionReason.<b>PROPOSAL_ERROR_SPOT_PRODUCT_DISABLED</b></code>](#) 
+> Spot trading is disabled
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProposalRejectionReason.<b>PROPOSAL_ERROR_INVALID_SUCCESSOR_MARKET</b></code>](#) 
+> Validation of successor market has failed
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProposalRejectionReason.<b>PROPOSAL_ERROR_INVALID_MARKET_STATE_UPDATE</b></code>](#) 
+> Validation of market state update has failed
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProposalRejectionReason.<b>PROPOSAL_ERROR_MISSING_SLA_PARAMS</b></code>](#) 
+> Validation of liquidity provision SLA parameters has failed
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProposalRejectionReason.<b>PROPOSAL_ERROR_INVALID_SLA_PARAMS</b></code>](#) 
+> Mandatory liquidity provision SLA parameters are missing from the proposal
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ProposalRejectionReason.<b>PROPOSAL_ERROR_INVALID_PERPETUAL_PRODUCT</b></code>](#) 
+> Perpetual market proposal contained invalid product definition
 > 
 
 

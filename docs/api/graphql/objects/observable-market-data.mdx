@@ -45,6 +45,9 @@ type ObservableMarketData {
   marketValueProxy: String!
   liquidityProviderFeeShare: [ObservableLiquidityProviderFeeShare!]
   nextMarkToMarket: String!
+  marketGrowth: String!
+  lastTradedPrice: String!
+  productData: ProductData
 }
 ```
 
@@ -161,6 +164,18 @@ type ObservableMarketData {
 
 #### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>nextMarkToMarket</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time indicating the next time positions will be marked to market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>marketGrowth</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The market growth factor for the last market time window
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>lastTradedPrice</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> The last traded price (an unsigned integer)
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ObservableMarketData.<b>productData</b></code>](#)<Bullet />[`ProductData`](/testnet/api/graphql/unions/product-data) <Badge class="secondary" text="union"/>
+> The current funding rate. This applies only to a perpetual market
 > 
 
 

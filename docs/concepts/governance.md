@@ -237,6 +237,7 @@ When creating a market governance proposal, whether it is for a new market, a ne
 Read more:
 * [Vega community forum ↗](https://community.vega.xyz): Share your draft proposals for community discussion.
 * [New market proposal ↗](../tutorials/proposals/new-market-proposal.md): Guide to submitting a proposal for a new market using the command line
+* [New successor market proposal ↗](../tutorials/proposals/new-successor-market-proposal.md): Guide to submitting a proposal for a new successor market using the command line
 * [Update market proposal ↗](../tutorials/proposals/update-market-proposal.md): Guide to submitting a proposal to change a market using the command line
 
 ### Propose a new market
@@ -252,11 +253,10 @@ Required fields include:
 * Product specifics including the settlement asset and quote name
 * Decimal places for the market and positions. (Note: A market cannot specify more decimal places than its settlement asset supports)
 * Oracle details, including the oracle's public key, specifications for the settlement price and trading termination, and data filters
-* Liquidity monitoring parameters, including the target stake parameters, triggering ratio and auction extension
+* Liquidity monitoring parameters, including the target stake
 
 Optional fields include: 
 * Metadata so that people can easily interpret the market's details - while this is optional, it's highly recommended that you include metadata for the market
-* Liquidity commitment: the amount committed, proposed fee level, and the buy and sell order shapes. Note: Once a market is proposed, it can accept liquidity commitments from any party
 * Price monitoring parameters, including the triggers covering the horizon, probability and auction extension time. If left blank these parameters will default to the values set in the network parameters
 
 :::note Read more
@@ -295,7 +295,7 @@ The remaining, model specific parameters are covered below.
 
 #### Log-normal risk model
 The log-normal model assumes that the logarithm of the price increments are normally distributed. The main model parameter is   
-* `Volatility (Sigma)` - annualised volatility of the underlying asset:
+* `Volatility (Sigma)` - annualised historical volatility of the underlying asset:
   * accepted values: **any strictly non-negative real number**,
   * suggested value: asset dependent, should be derived from the historical time-series of prices, and a typical value would be 0.8 = 80%
 
@@ -336,6 +336,17 @@ There are certain parameters within Vega that influence the behaviour of the sys
 Network parameters can only be added and removed with Vega core software releases.
 
 :::note Go deeper
+* [Concepts: Network parameters](../concepts/vega-chain/network.md#parameters)
 * [Network parameters: See full list on the block explorer ↗](https://explorer.fairground.wtf/network-parameters)
 * [Tutorial: Propose a network parameter change](../tutorials/proposals/network-parameter-proposal.md)
 :::
+
+### Suggested ranges for parameters
+Some network parameters have minimum/maximum boundaries to ensure they aren't supplied with nonsensical values. The table below contains those parameters, to be used as guidance when proposing changes to any of those parameters.
+
+| Parameter name                                    | Minimum/Maximum |
+|---------------------------------------------------|-----------------|
+| `reward.staking.delegation.competitionLevel`      | Minimum value 1 (inclusive), no maximum. |
+| `governance.proposal.(TYPE).minEnact`             | Must be greater than / equal to the corresponding `minClose`, proposal can't be enacted before voting on it has closed. |
+| `governance.proposal.(TYPE).requiredMajority`     | Minimum 0.0, maximum 1.0. Is multiplied by 100 to get percentage. |
+| `governance.proposal.(TYPE).requiredParticipation`| Minimum 0.0, maximum 1.0. Is multiplied by 100 to get percentage. |

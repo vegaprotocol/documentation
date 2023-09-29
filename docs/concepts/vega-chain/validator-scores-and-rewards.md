@@ -21,7 +21,7 @@ Use **[governance.fairground.wtf](https://governance.fairground.wtf)** to try ou
 VEGA received as staking rewards must be withdrawn to an Ethereum wallet, and then associated to a Vega wallet, before they can be staked.
 :::
 
-In each epoch, rewards are distributed among validators in proportion to the number of tokens they represent (i.e., their total stake). The total stake includes a validator's own stake and the tokens nominated to that validator. Of this reward, a fixed amount is distributed among the tokenholders the validator represents. The proportion of staking rewards distributed to nominators is <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.delegatorShare" hideName={true} />.
+In each [epoch](./network.md#epochs), rewards are distributed among validators in proportion to the number of tokens they represent (i.e., their total stake). The total stake includes a validator's own stake and the tokens nominated to that validator. Of this reward, a fixed amount is distributed among the tokenholders the validator represents. The proportion of staking rewards distributed to nominators is <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.delegatorShare" hideName={true} />.
 
 The reward received by each validator, and therefore passed onto their nominators at the end of each epoch, is based on their validator scores. The score accounts for any penalties. However, there is no token slashing, i.e., a validator or a tokenholder will not lose tokens through any validator actions or poor performance.
 
@@ -47,13 +47,13 @@ See below for how the validator score is calculated.
 > 
 > `num_validators` = actual number of validators running nodes on Vega
 > 
-> `comp_level` = value of the network parameter that defines the competition level
+> `comp_level` = value of the network parameter that defines the competition level¹
 > 
 > `total_stake` = sum of all stake across all validators and their nominations
 > 
 > `optimal_stake` = total nomination divided by the greater of `min_validators`, OR (`num_validators` / `comp_level`): Optimal stake is how much stake each validator is expected to have, at most
 > 
-> `optimal_stake_multiplier` = value defined by <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.optimalStakeMultiplier" hideValue={true} />), which indicates how many times the optimal stake a validator is penalised for, if they are further than the optimal stake
+> `optimal_stake_multiplier` = value defined by <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.optimalStakeMultiplier" hideValue={true} />), which indicates how many times the optimal stake a validator is penalised for, if they are further than the optimal stake¹
 > 
 >`validator_stake_i` = stake of the given validator whose score is being calculated
 >
@@ -65,7 +65,9 @@ The **raw validator score** is calculated as follows:
 
 `raw_validator_score` = (`validator_stake_i` - `flat_penalty` - `higher_penalty`) / `total_stake`
 
-In other words, the network calculates an optimal stake that represents an even distribution of stake for the current number of consensus validators and the desired competition level. It then penalises any validators that have stake that exceeds that amount. The raw validator score is then the resulting amount divided by the total stake on the network.
+In other words, the network calculates an optimal stake set so that not all validators can reach it, so if the distribution is completely even, no validator has reached the optimum.¹ Optimal stake enures that validators have no financial benefit from becoming over-proportionally large. It then penalises any validators that have stake that exceeds the optimal stake amount. The raw validator score is then the resulting amount divided by the total stake on the network.
+
+¹ The network parameter <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.competitionLevel" /> influences how much stake is needed for all validators to reach optimal stake.
 
 :::note Go deeper
 [Proof of stake rewards spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0061-REWP-pos_rewards.md): Read the full details on how scores are calculated.

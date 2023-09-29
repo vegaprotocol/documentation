@@ -34,7 +34,7 @@ Read on for the key inputs to a network parameter proposal.
 
 The contents of a `changes` object specifies what will be different after the proposal. In this case, these are the changes that will occur on the network.
 
-**Rationale** requires a title and a description. They are free-text fields that describe the purpose of the proposal. Within the description, include links with more information about your proposal (such as to the IPFS content or forum post) that voters can reference to learn more about the proposal.
+**Rationale** requires a title and a description. They are free-text fields that describe the purpose of the proposal. Within the description, include links with more information about your proposal (such as to the IPFS content or forum post) that voters can reference to learn more about the asset proposal. Formatting your rationale with markdown makes it easier to read when it's displayed.
 
 **Key** is the name of the network parameter that you are proposing a change to.
 

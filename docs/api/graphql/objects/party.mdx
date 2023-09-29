@@ -83,6 +83,9 @@ type Party {
   direction: TransferDirection
   pagination: Pagination
 ): TransferConnection
+  activityStreak(
+  epoch: Int
+): PartyActivityStreak
 }
 ```
 
@@ -110,7 +113,7 @@ type Party {
 > 
 
 ##### [<code style={{ fontWeight: 'normal' }}>Party.tradesConnection.<b>dataRange</b></code>](#)<Bullet />[`DateRange`](/testnet/api/graphql/inputs/date-range) <Badge class="secondary" text="input"/>
-> Date range to retrieve trades from/to. Start and end time should be expressed as an integer value of nano-seconds past the Unix epoch
+> Date range to retrieve trades from/to. Start and end time should be expressed as an integer value of Unix nanoseconds
 > 
 
 ##### [<code style={{ fontWeight: 'normal' }}>Party.tradesConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
@@ -178,7 +181,7 @@ type Party {
 #### [<code style={{ fontWeight: 'normal' }}>Party.<b>withdrawalsConnection</b></code>](#)<Bullet />[`WithdrawalsConnection`](/testnet/api/graphql/objects/withdrawals-connection) <Badge class="secondary" text="object"/>
 > The list of all withdrawals initiated by the party
 > ##### [<code style={{ fontWeight: 'normal' }}>Party.withdrawalsConnection.<b>dateRange</b></code>](#)<Bullet />[`DateRange`](/testnet/api/graphql/inputs/date-range) <Badge class="secondary" text="input"/>
-> Date range to retrieve withdrawals from/to. Start and end time should be expressed as an integer value of nano-seconds past the Unix epoch
+> Date range to retrieve withdrawals from/to. Start and end time should be expressed as an integer value of Unix nanoseconds
 > 
 
 ##### [<code style={{ fontWeight: 'normal' }}>Party.withdrawalsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
@@ -188,7 +191,7 @@ type Party {
 #### [<code style={{ fontWeight: 'normal' }}>Party.<b>depositsConnection</b></code>](#)<Bullet />[`DepositsConnection`](/testnet/api/graphql/objects/deposits-connection) <Badge class="secondary" text="object"/>
 > The list of all deposits for a party by the party
 > ##### [<code style={{ fontWeight: 'normal' }}>Party.depositsConnection.<b>dateRange</b></code>](#)<Bullet />[`DateRange`](/testnet/api/graphql/inputs/date-range) <Badge class="secondary" text="input"/>
-> Date range to retrieve deposits from/to. Start and end time should be expressed as an integer value of nano-seconds past the Unix epoch
+> Date range to retrieve deposits from/to. Start and end time should be expressed as an integer value Unix nanoseconds
 > 
 
 ##### [<code style={{ fontWeight: 'normal' }}>Party.depositsConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
@@ -261,6 +264,12 @@ type Party {
 
 ##### [<code style={{ fontWeight: 'normal' }}>Party.transfersConnection.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
 > Pagination information
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Party.<b>activityStreak</b></code>](#)<Bullet />[`PartyActivityStreak`](/testnet/api/graphql/objects/party-activity-streak) <Badge class="secondary" text="object"/>
+> The activity streak
+> ##### [<code style={{ fontWeight: 'normal' }}>Party.activityStreak.<b>epoch</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
+> An optional epoch
 > 
 
 
