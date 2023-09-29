@@ -172,4 +172,4 @@ This should be done via a pull request on the [networks](https://github.com/vega
 
 ### Restart the network
 
-Each validator then needs to restart their node with the latest release of the software. Follow the instructions in the [setup server guide](../get-started/setup-server) to build from the version you are upgrading to.
+Each validator then needs to restart their node with the latest release of the software. Download the version you are upgrading to from the [release repo](https://github.com/vegaprotocol/vega/releases).
