@@ -16,16 +16,23 @@ You must be able to handle and act on technical issues with your node. Being a v
 ## Requirements
 **[Security, infrastructure, self-stake and active communication](requirements/index.md)**: Prospective validators on Vega must meet the requirements for their node infrastructure as well as building trust with the community.
 
-<!--**[Validator node overview](/docs/testnet/concepts/vega-chain#validator-nodes)**: Before beginning the process, learn how nodes work on Vega. Explore the different types of validator nodes that run a Vega network, how they're chosen, and what impact their scores have on their status.-->
+**[Validator node overview](../concepts/vega-chain/validator-nodes.md)**: Before beginning the process, learn how validator nodes work on Vega. Explore the different types of validator nodes that run a Vega network, how they're chosen, and what impact their scores have on their status.
 
-## Getting started
-Setting up and running a validator can be broken down into three parts:
+**[Data node overview](../concepts/vega-chain/data-nodes.md)**: Read about what a data node does, how the architecture is structured, how the data is stored and how the APIs work.
 
-1. [Setting up the server and building the software](./get-started/setup-server.md)
-2. [Configuring the components](./get-started/setup-validator.md)
+## Get started with a validator node
+Setting up and running a validator can be broken down into these parts:
+
+1. [Setting up the validator node](./get-started/setup-validator.md)
 3. [Joining the network and the validator set](./get-started/setup-validator.md#synchronise-your-node)
 
-## Maintaining your node
+## Get started with a data node
+Setting up and running a data node with a non-validator node can be broken down into these parts:
+
+1. [Setting up the non-validator node](./get-started/setup-non-validator.md)
+3. [Setting up the data node](./get-started/setup-datanode.md)
+
+## Maintain your node
 To keep your node and its related components functioning and up-to-date, refer to the how-tos below.
 
 | Topic                       |  Description                                                                                                        |
