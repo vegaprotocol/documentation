@@ -2,31 +2,16 @@
 title: Using data sources
 sidebar_position: 8
 hide_title: false
-description: Include data source details in a proposal and submit data to settle and/or terminate a market
+description: Include data source details in a proposal and submit data to settle and terminate a market
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## Choosing a data source when proposing a market [WIP]
-A market proposal must specify details about the data it requires in the market creation governance proposal. When configuring a market's instrument, you will need to select the data source for different events depending on the product type.
+## Choosing a data source when proposing a market
+A market proposal must specify details about the data it requires in the market creation governance proposal. When configuring a market's instrument, you will need to select the data sourcefor two events: settlement and trading termination. 
 
-The data source needs to be able to provide the following information depending on the market type.
-
-Perpetual futures market:
-- Spot price for underlying asset in the market
-- Settlement schedule
-
-Futures market:
-- Final settlement
-- Trading termination
-
-[WIP]
-What needs to be done to define the data source depends on the market type.
-
-Perpetual futures:
-
-Futures:
+This is done by:
 1. Defining a data source spec binding for settlement price
 2. Configuring a data source spec for settlement price values
 3. Defining a data source spec binding for trading termination
@@ -34,109 +19,15 @@ Futures:
 
 The **binding** tells the market which field contains the value. The **spec** defines which public keys to watch for data from, and which values to pass through to the binding.
 
+When it's time for a market to settle, someone needs to submit the data that matches the data source spec defined in the market.
+
 :::note Read more: 
-[Market governance concepts](../concepts/governance.md#market-governance)
-[Tutorial - proposing a market](./proposals/new-market-proposal.md)
+[Market governance concepts:](../concepts/governance.md#market-governance)
+[Tutorial - proposing a market:](./proposals/new-market-proposal.md)
 :::
 
-In the configuration for a market, a data source specification field dictates which data feeds it is interested in. In effect, it works as a filter. This specification means that the creator of an instrument for a market will choose in advance a price source, and which data fields the market requires to settle and/or terminate.
-
-## Ethereum data sources [WIP]
-
-The following spec in a new perpetuals market proposal would make a market that ... 
-```
-data
-	external	
-		ethOracle	
-			address	"0x694AA1769357215DE4FAC081bf1f309aDC325306"
-			abi	'[{"inputs":[],"name":"latestAnswer","outputs":[{"internalType":"int256","name":"","type":"int256"}],"stateMutability":"view","type":"function"}]'
-			method	"latestAnswer"
-			trigger	
-				timeTrigger	
-					every	"30"
-					requiredConfirmations	"3"
-			filters	
-				0	
-				key	
-					name	"eth.price"
-					type	"TYPE_INTEGER"
-					numberDecimalPlaces	"8"
-				conditions	
-					0	
-					operator	"OPERATOR_GREATER_THAN_OR_EQUAL"
-					value	"0"
-			normalisers	
-					0	
-				name	"eth.price"
-				expression	"$[0]"
-```
-
-
-"dataSourceSpecForSettlementData": {
-                                    "external": {
-                                        "ethOracle": {
-                                            "address": "0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43",
-                                            "abi": "[{\"inputs\":[],\"name\":\"latestAnswer\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-                                            "method": "latestAnswer",
-                                            "normalisers": [
-                                                {
-                                                    "name": "btc.price",
-                                                    "expression": "$[0]"
-                                                }
-                                            ],
-                                            "requiredConfirmations": 3,
-                                            "trigger": {
-                                                "timeTrigger": {
-                                                    "every": 30
-                                                }
-                                            },
-                                            "filters": [
-                                                {
-                                                    "key": {
-                                                        "name": "btc.price",
-                                                        "type": "TYPE_INTEGER",
-                                                        "numberDecimalPlaces": 8
-                                                    },
-                                                    "conditions": [
-                                                        {
-                                                            "operator": "OPERATOR_GREATER_THAN_OR_EQUAL",
-                                                            "value": "0"
-                                                        }
-                                                    ]
-                                                }
-                                            ]
-                                        }
-                                    }
-                                },
-                                "dataSourceSpecForSettlementSchedule": {
-                                    "internal": {
-                                        "timeTrigger": {
-                                            "conditions": [
-                                                {
-                                                    "operator": "OPERATOR_GREATER_THAN_OR_EQUAL",
-                                                    "value": "0"
-                                                }
-                                            ],
-                                            "triggers": [
-                                                {
-                                                    "every": 1800
-                                                }
-                                            ]
-                                        }
-                                    }
-                                },
-                                "dataSourceSpecBinding": {
-                                    "settlementDataProperty": "btc.price",
-                                    "settlementScheduleProperty": "vegaprotocol.builtin.timetrigger"
-                                }
-                            }
-
-                    },
-
-## Submitting data
-Markets that use Ethereum data sources don't need anyone to submit data. 
-
-For markets using other data source types, any Vega keypair can submit data. When it's time for a futures market using a non-Ethereum data source to settle, someone needs to submit the data that matches the data source spec defined in the market.
+## Who can submit data
+Any Vega keypair can submit data. In the configuration for a market, a data source specification field dictates which data feeds it is interested in. In effect, it works as a filter. This specification means that the creator of an instrument for a market will choose in advance a price source, and which data fields the market requires to settle and terminate.
 
 ## Open Oracle signed messages
 Vega's Data Sourcing framework supports signed ABI-encoded [Open Oracle ↗](https://github.com/compound-finance/open-oracle) or JSON messages. ABI-encoded signed messages can be verified to have come from the public key that signed them, which allows markets on Vega to use pricing data sourced from Ethereum.
@@ -153,7 +44,7 @@ For now this will focus on using the data for settlement price - both examples b
 }
 ```
 
-The following spec would make the futures market use the BTC value from the [Coinbase Price Oracle ↗](https://blog.coinbase.com/introducing-the-coinbase-price-oracle-6d1ee22c7068) data that is submitted in a subsequent example:
+The following spec would make the market use the BTC value from the [Coinbase Price Oracle ↗](https://blog.coinbase.com/introducing-the-coinbase-price-oracle-6d1ee22c7068) data that is submitted in a subsequent example:
 
 ```javascript
    "dataSourceSpecForSettlementData": {
@@ -176,7 +67,7 @@ The `signers: ethAddress` in this case is the Ethereum public key that **signed 
 ### Submitting Open Oracle data
 Use the command line to submit an Open Oracle message as a transaction that is signed by your Vega wallet and sent to the validators for consensus.
 
-Below, find instructions on how to submit Open Oracle data as a signed message. Markets should be configured to only use the data at the relevant time, such as after a defined settlement date for a futures market, in the [market proposal](./proposals/new-market-proposal.md).
+Below, find instructions on how to submit Open Oracle data as a signed message. Markets should be configured to only use the data at the relevant time, such as after a defined settlement date, in the [market proposal](./proposals/new-market-proposal.md).
 
 ### 1. Obtain an Open Oracle message
 
@@ -263,7 +154,7 @@ The [Oracle Data list REST endpoint](../api/rest/data-v2/trading-data-service-li
 [JSON ↗](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON) messages are a simpler, more configurable alternative to Open Oracle data. They can be totally custom objects, as long as they are valid JSON. As they are not attested by any off-chain source in the way that Open Oracle messages are, and so it's generally advisable to check for an Open Oracle price source before choosing JSON data. The Vega key that signs the message will be referred to as the source for the data. 
 
 ### Using JSON signed message data in a market proposal
-For the binding, use the `name` field of the data. In the following example, a futures market is settled based on the number of people who have walked on the moon.
+For the binding, use the `name` field of the data. In the following example, the market is settled based on the number of people who have walked on the moon.
 
 ```javascript
 "dataSourceSpecBinding": {
@@ -373,7 +264,7 @@ vegawallet.exe transaction send \
 The [Oracle Data list REST endpoint](../api/rest/data-v2/trading-data-service-list-oracle-data) shows previous data submissions, which can be useful for confirming that a data submission was successful, and/or determining the fields that a market's data source spec requires.
 
 ## Built-in data source
-Vega provides a timestamp source, which is useful for terminating a futures market at a set date. `vegaprotocol.builtin.timestamp` provides a Unix timestamp of the Vega time, which is to say the time agreed via consensus.
+Vega provides a timestamp source, which is useful for terminating a market at a set date. `vegaprotocol.builtin.timestamp` provides a Unix timestamp of the Vega time, which is to say the time agreed via consensus.
 
 As the name implies, a built in data source is generated inside Vega, and cannot be submitted by other keys.
 
@@ -399,5 +290,5 @@ When using the built-in time source, **use greater than or equals**, rather than
 }
 ```
 
-This spec would make the futures market cease trading when the built-in time data source posted a Vega timestamp update that was on or after Thu Mar 31 2022 at 00:00:00.
+This spec would make the market cease trading when the built-in time data source posted a Vega timestamp update that was on or after Thu Mar 31 2022 at 00:00:00.
 
