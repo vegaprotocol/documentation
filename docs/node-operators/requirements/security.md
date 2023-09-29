@@ -38,7 +38,7 @@ Over time a user will be able to understand when things are running inside norma
 
 ## Exposing APIs
 
-We do not recommend to expose any API from the validator. If you wish to expose the Vega API, please consider starting the separate non-validator vega-core and data node. You can expose the API from the data node. To securely expose the data node APIs, please read the [Secure data node documentation](./data-node-security.md)
+We do not recommend exposing any APIs from the validator node. If you wish to expose the Vega API, start a separate non-validator node alongside a data node, and use the data node to expose APIs. For more on securely exposing the data node APIs, please read the [Secure data node documentation](./data-node-security.md)
 
 ## Best practices for Tendermint
 Read about the best practices for using Tendermint with your node. 
