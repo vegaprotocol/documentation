@@ -2,8 +2,8 @@
   ```javascript
 {
  rationale: {
-  title: "Lorem Ipsum perp",
-  description: "A perpetual settled with an Ethereum oracle"
+  title: "Lorem Ipsum successor",
+  description: "A successor market"
  },
  terms: {
   newMarket: {
@@ -130,8 +130,8 @@
 
       // Optional new futures market metadata, tags.
       metadata: [
-       "enactment:2023-10-19T19:08:49Z",
-       "settlement:2023-10-18T19:08:49Z",
+       "enactment:2023-10-19T19:46:02Z",
+       "settlement:2023-10-18T19:46:02Z",
        "source:docs.vega.xyz"
       ],
 
@@ -199,11 +199,11 @@
 
    // Timestamp as Unix time in seconds when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-   closingTimestamp: 1697652529,
+   closingTimestamp: 1697654762,
 
    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-   enactmentTimestamp: 1697738929,
+   enactmentTimestamp: 1697741162,
   }
  }
 ```

@@ -212,8 +212,8 @@ function newPerpetualMarket(skeleton, proposalSoFar) {
 
   const result = {
     rationale: {
-      title: `Lorem Ipsum market successor`,
-      description: `A successor to nnnnn`,
+      title: `Lorem Ipsum perpetual`,
+      description: `An orange perpetual market`,
     },
     terms: {
       newMarket: {

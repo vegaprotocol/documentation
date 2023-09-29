@@ -28,8 +28,8 @@ function newSuccessorMarket(skeleton, proposalSoFar) {
 
   const result = {
     rationale: {
-      title: `Lorem Ipsum perp`,
-      description: `A perpetual settled with an Ethereum oracle`,
+      title: `Lorem Ipsum successor`,
+      description: `A successor market`,
     },
     terms: {
       newMarket: {
