@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Propose new perpetual market
+title: Propose new perpetuals market
 hide_title: false
 vega_network: TESTNET
 keywords:
@@ -26,17 +26,8 @@ import TabItem from '@theme/TabItem';
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
 * A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true}/>   (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
-* Familiarity with [successor market governance](../../concepts/governance.md#propose-a-successor-market) on Vega
-
-## Anatomy of a new successor market proposal
-The new successor market proposal requires the same fields as a new market proposal, with the addition of two fields described below. 
-
-See the [new market proposal tutorial](new-market-proposal.md#anatomy-of-a-market-proposal) for what each field accepts and needs to contain.
-
-* Settlement asset must match that of the parent market.
-* Instrument name and code should be different to the parent market.
-
-### Perpeuals market fields
+* Familiarity with [governance](../../concepts/governance.md) on Vega
+* Familiarity with using [Ethereum to provide data](../using-data-sources.md#ethereum-oracles)
 
 ## Templates and submitting
 In the tabs below you'll see:

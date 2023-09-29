@@ -26,6 +26,7 @@ Settlement, or the process of moving collateral between accounts, happens on a f
 * [Settlement](./settlement.md)
 * [Market lifecycle](./market-lifecycle.md)
 * [Positions and margin](./positions-margin.md)
+* [Tutorial: Propose a futures market](../../tutorials/proposals/new-market-proposal.md)
 :::
 
 ## Perpetual futures
@@ -54,3 +55,10 @@ They include:
 
 ### Margin calculations
 The margin calculations for perpetual futures markets contain an additional parameter to capture the exposure of a given position to an upcoming funding payment. The margin funding factor that determines to what degree the funding payment amount impacts a trader's maintenance margin is also defined in the market proposal. This additional term can only increase the margin requirement if a given position is expected to make a payment at the end of the current funding period, but it will never decrease the margin requirement, even if party is expecting to receive a funding payment.
+
+
+:::note Read more 
+* [Periodic settlement](./settlement.md#periodic-settlement-for-perpetuals)
+* [Positions and margin](./positions-margin.md)
+* [Tutorial: Propose a perpetuals market](../../tutorials/proposals/new-perpetuals-market.md)
+:::

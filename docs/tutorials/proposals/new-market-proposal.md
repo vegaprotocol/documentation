@@ -27,6 +27,10 @@ import TabItem from '@theme/TabItem';
 
 Propose a cash-settled futures market on any underlying with a settlement data source.
 
+:::tip Propose a perpetuals market
+Looking to propose a perpetuals market? See the [perpetual futures tutorial](./new-perpetuals-market.md).
+:::
+
 ## Requirements
 
 You will need:
