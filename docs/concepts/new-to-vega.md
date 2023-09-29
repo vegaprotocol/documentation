@@ -29,7 +29,7 @@ The current version of mainnet is the second decentralised phase of the Vega net
 
 * **Trade on cash-settled futures and perpetuals markets** - Trade on markets proposed and voted in by the community programmatically or by using [Console](https://console.vega.xyz) or another UI.<br/>
 * **Tokenholders can nominate validators** - Earn staking rewards for securing the network using the [governance dApp](https://governance.vega.xyz). <br/>
-* **Take part in network governance** - Tokenholders can propose and vote on new markets, as well as changes to markets and network configuration. <br/>
+* **Take part in network governance** - Tokenholders can propose and vote on new markets, as well as changes to existing markets and network configuration. <br/>
 
 You'll need a wallet that connects to the Vega network to trade, nominate validators, and take part in governance. See all the options under [apps](../tools/index.md).
 

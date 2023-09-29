@@ -5,7 +5,7 @@ hide_title: false
 description: The automated settlement process is facilitated by the protocol.
 ---
 
-Vega can be used to create cash-settled derivatives markets - futures as well as perpetual futures, meaning they are margined and settled in a single asset, as opposed to being settled in the actual (physical) underlying asset.
+Vega can be used to create cash-settled derivatives markets - futures as well as perpetual futures - meaning they are margined and settled in a single asset, as opposed to being settled in the actual (physical) underlying asset.
 
 Settlement is the process of moving collateral between accounts when:
 * a position is fully or partially closed, with settlement occurring for the closed volume
@@ -70,11 +70,11 @@ The data source for spot prices and how often the market is scheduled to use tha
 
 When a settlement schedule time is reached, the protocol calculates how much should be transferred between the parties for each open position. This is based on the provided price data for the underlying asset. The difference between the market's mark price and the spot price of the underlying asset is used to determine how much is moved between the two sides of each open position.
 
-If the perpetual price is above the spot price, the funding rate is positive and those with long positions "pay" those who are short in a position.  If the perpetual price is below the spot price, the funding rate is negative and traders with short positions lose money while those with long positions gain.
+If the perpetual price is above the spot price, the funding payment is positive and those with long positions "pay" those who are short in a position.  If the perpetual price is below the spot price, the funding payment is negative and traders with short positions lose money while those with long positions gain.
 
 The amount depends on how far apart the spot price is from the perpetual price on the Vega market.
 
-When executing the settlement for each funding period, first cashflows are collected from the parties making the payment, and then those assets are distributed to those receiving it. Any profit or loss as the result of the funding rate is only final once the position is closed, and is tracked as unrealised P&L.
+When executing the settlement for each funding period, first cashflows are collected from the parties making the payment, and then those funds are distributed to those receiving it. Any profit or loss as the result of the funding rate is only final once the position is closed, and is tracked as unrealised P&L until then.
 
 If there's a shortfall, the market's [insurance pool](./market-protections.md#insurance-pools) is used to make up the difference. If that's not possible, the protocol will trigger [loss socialisation](./market-protections.md#loss-socialisation).
 
