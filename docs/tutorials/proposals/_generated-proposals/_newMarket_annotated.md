@@ -27,10 +27,10 @@
     // Instrument configuration
     instrument: {
      // Instrument name.
-     name: "Oranges Daily",
+     name: "Apples Yearly (2022)",
 
      // Instrument code, human-readable shortcode used to describe the instrument.
-     code: "ORANGES.24h",
+     code: "APPLES.22",
 
      // Future product configuration
      future: {
@@ -130,8 +130,8 @@
 
       // Optional new futures market metadata, tags.
       metadata: [
-       "enactment:2023-10-18T17:31:01Z",
-       "settlement:2023-10-17T17:31:01Z",
+       "enactment:2023-10-19T19:08:49Z",
+       "settlement:2023-10-18T19:08:49Z",
        "source:docs.vega.xyz"
       ],
 
@@ -215,11 +215,11 @@
 
    // Timestamp as Unix time in seconds when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-   closingTimestamp: 1697560261,
+   closingTimestamp: 1697652529,
 
    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-   enactmentTimestamp: 1697646661,
+   enactmentTimestamp: 1697738929,
   }
  }
 ```

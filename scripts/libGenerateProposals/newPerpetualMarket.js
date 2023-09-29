@@ -54,6 +54,44 @@ function generatePerpetualSettlementDataSourceSpec(skeleton) {
     }
   }
 
+  const ex = skeleton[p].external.description.split('\n')
+
+  spec[inspect.custom] = () => {
+    return `{
+          // ${ex[0]} 
+          // ${ex[1]} 
+          "external": {
+
+            // ${skeleton[p].external[p].ethOracle.description}
+            "ethOracle": {
+               // ${skeleton[p].external[p].ethOracle[p].address.description}
+               "address": "${spec.external.ethOracle.address}",
+               // ${skeleton[p].external[p].ethOracle[p].abi.description}
+               "abi": "${spec.external.ethOracle.abi}",
+               // ${skeleton[p].external[p].ethOracle[p].method.description}
+               "method": "${spec.external.ethOracle.method}",
+               /* ${skeleton[p].external[p].ethOracle[p].normalisers.description} */
+               "normalisers": ${JSON.stringify(spec.external.ethOracle.normalisers)},
+
+               // ${skeleton[p].external[p].ethOracle[p].requiredConfirmations.title}
+               "requiredConfirmations": ${spec.external.ethOracle.requiredConfirmations},
+
+               // ${skeleton[p].external[p].ethOracle[p].trigger.description}
+               "trigger": {
+                  /* ${skeleton[p].external[p].ethOracle[p].trigger[p].timeTrigger.description} */
+                  "timeTrigger": {
+                    /* ${skeleton[p].external[p].ethOracle[p].trigger[p].timeTrigger[p].every.description} */
+                    "every": ${spec.external.ethOracle.trigger.timeTrigger.every}
+                  }
+               },
+
+                // ${skeleton[p].external[p].ethOracle[p].filters.title}
+                "filters": ${JSON.stringify(spec.external.ethOracle.filters)}
+            }
+          }
+        }`;
+  };
+
   return spec;
 }
 
@@ -64,15 +102,11 @@ function generatePerpetualDataSourceSpecBinding(skeleton) {
   };
 
   binding[inspect.custom] = () => {
-    // Brittle
-    const splitSettle =
-      skeleton[p].settlementDataProperty.description.split("\n");
     return `{
-            // ${splitSettle[0]}
-            // ${splitSettle[1]}
-            // ${splitSettle[2]} (${skeleton[p].settlementDataProperty.type})
+            /* ${skeleton[p].settlementDataProperty.description} */
             settlementDataProperty: "${binding.settlementDataProperty}",
-            // ${skeleton[p].settlementScheduleProperty.description} (${skeleton[p].settlementScheduleProperty.type})
+
+            /* ${skeleton[p].settlementScheduleProperty.description} */
             settlementScheduleProperty: "${binding.settlementScheduleProperty}"
           }`;
   };
@@ -151,10 +185,9 @@ function generatePerpetualInstrument(skeleton) {
         instrument.perpetual.dataSourceSpecForSettlementData,
         { depth: 5 }
       )},
-          // ${skeleton.properties.perpetual.properties.dataSourceSpecBinding.title
-      } (${skeleton.properties.perpetual.properties.dataSourceSpecBinding.type})
+          /* ${skeleton.properties.perpetual.properties.dataSourceSpecBinding.title} */
           dataSourceSpecBinding: ${inspect(instrument.perpetual.dataSourceSpecBinding, {
-        depth: 5,
+        depth: 10,
       })}
       }`;
   };
