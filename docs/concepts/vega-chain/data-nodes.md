@@ -100,16 +100,16 @@ The data node code's configuration includes a set of default retention time fram
 
 Whenever a data node starts up, the existing retention policy for each data type is output in the logs.
 
-### Data retention modes
-When starting a data node, your chosen retention mode will be applied. After initialisation, it's possible to change the retention mode, for example from standard to lite, by changing the retention period setting in the configuration file.
+### Data retention profiles
+When starting a data node, your chosen retention profile will be applied. After initialisation, it's possible to change the retention profile by changing the retention period setting in the configuration file.
 
-The three retention policies are: 
+The three retention profiles are: 
 
-* **Standard (default)**: The node retains data according to the default retention policies (below) of the data node
-* **Archive**: The node retains all data
-* **Lite**: The default retention policy is one day
+* **Archive (default)**: The node retains all data and is the expected and only recommended retention profile for a public data node.
+* **Minimal**: The node retains only data about a network's current state. This can be useful for private data nodes who may want to only serve live data and stream changing states.
+* **Conservative**: The node does not retain all data and per-table rentention is set based on the expected table sizes. This can be useful for private data nodes who may want a customise their per-table data rentention based on their specific usecase.
 
-**Standard data node retention times (default)** 
+**Conservative data node retention times** 
 
 | Data type                 	| Default retention 	|
 |---------------------------	|-------------------	|
@@ -138,7 +138,7 @@ The three retention policies are:
 | Blocks    	| Equal to longest retention across all data types |
 
 #### Change retention times
-From version 0.68, retention policy for any data type can be overridden by creating an entry in the config file, under the SQLStore section, as seen below. Once you change the retention policy, you will need to restart your data node.
+From version 0.68, retention policy for any data can be overridden by creating an entry in the config file, under the SQLStore section, as seen below. Once you change the retention policy, you will need to restart your data node.
 
 ```toml
 [SQLStore]
@@ -153,27 +153,9 @@ From version 0.68, retention policy for any data type can be overridden by creat
 
 ### Hypertable chunk intervals
 
-The data node uses [hypertables ↗](https://docs.timescale.com/latest/using-timescaledb/hypertables) to store data. Hypertables are a TimescaleDB feature that allows you to store large amounts of time-series data in a more efficient way than a regular PostgreSQL table. By default, the chunk interval is set in the database migration scripts and applied when the data node is created or restored.
+The data node uses [hypertables ↗](https://docs.timescale.com/latest/using-timescaledb/hypertables) to store data. Hypertables are a TimescaleDB feature that allows you to store large amounts of time-series data in a more efficient way than a regular PostgreSQL table. 
 
-**Standard data node chunk intervals (default)**
-
-| Hypertable               	| Default chunk interval 	|
-| ------------------------	| -----------------------	|
-| blocks                    | 1 day                   |
-| balances                  | 1 day                   |
-| ledger                    | 1 day                   |
-| orders                    | 1 day                   |
-| trades                    | 1 day                   |
-| market_data               | 1 day                   |
-| delegations               | 1 day                   |
-| markets                   | 1 day                   |
-| deposits                  | 1 day                   |
-| withdrawals               | 1 day                   |
-| margin_levels             | 1 day                   |
-| checkpoints               | 1 day                   |
-| positions                 | 1 day                   |
-| liquidity_provisions      | 1 day                   |
-| rewards                   | 1 day                   |
+Default values are chosen by Vega and are applied when the database migrations. They and are generally set to `1 day`. The chunk interval determines how much data is stored in each chunk and affects the amount of RAM used by the database, as recent chunks are kept in memory in order to make querying faster.
 
 #### Change chunk intervals
 
