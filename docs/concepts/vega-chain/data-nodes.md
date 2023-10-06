@@ -138,7 +138,7 @@ The three retention profiles are:
 | Blocks    	| Equal to longest retention across all data types |
 
 #### Change retention times
-From version 0.68, retention policy for any data can be overridden by creating an entry in the config file, under the SQLStore section, as seen below. Once you change the retention policy, you will need to restart your data node.
+From version 0.68, retention policy for any data type can be overridden by creating an entry in the config file, under the SQLStore section, as seen below. Once you change the retention policy, you will need to restart your data node.
 
 ```toml
 [SQLStore]

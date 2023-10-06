@@ -148,6 +148,63 @@ The two above parameters determine how your operating system manages the shared 
 If your operating system supports the POSIX standard, you may want to use the `map` value both for the `dynamic_shared_memory_type` and `shared_memory_type`. But the `sysv` value is more portable than `map`. There is no significant difference in [performance ↗](https://lists.dragonflybsd.org/pipermail/kernel/attachments/20120913/317c1aab/attachment-0001.pdf).
 
 
+## Preparing a home directory for the data node
+
+An archival data node containing the entire chain history is expected to hold a lot of data. The data saved to disk will be both the underlying block-data for the chain, and all the event data emitted by the core node for every block. For this reason it is recommended to use a file-system with compression such as `ZFS`.
+
+The below steps will walk through how to create a `ZSF` volume on an external drive that can be used as a home directory for both a data node and a core node.
+
+### Prerequisites
+
+A CLI tool is needed to create and configure `ZSF` volumes. It can be installed using the following:
+```
+apt-get update -y && apt-get install -y zfsutils-linux
+```
+
+A dedicated, external hard-drive is also needed that will store and compress all data written by the data node. Assuming this storage device is called `DEVICE_NAME` ensure that any exisiting data is removed from it:
+```
+wipefs --all -force /dev/DEVICE_NAME
+```
+
+### Creating the ZFS volume
+
+With the `ZFS` utility installed and `DEVICE_NAME` clear and ready, an initial "pool" can be created and turned into a `ZFS` volume:
+```
+# will create a pool containing DEVICE_NAME
+zpool create vega_pool /dev/DEVICE_NAME
+
+# will show the status of the newly created pool
+zpool status 
+
+# creates the zfs
+zsf create vega_pool/home
+```
+
+A mount point can then be created which can be used as a home directory, and a compression algorithm for it can then be set:
+```
+
+# create a directory where the device with be mounted
+mkdir -p /home/vega
+zfs set mountpoint="/home/vega" vega_pool/home
+
+# check the the mount point is now as expected
+zfs get mountpoint vega_pool/home
+
+# set the compression algorithm
+zfs set compression=zstd vega_pool/home
+```
+
+It is possible to further fine-tune the compression settings to your particular needs if you find this necessary. More information can be found in `ZFS`'s documentation.
+
+Finally, Postgres' configuration should be updated so that its data directory is set to the `ZFS` volume. It is also important to ensure that the Postgres process with have permissions to write to the volume:
+```
+sed -i /etc/postgresql/14/main/postgresql.conf "s/data_directory.*/data_directory = '/home/vega/postgresql'/g"
+
+# give the postgres process permissions to write to the volume
+chown -R postgres:postgres /home/vega/postgresql
+chomd 700 /home/vega/postgresql
+```
+
 ## Starting the data node from block 0
 
 If you're starting your data node from block zero, the non validator node must also be starting from block 0. If you don't already have a non validator set up, do it before continuing.
@@ -276,7 +333,7 @@ To choose a retention profile use the following flag when running the `datanode 
 
 If you want to run a private data node and are considering tweaking the per-table retention policies, this can be updated in the data node's `config.toml`.
 
-For example the below will limited data retained on `balances` to those entries created in the last 7 days:
+For example the below will limit data retained on `balances` to those entries created in the last 7 days:
 
 ```toml
 [[SQLStore.RetentionPolicies]]
