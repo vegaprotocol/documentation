@@ -145,7 +145,7 @@
        must be a strictly non - negative real number.(number) tau: 0.0001140771161,
 
        // Risk Aversion Parameter. (double as number)
-       riskAversionParameter: "0.0001",
+       riskAversionParameter: "0.001",
 
        // Risk model parameters for log normal
        params: {
@@ -180,11 +180,11 @@
 
     // Timestamp as Unix time in seconds when voting closes for this proposal,
     // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-    closingTimestamp: 1697658339,
+    closingTimestamp: 1698595571,
 
     // Timestamp as Unix time in seconds when proposal gets enacted if passed,
     // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-    enactmentTimestamp: 1697744739,
+    enactmentTimestamp: 1698681971,
    }
   }
 ```

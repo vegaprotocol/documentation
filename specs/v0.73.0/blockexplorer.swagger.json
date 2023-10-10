@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Vega block explorer APIs",
-    "version": "v0.73.0-preview.6"
+    "version": "v0.73.0-preview.12"
   },
   "tags": [
     {
@@ -948,20 +948,6 @@
         "fee": {
           "type": "string",
           "description": "Nominated liquidity fee factor, which is an input to the calculation of taker fees on the market, as per setting fees and rewarding liquidity providers."
-        },
-        "sells": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/vegaLiquidityOrder"
-          },
-          "description": "Set of liquidity sell orders to meet the liquidity provision obligation."
-        },
-        "buys": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/vegaLiquidityOrder"
-          },
-          "description": "Set of liquidity buy orders to meet the liquidity provision obligation."
         },
         "reference": {
           "type": "string",
@@ -3459,7 +3445,7 @@
         "endOfProgramTimestamp": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp as Unix time in seconds after which when the current epoch ends, the\nprogram's status will become STATE_CLOSED and benefits will be disabled."
+          "description": "Timestamp as Unix time in seconds, after which when the current epoch\nends, the programs will end and benefits will be disabled."
         },
         "windowLength": {
           "type": "string",

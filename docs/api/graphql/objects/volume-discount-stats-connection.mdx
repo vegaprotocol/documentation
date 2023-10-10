@@ -1,0 +1,43 @@
+---
+id: volume-discount-stats-connection
+title: VolumeDiscountStatsConnection
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Connection type for retrieving cursor-based paginated volume discount statistics information
+
+```graphql
+type VolumeDiscountStatsConnection {
+  edges: [VolumeDiscountStatsEdge]!
+  pageInfo: PageInfo!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>VolumeDiscountStatsConnection.<b>edges</b></code>](#)<Bullet />[`[VolumeDiscountStatsEdge]!`](/testnet/api/graphql/objects/volume-discount-stats-edge) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The volume discount statistics in this connection
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>VolumeDiscountStatsConnection.<b>pageInfo</b></code>](#)<Bullet />[`PageInfo!`](/testnet/api/graphql/objects/page-info) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The pagination information
+> 
+
+
+
+### Returned by
+
+[`volumeDiscountStats`](/testnet/api/graphql/queries/volume-discount-stats)  <Badge class="secondary" text="query"/>
+
+
+

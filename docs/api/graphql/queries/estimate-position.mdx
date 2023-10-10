@@ -21,6 +21,7 @@ estimatePosition(
   openVolume: String!
   orders: [OrderInfo!]
   collateralAvailable: String
+  scaleLiquidationPriceToMarketDecimals: Boolean
 ): PositionEstimate
 ```
 
@@ -41,6 +42,10 @@ estimatePosition(
 
 #### [<code style={{ fontWeight: 'normal' }}>estimatePosition.<b>collateralAvailable</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
 > Optional argument specifying collateral available for the position, if provided then response will contain the liquidation price estimate
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>estimatePosition.<b>scaleLiquidationPriceToMarketDecimals</b></code>](#)<Bullet />[`Boolean`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> Optional argument specifying if liquidation price estimates should be scaled to market decimal places, returned in asset decimal places by default
 > 
 
 ### Type
