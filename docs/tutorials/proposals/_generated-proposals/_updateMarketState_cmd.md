@@ -14,8 +14,8 @@
      "price": "123456"
     }
    },
-   "closingTimestamp": 1698595571,
-   "enactmentTimestamp": 1698681971
+   "closingTimestamp": 1698601456,
+   "enactmentTimestamp": 1698687856
   }
  }
 }'
