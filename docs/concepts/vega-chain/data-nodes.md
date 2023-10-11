@@ -106,8 +106,8 @@ When starting a data node, your chosen retention profile will be applied. After 
 The three retention profiles are: 
 
 * **Archive (default)**: The node retains all data and is the expected and only recommended retention profile for a public data node.
-* **Minimal**: The node retains only data about a network's current state. This can be useful for private data nodes who may want to only serve live data and stream changing states.
-* **Conservative**: The node does not retain all data and per-table rentention is set based on the expected table sizes. This can be useful for private data nodes who may want a customise their per-table data rentention based on their specific usecase.
+* **Minimal**: The node retains only data about a network's current state. This can be useful for private data nodes that will be used to serve live data and stream changing states.
+* **Conservative**: The node does not retain all data and per-table rentention is set based on the defaults below. This can be useful for private data nodes who may want a customise their per-table data rentention based on their specific usecase.
 
 **Conservative data node retention times** 
 
@@ -155,7 +155,7 @@ From version 0.68, retention policy for any data type can be overridden by creat
 
 The data node uses [hypertables ↗](https://docs.timescale.com/latest/using-timescaledb/hypertables) to store data. Hypertables are a TimescaleDB feature that allows you to store large amounts of time-series data in a more efficient way than a regular PostgreSQL table. 
 
-Default values are chosen by Vega and are applied when the database migrations. They and are generally set to `1 day`. The chunk interval determines how much data is stored in each chunk and affects the amount of RAM used by the database, as recent chunks are kept in memory in order to make querying faster.
+The pre-determined default values are applied when the database migrations. They are generally set to `1 day`. The chunk interval determines how much data is stored in each chunk and affects the amount of RAM used by the database, as recent chunks are kept in memory in order to make querying faster.
 
 #### Change chunk intervals
 
