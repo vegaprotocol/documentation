@@ -10,7 +10,7 @@ A Vega block explorer is a powerful tool for navigating and understanding the bl
 The above application provides users a comprehensive view of the Vega network through a REST and GRPC API.
 
 A vega block explorer offers Transaction Tracking - You can search for specific transactions by providing transaction IDs, wallet addresses, or other relevant criteria. 
-However, combining the blockexplorer API with the Tendermint API, you can get much more information about the vega network(see web server config and examples below).
+However, by combining the blockexplorer API with the Tendermint API, you can get much more information about the vega network(see web server config and examples below).
 
 ## The design of the block explorer
 
