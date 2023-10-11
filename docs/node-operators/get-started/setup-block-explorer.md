@@ -67,21 +67,30 @@ You should be able to use the following credentials in your configs below:
 
 ## Setup a block explorer
 
-### 1. Download vega binary
+### 1. Download vega and visor binary
 
-Download the vega binary from the [Vega release page](https://github.com/vegaprotocol/vega/releases) - Check the version of vega mainnet on one of the mainnet server, e.g: [https://api0.vega.community/statistics](https://api0.vega.community/statistics)
+Download the vega binary from the [Vega release page](https://github.com/vegaprotocol/vega/releases). 
+
+:::note Mainnet version
+You have to download the binary for version, network has been started from block 0. For mainnet the binary version is [v0.71.4](https://github.com/vegaprotocol/vega/releases/tag/v0.72.4)
+:::
 
 ```shell
-wget https://github.com/vegaprotocol/vega/releases/download/v0.72.14/vega-linux-amd64.zip
+wget https://github.com/vegaprotocol/vega/releases/download/v0.72.4/vega-linux-amd64.zip
+wget https://github.com/vegaprotocol/vega/releases/download/v0.72.4/visor-linux-amd64.zip
 ```
 
 Then unzip it and check the version
 
 ```shell
 unzip vega-linux-amd64.zip
+unzip visor-linux-amd64.zip 
 
 ./vega version
 Vega CLI v0.72.14 (282fe5a94609406fd638cc1087664bfacb8011bf)
+
+./visor version
+Vega Visor CLI v0.72.4 (c185c1e310ca07d93aa35f43b83e3eeca22e6895)
 ```
 
 ### 2. Init non validator vega-node
@@ -91,6 +100,7 @@ We want to have the non-validator node, so We do not have to init all of the wal
 ```shell
 mkdir vega_home tendermint_home blockexplorer_home
 
+./visor init --home ./vegavisor_home
 ./vega init --home ./vega_home full
 ./vega tm init --home ./tendermint_home 
 ./vega blockexplorer init --home ./blockexplorer_home
@@ -104,6 +114,10 @@ We need to download the [genesis.json](https://raw.githubusercontent.com/vegapro
 wget --output-document ./tendermint_home/config/genesis.json https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/
 genesis.json
 ```
+
+### 4. Update the visor config file
+
+
 
 ### 4. Update the blockexplorer config
 
@@ -120,7 +134,7 @@ Update the following parameters in the block explorer config file located at: `<
     SocketDir = ""
 ```
 
-### Update the tendermint config
+### 5. Update the tendermint config
 
 Update the following parameters in the tendermint config file located at `<tendermint-home>/config/config.toml``:
 
@@ -171,3 +185,11 @@ index_all_keys = false
 :::note Other parameters
 Leave all other parameters with default values.
 :::
+
+### 6. Init the blockexplorer database
+
+The `vega blockexplorer init-db` command create database schema and prepares all indexes to optimize the database for the blockexplorer API.
+
+```shell
+./vega blockexplorer init-db --home ./blockexplorer_home 
+```
