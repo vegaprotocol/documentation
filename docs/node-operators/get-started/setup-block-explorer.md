@@ -69,15 +69,15 @@ You should be able to use the following credentials in your configs below:
 
 ### 1. Download vega and visor binary
 
-Download the vega binary from the [Vega release page](https://github.com/vegaprotocol/vega/releases). 
+Download the vega binary from the [Vega release page](https://github.com/vegaprotocol/vega/releases).
 
 :::note Mainnet version
-You have to download the binary for version, network has been started from block 0. For mainnet the binary version is [v0.71.4](https://github.com/vegaprotocol/vega/releases/tag/v0.72.4)
+You have to download the binary for version, network has been started from block 0. For mainnet the binary version is [v0.71.4](https://github.com/vegaprotocol/vega/releases/tag/v0.71.4)
 :::
 
 ```shell
-wget https://github.com/vegaprotocol/vega/releases/download/v0.72.4/vega-linux-amd64.zip
-wget https://github.com/vegaprotocol/vega/releases/download/v0.72.4/visor-linux-amd64.zip
+wget https://github.com/vegaprotocol/vega/releases/download/v0.71.4/vega-linux-amd64.zip
+wget https://github.com/vegaprotocol/vega/releases/download/v0.71.4/visor-linux-amd64.zip
 ```
 
 Then unzip it and check the version
@@ -87,10 +87,10 @@ unzip vega-linux-amd64.zip
 unzip visor-linux-amd64.zip 
 
 ./vega version
-Vega CLI v0.72.14 (282fe5a94609406fd638cc1087664bfacb8011bf)
+Vega CLI v0.71.4 (61d1f77ee360bf1679d5eb0e0efdb1cce977c9db)
 
 ./visor version
-Vega Visor CLI v0.72.4 (c185c1e310ca07d93aa35f43b83e3eeca22e6895)
+Vega Visor CLI v0.71.4 (61d1f77ee360bf1679d5eb0e0efdb1cce977c9db)
 ```
 
 ### 2. Init non validator vega-node
@@ -117,9 +117,46 @@ genesis.json
 
 ### 4. Update the visor config file
 
+The config file is located at: `<vegavisor_home>/config.toml`.
 
+```toml
+maxNumberOfFirstConnectionRetries = 43200
+```
 
-### 4. Update the blockexplorer config
+### 5. Update the visor run-config for genesis binary
+
+The config file is located at: `<vegavisor_home>/genesis/run-config.toml`. Replace the entire content of the file with:
+
+```toml
+name = "genesis"
+
+[vega]
+  [vega.binary]
+    path = "vega"
+    args = [
+      "start",
+      "--home", "<absolute_path_to_vega_home>",
+      "--tendermint-home", "<absolute_path_to_tendermint_home>",
+          ]
+  [vega.rpc]
+    socketPath = "/tmp/vega.sock"
+    httpPath = "/rpc"
+```
+
+### 6. Copy vega binary to the genesis config directory for the visor
+
+```shell
+cp ./vega <vegavisor_home>/genesis/vega
+```
+
+Make sure version is correct:
+
+```shell
+./vegavisor_home/genesis/vega version
+Vega CLI v0.71.4 (61d1f77ee360bf1679d5eb0e0efdb1cce977c9db)
+```
+
+### 7. Update the blockexplorer config
 
 Update the following parameters in the block explorer config file located at: `<blockexplorer-home>/config/blockexplorer/config.toml`
 
@@ -134,7 +171,7 @@ Update the following parameters in the block explorer config file located at: `<
     SocketDir = ""
 ```
 
-### 5. Update the tendermint config
+### 8. Update the tendermint config
 
 Update the following parameters in the tendermint config file located at `<tendermint-home>/config/config.toml``:
 
@@ -186,10 +223,40 @@ index_all_keys = false
 Leave all other parameters with default values.
 :::
 
-### 6. Init the blockexplorer database
+### 9. Init the blockexplorer database
 
 The `vega blockexplorer init-db` command create database schema and prepares all indexes to optimize the database for the blockexplorer API.
 
 ```shell
 ./vega blockexplorer init-db --home ./blockexplorer_home 
 ```
+
+### 10. Start vega node with the vegavisor command
+
+```shell
+./visor run --home ./vegavisor_home
+```
+
+Wait a coupe of minutes untill your node start processing blocks, before you move to the next step.
+
+:::Hint
+See code snippets below to setup systemd for your vega-node
+:::
+
+:::Warrning
+It will take at least several hours to replay entire network
+:::
+
+### 11. Start the block explorer service
+
+```shell
+./vega blockexplorer start --home ./blockexplorer_home
+```
+
+### 12. Verify the block explorer works well
+
+```shell
+curl -s localhost:1515/rest/transactions | jq
+```
+
+You should get non-empty response for the above command.
