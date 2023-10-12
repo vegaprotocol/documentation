@@ -65,15 +65,27 @@ You should be able to use the following credentials in your configs below:
 - Database name: `tendermint_db`
 :::
 
+## Full history vs specific history span
+
+Your node must replay from block 0 to get the full-history in your vega block explorer. The replay process for entire network history may take up to several days. You can start your node from a specific snapshot(height) if you do not need a full-history for the transactions. Each vega node creates snapshots on exactly every few hundred blocks(defined by the network-parameter). You need access to the vega node, which have a specific snapshot you want to use. Example nodes/endpoints you may use to find snapshots are:
+
+- [api0.vega.community/api/v2/snapshots](https://api0.vega.community/api/v2/snapshots)
+- [api1.vega.community/api/v2/snapshots](https://api1.vega.community/api/v2/snapshots)
+- [api3.vega.community/api/v2/snapshots](https://api3.vega.community/api/v2/snapshots)
+
+:::note
+You may find more publically available nodes on the [GitHub repository](https://github.com/vegaprotocol/networks/blob/master/mainnet1/mainnet1.toml).
+:::
+
 ## Setup a block explorer
 
 ### 1. Download vega and visor binary
 
+<Tabs groupId="restart-way">
+<TabItem value="block-0" label="Restart from block 0">
 Download the vega binary from the [Vega release page](https://github.com/vegaprotocol/vega/releases).
 
-:::note Mainnet version
 You have to download the binary for version, network has been started from block 0. For mainnet the binary version is [v0.71.4](https://github.com/vegaprotocol/vega/releases/tag/v0.71.4)
-:::
 
 ```shell
 wget https://github.com/vegaprotocol/vega/releases/download/v0.71.4/vega-linux-amd64.zip
@@ -92,6 +104,66 @@ Vega CLI v0.71.4 (61d1f77ee360bf1679d5eb0e0efdb1cce977c9db)
 ./visor version
 Vega Visor CLI v0.71.4 (61d1f77ee360bf1679d5eb0e0efdb1cce977c9db)
 ```
+
+</TabItem>
+<TabItem value="remote-snapshot" label="Restart from specific block">
+Download the vega binary from the [Vega release page](https://github.com/vegaprotocol/vega/releases).
+
+To find the version required for restart, first you must select the restart block. Visit the [/api/v2/snapshots endpoint of the data-node API](https://api0.vega.community/api/v2/snapshots) and find block you want to restart from.
+
+Let's say We have the following response:
+
+```json
+{
+    "coreSnapshots": {
+        "edges": [
+            {
+                "node": {
+                    "blockHeight": "18591101",
+                    "blockHash": "11a12f24de801d8c21dae5372e3914a05d15fe15a1316276d7af27896127d246",
+                    "coreVersion": "v0.72.14",
+                    "protocolUpgradeBlock": false
+                },
+                "cursor": "eyJWZWdhVGltZSI6IjIwMjMtMTAtMTJUMTE6NDg6MjkuOTA3OTI0WiIsIkJsb2NrSGVpZ2h0IjoxODU5MTEwMSwiQmxvY2tIYXNoIjoiMTFhMTJmMjRkZTgwMWQ4YzIxZGFlNTM3MmUzOTE0YTA1ZDE1ZmUxNWExMzE2Mjc2ZDdhZjI3ODk2MTI3ZDI0NiIsIlZlZ2FDb3JlVmVyc2lvbiI6InYwLjcyLjE0In0="
+            },
+            {
+                "node": {
+                    "blockHeight": "18590801",
+                    "blockHash": "9997f0583706516543b9194bb1bb791f163c0c3c02678376fe8e4ba00a2149bc",
+                    "coreVersion": "v0.72.14",
+                    "protocolUpgradeBlock": false
+                },
+                "cursor": "eyJWZWdhVGltZSI6IjIwMjMtMTAtMTJUMTE6NDU6MTEuODA3NTAzWiIsIkJsb2NrSGVpZ2h0IjoxODU5MDgwMSwiQmxvY2tIYXNoIjoiOTk5N2YwNTgzNzA2NTE2NTQzYjkxOTRiYjFiYjc5MWYxNjNjMGMzYzAyNjc4Mzc2ZmU4ZTRiYTAwYTIxNDliYyIsIlZlZ2FDb3JlVmVyc2lvbiI6InYwLjcyLjE0In0="
+            },
+            ...
+            ...
+            ...
+        ]
+    }
+}
+```
+
+Let's assume for this tutorial's purposes, We want to start our node from block `18591101`. The version for that block, you have to download is `v0.72.14`. We must also note the `blockHash` value, which we have to put in the tendermint config later in this instruction.
+
+```shell
+wget https://github.com/vegaprotocol/vega/releases/download/v0.72.14/vega-linux-amd64.zip
+wget https://github.com/vegaprotocol/vega/releases/download/v0.72.14/visor-linux-amd64.zip
+```
+
+Then unzip it and check the version
+
+```shell
+unzip vega-linux-amd64.zip
+unzip visor-linux-amd64.zip 
+
+./vega version
+Vega CLI v0.72.14 (282fe5a94609406fd638cc1087664bfacb8011bf)
+
+./visor version
+Vega Visor CLI v0.72.14 (282fe5a94609406fd638cc1087664bfacb8011bf)
+
+</TabItem>
+</Tabs>
 
 ### 2. Init non validator vega-node
 
@@ -125,6 +197,8 @@ maxNumberOfFirstConnectionRetries = 43200
 
 ### 5. Update the visor run-config for genesis binary
 
+<Tabs groupId="restart-way">
+<TabItem value="block-0" label="Restart from block 0">
 The config file is located at: `<vegavisor_home>/genesis/run-config.toml`. Replace the entire content of the file with:
 
 ```toml
@@ -143,18 +217,72 @@ name = "genesis"
     httpPath = "/rpc"
 ```
 
-### 6. Copy vega binary to the genesis config directory for the visor
+Link the genesis folder `<vegavisor_home>/current`
 
 ```shell
-cp ./vega <vegavisor_home>/genesis/vega
+ln -s <vegavisor_home>/genesis <vegavisor_home>/current
+```
+
+</TabItem>
+<TabItem value="remote-snapshot" label="Restart from specific block">
+Create folder in the `<vegavisor_home>` specific for your binary version. In our case we selected 
+
+```shell
+v0.72.14`: `mkdir -p <vegavisor_home>/v0.72.14
+```
+
+Create the `<vegavisor_home>/v0.72.14/run-config.toml` file with the below content:
+
+```toml
+name = "v0.72.14"
+
+[vega]
+  [vega.binary]
+    path = "vega"
+    args = [
+      "start",
+      "--home", "<absolute_path_to_vega_home>",
+      "--tendermint-home", "<absolute_path_to_tendermint_home>",
+          ]
+  [vega.rpc]
+    socketPath = "/tmp/vega.sock"
+    httpPath = "/rpc"
+```
+
+Link created folder (`<vegavisor_home>/v0.72.14`) to `<vegavisor_home>/current`
+
+```shell
+ln -s <vegavisor_home>/v0.72.14 <vegavisor_home>/current
+```
+
+</TabItem>
+</Tabs>
+
+### 6. Copy vega binary to the current config directory for the visor
+
+```shell
+cp ./vega <vegavisor_home>/current/vega
 ```
 
 Make sure version is correct:
 
+
+<Tabs groupId="restart-way">
+<TabItem value="block-0" label="Restart from block 0">
 ```shell
-./vegavisor_home/genesis/vega version
+./vegavisor_home/current/vega version
 Vega CLI v0.71.4 (61d1f77ee360bf1679d5eb0e0efdb1cce977c9db)
 ```
+
+</TabItem>
+<TabItem value="remote-snapshot" label="Restart from specific block">
+```shell
+./vegavisor_home/current/vega version
+Vega CLI v0.72.14 (282fe5a94609406fd638cc1087664bfacb8011bf)
+```
+
+</TabItem>
+</Tabs>
 
 ### 7. Update the blockexplorer config
 
@@ -198,6 +326,7 @@ cache_size = 20000
 max_batch_bytes = 10485760
 
 [statesync]
+rpc_servers = "api0.vega.community:26657,api1.vega.community:26657,api2.vega.community:26657,api3.vega.community:26657"
 trust_period = "744h0m0s"
 discovery_time = "30s"
 chunk_request_timeout = "30s"
@@ -219,11 +348,61 @@ psql-conn = "postgresql://<psql_username>:<psql_password>@<psql_server_host>:543
 index_all_keys = false
 ```
 
+:::note Snapshot restart
+When you reastart from the remote snapshot at specific block, put also the following values:
+
+```toml
+[statesync]
+enable = true
+trust_hash = "<block-hash-for-the-snapshot>"
+trust_height = <block-height-for-the-snapshot>
+```
+
+In the step 1. of this tutorial We selected the following values:
+
+```toml
+[statesync]
+enable = true
+trust_hash = "11a12f24de801d8c21dae5372e3914a05d15fe15a1316276d7af27896127d246"
+trust_height = 18591101
+```
+
+:::
+
 :::note Other parameters
 Leave all other parameters with default values.
 :::
 
-### 9. Init the blockexplorer database
+### 9. Update vega config
+
+<Tabs groupId="restart-way">
+<TabItem value="block-0" label="Restart from block 0">
+You do not need to modify this config file if you start from block 0.
+
+</TabItem>
+<TabItem value="remote-snapshot" label="Restart from specific block">
+Update the config file located at `<vega_home>/config/node/config.toml`
+
+```toml
+[Snapshot]
+  StartHeight = <block-height-for-the-snapshot>
+```
+
+For our selected snapshot it will be:
+
+```toml
+[Snapshot]
+  StartHeight = 18591101
+```
+
+:::note Default value
+Remember default value for the `Snapshot.StartHeight` parameter
+:::
+
+</TabItem>
+</Tabs>
+
+### 10. Init the blockexplorer database
 
 The `vega blockexplorer init-db` command create database schema and prepares all indexes to optimize the database for the blockexplorer API.
 
@@ -231,7 +410,7 @@ The `vega blockexplorer init-db` command create database schema and prepares all
 ./vega blockexplorer init-db --home ./blockexplorer_home 
 ```
 
-### 10. Start vega node with the vegavisor command
+### 11. Start vega node with the vegavisor command
 
 ```shell
 ./visor run --home ./vegavisor_home
@@ -247,16 +426,163 @@ See code snippets below to setup systemd for your vega-node
 It will take at least several hours to replay entire network
 :::
 
-### 11. Start the block explorer service
+### 12. Start the block explorer service
 
 ```shell
 ./vega blockexplorer start --home ./blockexplorer_home
 ```
 
-### 12. Verify the block explorer works well
+### 13. Verify the block explorer works well
 
 ```shell
 curl -s localhost:1515/rest/transactions | jq
 ```
 
 You should get non-empty response for the above command.
+
+### 14. Restore config changes to default value
+
+
+<Tabs groupId="restart-way">
+<TabItem value="block-0" label="Restart from block 0">
+You do not need to execute this step for replaying from block 0
+
+</TabItem>
+<TabItem value="remote-snapshot" label="Restart from specific block">
+For the vega config located at `<vega_home>/config/node/config.toml`, restore the original value fo the `Snapshot.StartHeight`.
+Disable state sync by setting `statesync.enable = false` in the tendermint config located at `<tendermint_home>/config/config.toml`.
+</TabItem>
+</Tabs>
+
+## Useful code snippets
+
+### Systemd for vegavisor
+
+The config file usually should be located at: `/lib/systemd/system/vegavisor.service`
+
+```conf
+[Unit]
+Description=vegavisor
+Documentation=https://github.com/vegaprotocol/vega
+After=network.target network-online.target
+Requires=network-online.target
+
+[Service]
+User=vega
+Group=vega
+ExecStart="<absolute-path-to-the-visor-binary>" run --home "<absolute-path-to-the-vegavisor-home>"
+TimeoutStopSec=10s
+LimitNOFILE=1048576
+LimitNPROC=512
+PrivateTmp=false
+ProtectSystem=full
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+
+[Install]
+WantedBy=multi-user.target
+```
+
+### Systemd for blockexplorer
+
+The config file usually should be located at: `/lib/systemd/system/blockexplorer.service`
+
+```conf
+[Unit]
+Description=blockexplorer
+Documentation=https://github.com/vegaprotocol/vega
+After=network.target network-online.target
+Requires=network-online.target
+
+[Service]
+User=vega
+Group=vega
+ExecStart="<absolute-path-to-the-vega-binary>" blockexplorer start --home "<absolute-path-to-the-vega-home>"
+TimeoutStopSec=10s
+LimitNOFILE=1048576
+LimitNPROC=512
+PrivateTmp=false
+ProtectSystem=full
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+
+[Install]
+WantedBy=multi-user.target
+```
+
+### Caddy config
+
+Caddy file provide TLS termination for the tendermint and blockexplorer API.
+
+```caddyfile
+{
+    email admin@yourdomain.com
+    order replace after encode
+
+    servers {
+        metrics
+    }
+}
+
+
+
+your-block-explorer-domain.com:443 {
+    # (gRPC is direct to 3002)
+
+    # REST core
+    route / {
+        reverse_proxy http://localhost:3003
+    }
+    route /* {
+        reverse_proxy http://localhost:3003
+    }
+
+    # Block Explorer
+    route /grpc* {
+        reverse_proxy http://localhost:1515
+    }
+
+    route /rest* {
+        reverse_proxy http://localhost:1515
+    }
+
+    # Tendermint
+    route /status {
+        reverse_proxy http://localhost:26657
+    }
+
+    route /genesis {
+        reverse_proxy http://localhost:26657
+    }
+
+    route /blockchain {
+        reverse_proxy http://localhost:26657
+    }
+
+    route /validators {
+        reverse_proxy http://localhost:26657
+    }
+
+    route /block {
+        reverse_proxy http://localhost:26657
+    }
+
+    route /tx_search {
+        reverse_proxy http://localhost:26657
+    }
+
+    route /unconfirmed_txs {
+        reverse_proxy http://localhost:26657
+    }
+
+    route /websocket {
+        @websockets {
+            header Connection *Upgrade*
+            header Upgrade websocket
+        }
+        reverse_proxy @websockets localhost:26657
+    }
+
+    route /* {
+        reverse_proxy http://localhost:3003
+    }
+}
+```
