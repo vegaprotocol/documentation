@@ -1,0 +1,53 @@
+---
+id: volume-discount-stats
+title: VolumeDiscountStats
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+No description
+
+```graphql
+type VolumeDiscountStats {
+  atEpoch: Int!
+  partyId: ID!
+  discountFactor: String!
+  runningVolume: String!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>VolumeDiscountStats.<b>atEpoch</b></code>](#)<Bullet />[`Int!`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Epoch at which the statistics are updated.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>VolumeDiscountStats.<b>partyId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Unique ID of the party.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>VolumeDiscountStats.<b>discountFactor</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Discount factor applied to the party.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>VolumeDiscountStats.<b>runningVolume</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Party's running volume.
+> 
+
+
+
+### Member of
+
+[`VolumeDiscountStatsEdge`](/testnet/api/graphql/objects/volume-discount-stats-edge)  <Badge class="secondary" text="object"/>
+
+
+

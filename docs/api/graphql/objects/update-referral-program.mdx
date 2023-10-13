@@ -17,40 +17,32 @@ No description
 
 ```graphql
 type UpdateReferralProgram {
-  version: Int!
-  id: ID!
   benefitTiers: [BenefitTier!]!
-  stakingTiers: [StakingTier!]!
-  endOfProgramTimestamp: Timestamp!
+  endOfProgramTimestamp: String!
   windowLength: Int!
+  stakingTiers: [StakingTier!]!
 }
 ```
 
 
 ### Fields
 
-#### [<code style={{ fontWeight: 'normal' }}>UpdateReferralProgram.<b>version</b></code>](#)<Bullet />[`Int!`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> Current version of the referral program
-> 
-
-#### [<code style={{ fontWeight: 'normal' }}>UpdateReferralProgram.<b>id</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> ID of the proposal that created the referral program
-> 
-
 #### [<code style={{ fontWeight: 'normal' }}>UpdateReferralProgram.<b>benefitTiers</b></code>](#)<Bullet />[`[BenefitTier!]!`](/testnet/api/graphql/objects/benefit-tier) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
-> Benefit tiers for the program
+> Defined tiers in increasing order. First element will give Tier 1, second element will give Tier 2, etc.
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>UpdateReferralProgram.<b>stakingTiers</b></code>](#)<Bullet />[`[StakingTier!]!`](/testnet/api/graphql/objects/staking-tier) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
-> Determines the level of benefit a party can expect based on their staking
-> 
-
-#### [<code style={{ fontWeight: 'normal' }}>UpdateReferralProgram.<b>endOfProgramTimestamp</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> The end time of the program
+#### [<code style={{ fontWeight: 'normal' }}>UpdateReferralProgram.<b>endOfProgramTimestamp</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Timestamp as RFC3339, after which when the current epoch ends, the programs will end and benefits will be disabled.
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>UpdateReferralProgram.<b>windowLength</b></code>](#)<Bullet />[`Int!`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> The window legnth to consider for the referral program
+> Number of epochs over which to evaluate a referral set's running volume.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>UpdateReferralProgram.<b>stakingTiers</b></code>](#)<Bullet />[`[StakingTier!]!`](/testnet/api/graphql/objects/staking-tier) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> Defined staking tiers in increasing order. First element will give Tier 1,
+second element will give Tier 2, and so on. Determines the level of
+benefit a party can expect based on their staking.
 > 
 
 

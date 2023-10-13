@@ -14,6 +14,9 @@ echo "- REST: Remove indexes (todo: fix hardcoded version)"
 find 'versioned_docs/version-v0.72/api/rest/' -name '*-service.mdx' -exec rm {} +
 find 'docs/api/rest/' -name '*-service.mdx' -exec rm {} +
 
+# Hacky undelete
+git checkout docs/api/graphql/overview.md
+
 # Mac SED workaround - delete remnant files (not required with gsed)
 find . -name "*-E" -exec rm -rf {} +
 

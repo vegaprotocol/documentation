@@ -21,10 +21,6 @@ type ReferralSet {
   referrer: ID!
   createdAt: Timestamp!
   updatedAt: Timestamp!
-  stats(
-  epoch: Int
-  referee: ID
-): ReferralSetStats
 }
 ```
 
@@ -45,17 +41,6 @@ type ReferralSet {
 
 #### [<code style={{ fontWeight: 'normal' }}>ReferralSet.<b>updatedAt</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Timestamp as RFC3339Nano when the referral set was updated.
-> 
-
-#### [<code style={{ fontWeight: 'normal' }}>ReferralSet.<b>stats</b></code>](#)<Bullet />[`ReferralSetStats`](/testnet/api/graphql/objects/referral-set-stats) <Badge class="secondary" text="object"/>
-> Referral set statistics for the latest or specific epoch.
-If provided the results can be filtered for a specific referee
-> ##### [<code style={{ fontWeight: 'normal' }}>ReferralSet.stats.<b>epoch</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
-> 
-> 
-
-##### [<code style={{ fontWeight: 'normal' }}>ReferralSet.stats.<b>referee</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
-> 
 > 
 
 
