@@ -8,6 +8,10 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
+:::tip Looking to transfer from a network-managed account?
+If you want to transfer assets from accounts such as an insurance pool to fund trading rewards, see the tutorial on how to [propose transferring an asset](../proposals/asset-transfer-proposal.md).
+:::
+
 # Transfers: Key-to-key and trading rewards
 Use transfers to send assets to **another Vega key** or to a **reward pool** to fund trading rewards. 
 
@@ -89,6 +93,7 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network f
         "to": "KEY",
         "asset": "fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55",
         "amount": "10000000000000000000",
+        "fractionOfBalance": "0.1",
         "recurring": {
             "startEpoch": 1,
             "endEpoch": 10,
@@ -109,6 +114,7 @@ vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --netwo
         \"to\":\"KEY\", ^
         \"asset\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\", ^
         \"amount\":\"10000000000000000000\", ^
+        \"fractionOfBalance\": 0.1, ^
         \"recurring\":{ ^
             \"startEpoch\": 1, ^
             \"endEpoch\": 10, ^
@@ -125,6 +131,7 @@ Trading rewards, as well as validator metric-based rewards, are funded using rec
 
 These rewards can be used to incentivise:
 * Placing market/limit orders that are filled (determined by amount of maker fees a party paid or received) 
+* Certain types of trading activities, like keeping a large position open or making consistent returns
 * Providing liquidity by submitting orders to the book, which are then hit (determined by amount of liquidity fees a party received)
 * Creating markets that attract good trading volume (determined based on value of <NetworkParameter frontMatter={frontMatter} param="rewards.marketCreationQuantumMultiple" hideValue={true} />, and the settlement asset's quantum)
 * Consensus and standby validators that have a ranking score higher than 0
@@ -132,6 +139,9 @@ These rewards can be used to incentivise:
 :::info Read more
 [Trading rewards](../../concepts/trading-on-vega/fees-rewards): Read about trading rewards, including the different rewards you can contribute to.
 :::
+
+ 
+### Fields used to fund trading rewards
 
 You'll need the following information to set up a reward: 
 * `startEpoch`: The number of the epoch in which you want the first transfer to be made. It will initiate at the end of that epoch.
@@ -141,7 +151,25 @@ Recurring transfers can also set a [dispatch strategy](../../api/grpc/vega/vega.
 
 The transfer will run indefinitely, unless you add the optional paramter to specify when to stop:
 * `endEpoch`: The number of the epoch in which you want the last transfer to be made.
- 
+
+The `destinationType` must be the account type that matches the reward category. For example, to propose that the 'average position' reward will pay out, you'll need to set the destination type as `ACCOUNT_TYPE_REWARD_AVERAGE_POSITION`, and then choose the complementary reward category, known as the `metric`. The asset you choose then determines which market(s) the reward targets.
+
+You will need to define the dispatch strategy, which includes the  metric, the length of time to measure performance, the asset used to evaluate performance, and other fields. 
+
+| Dispatch strategy field | Description | Accepted values |
+| ----------- | ----------- | ----------- |
+| `assetForMetric` | Asset that's used to evaluate how someone performs, such as the settlement asset for the market(s) relevant to the reward | Any asset enabled on Vega |
+| `metric` | Specific reward category the transfer is funding | DISPATCH_METRIC_MAKER_FEES_PAID; DISPATCH_METRIC_MAKER_FEES_RECEIVED; DISPATCH_METRIC_LP_FEES_RECEIVED; DISPATCH_METRIC_MARKET_VALUE; DISPATCH_METRIC_AVERAGE_POSITION; DISPATCH_METRIC_RELATIVE_RETURN; DISPATCH_METRIC_RETURN_VOLATILITY; DISPATCH_METRIC_VALIDATOR_RANKING |
+| `markets` | Optional: Used to choose which market(s) are in scope | Any trading market's ID |
+| `staking_requirement` | Optional: Sets a minimum number of VEGA tokens that need to be staked for a party to be considered eligible for the reward | Number, if omitted it defaults to 0 |
+| `notional_time_weighted_average_position_requirement` | Optional: Sets a minimum notional TWAP required for a party to be considered eligible to receive rewards | Defaults to 0 | 
+| `windowLength` | Number of epochs in which performance against the reward metric is measured | Any number between 1 and 100 |
+| `lock_period` | Number of epochs to keep earned rewards in the recipient's reward vesting account before moving to their vested account |
+| `entityScope` | defines the entities within scope | Currently ENTITY_SCOPE_INDIVIDUALS is the only option |
+| `individualScope` | To be used if the eligible reward recipients should be individuals, and that can then be further focused to determine who is eligible | Currently INDIVIDUAL_SCOPE_ALL is the only option |
+| `distributionStrategy` | Sets how the participants should be ranked, and what other factors to consider. |  DISTRIBUTION_STRATEGY_PRO_RATA; DISTRIBUTION_STRATEGY_RANK |
+
+
 <Tabs groupId="KeytoPooltransferRepeat">
 <TabItem value="KeytoPooltransferRepeatLinuxcmd" label="Linux / OSX command line">
 
@@ -153,6 +181,7 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network f
         "to":"0000000000000000000000000000000000000000000000000000000000000000",
         "asset":"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55",
         "amount":"10000000000000000000",
+        "fractionOfBalance": "0.1",
         "recurring":{
             "startEpoch": 1,
             "endEpoch": 10,
@@ -161,6 +190,11 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network f
                 "assetForMetric": "fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55",
                 "metric": "DISPATCH_METRIC_MARKET_VALUE",
                 "markets": ["marketid"]
+                "windowLength": ["number of epochs"],
+                "entityScope": "ENTITY_SCOPE_INDIVIDUALS",
+                "individualScope": "INDIVIDUAL_SCOPE_ALL",
+                "distributionStrategy": "DISTRIBUTION_STRATEGY_YOU_WANT"
+
             }
         }
     }
@@ -178,6 +212,7 @@ vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --netwo
         \"to\":\"0000000000000000000000000000000000000000000000000000000000000000\", ^
         \"asset\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\", ^
         \"amount\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\", ^
+        \"fractionOfBalance\": 0.1, ^
         \"reference\":\"reward\", ^
         \"recurring\":{ ^
             \"startEpoch\": 1, ^
