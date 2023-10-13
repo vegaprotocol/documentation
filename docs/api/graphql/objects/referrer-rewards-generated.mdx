@@ -1,0 +1,43 @@
+---
+id: referrer-rewards-generated
+title: ReferrerRewardsGenerated
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Rewards generated for referrers by each of their referees
+
+```graphql
+type ReferrerRewardsGenerated {
+  referrerId: String!
+  generatedReward: [PartyAmount!]!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>ReferrerRewardsGenerated.<b>referrerId</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> ID of the referral set's referrer
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ReferrerRewardsGenerated.<b>generatedReward</b></code>](#)<Bullet />[`[PartyAmount!]!`](/testnet/api/graphql/objects/party-amount) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The amount of rewards generated per party
+> 
+
+
+
+### Member of
+
+[`FeesStats`](/testnet/api/graphql/objects/fees-stats)  <Badge class="secondary" text="object"/>
+
+
+

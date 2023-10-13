@@ -87,11 +87,11 @@
         },
         "logNormal": {
           "tau": 0.0001140771161,
-          "riskAversionParameter": 0.0001,
+          "riskAversionParameter": 0.001,
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 0.5
+            "sigma": 0.3
           }
         },
         "liquiditySlaParameters": {
@@ -102,8 +102,8 @@
         }
       }
     },
-    "closingTimestamp": 1697658339,
-    "enactmentTimestamp": 1697744739
+    "closingTimestamp": 1698864053,
+    "enactmentTimestamp": 1698950453
   }
 }
 ```
