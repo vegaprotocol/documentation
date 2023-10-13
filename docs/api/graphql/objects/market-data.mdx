@@ -45,6 +45,7 @@ type MarketData {
   priceMonitoringBounds: [PriceMonitoringBounds!]
   marketValueProxy: String!
   liquidityProviderFeeShare: [LiquidityProviderFeeShare!]
+  liquidityProviderSla: [LiquidityProviderSLA!]
   nextMarkToMarket: String!
   marketGrowth: String!
   lastTradedPrice: String!
@@ -165,6 +166,10 @@ type MarketData {
 
 #### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>liquidityProviderFeeShare</b></code>](#)<Bullet />[`[LiquidityProviderFeeShare!]`](/testnet/api/graphql/objects/liquidity-provider-fee-share) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
 > The equity like share of liquidity fee for each liquidity provider
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>liquidityProviderSla</b></code>](#)<Bullet />[`[LiquidityProviderSLA!]`](/testnet/api/graphql/objects/liquidity-provider-sla) <Badge class="secondary" text="list"/> <Badge class="secondary" text="object"/>
+> SLA performance statistics
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>MarketData.<b>nextMarkToMarket</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>

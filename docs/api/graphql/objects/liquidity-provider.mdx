@@ -20,6 +20,7 @@ type LiquidityProvider {
   partyId: ID!
   marketId: ID!
   feeShare: LiquidityProviderFeeShare
+  sla: LiquidityProviderSLA
 }
 ```
 
@@ -36,6 +37,10 @@ type LiquidityProvider {
 
 #### [<code style={{ fontWeight: 'normal' }}>LiquidityProvider.<b>feeShare</b></code>](#)<Bullet />[`LiquidityProviderFeeShare`](/testnet/api/graphql/objects/liquidity-provider-fee-share) <Badge class="secondary" text="object"/>
 > Information used for calculating an LP's fee share, such as the equity like share, average entry valuation and liquidity score, for the given liquidity provider and market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProvider.<b>sla</b></code>](#)<Bullet />[`LiquidityProviderSLA`](/testnet/api/graphql/objects/liquidity-provider-sla) <Badge class="secondary" text="object"/>
+> SLA performance statistics
 > 
 
 
