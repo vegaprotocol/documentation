@@ -21,7 +21,7 @@ Tendermint have two backends for indexing the transactions:
 - `KV` (default) - the simplest possible indexer, backed by key-value storage (defaults to levelDB)
 - `psql` - The psql indexer type allows an operator to enable block and transaction event indexing by proxying it to an external PostgreSQL instance allowing for the events to be stored in relational models. Since the events are stored in a RDBMS, operators can leverage SQL to perform a series of rich and complex queries that are not supported by the kv indexer type. Since operators can leverage SQL directly, searching is not enabled for the psql indexer type via Tendermint's RPC -- any such query will fail.
 
-The Vega blockexplorer requires a `psql` indexer, so you have to change the default value in the tendermint configuration.
+The Vega blockexplorer requires a `psql` indexer in the `Tendermint`, so you have to change the default value in the tendermint configuration.
 
 ## Requirements
 
@@ -31,7 +31,7 @@ The Vega blockexplorer requires a `psql` indexer, so you have to change the defa
 
 ## Limitations
 
-You have to replay entire chain from block 0 to have the entire history about the Vega network transactions. We do not recommend to modify config of already running nodes.
+You must replay entire chain from block 0 to have the full-history about the Vega network transactions. We do not recommend to modify config of already running nodes.
 
 If you do not want to have a full network history, you can start your non-validator node [from the last remote snapshot](../how-to/use-snapshots.md#start-a-new-node-using-network-snapshots).
 
@@ -40,7 +40,7 @@ We are not going to cover the PostgreSQL installation here. Please see:
 - [the official PostgreSQL install documentation](https://www.postgresql.org/docs/current/tutorial-install.html)
 - [the official docs for install PostgreSQL on ubuntu](https://www.postgresql.org/download/linux/ubuntu/)
 
-:::Hint
+:::note
 You may start postgresql with docker. To do it, use the following command:
 
 ```shell
@@ -74,7 +74,11 @@ Your node must replay from block 0 to get the full-history in your vega block ex
 - [api3.vega.community/api/v2/snapshots](https://api3.vega.community/api/v2/snapshots)
 
 :::note
-You may find more publically available nodes on the [GitHub repository](https://github.com/vegaprotocol/networks/blob/master/mainnet1/mainnet1.toml).
+You may find more publicly available nodes on the [GitHub repository](https://github.com/vegaprotocol/networks/blob/master/mainnet1/mainnet1.toml).
+:::
+
+:::warning
+Due to limitations of the Tendermint, you can restart the network  from block 0 or **the ten last snapshots**. We recommend selecting the latest possible snapshots for restart. If the setup process takes too long and the snapshot is not in the pool of the last ten snapshots, you need to choose a newer snapshot again. 
 :::
 
 ## Setup a block explorer
@@ -83,6 +87,7 @@ You may find more publically available nodes on the [GitHub repository](https://
 
 <Tabs groupId="restart-way">
 <TabItem value="block-0" label="Restart from block 0">
+
 Download the vega binary from the [Vega release page](https://github.com/vegaprotocol/vega/releases).
 
 You have to download the binary for version, network has been started from block 0. For mainnet the binary version is [v0.71.4](https://github.com/vegaprotocol/vega/releases/tag/v0.71.4)
@@ -107,13 +112,14 @@ Vega Visor CLI v0.71.4 (61d1f77ee360bf1679d5eb0e0efdb1cce977c9db)
 
 </TabItem>
 <TabItem value="remote-snapshot" label="Restart from specific block">
+
 Download the vega binary from the [Vega release page](https://github.com/vegaprotocol/vega/releases).
 
 To find the version required for restart, first you must select the restart block. Visit the [/api/v2/snapshots endpoint of the data-node API](https://api0.vega.community/api/v2/snapshots) and find block you want to restart from.
 
 Let's say We have the following response:
 
-```json
+```json title="Example response from /api/v2/snapshots"
 {
     "coreSnapshots": {
         "edges": [
@@ -161,6 +167,7 @@ Vega CLI v0.72.14 (282fe5a94609406fd638cc1087664bfacb8011bf)
 
 ./visor version
 Vega Visor CLI v0.72.14 (282fe5a94609406fd638cc1087664bfacb8011bf)
+```
 
 </TabItem>
 </Tabs>
@@ -189,7 +196,7 @@ genesis.json
 
 ### 4. Update the visor config file
 
-The config file is located at: `<vegavisor_home>/config.toml`.
+The config file is located at: `YOUR_VEGAVISOR_HOME/config.toml`.
 
 ```toml
 maxNumberOfFirstConnectionRetries = 43200
@@ -199,9 +206,10 @@ maxNumberOfFirstConnectionRetries = 43200
 
 <Tabs groupId="restart-way">
 <TabItem value="block-0" label="Restart from block 0">
-The config file is located at: `<vegavisor_home>/genesis/run-config.toml`. Replace the entire content of the file with:
 
-```toml
+The config file is located at: `YOUR_VEGAVISOR_HOME/genesis/run-config.toml`. Replace the entire content of the file with:
+
+```toml title="YOUR_VEGAVISOR_HOME/genesis/run-config.toml"
 name = "genesis"
 
 [vega]
@@ -209,31 +217,32 @@ name = "genesis"
     path = "vega"
     args = [
       "start",
-      "--home", "<absolute_path_to_vega_home>",
-      "--tendermint-home", "<absolute_path_to_tendermint_home>",
+      "--home", "ABSOLUTE_PATH_TO_YOUR_VEGA_HOME",
+      "--tendermint-home", "ABSOLUTE_PATH_TO_YOUR_TENDERMINT_HOME",
           ]
   [vega.rpc]
     socketPath = "/tmp/vega.sock"
     httpPath = "/rpc"
 ```
 
-Link the genesis folder `<vegavisor_home>/current`
+Link the genesis folder `YOUR_VEGAVISOR_HOME/current`
 
 ```shell
-ln -s <vegavisor_home>/genesis <vegavisor_home>/current
+ln -s YOUR_VEGAVISOR_HOME/genesis YOUR_VEGAVISOR_HOME/current
 ```
 
 </TabItem>
 <TabItem value="remote-snapshot" label="Restart from specific block">
-Create folder in the `<vegavisor_home>` specific for your binary version. In our case we selected 
+
+Create folder in the `YOUR_VEGAVISOR_HOME` specific for your binary version. In our case we selected 
 
 ```shell
-v0.72.14`: `mkdir -p <vegavisor_home>/v0.72.14
+v0.72.14`: `mkdir -p YOUR_VEGAVISOR_HOME/v0.72.14
 ```
 
-Create the `<vegavisor_home>/v0.72.14/run-config.toml` file with the below content:
+Create the `YOUR_VEGAVISOR_HOME/v0.72.14/run-config.toml` file with the below content:
 
-```toml
+```toml title="YOUR_VEGAVISOR_HOME/v0.72.14/run-config.toml"
 name = "v0.72.14"
 
 [vega]
@@ -241,18 +250,18 @@ name = "v0.72.14"
     path = "vega"
     args = [
       "start",
-      "--home", "<absolute_path_to_vega_home>",
-      "--tendermint-home", "<absolute_path_to_tendermint_home>",
+      "--home", "ABSOLUTE_PATH_TO_YOUR_VEGA_HOME",
+      "--tendermint-home", "ABSOLUTE_PATH_TO_YOUR_TENDERMINT_HOME",
           ]
   [vega.rpc]
     socketPath = "/tmp/vega.sock"
     httpPath = "/rpc"
 ```
 
-Link created folder (`<vegavisor_home>/v0.72.14`) to `<vegavisor_home>/current`
+Link created folder (`YOUR_VEGAVISOR_HOME/v0.72.14`) to `YOUR_VEGAVISOR_HOME/current`
 
 ```shell
-ln -s <vegavisor_home>/v0.72.14 <vegavisor_home>/current
+ln -s YOUR_VEGAVISOR_HOME/v0.72.14 YOUR_VEGAVISOR_HOME/current
 ```
 
 </TabItem>
@@ -261,7 +270,7 @@ ln -s <vegavisor_home>/v0.72.14 <vegavisor_home>/current
 ### 6. Copy vega binary to the current config directory for the visor
 
 ```shell
-cp ./vega <vegavisor_home>/current/vega
+cp ./vega YOUR_VEGAVISOR_HOME/current/vega
 ```
 
 Make sure version is correct:
@@ -269,6 +278,7 @@ Make sure version is correct:
 
 <Tabs groupId="restart-way">
 <TabItem value="block-0" label="Restart from block 0">
+
 ```shell
 ./vegavisor_home/current/vega version
 Vega CLI v0.71.4 (61d1f77ee360bf1679d5eb0e0efdb1cce977c9db)
@@ -276,6 +286,7 @@ Vega CLI v0.71.4 (61d1f77ee360bf1679d5eb0e0efdb1cce977c9db)
 
 </TabItem>
 <TabItem value="remote-snapshot" label="Restart from specific block">
+
 ```shell
 ./vegavisor_home/current/vega version
 Vega CLI v0.72.14 (282fe5a94609406fd638cc1087664bfacb8011bf)
@@ -286,24 +297,24 @@ Vega CLI v0.72.14 (282fe5a94609406fd638cc1087664bfacb8011bf)
 
 ### 7. Update the blockexplorer config
 
-Update the following parameters in the block explorer config file located at: `<blockexplorer-home>/config/blockexplorer/config.toml`
+Update the following parameters in the block explorer config file located at: `PATH_TO_YOUR_BLOCK_EXPLORER_HOME/config/blockexplorer/config.toml`
 
-```toml
+```toml title="PATH_TO_YOUR_BLOCK_EXPLORER_HOME/config/blockexplorer/config.tom"
 [Store]
   [Store.Postgres]
-    Host = "<psql_server_host>"
+    Host = "SQL_SERVER_HOST"
     Port = 5432
-    Username = "<psql_username>"
-    Password = "<psql_password>"
-    Database = "<psql_database_name>"
+    Username = "PSQL_DATABASE_USERNAME"
+    Password = "PSQL_USER_PASSWORD"
+    Database = "PSQL_DATABASE_NAME"
     SocketDir = ""
 ```
 
 ### 8. Update the tendermint config
 
-Update the following parameters in the tendermint config file located at `<tendermint-home>/config/config.toml``:
+Update the following parameters in the tendermint config file located at `PATH_TO_YOUR_TENDERMINT_HOME/config/config.toml`:
 
-```toml
+```toml title="PATH_TO_YOUR_TENDERMINT_HOME/config/config.toml"
 [rpc]
 cors_allowed_origins = ["*"]
 
@@ -344,23 +355,23 @@ discard_abci_responses = true
 
 [tx_index]
 indexer = "psql"
-psql-conn = "postgresql://<psql_username>:<psql_password>@<psql_server_host>:5432/<psql_database_name>?sslmode=disable"
+psql-conn = "postgresql://PSQL_DATABASE_USERNAME:PSQL_USER_PASSWORD@SQL_SERVER_HOST:5432/PSQL_DATABASE_NAME?sslmode=disable"
 index_all_keys = false
 ```
 
 :::note Snapshot restart
 When you reastart from the remote snapshot at specific block, put also the following values:
 
-```toml
+```toml title="PATH_TO_YOUR_TENDERMINT_HOME/config/config.toml"
 [statesync]
 enable = true
-trust_hash = "<block-hash-for-the-snapshot>"
-trust_height = <block-height-for-the-snapshot>
+trust_hash = "BLOCK_HASH_FOR_SELECTED_SNAPSHOT"
+trust_height = BLOCK_HEIGHT_FOR_SELECTED_SNAPSHOT
 ```
 
 In the step 1. of this tutorial We selected the following values:
 
-```toml
+```toml title="PATH_TO_YOUR_TENDERMINT_HOME/config/config.toml"
 [statesync]
 enable = true
 trust_hash = "11a12f24de801d8c21dae5372e3914a05d15fe15a1316276d7af27896127d246"
@@ -377,20 +388,22 @@ Leave all other parameters with default values.
 
 <Tabs groupId="restart-way">
 <TabItem value="block-0" label="Restart from block 0">
+
 You do not need to modify this config file if you start from block 0.
 
 </TabItem>
 <TabItem value="remote-snapshot" label="Restart from specific block">
-Update the config file located at `<vega_home>/config/node/config.toml`
 
-```toml
+Update the config file located at `PATH_TO_YOUR_VEGA_HOME/config/node/config.toml`
+
+```toml title="PATH_TO_YOUR_VEGA_HOME/config/node/config.toml"
 [Snapshot]
-  StartHeight = <block-height-for-the-snapshot>
+  StartHeight = BLOCK_HEIGHT_FOR_SELECTED_SNAPSHOT
 ```
 
 For our selected snapshot it will be:
 
-```toml
+```toml title="PATH_TO_YOUR_VEGA_HOME/config/node/config.toml"
 [Snapshot]
   StartHeight = 18591101
 ```
@@ -418,11 +431,11 @@ The `vega blockexplorer init-db` command create database schema and prepares all
 
 Wait a coupe of minutes untill your node start processing blocks, before you move to the next step.
 
-:::Hint
+:::note
 See code snippets below to setup systemd for your vega-node
 :::
 
-:::Warrning
+:::warning
 It will take at least several hours to replay entire network
 :::
 
@@ -445,12 +458,16 @@ You should get non-empty response for the above command.
 
 <Tabs groupId="restart-way">
 <TabItem value="block-0" label="Restart from block 0">
+
 You do not need to execute this step for replaying from block 0
 
 </TabItem>
 <TabItem value="remote-snapshot" label="Restart from specific block">
-For the vega config located at `<vega_home>/config/node/config.toml`, restore the original value fo the `Snapshot.StartHeight`.
-Disable state sync by setting `statesync.enable = false` in the tendermint config located at `<tendermint_home>/config/config.toml`.
+
+For the vega config located at `PATH_TO_YOUR_VEGA_HOME/config/node/config.toml`, restore the original value fo the `Snapshot.StartHeight`.
+
+Disable state sync by setting `statesync.enable = false` in the tendermint config located at `PATH_TO_YOUR_TENDERMINT_HOME/config/config.toml`.
+
 </TabItem>
 </Tabs>
 
@@ -460,7 +477,7 @@ Disable state sync by setting `statesync.enable = false` in the tendermint confi
 
 The config file usually should be located at: `/lib/systemd/system/vegavisor.service`
 
-```conf
+```conf title="/lib/systemd/system/vegavisor.service"
 [Unit]
 Description=vegavisor
 Documentation=https://github.com/vegaprotocol/vega
@@ -470,7 +487,7 @@ Requires=network-online.target
 [Service]
 User=vega
 Group=vega
-ExecStart="<absolute-path-to-the-visor-binary>" run --home "<absolute-path-to-the-vegavisor-home>"
+ExecStart="ABSOLUTE_PATH_TO_VEGA_BINARY" run --home "ABSOLUTE_PATH_TO_YOUR_VEGA_HOME"
 TimeoutStopSec=10s
 LimitNOFILE=1048576
 LimitNPROC=512
@@ -486,7 +503,7 @@ WantedBy=multi-user.target
 
 The config file usually should be located at: `/lib/systemd/system/blockexplorer.service`
 
-```conf
+```conf title="/lib/systemd/system/blockexplorer.service"
 [Unit]
 Description=blockexplorer
 Documentation=https://github.com/vegaprotocol/vega
@@ -496,7 +513,7 @@ Requires=network-online.target
 [Service]
 User=vega
 Group=vega
-ExecStart="<absolute-path-to-the-vega-binary>" blockexplorer start --home "<absolute-path-to-the-vega-home>"
+ExecStart="ABSOLUTE_PATH_TO_VEGA_BINARY" blockexplorer start --home "ABSOLUTE_PATH_TO_YOUR_BLOCK_EXPLORER_HOME"
 TimeoutStopSec=10s
 LimitNOFILE=1048576
 LimitNPROC=512
@@ -512,7 +529,7 @@ WantedBy=multi-user.target
 
 Caddy file provide TLS termination for the tendermint and blockexplorer API.
 
-```caddyfile
+```caddyfile title=Caddyfile"
 {
     email admin@yourdomain.com
     order replace after encode
