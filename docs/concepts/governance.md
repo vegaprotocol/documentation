@@ -156,7 +156,11 @@ Specifically:
 * The name and symbol must match the contract
 * There cannot be multiple assets on a Vega network for the same ERC-20 asset
 
-### Transferring assets 
+### Transferring assets
+When it comes to assets that are held in certain accounts, the community determines if they should be moved, and how they should be used. Generally speaking, those accounts have accumulated assets from settled markets, market protection movements, or are entirely funded by community members that transfer assets into them.
+
+These proposals give community members a chance to determine what they think the assets should be spent on, whether that's to fund [trading or validator rewards](./trading-on-vega/fees-rewards.md#trading-rewards), to move money from [insurance pools](./assets/accounts.md#insurance-pool-accounts) into [network treasury accounts](./assets/accounts.md#network-treasury-accounts), or for other purposes.
+
 Transferring assets from certain account types can only be initiated by on-chain governance proposals. 
 
 Those transfers can be one-off or recurring. A recurring transfer that's initiated by governance can only be cancelled when a governance proposal to cancel it is submitted and passes the governance vote.

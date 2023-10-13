@@ -2,14 +2,16 @@
 sidebar_position: 3
 title: Fees and trading rewards
 hide_title: false
-description: Trades can incur fees as well as get rewards.
+description: Trades can incur fees as well as gain rewards.
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-The Vega trading fee structure incentivises passive trading (placing orders on the order book), providing liquidity, and running the network infrastructure. The protocol does not charge gas fees for interacting with the network.
+Participants in the Vega network who place orders on the order book, provide liquidity and run the network infrastructure receive the fees that are paid on filled trades and transfers. The protocol does not charge gas fees for interacting with the network.
 
-In addition, any participant can fund accounts that reward traders for their activity in a market, including those who 'take' prices off the order book. Those rewards only exist when a party is funding them, and can be set per market and per activity type (or metric).
+You can offset some of those fees, or earn even more, by receiving rewards based on trading activity. Rewards can be funded by anyone, and can be in any asset. You can see what rewards are currently available on [vega.xyz ↗](https://vega.xyz/rewards).
+
+Learn about the [fee structure](#trading-fees) and [trading rewards](#trading-rewards) below.
 
 ## Trading fees
 The Vega protocol does not charge gas fees, but rather has a fee structure that rewards participants who fill essential roles in a decentralised system.
@@ -60,40 +62,55 @@ The fee goes to validators for providing the network infrastructure that support
 The fee is calculated by multiplying the transfer amount and the <NetworkParameter frontMatter={frontMatter} param="transfer.fee.factor" /> network parameter.
 
 ## Trading rewards
-Market participants can also receive rewards for their trading, liquidity commitment, and market creation activity.
+Market participants can also receive rewards for their trading activity, liquidity provision, and for proposing active markets.
 
-Depending on the rewards available, traders can receive bonuses for placing market and/or limit orders that are filled. Liquidity providers can receive rewards for placing orders that are likely to match, and market proposers can receive rewards for proposing markets that draw in trading volume. 
+Traders can receive bonuses for placing market and/or limit orders that are filled, and keeping positions open. 
 
-Reward proceeds are paid directly to the recipient's general account.
+Liquidity providers can receive rewards for placing orders that are likely to match. 
 
-* Any party that trades on a market with a trading reward can be eligible to receive a portion of the rewards.
-* Any party with an amount of a market's settlement asset can fund a reward pool to incentivise trading. 
+Market proposers can receive rewards for proposing markets that draw in trading volume. 
+
+Your reward earnings can grow if you have an activity streak and/or keep earned rewards in your reward account.
+
+See what rewards are currently available on [vega.xyz ↗](https://vega.xyz/rewards).
+
+Earned rewards are paid into a per-asset *reward vesting account*. Each epoch, a percentage of those accumulated rewards are moved into a *reward vested account*. From there, they can be transferred into the general account and withdrawn. How long rewards stay in the *reward vesting account* depends on the lock period that's defined in the transfer proposal that funds the reward.
 
 Rewards are independent from fees, which are paid to validators, liquidity providers, and price makers on each trade.
-
-:::tip Try it out
-[Set up a reward transfer](../../tutorials/assets-tokens/transferring-assets.md): Choose an activity to reward and set up a one-off or recurring transfer to fund it.
-:::
 
 ## Setting rewards
 Rewards can be set up by anyone to incentivise certain trading behaviours they want to see on a market (or markets). 
 
-Trading rewards are defined by three things:
+Trading rewards can be defined by the following things:
 * Type of activity to be rewarded (and how it's measured)
 * An amount to reward
 * How long a reward is offered
+* How the reward is distributed to those eligible, pro-rata or by rank
+* How many epochs a trader's activity is evaluated
 
 Extra rewards for validators can also be set up. Learn more about them on the [validator scores and rewards page](../vega-chain/validator-scores-and-rewards.md#validator-metric-based-rewards).
 
-### Trading rewards dispatch metrics
+:::tip Try it out
+* [How to fund rewards](#how-to-fund-rewards): Get the high-level overview, below.
+* [Set up a reward transfer](../../tutorials/assets-tokens/transferring-assets.md): Choose an activity to reward and set up a one-off or recurring transfer to fund it.
+:::
+
+### How rewards are scaled
+Since rewards can only be provided if they're funded, the [recurring tranfer](../assets/transfers.md#recurring-transfers) that's used to fund those rewards also includes details on how the final reward amount is calculated.
+
+Pro-rata: A participant's reward is scaled based on their activity streak and/or how long they've kept previous reward earnings in their vested rewards account, which will influence how high up the rankings they are.
+
+Rank: A participant's reward is scaled based on where they sit on the list of traders who are eligible for the reward. Those higher up the list receive a higher ratio of the reward for each reward period.
+
+## Available trading rewards
 As rewards are distributed based on certain criteria, they need to be defined and measured. Each reward dispatch metric is calculated per party, once at the end of each epoch.
 
 Rewards can be set up to pay those who receive fees (functioning like a 'bonus'), or those who create markets.
 
 Choosing a dispatch metric is a matter of transferring assets to the relevant account type, which then contributes to the reward pool for the metric.
 
-#### Fee-based reward metrics
-Fee-based rewards metrics are designed to incentivise trading volume on a given market, and are dependent on how much a participant pays in fees.
+### Fee-based rewards
+Fee-based rewards are designed to incentivise trading volume on a given market, and are dependent on how much a participant pays in fees.
 
 Targets for rewards can be set based on one of three categories: 
 
@@ -114,7 +131,20 @@ The total maker fees paid by all parties in that market is *$10,000*.
 
 Party A would receive $100 / $10,000 = 1% of the rewards for that epoch.
 
-#### Market creation reward metric 
+### Largest average positions
+The largest average positions category rewards traders with consistenly larger positions that rank higher in the standings than other traders, as long as they can keep the positions open.
+
+It measures a trader's time-weighted average position over a set number of epochs to determine how long each trader is able to manage a position that's larger than the positions of other traders, without being closed out. It's also known as the "average position metric".
+
+### Most profitable positions
+The most profitable positions category rewards high profit in relation to traders' position sizes. A trader's highest relative profit is taken from each epoch in the reward window, and averaged out. Those who have higher relative profits rank better in the standings. It's also known as the "relative return metric".
+
+### Most stable returns
+The most stable returns category rewards traders with the least amount of variance in their returns while they had a position open on a market in the rewards window. Traders who have similar amount of profit across the epochs, rather than spikes and dips, rank higher in the standings.
+
+This is measured by taking the sum of each trader's mark to market gains and losses, both realised and unrealised, and includes funding gains and losses if trades are on a perpetuals market. It's also known as the "returns volatility metric".
+
+### Market creation rewards 
 The market creation reward dispatch metric is designed to incentivise creating markets that attract good trading volume. Rewards are awarded to the proposers of any markets that meet a certain total trade value. 
 
 The threshold for what counts as 'enough' trading volume is a formula that takes into account the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="rewards.marketCreationQuantumMultiple" />, as well as the settlement asset's quantum to assess the market's size.
@@ -130,18 +160,6 @@ The proposers of each of those markets qualify for 25% of the market creation re
 :::note Go deeper
 [Rewards spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0056-REWA-rewards_overview.md#market-creation-reward-metrics): See the full set of calculations that go into the market creation reward.
 :::
-
-### Reward pools 
-Reward pools hold the funds that are used to pay out trading rewards, and are funded by participants through transfers. Choosing a dispatch metric is a matter of transferring assets to the relevant account type, which then contributes to the reward pool for the metric.
-
-At the end of each epoch, all reward pools will be emptied and their funds allocated to users proportionally based on the reward metric defined for each pool. 
-
-It is up to individual users to transfer funds to the reward pools in order to finance the rewards they want to pay. If there is no balance in the reward pool at the end of the epoch, then no rewards will be paid.
-
-When setting up a reward, the following information determines that your funds go into the correct reward pool:
-* Reward asset: The asset in which the rewards will be paid
-* Market in scope: The Market ID of the market for which rewards will be calculated
-* Reward metric type: The metric type to be used to calculate the reward
 
 #### Reward examples
 In the section below are descriptions of potential reward scenarios, including the scopes and dispatch metrics used. 
@@ -178,16 +196,25 @@ Now, any user that has been a price taker in this market will receive two reward
 </p>
 </details>
 
-### Funding rewards 
-Transfers are used to send assets to reward pools. 
+## How to fund rewards
+Trading rewards are all on-chain, and funded when users transfer assets to the reward pool for a particular reward, based on the asset used to pay the reward.
+
+Choosing a reward to fund is a matter of transferring assets to the specific account type.
 
 To fund a single reward pool over multiple epochs, set up a **recurring transfer to a single reward pool** that will keep topping up the reward pool for each epoch, as long as there are funds available in the party's general account.
 
 Another option is to regularly top up multiple reward pools across multiple markets, for a single metric and reward asset, by setting up a **recurring transfer to multiple reward pools**. 
 
-Each epoch, the funds will be paid into each reward pool proportionally based on the contribution of each market to the metric in scope.  
+At the end of each epoch, all reward pools are emptied and their funds allocated to users proportionally based on the specifics for each reward. 
 
-Note: a multiple market recurring transfer can only be used for markets that settle in the same asset, since otherwise they cannot be compared. 
+Anyone can finance rewards. If a reward pool doesn't have assets in it, then no rewards will be paid. 
+
+When setting up a reward, the following information determines that your funds go into the correct reward pool:
+* Reward asset: The asset in which the rewards will be paid
+* Market in scope: The Market ID of the market for which rewards will be calculated
+* Reward metric type: The metric type to be used to calculate the reward
+
+Note: a multiple market recurring transfer can only be used for markets that settle in the same asset, since otherwise they cannot be compared.
 
 #### Funding examples
 In the dropdown below  you can read through examples of how funding reward pools works.

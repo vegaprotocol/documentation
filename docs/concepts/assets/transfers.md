@@ -2,21 +2,21 @@
 sidebar_position: 5
 title: Transfer assets
 hide_title: false
-description: Transfers are used to move assets between keys or to accounts.
+description: Use transfers to move assets between keys and/or accounts.
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
 ## Transfer assets to keys or accounts
-Standard transfers can be used to move assets from one Vega key to another, or from a Vega key to a specific account, such as a reward pool used for the on-chain network treasury.
+Use transfers to move assets from one Vega key to another, or from a Vega key to a specific account, such as to supply assets to a [reward pool](../trading-on-vega/fees-rewards.md#trading-rewards).
 
-Transfers from certain account types must be proposed through [governance](#governance-initiated-transfers), as they affect network-managed accounts and moving assets to/from those accounts needs to be agreed by the community.
+Transfers from certain accounts need to be proposed through [governance](#governance-initiated-transfers), because moving assets to/from those accounts needs to be agreed by the community.
 
-Anyone with a Vega public key and assets (such as the VEGA token) can set up a standard transfer. Those transfers can only be done from a general account the party has control of, using their own funds. Anyone with a Vega public key and enough VEGA tokens can propose assets be transferred from those specific network accounts.
+Anyone with a Vega public key and assets can set up a transfer. Those transfers can only be done from a general account the party has control of, using their own funds. Anyone with a Vega public key and enough VEGA tokens can propose assets be transferred from those specific network accounts.
 
-**Each transfer incurs a fee.** The fee is paid to the validators who run the network. The amount of the fee is set with the network parameter <NetworkParameter frontMatter={frontMatter} param="transfer.fee.factor" />, which defines the proportion of each transfer that's taken as a fee. The fee's subtracted immediately on execution, and is taken on top of the transfer amount.
+**Each transfer incurs a fee.** The fee is paid to the validators who run the network infrastructure. The amount of the fee is set with the network parameter <NetworkParameter frontMatter={frontMatter} param="transfer.fee.factor" />. The fee amount is a proportion of the total transfer amount. The fee's subtracted immediately on execution, and is taken on top of the transfer amount.
 
-Transfers can be set up to happen only once, or can happen repeatedly.
+Transfers can be set up to happen [only once](#one-off-transfers), or can happen [repeatedly](#recurring-transfers).
 
 :::tip Try it out
 * **[Transfers tutorial](../../tutorials/assets-tokens/transferring-assets.md)**: Set up transfers with your Vega wallet using the command line.
@@ -35,9 +35,10 @@ A party can also set up, or depending on the account [propose via governance](#g
 A recurring transfer transaction needs to contain the following:
 * How much is available to transfer
 * The starting epoch for the transfer
-* Optionally, the end epoch when the transfers should stop. If it's not specified, the transfer run until cancelled
+* Optional: the end epoch when the transfers should stop. If it's not specified, the transfer run until cancelled
 * The percentage of the full amount to pay each epoch, which is defined using the factor - a decimal
   - The amount paid at the end of each epoch is calculated using the following formula: `amount = start amount x factor ^ (current epoch - start epoch)`
+* Optional: When used to fund a reward pool, the distribution method - pro-rata or based on rank
 
 ### Recurring transfer limits
 While a party (public key) can have multiple transfers set up to move assets to different accounts, each party can only have one recurring transfer between two given accounts at the same time. For example, a party can transfer from their general account to Public Key A and Public Key B, but they cannot set up two recurring transfers of different amounts both going to Public Key B.
@@ -48,9 +49,13 @@ It's possible to cancel a recurring transfer, but not to amend. If you want to c
 If the asset used to fund a recurring transfer is depleted, either because the funds have run out or it's less than the <NetworkParameter frontMatter={frontMatter} param="transfer.minTransferQuantumMultiple" />` x quantum`, then the transfer is cancelled automatically. You'll have to set up a new transfer if you want to keep funding the key/account.
 
 ## Governance-initiated transfers
-Governance-initiated transfers can be one-off or recurring. A recurring transfer can only be cancelled when a governance proposal to cancel it is submitted and passes the governance vote.
+Assets being moved out of certain accounts requires community support, through a governance proposal and vote. Generally speaking, they're accounts that have assets moved into them after markets are settled, because of market protection movements, or entirely funded by community members that transfer assets into them.
 
-The table below highlights which types of transfers can be done through a governance proposal and vote.
+The proposals give community members a chance to determine what they think the assets should be spent on, whether that's to fund [trading or validator rewards](../trading-on-vega/fees-rewards.md#trading-rewards), to move money from [insurance pools](./accounts.md#insurance-pool-accounts) into [network treasury accounts](./accounts.md#network-treasury-accounts), or for other purposes.
+
+These governance-initiated transfers can be one-off or recurring. A recurring transfer can only be cancelled when a governance proposal to cancel it is submitted and passes the governance vote.
+
+The table below details which types of transfers need to be done using a governance proposal and vote.
 
 | Source account | Destination account | Proposal required |
 | --- | --- | --- |

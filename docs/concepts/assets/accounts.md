@@ -100,6 +100,18 @@ Reward accounts can exist for each combination of reward metric, asset, and mark
 
 There is also a global rewards account, which is used for validator rewards on top of infrastructure fee revenue.
 
+| Reward account name                               | Account purpose |
+|---------------------------------------------------|-----------------|
+| Vested rewards      | Holds earned rewards that have passed the vesting period |
+| Vesting rewards | Holds earned rewards that are still within the vesting period |
+| Maker fees paid reward | Holds funds allocated to reward aggressive side of a trade based on fees paid |
+| Maker fees received reward | Holds funds allocated to reward passive side of a trade based on fees earned |
+| LP received fees reward     | Holds funds allocated to reward liquidity providers based on fees received for trades hit |
+| Average position reward | Holds funds allocated to reward xxxxx |
+| Relative return reward | Holds funds allocated to reward xxxxxx |
+| Return volatility reward | Holds funds allocated to reward traders with the most consistent returns |
+| Market proposers reward | Holds funds allocated to reward creating markets that attract good trading volume |
+
 :::note Read more
 [Trading rewards](../trading-on-vega/fees-rewards.md#trading-rewards)
 :::
