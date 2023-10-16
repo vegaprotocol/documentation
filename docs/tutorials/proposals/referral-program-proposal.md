@@ -160,7 +160,6 @@ Below you will find:
 </TabItem>
 <TabItem value="cmd" label="Command line (Windows)">
 
-
 ```
 vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KEY --network NETWORK_NAME ^
 "{^
@@ -209,3 +208,4 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
 }'^
 ```
 </TabItem>
+</Tabs>
