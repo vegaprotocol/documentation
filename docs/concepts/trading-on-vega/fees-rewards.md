@@ -131,16 +131,16 @@ The total maker fees paid by all parties in that market is *$10,000*.
 
 Party A would receive $100 / $10,000 = 1% of the rewards for that epoch.
 
-### Largest average positions
-The largest average positions category rewards traders with consistenly larger positions that rank higher in the standings than other traders, as long as they can keep the positions open.
+### Largest traders by position size
+The largest traders by position size category rewards traders with consistenly larger positions that rank higher in the standings than other traders, as long as they can keep the positions open.
 
 It measures a trader's time-weighted average position over a set number of epochs to determine how long each trader is able to manage a position that's larger than the positions of other traders, without being closed out. It's also known as the "average position metric".
 
-### Most profitable positions
-The most profitable positions category rewards high profit in relation to traders' position sizes. A trader's highest relative profit is taken from each epoch in the reward window, and averaged out. Those who have higher relative profits rank better in the standings. It's also known as the "relative return metric".
+### Most profitable traders
+The most profitable traders category rewards high profit in relation to traders' position sizes. A trader's highest relative profit is taken from each epoch in the reward window, and averaged out. Those who have higher relative profits rank better in the standings. It's also known as the "relative return metric".
 
-### Most stable returns
-The most stable returns category rewards traders with the least amount of variance in their returns while they had a position open on a market in the rewards window. Traders who have similar amount of profit across the epochs, rather than spikes and dips, rank higher in the standings.
+### Most consistently profitable traders
+The most consistently profitable traders category rewards traders with the least amount of variance in their returns while they had a position open on a market in the rewards window. Traders who have similar amount of profit across the epochs, rather than spikes and dips, rank higher in the standings.
 
 This is measured by taking the sum of each trader's mark to market gains and losses, both realised and unrealised, and includes funding gains and losses if trades are on a perpetuals market. It's also known as the "returns volatility metric".
 
