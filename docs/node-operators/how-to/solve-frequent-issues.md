@@ -191,8 +191,9 @@ maxNumberOfFirstConnectionRetries = 1800
 failed to initialize datanode from network history: failed to load history into the datanode: failed to load snapshot data:failed to load segments for database version 22: failed to load history segments: failed to load history segment {Network History Segment for Chain ID:vega-mainnet-0011 Height From:18710202 Height To:18710501}: failed to copy data into the database vega-mainnet-0011-22-18710202-18710501.zip : failed to copy data into table market_data: failed to copy history table data into database: failed to copy data into hyper-table market_data: ERROR: extra data after last expected column (SQLSTATE 22P04)
 ```
 
-The error usually occurs when you are loading specific history segment(e.g: the last one) into incorrect version  of the vega(e.g: old version of the binary). 
-Vega adds/modifies/removes SQL schemas during the migration between version. You must load data from specific segment into corresponding version of the database segment was created for.
+The error usually occurs when you are loading a specific history segment (e.g: the last one) into an incorrect version of Vega, for example an old version of the binary.
+
+Vega adds/modifies/removes SQL schemas during the migration between versions. You must load data from specific segment into the corresponding version of the database that the segment was created for.
 
 ### Solution: Fix the vega version
 

@@ -182,3 +182,19 @@ AutoInitialiseFromNetworkHistory = true
 maxNumberOfFirstConnectionRetries = 1800
 ```
 8. Start `vegavisor` or `core + date node` (order doesn't matter)
+
+
+## Problem: failed to copy data into hyper-table ...: ERROR: extra data after last expected column (SQLSTATE 22P04)
+
+```
+2023-10-13T17:29:22.607+0800    INFO    datanode.networkHistory.service snapshot/service_load_snapshot.go:300   copying vega-mainnet-0011-22-18710202-18710501.zip into database
+failed to initialize datanode from network history: failed to load history into the datanode: failed to load snapshot data:failed to load segments for database version 22: failed to load history segments: failed to load history segment {Network History Segment for Chain ID:vega-mainnet-0011 Height From:18710202 Height To:18710501}: failed to copy data into the database vega-mainnet-0011-22-18710202-18710501.zip : failed to copy data into table market_data: failed to copy history table data into database: failed to copy data into hyper-table market_data: ERROR: extra data after last expected column (SQLSTATE 22P04)
+```
+
+The error usually occurs when you are loading a specific history segment (e.g: the last one) into an incorrect version of Vega, for example an old version of the binary.
+
+Vega adds/modifies/removes SQL schemas during the migration between versions. You must load data from specific segment into the corresponding version of the database that the segment was created for.
+
+### Solution: Fix the vega version
+
+Check the vega version with the command `vega version` and compare with the version the segment has been created for. To do it, you can use the `/api/v2/snapshots`(e.g: [https://api0.vega.community/api/v2/snapshots](https://api0.vega.community/api/v2/snapshots)) endpoint to check what version, was deployed on the specific block you are interested in.
