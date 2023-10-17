@@ -1,6 +1,6 @@
 ---
 sidebar_position: 10
-title: Enable or change referral program
+title: Enable or replace referral program
 hide_title: false
 vega_network: TESTNET
 keywords:
@@ -12,46 +12,48 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 import JSONInstructions from './_json-instructions.md';
 import TerminalInstructions from './_terminal-instructions.md';
 
-The on-chain referral program allows users to refer new traders. Referrers can get a cut of their referees' trading fees, and referees get a discount on their fees.
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-The referral program needs to be enabled by governance. Once it's enabled, both the requirements and the benefits for the program can also be changed by governance.
+The on-chain referral program allows users to refer new traders. Referrers can get a cut of their referees' trading fees, and referees get a discount on their fees. In addition, having VEGA tokens associated can multiply participants' proceeds.
 
-This page describes what you need to propose enabling or replacing the referral program, and provides proposal templates that you will need to edit before submitting.
+The referral program needs to be enabled by governance. Once it's enabled, both the requirements and the benefits can also be replaced with a new program.
+
+This page describes what you need to propose enabling or replacing the referral program, and provides example proposal templates that you will need to edit before sharing and submitting.
 
 ## Requirements
 
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
-* A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minProposerBalance" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
+* A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.referralProgram.minProposerBalance" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.referralProgram.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
 * Familiarity with [governance on Vega](../../concepts/governance.md)
 
-## Anatomy of a referral program proposal [WIP]
+## Anatomy of a referral program proposal
+The fields below all need to be defined to enable the referral program or replace an existing one. 
 
-the proposer needs to specify the following fields, 1 is smallest for minimums. the number of tiers in benefit_tiers must be less than or equal to the network parameter referralProgram.maxReferralTiers.
+If you are suggesting a replacement referral program, you'll need to include all the fields, even if you don't want to change their values. Just use the existing values from the current referral program.
 
-If you are suggesting a change to the referral program, but you don't want to change some values, you'll need to use the existing values on the current referral program.
+**End of program timestamp**: Date and time after which, when the current epoch ends, the program will end and benefits will be disabled.
 
-**End of program timestamp**: Date and time after which, when the current epoch ends, the program will end and benefits will be disabled. 
 **Window length**: Number of epochs over which to evaluate a referral set's running notional taker volume.
 
-**Benefit tier fields**
+#### Benefit tier fields
 
-| Benefit tier field | Description | Values |
+| Benefit tier field | Description | Accepted values |
 | ----------- | ----------- | ----------- |
-| `benefitTiers` | a list of values defining the reward and discount factors to be used for referrals | Holds the details required for each benefit tier, listed below |
-| `minimumRunningNotionalTakerVolume` | the required notional taker volume everyone in the referral set needs to have to access the related benefit tier |  quantum units |
-| `minimumEpochs` | required number of epochs a referee must have been in a referral set to access this tier of benefits | number |
-| `referralRewardFactor` | the proportion of the referees taker fees to be rewarded to the referrer | ? |
-| `referralDiscountFactor` | proportion of each referee's taker fees to be discounted | ? |
+| `benefitTiers` | List of values defining the reward and discount factors for the referral program | Holds the details of each benefit tier, listed below. Maximum of <NetworkParameter frontMatter={frontMatter} param="referralProgram.maxReferralTiers" hideName={true}/> |
+| `minimumRunningNotionalTakerVolume` | Required cumulative notional volume of taker trades, per epoch, that everyone in the referral set needs to have to access the related benefit tier |  quantum units |
+| `minimumEpochs` | Required number of epochs that a referee must have been in a referral set to access the benefits in this tier | Integer greater than 0 |
+| `referralRewardFactor` | Proportion of the referee's taker fees that will be rewarded to the referrer | Whole number, decimals allowed, greater than 0, and less / equal to <NetworkParameter frontMatter={frontMatter} param="referralProgram.maxReferralRewardFactor" hideName={true}/> |
+| `referralDiscountFactor` | Proportion of each referee's taker fees to be discounted |Must be greater than 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="referralProgram.maxReferralDiscountFactor" hideName={true}/> |
 
+#### Staking tier fields
 
-**Staking tier fields**
-
-| Staking tier field | Description | Values |
+| Staking tier field | Description | Accepted values |
 | ----------- | ----------- | ----------- |
-| `stakingTiers` | a list of values defining the multipliers to be used for referrals | Holds the details required for each benefit tier, listed below |
-| `minimumStakedTokens` | required number of VEGA tokens a referrer must have staked to receive the reward multiplier | 5 |
-| `referralRewardMultiplier` | the multiplier applied to the referral reward factor when calculating referral rewards due to the referrer. | ? |
+| `stakingTiers` | List of values defining the multipliers to be used for referrals | Holds the details for each benefit tier, listed below. Maximum of <NetworkParameter frontMatter={frontMatter} param="referralProgram.maxReferralTiers" hideName={true}/>|
+| `minimumStakedTokens` | Required number of VEGA tokens a referrer must have associated to their Vega key to receive the reward multiplier | Integer greater than 0 |
+| `referralRewardMultiplier` | Multiplier applied when calculating referral rewards due to the referrer, if they meet the criteria | Whole number, decimals allowed, greater than or equal to 1 |
 
 ## Templates and submitting
 
@@ -60,7 +62,8 @@ Below you will find:
 * Command line examples for different operating systems
 
 <Tabs groupId="referralProgramParameters">
- <TabItem value="json" label="Governance dApp (JSON)">
+<TabItem value="json" label="Governance dApp (JSON)">
+<JSONInstructions />
 
 ```json
 {
@@ -108,7 +111,8 @@ Below you will find:
 }
 ```  
 </TabItem>
-<TabItem value="cmd" label="Command line (Linux / OSX)">
+
+<TabItem value="cmd-linux-osx" label="Command line (Linux / OSX)">
 <TerminalInstructions />
 
 ```
@@ -158,7 +162,8 @@ Below you will find:
 ```
 
 </TabItem>
-<TabItem value="cmd" label="Command line (Windows)">
+<TabItem value="cmd-windows" label="Command line (Windows)">
+<TerminalInstructions />
 
 ```
 vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KEY --network NETWORK_NAME ^
@@ -209,3 +214,13 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
 ```
 </TabItem>
 </Tabs>
+
+## Voting
+All proposals are voted on by the community. To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.referralProgram.minVoterBalance" formatter="governanceToken" suffix="tokens" hideName={true} /> or <NetworkParameter frontMatter={frontMatter} formatter="governanceToken" param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated to their Vega key.
+
+Your proposal will need [participation](../../concepts/governance.md#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.referralProgram.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.referralProgram.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential. 
+
+Proposers who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.
+
+## Enactment
+If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
