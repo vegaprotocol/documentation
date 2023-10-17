@@ -42,17 +42,17 @@ If you are suggesting a replacement referral program, you'll need to include all
 | Benefit tier field | Description | Accepted values |
 | ----------- | ----------- | ----------- |
 | `benefitTiers` | List of values defining the reward and discount factors for the referral program | Holds the details of each benefit tier, listed below. Maximum of <NetworkParameter frontMatter={frontMatter} param="referralProgram.maxReferralTiers" hideName={true}/> |
-| `minimumRunningNotionalTakerVolume` | Required cumulative notional volume of taker trades, per epoch, that everyone in the referral set needs to have to access the related benefit tier | Whole number, decimals allowed, greater than 1 |
+| `minimumRunningNotionalTakerVolume` | Required cumulative notional volume of taker trades, per epoch, that everyone in the referral set needs to access the related benefit tier | Whole number, decimals allowed, greater than 1 |
 | `minimumEpochs` | Required number of epochs that a referee must have been in a referral set to access the benefits in this tier | Integer greater than 0 |
-| `referralRewardFactor` | Proportion of the referee's taker fees that will be rewarded to the referrer | Whole number, decimals allowed, greater than 0, and less / equal to <NetworkParameter frontMatter={frontMatter} param="referralProgram.maxReferralRewardFactor" hideName={true}/> |
-| `referralDiscountFactor` | Proportion of each referee's taker fees to be discounted |Must be greater than 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="referralProgram.maxReferralDiscountFactor" hideName={true}/> |
+| `referralRewardFactor` | Proportion of the referee's taker fees that will be rewarded to the referrer | Whole number, decimals allowed, greater than or equal to 0, and less / equal to <NetworkParameter frontMatter={frontMatter} param="referralProgram.maxReferralRewardFactor" hideName={true}/> |
+| `referralDiscountFactor` | Proportion of each referee's taker fees to be discounted | Must be greater than or equal to 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="referralProgram.maxReferralDiscountFactor" hideName={true}/> |
 
 #### Staking tier fields
 
 | Staking tier field | Description | Accepted values |
 | ----------- | ----------- | ----------- |
 | `stakingTiers` | List of values defining the multipliers to be used for referrals | Holds the details for each benefit tier, listed below. Maximum of <NetworkParameter frontMatter={frontMatter} param="referralProgram.maxReferralTiers" hideName={true}/>|
-| `minimumStakedTokens` | Required number of VEGA tokens a referrer must have associated to their Vega key to receive the reward multiplier | Integer greater than 0 |
+| `minimumStakedTokens` | Required number of VEGA tokens a referrer must have associated to their Vega key to receive the reward multiplier | Integer greater than or equal to 0 |
 | `referralRewardMultiplier` | Multiplier applied when calculating referral rewards due to the referrer, if they meet the criteria | Whole number, decimals allowed, greater than or equal to 1 |
 
 ## Templates and submitting
