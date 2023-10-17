@@ -108,11 +108,7 @@ The formula above uses these network parameters:
 :::
 
 #### Amending and cancelling a liquidity commitment 
-You can also amend or cancel a liquidity commitment. You can submit the transaction at any time, but when it goes into effect depends on what you’ve changed.
-
-* Increasing a liquidity commitment happens immediately
-* Decreasing a liquidity commitment only happens at the end of the epoch
-* Cancelling a liquidity commitment only happens at the end of the epoch
+You can also amend or cancel a liquidity commitment. You can submit the transaction at any time, but the change is only enacted at the start of the following epoch. If you increase your commitment, the extra assets are moved into your bond account immediately.
 
 Decreasing or cancelling your liquidity commitment will lead to penalties if the market needs that liquidity to stay at its target stake.
 
