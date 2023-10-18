@@ -41,7 +41,7 @@ The **terms** of the proposal describe the details of the proposal, including cl
 
 If you're proposing a transfer to fund rewards, there are extra fields to define.
 
-The `toAccountType` must be the account type that matches the reward category. For example, to propose that the 'average position' reward will pay out, you'll need to set the "to account type" type as `ACCOUNT_TYPE_REWARD_AVERAGE_POSITION`, and then choose the complementary reward category, known as the `metric`. The asset you choose then determines which market(s) the reward targets.
+The `destinationType` must be the account type that matches the reward category. For example, to propose that the 'average position' reward will pay out, you'll need to set the "destination account type" as `ACCOUNT_TYPE_REWARD_AVERAGE_POSITION`, and then choose the complementary reward category, known as the `metric`. The asset you choose then determines which market(s) the reward targets.
 
 The `to` field is used for public keys. In the case of network-managed accounts, the input they need is `0000000000000000000000000000000000000000000000000000000000000000`.
 
@@ -96,12 +96,12 @@ You will need to define the dispatch strategy, which includes the  metric, the l
       "enactmentTimestamp": 1697283400,
       "newTransfer": {
         "changes": {
-          "fromAccountType": "ACCOUNT_TYPE_NETWORK_TREASURY",
+          "sourceType": "ACCOUNT_TYPE_NETWORK_TREASURY",
           "transferType": "GOVERNANCE_TRANSFER_TYPE_BEST_EFFORT",
           "amount": "10000000",
           "asset": "b340c130096819428a62e5df407fd6abe66e444b89ad64f670beb98621c9c663",
           "fractionOfBalance": "0.1",
-          "toAccountType": "ACCOUNT_TYPE_REWARD_AVERAGE_POSITION",
+          "destinationType": "ACCOUNT_TYPE_REWARD_AVERAGE_POSITION",
           "to": "0000000000000000000000000000000000000000000000000000000000000000",
           "recurring": {
             "startEpoch": 116515,
@@ -130,12 +130,12 @@ You will need to define the dispatch strategy, which includes the  metric, the l
     "enactmentTimestamp": 10000100,
     "newTransfer": {
     "changes": {
-     "fromAccountType": "ACCOUNT_TYPE_NETWORK_TREASURY",
+     "sourceType": "ACCOUNT_TYPE_NETWORK_TREASURY",
      "transferType": "GOVERNANCE_TRANSFER_TYPE_BEST_EFFORT",
      "amount": "10000000",
           "asset": "ASSET_ID",
           "fractionOfBalance": "0.1",
-          "toAccountType": "ACCOUNT_TYPE_REWARD_AVERAGE_POSITION",
+          "destinationType": "ACCOUNT_TYPE_REWARD_AVERAGE_POSITION",
           "to": "0000000000000000000000000000000000000000000000000000000000000000",
           "recurring": {
             "startEpoch": 1111110,
@@ -164,12 +164,12 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
   \"enactmentTimestamp\": \"10000100\",^
   \"newTransfer\": {^
    \"changes\": {^
-    \"fromAccountType\": \"ACCOUNT_TYPE_NETWORK_TREASURY\",^
+    \"sourceType\": \"ACCOUNT_TYPE_NETWORK_TREASURY\",^
     \"transferType\": \"GOVERNANCE_TRANSFER_TYPE_BEST_EFFORT\",^
     \"amount\": \"10000000\",^
         \"asset\": \"ASSET_ID\",^
         \"fractionOfBalance\": `\"0.1\",^
-        \"toAccountType\": \"ACCOUNT_TYPE_REWARD_AVERAGE_POSITION\",^
+        \"destinationType\": \"ACCOUNT_TYPE_REWARD_AVERAGE_POSITION\",^
         \"to\": \"0000000000000000000000000000000000000000000000000000000000000000\",^
         \"recurring\": {^
            \"startEpoch\": \"1111110\"^
