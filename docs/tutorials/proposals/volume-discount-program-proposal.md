@@ -15,9 +15,11 @@ import TerminalInstructions from './_terminal-instructions.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+When a volume discount program is enabled, traders can receive discounts on their taker fees. The higher their taker volume over the discount program period, the greater the discount traders can receive.
+
 The volume discount program needs to be enabled by governance. Once it's enabled, both the requirements and the benefits can also be replaced with a new program.
 
-This page describes what you need to propose enabling or replacing the referral program, and provides example proposal templates that you will need to edit before sharing and submitting.
+This page describes what you need to propose enabling or replacing the volume discount program, and provides example proposal templates that you will need to edit before sharing and submitting.
 
 ## Requirements
 
@@ -26,22 +28,22 @@ You will need:
 * A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.VolumeDiscountProgram.minProposerBalance" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.VolumeDiscountProgram.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
 * Familiarity with [governance on Vega](../../concepts/governance.md)
 
-## Anatomy of a volume discount program proposal [WIP]
+## Anatomy of a volume discount program proposal
 The fields below all need to be defined to enable the volume discount program or replace an existing one. 
 
-If you are suggesting a replacement volume discount program, you'll need to include all the fields, even if you don't want to change their values. Just use the existing values from the current volume discount program.
+If you are suggesting a replacement program, you'll need to include all the fields, even if you don't want to change their values. Just use the existing values from the current volume discount program.
 
-**End of program timestamp**: Date and time after which, when the current epoch ends, the program will end and benefits will be disabled.
+**End of program timestamp**: Date and time after which, when the current epoch ends, the program will end and discounts will be disabled.
 
-**Window length**: Number of epochs over which to evaluate a volume discount set's running notional taker volume.
+**Window length**: Number of epochs over which to evaluate traders' volume of taker trades.
 
 #### Benefit tier fields
 
 | Benefit tier field | Description | Accepted values |
 | ----------- | ----------- | ----------- |
-| `benefitTiers` | List of values defining the reward and discount factors for the volume discount program | Holds the details of each benefit tier, listed below. Maximum of <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxBenefitTiers" hideName={true}/> |
-| `minimumRunningNotionalTakerVolume` | Required cumulative notional volume of taker trades, per epoch, that is required to have access to the related benefit tier | Whole number, decimals allowed, greater than 1 |
-| `volumeDiscountFactor` | Proportion of each referee's taker fees to be discounted | Must be greater than or equal to 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxVolumeDiscountFactor" hideName={true}/> |
+| `benefitTiers` | List of values defining the discount factors for the program | Holds the details of each tier of discounts, listed below. Maximum of <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxBenefitTiers" hideName={true}/> tiers |
+| `minimumRunningNotionalTakerVolume` | The notional volume of aggressive trades that a trader is required to have across the aggregation window, to access the discount in this tier | Whole number, decimals allowed, greater than 1 |
+| `volumeDiscountFactor` | Proportion of each trader's taker fees to be discounted, will be converted to a percentage | Must be greater than or equal to 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxVolumeDiscountFactor" hideName={true}/> |
 
 ## Templates and submitting
 
@@ -49,7 +51,7 @@ Below you will find:
 * JSON example that can be submitted with the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw)
 * Command line examples for different operating systems
 
-<Tabs groupId="referralProgramParameters">
+<Tabs groupId="volumeDiscountProgramParameters">
 <TabItem value="json" label="Governance dApp (JSON)">
 <JSONInstructions />
 
@@ -57,23 +59,23 @@ Below you will find:
 {
     "proposalSubmission": {
     "rationale": {
-      "title": "Referral proposal title",
-      "description": "This enacts or replaces referral program"
+      "title": "Volumed discount proposal title",
+      "description": "This enacts or replaces the volume discount program"
     },
     "terms": {
-        "updateReferralProgram": {
+        "updateVolumeVolumeDiscountProgram": {
           "changes": {
             "end_of_program_timestamp": 1234567890,
 
-            "window_length": 3,
+            "window_length": 11,
             "benefitTiers": [
               {
                 "minimumRunningNotionalTakerVolume": "10000",
-                "volumeDiscountFactor": "0.001"
+                "volumeDiscountFactor": "0.002"
               },
               {
-                "minimumRunningNotionalTakerVolume": "10100",
-                "volumeDiscountFactor": "0.002"
+                "minimumRunningNotionalTakerVolume": "10198",
+                "volumeDiscountFactor": "0.098"
               }
             ],
           }
@@ -94,7 +96,7 @@ Below you will find:
 '{"proposalSubmission": {
     "rationale": {
       "title": "Volume discount proposal title",
-      "description": "This enacts or replaces referral program"
+      "description": "This enacts or replaces the volume discount program"
     },
     "terms": {
         "updateVolumeVolumeDiscountProgram": {
@@ -108,8 +110,8 @@ Below you will find:
                 "volumeDiscountFactor": "0.001"
               },
               {
-                "minimumRunningNotionalTakerVolume": "10100",
-                "volumeDiscountFactor": "0.003"
+                "minimumRunningNotionalTakerVolume": "10198",
+                "volumeDiscountFactor": "0.098"
               }
             ],
           }
@@ -131,7 +133,7 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
 \"proposalSubmission\": {^
  \"rationale\": {^
   \"title\": \"Volume discount program proposal title\",^
-  \"description\": \"This explains why I want to enact or replaces referral program\"^
+  \"description\": \"This explains why I want to enact or replace the volume discount program\"^
  },^
  \"terms\": {^
  : {
@@ -147,7 +149,7 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
               },
               {
                 \"minimumRunningNotionalTakerVolume\": \"11000\",^
-                \"volumeDiscountFactor\": \"0.001\"^
+                \"volumeDiscountFactor\": \"0.098\"^
               }
             ],
           }
