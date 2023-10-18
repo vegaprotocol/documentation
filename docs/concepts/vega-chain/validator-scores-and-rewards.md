@@ -159,9 +159,6 @@ The remaining rewards are then distributed to the tokenholders nominating the va
 Rewards will not be paid to a validator if the multisig control is incorrectly configured or outdated and leads to that validator having a zero-score. Read more in [multisig score](#multisig-score).
 
 ## Validator metric-based rewards
-There may be extra rewards to consensus and standby validators, if the rewards are funded. These rewards are based on validators' ranking scores.
+There may be extra rewards to consensus and standby validators, if the [rewards](../trading-on-vega/fees-rewards.md#how-to-fund-rewards) are funded. These rewards are based on validators' ranking scores.
 
 A share of these rewards also goes to the validator's nominators, just as standard staking rewards do.
-
-### Maximum payout
-The metric-based rewards for validators are capped, with a maximum per public key, per epoch. This max is set through a network parameter: <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.maxPayoutPerParticipant" />. If it's set to 0, there is no maximum.

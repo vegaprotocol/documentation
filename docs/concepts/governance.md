@@ -161,32 +161,11 @@ When it comes to assets that are held in certain accounts, the community determi
 
 These proposals give community members a chance to determine what they think the assets should be spent on, whether that's to fund [trading or validator rewards](./trading-on-vega/fees-rewards.md#trading-rewards), to move money from [insurance pools](./assets/accounts.md#insurance-pool-accounts) into [network treasury accounts](./assets/accounts.md#network-treasury-accounts), or for other purposes.
 
-Transferring assets from certain account types can only be initiated by on-chain governance proposals. 
+Transferring assets from network-managed account types can only be initiated by on-chain governance proposals. 
 
 Those transfers can be one-off or recurring. A recurring transfer that's initiated by governance can only be cancelled when a governance proposal to cancel it is submitted and passes the governance vote.
 
-The table below highlights which types of transfers can only be done through a governance proposal and vote.
-
-| Source account | Destination account | Proposal required |
-| --- | --- | --- |
-| Network treasury | Party general account(s) | Yes |
-| Network treasury | Party other account types | No |
-| Network treasury | Market insurance pool account | Yes |
-| Network treasury | Asset insurance pool account | Yes |
-| Network treasury | Network treasury | No  |
-| Network treasury | Any other account | No |
-| Asset insurance pool account | Party general account(s) | Yes  |
-| Asset insurance pool account | Network treasury | Yes  |
-| Asset insurance pool account | Market insurance pool account | Yes |
-| Asset insurance pool account | Reward account | Yes |
-| Asset insurance pool account | Any other account | No |
-| Market insurance pool account | Party general account(s) | Yes  |
-| Market insurance pool account | Network treasury | Yes  |
-| Market insurance pool account | Asset insurance pool account | Yes |
-| Market insurance pool account | Market insurance pool account | Yes |
-| Market insurance pool account | Any other account | No |
-| Party account (any type) | Any | No |
-| Any other account | Any | No |
+To see a full table of which types of transfers can only be initiated through governance, see the [transfers page](./assets/transfers.md#governance-initiated-transfers).
 
 :::info Read more
 * **[Transfers](./assets/transfers.md)**: See more about transferring assets.

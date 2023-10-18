@@ -38,7 +38,7 @@ A recurring transfer transaction needs to contain the following:
 * Optional: the end epoch when the transfers should stop. If it's not specified, the transfer run until cancelled
 * The percentage of the full amount to pay each epoch, which is defined using the factor - a decimal
   - The amount paid at the end of each epoch is calculated using the following formula: `amount = start amount x factor ^ (current epoch - start epoch)`
-* Optional: When used to fund a reward pool, the distribution method - pro-rata or based on rank
+* Optional: When used to fund a reward pool, the [distribution method](../trading-on-vega/fees-rewards.md#how-rewards-are-scaled) - pro-rata or based on rank
 
 ### Recurring transfer limits
 While a party (public key) can have multiple transfers set up to move assets to different accounts, each party can only have one recurring transfer between two given accounts at the same time. For example, a party can transfer from their general account to Public Key A and Public Key B, but they cannot set up two recurring transfers of different amounts both going to Public Key B.
@@ -57,26 +57,33 @@ These governance-initiated transfers can be one-off or recurring. A recurring tr
 
 The table below details which types of transfers need to be done using a governance proposal and vote.
 
-| Source account | Destination account | Proposal required |
+| Source account type | Destination account type | Proposal required |
 | --- | --- | --- |
-| Network treasury | Party general account(s) | Yes |
-| Network treasury | Party other account types | No |
-| Network treasury | Market insurance pool account | Yes |
-| Network treasury | Asset insurance pool account | Yes |
-| Network treasury | Network treasury | No  |
-| Network treasury | Any other account | No |
-| Asset insurance pool account | Party general account(s) | Yes  |
+| Network treasury account | Party general account | Yes |
+| Network treasury account | Reward account | Yes |
+| Network treasury account | Party other account types | No |
+| Network treasury account | Market insurance pool account | Yes |
+| Network treasury account | Asset insurance pool account | Yes |
+| Network treasury account | Network treasury | No  |
+| Network treasury account | Any other account | No |
+| Asset insurance pool account | Party general account | Yes  |
 | Asset insurance pool account | Network treasury | Yes  |
 | Asset insurance pool account | Market insurance pool account | Yes |
 | Asset insurance pool account | Reward account | Yes |
 | Asset insurance pool account | Any other account | No |
-| Market insurance pool account | Party general account(s) | Yes  |
+| Market insurance pool account | Party general account | Yes  |
 | Market insurance pool account | Network treasury | Yes  |
 | Market insurance pool account | Asset insurance pool account | Yes |
 | Market insurance pool account | Market insurance pool account | Yes |
 | Market insurance pool account | Any other account | No |
+| Market insurance pool account | Reward account | Yes |
+| Global reward account | Any other account | Yes |
 | Party account (any type) | Any | No |
 | Any other account | Any | No |
+
+
+also missing a  as a source.
+
 
 :::note Read more
 * **[Transfers initiated by governance](../governance.md#transferring-assets)**: Learn about the governance mechanics involved in transfers.
