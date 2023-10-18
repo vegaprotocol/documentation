@@ -46,7 +46,9 @@ For **recurring transfers**, such as for funding rewards, you'll need to include
 
 **Governance transfer type** lets you determine what happens if the full requested amount can't be transferred. The options are "all or nothing", or "best effort", which is as much as is possible of the maximum amount.
 
-The **to** field is used for all transfers *except* to fund rewards. When transferring to network-managed accounts, use `0000000000000000000000000000000000000000000000000000000000000000`.
+The **to** field is used for all transfers *except* to fund rewards. 
+* When transferring to a global network-managed account, use `0000000000000000000000000000000000000000000000000000000000000000`.
+* When transferring to a market-specific network-managed account, use the market ID
 
 ### Fields used to fund trading rewards
 Rewards can only be funded with recurring tranfers. If you're proposing a transfer to fund rewards, there are extra fields to define.
@@ -84,10 +86,10 @@ You will need to define the dispatch strategy, which includes the  metric, the l
 
 ### Sample recurring transfer proposal to fund rewards
 
+These templates show an example of how to fund rewards with a governance transfer. **To propose a different reward with a governance-initiated transfer, use the fields and information above to expand the proposal.**
+
 * JSON example that can be submitted with the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw)
 * Command line examples for different operating systems
-
-**To propose a different reward with a governance-initiated transfer, use the fields and information above to expand the proposal.**
 
 <Tabs groupId="transferForRewards">
 <TabItem value="json" label="Governance dApp (JSON)">
@@ -216,9 +218,9 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
 </TabItem>
 </Tabs>
 
-### Sample one-off transfer proposal [WIP]
+### Sample one-off transfer proposal
 
-The following is a sample template to transfer from an asset's insurance pool to the insurance pool of a specific market.
+These templates show an example transfer from an asset's insurance pool to the insurance pool of a specific market, both of which need to use the same asset as specified in your transfer.
 
 * JSON example that can be submitted with the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw)
 * Command line examples for different operating systems
@@ -244,7 +246,7 @@ The following is a sample template to transfer from an asset's insurance pool to
           "asset": "RELEVANT_ASSET_ID",
           "fractionOfBalance": "0.1",
           "destinationType": "ACCOUNT_TYPE_INSURANCE",
-          "to": "0000000000000000000000000000000000000000000000000000000000000000",
+          "to": "MARKET_ID_FOR_INSURANCE_ACCOUNT",
          "oneOff":{ 
             "deliverOn": 0
            }
@@ -277,7 +279,7 @@ The following is a sample template to transfer from an asset's insurance pool to
             "asset": "RELEVANT_ASSET_ID",
             "fractionOfBalance": "0.1",
             "toAccountType": "ACCOUNT_TYPE_INSURANCE",
-            "to": "0000000000000000000000000000000000000000000000000000000000000000",
+            "to": "MARKET_ID_FOR_INSURANCE_ACCOUNT",
          "oneOff":{ 
             "deliverOn": 0
      }
@@ -310,7 +312,7 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
         \"asset\": \"RELEVANT_ASSET_ID\",^
         \"fractionOfBalance\": `\"0.1\",^
         \"toAccountType\": \"ACCOUNT_TYPE_INSURANCE\",^
-        \"to\": \"0000000000000000000000000000000000000000000000000000000000000000\",^
+        \"to\": \"MARKET_ID_FOR_INSURANCE_ACCOUNT\",^
         \"oneOff\": {^
         \"deliverOn\": \"0\"^
     }^
