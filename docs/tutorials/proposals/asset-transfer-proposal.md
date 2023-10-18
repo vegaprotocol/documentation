@@ -90,7 +90,7 @@ You will need to define the dispatch strategy, which includes the  metric, the l
 **To propose a different reward with a governance-initiated transfer, use the fields and information above to expand the proposal.**
 
 <Tabs groupId="transferForRewards">
- <TabItem value="json" label="Governance dApp (JSON)">
+<TabItem value="json" label="Governance dApp (JSON)">
 
 ```
 {
@@ -171,8 +171,9 @@ You will need to define the dispatch strategy, which includes the  metric, the l
 }'
 ``` 
 </TabItem>
-  <TabItem value="win" label="Command line (Windows)">
-    <TerminalInstructions />   
+
+<TabItem value="win" label="Command line (Windows)">
+  <TerminalInstructions />   
 
 ```
 vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KEY --network NETWORK_NAME ^
@@ -237,23 +238,21 @@ The following is a sample template to transfer from an asset's insurance pool to
       "enactmentTimestamp": 1334567890,
       "newTransfer": {
         "changes": {
-          "sourceType": "ACCOUNT_TYPE_NETWORK_TREASURY", --- gotta change
-           key from?
+          "sourceType": "ACCOUNT_TYPE_GLOBAL_INSURANCE",
           "transferType": "GOVERNANCE_TRANSFER_TYPE_BEST_EFFORT",
           "amount": "10000000",
-          "asset": "ASSET_ID",
+          "asset": "RELEVANT_ASSET_ID",
           "fractionOfBalance": "0.1",
-          "destinationType": "ACCOUNT_TYPE_",
+          "destinationType": "ACCOUNT_TYPE_INSURANCE",
           "to": "0000000000000000000000000000000000000000000000000000000000000000",
-          "one-off": {
-   xxxxxx
-      }
-            }
-          }
+         "oneOff":{ 
+            "deliverOn": 0
+           }
         }
       }
     }
   }
+}
 ```
   </TabItem>
   <TabItem value="cmd" label="Command line (Linux / OSX)">
@@ -268,19 +267,19 @@ The following is a sample template to transfer from an asset's insurance pool to
    "description": "Here is a description about why I want to transfer"
   },
   "terms": {
-    "closingTimestamp": 10000000,
-    "enactmentTimestamp": 10000100,
+    "closingTimestamp": 1234567890,
+    "enactmentTimestamp": 1334567890,
     "newTransfer": {
-    "changes": {
-     "fromAccountType": "ACCOUNT_TYPE_NETWORK_TREASURY",
-     "transferType": "GOVERNANCE_TRANSFER_TYPE_BEST_EFFORT",
-     "amount": "10000000",
-          "asset": "ASSET_ID",
-          "fractionOfBalance": "0.1",
-          "toAccountType": "ACCOUNT_TYPE_REWARD_AVERAGE_POSITION",
-          "to": "0000000000000000000000000000000000000000000000000000000000000000",
-          "one-off": {
-xxxxxxxxxx
+      "changes": {
+      "fromAccountType": "ACCOUNT_TYPE_GLOBAL_INSURANCE",
+      "transferType": "GOVERNANCE_TRANSFER_TYPE_BEST_EFFORT",
+      "amount": "10000000",
+            "asset": "RELEVANT_ASSET_ID",
+            "fractionOfBalance": "0.1",
+            "toAccountType": "ACCOUNT_TYPE_INSURANCE",
+            "to": "0000000000000000000000000000000000000000000000000000000000000000",
+         "oneOff":{ 
+            "deliverOn": 0
      }
     }
    },
@@ -301,19 +300,19 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
   \"description\": \"Here is a description about why I want to transfer\"^
  },^
  \"terms\": {^
-  \"closingTimestamp\": \"10000000\",^
-  \"enactmentTimestamp\": \"10000100\",^
+  \"closingTimestamp\": \"1234567890\",^
+  \"enactmentTimestamp\": \"1334567890\",^
   \"newTransfer\": {^
    \"changes\": {^
-    \"fromAccountType\": \"ACCOUNT_TYPE_NETWORK_TREASURY\",^
+    \"fromAccountType\": \"ACCOUNT_TYPE_GLOBAL_INSURANCE\",^
     \"transferType\": \"GOVERNANCE_TRANSFER_TYPE_BEST_EFFORT\",^
     \"amount\": \"10000000\",^
-        \"asset\": \"ASSET_ID\",^
+        \"asset\": \"RELEVANT_ASSET_ID\",^
         \"fractionOfBalance\": `\"0.1\",^
-        \"toAccountType\": \"ACCOUNT_TYPE_REWARD_AVERAGE_POSITION\",^
+        \"toAccountType\": \"ACCOUNT_TYPE_INSURANCE\",^
         \"to\": \"0000000000000000000000000000000000000000000000000000000000000000\",^
-        \"one-off\": {^
-xxxxxxxx
+        \"oneOff\": {^
+        \"deliverOn\": \"0\"^
     }^
    }^
   },^
@@ -321,6 +320,7 @@ xxxxxxxx
 }^
 }"
 ```
+
 </TabItem>
 </Tabs>
 

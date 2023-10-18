@@ -14,7 +14,7 @@ Transfers from certain accounts need to be proposed through [governance](#govern
 
 Anyone with a Vega public key and assets can set up a transfer. Those transfers can only be done from a general account the party has control of, using their own funds. Anyone with a Vega public key and enough VEGA tokens can propose assets be transferred from those specific network accounts.
 
-**Each transfer incurs a fee.** The fee is paid to the validators who run the network infrastructure. The amount of the fee is set with the network parameter <NetworkParameter frontMatter={frontMatter} param="transfer.fee.factor" />. The fee amount is a proportion of the total transfer amount. The fee's subtracted immediately on execution, and is taken on top of the transfer amount.
+**Each transfer incurs a fee.** The fee is paid to the validators who run the network infrastructure. The amount of the fee is set with the network parameter <NetworkParameter frontMatter={frontMatter} param="transfer.fee.factor" />. The fee amount is a proportion of the total transfer amount. The fee's subtracted immediately on execution, and is taken on top of the transfer amount. The exception is governance-initiated transfers, which don't incur a fee.
 
 Transfers can be set up to happen [only once](#one-off-transfers), or can happen [repeatedly](#recurring-transfers).
 
@@ -49,7 +49,7 @@ It's possible to cancel a recurring transfer, but not to amend. If you want to c
 If the asset used to fund a recurring transfer is depleted, either because the funds have run out or it's less than the <NetworkParameter frontMatter={frontMatter} param="transfer.minTransferQuantumMultiple" />` x quantum`, then the transfer is cancelled automatically. You'll have to set up a new transfer if you want to keep funding the key/account.
 
 ## Governance-initiated transfers
-Assets being moved out of certain accounts requires community support, through a governance proposal and vote. Generally speaking, they're accounts that have assets moved into them after markets are settled, because of market protection movements, or entirely funded by community members that transfer assets into them.
+Assets being moved out of certain accounts requires community support, through a governance proposal and vote. Generally speaking, they're accounts that have assets moved into them after markets are settled, because of market protection movements, or entirely funded by community members that transfer assets into them. 
 
 The proposals give community members a chance to determine what they think the assets should be spent on, whether that's to fund [trading or validator rewards](../trading-on-vega/fees-rewards.md#trading-rewards), to move money from [insurance pools](./accounts.md#insurance-pool-accounts) into [network treasury accounts](./accounts.md#network-treasury-accounts), or for other purposes.
 
@@ -80,10 +80,6 @@ The table below details which types of transfers need to be done using a governa
 | Global reward account | Any other account | Yes |
 | Party account (any type) | Any | No |
 | Any other account | Any | No |
-
-
-also missing a  as a source.
-
 
 :::note Read more
 * **[Transfers initiated by governance](../governance.md#transferring-assets)**: Learn about the governance mechanics involved in transfers.
