@@ -10,7 +10,7 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 ## Transfer assets to keys or accounts
 Use transfers to move assets from one Vega key to another, or from a Vega key to a specific account, such as to supply assets to a [reward pool](../trading-on-vega/fees-rewards.md#trading-rewards).
 
-Transfers from certain accounts need to be proposed through [governance](#governance-initiated-transfers), because moving assets to/from those accounts needs to be agreed by the community.
+Transfers from certain accounts need to be proposed through [governance](#governance-initiated-transfers), because moving assets to/from those asset pools needs to be agreed by the community.
 
 Anyone with a Vega public key and assets can set up a transfer. Those transfers can only be done from a general account the party has control of, using their own funds. Anyone with a Vega public key and enough VEGA tokens can propose assets be transferred from those specific network accounts.
 

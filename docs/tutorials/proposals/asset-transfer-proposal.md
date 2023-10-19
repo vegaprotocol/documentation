@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
 
 Network-managed accounts that allow transfers require the community to approve transferring assets out of them. You can also propose that those assets are used to fund trading rewards by including those details into the proposal.
 
-This tutorial describes what you need to propose transferring assets from those network-managed accounts to other accounts, and provides proposal templates that you will need to edit before submitting.
+This tutorial describes what you need to propose transferring assets from those asset pools to other accounts, and provides proposal templates that you will need to edit before submitting.
 
 ## Requirements
 
@@ -273,7 +273,7 @@ These templates show an example transfer from an asset's insurance pool to the i
     "enactmentTimestamp": 1334567890,
     "newTransfer": {
       "changes": {
-      "fromAccountType": "ACCOUNT_TYPE_GLOBAL_INSURANCE",
+      "sourceType": "ACCOUNT_TYPE_GLOBAL_INSURANCE",
       "transferType": "GOVERNANCE_TRANSFER_TYPE_BEST_EFFORT",
       "amount": "10000000",
             "asset": "RELEVANT_ASSET_ID",
@@ -306,7 +306,7 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
   \"enactmentTimestamp\": \"1334567890\",^
   \"newTransfer\": {^
    \"changes\": {^
-    \"fromAccountType\": \"ACCOUNT_TYPE_GLOBAL_INSURANCE\",^
+    \"sourceType\": \"ACCOUNT_TYPE_GLOBAL_INSURANCE\",^
     \"transferType\": \"GOVERNANCE_TRANSFER_TYPE_BEST_EFFORT\",^
     \"amount\": \"10000000\",^
         \"asset\": \"RELEVANT_ASSET_ID\",^
