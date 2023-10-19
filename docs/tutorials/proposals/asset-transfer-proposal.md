@@ -68,7 +68,7 @@ You will need to define the dispatch strategy, which includes the  metric, the l
 | `lock_period` | Number of epochs to keep earned rewards in the recipient's reward vesting account before moving to their vested account |
 | `entityScope` | defines the entities within scope | Currently ENTITY_SCOPE_INDIVIDUALS is the only option |
 | `individualScope` | To be used if the eligible reward recipients should be individuals, and that can then be further focused to determine who is eligible | Currently INDIVIDUAL_SCOPE_ALL is the only option |
-| `distributionStrategy` | Sets how the participants should be ranked, and what other factors to consider. Read [distribution method](../trading-on-vega/fees-rewards.md#how-rewards-are-scaled) for more info |  DISTRIBUTION_STRATEGY_PRO_RATA; DISTRIBUTION_STRATEGY_RANK |
+| `distributionStrategy` | Sets how the participants should be ranked, and what other factors to consider. Read [distribution method](../../concepts/trading-on-vega/fees-rewards.md#how-rewards-are-scaled) for more info |  DISTRIBUTION_STRATEGY_PRO_RATA; DISTRIBUTION_STRATEGY_RANK |
 
 #### Example dispatch strategy snippet
 
