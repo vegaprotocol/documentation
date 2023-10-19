@@ -15,7 +15,7 @@ import TerminalInstructions from './_terminal-instructions.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The on-chain referral program allows users to refer new traders. Referrers can get a cut of their referees' trading fees, and referees get a discount on their fees. In addition, having VEGA tokens associated can multiply participants' proceeds.
+The on-chain referral program allows users to refer new traders. Referrers can get a cut of their referees' trading fees, and referees get a discount on their fees. In addition, a referrer with VEGA tokens associated can multiply their rewards.
 
 The referral program needs to be enabled by governance. Once it's enabled, both the requirements and the benefits can also be replaced with a new program.
 
@@ -37,22 +37,24 @@ If you are suggesting a replacement referral program, you'll need to include all
 
 **Window length**: Number of epochs over which to evaluate a referral set's running notional taker volume.
 
+To end an existing program early, set your proposal up with the exact same parameters. Set the *end of program timestamp* to be the same as the proposal's *enactment* timestamp.
+
 #### Benefit tier fields
 
 | Benefit tier field | Description | Accepted values |
 | ----------- | ----------- | ----------- |
 | `benefitTiers` | List of values defining the reward and discount factors for the program | Holds the details of each benefit tier, listed below. Maximum of <NetworkParameter frontMatter={frontMatter} param="referralProgram.maxReferralTiers" hideName={true}/> tiers |
-| `minimumRunningNotionalTakerVolume` | The notional volume of aggressive trades that a trader is required to have across the aggregation window, to access this tier | Whole number, decimals allowed, greater than 1 |
+| `minimumRunningNotionalTakerVolume` | The notional volume of aggressive trades that a trader is required to have across the aggregation window, to access this tier | Integer greater than or equal to 1 |
 | `minimumEpochs` | Required number of epochs that a referee must have been in a referral set to access the benefits in this tier | Integer greater than 0 | Integer greater than 0 |
-| `referralRewardFactor` | Proportion of the referee's taker fees that will be rewarded to the referrer | Whole number, decimals allowed, greater than or equal to 0, and less / equal to <NetworkParameter frontMatter={frontMatter} param="referralProgram.maxReferralRewardFactor" hideName={true}/> |
-| `referralDiscountFactor` | Proportion of each referee's taker fees to be discounted, will be converted to a percentage | Must be greater than or equal to 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="referralProgram.maxReferralDiscountFactor" hideName={true}/> |
+| `referralRewardFactor` | Proportion of the referee's paid fees that will be rewarded to the referrer | Whole number, decimals allowed, greater than or equal to 0, and less / equal to <NetworkParameter frontMatter={frontMatter} param="referralProgram.maxReferralRewardFactor" hideName={true}/> |
+| `referralDiscountFactor` | Proportion of each referee's fees to be discounted, will be converted to a percentage | Must be greater than or equal to 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="referralProgram.maxReferralDiscountFactor" hideName={true}/> |
 
 #### Staking tier fields
 
 | Staking tier field | Description | Accepted values |
 | ----------- | ----------- | ----------- |
 | `stakingTiers` | List of values defining the multipliers to be used for referrals | Holds the details for each benefit tier, listed below. Maximum of <NetworkParameter frontMatter={frontMatter} param="referralProgram.maxReferralTiers" hideName={true}/>|
-| `minimumStakedTokens` | Required number of VEGA tokens a referrer must have associated to their Vega key to receive the reward multiplier | Integer greater than or equal to 0 |
+| `minimumStakedTokens` | Required number of VEGA tokens a referrer must have associated to their Vega key to receive the reward multiplier | Integer greater than 0 |
 | `referralRewardMultiplier` | Multiplier applied when calculating referral rewards due to the referrer, if they meet the criteria | Whole number, decimals allowed, greater than or equal to 1 |
 
 ## Templates and submitting
@@ -223,4 +225,4 @@ Your proposal will need [participation](../../concepts/governance.md#how-the-out
 Proposers who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.
 
 ## Enactment
-If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
+If successful, the program changes will go live in the epoch following the time you specify in the `enactmentTimestamp` field.

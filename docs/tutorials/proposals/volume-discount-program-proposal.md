@@ -15,7 +15,7 @@ import TerminalInstructions from './_terminal-instructions.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-When a volume discount program is enabled, traders can receive discounts on their taker fees. The higher their taker volume over the discount program period, the greater the discount traders can receive.
+When a volume discount program is enabled, traders can receive discounts on their fees. The higher their taker volume over the discount program's window length, the greater the discount traders can receive.
 
 The volume discount program needs to be enabled by governance. Once it's enabled, both the requirements and the benefits can also be replaced with a new program.
 
@@ -37,13 +37,15 @@ If you are suggesting a replacement program, you'll need to include all the fiel
 
 **Window length**: Number of epochs over which to evaluate traders' volume of taker trades.
 
+To end an existing program early, set your proposal up with the exact same parameters. Set the *end of program timestamp* to be the same as the proposal's *enactment* timestamp. 
+
 #### Benefit tier fields
 
 | Benefit tier field | Description | Accepted values |
 | ----------- | ----------- | ----------- |
 | `benefitTiers` | List of values defining the discount factors for the program | Holds the details of each tier of discounts, listed below. Maximum of <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxBenefitTiers" hideName={true}/> tiers |
-| `minimumRunningNotionalTakerVolume` | The notional volume of aggressive trades that a trader is required to have across the aggregation window, to access the discount in this tier | Whole number, decimals allowed, greater than 1 |
-| `volumeDiscountFactor` | Proportion of each trader's taker fees to be discounted, will be converted to a percentage | Must be greater than or equal to 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxVolumeDiscountFactor" hideName={true}/> |
+| `minimumRunningNotionalTakerVolume` | The notional volume of aggressive trades that a trader is required to have across the aggregation window, to access the discount in this tier | Integer greater than or equal to 1 |
+| `volumeDiscountFactor` | Proportion of each trader's fees to be discounted, will be converted to a percentage | Must be greater than or equal to 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxVolumeDiscountFactor" hideName={true}/> |
 
 ## Templates and submitting
 
@@ -59,11 +61,11 @@ Below you will find:
 {
     "proposalSubmission": {
     "rationale": {
-      "title": "Volumed discount proposal title",
+      "title": "Volume discount proposal title",
       "description": "This enacts or replaces the volume discount program"
     },
     "terms": {
-        "updateVolumeVolumeDiscountProgram": {
+        "updateVolumeDiscountProgram": {
           "changes": {
             "end_of_program_timestamp": 1234567890,
 
@@ -99,7 +101,7 @@ Below you will find:
       "description": "This enacts or replaces the volume discount program"
     },
     "terms": {
-        "updateVolumeVolumeDiscountProgram": {
+        "updateVolumeDiscountProgram": {
           "changes": {
             "end_of_program_timestamp": 1234567890,
 
@@ -171,4 +173,4 @@ Your proposal will need [participation](../../concepts/governance.md#how-the-out
 Proposers who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.
 
 ## Enactment
-If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
+If successful, the program changes will go live in the epoch following the time you specify in the `enactmentTimestamp` field.
