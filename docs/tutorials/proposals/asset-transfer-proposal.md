@@ -46,7 +46,7 @@ For **recurring transfers**, such as for funding rewards, you'll need to include
 
 **Governance transfer type** lets you determine what happens if the full requested amount can't be transferred. The options are "all or nothing", or "best effort", which is as much as is possible of the maximum amount.
 
-The **to** field is used for all transfers *except* to fund rewards. 
+The **destination** field is used for all transfers *except* to fund rewards. 
 * When transferring to a global network-managed account, use `0000000000000000000000000000000000000000000000000000000000000000`.
 * When transferring to a market-specific network-managed account, use the market ID
 
@@ -246,7 +246,7 @@ These templates show an example transfer from an asset's insurance pool to the i
           "asset": "RELEVANT_ASSET_ID",
           "fractionOfBalance": "0.1",
           "destinationType": "ACCOUNT_TYPE_INSURANCE",
-          "to": "MARKET_ID_FOR_INSURANCE_ACCOUNT",
+          "destination": "MARKET_ID_FOR_INSURANCE_ACCOUNT",
          "oneOff":{ 
             "deliverOn": 0
            }
@@ -278,8 +278,8 @@ These templates show an example transfer from an asset's insurance pool to the i
       "amount": "10000000",
             "asset": "RELEVANT_ASSET_ID",
             "fractionOfBalance": "0.1",
-            "toAccountType": "ACCOUNT_TYPE_INSURANCE",
-            "to": "MARKET_ID_FOR_INSURANCE_ACCOUNT",
+            "destinationType": "ACCOUNT_TYPE_INSURANCE",
+            "destination": "MARKET_ID_FOR_INSURANCE_ACCOUNT",
          "oneOff":{ 
             "deliverOn": 0
      }
@@ -311,8 +311,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
     \"amount\": \"10000000\",^
         \"asset\": \"RELEVANT_ASSET_ID\",^
         \"fractionOfBalance\": `\"0.1\",^
-        \"toAccountType\": \"ACCOUNT_TYPE_INSURANCE\",^
-        \"to\": \"MARKET_ID_FOR_INSURANCE_ACCOUNT\",^
+        \"destinationType\": \"ACCOUNT_TYPE_INSURANCE\",^
+        \"destination\": \"MARKET_ID_FOR_INSURANCE_ACCOUNT\",^
         \"oneOff\": {^
         \"deliverOn\": \"0\"^
     }^
