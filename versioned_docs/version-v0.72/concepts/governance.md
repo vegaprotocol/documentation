@@ -170,18 +170,24 @@ Read more:
 * [Update market proposal ↗](../tutorials/proposals/update-market-proposal.md): Guide to submitting a proposal to change a market using the command line
 
 ### Propose a new market
-Tokenholders can propose new markets, which then need to be voted on by other tokenholders. The proposer will need to have at least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the market, and staked to a validator. Note, this amount is set through the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true} />.
+Tokenholders can propose new markets, which then need to be voted on by other tokenholders. 
+
+The network supports proposing cash-settled markets for the following products:
+* Futures: A futures market is a venue for traders to speculate on the price of an asset at a specific date and time in the future. This type of futures market has a set expiry date and time, after which the market is terminated and all positions are closed and settled. 
+* Perpetual futures: A perpetual futures market is a venue for traders to speculate on the price of an asset but the market does not expire.
+
+The proposer will need to have at least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the market, and staked to a validator. Note, this amount is set through the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true} />.
 
 If the market proposal gets a <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" hideName={true} formatter="percent"/> majority of tokenholder support, then it will be enacted. The required majority is defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" hideValue={true} />.
 
 To propose a market, you'll need to provide the details required for the market to begin trading right away. While some of the fields are free-text, others are constrained by a range set through network parameters, to ensure that the values provided are fit for purpose.
 
 Required fields include:
-* Instrument details, including a human-readable name, an understandable shortcode for the market, the type of product (futures)
+* Instrument details, including a human-readable name, an understandable shortcode for the market, the type of product (futures; perpetual futures)
 * Risk model parameters
 * Product specifics including the settlement asset and quote name
 * Decimal places for the market and positions. (Note: A market cannot specify more decimal places than its settlement asset supports)
-* Oracle details, including the oracle's public key, specifications for the settlement price and trading termination, and data filters
+* Oracle details, including the oracle's public key, specifications for settlement, and data filters
 * Liquidity monitoring parameters, including the target stake parameters, triggering ratio and auction extension
 
 Optional fields include: 
@@ -237,7 +243,7 @@ Another parameter is
 <!--### Changing models [WIP]  -->
 
 ### Propose a successor market
-A successor market is a market that will carry on after the original market, or parent, that it is based on has settled - though a parent and successor market can be active simultaneously. Proposing a new successor market that follows from an existing market offers liquidity providers the option to keep their [equity-like share](./liquidity/rewards-penalties.md#how-liquidity-fees-are-split) on the new market, even when the original market expires. Creating an entirely new market with no parent doesn't offer the same benefit.
+A successor market is a market that will carry on after the original market, or parent, that it is based on has settled or been closed. A futures parent and successor market can be active simultaneously. Proposing a new successor market that follows from an existing market offers liquidity providers the option to keep their [equity-like share](./liquidity/rewards-penalties.md#how-liquidity-fees-are-split) on the new market, even when the original market expires or is closed with governance. Creating an entirely new market with no parent doesn't offer the same benefit.
 
 Each market can have only one active successor. A successor market can also be a parent market.
 
@@ -246,9 +252,9 @@ In terms of the proposal format, there are only two differences between a succes
 * Insurance pool percentage: Required percentage of the parent market's insurance pool, up to 100%, can be earmarked for transfer to the successor market. It is submitted as a number between and including 0 and 1, which represents the factor for the percentage.
 * Settlement asset validation: The settlement asset needs to match that of the parent market
 
-For a successor market to be enacted, the parent market must be in one of the following states: proposed, pending, active, suspended or trading terminated. 
+For a successor market to be enacted, the parent market must be in one of the following states: proposed, pending, active, suspended or trading terminated.
 
-The parent market can be settled or cancelled when the successor market reaches enactment time, as long as the time it's been settled/cancelled is equal to or less than the parent market's settlement time plus the `market.liquidity.successorLaunchWindowLength` - determined by a network parameter. This parameter specifies for how long after a market has settled, the liquidity provider's equity-like share data are retained and the insurance pool is left undistributed to allow a successor to be defined. If the successor is proposed after that time, then it's rejected and any assets committed to the market are returned.
+The parent market can be settled, cancelled, or closed when the successor market reaches enactment time, as long as the time it's been ended is less than the value of <NetworkParameter frontMatter={frontMatter} param="market.liquidity.successorLaunchWindowLength" />. This network parameter specifies for how long after a market has settled, the liquidity provider's equity-like share data are retained and the insurance pool is left undistributed to allow a successor to be defined. If the successor is proposed after that time, then it's rejected and any assets committed to the market are returned.
 
 ### Propose updates to a market
 Most details about a market can be changed through governance. Those includes risk models, monitoring triggers, and the settlement and termination data sources.

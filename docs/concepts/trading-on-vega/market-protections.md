@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 title: Market protections
 hide_title: false
 description: Read about how markets can trade safely, pseudonymously.

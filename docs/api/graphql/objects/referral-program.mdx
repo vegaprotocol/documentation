@@ -20,10 +20,9 @@ type ReferralProgram {
   id: ID!
   version: Int!
   benefitTiers: [BenefitTier!]!
-  endOfProgramTimestamp: Timestamp!
+  endOfProgramTimestamp: String!
   windowLength: Int!
   stakingTiers: [StakingTier!]!
-  endedAt: Timestamp
 }
 ```
 
@@ -42,8 +41,8 @@ type ReferralProgram {
 > Defined tiers in increasing order. First element will give Tier 1, second element will give Tier 2, etc.
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>ReferralProgram.<b>endOfProgramTimestamp</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> Timestamp as RFC3339Nano, after which when the current epoch ends, the programs status will become STATE_CLOSED and benefits will be disabled.
+#### [<code style={{ fontWeight: 'normal' }}>ReferralProgram.<b>endOfProgramTimestamp</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Timestamp as RFC3339, after which when the current epoch ends, the programs will end and benefits will be disabled.
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ReferralProgram.<b>windowLength</b></code>](#)<Bullet />[`Int!`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
@@ -56,15 +55,7 @@ second element will give Tier 2, and so on. Determines the level of
 benefit a party can expect based on their staking.
 > 
 
-#### [<code style={{ fontWeight: 'normal' }}>ReferralProgram.<b>endedAt</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
-> Timestamp as RFC3339Nano when the program ended. If present, the current program has ended and no program is currently running.
-> 
 
-
-
-### Returned by
-
-[`currentReferralProgram`](/testnet/api/graphql/queries/current-referral-program)  <Badge class="secondary" text="query"/>
 
 
 

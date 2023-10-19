@@ -1,7 +1,7 @@
 const sample = require('lodash/sample');
 const random = require('lodash/random');
 const sampleSize = require('lodash/sampleSize');
-const { generateSettlementDataSourceSpec, generateTerminationDataSourceSpec, generateDataSourceSpecBinding } = require('./newMarket')
+const { generateSettlementDataSourceSpec, generateTerminationDataSourceSpec, generateDataSourceSpecBinding, generateLiquiditySlaParameters } = require('./newMarket')
 const assert = require('assert').strict;
 const { inspect } = require('util');
 
@@ -11,7 +11,7 @@ const instruments = [
 ];
 
 // This is slightly smaller than the one in newMarket
-function generateInstrument(skeleton) {
+function generateFutureInstrument(skeleton) {
   const randomInstrument = sample(instruments)
 
   // The properties of an instrument
@@ -155,7 +155,6 @@ function updateMarket(skeleton, proposalSoFar) {
   assert.ok(skeleton.properties.changes.properties.instrument);
   assert.ok(skeleton.properties.changes.properties.quadraticSlippageFactor);
   assert.ok(skeleton.properties.changes.properties.linearSlippageFactor);
-  assert.ok(skeleton.properties.changes.properties.lpPriceRange);
   assert.equal(skeleton.properties.changes.properties.metadata.type, 'array');
   assert.ok(skeleton.properties.changes.properties.priceMonitoringParameters);
   assert.ok(skeleton.properties.changes.properties.liquidityMonitoringParameters);
@@ -170,28 +169,26 @@ function updateMarket(skeleton, proposalSoFar) {
       updateMarket: {
         marketId: '123',
         changes: {
-          lpPriceRange: "11",
           linearSlippageFactor: "0.001",
           quadraticSlippageFactor: "0",
-          instrument: generateInstrument(skeleton.properties.changes.properties.instrument),
+          instrument: generateFutureInstrument(skeleton.properties.changes.properties.instrument),
           metadata: generateMetadata(skeleton.properties.changes.properties.metadata),
           priceMonitoringParameters: generatePriceMonitoringParameters(skeleton.properties.changes.properties.priceMonitoringParameters),
-          logNormal: generateRiskModel(skeleton.properties.changes.properties.logNormal, 'logNormal')
+          logNormal: generateRiskModel(skeleton.properties.changes.properties.logNormal, 'logNormal'),
+          liquiditySlaParameters: generateLiquiditySlaParameters(
+            skeleton.properties.changes.properties.liquiditySlaParameters
+          ),
         },
       }
     }
   };
 
   /*------- Liquidity Commitment required */
-  const lpLabel = skeleton.properties.changes.properties.lpPriceRange.description.split('\n')
   result.terms.updateMarket[inspect.custom] = () => {
     return `{
         // ${skeleton.properties.marketId.description}
         marketId: '123',
         changes: {
-          // ${lpLabel[0]}
-          // ${lpLabel[1]}
-          lpPriceRange: ${result.terms.updateMarket.changes.lpPriceRange},
           // ${skeleton.properties.changes.properties.linearSlippageFactor.description}
           linearSlippageFactor: ${result.terms.updateMarket.changes.linearSlippageFactor},
           // ${skeleton.properties.changes.properties.quadraticSlippageFactor.description}
@@ -204,6 +201,10 @@ function updateMarket(skeleton, proposalSoFar) {
           priceMonitoringParameters: ${inspect(result.terms.updateMarket.changes.priceMonitoringParameters, { depth: 19 })},
           // ${skeleton.properties.changes.properties.logNormal.title}
           logNormal: ${inspect(result.terms.updateMarket.changes.logNormal, { depth: 19 })},
+          // ${skeleton.properties.changes.properties.liquiditySlaParameters.title}
+          liquiditySlaParameters: ${inspect(result.terms.updateMarket.changes.liquiditySlaParameters, {
+       depth: 19,
+     })},
         },
     }`
   }

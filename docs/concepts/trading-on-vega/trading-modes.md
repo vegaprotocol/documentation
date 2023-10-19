@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 title: Trading modes
 hide_title: false
 description: Find out what trading modes the protocol supports.

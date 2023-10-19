@@ -17,8 +17,6 @@ No description
 
 ```graphql
 type UpdateVolumeDiscountProgram {
-  version: Int!
-  id: ID!
   benefitTiers: [VolumeBenefitTier!]!
   endOfProgramTimestamp: Timestamp!
   windowLength: Int!
@@ -27,14 +25,6 @@ type UpdateVolumeDiscountProgram {
 
 
 ### Fields
-
-#### [<code style={{ fontWeight: 'normal' }}>UpdateVolumeDiscountProgram.<b>version</b></code>](#)<Bullet />[`Int!`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> The current version of the volume discount program
-> 
-
-#### [<code style={{ fontWeight: 'normal' }}>UpdateVolumeDiscountProgram.<b>id</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> ID of the proposal that created the discount program
-> 
 
 #### [<code style={{ fontWeight: 'normal' }}>UpdateVolumeDiscountProgram.<b>benefitTiers</b></code>](#)<Bullet />[`[VolumeBenefitTier!]!`](/testnet/api/graphql/objects/volume-benefit-tier) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
 > The benefit tiers for the program
@@ -45,7 +35,7 @@ type UpdateVolumeDiscountProgram {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>UpdateVolumeDiscountProgram.<b>windowLength</b></code>](#)<Bullet />[`Int!`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> The window legnth to consider for the volume discount program
+> The window length to consider for the volume discount program
 > 
 
 

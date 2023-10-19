@@ -9,7 +9,6 @@
     "updateMarket": {
       "marketId": "123",
       "changes": {
-        "lpPriceRange": "11",
         "linearSlippageFactor": "0.001",
         "quadraticSlippageFactor": "0",
         "instrument": {
@@ -88,17 +87,23 @@
         },
         "logNormal": {
           "tau": 0.0001140771161,
-          "riskAversionParameter": 0.0001,
+          "riskAversionParameter": 0.01,
           "params": {
             "mu": 0,
             "r": 0.016,
             "sigma": 1.25
           }
+        },
+        "liquiditySlaParameters": {
+          "priceRange": "0.1",
+          "commitmentMinTimeFraction": "0.1",
+          "performanceHysteresisEpochs": "10",
+          "slaCompetitionFactor": "0.2"
         }
       }
     },
-    "closingTimestamp": 1696941757,
-    "enactmentTimestamp": 1697028157
+    "closingTimestamp": 1698833433,
+    "enactmentTimestamp": 1698919833
   }
 }
 ```

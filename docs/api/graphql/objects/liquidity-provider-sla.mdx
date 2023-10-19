@@ -1,0 +1,78 @@
+---
+id: liquidity-provider-sla
+title: LiquidityProviderSLA
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+The SLA statistics for each liquidity provider
+
+```graphql
+type LiquidityProviderSLA {
+  party: Party!
+  currentEpochFractionOfTimeOnBook: String!
+  lastEpochFractionOfTimeOnBook: String!
+  lastEpochFeePenalty: String!
+  lastEpochBondPenalty: String!
+  hysteresisPeriodFeePenalties: [String!]
+  requiredLiquidity: String!
+  notionalVolumeBuys: String!
+  notionalVolumeSells: String!
+}
+```
+
+
+### Fields
+
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProviderSLA.<b>party</b></code>](#)<Bullet />[`Party!`](/testnet/api/graphql/objects/party) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The liquidity provider party ID
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProviderSLA.<b>currentEpochFractionOfTimeOnBook</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Indicates how often LP meets the commitment during the current epoch.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProviderSLA.<b>lastEpochFractionOfTimeOnBook</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Indicates how often LP met the commitment in the previous epoch.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProviderSLA.<b>lastEpochFeePenalty</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Indicates the fee penalty amount applied in the previous epoch.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProviderSLA.<b>lastEpochBondPenalty</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Indicates the bond penalty amount applied in the previous epoch.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProviderSLA.<b>hysteresisPeriodFeePenalties</b></code>](#)<Bullet />[`[String!]`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="list"/> <Badge class="secondary" text="scalar"/>
+> Determines how the fee penalties from past epochs affect future fee revenue.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProviderSLA.<b>requiredLiquidity</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Represents the total amount of funds LP must supply. The amount to be supplied is in the market’s settlement currency, spread on both buy and sell sides of the order book within a defined range.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProviderSLA.<b>notionalVolumeBuys</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Notional volume of orders within the range provided on the buy side of the book.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>LiquidityProviderSLA.<b>notionalVolumeSells</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Notional volume of orders within the range provided on the sell side of the book.
+> 
+
+
+
+### Member of
+
+[`LiquidityProvider`](/testnet/api/graphql/objects/liquidity-provider)  <Badge class="secondary" text="object"/><Bullet />[`MarketData`](/testnet/api/graphql/objects/market-data)  <Badge class="secondary" text="object"/>
+
+
+

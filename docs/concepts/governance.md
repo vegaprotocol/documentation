@@ -215,12 +215,13 @@ Markets are proposed and voted into existence by Vega tokenholders. The paramete
 
 Some market parameters can also be changed. They can only be proposed by a liquidity provider with enough equity-like share in the market, and need to be voted for by a sufficient number of tokenholders and/or liquidity providers.
 
-When creating a market governance proposal, whether it is for a new market, a new successor market, or to change parameters for an existing market, it's recommended that you sense check the proposal and share the final details with the tokenholder community before proposing, so that you can garner support and make any necessary amends. 
+When creating a market governance proposal, whether it is for a new futures market, a new perpetual futures market, or to change parameters for an existing market, it's recommended that you sense check the proposal and share the final details with the tokenholder community before proposing, so that you can garner support and make any necessary amends. 
 
 Read more:
 * [Vega community forum ↗](https://community.vega.xyz): Share your draft proposals for community discussion.
-* [New market proposal ↗](../tutorials/proposals/new-market-proposal.md): Guide to submitting a proposal for a new market using the command line
-* [New successor market proposal ↗](../tutorials/proposals/new-successor-market-proposal.md): Guide to submitting a proposal for a new successor market using the command line
+* [New perpetual futures market proposal ↗](../tutorials/proposals/new-perpetuals-market.md): Guide to submitting a proposal for a new market
+* [New futures market proposal ↗](../tutorials/proposals/new-market-proposal.md): Guide to submitting a proposal for a new market
+* [New successor market proposal ↗](../tutorials/proposals/new-successor-market-proposal.md): Guide to submitting a proposal for a new successor market
 * [Update market proposal ↗](../tutorials/proposals/update-market-proposal.md): Guide to submitting a proposal to change a market using the command line
 
 ### Propose a new market
@@ -231,11 +232,11 @@ If the market proposal gets a <NetworkParameter frontMatter={frontMatter} param=
 To propose a market, you'll need to provide the details required for the market to begin trading right away. While some of the fields are free-text, others are constrained by a range set through network parameters, to ensure that the values provided are fit for purpose.
 
 Required fields include:
-* Instrument details, including a human-readable name, an understandable shortcode for the market, the type of product (futures)
+* Instrument details, including a human-readable name, an understandable shortcode for the market, the type of product
 * Risk model parameters
 * Product specifics including the settlement asset and quote name
 * Decimal places for the market and positions. (Note: A market cannot specify more decimal places than its settlement asset supports)
-* Oracle details, including the oracle's public key, specifications for the settlement price and trading termination, and data filters
+* Oracle details, including the oracle's public key, specifications for settlement price, and data filters
 * Liquidity monitoring parameters, including the target stake
 
 Optional fields include: 
@@ -304,7 +305,7 @@ For a successor market to be enacted, the parent market must be in one of the fo
 The parent market can be settled or cancelled when the successor market reaches enactment time, as long as the time it's been settled/cancelled is equal to or less than the parent market's settlement time plus the `market.liquidity.successorLaunchWindowLength` - determined by a network parameter. This parameter specifies for how long after a market has settled, the liquidity provider's equity-like share data are retained and the insurance pool is left undistributed to allow a successor to be defined. If the successor is proposed after that time, then it's rejected and any assets committed to the market are returned.
 
 ### Propose updates to a market
-Most details about a market can be changed through governance. Those includes risk models, monitoring triggers, and the settlement and termination data sources.
+Most details about a market can be changed through governance. Those includes risk models, monitoring triggers, and the settlement and termination (if applicable) data sources.
 
 However, there are a few that cannot be edited, and will be the same for the duration of the market's life.
 * Name: Market name, which should be a short, descriptive and relevant name
