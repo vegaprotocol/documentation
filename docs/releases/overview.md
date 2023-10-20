@@ -67,8 +67,8 @@ A party will be able to create a referral code and share this code with referees
 
 Whilst a referral program is active, the following benefits may be available to participants in the referral program.
 
-- A referrer may receive a proportion of all referee taker fees as a reward.
-- A referee may be eligible for a discount on any taker fees they incur.
+- A referrer may receive a proportion of referee's paid fees as a reward.
+- A referee may be eligible for a discount on fees they incur.
 
 Providing a party has been associated with a referral set for long enough, they will become eligible for greater benefits as their referral set's running taker volume increases. To see more details check out this [spec](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0083-RFPR-on_chain_referral_program.md). The work items completed on this feature can be seen on issues and pull requests with the [`referral `](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Areferral+) label.
 
