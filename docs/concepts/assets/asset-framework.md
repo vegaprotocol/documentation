@@ -28,9 +28,15 @@ The following fields come from the asset's smart contract. When proposing an ass
 ### Protocol-level details
 These fields are all set in the asset's governance proposal, and can also be changed by governance.
 
-* **Quantum:** A loose approximation of the smallest 'meaningful' amount of that asset, for example the quantity of the asset that would approximately match the value of 1 USD. An asset's quantum is set in the governance proposal that enabled the asset for use on Vega. A quantum should be set to a round value. When a quantum is used for calculations, it will rely on a configurable multiplier so that an asset's volatility doesn't negatively impact the relevant feature.
 * **Maximum lifetime deposit**: The lifetime deposit limit per public key.
 * **Withdrawal delay threshold**: The maximum that someone with the asset can withdraw instantly. All withdrawals over the threshold will be delayed by the withdrawal delay, which can be seen on the ERC-20 bridge, per asset. For an asset with a threshold of 1 (the lowest possible decimal amount for the asset), all withdrawals will be subject to the delay.
+
+#### Quantum 
+An asset's quantum is a loose approximation of the smallest 'meaningful' amount of that asset. For example the quantity of the asset that would approximately match the value of 1 USD. 
+
+An asset's quantum is set in the governance proposal that enabled the asset for use on Vega. A quantum should be set to a round value.
+
+When a quantum is used, it will rely on a configurable multiplier so that an asset's volatility doesn't negatively impact the relevant feature.
 
 ## Asset bridges 
 There are thousands of tokens, coins, and assets that could potentially be used to settle markets created on Vega. However, because none of them are native to the Vega chain, there needs to be a mechanism for allowing at least a subset of those assets to be used with Vega.
