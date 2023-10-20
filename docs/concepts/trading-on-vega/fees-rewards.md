@@ -90,6 +90,11 @@ Trading rewards can be defined by the following things:
 
 Extra rewards for validators can also be set up. Learn more about them on the [validator scores and rewards page](../vega-chain/validator-scores-and-rewards.md#validator-metric-based-rewards).
 
+#### Example: Evaluating reward performance over time
+Some rewards measure trader activity over a number of epochs (set per reward). The image below shows how an average of your scores is taken across the window, i.e., the number of epochs chosen for measurement.
+
+<img src="/img/concept-diagrams/reward-score-example.png" width="650"/>
+
 :::tip Try it out
 * [How to fund rewards](#how-to-fund-rewards): Get the high-level overview, below.
 * [Set up a reward transfer](../../tutorials/assets-tokens/transferring-assets.md): Choose an activity to reward and set up a one-off or recurring transfer to fund it.
@@ -136,8 +141,24 @@ The largest traders by position size category rewards traders with consistenly l
 
 It measures a trader's time-weighted average position over a set number of epochs to determine how long each trader is able to manage a position that's larger than the positions of other traders, without being closed out. It's also known as the "average position metric".
 
+#### Example of largest traders by position size
+The image below shows how the largest traders by positions size is calculated in a single 24-hour epoch.
+
+<img src="/img/concept-diagrams/largest-trader-example.png" width="650"/>
+
+Actions of the example trader in the image above over 24 hours: 
+- 00:00 - trader opens a position
+- 04:00 - trader closes their position, their average position starts to decrease
+- 08:00 - trader reopens their position, their average position starts to increase
+- 12:00 - trader reduces their position, their average position starts to decrease
+
 ### Most profitable traders
 The most profitable traders category rewards high profit in relation to traders' position sizes. A trader's highest relative profit is taken from each epoch in the reward window, and averaged out. Those who have higher relative profits rank better in the standings. It's also known as the "relative return metric".
+
+#### Example of most profitable traders
+The image below shows how the most profitable trader's score is calculated across epochs.
+
+<img src="/img/concept-diagrams/most-profitable-trader-example.png" width="650"/>
 
 ### Most consistently profitable traders
 The most consistently profitable traders category rewards traders with the least amount of variance in their returns while they had a position open on a market in the rewards window. Traders who have similar amount of profit across the epochs, rather than spikes and dips, rank higher in the standings.
