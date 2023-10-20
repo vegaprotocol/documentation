@@ -107,8 +107,8 @@ There is also a global rewards account, which is used for validator rewards on t
 | Maker fees paid reward | Holds funds allocated to reward aggressive side of a trade based on fees paid |
 | Maker fees received reward | Holds funds allocated to reward passive side of a trade based on fees earned |
 | LP received fees reward     | Holds funds allocated to reward liquidity providers based on fees received for trades hit |
-| Average position reward | Holds funds allocated to reward xxxxx |
-| Relative return reward | Holds funds allocated to reward xxxxxx |
+| Average position reward | Holds funds allocated to reward the largest traders by position size |
+| Relative return reward | Holds funds allocated to reward most profitable traders |
 | Return volatility reward | Holds funds allocated to reward traders with the most consistent returns |
 | Market proposers reward | Holds funds allocated to reward creating markets that attract good trading volume |
 
