@@ -38,7 +38,7 @@ The network will also calculate:
 * The rate of 'for' votes cast by liquidity providers, calculated as the sum of all who voted 'for', divided by the LP participation rate - `LP for rate = SUM (all who voted for) / LP participation rate`
 
 The proposal will pass if one of the two scenarios occur: 
-1. The tokenholder vote meets or exceeds the minimum set by <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredParticipation" hideValue={true} />,  and the votes in favour are greater than the amount set by <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredMajority" hideValue={true} />. In this case the market's liquidity providers were overridden by governance token holders.
+1. The tokenholder vote meets or exceeds the minimum set by <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredParticipation" hideValue={true} />, and the votes in favour are greater than the amount set by <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredMajority" hideValue={true} />. In this case the market's liquidity providers were overridden by governance token holders.
 2. The governance tokenholder vote does not reach participation threshold, but the liquidity providers' votes do, and there are enough votes in favour. The participation rate must be greater than/equal to <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredParticipation" hideValue={true} />, and the liquidity providers' participation rate must be greater than/equal to <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredParticipationLP" hideValue={true} />, and the liquidity providers' votes in favour is greater than/equal to <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredMajorityLP" hideValue={true} />
 
 ### Proposal outcome: Successor market
@@ -114,7 +114,7 @@ Each type of governance proposal can have different thresholds, though they fit 
 * `maxEnactment`: Maximum time allowed between vote closing on a proposal and the proposal's change being enacted on the network
 * `requiredParticipation`: Minimum number of tokens that must vote for a proposal to pass 
 * `requiredMajority`: Minimum majority that a proposal's 'yes' votes must reach for it to be enacted 
-  
+
 As these thresholds are network parameters, their values can be changed through governance.
 
 :::tip Query for data
@@ -279,7 +279,7 @@ The remaining, model specific parameters are covered below.
 :::
 
 #### Log-normal risk model
-The log-normal model assumes that the logarithm of the price increments are normally distributed. The main model parameter is   
+The log-normal model assumes that the logarithm of the price increments are normally distributed. The main model parameter is: 
 * `Volatility (Sigma)` - annualised historical volatility of the underlying asset:
   * accepted values: **any strictly non-negative real number**,
   * suggested value: asset dependent, should be derived from the historical time-series of prices, and a typical value would be 0.8 = 80%

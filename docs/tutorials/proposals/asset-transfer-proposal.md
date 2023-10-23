@@ -34,12 +34,11 @@ The **terms** of the proposal describe the details of the proposal, including cl
 * **Closing timestamp**, the date and time when voting closes, must be within a range of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.minClose" hideName={true}/> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.maxClose" hideName={true}/>, from when it was proposed.
 * **Enactment timestamp**, the date and time when the transfer is to happen, must be within a range of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.minEnact" hideName={true}/> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.maxClose" hideName={true}/>.
 
-For **one-off transfers** use `deliverOn` to set a delivery date/time for when the transfer arrives with the recipient account. `deliverOn` only accepts Unix time in nanoseconds. Setting it to 0 means the transfer will be completed immediately. Note: when you delay a transfer, the amount leaves the origin account immediately but is not delivered until the date/time you chose. A one-off transfer **cannot be cancelled**, regardless of when the transfer is scheduled to arrive.
+For **one-off transfers** use `deliverOn` to set a delivery date/time for when the transfer arrives with the recipient account. This should be after the proposal's enactment date and time, otherwise it's delivered immediately if the proposal is enacted. `deliverOn` only accepts Unix time in nanoseconds. Setting it to 0 means the transfer will be completed immediately. Note: when you delay a transfer, the amount leaves the origin account immediately but is not delivered until the date/time you chose. A one-off transfer **cannot be cancelled**, regardless of when the transfer is scheduled to arrive.
 
 For **recurring transfers**, such as for funding rewards, you'll need to include the following information: 
 * `startEpoch`: The number of the epoch in which you want the first transfer to be made. It will initiate at the end of that epoch.
 * `endEpoch`: The transfer will repeated indefinitely, unless you add this optional parameter to end the recurring transfer in a specified epoch.
-* `factor`: Written as a decimal less than 1.0. Factor is used to determine what portion of the full `amount` is transferred in each epoch. Think of it like a percentage, so the number you include, when multiplied by 100, will equal what percentage of the amount will be transferred each time.
 
 **Amount** is the cap on how much will be transferred, as whole number with the asset decimal places implied. For example, if the asset has a decimal place of 2 and the transfer is for 100, then the amount needs to be set at 10000. The maximum you can propose to transfer is <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.maxAmount" hideName={true}/>, which is a multiplier for the asset's [quantum value](../../concepts/assets/asset-framework.md#quantum). Before proposing, make sure the account you're transferring from exists and has a balance. The full amount may not be transferred if there isn't enough to transfer. For specifics on how the final amount is determined, see the [calculations in the transfers spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0057-TRAN-transfers.md#recurring-transfers).
 
@@ -56,17 +55,17 @@ Rewards can only be funded with recurring tranfers. If you're proposing a transf
 
 The `destinationType` must be the account type that matches the reward category. For example, to propose that the 'average position' reward will pay out, you'll need to set the "destination type" type as `ACCOUNT_TYPE_REWARD_AVERAGE_POSITION`, and then choose the complementary reward category, known as the `metric`. The asset you choose then determines which market(s) the reward targets.
 
-You will need to define the dispatch strategy, which includes the  metric, the length of time to measure performance, the asset used to evaluate performance, and other fields. 
+You will need to define the dispatch strategy, which includes the metric, the length of time to measure performance, the asset used to evaluate performance, and other fields. 
 
 | Dispatch strategy field | Description | Accepted values |
 | ----------- | ----------- | ----------- |
 | `assetForMetric` | Asset that's used to evaluate how someone performs. Use the settlement asset for the market(s) relevant to the reward. Not required for market creation and validator ranking rewards | Any asset enabled on Vega |
 | `metric` | Specific reward category the transfer is funding | DISPATCH_METRIC_MAKER_FEES_PAID; DISPATCH_METRIC_MAKER_FEES_RECEIVED; DISPATCH_METRIC_LP_FEES_RECEIVED; DISPATCH_METRIC_MARKET_VALUE; DISPATCH_METRIC_AVERAGE_POSITION; DISPATCH_METRIC_RELATIVE_RETURN; DISPATCH_METRIC_RETURN_VOLATILITY; DISPATCH_METRIC_VALIDATOR_RANKING |
 | `markets` | Optional: Used to choose which market(s) are in scope. If left blank, all markets that are settled in the asset are included | Any trading market's ID |
-| `staking_requirement` | Optional: Sets a minimum number of VEGA tokens that need to be staked for a party to be considered eligible for the reward | Number, if omitted it defaults to 0 |
-| `notional_time_weighted_average_position_requirement` | Optional: Sets a minimum notional TWAP, measured for the asset metric, that's required for a party to be considered eligible to receive rewards | Defaults to 0 | 
+| `stakingRequirement` | Optional: Sets a minimum number of VEGA tokens that need to be staked for a party to be considered eligible for the reward | Number, if omitted it defaults to 0 |
+| `notionalTimeWeightedAveragePositionRequirement` | Optional: Sets a minimum notional TWAP, measured for the asset metric, that's required for a party to be considered eligible to receive rewards | Defaults to 0 | 
 | `windowLength` | Number of epochs in which performance against the reward metric is measured | Any number between 1 and 100 |
-| `lock_period` | Number of epochs to keep earned rewards in the recipient's reward vesting account before moving to their vested account, at which point they can be redeemed |
+| `lockPeriod` | Number of epochs to keep earned rewards in the recipient's reward vesting account before moving to their vested account, at which point they can be redeemed |
 | `entityScope` | defines the entities within scope | Currently ENTITY_SCOPE_INDIVIDUALS is the only option |
 | `individualScope` | To be used if the eligible reward recipients should be individuals, and that can then be further focused to determine who is eligible | Currently INDIVIDUAL_SCOPE_ALL is the only option |
 | `distributionStrategy` | Sets how the participants should be ranked, and what other factors to consider. Read [distribution method](../../concepts/trading-on-vega/fees-rewards.md#how-rewards-are-scaled) for more info |  DISTRIBUTION_STRATEGY_PRO_RATA; DISTRIBUTION_STRATEGY_RANK |
@@ -177,7 +176,7 @@ These templates show an example of how to fund rewards with a governance transfe
 </TabItem>
 
 <TabItem value="win" label="Command line (Windows)">
-  <TerminalInstructions />   
+  <TerminalInstructions />
 
 ```
 vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KEY --network NETWORK_NAME ^
@@ -294,7 +293,7 @@ These templates show an example transfer from an asset's insurance pool to the i
 ``` 
 </TabItem>
   <TabItem value="win" label="Command line (Windows)">
-    <TerminalInstructions />   
+    <TerminalInstructions />
 
 ```
 vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KEY --network NETWORK_NAME ^

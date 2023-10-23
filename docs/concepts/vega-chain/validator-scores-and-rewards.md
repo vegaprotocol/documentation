@@ -160,5 +160,3 @@ Rewards will not be paid to a validator if the multisig control is incorrectly c
 
 ## Validator metric-based rewards
 There may be extra rewards to consensus and standby validators, if the [rewards](../trading-on-vega/fees-rewards.md#how-to-fund-rewards) are funded. These rewards are based on validators' ranking scores.
-
-A share of these rewards also goes to the validator's nominators, just as standard staking rewards do.
