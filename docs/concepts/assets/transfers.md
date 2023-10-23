@@ -53,7 +53,7 @@ Assets being moved out of certain accounts requires community support, through a
 
 The proposals give community members a chance to determine what they think the assets should be spent on, whether that's to fund [trading or validator rewards](../trading-on-vega/fees-rewards.md#trading-rewards), to move money from [insurance pools](./accounts.md#insurance-pool-accounts) into [network treasury accounts](./accounts.md#network-treasury-accounts), or for other purposes.
 
-These governance-initiated transfers can be one-off or recurring. A recurring transfer can only be cancelled when a governance proposal to cancel it is submitted and passes the governance vote.
+Governance-initiated transfers can be one-off or recurring, unless the transfer is to fund rewards; those can only be set to recur. A recurring transfer can only be cancelled when a governance proposal to cancel it is submitted and passes the governance vote.
 
 The table below details which types of transfers need to be done using a governance proposal and vote.
 

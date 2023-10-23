@@ -119,8 +119,6 @@ There is also a global rewards account, which is used for validator rewards on t
 ### Validator reward accounts
 Validator reward accounts are used to distribute rewards, if they're funded, to consensus and standby validators based on their ranking score. These accounts can be funded through [deposits](./deposits-withdrawals.md) or [transfers](./transfers.md).
 
-The assets in the validator reward accounts can only otherwise move if a [governance-initiated transfer](./transfers.md#governance-initiated-transfers) is enacted, meaning a governance proposal to move assets has passed the vote.
-
 :::note Read more
 [Validator scores and rewards](../vega-chain/validator-scores-and-rewards.md): Learn about how validators are rewarded.
 :::
