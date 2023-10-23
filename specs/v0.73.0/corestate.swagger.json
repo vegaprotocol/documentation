@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Vega core state APIs",
-    "version": "v0.73.0-preview.15"
+    "version": "v0.73.0-rc.1"
   },
   "tags": [
     {
@@ -1049,11 +1049,11 @@
         },
         "referralRewardFactor": {
           "type": "string",
-          "title": "Proportion of the referee's taker fees to be rewarded to the referrer"
+          "description": "Proportion of the referee's taker fees to be rewarded to the referrer."
         },
         "referralDiscountFactor": {
           "type": "string",
-          "title": "Proportion of the referee's taker fees to be discounted"
+          "description": "Proportion of the referee's taker fees to be discounted."
         }
       }
     },
@@ -1861,7 +1861,7 @@
         },
         "lpPriceRange": {
           "type": "string",
-          "description": "Percentage move up and down from the mid price which specifies the range of\nprice levels over which automated liquidity provision orders will be deployed."
+          "description": "Percentage move up and down from the mid price which specifies the range of\nprice levels over which automated liquidity provisions will be deployed."
         },
         "linearSlippageFactor": {
           "type": "string",
@@ -2223,7 +2223,7 @@
         },
         "lpPriceRange": {
           "type": "string",
-          "description": "DEPRECATED: Use liquidity SLA parameters instead.\nPercentage move up and down from the mid price which specifies the range of\nprice levels over which automated liquidity provision orders will be deployed."
+          "description": "DEPRECATED: Use liquidity SLA parameters instead.\nPercentage move up and down from the mid price which specifies the range of\nprice levels over which automated liquidity provisions will be deployed."
         },
         "linearSlippageFactor": {
           "type": "string",
@@ -2832,7 +2832,7 @@
         "endOfProgramTimestamp": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp as Unix time in seconds, after which when the current epoch ends, the\nprograms status will become STATE_CLOSED and benefits will be disabled."
+          "description": "Timestamp as Unix time in seconds, after which when the current epoch\nends, the program will end and benefits will be disabled."
         },
         "windowLength": {
           "type": "string",
@@ -3111,7 +3111,7 @@
         },
         "lpPriceRange": {
           "type": "string",
-          "description": "DEPRECATED: Use liquidity SLA parameters instead.\nPercentage move up and down from the mid price which specifies the range of\nprice levels over which automated liquidity provision orders will be deployed."
+          "description": "DEPRECATED: Use liquidity SLA parameters instead.\nPercentage move up and down from the mid price which specifies the range of\nprice levels over which automated liquidity provisions will be deployed."
         },
         "linearSlippageFactor": {
           "type": "string",
@@ -3276,7 +3276,7 @@
         },
         "volumeDiscountFactor": {
           "type": "string",
-          "title": "Proportion of the taker fees to be discounted"
+          "description": "Proportion of the taker fees to be discounted."
         }
       }
     },
@@ -3293,7 +3293,7 @@
         "endOfProgramTimestamp": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp as Unix time in seconds, after which when the current epoch\nends, the programs will end and benefits will be disabled."
+          "description": "Timestamp as Unix time in seconds, after which when the current epoch\nends, the program will end and benefits will be disabled."
         },
         "windowLength": {
           "type": "string",

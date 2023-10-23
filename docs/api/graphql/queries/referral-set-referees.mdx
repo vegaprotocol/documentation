@@ -21,6 +21,7 @@ referralSetReferees(
   referrer: ID
   referee: ID
   pagination: Pagination
+  aggregationDays: Int
 ): ReferralSetRefereeConnection!
 ```
 
@@ -41,6 +42,10 @@ referralSetReferees(
 
 #### [<code style={{ fontWeight: 'normal' }}>referralSetReferees.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
 > Optional pagination information
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>referralSetReferees.<b>aggregationDays</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
+> Optional number of days to aggregate referee volume and reward statistics for. If omitted, the default is 30 days.
 > 
 
 ### Type

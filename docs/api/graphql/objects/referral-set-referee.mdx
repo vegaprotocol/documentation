@@ -21,6 +21,8 @@ type ReferralSetReferee {
   refereeId: ID!
   joinedAt: Timestamp!
   atEpoch: Int!
+  totalRefereeNotionalTakerVolume: String!
+  totalRefereeGeneratedRewards: String!
 }
 ```
 
@@ -41,6 +43,14 @@ type ReferralSetReferee {
 
 #### [<code style={{ fontWeight: 'normal' }}>ReferralSetReferee.<b>atEpoch</b></code>](#)<Bullet />[`Int!`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > Epoch in which the party joined the set.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ReferralSetReferee.<b>totalRefereeNotionalTakerVolume</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Total notional volume of the referee's aggressive trades over the aggregation period, default is 30 days.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>ReferralSetReferee.<b>totalRefereeGeneratedRewards</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Total rewards generated from the referee over the aggregation period, default is 30 days.
 > 
 
 
