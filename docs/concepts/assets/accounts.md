@@ -102,7 +102,7 @@ There is also a global rewards account, which is used for validator rewards on t
 
 | Reward account name                               | Account purpose |
 |---------------------------------------------------|-----------------|
-| Vested rewards      | Holds earned rewards that have passed the vesting period |
+| Vested rewards      | Holds earned rewards that have passed the vesting period and can be redeemed |
 | Vesting rewards | Holds earned rewards that are still within the vesting period |
 | Maker fees paid reward | Holds funds allocated to reward aggressive side of a trade based on fees paid |
 | Maker fees received reward | Holds funds allocated to reward passive side of a trade based on fees earned |

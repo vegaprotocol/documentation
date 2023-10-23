@@ -74,7 +74,7 @@ Your reward earnings can grow if you have an activity streak and/or keep earned 
 
 See what rewards are currently available on [vega.xyz ↗](https://vega.xyz/rewards).
 
-Earned rewards are paid into a per-asset *reward vesting account*. Each epoch, a percentage of those accumulated rewards are moved into a *reward vested account*. From there, they can be transferred into the general account and withdrawn. How long rewards stay in the *reward vesting account* depends on the lock period that's defined in the transfer proposal that funds the reward.
+Earned rewards are paid into a per-asset *reward vesting account*. Each epoch, a percentage of those accumulated rewards are moved into a *reward vested account*. From there, they can be redeemed by transferring them into your general account and withdrawn. How long rewards stay in the *reward vesting account* depends on the lock period that's defined in the transfer proposal that funds the reward.
 
 Rewards are independent from fees, which are paid to validators, liquidity providers, and price makers on each trade.
 
@@ -156,7 +156,7 @@ Actions of the example trader in the image above over 24 hours:
 The most profitable traders category rewards high profit in relation to traders' position sizes. A trader's highest relative profit is taken from each epoch in the reward window, and averaged out. Those who have higher relative profits rank better in the standings. It's also known as the "relative return metric".
 
 #### Example of most profitable traders
-The image below shows how the most profitable trader's score is calculated across epochs.
+The image below shows how the most profitable trader's score is calculated across epochs. A trader with a large amount of capital will have as much chance of winning as a trader with a smaller amount.
 
 <img src="/img/concept-diagrams/most-profitable-trader-example.png" width="650"/>
 

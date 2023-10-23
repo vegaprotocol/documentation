@@ -66,7 +66,7 @@ You will need to define the dispatch strategy, which includes the  metric, the l
 | `staking_requirement` | Optional: Sets a minimum number of VEGA tokens that need to be staked for a party to be considered eligible for the reward | Number, if omitted it defaults to 0 |
 | `notional_time_weighted_average_position_requirement` | Optional: Sets a minimum notional TWAP, measured for the asset metric, that's required for a party to be considered eligible to receive rewards | Defaults to 0 | 
 | `windowLength` | Number of epochs in which performance against the reward metric is measured | Any number between 1 and 100 |
-| `lock_period` | Number of epochs to keep earned rewards in the recipient's reward vesting account before moving to their vested account |
+| `lock_period` | Number of epochs to keep earned rewards in the recipient's reward vesting account before moving to their vested account, at which point they can be redeemed |
 | `entityScope` | defines the entities within scope | Currently ENTITY_SCOPE_INDIVIDUALS is the only option |
 | `individualScope` | To be used if the eligible reward recipients should be individuals, and that can then be further focused to determine who is eligible | Currently INDIVIDUAL_SCOPE_ALL is the only option |
 | `distributionStrategy` | Sets how the participants should be ranked, and what other factors to consider. Read [distribution method](../../concepts/trading-on-vega/fees-rewards.md#how-rewards-are-scaled) for more info |  DISTRIBUTION_STRATEGY_PRO_RATA; DISTRIBUTION_STRATEGY_RANK |
@@ -161,6 +161,7 @@ These templates show an example of how to fund rewards with a governance transfe
           "assetForMetric": "b340c130096819428a62e5df407fd6abe66e444b89ad64f670beb98621c9c663",
           "metric": "DISPATCH_METRIC_MAKER_FEES_PAID",
           "windowLength": "1",
+          "lockPeriod": "0",
           "entityScope": "ENTITY_SCOPE_INDIVIDUALS",
           "individualScope": "INDIVIDUAL_SCOPE_ALL",
           "distributionStrategy": "DISTRIBUTION_STRATEGY_PRO_RATA"
@@ -204,6 +205,7 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
           \"assetForMetric\": \"b340c130096819428a62e5df407fd6abe66e444b89ad64f670beb98621c9c663\",^
           \"metric\": \"DISPATCH_METRIC_MAKER_FEES_PAID\",^
           \"windowLength\": \"1\",^
+          \"lockPeriod\": \"0\",^
           \"entityScope\": \"ENTITY_SCOPE_INDIVIDUALS\",^
           \"individualScope\": \"INDIVIDUAL_SCOPE_ALL\",^
           \"distributionStrategy\": \"DISTRIBUTION_STRATEGY_PRO_RATA\"^
