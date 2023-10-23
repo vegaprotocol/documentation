@@ -50,6 +50,11 @@ type Market {
   pagination: Pagination
 ): CandleDataConnection
   data: MarketData
+  liquidityProvisions(
+  partyId: ID
+  live: Boolean
+  pagination: Pagination
+): LiquidityProvisionsWithPendingConnection
   liquidityProvisionsConnection(
   partyId: ID
   live: Boolean
@@ -186,6 +191,20 @@ duration and optionally a minimum traded volume).
 
 #### [<code style={{ fontWeight: 'normal' }}>Market.<b>data</b></code>](#)<Bullet />[`MarketData`](/testnet/api/graphql/objects/market-data) <Badge class="secondary" text="object"/>
 > marketData for the given market
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Market.<b>liquidityProvisions</b></code>](#)<Bullet />[`LiquidityProvisionsWithPendingConnection`](/testnet/api/graphql/objects/liquidity-provisions-with-pending-connection) <Badge class="secondary" text="object"/>
+> The list of the liquidity provision commitments for this market
+> ##### [<code style={{ fontWeight: 'normal' }}>Market.liquidityProvisions.<b>partyId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> An optional party ID
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Market.liquidityProvisions.<b>live</b></code>](#)<Bullet />[`Boolean`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> An optional live flag to determine whether to list only live LPs or not
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Market.liquidityProvisions.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Pagination information
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>Market.<b>liquidityProvisionsConnection</b></code>](#)<Bullet />[`LiquidityProvisionsConnection`](/testnet/api/graphql/objects/liquidity-provisions-connection) <Badge class="secondary" text="object"/>

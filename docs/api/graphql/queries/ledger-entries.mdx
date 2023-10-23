@@ -14,6 +14,11 @@ export const Badge = (props) => <><span class={'badge badge--' + props.class}>{p
 
 
 Get ledger entries by asset, market, party, account type, transfer type within the given date range.
+Note: The date range is restricted to any 5 days.
+If no start or end date is provided, only ledger entries from the last 5 days will be returned.
+If a start and end date are provided, but the end date is more than 5 days after the start date, only data up to 5 days after the start date will be returned.
+If a start date is provided but no end date, the end date will be set to 5 days after the start date.
+If no start date is provided, but the end date is, the start date will be set to 5 days before the end date.
 
 ```graphql
 ledgerEntries(
@@ -27,15 +32,15 @@ ledgerEntries(
 ### Arguments
 
 #### [<code style={{ fontWeight: 'normal' }}>ledgerEntries.<b>filter</b></code>](#)<Bullet />[`LedgerEntryFilter`](/testnet/api/graphql/inputs/ledger-entry-filter) <Badge class="secondary" text="input"/>
-> 
+> Filter to apply when querying the ledger. At least one party in the 'from' account filter, or 'to' account filter must be provided.
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ledgerEntries.<b>dateRange</b></code>](#)<Bullet />[`DateRange`](/testnet/api/graphql/inputs/date-range) <Badge class="secondary" text="input"/>
-> 
+> Date range filter to apply to the ledger entries.
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>ledgerEntries.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
-> 
+> Optional pagination control
 > 
 
 ### Type

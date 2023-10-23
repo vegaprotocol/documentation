@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Vega block explorer APIs",
-    "version": "v0.73.0-preview.15"
+    "version": "v0.73.0-rc.1"
   },
   "tags": [
     {
@@ -199,7 +199,7 @@
         "ORACLE_SOURCE_ETHEREUM"
       ],
       "default": "ORACLE_SOURCE_UNSPECIFIED",
-      "description": "- ORACLE_SOURCE_UNSPECIFIED: Default value\n - ORACLE_SOURCE_OPEN_ORACLE: Specifies that the payload will be base64 encoded JSON conforming to the Open Oracle standard\n - ORACLE_SOURCE_JSON: Specifies that the payload will be base64 encoded JSON, but does not specify the shape of the data\n - ORACLE_SOURCE_ETHEREUM: Specifies that the payload will be base64 encoded JSON conforming to the ETH standard",
+      "description": "- ORACLE_SOURCE_UNSPECIFIED: Default value\n - ORACLE_SOURCE_OPEN_ORACLE: Specifies that the payload will be base64 encoded JSON conforming to the Open Oracle standard.\n - ORACLE_SOURCE_JSON: Specifies that the payload will be base64 encoded JSON, but does not specify the shape of the data.\n - ORACLE_SOURCE_ETHEREUM: Specifies that the payload will be base64 encoded JSON conforming to the ETH standard.",
       "title": "Supported oracle sources"
     },
     "OrderTimeInForce": {
@@ -234,7 +234,8 @@
         "METHOD_NOW",
         "METHOD_AT_END_OF_EPOCH"
       ],
-      "default": "METHOD_UNSPECIFIED"
+      "default": "METHOD_UNSPECIFIED",
+      "description": " - METHOD_NOW: Undelegate straight away, losing all rewards for the current epoch.\n - METHOD_AT_END_OF_EPOCH: Undelegate at the end of an epoch, retaining all rewards for the current epoch."
     },
     "blockexplorerapiv1Transaction": {
       "type": "object",
@@ -281,6 +282,18 @@
         "error": {
           "type": "string",
           "title": "Optional error happening when processing / checking the transaction\nThis should be set if error code is not 0"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp when the transaction happened, using RFC3399 format."
+        },
+        "version": {
+          "$ref": "#/definitions/v1TxVersion",
+          "title": "Version format of the transaction"
+        },
+        "pow": {
+          "$ref": "#/definitions/v1ProofOfWork",
+          "title": "Proof of Work parameters of the transaction"
         }
       }
     },
@@ -292,7 +305,7 @@
           "description": "Transfer ID of the transfer to cancel."
         }
       },
-      "title": "Request for cancelling a recurring transfer"
+      "description": "Command that can be used by the party that initiated a transfer to instruct the network to stop an active recurring transaction."
     },
     "commandsv1OneOffTransfer": {
       "type": "object",
@@ -300,10 +313,10 @@
         "deliverOn": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp in Unix nanoseconds for when the transfer should be delivered into the receiver's account."
+          "description": "Timestamp, in Unix nanoseconds, for when the transfer should be executed, i.e., assets transferred into the receiver's account."
         }
       },
-      "title": "Specific details for a one off transfer"
+      "description": "Details for a one-off transfer."
     },
     "commandsv1RecurringTransfer": {
       "type": "object",
@@ -311,30 +324,30 @@
         "startEpoch": {
           "type": "string",
           "format": "uint64",
-          "description": "First epoch from which this transfer shall be paid."
+          "description": "First epoch from which this transfer shall be executed."
         },
         "endEpoch": {
           "type": "string",
           "format": "uint64",
-          "description": "Last epoch at which this transfer shall be paid."
+          "description": "Last epoch at which this transfer shall be executed."
         },
         "factor": {
           "type": "string",
-          "description": "Factor needs to be \u003e 0."
+          "description": "Factor that the initial transfer amount is multiplied by for each epoch that it is executed.\nFor example if the initial transfer amount is 1000 and the factor is 0.5, then the amounts transferred per epoch will be 1000, 500, 250, 125, etc."
         },
         "dispatchStrategy": {
           "$ref": "#/definitions/vegaDispatchStrategy",
           "description": "Optional parameter defining how a transfer is dispatched."
         }
       },
-      "title": "Specific details for a recurring transfer"
+      "title": "Details for a recurring transfer"
     },
     "commandsv1Transfer": {
       "type": "object",
       "properties": {
         "fromAccountType": {
           "$ref": "#/definitions/vegaAccountType",
-          "description": "Account type from which the funds of the party\nshould be taken."
+          "description": "Account type from which the funds of the party should be taken."
         },
         "to": {
           "type": "string",
@@ -350,20 +363,22 @@
         },
         "amount": {
           "type": "string",
-          "description": "Amount to be taken from the source account. This field is an unsigned integer scaled to the asset's decimal places."
+          "description": "Amount to be taken from the source account, as an unsigned integer scaled to the asset's decimal places."
         },
         "reference": {
           "type": "string",
           "description": "Reference to be attached to the transfer."
         },
         "oneOff": {
-          "$ref": "#/definitions/commandsv1OneOffTransfer"
+          "$ref": "#/definitions/commandsv1OneOffTransfer",
+          "description": "Details of a one-off transfer that is executed once at a specified time."
         },
         "recurring": {
-          "$ref": "#/definitions/commandsv1RecurringTransfer"
+          "$ref": "#/definitions/commandsv1RecurringTransfer",
+          "description": "Details of a transfer that is executed once every epoch until stopped."
         }
       },
-      "title": "Transfer initiated by a party"
+      "title": "Command that allows a party to move assets from one account to another.\nA transfer can be set up as a single one-off transfer, or a recurring transfer that occurs once at the start of each epoch.\nEach transfer incurs a fee as specified by the network parameter `transfer.fee.factor`"
     },
     "googlerpcStatus": {
       "type": "object",
@@ -405,19 +420,19 @@
       "properties": {
         "vegaPubKey": {
           "type": "string",
-          "description": "Vega public key, required field."
+          "description": "Vega public key of the node being announced."
         },
         "ethereumAddress": {
           "type": "string",
-          "description": "Ethereum public key, required field."
+          "description": "Ethereum public key of the node being announced."
         },
         "chainPubKey": {
           "type": "string",
-          "description": "Public key for the blockchain, required field."
+          "description": "Public key for the blockchain, currently the node's CometBFT key."
         },
         "infoUrl": {
           "type": "string",
-          "description": "URL with more info on the node."
+          "description": "URL to the node operators homepage allowing stake holders to make an informed decision when delegating."
         },
         "country": {
           "type": "string",
@@ -425,15 +440,15 @@
         },
         "id": {
           "type": "string",
-          "description": "Node ID of the validator, i.e. the node's public master key."
+          "description": "Node ID of the validator, which is the node's public master key."
         },
         "name": {
           "type": "string",
-          "description": "Name of the validator."
+          "description": "Human-readable name of the node."
         },
         "avatarUrl": {
           "type": "string",
-          "description": "AvatarURL of the validator."
+          "description": "URL to the node operator's avatar."
         },
         "vegaPubKeyIndex": {
           "type": "integer",
@@ -443,33 +458,32 @@
         "fromEpoch": {
           "type": "string",
           "format": "uint64",
-          "description": "Epoch from which the validator is expected\nto be ready to validate blocks."
+          "description": "Epoch from which the node is expected to be ready to validate blocks."
         },
         "ethereumSignature": {
           "$ref": "#/definitions/v1Signature",
-          "description": "Signature from the validator made using the ethereum wallet."
+          "description": "Signature from the node made using the ethereum wallet."
         },
         "vegaSignature": {
           "$ref": "#/definitions/v1Signature",
-          "description": "Signature from the validator made using the Vega wallet."
+          "description": "Signature from the node made using the Vega wallet."
         },
         "submitterAddress": {
           "type": "string",
           "description": "Ethereum public key to use as a submitter to allow automatic signature generation."
         }
       },
-      "title": "Used to announce a node as a new pending validator"
+      "description": "A command that allows a new node operator to announce themselves to the network as a new validator."
     },
     "v1ApplyReferralCode": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string",
-          "description": "Referral code for the set to join."
+          "description": "Referral code, normally the referral set ID, for the party to join."
         }
       },
-      "description": "A party that joins a referral team is called a referee. A referee cannot\ncreate a referral set or join multiple sets.\nTo switch, the referee can ask to join another set, and the switch will\nbe effective at the end of the epoch.",
-      "title": "Request to apply a referral code"
+      "description": "Command that allows the submitter to join a referral set and earn a collective reduction in fees based on the activity of all members of that set.\nA party that joins a referral set is called a referee. A referee can only be a member of one referral set and cannot themselves be or become a referrer.\nTo switch to another referral set, a subsequent command can be sent and the switch will take effect at the end of the epoch."
     },
     "v1BatchMarketInstructions": {
       "type": "object",
@@ -510,14 +524,14 @@
           "description": "List of stop order submissions to be processed sequentially."
         }
       },
-      "title": "Batch of order instructions.\nThis command accepts only the following batches of commands\nand will be processed in the following order:\n- OrderCancellation\n- OrderAmendment\n- OrderSubmission\nThe total amount of commands in the batch across all three lists of\ninstructions is restricted by the following network parameter:\n\"spam.protection.max.batchSize\""
+      "description": "A command that allows the submission of a batch market instruction which wraps up multiple market instructions into a single transaction.\nThese instructions are then processed sequentially in the following order:\n- OrderCancellation\n- OrderAmendment\n- OrderSubmission\n- StopOrderSubmission\nwhere the maximum allow of instructions in a batch is controlled by the network parameter \"spam.protection.max.batchSize\"."
     },
     "v1ChainEvent": {
       "type": "object",
       "properties": {
         "txId": {
           "type": "string",
-          "description": "Transaction ID of the transaction in which the events happened, usually a hash."
+          "description": "ID of the transaction on the foreign chain that caused the event."
         },
         "nonce": {
           "type": "string",
@@ -542,10 +556,10 @@
         },
         "contractCall": {
           "$ref": "#/definitions/vegaEthContractCallEvent",
-          "title": "Arbitrary contract call"
+          "description": "Ethereum contract call event."
         }
       },
-      "title": "Event forwarded to the Vega network to provide information on events happening on other networks"
+      "description": "A validator command sent automatically that provides information of events that have happened on foreign chains."
     },
     "v1Condition": {
       "type": "object",
@@ -565,33 +579,34 @@
       "type": "object",
       "properties": {
         "isTeam": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Whether or not the referral set should be considered a team that can participate in team games on the network."
         },
         "team": {
-          "$ref": "#/definitions/v1CreateReferralSetTeam"
+          "$ref": "#/definitions/v1CreateReferralSetTeam",
+          "description": "Team details, if the referral set is to be considered a team."
         }
       },
-      "description": "Creates a referral set. The creator automatically becomes\nthe leader, called a referrer. This cannot be changed.\nA referrer cannot be part of an existing set as referrer or referee.",
-      "title": "Request for creating a referral set"
+      "description": "Command that a party can use to instruct the network to create a new referral set on the network.\nThe submitter of this command will become the referrer of the new set and cannot be the referrer or a referee of another set.\nA referrer can use the referral set ID as a referral code to attract others to the Vega network and have fees reduced for the referral set."
     },
     "v1CreateReferralSetTeam": {
       "type": "object",
       "properties": {
         "name": {
           "type": "string",
-          "description": "Team name to be added to the referral banner."
+          "description": "Name of the team."
         },
         "teamUrl": {
           "type": "string",
-          "description": "Optional link to a team forum, discord, etc."
+          "description": "External link to the team's homepage."
         },
         "avatarUrl": {
           "type": "string",
-          "description": "Optional link to an image to be used as the team avatar."
+          "description": "External link to an avatar for the team."
         },
         "closed": {
           "type": "boolean",
-          "title": "Is this team closed for external other users"
+          "description": "Whether or not the team is closed to new party members."
         }
       }
     },
@@ -600,14 +615,14 @@
       "properties": {
         "nodeId": {
           "type": "string",
-          "description": "Delegate to the specified node ID."
+          "description": "Node ID to delegate stake to."
         },
         "amount": {
           "type": "string",
-          "description": "Amount of stake to delegate. This field is an unsigned integer scaled to the asset's decimal places."
+          "description": "Amount of stake to delegate, as an unsigned integer scaled to the governance asset's decimal places."
         }
       },
-      "title": "Command to submit an instruction to delegate some stake to a node"
+      "description": "Command to allow a token holder to delegate their tokens to a validator to help secure the network.\nA token holder delegating to a validator will earn rewards based on the amount they have delegated, and the performance of the chosen validator."
     },
     "v1ETHAddress": {
       "type": "object",
@@ -623,15 +638,15 @@
         "targetBlock": {
           "type": "string",
           "format": "uint64",
-          "description": "Target block at which the key rotation will take effect on."
+          "description": "Block height at which the key rotation will take effect."
         },
         "newAddress": {
           "type": "string",
-          "description": "New address to rotate to."
+          "description": "Ethereum address that is being rotated to."
         },
         "currentAddress": {
           "type": "string",
-          "description": "Currently used public address."
+          "description": "Ethereum address of the node's current Ethereum keys."
         },
         "submitterAddress": {
           "type": "string",
@@ -639,10 +654,10 @@
         },
         "ethereumSignature": {
           "$ref": "#/definitions/v1Signature",
-          "description": "Signature that can be verified using the new ethereum address."
+          "description": "Signature signed by the new Ethereum key that can be verified to prove ownership."
         }
       },
-      "title": "Transaction to allow a validator to rotate their ethereum keys"
+      "description": "A validator command sent manually that allows a node operator to indicate to the network that their node's Ethereum key will be rotated."
     },
     "v1Filter": {
       "type": "object",
@@ -705,16 +720,16 @@
         "nonce": {
           "type": "string",
           "format": "uint64",
-          "description": "Number to provide uniqueness to prevent accidental replays and,\nin combination with `block_height`, deliberate attacks.\nA nonce provides uniqueness for otherwise identical transactions,\nensuring that the transaction hash uniquely identifies a specific transaction.\nGranted all other fields are equal, the nonce can either be a counter\nor generated at random to submit multiple transactions within the same\nblock (see below), without being identified as replays.\nPlease note that Protocol Buffers do not have a canonical, unique encoding\nand therefore different libraries or binaries may encode the same message\nslightly differently, causing a different hash."
+          "description": "Arbitrary number used to provide uniqueness to the signature of two otherwise identical input data, preventing replay attacks.\nMust be set to a different value for all new transactions sent by a party. It is advised to generate this number randomly."
         },
         "blockHeight": {
           "type": "string",
           "format": "uint64",
-          "description": "Block height at which the transaction was made.\nThis should be the current block height. The transaction will be valid\nfrom the block and up to the `tolerance` block height.\nExample: If the network has a tolerance of 150 blocks and `block_height`\nis set to `200`, then the transaction will be valid until block `350`.\nNote that a `block_height` that is ahead of the real block height will be\nrejected. The tolerance can be queried from the chain's network parameters.\n`block_height` prevents replay attacks in conjunction with `nonce` (see above)."
+          "description": "Block height which has been used to calculate the transaction proof-of-work."
         },
         "orderSubmission": {
           "$ref": "#/definitions/v1OrderSubmission",
-          "description": "Command for submitting an order."
+          "description": "Command to submit an order."
         },
         "orderCancellation": {
           "$ref": "#/definitions/v1OrderCancellation",
@@ -750,11 +765,11 @@
         },
         "liquidityProvisionCancellation": {
           "$ref": "#/definitions/v1LiquidityProvisionCancellation",
-          "description": "Command to request cancelling a liquidity commitment."
+          "description": "Command to cancel a liquidity commitment."
         },
         "liquidityProvisionAmendment": {
           "$ref": "#/definitions/v1LiquidityProvisionAmendment",
-          "description": "Command to request amending a liquidity commitment."
+          "description": "Command to amend a liquidity commitment."
         },
         "transfer": {
           "$ref": "#/definitions/commandsv1Transfer",
@@ -762,7 +777,7 @@
         },
         "cancelTransfer": {
           "$ref": "#/definitions/commandsv1CancelTransfer",
-          "description": "Command to request cancelling a recurring transfer."
+          "description": "Command to cancel a recurring transfer."
         },
         "announceNode": {
           "$ref": "#/definitions/v1AnnounceNode",
@@ -770,7 +785,7 @@
         },
         "batchMarketInstructions": {
           "$ref": "#/definitions/v1BatchMarketInstructions",
-          "description": "Command to submit a batch of order instructions to a market."
+          "description": "Command to submit a batch of order instructions."
         },
         "stopOrdersSubmission": {
           "$ref": "#/definitions/v1StopOrdersSubmission",
@@ -782,7 +797,7 @@
         },
         "createReferralSet": {
           "$ref": "#/definitions/v1CreateReferralSet",
-          "description": "Command to create a team."
+          "description": "Command to create a referral set."
         },
         "updateReferralSet": {
           "$ref": "#/definitions/v1UpdateReferralSet",
@@ -794,45 +809,46 @@
         },
         "nodeVote": {
           "$ref": "#/definitions/v1NodeVote",
-          "description": "Command used by a validator when a node votes for validating that a given resource exists or is valid,\nfor example, an ERC20 deposit is valid and exists on ethereum."
+          "description": "Validator command sent automatically to vote on that validity of an external resource."
         },
         "nodeSignature": {
           "$ref": "#/definitions/v1NodeSignature",
-          "description": "Command used by a validator to submit a signature, to be used by a foreign chain to recognise a decision taken by the Vega network."
+          "description": "Validator command sent automatically to provide signatures for the Ethereum bridge."
         },
         "chainEvent": {
           "$ref": "#/definitions/v1ChainEvent",
-          "description": "Command used by a validator to submit an event forwarded to the Vega network to provide information\non events happening on other networks, to be used by a foreign chain\nto recognise a decision taken by the Vega network."
+          "description": "Validator command sent automatically to notify the Vega chain of an off-chain event."
         },
         "keyRotateSubmission": {
           "$ref": "#/definitions/v1KeyRotateSubmission",
-          "description": "Command used by a validator to allow given validator to rotate their Vega keys."
+          "description": "Validator command sent manually by a node operator to rotate their node's Vega keys."
         },
         "stateVariableProposal": {
           "$ref": "#/definitions/v1StateVariableProposal",
-          "description": "Command used by a validator to submit a floating point value."
+          "description": "Validator command sent automatically to reach consensus on floating point values."
         },
         "validatorHeartbeat": {
           "$ref": "#/definitions/v1ValidatorHeartbeat",
-          "description": "Command used by a validator to signal they are still online and validating blocks\nor ready to validate blocks when they are still a pending validator."
+          "description": "Validator command sent automatically to signal regular participation in the network."
         },
         "ethereumKeyRotateSubmission": {
           "$ref": "#/definitions/v1EthereumKeyRotateSubmission",
-          "description": "Command used by a validator to allow given validator to rotate their Ethereum keys."
+          "description": "Validator command sent manually by a node operator to rotate their node's Ethereum keys."
         },
         "protocolUpgradeProposal": {
           "$ref": "#/definitions/v1ProtocolUpgradeProposal",
-          "description": "Command used by a validator to propose a protocol upgrade."
+          "description": "Validator command sent manually to propose a protocol upgrade."
         },
         "issueSignatures": {
           "$ref": "#/definitions/v1IssueSignatures",
-          "description": "Command used by a validator to submit signatures to a smart contract."
+          "description": "Command to request signatures to amend the multisig-control contract."
         },
         "oracleDataSubmission": {
           "$ref": "#/definitions/v1OracleDataSubmission",
-          "description": "Command to submit new oracle data from third party providers."
+          "description": "Command to submit external oracle data."
         }
-      }
+      },
+      "description": "Input data for a transaction containing a network command for the Vega network to execute.\nOnce populated the protobuf message should be marshalled into a byte array and included in a transaction message."
     },
     "v1InternalTimeTrigger": {
       "type": "object",
@@ -866,7 +882,7 @@
           "description": "Node ID of the validator node that will be signed in or out of the smart contract."
         }
       },
-      "title": "Transaction for a validator to submit signatures to a smart contract"
+      "description": "Command that can be used by a validator to instruct the network to generate signatures to add or remove validators from the multisig-control contract.\nSignatures can only be generated for validator nodes that have been promoted or demoted from the consensus validator set, and any attempt to generate signatures for another node will be rejected.\nThe generated signatures can only be submitted to the contract by the Ethereum addresses included in the command."
     },
     "v1KeyRotateSubmission": {
       "type": "object",
@@ -879,71 +895,61 @@
         "targetBlock": {
           "type": "string",
           "format": "uint64",
-          "description": "Target block at which the key rotation will take effect on."
+          "description": "Block height at which the key rotation will take effect."
         },
         "newPubKey": {
           "type": "string",
-          "description": "New public key to rotate to."
+          "description": "Vega public key that would be rotated to."
         },
         "currentPubKeyHash": {
           "type": "string",
-          "description": "Hash of currently used public key."
+          "description": "Hash of the node's current Vega public key."
         }
       },
-      "title": "Transaction to allow a validator to rotate their Vega keys"
+      "description": "A validator command sent manually that allows a node operator to indicate to the network that their node's Vega key will be rotated."
     },
     "v1LiquidityProvisionAmendment": {
       "type": "object",
       "properties": {
         "marketId": {
           "type": "string",
-          "description": "Unique ID for the market with the liquidity provision to be amended."
+          "description": "Market that the submitter wants to amend the liquidity commitment for."
         },
         "commitmentAmount": {
           "type": "string",
-          "description": "From here at least one of the following is required to consider the command valid."
+          "description": "New commitment amount."
         },
         "fee": {
-          "type": "string"
-        },
-        "sells": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/vegaLiquidityOrder"
-          }
-        },
-        "buys": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/vegaLiquidityOrder"
-          }
+          "type": "string",
+          "description": "New nominated liquidity fee factor."
         },
         "reference": {
-          "type": "string"
+          "type": "string",
+          "description": "New arbitrary reference to be added to every order created out of this liquidity provision submission."
         }
       },
-      "title": "Amend a liquidity provision request"
+      "description": "Command that allows a liquidity provider to update the details of their existing liquidity commitment.\nAny field that is left unset or as a default value indicates that this field on the original submission will be left unchanged."
     },
     "v1LiquidityProvisionCancellation": {
       "type": "object",
       "properties": {
         "marketId": {
           "type": "string",
-          "description": "Unique ID for the market with the liquidity provision to be cancelled."
+          "description": "Market that the submitter will stop providing liquidity for."
         }
       },
-      "title": "Cancel a liquidity provision request"
+      "description": "Command that allows a liquidity provider to inform the network that they will stop providing liquidity for a market."
     },
     "v1LiquidityProvisionSubmission": {
       "type": "object",
       "properties": {
         "marketId": {
           "type": "string",
-          "description": "Market ID for the order."
+          "description": "Market that the submitter wishes to provide liquidity for."
         },
         "commitmentAmount": {
           "type": "string",
-          "description": "Specified as a unitless number that represents the amount of settlement asset of the market.\nThis field is an unsigned integer scaled using the asset's decimal places."
+          "description": "Amount that the submitter will commit as liquidity to the market, specified as a unitless number in the settlement asset of the market.\nThis field is an unsigned integer scaled using the asset's decimal places."
         },
         "fee": {
           "type": "string",
@@ -951,10 +957,10 @@
         },
         "reference": {
           "type": "string",
-          "description": "Reference to be added to every order created out of this liquidity provision submission."
+          "description": "Arbitrary reference to be added to every order created out of this liquidity provision submission."
         }
       },
-      "title": "A liquidity provision submitted for a given market"
+      "description": "A command that indicates to the network the party's intention to supply liquidity to the given market and become a liquidity provider.\nAn active liquidity provider for a market will earn fees based on the trades that occur in the market."
     },
     "v1ListTransactionsResponse": {
       "type": "object",
@@ -973,19 +979,19 @@
       "properties": {
         "id": {
           "type": "string",
-          "description": "ID of the resource being signed."
+          "description": "ID of the resource that the signature relates to."
         },
         "sig": {
           "type": "string",
           "format": "byte",
-          "description": "The signature generated by the signer."
+          "description": "Signature generated by the node."
         },
         "kind": {
           "$ref": "#/definitions/v1NodeSignatureKind",
           "description": "Kind of resource being signed."
         }
       },
-      "title": "Represents a signature from a validator, to be used by a foreign chain in order to recognise a decision taken by the Vega network"
+      "description": "A validator command sent automatically containing a signature that can be used on a foreign chain to process an action."
     },
     "v1NodeSignatureKind": {
       "type": "string",
@@ -998,7 +1004,7 @@
         "NODE_SIGNATURE_KIND_ASSET_UPDATE"
       ],
       "default": "NODE_SIGNATURE_KIND_UNSPECIFIED",
-      "description": "- NODE_SIGNATURE_KIND_UNSPECIFIED: Represents an unspecified or missing value from the input\n - NODE_SIGNATURE_KIND_ASSET_NEW: Represents a signature for a new asset allow-listing\n - NODE_SIGNATURE_KIND_ASSET_WITHDRAWAL: Represents a signature for an asset withdrawal\n - NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_ADDED: Represents a signature for a new signer added to the erc20 multisig contract\n - NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_REMOVED: Represents a signature for a signer removed from the erc20 multisig contract\n - NODE_SIGNATURE_KIND_ASSET_UPDATE: Represents a signature for an asset update allow-listing",
+      "description": "- NODE_SIGNATURE_KIND_UNSPECIFIED: Represents an unspecified or missing value from the input.\n - NODE_SIGNATURE_KIND_ASSET_NEW: Represents a signature for a new asset allow-listing.\n - NODE_SIGNATURE_KIND_ASSET_WITHDRAWAL: Represents a signature for an asset withdrawal.\n - NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_ADDED: Represents a signature for a new signer added to the erc20 multisig contract.\n - NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_REMOVED: Represents a signature for a signer removed from the erc20 multisig contract.\n - NODE_SIGNATURE_KIND_ASSET_UPDATE: Represents a signature for an asset update allow-listing.",
       "title": "Kind of signature created by a node, for example, allow-listing a new asset, withdrawal etc"
     },
     "v1NodeVote": {
@@ -1006,14 +1012,14 @@
       "properties": {
         "reference": {
           "type": "string",
-          "description": "Reference identifying the resource making the vote, required field."
+          "description": "Reference identifying the resource that has been verified."
         },
         "type": {
           "$ref": "#/definitions/v1NodeVoteType",
-          "description": "Type of NodeVote, also required."
+          "description": "Type of external event that has been verified."
         }
       },
-      "description": "Used when a node votes for validating that a given resource exists or is valid,\nfor example, an ERC20 deposit is valid and exists on ethereum."
+      "description": "A validator command which is sent automatically by a node when it has verified a resource external to the network."
     },
     "v1NodeVoteType": {
       "type": "string",
@@ -1041,30 +1047,30 @@
       "properties": {
         "source": {
           "$ref": "#/definitions/OracleDataSubmissionOracleSource",
-          "description": "Source from which the data is coming from. Must be base64 encoded.\nOracle data is a type of external data source data."
+          "description": "Source from which the data is coming from."
         },
         "payload": {
           "type": "string",
           "format": "byte",
-          "description": "Data provided by the data source\nIn the case of Open Oracle - it will be the entire object - it will contain messages, signatures and price data."
+          "description": "Data provided by the data source."
         }
       },
-      "title": "Command to submit new Oracle data from third party providers"
+      "title": "Command to submit new oracle data from third party providers"
     },
     "v1OrderAmendment": {
       "type": "object",
       "properties": {
         "orderId": {
           "type": "string",
-          "description": "Order ID, this is required to find the order and will not be updated, required field."
+          "description": "ID of the order to amend."
         },
         "marketId": {
           "type": "string",
-          "description": "Market ID, this is required to find the order and will not be updated."
+          "description": "Market ID that the order was originally submitted to."
         },
         "price": {
           "type": "string",
-          "description": "Amend the price for the order if the price value is set, otherwise price will remain unchanged.\nThis field is an unsigned integer scaled to the market's decimal places."
+          "description": "New price for the order. This field is an unsigned integer scaled to the market's decimal places."
         },
         "sizeDelta": {
           "type": "string",
@@ -1074,43 +1080,43 @@
         "expiresAt": {
           "type": "string",
           "format": "int64",
-          "description": "Amend the expiry time for the order, if the Timestamp value is set, otherwise expiry time will remain unchanged."
+          "description": "Timestamp, in Unix nanoseconds, for the new expiry time for the order."
         },
         "timeInForce": {
           "$ref": "#/definitions/OrderTimeInForce",
-          "description": "Amend the time in force for the order, set to TIME_IN_FORCE_UNSPECIFIED to remain unchanged."
+          "description": "New time in force for the order."
         },
         "peggedOffset": {
           "type": "string",
-          "description": "Amend the pegged order offset for the order. This field is an unsigned integer scaled to the market's decimal places."
+          "description": "New pegged offset for the order.\nThis field is an unsigned integer scaled to the market's decimal places."
         },
         "peggedReference": {
           "$ref": "#/definitions/vegaPeggedReference",
-          "description": "Amend the pegged order reference for the order."
+          "description": "New pegged reference for the order."
         }
       },
-      "title": "An order amendment is a request to amend or update an existing order on Vega"
+      "description": "A command that allows a party to update the details of an existing order.\nAny field that is left unset or as a default value indicates that this field on the original order will be left unchanged.\nIt is not possible to change an order's type through this command."
     },
     "v1OrderCancellation": {
       "type": "object",
       "properties": {
         "orderId": {
           "type": "string",
-          "description": "Unique ID for the order. This is set by the system after consensus. Required field."
+          "description": "Restrict cancellations to an order with the given ID. If set, then a market ID must also be provided."
         },
         "marketId": {
           "type": "string",
-          "description": "Market ID for the order, required field."
+          "description": "Restrict cancellations to those submitted to the given market. If not set, all stop orders across all markets will be cancelled."
         }
       },
-      "title": "Order cancellation is a request to cancel an existing order on Vega"
+      "description": "A command that instructs the network to cancel orders, active or partially filled, that were previously submitted by the sender of this transaction.\nIt is not possible to cancel another party's order with this command."
     },
     "v1OrderSubmission": {
       "type": "object",
       "properties": {
         "marketId": {
           "type": "string",
-          "description": "Market ID for the order, required field."
+          "description": "Market ID to submit the order to."
         },
         "price": {
           "type": "string",
@@ -1119,47 +1125,62 @@
         "size": {
           "type": "string",
           "format": "uint64",
-          "description": "Size for the order, for example, in a futures market the size equals the number of units, cannot be negative."
+          "description": "Size for the order, for example, in a futures market the size equals the number of units."
         },
         "side": {
           "$ref": "#/definitions/vegaSide",
-          "description": "Side for the order, e.g. SIDE_BUY or SIDE_SELL, required field."
+          "description": "Which side of the order book the order is for, e.g. buy or sell."
         },
         "timeInForce": {
           "$ref": "#/definitions/OrderTimeInForce",
-          "description": "Time in force indicates how long an order will remain active before it is executed or expires, required field."
+          "description": "Time in force indicates how long an order will remain active before it is executed or expires.."
         },
         "expiresAt": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp in Unix nanoseconds for when the order will expire,\nrequired field only for `Order.TimeInForce`.TIME_IN_FORCE_GTT`."
+          "description": "Timestamp, in Unix nanoseconds, for when the order will expire. Can only be set when the order's time-in-force is GTT."
         },
         "type": {
           "$ref": "#/definitions/vegaOrderType",
-          "description": "Type for the order, required field - See `Order.Type`."
+          "description": "Type of the order."
         },
         "reference": {
           "type": "string",
-          "description": "Reference given for the order, this is typically used to retrieve an order submitted through consensus, currently\nset internally by the node to return a unique reference ID for the order submission."
+          "description": "Arbitrary optional reference for the order, to be used as a human-readable non-unique identifier for the order."
         },
         "peggedOrder": {
           "$ref": "#/definitions/vegaPeggedOrder",
-          "description": "Used to specify the details for a pegged order."
+          "description": "Pegged order details. If set, the order's price will be offset from a particular reference price of the order book at all times."
         },
         "postOnly": {
           "type": "boolean",
-          "description": "Only valid for Limit orders. Cannot be True at the same time as Reduce-Only."
+          "description": "If set, the order will only be executed if it would not trade on entry to the order book. Only valid for limit orders."
         },
         "reduceOnly": {
           "type": "boolean",
-          "description": "Only valid for Non-Persistent orders. Cannot be True at the same time as Post-Only.\nIf set, order will only be executed if the outcome of the trade moves the trader's position closer to 0."
+          "description": "If set, the order will only be executed if the outcome of the trade moves the trader's position closer to 0.\nOnly valid for non-persistent orders."
         },
         "icebergOpts": {
           "$ref": "#/definitions/v1IcebergOpts",
-          "description": "Parameters used to specify an iceberg order."
+          "description": "Iceberg order details. If set, the order will exist on the order book in chunks."
         }
       },
-      "title": "Order submission is a request to submit or create a new order on Vega"
+      "description": "A command that submits an order to the Vega network for a given market."
+    },
+    "v1ProofOfWork": {
+      "type": "object",
+      "properties": {
+        "tid": {
+          "type": "string",
+          "description": "Unique transaction identifier used to seed the proof-of-work hash."
+        },
+        "nonce": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Number which, combined with the transaction identifier, will produce a hash with the required number of leading zeros to be accepted by the network."
+        }
+      },
+      "description": "Components needed for the network to verify proof-of-work."
     },
     "v1PropertyKey": {
       "type": "object",
@@ -1199,18 +1220,18 @@
       "properties": {
         "reference": {
           "type": "string",
-          "description": "Reference identifying the proposal."
+          "description": "Arbitrary human-readable reference identifying the proposal."
         },
         "terms": {
           "$ref": "#/definitions/vegaProposalTerms",
-          "description": "Proposal configuration and the actual change that is meant to be executed when proposal is enacted."
+          "description": "Proposal terms containing the type and details of the proposal, as well as time spans for voting and enactment."
         },
         "rationale": {
           "$ref": "#/definitions/vegaProposalRationale",
           "description": "Rationale behind a proposal."
         }
       },
-      "title": "Command to submit a new proposal for the\nVega network governance"
+      "description": "Command that allows a token holder to submit a governance proposal that can be voted on by any other token holders, and eventually enacted on the Vega network.\nFor example this command can be used to propose a new market."
     },
     "v1ProtocolUpgradeProposal": {
       "type": "object",
@@ -1225,7 +1246,7 @@
           "description": "Release tag for the Vega binary."
         }
       },
-      "title": "Transaction for a validator to suggest a protocol upgrade"
+      "description": "A validator command sent manually by a node operator to propose a protocol upgrade."
     },
     "v1PubKey": {
       "type": "object",
@@ -1250,10 +1271,10 @@
         "version": {
           "type": "integer",
           "format": "int64",
-          "description": "Version of the signature used to create the signature."
+          "description": "Version of the algorithm used to create the signature."
         }
       },
-      "description": "Signature to authenticate a transaction and to be verified by the Vega\nnetwork."
+      "description": "Signature definition that allows the network to authenticate external data."
     },
     "v1Signer": {
       "type": "object",
@@ -1273,10 +1294,10 @@
       "properties": {
         "proposal": {
           "$ref": "#/definitions/vegaStateValueProposal",
-          "description": "State value proposal details."
+          "description": "Details of the state variable being proposed."
         }
       },
-      "title": "Transaction for a validator to submit a floating point value"
+      "description": "A validator command sent automatically to reach consensus on floating point values."
     },
     "v1StopOrderSetup": {
       "type": "object",
@@ -1288,7 +1309,7 @@
         "expiresAt": {
           "type": "string",
           "format": "int64",
-          "description": "Optional expiry timestamp."
+          "description": "Timestamp, in Unix nanoseconds, for when the stop order should expire. If not set the stop order will not expire."
         },
         "expiryStrategy": {
           "$ref": "#/definitions/StopOrderExpiryStrategy",
@@ -1296,59 +1317,70 @@
         },
         "price": {
           "type": "string",
-          "description": "Fixed price at which the order will be submitted."
+          "description": "Order will be submitted if the last traded price on the market breaches the given price."
         },
         "trailingPercentOffset": {
           "type": "string",
-          "description": "Trailing percentage at which the order will be submitted."
+          "description": "Order will be submitted if the last traded price has moved the given percent from the highest/lowest mark price since the stop order was submitted."
         }
       },
-      "title": "Price and expiry configuration for a stop order"
+      "description": "Price and expiry configuration for a stop order."
     },
     "v1StopOrdersCancellation": {
       "type": "object",
       "properties": {
         "marketId": {
           "type": "string",
-          "description": "Optional market ID."
+          "description": "Restrict cancellations to those submitted to the given market. If not set, all stop orders across all markets will be cancelled."
         },
         "stopOrderId": {
           "type": "string",
-          "description": "Optional order ID."
+          "description": "Restrict cancellations to a stop order with the given ID. If set, then a market ID must also be provided."
         }
       },
-      "title": "Cancel a stop order.\nThe following combinations are available:\nEmpty object will cancel all stop orders for the party\nMarket ID alone will cancel all stop orders in a market\nMarket ID and order ID will cancel a specific stop order in a market\nIf the stop order is part of an OCO, both stop orders will be cancelled"
+      "description": "A command that instructs the network to cancel untriggered stop orders that were submitted by the sender of this transaction.\nIf any cancelled stop order is part of an OCO, both stop orders will be cancelled.\nIt is not possible to cancel another party's stop orders with this command."
     },
     "v1StopOrdersSubmission": {
       "type": "object",
       "properties": {
         "risesAbove": {
           "$ref": "#/definitions/v1StopOrderSetup",
-          "description": "Stop order that will be triggered\nif the price rises above a given trigger price."
+          "description": "Stop order that will be triggered if the price rises above a given trigger price."
         },
         "fallsBelow": {
           "$ref": "#/definitions/v1StopOrderSetup",
-          "description": "Stop order that will be triggered\nif the price falls below a given trigger price."
+          "description": "Stop order that will be triggered if the price falls below a given trigger price."
         }
       },
-      "title": "Stop order submission submits stops orders.\nIt is possible to make a single stop order submission by\nspecifying a single direction,\nor an OCO (One Cancels the Other) stop order submission\nby specifying a configuration for both directions"
+      "description": "A command that allows a party to submit a stop order for a given market.\nA stop order is a normal order that remains off the order book and is only submitted if a given trigger is breached from a particular direction.\nIf both rises-above and falls-below are configured, then if one is triggered the other will be cancelled (OCO)."
+    },
+    "v1TxVersion": {
+      "type": "string",
+      "enum": [
+        "TX_VERSION_UNSPECIFIED",
+        "TX_VERSION_V2",
+        "TX_VERSION_V3"
+      ],
+      "default": "TX_VERSION_UNSPECIFIED",
+      "description": "Transaction versions to maintain backwards compatibility of transaction formats.\n\n - TX_VERSION_UNSPECIFIED: Transaction version is unspecified.\n - TX_VERSION_V2: Transaction requires the addition of a proof-of-work calculation.\n - TX_VERSION_V3: Transaction input data contains a prepended chain ID to prevent use of a single transaction across multiple networks."
     },
     "v1UndelegateSubmission": {
       "type": "object",
       "properties": {
         "nodeId": {
           "type": "string",
-          "description": "Node ID to delegate to."
+          "description": "Node ID to undelegate stake from."
         },
         "amount": {
           "type": "string",
-          "description": "Optional, if not specified = ALL.\nIf provided, this field must be an unsigned integer passed as a string\nand needs to be scaled using the asset decimal places for the token."
+          "description": "Amount to undelegate, as an unsigned integer scaled to the governance asset's decimal places.\nIf not set, then all delegations to the given validator node will be removed."
         },
         "method": {
           "$ref": "#/definitions/UndelegateSubmissionMethod",
           "description": "Method of delegation."
         }
-      }
+      },
+      "description": "Command to allow a token holder to instruct the network to remove their delegated stake from a given validator node."
     },
     "v1UpdateReferralSet": {
       "type": "object",
@@ -1358,32 +1390,34 @@
           "description": "ID of the referral set to update."
         },
         "isTeam": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Whether or not the referral set should be considered a team that can participate in team games on the network."
         },
         "team": {
-          "$ref": "#/definitions/v1UpdateReferralSetTeam"
+          "$ref": "#/definitions/v1UpdateReferralSetTeam",
+          "description": "Team details, if the referral set is to be considered a team."
         }
       },
-      "title": "Request for updating a referral set's properties"
+      "description": "A command that allows the referrer of a referral set to update team details for a referral set.\nAny field that is left unset or has a default value indicates that this field on the original referral set will be left unchanged."
     },
     "v1UpdateReferralSetTeam": {
       "type": "object",
       "properties": {
         "name": {
           "type": "string",
-          "description": "Optional team name to be added to the referral banner."
+          "description": "New name of the team."
         },
         "teamUrl": {
           "type": "string",
-          "description": "Optional link to a team forum, discord, etc."
+          "description": "New link to the team's homepage."
         },
         "avatarUrl": {
           "type": "string",
-          "description": "Optional link to an image to be used as the team avatar."
+          "description": "New link to an avatar for the team."
         },
         "closed": {
           "type": "boolean",
-          "title": "Is this team closed for external other users"
+          "description": "Whether or not the team is closed to new party members."
         }
       }
     },
@@ -1396,18 +1430,18 @@
         },
         "ethereumSignature": {
           "$ref": "#/definitions/v1Signature",
-          "description": "Signature from the validator made using the ethereum wallet."
+          "description": "Signature from the validator made using their Ethereum wallet."
         },
         "vegaSignature": {
           "$ref": "#/definitions/v1Signature",
-          "description": "Signature from the validator made using the vega wallet."
+          "description": "Signature from the validator made using their Vega wallet."
         },
         "message": {
           "type": "string",
           "description": "Message which has been signed."
         }
       },
-      "title": "Message from a validator signalling they are still online and validating blocks\nor ready to validate blocks when they are still a pending validator"
+      "description": "A validator command which is sent automatically at regular intervals by any validator participating in the network.\nIt is used to allow the network to know whether a validator is active, or if they have shut down."
     },
     "v1VoteSubmission": {
       "type": "object",
@@ -1421,14 +1455,14 @@
           "description": "Actual value of the vote."
         }
       },
-      "description": "Command to submit a new vote for a governance proposal."
+      "description": "Command that allows a token holder to vote for or against an active governance proposal."
     },
     "v1WithdrawSubmission": {
       "type": "object",
       "properties": {
         "amount": {
           "type": "string",
-          "description": "Amount to be withdrawn. This field is an unsigned integer scaled to the asset's decimal places."
+          "description": "Amount to be withdrawn, as an unsigned integer scaled to the asset's decimal places."
         },
         "asset": {
           "type": "string",
@@ -1436,10 +1470,10 @@
         },
         "ext": {
           "$ref": "#/definitions/vegaWithdrawExt",
-          "description": "Foreign chain specifics."
+          "description": "Details specific to the foreign chain, such as the receiver address."
         }
       },
-      "title": "Represents the submission request to withdraw funds for a party on Vega"
+      "description": "Command to instruct the network to process an asset withdrawal from the Vega network.\nThe process is specific to the destination foreign chain, for example, a withdrawal to Ethereum will generate signatures\nthat allow funds to be taken across the bridge."
     },
     "vegaAccountType": {
       "type": "string",
@@ -1535,11 +1569,11 @@
         },
         "referralRewardFactor": {
           "type": "string",
-          "title": "Proportion of the referee's taker fees to be rewarded to the referrer"
+          "description": "Proportion of the referee's taker fees to be rewarded to the referrer."
         },
         "referralDiscountFactor": {
           "type": "string",
-          "title": "Proportion of the referee's taker fees to be discounted"
+          "description": "Proportion of the referee's taker fees to be discounted."
         }
       }
     },
@@ -2311,25 +2345,6 @@
       },
       "title": "LiquidityMonitoringParameters contains settings used for liquidity monitoring"
     },
-    "vegaLiquidityOrder": {
-      "type": "object",
-      "properties": {
-        "reference": {
-          "$ref": "#/definitions/vegaPeggedReference",
-          "description": "Pegged reference point for the order."
-        },
-        "proportion": {
-          "type": "integer",
-          "format": "int64",
-          "description": "Relative proportion of the commitment to be allocated at a price level."
-        },
-        "offset": {
-          "type": "string",
-          "description": "Offset/amount of units away for the order. This field is an unsigned integer scaled using the market's decimal places."
-        }
-      },
-      "title": "Represents a liquidity order"
-    },
     "vegaLiquiditySLAParameters": {
       "type": "object",
       "properties": {
@@ -2494,7 +2509,7 @@
         },
         "lpPriceRange": {
           "type": "string",
-          "description": "DEPRECATED: Use liquidity SLA parameters instead.\nPercentage move up and down from the mid price which specifies the range of\nprice levels over which automated liquidity provision orders will be deployed."
+          "description": "DEPRECATED: Use liquidity SLA parameters instead.\nPercentage move up and down from the mid price which specifies the range of\nprice levels over which automated liquidity provisions will be deployed."
         },
         "linearSlippageFactor": {
           "type": "string",
@@ -2891,7 +2906,7 @@
         "endOfProgramTimestamp": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp as Unix time in seconds, after which when the current epoch ends, the\nprograms status will become STATE_CLOSED and benefits will be disabled."
+          "description": "Timestamp as Unix time in seconds, after which when the current epoch\nends, the program will end and benefits will be disabled."
         },
         "windowLength": {
           "type": "string",
@@ -3234,7 +3249,7 @@
         },
         "lpPriceRange": {
           "type": "string",
-          "description": "DEPRECATED: Use liquidity SLA parameters instead.\nPercentage move up and down from the mid price which specifies the range of\nprice levels over which automated liquidity provision orders will be deployed."
+          "description": "DEPRECATED: Use liquidity SLA parameters instead.\nPercentage move up and down from the mid price which specifies the range of\nprice levels over which automated liquidity provisions will be deployed."
         },
         "linearSlippageFactor": {
           "type": "string",
@@ -3410,7 +3425,7 @@
         },
         "volumeDiscountFactor": {
           "type": "string",
-          "title": "Proportion of the taker fees to be discounted"
+          "description": "Proportion of the taker fees to be discounted."
         }
       }
     },
@@ -3427,7 +3442,7 @@
         "endOfProgramTimestamp": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp as Unix time in seconds, after which when the current epoch\nends, the programs will end and benefits will be disabled."
+          "description": "Timestamp as Unix time in seconds, after which when the current epoch\nends, the program will end and benefits will be disabled."
         },
         "windowLength": {
           "type": "string",

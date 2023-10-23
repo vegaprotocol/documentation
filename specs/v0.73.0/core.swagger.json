@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Vega core APIs",
-    "version": "v0.73.0-preview.15"
+    "version": "v0.73.0-rc.1"
   },
   "tags": [
     {
@@ -72,7 +72,7 @@
     "/statistics/spam/{partyId}": {
       "get": {
         "summary": "Get Spam statistics",
-        "description": "Get the spam statistics for a given party",
+        "description": "Get the spam statistics for a given party.",
         "operationId": "CoreService_GetSpamStatistics",
         "responses": {
           "200": {
@@ -133,7 +133,7 @@
         "parameters": [
           {
             "name": "type",
-            "description": "One or more types of event, required field.\n\n - BUS_EVENT_TYPE_UNSPECIFIED: Default value, always invalid\n - BUS_EVENT_TYPE_ALL: Events of ALL event types, used when filtering stream from event bus\n - BUS_EVENT_TYPE_TIME_UPDATE: Event for blockchain time updates\n - BUS_EVENT_TYPE_LEDGER_MOVEMENTS: Event for when a transfer happens internally, contains the transfer information\n - BUS_EVENT_TYPE_POSITION_RESOLUTION: Event indicating position resolution has occurred\n - BUS_EVENT_TYPE_ORDER: Event for order updates, both new and existing orders\n - BUS_EVENT_TYPE_ACCOUNT: Event for account updates\n - BUS_EVENT_TYPE_PARTY: Event for party updates\n - BUS_EVENT_TYPE_TRADE: Event indicating a new trade has occurred\n - BUS_EVENT_TYPE_MARGIN_LEVELS: Event indicating margin levels have changed for a party\n - BUS_EVENT_TYPE_PROPOSAL: Event for proposal updates (for governance)\n - BUS_EVENT_TYPE_VOTE: Event indicating a new vote has occurred (for governance)\n - BUS_EVENT_TYPE_MARKET_DATA: Event for market data updates\n - BUS_EVENT_TYPE_NODE_SIGNATURE: Event for a new signature for a Vega node\n - BUS_EVENT_TYPE_LOSS_SOCIALIZATION: Event indicating loss socialisation occurred for a party\n - BUS_EVENT_TYPE_SETTLE_POSITION: Event for when a position is being settled\n - BUS_EVENT_TYPE_SETTLE_DISTRESSED: Event for when a position is distressed\n - BUS_EVENT_TYPE_MARKET_CREATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ASSET: Event for when an asset is added to Vega\n - BUS_EVENT_TYPE_MARKET_TICK: Event indicating a market tick event\n - BUS_EVENT_TYPE_WITHDRAWAL: Event for when a withdrawal occurs\n - BUS_EVENT_TYPE_DEPOSIT: Event for when a deposit occurs\n - BUS_EVENT_TYPE_AUCTION: Event indicating a change in auction state, for example starting or ending an auction\n - BUS_EVENT_TYPE_RISK_FACTOR: Event indicating a risk factor has been updated\n - BUS_EVENT_TYPE_NETWORK_PARAMETER: Event indicating a network parameter has been added or updated\n - BUS_EVENT_TYPE_LIQUIDITY_PROVISION: Event indicating a liquidity provision has been created or updated\n - BUS_EVENT_TYPE_MARKET_UPDATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ORACLE_SPEC: Event indicating an oracle spec has been created or updated\n - BUS_EVENT_TYPE_ORACLE_DATA: Event indicating that an oracle data has been broadcast\n - BUS_EVENT_TYPE_DELEGATION_BALANCE: Event indicating that an delegation balance of a party to a node for current epoch has changed\n - BUS_EVENT_TYPE_VALIDATOR_SCORE: Event indicating the validator score for the given epoch\n - BUS_EVENT_TYPE_EPOCH_UPDATE: Event indicating the start or end of an epoch\n - BUS_EVENT_TYPE_VALIDATOR_UPDATE: Event indicating that validator node has been updated\n - BUS_EVENT_TYPE_STAKE_LINKING: Event indicating a new staking event have been processed by the network\n - BUS_EVENT_TYPE_REWARD_PAYOUT_EVENT: Event indicating the payout of a reward has been initiated\n - BUS_EVENT_TYPE_CHECKPOINT: Event indicating a new checkpoint was created\n - BUS_EVENT_TYPE_STREAM_START: Event indicating stream is starting\n - BUS_EVENT_TYPE_KEY_ROTATION: Event indicating key rotation took place\n - BUS_EVENT_TYPE_STATE_VAR: Event indicating state transitions in state variable consensus\n - BUS_EVENT_TYPE_NETWORK_LIMITS: Event indicating network limits set or updated\n - BUS_EVENT_TYPE_TRANSFER: Event indicating a update for a transfer\n - BUS_EVENT_TYPE_VALIDATOR_RANKING: Event indicating the ranking of validator and their status in Vega\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_EVENT: Event indicating a new multi sig signer event have been processed\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SET_THRESHOLD: Event indicating the erc20 multi sig threshold have been updated\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_ADDED: Event indicating a new signer has been added to the ERC-20 multisig\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_REMOVED: Event indicating a signer has been removed from the ERC-20 multisig\n - BUS_EVENT_TYPE_POSITION_STATE: Event indicating that a party's position has changed\n - BUS_EVENT_TYPE_ETHEREUM_KEY_ROTATION: Event indicating Ethereum key rotation took place\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_PROPOSAL: Event indicating protocol upgrade proposal updates\n - BUS_EVENT_TYPE_BEGIN_BLOCK: Event indicating the core is starting to process a new block\n - BUS_EVENT_TYPE_END_BLOCK: Event indicating the core finished to process a block\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_STARTED: Event indicating the core is starting a protocol upgrade\n - BUS_EVENT_TYPE_SETTLE_MARKET: Event indicating the market has stopped and settled\n - BUS_EVENT_TYPE_TRANSACTION_RESULT: Event indicating the result of a transaction processed by the network\n - BUS_EVENT_TYPE_SNAPSHOT_TAKEN: Event indicating a snapshot was taken at this block height\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_DATA_NODE_READY: Event data node uses to notify that it is ready to upgrade\n - BUS_EVENT_TYPE_DISTRESSED_ORDERS_CLOSED: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_EXPIRED_ORDERS: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_DISTRESSED_POSITIONS: Event indicating parties have become, or were, distressed but still have an active position.\n - BUS_EVENT_TYPE_SPOT_LIQUIDITY_PROVISION: Event indicating a spot liquidity provision has been created or updated.\n - BUS_EVENT_TYPE_STOP_ORDER: Event indicating a stop order has been submitted or updated.\n - BUS_EVENT_TYPE_FUNDING_PERIOD: Event indicating the start or end of a funding period.\n - BUS_EVENT_TYPE_FUNDING_PERIOD_DATA_POINT: Event indicating a data point for a funding period has been received.\n - BUS_EVENT_TYPE_TEAM_CREATED: Event indicating a team has been created.\n - BUS_EVENT_TYPE_TEAM_UPDATED: Event indicating a team has been updated.\n - BUS_EVENT_TYPE_REFEREE_SWITCHED_TEAM: Event indicating a referee switched team.\n - BUS_EVENT_TYPE_REFEREE_JOINED_TEAM: Event indicating a referee joined a team.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_STARTED: Event indicating a referral program started.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_UPDATED: Event indicating a referral program has been updated.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_ENDED: Event indicating a referral program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_CREATED: Event indicating a set has been created.\n - BUS_EVENT_TYPE_REFEREE_JOINED_REFERRAL_SET: Event indicating a referee joined a set.\n - BUS_EVENT_TYPE_PARTY_ACTIVITY_STREAK: Event indicating the updated activity streak for a party\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_STARTED: Event indicating a volume discount program started.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_UPDATED: Event indicating a volume discount program has been updated.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_ENDED: Event indicating a volume discount program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_STATS_UPDATED: Event indicating the updated statistics for a referral set.\n - BUS_EVENT_TYPE_VESTING_STATS_UPDATED: Event indicating the updated statistics for the vesting program.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_STATS_UPDATED: Event indicating the updated statistics for the volume discount.\n - BUS_EVENT_TYPE_FEE_STATS_UPDATED: Event indicating the fee stats per market at end of epoch\n - BUS_EVENT_TYPE_FUNDING_PAYMENTS: Event indicating a funding period has ended and resulted in funding payment transfers.\n - BUS_EVENT_TYPE_MARKET: Event indicating a market related event, for example when a market opens\n - BUS_EVENT_TYPE_TX_ERROR: Event used to report failed transactions back to a user, this is excluded from the ALL type",
+            "description": "One or more types of event, required field.\n\n - BUS_EVENT_TYPE_UNSPECIFIED: Default value, always invalid\n - BUS_EVENT_TYPE_ALL: Events of ALL event types, used when filtering stream from event bus\n - BUS_EVENT_TYPE_TIME_UPDATE: Event for blockchain time updates\n - BUS_EVENT_TYPE_LEDGER_MOVEMENTS: Event for when a transfer happens internally, contains the transfer information\n - BUS_EVENT_TYPE_POSITION_RESOLUTION: Event indicating position resolution has occurred\n - BUS_EVENT_TYPE_ORDER: Event for order updates, both new and existing orders\n - BUS_EVENT_TYPE_ACCOUNT: Event for account updates\n - BUS_EVENT_TYPE_PARTY: Event for party updates\n - BUS_EVENT_TYPE_TRADE: Event indicating a new trade has occurred\n - BUS_EVENT_TYPE_MARGIN_LEVELS: Event indicating margin levels have changed for a party\n - BUS_EVENT_TYPE_PROPOSAL: Event for proposal updates (for governance)\n - BUS_EVENT_TYPE_VOTE: Event indicating a new vote has occurred (for governance)\n - BUS_EVENT_TYPE_MARKET_DATA: Event for market data updates\n - BUS_EVENT_TYPE_NODE_SIGNATURE: Event for a new signature for a Vega node\n - BUS_EVENT_TYPE_LOSS_SOCIALIZATION: Event indicating loss socialisation occurred for a party\n - BUS_EVENT_TYPE_SETTLE_POSITION: Event for when a position is being settled\n - BUS_EVENT_TYPE_SETTLE_DISTRESSED: Event for when a position is distressed\n - BUS_EVENT_TYPE_MARKET_CREATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ASSET: Event for when an asset is added to Vega\n - BUS_EVENT_TYPE_MARKET_TICK: Event indicating a market tick event\n - BUS_EVENT_TYPE_WITHDRAWAL: Event for when a withdrawal occurs\n - BUS_EVENT_TYPE_DEPOSIT: Event for when a deposit occurs\n - BUS_EVENT_TYPE_AUCTION: Event indicating a change in auction state, for example starting or ending an auction\n - BUS_EVENT_TYPE_RISK_FACTOR: Event indicating a risk factor has been updated\n - BUS_EVENT_TYPE_NETWORK_PARAMETER: Event indicating a network parameter has been added or updated\n - BUS_EVENT_TYPE_LIQUIDITY_PROVISION: Event indicating a liquidity provision has been created or updated\n - BUS_EVENT_TYPE_MARKET_UPDATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ORACLE_SPEC: Event indicating an oracle spec has been created or updated\n - BUS_EVENT_TYPE_ORACLE_DATA: Event indicating that an oracle data has been broadcast\n - BUS_EVENT_TYPE_DELEGATION_BALANCE: Event indicating that an delegation balance of a party to a node for current epoch has changed\n - BUS_EVENT_TYPE_VALIDATOR_SCORE: Event indicating the validator score for the given epoch\n - BUS_EVENT_TYPE_EPOCH_UPDATE: Event indicating the start or end of an epoch\n - BUS_EVENT_TYPE_VALIDATOR_UPDATE: Event indicating that validator node has been updated\n - BUS_EVENT_TYPE_STAKE_LINKING: Event indicating a new staking event have been processed by the network\n - BUS_EVENT_TYPE_REWARD_PAYOUT_EVENT: Event indicating the payout of a reward has been initiated\n - BUS_EVENT_TYPE_CHECKPOINT: Event indicating a new checkpoint was created\n - BUS_EVENT_TYPE_STREAM_START: Event indicating stream is starting\n - BUS_EVENT_TYPE_KEY_ROTATION: Event indicating key rotation took place\n - BUS_EVENT_TYPE_STATE_VAR: Event indicating state transitions in state variable consensus\n - BUS_EVENT_TYPE_NETWORK_LIMITS: Event indicating network limits set or updated\n - BUS_EVENT_TYPE_TRANSFER: Event indicating a update for a transfer\n - BUS_EVENT_TYPE_VALIDATOR_RANKING: Event indicating the ranking of validator and their status in Vega\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_EVENT: Event indicating a new multi sig signer event have been processed\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SET_THRESHOLD: Event indicating the erc20 multi sig threshold have been updated\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_ADDED: Event indicating a new signer has been added to the ERC-20 multisig\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_REMOVED: Event indicating a signer has been removed from the ERC-20 multisig\n - BUS_EVENT_TYPE_POSITION_STATE: Event indicating that a party's position has changed\n - BUS_EVENT_TYPE_ETHEREUM_KEY_ROTATION: Event indicating Ethereum key rotation took place\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_PROPOSAL: Event indicating protocol upgrade proposal updates\n - BUS_EVENT_TYPE_BEGIN_BLOCK: Event indicating the core is starting to process a new block\n - BUS_EVENT_TYPE_END_BLOCK: Event indicating the core finished to process a block\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_STARTED: Event indicating the core is starting a protocol upgrade\n - BUS_EVENT_TYPE_SETTLE_MARKET: Event indicating the market has stopped and settled\n - BUS_EVENT_TYPE_TRANSACTION_RESULT: Event indicating the result of a transaction processed by the network\n - BUS_EVENT_TYPE_SNAPSHOT_TAKEN: Event indicating a snapshot was taken at this block height\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_DATA_NODE_READY: Event data node uses to notify that it is ready to upgrade\n - BUS_EVENT_TYPE_DISTRESSED_ORDERS_CLOSED: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_EXPIRED_ORDERS: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_DISTRESSED_POSITIONS: Event indicating parties have become, or were, distressed but still have an active position.\n - BUS_EVENT_TYPE_SPOT_LIQUIDITY_PROVISION: Event indicating a spot liquidity provision has been created or updated.\n - BUS_EVENT_TYPE_STOP_ORDER: Event indicating a stop order has been submitted or updated.\n - BUS_EVENT_TYPE_FUNDING_PERIOD: Event indicating the start or end of a funding period.\n - BUS_EVENT_TYPE_FUNDING_PERIOD_DATA_POINT: Event indicating a data point for a funding period has been received.\n - BUS_EVENT_TYPE_TEAM_CREATED: Event indicating a team has been created.\n - BUS_EVENT_TYPE_TEAM_UPDATED: Event indicating a team has been updated.\n - BUS_EVENT_TYPE_REFEREE_SWITCHED_TEAM: Event indicating a referee switched team.\n - BUS_EVENT_TYPE_REFEREE_JOINED_TEAM: Event indicating a referee joined a team.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_STARTED: Event indicating a referral program started.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_UPDATED: Event indicating a referral program has been updated.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_ENDED: Event indicating a referral program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_CREATED: Event indicating a set has been created.\n - BUS_EVENT_TYPE_REFEREE_JOINED_REFERRAL_SET: Event indicating a referee joined a set.\n - BUS_EVENT_TYPE_PARTY_ACTIVITY_STREAK: Event indicating the updated activity streak for a party\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_STARTED: Event indicating a volume discount program started.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_UPDATED: Event indicating a volume discount program has been updated.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_ENDED: Event indicating a volume discount program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_STATS_UPDATED: Event indicating the updated statistics for a referral set.\n - BUS_EVENT_TYPE_VESTING_STATS_UPDATED: Event indicating the updated statistics for the vesting program.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_STATS_UPDATED: Event indicating the updated statistics for the volume discount.\n - BUS_EVENT_TYPE_FEES_STATS_UPDATED: Event indicating the fees statistics per market at end of epoch\n - BUS_EVENT_TYPE_FUNDING_PAYMENTS: Event indicating a funding period has ended and resulted in funding payment transfers.\n - BUS_EVENT_TYPE_PAID_LIQUIDITY_FEES_STATS_UPDATED: Event used to report the updated paid liquidity fee statistics for the market at the end of the epoch\n - BUS_EVENT_TYPE_VESTING_SUMMARY: Event used to report the summary of vesting and locked balances at the end of the epoch\n - BUS_EVENT_TYPE_MARKET: Event indicating a market related event, for example when a market opens\n - BUS_EVENT_TYPE_TX_ERROR: Event used to report failed transactions back to a user, this is excluded from the ALL type",
             "in": "query",
             "required": false,
             "type": "array",
@@ -219,8 +219,10 @@
                 "BUS_EVENT_TYPE_REFERRAL_SET_STATS_UPDATED",
                 "BUS_EVENT_TYPE_VESTING_STATS_UPDATED",
                 "BUS_EVENT_TYPE_VOLUME_DISCOUNT_STATS_UPDATED",
-                "BUS_EVENT_TYPE_FEE_STATS_UPDATED",
+                "BUS_EVENT_TYPE_FEES_STATS_UPDATED",
                 "BUS_EVENT_TYPE_FUNDING_PAYMENTS",
+                "BUS_EVENT_TYPE_PAID_LIQUIDITY_FEES_STATS_UPDATED",
+                "BUS_EVENT_TYPE_VESTING_SUMMARY",
                 "BUS_EVENT_TYPE_MARKET",
                 "BUS_EVENT_TYPE_TX_ERROR"
               ]
@@ -282,7 +284,7 @@
     "/transaction": {
       "post": {
         "summary": "Submit transaction",
-        "description": "Submit a signed transaction",
+        "description": "Submit a signed transaction to the network containing a command to be executed such that if the submission is successful then it will be included in the chain's mempool.\nThe network will then attempt to execute the transaction in the next available block, where the results of its execution can be seen on the EventBus.",
         "operationId": "CoreService_SubmitTransaction",
         "responses": {
           "200": {
@@ -316,7 +318,7 @@
     "/transaction/check": {
       "post": {
         "summary": "Check transaction",
-        "description": "Check a signed transaction",
+        "description": "Send a signed transaction containing a command to the network to be checked, but not added to the chain's mempool.\nThis is useful for checking the validity of a potential transaction before submitting it.",
         "operationId": "CoreService_CheckTransaction",
         "responses": {
           "200": {
@@ -350,7 +352,7 @@
     "/transaction/raw": {
       "post": {
         "summary": "Submit raw transaction",
-        "description": "Submit a version agnostic signed transaction",
+        "description": "Submit a pre-serialised signed transaction containing a command to the network to be executed, such that if the submission is successful then it will be included in the chain's mempool.\nThe network will then attempt to execute the transaction in the next available block, where the results of its execution can be seen on the EventBus.",
         "operationId": "CoreService_SubmitRawTransaction",
         "responses": {
           "200": {
@@ -384,7 +386,7 @@
     "/transaction/raw/check": {
       "post": {
         "summary": "Check raw transaction",
-        "description": "Check a raw signed transaction",
+        "description": "Send a pre-serialised transaction containing a command to the network to be checked, but then not added to the chain's mempool.\nThis is useful for checking the validity of a potential transaction before submitting it.",
         "operationId": "CoreService_CheckRawTransaction",
         "responses": {
           "200": {
@@ -464,7 +466,7 @@
         "ORACLE_SOURCE_ETHEREUM"
       ],
       "default": "ORACLE_SOURCE_UNSPECIFIED",
-      "description": "- ORACLE_SOURCE_UNSPECIFIED: Default value\n - ORACLE_SOURCE_OPEN_ORACLE: Specifies that the payload will be base64 encoded JSON conforming to the Open Oracle standard\n - ORACLE_SOURCE_JSON: Specifies that the payload will be base64 encoded JSON, but does not specify the shape of the data\n - ORACLE_SOURCE_ETHEREUM: Specifies that the payload will be base64 encoded JSON conforming to the ETH standard",
+      "description": "- ORACLE_SOURCE_UNSPECIFIED: Default value\n - ORACLE_SOURCE_OPEN_ORACLE: Specifies that the payload will be base64 encoded JSON conforming to the Open Oracle standard.\n - ORACLE_SOURCE_JSON: Specifies that the payload will be base64 encoded JSON, but does not specify the shape of the data.\n - ORACLE_SOURCE_ETHEREUM: Specifies that the payload will be base64 encoded JSON conforming to the ETH standard.",
       "title": "Supported oracle sources"
     },
     "OrderTimeInForce": {
@@ -535,7 +537,8 @@
         "METHOD_NOW",
         "METHOD_AT_END_OF_EPOCH"
       ],
-      "default": "METHOD_UNSPECIFIED"
+      "default": "METHOD_UNSPECIFIED",
+      "description": " - METHOD_NOW: Undelegate straight away, losing all rewards for the current epoch.\n - METHOD_AT_END_OF_EPOCH: Undelegate at the end of an epoch, retaining all rewards for the current epoch."
     },
     "commandsv1CancelTransfer": {
       "type": "object",
@@ -545,7 +548,7 @@
           "description": "Transfer ID of the transfer to cancel."
         }
       },
-      "title": "Request for cancelling a recurring transfer"
+      "description": "Command that can be used by the party that initiated a transfer to instruct the network to stop an active recurring transaction."
     },
     "googlerpcStatus": {
       "type": "object",
@@ -587,19 +590,19 @@
       "properties": {
         "vegaPubKey": {
           "type": "string",
-          "description": "Vega public key, required field."
+          "description": "Vega public key of the node being announced."
         },
         "ethereumAddress": {
           "type": "string",
-          "description": "Ethereum public key, required field."
+          "description": "Ethereum public key of the node being announced."
         },
         "chainPubKey": {
           "type": "string",
-          "description": "Public key for the blockchain, required field."
+          "description": "Public key for the blockchain, currently the node's CometBFT key."
         },
         "infoUrl": {
           "type": "string",
-          "description": "URL with more info on the node."
+          "description": "URL to the node operators homepage allowing stake holders to make an informed decision when delegating."
         },
         "country": {
           "type": "string",
@@ -607,15 +610,15 @@
         },
         "id": {
           "type": "string",
-          "description": "Node ID of the validator, i.e. the node's public master key."
+          "description": "Node ID of the validator, which is the node's public master key."
         },
         "name": {
           "type": "string",
-          "description": "Name of the validator."
+          "description": "Human-readable name of the node."
         },
         "avatarUrl": {
           "type": "string",
-          "description": "AvatarURL of the validator."
+          "description": "URL to the node operator's avatar."
         },
         "vegaPubKeyIndex": {
           "type": "integer",
@@ -625,33 +628,32 @@
         "fromEpoch": {
           "type": "string",
           "format": "uint64",
-          "description": "Epoch from which the validator is expected\nto be ready to validate blocks."
+          "description": "Epoch from which the node is expected to be ready to validate blocks."
         },
         "ethereumSignature": {
           "$ref": "#/definitions/v1Signature",
-          "description": "Signature from the validator made using the ethereum wallet."
+          "description": "Signature from the node made using the ethereum wallet."
         },
         "vegaSignature": {
           "$ref": "#/definitions/v1Signature",
-          "description": "Signature from the validator made using the Vega wallet."
+          "description": "Signature from the node made using the Vega wallet."
         },
         "submitterAddress": {
           "type": "string",
           "description": "Ethereum public key to use as a submitter to allow automatic signature generation."
         }
       },
-      "title": "Used to announce a node as a new pending validator"
+      "description": "A command that allows a new node operator to announce themselves to the network as a new validator."
     },
     "v1ApplyReferralCode": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string",
-          "description": "Referral code for the set to join."
+          "description": "Referral code, normally the referral set ID, for the party to join."
         }
       },
-      "description": "A party that joins a referral team is called a referee. A referee cannot\ncreate a referral set or join multiple sets.\nTo switch, the referee can ask to join another set, and the switch will\nbe effective at the end of the epoch.",
-      "title": "Request to apply a referral code"
+      "description": "Command that allows the submitter to join a referral set and earn a collective reduction in fees based on the activity of all members of that set.\nA party that joins a referral set is called a referee. A referee can only be a member of one referral set and cannot themselves be or become a referrer.\nTo switch to another referral set, a subsequent command can be sent and the switch will take effect at the end of the epoch."
     },
     "v1AuctionEvent": {
       "type": "object",
@@ -728,7 +730,7 @@
           "description": "List of stop order submissions to be processed sequentially."
         }
       },
-      "title": "Batch of order instructions.\nThis command accepts only the following batches of commands\nand will be processed in the following order:\n- OrderCancellation\n- OrderAmendment\n- OrderSubmission\nThe total amount of commands in the batch across all three lists of\ninstructions is restricted by the following network parameter:\n\"spam.protection.max.batchSize\""
+      "description": "A command that allows the submission of a batch market instruction which wraps up multiple market instructions into a single transaction.\nThese instructions are then processed sequentially in the following order:\n- OrderCancellation\n- OrderAmendment\n- OrderSubmission\n- StopOrderSubmission\nwhere the maximum allow of instructions in a batch is controlled by the network parameter \"spam.protection.max.batchSize\"."
     },
     "v1BeginBlock": {
       "type": "object",
@@ -1062,13 +1064,21 @@
           "$ref": "#/definitions/v1VolumeDiscountStatsUpdated",
           "description": "Event notifying of an update to the volume discount statistics."
         },
-        "feeStats": {
-          "$ref": "#/definitions/v1FeeStats",
+        "feesStats": {
+          "$ref": "#/definitions/v1FeesStats",
           "description": "Event notifying of an update the fees stats for a market."
         },
         "fundingPayments": {
           "$ref": "#/definitions/v1FundingPayments",
           "description": "Event notifying of funding payments at the end of a funding period."
+        },
+        "paidLiquidityFeesStats": {
+          "$ref": "#/definitions/v1PaidLiquidityFeesStats",
+          "description": "Event notifying of an update to the liqudity fees stats for a market."
+        },
+        "vestingBalancesSummary": {
+          "$ref": "#/definitions/v1VestingBalancesSummary",
+          "description": "Event notifying of an update to the vesting and locked balances."
         },
         "market": {
           "$ref": "#/definitions/v1MarketEvent",
@@ -1174,13 +1184,15 @@
         "BUS_EVENT_TYPE_REFERRAL_SET_STATS_UPDATED",
         "BUS_EVENT_TYPE_VESTING_STATS_UPDATED",
         "BUS_EVENT_TYPE_VOLUME_DISCOUNT_STATS_UPDATED",
-        "BUS_EVENT_TYPE_FEE_STATS_UPDATED",
+        "BUS_EVENT_TYPE_FEES_STATS_UPDATED",
         "BUS_EVENT_TYPE_FUNDING_PAYMENTS",
+        "BUS_EVENT_TYPE_PAID_LIQUIDITY_FEES_STATS_UPDATED",
+        "BUS_EVENT_TYPE_VESTING_SUMMARY",
         "BUS_EVENT_TYPE_MARKET",
         "BUS_EVENT_TYPE_TX_ERROR"
       ],
       "default": "BUS_EVENT_TYPE_UNSPECIFIED",
-      "description": "- BUS_EVENT_TYPE_UNSPECIFIED: Default value, always invalid\n - BUS_EVENT_TYPE_ALL: Events of ALL event types, used when filtering stream from event bus\n - BUS_EVENT_TYPE_TIME_UPDATE: Event for blockchain time updates\n - BUS_EVENT_TYPE_LEDGER_MOVEMENTS: Event for when a transfer happens internally, contains the transfer information\n - BUS_EVENT_TYPE_POSITION_RESOLUTION: Event indicating position resolution has occurred\n - BUS_EVENT_TYPE_ORDER: Event for order updates, both new and existing orders\n - BUS_EVENT_TYPE_ACCOUNT: Event for account updates\n - BUS_EVENT_TYPE_PARTY: Event for party updates\n - BUS_EVENT_TYPE_TRADE: Event indicating a new trade has occurred\n - BUS_EVENT_TYPE_MARGIN_LEVELS: Event indicating margin levels have changed for a party\n - BUS_EVENT_TYPE_PROPOSAL: Event for proposal updates (for governance)\n - BUS_EVENT_TYPE_VOTE: Event indicating a new vote has occurred (for governance)\n - BUS_EVENT_TYPE_MARKET_DATA: Event for market data updates\n - BUS_EVENT_TYPE_NODE_SIGNATURE: Event for a new signature for a Vega node\n - BUS_EVENT_TYPE_LOSS_SOCIALIZATION: Event indicating loss socialisation occurred for a party\n - BUS_EVENT_TYPE_SETTLE_POSITION: Event for when a position is being settled\n - BUS_EVENT_TYPE_SETTLE_DISTRESSED: Event for when a position is distressed\n - BUS_EVENT_TYPE_MARKET_CREATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ASSET: Event for when an asset is added to Vega\n - BUS_EVENT_TYPE_MARKET_TICK: Event indicating a market tick event\n - BUS_EVENT_TYPE_WITHDRAWAL: Event for when a withdrawal occurs\n - BUS_EVENT_TYPE_DEPOSIT: Event for when a deposit occurs\n - BUS_EVENT_TYPE_AUCTION: Event indicating a change in auction state, for example starting or ending an auction\n - BUS_EVENT_TYPE_RISK_FACTOR: Event indicating a risk factor has been updated\n - BUS_EVENT_TYPE_NETWORK_PARAMETER: Event indicating a network parameter has been added or updated\n - BUS_EVENT_TYPE_LIQUIDITY_PROVISION: Event indicating a liquidity provision has been created or updated\n - BUS_EVENT_TYPE_MARKET_UPDATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ORACLE_SPEC: Event indicating an oracle spec has been created or updated\n - BUS_EVENT_TYPE_ORACLE_DATA: Event indicating that an oracle data has been broadcast\n - BUS_EVENT_TYPE_DELEGATION_BALANCE: Event indicating that an delegation balance of a party to a node for current epoch has changed\n - BUS_EVENT_TYPE_VALIDATOR_SCORE: Event indicating the validator score for the given epoch\n - BUS_EVENT_TYPE_EPOCH_UPDATE: Event indicating the start or end of an epoch\n - BUS_EVENT_TYPE_VALIDATOR_UPDATE: Event indicating that validator node has been updated\n - BUS_EVENT_TYPE_STAKE_LINKING: Event indicating a new staking event have been processed by the network\n - BUS_EVENT_TYPE_REWARD_PAYOUT_EVENT: Event indicating the payout of a reward has been initiated\n - BUS_EVENT_TYPE_CHECKPOINT: Event indicating a new checkpoint was created\n - BUS_EVENT_TYPE_STREAM_START: Event indicating stream is starting\n - BUS_EVENT_TYPE_KEY_ROTATION: Event indicating key rotation took place\n - BUS_EVENT_TYPE_STATE_VAR: Event indicating state transitions in state variable consensus\n - BUS_EVENT_TYPE_NETWORK_LIMITS: Event indicating network limits set or updated\n - BUS_EVENT_TYPE_TRANSFER: Event indicating a update for a transfer\n - BUS_EVENT_TYPE_VALIDATOR_RANKING: Event indicating the ranking of validator and their status in Vega\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_EVENT: Event indicating a new multi sig signer event have been processed\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SET_THRESHOLD: Event indicating the erc20 multi sig threshold have been updated\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_ADDED: Event indicating a new signer has been added to the ERC-20 multisig\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_REMOVED: Event indicating a signer has been removed from the ERC-20 multisig\n - BUS_EVENT_TYPE_POSITION_STATE: Event indicating that a party's position has changed\n - BUS_EVENT_TYPE_ETHEREUM_KEY_ROTATION: Event indicating Ethereum key rotation took place\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_PROPOSAL: Event indicating protocol upgrade proposal updates\n - BUS_EVENT_TYPE_BEGIN_BLOCK: Event indicating the core is starting to process a new block\n - BUS_EVENT_TYPE_END_BLOCK: Event indicating the core finished to process a block\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_STARTED: Event indicating the core is starting a protocol upgrade\n - BUS_EVENT_TYPE_SETTLE_MARKET: Event indicating the market has stopped and settled\n - BUS_EVENT_TYPE_TRANSACTION_RESULT: Event indicating the result of a transaction processed by the network\n - BUS_EVENT_TYPE_SNAPSHOT_TAKEN: Event indicating a snapshot was taken at this block height\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_DATA_NODE_READY: Event data node uses to notify that it is ready to upgrade\n - BUS_EVENT_TYPE_DISTRESSED_ORDERS_CLOSED: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_EXPIRED_ORDERS: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_DISTRESSED_POSITIONS: Event indicating parties have become, or were, distressed but still have an active position.\n - BUS_EVENT_TYPE_SPOT_LIQUIDITY_PROVISION: Event indicating a spot liquidity provision has been created or updated.\n - BUS_EVENT_TYPE_STOP_ORDER: Event indicating a stop order has been submitted or updated.\n - BUS_EVENT_TYPE_FUNDING_PERIOD: Event indicating the start or end of a funding period.\n - BUS_EVENT_TYPE_FUNDING_PERIOD_DATA_POINT: Event indicating a data point for a funding period has been received.\n - BUS_EVENT_TYPE_TEAM_CREATED: Event indicating a team has been created.\n - BUS_EVENT_TYPE_TEAM_UPDATED: Event indicating a team has been updated.\n - BUS_EVENT_TYPE_REFEREE_SWITCHED_TEAM: Event indicating a referee switched team.\n - BUS_EVENT_TYPE_REFEREE_JOINED_TEAM: Event indicating a referee joined a team.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_STARTED: Event indicating a referral program started.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_UPDATED: Event indicating a referral program has been updated.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_ENDED: Event indicating a referral program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_CREATED: Event indicating a set has been created.\n - BUS_EVENT_TYPE_REFEREE_JOINED_REFERRAL_SET: Event indicating a referee joined a set.\n - BUS_EVENT_TYPE_PARTY_ACTIVITY_STREAK: Event indicating the updated activity streak for a party\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_STARTED: Event indicating a volume discount program started.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_UPDATED: Event indicating a volume discount program has been updated.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_ENDED: Event indicating a volume discount program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_STATS_UPDATED: Event indicating the updated statistics for a referral set.\n - BUS_EVENT_TYPE_VESTING_STATS_UPDATED: Event indicating the updated statistics for the vesting program.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_STATS_UPDATED: Event indicating the updated statistics for the volume discount.\n - BUS_EVENT_TYPE_FEE_STATS_UPDATED: Event indicating the fee stats per market at end of epoch\n - BUS_EVENT_TYPE_FUNDING_PAYMENTS: Event indicating a funding period has ended and resulted in funding payment transfers.\n - BUS_EVENT_TYPE_MARKET: Event indicating a market related event, for example when a market opens\n - BUS_EVENT_TYPE_TX_ERROR: Event used to report failed transactions back to a user, this is excluded from the ALL type",
+      "description": "- BUS_EVENT_TYPE_UNSPECIFIED: Default value, always invalid\n - BUS_EVENT_TYPE_ALL: Events of ALL event types, used when filtering stream from event bus\n - BUS_EVENT_TYPE_TIME_UPDATE: Event for blockchain time updates\n - BUS_EVENT_TYPE_LEDGER_MOVEMENTS: Event for when a transfer happens internally, contains the transfer information\n - BUS_EVENT_TYPE_POSITION_RESOLUTION: Event indicating position resolution has occurred\n - BUS_EVENT_TYPE_ORDER: Event for order updates, both new and existing orders\n - BUS_EVENT_TYPE_ACCOUNT: Event for account updates\n - BUS_EVENT_TYPE_PARTY: Event for party updates\n - BUS_EVENT_TYPE_TRADE: Event indicating a new trade has occurred\n - BUS_EVENT_TYPE_MARGIN_LEVELS: Event indicating margin levels have changed for a party\n - BUS_EVENT_TYPE_PROPOSAL: Event for proposal updates (for governance)\n - BUS_EVENT_TYPE_VOTE: Event indicating a new vote has occurred (for governance)\n - BUS_EVENT_TYPE_MARKET_DATA: Event for market data updates\n - BUS_EVENT_TYPE_NODE_SIGNATURE: Event for a new signature for a Vega node\n - BUS_EVENT_TYPE_LOSS_SOCIALIZATION: Event indicating loss socialisation occurred for a party\n - BUS_EVENT_TYPE_SETTLE_POSITION: Event for when a position is being settled\n - BUS_EVENT_TYPE_SETTLE_DISTRESSED: Event for when a position is distressed\n - BUS_EVENT_TYPE_MARKET_CREATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ASSET: Event for when an asset is added to Vega\n - BUS_EVENT_TYPE_MARKET_TICK: Event indicating a market tick event\n - BUS_EVENT_TYPE_WITHDRAWAL: Event for when a withdrawal occurs\n - BUS_EVENT_TYPE_DEPOSIT: Event for when a deposit occurs\n - BUS_EVENT_TYPE_AUCTION: Event indicating a change in auction state, for example starting or ending an auction\n - BUS_EVENT_TYPE_RISK_FACTOR: Event indicating a risk factor has been updated\n - BUS_EVENT_TYPE_NETWORK_PARAMETER: Event indicating a network parameter has been added or updated\n - BUS_EVENT_TYPE_LIQUIDITY_PROVISION: Event indicating a liquidity provision has been created or updated\n - BUS_EVENT_TYPE_MARKET_UPDATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ORACLE_SPEC: Event indicating an oracle spec has been created or updated\n - BUS_EVENT_TYPE_ORACLE_DATA: Event indicating that an oracle data has been broadcast\n - BUS_EVENT_TYPE_DELEGATION_BALANCE: Event indicating that an delegation balance of a party to a node for current epoch has changed\n - BUS_EVENT_TYPE_VALIDATOR_SCORE: Event indicating the validator score for the given epoch\n - BUS_EVENT_TYPE_EPOCH_UPDATE: Event indicating the start or end of an epoch\n - BUS_EVENT_TYPE_VALIDATOR_UPDATE: Event indicating that validator node has been updated\n - BUS_EVENT_TYPE_STAKE_LINKING: Event indicating a new staking event have been processed by the network\n - BUS_EVENT_TYPE_REWARD_PAYOUT_EVENT: Event indicating the payout of a reward has been initiated\n - BUS_EVENT_TYPE_CHECKPOINT: Event indicating a new checkpoint was created\n - BUS_EVENT_TYPE_STREAM_START: Event indicating stream is starting\n - BUS_EVENT_TYPE_KEY_ROTATION: Event indicating key rotation took place\n - BUS_EVENT_TYPE_STATE_VAR: Event indicating state transitions in state variable consensus\n - BUS_EVENT_TYPE_NETWORK_LIMITS: Event indicating network limits set or updated\n - BUS_EVENT_TYPE_TRANSFER: Event indicating a update for a transfer\n - BUS_EVENT_TYPE_VALIDATOR_RANKING: Event indicating the ranking of validator and their status in Vega\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_EVENT: Event indicating a new multi sig signer event have been processed\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SET_THRESHOLD: Event indicating the erc20 multi sig threshold have been updated\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_ADDED: Event indicating a new signer has been added to the ERC-20 multisig\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_REMOVED: Event indicating a signer has been removed from the ERC-20 multisig\n - BUS_EVENT_TYPE_POSITION_STATE: Event indicating that a party's position has changed\n - BUS_EVENT_TYPE_ETHEREUM_KEY_ROTATION: Event indicating Ethereum key rotation took place\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_PROPOSAL: Event indicating protocol upgrade proposal updates\n - BUS_EVENT_TYPE_BEGIN_BLOCK: Event indicating the core is starting to process a new block\n - BUS_EVENT_TYPE_END_BLOCK: Event indicating the core finished to process a block\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_STARTED: Event indicating the core is starting a protocol upgrade\n - BUS_EVENT_TYPE_SETTLE_MARKET: Event indicating the market has stopped and settled\n - BUS_EVENT_TYPE_TRANSACTION_RESULT: Event indicating the result of a transaction processed by the network\n - BUS_EVENT_TYPE_SNAPSHOT_TAKEN: Event indicating a snapshot was taken at this block height\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_DATA_NODE_READY: Event data node uses to notify that it is ready to upgrade\n - BUS_EVENT_TYPE_DISTRESSED_ORDERS_CLOSED: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_EXPIRED_ORDERS: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_DISTRESSED_POSITIONS: Event indicating parties have become, or were, distressed but still have an active position.\n - BUS_EVENT_TYPE_SPOT_LIQUIDITY_PROVISION: Event indicating a spot liquidity provision has been created or updated.\n - BUS_EVENT_TYPE_STOP_ORDER: Event indicating a stop order has been submitted or updated.\n - BUS_EVENT_TYPE_FUNDING_PERIOD: Event indicating the start or end of a funding period.\n - BUS_EVENT_TYPE_FUNDING_PERIOD_DATA_POINT: Event indicating a data point for a funding period has been received.\n - BUS_EVENT_TYPE_TEAM_CREATED: Event indicating a team has been created.\n - BUS_EVENT_TYPE_TEAM_UPDATED: Event indicating a team has been updated.\n - BUS_EVENT_TYPE_REFEREE_SWITCHED_TEAM: Event indicating a referee switched team.\n - BUS_EVENT_TYPE_REFEREE_JOINED_TEAM: Event indicating a referee joined a team.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_STARTED: Event indicating a referral program started.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_UPDATED: Event indicating a referral program has been updated.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_ENDED: Event indicating a referral program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_CREATED: Event indicating a set has been created.\n - BUS_EVENT_TYPE_REFEREE_JOINED_REFERRAL_SET: Event indicating a referee joined a set.\n - BUS_EVENT_TYPE_PARTY_ACTIVITY_STREAK: Event indicating the updated activity streak for a party\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_STARTED: Event indicating a volume discount program started.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_UPDATED: Event indicating a volume discount program has been updated.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_ENDED: Event indicating a volume discount program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_STATS_UPDATED: Event indicating the updated statistics for a referral set.\n - BUS_EVENT_TYPE_VESTING_STATS_UPDATED: Event indicating the updated statistics for the vesting program.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_STATS_UPDATED: Event indicating the updated statistics for the volume discount.\n - BUS_EVENT_TYPE_FEES_STATS_UPDATED: Event indicating the fees statistics per market at end of epoch\n - BUS_EVENT_TYPE_FUNDING_PAYMENTS: Event indicating a funding period has ended and resulted in funding payment transfers.\n - BUS_EVENT_TYPE_PAID_LIQUIDITY_FEES_STATS_UPDATED: Event used to report the updated paid liquidity fee statistics for the market at the end of the epoch\n - BUS_EVENT_TYPE_VESTING_SUMMARY: Event used to report the summary of vesting and locked balances at the end of the epoch\n - BUS_EVENT_TYPE_MARKET: Event indicating a market related event, for example when a market opens\n - BUS_EVENT_TYPE_TX_ERROR: Event used to report failed transactions back to a user, this is excluded from the ALL type",
       "title": "Bus event type is used to specify a type of event\nIt has 2 styles of event:\nSingle values (e.g. BUS_EVENT_TYPE_ORDER) where they represent one data item\nGroup values (e.g. BUS_EVENT_TYPE_AUCTION) where they represent a group of data items"
     },
     "v1CheckRawTransactionRequest": {
@@ -1205,34 +1217,34 @@
       "properties": {
         "success": {
           "type": "boolean",
-          "title": "Success will be true if the transaction was checked by the node"
+          "description": "Whether or not the transaction passed the submission checks."
         },
         "code": {
           "type": "integer",
           "format": "int64",
-          "title": "Check code result"
+          "description": "Error code to indicate the category of failure if the transaction was not successfully submitted."
         },
         "gasWanted": {
           "type": "string",
           "format": "int64",
-          "title": "Gas wanted for transaction"
+          "description": "Amount of space in a block that the transaction will fill. This does not relate to any monetary cost for submitting the transaction."
         },
         "gasUsed": {
           "type": "string",
           "format": "int64",
-          "title": "Gas used for transaction"
+          "description": "Unused."
         },
         "data": {
           "type": "string",
-          "title": "Data for details"
+          "description": "Further details for why the transaction was not successfully checked."
         },
         "log": {
           "type": "string",
-          "title": "Transaction log"
+          "description": "Further details for the underlying consensus layer of the result of the transaction."
         },
         "info": {
           "type": "string",
-          "title": "Information about the transaction"
+          "title": "Unused"
         }
       },
       "title": "Response for checking a version agnostic transaction on Vega"
@@ -1242,7 +1254,7 @@
       "properties": {
         "tx": {
           "$ref": "#/definitions/v1Transaction",
-          "title": "Bundle of signed payload and signature, to form a transaction that would be submitted to the Vega blockchain"
+          "description": "Transaction containing a command to be checked on the network, and not added to the chain's mempool."
         }
       },
       "title": "Request for checking a transaction v2 on Vega"
@@ -1252,34 +1264,34 @@
       "properties": {
         "success": {
           "type": "boolean",
-          "title": "Success will be true if the transaction was checked by the node"
+          "description": "Whether or not the transaction passed the submission checks."
         },
         "code": {
           "type": "integer",
           "format": "int64",
-          "title": "Check code result"
+          "description": "Error code to indicate the category of failure if the transaction was not successfully checked."
         },
         "gasWanted": {
           "type": "string",
           "format": "int64",
-          "title": "Gas wanted for transaction"
+          "description": "Amount of space in a block that the transaction will fill. This does not relate to any monetary cost for submitting the transaction."
         },
         "gasUsed": {
           "type": "string",
           "format": "int64",
-          "title": "Gas used for transaction"
+          "description": "Unused."
         },
         "data": {
           "type": "string",
-          "title": "Data for details"
+          "description": "Further details for why the transaction was not successfully submitted."
         },
         "log": {
           "type": "string",
-          "title": "Transaction log"
+          "description": "Further details for the underlying consensus layer of the result of the transaction."
         },
         "info": {
           "type": "string",
-          "title": "Information about the transaction"
+          "description": "Unused."
         }
       }
     },
@@ -1339,33 +1351,34 @@
       "type": "object",
       "properties": {
         "isTeam": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Whether or not the referral set should be considered a team that can participate in team games on the network."
         },
         "team": {
-          "$ref": "#/definitions/v1CreateReferralSetTeam"
+          "$ref": "#/definitions/v1CreateReferralSetTeam",
+          "description": "Team details, if the referral set is to be considered a team."
         }
       },
-      "description": "Creates a referral set. The creator automatically becomes\nthe leader, called a referrer. This cannot be changed.\nA referrer cannot be part of an existing set as referrer or referee.",
-      "title": "Request for creating a referral set"
+      "description": "Command that a party can use to instruct the network to create a new referral set on the network.\nThe submitter of this command will become the referrer of the new set and cannot be the referrer or a referee of another set.\nA referrer can use the referral set ID as a referral code to attract others to the Vega network and have fees reduced for the referral set."
     },
     "v1CreateReferralSetTeam": {
       "type": "object",
       "properties": {
         "name": {
           "type": "string",
-          "description": "Team name to be added to the referral banner."
+          "description": "Name of the team."
         },
         "teamUrl": {
           "type": "string",
-          "description": "Optional link to a team forum, discord, etc."
+          "description": "External link to the team's homepage."
         },
         "avatarUrl": {
           "type": "string",
-          "description": "Optional link to an image to be used as the team avatar."
+          "description": "External link to an avatar for the team."
         },
         "closed": {
           "type": "boolean",
-          "title": "Is this team closed for external other users"
+          "description": "Whether or not the team is closed to new party members."
         }
       }
     },
@@ -1416,14 +1429,14 @@
       "properties": {
         "nodeId": {
           "type": "string",
-          "description": "Delegate to the specified node ID."
+          "description": "Node ID to delegate stake to."
         },
         "amount": {
           "type": "string",
-          "description": "Amount of stake to delegate. This field is an unsigned integer scaled to the asset's decimal places."
+          "description": "Amount of stake to delegate, as an unsigned integer scaled to the governance asset's decimal places."
         }
       },
-      "title": "Command to submit an instruction to delegate some stake to a node"
+      "description": "Command to allow a token holder to delegate their tokens to a validator to help secure the network.\nA token holder delegating to a validator will earn rewards based on the amount they have delegated, and the performance of the chosen validator."
     },
     "v1DelegationBalanceEvent": {
       "type": "object",
@@ -1689,15 +1702,15 @@
         "targetBlock": {
           "type": "string",
           "format": "uint64",
-          "description": "Target block at which the key rotation will take effect on."
+          "description": "Block height at which the key rotation will take effect."
         },
         "newAddress": {
           "type": "string",
-          "description": "New address to rotate to."
+          "description": "Ethereum address that is being rotated to."
         },
         "currentAddress": {
           "type": "string",
-          "description": "Currently used public address."
+          "description": "Ethereum address of the node's current Ethereum keys."
         },
         "submitterAddress": {
           "type": "string",
@@ -1705,10 +1718,10 @@
         },
         "ethereumSignature": {
           "$ref": "#/definitions/v1Signature",
-          "description": "Signature that can be verified using the new ethereum address."
+          "description": "Signature signed by the new Ethereum key that can be verified to prove ownership."
         }
       },
-      "title": "Transaction to allow a validator to rotate their ethereum keys"
+      "description": "A validator command sent manually that allows a node operator to indicate to the network that their node's Ethereum key will be rotated."
     },
     "v1EthereumKeyRotation": {
       "type": "object",
@@ -1757,7 +1770,7 @@
         }
       }
     },
-    "v1FeeStats": {
+    "v1FeesStats": {
       "type": "object",
       "properties": {
         "market": {
@@ -1773,19 +1786,19 @@
           "format": "uint64",
           "description": "Epoch for which these stats where valid."
         },
-        "totalRewardsPaid": {
+        "totalRewardsReceived": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1PartyAmount"
           },
-          "description": "Total referral rewards paid to the referrer of the referral set."
+          "description": "Total referral rewards received by the referrer of the referral set."
         },
         "referrerRewardsGenerated": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v1ReferrerRewardsGenerated"
           },
-          "description": "Total referral rewards generated by all referee taker fees."
+          "description": "Referral rewards generated by all referee taker fees."
         },
         "refereesDiscountApplied": {
           "type": "array",
@@ -1800,9 +1813,23 @@
             "$ref": "#/definitions/v1PartyAmount"
           },
           "description": "Total volume discounts applied to all referee taker fees."
+        },
+        "totalMakerFeesReceived": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PartyAmount"
+          },
+          "description": "Total maker fees received by the maker side."
+        },
+        "makerFeesGenerated": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1MakerFeesGenerated"
+          },
+          "description": "Maker fees paid by all trade aggressors, and which makers the fees were paid to."
         }
       },
-      "title": "Fee rewards and discounts paid / received per parties during an epoch"
+      "title": "Fees rewards and discounts paid / received per parties during an epoch"
     },
     "v1Filter": {
       "type": "object",
@@ -2003,7 +2030,7 @@
           "description": "Node ID of the validator node that will be signed in or out of the smart contract."
         }
       },
-      "title": "Transaction for a validator to submit signatures to a smart contract"
+      "description": "Command that can be used by a validator to instruct the network to generate signatures to add or remove validators from the multisig-control contract.\nSignatures can only be generated for validator nodes that have been promoted or demoted from the consensus validator set, and any attempt to generate signatures for another node will be rejected.\nThe generated signatures can only be submitted to the contract by the Ethereum addresses included in the command."
     },
     "v1KeyRotateSubmission": {
       "type": "object",
@@ -2016,18 +2043,18 @@
         "targetBlock": {
           "type": "string",
           "format": "uint64",
-          "description": "Target block at which the key rotation will take effect on."
+          "description": "Block height at which the key rotation will take effect."
         },
         "newPubKey": {
           "type": "string",
-          "description": "New public key to rotate to."
+          "description": "Vega public key that would be rotated to."
         },
         "currentPubKeyHash": {
           "type": "string",
-          "description": "Hash of currently used public key."
+          "description": "Hash of the node's current Vega public key."
         }
       },
-      "title": "Transaction to allow a validator to rotate their Vega keys"
+      "description": "A validator command sent manually that allows a node operator to indicate to the network that their node's Vega key will be rotated."
     },
     "v1KeyRotation": {
       "type": "object",
@@ -2112,53 +2139,43 @@
       "properties": {
         "marketId": {
           "type": "string",
-          "description": "Unique ID for the market with the liquidity provision to be amended."
+          "description": "Market that the submitter wants to amend the liquidity commitment for."
         },
         "commitmentAmount": {
           "type": "string",
-          "description": "From here at least one of the following is required to consider the command valid."
+          "description": "New commitment amount."
         },
         "fee": {
-          "type": "string"
-        },
-        "sells": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/vegaLiquidityOrder"
-          }
-        },
-        "buys": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/vegaLiquidityOrder"
-          }
+          "type": "string",
+          "description": "New nominated liquidity fee factor."
         },
         "reference": {
-          "type": "string"
+          "type": "string",
+          "description": "New arbitrary reference to be added to every order created out of this liquidity provision submission."
         }
       },
-      "title": "Amend a liquidity provision request"
+      "description": "Command that allows a liquidity provider to update the details of their existing liquidity commitment.\nAny field that is left unset or as a default value indicates that this field on the original submission will be left unchanged."
     },
     "v1LiquidityProvisionCancellation": {
       "type": "object",
       "properties": {
         "marketId": {
           "type": "string",
-          "description": "Unique ID for the market with the liquidity provision to be cancelled."
+          "description": "Market that the submitter will stop providing liquidity for."
         }
       },
-      "title": "Cancel a liquidity provision request"
+      "description": "Command that allows a liquidity provider to inform the network that they will stop providing liquidity for a market."
     },
     "v1LiquidityProvisionSubmission": {
       "type": "object",
       "properties": {
         "marketId": {
           "type": "string",
-          "description": "Market ID for the order."
+          "description": "Market that the submitter wishes to provide liquidity for."
         },
         "commitmentAmount": {
           "type": "string",
-          "description": "Specified as a unitless number that represents the amount of settlement asset of the market.\nThis field is an unsigned integer scaled using the asset's decimal places."
+          "description": "Amount that the submitter will commit as liquidity to the market, specified as a unitless number in the settlement asset of the market.\nThis field is an unsigned integer scaled using the asset's decimal places."
         },
         "fee": {
           "type": "string",
@@ -2166,10 +2183,10 @@
         },
         "reference": {
           "type": "string",
-          "description": "Reference to be added to every order created out of this liquidity provision submission."
+          "description": "Arbitrary reference to be added to every order created out of this liquidity provision submission."
         }
       },
-      "title": "A liquidity provision submitted for a given market"
+      "description": "A command that indicates to the network the party's intention to supply liquidity to the given market and become a liquidity provider.\nAn active liquidity provider for a market will earn fees based on the trades that occur in the market."
     },
     "v1LossSocialization": {
       "type": "object",
@@ -2188,6 +2205,23 @@
         }
       },
       "title": "Loss socialization event contains details on the amount of wins unable to be distributed"
+    },
+    "v1MakerFeesGenerated": {
+      "type": "object",
+      "properties": {
+        "taker": {
+          "type": "string",
+          "description": "Party that paid the fees."
+        },
+        "makerFeesPaid": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PartyAmount"
+          },
+          "description": "Amount of maker fees paid by the taker to the maker."
+        }
+      },
+      "title": "Maker fees generated by the trade aggressor"
     },
     "v1MarketEvent": {
       "type": "object",
@@ -2223,19 +2257,19 @@
       "properties": {
         "id": {
           "type": "string",
-          "description": "ID of the resource being signed."
+          "description": "ID of the resource that the signature relates to."
         },
         "sig": {
           "type": "string",
           "format": "byte",
-          "description": "The signature generated by the signer."
+          "description": "Signature generated by the node."
         },
         "kind": {
           "$ref": "#/definitions/v1NodeSignatureKind",
           "description": "Kind of resource being signed."
         }
       },
-      "title": "Represents a signature from a validator, to be used by a foreign chain in order to recognise a decision taken by the Vega network"
+      "description": "A validator command sent automatically containing a signature that can be used on a foreign chain to process an action."
     },
     "v1NodeSignatureKind": {
       "type": "string",
@@ -2248,7 +2282,7 @@
         "NODE_SIGNATURE_KIND_ASSET_UPDATE"
       ],
       "default": "NODE_SIGNATURE_KIND_UNSPECIFIED",
-      "description": "- NODE_SIGNATURE_KIND_UNSPECIFIED: Represents an unspecified or missing value from the input\n - NODE_SIGNATURE_KIND_ASSET_NEW: Represents a signature for a new asset allow-listing\n - NODE_SIGNATURE_KIND_ASSET_WITHDRAWAL: Represents a signature for an asset withdrawal\n - NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_ADDED: Represents a signature for a new signer added to the erc20 multisig contract\n - NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_REMOVED: Represents a signature for a signer removed from the erc20 multisig contract\n - NODE_SIGNATURE_KIND_ASSET_UPDATE: Represents a signature for an asset update allow-listing",
+      "description": "- NODE_SIGNATURE_KIND_UNSPECIFIED: Represents an unspecified or missing value from the input.\n - NODE_SIGNATURE_KIND_ASSET_NEW: Represents a signature for a new asset allow-listing.\n - NODE_SIGNATURE_KIND_ASSET_WITHDRAWAL: Represents a signature for an asset withdrawal.\n - NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_ADDED: Represents a signature for a new signer added to the erc20 multisig contract.\n - NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_REMOVED: Represents a signature for a signer removed from the erc20 multisig contract.\n - NODE_SIGNATURE_KIND_ASSET_UPDATE: Represents a signature for an asset update allow-listing.",
       "title": "Kind of signature created by a node, for example, allow-listing a new asset, withdrawal etc"
     },
     "v1ObserveEventBusResponse": {
@@ -2278,30 +2312,30 @@
       "properties": {
         "source": {
           "$ref": "#/definitions/OracleDataSubmissionOracleSource",
-          "description": "Source from which the data is coming from. Must be base64 encoded.\nOracle data is a type of external data source data."
+          "description": "Source from which the data is coming from."
         },
         "payload": {
           "type": "string",
           "format": "byte",
-          "description": "Data provided by the data source\nIn the case of Open Oracle - it will be the entire object - it will contain messages, signatures and price data."
+          "description": "Data provided by the data source."
         }
       },
-      "title": "Command to submit new Oracle data from third party providers"
+      "title": "Command to submit new oracle data from third party providers"
     },
     "v1OrderAmendment": {
       "type": "object",
       "properties": {
         "orderId": {
           "type": "string",
-          "description": "Order ID, this is required to find the order and will not be updated, required field."
+          "description": "ID of the order to amend."
         },
         "marketId": {
           "type": "string",
-          "description": "Market ID, this is required to find the order and will not be updated."
+          "description": "Market ID that the order was originally submitted to."
         },
         "price": {
           "type": "string",
-          "description": "Amend the price for the order if the price value is set, otherwise price will remain unchanged.\nThis field is an unsigned integer scaled to the market's decimal places."
+          "description": "New price for the order. This field is an unsigned integer scaled to the market's decimal places."
         },
         "sizeDelta": {
           "type": "string",
@@ -2311,43 +2345,43 @@
         "expiresAt": {
           "type": "string",
           "format": "int64",
-          "description": "Amend the expiry time for the order, if the Timestamp value is set, otherwise expiry time will remain unchanged."
+          "description": "Timestamp, in Unix nanoseconds, for the new expiry time for the order."
         },
         "timeInForce": {
           "$ref": "#/definitions/OrderTimeInForce",
-          "description": "Amend the time in force for the order, set to TIME_IN_FORCE_UNSPECIFIED to remain unchanged."
+          "description": "New time in force for the order."
         },
         "peggedOffset": {
           "type": "string",
-          "description": "Amend the pegged order offset for the order. This field is an unsigned integer scaled to the market's decimal places."
+          "description": "New pegged offset for the order.\nThis field is an unsigned integer scaled to the market's decimal places."
         },
         "peggedReference": {
           "$ref": "#/definitions/vegaPeggedReference",
-          "description": "Amend the pegged order reference for the order."
+          "description": "New pegged reference for the order."
         }
       },
-      "title": "An order amendment is a request to amend or update an existing order on Vega"
+      "description": "A command that allows a party to update the details of an existing order.\nAny field that is left unset or as a default value indicates that this field on the original order will be left unchanged.\nIt is not possible to change an order's type through this command."
     },
     "v1OrderCancellation": {
       "type": "object",
       "properties": {
         "orderId": {
           "type": "string",
-          "description": "Unique ID for the order. This is set by the system after consensus. Required field."
+          "description": "Restrict cancellations to an order with the given ID. If set, then a market ID must also be provided."
         },
         "marketId": {
           "type": "string",
-          "description": "Market ID for the order, required field."
+          "description": "Restrict cancellations to those submitted to the given market. If not set, all stop orders across all markets will be cancelled."
         }
       },
-      "title": "Order cancellation is a request to cancel an existing order on Vega"
+      "description": "A command that instructs the network to cancel orders, active or partially filled, that were previously submitted by the sender of this transaction.\nIt is not possible to cancel another party's order with this command."
     },
     "v1OrderSubmission": {
       "type": "object",
       "properties": {
         "marketId": {
           "type": "string",
-          "description": "Market ID for the order, required field."
+          "description": "Market ID to submit the order to."
         },
         "price": {
           "type": "string",
@@ -2356,47 +2390,76 @@
         "size": {
           "type": "string",
           "format": "uint64",
-          "description": "Size for the order, for example, in a futures market the size equals the number of units, cannot be negative."
+          "description": "Size for the order, for example, in a futures market the size equals the number of units."
         },
         "side": {
           "$ref": "#/definitions/vegaSide",
-          "description": "Side for the order, e.g. SIDE_BUY or SIDE_SELL, required field."
+          "description": "Which side of the order book the order is for, e.g. buy or sell."
         },
         "timeInForce": {
           "$ref": "#/definitions/OrderTimeInForce",
-          "description": "Time in force indicates how long an order will remain active before it is executed or expires, required field."
+          "description": "Time in force indicates how long an order will remain active before it is executed or expires.."
         },
         "expiresAt": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp in Unix nanoseconds for when the order will expire,\nrequired field only for `Order.TimeInForce`.TIME_IN_FORCE_GTT`."
+          "description": "Timestamp, in Unix nanoseconds, for when the order will expire. Can only be set when the order's time-in-force is GTT."
         },
         "type": {
           "$ref": "#/definitions/vegaOrderType",
-          "description": "Type for the order, required field - See `Order.Type`."
+          "description": "Type of the order."
         },
         "reference": {
           "type": "string",
-          "description": "Reference given for the order, this is typically used to retrieve an order submitted through consensus, currently\nset internally by the node to return a unique reference ID for the order submission."
+          "description": "Arbitrary optional reference for the order, to be used as a human-readable non-unique identifier for the order."
         },
         "peggedOrder": {
           "$ref": "#/definitions/vegaPeggedOrder",
-          "description": "Used to specify the details for a pegged order."
+          "description": "Pegged order details. If set, the order's price will be offset from a particular reference price of the order book at all times."
         },
         "postOnly": {
           "type": "boolean",
-          "description": "Only valid for Limit orders. Cannot be True at the same time as Reduce-Only."
+          "description": "If set, the order will only be executed if it would not trade on entry to the order book. Only valid for limit orders."
         },
         "reduceOnly": {
           "type": "boolean",
-          "description": "Only valid for Non-Persistent orders. Cannot be True at the same time as Post-Only.\nIf set, order will only be executed if the outcome of the trade moves the trader's position closer to 0."
+          "description": "If set, the order will only be executed if the outcome of the trade moves the trader's position closer to 0.\nOnly valid for non-persistent orders."
         },
         "icebergOpts": {
           "$ref": "#/definitions/v1IcebergOpts",
-          "description": "Parameters used to specify an iceberg order."
+          "description": "Iceberg order details. If set, the order will exist on the order book in chunks."
         }
       },
-      "title": "Order submission is a request to submit or create a new order on Vega"
+      "description": "A command that submits an order to the Vega network for a given market."
+    },
+    "v1PaidLiquidityFeesStats": {
+      "type": "object",
+      "properties": {
+        "market": {
+          "type": "string",
+          "description": "Market the fees were paid in."
+        },
+        "asset": {
+          "type": "string",
+          "description": "Settlement asset of the market."
+        },
+        "epochSeq": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Epoch for which these stats where valid."
+        },
+        "totalFeesPaid": {
+          "type": "string",
+          "description": "Total fees paid accross all parties."
+        },
+        "feesPaidPerParty": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PartyAmount"
+          },
+          "description": "Fees paid per party."
+        }
+      }
     },
     "v1PartyActivityStreak": {
       "type": "object",
@@ -2457,6 +2520,39 @@
       },
       "title": "A pair of a party and amount"
     },
+    "v1PartyLockedBalance": {
+      "type": "object",
+      "properties": {
+        "asset": {
+          "type": "string",
+          "description": "Asset ID."
+        },
+        "untilEpoch": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Epoch in which the balance will be released."
+        },
+        "balance": {
+          "type": "string",
+          "description": "Locked balance."
+        }
+      },
+      "description": "A party's locked balance for a given asset."
+    },
+    "v1PartyVestingBalance": {
+      "type": "object",
+      "properties": {
+        "asset": {
+          "type": "string",
+          "description": "Asset ID."
+        },
+        "balance": {
+          "type": "string",
+          "description": "Balance that is vested."
+        }
+      },
+      "description": "Balance that is being vested for the party."
+    },
     "v1PartyVestingStats": {
       "type": "object",
       "properties": {
@@ -2470,6 +2566,30 @@
         }
       },
       "description": "The vesting stats for a given party."
+    },
+    "v1PartyVestingSummary": {
+      "type": "object",
+      "properties": {
+        "party": {
+          "type": "string",
+          "description": "Party ID."
+        },
+        "partyLockedBalances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PartyLockedBalance"
+          },
+          "description": "List of locked balances."
+        },
+        "partyVestingBalances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PartyVestingBalance"
+          },
+          "description": "List of vesting balances."
+        }
+      },
+      "title": "Summary of a party's vesting balances"
     },
     "v1PartyVolumeDiscountStats": {
       "type": "object",
@@ -2626,7 +2746,7 @@
           "description": "Number which, combined with the transaction identifier, will produce a hash with the required number of leading zeros to be accepted by the network."
         }
       },
-      "title": "Components needed for the network to verify proof-of-work"
+      "description": "Components needed for the network to verify proof-of-work."
     },
     "v1PropagateChainEventResponse": {
       "type": "object",
@@ -2690,18 +2810,18 @@
       "properties": {
         "reference": {
           "type": "string",
-          "description": "Reference identifying the proposal."
+          "description": "Arbitrary human-readable reference identifying the proposal."
         },
         "terms": {
           "$ref": "#/definitions/vegaProposalTerms",
-          "description": "Proposal configuration and the actual change that is meant to be executed when proposal is enacted."
+          "description": "Proposal terms containing the type and details of the proposal, as well as time spans for voting and enactment."
         },
         "rationale": {
           "$ref": "#/definitions/vegaProposalRationale",
           "description": "Rationale behind a proposal."
         }
       },
-      "title": "Command to submit a new proposal for the\nVega network governance"
+      "description": "Command that allows a token holder to submit a governance proposal that can be voted on by any other token holders, and eventually enacted on the Vega network.\nFor example this command can be used to propose a new market."
     },
     "v1ProtocolUpgradeDataNodeReady": {
       "type": "object",
@@ -2751,7 +2871,7 @@
           "description": "Release tag for the Vega binary."
         }
       },
-      "title": "Transaction for a validator to suggest a protocol upgrade"
+      "description": "A validator command sent manually by a node operator to propose a protocol upgrade."
     },
     "v1ProtocolUpgradeProposalStatus": {
       "type": "string",
@@ -3055,6 +3175,9 @@
         },
         "market": {
           "type": "string"
+        },
+        "lockedUntilEpoch": {
+          "type": "string"
         }
       }
     },
@@ -3141,10 +3264,10 @@
         "version": {
           "type": "integer",
           "format": "int64",
-          "description": "Version of the signature used to create the signature."
+          "description": "Version of the algorithm used to create the signature."
         }
       },
-      "description": "Signature to authenticate a transaction and to be verified by the Vega\nnetwork."
+      "description": "Signature definition that allows the network to authenticate external data."
     },
     "v1Signer": {
       "type": "object",
@@ -3188,36 +3311,48 @@
       "properties": {
         "proposals": {
           "$ref": "#/definitions/v1SpamStatistic",
-          "title": "Statistics for proposal transactions made by the party"
+          "description": "Statistics for proposal transactions made by the party."
         },
         "delegations": {
           "$ref": "#/definitions/v1SpamStatistic",
-          "title": "Statistics for delegation transactions made by the party"
+          "description": "Statistics for delegation transactions made by the party."
         },
         "transfers": {
           "$ref": "#/definitions/v1SpamStatistic",
-          "title": "Statistics for transfer transactions made by the party"
+          "description": "Statistics for transfer transactions made by the party."
         },
         "nodeAnnouncements": {
           "$ref": "#/definitions/v1SpamStatistic",
-          "title": "Statistics for node announcement transactions made by the party"
+          "description": "Statistics for node announcement transactions made by the party."
         },
         "votes": {
           "$ref": "#/definitions/v1VoteSpamStatistics",
-          "title": "Statistics for proposal votes made by the party"
+          "description": "Statistics for proposal votes made by the party."
         },
         "pow": {
           "$ref": "#/definitions/v1PoWStatistic",
-          "title": "Statistics for proof of work difficulty observed per block for the party"
+          "description": "Statistics for proof of work difficulty observed per block for the party."
         },
         "issueSignatures": {
           "$ref": "#/definitions/v1SpamStatistic",
-          "title": "Statistics for multisig signatures issued for the party"
+          "description": "Statistics for multisig signatures issued for the party."
         },
         "epochSeq": {
           "type": "string",
           "format": "uint64",
-          "title": "Epoch in which these statistics apply to"
+          "description": "Epoch in which these statistics apply to."
+        },
+        "createReferralSet": {
+          "$ref": "#/definitions/v1SpamStatistic",
+          "description": "Statistics for transactions made by the party to create referral sets."
+        },
+        "updateReferralSet": {
+          "$ref": "#/definitions/v1SpamStatistic",
+          "description": "Statistics for transactions made by the party to update referral sets."
+        },
+        "applyReferralCode": {
+          "$ref": "#/definitions/v1SpamStatistic",
+          "description": "Statistics for transactions made by the party to apply referral codes."
         }
       },
       "title": "Complete spam statistics captured for a given party"
@@ -3531,7 +3666,7 @@
         "expiresAt": {
           "type": "string",
           "format": "int64",
-          "description": "Optional expiry timestamp."
+          "description": "Timestamp, in Unix nanoseconds, for when the stop order should expire. If not set the stop order will not expire."
         },
         "expiryStrategy": {
           "$ref": "#/definitions/StopOrderExpiryStrategy",
@@ -3539,42 +3674,42 @@
         },
         "price": {
           "type": "string",
-          "description": "Fixed price at which the order will be submitted."
+          "description": "Order will be submitted if the last traded price on the market breaches the given price."
         },
         "trailingPercentOffset": {
           "type": "string",
-          "description": "Trailing percentage at which the order will be submitted."
+          "description": "Order will be submitted if the last traded price has moved the given percent from the highest/lowest mark price since the stop order was submitted."
         }
       },
-      "title": "Price and expiry configuration for a stop order"
+      "description": "Price and expiry configuration for a stop order."
     },
     "v1StopOrdersCancellation": {
       "type": "object",
       "properties": {
         "marketId": {
           "type": "string",
-          "description": "Optional market ID."
+          "description": "Restrict cancellations to those submitted to the given market. If not set, all stop orders across all markets will be cancelled."
         },
         "stopOrderId": {
           "type": "string",
-          "description": "Optional order ID."
+          "description": "Restrict cancellations to a stop order with the given ID. If set, then a market ID must also be provided."
         }
       },
-      "title": "Cancel a stop order.\nThe following combinations are available:\nEmpty object will cancel all stop orders for the party\nMarket ID alone will cancel all stop orders in a market\nMarket ID and order ID will cancel a specific stop order in a market\nIf the stop order is part of an OCO, both stop orders will be cancelled"
+      "description": "A command that instructs the network to cancel untriggered stop orders that were submitted by the sender of this transaction.\nIf any cancelled stop order is part of an OCO, both stop orders will be cancelled.\nIt is not possible to cancel another party's stop orders with this command."
     },
     "v1StopOrdersSubmission": {
       "type": "object",
       "properties": {
         "risesAbove": {
           "$ref": "#/definitions/v1StopOrderSetup",
-          "description": "Stop order that will be triggered\nif the price rises above a given trigger price."
+          "description": "Stop order that will be triggered if the price rises above a given trigger price."
         },
         "fallsBelow": {
           "$ref": "#/definitions/v1StopOrderSetup",
-          "description": "Stop order that will be triggered\nif the price falls below a given trigger price."
+          "description": "Stop order that will be triggered if the price falls below a given trigger price."
         }
       },
-      "title": "Stop order submission submits stops orders.\nIt is possible to make a single stop order submission by\nspecifying a single direction,\nor an OCO (One Cancels the Other) stop order submission\nby specifying a configuration for both directions"
+      "description": "A command that allows a party to submit a stop order for a given market.\nA stop order is a normal order that remains off the order book and is only submitted if a given trigger is breached from a particular direction.\nIf both rises-above and falls-below are configured, then if one is triggered the other will be cancelled (OCO)."
     },
     "v1SubmitRawTransactionRequest": {
       "type": "object",
@@ -3614,25 +3749,29 @@
       "properties": {
         "success": {
           "type": "boolean",
-          "title": "Success will be true if the transaction was accepted by the node,\n**Important** - success does not mean that the event is confirmed by consensus"
+          "description": "Whether or not the transaction was validated and submitted to the chain's mempool."
         },
         "txHash": {
           "type": "string",
-          "title": "Hash of the transaction, if accepted"
+          "description": "Hash of the transaction, which can be used to identify the transaction in a node's event stream."
         },
         "code": {
           "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "description": "Error code to indicate the category of failure if the transaction was not successfully submitted."
         },
         "data": {
-          "type": "string"
+          "type": "string",
+          "description": "Further details for why the transaction was not successfully submitted."
         },
         "log": {
-          "type": "string"
+          "type": "string",
+          "description": "Further details for the underlying consensus layer of the result of the transaction."
         },
         "height": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "description": "Unused."
         }
       },
       "title": "Response for submitting a version agnostic transaction on Vega"
@@ -3642,11 +3781,11 @@
       "properties": {
         "tx": {
           "$ref": "#/definitions/v1Transaction",
-          "title": "Bundle of signed payload and signature, to form a transaction that will be submitted to the Vega blockchain"
+          "description": "Transaction containing a command to execute on the network, and a signature to provide authentication."
         },
         "type": {
           "$ref": "#/definitions/v1SubmitTransactionRequestType",
-          "title": "Type of transaction request, for example ASYNC, meaning the transaction will be submitted and not block on a response"
+          "description": "Method of submission."
         }
       },
       "title": "Request for submitting a transaction v2 on Vega"
@@ -3660,39 +3799,39 @@
         "TYPE_COMMIT"
       ],
       "default": "TYPE_UNSPECIFIED",
-      "description": "- TYPE_ASYNC: Transaction will be submitted without waiting for response\n - TYPE_SYNC: Transaction will be submitted, and blocking until the\ntendermint mempool returns a response\n - TYPE_COMMIT: Transaction will be submitted, and blocking until the tendermint\nnetwork has committed it into a block. Used only for debugging,\nnot for submitting transactions",
-      "title": "Blockchain transaction type"
+      "description": "Blockchain transaction type.\n\n - TYPE_ASYNC: Transaction will be submitted without waiting for a response.\n - TYPE_SYNC: Transaction will be submitted, and blocking until the mempool returns a response.\n - TYPE_COMMIT: Transaction will be submitted, and blocking until the network has committed it into a block.\nUsed only for debugging local network, not for submitting transactions."
     },
     "v1SubmitTransactionResponse": {
       "type": "object",
       "properties": {
         "success": {
           "type": "boolean",
-          "title": "Success will be true if the transaction was accepted by the node,\n**Important** - success does not mean that the event is confirmed by consensus"
+          "description": "Whether or not the transaction was validated and submitted to the chain's mempool."
         },
         "txHash": {
           "type": "string",
-          "title": "Hash of the transaction, if accepted"
+          "description": "Hash of the transaction, which can be used to identify the transaction in a node's event stream."
         },
         "code": {
           "type": "integer",
           "format": "int64",
-          "title": "Result code for success if unsuccessful"
+          "description": "Error code to indicate the category of failure if the transaction was not successfully submitted."
         },
         "data": {
           "type": "string",
-          "title": "Data for details"
+          "description": "Further details for why the transaction was not successfully submitted."
         },
         "log": {
-          "type": "string"
+          "type": "string",
+          "description": "Further details for the underlying consensus layer of the result of the transaction."
         },
         "height": {
           "type": "string",
           "format": "int64",
-          "title": "Height for commit"
+          "description": "Unused."
         }
       },
-      "title": "Response for submitting a transaction v2 on Vega"
+      "description": "Response for submitting a transaction on the network."
     },
     "v1TeamCreated": {
       "type": "object",
@@ -3794,11 +3933,11 @@
         "inputData": {
           "type": "string",
           "format": "byte",
-          "description": "One of the set of Vega commands.\nThese bytes are should be built as follows:\n  chain_id_as_bytes + \\0 character as delimiter + proto_marshalled_command."
+          "description": "Protobuf message of type `InputData` marshalled into bytes. If the transaction version is V3 or higher then this bytes\nstring must be prepended with `chain_id_as_byes + \\0`."
         },
         "signature": {
           "$ref": "#/definitions/v1Signature",
-          "description": "Signature of the input data."
+          "description": "Signature of the input data field, signed by the sender of this transaction."
         },
         "address": {
           "type": "string",
@@ -3810,14 +3949,14 @@
         },
         "version": {
           "$ref": "#/definitions/v1TxVersion",
-          "description": "Version of the transaction, to be used in the future in case changes are implemented\nto the transaction format."
+          "description": "Version of the transaction."
         },
         "pow": {
           "$ref": "#/definitions/v1ProofOfWork",
-          "description": "Proof of work contains the random transaction id used by the client and the nonce."
+          "description": "Proof-of-work containing the random transaction ID used by the client and the nonce."
         }
       },
-      "description": "Represents a transaction to be sent to Vega."
+      "description": "Transaction containing a command that can be sent to instruct the network to execute an action.\nA transaction contains a byte string representation of the input data which must then be signed, with the signature added to the transaction."
     },
     "v1TransactionResult": {
       "type": "object",
@@ -4005,24 +4144,25 @@
         "TX_VERSION_V3"
       ],
       "default": "TX_VERSION_UNSPECIFIED",
-      "description": "Current supported version of the transaction inside the network.\n\n - TX_VERSION_UNSPECIFIED: Represents an unspecified or missing value from the input\n - TX_VERSION_V2: This version requires the proof-of-work added to the transaction.\n - TX_VERSION_V3: This version requires the chain ID to be appended in front of the input data\nbyte, with a `\\0` delimiter."
+      "description": "Transaction versions to maintain backwards compatibility of transaction formats.\n\n - TX_VERSION_UNSPECIFIED: Transaction version is unspecified.\n - TX_VERSION_V2: Transaction requires the addition of a proof-of-work calculation.\n - TX_VERSION_V3: Transaction input data contains a prepended chain ID to prevent use of a single transaction across multiple networks."
     },
     "v1UndelegateSubmission": {
       "type": "object",
       "properties": {
         "nodeId": {
           "type": "string",
-          "description": "Node ID to delegate to."
+          "description": "Node ID to undelegate stake from."
         },
         "amount": {
           "type": "string",
-          "description": "Optional, if not specified = ALL.\nIf provided, this field must be an unsigned integer passed as a string\nand needs to be scaled using the asset decimal places for the token."
+          "description": "Amount to undelegate, as an unsigned integer scaled to the governance asset's decimal places.\nIf not set, then all delegations to the given validator node will be removed."
         },
         "method": {
           "$ref": "#/definitions/UndelegateSubmissionMethod",
           "description": "Method of delegation."
         }
-      }
+      },
+      "description": "Command to allow a token holder to instruct the network to remove their delegated stake from a given validator node."
     },
     "v1UpdateReferralSet": {
       "type": "object",
@@ -4032,32 +4172,34 @@
           "description": "ID of the referral set to update."
         },
         "isTeam": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Whether or not the referral set should be considered a team that can participate in team games on the network."
         },
         "team": {
-          "$ref": "#/definitions/v1UpdateReferralSetTeam"
+          "$ref": "#/definitions/v1UpdateReferralSetTeam",
+          "description": "Team details, if the referral set is to be considered a team."
         }
       },
-      "title": "Request for updating a referral set's properties"
+      "description": "A command that allows the referrer of a referral set to update team details for a referral set.\nAny field that is left unset or has a default value indicates that this field on the original referral set will be left unchanged."
     },
     "v1UpdateReferralSetTeam": {
       "type": "object",
       "properties": {
         "name": {
           "type": "string",
-          "description": "Optional team name to be added to the referral banner."
+          "description": "New name of the team."
         },
         "teamUrl": {
           "type": "string",
-          "description": "Optional link to a team forum, discord, etc."
+          "description": "New link to the team's homepage."
         },
         "avatarUrl": {
           "type": "string",
-          "description": "Optional link to an image to be used as the team avatar."
+          "description": "New link to an avatar for the team."
         },
         "closed": {
           "type": "boolean",
-          "title": "Is this team closed for external other users"
+          "description": "Whether or not the team is closed to new party members."
         }
       }
     },
@@ -4189,6 +4331,24 @@
         }
       },
       "title": "Validator update event contains information about validator node"
+    },
+    "v1VestingBalancesSummary": {
+      "type": "object",
+      "properties": {
+        "epochSeq": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Epoch for which these balances are valid."
+        },
+        "partiesVestingSummary": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PartyVestingSummary"
+          },
+          "description": "Parties' summaries."
+        }
+      },
+      "title": "Summary of the vesting and locked balances for an epoch"
     },
     "v1VestingStatsUpdated": {
       "type": "object",
@@ -4341,14 +4501,14 @@
           "description": "Actual value of the vote."
         }
       },
-      "description": "Command to submit a new vote for a governance proposal."
+      "description": "Command that allows a token holder to vote for or against an active governance proposal."
     },
     "v1WithdrawSubmission": {
       "type": "object",
       "properties": {
         "amount": {
           "type": "string",
-          "description": "Amount to be withdrawn. This field is an unsigned integer scaled to the asset's decimal places."
+          "description": "Amount to be withdrawn, as an unsigned integer scaled to the asset's decimal places."
         },
         "asset": {
           "type": "string",
@@ -4356,10 +4516,10 @@
         },
         "ext": {
           "$ref": "#/definitions/vegaWithdrawExt",
-          "description": "Foreign chain specifics."
+          "description": "Details specific to the foreign chain, such as the receiver address."
         }
       },
-      "title": "Represents the submission request to withdraw funds for a party on Vega"
+      "description": "Command to instruct the network to process an asset withdrawal from the Vega network.\nThe process is specific to the destination foreign chain, for example, a withdrawal to Ethereum will generate signatures\nthat allow funds to be taken across the bridge."
     },
     "vegaAccount": {
       "type": "object",
@@ -4568,11 +4728,11 @@
         },
         "referralRewardFactor": {
           "type": "string",
-          "title": "Proportion of the referee's taker fees to be rewarded to the referrer"
+          "description": "Proportion of the referee's taker fees to be rewarded to the referrer."
         },
         "referralDiscountFactor": {
           "type": "string",
-          "title": "Proportion of the referee's taker fees to be discounted"
+          "description": "Proportion of the referee's taker fees to be discounted."
         }
       }
     },
@@ -5493,16 +5653,16 @@
         "createdAt": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp in Unix nanoseconds for when the order was created."
+          "description": "Timestamp in Unix nanoseconds for when the liquidity provision was created."
         },
         "updatedAt": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp in Unix nanoseconds for when the order was updated."
+          "description": "Timestamp in Unix nanoseconds for when the liquidity provision was updated."
         },
         "marketId": {
           "type": "string",
-          "description": "Market ID for the order."
+          "description": "Market ID for the liquidity provision."
         },
         "commitmentAmount": {
           "type": "string",
@@ -5529,11 +5689,11 @@
         "version": {
           "type": "string",
           "format": "uint64",
-          "description": "Version of this liquidity provision order."
+          "description": "Version of this liquidity provision."
         },
         "status": {
           "$ref": "#/definitions/vegaLiquidityProvisionStatus",
-          "description": "Status of this liquidity provision order."
+          "description": "Status of this liquidity provision."
         },
         "reference": {
           "type": "string",
@@ -5554,7 +5714,7 @@
         "STATUS_PENDING"
       ],
       "default": "STATUS_UNSPECIFIED",
-      "description": "Status of a liquidity provision order.\n\n - STATUS_UNSPECIFIED: Always invalid\n - STATUS_ACTIVE: Liquidity provision is active\n - STATUS_STOPPED: Liquidity provision was stopped by the network\n - STATUS_CANCELLED: Liquidity provision was cancelled by the liquidity provider\n - STATUS_REJECTED: Liquidity provision was invalid and got rejected\n - STATUS_UNDEPLOYED: Liquidity provision is valid and accepted by network, but orders aren't deployed\n - STATUS_PENDING: Liquidity provision is valid and accepted by network\nbut has never been deployed. If when it's possible to deploy the orders for the first time\nmargin check fails, then they will be cancelled without any penalties."
+      "description": "Status of a liquidity provision.\n\n - STATUS_UNSPECIFIED: Always invalid\n - STATUS_ACTIVE: Liquidity provision is active\n - STATUS_STOPPED: Liquidity provision was stopped by the network\n - STATUS_CANCELLED: Liquidity provision was cancelled by the liquidity provider\n - STATUS_REJECTED: Liquidity provision was invalid and got rejected\n - STATUS_UNDEPLOYED: Liquidity provision is valid and accepted by network, but orders aren't deployed\n - STATUS_PENDING: Liquidity provision is valid and accepted by network\nbut has never been deployed. If when it's possible to deploy the orders for the first time\nmargin check fails, then they will be cancelled without any penalties."
     },
     "vegaLiquiditySLAParameters": {
       "type": "object",
@@ -5718,7 +5878,7 @@
         },
         "lpPriceRange": {
           "type": "string",
-          "description": "Percentage move up and down from the mid price which specifies the range of\nprice levels over which automated liquidity provision orders will be deployed."
+          "description": "Percentage move up and down from the mid price which specifies the range of\nprice levels over which automated liquidity provisions will be deployed."
         },
         "linearSlippageFactor": {
           "type": "string",
@@ -6080,7 +6240,7 @@
         },
         "lpPriceRange": {
           "type": "string",
-          "description": "DEPRECATED: Use liquidity SLA parameters instead.\nPercentage move up and down from the mid price which specifies the range of\nprice levels over which automated liquidity provision orders will be deployed."
+          "description": "DEPRECATED: Use liquidity SLA parameters instead.\nPercentage move up and down from the mid price which specifies the range of\nprice levels over which automated liquidity provisions will be deployed."
         },
         "linearSlippageFactor": {
           "type": "string",
@@ -6937,24 +7097,24 @@
           "items": {
             "$ref": "#/definitions/vegaBenefitTier"
           },
-          "description": "Defined benefit tiers in increasing order. First element will give Tier 1,\nsecond element will give Tier 2, and so on. Determines the level of\nbenefit a party can expect based on performance criteria."
+          "description": "Defined benefit tiers ordered by increasing discounts."
         },
         "endOfProgramTimestamp": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp as Unix time in seconds, after which when the current epoch ends,\nthe programs will end and benefits will be disabled."
+          "description": "Timestamp in Unix nanoseconds, after which when the current epoch ends,\nthe program will end and benefits will be disabled."
         },
         "windowLength": {
           "type": "string",
           "format": "uint64",
-          "description": "Number of epochs over which to evaluate a referral set's running volume."
+          "description": "Number of epochs over which the referral set's running volume is evaluated."
         },
         "stakingTiers": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/vegaStakingTier"
           },
-          "description": "Defined staking tiers in increasing order. First element will give Tier 1,\nsecond element will give Tier 2, and so on. Determines the level of\nbenefit a party can expect based on their staking."
+          "description": "Defined benefit tiers ordered by increasing reward multiplier. Determines the level of\nbenefit a party can expect based on their staking."
         }
       }
     },
@@ -6971,7 +7131,7 @@
         "endOfProgramTimestamp": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp as Unix time in seconds, after which when the current epoch ends, the\nprograms status will become STATE_CLOSED and benefits will be disabled."
+          "description": "Timestamp as Unix time in seconds, after which when the current epoch\nends, the program will end and benefits will be disabled."
         },
         "windowLength": {
           "type": "string",
@@ -7486,7 +7646,7 @@
         },
         "lpPriceRange": {
           "type": "string",
-          "description": "DEPRECATED: Use liquidity SLA parameters instead.\nPercentage move up and down from the mid price which specifies the range of\nprice levels over which automated liquidity provision orders will be deployed."
+          "description": "DEPRECATED: Use liquidity SLA parameters instead.\nPercentage move up and down from the mid price which specifies the range of\nprice levels over which automated liquidity provisions will be deployed."
         },
         "linearSlippageFactor": {
           "type": "string",
@@ -7651,7 +7811,7 @@
         },
         "volumeDiscountFactor": {
           "type": "string",
-          "title": "Proportion of the taker fees to be discounted"
+          "description": "Proportion of the taker fees to be discounted."
         }
       }
     },
@@ -7672,17 +7832,17 @@
           "items": {
             "$ref": "#/definitions/vegaVolumeBenefitTier"
           },
-          "description": "Defined benefit tiers in increasing order. First element will give Tier 1,\nsecond element will give Tier 2, and so on. Determines the level of\nbenefit a party can expect based on performance criteria."
+          "description": "Defined benefit tiers ordered by increasing discounts."
         },
         "endOfProgramTimestamp": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp as Unix time in seconds, after which when the current epoch\nends, the programs will end and benefits will be disabled."
+          "description": "Timestamp in Unix seconds, after which when the current epoch\nends, the program will end and benefits will be disabled."
         },
         "windowLength": {
           "type": "string",
           "format": "uint64",
-          "description": "Number of epochs over which to evaluate a referral set's running volume."
+          "description": "Number of epochs over which a referral set's running volume is evaluated."
         }
       }
     },
@@ -7699,7 +7859,7 @@
         "endOfProgramTimestamp": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp as Unix time in seconds, after which when the current epoch\nends, the programs will end and benefits will be disabled."
+          "description": "Timestamp as Unix time in seconds, after which when the current epoch\nends, the program will end and benefits will be disabled."
         },
         "windowLength": {
           "type": "string",
@@ -7830,10 +7990,10 @@
         "deliverOn": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp in Unix nanoseconds for when the transfer should be delivered into the receiver's account."
+          "description": "Timestamp, in Unix nanoseconds, for when the transfer should be executed, i.e., assets transferred into the receiver's account."
         }
       },
-      "title": "Specific details for a one off transfer"
+      "description": "Details for a one-off transfer."
     },
     "vegacommandsv1RecurringTransfer": {
       "type": "object",
@@ -7841,30 +8001,30 @@
         "startEpoch": {
           "type": "string",
           "format": "uint64",
-          "description": "First epoch from which this transfer shall be paid."
+          "description": "First epoch from which this transfer shall be executed."
         },
         "endEpoch": {
           "type": "string",
           "format": "uint64",
-          "description": "Last epoch at which this transfer shall be paid."
+          "description": "Last epoch at which this transfer shall be executed."
         },
         "factor": {
           "type": "string",
-          "description": "Factor needs to be \u003e 0."
+          "description": "Factor that the initial transfer amount is multiplied by for each epoch that it is executed.\nFor example if the initial transfer amount is 1000 and the factor is 0.5, then the amounts transferred per epoch will be 1000, 500, 250, 125, etc."
         },
         "dispatchStrategy": {
           "$ref": "#/definitions/vegaDispatchStrategy",
           "description": "Optional parameter defining how a transfer is dispatched."
         }
       },
-      "title": "Specific details for a recurring transfer"
+      "title": "Details for a recurring transfer"
     },
     "vegacommandsv1Transfer": {
       "type": "object",
       "properties": {
         "fromAccountType": {
           "$ref": "#/definitions/vegaAccountType",
-          "description": "Account type from which the funds of the party\nshould be taken."
+          "description": "Account type from which the funds of the party should be taken."
         },
         "to": {
           "type": "string",
@@ -7880,20 +8040,22 @@
         },
         "amount": {
           "type": "string",
-          "description": "Amount to be taken from the source account. This field is an unsigned integer scaled to the asset's decimal places."
+          "description": "Amount to be taken from the source account, as an unsigned integer scaled to the asset's decimal places."
         },
         "reference": {
           "type": "string",
           "description": "Reference to be attached to the transfer."
         },
         "oneOff": {
-          "$ref": "#/definitions/vegacommandsv1OneOffTransfer"
+          "$ref": "#/definitions/vegacommandsv1OneOffTransfer",
+          "description": "Details of a one-off transfer that is executed once at a specified time."
         },
         "recurring": {
-          "$ref": "#/definitions/vegacommandsv1RecurringTransfer"
+          "$ref": "#/definitions/vegacommandsv1RecurringTransfer",
+          "description": "Details of a transfer that is executed once every epoch until stopped."
         }
       },
-      "title": "Transfer initiated by a party"
+      "title": "Command that allows a party to move assets from one account to another.\nA transfer can be set up as a single one-off transfer, or a recurring transfer that occurs once at the start of each epoch.\nEach transfer incurs a fee as specified by the network parameter `transfer.fee.factor`"
     },
     "vegaeventsv1OneOffTransfer": {
       "type": "object",

@@ -57,6 +57,12 @@ type Party {
   dateRange: DateRange
   pagination: Pagination
 ): DepositsConnection
+  liquidityProvisions(
+  marketId: ID
+  reference: String
+  live: Boolean
+  pagination: Pagination
+): LiquidityProvisionsWithPendingConnection
   liquidityProvisionsConnection(
   marketId: ID
   reference: String
@@ -86,6 +92,9 @@ type Party {
   activityStreak(
   epoch: Int
 ): PartyActivityStreak
+  vestingBalancesSummary(
+  assetId: ID
+): PartyVestingBalancesSummary!
 }
 ```
 
@@ -198,6 +207,24 @@ type Party {
 > Optional Pagination information
 > 
 
+#### [<code style={{ fontWeight: 'normal' }}>Party.<b>liquidityProvisions</b></code>](#)<Bullet />[`LiquidityProvisionsWithPendingConnection`](/testnet/api/graphql/objects/liquidity-provisions-with-pending-connection) <Badge class="secondary" text="object"/>
+> The list of the liquidity provision commitments for this party
+> ##### [<code style={{ fontWeight: 'normal' }}>Party.liquidityProvisions.<b>marketId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> An optional market ID
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.liquidityProvisions.<b>reference</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
+> An optional reference
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.liquidityProvisions.<b>live</b></code>](#)<Bullet />[`Boolean`](/testnet/api/graphql/scalars/boolean) <Badge class="secondary" text="scalar"/>
+> An optional live flag to determine whether to list only live LPs or not
+> 
+
+##### [<code style={{ fontWeight: 'normal' }}>Party.liquidityProvisions.<b>pagination</b></code>](#)<Bullet />[`Pagination`](/testnet/api/graphql/inputs/pagination) <Badge class="secondary" text="input"/>
+> Optional Pagination information
+> 
+
 #### [<code style={{ fontWeight: 'normal' }}>Party.<b>liquidityProvisionsConnection</b></code>](#)<Bullet />[`LiquidityProvisionsConnection`](/testnet/api/graphql/objects/liquidity-provisions-connection) <Badge class="secondary" text="object"/>
 > The list of the liquidity provision commitment for this party
 > ##### [<code style={{ fontWeight: 'normal' }}>Party.liquidityProvisionsConnection.<b>marketId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
@@ -270,6 +297,12 @@ type Party {
 > The activity streak
 > ##### [<code style={{ fontWeight: 'normal' }}>Party.activityStreak.<b>epoch</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
 > An optional epoch
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Party.<b>vestingBalancesSummary</b></code>](#)<Bullet />[`PartyVestingBalancesSummary!`](/testnet/api/graphql/objects/party-vesting-balances-summary) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The current reward vesting summary of the party for the last epoch
+> ##### [<code style={{ fontWeight: 'normal' }}>Party.vestingBalancesSummary.<b>assetId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> An optional asset ID
 > 
 
 
