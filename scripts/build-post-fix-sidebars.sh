@@ -2,9 +2,6 @@
 
 #!/usr/bin/env bash
 
-echo "GraphQL: Remove unused generated sidebar"
-rm -f docs/graphql/sidebar.schema.js
-
 echo "REST: Rename services (improve search results appearance)"
 sed -i -E 's/CoreService/Core service/g' docs/api/rest/core/sidebar.js
 sed -i -E 's/CoreStateService/Core State/g' docs/api/rest/state/sidebar.js
