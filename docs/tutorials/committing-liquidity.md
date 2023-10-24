@@ -92,7 +92,7 @@ Ensure your orders to provide liquidity will earn from liquidity fees by meeting
 :::
 
 ## Amending a liquidity commitment
-When amending a liquidity commitment, the network will allow you to provide more bond for your liquidity immediately. However, if you reduce your liquidity commitment, it will only be enacted in the epoch after you submitted the amendment transaction.
+When amending a liquidity commitment, the network will allow you to provide more bond for your liquidity immediately. However, whether you amend or reduce your liquidity commitment, the actual commitment change will only be enacted in the epoch after you submitted the amendment transaction.
 
 If you reduce your commitment to the point where the market would drop below its required [target stake](./../concepts/liquidity/provision.md#target-stake), then you will be penalised: <NetworkParameter frontMatter={frontMatter} param="market.liquidity.earlyExitPenalty" hideName={true} formatter="percent" /> will be deducted from your bond.
 

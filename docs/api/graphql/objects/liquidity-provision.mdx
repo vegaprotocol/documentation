@@ -36,7 +36,7 @@ type LiquidityProvision {
 ### Fields
 
 #### [<code style={{ fontWeight: 'normal' }}>LiquidityProvision.<b>id</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> Unique identifier for the order (set by the system after consensus)
+> Unique identifier for the provision (set by the system after consensus)
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>LiquidityProvision.<b>party</b></code>](#)<Bullet />[`Party!`](/testnet/api/graphql/objects/party) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
@@ -48,19 +48,19 @@ type LiquidityProvision {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>LiquidityProvision.<b>updatedAt</b></code>](#)<Bullet />[`Timestamp`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="scalar"/>
-> RFC3339Nano time of when the liquidity provision was updated
+> RFC3339Nano time when the liquidity provision was updated
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>LiquidityProvision.<b>market</b></code>](#)<Bullet />[`Market!`](/testnet/api/graphql/objects/market) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
-> Market for the order
+> Market ID for the liquidity provision
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>LiquidityProvision.<b>commitmentAmount</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> Specified as a unit-less number that represents the amount of settlement asset of the market.
+> Specified as a unitless number that represents the amount of the market's settlement asset for the commitment.
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>LiquidityProvision.<b>fee</b></code>](#)<Bullet />[`String!`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
-> Nominated liquidity fee factor, which is an input to the calculation of liquidity fees on the market, as per setting fees and rewarding liquidity providers.
+> Provider's nominated liquidity fee factor, which is an input to the calculation of liquidity fees on the market, as per setting fees and rewarding liquidity providers.
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>LiquidityProvision.<b>sells</b></code>](#)<Bullet />[`[LiquidityOrderReference!]!`](/testnet/api/graphql/objects/liquidity-order-reference) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
@@ -80,14 +80,14 @@ type LiquidityProvision {
 > 
 
 #### [<code style={{ fontWeight: 'normal' }}>LiquidityProvision.<b>reference</b></code>](#)<Bullet />[`String`](/testnet/api/graphql/scalars/string) <Badge class="secondary" text="scalar"/>
-> A reference for the orders created out of this liquidity provision
+> A reference for the orders created to support this liquidity provision
 > 
 
 
 
 ### Member of
 
-[`Entities`](/testnet/api/graphql/objects/entities)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProvisionsEdge`](/testnet/api/graphql/objects/liquidity-provisions-edge)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/testnet/api/graphql/objects/order)  <Badge class="secondary" text="object"/>
+[`Entities`](/testnet/api/graphql/objects/entities)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProvisionsEdge`](/testnet/api/graphql/objects/liquidity-provisions-edge)  <Badge class="secondary" text="object"/><Bullet />[`LiquidityProvisionWithPending`](/testnet/api/graphql/objects/liquidity-provision-with-pending)  <Badge class="secondary" text="object"/><Bullet />[`Order`](/testnet/api/graphql/objects/order)  <Badge class="secondary" text="object"/>
 
 
 

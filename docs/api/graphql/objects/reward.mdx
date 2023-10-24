@@ -25,6 +25,7 @@ type Reward {
   amount: String!
   percentageOfTotal: String!
   receivedAt: Timestamp!
+  lockedUntilEpoch: Epoch!
 }
 ```
 
@@ -61,6 +62,10 @@ type Reward {
 
 #### [<code style={{ fontWeight: 'normal' }}>Reward.<b>receivedAt</b></code>](#)<Bullet />[`Timestamp!`](/testnet/api/graphql/scalars/timestamp) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
 > RFC3339Nano time when the rewards were received
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>Reward.<b>lockedUntilEpoch</b></code>](#)<Bullet />[`Epoch!`](/testnet/api/graphql/objects/epoch) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="object"/>
+> The epoch when the reward is released
 > 
 
 

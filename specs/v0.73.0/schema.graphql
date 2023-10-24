@@ -440,18 +440,29 @@ type TransactionSubmitted {
 
 "Filter input for historical balance queries"
 input AccountFilter {
+  "Restrict accounts to those holding balances in this asset ID."
   assetId: ID
+  "Restrict accounts to those owned by the parties in this list. Pass an empty list for no filter."
   partyIds: [ID!]
+  "Restrict accounts to those connected to the markets in this list. Pass an empty list for no filter."
   marketIds: [ID!]
+  "Restrict accounts to those connected to any of the types in this list. Pass an empty list for no filter."
   accountTypes: [AccountType!]
 }
 
-"Filter for historical entry ledger queries"
+"Filter for historical entry ledger queries, you must provide at least one party in FromAccountFilter, or ToAccountFilter"
 input LedgerEntryFilter {
+  """
+  Determines whether an entry must have accounts matching both the account_from_filter
+  and the account_to_filter. If set to 'true', entries must have matches in both filters.
+  If set to `false`, entries matching only the account_from_filter or the account_to_filter will also be included.
+  """
   CloseOnAccountFilters: Boolean
+  "Used to set values for filtering sender accounts. Party must be provided in this filter or to_account_filter, or both."
   FromAccountFilter: AccountFilter
+  "Used to set values for filtering receiver accounts. Party must be provided in this filter or from_account_filter, or both."
   ToAccountFilter: AccountFilter
-
+  "List of transfer types that is used for filtering sender and receiver accounts."
   TransferTypes: [TransferType]
 }
 
@@ -674,10 +685,22 @@ type Query {
     pagination: Pagination
   ): MarketDataConnection
 
-  "Get ledger entries by asset, market, party, account type, transfer type within the given date range."
+  """
+  Get ledger entries by asset, market, party, account type, transfer type within the given date range.
+  Note: The date range is restricted to any 5 days.
+  If no start or end date is provided, only ledger entries from the last 5 days will be returned.
+  If a start and end date are provided, but the end date is more than 5 days after the start date, only data up to 5 days after the start date will be returned.
+  If a start date is provided but no end date, the end date will be set to 5 days after the start date.
+  If no start date is provided, but the end date is, the start date will be set to 5 days before the end date.
+  """
   ledgerEntries(
+    "Filter to apply when querying the ledger. At least one party in the 'from' account filter, or 'to' account filter must be provided."
     filter: LedgerEntryFilter
+    """
+    Date range filter to apply to the ledger entries.
+    """
     dateRange: DateRange
+    "Optional pagination control"
     pagination: Pagination
   ): AggregatedLedgerEntriesConnection!
 
@@ -839,19 +862,29 @@ type Query {
     pagination: Pagination
   ): ReferralSetConnection!
 
-  "Get referrer fee and discount stats"
-  referralFeeStats(
+  "Get fees statistics"
+  feesStats(
     "Optional market ID to filter for. If omitted, asset ID must be provided."
     marketId: ID
     "Optional asset ID to filter for. If omitted, market ID must be provided."
     assetId: ID
     "Optional epoch to filter for. If omitted, the most recent epoch's data is returned."
     epoch: Int
-    "Optional referrer party ID to filter for"
-    referrer: ID
-    "Optional referee party ID to filter for"
-    referee: ID
-  ): ReferralSetFeeStats
+    "Optional party ID to filter for"
+    partyId: ID
+  ): FeesStats
+
+  "Get fees statistics for a given party"
+  feesStatsForParty(
+    "Party ID to filter for"
+    partyId: ID!
+    "Optional asset ID to filter for. If omitted, statistics for each asset are returned."
+    assetId: ID
+    "Optional epoch to filter from (included). If omitted, `toEpoch` must not be set. If both omitted, the most recent epoch's data is returned."
+    fromEpoch: Int
+    "Optional epoch to filter to (included). If omitted, the range goes from `fromEpoch` to the most recent epoch."
+    toEpoch: Int
+  ): [FeesStatsForParty]
 
   referralSetReferees(
     "Optional referral set ID to fetch referees for"
@@ -862,6 +895,8 @@ type Query {
     referee: ID
     "Optional pagination information"
     pagination: Pagination
+    "Optional number of days to aggregate referee volume and reward statistics for. If omitted, the default is 30 days."
+    aggregationDays: Int
   ): ReferralSetRefereeConnection!
 
   "Get referral set statistics"
@@ -978,6 +1013,18 @@ type Query {
     "Pagination options"
     pagination: Pagination
   ): WithdrawalsConnection
+
+  "List paid liquidity fees statistics"
+  paidLiquidityFees(
+    "Optional market ID to filter for."
+    marketId: ID
+    "Optional asset ID to filter for."
+    assetId: ID
+    "Optional epoch to filter for. If omitted, the most recent epoch's data is returned."
+    epoch: Int
+    "Optional party IDs to filter for"
+    partyIDs: [String!]
+  ): PaidLiquidityFeesConnection
 }
 
 "All the states a transfer can transition between"
@@ -2235,6 +2282,16 @@ type Market {
   data: MarketData
 
   "The list of the liquidity provision commitments for this market"
+  liquidityProvisions(
+    "An optional party ID"
+    partyId: ID
+    "An optional live flag to determine whether to list only live LPs or not"
+    live: Boolean
+    "Pagination information"
+    pagination: Pagination
+  ): LiquidityProvisionsWithPendingConnection
+
+  "The list of the liquidity provision commitments for this market"
   liquidityProvisionsConnection(
     "An optional party ID"
     partyId: ID
@@ -2242,7 +2299,7 @@ type Market {
     live: Boolean
     "Pagination information"
     pagination: Pagination
-  ): LiquidityProvisionsConnection
+  ): LiquidityProvisionsConnection @deprecated(reason: "Use liquidityProvisions instead")
 
   "Timestamps for state changes in the market"
   marketTimestamps: MarketTimestamps!
@@ -2489,6 +2546,18 @@ type Party {
     pagination: Pagination
   ): DepositsConnection
 
+  "The list of the liquidity provision commitments for this party"
+  liquidityProvisions(
+    "An optional market ID"
+    marketId: ID
+    "An optional reference"
+    reference: String
+    "An optional live flag to determine whether to list only live LPs or not"
+    live: Boolean
+    "Optional Pagination information"
+    pagination: Pagination
+  ): LiquidityProvisionsWithPendingConnection
+
   "The list of the liquidity provision commitment for this party"
   liquidityProvisionsConnection(
     "An optional market ID"
@@ -2499,7 +2568,7 @@ type Party {
     live: Boolean
     "Optional Pagination information"
     pagination: Pagination
-  ): LiquidityProvisionsConnection
+  ): LiquidityProvisionsConnection @deprecated(reason: "Use liquidityProvisions instead")
 
   # All delegations for a party to a given node if node is specified, or all delegations if not
   delegationsConnection(
@@ -2537,6 +2606,46 @@ type Party {
 
   "The activity streak"
   activityStreak("An optional epoch" epoch: Int): PartyActivityStreak
+
+  "The current reward vesting summary of the party for the last epoch"
+  vestingBalancesSummary(
+    "An optional asset ID"
+    assetId: ID
+  ): PartyVestingBalancesSummary!
+}
+
+"""
+A party reward locked balance.
+"""
+type PartyLockedBalance {
+  "The asset locked"
+  asset: Asset!
+  "The amount locked"
+  balance: String!
+  "Epoch in which the funds will be moved to the vesting balance"
+  untilEpoch: Int!
+}
+
+"""
+A party's reward vesting balance.
+"""
+type PartyVestingBalance {
+  "The asset being vested"
+  asset: Asset!
+  "The amount locked"
+  balance: String!
+}
+
+"""
+Summary of a party's reward vesting balances.
+"""
+type PartyVestingBalancesSummary{
+  "The epoch for which this summary is valid"
+  epoch: Int
+  "The party vesting balances"
+  vestingBalances: [PartyVestingBalance!]
+  "The party's vesting balances"
+  lockedBalances: [PartyLockedBalance!]
 }
 
 """
@@ -4327,8 +4436,8 @@ type UpdateMarketState {
 type UpdateReferralProgram {
   "Defined tiers in increasing order. First element will give Tier 1, second element will give Tier 2, etc."
   benefitTiers: [BenefitTier!]!
-  "Timestamp as RFC3339, after which when the current epoch ends, the programs will end and benefits will be disabled."
-  endOfProgramTimestamp: String!
+  "Timestamp as Unix time in nanoseconds, after which when the current epoch ends, the program will end and benefits will be disabled."
+  endOfProgramTimestamp: Timestamp!
   "Number of epochs over which to evaluate a referral set's running volume."
   windowLength: Int!
   """
@@ -4360,7 +4469,7 @@ type StakingTier {
 type UpdateVolumeDiscountProgram {
   "The benefit tiers for the program"
   benefitTiers: [VolumeBenefitTier!]!
-  "The end time of the program"
+  "Timestamp as Unix time in nanoseconds, after which program ends."
   endOfProgramTimestamp: Timestamp!
   "The window length to consider for the volume discount program"
   windowLength: Int!
@@ -4847,7 +4956,7 @@ type LiquidityOrder {
   offset: String!
 }
 
-"Status of a liquidity provision order"
+"Status of a liquidity provision"
 enum LiquidityProvisionStatus {
   "An active liquidity provision"
   STATUS_ACTIVE
@@ -4876,19 +4985,19 @@ type LiquidityOrderReference {
 
 "The command to be sent to the chain for a liquidity provision submission"
 type LiquidityProvision {
-  "Unique identifier for the order (set by the system after consensus)"
+  "Unique identifier for the provision (set by the system after consensus)"
   id: ID!
   "The party making this commitment"
   party: Party!
   "RFC3339Nano time when the liquidity provision was initially created"
   createdAt: Timestamp!
-  "RFC3339Nano time of when the liquidity provision was updated"
+  "RFC3339Nano time when the liquidity provision was updated"
   updatedAt: Timestamp
-  "Market for the order"
+  "Market ID for the liquidity provision"
   market: Market!
-  "Specified as a unit-less number that represents the amount of settlement asset of the market."
+  "Specified as a unitless number that represents the amount of the market's settlement asset for the commitment."
   commitmentAmount: String!
-  "Nominated liquidity fee factor, which is an input to the calculation of liquidity fees on the market, as per setting fees and rewarding liquidity providers."
+  "Provider's nominated liquidity fee factor, which is an input to the calculation of liquidity fees on the market, as per setting fees and rewarding liquidity providers."
   fee: String!
   "A set of liquidity sell orders to meet the liquidity provision obligation."
   sells: [LiquidityOrderReference!]!
@@ -4898,8 +5007,14 @@ type LiquidityProvision {
   version: String!
   "The current status of this liquidity provision"
   status: LiquidityProvisionStatus!
-  "A reference for the orders created out of this liquidity provision"
+  "A reference for the orders created to support this liquidity provision"
   reference: String
+}
+
+type LiquidityProvisionWithPending {
+  current: LiquidityProvision!
+  "Liquidity provision that has been updated by the liquidity provider, and has been accepted by the network, but will not be active until the next epoch."
+  pending: LiquidityProvision
 }
 
 "The command to be sent to the chain for a liquidity provision submission"
@@ -4948,6 +5063,8 @@ type Reward {
   percentageOfTotal: String!
   "RFC3339Nano time when the rewards were received"
   receivedAt: Timestamp!
+  "The epoch when the reward is released"
+  lockedUntilEpoch: Epoch!
 }
 
 type RewardSummary {
@@ -5447,6 +5564,18 @@ type LiquidityProvisionsEdge {
 "Connection type for retrieving cursor-based paginated liquidity provision information"
 type LiquidityProvisionsConnection {
   edges: [LiquidityProvisionsEdge]
+  pageInfo: PageInfo!
+}
+
+"Edge type containing the liquidity provision and cursor information returned by a LiquidityProvisionsWithPendingConnection"
+type LiquidityProvisionWithPendingEdge {
+  node: LiquidityProvisionWithPending!
+  cursor: String!
+}
+
+"Connection type for retrieving cursor-based paginated liquidity provision information"
+type LiquidityProvisionsWithPendingConnection {
+  edges: [LiquidityProvisionWithPendingEdge]
   pageInfo: PageInfo!
 }
 
@@ -5984,8 +6113,8 @@ type ReferralProgram {
   version: Int!
   "Defined tiers in increasing order. First element will give Tier 1, second element will give Tier 2, etc."
   benefitTiers: [BenefitTier!]!
-  "Timestamp as RFC3339, after which when the current epoch ends, the programs will end and benefits will be disabled."
-  endOfProgramTimestamp: String!
+  "Timestamp as Unix time in nanoseconds, after which when the current epoch ends, the program will end and benefits will be disabled."
+  endOfProgramTimestamp: Timestamp!
   "Number of epochs over which to evaluate a referral set's running volume."
   windowLength: Int!
   """
@@ -6004,7 +6133,7 @@ type CurrentReferralProgram {
   version: Int!
   "Defined tiers in increasing order. First element will give Tier 1, second element will give Tier 2, etc."
   benefitTiers: [BenefitTier!]!
-  "Timestamp as RFC3339Nano, after which when the current epoch ends, the program will end and benefits will be disabled."
+  "Timestamp as Unix time in nanoseconds, after which when the current epoch ends, the program will end and benefits will be disabled."
   endOfProgramTimestamp: Timestamp!
   "Number of epochs over which to evaluate a referral set's running volume."
   windowLength: Int!
@@ -6056,6 +6185,10 @@ type ReferralSetReferee {
   joinedAt: Timestamp!
   "Epoch in which the party joined the set."
   atEpoch: Int!
+  "Total notional volume of the referee's aggressive trades over the aggregation period, default is 30 days."
+  totalRefereeNotionalTakerVolume: String!
+  "Total rewards generated from the referee over the aggregation period, default is 30 days."
+  totalRefereeGeneratedRewards: String!
 }
 
 "Edge type containing the referral set referee and cursor information returned by a ReferralSetRefereeConnection"
@@ -6199,22 +6332,40 @@ type TeamRefereeHistoryConnection {
   pageInfo: PageInfo!
 }
 
-"Referral rewards and discounts that have been applied on a specific market/asset up to the given epoch."
-type ReferralSetFeeStats {
+"Fees that have been applied on a specific asset for a given party."
+type FeesStatsForParty {
+  "The settlement asset of the market."
+  assetId: String!
+  "The total referral rewards received by referrer of the referral set."
+  totalRewardsReceived: String!
+  "The total referral discounts applied to all referee taker fees"
+  refereesDiscountApplied: String!
+  "The total volume discounts applied to all referee taker fees"
+  volumeDiscountApplied: String!
+  "The total maker fees received by the maker side."
+  totalMakerFeesReceived: String!
+}
+
+"Fees that have been applied on a specific market/asset up to the given epoch."
+type FeesStats {
   "The market the fees were paid in"
   marketId: String!
   "The settlement asset of the market."
   assetId: String!
   "The epoch for which these stats were valid."
   epoch: Int!
-  "The total referral rewards paid to the referrer of the referral set."
-  totalRewardsPaid: [PartyAmount!]!
+  "The total referral rewards received by referrer of the referral set."
+  totalRewardsReceived: [PartyAmount!]!
   "The total referral rewards generated by all referee taker fees."
   referrerRewardsGenerated: [ReferrerRewardsGenerated!]!
   "The total referral discounts applied to all referee taker fees"
   refereesDiscountApplied: [PartyAmount!]!
   "The total volume discounts applied to all referee taker fees"
   volumeDiscountApplied: [PartyAmount!]!
+  "The total maker fees received by the maker side."
+  totalMakerFeesReceived: [PartyAmount!]!
+  "The total maker fees generated by all parties."
+  makerFeesGenerated: [MakerFeesGenerated!]!
 }
 
 "An amount received by a party as a reward or a discount"
@@ -6233,6 +6384,14 @@ type ReferrerRewardsGenerated {
   generatedReward: [PartyAmount!]!
 }
 
+"Maker fees generated by the trade aggressor"
+type MakerFeesGenerated {
+  "Party that paid the fees"
+  taker: String!
+  "Amount of maker fees paid by the taker to the maker"
+  makerFeesPaid: [PartyAmount!]!
+}
+
 "Volume discount program information"
 type VolumeDiscountProgram {
   "Unique ID generated from the proposal that created this program."
@@ -6241,7 +6400,7 @@ type VolumeDiscountProgram {
   version: Int!
   "Defined tiers in increasing order. First element will give Tier 1, second element will give Tier 2, etc."
   benefitTiers: [VolumeBenefitTier!]!
-  "Timestamp as Unix time in nanoseconds, after which when the current epoch ends, the programs will end and benefits will be disabled."
+  "Timestamp as Unix time in nanoseconds, after which when the current epoch ends, the program will end and benefits will be disabled."
   endOfProgramTimestamp: Timestamp!
   "Number of epochs over which to evaluate parties' running volume."
   windowLength: Int!
@@ -6274,4 +6433,34 @@ type VolumeDiscountStats {
   discountFactor: String!
   "Party's running volume."
   runningVolume: String!
+}
+
+"Liquidity fees that have been paid to a party in a specific market/asset up to the given epoch."
+type PaidLiquidityFees {
+  "The market the fees were paid in"
+  marketId: String!
+  "The settlement asset of the market."
+  assetId: String!
+  "The epoch for which these stats were valid."
+  epoch: Int!
+  "Total fees paid across all parties"
+  totalFeesPaid: String!
+  "Fees paid per party"
+  feesPaidPerParty: [PartyAmount!]!
+}
+
+"Connection type for retrieving cursor-based paginated paid liquidity fees statistics"
+type PaidLiquidityFeesConnection {
+  "The volume discount statistics in this connection"
+  edges: [PaidLiquidityFeesEdge]!
+  "The pagination information"
+  pageInfo: PageInfo!
+}
+
+"Edge type containing the volume discount statistics and cursor information returned by a PaidLiquidityFeesConnection"
+type PaidLiquidityFeesEdge {
+  "The volume discount statistics"
+  node: PaidLiquidityFees!
+  "The cursor for this volume discount statistics"
+  cursor: String!
 }

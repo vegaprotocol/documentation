@@ -1,0 +1,55 @@
+---
+id: fees-stats-for-party
+title: feesStatsForParty
+hide_table_of_contents: false
+---
+
+
+
+export const Bullet = () => <><span style={{ fontWeight: 'normal', fontSize: '.5em', color: 'var(--ifm-color-secondary-darkest)' }}>&nbsp;●&nbsp;</span></>
+
+export const SpecifiedBy = (props) => <>Specification<a className="link" style={{ fontSize:'1.5em', paddingLeft:'4px' }} target="_blank" href={props.url} title={'Specified by ' + props.url}>⎘</a></>
+
+export const Badge = (props) => <><span class={'badge badge--' + props.class}>{props.text}</span></>
+
+
+Get fees statistics for a given party
+
+```graphql
+feesStatsForParty(
+  partyId: ID!
+  assetId: ID
+  fromEpoch: Int
+  toEpoch: Int
+): [FeesStatsForParty]
+```
+
+
+### Arguments
+
+#### [<code style={{ fontWeight: 'normal' }}>feesStatsForParty.<b>partyId</b></code>](#)<Bullet />[`ID!`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="non-null"/> <Badge class="secondary" text="scalar"/>
+> Party ID to filter for
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>feesStatsForParty.<b>assetId</b></code>](#)<Bullet />[`ID`](/testnet/api/graphql/scalars/id) <Badge class="secondary" text="scalar"/>
+> Optional asset ID to filter for. If omitted, statistics for each asset are returned.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>feesStatsForParty.<b>fromEpoch</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
+> Optional epoch to filter from (included). If omitted, `toEpoch` must not be set. If both omitted, the most recent epoch's data is returned.
+> 
+
+#### [<code style={{ fontWeight: 'normal' }}>feesStatsForParty.<b>toEpoch</b></code>](#)<Bullet />[`Int`](/testnet/api/graphql/scalars/int) <Badge class="secondary" text="scalar"/>
+> Optional epoch to filter to (included). If omitted, the range goes from `fromEpoch` to the most recent epoch.
+> 
+
+### Type
+
+#### [`FeesStatsForParty`](/testnet/api/graphql/objects/fees-stats-for-party) <Badge class="secondary" text="object"/>
+> Fees that have been applied on a specific asset for a given party.
+> 
+
+
+
+
+
