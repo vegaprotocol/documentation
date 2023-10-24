@@ -123,7 +123,7 @@ The config is located in the `<vega_home>/config/node/config.toml`. Update the f
 
 ```toml
 [Snapshot]
-  StartHeight = -1
+  StartHeight = 0
 
 [Broker]
   [Broker.Socket]
@@ -136,7 +136,7 @@ The config is located in the `<vega_home>/config/node/config.toml`. Update the f
 
 ```toml
 [Snapshot]
-  StartHeight = -1
+  StartHeight = 0
 
 [Broker]
   [Broker.Socket]
