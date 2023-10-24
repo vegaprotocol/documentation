@@ -93,7 +93,7 @@ If the full required amount cannot be collected from all three accounts, then as
 When collateral is collected, ledger entries that adhere to double-entry accounting are created to record the actual transfers. The destination is the settlement account for the market, which will have a 0 balance before the settlement process begins, and again after it completes.
  
 ### Distribution
-If all the requested amounts are successfully transferred to the settlement account, then the amount collected will match the amount to be distributed and the participants whose moves were positive receive what they're owed in their margin accounts. 
+If all the requested amounts are successfully transferred to the settlement account, then the amount collected will match the amount to be distributed. The participants whose moves were positive will have their margin accounts credit with what they're owed. 
 
 :::note Read more 
 * [Insurance pools](../trading-on-vega/market-protections.md#insurance-pools)
