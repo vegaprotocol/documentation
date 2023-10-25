@@ -60,6 +60,7 @@ Type "help" for help.
 vega=#
 ```
 
+
 The `POSTGRES_?` values set above need to match with the values specified in the data node configuration file (`$YOUR_DATANODE_HOME_PATH/config/data-node/config.toml`). If you want to change from the default values above, make sure you update the values in both places.
 
 ### PostgreSQL configuration tuning (optional)
