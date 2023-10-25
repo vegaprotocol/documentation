@@ -20,6 +20,22 @@ Before upgrading your node software, **review the changelog** for [v0.73.0](http
 
 Please read the changelog to see all the changes. Below you can find a list of the changes you must perform before the upgrade to v0.73.0 in this document.
 
+### When Should I upgrade config?
+
+You can update config whenever you need before the upgrade block happens. 
+We recommend to do it in the following way:
+
+1. Make copy of the original config you have.
+2. Update config in copied files as soon as you have time.
+3. Shortly before update (a few hours before the upgrade), replace config. 
+
+:::note Backup your original config files
+Make sure you have a backup for the original config in case you need them in the future.
+:::
+
+We do not recommend to do it too early in case you have to restart your node with current version for some reason (e.g: your node failure or your server restart, etc.).
+
+
 ### Config changes
 
 The default locations for configuration files:
@@ -170,7 +186,7 @@ if localSnapshots { // so ignoring state-sync
 - `description`: We need to give more time for waiting on the data node to the vegavisor. We should increase it to a higher number. It is especially crucial for the data nodes.
 - `kind`: parameter change
 
-```toml  title="YOUR_VEGAVISOR_HOME/config.toml"
+```toml title="YOUR_VEGAVISOR_HOME/config.toml"
 # Try every 2 seconds, 172800 retries is 96h
 maxNumberOfFirstConnectionRetries = 172800
 ```
