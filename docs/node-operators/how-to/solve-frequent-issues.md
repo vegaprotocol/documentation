@@ -198,3 +198,45 @@ Vega adds/modifies/removes SQL schemas during the migration between versions. Yo
 ### Solution: Fix the vega version
 
 Check the vega version with the command `vega version` and compare with the version the segment has been created for. To do it, you can use the `/api/v2/snapshots`(e.g: [https://api0.vega.community/api/v2/snapshots](https://api0.vega.community/api/v2/snapshots)) endpoint to check what version, was deployed on the specific block you are interested in.
+
+## Problem: My validator is running under the vegavisor, but it fails with auto-install.
+
+First, you should check the logs from the vegavisor. The example log is below:
+
+```
+Oct 24 11:33:09 moonrock visor[260678]: Error: failed to prepare next upgrade folder: failed to auto install folder "/home/vega/vega-visor/v0.73.0-rc.1" for release "v0.73.0-rc.1": missing required auto install vega asset definition in Visor config
+```
+
+### Solution: Check the vegavisor config
+
+The most frequent issue when your auto-install procedure fails is the wrong vegavisor configuration. 
+
+Vegavisor works the following way during auto-install:
+
+1. Check if auto-install is enabled
+2. Copy the folder and the `run-config.toml` from the previous version(the version We are doing protocol upgrade from)
+3. Download binary from given repository - binary name and repository are taken from vegavisor config
+4. Start the downloaded binary
+
+The correct config for the vegavisor should look similar to the below:
+
+```toml title="YOUR_VEGAVISOR_HOME/config.toml
+
+# Try every 2 seconds, 172800 retries is 96h
+maxNumberOfFirstConnectionRetries = 172800
+maxNumberOfRestarts = 3
+restartsDelaySeconds = 5
+stopDelaySeconds = 0
+stopSignalTimeoutSeconds = 15
+
+[upgradeFolders]
+  "vX.X.X" = "vX.X.X"
+
+[autoInstall]
+  enabled = true
+  repositoryOwner = "vegaprotocol"
+  repository = "vega"
+  [autoInstall.asset]
+    name = "vega-linux-amd64.zip"
+    binaryName = "vega"
+```
