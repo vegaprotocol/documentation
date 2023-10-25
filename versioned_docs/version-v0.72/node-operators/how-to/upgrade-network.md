@@ -133,7 +133,7 @@ Check the following parameters.
 - `vega.rpc.socketPath` - Make sure the path to the Vega Unix sock is correct and matches the one in the Vega config.
 
 :::tip Copy existing config
-It's good practice to copy config from previous version, for example when you are upgrading the network from `v0.71.6` to `v0.73.0`, you can copy the run-config from `<VEGA-VISOR-HOME>/v0.71.6/run-config.toml` to `<VEGA-VISOR-HOME>/v0.73.0/run-config.toml`, then make sure you have correct binary version in your new folder.
+It's good practice to copy config from previous version, for example when you are upgrading the network from `v0.72.14` to `v0.73.0`, you can copy the run-config from `<VEGA-VISOR-HOME>/v0.72.14/run-config.toml` to `<VEGA-VISOR-HOME>/v0.73.0/run-config.toml`, then make sure you have correct binary version in your new folder.
 :::
 
 Once you have performed steps `2.1 Prepare network configuration (all)` and `2.2 Prepare Visor configuration, if using Visor`, you don't have to do anything else. Visor will automatically restart the node once the core and data node (if you run one) report they are ready for the protocol upgrade.

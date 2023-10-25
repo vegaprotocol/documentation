@@ -77,12 +77,12 @@ We recommend checking all of the changes on your own. Follow the below instructi
 #### `Snapshot.StartHeight`
 
 - `config file`: vega-core
-- `description`: There is a change in the snapshot mechanism. The default value for the `Snapshot.StartHeight` parameter changed from `-1` to `0`. The value `-1` is no longer valid, and your node will fail to start when it sees the negative value. For the new logic to load a snapshot, see the below pseudocode block.
+- `description`: There is a change in the snapshot mechanism. The default value for the `Snapshot.StartHeight` parameter changed from `-1` to `0`. However, We **DO NOT** recommend changing this parameter now for existing nodes!. Please leave the `-1`, because your node can be destroyed when you start your node with wrong binary when you have `Snapshot.StartHeight = 0`. For the new logic to load a snapshot, see the below pseudocode block.
 - `kind`: parameter change
 
 ```toml title="YOUR_VEGA_HOME/config/node/config.toml"
 [Snapshot]
-  StartHeight = 0
+  StartHeight = -1
 ```
 
 ```go title="Load snapshot pseudocode"
@@ -94,7 +94,7 @@ if localSnapshots { // so ignoring state-sync
 	    // Error -> No snapshot for version XXX
     }
 } else {
-    if startHeight == 0 {
+    if startHeight == 0 || startHeight == -1 {
          // Replay the chain or state-sync if enabled. Up to tendermint to decide.
     } else {
 	    // Wait for state-sync to offer expected snapshot for height
@@ -146,7 +146,7 @@ if localSnapshots { // so ignoring state-sync
 - `description`: We recommend you update it to `96 hours` due to changes in the data node initialization mechanism. It now downloads and loads all the segments into the database by default. This process may take a day or more.
 - `kind`: parameter change
 
-```toml
+```toml title="YOUR_VEGA_HOME/config/data-node/config.toml"
 [NetworkHistory]
   [NetworkHistory.Initialise]
     TimeOut = "96h0m0s"
@@ -158,10 +158,21 @@ if localSnapshots { // so ignoring state-sync
 - `description`: The network history initialization process has been improved. Now the process is automated. The datanode should download all the history segments and put it into the database by default now.
 - `kind`: parameter change
 
-```toml
+```toml title="YOUR_VEGA_HOME/config/data-node/config.toml"
 [NetworkHistory]
   [NetworkHistory.Initialise]
     MinimumBlockCount = -1
+```
+
+#### `maxNumberOfFirstConnectionRetries`
+
+- `config file`: vegavisor config
+- `description`: We need to give more time for waiting on the data node to the vegavisor. We should increase it to a higher number. It is especially crucial for the data nodes.
+- `kind`: parameter change
+
+```toml  title="YOUR_VEGAVISOR_HOME/config.toml"
+# Try every 2 seconds, 172800 retries is 96h
+maxNumberOfFirstConnectionRetries = 172800
 ```
 
 ## Upgrade your node
