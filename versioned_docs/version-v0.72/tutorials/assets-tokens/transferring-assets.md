@@ -129,7 +129,7 @@ Trading rewards can be used to incentivise:
 * Creating markets that attract good trading volume (determined based on value of <NetworkParameter frontMatter={frontMatter} param="rewards.marketCreationQuantumMultiple" hideValue={true} />, and the settlement asset's quantum)
 
 :::info Read more
-[Trading rewards](../../concepts/trading-on-vega/fees-rewards): Read about trading rewards, including the different rewards you can contribute to.
+[Trading rewards](../../concepts/trading-on-vega/discounts-rewards): Read about trading rewards, including the different rewards you can contribute to.
 :::
 
 You'll need the following information to set up a reward: 

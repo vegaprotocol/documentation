@@ -90,7 +90,7 @@ The revenue from other fees go into fee-specific accounts:
 * **Infrastructure fee pool**: per asset, to then be distributed to the consensus validators who run the network and thus provide the infrastructure
 
 :::note Read more
-[Fees](../trading-on-vega/fees-rewards.md)
+[Fees](../trading-on-vega/fees.md)
 :::
 
 ### Trading reward accounts 
@@ -113,7 +113,7 @@ There is also a global rewards account, which is used for validator rewards on t
 | Market proposers reward | Holds funds allocated to reward creating markets that attract good trading volume |
 
 :::note Read more
-[Trading rewards](../trading-on-vega/fees-rewards.md#trading-rewards)
+[Trading rewards](../trading-on-vega/discounts-rewards.md#trading-rewards)
 :::
 
 ### Validator reward accounts
