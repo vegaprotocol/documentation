@@ -74,7 +74,7 @@ export default function Home() {
           </svg>
         </div>
         <div style={textWrapper}>
-          <h1 style={title}>451 Unavailabe</h1>
+          <h1 style={title}>451 Unavailable</h1>
           <p>
             Due to uncertainty about the legal and regulatory status of the content hosted on this site, it is not available to visitors in your jurisdiction.
           </p>
