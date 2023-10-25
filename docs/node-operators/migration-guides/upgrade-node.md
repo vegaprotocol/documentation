@@ -20,21 +20,21 @@ Before upgrading your node software, **review the changelog** for [v0.73.0](http
 
 Please read the changelog to see all the changes. Below you can find a list of the changes you must perform before the upgrade to v0.73.0 in this document.
 
-### When Should I upgrade config?
+### When should I upgrade config?
 
-You can update config whenever you need before the upgrade block happens. 
-We recommend to do it in the following way:
+You can update the config any time before the upgrade block happens.
 
-1. Make copy of the original config you have.
-2. Update config in copied files as soon as you have time.
-3. Shortly before update (a few hours before the upgrade), replace config. 
+We recommend you do it in the following way:
 
-:::note Backup your original config files
+1. Make a copy of the original config.
+2. Update the config in the copied files.
+3. A few hours before the upgrade, replace the original config with updated one. 
+
+:::caution Back up your original config files
 Make sure you have a backup for the original config in case you need them in the future.
 :::
 
-We do not recommend to do it too early in case you have to restart your node with current version for some reason (e.g: your node failure or your server restart, etc.).
-
+We do not recommend you do it too early in case you have to restart your node with the current version for some reason, for example if your node fails or your server restarts, etc.
 
 ### Config changes
 
@@ -45,7 +45,7 @@ The default locations for configuration files:
 
 Add the following new parameters to the configuration files.
 
-We recommend checking all of the changes on your own. Follow the below instructions to do it:
+We recommend checking all of the changes on your own. Follow the below instructions to do it, and read through every description to understand the changes:
 
 1. Download vega `v0.73.0`
 2. Generate config files within the temp home directory
@@ -93,7 +93,7 @@ We recommend checking all of the changes on your own. Follow the below instructi
 #### `Snapshot.StartHeight`
 
 - `config file`: vega-core
-- `description`: There is a change in the snapshot mechanism. The default value for the `Snapshot.StartHeight` parameter changed from `-1` to `0`. However, We **DO NOT** recommend changing this parameter now for existing nodes!. Please leave the `-1`, because your node can be destroyed when you start your node with wrong binary when you have `Snapshot.StartHeight = 0`. For the new logic to load a snapshot, see the below pseudocode block.
+- `description`: There is a change in the snapshot mechanism. The default value for the `Snapshot.StartHeight` parameter changed from `-1` to `0`. However, we **DO NOT** recommend changing this parameter now for existing nodes! Leave the `-1`, because your node can be destroyed when you start your node with the wrong binary when you have `Snapshot.StartHeight = 0`. For the new logic to load a snapshot, see the below pseudocode block.
 - `kind`: parameter change
 
 ```toml title="YOUR_VEGA_HOME/config/node/config.toml"
@@ -183,7 +183,7 @@ if localSnapshots { // so ignoring state-sync
 #### `maxNumberOfFirstConnectionRetries`
 
 - `config file`: vegavisor config
-- `description`: We need to give more time for waiting on the data node to the vegavisor. We should increase it to a higher number. It is especially crucial for the data nodes.
+- `description`: You need to leave more time to wait on the data node for Visor. Increase it to a higher number. This is especially crucial for data nodes.
 - `kind`: parameter change
 
 ```toml title="YOUR_VEGAVISOR_HOME/config.toml"
