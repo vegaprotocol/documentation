@@ -44,7 +44,7 @@ When committing to provide liquidity, you enter into an agreement to receive a p
 
 The terms of that agreement, called the liquidity SLA, are that each LP needs to have a certain percentage of their commitment amount on the order book for a minimum amount of time in each epoch.
 
-The percentage of your commitment amount and minimum time are set for each individual market. You can [query a market details](../../api/rest/data-v2/trading-data-service-get-market.api.mdx) or review a market's [governance proposal](../../api/rest/data-v2/trading-data-service-list-governance-data.api.mdx) to see the SLA requirements. 
+The percentage of your commitment amount and minimum time are set for each individual market. You can [query a market details](../../api/rest/data-v2/trading-data-service-get-market.api.mdx) or review a market's [governance proposal](../../api/rest/data-v2/trading-data-service-list-governance-data.api.mdx) to see the SLA requirements.
 
 These include:
 * [LP price range](provision.md#price-range-for-liquidity-orders) - A price range, set from the mid-price outwards, that your orders must be within to count towards meeting the SLA.
