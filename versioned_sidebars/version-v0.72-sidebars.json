@@ -24,10 +24,6 @@
         },
         [
           {
-            "type": "doc",
-            "id": "api/rest/data-v2/vega-data-node-apis"
-          },
-          {
             "type": "category",
             "label": "Accounts",
             "link": {
@@ -771,10 +767,6 @@
         ],
         [
           {
-            "type": "doc",
-            "id": "api/rest/explorer/vega-block-explorer-apis"
-          },
-          {
             "type": "category",
             "label": "BlockExplorer",
             "link": {
@@ -805,10 +797,6 @@
           }
         ],
         [
-          {
-            "type": "doc",
-            "id": "api/rest/core/vega-core-apis"
-          },
           {
             "type": "category",
             "label": "Core service",
@@ -876,10 +864,6 @@
           }
         ],
         [
-          {
-            "type": "doc",
-            "id": "api/rest/state/vega-core-state-apis"
-          },
           {
             "type": "category",
             "label": "Core State",
