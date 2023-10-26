@@ -22,9 +22,9 @@ Providing liquidity is a significant and active commitment to providing orders o
 :::
 
 ## Rewarding liquidity providers
-Participants who provide enough liquidity to meet the [liquidity SLA](../concepts/liquidity/rewards-penalties.md#liquidity-sla) earn from liquidity fees, which are paid by the *price takers* on each trade. The SLA requires that you provide a specified amount of liquidity for a specified amount of time in order to receive any liquidity fee revenue.
+Participants who provide enough liquidity to meet the **[liquidity SLA](../concepts/liquidity/rewards-penalties.md#liquidity-sla)** earn from liquidity fees, which are paid by the *price takers* on each trade. The SLA requires that you provide a specified amount of liquidity for a specified amount of time in order to receive any liquidity fee revenue.
 
-The percentage charged to each price taker is determined by sorting all the proposed fee factors. In your liquidity commitment submission, you need to propose a *fee factor*, as a decimalised number that is converted to a percentage. 
+The percentage charged to each price taker is determined by sorting all the proposed fee factors. In your liquidity commitment submission, you need to propose a *fee factor*, as a decimalised number that is converted to a percentage.
 
 Your proposed fee factor is used, with other proposed fee factors, to determine the market's liquidity fee. Once the fee for the market is set, all liquidity orders charge that fee, regardless of whether the provider's submitted fee was higher or lower, and whether you propose a higher (or lower) factor, you are still a liquidity provider. The proposed fee factors are used to calculate the actual fee each participant will pay on a trade in that market.
 
@@ -50,7 +50,7 @@ This tutorial describes how to create, amend or cancel, and send a liquidity com
 **The liquidity commitment submission must include**:
 * The **market’s unique ID**, denoted as `marketId` - Confirm that the market is in a state to accept liquidity commitment, and is not a rejected market, has not had trading terminated, or has not been settled 
 * **Liquidity commitment amount**: The amount of funds that you want to allocate to providing liquidity. The amount will be moved into a bond account for the duration of your liquidity commitment, denoted as `commitmentAmount`
-* **Proposed liquidity fee**: The scaling factor for the fee you are bidding to receive when your order is matched, on a scale between 0 and the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.maximumLiquidityFeeFactorLevel" />. For example, a fee level of 0.01 would mean `0.01 * total trade amount` is charged. Note: Your proposed fee is used along with other proposed fees and commitments to determine the actual fee percentage for the market. [Learn how all proposed fee levels influence the market's fees]). Denoted as `fee` Denoted as `fee`
+* **Proposed liquidity fee**: The scaling factor for the fee you are bidding to receive when your order is matched, on a scale between 0 and the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.maximumLiquidityFeeFactorLevel" />. For example, a fee level of 0.01 would mean `0.01 * total trade amount` is charged. Note: Your proposed fee is used along with other proposed fees and commitments to determine the actual fee percentage for the market. [Learn how all proposed fee levels influence the market's fees](../concepts/liquidity/rewards-penalties.md#determining-the-liquidity-fee-percentage)). Denoted as `fee`
 
 **To submit the liquidity commitment message, you'll also need**: 
 
