@@ -93,7 +93,7 @@ We recommend checking all of the changes on your own. Follow the below instructi
 #### `Snapshot.StartHeight`
 
 - `config file`: vega-core
-- `description`: The behavior of the parameter `Snapshot.StartHeight` changed, and its default value has been updated from `-1` to `0`. **However, we DO NOT recommend changing this parameter before successfully migrating to version 0.73.0!**. Prior 0.73, setting this parameter to `0` triggers the removal of the existing snapshots. If you start with the wrong binary or end up with a rollback, your node will use the old behavior and remove existing snapshots. For the new logic to load a snapshot, see the below pseudocode block.
+- `description`: The behaviour of the parameter `Snapshot.StartHeight` changed, and its default value has been updated from `-1` to `0`. **However, we DO NOT recommend changing this parameter before successfully migrating to version 0.73.0!** Prior 0.73, setting this parameter to `0` triggers the removal of the existing snapshots. If you start with the wrong binary or end up with a rollback, your node will use the old behaviour and remove existing snapshots. For the new logic to load a snapshot, see the below pseudocode block.
 - `kind`: parameter change
 
 ```toml title="YOUR_VEGA_HOME/config/node/config.toml"
