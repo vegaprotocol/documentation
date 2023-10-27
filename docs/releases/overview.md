@@ -54,13 +54,14 @@ In the previous liquidity model, providers would make a commitment and define a 
 | Network parameter | Default | Description |
 | ----------- | ----------- | ----------- |
 | market.liquidity.sla.nonPerformanceBondPenaltySlope | 1 |  Not meeting the SLA deprives an LP of liquidity fee revenue, and a sliding penalty is applied. How much penalty is based on the value of this network parameter. |
-| market.liquidity.sla.nonPerformanceBondPenaltyMax | 0.5 |  Not meeting the SLA deprives an LP of liquidity fee revenue, and a sliding penalty is applied. How much penalty is based on the value of this network parameter. |
+| market.liquidity.sla.nonPerformanceBondPenaltyMax | 0.5 (5%) | Defines the maximum penalty on that sliding scale that will be applied to the liquidity provider’s bond account if they do not meet SLA.
+ |
 
 - All existing markets will have the following default parameters applied:
 
 | Market parameter | Default | Description |
 | ----------- | ----------- | ----------- |
-| priceRange | 0.05 |  Maximum range from the mid price for orders to count towards SLA. |
+| priceRange | 0.05 (5%) |  Maximum range on both sides of the mid price that orders need to be in to count towards SLA. |
 | commitmentMinTimeFraction | 0.95 (95%) |  Minimum per epoch that LPs must meet their commitment “on the book” in the price range to avoid penalties. |
 | performanceHysteresisEpochs | 1 |  Number of epochs for which past performance will affect future fee revenue. |
 | slaCompetitionFactor | 0.9 (90%) |  Amount of an LP’s accrued fees that may be allocated to other better scoring providers. |
