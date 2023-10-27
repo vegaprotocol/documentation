@@ -22,7 +22,6 @@ All of the details for the volume discount program are proposed and accepted thr
 :::
 
 ## Referral program
-
 Traders can earn a commission for referring new users when a referral program is enabled. New users get a discount on their fees, while whoever refers them gets a cut of their referees’ trading fees. How much commission the referrer receives is increased if they have VEGA associated to their public key.
 
 The referral program only exists if it's been enabled through a governance proposal. Once it's enabled, both the requirements and benefits can also be replaced with a new program, also using a governance proposal.
@@ -32,7 +31,7 @@ You can see what the current program offers by checking the [referral program AP
 Create a referral code, or enter a referral code you've been given on the [referrals section of Console](https://vegafairground.eth.limo/#/referrals).
 
 :::note Read more
-* [Tutorial: Propose enabling or changing the referral program][tutorial](../../tutorials/proposals/referral-program-proposal.md)
+* [Tutorial: Propose enabling or changing the referral program](../../tutorials/proposals/referral-program-proposal.md)
 * [Spec: Technical design of the referral program ↗](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0083-RFPR-on_chain_referral_program.md).
 :::
 
@@ -60,20 +59,25 @@ How long rewards stay in the *reward vesting account* depends on the lock period
 
 Then, a proportion of the rewards move into the vested account each epoch: <NetworkParameter frontMatter={frontMatter} name="current rate" param="rewards.vesting.baseRate" formatter="percent" />. That percentage can be higher if you have an [activity streak](#activity-streak) going.
 
+### Reward hoarder bonus
+Leaving your reward earnings in your vested account will increase your share of the trading rewards you've accrued. How much extra you get depends on your total rewards balance, whether it's locked or vested.
+
+You can see the current reward hoarder bonus requirements and benefits on the [block explorer ↗](https://explorer.fairground.wtf/network-parameters#rewards.vesting.benefitTiers), or querying the [network parameters API](../../api/rest/data-v2/trading-data-service-list-network-parameters.api.mdx) for the `rewards.vesting.benefitTiers` network parameter.
+
+These tiers are set through network parameters, and thus can be changed through [governance](../governance.md#network-parameter-governance).
+
 ## Activity streak 
-**[WIP]**
-The activity streak program lets consistently active traders get a greater share of rewards schemes and a quicker vesting rate on locked rewards for keeping a position open and/or placing trades.
+Traders that keep up an activity streak, either by placing trades or keeping a position open over several epochs, can receive a greater share of rewards and their locked reward proceeds will be available sooner.
 
-Maintaining an activity streak gives you access to greater benefits as your streak grows. Activity streaks are measured in epochs. 
+Keeping up your activity gives you access to greater benefits as your streak grows. Activity streaks are measured in epochs.
 
-Streaks are set through network parameters: 
+You need a minimum trade volume of <NetworkParameter frontMatter={frontMatter} param="rewards.activityStreak.minQuantumTradeVolume" hideName={true} /> and a minimum open volume of <NetworkParameter frontMatter={frontMatter} param="rewards.activityStreak.minQuantumOpenVolume" hideName={true} /> (both expressed in quantum) to be considered active.
 
-    rewards.activityStreak.benefitTiers: is an ordered list of dictionaries defining the requirements and benefits for each tier.
-    rewards.activityStreak.inactivityLimit: the maximum number of epochs a trader can be inactive before losing their streak.
-    rewards.activityStreak.minQuantumOpenNotionalVolume: the minimum open notional volume (expressed in quantum) for a trader to be considered active in an epoch
-    rewards.activityStreak.minQuantumTradeVolume: the minimum trade volume (expressed in quantum) for a trader to be considered active in an epoch
+If you go inactive for more than <NetworkParameter frontMatter={frontMatter} param="rewards.activityStreak.inactivityLimit" hideName={true} suffix="epochs"/>, you will lose your streak.
 
-## Reward hoarder bonus [WIP]
+You can see the current activity streak requirements and benefits on the [block explorer ↗](https://explorer.fairground.wtf/network-parameters#rewards.activityStreak.benefitTiers), or querying the [network parameters API](../../api/rest/data-v2/trading-data-service-list-network-parameters.api.mdx) for the `rewards.activityStreak.benefitTiers` network parameter.
+
+The details for activity streaks are set through network parameters, and thus can be changed through [governance](../governance.md#network-parameter-governance).
 
 ## Setting rewards
 Rewards can be set up by anyone to incentivise certain trading behaviours they want to see on a market (or markets). 
@@ -100,9 +104,9 @@ Some rewards measure trader activity over a number of epochs (set per reward). T
 ### How rewards are scaled
 Since rewards can only be provided if they're funded, the [recurring tranfer](../assets/transfers.md#recurring-transfers) that's used to fund those rewards also includes details on how the final reward amount is calculated.
 
-Pro-rata: A participant's reward is scaled based on their activity streak and/or how long they've kept previous reward earnings in their vested rewards account, which will influence how high up the rankings they are.
+**Pro-rata**: A participant's reward is scaled based on their activity streak and/or how long they've kept previous reward earnings in their vested rewards account, which will influence how high up the rankings they are.
 
-Rank: A participant's reward is scaled based on where they sit on the list of traders who are eligible for the reward. Those higher up the list receive a higher ratio of the reward for each reward period.
+**Rank**: A participant's reward is scaled based on where they sit on the list of traders who are eligible for the reward. Those higher up the list receive a higher ratio of the reward for each reward period.
 
 ## Available trading rewards
 As rewards are distributed based on certain criteria, they need to be defined and measured. Each reward dispatch metric is calculated per party, once at the end of each epoch.
