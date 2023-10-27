@@ -106,7 +106,7 @@ Providing a party has been associated with a referral set for long enough, they 
 
 Trading rewards have increased to include 3 new reward types, and validator node operators can also benefit from a new reward.
 
-See details on the [trading rewards page](../concepts/trading-on-vega/fees-rewards.md#trading-rewards) and the [validator rewards page](../concepts/vega-chain/validator-scores-and-rewards.md#validator-metric-based-rewards).
+See details on the [trading rewards page](../concepts/trading-on-vega/discounts-rewards.md#trading-rewards) and the [validator rewards page](../concepts/vega-chain/validator-scores-and-rewards.md#validator-metric-based-rewards).
 
 ## Pre-release version 0.72.5 | 2023-07-20
 This version was released to the Vega testnet on 20 July, 2023.
