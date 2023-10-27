@@ -104,8 +104,8 @@ The formula above uses these network parameters:
 * Scaling factor: <NetworkParameter frontMatter={frontMatter} param="market.stake.target.scalingFactor" />
 
 :::note Go deeper
-[Target stake calculations spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0041-TSTK-target_stake.md): Read the spec for details on how target stake is calculated by the protocol.
-[Liquidity mechanics spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0044-LIME-lp_mechanics.md) Explore liquidity calculations in more depth.
+* [Target stake calculations spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0041-TSTK-target_stake.md): Read the spec for details on how target stake is calculated by the protocol.
+* [Liquidity mechanics spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0044-LIME-lp_mechanics.md) Explore liquidity calculations in more depth.
 :::
 
 #### Amending and cancelling a liquidity commitment 
