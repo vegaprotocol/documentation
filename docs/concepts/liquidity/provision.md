@@ -31,8 +31,8 @@ Anyone that supplies limit orders is eligible to receive maker fees when volume 
 
 You need to have enough available assets to cover the margin for your orders and the positions that will be generated from trades.
 
-## Liquidity commitments 
-If you want to provide liquidity and receive a portion of liquidity fees paid, you need to submit a liquidity commitment transaction. The commitment is the amount of stake an LP places as bond on the market, to earn rewards.
+## Liquidity commitments
+If you want to provide liquidity and receive a portion of liquidity fees paid, you need to submit a [liquidity commitment transaction](../../tutorials/committing-liquidity.md). The commitment is the amount of stake an LP places as bond on the market, to earn rewards.
 
 You will need enough of the settlement asset to set aside as bond and then to fulfill the orders to meet your commitment. 
 
@@ -43,12 +43,13 @@ The commitment transaction needs to contain:
 * Commitment amount, to be held as [bond](#liquidity-bond)
 * [Liquidity fee factor](../liquidity/rewards-penalties.md#determining-the-liquidity-fee-percentage)
 
-The amount an LP will actually need to have available on the order book is called the ‘liquidity obligation’.
+### Required amount of liquidity
+The amount an LP will actually need to have available on the order book is called the **liquidity obligation**.
 
 That is calculated by:
 `Commitment * market.liquidity.stakeToCcyVolume`, measured in `price level x volume`, i.e. settlement currency of the market.
 
-Once you commit to a market, you need to meet the minimum set by the [liquidity SLA](./rewards-penalties.md#liquidity-sla). Exceeding the minimum leads to more fee revenue. Not meeting the minimum means fee revenue is withheld, plus extra penalties.
+Once you commit to a market, you need to meet the minimum set by the **[liquidity SLA](./rewards-penalties.md#liquidity-sla)**. The percentage of your commitment amount and minimum time are set for each individual market. Exceeding the minimum leads to more fee revenue. Not meeting the minimum means fee revenue is withheld, plus extra penalties.
 
 ## When to commit liquidity
 You can commit liquidity to a market at any time in the [market's lifecycle](../trading-on-vega/market-lifecycle.md) when it is accepting orders.
@@ -103,17 +104,21 @@ The formula above uses these network parameters:
 * Scaling factor: <NetworkParameter frontMatter={frontMatter} param="market.stake.target.scalingFactor" />
 
 :::note Go deeper
-[Target stake calculations spec↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0041-TSTK-target_stake.md): Read the spec for details on how target stake is calculated by the protocol.
-[Liquidity mechanics spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0044-LIME-lp_mechanics.md) Explore liquidity calculations in more depth.
+* [Target stake calculations spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0041-TSTK-target_stake.md): Read the spec for details on how target stake is calculated by the protocol.
+* [Liquidity mechanics spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0044-LIME-lp_mechanics.md) Explore liquidity calculations in more depth.
 :::
 
 #### Amending and cancelling a liquidity commitment 
-You can also amend or cancel a liquidity commitment. You can submit the transaction at any time, but the change is only enacted at the start of the following epoch. If you increase your commitment, the extra assets are moved into your bond account immediately.
+You can also amend or cancel a liquidity commitment. 
 
-Decreasing or cancelling your liquidity commitment will lead to penalties if the market needs that liquidity to stay at its target stake.
+You can submit the transaction at any time, but the change is only enacted at the start of the following epoch. If you increase your commitment, the extra assets are moved into your bond account immediately.
+
+Decreasing or cancelling your liquidity commitment will lead to penalties if the market needs that liquidity to stay at its target stake. 
+
+How much of your bond is forfeited is determined by the **early exit penalty**, set per each market. You can [query a market details](../../api/rest/data-v2/trading-data-service-get-market.api.mdx) or review a market's [governance proposal](../../api/rest/data-v2/trading-data-service-list-governance-data.api.mdx) to see the early exit penalty.
 
 Your equity-like share is also reduced in line with a liquidity commitment decrease. 
 
 If there are any open positions that were created from your orders, they will not be closed when your liquidity commitment is cancelled.
 
-The transaction to amend a liquidity commitment includes the same fields as submitting a commitment, just modify the fields you want to be amended with your new values. The cancel transaction only requires the market ID for the market that you want stop committing on.  
+The transaction to amend a liquidity commitment includes the same fields as submitting a commitment, just modify the fields you want to be amended with your new values. The cancel transaction only requires the market ID for the market that you want stop committing on.
