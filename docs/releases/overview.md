@@ -54,7 +54,7 @@ In the previous liquidity model, providers would make a commitment and define a 
 | Network parameter | Default | Description |
 | ----------- | ----------- | ----------- |
 | market.liquidity.sla.nonPerformanceBondPenaltySlope | 1 |  Not meeting the SLA deprives an LP of liquidity fee revenue, and a sliding penalty is applied. How much penalty is based on the value of this network parameter. |
-| market.liquidity.sla.nonPerformanceBondPenaltyMax | 0.5 (5%) | Defines the maximum penalty on that sliding scale that will be applied to the liquidity provider’s bond account if they do not meet SLA.
+| market.liquidity.sla.nonPerformanceBondPenaltyMax | 0.5 (50%) | Defines the maximum penalty on that sliding scale that will be applied to the liquidity provider’s bond account if they do not meet SLA.
  |
 
 - All existing markets will have the following default parameters applied:
