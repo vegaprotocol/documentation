@@ -40,11 +40,11 @@ At a high level, this change replaces the legacy system that requires LPs to be 
 - LPs that have a better performance against the SLA receive more rewards, ensuring there is an incentive to do more than the bare minimum if market conditions allow.
 - LPs that commit and do not meet the SLA within the LP price range will lose fee revenue and have a sliding penalty applied to their bond account, depending on if their underperformance continues.
 
-How this is different: 
+**How this is different:**
 
 In the previous liquidity model, providers would make a commitment and define a “shape” in their liquidity provision order. Any of their commitment volume that wasn't on the book from limit orders would be filled by orders that were automatically deployed based on the shape they defined. In this release, “shapes” are being removed and providers will now be required to deploy their own orders to fulfill their liquidity obligation.
 
-What to expect during the migration:
+**What to expect during the migration:**
 
 - All existing orders deployed as a result of the LP shapes will be canceled immediately.
 - Any active liquidity provision orders will be converted to align to the new liquidity protocol implementation by removing the definition of the buy / sell shape.
