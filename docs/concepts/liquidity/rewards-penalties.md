@@ -42,11 +42,16 @@ Read more about how it works: [Dividing liquidity fees among LPs](#dividing-liqu
 ### Liquidity SLA
 When committing to provide liquidity, you enter into an agreement to receive a portion of fees paid by traders in return for keeping the market liquid.
 
-The terms of that agreement, called the liquidity SLA, are that each LP needs to have a certain percentage of their commitment amount on the order book for a minimum amount of time in each epoch. 
+The terms of that agreement, called the liquidity SLA, are that each LP needs to have a certain percentage of their commitment amount on the order book for a minimum amount of time in each epoch.
 
-The commitment amount and minimum time are set for each individual market. You can [query a market details](../../api/rest/data-v2/trading-data-service-get-market.api.mdx) or review a market's [governance proposal](../../api/rest/data-v2/trading-data-service-list-governance-data.api.mdx) to see the SLA requirements.
+The percentage of your commitment amount and minimum time are set for each individual market. You can [query a market details](../../api/rest/data-v2/trading-data-service-get-market.api.mdx) or review a market's [governance proposal](../../api/rest/data-v2/trading-data-service-list-governance-data.api.mdx) to see the SLA requirements.
 
-Doing less than the minimum means liquidity fee payments will be withheld for that epoch, and it will have an impact on [future fee revenue earnings](#penalties-for-not-meeting-sla). Everything at, or above, the minimum means some amount of your accrued fee amount will be paid. The better you do against the SLA, the more fee revenue you'll receive. 
+These include:
+* [LP price range](provision.md#price-range-for-liquidity-orders) - A price range, set from the mid-price outwards, that your orders must be within to count towards meeting the SLA.
+* Minimum time on book - The fraction of time in an epoch that you must spend on the book providing your liquidity obligation.
+* Competition factor - If you meet the SLA but another liquidity provider exceeds it, you may forefit some of your accrued fees to that provider. The value is a factor that's converted to a percentage.
+
+Doing less than the minimum means liquidity fee payments will be withheld for that epoch, it will have an impact on [future fee revenue earnings](#penalties-for-not-meeting-sla), and a sliding penalty will be applied to your bond. Everything at, or above, the minimum means some amount of your accrued fee amount will be paid. The better you do against the SLA, the more fee revenue you'll receive.
 
 <!--
 Read more: How SLA performance is calculated (spec when out of CE branch)
@@ -114,7 +119,6 @@ A market has 4 LPs with equity-like share. Each LP has the same liquidity score 
 
 Participants trade on the market, and the `trade value for fee purposes` multiplied by the `liquidity fee factor` equals 103.5 ETH (the market's settlement asset).
 
-
 Thus, the following amounts are then transferred to each LP's margin account once the time-step elapses:
 
 * LP 1 receives: 0.65 x 103.5 = 67.275 ETH
@@ -129,13 +133,15 @@ Thus, the following amounts are then transferred to each LP's margin account onc
 
 ### Penalties for not meeting SLA
 
-Not meeting the SLA deprives you of all liquidity fee revenue, and a sliding penalty is applied. How much penalty is based on the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltySlope" />. The penalty that can be charged is capped by the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltyMax" /> network parameter.
+Not meeting the SLA deprives you of all liquidity fee revenue, and a sliding penalty is applied to your bond amount. How much penalty is based on the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltySlope" />. It determines how steeply the bond penalty increases linearly, until it reaches the maximum. The maximum penalty that can be charged is capped by the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltyMax" /> network parameter.
 
 See the full calculation in the [setting fees and rewarding LPs spec ↗](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#calculating-the-sla-performance-penalty-for-a-single-epoch).
 
 Not meeting the SLA will also affect future fee revenue, even in epochs when the SLA is met. The number of epochs that are used to determine performance is called the `performanceHysteresisEpochs`. This number is defined in a market's parameters. If the parameter is set to 0, it will only count the just-completed epoch. If set to 1, the fee revenue is impacted by the just-completed epoch and the one before.
 
-You can [query a market details](../../api/rest/data-v2/trading-data-service-get-market.api.mdx) or review a market's [governance proposal](../../api/rest/data-v2/trading-data-service-list-governance-data.api.mdx) to see how the past performance will impact rewards.
+If you decrease or cancel your liquidity commitment below the market's target stake, you may forfeit some of your bond. This is called the early exit penalty.
+
+You can [query a market details](../../api/rest/data-v2/trading-data-service-get-market.api.mdx) or review a market's [governance proposal](../../api/rest/data-v2/trading-data-service-list-governance-data.api.mdx) to see how the past performance will impact rewards, and what the early exit penalty is set at.
 
 ### Penalties for not supporting orders 
 Not being able to support the orders you posted using funds in your general and/or margin accounts will put you at risk of closeout, and can put the market into a situation where there is not enough liquidity.
@@ -155,7 +161,7 @@ The penalty formula defines how much will be removed from the bond account:
 
 `bond penalty = market.liquidity.bondPenaltyParameter ⨉ shortfall`
 
-* <NetworkParameter frontMatter={frontMatter} param="market.liquidity.bondPenaltyParameter" hideName={false} hideValue={true} /> can be changed through governance
+* <NetworkParameter frontMatter={frontMatter} param="market.liquidity.bondPenaltyParameter" hideName={false} hideValue={true} /> can be changed through governance.
 * shortfall refers to the absolute value of the funds that: 
   * the liquidity provider was unable to cover through margin and general accounts
   * are needed for settlement
