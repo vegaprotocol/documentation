@@ -26,9 +26,9 @@ This pre-release contains several new features, including the new product type p
 
 ### Breaking changes
 
-The snapshot configuration `load-from-block-height` no longer accepts -1 as a value. From 0.73.0 onwards, the value of 0 must be used to reload from the latest snapshot. Along with this change the snapshot configuration `snapshot-keep-recent` only accepts values from 1 to 10 inclusive. These changes have been included in the issue [8679](https://github.com/vegaprotocol/vega/issues/8679) and will be documented in 0.73 deployment instructions.
+The snapshot configuration `load-from-block-height` no longer accepts -1 as a value. From 0.73.0 onwards, the value of 0 must be used to reload from the latest snapshot. Along with this change the snapshot configuration `snapshot-keep-recent` only accepts values from 1 to 10 inclusive. These changes have been included in the issue [8679 ↗](https://github.com/vegaprotocol/vega/issues/8679) and are documented in [0.73 deployment instructions](../node-operators/migration-guides/upgrade-node.md).
 
-The `AssetID` field on the `ExportLedgerEntriesRequest` gRPC API, for exporting ledger entries, has had its type changed in order to make it optional. This change has been included in the issue [8944](https://github.com/vegaprotocol/vega/issues/8944)
+The `AssetID` field on the `ExportLedgerEntriesRequest` gRPC API, for exporting ledger entries, has had its type changed in order to make it optional. This change has been included in the issue [8944 ↗](https://github.com/vegaprotocol/vega/issues/8944)
 
 ### New features
 
@@ -67,9 +67,9 @@ In the previous liquidity model, providers would make a commitment and define a 
 
 For full details on these network and market parameters and what they represent please read the [liquidity concepts pages](../concepts/liquidity/index.md).
 
-We advise any existing liquidity providers to use [Console on Fairground](console.fairground.wtf/) or the APIs to experiment with the new liquidity protocol ahead of the release to ensure they are comfortable with the changes. 
+We advise any existing liquidity providers to use [Console on Fairground ↗](https://console.fairground.wtf/) or the APIs to experiment with the new liquidity protocol ahead of the release to ensure they are comfortable with the changes. 
 
-To see lower level details of how the new SLA liquidity feature is designed check out the following [spec](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0044-LIME-lp_mechanics.md). The work items completed on this feature can be seen on issues and pull requests with the [`liquidity-sla`](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Aliquidity-sla+) label.
+To see lower level details of how the new SLA liquidity feature is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0044-LIME-lp_mechanics.md). The work items completed on this feature can be seen on issues and pull requests with the [`liquidity-sla` ↗](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Aliquidity-sla+) label.
 
 #### Perpetual futures markets
 
@@ -79,14 +79,14 @@ Payments are periodically exchanged between holders of the two sides, long and s
 
 Along with this new product, there are new market governance options that provide the option to suspend, resume or terminate a market via a community proposal and vote.
 
-To learn more about the implementation of perpetual markets on Vega see the [spec](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0053-PERP-product_builtin_perpetual_future.md). The work items completed on this feature can be seen on issues and pull requests with the [`perpetual`](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Aperpetual) label.
+To learn more about the implementation of perpetual markets on Vega see the [spec](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0053-PERP-product_builtin_perpetual_future.md). The work items completed on this feature can be seen on issues and pull requests with the [`perpetual` ↗](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Aperpetual) label.
 
 #### Ethereum oracles
 In the current mainnet state, the markets on Vega are settled and terminated with data that come from centralised sources.
 
 With this more flexible Ethereum oracle framework, there will be a new way to source data from the Ethereum blockchain, allowing for arbitrary data from Ethereum to be ingested as a data source. This had no impact on the already-existing Ethereum bridge.
 
-To see more details check out this [spec](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0082-ETHD-ethereum-data-source.md). The work items completed on this feature can be seen on issues and pull requests with the [`ethereum-oracles`](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Aethereum-oracles+) label.
+To see more details check out this [spec ↗](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0082-ETHD-ethereum-data-source.md). The work items completed on this feature can be seen on issues and pull requests with the [`ethereum-oracles` ↗](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Aethereum-oracles+) label.
 
 #### Referral program
 
@@ -99,7 +99,7 @@ Whilst a referral program is active, the following benefits may be available to 
 - A referrer may receive a proportion of referee's paid fees as a reward.
 - A referee may be eligible for a discount on fees they incur.
 
-Providing a party has been associated with a referral set for long enough, they will become eligible for greater benefits as their referral set's running taker volume increases. To see more details check out this [spec](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0083-RFPR-on_chain_referral_program.md). The work items completed on this feature can be seen on issues and pull requests with the [`referral `](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Areferral+) label.
+Providing a party has been associated with a referral set for long enough, they will become eligible for greater benefits as their referral set's running taker volume increases. To see more details check out this [spec ↗](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0083-RFPR-on_chain_referral_program.md). The work items completed on this feature can be seen on issues and pull requests with the [`referral ` ↗](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Areferral+) label.
 
 #### Expanded reward opportunities
 
@@ -115,7 +115,7 @@ This pre-release contains several new features, including the ability to propose
 It also includes fixes to several APIs, including the API for exporting ledger entries.
 
 ### Deprecation
-The unused rewards-related network parameter `reward.staking.delegation.payoutFraction` has been deprecated and will be removed in the next release. This was done in [8280](https://github.com/vegaprotocol/vega/issues/8280).
+The unused rewards-related network parameter `reward.staking.delegation.payoutFraction` has been deprecated and will be removed in the next release. This was done in [8280 ↗](https://github.com/vegaprotocol/vega/issues/8280).
 
 ### New features
 **Stop orders**
@@ -128,13 +128,13 @@ An iceberg order is a limit order for a large amount that, rather than being ent
 A successor market is a market that will carry on after the original market, or parent, that it is based on has settled, which offers liquidity providers the option to keep their equity-like share on the new market, even after the original market expires.
 
 ### Fixes
-Profit and loss data was flickering between different values when subscribed to. This is fixed in [8362](https://github.com/vegaprotocol/vega/issues/8362).
+Profit and loss data was flickering between different values when subscribed to. This is fixed in [8362 ↗](https://github.com/vegaprotocol/vega/issues/8362).
 
-Settled markets did not have a close timestamp available in the API. Fixed in [8186](https://github.com/vegaprotocol/vega/issues/8186).
+Settled markets did not have a close timestamp available in the API. Fixed in [8186 ↗](https://github.com/vegaprotocol/vega/issues/8186).
 
-Added number of decimal places to data source events, so it can be determined how many decimal places are being referenced. Done in [8206](https://github.com/vegaprotocol/vega/issues/8206).
+Added number of decimal places to data source events, so it can be determined how many decimal places are being referenced. Done in [8206 ↗](https://github.com/vegaprotocol/vega/issues/8206).
 
-The estimate positions endpoint did not correctly validate data, meaning it would accept values that it could not use. Fixed in [8222](https://github.com/vegaprotocol/vega/issues/8222).
+The estimate positions endpoint did not correctly validate data, meaning it would accept values that it could not use. Fixed in [8222 ↗](https://github.com/vegaprotocol/vega/issues/8222).
 
 Check out the full details of the main pre-release and the patch bug fixes in the Vega core [0.72.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.0), [0.72.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.1), [0.72.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.2), [0.72.3 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.3), [0.72.4 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.4), [0.72.5 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.5) release pages.
 
@@ -146,7 +146,7 @@ This patch release contains a security vulnerability fix, a number of critical f
 ### Security vulnerability
 
 :::caution Security vulnerability
-A security vulnerability was identified that allows a malicious validator (consensus or pending) to trick the Vega network into re-processing past Ethereum events from Vega’s Ethereum bridge. To find out more please see the [security advisory - GHSA-8rc9-vxjh-qjf2](https://github.com/vegaprotocol/vega/security/advisories/GHSA-8rc9-vxjh-qjf2). Please ensure, if running a node, the version has been upgraded to 0.71.6, in which the vulnerability has been fixed.
+A security vulnerability was identified that allows a malicious validator (consensus or pending) to trick the Vega network into re-processing past Ethereum events from Vega’s Ethereum bridge. To find out more please see the [security advisory - GHSA-8rc9-vxjh-qjf2 ↗](https://github.com/vegaprotocol/vega/security/advisories/GHSA-8rc9-vxjh-qjf2). Please ensure, if running a node, the version has been upgraded to 0.71.6, in which the vulnerability has been fixed.
 :::
 
 ### Critical fixes
