@@ -51,7 +51,7 @@ These include:
 * Minimum time on book - The fraction of time in an epoch that you must spend on the book providing your liquidity obligation.
 * Competition factor - If you meet the SLA but another liquidity provider exceeds it, you may forefit some of your accrued fees to that provider. The value is a factor that's converted to a percentage.
 
-Doing less than the minimum means liquidity fee payments will be withheld for that epoch, and it will have an impact on [future fee revenue earnings](#penalties-for-not-meeting-sla). Everything at, or above, the minimum means some amount of your accrued fee amount will be paid. The better you do against the SLA, the more fee revenue you'll receive.
+Doing less than the minimum means liquidity fee payments will be withheld for that epoch, it will have an impact on [future fee revenue earnings](#penalties-for-not-meeting-sla), and a sliding penalty will be applied to your bond. Everything at, or above, the minimum means some amount of your accrued fee amount will be paid. The better you do against the SLA, the more fee revenue you'll receive.
 
 <!--
 Read more: How SLA performance is calculated (spec when out of CE branch)
@@ -133,7 +133,7 @@ Thus, the following amounts are then transferred to each LP's margin account onc
 
 ### Penalties for not meeting SLA
 
-Not meeting the SLA deprives you of all liquidity fee revenue, and a sliding penalty is applied. How much penalty is based on the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltySlope" />. The penalty that can be charged is capped by the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltyMax" /> network parameter.
+Not meeting the SLA deprives you of all liquidity fee revenue, and a sliding penalty is applied to your bond amount. How much penalty is based on the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltySlope" />. The penalty that can be charged is capped by the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltyMax" /> network parameter.
 
 See the full calculation in the [setting fees and rewarding LPs spec ↗](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#calculating-the-sla-performance-penalty-for-a-single-epoch).
 
