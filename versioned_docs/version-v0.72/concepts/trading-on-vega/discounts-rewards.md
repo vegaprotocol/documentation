@@ -1,8 +1,8 @@
 ---
 sidebar_position: 3
-title: Fees and trading rewards
+title: Discounts and rewards
 hide_title: false
-description: Trades can incur fees as well as get rewards.
+description: Traders can get discounts on fees and rewards.
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';

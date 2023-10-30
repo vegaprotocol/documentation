@@ -1,8 +1,8 @@
 ---
 sidebar_position: 3
-title: Fees and trading rewards
+title: Fees
 hide_title: false
-description: Trades can incur fees as well as get rewards.
+description: Trades and transfers can incur fees.
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
