@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
-title: Propose updates to a market
-hide_title: false
+title: Change a futures market
+hide_title: true
 vega_network: TESTNET
 toc: true
 keywords:
@@ -20,7 +20,8 @@ import UpdateMarketWin from './_generated-proposals/_updateMarket_win.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Propose changes to an existing market.
+# Propose changes to futures market
+Propose changes to an existing futures market.
 
 ## Requirements
 
@@ -32,7 +33,7 @@ You will need:
 
 ## Anatomy of an update market proposal
 
-The update market proposal requires the same fields as a new market proposal. See the descriptions in the [new market proposal tutorial](new-market-proposal.md#anatomy-of-a-market-proposal) for more on each field.
+The update futures market proposal requires the same fields as a new futures market proposal. See the descriptions in the [new market proposal tutorial](new-market-proposal.md#anatomy-of-a-market-proposal) for more on each field.
 
 In addition to the parameters you want to change, you must include all existing parameters from the original new market proposal, even if they are not being changed.
 

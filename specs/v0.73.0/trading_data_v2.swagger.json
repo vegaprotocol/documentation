@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Vega data node APIs",
-    "version": "v0.73.0-preview.6"
+    "version": "v0.73.0-rc.1"
   },
   "tags": [
     {
@@ -1341,7 +1341,7 @@
     "/api/v2/estimate/position": {
       "get": {
         "summary": "Estimate position",
-        "description": "Estimate the margin that would be required for maintaining the specified position.\nIf the optional collateral available argument is supplied, the response also contains the estimate of the liquidation price.",
+        "description": "Estimate the margin that would be required for maintaining the specified position. Margin estimates are scaled to asset decimal places.\nIf the optional collateral available argument is supplied, the response also contains the estimate of the liquidation price.\nLiquidation price estimates are scaled to asset decimal places by default, unless an argument to scale to market decimal places is specified in the request.",
         "operationId": "TradingDataService_EstimatePosition",
         "responses": {
           "200": {
@@ -1381,14 +1381,227 @@
           },
           {
             "name": "collateralAvailable",
-            "description": "Optional argument specifying collateral available for the position, if provided then response will contain the liquidation price estimate.",
+            "description": "Collateral available for the position. If provided then response will contain the liquidation price estimate.\nCollateral available needs to be provided scaled to asset decimal places. Liquidation price returned is scaled to asset decimal places by default.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "scaleLiquidationPriceToMarketDecimals",
+            "description": "Whether the liquidation price estimates should be scaled to market decimal places or by asset decimal places. If not set, asset decimal places are used.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "Positions"
+        ]
+      }
+    },
+    "/api/v2/fees/stats": {
+      "get": {
+        "summary": "Get fees statistics",
+        "description": "Get accumulated fees, rewards, and applied discount information. Either a market or an asset must be supplied as filter.",
+        "operationId": "TradingDataService_GetFeesStats",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2GetFeesStatsResponse"
+            }
+          },
+          "500": {
+            "description": "An internal server error",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "marketId",
+            "description": "Restrict fee statistics to those related for the given market.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "assetId",
+            "description": "Restrict fee statistics to those related for the given asset.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "epochSeq",
+            "description": "Epoch to get referral fee statistics for. If not set, the last complete epoch is used.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "partyId",
+            "description": "Restrict fee statistics to those for the given party.",
             "in": "query",
             "required": false,
             "type": "string"
           }
         ],
         "tags": [
-          "Positions"
+          "Fees"
+        ]
+      }
+    },
+    "/api/v2/fees/stats/parties/{partyId}": {
+      "get": {
+        "summary": "Get fees statistics for a party",
+        "description": "Get accumulated fees, rewards, and applied discount information. A party ID must be supplied as filter.",
+        "operationId": "TradingDataService_GetFeesStatsForParty",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2GetFeesStatsForPartyResponse"
+            }
+          },
+          "500": {
+            "description": "An internal server error",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "partyId",
+            "description": "Restrict fees statistics to those for the given party.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "assetId",
+            "description": "Restrict fees statistics to those related to the given asset.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fromEpoch",
+            "description": "Epoch to filter from (included). If omitted, `to epoch` must not be set. If both omitted, the most recent epoch's data is returned.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "toEpoch",
+            "description": "Epoch to filter to (included). If omitted, the range goes from `from epoch` to the most recent epoch.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          }
+        ],
+        "tags": [
+          "Fees"
+        ]
+      }
+    },
+    "/api/v2/funding-payments": {
+      "get": {
+        "summary": "List funding payments",
+        "description": "Get a list of funding payment gains and losses for a party as a result of their position on a perpetual market when a funding\nperiod ends.",
+        "operationId": "TradingDataService_ListFundingPayments",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2ListFundingPaymentsResponse"
+            }
+          },
+          "500": {
+            "description": "An internal server error",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "partyId",
+            "description": "Party ID to get funding payment for.",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "marketId",
+            "description": "Restrict funding payments returned to those generated by the given market.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pagination.first",
+            "description": "Number of records to be returned that sort greater than row identified by cursor supplied in 'after'.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pagination.after",
+            "description": "If paging forwards, the cursor string for the last row of the previous page.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pagination.last",
+            "description": "Number of records to be returned that sort less than row identified by cursor supplied in 'before'.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pagination.before",
+            "description": "If paging forwards, the cursor string for the first row of the previous page.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pagination.newestFirst",
+            "description": "Whether to order the results with the newest records first. If not set, the default value is true.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "Markets"
         ]
       }
     },
@@ -1689,7 +1902,7 @@
           },
           {
             "name": "proposalType",
-            "description": "Restrict proposals to those with the given type.\n\n - TYPE_ALL: List all proposals\n - TYPE_NEW_MARKET: List new market proposals\n - TYPE_UPDATE_MARKET: List update market proposals\n - TYPE_NETWORK_PARAMETERS: List change Vega network parameter proposals\n - TYPE_NEW_ASSET: New asset proposals\n - TYPE_NEW_FREE_FORM: Proposals for creating a new free form proposal\n - TYPE_UPDATE_ASSET: Update asset proposals",
+            "description": "Restrict proposals to those with the given type.\n\n - TYPE_ALL: List all proposals\n - TYPE_NEW_MARKET: List new market proposals\n - TYPE_UPDATE_MARKET: List update market proposals\n - TYPE_NETWORK_PARAMETERS: List change Vega network parameter proposals\n - TYPE_NEW_ASSET: New asset proposals\n - TYPE_NEW_FREE_FORM: Proposals for creating a new free form proposal\n - TYPE_UPDATE_ASSET: Update asset proposals\n - TYPE_NEW_SPOT_MARKET: Propose a new spot market\n - TYPE_UPDATE_SPOT_MARKET: Update an existing spot market\n - TYPE_NEW_TRANSFER: Propose a new transfer\n - TYPE_CANCEL_TRANSFER: Proposal to cancel a transfer\n - TYPE_UPDATE_MARKET_STATE: Proposal for updating the state of a market\n - TYPE_UPDATE_REFERRAL_PROGRAM: Proposal to update the referral program\n - TYPE_UPDATE_VOLUME_DISCOUNT_PROGRAM: Proposal to update the volume discount program",
             "in": "query",
             "required": false,
             "type": "string",
@@ -1701,7 +1914,14 @@
               "TYPE_NETWORK_PARAMETERS",
               "TYPE_NEW_ASSET",
               "TYPE_NEW_FREE_FORM",
-              "TYPE_UPDATE_ASSET"
+              "TYPE_UPDATE_ASSET",
+              "TYPE_NEW_SPOT_MARKET",
+              "TYPE_UPDATE_SPOT_MARKET",
+              "TYPE_NEW_TRANSFER",
+              "TYPE_CANCEL_TRANSFER",
+              "TYPE_UPDATE_MARKET_STATE",
+              "TYPE_UPDATE_REFERRAL_PROGRAM",
+              "TYPE_UPDATE_VOLUME_DISCOUNT_PROGRAM"
             ],
             "default": "TYPE_UNSPECIFIED"
           },
@@ -1866,7 +2086,7 @@
     "/api/v2/ledgerentry/history": {
       "get": {
         "summary": "List ledger entries",
-        "description": "Get a list of ledger entries within the given date range.\nThis query requests and sums the number of ledger entries from a given subset of accounts, specified via the 'filter' argument.\nIt returns a time series - implemented as a list of AggregateLedgerEntry structs - with a row for every time\nthe summed ledger entries of the set of specified accounts changes.\nEach account filter must contain no more than one party ID.\n\nEntries can be filtered by:\n  - the sending account (market ID, asset ID, account type)\n  - receiving account (market ID, asset ID, account type)\n  - sending AND receiving account\n  - transfer type either in addition to the above filters or as a standalone option",
+        "description": "Get a list of ledger entries within the given date range. The date range is restricted to a maximum of 5 days.\nThis query requests and sums the number of ledger entries from a given subset of accounts, specified via the 'filter' argument.\nIt returns a time series - implemented as a list of AggregateLedgerEntry structs - with a row for every time\nthe summed ledger entries of the set of specified accounts changes.\nEach account filter must contain no more than one party ID.\nAt least one party ID must be specified in the from or to account filter.\n\nEntries can be filtered by:\n  - the sending account (market ID, asset ID, account type)\n  - receiving account (market ID, asset ID, account type)\n  - sending AND receiving account\n  - transfer type either in addition to the above filters or as a standalone option",
         "operationId": "TradingDataService_ListLedgerEntries",
         "responses": {
           "200": {
@@ -2147,10 +2367,209 @@
         ]
       }
     },
+    "/api/v2/liquidity/all-provisions": {
+      "get": {
+        "summary": "List liquidity provisions",
+        "description": "Get a list of liquidity provisions for a given market. This API returns a current and pending liquidity provision\nin the event that a provision has been updated by the provider but the updated provision will not be active until the next epoch.",
+        "operationId": "TradingDataService_ListAllLiquidityProvisions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2ListAllLiquidityProvisionsResponse"
+            }
+          },
+          "500": {
+            "description": "An internal server error",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "marketId",
+            "description": "Restrict liquidity provisions to those placed on the given market.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "partyId",
+            "description": "Restrict liquidity provisions to those placed by the given party.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "reference",
+            "description": "Restrict liquidity provisions to those with the given order reference.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "live",
+            "description": "Whether to include live liquidity provisions. If not set, live orders will not be included.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "pagination.first",
+            "description": "Number of records to be returned that sort greater than row identified by cursor supplied in 'after'.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pagination.after",
+            "description": "If paging forwards, the cursor string for the last row of the previous page.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pagination.last",
+            "description": "Number of records to be returned that sort less than row identified by cursor supplied in 'before'.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pagination.before",
+            "description": "If paging forwards, the cursor string for the first row of the previous page.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pagination.newestFirst",
+            "description": "Whether to order the results with the newest records first. If not set, the default value is true.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "Liquidity"
+        ]
+      }
+    },
+    "/api/v2/liquidity/paidfees": {
+      "get": {
+        "summary": "List paid liquidity fees data",
+        "description": "List information about paid liquidity fees for a given market, or asset ID.",
+        "operationId": "TradingDataService_ListPaidLiquidityFees",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2ListPaidLiquidityFeesResponse"
+            }
+          },
+          "500": {
+            "description": "An internal server error",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "marketId",
+            "description": "Restrict fee data to those fees generated in the given market.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "assetId",
+            "description": "Restrict fee statistics to those paid in the given asset.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "epochSeq",
+            "description": "Epoch to get paid liquidity fee statistics for. If omitted, the last complete epoch is used.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "partyIds",
+            "description": "Restrict fee data to those fees paid to the given parties.",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "pagination.first",
+            "description": "Number of records to be returned that sort greater than row identified by cursor supplied in 'after'.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pagination.after",
+            "description": "If paging forwards, the cursor string for the last row of the previous page.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pagination.last",
+            "description": "Number of records to be returned that sort less than row identified by cursor supplied in 'before'.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pagination.before",
+            "description": "If paging forwards, the cursor string for the first row of the previous page.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pagination.newestFirst",
+            "description": "Whether to order the results with the newest records first. If not set, the default value is true.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "Liquidity"
+        ]
+      }
+    },
     "/api/v2/liquidity/providers": {
       "get": {
         "summary": "List liquidity providers data",
-        "description": "List information about active liquidity provider(s) for a given market, or liquidity provider's party ID",
+        "description": "List information about active liquidity provider(s) for a given market, or liquidity provider's party ID.",
         "operationId": "TradingDataService_ListLiquidityProviders",
         "responses": {
           "200": {
@@ -2175,14 +2594,14 @@
         "parameters": [
           {
             "name": "marketId",
-            "description": "Market ID to retrieve liquidity providers for.",
+            "description": "Market ID to retrieve liquidity providers for. If omitted, you must provide a party ID.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "partyId",
-            "description": "Party ID to retrieve data for.",
+            "description": "Party ID to retrieve data for. If omitted, you must provide a market ID.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -2226,14 +2645,14 @@
           }
         ],
         "tags": [
-          "Liquidity providers"
+          "Liquidity"
         ]
       }
     },
     "/api/v2/liquidity/provisions": {
       "get": {
         "summary": "List liquidity provisions",
-        "description": "Get a list of liquidity provisions for a given market",
+        "description": "DEPRECATED: When a liquidity provider amends a provision, and it's accepted by the network, the pending\nprovision is returned by the API instead of the provision that is currently active.\nUse ListAllLiquidityProvisions instead.",
         "operationId": "TradingDataService_ListLiquidityProvisions",
         "responses": {
           "200": {
@@ -2258,28 +2677,28 @@
         "parameters": [
           {
             "name": "marketId",
-            "description": "Restrict liquidity provision orders to those placed on the given market.",
+            "description": "Restrict liquidity provisions to those placed on the given market.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "partyId",
-            "description": "Restrict liquidity provision orders to those placed by the given party.",
+            "description": "Restrict liquidity provisions to those placed by the given party.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "reference",
-            "description": "Restrict liquidity provision orders to those with the given order reference.",
+            "description": "Restrict liquidity provisions to those with the given order reference.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "live",
-            "description": "Whether to include live liquidity provision orders. If not set, live orders will not be included.",
+            "description": "Whether to include live liquidity provisions. If not set, live orders will not be included.",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -2323,7 +2742,7 @@
           }
         ],
         "tags": [
-          "Liquidity provisions"
+          "Liquidity"
         ]
       }
     },
@@ -2617,6 +3036,45 @@
           {
             "name": "marketId",
             "description": "Market ID of the market to retrieve data for.",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "Markets"
+        ]
+      }
+    },
+    "/api/v2/market/{marketId}/risk/factors": {
+      "get": {
+        "summary": "Get risk factors",
+        "description": "Get risk factor data for a given market",
+        "operationId": "TradingDataService_GetRiskFactors",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2GetRiskFactorsResponse"
+            }
+          },
+          "500": {
+            "description": "An internal server error",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "marketId",
+            "description": "Market ID to get the risk factor for.",
             "in": "path",
             "required": true,
             "type": "string"
@@ -3736,7 +4194,7 @@
           },
           {
             "name": "filter.excludeLiquidity",
-            "description": "Indicator if liquidity provision orders should be included or not in the list.",
+            "description": "Indicator if liquidity provisions should be included or not in the list.",
             "in": "query",
             "required": false,
             "type": "boolean"
@@ -3954,7 +4412,7 @@
     "/api/v2/party/activity/streak/{partyId}": {
       "get": {
         "summary": "List party activity streak",
-        "description": "Get a party's activity across epochs",
+        "description": "Get a party's activity across epochs.",
         "operationId": "TradingDataService_GetPartyActivityStreak",
         "responses": {
           "200": {
@@ -3979,14 +4437,14 @@
         "parameters": [
           {
             "name": "partyId",
-            "description": "The party ID.",
+            "description": "Party ID to get the activity streak for.",
             "in": "path",
             "required": true,
             "type": "string"
           },
           {
             "name": "epoch",
-            "description": "An optional epoch, returns last if not specified.",
+            "description": "Epoch to get the activity streak for. If not set, the last complete epoch is used.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -3994,7 +4452,7 @@
           }
         ],
         "tags": [
-          "Referrals"
+          "Referral program"
         ]
       }
     },
@@ -4131,7 +4589,7 @@
     "/api/v2/referral-programs/current": {
       "get": {
         "summary": "Get current referral program",
-        "description": "Get the on-going referral program.",
+        "description": "Get the current referral program for the network. This program may not be active if it has ended\nand has not been replaced by another.",
         "operationId": "TradingDataService_GetCurrentReferralProgram",
         "responses": {
           "200": {
@@ -4331,6 +4789,14 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "aggregationDays",
+            "description": "Days to aggregate party volume and rewards over. If omitted, 30 days will be used.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
           }
         ],
         "tags": [
@@ -4338,8 +4804,10 @@
         ]
       }
     },
-    "/api/v2/referral-sets/stats/{referralSetId}": {
+    "/api/v2/referral-sets/stats": {
       "get": {
+        "summary": "Get referral set statistics",
+        "description": "Get the total taker volume, and each referee's taker volume and, reward and discount factors for a referral set\nat the latest or a specific epoch. You can also optionally filter for a specific referee's statistics.",
         "operationId": "TradingDataService_GetReferralSetStats",
         "responses": {
           "200": {
@@ -4364,14 +4832,14 @@
         "parameters": [
           {
             "name": "referralSetId",
-            "description": "Unique ID of the set.",
-            "in": "path",
-            "required": true,
+            "description": "Restrict referral set statistics to those for the given referral set.",
+            "in": "query",
+            "required": false,
             "type": "string"
           },
           {
             "name": "atEpoch",
-            "description": "Epoch at which the set's statistics were updated.\nIf omitted, the last received statistics are returned.",
+            "description": "Epoch to get referral set statistics for. If not set, the last complete epoch is used.",
             "in": "query",
             "required": false,
             "type": "string",
@@ -4379,10 +4847,47 @@
           },
           {
             "name": "referee",
-            "description": "Referee's party ID to filter statistics for.\nIf omitted the statistics for all referees will be returned.",
+            "description": "Restrict referral set statisitcs to those for the given referee.",
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "pagination.first",
+            "description": "Number of records to be returned that sort greater than row identified by cursor supplied in 'after'.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pagination.after",
+            "description": "If paging forwards, the cursor string for the last row of the previous page.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pagination.last",
+            "description": "Number of records to be returned that sort less than row identified by cursor supplied in 'before'.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pagination.before",
+            "description": "If paging forwards, the cursor string for the first row of the previous page.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pagination.newestFirst",
+            "description": "Whether to order the results with the newest records first. If not set, the default value is true.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "tags": [
@@ -5122,7 +5627,7 @@
         "parameters": [
           {
             "name": "type",
-            "description": "One or more types of event, required field.\n\n - BUS_EVENT_TYPE_UNSPECIFIED: Default value, always invalid\n - BUS_EVENT_TYPE_ALL: Events of ALL event types, used when filtering stream from event bus\n - BUS_EVENT_TYPE_TIME_UPDATE: Event for blockchain time updates\n - BUS_EVENT_TYPE_LEDGER_MOVEMENTS: Event for when a transfer happens internally, contains the transfer information\n - BUS_EVENT_TYPE_POSITION_RESOLUTION: Event indicating position resolution has occurred\n - BUS_EVENT_TYPE_ORDER: Event for order updates, both new and existing orders\n - BUS_EVENT_TYPE_ACCOUNT: Event for account updates\n - BUS_EVENT_TYPE_PARTY: Event for party updates\n - BUS_EVENT_TYPE_TRADE: Event indicating a new trade has occurred\n - BUS_EVENT_TYPE_MARGIN_LEVELS: Event indicating margin levels have changed for a party\n - BUS_EVENT_TYPE_PROPOSAL: Event for proposal updates (for governance)\n - BUS_EVENT_TYPE_VOTE: Event indicating a new vote has occurred (for governance)\n - BUS_EVENT_TYPE_MARKET_DATA: Event for market data updates\n - BUS_EVENT_TYPE_NODE_SIGNATURE: Event for a new signature for a Vega node\n - BUS_EVENT_TYPE_LOSS_SOCIALIZATION: Event indicating loss socialisation occurred for a party\n - BUS_EVENT_TYPE_SETTLE_POSITION: Event for when a position is being settled\n - BUS_EVENT_TYPE_SETTLE_DISTRESSED: Event for when a position is distressed\n - BUS_EVENT_TYPE_MARKET_CREATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ASSET: Event for when an asset is added to Vega\n - BUS_EVENT_TYPE_MARKET_TICK: Event indicating a market tick event\n - BUS_EVENT_TYPE_WITHDRAWAL: Event for when a withdrawal occurs\n - BUS_EVENT_TYPE_DEPOSIT: Event for when a deposit occurs\n - BUS_EVENT_TYPE_AUCTION: Event indicating a change in auction state, for example starting or ending an auction\n - BUS_EVENT_TYPE_RISK_FACTOR: Event indicating a risk factor has been updated\n - BUS_EVENT_TYPE_NETWORK_PARAMETER: Event indicating a network parameter has been added or updated\n - BUS_EVENT_TYPE_LIQUIDITY_PROVISION: Event indicating a liquidity provision has been created or updated\n - BUS_EVENT_TYPE_MARKET_UPDATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ORACLE_SPEC: Event indicating an oracle spec has been created or updated\n - BUS_EVENT_TYPE_ORACLE_DATA: Event indicating that an oracle data has been broadcast\n - BUS_EVENT_TYPE_DELEGATION_BALANCE: Event indicating that an delegation balance of a party to a node for current epoch has changed\n - BUS_EVENT_TYPE_VALIDATOR_SCORE: Event indicating the validator score for the given epoch\n - BUS_EVENT_TYPE_EPOCH_UPDATE: Event indicating the start or end of an epoch\n - BUS_EVENT_TYPE_VALIDATOR_UPDATE: Event indicating that validator node has been updated\n - BUS_EVENT_TYPE_STAKE_LINKING: Event indicating a new staking event have been processed by the network\n - BUS_EVENT_TYPE_REWARD_PAYOUT_EVENT: Event indicating the payout of a reward has been initiated\n - BUS_EVENT_TYPE_CHECKPOINT: Event indicating a new checkpoint was created\n - BUS_EVENT_TYPE_STREAM_START: Event indicating stream is starting\n - BUS_EVENT_TYPE_KEY_ROTATION: Event indicating key rotation took place\n - BUS_EVENT_TYPE_STATE_VAR: Event indicating state transitions in state variable consensus\n - BUS_EVENT_TYPE_NETWORK_LIMITS: Event indicating network limits set or updated\n - BUS_EVENT_TYPE_TRANSFER: Event indicating a update for a transfer\n - BUS_EVENT_TYPE_VALIDATOR_RANKING: Event indicating the ranking of validator and their status in Vega\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_EVENT: Event indicating a new multi sig signer event have been processed\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SET_THRESHOLD: Event indicating the erc20 multi sig threshold have been updated\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_ADDED: Event indicating a new signer has been added to the ERC-20 multisig\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_REMOVED: Event indicating a signer has been removed from the ERC-20 multisig\n - BUS_EVENT_TYPE_POSITION_STATE: Event indicating that a party's position has changed\n - BUS_EVENT_TYPE_ETHEREUM_KEY_ROTATION: Event indicating Ethereum key rotation took place\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_PROPOSAL: Event indicating protocol upgrade proposal updates\n - BUS_EVENT_TYPE_BEGIN_BLOCK: Event indicating the core is starting to process a new block\n - BUS_EVENT_TYPE_END_BLOCK: Event indicating the core finished to process a block\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_STARTED: Event indicating the core is starting a protocol upgrade\n - BUS_EVENT_TYPE_SETTLE_MARKET: Event indicating the market has stopped and settled\n - BUS_EVENT_TYPE_TRANSACTION_RESULT: Event indicating the result of a transaction processed by the network\n - BUS_EVENT_TYPE_SNAPSHOT_TAKEN: Event indicating a snapshot was taken at this block height\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_DATA_NODE_READY: Event data node uses to notify that it is ready to upgrade\n - BUS_EVENT_TYPE_DISTRESSED_ORDERS_CLOSED: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_EXPIRED_ORDERS: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_DISTRESSED_POSITIONS: Event indicating parties have become, or were, distressed but still have an active position.\n - BUS_EVENT_TYPE_SPOT_LIQUIDITY_PROVISION: Event indicating a spot liquidity provision has been created or updated.\n - BUS_EVENT_TYPE_STOP_ORDER: Event indicating a stop order has been submitted or updated.\n - BUS_EVENT_TYPE_FUNDING_PERIOD: Event indicating the start or end of a funding period.\n - BUS_EVENT_TYPE_FUNDING_PERIOD_DATA_POINT: Event indicating a data point for a funding period has been received.\n - BUS_EVENT_TYPE_TEAM_CREATED: Event indicating a team has been created.\n - BUS_EVENT_TYPE_TEAM_UPDATED: Event indicating a team has been updated.\n - BUS_EVENT_TYPE_REFEREE_SWITCHED_TEAM: Event indicating a referee switched team.\n - BUS_EVENT_TYPE_REFEREE_JOINED_TEAM: Event indicating a referee joined a team.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_STARTED: Event indicating a referral program started.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_UPDATED: Event indicating a referral program has been updated.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_ENDED: Event indicating a referral program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_CREATED: Event indicating a set has been created.\n - BUS_EVENT_TYPE_REFEREE_JOINED_REFERRAL_SET: Event indicating a referee joined a set.\n - BUS_EVENT_TYPE_PARTY_ACTIVITY_STREAK: Event indicating the updated activity streak for a party\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_STARTED: Event indicating a volume discount program started.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_UPDATED: Event indicating a volume discount program has been updated.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_ENDED: Event indicating a volume discount program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_STATS_UPDATED: Event indicating the updated statistics for a referral set.\n - BUS_EVENT_TYPE_VESTING_STATS_UPDATED: Event indicating the updated statistics for the vesting program.\n - BUS_EVENT_TYPE_MARKET: Event indicating a market related event, for example when a market opens\n - BUS_EVENT_TYPE_TX_ERROR: Event used to report failed transactions back to a user, this is excluded from the ALL type",
+            "description": "One or more types of event, required field.\n\n - BUS_EVENT_TYPE_UNSPECIFIED: Default value, always invalid\n - BUS_EVENT_TYPE_ALL: Events of ALL event types, used when filtering stream from event bus\n - BUS_EVENT_TYPE_TIME_UPDATE: Event for blockchain time updates\n - BUS_EVENT_TYPE_LEDGER_MOVEMENTS: Event for when a transfer happens internally, contains the transfer information\n - BUS_EVENT_TYPE_POSITION_RESOLUTION: Event indicating position resolution has occurred\n - BUS_EVENT_TYPE_ORDER: Event for order updates, both new and existing orders\n - BUS_EVENT_TYPE_ACCOUNT: Event for account updates\n - BUS_EVENT_TYPE_PARTY: Event for party updates\n - BUS_EVENT_TYPE_TRADE: Event indicating a new trade has occurred\n - BUS_EVENT_TYPE_MARGIN_LEVELS: Event indicating margin levels have changed for a party\n - BUS_EVENT_TYPE_PROPOSAL: Event for proposal updates (for governance)\n - BUS_EVENT_TYPE_VOTE: Event indicating a new vote has occurred (for governance)\n - BUS_EVENT_TYPE_MARKET_DATA: Event for market data updates\n - BUS_EVENT_TYPE_NODE_SIGNATURE: Event for a new signature for a Vega node\n - BUS_EVENT_TYPE_LOSS_SOCIALIZATION: Event indicating loss socialisation occurred for a party\n - BUS_EVENT_TYPE_SETTLE_POSITION: Event for when a position is being settled\n - BUS_EVENT_TYPE_SETTLE_DISTRESSED: Event for when a position is distressed\n - BUS_EVENT_TYPE_MARKET_CREATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ASSET: Event for when an asset is added to Vega\n - BUS_EVENT_TYPE_MARKET_TICK: Event indicating a market tick event\n - BUS_EVENT_TYPE_WITHDRAWAL: Event for when a withdrawal occurs\n - BUS_EVENT_TYPE_DEPOSIT: Event for when a deposit occurs\n - BUS_EVENT_TYPE_AUCTION: Event indicating a change in auction state, for example starting or ending an auction\n - BUS_EVENT_TYPE_RISK_FACTOR: Event indicating a risk factor has been updated\n - BUS_EVENT_TYPE_NETWORK_PARAMETER: Event indicating a network parameter has been added or updated\n - BUS_EVENT_TYPE_LIQUIDITY_PROVISION: Event indicating a liquidity provision has been created or updated\n - BUS_EVENT_TYPE_MARKET_UPDATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ORACLE_SPEC: Event indicating an oracle spec has been created or updated\n - BUS_EVENT_TYPE_ORACLE_DATA: Event indicating that an oracle data has been broadcast\n - BUS_EVENT_TYPE_DELEGATION_BALANCE: Event indicating that an delegation balance of a party to a node for current epoch has changed\n - BUS_EVENT_TYPE_VALIDATOR_SCORE: Event indicating the validator score for the given epoch\n - BUS_EVENT_TYPE_EPOCH_UPDATE: Event indicating the start or end of an epoch\n - BUS_EVENT_TYPE_VALIDATOR_UPDATE: Event indicating that validator node has been updated\n - BUS_EVENT_TYPE_STAKE_LINKING: Event indicating a new staking event have been processed by the network\n - BUS_EVENT_TYPE_REWARD_PAYOUT_EVENT: Event indicating the payout of a reward has been initiated\n - BUS_EVENT_TYPE_CHECKPOINT: Event indicating a new checkpoint was created\n - BUS_EVENT_TYPE_STREAM_START: Event indicating stream is starting\n - BUS_EVENT_TYPE_KEY_ROTATION: Event indicating key rotation took place\n - BUS_EVENT_TYPE_STATE_VAR: Event indicating state transitions in state variable consensus\n - BUS_EVENT_TYPE_NETWORK_LIMITS: Event indicating network limits set or updated\n - BUS_EVENT_TYPE_TRANSFER: Event indicating a update for a transfer\n - BUS_EVENT_TYPE_VALIDATOR_RANKING: Event indicating the ranking of validator and their status in Vega\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_EVENT: Event indicating a new multi sig signer event have been processed\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SET_THRESHOLD: Event indicating the erc20 multi sig threshold have been updated\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_ADDED: Event indicating a new signer has been added to the ERC-20 multisig\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_REMOVED: Event indicating a signer has been removed from the ERC-20 multisig\n - BUS_EVENT_TYPE_POSITION_STATE: Event indicating that a party's position has changed\n - BUS_EVENT_TYPE_ETHEREUM_KEY_ROTATION: Event indicating Ethereum key rotation took place\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_PROPOSAL: Event indicating protocol upgrade proposal updates\n - BUS_EVENT_TYPE_BEGIN_BLOCK: Event indicating the core is starting to process a new block\n - BUS_EVENT_TYPE_END_BLOCK: Event indicating the core finished to process a block\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_STARTED: Event indicating the core is starting a protocol upgrade\n - BUS_EVENT_TYPE_SETTLE_MARKET: Event indicating the market has stopped and settled\n - BUS_EVENT_TYPE_TRANSACTION_RESULT: Event indicating the result of a transaction processed by the network\n - BUS_EVENT_TYPE_SNAPSHOT_TAKEN: Event indicating a snapshot was taken at this block height\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_DATA_NODE_READY: Event data node uses to notify that it is ready to upgrade\n - BUS_EVENT_TYPE_DISTRESSED_ORDERS_CLOSED: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_EXPIRED_ORDERS: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_DISTRESSED_POSITIONS: Event indicating parties have become, or were, distressed but still have an active position.\n - BUS_EVENT_TYPE_SPOT_LIQUIDITY_PROVISION: Event indicating a spot liquidity provision has been created or updated.\n - BUS_EVENT_TYPE_STOP_ORDER: Event indicating a stop order has been submitted or updated.\n - BUS_EVENT_TYPE_FUNDING_PERIOD: Event indicating the start or end of a funding period.\n - BUS_EVENT_TYPE_FUNDING_PERIOD_DATA_POINT: Event indicating a data point for a funding period has been received.\n - BUS_EVENT_TYPE_TEAM_CREATED: Event indicating a team has been created.\n - BUS_EVENT_TYPE_TEAM_UPDATED: Event indicating a team has been updated.\n - BUS_EVENT_TYPE_REFEREE_SWITCHED_TEAM: Event indicating a referee switched team.\n - BUS_EVENT_TYPE_REFEREE_JOINED_TEAM: Event indicating a referee joined a team.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_STARTED: Event indicating a referral program started.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_UPDATED: Event indicating a referral program has been updated.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_ENDED: Event indicating a referral program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_CREATED: Event indicating a set has been created.\n - BUS_EVENT_TYPE_REFEREE_JOINED_REFERRAL_SET: Event indicating a referee joined a set.\n - BUS_EVENT_TYPE_PARTY_ACTIVITY_STREAK: Event indicating the updated activity streak for a party\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_STARTED: Event indicating a volume discount program started.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_UPDATED: Event indicating a volume discount program has been updated.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_ENDED: Event indicating a volume discount program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_STATS_UPDATED: Event indicating the updated statistics for a referral set.\n - BUS_EVENT_TYPE_VESTING_STATS_UPDATED: Event indicating the updated statistics for the vesting program.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_STATS_UPDATED: Event indicating the updated statistics for the volume discount.\n - BUS_EVENT_TYPE_FEES_STATS_UPDATED: Event indicating the fees statistics per market at end of epoch\n - BUS_EVENT_TYPE_FUNDING_PAYMENTS: Event indicating a funding period has ended and resulted in funding payment transfers.\n - BUS_EVENT_TYPE_PAID_LIQUIDITY_FEES_STATS_UPDATED: Event used to report the updated paid liquidity fee statistics for the market at the end of the epoch\n - BUS_EVENT_TYPE_VESTING_SUMMARY: Event used to report the summary of vesting and locked balances at the end of the epoch\n - BUS_EVENT_TYPE_MARKET: Event indicating a market related event, for example when a market opens\n - BUS_EVENT_TYPE_TX_ERROR: Event used to report failed transactions back to a user, this is excluded from the ALL type",
             "in": "query",
             "required": false,
             "type": "array",
@@ -5207,6 +5712,11 @@
                 "BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_ENDED",
                 "BUS_EVENT_TYPE_REFERRAL_SET_STATS_UPDATED",
                 "BUS_EVENT_TYPE_VESTING_STATS_UPDATED",
+                "BUS_EVENT_TYPE_VOLUME_DISCOUNT_STATS_UPDATED",
+                "BUS_EVENT_TYPE_FEES_STATS_UPDATED",
+                "BUS_EVENT_TYPE_FUNDING_PAYMENTS",
+                "BUS_EVENT_TYPE_PAID_LIQUIDITY_FEES_STATS_UPDATED",
+                "BUS_EVENT_TYPE_VESTING_SUMMARY",
                 "BUS_EVENT_TYPE_MARKET",
                 "BUS_EVENT_TYPE_TX_ERROR"
               ]
@@ -5365,21 +5875,21 @@
         "parameters": [
           {
             "name": "marketId",
-            "description": "Target market to observe for liquidity provision orders.",
+            "description": "Target market to observe for liquidity provisions.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "partyId",
-            "description": "Target party to observe for submitted liquidity provision orders.",
+            "description": "Target party to observe for submitted liquidity provisions.",
             "in": "query",
             "required": false,
             "type": "string"
           }
         ],
         "tags": [
-          "Liquidity provisions"
+          "Liquidity"
         ]
       }
     },
@@ -5948,14 +6458,14 @@
         "parameters": [
           {
             "name": "teamId",
-            "description": "Optional team ID to filter for a specific team.",
+            "description": "Restrict teams to those with the given team ID.",
             "in": "query",
             "required": false,
             "type": "string"
           },
           {
             "name": "partyId",
-            "description": "Optional party ID to filter by a specific referrer, or referee.",
+            "description": "Restrict teams to those where the given party is a referrer or a referee.",
             "in": "query",
             "required": false,
             "type": "string"
@@ -6704,6 +7214,120 @@
         ]
       }
     },
+    "/api/v2/volume-discount-programs/current": {
+      "get": {
+        "summary": "Get current volume discount program",
+        "description": "Get the current volume discount program for the network. This program may not be active if it has ended\nand has not been replaced by another.",
+        "operationId": "TradingDataService_GetCurrentVolumeDiscountProgram",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2GetCurrentVolumeDiscountProgramResponse"
+            }
+          },
+          "500": {
+            "description": "An internal server error",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "Volume discount program"
+        ]
+      }
+    },
+    "/api/v2/volume-discount-programs/stats": {
+      "get": {
+        "summary": "Get volume discount statistics",
+        "description": "Get the information about a party's running traded volume, and the discount factor it earns them.",
+        "operationId": "TradingDataService_GetVolumeDiscountStats",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v2GetVolumeDiscountStatsResponse"
+            }
+          },
+          "500": {
+            "description": "An internal server error",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/googlerpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "atEpoch",
+            "description": "Epoch to get volume discount statistics for. If not set, last epoch is used.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "uint64"
+          },
+          {
+            "name": "partyId",
+            "description": "Restrict volume discount statistics to those for the given party.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pagination.first",
+            "description": "Number of records to be returned that sort greater than row identified by cursor supplied in 'after'.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pagination.after",
+            "description": "If paging forwards, the cursor string for the last row of the previous page.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pagination.last",
+            "description": "Number of records to be returned that sort less than row identified by cursor supplied in 'before'.",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pagination.before",
+            "description": "If paging forwards, the cursor string for the first row of the previous page.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pagination.newestFirst",
+            "description": "Whether to order the results with the newest records first. If not set, the default value is true.",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": [
+          "Volume discount program"
+        ]
+      }
+    },
     "/api/v2/votes": {
       "get": {
         "summary": "List votes",
@@ -6967,7 +7591,7 @@
         "ORACLE_SOURCE_ETHEREUM"
       ],
       "default": "ORACLE_SOURCE_UNSPECIFIED",
-      "description": "- ORACLE_SOURCE_UNSPECIFIED: Default value\n - ORACLE_SOURCE_OPEN_ORACLE: Specifies that the payload will be base64 encoded JSON conforming to the Open Oracle standard\n - ORACLE_SOURCE_JSON: Specifies that the payload will be base64 encoded JSON, but does not specify the shape of the data\n - ORACLE_SOURCE_ETHEREUM: Specifies that the payload will be base64 encoded JSON conforming to the ETH standard",
+      "description": "- ORACLE_SOURCE_UNSPECIFIED: Default value\n - ORACLE_SOURCE_OPEN_ORACLE: Specifies that the payload will be base64 encoded JSON conforming to the Open Oracle standard.\n - ORACLE_SOURCE_JSON: Specifies that the payload will be base64 encoded JSON, but does not specify the shape of the data.\n - ORACLE_SOURCE_ETHEREUM: Specifies that the payload will be base64 encoded JSON conforming to the ETH standard.",
       "title": "Supported oracle sources"
     },
     "OrderTimeInForce": {
@@ -7004,10 +7628,10 @@
         "REJECTION_REASON_MUST_BE_REDUCE_ONLY",
         "REJECTION_REASON_MAX_STOP_ORDERS_PER_PARTY_REACHED",
         "REJECTION_REASON_STOP_ORDER_NOT_ALLOWED_WITHOUT_A_POSITION",
-        "REJECTION_REASON_STOP_ORDER_DOES_NOT_CLOSE_POSITION"
+        "REJECTION_REASON_STOP_ORDER_NOT_CLOSING_THE_POSITION"
       ],
       "default": "REJECTION_REASON_UNSPECIFIED",
-      "title": "- REJECTION_REASON_UNSPECIFIED: Never valid\n - REJECTION_REASON_TRADING_NOT_ALLOWED: Trading is not allowed yet\n - REJECTION_REASON_EXPIRY_IN_THE_PAST: Expiry of the stop order is in the past\n - REJECTION_REASON_MUST_BE_REDUCE_ONLY: Stop orders submission must be reduce only\n - REJECTION_REASON_MAX_STOP_ORDERS_PER_PARTY_REACHED: Party has reached the maximum stop orders allowed for this market\n - REJECTION_REASON_STOP_ORDER_NOT_ALLOWED_WITHOUT_A_POSITION: Stop orders are not allowed if there is no open position\n - REJECTION_REASON_STOP_ORDER_DOES_NOT_CLOSE_POSITION: This stop order does not close the position"
+      "title": "- REJECTION_REASON_UNSPECIFIED: Never valid\n - REJECTION_REASON_TRADING_NOT_ALLOWED: Trading is not allowed yet\n - REJECTION_REASON_EXPIRY_IN_THE_PAST: Expiry of the stop order is in the past\n - REJECTION_REASON_MUST_BE_REDUCE_ONLY: Stop orders submission must be reduce only\n - REJECTION_REASON_MAX_STOP_ORDERS_PER_PARTY_REACHED: Party has reached the maximum stop orders allowed for this market\n - REJECTION_REASON_STOP_ORDER_NOT_ALLOWED_WITHOUT_A_POSITION: Stop orders are not allowed if there is no open position\n - REJECTION_REASON_STOP_ORDER_NOT_CLOSING_THE_POSITION: This stop order does not close the position"
     },
     "StopOrderTriggerDirection": {
       "type": "string",
@@ -7038,7 +7662,8 @@
         "METHOD_NOW",
         "METHOD_AT_END_OF_EPOCH"
       ],
-      "default": "METHOD_UNSPECIFIED"
+      "default": "METHOD_UNSPECIFIED",
+      "description": " - METHOD_NOW: Undelegate straight away, losing all rewards for the current epoch.\n - METHOD_AT_END_OF_EPOCH: Undelegate at the end of an epoch, retaining all rewards for the current epoch."
     },
     "apiHttpBody": {
       "type": "object",
@@ -7104,6 +7729,48 @@
       },
       "title": "Represents the high, low, open, and closing prices for an interval of trading,\nreferred to commonly as a candlestick or candle"
     },
+    "apiv2FundingPayment": {
+      "type": "object",
+      "properties": {
+        "partyId": {
+          "type": "string",
+          "description": "Party that received the funding payment."
+        },
+        "marketId": {
+          "type": "string",
+          "description": "Market that produced the funding payment."
+        },
+        "fundingPeriodSeq": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Funding period sequence this payment was calculated from."
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "int64",
+          "description": "Timestamp, in Unix nanoseconds, at which this funding payment occured."
+        },
+        "amount": {
+          "type": "string",
+          "description": "Funding payment amount, where a positive value indicates an earned payment received and a negative value a loss."
+        }
+      },
+      "title": "A funding payment for a party on a perpetual market"
+    },
+    "apiv2LiquidityProvision": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "$ref": "#/definitions/vegaLiquidityProvision",
+          "description": "Liquidity provision that is currently live."
+        },
+        "pending": {
+          "$ref": "#/definitions/vegaLiquidityProvision",
+          "description": "Liquidity provision that is currently pending and will go live in the next epoch."
+        }
+      },
+      "description": "Liquidity provider commitment. For API purposes this can report a pending liquidity provision,\nthe current live provision or both in the event that an update has been accepted on the network, but has yet\nto go live and thus there is still a pending provision that will become active in the next epoch."
+    },
     "apiv2ReferralProgram": {
       "type": "object",
       "properties": {
@@ -7126,27 +7793,27 @@
         "endOfProgramTimestamp": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp as Unix time in seconds, after which when the current epoch ends, the\nprograms status will become STATE_CLOSED and benefits will be disabled."
+          "description": "Timestamp in Unix nanoseconds, after which when the current epoch ends, the\nprogram will end and benefits will be disabled."
         },
         "windowLength": {
           "type": "string",
           "format": "uint64",
-          "description": "Number of epochs over which to evaluate a referral set's running volume."
+          "description": "Number of epochs over which the referral set's running volume is evaluated."
         },
         "stakingTiers": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/vegaStakingTier"
           },
-          "description": "Defined staking tiers in increasing order. First element will give Tier 1,\nsecond element will give Tier 2, and so on. Determines the level of\nbenefit a party can expect based on their staking."
+          "description": "Defined benefit tiers ordered by increasing reward multiplier. Determines the level of\nbenefit a party can expect based on their staking."
         },
         "endedAt": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp as Unix time in nanoseconds at which the program ended."
+          "description": "Timestamp, in Unix nanoseconds, when the program ended."
         }
       },
-      "description": "Referral program for reporting purposes differs slightly from the referral program\nmessage in the referral program created and referral program updated events, as it includes\nan optional timestamp that is set when the referral program has ended."
+      "description": "Referral program details."
     },
     "apiv2Team": {
       "type": "object",
@@ -7174,11 +7841,11 @@
         "createdAt": {
           "type": "string",
           "format": "int64",
-          "description": "Time in Unix nanoseconds when the team was created."
+          "description": "Timestamp in Unix nanoseconds when the team was created."
         },
         "closed": {
           "type": "boolean",
-          "description": "Tells if a party can join the team or not."
+          "description": "Whether or not the team is closed to new party members."
         },
         "createdAtEpoch": {
           "type": "string",
@@ -7188,6 +7855,43 @@
       },
       "description": "Team record containing the team information."
     },
+    "apiv2VolumeDiscountProgram": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Incremental version of the program. It is incremented after each program\nupdate."
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique ID generated from the proposal that created this program."
+        },
+        "benefitTiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/vegaVolumeBenefitTier"
+          },
+          "description": "Defined benefit tiers ordered by increasing discounts. Determines the level of\nbenefit a party can expect based on performance criteria."
+        },
+        "endOfProgramTimestamp": {
+          "type": "string",
+          "format": "int64",
+          "description": "Timestamp in Unix nanoseconds, after which when the current epoch\nends, the program will end and benefits will be disabled."
+        },
+        "windowLength": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Number of epochs over which a volume discount statistics' running volume is evaluated."
+        },
+        "endedAt": {
+          "type": "string",
+          "format": "int64",
+          "description": "Timestamp in Unix nanoseconds, at which the program ended."
+        }
+      },
+      "description": "Volume discount program details."
+    },
     "commandsv1CancelTransfer": {
       "type": "object",
       "properties": {
@@ -7196,7 +7900,21 @@
           "description": "Transfer ID of the transfer to cancel."
         }
       },
-      "title": "Request for cancelling a recurring transfer"
+      "description": "Command that can be used by the party that initiated a transfer to instruct the network to stop an active recurring transaction."
+    },
+    "eventsv1FundingPayment": {
+      "type": "object",
+      "properties": {
+        "partyId": {
+          "type": "string",
+          "description": "ID of the party."
+        },
+        "amount": {
+          "type": "string",
+          "description": "The amount paid, this can be negative for parties who lost at the end of the funding period."
+        }
+      },
+      "description": "The amount gained or lost by a party as a result of a funding payment."
     },
     "googlerpcStatus": {
       "type": "object",
@@ -7240,19 +7958,19 @@
       "properties": {
         "vegaPubKey": {
           "type": "string",
-          "description": "Vega public key, required field."
+          "description": "Vega public key of the node being announced."
         },
         "ethereumAddress": {
           "type": "string",
-          "description": "Ethereum public key, required field."
+          "description": "Ethereum public key of the node being announced."
         },
         "chainPubKey": {
           "type": "string",
-          "description": "Public key for the blockchain, required field."
+          "description": "Public key for the blockchain, currently the node's CometBFT key."
         },
         "infoUrl": {
           "type": "string",
-          "description": "URL with more info on the node."
+          "description": "URL to the node operators homepage allowing stake holders to make an informed decision when delegating."
         },
         "country": {
           "type": "string",
@@ -7260,15 +7978,15 @@
         },
         "id": {
           "type": "string",
-          "description": "Node ID of the validator, i.e. the node's public master key."
+          "description": "Node ID of the validator, which is the node's public master key."
         },
         "name": {
           "type": "string",
-          "description": "Name of the validator."
+          "description": "Human-readable name of the node."
         },
         "avatarUrl": {
           "type": "string",
-          "description": "AvatarURL of the validator."
+          "description": "URL to the node operator's avatar."
         },
         "vegaPubKeyIndex": {
           "type": "integer",
@@ -7278,33 +7996,32 @@
         "fromEpoch": {
           "type": "string",
           "format": "uint64",
-          "description": "Epoch from which the validator is expected\nto be ready to validate blocks."
+          "description": "Epoch from which the node is expected to be ready to validate blocks."
         },
         "ethereumSignature": {
           "$ref": "#/definitions/v1Signature",
-          "description": "Signature from the validator made using the ethereum wallet."
+          "description": "Signature from the node made using the ethereum wallet."
         },
         "vegaSignature": {
           "$ref": "#/definitions/v1Signature",
-          "description": "Signature from the validator made using the Vega wallet."
+          "description": "Signature from the node made using the Vega wallet."
         },
         "submitterAddress": {
           "type": "string",
           "description": "Ethereum public key to use as a submitter to allow automatic signature generation."
         }
       },
-      "title": "Used to announce a node as a new pending validator"
+      "description": "A command that allows a new node operator to announce themselves to the network as a new validator."
     },
     "v1ApplyReferralCode": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string",
-          "description": "Referral code for the set to join."
+          "description": "Referral code, normally the referral set ID, for the party to join."
         }
       },
-      "description": "A party that joins a referral team is called a referee. A referee cannot\ncreate a referral set or join multiple sets.\nTo switch, the referee can ask to join another set, and the switch will\nbe effective at the end of the epoch.",
-      "title": "Request to apply a referral code"
+      "description": "Command that allows the submitter to join a referral set and earn a collective reduction in fees based on the activity of all members of that set.\nA party that joins a referral set is called a referee. A referee can only be a member of one referral set and cannot themselves be or become a referrer.\nTo switch to another referral set, a subsequent command can be sent and the switch will take effect at the end of the epoch."
     },
     "v1AuctionEvent": {
       "type": "object",
@@ -7381,7 +8098,7 @@
           "description": "List of stop order submissions to be processed sequentially."
         }
       },
-      "title": "Batch of order instructions.\nThis command accepts only the following batches of commands\nand will be processed in the following order:\n- OrderCancellation\n- OrderAmendment\n- OrderSubmission\nThe total amount of commands in the batch across all three lists of\ninstructions is restricted by the following network parameter:\n\"spam.protection.max.batchSize\""
+      "description": "A command that allows the submission of a batch market instruction which wraps up multiple market instructions into a single transaction.\nThese instructions are then processed sequentially in the following order:\n- OrderCancellation\n- OrderAmendment\n- OrderSubmission\n- StopOrderSubmission\nwhere the maximum allow of instructions in a batch is controlled by the network parameter \"spam.protection.max.batchSize\"."
     },
     "v1BeginBlock": {
       "type": "object",
@@ -7711,6 +8428,26 @@
           "$ref": "#/definitions/v1VestingStatsUpdated",
           "description": "Event notifying of an update to the vesting statistics."
         },
+        "volumeDiscountStatsUpdated": {
+          "$ref": "#/definitions/v1VolumeDiscountStatsUpdated",
+          "description": "Event notifying of an update to the volume discount statistics."
+        },
+        "feesStats": {
+          "$ref": "#/definitions/v1FeesStats",
+          "description": "Event notifying of an update the fees stats for a market."
+        },
+        "fundingPayments": {
+          "$ref": "#/definitions/v1FundingPayments",
+          "description": "Event notifying of funding payments at the end of a funding period."
+        },
+        "paidLiquidityFeesStats": {
+          "$ref": "#/definitions/v1PaidLiquidityFeesStats",
+          "description": "Event notifying of an update to the liqudity fees stats for a market."
+        },
+        "vestingBalancesSummary": {
+          "$ref": "#/definitions/v1VestingBalancesSummary",
+          "description": "Event notifying of an update to the vesting and locked balances."
+        },
         "market": {
           "$ref": "#/definitions/v1MarketEvent",
           "title": "Market tick events"
@@ -7814,11 +8551,16 @@
         "BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_ENDED",
         "BUS_EVENT_TYPE_REFERRAL_SET_STATS_UPDATED",
         "BUS_EVENT_TYPE_VESTING_STATS_UPDATED",
+        "BUS_EVENT_TYPE_VOLUME_DISCOUNT_STATS_UPDATED",
+        "BUS_EVENT_TYPE_FEES_STATS_UPDATED",
+        "BUS_EVENT_TYPE_FUNDING_PAYMENTS",
+        "BUS_EVENT_TYPE_PAID_LIQUIDITY_FEES_STATS_UPDATED",
+        "BUS_EVENT_TYPE_VESTING_SUMMARY",
         "BUS_EVENT_TYPE_MARKET",
         "BUS_EVENT_TYPE_TX_ERROR"
       ],
       "default": "BUS_EVENT_TYPE_UNSPECIFIED",
-      "description": "- BUS_EVENT_TYPE_UNSPECIFIED: Default value, always invalid\n - BUS_EVENT_TYPE_ALL: Events of ALL event types, used when filtering stream from event bus\n - BUS_EVENT_TYPE_TIME_UPDATE: Event for blockchain time updates\n - BUS_EVENT_TYPE_LEDGER_MOVEMENTS: Event for when a transfer happens internally, contains the transfer information\n - BUS_EVENT_TYPE_POSITION_RESOLUTION: Event indicating position resolution has occurred\n - BUS_EVENT_TYPE_ORDER: Event for order updates, both new and existing orders\n - BUS_EVENT_TYPE_ACCOUNT: Event for account updates\n - BUS_EVENT_TYPE_PARTY: Event for party updates\n - BUS_EVENT_TYPE_TRADE: Event indicating a new trade has occurred\n - BUS_EVENT_TYPE_MARGIN_LEVELS: Event indicating margin levels have changed for a party\n - BUS_EVENT_TYPE_PROPOSAL: Event for proposal updates (for governance)\n - BUS_EVENT_TYPE_VOTE: Event indicating a new vote has occurred (for governance)\n - BUS_EVENT_TYPE_MARKET_DATA: Event for market data updates\n - BUS_EVENT_TYPE_NODE_SIGNATURE: Event for a new signature for a Vega node\n - BUS_EVENT_TYPE_LOSS_SOCIALIZATION: Event indicating loss socialisation occurred for a party\n - BUS_EVENT_TYPE_SETTLE_POSITION: Event for when a position is being settled\n - BUS_EVENT_TYPE_SETTLE_DISTRESSED: Event for when a position is distressed\n - BUS_EVENT_TYPE_MARKET_CREATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ASSET: Event for when an asset is added to Vega\n - BUS_EVENT_TYPE_MARKET_TICK: Event indicating a market tick event\n - BUS_EVENT_TYPE_WITHDRAWAL: Event for when a withdrawal occurs\n - BUS_EVENT_TYPE_DEPOSIT: Event for when a deposit occurs\n - BUS_EVENT_TYPE_AUCTION: Event indicating a change in auction state, for example starting or ending an auction\n - BUS_EVENT_TYPE_RISK_FACTOR: Event indicating a risk factor has been updated\n - BUS_EVENT_TYPE_NETWORK_PARAMETER: Event indicating a network parameter has been added or updated\n - BUS_EVENT_TYPE_LIQUIDITY_PROVISION: Event indicating a liquidity provision has been created or updated\n - BUS_EVENT_TYPE_MARKET_UPDATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ORACLE_SPEC: Event indicating an oracle spec has been created or updated\n - BUS_EVENT_TYPE_ORACLE_DATA: Event indicating that an oracle data has been broadcast\n - BUS_EVENT_TYPE_DELEGATION_BALANCE: Event indicating that an delegation balance of a party to a node for current epoch has changed\n - BUS_EVENT_TYPE_VALIDATOR_SCORE: Event indicating the validator score for the given epoch\n - BUS_EVENT_TYPE_EPOCH_UPDATE: Event indicating the start or end of an epoch\n - BUS_EVENT_TYPE_VALIDATOR_UPDATE: Event indicating that validator node has been updated\n - BUS_EVENT_TYPE_STAKE_LINKING: Event indicating a new staking event have been processed by the network\n - BUS_EVENT_TYPE_REWARD_PAYOUT_EVENT: Event indicating the payout of a reward has been initiated\n - BUS_EVENT_TYPE_CHECKPOINT: Event indicating a new checkpoint was created\n - BUS_EVENT_TYPE_STREAM_START: Event indicating stream is starting\n - BUS_EVENT_TYPE_KEY_ROTATION: Event indicating key rotation took place\n - BUS_EVENT_TYPE_STATE_VAR: Event indicating state transitions in state variable consensus\n - BUS_EVENT_TYPE_NETWORK_LIMITS: Event indicating network limits set or updated\n - BUS_EVENT_TYPE_TRANSFER: Event indicating a update for a transfer\n - BUS_EVENT_TYPE_VALIDATOR_RANKING: Event indicating the ranking of validator and their status in Vega\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_EVENT: Event indicating a new multi sig signer event have been processed\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SET_THRESHOLD: Event indicating the erc20 multi sig threshold have been updated\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_ADDED: Event indicating a new signer has been added to the ERC-20 multisig\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_REMOVED: Event indicating a signer has been removed from the ERC-20 multisig\n - BUS_EVENT_TYPE_POSITION_STATE: Event indicating that a party's position has changed\n - BUS_EVENT_TYPE_ETHEREUM_KEY_ROTATION: Event indicating Ethereum key rotation took place\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_PROPOSAL: Event indicating protocol upgrade proposal updates\n - BUS_EVENT_TYPE_BEGIN_BLOCK: Event indicating the core is starting to process a new block\n - BUS_EVENT_TYPE_END_BLOCK: Event indicating the core finished to process a block\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_STARTED: Event indicating the core is starting a protocol upgrade\n - BUS_EVENT_TYPE_SETTLE_MARKET: Event indicating the market has stopped and settled\n - BUS_EVENT_TYPE_TRANSACTION_RESULT: Event indicating the result of a transaction processed by the network\n - BUS_EVENT_TYPE_SNAPSHOT_TAKEN: Event indicating a snapshot was taken at this block height\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_DATA_NODE_READY: Event data node uses to notify that it is ready to upgrade\n - BUS_EVENT_TYPE_DISTRESSED_ORDERS_CLOSED: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_EXPIRED_ORDERS: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_DISTRESSED_POSITIONS: Event indicating parties have become, or were, distressed but still have an active position.\n - BUS_EVENT_TYPE_SPOT_LIQUIDITY_PROVISION: Event indicating a spot liquidity provision has been created or updated.\n - BUS_EVENT_TYPE_STOP_ORDER: Event indicating a stop order has been submitted or updated.\n - BUS_EVENT_TYPE_FUNDING_PERIOD: Event indicating the start or end of a funding period.\n - BUS_EVENT_TYPE_FUNDING_PERIOD_DATA_POINT: Event indicating a data point for a funding period has been received.\n - BUS_EVENT_TYPE_TEAM_CREATED: Event indicating a team has been created.\n - BUS_EVENT_TYPE_TEAM_UPDATED: Event indicating a team has been updated.\n - BUS_EVENT_TYPE_REFEREE_SWITCHED_TEAM: Event indicating a referee switched team.\n - BUS_EVENT_TYPE_REFEREE_JOINED_TEAM: Event indicating a referee joined a team.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_STARTED: Event indicating a referral program started.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_UPDATED: Event indicating a referral program has been updated.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_ENDED: Event indicating a referral program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_CREATED: Event indicating a set has been created.\n - BUS_EVENT_TYPE_REFEREE_JOINED_REFERRAL_SET: Event indicating a referee joined a set.\n - BUS_EVENT_TYPE_PARTY_ACTIVITY_STREAK: Event indicating the updated activity streak for a party\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_STARTED: Event indicating a volume discount program started.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_UPDATED: Event indicating a volume discount program has been updated.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_ENDED: Event indicating a volume discount program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_STATS_UPDATED: Event indicating the updated statistics for a referral set.\n - BUS_EVENT_TYPE_VESTING_STATS_UPDATED: Event indicating the updated statistics for the vesting program.\n - BUS_EVENT_TYPE_MARKET: Event indicating a market related event, for example when a market opens\n - BUS_EVENT_TYPE_TX_ERROR: Event used to report failed transactions back to a user, this is excluded from the ALL type",
+      "description": "- BUS_EVENT_TYPE_UNSPECIFIED: Default value, always invalid\n - BUS_EVENT_TYPE_ALL: Events of ALL event types, used when filtering stream from event bus\n - BUS_EVENT_TYPE_TIME_UPDATE: Event for blockchain time updates\n - BUS_EVENT_TYPE_LEDGER_MOVEMENTS: Event for when a transfer happens internally, contains the transfer information\n - BUS_EVENT_TYPE_POSITION_RESOLUTION: Event indicating position resolution has occurred\n - BUS_EVENT_TYPE_ORDER: Event for order updates, both new and existing orders\n - BUS_EVENT_TYPE_ACCOUNT: Event for account updates\n - BUS_EVENT_TYPE_PARTY: Event for party updates\n - BUS_EVENT_TYPE_TRADE: Event indicating a new trade has occurred\n - BUS_EVENT_TYPE_MARGIN_LEVELS: Event indicating margin levels have changed for a party\n - BUS_EVENT_TYPE_PROPOSAL: Event for proposal updates (for governance)\n - BUS_EVENT_TYPE_VOTE: Event indicating a new vote has occurred (for governance)\n - BUS_EVENT_TYPE_MARKET_DATA: Event for market data updates\n - BUS_EVENT_TYPE_NODE_SIGNATURE: Event for a new signature for a Vega node\n - BUS_EVENT_TYPE_LOSS_SOCIALIZATION: Event indicating loss socialisation occurred for a party\n - BUS_EVENT_TYPE_SETTLE_POSITION: Event for when a position is being settled\n - BUS_EVENT_TYPE_SETTLE_DISTRESSED: Event for when a position is distressed\n - BUS_EVENT_TYPE_MARKET_CREATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ASSET: Event for when an asset is added to Vega\n - BUS_EVENT_TYPE_MARKET_TICK: Event indicating a market tick event\n - BUS_EVENT_TYPE_WITHDRAWAL: Event for when a withdrawal occurs\n - BUS_EVENT_TYPE_DEPOSIT: Event for when a deposit occurs\n - BUS_EVENT_TYPE_AUCTION: Event indicating a change in auction state, for example starting or ending an auction\n - BUS_EVENT_TYPE_RISK_FACTOR: Event indicating a risk factor has been updated\n - BUS_EVENT_TYPE_NETWORK_PARAMETER: Event indicating a network parameter has been added or updated\n - BUS_EVENT_TYPE_LIQUIDITY_PROVISION: Event indicating a liquidity provision has been created or updated\n - BUS_EVENT_TYPE_MARKET_UPDATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ORACLE_SPEC: Event indicating an oracle spec has been created or updated\n - BUS_EVENT_TYPE_ORACLE_DATA: Event indicating that an oracle data has been broadcast\n - BUS_EVENT_TYPE_DELEGATION_BALANCE: Event indicating that an delegation balance of a party to a node for current epoch has changed\n - BUS_EVENT_TYPE_VALIDATOR_SCORE: Event indicating the validator score for the given epoch\n - BUS_EVENT_TYPE_EPOCH_UPDATE: Event indicating the start or end of an epoch\n - BUS_EVENT_TYPE_VALIDATOR_UPDATE: Event indicating that validator node has been updated\n - BUS_EVENT_TYPE_STAKE_LINKING: Event indicating a new staking event have been processed by the network\n - BUS_EVENT_TYPE_REWARD_PAYOUT_EVENT: Event indicating the payout of a reward has been initiated\n - BUS_EVENT_TYPE_CHECKPOINT: Event indicating a new checkpoint was created\n - BUS_EVENT_TYPE_STREAM_START: Event indicating stream is starting\n - BUS_EVENT_TYPE_KEY_ROTATION: Event indicating key rotation took place\n - BUS_EVENT_TYPE_STATE_VAR: Event indicating state transitions in state variable consensus\n - BUS_EVENT_TYPE_NETWORK_LIMITS: Event indicating network limits set or updated\n - BUS_EVENT_TYPE_TRANSFER: Event indicating a update for a transfer\n - BUS_EVENT_TYPE_VALIDATOR_RANKING: Event indicating the ranking of validator and their status in Vega\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_EVENT: Event indicating a new multi sig signer event have been processed\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SET_THRESHOLD: Event indicating the erc20 multi sig threshold have been updated\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_ADDED: Event indicating a new signer has been added to the ERC-20 multisig\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_REMOVED: Event indicating a signer has been removed from the ERC-20 multisig\n - BUS_EVENT_TYPE_POSITION_STATE: Event indicating that a party's position has changed\n - BUS_EVENT_TYPE_ETHEREUM_KEY_ROTATION: Event indicating Ethereum key rotation took place\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_PROPOSAL: Event indicating protocol upgrade proposal updates\n - BUS_EVENT_TYPE_BEGIN_BLOCK: Event indicating the core is starting to process a new block\n - BUS_EVENT_TYPE_END_BLOCK: Event indicating the core finished to process a block\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_STARTED: Event indicating the core is starting a protocol upgrade\n - BUS_EVENT_TYPE_SETTLE_MARKET: Event indicating the market has stopped and settled\n - BUS_EVENT_TYPE_TRANSACTION_RESULT: Event indicating the result of a transaction processed by the network\n - BUS_EVENT_TYPE_SNAPSHOT_TAKEN: Event indicating a snapshot was taken at this block height\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_DATA_NODE_READY: Event data node uses to notify that it is ready to upgrade\n - BUS_EVENT_TYPE_DISTRESSED_ORDERS_CLOSED: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_EXPIRED_ORDERS: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_DISTRESSED_POSITIONS: Event indicating parties have become, or were, distressed but still have an active position.\n - BUS_EVENT_TYPE_SPOT_LIQUIDITY_PROVISION: Event indicating a spot liquidity provision has been created or updated.\n - BUS_EVENT_TYPE_STOP_ORDER: Event indicating a stop order has been submitted or updated.\n - BUS_EVENT_TYPE_FUNDING_PERIOD: Event indicating the start or end of a funding period.\n - BUS_EVENT_TYPE_FUNDING_PERIOD_DATA_POINT: Event indicating a data point for a funding period has been received.\n - BUS_EVENT_TYPE_TEAM_CREATED: Event indicating a team has been created.\n - BUS_EVENT_TYPE_TEAM_UPDATED: Event indicating a team has been updated.\n - BUS_EVENT_TYPE_REFEREE_SWITCHED_TEAM: Event indicating a referee switched team.\n - BUS_EVENT_TYPE_REFEREE_JOINED_TEAM: Event indicating a referee joined a team.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_STARTED: Event indicating a referral program started.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_UPDATED: Event indicating a referral program has been updated.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_ENDED: Event indicating a referral program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_CREATED: Event indicating a set has been created.\n - BUS_EVENT_TYPE_REFEREE_JOINED_REFERRAL_SET: Event indicating a referee joined a set.\n - BUS_EVENT_TYPE_PARTY_ACTIVITY_STREAK: Event indicating the updated activity streak for a party\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_STARTED: Event indicating a volume discount program started.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_UPDATED: Event indicating a volume discount program has been updated.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_ENDED: Event indicating a volume discount program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_STATS_UPDATED: Event indicating the updated statistics for a referral set.\n - BUS_EVENT_TYPE_VESTING_STATS_UPDATED: Event indicating the updated statistics for the vesting program.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_STATS_UPDATED: Event indicating the updated statistics for the volume discount.\n - BUS_EVENT_TYPE_FEES_STATS_UPDATED: Event indicating the fees statistics per market at end of epoch\n - BUS_EVENT_TYPE_FUNDING_PAYMENTS: Event indicating a funding period has ended and resulted in funding payment transfers.\n - BUS_EVENT_TYPE_PAID_LIQUIDITY_FEES_STATS_UPDATED: Event used to report the updated paid liquidity fee statistics for the market at the end of the epoch\n - BUS_EVENT_TYPE_VESTING_SUMMARY: Event used to report the summary of vesting and locked balances at the end of the epoch\n - BUS_EVENT_TYPE_MARKET: Event indicating a market related event, for example when a market opens\n - BUS_EVENT_TYPE_TX_ERROR: Event used to report failed transactions back to a user, this is excluded from the ALL type",
       "title": "Bus event type is used to specify a type of event\nIt has 2 styles of event:\nSingle values (e.g. BUS_EVENT_TYPE_ORDER) where they represent one data item\nGroup values (e.g. BUS_EVENT_TYPE_AUCTION) where they represent a group of data items"
     },
     "v1CheckpointEvent": {
@@ -7877,33 +8619,34 @@
       "type": "object",
       "properties": {
         "isTeam": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Whether or not the referral set should be considered a team that can participate in team games on the network."
         },
         "team": {
-          "$ref": "#/definitions/v1CreateReferralSetTeam"
+          "$ref": "#/definitions/v1CreateReferralSetTeam",
+          "description": "Team details, if the referral set is to be considered a team."
         }
       },
-      "description": "Creates a referral set. The creator automatically becomes\nthe leader, called a referrer. This cannot be changed.\nA referrer cannot be part of an existing set as referrer or referee.",
-      "title": "Request for creating a referral set"
+      "description": "Command that a party can use to instruct the network to create a new referral set on the network.\nThe submitter of this command will become the referrer of the new set and cannot be the referrer or a referee of another set.\nA referrer can use the referral set ID as a referral code to attract others to the Vega network and have fees reduced for the referral set."
     },
     "v1CreateReferralSetTeam": {
       "type": "object",
       "properties": {
         "name": {
           "type": "string",
-          "description": "Team name to be added to the referral banner."
+          "description": "Name of the team."
         },
         "teamUrl": {
           "type": "string",
-          "description": "Optional link to a team forum, discord, etc."
+          "description": "External link to the team's homepage."
         },
         "avatarUrl": {
           "type": "string",
-          "description": "Optional link to an image to be used as the team avatar."
+          "description": "External link to an avatar for the team."
         },
         "closed": {
           "type": "boolean",
-          "title": "Is this team closed for external other users"
+          "description": "Whether or not the team is closed to new party members."
         }
       }
     },
@@ -7954,14 +8697,14 @@
       "properties": {
         "nodeId": {
           "type": "string",
-          "description": "Delegate to the specified node ID."
+          "description": "Node ID to delegate stake to."
         },
         "amount": {
           "type": "string",
-          "description": "Amount of stake to delegate. This field is an unsigned integer scaled to the asset's decimal places."
+          "description": "Amount of stake to delegate, as an unsigned integer scaled to the governance asset's decimal places."
         }
       },
-      "title": "Command to submit an instruction to delegate some stake to a node"
+      "description": "Command to allow a token holder to delegate their tokens to a validator to help secure the network.\nA token holder delegating to a validator will earn rewards based on the amount they have delegated, and the performance of the chosen validator."
     },
     "v1DelegationBalanceEvent": {
       "type": "object",
@@ -8227,15 +8970,15 @@
         "targetBlock": {
           "type": "string",
           "format": "uint64",
-          "description": "Target block at which the key rotation will take effect on."
+          "description": "Block height at which the key rotation will take effect."
         },
         "newAddress": {
           "type": "string",
-          "description": "New address to rotate to."
+          "description": "Ethereum address that is being rotated to."
         },
         "currentAddress": {
           "type": "string",
-          "description": "Currently used public address."
+          "description": "Ethereum address of the node's current Ethereum keys."
         },
         "submitterAddress": {
           "type": "string",
@@ -8243,10 +8986,10 @@
         },
         "ethereumSignature": {
           "$ref": "#/definitions/v1Signature",
-          "description": "Signature that can be verified using the new ethereum address."
+          "description": "Signature signed by the new Ethereum key that can be verified to prove ownership."
         }
       },
-      "title": "Transaction to allow a validator to rotate their ethereum keys"
+      "description": "A validator command sent manually that allows a node operator to indicate to the network that their node's Ethereum key will be rotated."
     },
     "v1EthereumKeyRotation": {
       "type": "object",
@@ -8295,6 +9038,67 @@
         }
       }
     },
+    "v1FeesStats": {
+      "type": "object",
+      "properties": {
+        "market": {
+          "type": "string",
+          "title": "Market the fees were paid in"
+        },
+        "asset": {
+          "type": "string",
+          "description": "Settlement asset of the market."
+        },
+        "epochSeq": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Epoch for which these stats where valid."
+        },
+        "totalRewardsReceived": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PartyAmount"
+          },
+          "description": "Total referral rewards received by the referrer of the referral set."
+        },
+        "referrerRewardsGenerated": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1ReferrerRewardsGenerated"
+          },
+          "description": "Referral rewards generated by all referee taker fees."
+        },
+        "refereesDiscountApplied": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PartyAmount"
+          },
+          "description": "Total referral discounts applied to all referee taker fees."
+        },
+        "volumeDiscountApplied": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PartyAmount"
+          },
+          "description": "Total volume discounts applied to all referee taker fees."
+        },
+        "totalMakerFeesReceived": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PartyAmount"
+          },
+          "description": "Total maker fees received by the maker side."
+        },
+        "makerFeesGenerated": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1MakerFeesGenerated"
+          },
+          "description": "Maker fees paid by all trade aggressors, and which makers the fees were paid to."
+        }
+      },
+      "title": "Fees rewards and discounts paid / received per parties during an epoch"
+    },
     "v1Filter": {
       "type": "object",
       "properties": {
@@ -8311,6 +9115,28 @@
         }
       },
       "description": "Filter describes the conditions under which a data source data is considered of\ninterest or not."
+    },
+    "v1FundingPayments": {
+      "type": "object",
+      "properties": {
+        "marketId": {
+          "type": "string",
+          "description": "ID of the market."
+        },
+        "seq": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Sequence number of the funding period associated with these payments."
+        },
+        "payments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/eventsv1FundingPayment"
+          },
+          "description": "List of parties and the payment amounts, this can be negative for parties who lost at the end of the funding period."
+        }
+      },
+      "description": "Event notifying of funding payments at the end of a funding period."
     },
     "v1FundingPeriod": {
       "type": "object",
@@ -8433,7 +9259,7 @@
           "description": "Node ID of the validator node that will be signed in or out of the smart contract."
         }
       },
-      "title": "Transaction for a validator to submit signatures to a smart contract"
+      "description": "Command that can be used by a validator to instruct the network to generate signatures to add or remove validators from the multisig-control contract.\nSignatures can only be generated for validator nodes that have been promoted or demoted from the consensus validator set, and any attempt to generate signatures for another node will be rejected.\nThe generated signatures can only be submitted to the contract by the Ethereum addresses included in the command."
     },
     "v1KeyRotateSubmission": {
       "type": "object",
@@ -8446,18 +9272,18 @@
         "targetBlock": {
           "type": "string",
           "format": "uint64",
-          "description": "Target block at which the key rotation will take effect on."
+          "description": "Block height at which the key rotation will take effect."
         },
         "newPubKey": {
           "type": "string",
-          "description": "New public key to rotate to."
+          "description": "Vega public key that would be rotated to."
         },
         "currentPubKeyHash": {
           "type": "string",
-          "description": "Hash of currently used public key."
+          "description": "Hash of the node's current Vega public key."
         }
       },
-      "title": "Transaction to allow a validator to rotate their Vega keys"
+      "description": "A validator command sent manually that allows a node operator to indicate to the network that their node's Vega key will be rotated."
     },
     "v1KeyRotation": {
       "type": "object",
@@ -8500,78 +9326,54 @@
       "properties": {
         "marketId": {
           "type": "string",
-          "description": "Unique ID for the market with the liquidity provision to be amended."
+          "description": "Market that the submitter wants to amend the liquidity commitment for."
         },
         "commitmentAmount": {
           "type": "string",
-          "description": "From here at least one of the following is required to consider the command valid."
+          "description": "New commitment amount."
         },
         "fee": {
-          "type": "string"
-        },
-        "sells": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/vegaLiquidityOrder"
-          }
-        },
-        "buys": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/vegaLiquidityOrder"
-          }
+          "type": "string",
+          "description": "New nominated liquidity fee factor."
         },
         "reference": {
-          "type": "string"
+          "type": "string",
+          "description": "New arbitrary reference to be added to every order created out of this liquidity provision submission."
         }
       },
-      "title": "Amend a liquidity provision request"
+      "description": "Command that allows a liquidity provider to update the details of their existing liquidity commitment.\nAny field that is left unset or as a default value indicates that this field on the original submission will be left unchanged."
     },
     "v1LiquidityProvisionCancellation": {
       "type": "object",
       "properties": {
         "marketId": {
           "type": "string",
-          "description": "Unique ID for the market with the liquidity provision to be cancelled."
+          "description": "Market that the submitter will stop providing liquidity for."
         }
       },
-      "title": "Cancel a liquidity provision request"
+      "description": "Command that allows a liquidity provider to inform the network that they will stop providing liquidity for a market."
     },
     "v1LiquidityProvisionSubmission": {
       "type": "object",
       "properties": {
         "marketId": {
           "type": "string",
-          "description": "Market ID for the order."
+          "description": "Market that the submitter wishes to provide liquidity for."
         },
         "commitmentAmount": {
           "type": "string",
-          "description": "Specified as a unitless number that represents the amount of settlement asset of the market.\nThis field is an unsigned integer scaled using the asset's decimal places."
+          "description": "Amount that the submitter will commit as liquidity to the market, specified as a unitless number in the settlement asset of the market.\nThis field is an unsigned integer scaled using the asset's decimal places."
         },
         "fee": {
           "type": "string",
           "description": "Nominated liquidity fee factor, which is an input to the calculation of taker fees on the market, as per setting fees and rewarding liquidity providers."
         },
-        "sells": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/vegaLiquidityOrder"
-          },
-          "description": "Set of liquidity sell orders to meet the liquidity provision obligation."
-        },
-        "buys": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/vegaLiquidityOrder"
-          },
-          "description": "Set of liquidity buy orders to meet the liquidity provision obligation."
-        },
         "reference": {
           "type": "string",
-          "description": "Reference to be added to every order created out of this liquidity provision submission."
+          "description": "Arbitrary reference to be added to every order created out of this liquidity provision submission."
         }
       },
-      "title": "A liquidity provision submitted for a given market"
+      "description": "A command that indicates to the network the party's intention to supply liquidity to the given market and become a liquidity provider.\nAn active liquidity provider for a market will earn fees based on the trades that occur in the market."
     },
     "v1LossSocialization": {
       "type": "object",
@@ -8590,6 +9392,23 @@
         }
       },
       "title": "Loss socialization event contains details on the amount of wins unable to be distributed"
+    },
+    "v1MakerFeesGenerated": {
+      "type": "object",
+      "properties": {
+        "taker": {
+          "type": "string",
+          "description": "Party that paid the fees."
+        },
+        "makerFeesPaid": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PartyAmount"
+          },
+          "description": "Amount of maker fees paid by the taker to the maker."
+        }
+      },
+      "title": "Maker fees generated by the trade aggressor"
     },
     "v1MarketEvent": {
       "type": "object",
@@ -8625,19 +9444,19 @@
       "properties": {
         "id": {
           "type": "string",
-          "description": "ID of the resource being signed."
+          "description": "ID of the resource that the signature relates to."
         },
         "sig": {
           "type": "string",
           "format": "byte",
-          "description": "The signature generated by the signer."
+          "description": "Signature generated by the node."
         },
         "kind": {
           "$ref": "#/definitions/v1NodeSignatureKind",
           "description": "Kind of resource being signed."
         }
       },
-      "title": "Represents a signature from a validator, to be used by a foreign chain in order to recognise a decision taken by the Vega network"
+      "description": "A validator command sent automatically containing a signature that can be used on a foreign chain to process an action."
     },
     "v1NodeSignatureKind": {
       "type": "string",
@@ -8650,7 +9469,7 @@
         "NODE_SIGNATURE_KIND_ASSET_UPDATE"
       ],
       "default": "NODE_SIGNATURE_KIND_UNSPECIFIED",
-      "description": "- NODE_SIGNATURE_KIND_UNSPECIFIED: Represents an unspecified or missing value from the input\n - NODE_SIGNATURE_KIND_ASSET_NEW: Represents a signature for a new asset allow-listing\n - NODE_SIGNATURE_KIND_ASSET_WITHDRAWAL: Represents a signature for an asset withdrawal\n - NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_ADDED: Represents a signature for a new signer added to the erc20 multisig contract\n - NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_REMOVED: Represents a signature for a signer removed from the erc20 multisig contract\n - NODE_SIGNATURE_KIND_ASSET_UPDATE: Represents a signature for an asset update allow-listing",
+      "description": "- NODE_SIGNATURE_KIND_UNSPECIFIED: Represents an unspecified or missing value from the input.\n - NODE_SIGNATURE_KIND_ASSET_NEW: Represents a signature for a new asset allow-listing.\n - NODE_SIGNATURE_KIND_ASSET_WITHDRAWAL: Represents a signature for an asset withdrawal.\n - NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_ADDED: Represents a signature for a new signer added to the erc20 multisig contract.\n - NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_REMOVED: Represents a signature for a signer removed from the erc20 multisig contract.\n - NODE_SIGNATURE_KIND_ASSET_UPDATE: Represents a signature for an asset update allow-listing.",
       "title": "Kind of signature created by a node, for example, allow-listing a new asset, withdrawal etc"
     },
     "v1OneOffGovernanceTransfer": {
@@ -8667,30 +9486,30 @@
       "properties": {
         "source": {
           "$ref": "#/definitions/OracleDataSubmissionOracleSource",
-          "description": "Source from which the data is coming from. Must be base64 encoded.\nOracle data is a type of external data source data."
+          "description": "Source from which the data is coming from."
         },
         "payload": {
           "type": "string",
           "format": "byte",
-          "description": "Data provided by the data source\nIn the case of Open Oracle - it will be the entire object - it will contain messages, signatures and price data."
+          "description": "Data provided by the data source."
         }
       },
-      "title": "Command to submit new Oracle data from third party providers"
+      "title": "Command to submit new oracle data from third party providers"
     },
     "v1OrderAmendment": {
       "type": "object",
       "properties": {
         "orderId": {
           "type": "string",
-          "description": "Order ID, this is required to find the order and will not be updated, required field."
+          "description": "ID of the order to amend."
         },
         "marketId": {
           "type": "string",
-          "description": "Market ID, this is required to find the order and will not be updated."
+          "description": "Market ID that the order was originally submitted to."
         },
         "price": {
           "type": "string",
-          "description": "Amend the price for the order if the price value is set, otherwise price will remain unchanged.\nThis field is an unsigned integer scaled to the market's decimal places."
+          "description": "New price for the order. This field is an unsigned integer scaled to the market's decimal places."
         },
         "sizeDelta": {
           "type": "string",
@@ -8700,43 +9519,43 @@
         "expiresAt": {
           "type": "string",
           "format": "int64",
-          "description": "Amend the expiry time for the order, if the Timestamp value is set, otherwise expiry time will remain unchanged."
+          "description": "Timestamp, in Unix nanoseconds, for the new expiry time for the order."
         },
         "timeInForce": {
           "$ref": "#/definitions/OrderTimeInForce",
-          "description": "Amend the time in force for the order, set to TIME_IN_FORCE_UNSPECIFIED to remain unchanged."
+          "description": "New time in force for the order."
         },
         "peggedOffset": {
           "type": "string",
-          "description": "Amend the pegged order offset for the order. This field is an unsigned integer scaled to the market's decimal places."
+          "description": "New pegged offset for the order.\nThis field is an unsigned integer scaled to the market's decimal places."
         },
         "peggedReference": {
           "$ref": "#/definitions/vegaPeggedReference",
-          "description": "Amend the pegged order reference for the order."
+          "description": "New pegged reference for the order."
         }
       },
-      "title": "An order amendment is a request to amend or update an existing order on Vega"
+      "description": "A command that allows a party to update the details of an existing order.\nAny field that is left unset or as a default value indicates that this field on the original order will be left unchanged.\nIt is not possible to change an order's type through this command."
     },
     "v1OrderCancellation": {
       "type": "object",
       "properties": {
         "orderId": {
           "type": "string",
-          "description": "Unique ID for the order. This is set by the system after consensus. Required field."
+          "description": "Restrict cancellations to an order with the given ID. If set, then a market ID must also be provided."
         },
         "marketId": {
           "type": "string",
-          "description": "Market ID for the order, required field."
+          "description": "Restrict cancellations to those submitted to the given market. If not set, all stop orders across all markets will be cancelled."
         }
       },
-      "title": "Order cancellation is a request to cancel an existing order on Vega"
+      "description": "A command that instructs the network to cancel orders, active or partially filled, that were previously submitted by the sender of this transaction.\nIt is not possible to cancel another party's order with this command."
     },
     "v1OrderSubmission": {
       "type": "object",
       "properties": {
         "marketId": {
           "type": "string",
-          "description": "Market ID for the order, required field."
+          "description": "Market ID to submit the order to."
         },
         "price": {
           "type": "string",
@@ -8745,47 +9564,76 @@
         "size": {
           "type": "string",
           "format": "uint64",
-          "description": "Size for the order, for example, in a futures market the size equals the number of units, cannot be negative."
+          "description": "Size for the order, for example, in a futures market the size equals the number of units."
         },
         "side": {
           "$ref": "#/definitions/vegaSide",
-          "description": "Side for the order, e.g. SIDE_BUY or SIDE_SELL, required field."
+          "description": "Which side of the order book the order is for, e.g. buy or sell."
         },
         "timeInForce": {
           "$ref": "#/definitions/OrderTimeInForce",
-          "description": "Time in force indicates how long an order will remain active before it is executed or expires, required field."
+          "description": "Time in force indicates how long an order will remain active before it is executed or expires.."
         },
         "expiresAt": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp in Unix nanoseconds for when the order will expire,\nrequired field only for `Order.TimeInForce`.TIME_IN_FORCE_GTT`."
+          "description": "Timestamp, in Unix nanoseconds, for when the order will expire. Can only be set when the order's time-in-force is GTT."
         },
         "type": {
           "$ref": "#/definitions/vegaOrderType",
-          "description": "Type for the order, required field - See `Order.Type`."
+          "description": "Type of the order."
         },
         "reference": {
           "type": "string",
-          "description": "Reference given for the order, this is typically used to retrieve an order submitted through consensus, currently\nset internally by the node to return a unique reference ID for the order submission."
+          "description": "Arbitrary optional reference for the order, to be used as a human-readable non-unique identifier for the order."
         },
         "peggedOrder": {
           "$ref": "#/definitions/vegaPeggedOrder",
-          "description": "Used to specify the details for a pegged order."
+          "description": "Pegged order details. If set, the order's price will be offset from a particular reference price of the order book at all times."
         },
         "postOnly": {
           "type": "boolean",
-          "description": "Only valid for Limit orders. Cannot be True at the same time as Reduce-Only."
+          "description": "If set, the order will only be executed if it would not trade on entry to the order book. Only valid for limit orders."
         },
         "reduceOnly": {
           "type": "boolean",
-          "description": "Only valid for Non-Persistent orders. Cannot be True at the same time as Post-Only.\nIf set, order will only be executed if the outcome of the trade moves the trader's position closer to 0."
+          "description": "If set, the order will only be executed if the outcome of the trade moves the trader's position closer to 0.\nOnly valid for non-persistent orders."
         },
         "icebergOpts": {
           "$ref": "#/definitions/v1IcebergOpts",
-          "description": "Parameters used to specify an iceberg order."
+          "description": "Iceberg order details. If set, the order will exist on the order book in chunks."
         }
       },
-      "title": "Order submission is a request to submit or create a new order on Vega"
+      "description": "A command that submits an order to the Vega network for a given market."
+    },
+    "v1PaidLiquidityFeesStats": {
+      "type": "object",
+      "properties": {
+        "market": {
+          "type": "string",
+          "description": "Market the fees were paid in."
+        },
+        "asset": {
+          "type": "string",
+          "description": "Settlement asset of the market."
+        },
+        "epochSeq": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Epoch for which these stats where valid."
+        },
+        "totalFeesPaid": {
+          "type": "string",
+          "description": "Total fees paid accross all parties."
+        },
+        "feesPaidPerParty": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PartyAmount"
+          },
+          "description": "Fees paid per party."
+        }
+      }
     },
     "v1PartyActivityStreak": {
       "type": "object",
@@ -8832,6 +9680,53 @@
       },
       "title": "The updated activity streak of a party at end of epoch"
     },
+    "v1PartyAmount": {
+      "type": "object",
+      "properties": {
+        "party": {
+          "type": "string",
+          "description": "Receiving party ID."
+        },
+        "amount": {
+          "type": "string",
+          "description": "Amount received."
+        }
+      },
+      "title": "A pair of a party and amount"
+    },
+    "v1PartyLockedBalance": {
+      "type": "object",
+      "properties": {
+        "asset": {
+          "type": "string",
+          "description": "Asset ID."
+        },
+        "untilEpoch": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Epoch in which the balance will be released."
+        },
+        "balance": {
+          "type": "string",
+          "description": "Locked balance."
+        }
+      },
+      "description": "A party's locked balance for a given asset."
+    },
+    "v1PartyVestingBalance": {
+      "type": "object",
+      "properties": {
+        "asset": {
+          "type": "string",
+          "description": "Asset ID."
+        },
+        "balance": {
+          "type": "string",
+          "description": "Balance that is vested."
+        }
+      },
+      "description": "Balance that is being vested for the party."
+    },
     "v1PartyVestingStats": {
       "type": "object",
       "properties": {
@@ -8845,6 +9740,48 @@
         }
       },
       "description": "The vesting stats for a given party."
+    },
+    "v1PartyVestingSummary": {
+      "type": "object",
+      "properties": {
+        "party": {
+          "type": "string",
+          "description": "Party ID."
+        },
+        "partyLockedBalances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PartyLockedBalance"
+          },
+          "description": "List of locked balances."
+        },
+        "partyVestingBalances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PartyVestingBalance"
+          },
+          "description": "List of vesting balances."
+        }
+      },
+      "title": "Summary of a party's vesting balances"
+    },
+    "v1PartyVolumeDiscountStats": {
+      "type": "object",
+      "properties": {
+        "partyId": {
+          "type": "string",
+          "description": "Party ID."
+        },
+        "discountFactor": {
+          "type": "string",
+          "description": "Discount factor applied to fees."
+        },
+        "runningVolume": {
+          "type": "string",
+          "description": "The party's running volume."
+        }
+      },
+      "description": "Volume discount stats for a given party."
     },
     "v1PositionResolution": {
       "type": "object",
@@ -8957,18 +9894,18 @@
       "properties": {
         "reference": {
           "type": "string",
-          "description": "Reference identifying the proposal."
+          "description": "Arbitrary human-readable reference identifying the proposal."
         },
         "terms": {
           "$ref": "#/definitions/vegaProposalTerms",
-          "description": "Proposal configuration and the actual change that is meant to be executed when proposal is enacted."
+          "description": "Proposal terms containing the type and details of the proposal, as well as time spans for voting and enactment."
         },
         "rationale": {
           "$ref": "#/definitions/vegaProposalRationale",
           "description": "Rationale behind a proposal."
         }
       },
-      "title": "Command to submit a new proposal for the\nVega network governance"
+      "description": "Command that allows a token holder to submit a governance proposal that can be voted on by any other token holders, and eventually enacted on the Vega network.\nFor example this command can be used to propose a new market."
     },
     "v1ProtocolUpgradeDataNodeReady": {
       "type": "object",
@@ -9018,7 +9955,7 @@
           "description": "Release tag for the Vega binary."
         }
       },
-      "title": "Transaction for a validator to suggest a protocol upgrade"
+      "description": "A validator command sent manually by a node operator to propose a protocol upgrade."
     },
     "v1ProtocolUpgradeProposalStatus": {
       "type": "string",
@@ -9123,10 +10060,6 @@
           "type": "string",
           "description": "Discount factor applied to the party."
         },
-        "rewardFactor": {
-          "type": "string",
-          "description": "Reward factor applied to the party."
-        },
         "epochNotionalTakerVolume": {
           "type": "string",
           "title": "Current referee notional taker volume"
@@ -9171,6 +10104,16 @@
         "id": {
           "type": "string",
           "description": "Unique ID of the referral program."
+        },
+        "endedAt": {
+          "type": "string",
+          "format": "int64",
+          "description": "Time in Unix nanoseconds when the referral program ended."
+        },
+        "atEpoch": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Epoch at which the referral program ended."
         }
       }
     },
@@ -9180,6 +10123,16 @@
         "program": {
           "$ref": "#/definitions/vegaReferralProgram",
           "description": "Referral program that has started."
+        },
+        "startedAt": {
+          "type": "string",
+          "format": "int64",
+          "description": "Time in Unix nanoseconds when the referral program started."
+        },
+        "atEpoch": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Epoch at which the referral program started."
         }
       }
     },
@@ -9189,6 +10142,16 @@
         "program": {
           "$ref": "#/definitions/vegaReferralProgram",
           "description": "The updated referral program."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "int64",
+          "description": "Time in Unix nanoseconds when the referral program was updated."
+        },
+        "atEpoch": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Epoch at which the referral program was updated."
         }
       }
     },
@@ -9237,8 +10200,37 @@
             "$ref": "#/definitions/v1RefereeStats"
           },
           "description": "Referees' statistics for that epoch."
+        },
+        "rewardFactor": {
+          "type": "string",
+          "description": "Reward factor applied to the trades."
+        },
+        "rewardsMultiplier": {
+          "type": "string",
+          "description": "Rewards multiplier applied to the trades."
+        },
+        "rewardsFactorMultiplier": {
+          "type": "string",
+          "description": "Rewards factor multiplier for the trades."
         }
       }
+    },
+    "v1ReferrerRewardsGenerated": {
+      "type": "object",
+      "properties": {
+        "referrer": {
+          "type": "string",
+          "description": "Referrer party."
+        },
+        "generatedReward": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PartyAmount"
+          },
+          "description": "Amount of rewards generated per party."
+        }
+      },
+      "title": "Rewards generated for referrers by each of their referees"
     },
     "v1RewardPayoutEvent": {
       "type": "object",
@@ -9266,6 +10258,9 @@
           "type": "string"
         },
         "market": {
+          "type": "string"
+        },
+        "lockedUntilEpoch": {
           "type": "string"
         }
       }
@@ -9353,10 +10348,10 @@
         "version": {
           "type": "integer",
           "format": "int64",
-          "description": "Version of the signature used to create the signature."
+          "description": "Version of the algorithm used to create the signature."
         }
       },
-      "description": "Signature to authenticate a transaction and to be verified by the Vega\nnetwork."
+      "description": "Signature definition that allows the network to authenticate external data."
     },
     "v1Signer": {
       "type": "object",
@@ -9487,7 +10482,7 @@
         "expiresAt": {
           "type": "string",
           "format": "int64",
-          "description": "Optional expiry timestamp."
+          "description": "Timestamp, in Unix nanoseconds, for when the stop order should expire. If not set the stop order will not expire."
         },
         "expiryStrategy": {
           "$ref": "#/definitions/StopOrderExpiryStrategy",
@@ -9495,42 +10490,42 @@
         },
         "price": {
           "type": "string",
-          "description": "Fixed price at which the order will be submitted."
+          "description": "Order will be submitted if the last traded price on the market breaches the given price."
         },
         "trailingPercentOffset": {
           "type": "string",
-          "description": "Trailing percentage at which the order will be submitted."
+          "description": "Order will be submitted if the last traded price has moved the given percent from the highest/lowest mark price since the stop order was submitted."
         }
       },
-      "title": "Price and expiry configuration for a stop order"
+      "description": "Price and expiry configuration for a stop order."
     },
     "v1StopOrdersCancellation": {
       "type": "object",
       "properties": {
         "marketId": {
           "type": "string",
-          "description": "Optional market ID."
+          "description": "Restrict cancellations to those submitted to the given market. If not set, all stop orders across all markets will be cancelled."
         },
         "stopOrderId": {
           "type": "string",
-          "description": "Optional order ID."
+          "description": "Restrict cancellations to a stop order with the given ID. If set, then a market ID must also be provided."
         }
       },
-      "title": "Cancel a stop order.\nThe following combinations are available:\nEmpty object will cancel all stop orders for the party\nMarket ID alone will cancel all stop orders in a market\nMarket ID and order ID will cancel a specific stop order in a market\nIf the stop order is part of an OCO, both stop orders will be cancelled"
+      "description": "A command that instructs the network to cancel untriggered stop orders that were submitted by the sender of this transaction.\nIf any cancelled stop order is part of an OCO, both stop orders will be cancelled.\nIt is not possible to cancel another party's stop orders with this command."
     },
     "v1StopOrdersSubmission": {
       "type": "object",
       "properties": {
         "risesAbove": {
           "$ref": "#/definitions/v1StopOrderSetup",
-          "description": "Stop order that will be triggered\nif the price rises above a given trigger price."
+          "description": "Stop order that will be triggered if the price rises above a given trigger price."
         },
         "fallsBelow": {
           "$ref": "#/definitions/v1StopOrderSetup",
-          "description": "Stop order that will be triggered\nif the price falls below a given trigger price."
+          "description": "Stop order that will be triggered if the price falls below a given trigger price."
         }
       },
-      "title": "Stop order submission submits stops orders.\nIt is possible to make a single stop order submission by\nspecifying a single direction,\nor an OCO (One Cancels the Other) stop order submission\nby specifying a configuration for both directions"
+      "description": "A command that allows a party to submit a stop order for a given market.\nA stop order is a normal order that remains off the order book and is only submitted if a given trigger is breached from a particular direction.\nIf both rises-above and falls-below are configured, then if one is triggered the other will be cancelled (OCO)."
     },
     "v1TeamCreated": {
       "type": "object",
@@ -9809,17 +10804,18 @@
       "properties": {
         "nodeId": {
           "type": "string",
-          "description": "Node ID to delegate to."
+          "description": "Node ID to undelegate stake from."
         },
         "amount": {
           "type": "string",
-          "description": "Optional, if not specified = ALL.\nIf provided, this field must be an unsigned integer passed as a string\nand needs to be scaled using the asset decimal places for the token."
+          "description": "Amount to undelegate, as an unsigned integer scaled to the governance asset's decimal places.\nIf not set, then all delegations to the given validator node will be removed."
         },
         "method": {
           "$ref": "#/definitions/UndelegateSubmissionMethod",
           "description": "Method of delegation."
         }
-      }
+      },
+      "description": "Command to allow a token holder to instruct the network to remove their delegated stake from a given validator node."
     },
     "v1UpdateReferralSet": {
       "type": "object",
@@ -9829,32 +10825,34 @@
           "description": "ID of the referral set to update."
         },
         "isTeam": {
-          "type": "boolean"
+          "type": "boolean",
+          "description": "Whether or not the referral set should be considered a team that can participate in team games on the network."
         },
         "team": {
-          "$ref": "#/definitions/v1UpdateReferralSetTeam"
+          "$ref": "#/definitions/v1UpdateReferralSetTeam",
+          "description": "Team details, if the referral set is to be considered a team."
         }
       },
-      "title": "Request for updating a referral set's properties"
+      "description": "A command that allows the referrer of a referral set to update team details for a referral set.\nAny field that is left unset or has a default value indicates that this field on the original referral set will be left unchanged."
     },
     "v1UpdateReferralSetTeam": {
       "type": "object",
       "properties": {
         "name": {
           "type": "string",
-          "description": "Optional team name to be added to the referral banner."
+          "description": "New name of the team."
         },
         "teamUrl": {
           "type": "string",
-          "description": "Optional link to a team forum, discord, etc."
+          "description": "New link to the team's homepage."
         },
         "avatarUrl": {
           "type": "string",
-          "description": "Optional link to an image to be used as the team avatar."
+          "description": "New link to an avatar for the team."
         },
         "closed": {
           "type": "boolean",
-          "title": "Is this team closed for external other users"
+          "description": "Whether or not the team is closed to new party members."
         }
       }
     },
@@ -9987,6 +10985,24 @@
       },
       "title": "Validator update event contains information about validator node"
     },
+    "v1VestingBalancesSummary": {
+      "type": "object",
+      "properties": {
+        "epochSeq": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Epoch for which these balances are valid."
+        },
+        "partiesVestingSummary": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PartyVestingSummary"
+          },
+          "description": "Parties' summaries."
+        }
+      },
+      "title": "Summary of the vesting and locked balances for an epoch"
+    },
     "v1VestingStatsUpdated": {
       "type": "object",
       "properties": {
@@ -10016,6 +11032,16 @@
         "id": {
           "type": "string",
           "description": "Unique ID of the volume discount program."
+        },
+        "endedAt": {
+          "type": "string",
+          "format": "int64",
+          "description": "Time in Unix nanoseconds when the referral program ended."
+        },
+        "atEpoch": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Epoch at which the referral program ended."
         }
       }
     },
@@ -10025,6 +11051,16 @@
         "program": {
           "$ref": "#/definitions/vegaVolumeDiscountProgram",
           "description": "Volume discount program that has started."
+        },
+        "startedAt": {
+          "type": "string",
+          "format": "int64",
+          "description": "Time in Unix nanoseconds when the volume discount program started."
+        },
+        "atEpoch": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Epoch at which the volume discount program started."
         }
       }
     },
@@ -10034,8 +11070,36 @@
         "program": {
           "$ref": "#/definitions/vegaVolumeDiscountProgram",
           "description": "The updated volume discount program."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "int64",
+          "description": "Time in Unix nanoseconds when the volume discount program was updated."
+        },
+        "atEpoch": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Epoch at which the volume discount program was updated."
         }
       }
+    },
+    "v1VolumeDiscountStatsUpdated": {
+      "type": "object",
+      "properties": {
+        "atEpoch": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Epoch at which the volume discount statistics are updated."
+        },
+        "stats": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PartyVolumeDiscountStats"
+          },
+          "description": "All parties' stats."
+        }
+      },
+      "description": "Stats of all parties eligible for volume discount."
     },
     "v1VoteSubmission": {
       "type": "object",
@@ -10049,14 +11113,14 @@
           "description": "Actual value of the vote."
         }
       },
-      "description": "Command to submit a new vote for a governance proposal."
+      "description": "Command that allows a token holder to vote for or against an active governance proposal."
     },
     "v1WithdrawSubmission": {
       "type": "object",
       "properties": {
         "amount": {
           "type": "string",
-          "description": "Amount to be withdrawn. This field is an unsigned integer scaled to the asset's decimal places."
+          "description": "Amount to be withdrawn, as an unsigned integer scaled to the asset's decimal places."
         },
         "asset": {
           "type": "string",
@@ -10064,10 +11128,10 @@
         },
         "ext": {
           "$ref": "#/definitions/vegaWithdrawExt",
-          "description": "Foreign chain specifics."
+          "description": "Details specific to the foreign chain, such as the receiver address."
         }
       },
-      "title": "Represents the submission request to withdraw funds for a party on Vega"
+      "description": "Command to instruct the network to process an asset withdrawal from the Vega network.\nThe process is specific to the destination foreign chain, for example, a withdrawal to Ethereum will generate signatures\nthat allow funds to be taken across the bridge."
     },
     "v2AccountBalance": {
       "type": "object",
@@ -10776,6 +11840,62 @@
       },
       "title": "Page of Ethereum key rotations data and corresponding page information"
     },
+    "v2FeesStatsForParty": {
+      "type": "object",
+      "properties": {
+        "assetId": {
+          "type": "string",
+          "description": "Settlement asset of the market."
+        },
+        "totalRewardsReceived": {
+          "type": "string",
+          "description": "Total referral rewards received by referrer of the referral set."
+        },
+        "refereesDiscountApplied": {
+          "type": "string",
+          "description": "Total referral discounts applied to referee fees."
+        },
+        "volumeDiscountApplied": {
+          "type": "string",
+          "description": "Total volume discounts applied to referee fees."
+        },
+        "totalMakerFeesReceived": {
+          "type": "string",
+          "description": "Total maker fees received by the maker side."
+        }
+      }
+    },
+    "v2FundingPaymentConnection": {
+      "type": "object",
+      "properties": {
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v2FundingPaymentEdge"
+          },
+          "description": "Page of funding payment data and their corresponding cursors."
+        },
+        "pageInfo": {
+          "$ref": "#/definitions/v2PageInfo",
+          "description": "Page information that is used for fetching further pages."
+        }
+      },
+      "description": "Page of funding payment data and corresponding page information."
+    },
+    "v2FundingPaymentEdge": {
+      "type": "object",
+      "properties": {
+        "node": {
+          "$ref": "#/definitions/apiv2FundingPayment",
+          "description": "Funding payment data."
+        },
+        "cursor": {
+          "type": "string",
+          "description": "Cursor that can be used to fetch further pages."
+        }
+      },
+      "description": "Funding payment data with the corresponding cursor."
+    },
     "v2FundingPeriodConnection": {
       "type": "object",
       "properties": {
@@ -10867,6 +11987,16 @@
         "currentReferralProgram": {
           "$ref": "#/definitions/apiv2ReferralProgram",
           "description": "Referral program currently activated on the network."
+        }
+      },
+      "title": "Response containing the current referral program"
+    },
+    "v2GetCurrentVolumeDiscountProgramResponse": {
+      "type": "object",
+      "properties": {
+        "currentVolumeDiscountProgram": {
+          "$ref": "#/definitions/apiv2VolumeDiscountProgram",
+          "description": "Volume discount program currently activated on the network."
         }
       },
       "title": "Response containing the current referral program"
@@ -10973,6 +12103,29 @@
         }
       },
       "title": "Response from getting epoch"
+    },
+    "v2GetFeesStatsForPartyResponse": {
+      "type": "object",
+      "properties": {
+        "feesStatsForParty": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v2FeesStatsForParty"
+          },
+          "description": "Fees statistics for the given request."
+        }
+      },
+      "description": "Response that is sent when requesting fees statistics for a given party."
+    },
+    "v2GetFeesStatsResponse": {
+      "type": "object",
+      "properties": {
+        "feesStats": {
+          "$ref": "#/definitions/v1FeesStats",
+          "description": "Fees statistics for the given request."
+        }
+      },
+      "description": "Response that is sent when requesting fees statistics."
     },
     "v2GetGovernanceDataResponse": {
       "type": "object",
@@ -11174,7 +12327,7 @@
       "properties": {
         "activityStreak": {
           "$ref": "#/definitions/v1PartyActivityStreak",
-          "title": "A party's activity streak in a given epoch"
+          "description": "Party's activity streak in a given epoch."
         }
       },
       "title": "Response when getting a party's activity streaks across epochs"
@@ -11203,11 +12356,11 @@
       "type": "object",
       "properties": {
         "stats": {
-          "$ref": "#/definitions/v2ReferralSetStats",
-          "title": "Referral set stats requests"
+          "$ref": "#/definitions/v2ReferralSetStatsConnection",
+          "description": "Referral set statistics for the epoch."
         }
       },
-      "title": "Response returned containing the referral set's stats"
+      "description": "Response containing the volume discount statistics for the given epoch."
     },
     "v2GetRiskFactorsResponse": {
       "type": "object",
@@ -11263,6 +12416,45 @@
         }
       },
       "title": "Response for the current consensus coordinated time on the Vega network, referred to as \"VegaTime\""
+    },
+    "v2GetVestingBalancesSummaryResponse": {
+      "type": "object",
+      "properties": {
+        "partyId": {
+          "type": "string",
+          "description": "Party ID."
+        },
+        "epochSeq": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Epoch for which these balances are valid."
+        },
+        "lockedBalances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PartyLockedBalance"
+          },
+          "description": "List of locked balances for the party."
+        },
+        "vestingBalances": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1PartyVestingBalance"
+          },
+          "description": "List of vesting balances for the party."
+        }
+      },
+      "description": "List of vesting and locked balances for a party."
+    },
+    "v2GetVolumeDiscountStatsResponse": {
+      "type": "object",
+      "properties": {
+        "stats": {
+          "$ref": "#/definitions/v2VolumeDiscountStatsConnection",
+          "description": "Volume discount statistics for an epoch."
+        }
+      },
+      "description": "Response containing the volume discount statistics for the given epoch."
     },
     "v2GetWithdrawalResponse": {
       "type": "object",
@@ -11406,11 +12598,11 @@
         },
         "fromAccountFilter": {
           "$ref": "#/definitions/v2AccountFilter",
-          "description": "Used to set values for filtering sender accounts."
+          "description": "Used to set values for filtering sender accounts. Party must be provided in this filter or 'to' account filter, or both."
         },
         "toAccountFilter": {
           "$ref": "#/definitions/v2AccountFilter",
-          "description": "Used to set values for filtering receiver accounts."
+          "description": "Used to set values for filtering receiver accounts. Party must be provided in this filter or 'from' account filter, or both."
         },
         "transferTypes": {
           "type": "array",
@@ -11468,6 +12660,10 @@
         "feeShare": {
           "$ref": "#/definitions/vegaLiquidityProviderFeeShare",
           "description": "Information used for calculating an LP's fee share, such as the equity like share,\naverage entry valuation and liquidity score for the liquidity provider for the specified market."
+        },
+        "sla": {
+          "$ref": "#/definitions/vegaLiquidityProviderSLA",
+          "description": "Information about LP's SLA performance."
         }
       },
       "description": "Liquidity provider information."
@@ -11503,6 +12699,20 @@
       },
       "description": "Liquidity provider data with the corresponding cursor."
     },
+    "v2LiquidityProvisionWithPendingEdge": {
+      "type": "object",
+      "properties": {
+        "node": {
+          "$ref": "#/definitions/apiv2LiquidityProvision",
+          "description": "Data corresponding to a liquidity provider's commitment."
+        },
+        "cursor": {
+          "type": "string",
+          "description": "Cursor that can be used to fetch further pages."
+        }
+      },
+      "description": "Liquidity provision data with the corresponding cursor."
+    },
     "v2LiquidityProvisionsConnection": {
       "type": "object",
       "properties": {
@@ -11534,6 +12744,23 @@
       },
       "description": "Liquidity provision data with the corresponding cursor."
     },
+    "v2LiquidityProvisionsWithPendingConnection": {
+      "type": "object",
+      "properties": {
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v2LiquidityProvisionWithPendingEdge"
+          },
+          "description": "Page of liquidity provisions data and their corresponding cursors."
+        },
+        "pageInfo": {
+          "$ref": "#/definitions/v2PageInfo",
+          "description": "Page information that is used to fetch further pages."
+        }
+      },
+      "title": "Page of liquidity provisions data and corresponding page information"
+    },
     "v2ListAccountsResponse": {
       "type": "object",
       "properties": {
@@ -11543,6 +12770,16 @@
         }
       },
       "description": "Response that is received from listing accounts query."
+    },
+    "v2ListAllLiquidityProvisionsResponse": {
+      "type": "object",
+      "properties": {
+        "liquidityProvisions": {
+          "$ref": "#/definitions/v2LiquidityProvisionsWithPendingConnection",
+          "description": "Page of liquidity provisions data and corresponding page information."
+        }
+      },
+      "title": "Response from listing liquidity provisions"
     },
     "v2ListAllNetworkHistorySegmentsResponse": {
       "type": "object",
@@ -11864,6 +13101,16 @@
       },
       "title": "Response message containing Ethereum key rotations"
     },
+    "v2ListFundingPaymentsResponse": {
+      "type": "object",
+      "properties": {
+        "fundingPayments": {
+          "$ref": "#/definitions/v2FundingPaymentConnection",
+          "description": "Page of funding period data and corresponding page information."
+        }
+      },
+      "title": "Response from listing funding payments"
+    },
     "v2ListFundingPeriodDataPointsResponse": {
       "type": "object",
       "properties": {
@@ -11894,10 +13141,17 @@
         "TYPE_NETWORK_PARAMETERS",
         "TYPE_NEW_ASSET",
         "TYPE_NEW_FREE_FORM",
-        "TYPE_UPDATE_ASSET"
+        "TYPE_UPDATE_ASSET",
+        "TYPE_NEW_SPOT_MARKET",
+        "TYPE_UPDATE_SPOT_MARKET",
+        "TYPE_NEW_TRANSFER",
+        "TYPE_CANCEL_TRANSFER",
+        "TYPE_UPDATE_MARKET_STATE",
+        "TYPE_UPDATE_REFERRAL_PROGRAM",
+        "TYPE_UPDATE_VOLUME_DISCOUNT_PROGRAM"
       ],
       "default": "TYPE_UNSPECIFIED",
-      "description": "- TYPE_ALL: List all proposals\n - TYPE_NEW_MARKET: List new market proposals\n - TYPE_UPDATE_MARKET: List update market proposals\n - TYPE_NETWORK_PARAMETERS: List change Vega network parameter proposals\n - TYPE_NEW_ASSET: New asset proposals\n - TYPE_NEW_FREE_FORM: Proposals for creating a new free form proposal\n - TYPE_UPDATE_ASSET: Update asset proposals",
+      "description": "- TYPE_ALL: List all proposals\n - TYPE_NEW_MARKET: List new market proposals\n - TYPE_UPDATE_MARKET: List update market proposals\n - TYPE_NETWORK_PARAMETERS: List change Vega network parameter proposals\n - TYPE_NEW_ASSET: New asset proposals\n - TYPE_NEW_FREE_FORM: Proposals for creating a new free form proposal\n - TYPE_UPDATE_ASSET: Update asset proposals\n - TYPE_NEW_SPOT_MARKET: Propose a new spot market\n - TYPE_UPDATE_SPOT_MARKET: Update an existing spot market\n - TYPE_NEW_TRANSFER: Propose a new transfer\n - TYPE_CANCEL_TRANSFER: Proposal to cancel a transfer\n - TYPE_UPDATE_MARKET_STATE: Proposal for updating the state of a market\n - TYPE_UPDATE_REFERRAL_PROGRAM: Proposal to update the referral program\n - TYPE_UPDATE_VOLUME_DISCOUNT_PROGRAM: Proposal to update the volume discount program",
       "title": "Filter for the types of governance proposals to view"
     },
     "v2ListGovernanceDataResponse": {
@@ -12051,6 +13305,16 @@
         }
       },
       "title": "Response that is received from the query to list orders"
+    },
+    "v2ListPaidLiquidityFeesResponse": {
+      "type": "object",
+      "properties": {
+        "paidLiquidityFees": {
+          "$ref": "#/definitions/v2PaidLiquidityFeesConnection",
+          "description": "Page of paid liquidity fees and corresponding page information."
+        }
+      },
+      "description": "Paid liquidity fees response."
     },
     "v2ListPartiesResponse": {
       "type": "object",
@@ -12745,7 +14009,7 @@
         },
         "excludeLiquidity": {
           "type": "boolean",
-          "description": "Indicator if liquidity provision orders should be included or not in the list."
+          "description": "Indicator if liquidity provisions should be included or not in the list."
         },
         "partyIds": {
           "type": "array",
@@ -12878,6 +14142,37 @@
         }
       },
       "description": "All data returned from the API is ordered in a well-defined manner.\nThe specific columns and the order in which the sorting is performed\ndepend on the API endpoint being called. However, the primary sorting\ncolumn is usually the timestamp of the block in which the data was last updated.\n\nTo prevent excessively large response messages and to avoid overloading\ndatabase resources, the API employs a cursor-based pagination mechanism.\n\nThis Pagination message can be optionally provided as part of the request to specify:\n- The starting point within the total result set for beginning the page\n- The size of the returned page\n- The ordering of the data within that page\n\nIf no Pagination message is provided, the API will return the first page of\ndata using the default page size. The default page size is 1000.\n\nTo retrieve subsequent pages, the caller must examine the PageInfo structure\nreturned in the response to find a cursor string that uniquely identifies the\nlast row of that page. This cursor should then be passed in the 'after' field\nof the Pagination message in a subsequent request.\n\nFor paging backward, take the cursor for the first row of the page from PageInfo\nand pass it in the 'before' field of the Pagination message.\n\nPagination message that uses both first/after and last/before is considered invalid."
+    },
+    "v2PaidLiquidityFeesConnection": {
+      "type": "object",
+      "properties": {
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v2PaidLiquidityFeesEdge"
+          },
+          "description": "Page of paid liquidity fees data."
+        },
+        "pageInfo": {
+          "$ref": "#/definitions/v2PageInfo",
+          "description": "Page information that is used for fetching further pages."
+        }
+      },
+      "description": "Paid liquidity fees data and corresponding page information."
+    },
+    "v2PaidLiquidityFeesEdge": {
+      "type": "object",
+      "properties": {
+        "node": {
+          "$ref": "#/definitions/v1PaidLiquidityFeesStats",
+          "description": "Paid liquidity fees data returned by the API."
+        },
+        "cursor": {
+          "type": "string",
+          "description": "Cursor that can be used to fetch further data."
+        }
+      },
+      "description": "Paid liquidity fees data with the corresponding cursor."
     },
     "v2PartyConnection": {
       "type": "object",
@@ -13040,12 +14335,12 @@
         "createdAt": {
           "type": "string",
           "format": "int64",
-          "description": "Time in Unix nanoseconds when the set was created."
+          "description": "Timestamp, in Unix nanoseconds, when the set was created."
         },
         "updatedAt": {
           "type": "string",
           "format": "int64",
-          "description": "Time in Unix nanoseconds when the set was updated."
+          "description": "Timestamp, in Unix nanoseconds, when the set was updated."
         }
       },
       "description": "Data relating to a referral set."
@@ -13095,12 +14390,20 @@
         "joinedAt": {
           "type": "string",
           "format": "int64",
-          "description": "Time in Unix nanoseconds when the party joined the set."
+          "description": "Timestamp, in Unix nanoseconds, when the party joined the set."
         },
         "atEpoch": {
           "type": "string",
           "format": "uint64",
           "description": "Epoch at which the party joined the set."
+        },
+        "totalRefereeNotionalTakerVolume": {
+          "type": "string",
+          "description": "Total notional volume of the referee's aggressive trades over the aggregation period."
+        },
+        "totalRefereeGeneratedRewards": {
+          "type": "string",
+          "description": "Total rewards generated by the referee over the aggregation period."
         }
       },
       "title": "Data relating to referees that have joined a referral set"
@@ -13139,27 +14442,72 @@
     "v2ReferralSetStats": {
       "type": "object",
       "properties": {
-        "setId": {
-          "type": "string",
-          "description": "Unique ID of the set."
-        },
         "atEpoch": {
           "type": "string",
           "format": "uint64",
-          "description": "Epoch at which the set's statistics are updated."
+          "description": "Epoch at which the set's statistics were updated."
         },
         "referralSetRunningNotionalTakerVolume": {
           "type": "string",
           "description": "Running volume for the set based on the window length of the current\nreferral program."
         },
-        "refereesStats": {
+        "partyId": {
+          "type": "string",
+          "description": "Party ID."
+        },
+        "discountFactor": {
+          "type": "string",
+          "description": "Discount factor applied to the party."
+        },
+        "rewardFactor": {
+          "type": "string",
+          "description": "Reward factor applied to the party."
+        },
+        "epochNotionalTakerVolume": {
+          "type": "string",
+          "description": "Current referee notional taker volume."
+        },
+        "rewardsMultiplier": {
+          "type": "string",
+          "description": "Multiplier applied to the referral reward factor when calculating referral rewards due to the referrer."
+        },
+        "rewardsFactorMultiplier": {
+          "type": "string",
+          "description": "Proportion of the referee's taker fees to be rewarded to the referrer."
+        }
+      },
+      "description": "Referral set statistics for a given epoch for a party."
+    },
+    "v2ReferralSetStatsConnection": {
+      "type": "object",
+      "properties": {
+        "edges": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/v1RefereeStats"
+            "$ref": "#/definitions/v2ReferralSetStatsEdge"
           },
-          "description": "Referees' statistics for that epoch."
+          "description": "Page of volume discount statistics data and their corresponding cursors."
+        },
+        "pageInfo": {
+          "$ref": "#/definitions/v2PageInfo",
+          "description": "Page information that is used for fetching further pages."
         }
-      }
+      },
+      "description": "Page of volume discount stats data and corresponding page information."
+    },
+    "v2ReferralSetStatsEdge": {
+      "type": "object",
+      "properties": {
+        "node": {
+          "$ref": "#/definitions/v2ReferralSetStats",
+          "description": "Referral set stats data."
+        },
+        "cursor": {
+          "type": "string",
+          "description": "Cursor that can be used to fetch further pages."
+        }
+      },
+      "description": "Referral set stats data with the corresponding cursor."
     },
     "v2RewardEdge": {
       "type": "object",
@@ -13419,7 +14767,7 @@
       "properties": {
         "node": {
           "$ref": "#/definitions/apiv2Team",
-          "title": "Team data"
+          "description": "Team data."
         },
         "cursor": {
           "type": "string",
@@ -13442,7 +14790,7 @@
         "joinedAt": {
           "type": "string",
           "format": "int64",
-          "description": "Time in Unix nanoseconds when the party joined a team."
+          "description": "Timestamp in Unix nanoseconds when the party joined the team."
         },
         "joinedAtEpoch": {
           "type": "string",
@@ -13474,7 +14822,7 @@
       "properties": {
         "node": {
           "$ref": "#/definitions/v2TeamReferee",
-          "title": "Team referee data"
+          "description": "Team referee data."
         },
         "cursor": {
           "type": "string",
@@ -13493,7 +14841,7 @@
         "joinedAt": {
           "type": "string",
           "format": "int64",
-          "description": "Time in Unix nanoseconds when the party joined a team."
+          "description": "Timestamp in Unix nanoseconds when the party joined the team."
         },
         "joinedAtEpoch": {
           "type": "string",
@@ -13525,7 +14873,7 @@
       "properties": {
         "node": {
           "$ref": "#/definitions/v2TeamRefereeHistory",
-          "title": "Team referee data"
+          "description": "Team referee data."
         },
         "cursor": {
           "type": "string",
@@ -13606,6 +14954,60 @@
         }
       },
       "description": "Transfers data with the corresponding cursor."
+    },
+    "v2VolumeDiscountStats": {
+      "type": "object",
+      "properties": {
+        "atEpoch": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Epoch at which the statistics apply."
+        },
+        "partyId": {
+          "type": "string",
+          "description": "Party ID for which the statistics apply."
+        },
+        "discountFactor": {
+          "type": "string",
+          "description": "Discount factor applied given the party's running volume."
+        },
+        "runningVolume": {
+          "type": "string",
+          "description": "The party's running volume."
+        }
+      },
+      "description": "Volume discount statistics for a given epoch for all parties."
+    },
+    "v2VolumeDiscountStatsConnection": {
+      "type": "object",
+      "properties": {
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v2VolumeDiscountStatsEdge"
+          },
+          "description": "Page of volume discount statistics data and their corresponding cursors."
+        },
+        "pageInfo": {
+          "$ref": "#/definitions/v2PageInfo",
+          "description": "Page information that is used for fetching further pages."
+        }
+      },
+      "description": "Page of volume discount stats data and corresponding page information."
+    },
+    "v2VolumeDiscountStatsEdge": {
+      "type": "object",
+      "properties": {
+        "node": {
+          "$ref": "#/definitions/v2VolumeDiscountStats",
+          "description": "Volume discount stats data."
+        },
+        "cursor": {
+          "type": "string",
+          "description": "Cursor that can be used to fetch further pages."
+        }
+      },
+      "description": "Volume discount stats data with the corresponding cursor."
     },
     "v2VoteConnection": {
       "type": "object",
@@ -13876,11 +15278,11 @@
         },
         "referralRewardFactor": {
           "type": "string",
-          "title": "Proportion of the referee's taker fees to be rewarded to the referrer"
+          "description": "Proportion of the referee's taker fees to be rewarded to the referrer."
         },
         "referralDiscountFactor": {
           "type": "string",
-          "title": "Proportion of the referee's taker fees to be discounted"
+          "description": "Proportion of the referee's taker fees to be discounted."
         }
       }
     },
@@ -14895,6 +16297,51 @@
       },
       "title": "Equity like share of liquidity fee for each liquidity provider"
     },
+    "vegaLiquidityProviderSLA": {
+      "type": "object",
+      "properties": {
+        "party": {
+          "type": "string",
+          "description": "Liquidity provider party ID."
+        },
+        "currentEpochFractionOfTimeOnBook": {
+          "type": "string",
+          "description": "Indicates how often LP meets the commitment during the current epoch."
+        },
+        "lastEpochFractionOfTimeOnBook": {
+          "type": "string",
+          "description": "Indicates how often LP met the commitment in the previous epoch."
+        },
+        "lastEpochFeePenalty": {
+          "type": "string",
+          "description": "Indicates the fee penalty amount applied in the previous epoch."
+        },
+        "lastEpochBondPenalty": {
+          "type": "string",
+          "description": "Shows the bond penalties from past epochs."
+        },
+        "hysteresisPeriodFeePenalties": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Determines how the fee penalties from past epochs affect future fee revenue."
+        },
+        "requiredLiquidity": {
+          "type": "string",
+          "description": "Represents the total amount of funds LP must supply. The amount to be supplied is in the market’s\nsettlement currency, spread on both buy and sell sides of the order book within a defined range."
+        },
+        "notionalVolumeBuys": {
+          "type": "string",
+          "description": "Notional volume of orders within the range provided on the buy side of the book."
+        },
+        "notionalVolumeSells": {
+          "type": "string",
+          "description": "Notional volume of orders within the range provided on the sell side of the book."
+        }
+      },
+      "title": "SLA performance for each liquidity provider"
+    },
     "vegaLiquidityProvision": {
       "type": "object",
       "properties": {
@@ -14909,16 +16356,16 @@
         "createdAt": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp in Unix nanoseconds for when the order was created."
+          "description": "Timestamp in Unix nanoseconds for when the liquidity provision was created."
         },
         "updatedAt": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp in Unix nanoseconds for when the order was updated."
+          "description": "Timestamp in Unix nanoseconds for when the liquidity provision was updated."
         },
         "marketId": {
           "type": "string",
-          "description": "Market ID for the order."
+          "description": "Market ID for the liquidity provision."
         },
         "commitmentAmount": {
           "type": "string",
@@ -14945,11 +16392,11 @@
         "version": {
           "type": "string",
           "format": "uint64",
-          "description": "Version of this liquidity provision order."
+          "description": "Version of this liquidity provision."
         },
         "status": {
           "$ref": "#/definitions/vegaLiquidityProvisionStatus",
-          "description": "Status of this liquidity provision order."
+          "description": "Status of this liquidity provision."
         },
         "reference": {
           "type": "string",
@@ -14970,7 +16417,7 @@
         "STATUS_PENDING"
       ],
       "default": "STATUS_UNSPECIFIED",
-      "description": "Status of a liquidity provision order.\n\n - STATUS_UNSPECIFIED: Always invalid\n - STATUS_ACTIVE: Liquidity provision is active\n - STATUS_STOPPED: Liquidity provision was stopped by the network\n - STATUS_CANCELLED: Liquidity provision was cancelled by the liquidity provider\n - STATUS_REJECTED: Liquidity provision was invalid and got rejected\n - STATUS_UNDEPLOYED: Liquidity provision is valid and accepted by network, but orders aren't deployed\n - STATUS_PENDING: Liquidity provision is valid and accepted by network\nbut has never been deployed. If when it's possible to deploy the orders for the first time\nmargin check fails, then they will be cancelled without any penalties."
+      "description": "Status of a liquidity provision.\n\n - STATUS_UNSPECIFIED: Always invalid\n - STATUS_ACTIVE: Liquidity provision is active\n - STATUS_STOPPED: Liquidity provision was stopped by the network\n - STATUS_CANCELLED: Liquidity provision was cancelled by the liquidity provider\n - STATUS_REJECTED: Liquidity provision was invalid and got rejected\n - STATUS_UNDEPLOYED: Liquidity provision is valid and accepted by network, but orders aren't deployed\n - STATUS_PENDING: Liquidity provision is valid and accepted by network\nbut has never been deployed. If when it's possible to deploy the orders for the first time\nmargin check fails, then they will be cancelled without any penalties."
     },
     "vegaLiquiditySLAParameters": {
       "type": "object",
@@ -15134,7 +16581,7 @@
         },
         "lpPriceRange": {
           "type": "string",
-          "description": "Percentage move up and down from the mid price which specifies the range of\nprice levels over which automated liquidity provision orders will be deployed."
+          "description": "Percentage move up and down from the mid price which specifies the range of\nprice levels over which automated liquidity provisions will be deployed."
         },
         "linearSlippageFactor": {
           "type": "string",
@@ -15305,6 +16752,13 @@
         "productData": {
           "$ref": "#/definitions/vegaProductData",
           "description": "Data related to the particular product type of the market."
+        },
+        "liquidityProviderSla": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/vegaLiquidityProviderSLA"
+          },
+          "description": "SLA performance for each liquidity provider."
         }
       },
       "title": "Represents data generated by a market when open"
@@ -15552,7 +17006,7 @@
         },
         "lpPriceRange": {
           "type": "string",
-          "description": "DEPRECATED: Use liquidity SLA parameters instead.\nPercentage move up and down from the mid price which specifies the range of\nprice levels over which automated liquidity provision orders will be deployed."
+          "description": "DEPRECATED: Use liquidity SLA parameters instead.\nPercentage move up and down from the mid price which specifies the range of\nprice levels over which automated liquidity provisions will be deployed."
         },
         "linearSlippageFactor": {
           "type": "string",
@@ -16676,12 +18130,41 @@
           "items": {
             "$ref": "#/definitions/vegaBenefitTier"
           },
+          "description": "Defined benefit tiers ordered by increasing discounts."
+        },
+        "endOfProgramTimestamp": {
+          "type": "string",
+          "format": "int64",
+          "description": "Timestamp in Unix nanoseconds, after which when the current epoch ends,\nthe program will end and benefits will be disabled."
+        },
+        "windowLength": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Number of epochs over which the referral set's running volume is evaluated."
+        },
+        "stakingTiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/vegaStakingTier"
+          },
+          "description": "Defined benefit tiers ordered by increasing reward multiplier. Determines the level of\nbenefit a party can expect based on their staking."
+        }
+      }
+    },
+    "vegaReferralProgramChanges": {
+      "type": "object",
+      "properties": {
+        "benefitTiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/vegaBenefitTier"
+          },
           "description": "Defined benefit tiers in increasing order. First element will give Tier 1,\nsecond element will give Tier 2, and so on. Determines the level of\nbenefit a party can expect based on performance criteria."
         },
         "endOfProgramTimestamp": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp as Unix time in seconds, after which when the current epoch ends, the\nprograms status will become STATE_CLOSED and benefits will be disabled."
+          "description": "Timestamp as Unix time in seconds, after which when the current epoch\nends, the program will end and benefits will be disabled."
         },
         "windowLength": {
           "type": "string",
@@ -16733,6 +18216,11 @@
         "rewardType": {
           "type": "string",
           "description": "Type of reward being paid."
+        },
+        "lockedUntilEpoch": {
+          "type": "string",
+          "format": "uint64",
+          "description": "The epoch when the reward is being released."
         }
       },
       "title": "Details for a single reward payment"
@@ -17283,7 +18771,7 @@
         },
         "lpPriceRange": {
           "type": "string",
-          "description": "DEPRECATED: Use liquidity SLA parameters instead.\nPercentage move up and down from the mid price which specifies the range of\nprice levels over which automated liquidity provision orders will be deployed."
+          "description": "DEPRECATED: Use liquidity SLA parameters instead.\nPercentage move up and down from the mid price which specifies the range of\nprice levels over which automated liquidity provisions will be deployed."
         },
         "linearSlippageFactor": {
           "type": "string",
@@ -17378,7 +18866,7 @@
       "type": "object",
       "properties": {
         "changes": {
-          "$ref": "#/definitions/vegaReferralProgram",
+          "$ref": "#/definitions/vegaReferralProgramChanges",
           "description": "Configuration for change to update a referral program."
         }
       }
@@ -17434,7 +18922,7 @@
       "type": "object",
       "properties": {
         "changes": {
-          "$ref": "#/definitions/vegaVolumeDiscountProgram",
+          "$ref": "#/definitions/vegaVolumeDiscountProgramChanges",
           "title": "Configuration for a change to update a volume discount program"
         }
       }
@@ -17460,7 +18948,7 @@
         },
         "volumeDiscountFactor": {
           "type": "string",
-          "title": "Proportion of the taker fees to be discounted"
+          "description": "Proportion of the taker fees to be discounted."
         }
       }
     },
@@ -17481,12 +18969,34 @@
           "items": {
             "$ref": "#/definitions/vegaVolumeBenefitTier"
           },
+          "description": "Defined benefit tiers ordered by increasing discounts."
+        },
+        "endOfProgramTimestamp": {
+          "type": "string",
+          "format": "int64",
+          "description": "Timestamp in Unix seconds, after which when the current epoch\nends, the program will end and benefits will be disabled."
+        },
+        "windowLength": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Number of epochs over which a referral set's running volume is evaluated."
+        }
+      }
+    },
+    "vegaVolumeDiscountProgramChanges": {
+      "type": "object",
+      "properties": {
+        "benefitTiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/vegaVolumeBenefitTier"
+          },
           "description": "Defined benefit tiers in increasing order. First element will give Tier 1,\nsecond element will give Tier 2, and so on. Determines the level of\nbenefit a party can expect based on performance criteria."
         },
         "endOfProgramTimestamp": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp as Unix time in seconds after which when the current epoch ends, the\nprogram's status will become STATE_CLOSED and benefits will be disabled."
+          "description": "Timestamp as Unix time in seconds, after which when the current epoch\nends, the program will end and benefits will be disabled."
         },
         "windowLength": {
           "type": "string",
@@ -17617,10 +19127,10 @@
         "deliverOn": {
           "type": "string",
           "format": "int64",
-          "description": "Timestamp in Unix nanoseconds for when the transfer should be delivered into the receiver's account."
+          "description": "Timestamp, in Unix nanoseconds, for when the transfer should be executed, i.e., assets transferred into the receiver's account."
         }
       },
-      "title": "Specific details for a one off transfer"
+      "description": "Details for a one-off transfer."
     },
     "vegacommandsv1RecurringTransfer": {
       "type": "object",
@@ -17628,30 +19138,30 @@
         "startEpoch": {
           "type": "string",
           "format": "uint64",
-          "description": "First epoch from which this transfer shall be paid."
+          "description": "First epoch from which this transfer shall be executed."
         },
         "endEpoch": {
           "type": "string",
           "format": "uint64",
-          "description": "Last epoch at which this transfer shall be paid."
+          "description": "Last epoch at which this transfer shall be executed."
         },
         "factor": {
           "type": "string",
-          "description": "Factor needs to be \u003e 0."
+          "description": "Factor that the initial transfer amount is multiplied by for each epoch that it is executed.\nFor example if the initial transfer amount is 1000 and the factor is 0.5, then the amounts transferred per epoch will be 1000, 500, 250, 125, etc."
         },
         "dispatchStrategy": {
           "$ref": "#/definitions/vegaDispatchStrategy",
           "description": "Optional parameter defining how a transfer is dispatched."
         }
       },
-      "title": "Specific details for a recurring transfer"
+      "title": "Details for a recurring transfer"
     },
     "vegacommandsv1Transfer": {
       "type": "object",
       "properties": {
         "fromAccountType": {
           "$ref": "#/definitions/vegaAccountType",
-          "description": "Account type from which the funds of the party\nshould be taken."
+          "description": "Account type from which the funds of the party should be taken."
         },
         "to": {
           "type": "string",
@@ -17667,20 +19177,22 @@
         },
         "amount": {
           "type": "string",
-          "description": "Amount to be taken from the source account. This field is an unsigned integer scaled to the asset's decimal places."
+          "description": "Amount to be taken from the source account, as an unsigned integer scaled to the asset's decimal places."
         },
         "reference": {
           "type": "string",
           "description": "Reference to be attached to the transfer."
         },
         "oneOff": {
-          "$ref": "#/definitions/vegacommandsv1OneOffTransfer"
+          "$ref": "#/definitions/vegacommandsv1OneOffTransfer",
+          "description": "Details of a one-off transfer that is executed once at a specified time."
         },
         "recurring": {
-          "$ref": "#/definitions/vegacommandsv1RecurringTransfer"
+          "$ref": "#/definitions/vegacommandsv1RecurringTransfer",
+          "description": "Details of a transfer that is executed once every epoch until stopped."
         }
       },
-      "title": "Transfer initiated by a party"
+      "title": "Command that allows a party to move assets from one account to another.\nA transfer can be set up as a single one-off transfer, or a recurring transfer that occurs once at the start of each epoch.\nEach transfer incurs a fee as specified by the network parameter `transfer.fee.factor`"
     },
     "vegaeventsv1OneOffTransfer": {
       "type": "object",

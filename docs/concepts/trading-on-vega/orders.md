@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 6
 title: Orders
 hide_title: false
 description: See the order types and when they're applicable for a market.
@@ -176,7 +176,7 @@ Orders with certain parameters offer conditions that can be set to determine whe
 #### Post-only 
 Post-only is a condition that's only available for limit orders. A limit order can be set as post-only if you only want the order to be sent when it can enter the order book, and thus not immediately, neither partly nor entirely, cross with any orders already on the book. If the order would have immediately traded, it is instead stopped, and the party receives a response that the order was stopped to avoid a trade occurring. 
 
-A post-only order will not incur [fees](./fees-rewards.md) if executed in continuous trading. However, if the order trades at an auction uncrossing, it may incur a fraction of liquidity and infrastructure fees.
+A post-only order will not incur [fees](./fees.md) if executed in continuous trading. However, if the order trades at an auction uncrossing, it may incur a fraction of liquidity and infrastructure fees.
 
 Once the order reaches the order book, it acts identically to an unconditional limit order set at the same price.
 

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 7
+sidebar_position: 8
 title: Market lifecycle
 hide_title: false
 description: See every stage possible for a proposed or live market.
@@ -135,10 +135,13 @@ A market moves from this termination state to settled when enough information ex
 
 This could happen instantly upon trading termination, though usually there will be a delay, for instance to wait to receive and accept data from a data source.
 
+Perpetuals markets can only be terminated if a governance proposal to terminate it passes a community vote.
+
 ### Enters trading terminated state
-- Triggered by the expiry for the market, which depends on the market's data source
+- Triggered by the expiry for the futures market, which depends on the market's data source
 
 ### What is and isn't possible
+- Perpetuals markets do not enter trading terminated unless it is triggered by a successful governance proposal
 - Mark to market settlement happens once if required after termination is triggered, then never again
 - A single set of market data may be emitted for the final settlement data (e.g. settlement mark price), after which no market data are emitted
 - No trading occurs, no orders are accepted
@@ -152,7 +155,9 @@ This could happen instantly upon trading termination, though usually there will 
 - Settlement dependencies met (i.e. oracle data received) → Settled
 
 ## Market status: Settled
-A market is `settled` once the required data to calculate the settlement cashflows is provided by the market's data source. These cashflows are calculated and applied to all traders with an open position. Positions are then closed and all orders cancelled.
+A futures market is `settled` once the required data to calculate the settlement cashflows is provided by the market's data source. These cashflows are calculated and applied to all traders with an open position. Positions are then closed and all orders cancelled. 
+
+Perpetuals markets will not enter settled state unless trading is terminated through a successful governance proposal.
 
 ### Enters settled state
 - Triggered by product logic and inputs (i.e. required data is received)

@@ -279,7 +279,7 @@ function generateDataSourceSpecBinding(skeleton) {
   return binding;
 }
 
-function generateInstrument(skeleton) {
+function generateFutureInstrument(skeleton) {
   const randomInstrument = sample(instruments);
   // This is tEuro
   const idForAnExistingVegaAsset =
@@ -368,6 +368,55 @@ function generateInstrument(skeleton) {
   };
 
   return instrument;
+}
+
+function generateLiquiditySlaParameters(skeleton) {
+  assert.equal(
+    skeleton.properties.priceRange.type,
+    "string",
+    "Liquidity SLA Parameters: expected range to be a string"
+  );
+  assert.equal(
+    skeleton.properties.commitmentMinTimeFraction.type,
+    "string",
+    "Liquidity SLA Parameters: expected min commitment time to be a string"
+  );
+  assert.equal(
+    skeleton.properties.performanceHysteresisEpochs.type,
+    "string",
+    "Liquidity SLA Parameters: expected performanceHysteresisEpochs to be a string"
+  );
+
+  assert.equal(
+    skeleton.properties.slaCompetitionFactor.type,
+    "string",
+    "Liquidity SLA Parameters: expected slaCompetitionFactor to be a string"
+  );
+
+  const slaParams = {
+    priceRange: "0.1",
+    commitmentMinTimeFraction: "0.1",
+    performanceHysteresisEpochs: "10",
+    slaCompetitionFactor: "0.2"
+  };
+
+  const compLabel = skeleton.properties.slaCompetitionFactor.description.split('\n')
+
+  slaParams[inspect.custom] = () => {
+    return `{
+        // (${skeleton.properties.priceRange.type})
+        priceRange: ${slaParams.priceRange},
+        // ${skeleton.properties.commitmentMinTimeFraction.description} (${skeleton.properties.commitmentMinTimeFraction.type})
+        commitmentMinTimeFraction: "${slaParams.commitmentMinTimeFraction}",
+        // ${skeleton.properties.performanceHysteresisEpochs.description} (${skeleton.properties.performanceHysteresisEpochs.format} as ${skeleton.properties.performanceHysteresisEpochs.type})
+        performanceHysteresisEpochs: "${slaParams.performanceHysteresisEpochs}",
+        // ${compLabel[0]}
+        // ${compLabel[1]} (${skeleton.properties.slaCompetitionFactor.type})
+        slaCompetitionFactor: "${slaParams.slaCompetitionFactor}",
+      }`;
+  };
+
+  return slaParams;
 }
 
 function generatePeggedOrder(skeleton, side, customInspect = false) {
@@ -691,12 +740,12 @@ function generateRiskModel(skeleton, riskModelType) {
 
 function newMarket(skeleton, proposalSoFar) {
   assert.ok(skeleton.properties.changes);
+  assert.ok(skeleton.properties.changes.properties.liquiditySlaParameters);
   assert.ok(skeleton.properties.changes.properties.decimalPlaces);
   assert.ok(skeleton.properties.changes.properties.quadraticSlippageFactor);
   assert.ok(skeleton.properties.changes.properties.linearSlippageFactor);
   assert.ok(skeleton.properties.changes.properties.positionDecimalPlaces);
   assert.ok(skeleton.properties.changes.properties.instrument);
-  assert.ok(skeleton.properties.changes.properties.lpPriceRange);
   assert.equal(skeleton.properties.changes.properties.metadata.type, "array");
   assert.ok(skeleton.properties.changes.properties.priceMonitoringParameters);
   assert.ok(
@@ -712,12 +761,11 @@ function newMarket(skeleton, proposalSoFar) {
     terms: {
       newMarket: {
         changes: {
-          lpPriceRange: "10",
           linearSlippageFactor: "0.001",
           quadraticSlippageFactor: "0",
           decimalPlaces: "5",
           positionDecimalPlaces: "5",
-          instrument: generateInstrument(
+          instrument: generateFutureInstrument(
             skeleton.properties.changes.properties.instrument
           ),
           metadata: generateMetadata(
@@ -734,21 +782,18 @@ function newMarket(skeleton, proposalSoFar) {
             skeleton.properties.changes.properties.logNormal,
             "logNormal"
           ),
+          liquiditySlaParameters: generateLiquiditySlaParameters(
+            skeleton.properties.changes.properties.liquiditySlaParameters
+          ),
         },
       },
     },
   };
 
   /*------- Liquidity Commitment required */
-  const lbLabel = skeleton.properties.changes.properties.lpPriceRange.description.split('\n')
-
   result.terms.newMarket[inspect.custom] = () => {
     return `{
         changes: {
-          // ${lbLabel[0]}
-          // ${lbLabel[1]}
-          lpPriceRange: "${result.terms.newMarket.changes.lpPriceRange}",
-
           // ${skeleton.properties.changes.properties.linearSlippageFactor.description}
           linearSlippageFactor: ${result.terms.newMarket.changes.linearSlippageFactor},
           // ${skeleton.properties.changes.properties.quadraticSlippageFactor.description}
@@ -786,6 +831,10 @@ function newMarket(skeleton, proposalSoFar) {
           logNormal: ${inspect(result.terms.newMarket.changes.logNormal, {
         depth: 19,
       })},
+      // ${skeleton.properties.changes.properties.liquiditySlaParameters.title}
+         liquiditySlaParameters: ${inspect(result.terms.newMarket.changes.liquiditySlaParameters, {
+      depth: 19,
+    })},
         }
     }`;
   };
@@ -820,9 +869,10 @@ module.exports = {
   generateSettlementDataSourceSpec,
   produceOverview,
   produceInstrument,
-  generateInstrument,
+  generateFutureInstrument,
   generateMetadata,
   generatePriceMonitoringParameters,
   generateLiquidityMonitoringParameters,
-  generateRiskModel
+  generateRiskModel,
+  generateLiquiditySlaParameters
 };

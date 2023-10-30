@@ -1,7 +1,8 @@
 const assert = require("assert").strict;
 const { inspect } = require("util");
 const {
-  generateInstrument,
+  generateLiquiditySlaParameters,
+  generateFutureInstrument,
   generateMetadata,
   generatePriceMonitoringParameters,
   generateLiquidityMonitoringParameters,
@@ -18,7 +19,6 @@ function newSuccessorMarket(skeleton, proposalSoFar) {
   assert.ok(skeleton.properties.changes.properties.linearSlippageFactor);
   assert.ok(skeleton.properties.changes.properties.positionDecimalPlaces);
   assert.ok(skeleton.properties.changes.properties.instrument);
-  assert.ok(skeleton.properties.changes.properties.lpPriceRange);
   assert.equal(skeleton.properties.changes.properties.metadata.type, "array");
   assert.ok(skeleton.properties.changes.properties.priceMonitoringParameters);
   assert.ok(
@@ -28,24 +28,18 @@ function newSuccessorMarket(skeleton, proposalSoFar) {
 
   const result = {
     rationale: {
-      title: `Lorem Ipsum market successor`,
-      description: `A successor to nnnnn`,
+      title: `Lorem Ipsum successor`,
+      description: `A successor market`,
     },
     terms: {
       newMarket: {
         changes: {
-          successor: {
-            parentMarketId: "nnnnnnnn",
-            insurancePoolFraction: "1"
-          },
-          lpPriceRange: "10",
           linearSlippageFactor: "0.001",
           quadraticSlippageFactor: "0",
           decimalPlaces: "5",
           positionDecimalPlaces: "5",
 
-
-          instrument: generateInstrument(
+          instrument: generateFutureInstrument(
             skeleton.properties.changes.properties.instrument
           ),
           metadata: generateMetadata(
@@ -62,29 +56,19 @@ function newSuccessorMarket(skeleton, proposalSoFar) {
             skeleton.properties.changes.properties.logNormal,
             "logNormal"
           ),
+          liquiditySlaParameters: generateLiquiditySlaParameters(
+            skeleton.properties.changes.properties.liquiditySlaParameters
+          ),
         },
       },
     },
   };
 
   /*------- Liquidity Commitment required */
-  const lbLabel = skeleton.properties.changes.properties.lpPriceRange.description.split('\n')
 
   result.terms.newMarket[inspect.custom] = () => {
     return `{
         changes: {
-
-          // ${skeleton.properties.changes.properties.successor.description}
-          successor: {
-            // ${skeleton.properties.changes.properties.successor.properties.parentMarketId.description}
-            parentMarketId: "${result.terms.newMarket.changes.successor.parentMarketId}",
-            // ${skeleton.properties.changes.properties.successor.properties.insurancePoolFraction.description}
-            insurancePoolFraction: "${result.terms.newMarket.changes.successor.insurancePoolFraction}"
-          },
-          // ${lbLabel[0]}
-          // ${lbLabel[1]}
-          lpPriceRange: "${result.terms.newMarket.changes.lpPriceRange}",
-
           // ${skeleton.properties.changes.properties.linearSlippageFactor.description}
           linearSlippageFactor: ${result.terms.newMarket.changes.linearSlippageFactor},
           // ${skeleton.properties.changes.properties.quadraticSlippageFactor.description}
@@ -122,6 +106,10 @@ function newSuccessorMarket(skeleton, proposalSoFar) {
           logNormal: ${inspect(result.terms.newMarket.changes.logNormal, {
         depth: 19,
       })},
+      // ${skeleton.properties.changes.properties.liquiditySlaParameters.title}
+      liquiditySlaParameters: ${inspect(result.terms.newMarket.changes.liquiditySlaParameters, {
+   depth: 19,
+ })},
         }
     }`;
   };

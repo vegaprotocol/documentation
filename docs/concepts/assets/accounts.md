@@ -67,7 +67,11 @@ There are insurance pool accounts per market and per asset.
 
 The insurance pool holds funds that have been collected if a liquidity provider pays a penalty for not providing their committed liquidity, or if a trader is closed out. The funds in the pool are called on if a market's events cause extreme movements, and traders become too distressed to cover their losses. 
 
-Once a market settles and terminates, any amount left in a market's insurance pool is transferred to the asset insurance pool, which can then be drawn on by other markets that use the same settlement asset. However, the behaviour is different when a market is defined as a parent to a successor. In a successor market proposal, a portion of a market's insurance pool can be earmarked for transfer to the successor market.
+Once a market settles and terminates, any amount left in a market's insurance pool is divided equally between the asset insurance pool and the insurance pools of the remaining active markets using the same settlement asset.
+
+However, the behaviour is different when a market is defined as a parent to a successor. In a successor market proposal, a portion of a market's insurance pool can be earmarked for transfer to the successor market. The rest of the market's insurance pool, if there is any, is then divided equally as described above.
+
+The assets in the asset insurance pools can only be moved if a  [governance-initiated transfer](./transfers.md#governance-initiated-transfers) is enacted, meaning a governance proposal to move assets to another specified account has passed the vote.
 
 :::note Read more
 * [Market lifecycle](../trading-on-vega/market-lifecycle.md)
@@ -86,17 +90,42 @@ The revenue from other fees go into fee-specific accounts:
 * **Infrastructure fee pool**: per asset, to then be distributed to the consensus validators who run the network and thus provide the infrastructure
 
 :::note Read more
-[Fees](../trading-on-vega/fees-rewards.md)
+[Fees](../trading-on-vega/fees.md)
 :::
 
-### Reward accounts 
-Trading rewards are funded by community members that want to incentivise certain types of market activities. 
+### Trading reward accounts 
+Trading rewards are funded by community members that want to incentivise certain types of market activities.
 
 Reward accounts can exist for each combination of reward metric, asset, and market, and they come to exist when they are funded by reward account transfers, which occur at the end of each epoch. The amount of assets entering each reward account depends on the amount transferred and the reward transfer strategy that the funder(s) defined when they set up the rewards transfer.
 
+There is also a global rewards account, which is used for validator rewards on top of infrastructure fee revenue.
+
+| Reward account name                               | Account purpose |
+|---------------------------------------------------|-----------------|
+| Vested rewards      | Holds earned rewards that have passed the vesting period and can be redeemed |
+| Vesting rewards | Holds earned rewards that are still within the vesting period |
+| Maker fees paid reward | Holds funds allocated to reward aggressive side of a trade based on fees paid |
+| Maker fees received reward | Holds funds allocated to reward passive side of a trade based on fees earned |
+| LP received fees reward     | Holds funds allocated to reward liquidity providers based on fees received for trades hit |
+| Average position reward | Holds funds allocated to reward the largest traders by position size |
+| Relative return reward | Holds funds allocated to reward most profitable traders |
+| Return volatility reward | Holds funds allocated to reward traders with the most consistent returns |
+| Market proposers reward | Holds funds allocated to reward creating markets that attract good trading volume |
+
 :::note Read more
-[Trading rewards](../trading-on-vega/fees-rewards.md#trading-rewards)
+[Trading rewards](../trading-on-vega/discounts-rewards.md#trading-rewards)
 :::
 
-<!--### Network treasury accounts
-The network treasury is made up of accounts, one per asset (if funded), that are contributed to by participants in the network. They can be funded through deposits or direct transfers from other protocol-governed accounts. In the future, funds in the network treasury can be used for rewards, grants, or other uses defined by tokenholder governance. -->
+### Validator reward accounts
+Validator reward accounts are used to distribute rewards, if they're funded, to consensus and standby validators based on their ranking score. These accounts can be funded through [deposits](./deposits-withdrawals.md) or [transfers](./transfers.md).
+
+:::note Read more
+[Validator scores and rewards](../vega-chain/validator-scores-and-rewards.md): Learn about how validators are rewarded.
+:::
+
+### Network treasury accounts
+The network treasury is made up of accounts, one per asset (if funded), that can be contributed to by participants in the network. They can be funded through deposits or transfers. 
+
+The assets in network treasury accounts can only be moved out if a [governance-initiated transfer](./transfers.md#governance-initiated-transfers) is enacted, meaning a governance proposal to move assets has passed the vote.
+
+Assets in the network treasury can be used for rewards, grants, or other uses defined by tokenholder governance.

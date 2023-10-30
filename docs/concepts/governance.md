@@ -9,22 +9,21 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 
 Governance allows the Vega network to arrive at on-chain decisions, where tokenholders can create proposals that other tokenholders can vote to approve or reject. 
 
-Vega supports on-chain proposals for creating markets and assets, and changing network parameters, markets and assets. Vega also supports freeform proposals for community suggestions that will not be enacted on-chain.
+Vega supports on-chain proposals for creating markets and assets, changing network parameters, markets and assets, and transferring assets between some network-managed accounts. Vega also supports freeform proposals for community suggestions that will not be enacted on-chain.
 
 Taking part in governance by voting, or by proposing additions/changes with community support, is a way for tokenholders and community members to contribute to improve the network, and to add value for other network participants.
 
 ## Voting on proposals
-VEGA tokenholders can vote for or against any active proposals, and there's no limit to how many active proposals they can vote on. 
+Proposals only get enacted if they get enough votes from VEGA tokenholders. There's no limit to how many active proposals they can vote on. 
 
-The tokens that a tokenholder wants to vote with must be associated with their Vega public key. It's not necessary to have those tokens nominated to validators, but the tokens must be associated to the Vega key used for voting.
+To vote, your tokens must be associated with a Vega public key. It's not necessary to have those tokens nominated to validators, but the tokens must be associated to the Vega key used for voting.
 
-Tokenolders can vote on a proposal as soon as it passes validation and is active, and can be voted on until it reaches the closing date/time.
+You can vote on a proposal as soon as it passes validation and is active, and it can be voted on until the proposal's closing date/time.
 
-* The number of tokens associated with the voting key determines how much weight the vote has. For market parameter change proposals, the liquidity providers' market share is also taken into account. 
-* Each Vega public key with a non-zero token balance gets one vote, and the key votes with the full weight of all the tokens that key has associated to it.
-* The Vega key used for voting will need to have more than 0 tokens when a vote is submitted, as well as when votes are counted at the proposal's closing date/time, otherwise the vote is disregarded.
-* Tokens used for voting are not locked or transferred: they can be used for staking as well as for voting on any/all active proposals.
-* While the voting period is open, a public key can change their vote, but only the most recent vote will count at the proposal's close.
+* How many tokens are associated with your voting key determines how much weight the vote has. For market parameter change proposals, the liquidity providers' market share is also taken into account. 
+* Each Vega public key with a non-zero token balance gets one vote, and the key votes with the full weight of all the tokens associated to that key. You'll need to have tokens when the vote is submitted *and* when votes are counted, otherwise your vote is disregarded.
+* Tokens used for voting are not locked or transferred: they can be used to nominate validators and to vote on other active proposals.
+* While the voting period is open, you can change your vote, but only the most recent vote will count at the proposal's close.
 
 ## How a proposal's outcome is calculated 
 * The network compares the weight of all valid votes cast as a percentage of the total weight that could vote, to the minimum participation requirement - `participation_rate = SUM (weightings of ALL valid votes cast) / max total weighting possible`
@@ -32,14 +31,14 @@ Tokenolders can vote on a proposal as soon as it passes validation and is active
 * If the minimum for both is reached, the proposal is enacted. If at least one is not reached, the proposal fails.
 
 ### Proposal outcome: Update market
-For proposals to update a market, there are additional requirements. The market's liquidity providers can vote with their equity-like share without requiring tokenholder participation. However, if tokenholders vote and participation and majority requirements for this vote are met, then the tokenholders' votes can overrule the liquidity providers' votes.
+For proposals to update a market, there are extra requirements. The market's liquidity providers can vote with their equity-like share without requiring tokenholder participation. However, if tokenholders vote and participation and majority requirements for this vote are met, then the tokenholders' votes can overrule the liquidity providers' votes.
 
 The network will also calculate:
 * The LP participation rate, which is the sum of the equity-like share of all LPs who cast a vote - `LP participation rate = SUM (equity-like share of all LPs who cast a vote)`
 * The rate of 'for' votes cast by liquidity providers, calculated as the sum of all who voted 'for', divided by the LP participation rate - `LP for rate = SUM (all who voted for) / LP participation rate`
 
 The proposal will pass if one of the two scenarios occur: 
-1. The tokenholder vote meets or exceeds the minimum set by <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredParticipation" hideValue={true} />,  and the votes in favour are greater than the amount set by <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredMajority" hideValue={true} />. In this case the market's liquidity providers were overridden by governance token holders.
+1. The tokenholder vote meets or exceeds the minimum set by <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredParticipation" hideValue={true} />, and the votes in favour are greater than the amount set by <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredMajority" hideValue={true} />. In this case the market's liquidity providers were overridden by governance token holders.
 2. The governance tokenholder vote does not reach participation threshold, but the liquidity providers' votes do, and there are enough votes in favour. The participation rate must be greater than/equal to <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredParticipation" hideValue={true} />, and the liquidity providers' participation rate must be greater than/equal to <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredParticipationLP" hideValue={true} />, and the liquidity providers' votes in favour is greater than/equal to <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredMajorityLP" hideValue={true} />
 
 ### Proposal outcome: Successor market
@@ -53,13 +52,15 @@ Two proposals that name the same parent can be submitted and pass a governance v
 Vote on active proposals on the **[Vega governance dApp ↗](https://governance.fairground.wtf)**.
 :::
 
-## Lifecycle of a governance proposal 
-Proposing an addition or change to the network requires community support. It's worth considering what it contributes to the network, and if it would have enough support to pass a governance vote. You'll have a better chance of positively contributing to the network if you confirm there is support off-chain before submitting a proposal.
+## Lifecycle of a governance proposal
+You need community support if you want to change something about the network, whether that's to add a new market, change a network parameter, or transfer pooled assets. It's worth considering what your proposed change contributes to the network, and if it would get enough votes from fellow tokenholders.
+
+You'll have a better chance of positively contributing to the network if you confirm there is support off-chain before submitting a proposal.
 
 ### 1. Sense checking proposal idea (off-chain)
-Before submitting a proposal, it's recommended that you share an outline of your proposed action informally in a new topic on the [community forum ↗](https://community.vega.xyz/c/governance/25/) Governance Proposals section, with a "sense-check" tag. You can find out if there is sufficient interest in making a change.
+Before submitting a proposal, share an outline of your proposed action informally in a new topic on the [community forum ↗](https://community.vega.xyz/c/governance/25/) Governance Proposals section, with a "sense-check" tag. You can find out if there is enough interest in your proposal.
 
-Proposals can be submitted for creating a new market, amending an existing market, changing network parameters, adding an external asset to Vega and making a freeform proposal (for changes that will not change network behaviour).
+Proposals can be submitted for creating a new market, amending an existing market, changing network parameters, adding an external asset to Vega, transferring out of asset pools. You can also suggest changes that won't impact network behaviour with a freeform proposal.
 
 ### 2. Formalising proposal (off-chain)
 Once the proposal details are refined, share the detailed proposal in the same topic you created for your sense check, and change the tag to "formalise". 
@@ -69,15 +70,15 @@ Including as much detail as possible gives other community members the opportuni
 When formalising the proposal, it is worth ensuring that any fields that are dependent on a range set by network parameters are correctly defined. See the network parameters and their values on the [Vega block explorer ↗](https://explorer.fairground.wtf/network-parameters).
 
 ### 3. Submitting proposal and telling the community (on-chain and off-chain)
-Tokenholders can submit a governance proposal to the network using the command line or via a script. 
+You can submit a governance proposal to the network using the command line, a script, or the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw).
 
-The Vega public key of the proposer must have enough VEGA staked to submit a proposal. For a 'market parameter change' proposal, the proposer must also have enough equity-like share in the market from their liquidity commitment, which is defined in the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minProposerEquityLikeShare" />.
+Your Vega key must have enough VEGA associated to submit a proposal. For a 'market parameter change' proposal, you'll also need enough equity-like share in the market from your liquidity commitment. This is defined in the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minProposerEquityLikeShare" />.
 
-Proposals are first checked by the wallet, then verified by the nodes before entering into the voting period you set. A proposal must have all of the relevant information, in the correct format, and in some cases within the accepted range - otherwise it will be rejected immediately. 
+Proposals are first checked by the wallet, then verified by the nodes before entering into the voting period you set. A proposal must have all of the relevant information, in the correct format, and in some cases within the accepted range - otherwise it will be rejected immediately.
 
-A proposal cannot be changed once entered.
+A proposal cannot be changed once it's submitted to the network.
 
-Once a proposal is submitted and accepted, rally the community to vote on the proposal by announcing it on the [forum ↗](https://community.vega.xyz/), [Discord ↗](https://vega.xyz/discord), and through your own networks to vote on the proposal.
+After it's submitted and accepted, rally the community to vote on the proposal by announcing it on the [forum ↗](https://community.vega.xyz/), [Discord ↗](https://vega.xyz/discord), and through your own networks to vote on the proposal.
 
 :::tip Try it out 
 Read the **[proposals guides](../tutorials/proposals/index.md)** to see what information needs to be in a proposal, and how to submit them using the command line. 
@@ -113,7 +114,7 @@ Each type of governance proposal can have different thresholds, though they fit 
 * `maxEnactment`: Maximum time allowed between vote closing on a proposal and the proposal's change being enacted on the network
 * `requiredParticipation`: Minimum number of tokens that must vote for a proposal to pass 
 * `requiredMajority`: Minimum majority that a proposal's 'yes' votes must reach for it to be enacted 
-  
+
 As these thresholds are network parameters, their values can be changed through governance.
 
 :::tip Query for data
@@ -156,17 +157,72 @@ Specifically:
 * The name and symbol must match the contract
 * There cannot be multiple assets on a Vega network for the same ERC-20 asset
 
+### Transferring assets
+For assets that are held in certain accounts - those with pooled assets, the community determines if the assets should be moved, and how they should be used. Generally speaking, those accounts have accumulated assets from settled markets, market protection movements, or are entirely funded by community members that transfer assets into them.
+
+These proposals give community members a chance to determine what they think the assets should be spent on, whether that's to fund [trading or validator rewards](./trading-on-vega/discounts-rewards.md#trading-rewards), to move money from [insurance pools](./assets/accounts.md#insurance-pool-accounts) into [network treasury accounts](./assets/accounts.md#network-treasury-accounts), or for other purposes.
+
+Transferring assets from network-managed account types can only be initiated by on-chain governance proposals. 
+
+The transfers from those asset pools can be one-off or recurring. A recurring transfer that's initiated by governance can only be cancelled when a governance proposal to cancel it is submitted and passes the governance vote.
+
+To see a full table of which types of transfers can only be initiated through governance, see the [transfers page](./assets/transfers.md#governance-initiated-transfers).
+
+:::info Read more
+* **[Transfers](./assets/transfers.md)**: See more about transferring assets.
+* **[Tutorial: Asset transfer proposal](../tutorials/proposals/asset-transfer-proposal.md)**: Learn how to propose a transfer and get a template.
+:::
+
+### Propose an asset transfer
+Tokenholders can propose asset transfers from certain accounts, which then need to be voted on by other tokenholders. Not all transfers need to be proposed by governance.
+
+The proposer will need to have at least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the market, and staked to a validator. Note, this amount is set through the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.minProposerBalance" hideValue={true} />.
+
+If the proposal gets a <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.requiredMajority" hideName={true} formatter="percent"/> majority of tokenholder support, then it will be enacted. The required majority is defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.requiredMajority" hideValue={true} />. It would also need to pass the required participation threshold: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.requiredParticipation" hideName={true} formatter="percent" />.
+
+To propose assets be transferred, you'll need to provide the details required for the transfer to be successful. While some of the fields are free-text, others are constrained by a range set through network parameters, to ensure that the values provided are fit for purpose.
+
+Proposal fields include:
+* Source account type: The type of account that the assets are to be transferred from, such as the network treasury
+* Source: The actual account ID. For network treasury, leave it blank.
+* Asset: Asset to transfer
+* Transfer type, which can be 'all or nothing' or 'best effort'
+  * All or nothing: Transfers the specified amount, or nothing 
+  * Best effort: Transfers the specified amount or the max allowable amount if it's less than the specified amount
+* Amount: Maximum amount to transfer; can be used to add an upper limit the fractional amount described below
+* Fraction of balance: Maximum fraction of the source account's balance to transfer, submitted as a decimal (i.e. 0.1 = 10% of the balance)
+* Destination type: Type of account to transfer to, such as reward pool, individual party, market insurance pool
+* Destination: Specific account to transfer to, using an ID or public key. For network treasury, leave it blank.
+* If the proposal is for a one-off transfer, it can optionally define a time, based on Vega time, for delivery. If there is no delivery time, it will execute immediately
+* If the proposal is for a recurring transfer, it must include a start epoch. It can optionally include an end epoch for the last transfer
+
+#### Calculating amount to be transferred
+The final amount transferred is determined based on the inputs into the proposal as well as the values of the relevant network parameters:
+* <NetworkParameter frontMatter={frontMatter} param="governance.transfer.max.amount" /> specifies the maximum amount that can be transferred from a source account in a proposal
+* <NetworkParameter frontMatter={frontMatter} param="governance.transfer.max.fraction" /> specifies the maximum fraction of the balance that can be transferred from a source account.
+
+The final amount is calculated with the following formula:
+
+```
+  transfer_amount = min(
+    proposal.fraction_of_balance * source.balance,
+    proposal.amount,
+    governance.transfer.max.amount,
+    governance.transfer.max.fraction * source.balance )
+```
+
 ## Market governance
 Markets are proposed and voted into existence by Vega tokenholders. The parameters for a market all need to be defined in the proposal.
 
 Some market parameters can also be changed. They can only be proposed by a liquidity provider with enough equity-like share in the market, and need to be voted for by a sufficient number of tokenholders and/or liquidity providers.
 
-When creating a market governance proposal, whether it is for a new market, a new successor market, or to change parameters for an existing market, it's recommended that you sense check the proposal and share the final details with the tokenholder community before proposing, so that you can garner support and make any necessary amends. 
+When creating a market governance proposal, whether it is for a new futures market, a new perpetual futures market, or to change parameters for an existing market, it's recommended that you sense check the proposal and share the final details with the tokenholder community before proposing, so that you can garner support and make any necessary amends. 
 
 Read more:
 * [Vega community forum ↗](https://community.vega.xyz): Share your draft proposals for community discussion.
-* [New market proposal ↗](../tutorials/proposals/new-market-proposal.md): Guide to submitting a proposal for a new market using the command line
-* [New successor market proposal ↗](../tutorials/proposals/new-successor-market-proposal.md): Guide to submitting a proposal for a new successor market using the command line
+* [New perpetual futures market proposal ↗](../tutorials/proposals/new-perpetuals-market.md): Guide to submitting a proposal for a new market
+* [New futures market proposal ↗](../tutorials/proposals/new-market-proposal.md): Guide to submitting a proposal for a new market
+* [New successor market proposal ↗](../tutorials/proposals/new-successor-market-proposal.md): Guide to submitting a proposal for a new successor market
 * [Update market proposal ↗](../tutorials/proposals/update-market-proposal.md): Guide to submitting a proposal to change a market using the command line
 
 ### Propose a new market
@@ -177,11 +233,11 @@ If the market proposal gets a <NetworkParameter frontMatter={frontMatter} param=
 To propose a market, you'll need to provide the details required for the market to begin trading right away. While some of the fields are free-text, others are constrained by a range set through network parameters, to ensure that the values provided are fit for purpose.
 
 Required fields include:
-* Instrument details, including a human-readable name, an understandable shortcode for the market, the type of product (futures)
+* Instrument details, including a human-readable name, an understandable shortcode for the market, the type of product
 * Risk model parameters
 * Product specifics including the settlement asset and quote name
 * Decimal places for the market and positions. (Note: A market cannot specify more decimal places than its settlement asset supports)
-* Oracle details, including the oracle's public key, specifications for the settlement price and trading termination, and data filters
+* Oracle details, including the oracle's public key, specifications for settlement price, and data filters
 * Liquidity monitoring parameters, including the target stake
 
 Optional fields include: 
@@ -223,7 +279,7 @@ The remaining, model specific parameters are covered below.
 :::
 
 #### Log-normal risk model
-The log-normal model assumes that the logarithm of the price increments are normally distributed. The main model parameter is   
+The log-normal model assumes that the logarithm of the price increments are normally distributed. The main model parameter is: 
 * `Volatility (Sigma)` - annualised historical volatility of the underlying asset:
   * accepted values: **any strictly non-negative real number**,
   * suggested value: asset dependent, should be derived from the historical time-series of prices, and a typical value would be 0.8 = 80%
@@ -250,7 +306,7 @@ For a successor market to be enacted, the parent market must be in one of the fo
 The parent market can be settled or cancelled when the successor market reaches enactment time, as long as the time it's been settled/cancelled is equal to or less than the parent market's settlement time plus the `market.liquidity.successorLaunchWindowLength` - determined by a network parameter. This parameter specifies for how long after a market has settled, the liquidity provider's equity-like share data are retained and the insurance pool is left undistributed to allow a successor to be defined. If the successor is proposed after that time, then it's rejected and any assets committed to the market are returned.
 
 ### Propose updates to a market
-Most details about a market can be changed through governance. Those includes risk models, monitoring triggers, and the settlement and termination data sources.
+Most details about a market can be changed through governance. Those includes risk models, monitoring triggers, and the settlement and termination (if applicable) data sources.
 
 However, there are a few that cannot be edited, and will be the same for the duration of the market's life.
 * Name: Market name, which should be a short, descriptive and relevant name

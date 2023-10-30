@@ -1,10 +1,53 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 title: Set up validator node
-vega_network: MAINNET
 hide_title: false
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
+
+The Vega node is the implementation of the Vega protocol. It secures the network using VEGA, the network's governance and staking token, and relies on a BFT consensus engine now known as CometBFT, formerly Tendermint.
+
+## OS and software
+For production use, we recommend using the Linux binary on Ubuntu as this is the platform used by nodes on Fairground, the Vega testnet, and is the most widely tested so far.
+
+See the [infrastructure requirements](../requirements/infrastructure.md) page for a full list of what you need to run various parts of the Vega toolchain.
+
+There are 2 ways to start up a validator node:
+* Replay the full chain from the start
+* Use a snapshot from the existing network to jumpstart the node at a point closer to the current block height
+
+Replay the full chain if you want all history. Use a snapshot if you want to start running quickly and don't need the history.
+
+## Start node from block 0
+
+1. Download version 0.71.4 of the Vega executable. You can find it on its release page in the [Vega GitHub repo ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.71.4%2Bfix). Unzip this file and make sure it is in your command line path.
+
+If you prefer to build the code yourself, the instructions can be found inside the code repo at [BUILDING ↗](https://github.com/vegaprotocol/vega/blob/develop/BUILDING.md).
+
+2. Check it is working by trying:
+
+```
+user@veganode:~/vega/bin$ vega version
+Vega CLI v0.71.4 (8e5767b20902097c79e8c846cf37f2b5d01dbff8)
+
+```
+
+3. Initialise the node 
+
+```
+vega init --home=$YOUR_VEGA_HOME_PATH --tendermint-home=$YOUR_TENDERMINT_HOME_PATH full
+```
+
+This creates a set of configuration files which you then need to alter for your specific instance.
+
+4. Edit the file `$YOUR_TENDERMINT_HOME_PATH/config/config.toml`. Find the RPC address located in the configuration point `[rpc]->laddr`
+ 
+5. Use this value to update the address in the file `$YOUR_VEGA_HOME_PATH/config/node/config.toml`
+
+```toml
+ [Blockchain.tendermint]
+    RPCAddr = <RPC address>
+```
 
 ## Configure the components and run it
 Once you have all the executables you need, you must configure them to run correctly and to connect to the existing network. 
@@ -33,22 +76,16 @@ Visor manages protocol upgrades, allowing the nodes running a network to automat
 
 The command to initialise Visor will vary depending on whether you want to use Visor with a validator node or with non-validator connected to a data node. 
 
-Run the initialisation command to generate Visor’s home folder, with a generated home folder structure, to your provided `VISOR_HOME_PATH`:
+Run the initialisation command to generate Visor’s home folder, with a generated home folder structure, to your provided `YOUR_VISOR_HOME_PATH`:
 
 **Vega only**
 
 ```shell
-visor init --home VISOR_HOME_PATH
-```
-
-**With non-validator connected to data node**
-
-```shell
-visor init --home VISOR_HOME_PATH --with-data-node
+visor init --home YOUR_VISOR_HOME_PATH
 ```
 
 ## Configure Visor
-Configure Visor in the configuration file `config.toml`, located at `VISOR_HOME_PATH/config.toml`. 
+Configure Visor in the configuration file `config.toml`, located at `YOUR_VISOR_HOME_PATH/config.toml`. 
 
 This configuration allows you to modify Visor functionality. See the [Visor config documentation](https://github.com/vegaprotocol/vega/blob/develop/visor/visor-config.md) for more details on what you can configure and why.
     
@@ -63,7 +100,7 @@ Example of configuration you may want to customise:
 	  enabled = false
 ```
 ### Prepare initial Visor run
-Prepare the first run configuration in `VISOR_HOME_PATH/genesis/run-config.toml`. The configuration allows you to specify what binaries and their arguments will be run in a specific upgrade. 
+Prepare the first run configuration in `YOUR_VISOR_HOME_PATH/genesis/run-config.toml`. The configuration allows you to specify what binaries and their arguments will be run in a specific upgrade. 
 
 Be sure to check that you use the correct location for the relevant Vega binary, and include the specific arguments for your set-up.
 
@@ -77,8 +114,8 @@ name = "genesis"
   [vega.binary]
 	path = "/path/vega-binary"
 	args = ["node",
-		"--home", "VEGA_HOME_PATH",
-		"--tendermint-home", "TENDERMINT_HOME_PATH" ]
+		"--home", "YOUR_VEGA_HOME_PATH",
+		"--tendermint-home", "YOUR_TENDERMINT_HOME_PATH" ]
 [vega.rpc]
 	socketPath = "VEGA_ADMIN_SOCKET_PATH/vega.sock"
 	httpPath = "/rpc"
@@ -94,7 +131,7 @@ Use a service manager (for example Systemd) to run Visor. While you can use any 
       After=network.target network-online.target
       Requires=network-online.target
   [Service] User=vega Group=vega
-      ExecStart="visor" run --home "VISOR_HOME_PATH"
+      ExecStart="visor" run --home "YOUR_VISOR_HOME_PATH"
       TimeoutStopSec=10s
       LimitNOFILE=1048576
       LimitNPROC=512
@@ -125,7 +162,7 @@ In order to validate events happening on the Ethereum bridge, each Vega validato
 
 The Ethereum node address for the RPC endpoint is set in the configuration. 
 
-Once you have an Ethereum archive node, insert the URL in `YOUR_VEGA_HOME/config/node/config.toml`, in the section:
+Once you have an Ethereum archive node, insert the URL in `YOUR_VEGA_HOME_PATH/config/node/config.toml`, in the section:
 
 ```toml
 [Ethereum]
@@ -160,7 +197,7 @@ We recommend you use an isolated key. Read the guide on how to isolate Vega wall
 
 Give the node access to the key using the following command: 
 ```
-vega nodewallet import --chain=vega --home="YOUR_VEGA_HOME_PATH" --wallet-passphrase-file="file/containing/account/passphrase" --wallet-path="PATH_FOR_YOUR_WALLET_HOME"
+vega nodewallet import --chain=vega --home="YOUR_VEGA_HOME_PATH" --wallet-passphrase-file="file/containing/account/passphrase" --wallet-path="YOUR_WALLET_HOME_PATH"
 ```
 
 :::info
@@ -193,7 +230,7 @@ Vega supports two types of Ethereum wallet: you can either register a wallet ava
 #### Using clef
 To set up your clef instance please refer to the [clef documentation ↗](https://geth.ethereum.org/docs/tools/clef/introduction).
 
-Set the address of your clef instance in the Vega configuration (`YOUR_VEGA_HOME/config/node/config.toml`):
+Set the address of your clef instance in the Vega configuration (`YOUR_VEGA_HOME_PATH/config/node/config.toml`):
 ```Toml
 [NodeWallet]
   Level = "Info"
@@ -211,7 +248,7 @@ Alternatively you can run the following command and specify the flag:
 Then run the following command:
 
 ```shell
-vega nodewallet import --chain=ethereum --home="YOUR_HOME_PATH" --clef-account-address="0xYOUR_WALLET_ADDRESS"
+vega nodewallet import --chain=ethereum --home="YOUR_VEGA_HOME_PATH" --clef-account-address="0xYOUR_WALLET_ADDRESS"
 ```
 
 #### Using a keystore account file
@@ -220,7 +257,7 @@ You can either import an existing keystore or create a new one. (Learn how to cr
 Import an existing keystore using the following command:
 
 ```shell
-vega nodewallet import --chain=ethereum --home="YOUR_HOME_PATH" --wallet-passphrase-file="YOUR_PASSPHRASE_FILE_PATH" --wallet-path="YOUR_HOME_PATH"
+vega nodewallet import --chain=ethereum --home="YOUR_VEGA_HOME_PATH" --wallet-passphrase-file="YOUR_PASSPHRASE_FILE_PATH" --wallet-path="YOUR_WALLET_HOME_PATH"
 ```
 
 ## Modify Tendermint config
@@ -230,7 +267,7 @@ This step needs to be done manually. You will first need to reach out to another
 
 Use that node information to inform the persistent peers. The persistent peers field is a list of Node IDs and addresses of nodes separated by a `@` character.
 
-Update the tendermint config located at `YOUR_TENDERMINT_HOME/config/config.toml` and set the `persistent_peers` field under the `[p2p]` section.
+Update the tendermint config located at `YOUR_TENDERMINT_HOME_PATH/config/config.toml` and set the `persistent_peers` field under the `[p2p]` section.
 
 Here's an example:
 
@@ -242,9 +279,11 @@ persistent_peers = "55b8ac477ddd6c0c9bae411dfa6ebfb46e7b4022@veganodeoperator.co
 Under `Mempool Configuration Option`, ensure that `broadcast = true`.
 
 ### Update Tendermint genesis
-To start successfully, tendermint needs the genesis file from the network you will be trying to join. This file need to be located in `YOUR_TENDERMINT_HOME/config/genesis.json`. Download the genesis file and use it to replace the genesis in your config.
+To start successfully, tendermint needs the genesis file from the network you will be trying to join. This file need to be located in `YOUR_TENDERMINT_HOME_PATH/config/genesis.json`. Download the genesis file and use it to replace the genesis in your config.
 
-You can find genesis files in the [networks repository ↗](https://github.com/vegaprotocol/networks) for the mainnet and validator-run testnet networks.
+You can find genesis files in the [networks repository ↗](https://github.com/vegaprotocol/networks) for mainnet and for testnet, visit [networks internal ↗](https://github.com/vegaprotocol/networks-internal). 
+
+Note: For testnet, the genesis must be a URL to a remote file, not saved locally on disk.
 
 For example, to join mainnet you will need the following [genesis file ↗](https://github.com/vegaprotocol/networks/blob/master/mainnet1/genesis.json).
 
@@ -259,49 +298,49 @@ After you choose the snapshot you're starting from:
 **If you're using Visor**, start your node by running the service manager of your choice and use the following command:
 
 ```shell
-visor run --home "VISOR_HOME_PATH"
+visor run --home "YOUR_VISOR_HOME_PATH"
 ```
 
-**If you're not using Visor**, start your node by running the following command
+**If you're not using Visor**, start your node by running the following command e.g. for the validator-run testnet:
 
 ```shell
-vega start --home="YOUR_VEGA_HOME_PATH" --nodewallet-passphrase-file="YOUR_PASSPHRASE_FILE_PATH" --network=mainnet1
+vega start --home="YOUR_VEGA_HOME_PATH" --nodewallet-passphrase-file="YOUR_PASSPHRASE_FILE_PATH" --network=testnet2
 ```
 
 ### Replay from genesis
 To replay all history from genesis: 
 
-You can set a genesis file when starting the node with the following command, e.g. for mainnet:
+You can set a genesis file when starting the node with the following command, e.g. for the validator-run testnet:
 
 ```shell
-vega start --home="YOUR_VEGA_HOME_PATH" --nodewallet-passphrase-file="YOUR_PASSPHRASE_FILE_PATH" --network=mainnet1
+vega start --home="YOUR_VEGA_HOME_PATH" --nodewallet-passphrase-file="YOUR_PASSPHRASE_FILE_PATH" --network=testnet2
 ```
 
 If using Visor, configure the node with Visor, including the required args (flags) for network, etc, and then start Visor with the service manager of your choice using the following command:
 
 ```shell
-visor run --home "VISOR_HOME_PATH"
+visor run --home "YOUR_VISOR_HOME_PATH"
 ```
 
 Once your node is synchronised, you'll need to self-stake, and then announce the node to the network and then the community.
 
 ## Associate tokens to your Vega key
-Before you announce your node, you will need to have <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={true} formatter="governanceToken" suffix="tokens"/> associated to your Vega key, and then nominate (self-stake) your node with that VEGA.
+Before you announce your node, you will need to have <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={true} formatter="governanceToken" suffix="tokens"/> Vega associated to your Vega key to self-stake (below).
 
-The tokens must be available on an Ethereum wallet, and then associated to the same Vega public key you used to set up the node.
+Use the [Sepolia VEGA contract address on the governance dApp ↗](https://governance.fairground.wtf/) to call the contract and faucet tokens to your Ethereum key. 
 
-Do this by [importing the Vega Wallet](../../tools/vega-wallet/cli-wallet/latest/guides/restore-wallet) you created for your node wallet, onto your local computer using the Vega Wallet recovery phrase.
+The tokens that you want to use for self-staking must be available on an Ethereum wallet, and then associated to the same Vega public key you used to set up the node. 
 
-Once you have tokens, connect your Ethereum wallet and your Vega Wallet, and associate the tokens to your Vega public key using the [governance dApp ↗](https://governance.vega.xyz/validators).
+You can do this by [importing the Vega Wallet](../../tools/vega-wallet/cli-wallet/latest/guides/restore-wallet) you created for your node wallet, onto your local computer using the Vega Wallet recovery phrase.
+
+Once you have tokens, connect your Ethereum wallet and your Vega Wallet, and associate the tokens to your Vega public key using the [governance dApp ↗](https://governance.fairground.wtf/validators). 
 
 The association will need to be confirmed by both the Ethereum and Vega blockchains, and may take some time.
 
 Below are the instructions to self-nominate (self-stake) to your node.
 
 ## Announce node on-chain
-You'll need to know the [current epoch ↗](https://governance.vega.xyz/validators), and have the following data to hand: 
-* URL for your validator website
-* URL for the avatar that will show up next to your node name
+You'll need to know the [current epoch ↗](https://governance.fairground.wtf/validators), and have the following data to hand: the URL for your validator website, and the URL for the avatar that will show up on the governance dApp next to your node name.
 
 ```shell
 vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" --avatar-url="YOUR_AVATAR_URL" --country="UK" --name="YOUR_NODE_NAME" --from-epoch="CURRENT_EPOCH"
@@ -310,9 +349,9 @@ vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" 
 Setting the optional argument `--submitter-address` triggers the Vega network to automatically issue signature bundles that can be used to update signer set changes on the Multisig Control contract. This means if your node is promoted to a consensus validator it is easier for you to add your node's Ethereum key to the contract and to continue receiving rewards. See [maintaining the multisig contract](../how-to/maintain-multisig-contract.md) for more information.
 
 ## Nominate your node
-You can self-stake once you see your node on the validator list: [Query the list nodes API](../../api/rest/data-v2/trading-data-service-list-nodes.api.mdx).
+To move on to self-staking, wait until you see your node on the validator list by [querying the API](../../api/rest/data-v2/trading-data-service-list-nodes.api.mdx).
 
-Then, associate your tokens and nominate your node using the governance dApp: `https://governance.vega.xyz/validators/<NODE'S_VEGA_PUBKEY>`. Alternatively you can interact directly with the smart contract.
+Then, associate your tokens and nominate your node using the governance dApp: `https://governance.fairground.wtf/validators/<NODE'S_VEGA_PUBKEY>`. Alternatively you can interact directly with the smart contract.
 
 Your node will be visible on the governance dApp in the epoch after you self-stake.
 

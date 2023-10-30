@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
-title: Propose new futures successor market
-hide_title: false
+title: New futures successor market
+hide_title: true
 vega_network: TESTNET
 keywords:
 - proposal
@@ -19,6 +19,8 @@ import NewSuccessorMarketWin from './_generated-proposals/_newSuccessorMarket_wi
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+# Propose new futures successor market
 
 Propose a cash-settled futures market to succeed an existing market, taking along the equity-like share and a portion of the insurance pool.
 
