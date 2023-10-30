@@ -1,7 +1,7 @@
 ---
 sidebar_position: 6
 title: Update asset bridge
-hide_title: false
+hide_title: true
 vega_network: TESTNET
 ethereum_network: Ropsten
 keywords:

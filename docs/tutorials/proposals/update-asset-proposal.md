@@ -1,7 +1,7 @@
 ---
 sidebar_position: 5
-title: Propose updates to an asset
-hide_title: false
+title: Update an asset
+hide_title: true
 vega_network: TESTNET
 keywords:
   - proposal

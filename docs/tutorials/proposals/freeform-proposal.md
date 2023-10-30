@@ -1,6 +1,6 @@
 ---
-sidebar_position: 7
-title: Freeform
+sidebar_position: 12
+title: Request a freeform change
 hide_title: true
 vega_network: TESTNET
 keywords:

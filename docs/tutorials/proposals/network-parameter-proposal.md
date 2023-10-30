@@ -1,6 +1,6 @@
 ---
-sidebar_position: 3
-title: Network parameter change
+sidebar_position: 4
+title: Update network parameter
 vega_network: TESTNET
 hide_title: true
 keywords:

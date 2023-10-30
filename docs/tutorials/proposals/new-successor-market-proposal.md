@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Propose new futures successor market
+title: New futures successor market
 hide_title: true
 vega_network: TESTNET
 keywords:
