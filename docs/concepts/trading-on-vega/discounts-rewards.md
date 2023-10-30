@@ -53,14 +53,14 @@ See what rewards are currently available on [vega.xyz ↗](https://vega.xyz/rewa
 Rewards are independent from [fees](./fees.md), which are paid to validators, liquidity providers, and price makers on each trade.
 
 ### How rewards are paid
-Rewards that you earn are paid into a per-asset *vesting rewards account*. Each epoch, a percentage of those accumulated rewards are moved into a *vested rewards account*. From there, they can be redeemed by transferring them into your general account and withdrawn.
+Rewards that you earn are paid into a per-asset *vesting rewards account*. They may be locked for a time, if there's a lock period set. Each epoch, a percentage of the locked rewards begin vesting. Once they're vested, they are moved into a *vested rewards account*. From there, they can be redeemed by transferring them into your general account and withdrawn.
 
-How long rewards stay in the *reward vesting account* depends on the lock period. That lock period is defined in the [transfer](../assets/transfers.md) that funded the reward. Use the [transfers API](../../api/rest/data-v2/trading-data-service-list-transfers.api.mdx) to see the lock periods.
+The lock period is defined in the [transfer](../assets/transfers.md) that funded the reward. Use the [transfers API](../../api/rest/data-v2/trading-data-service-list-transfers.api.mdx) to see the lock periods.
 
-Then, a proportion of the rewards move into the vested account each epoch: <NetworkParameter frontMatter={frontMatter} name="current rate" param="rewards.vesting.baseRate" formatter="percent" />. That percentage can be higher if you have an [activity streak](#activity-streak) going.
+Once they unlock, a proportion of the rewards move into the vested account each epoch: <NetworkParameter frontMatter={frontMatter} name="current rate" param="rewards.vesting.baseRate" formatter="percent" />. That percentage can be higher if you have an [activity streak](#activity-streak) going.
 
 ### Reward hoarder bonus
-Leaving your reward earnings in your vested account will increase your share of the trading rewards you've accrued. How much extra you get depends on your total rewards balance, whether it's locked or vested.
+Leaving your reward earnings in your vested account will increase your share of the trading rewards you've accrued. How much extra you get depends on your total rewards balance, whether it's locked, vesting, or vested.
 
 You can see the current reward hoarder bonus requirements and benefits on the [block explorer ↗](https://explorer.fairground.wtf/network-parameters#rewards.vesting.benefitTiers), or querying the [network parameters API](../../api/rest/data-v2/trading-data-service-list-network-parameters.api.mdx) for the `rewards.vesting.benefitTiers` network parameter.
 
@@ -71,7 +71,7 @@ Traders that keep up an activity streak, either by placing trades or keeping a p
 
 Keeping up your activity gives you access to greater benefits as your streak grows. Activity streaks are measured in epochs.
 
-You need a minimum trade volume of <NetworkParameter frontMatter={frontMatter} param="rewards.activityStreak.minQuantumTradeVolume" hideName={true} /> and a minimum open volume of <NetworkParameter frontMatter={frontMatter} param="rewards.activityStreak.minQuantumOpenVolume" hideName={true} /> (both expressed in quantum) to be considered active.
+You need a minimum trade volume of <NetworkParameter frontMatter={frontMatter} param="rewards.activityStreak.minQuantumTradeVolume" hideName={true} /> or a minimum open volume of <NetworkParameter frontMatter={frontMatter} param="rewards.activityStreak.minQuantumOpenVolume" hideName={true} /> (both expressed in quantum) to be considered active.
 
 If you go inactive for more than <NetworkParameter frontMatter={frontMatter} param="rewards.activityStreak.inactivityLimit" hideName={true} suffix="epochs"/>, you will lose your streak.
 
@@ -104,9 +104,11 @@ Some rewards measure trader activity over a number of epochs (set per reward). T
 ### How rewards are scaled
 Since rewards can only be provided if they're funded, the [recurring tranfer](../assets/transfers.md#recurring-transfers) that's used to fund those rewards also includes details on how the final reward amount is calculated.
 
-**Pro-rata**: A participant's reward is scaled based on their activity streak and/or how long they've kept previous reward earnings in their vested rewards account, which will influence how high up the rankings they are.
+**Pro-rata**: A participant's reward is scaled based on their score.
 
-**Rank**: A participant's reward is scaled based on where they sit on the list of traders who are eligible for the reward. Those higher up the list receive a higher ratio of the reward for each reward period.
+**Rank**: A participant's reward is scaled based on where their score sits on the list of traders who are eligible for the reward. Those higher up the list receive a higher ratio of the reward for each reward period.
+
+If you have multipliers from the activity streak and/or the reward hoarder bonus, your share of the reward grows in proportion to those multipliers.
 
 ## Available trading rewards
 As rewards are distributed based on certain criteria, they need to be defined and measured. Each reward dispatch metric is calculated per party, once at the end of each epoch.
