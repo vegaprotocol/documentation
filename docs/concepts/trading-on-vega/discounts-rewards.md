@@ -102,11 +102,11 @@ Some rewards measure trader activity over a number of epochs (set per reward). T
 :::
 
 ### How rewards are scaled
-Since rewards can only be provided if they're funded, the [recurring tranfer](../assets/transfers.md#recurring-transfers) that's used to fund those rewards also includes details on how the final reward amount is calculated.
+Since rewards can only be provided if they're funded, the [recurring transfer](../assets/transfers.md#recurring-transfers) that's used to fund those rewards also includes details on how the final reward amount is calculated.
 
 **Pro-rata**: A participant's reward is scaled based on their score.
 
-**Rank**: A participant's reward is scaled based on where their score sits on the list of traders who are eligible for the reward. Those higher up the list receive a higher ratio of the reward for each reward period.
+**Rank**: A participant's reward is scaled based on where their score lands on the rank table. The rank table determines a rank group, for example 1-8, and what ratio of the reward amount that group would receive.
 
 If you have multipliers from the activity streak and/or the reward hoarder bonus, your share of the reward grows in proportion to those multipliers.
 
