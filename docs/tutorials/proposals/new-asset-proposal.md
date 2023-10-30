@@ -1,7 +1,7 @@
 ---
 sidebar_position: 4
-title: Propose new asset
-hide_title: false
+title: New asset
+hide_title: true
 vega_network: TESTNET
 keywords:
 - proposal
@@ -19,6 +19,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 # Propose a new asset
+
 This page provides a tutorial for submitting a proposal for a new ERC-20 asset to be used as collateral. It describes what can be proposed, what you need to propose a new asset, and provides proposal templates that you will need to edit before submitting.
 
 ## Requirements

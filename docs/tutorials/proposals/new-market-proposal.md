@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
-title: Propose new futures market
-hide_title: false
+title: New futures market
+hide_title: true
 vega_network: TESTNET
 keywords:
 - proposal
@@ -24,6 +24,8 @@ import NewMarketWin from './_generated-proposals/_newMarket_win.md';
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+# Propose new futures market
 
 Propose a cash-settled futures market on any underlying with a settlement data source.
 

@@ -1,8 +1,8 @@
 ---
 sidebar_position: 9
-title: Propose transferring assets
+title: Transferring assets
 vega_network: TESTNET
-hide_title: false
+hide_title: true
 keywords:
 - proposal
 - governance
@@ -11,6 +11,8 @@ keywords:
 import NetworkParameter from '@site/src/components/NetworkParameter';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+# Propose tranferring assets
 
 Network-managed accounts that allow transfers require the community to approve transferring assets out of them. You can also propose that those assets are used to fund trading rewards by including those details into the proposal.
 

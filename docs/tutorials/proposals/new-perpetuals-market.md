@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
-title: Propose new perpetuals market
-hide_title: false
+title: New perpetuals market
+hide_title: true
 vega_network: TESTNET
 keywords:
 - proposal
@@ -20,6 +20,7 @@ import NewPerpetualMarketWin from './_generated-proposals/_newPerpetualMarket_wi
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# Propose new perpetuals market
 
 ## Requirements
 
