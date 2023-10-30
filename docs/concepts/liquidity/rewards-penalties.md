@@ -25,7 +25,7 @@ Note: During an auction uncrossing, an LP’s orders will not need to provide li
 In addition to the income made from fees, anyone can fund reward pools that will pay out to liquidity providers at the end of each [epoch](../vega-chain/network.md#epochs), based on the proportion of fees the LPs have received.
 
 :::note Read more
-Learn more about this, and trading rewards in general on the [fees and rewards](../trading-on-vega/fees-rewards) page.
+Learn more about this, and trading rewards in general on the [rewards](../trading-on-vega/discounts-rewards.md) page.
 :::
 
 ## Earning liquidity fees

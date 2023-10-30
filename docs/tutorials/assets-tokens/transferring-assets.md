@@ -137,7 +137,7 @@ These rewards can be used to incentivise:
 * Consensus and standby validators that have a ranking score higher than 0
 
 :::info Read more
-[Trading rewards](../../concepts/trading-on-vega/fees-rewards): Read about trading rewards, including the different rewards you can contribute to.
+[Trading rewards](../../concepts/trading-on-vega/discounts-rewards.md): Read about trading rewards, including the different rewards you can contribute to.
 :::
 
  

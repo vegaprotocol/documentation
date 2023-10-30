@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
-title: Propose updates to a futures market
-hide_title: false
+title: Change a futures market
+hide_title: true
 vega_network: TESTNET
 toc: true
 keywords:
@@ -20,6 +20,7 @@ import UpdateMarketWin from './_generated-proposals/_updateMarket_win.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+# Propose changes to futures market
 Propose changes to an existing futures market.
 
 ## Requirements

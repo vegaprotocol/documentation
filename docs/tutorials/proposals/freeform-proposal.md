@@ -1,7 +1,7 @@
 ---
-sidebar_position: 7
-title: Freeform proposal
-hide_title: false
+sidebar_position: 12
+title: Request a freeform change
+hide_title: true
 vega_network: TESTNET
 keywords:
 - proposal

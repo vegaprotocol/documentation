@@ -1,8 +1,8 @@
 ---
-sidebar_position: 3
-title: Propose a network parameter change
+sidebar_position: 4
+title: Update network parameter
 vega_network: TESTNET
-hide_title: false
+hide_title: true
 keywords:
 - proposal
 - governance
@@ -17,6 +17,8 @@ import UpdateNetworkParameterCMD from './_generated-proposals/_updateNetworkPara
 import UpdateNetworkParameterWin from './_generated-proposals/_updateNetworkParameter_win.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+# Propose a network parameter change
 
 Network parameters are a constant (or an array of constants) in the system, the values of which can be changed by on-chain governance.
 

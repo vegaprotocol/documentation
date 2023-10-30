@@ -8,7 +8,7 @@ description: Use transfers to move assets between keys and/or accounts.
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
 ## Transfer assets to keys or accounts
-Use transfers to move assets from one Vega key to another, or from a Vega key to a specific account, such as to supply assets to a [reward pool](../trading-on-vega/fees-rewards.md#trading-rewards).
+Use transfers to move assets from one Vega key to another, or from a Vega key to a specific account, such as to supply assets to a [reward pool](../trading-on-vega/discounts-rewards.md#trading-rewards).
 
 Transfers from certain accounts need to be proposed through [governance](#governance-initiated-transfers), because moving assets to/from those asset pools needs to be agreed by the community.
 
@@ -38,7 +38,7 @@ A recurring transfer transaction needs to contain the following:
 * Optional: the end epoch when the transfers should stop. If it's not specified, the transfer run until cancelled
 * The percentage of the full amount to pay each epoch, which is defined using the factor - a decimal
   - The amount paid at the end of each epoch is calculated using the following formula: `amount = start amount x factor ^ (current epoch - start epoch)`
-* Optional: When used to fund a reward pool, the [distribution method](../trading-on-vega/fees-rewards.md#how-rewards-are-scaled) - pro-rata or based on rank
+* Optional: When used to fund a reward pool, the [distribution method](../trading-on-vega/discounts-rewards.md#how-rewards-are-scaled) - pro-rata or based on rank
 
 ### Recurring transfer limits
 While a party (public key) can have multiple transfers set up to move assets to different accounts, each party can only have one recurring transfer between two given accounts at the same time. For example, a party can transfer from their general account to Public Key A and Public Key B, but they cannot set up two recurring transfers of different amounts both going to Public Key B.
@@ -51,7 +51,7 @@ If the asset used to fund a recurring transfer is depleted, either because the f
 ## Governance-initiated transfers
 Assets being moved out of certain accounts requires community support, through a governance proposal and vote. Generally speaking, they're accounts that have assets moved into them after markets are settled, because of market protection movements, or entirely funded by community members that transfer assets into them. 
 
-The proposals give community members a chance to determine what they think the assets should be spent on, whether that's to fund [trading or validator rewards](../trading-on-vega/fees-rewards.md#trading-rewards), to move money from [insurance pools](./accounts.md#insurance-pool-accounts) into [network treasury accounts](./accounts.md#network-treasury-accounts), or for other purposes.
+The proposals give community members a chance to determine what they think the assets should be spent on, whether that's to fund [trading or validator rewards](../trading-on-vega/discounts-rewards.md#trading-rewards), to move money from [insurance pools](./accounts.md#insurance-pool-accounts) into [network treasury accounts](./accounts.md#network-treasury-accounts), or for other purposes.
 
 Governance-initiated transfers can be one-off or recurring, unless the transfer is to fund rewards; those can only be set to recur. A recurring transfer can only be cancelled when a governance proposal to cancel it is submitted and passes the governance vote.
 

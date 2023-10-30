@@ -87,7 +87,7 @@ The revenue from other fees go into fee-specific accounts:
 * **Infrastructure fee pool**: per asset, to then be distributed to the consensus validators who run the network and thus provide the infrastructure
 
 :::note Read more
-[Fees](../trading-on-vega/fees-rewards.md)
+[Fees](../trading-on-vega/fees.md)
 :::
 
 ### Reward accounts 
@@ -96,7 +96,7 @@ Trading rewards are funded by community members that want to incentivise certain
 Reward accounts can exist for each combination of reward metric, asset, and market, and they come to exist when they are funded by reward account transfers, which occur at the end of each epoch. The amount of assets entering each reward account depends on the amount transferred and the reward transfer strategy that the funder(s) defined when they set up the rewards transfer.
 
 :::note Read more
-[Trading rewards](../trading-on-vega/fees-rewards.md#trading-rewards)
+[Trading rewards](../trading-on-vega/discounts-rewards.md#trading-rewards)
 :::
 
 <!--### Network treasury accounts

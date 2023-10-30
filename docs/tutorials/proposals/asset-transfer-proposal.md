@@ -1,8 +1,8 @@
 ---
 sidebar_position: 9
-title: Propose transferring assets
+title: Transferring assets
 vega_network: TESTNET
-hide_title: false
+hide_title: true
 keywords:
 - proposal
 - governance
@@ -11,6 +11,8 @@ keywords:
 import NetworkParameter from '@site/src/components/NetworkParameter';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+# Propose tranferring assets
 
 Network-managed accounts that allow transfers require the community to approve transferring assets out of them. You can also propose that those assets are used to fund trading rewards by including those details into the proposal.
 
@@ -68,7 +70,7 @@ You will need to define the dispatch strategy, which includes the metric, the le
 | `lockPeriod` | Number of epochs to keep earned rewards in the recipient's reward vesting account before moving to their vested account, at which point they can be redeemed |
 | `entityScope` | defines the entities within scope | Currently ENTITY_SCOPE_INDIVIDUALS is the only option |
 | `individualScope` | To be used if the eligible reward recipients should be individuals, and that can then be further focused to determine who is eligible | Currently INDIVIDUAL_SCOPE_ALL is the only option |
-| `distributionStrategy` | Sets how the participants should be ranked, and what other factors to consider. Read [distribution method](../../concepts/trading-on-vega/fees-rewards.md#how-rewards-are-scaled) for more info |  DISTRIBUTION_STRATEGY_PRO_RATA; DISTRIBUTION_STRATEGY_RANK |
+| `distributionStrategy` | Sets how the participants should be ranked, and what other factors to consider. Read [distribution method](../../concepts/trading-on-vega/discounts-rewards.md#how-rewards-are-scaled) for more info |  DISTRIBUTION_STRATEGY_PRO_RATA; DISTRIBUTION_STRATEGY_RANK |
 
 #### Example dispatch strategy snippet
 
