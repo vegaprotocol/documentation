@@ -26,6 +26,102 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Release version 0.73.XXXX | 2023-11-01
+
+Version 0.73.XXXX was released by the validators to mainnet on 01 November, 2023.
+
+This pre-release contains several new features, including the new product type perpetuals, Ethereum oracles and a refactored liquidity mechanism.
+
+### Breaking changes
+
+The snapshot configuration `load-from-block-height` no longer accepts -1 as a value. From 0.73.0 onwards, the value of 0 must be used to reload from the latest snapshot. Along with this change the snapshot configuration `snapshot-keep-recent` only accepts values from 1 to 10 inclusive. These changes have been included in the issue [8679 ↗](https://github.com/vegaprotocol/vega/issues/8679) and are documented in [0.73 deployment instructions](../node-operators/migration-guides/upgrade-node.md).
+
+The `AssetID` field on the `ExportLedgerEntriesRequest` gRPC API, for exporting ledger entries, has had its type changed in order to make it optional. This change has been included in the issue [8944 ↗](https://github.com/vegaprotocol/vega/issues/8944).
+
+The command options for data node retention modes have been updated resulting in a breaking change. The `--lite` and `--archive` options to data node have been replaced with `--retention-profile=[archive|conservative|minimal]` with default mode as archive. This change has been included in the issue [9562 ↗](https://github.com/vegaprotocol/vega/issues/9562) and are documented in [0.73 deployment instructions](../node-operators/migration-guides/upgrade-node.md).
+
+A crafted payload containing a very large integer can trigger a descriptive internal server error with SQL reference. In order to mitigate this specifying the range for pagination has been mandated and a default of 1000 applied. This change has been included in the issue [9408 ↗](https://github.com/vegaprotocol/vega/issues/9408).
+
+The SLA API endpoint has been updated such that it has both `current` part (amount, committed, fee proposed) and `pending` part (new amount and fee which will be activated at epoch boundary). This change has added a `pending` element to the LiquidityProvision object causing a breaking change affecting the gRPC API. This change has been included in the issue [9757 ↗](https://github.com/vegaprotocol/vega/issues/9757)
+
+### New features
+
+#### New liquidity mechanism
+
+At a high level, this change replaces the legacy system that requires LPs to be on the book all the time. The new implementation, called SLA liquidity can be summarised as follows:
+
+- LPs that meet an SLA (i.e. % of time spent providing their liquidity obligation within a range) are rewarded.
+- LPs that have a better performance against the SLA receive more rewards, ensuring there is an incentive to do more than the bare minimum if market conditions allow.
+- LPs that commit and do not meet the SLA within the LP price range will lose fee revenue and have a sliding penalty applied to their bond account, depending on if their underperformance continues.
+
+**How this is different:**
+
+In the previous liquidity model, providers would make a commitment and define a “shape” in their liquidity provision order. Any of their commitment volume that wasn't on the book from limit orders would be filled by orders that were automatically deployed based on the shape they defined. In this release, “shapes” are being removed and providers will now be required to deploy their own orders to fulfill their liquidity obligation.
+
+**What to expect during the migration:**
+
+- All existing orders deployed as a result of the LP shapes will be canceled immediately.
+- Any active liquidity provision orders will be converted to align to the new liquidity protocol implementation by removing the definition of the buy / sell shape.
+
+- Default values for the new liquidity network parameters will be applied, as follows:
+
+| Network parameter | Default | Description |
+| ----------- | ----------- | ----------- |
+| market.liquidity.sla.nonPerformanceBondPenaltySlope | 1 |  Not meeting the SLA deprives an LP of liquidity fee revenue, and a sliding penalty is applied. How much penalty is based on the value of this network parameter. |
+| market.liquidity.sla.nonPerformanceBondPenaltyMax | 0.5 (50%) | Defines the maximum penalty on that sliding scale that will be applied to the liquidity provider’s bond account if they do not meet SLA.
+ |
+
+- All existing markets will have the following default parameters applied:
+
+| Market parameter | Default | Description |
+| ----------- | ----------- | ----------- |
+| priceRange | 0.05 (5%) |  Maximum range on both sides of the mid price that orders need to be in to count towards SLA. |
+| commitmentMinTimeFraction | 0.95 (95%) |  Minimum per epoch that LPs must meet their commitment “on the book” in the price range to avoid penalties. |
+| performanceHysteresisEpochs | 1 |  Number of epochs for which past performance will affect future fee revenue. |
+| slaCompetitionFactor | 0.9 (90%) |  Amount of an LP’s accrued fees that may be allocated to other better scoring providers. |
+
+For full details on these network and market parameters and what they represent please read the [liquidity concepts pages](../concepts/liquidity/index.md).
+
+We advise any existing liquidity providers to use [Console on Fairground ↗](https://console.fairground.wtf/) or the APIs to experiment with the new liquidity protocol ahead of the release to ensure they are comfortable with the changes.
+
+To see lower level details of how the new SLA liquidity feature is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0044-LIME-lp_mechanics.md). The work items completed on this feature can be seen on issues and pull requests with the [`liquidity-sla` ↗](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Aliquidity-sla+) label.
+
+#### Perpetual futures markets
+
+Perpetual futures markets are cash-settled and do not have a pre-specified “delivery” date/market expiry, so positions can be held indefinitely.
+
+Payments are periodically exchanged between holders of the two sides, long and short, with the direction and magnitude of the settlement based on the difference between the latest mark price and that of the underlying asset, as well as, if applicable, the difference in margin between the two sides.
+
+Along with this new product, there are new market governance options that provide the option to suspend, resume or terminate a market via a community proposal and vote.
+
+To learn more about the implementation of perpetual markets on Vega see the [spec](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0053-PERP-product_builtin_perpetual_future.md). The work items completed on this feature can be seen on issues and pull requests with the [`perpetual` ↗](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Aperpetual) label.
+
+#### Ethereum oracles
+In the current mainnet state, the markets on Vega are settled and terminated with data that come from centralised sources.
+
+With this more flexible Ethereum oracle framework, there will be a new way to source data from the Ethereum blockchain, allowing for arbitrary data from Ethereum to be ingested as a data source. This had no impact on the already-existing Ethereum bridge.
+
+To see more details check out this [spec ↗](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0082-ETHD-ethereum-data-source.md). The work items completed on this feature can be seen on issues and pull requests with the [`ethereum-oracles` ↗](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Aethereum-oracles+) label.
+
+#### Referral program
+
+To allow existing users of the protocol/community members to refer new users, the on-chain referral program lets participants enact and vote for a program that provide benefits for referrers and referees.
+
+A party will be able to create a referral code and share this code with referees. Referees who apply the code will be added to the referrer's "referral set".
+
+Whilst a referral program is active, the following benefits may be available to participants in the referral program.
+
+- A referrer may receive a proportion of referee's paid fees as a reward.
+- A referee may be eligible for a discount on fees they incur.
+
+Providing a party has been associated with a referral set for long enough, they will become eligible for greater benefits as their referral set's running taker volume increases. To see more details check out this [spec ↗](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0083-RFPR-on_chain_referral_program.md). The work items completed on this feature can be seen on issues and pull requests with the [`referral ` ↗](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Areferral+) label.
+
+#### Expanded reward opportunities
+
+Trading rewards have increased to include 3 new reward types, and validator node operators can also benefit from a new reward.
+
+See details on the [trading rewards page](../concepts/trading-on-vega/fees-rewards.md#trading-rewards) and the [validator rewards page](../concepts/vega-chain/validator-scores-and-rewards.md#validator-metric-based-rewards).
+
 ### Release version 0.72.14 | 2023-09-05
 
 Version 0.72.14 was released by the validators to mainnet on 05 September, 2023.
@@ -56,7 +152,7 @@ Added number of decimal places to data source events, so it can be determined ho
 
 The estimate positions endpoint did not correctly validate data, meaning it would accept values that it could not use. Fixed in [8222](https://github.com/vegaprotocol/vega/issues/8222).
 
-Check out the full details of the main release: [0.72.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.0), 
+Check out the full details of the main release: [0.72.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.0),
 Patch releases, which primarily improve the new features, can also be found on GitHub: [0.72.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.1), [0.72.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.2), [0.72.3 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.3), [0.72.4 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.4), [0.72.5 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.5), [0.72.6 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.6), [0.72.7 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.7), [0.72.8 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.8), [0.72.9 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.9), [0.72.10 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.10), [0.72.11 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.11), [0.72.12 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.12), [0.72.13 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.13), [0.72.14 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.72.14).
 
 ### Version 0.71.6 (patch) | 2023-06-19
