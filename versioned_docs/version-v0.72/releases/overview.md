@@ -27,7 +27,6 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
 ### Release version 0.73.1 | 2023-11-01
-
 Version 0.73.1 was released by the validators to mainnet on 01 November, 2023.
 
 This release contains several new features, including the new product type perpetuals, Ethereum oracles and a refactored liquidity mechanism.
@@ -36,15 +35,15 @@ Check out the full details in the Vega core [0.73.1 ↗](https://github.com/vega
 
 ### Breaking changes
 
-The snapshot configuration `load-from-block-height` no longer accepts -1 as a value. From 0.73.0 onwards, the value of 0 must be used to reload from the latest snapshot. Along with this change the snapshot configuration `snapshot-keep-recent` only accepts values from 1 to 10 inclusive. These changes have been included in the issue [8679 ↗](https://github.com/vegaprotocol/vega/issues/8679) and are documented in [0.73 deployment instructions](../node-operators/migration-guides/upgrade-node.md).
+1. The snapshot configuration `load-from-block-height` no longer accepts -1 as a value. From 0.73.0 onwards, the value of 0 must be used to reload from the latest snapshot. Along with this change the snapshot configuration `snapshot-keep-recent` only accepts values from 1 to 10 inclusive. These changes have been included in the issue [8679 ↗](https://github.com/vegaprotocol/vega/issues/8679) and are documented in [0.73 deployment instructions](../node-operators/migration-guides/upgrade-node.md).
 
-The `AssetID` field on the `ExportLedgerEntriesRequest` gRPC API, for exporting ledger entries, has had its type changed in order to make it optional. This change has been included in the issue [8944 ↗](https://github.com/vegaprotocol/vega/issues/8944).
+2. The `AssetID` field on the `ExportLedgerEntriesRequest` gRPC API, for exporting ledger entries, has had its type changed in order to make it optional. This change has been included in the issue [8944 ↗](https://github.com/vegaprotocol/vega/issues/8944).
 
-The command options for data node retention modes have been updated resulting in a breaking change. The `--lite` and `--archive` options to data node have been replaced with `--retention-profile=[archive|conservative|minimal]` with default mode as archive. This change has been included in the issue [9562 ↗](https://github.com/vegaprotocol/vega/issues/9562) and is documented in [0.73 deployment instructions](../node-operators/migration-guides/upgrade-node.md).
+3. The command options for data node retention modes have been updated resulting in a breaking change. The `--lite` and `--archive` options to data node have been replaced with `--retention-profile=[archive|conservative|minimal]` with default mode as archive. This change has been included in the issue [9562 ↗](https://github.com/vegaprotocol/vega/issues/9562) and is documented in [0.73 deployment instructions](../node-operators/migration-guides/upgrade-node.md).
 
-A crafted payload containing a very large integer can trigger a descriptive internal server error with SQL reference. In order to mitigate the risk of this happening, specifying the range for pagination has been mandated. A default value of 1000 items per page has been  applied. This change has been included in the issue [9408 ↗](https://github.com/vegaprotocol/vega/issues/9408).
+4. A crafted payload containing a very large integer can trigger a descriptive internal server error with SQL reference. In order to mitigate the risk of this happening, specifying the range for pagination has been mandated. A default value of 1000 items per page has been  applied. This change has been included in the issue [9408 ↗](https://github.com/vegaprotocol/vega/issues/9408).
 
-The SLA API endpoint has been updated such that it has both a `current` part (amount, committed, fee proposed) and a `pending` part (new amount and fee which will be activated at epoch boundary). This change has added a `pending` element to the `LiquidityProvision` object causing a breaking change affecting the gRPC API. This change has been included in the issue [9757 ↗](https://github.com/vegaprotocol/vega/issues/9757)
+5. The SLA API endpoint has been updated such that it has both a `current` part (amount, committed, fee proposed) and a `pending` part (new amount and fee which will be activated at epoch boundary). This change has added a `pending` element to the `LiquidityProvision` object causing a breaking change affecting the gRPC API. This change has been included in the issue [9757 ↗](https://github.com/vegaprotocol/vega/issues/9757)
 
 ### New features
 
@@ -70,8 +69,7 @@ In the previous liquidity model, providers would make a commitment and define a 
 | Network parameter | Default | Description |
 | ----------- | ----------- | ----------- |
 | market.liquidity.sla.nonPerformanceBondPenaltySlope | 1 |  Not meeting the SLA deprives an LP of liquidity fee revenue, and a sliding penalty is applied. How much penalty is based on the value of this network parameter. |
-| market.liquidity.sla.nonPerformanceBondPenaltyMax | 0.5 (50%) | Defines the maximum penalty on that sliding scale that will be applied to the liquidity provider’s bond account if they do not meet SLA.
- |
+| market.liquidity.sla.nonPerformanceBondPenaltyMax | 0.5 (50%) | Defines the maximum penalty on that sliding scale that will be applied to the liquidity provider’s bond account if they do not meet SLA. |
 
 - All existing markets will have the following default parameters applied:
 
@@ -118,8 +116,14 @@ Whilst a referral program is active, the following benefits may be available to 
 
 Providing a party has been associated with a referral set for long enough, they will become eligible for greater benefits as their referral set's running taker volume increases. To see more details check out this [spec ↗](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0083-RFPR-on_chain_referral_program.md). The work items completed on this feature can be seen on issues and pull requests with the [`referral ` ↗](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Areferral+) label.
 
-#### Expanded reward opportunities
+#### Changes to reward framework
+This release introduces locking and vesting for all rewards accrued, including staking, trading, and validator score rewards. Those rewards will go into a [vesting account](../concepts/trading-on-vega/discounts-rewards.md#how-rewards-are-paid), and can be redeemed on a per-epoch basis. Some rewards may be locked for a number of epochs before they begin vesting, this is defined in each reward pool's funding transfer and may differ for each type of reward.
 
+The initial base rate for vesting will be 25%, meaning 25% of your unlocked pool will vest every epoch. This is set in a network parameter and can be changed by the community through governance. At release time, there is no vesting period for staking rewards, and they will be available to transfer from the vested account to general account as they accrue.
+
+The vesting rate can also be accelerated for faster vesting by keeping rewards in the vesting account, and gaining access to vesting benefit tiers if these are defined and enabled by the community. This is disabled at launch and controlled by governance.
+
+#### Expanded reward opportunities
 Trading rewards have increased to include 3 new reward types, and validator node operators can also benefit from a new reward.
 
 See details on the [trading rewards page](../concepts/trading-on-vega/fees-rewards.md#trading-rewards) and the [validator rewards page](../concepts/vega-chain/validator-scores-and-rewards.md#validator-metric-based-rewards).

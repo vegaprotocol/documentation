@@ -102,6 +102,14 @@ Whilst a referral program is active, the following benefits may be available to 
 
 Providing a party has been associated with a referral set for long enough, they will become eligible for greater benefits as their referral set's running taker volume increases. To see more details check out this [spec ↗](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0083-RFPR-on_chain_referral_program.md). The work items completed on this feature can be seen on issues and pull requests with the [`referral ` ↗](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Areferral+) label.
 
+#### Changes to reward framework
+This release introduces locking and vesting for all rewards accrued, including trading, validator score, and staking rewards. Those rewards will go into a [vesting account](../concepts/trading-on-vega/discounts-rewards.md#how-rewards-are-paid), and can be redeemed on a per-epoch basis. Some rewards may be locked for a number of epochs before they begin vesting, this is defined in each reward pool's funding transfer and may differ for each type of reward.
+
+The initial base rate for vesting will be 25%, meaning 25% of your unlocked pool will vest every epoch. This is set in a network parameter and can be changed by the community through governance. At release time, there is no vesting period for staking rewards, and they will be available to transfer from the vested account to general account as they accrue.
+
+The vesting rate can also be accelerated for faster vesting by keeping rewards in the vesting account, and gaining access to vesting benefit tiers if these are defined and enabled by the community. This is disabled at launch and controlled by governance.
+
+
 #### Expanded reward opportunities
 
 Trading rewards have increased to include 3 new reward types, and validator node operators can also benefit from a new reward.
