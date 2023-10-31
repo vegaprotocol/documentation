@@ -12,10 +12,10 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 If you want to transfer assets from accounts such as an insurance pool to fund trading rewards, see the tutorial on how to [propose transferring an asset](../proposals/asset-transfer-proposal.md).
 :::
 
-# Transfers: Key-to-key and trading rewards
-Use transfers to send assets to **another Vega key** or to a **reward pool** to fund trading rewards. 
+# Transfers
+Use transfers to send assets to **another Vega key**, from **vested to general accounts** for the same key, or to a **reward pool** to fund trading rewards. 
 
-Key-to-key transfers can be one-off, or they can be set up to send assets repeatedly, for as long as the key sending the assets has enough money to keep the transfers funded and fees paid.
+Key-to-key, and account-to-account transfers can be one-off, or they can be set up to send assets repeatedly, for as long as the key/account sending the assets has enough money to keep the transfers funded and fees paid.
 
 Transfers to fund reward pools can only be recurring, though they can be set up to limit for how long they supply a reward pool, or be cancelled.
 
@@ -27,7 +27,7 @@ Transfers to fund reward pools can only be recurring, though they can be set up 
 * **Transfer amount**. It must be written with no decimal point, but include all decimal places. Note: The amount in the below examples is based on an 18 decimal point asset, and so these would transfer 1 tVEGA
 
 ## Key-to-key transfers
-A key-to-key transfer allows you to transfer assets between two Vega keys. You'll need enough of the asset to transfer the nominated amount, as well as enough to pay the transfer fee.
+A key-to-key, or account-to-account transfer allows you to transfer assets between two Vega keys. You'll need enough of the asset to transfer the nominated amount, as well as enough to pay the transfer fee.
 
 ### One-off transfer to Vega key
 Use `deliverOn` to set a **delivery date/time** for when the transfer arrives with the recipient account. `deliverOn` only accepts Unix time in nanoseconds. Setting it to 0 means the transfer will be completed immediately. Note: when you delay a transfer, the amount leaves your account immediately but is not delivered until the date/time you chose.
@@ -40,7 +40,7 @@ A one-off transfer **cannot be cancelled** by you, regardless of when the transf
 ```bash
 vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{
     "transfer":{
-        "fromAccountType": "ACCOUNT_TYPE_GENERAL",
+        "fromAccountType": "ACCOUNT_TYPE_NAME",
         "toAccountType": "ACCOUNT_TYPE_GENERAL",
         "to":"recipient-Vega-public-key",
         "asset":"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55",
