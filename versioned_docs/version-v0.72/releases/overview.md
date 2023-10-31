@@ -56,11 +56,11 @@ At a high level, this change replaces the legacy system that requires LPs to be 
 
 **How this is different:**
 
-In the previous liquidity model, providers would make a commitment and define a “shape” in their liquidity provision order. Any of their commitment volume that wasn't on the book from limit orders would be filled by orders that were automatically deployed based on the shape they defined. In this release, “shapes” are being removed and providers will now be required to deploy their own orders to fulfill their liquidity obligation.
+In the previous liquidity model, providers would make a commitment and define a “shape” in their liquidity provision order. Any of their commitment volume that wasn't on the book from limit orders would be filled by orders that were automatically deployed based on the shape they defined. In this release, “shapes” are being removed and providers will now be required to deploy their own orders to fulfil their liquidity obligation.
 
 **What to expect during the migration:**
 
-- All existing orders deployed as a result of the LP shapes will be canceled immediately.
+- All existing orders deployed as a result of the LP shapes will be cancelled immediately.
 - Any active liquidity provision orders will be converted to align to the new liquidity protocol implementation by removing the definition of the buy / sell shape.
 
 - Default values for the new liquidity network parameters will be applied, as follows:
@@ -105,13 +105,13 @@ To see more details check out this [spec ↗](https://github.com/vegaprotocol/sp
 
 #### Referral program
 
-To allow existing users of the protocol/community members to refer new users, the on-chain referral program lets participants enact and vote for a program that provide benefits for referrers and referees.
+To allow existing users of the protocol/community members to refer new users, the on-chain referral program lets participants enact and vote for a program that provides benefits for referrers and referees.
 
 A party will be able to create a referral code and share this code with referees. Referees who apply the code will be added to the referrer's "referral set".
 
 Whilst a referral program is active, the following benefits may be available to participants in the referral program.
 
-- A referrer may receive a proportion of referee's paid fees as a reward.
+- A referrer may receive a proportion of the referee's paid fees as a reward.
 - A referee may be eligible for a discount on fees they incur.
 
 Providing a party has been associated with a referral set for long enough, they will become eligible for greater benefits as their referral set's running taker volume increases. To see more details check out this [spec ↗](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0083-RFPR-on_chain_referral_program.md). The work items completed on this feature can be seen on issues and pull requests with the [`referral ` ↗](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Areferral+) label.
