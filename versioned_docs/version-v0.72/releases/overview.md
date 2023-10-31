@@ -26,11 +26,13 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-### Release version 0.73.XXXX | 2023-11-01
+### Release version 0.73.1 | 2023-11-01
 
-Version 0.73.XXXX was released by the validators to mainnet on 01 November, 2023.
+Version 0.73.1 was released by the validators to mainnet on 01 November, 2023.
 
-This pre-release contains several new features, including the new product type perpetuals, Ethereum oracles and a refactored liquidity mechanism.
+This release contains several new features, including the new product type perpetuals, Ethereum oracles and a refactored liquidity mechanism.
+
+Check out the full details in the Vega core [0.73.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.1) release page.
 
 ### Breaking changes
 
