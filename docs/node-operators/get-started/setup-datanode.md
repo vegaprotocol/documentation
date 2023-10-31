@@ -293,7 +293,7 @@ visor --home=$YOUR_VISOR_HOME_PATH run
 
 ## Configure the data node SSL certificate
 
-See the [secure data node documentation page](vegaprotocol/documentation/docs/node-operators/requirements/data-node-security.md)
+See the [secure data node documentation page](../requirements/data-node-security.md)
 
 ## Data node retention profiles
 When initialising a data node, you can choose the data retention configuration for your data node, depending on the use case for the node. The retention policy details can all be fine-tuned manually, as well.
