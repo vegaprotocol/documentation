@@ -49,11 +49,11 @@ Assumptions:
 
 Limitations:
 
-Unfortunately, the data node cannot set up TLS for the GRPC port at the moment. It can be done only for the Gateway port(GraphQL and the REST APIs).
+Unfortunately, the data node cannot set up TLS for the gRPC port. It can be done only for the Gateway port (GraphQL and the REST APIs).
 
 #### Automatic TLS
 
-To configure the automatic TLS open the data node configuration file (`<vega_home>/config/data-node/config.toml`), and set the following settings in the data node config file
+To configure the automatic TLS open the data node configuration file (`<vega_home>/config/data-node/config.toml`), and set the following settings in the data node config file:
 
 ```toml title="YOUR_VEGA_HOME/config/data-node/config.toml"
 [Gateway]
@@ -66,7 +66,7 @@ To configure the automatic TLS open the data node configuration file (`<vega_hom
 Then restart your node.
 
 :::caution Ports for LetsEncrypt
-It is a hard requirement of the `LetsEncrypt` validation process that the tool answering its challenge is running on the standard HTTP/HTTPS ports(80, 443).
+It is a hard requirement of the `LetsEncrypt` validation process that the tool answering its challenge is running on the standard HTTP/HTTPS ports (80, 443).
 
 If you are running behind a firewall, you need to port forward 80+443 to the machine generating the certificate for the duration of the creation process.
 :::
@@ -93,7 +93,7 @@ Assumptions:
 - You have `nginx` >= `1.13` for the `grpc_proxy` feature.
 - You have a `certbot` with the Nginx extension
 - Your data node is running and exposing the `gRPC` API on port `3007` and `Gateway` on port `3008`
-- You have a spare domains pointing to your server. Separated domain for the GRPC and the Gateway ports.
+- You have spare domains pointing to your server. Separated domains for the gRPC and the Gateway ports.
 
 References:
 
@@ -200,7 +200,7 @@ Assumptions:
 
 - Caddy 1.17+ is installed
 - Your data node is running and exposing `gRPC` API on port `3007` and `Gateway` on port `3008`
-- You have a spare domain pointing to your server. Separated domain for the GRPC and the Gateway ports.
+- You have spare domains pointing to your server. Separated domain for the gRPC and the Gateway ports.
 
 References:
 
