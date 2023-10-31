@@ -38,11 +38,11 @@ The snapshot configuration `load-from-block-height` no longer accepts -1 as a va
 
 The `AssetID` field on the `ExportLedgerEntriesRequest` gRPC API, for exporting ledger entries, has had its type changed in order to make it optional. This change has been included in the issue [8944 ↗](https://github.com/vegaprotocol/vega/issues/8944).
 
-The command options for data node retention modes have been updated resulting in a breaking change. The `--lite` and `--archive` options to data node have been replaced with `--retention-profile=[archive|conservative|minimal]` with default mode as archive. This change has been included in the issue [9562 ↗](https://github.com/vegaprotocol/vega/issues/9562) and are documented in [0.73 deployment instructions](../node-operators/migration-guides/upgrade-node.md).
+The command options for data node retention modes have been updated resulting in a breaking change. The `--lite` and `--archive` options to data node have been replaced with `--retention-profile=[archive|conservative|minimal]` with default mode as archive. This change has been included in the issue [9562 ↗](https://github.com/vegaprotocol/vega/issues/9562) and is documented in [0.73 deployment instructions](../node-operators/migration-guides/upgrade-node.md).
 
-A crafted payload containing a very large integer can trigger a descriptive internal server error with SQL reference. In order to mitigate this specifying the range for pagination has been mandated and a default of 1000 applied. This change has been included in the issue [9408 ↗](https://github.com/vegaprotocol/vega/issues/9408).
+A crafted payload containing a very large integer can trigger a descriptive internal server error with SQL reference. In order to mitigate the risk of this happening, specifying the range for pagination has been mandated. A default value of 1000 items per page has been  applied. This change has been included in the issue [9408 ↗](https://github.com/vegaprotocol/vega/issues/9408).
 
-The SLA API endpoint has been updated such that it has both `current` part (amount, committed, fee proposed) and `pending` part (new amount and fee which will be activated at epoch boundary). This change has added a `pending` element to the LiquidityProvision object causing a breaking change affecting the gRPC API. This change has been included in the issue [9757 ↗](https://github.com/vegaprotocol/vega/issues/9757)
+The SLA API endpoint has been updated such that it has both a `current` part (amount, committed, fee proposed) and a `pending` part (new amount and fee which will be activated at epoch boundary). This change has added a `pending` element to the `LiquidityProvision` object causing a breaking change affecting the gRPC API. This change has been included in the issue [9757 ↗](https://github.com/vegaprotocol/vega/issues/9757)
 
 ### New features
 
