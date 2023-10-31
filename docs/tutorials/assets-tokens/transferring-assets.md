@@ -40,7 +40,7 @@ A one-off transfer **cannot be cancelled** by you, regardless of when the transf
 ```bash
 vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{
     "transfer":{
-        "fromAccountType": "ACCOUNT_TYPE_NAME",
+        "fromAccountType": "ACCOUNT_TYPE_GENERAL",
         "toAccountType": "ACCOUNT_TYPE_GENERAL",
         "to":"recipient-Vega-public-key",
         "asset":"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55",
