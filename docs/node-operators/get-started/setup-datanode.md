@@ -292,27 +292,8 @@ visor --home=$YOUR_VISOR_HOME_PATH run
 ```
 
 ## Configure the data node SSL certificate
-You will need your data node to be reachable over the internet with a proper fully qualified domain name, and a valid signed certificate. 
 
-You can provide the data node with a path to an existing signed certificate and corresponding private key by updating this section in the file `$YOUR_DATANODE_HOME_PATH/config/data-node/config.toml`:
-
-```toml
-  [Gateway]
-    HTTPSEnabled = true
-    CertificateFile = "/path/to/certificate/file"
-    KeyFile = "/path/to/key/file"
-```
-
-Many administrators prefer to use a tool called `certbot` for generating and signing free certificates via `LetsEncrypt`. To obtain a signed certificate with this method:
-* [Install certbot](https://www.inmotionhosting.com/support/website/ssl/lets-encrypt-ssl-ubuntu-with-certbot/)
-* Run `certbot certonly --standalone` to generate certificate
-* Place the generated `fullchain.pem` into the `Gateway.CertificateFile` location and corresponding `privkey.pem` to `Gateway.KeyFile`.
-
-:::caution Ports for LetsEncrypt
-It is a hard requirement of the `LetsEncrypt` validation process that the tool answering its challenge is running on the standard HTTP/HTTPS ports(80, 443). 
-
-If you are running behind a firewall, you need to port forward 80+443 to the machine generating the certificate for the duration of the creation process.
-::: 
+See the [secure data node documentation page](../requirements/data-node-security.md)
 
 ## Data node retention profiles
 When initialising a data node, you can choose the data retention configuration for your data node, depending on the use case for the node. The retention policy details can all be fine-tuned manually, as well.
