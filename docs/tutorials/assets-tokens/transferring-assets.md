@@ -93,7 +93,6 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network f
         "to": "KEY",
         "asset": "fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55",
         "amount": "10000000000000000000",
-        "fractionOfBalance": "0.1",
         "recurring": {
             "startEpoch": 1,
             "endEpoch": 10,
@@ -114,7 +113,6 @@ vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --netwo
         \"to\":\"KEY\", ^
         \"asset\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\", ^
         \"amount\":\"10000000000000000000\", ^
-        \"fractionOfBalance\": 0.1, ^
         \"recurring\":{ ^
             \"startEpoch\": 1, ^
             \"endEpoch\": 10, ^
@@ -181,7 +179,6 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network f
         "to":"0000000000000000000000000000000000000000000000000000000000000000",
         "asset":"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55",
         "amount":"10000000000000000000",
-        "fractionOfBalance": "0.1",
         "recurring":{
             "startEpoch": 1,
             "endEpoch": 10,
@@ -189,8 +186,8 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network f
             "dispatchStrategy": {
                 "assetForMetric": "fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55",
                 "metric": "DISPATCH_METRIC_MARKET_VALUE",
-                "markets": ["marketid"]
-                "windowLength": ["number of epochs"],
+                "markets": "marketid_goeshere"
+                "windowLength": "number of epochs",
                 "entityScope": "ENTITY_SCOPE_INDIVIDUALS",
                 "individualScope": "INDIVIDUAL_SCOPE_ALL",
                 "distributionStrategy": "DISTRIBUTION_STRATEGY_YOU_WANT"
@@ -212,7 +209,6 @@ vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --netwo
         \"to\":\"0000000000000000000000000000000000000000000000000000000000000000\", ^
         \"asset\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\", ^
         \"amount\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\", ^
-        \"fractionOfBalance\": 0.1, ^
         \"reference\":\"reward\", ^
         \"recurring\":{ ^
             \"startEpoch\": 1, ^
@@ -220,7 +216,11 @@ vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --netwo
             \"factor\": \"1\", ^
             \"dispatchStrategy\": { ^
                 \"metric\": \"DISPATCH_METRIC_MARKET_VALUE\", ^
-                \"markets\": [\"marketid\"] ^
+                \"markets\": \"marketidgoeshere\" ^
+                \"windowLength\": \"numberofepochs\" ^
+                \"entityScope\": \"ENTITY_SCOPE_INDIVIDUALS\", ^
+                \"individualScope\": \"INDIVIDUAL_SCOPE_ALL\", ^
+                \"distributionStrategy\": \"DISTRIBUTION_STRATEGY_YOU_WANT\" ^
             } ^
         } ^
     } ^
