@@ -289,8 +289,6 @@ Another parameter is
   * accepted values: **any real number**,
   * suggested value: in almost all situations `0` is the value to use
 
-<!--### Changing models [WIP]  -->
-
 ### Propose a successor market
 A successor market is a market that will carry on after the original market, or parent, that it is based on has settled - though a parent and successor market can be active simultaneously. Proposing a new successor market that follows from an existing market offers liquidity providers the option to keep their [equity-like share](./liquidity/rewards-penalties.md#how-liquidity-fees-are-split) on the new market, even when the original market expires. Creating an entirely new market with no parent doesn't offer the same benefit.
 
@@ -314,6 +312,19 @@ However, there are a few that cannot be edited, and will be the same for the dur
 * Decimal places/precision for:
   * Market - Sets the smallest price increment on the book. A market cannot specify more decimal places than its settlement asset supports
   * Position - Precision of the position size
+
+### Propose a change to a market's state
+Markets can be suspended, resumed from being suspended, and terminated using governance proposals.
+
+Suspending a market puts the market into an auction-only state. A market can be suspended for an indefinite amount of time, and it may never come out of suspension. 
+
+A suspended market can only open to normal trading again if a proposal to resume the market is proposed and enacted.
+
+Markets that are terminated are closed to trading forever. When a proposal to terminate a market is enacted, it ends all trading on the market, settles all positions, and closes the market completely. The termination proposal includes a final price that's used to settle all open positions.
+
+:::tip Try it out
+[Tutorial: Propose a change to a market's state](../tutorials/proposals/market-state-proposal.md)
+:::
 
 ## Network parameter governance
 There are certain parameters within Vega that influence the behaviour of the system and can be changed by on-chain governance. Vega tokenholders can define the optimal network configuration by creating and voting on network parameter proposals to change the values of existing network parameters.

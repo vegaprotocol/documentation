@@ -12,10 +12,10 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 If you want to transfer assets from accounts such as an insurance pool to fund trading rewards, see the tutorial on how to [propose transferring an asset](../proposals/asset-transfer-proposal.md).
 :::
 
-# Transfers: Key-to-key and trading rewards
-Use transfers to send assets to **another Vega key** or to a **reward pool** to fund trading rewards. 
+# Transfers
+Use transfers to send assets to **another Vega key**, from **vested to general accounts** for the same key, or to a **reward pool** to fund trading rewards. 
 
-Key-to-key transfers can be one-off, or they can be set up to send assets repeatedly, for as long as the key sending the assets has enough money to keep the transfers funded and fees paid.
+Key-to-key, and account-to-account transfers can be one-off, or they can be set up to send assets repeatedly, for as long as the key/account sending the assets has enough money to keep the transfers funded and fees paid.
 
 Transfers to fund reward pools can only be recurring, though they can be set up to limit for how long they supply a reward pool, or be cancelled.
 
@@ -27,7 +27,7 @@ Transfers to fund reward pools can only be recurring, though they can be set up 
 * **Transfer amount**. It must be written with no decimal point, but include all decimal places. Note: The amount in the below examples is based on an 18 decimal point asset, and so these would transfer 1 tVEGA
 
 ## Key-to-key transfers
-A key-to-key transfer allows you to transfer assets between two Vega keys. You'll need enough of the asset to transfer the nominated amount, as well as enough to pay the transfer fee.
+A key-to-key, or account-to-account transfer allows you to transfer assets between two Vega keys. You'll need enough of the asset to transfer the nominated amount, as well as enough to pay the transfer fee.
 
 ### One-off transfer to Vega key
 Use `deliverOn` to set a **delivery date/time** for when the transfer arrives with the recipient account. `deliverOn` only accepts Unix time in nanoseconds. Setting it to 0 means the transfer will be completed immediately. Note: when you delay a transfer, the amount leaves your account immediately but is not delivered until the date/time you chose.
@@ -93,7 +93,6 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network f
         "to": "KEY",
         "asset": "fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55",
         "amount": "10000000000000000000",
-        "fractionOfBalance": "0.1",
         "recurring": {
             "startEpoch": 1,
             "endEpoch": 10,
@@ -114,7 +113,6 @@ vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --netwo
         \"to\":\"KEY\", ^
         \"asset\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\", ^
         \"amount\":\"10000000000000000000\", ^
-        \"fractionOfBalance\": 0.1, ^
         \"recurring\":{ ^
             \"startEpoch\": 1, ^
             \"endEpoch\": 10, ^
@@ -181,7 +179,6 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network f
         "to":"0000000000000000000000000000000000000000000000000000000000000000",
         "asset":"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55",
         "amount":"10000000000000000000",
-        "fractionOfBalance": "0.1",
         "recurring":{
             "startEpoch": 1,
             "endEpoch": 10,
@@ -189,8 +186,8 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network f
             "dispatchStrategy": {
                 "assetForMetric": "fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55",
                 "metric": "DISPATCH_METRIC_MARKET_VALUE",
-                "markets": ["marketid"]
-                "windowLength": ["number of epochs"],
+                "markets": ["marketid_goeshere"],
+                "windowLength": "number of epochs",
                 "entityScope": "ENTITY_SCOPE_INDIVIDUALS",
                 "individualScope": "INDIVIDUAL_SCOPE_ALL",
                 "distributionStrategy": "DISTRIBUTION_STRATEGY_YOU_WANT"
@@ -212,7 +209,6 @@ vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --netwo
         \"to\":\"0000000000000000000000000000000000000000000000000000000000000000\", ^
         \"asset\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\", ^
         \"amount\":\"fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55\", ^
-        \"fractionOfBalance\": 0.1, ^
         \"reference\":\"reward\", ^
         \"recurring\":{ ^
             \"startEpoch\": 1, ^
@@ -220,7 +216,11 @@ vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --netwo
             \"factor\": \"1\", ^
             \"dispatchStrategy\": { ^
                 \"metric\": \"DISPATCH_METRIC_MARKET_VALUE\", ^
-                \"markets\": [\"marketid\"] ^
+                \"markets\": [\"marketidgoeshere\"], ^
+                \"windowLength\": \"numberofepochs\" ^
+                \"entityScope\": \"ENTITY_SCOPE_INDIVIDUALS\", ^
+                \"individualScope\": \"INDIVIDUAL_SCOPE_ALL\", ^
+                \"distributionStrategy\": \"DISTRIBUTION_STRATEGY_YOU_WANT\" ^
             } ^
         } ^
     } ^
