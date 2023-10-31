@@ -43,7 +43,7 @@ You will need:
 A market can be suspended for an indefinite amount of time, which puts the market into auction-only mode. Suspending a market allows for the possibility that it will be open to normal trading again in the future. A market that's suspended through governance can be resumed using the [resume a market](#resume-a-market) proposal.
 
 The proposal to suspend an open market requires: 
-*`marketID` for the market to suspend
+* `marketID` for the market to suspend
 * `updateType` of `MARKET_STATE_UPDATE_TYPE_SUSPEND`
 
 ### Template: Suspend a market
@@ -278,7 +278,7 @@ vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --netwo
 ## Terminate a market
 Once a market is terminated, it **cannot be reversed**. If the proposal to terminate a market is enacted, it will end all trading on the market, settle all positions, and close the market completely.
 
-The proposal to resume an open market requires the `marketID` for the one to suspend, as well as the `updateType`of `MARKET_STATE_UPDATE_TYPE_TERMINATE`.
+The proposal to resume an open market requires the `marketID` for the one to suspend, as well as the `updateType` of `MARKET_STATE_UPDATE_TYPE_TERMINATE`.
 
 It also requires a final settlement price, with enough digits to account for the market's decimal places. This uses the `price` field.
 

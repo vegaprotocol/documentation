@@ -186,7 +186,7 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network f
             "dispatchStrategy": {
                 "assetForMetric": "fc7fd956078fb1fc9db5c19b88f0874c4299b2a7639ad05a47a28c0aef291b55",
                 "metric": "DISPATCH_METRIC_MARKET_VALUE",
-                "markets": "marketid_goeshere"
+                "markets": ["marketid_goeshere"],
                 "windowLength": "number of epochs",
                 "entityScope": "ENTITY_SCOPE_INDIVIDUALS",
                 "individualScope": "INDIVIDUAL_SCOPE_ALL",
@@ -216,7 +216,7 @@ vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --netwo
             \"factor\": \"1\", ^
             \"dispatchStrategy\": { ^
                 \"metric\": \"DISPATCH_METRIC_MARKET_VALUE\", ^
-                \"markets\": \"marketidgoeshere\" ^
+                \"markets\": [\"marketidgoeshere\"], ^
                 \"windowLength\": \"numberofepochs\" ^
                 \"entityScope\": \"ENTITY_SCOPE_INDIVIDUALS\", ^
                 \"individualScope\": \"INDIVIDUAL_SCOPE_ALL\", ^
