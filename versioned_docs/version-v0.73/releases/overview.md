@@ -271,7 +271,7 @@ The changes below may affect any automations, scripts or workflows you'll have s
 
 **Deprecated: `X-Vega-Connection` HTTP header**[(v0.68)↗](https://github.com/vegaprotocol/vega/releases/tag/v0.68.0): The `X-Vega-Connection` HTTP header in data node API and REST and GraphQL gateways has been deprecated and will be removed in a future release.
 
-**Removed: Wallet command removals** [v0.66 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.66.0): A number of the CLI wallet APIs have been deprecated. To find out how to see all the current CLI wallet commands please refer to the [CLI wallet documentation](../tools/vega-wallet/cli-wallet/latest/guides/get-help.md).
+**Removed: Wallet command removals** [v0.66 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.66.0): A number of the CLI wallet APIs have been deprecated. To find out how to see all the current CLI wallet commands please refer to the [CLI wallet documentation](../tools/vega-wallet/cli-wallet/guides/get-help.md).
 
 **Renamed: Network parameter** [v0.66 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.66.0): The network parameter `stakeToCcySiskas` has been renamed to `stakeToCcyVolume`.
 

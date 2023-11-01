@@ -31,7 +31,7 @@ Each network, such as testnet, will have a compatible version of the CLI Wallet 
 You can also sign transactions directly from your application with a signer library if one exists for the language you're using, but this is out of scope of this guide. You can refer to two [example libs in the example code section](#signer-libraries).
 
 :::note Read more
-[Create a wallet](../tools/vega-wallet/cli-wallet/latest/create-wallet): See a step-by-step guide to creating a Vega Wallet for testnet.
+[Create a wallet](../tools/vega-wallet/cli-wallet/create-wallet): See a step-by-step guide to creating a Vega Wallet for testnet.
 :::
 
 Check the docs site top bar to see what software version the network you need is running on, and download the equivalent version on [GitHub ↗](https://github.com/vegaprotocol/vega/releases).
@@ -62,7 +62,7 @@ The last step will produce an API token that you must save or take note of, as i
 The wallet service needs to know which network it will be connecting to. To do this, download a configuration file from the relevant network repo. The file contains the addresses of the nodes on the network it can connect to.
 
 :::note Read more
-[Manage networks](../tools/vega-wallet/cli-wallet/latest/guides/manage-networks): Read about how to get specific network details and troubleshoot any issues.
+[Manage networks](../tools/vega-wallet/cli-wallet/guides/manage-networks): Read about how to get specific network details and troubleshoot any issues.
 :::
 
 Download the wallet configuration file for the testnet network called fairground.

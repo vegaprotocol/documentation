@@ -17,5 +17,5 @@ The Vega Wallet is available to use as a command-line application.
 * **[Isolate keys](./latest/guides/isolate-keys.md)**: Move a key pair from a standard wallet into a wallet that can only sign and verify transactions
 
 :::info
-If you are not comfortable using the command-line, you can use the **[desktop wallet app](../desktop-app/latest/getting-started.md)**. 
+If you are not comfortable using the command-line, you can use the **[desktop wallet app](../desktop-app/getting-started.md)**. 
 :::

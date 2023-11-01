@@ -56,8 +56,6 @@ If banned, the response will be `HTTP 403 Forbidden for HTTP APIs`.
 
 Read more about rate limiting in the [rate limiting README ↗](https://github.com/vegaprotocol/vega/blob/develop/datanode/ratelimit/README.md) on GitHub.
 
-
-
 ## Formatting and field conventions
 
 ### Strings vs numbers format

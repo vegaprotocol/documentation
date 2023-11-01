@@ -26,7 +26,7 @@ The beta version of this JSON-RPC API was released with the Vega software `v.0.6
 
 First, you will have to run the Vega wallet using one of the following wallet softwares:
 
-- [Command-line application](../../tools/vega-wallet/cli-wallet/latest/create-wallet.md): Best for developers, tech-savvy users, and those running headless software like bots and scripts.
+- [Command-line application](../../tools/vega-wallet/cli-wallet/create-wallet.md): Best for developers, tech-savvy users, and those running headless software like bots and scripts.
 - [Desktop application](../../tools/vega-wallet/desktop-app/index.md): Best for regular users, and those who want to test the UI experience.
 
 Then, to connect the local service, see ["Connect to local service" guide](./how-to/connect-to-local-service.md).
