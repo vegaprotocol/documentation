@@ -11,6 +11,7 @@ keywords:
 import NetworkParameter from '@site/src/components/NetworkParameter';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import TerminalInstructions from './_terminal-instructions.md';
 
 # Propose tranferring assets
 
