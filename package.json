@@ -48,7 +48,7 @@
     "clsx": "^1.2.1",
     "date-fns": "^2.29.1",
     "docusaurus-plugin-openapi-docs": "1.7.3",
-    "docusaurus-protobuffet": "0.3.2",
+    "docusaurus-protobuffet": "0.3.3",
     "docusaurus-theme-openapi-docs": "1.7.3",
     "file-loader": "6.2.0",
     "glob": "^8.0.3",

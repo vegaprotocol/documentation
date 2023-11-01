@@ -4720,19 +4720,19 @@ docusaurus-plugin-openapi-docs@1.7.3, docusaurus-plugin-openapi-docs@^1.7.3:
     webpack "^5.61.0"
     xml-formatter "^2.6.1"
 
-docusaurus-protobuffet-plugin@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/docusaurus-protobuffet-plugin/-/docusaurus-protobuffet-plugin-0.3.2.tgz#09ede681475c881bff804fb652f7497b63347dad"
-  integrity sha512-LPu+ah2uy53//q6QN8IYSYH6DHUOz2MxvOzk8JRMsUDUF2sTxIvobFqj3/BctlLM15kBWbWnI2zHaAZQlZodqA==
+docusaurus-protobuffet-plugin@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/docusaurus-protobuffet-plugin/-/docusaurus-protobuffet-plugin-0.3.3.tgz#82742255227107466b3d5bef2b1fe0c0fabac4f5"
+  integrity sha512-cDu6Ne/XRjI4XqgFW1Ed1bviTbxQAxzRVAMHUNnYbllWIhqMkcQA/Q+SHFIW4kuRXDup5X7uRrPmd2xc6rVI1Q==
   dependencies:
     "@docusaurus/utils" "^2.0.0-alpha.72"
 
-docusaurus-protobuffet@0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/docusaurus-protobuffet/-/docusaurus-protobuffet-0.3.2.tgz#55cda95e4da413bbf7f680b7eac616760bed2aac"
-  integrity sha512-RsTPoyUDW6efG8PyRa9bg1L0W7fvEQLYI/W6Mk96DVr01DnUagiHFmAHkAKCpVAZi7KggCbiDHmCJSRykm63+g==
+docusaurus-protobuffet@0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/docusaurus-protobuffet/-/docusaurus-protobuffet-0.3.3.tgz#fe5353ccb7db4dc68e50ee62fb4643c97426f82e"
+  integrity sha512-QbOU/7aYJ/A58D8DTqCGD6rOCUXl1uGP5w6nIAxeNodZZ35uPJwl/QA6pGEU1PjalUf97iMRK8eTnntRMtAAjQ==
   dependencies:
-    docusaurus-protobuffet-plugin "^0.3.2"
+    docusaurus-protobuffet-plugin "^0.3.3"
 
 docusaurus-theme-openapi-docs@1.7.3:
   version "1.7.3"
