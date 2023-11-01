@@ -1,7 +1,7 @@
 ---
 sidebar_position: 4
 title: Update network parameter
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: true
 keywords:
 - proposal

@@ -2,7 +2,7 @@
 sidebar_position: 4
 title: Validator community
 sidebar_label: Validator community
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';

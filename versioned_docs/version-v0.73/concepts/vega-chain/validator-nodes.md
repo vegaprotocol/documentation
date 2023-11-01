@@ -1,7 +1,7 @@
 ---
 sidebar_position: 5
 title: Validator nodes
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 ---
 

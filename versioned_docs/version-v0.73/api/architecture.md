@@ -1,7 +1,7 @@
 ---
 title: Architecture
 sidebar_position: 3
-vega_network: TESTNET
+vega_network: MAINNET
 ---
 
 import Topic from '/docs/topics/_topic-development.mdx'

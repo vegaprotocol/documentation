@@ -62,7 +62,7 @@ Once they unlock, a proportion of the rewards move into the vested account each 
 ### Reward hoarder bonus
 Leaving your reward earnings in your vested account will increase your share of the trading rewards you've accrued. How much extra you get depends on your total rewards balance, whether it's locked, vesting, or vested.
 
-You can see the current reward hoarder bonus requirements and benefits on the [block explorer ↗](https://explorer.fairground.wtf/network-parameters#rewards.vesting.benefitTiers), or querying the [network parameters API](../../api/rest/data-v2/trading-data-service-list-network-parameters.api.mdx) for the `rewards.vesting.benefitTiers` network parameter.
+You can see the current reward hoarder bonus requirements and benefits on the [block explorer ↗](https://explorer.vega.xyz/network-parameters#rewards.vesting.benefitTiers), or querying the [network parameters API](../../api/rest/data-v2/trading-data-service-list-network-parameters.api.mdx) for the `rewards.vesting.benefitTiers` network parameter.
 
 These tiers are set through network parameters, and thus can be changed through [governance](../governance.md#network-parameter-governance).
 
@@ -75,7 +75,7 @@ You need a minimum trade volume of <NetworkParameter frontMatter={frontMatter} p
 
 If you go inactive for more than <NetworkParameter frontMatter={frontMatter} param="rewards.activityStreak.inactivityLimit" hideName={true} suffix="epochs"/>, you will lose your streak.
 
-You can see the current activity streak requirements and benefits on the [block explorer ↗](https://explorer.fairground.wtf/network-parameters#rewards.activityStreak.benefitTiers), or querying the [network parameters API](../../api/rest/data-v2/trading-data-service-list-network-parameters.api.mdx) for the `rewards.activityStreak.benefitTiers` network parameter.
+You can see the current activity streak requirements and benefits on the [block explorer ↗](https://explorer.vega.xyz/network-parameters#rewards.activityStreak.benefitTiers), or querying the [network parameters API](../../api/rest/data-v2/trading-data-service-list-network-parameters.api.mdx) for the `rewards.activityStreak.benefitTiers` network parameter.
 
 The details for activity streaks are set through network parameters, and thus can be changed through [governance](../governance.md#network-parameter-governance).
 

@@ -3,7 +3,7 @@ sidebar_position: 5
 title: Public endpoints
 hide_title: false
 description: Vega's APIs are served over public endpoints.
-vega_network: TESTNET
+vega_network: MAINNET
 ---
 
 import Topic from '/docs/topics/_topic-development.mdx'

@@ -2,7 +2,7 @@
 sidebar_position: 6
 title: Update asset bridge
 hide_title: true
-vega_network: TESTNET
+vega_network: MAINNET
 ethereum_network: Ropsten
 keywords:
   - proposal

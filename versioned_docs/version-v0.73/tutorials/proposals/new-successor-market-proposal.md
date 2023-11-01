@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: New futures successor market
 hide_title: true
-vega_network: TESTNET
+vega_network: MAINNET
 keywords:
 - proposal
 - governance

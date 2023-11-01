@@ -3,7 +3,7 @@ title: Deposit assets
 sidebar_position: 2
 hide_title: false
 description: How to deposit assets from an Ethereum wallet to Vega.
-vega_network: TESTNET
+vega_network: MAINNET
 ---
 
 import Tabs from '@theme/Tabs';

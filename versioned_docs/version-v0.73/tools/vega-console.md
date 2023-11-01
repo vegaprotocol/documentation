@@ -1,6 +1,6 @@
 ---
 title: Console
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 description: Vega Console build instructions and IPFS hosting
 ---

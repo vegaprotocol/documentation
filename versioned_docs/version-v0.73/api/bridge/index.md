@@ -1,6 +1,6 @@
 ---
 title: Overview
-vega_network: TESTNET
+vega_network: MAINNET
 sidebar_position: 1
 ---
 

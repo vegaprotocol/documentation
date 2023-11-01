@@ -2,7 +2,7 @@
 sidebar_position: 2
 title: Infrastructure requirements
 sidebar_label: Validator infrastructure
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
