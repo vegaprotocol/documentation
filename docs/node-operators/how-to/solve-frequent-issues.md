@@ -204,7 +204,7 @@ Check the vega version with the command `vega version` and compare with the vers
 First, you should check the logs from Visor. An example log is below:
 
 ```
-Oct 24 11:33:09 moonrock visor[260678]: Error: failed to prepare next upgrade folder: failed to auto install folder "/home/vega/vega-visor/v0.73.0-rc.1" for release "v0.73.0-rc.1": missing required auto install vega asset definition in Visor config
+Oct 24 11:33:09 moonrock visor[260678]: Error: failed to prepare next upgrade folder: failed to auto install folder "/home/vega/vega-visor/v0.73.1" for release "v0.73.1": missing required auto install vega asset definition in Visor config
 ```
 
 ### Solution: Check the Visor config

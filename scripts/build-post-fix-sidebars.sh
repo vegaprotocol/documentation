@@ -26,8 +26,8 @@ echo "GRPC: Fix sidebar links (fixes incorrect path mappings for the versioned w
 sed -i -E 's/"vega/"api\/grpc\/vega/g' docs/api/grpc/sidebar.js
 sed -i -E 's/"data-node/"api\/grpc\/data-node/g' docs/api/grpc/sidebar.js
 find 'docs/api/rest/' -name 'sidebar.js' -exec sed -i 's/{"type":"doc","id":"[^"]*"},//g' {} +
-find 'versioned_docs/version-v0.72/api/rest/' -name 'sidebar.js' -exec sed -i 's/{"type":"doc","id":"[^"]*"},//g' {} +
-cat versioned_sidebars/version-v0.72-sidebars.json | jq 'def recurse: if type == "array" then map(recurse) elif type == "object" then if has("id") and (.id | type == "string" and test("^api/rest.*-apis$")) then empty else with_entries( .value |= recurse ) end else . end; recurse' > temp.json && mv temp.json versioned_sidebars/version-v0.72-sidebars.json 
+find 'versioned_docs/version-v0.73/api/rest/' -name 'sidebar.js' -exec $SED_CMD -i 's/{"type":"doc","id":"[^"]*"},//g' {} +
+cat versioned_sidebars/version-v0.73-sidebars.json | jq 'def recurse: if type == "array" then map(recurse) elif type == "object" then if has("id") and (.id | type == "string" and test("^api/rest.*-apis$")) then empty else with_entries( .value |= recurse ) end else . end; recurse' > temp.json && mv temp.json versioned_sidebars/version-v0.72-sidebars.json 
 # echo "GRPC: Fix sidebar links (fixes incorrect path mappings for the versioned world)"
 # rm docs/api/rest/state/vega-core-state-apis.info.mdx
 # rm docs/api/rest/data-v2/vega-data-node-apis.info.mdx

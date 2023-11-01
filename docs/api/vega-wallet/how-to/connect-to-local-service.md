@@ -10,10 +10,6 @@ import Topic from '/docs/topics/_topic-wallet.mdx'
 
 The following guide walks you through connecting to the local service so that you can, for example, connect the application you're building to the Vega wallet service.
 
-:::caution
-By following this guide, your application will only be able to talk to networks on 0.67 or newer. The API used in this guide is not supported on the current mainnet version 0.53.
-:::
-
 ## Introduction
 
 The local service is an HTTP server exposed on the user's localhost. Therefore, communicating with the Vega wallet service is done through HTTP endpoints.

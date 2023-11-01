@@ -22,7 +22,7 @@ find 'versioned_docs' -type f -name '*.mdx' -exec sed -i -E 's#testnet/api/graph
 find 'versioned_docs' -type f -name '*.mdx' -exec sed -i -E 's#testnet/api/grpc#mainnet/api/grpc#g' {} +
 
 ## Sidebar fixup
-sed -i -E 's/\/docs\/testnet\//\/docs\/mainnet\//g' versioned_sidebars/version-v0.71-sidebars.json 
+sed -i -E 's/\/docs\/testnet\//\/docs\/mainnet\//g' versioned_sidebars/version-v0.73-sidebars.json 
 
 # Testnet docs
 ## Ensure graphql pages in /docs/ link to /testnet/

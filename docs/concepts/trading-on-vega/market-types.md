@@ -50,7 +50,7 @@ They include:
 * Clamp upper bound
 
 :::note Go deeper
-**[Funding payment calculations ↗](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0053-PERP-product_builtin_perpetual_future.md#funding-payment-calculation)**: See how all the parameters can impact a market's funding rate and margin requirements.
+**[Funding payment calculations ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0053-PERP-product_builtin_perpetual_future.md#funding-payment-calculation)**: See how all the parameters can impact a market's funding rate and margin requirements.
 :::
 
 ### Margin calculations

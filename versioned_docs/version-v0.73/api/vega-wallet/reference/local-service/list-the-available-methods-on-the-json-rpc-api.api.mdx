@@ -1,0 +1,42 @@
+---
+id: list-the-available-methods-on-the-json-rpc-api
+title: "List the available methods on the JSON-RPC API"
+sidebar_label: "List the available methods on the JSON-RPC API"
+hide_title: true
+hide_table_of_contents: true
+api: {"description":"The JSON-RPC API behind this HTTP API can have an arbitrary set of endpoints enabled.\n\nThis method allows an application to check for the existence of the JSON-RPC before calling the requests method.","tags":["Wallet"],"responses":{"200":{"description":"Successful listing","content":{"application/json":{"examples":{"Example 1":{"summary":"Listing the registered methods","value":{"result":{"registeredMethods":["client.connect_wallet","client.disconnect_wallet","client.list_keys","client.send_transaction"]}}}},"schema":{"type":"object","properties":{"result":{"type":"object","properties":{"registeredMethods":{"type":"array","required":true}}}}}}}},"400":{"description":"Something went wrong","content":{"application/json":{"schema":{"type":"object","properties":{"errors":{"type":"object","properties":{"message":{"type":"string"},"data":{"type":"string"}}}}}}}},"500":{"description":"Something failed internally. Nothing can be done about it."}},"method":"get","path":"/v2/methods","servers":[{"url":"http://localhost:1789/api/","description":"Local wallet"}],"info":{"title":"Wallet API","description":"The version 2 of the wallet HTTP API leverages the wallet JSON-RPC API.\n\n## Workflow\n1. Use `GET /v2/methods` to ensure the JSON-RPC API exposes all the methods your application requires.\n\n2. Use `POST /v2/requests` endpoint to submit requests to the JSON-RPC API.\n## Useful links\n- [JSON-RPC 2.0 Specification](https://www.jsonrpc.org/specification)","version":"2.0.0"},"postman":{"name":"List the available methods on the JSON-RPC API","description":{"content":"The JSON-RPC API behind this HTTP API can have an arbitrary set of endpoints enabled.\n\nThis method allows an application to check for the existence of the JSON-RPC before calling the requests method.","type":"text/plain"},"url":{"path":["v2","methods"],"host":["{{baseUrl}}"],"query":[],"variable":[]},"header":[{"key":"Accept","value":"application/json"}],"method":"GET"}}
+sidebar_class_name: "get api-method"
+info_path: version-v0.73/api/vega-wallet/reference/local-service/wallet-api
+custom_edit_url: "https://github.com/vegaprotocol/documentation/issues/new?labels=documentation&title=[Documentation] Requesting changes to 'List the available methods on the JSON-RPC API' (list-the-available-methods-on-the-json-rpc-api)"
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import TabItem from "@theme/TabItem";
+
+## List the available methods on the JSON-RPC API
+
+
+
+The JSON-RPC API behind this HTTP API can have an arbitrary set of endpoints enabled.
+
+This method allows an application to check for the existence of the JSON-RPC before calling the requests method.
+
+<div><ApiTabs><TabItem label={"200"} value={"200"}><div>
+
+Successful listing
+
+</div><div><MimeTabs schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}}><summary style={{}}><strong>result</strong><span style={{"opacity":"0.6"}}> object</span></summary><div style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"registeredMethods"} required={false} schemaName={"array"} qualifierMessage={undefined} schema={{"type":"array","required":true}}></SchemaItem></div></details></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"result\": {\n    \"registeredMethods\": [\n      null\n    ]\n  }\n}"} language={"json"}></ResponseSamples></TabItem><TabItem label={"Example 1"} value={"Example 1"}><p> Listing the registered methods</p><ResponseSamples responseExample={"{\n  \"result\": {\n    \"registeredMethods\": [\n      \"client.connect_wallet\",\n      \"client.disconnect_wallet\",\n      \"client.list_keys\",\n      \"client.send_transaction\"\n    ]\n  }\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"400"} value={"400"}><div>
+
+Something went wrong
+
+</div><div><MimeTabs schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs><TabItem label={"Schema"} value={"Schema"}><details style={{}} data-collapsed={false} open={true}><summary style={{"textAlign":"left"}}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}}><summary style={{}}><strong>errors</strong><span style={{"opacity":"0.6"}}> object</span></summary><div style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"message"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"data"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem></div></details></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"errors\": {\n    \"message\": \"string\",\n    \"data\": \"string\"\n  }\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"500"} value={"500"}><div>
+
+Something failed internally. Nothing can be done about it.
+
+</div><div></div></TabItem></ApiTabs></div>

@@ -1,0 +1,49 @@
+---
+title: spec.proto
+hide_title: true
+---
+
+import { ProtoMessage, ProtoServiceMethod, ProtoEnum } from '@theme/ProtoFile';
+
+## `spec.proto`
+_**path** vega/data/v1/spec.proto_
+
+_**package** vega.data.v1_
+
+
+
+---
+
+## Messages
+
+
+### `Condition`
+<ProtoMessage key={0} message={{"name":"Condition","longName":"Condition","fullName":"vega.data.v1.Condition","description":"Condition describes the condition that must be validated by the network","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"operator","description":"Type of comparison to make on the value.","label":"","type":"Operator","longType":"Condition.Operator","fullType":"vega.data.v1.Condition.Operator","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/data/v1/spec.proto#conditionoperator"},{"name":"value","description":"Value to be compared with by the operator.","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `Filter`
+<ProtoMessage key={1} message={{"name":"Filter","longName":"Filter","fullName":"vega.data.v1.Filter","description":"Filter describes the conditions under which a data source data is considered of\ninterest or not.","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"key","description":"Data source's data property key targeted by the filter.","label":"","type":"PropertyKey","longType":"PropertyKey","fullType":"vega.data.v1.PropertyKey","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/data/v1/spec.proto#propertykey"},{"name":"conditions","description":"Conditions that should be matched by the data to be\nconsidered of interest.","label":"repeated","type":"Condition","longType":"Condition","fullType":"vega.data.v1.Condition","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/data/v1/spec.proto#condition"}]}} />
+
+
+### `InternalTimeTrigger`
+<ProtoMessage key={2} message={{"name":"InternalTimeTrigger","longName":"InternalTimeTrigger","fullName":"vega.data.v1.InternalTimeTrigger","description":"Trigger for an internal time data source.","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"initial","description":"Trigger when the vega time is greater or equal to this time, in Unix seconds.","label":"optional","type":"int64","longType":"int64","fullType":"int64","ismap":false,"isoneof":true,"oneofdecl":"_initial","defaultValue":""},{"name":"every","description":"Repeat the trigger every n seconds after the initial. If no time for\ninitial was specified, begin repeating immediately.","label":"","type":"int64","longType":"int64","fullType":"int64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `PropertyKey`
+<ProtoMessage key={3} message={{"name":"PropertyKey","longName":"PropertyKey","fullName":"vega.data.v1.PropertyKey","description":"PropertyKey describes the property key contained in data source data.","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"name","description":"Name of the property.","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"type","description":"Data type of the property.","label":"","type":"Type","longType":"PropertyKey.Type","fullType":"vega.data.v1.PropertyKey.Type","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/mainnet/api/grpc/vega/data/v1/spec.proto#propertykeytype"},{"name":"number_decimal_places","description":"Optional decimal place to be be applied on the provided value\nvalid only for PropertyType of type DECIMAL and INTEGER","label":"optional","type":"uint64","longType":"uint64","fullType":"uint64","ismap":false,"isoneof":true,"oneofdecl":"_number_decimal_places","defaultValue":""}]}} />
+
+---
+## Enums
+
+
+### `Condition.Operator`
+<ProtoEnum key={0} enumb={{"name":"Operator","longName":"Condition.Operator","fullName":"vega.data.v1.Condition.Operator","description":"Operator describes the type of comparison.","values":[{"name":"OPERATOR_UNSPECIFIED","number":"0","description":"The default value"},{"name":"OPERATOR_EQUALS","number":"1","description":"Verify if the property values are strictly equal or not."},{"name":"OPERATOR_GREATER_THAN","number":"2","description":"Verify if the data source data value is greater than the Condition value."},{"name":"OPERATOR_GREATER_THAN_OR_EQUAL","number":"3","description":"Verify if the data source data value is greater than or equal to the Condition\nvalue."},{"name":"OPERATOR_LESS_THAN","number":"4","description":"Verify if the data source data value is less than the Condition value."},{"name":"OPERATOR_LESS_THAN_OR_EQUAL","number":"5","description":"Verify if the data source data value is less or equal to than the Condition\nvalue."}]}} />
+
+
+### `PropertyKey.Type`
+<ProtoEnum key={1} enumb={{"name":"Type","longName":"PropertyKey.Type","fullName":"vega.data.v1.PropertyKey.Type","description":"Type describes the data type of properties that are supported by the data source\nengine.","values":[{"name":"TYPE_UNSPECIFIED","number":"0","description":"The default value."},{"name":"TYPE_EMPTY","number":"1","description":"Any type."},{"name":"TYPE_INTEGER","number":"2","description":"Integer type."},{"name":"TYPE_STRING","number":"3","description":"String type."},{"name":"TYPE_BOOLEAN","number":"4","description":"Boolean type."},{"name":"TYPE_DECIMAL","number":"5","description":"Any floating point decimal type."},{"name":"TYPE_TIMESTAMP","number":"6","description":"Timestamp date type."}]}} />
+
+---
+
+
+  
