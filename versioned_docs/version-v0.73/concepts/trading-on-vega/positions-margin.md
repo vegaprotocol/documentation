@@ -2,6 +2,7 @@
 sidebar_position: 3
 title: Positions and margin
 hide_title: false
+vega_network: MAINNET
 description: Dynamic margining maximises collateral usage and market solvency.
 ---
 
@@ -77,7 +78,7 @@ If the margin balance drops below the maintenance margin level, the position clo
 For [perpetual futures markets](./market-types.md#perpetual-futures), the margin calculations contain additional term to capture the exposure of a given position to an upcoming funding payment. The market proposal includes a margin funding factor that determines to what degree the funding payment amount impacts a trader's maintenance margin. This additional term can only increase the margin requirement if a given position is expected to make a payment at the end of the current funding period, but it will never decrease the margin requirement, even if party is expecting to receive a funding payment.
 
 :::note Go deeper
-**[Perpetual futures spec ↗](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0053-PERP-product_builtin_perpetual_future.md#funding-payment-calculation)**: The spec on GitHub has details on the calculations.
+**[Perpetual futures spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0053-PERP-product_builtin_perpetual_future.md#funding-payment-calculation)**: The spec on GitHub has details on the calculations.
 :::
 
 #### Margin slippage

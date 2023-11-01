@@ -18,7 +18,7 @@ All of the details for the volume discount program are proposed and accepted thr
 
 :::note Read more
 * [Tutorial: Propose enabling or changing the volume discount program][tutorial](../../tutorials/proposals/volume-discount-program-proposal.md)
-* [Spec: Technical design of the volume discount program ↗](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0084-VDPR-volume_discount_program.md).
+* [Spec: Technical design of the volume discount program ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0084-VDPR-volume_discount_program.md).
 :::
 
 ## Referral program
@@ -32,7 +32,7 @@ Create a referral code, or enter a referral code you've been given on the [refer
 
 :::note Read more
 * [Tutorial: Propose enabling or changing the referral program](../../tutorials/proposals/referral-program-proposal.md)
-* [Spec: Technical design of the referral program ↗](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0083-RFPR-on_chain_referral_program.md).
+* [Spec: Technical design of the referral program ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0083-RFPR-on_chain_referral_program.md).
 :::
 
 ## Trading rewards

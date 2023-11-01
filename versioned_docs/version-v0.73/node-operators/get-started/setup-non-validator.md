@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-title: Set up non validator node
+title: Set up non-validator node
 hide_title: false
 ---
 import Tabs from '@theme/Tabs';

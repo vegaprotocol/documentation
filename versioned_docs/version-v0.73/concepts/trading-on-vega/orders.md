@@ -2,6 +2,7 @@
 sidebar_position: 6
 title: Orders
 hide_title: false
+vega_network: MAINNET
 description: See the order types and when they're applicable for a market.
 ---
 

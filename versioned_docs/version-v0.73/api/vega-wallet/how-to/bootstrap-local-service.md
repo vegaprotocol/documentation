@@ -71,7 +71,7 @@ vega wallet network import --from-url <CONFIG_URL> -f --home <WALLET_NAME>`.
 
 The `-f` flag overwrites the config if one already exists.
 
-Example: To import `fairground` network use: `vega wallet network import --from-url https://github.com/vegaprotocol/networks-internal/blob/main/fairground/vegawallet-fairground.toml`.
+Example: To import `mainnet1` network use: `vega wallet network import --from-url https://github.com/vegaprotocol/networks/blob/master/mainnet1/mainnet1.toml`.
 
 b. Using a file: If you want to import network config for a local Vega Capsule network use the following command:
 

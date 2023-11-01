@@ -29,7 +29,7 @@ To use assets on the Vega network, for example to take part in markets, you'll n
 
 
 :::info Try it out
-Deposit assets using the [Vega Console trading interface ↗](https://console.fairground.wtf), in the Portfolio section.
+Deposit assets using the [Vega Console trading interface ↗](https://console.vega.xyz), in the Portfolio section.
 :::
 
 The first assets that will be available for interacting with markets on Vega will be ERC-20 assets, the only bridge currently available. An asset's ERC-20 token contract needs to be available on the bridge before it can be used, which happens in the governance and enactment process for new assets.
@@ -104,7 +104,7 @@ If you choose an amount to withdraw that is higher than the withdrawal threshold
 Once the delay time has passed, and the bundle is valid, **the withdrawal must be completed by submitting the bundle to Ethereum and paying the gas fee required. Usually this will be done by the party wishing to receive the funds**. This can be done using Vega Console or another user interface, or manually using the [smart contract](../../api/bridge/contracts/ERC20_Bridge_Logic.md) and an Ethereum RPC node.
 
 :::tip Query for data
-You can see the threshold and delay for withdrawals in [Vega Console ↗](https://console.fairground.wtf).
+You can see the threshold and delay for withdrawals in [Vega Console ↗](https://console.vega.xyz).
 
 Alternatively, see the withdrawal threshold using a [REST query for the asset](../../api/rest/data-v2/trading-data-service-get-asset.api.mdx).
 :::
@@ -122,7 +122,7 @@ VEGA (an ERC20 token) used for staking is associated with a Vega key. To withdra
 Rewards accrued through staking are not associated automatically. To stake those tokens or transfer them, they need to be withdrawn from the Vega key that the rewards are credited to, and sent to an Ethereum wallet.
 
 :::tip Try it
-Track and withdraw testnet staking rewards on the [Vega token withdrawals page for testnet ↗](https://governance.fairground.wtf/token/withdraw).
+Track and withdraw staking rewards on the [Vega token withdrawals page ↗](https://governance.vega.xyz/token/withdraw).
 
 Alternatively, use the [smart contract](../../api/bridge/contracts/ERC20_Bridge_Logic#withdraw_asset) and an Ethereum RPC node to run the withdraw function.
 :::

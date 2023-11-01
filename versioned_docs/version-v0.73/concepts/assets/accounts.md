@@ -2,6 +2,7 @@
 sidebar_position: 3
 title: Accounts
 hide_title: false
+vega_network: MAINNET
 description: Accounts hold assets for different purposes.
 ---
 
@@ -24,7 +25,7 @@ Any assets that are in a general account can be withdrawn or transferred.
 You'll see references to your general account in various places, including under collateral in Console, the trading interface.
 
 :::tip Query for data
-You can see how much is allocated to the accounts for your public key in [Vega Console](https://console.fairground.wtf), the trading interface.
+You can see how much is allocated to the accounts for your public key in [Vega Console](https://console.vega.xyz), the trading interface.
 
 Otherwise use [REST](../../api/rest/data-v2/trading-data-service-get-party.api.mdx) to check your public key for the accounts your assets are allocated to.
 :::
@@ -71,7 +72,7 @@ Once a market settles and terminates, any amount left in a market's insurance po
 
 However, the behaviour is different when a market is defined as a parent to a successor. In a successor market proposal, a portion of a market's insurance pool can be earmarked for transfer to the successor market. The rest of the market's insurance pool, if there is any, is then divided equally as described above.
 
-The assets in the asset insurance pools can only be moved if a  [governance-initiated transfer](./transfers.md#governance-initiated-transfers) is enacted, meaning a governance proposal to move assets to another specified account has passed the vote.
+The assets in the asset insurance pools can only be moved if a [governance-initiated transfer](./transfers.md#governance-initiated-transfers) is enacted, meaning a governance proposal to move assets to another specified account has passed the vote.
 
 :::note Read more
 * [Market lifecycle](../trading-on-vega/market-lifecycle.md)

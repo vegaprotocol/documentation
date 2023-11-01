@@ -2,6 +2,7 @@
 sidebar_position: 7
 title: Settlement
 hide_title: false
+vega_network: MAINNET
 description: The automated settlement process is facilitated by the protocol.
 ---
 

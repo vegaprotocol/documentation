@@ -2,6 +2,7 @@
 sidebar_position: 5
 title: Market protections
 hide_title: false
+vega_network: MAINNET
 description: Read about how markets can trade safely, pseudonymously.
 ---
 

@@ -2,6 +2,7 @@
 sidebar_position: 5
 title: Discounts and rewards
 hide_title: false
+vega_network: MAINNET
 description: Traders can get discounts on fees and rewards.
 ---
 
@@ -18,7 +19,7 @@ All of the details for the volume discount program are proposed and accepted thr
 
 :::note Read more
 * [Tutorial: Propose enabling or changing the volume discount program][tutorial](../../tutorials/proposals/volume-discount-program-proposal.md)
-* [Spec: Technical design of the volume discount program ↗](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0084-VDPR-volume_discount_program.md).
+* [Spec: Technical design of the volume discount program ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0084-VDPR-volume_discount_program.md).
 :::
 
 ## Referral program
@@ -28,11 +29,11 @@ The referral program only exists if it's been enabled through a governance propo
 
 You can see what the current program offers by checking the [referral program API](../../api/rest/data-v2/trading-data-service-get-current-referral-program.api.mdx).
 
-Create a referral code, or enter a referral code you've been given on the [referrals section of Console](https://vegafairground.eth.limo/#/referrals).
+<!--Create a referral code, or enter a referral code you've been given on the [referrals section of Console](https://vegafairground.eth.limo/#/referrals).-->
 
 :::note Read more
 * [Tutorial: Propose enabling or changing the referral program](../../tutorials/proposals/referral-program-proposal.md)
-* [Spec: Technical design of the referral program ↗](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0083-RFPR-on_chain_referral_program.md).
+* [Spec: Technical design of the referral program ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0083-RFPR-on_chain_referral_program.md).
 :::
 
 ## Trading rewards

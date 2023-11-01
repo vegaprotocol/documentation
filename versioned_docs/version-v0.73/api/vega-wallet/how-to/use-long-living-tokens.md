@@ -28,7 +28,7 @@ vegawallet api-token generate --wallet-name "WALLET_NAME" --description "for my 
 **If you forget the `--load-tokens` flag, sessions with long-living tokens are not created.**
 
 ```bash
-vegawallet service run --load-tokens --network testnet2
+vegawallet service run --load-tokens --network mainnet1
 ```
 
 :::note Good to know!

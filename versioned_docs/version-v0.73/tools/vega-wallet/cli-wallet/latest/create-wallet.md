@@ -17,7 +17,7 @@ import Topic from '/docs/topics/_topic-wallet.mdx'
 To download Vega Wallet and create your wallet, follow the step-by-step instructions below. 
 
 :::caution Wallet version
-These instructions cover Vega Wallet version 0.73.0-preview.6, which is compatible with Vega network(s) that are on 0.73.0-preview.6. If you need a Vega Wallet for mainnet, see [Create a wallet (mainnet)](https://docs.vega.xyz/docs/mainnet/tools/vega-wallet/cli-wallet/latest/create-wallet).
+These instructions cover Vega Wallet version 0.73.1, which is compatible with Vega network(s) that are on 0.73.1. If you need a Vega Wallet for testnet, see [Create a wallet (testnet)](https://docs.vega.xyz/docs/testnet/tools/vega-wallet/cli-wallet/latest/create-wallet).
 :::
 
 Note: If you are looking for instructions for connecting your hardware wallet to MetaMask, see [MetaMask's guide ↗](https://metamask.zendesk.com/hc/en-us/articles/360020394612-How-to-connect-a-Trezor-or-Ledger-Hardware-Wallet).
@@ -160,7 +160,7 @@ Import the following network configurations:
 * **Fairground** network: <NetworkConfigAddress frontMatter={frontMatter} label="fairground.toml" network="fairground"/>
 
 :::info
-To update your networks list, see [manage networks](/testnet/tools/vega-wallet/cli-wallet/latest/guides/manage-networks#update-networks) for instructions.
+To update your networks list, see [manage networks](./guides/manage-networks.md) for instructions.
 ::: 
 
 #### Import networks from URL

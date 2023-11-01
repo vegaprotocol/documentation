@@ -11,11 +11,11 @@ A Vega Wallet is essential for interacting with Vega, whether it's for staking o
 You can interact with a Vega wallet and its keys through a browser extension, two different apps, or integrate using the API.
 
 ## Vega Wallet browser extension
-The Vega Wallet browser extension is an early stage implementation of the Vega Wallet, available for Chrome and Firefox. The extensions linked are only for use with the Fairground network.
+The Vega Wallet browser extension is an early stage implementation of the Vega Wallet, available for Chrome and Firefox.
 
-**[Chrome extension ↗](https://chrome.google.com/webstore/detail/vega-wallet-fairground/nmmjkiafpmphlikhefgjbblebfgclikn)**
+**[Chrome extension ↗](https://chrome.google.com/webstore/detail/vega-wallet-mainnet/codfcglpplgmmlokgilfkpcjnmkbfiel)**
 
-**[Firefox extension ↗](https://addons.mozilla.org/en-GB/firefox/addon/vega-wallet-fairground/)**
+**[Firefox extension ↗](https://addons.mozilla.org/en-GB/firefox/addon/vega-wallet-mainnet/)**
 
 The browser extension lets you connect to a Vega Wallet right in your browser, rather than having to install a separate app. It allows you to:
 * Create a new wallet and public keys
@@ -29,7 +29,7 @@ The **[desktop wallet](./desktop-app/index.md)** provides a visual interface to:
 * Create new wallet 
 * Connect to networks
 * Sign transactions
-* Run and connect to Vega apps, such as the governance dApp
+* Run and connect to Vega apps, such as Console and the governance dApp
 
 ## Vega Wallet CLI app
 Use the **[command line app](./cli-wallet/index.md)** to do everything you can do with the desktop app, plus:

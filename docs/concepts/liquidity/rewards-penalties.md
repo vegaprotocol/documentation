@@ -135,7 +135,7 @@ Thus, the following amounts are then transferred to each LP's margin account onc
 
 Not meeting the SLA deprives you of all liquidity fee revenue, and a sliding penalty is applied to your bond amount. How much penalty is based on the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltySlope" />. It determines how steeply the bond penalty increases linearly, until it reaches the maximum. The maximum penalty that can be charged is capped by the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltyMax" /> network parameter.
 
-See the full calculation in the [setting fees and rewarding LPs spec ↗](https://github.com/vegaprotocol/specs/blob/cosmicelevator/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#calculating-the-sla-performance-penalty-for-a-single-epoch).
+See the full calculation in the [setting fees and rewarding LPs spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#calculating-the-sla-performance-penalty-for-a-single-epoch).
 
 Not meeting the SLA will also affect future fee revenue, even in epochs when the SLA is met. The number of epochs that are used to determine performance is called the `performanceHysteresisEpochs`. This number is defined in a market's parameters. If the parameter is set to 0, it will only count the just-completed epoch. If set to 1, the fee revenue is impacted by the just-completed epoch and the one before.
 
