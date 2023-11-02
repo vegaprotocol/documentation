@@ -10,7 +10,7 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 A transaction is an instruction (command) issued to the network, bundled with a signature, the submitter’s public key, a small proof-of-work calculation, and the target block height. A transaction that doesn't pass [validation](#validation) (for example, an order without enough assets to cover it) will be rejected.
 
 :::note Viewing transactions
-Use the [Vega block explorer](https://explorer.fairground.wtf) to see transactions and their status, plus lots more data about the network.
+**[Vega block explorer](https://explorer.fairground.wtf)**: See transactions and their status, plus lots more data about the network.
 :::
 
 When a transaction is submitted, it goes to the validators’ mempools - which is is an organised queue where the transactions are stored, sorted, and verified before being added to a newly started block. A validated transaction enters a block based on the priority assigned to the transaction type, and the order in which it arrived. Vega does not have any gas-type charges that can boost priority or cause a transaction to be lower priority.
@@ -23,7 +23,8 @@ The commands that non-validator users can submit to the network include placing,
 Validators can submit signatures, propose protocol upgrades, rotate their keys and more.
 
 :::tip Query for data
-See the gRPC docs for full lists of [user commands](../../api/grpc/vega/commands/v1/commands.proto) and [validator commands](../../api/grpc/vega/commands/v1/validator_commands.proto) supported by the protocol.
+* [API: User commands](../../api/grpc/vega/commands/v1/commands.proto) 
+* [API: Validator commands](../../api/grpc/vega/commands/v1/validator_commands.proto)
 :::
 
 
@@ -59,7 +60,7 @@ Most transactions will have a set gas value of <NetworkParameter frontMatter={fr
 The gas for order-related transactions is calculated based on current market factors, such as existing orders and positions already on the market.
 
 :::note Go deeper
-See the full list of gas cost calculations and exceptions in the [transaction gas and priority spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0079-TGAP-transaction_gas_and_priority.md#dynamic-transactions-costs).
+**[Spec: Transaction gas and priority ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0079-TGAP-transaction_gas_and_priority.md#dynamic-transactions-costs)**: See the full list of gas cost calculations and exceptions.
 :::
 
 ## Transaction ordering

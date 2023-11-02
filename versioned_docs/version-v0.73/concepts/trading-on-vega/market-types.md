@@ -24,9 +24,9 @@ Futures markets have a settlement asset which may not be the same as either of t
 Settlement, or the process of moving collateral between accounts, happens on a futures market when a position is closed, when the mark price changes, and when the market expires and all positions are closed.
 
 :::note Read more 
-* [Settlement](./settlement.md)
-* [Market lifecycle](./market-lifecycle.md)
-* [Positions and margin](./positions-margin.md)
+* [Concept: Settlement](./settlement.md)
+* [Concept: Market lifecycle](./market-lifecycle.md)
+* [Concept: Positions and margin](./positions-margin.md)
 * [Tutorial: Propose a futures market](../../tutorials/proposals/new-market-proposal.md)
 :::
 
@@ -51,7 +51,7 @@ They include:
 * Clamp upper bound
 
 :::note Go deeper
-**[Funding payment calculations ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0053-PERP-product_builtin_perpetual_future.md#funding-payment-calculation)**: See how all the parameters can impact a market's funding rate and margin requirements.
+**[Spec: Funding payment calculations ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0053-PERP-product_builtin_perpetual_future.md#funding-payment-calculation)**: See how all the parameters can impact a market's funding rate and margin requirements.
 :::
 
 ### Margin calculations
@@ -59,7 +59,7 @@ The margin calculations for perpetual futures markets contain an additional para
 
 
 :::note Read more 
-* [Periodic settlement](./settlement.md#periodic-settlement-for-perpetuals)
-* [Positions and margin](./positions-margin.md)
+* [Concept: Periodic settlement](./settlement.md#periodic-settlement-for-perpetuals)
+* [Concept: Positions and margin](./positions-margin.md)
 * [Tutorial: Propose a perpetuals market](../../tutorials/proposals/new-perpetuals-market.md)
 :::

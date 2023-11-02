@@ -16,9 +16,9 @@ Validators and nominators both receive revenue for securing the network. The amo
 **To be considered for staking rewards, a tokenholder must associate VEGA to a Vega key and nominate one or more validators.**
 
 :::info Try it out
-Use **[governance.fairground.wtf](https://governance.fairground.wtf)** to try out associating testnet tokens and nominating validators. Staking rewards are paid after each epoch ends.
+**[Governance dApp](https://governance.fairground.wtf)**: Associate testnet tokens and nominate validators. Staking rewards are paid after each epoch ends.
 
-VEGA received as staking rewards must be withdrawn to an Ethereum wallet, and then associated to a Vega wallet, before they can be staked.
+Staking rewards are vested, and then must be withdrawn to an Ethereum wallet, and then associated to a Vega wallet, before they can be staked.
 :::
 
 In each [epoch](./network.md#epochs), rewards are distributed among validators in proportion to the number of tokens they represent (i.e., their total stake). The total stake includes a validator's own stake and the tokens nominated to that validator. Of this reward, a fixed amount is distributed among the tokenholders the validator represents. The proportion of staking rewards distributed to nominators is <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.delegatorShare" hideName={true} />.
@@ -33,7 +33,7 @@ A validating node’s score is calculated based on three factors:
 These factors drive a number of individual scores which combine to form the overall score for each validator in the epoch. 
 
 :::tip Query for data
-See each validator's rewards scores by [querying the API](../../api/rest/data-v2/trading-data-service-list-nodes).
+[API: List nodes](../../api/rest/data-v2/trading-data-service-list-nodes): See each validator's rewards scores.
 :::
 
 ## Raw validator score 
@@ -70,7 +70,7 @@ In other words, the network calculates an optimal stake set so that not all vali
 ¹ The network parameter <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.competitionLevel" /> influences how much stake is needed for all validators to reach optimal stake.
 
 :::note Go deeper
-[Proof of stake rewards spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0061-REWP-pos_rewards.md): Read the full details on how scores are calculated.
+[Spec: Proof of stake reward score calculations ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0061-REWP-pos_rewards.md)
 :::
 
 ## Performance score

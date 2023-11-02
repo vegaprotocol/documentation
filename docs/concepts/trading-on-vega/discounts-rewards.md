@@ -17,7 +17,7 @@ The size of the discount, generally speaking, depends on the volume of your take
 All of the details for the volume discount program are proposed and accepted through governance. You can see what the current program offers by checking the [volume discount program API](../../api/rest/data-v2/trading-data-service-get-current-volume-discount-program.api.mdx).
 
 :::note Read more
-* [Tutorial: Propose enabling or changing the volume discount program][tutorial](../../tutorials/proposals/volume-discount-program-proposal.md)
+* [Tutorial: Propose enabling or changing the volume discount program](../../tutorials/proposals/volume-discount-program-proposal.md)
 * [Spec: Technical design of the volume discount program ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0084-VDPR-volume_discount_program.md).
 :::
 
@@ -47,7 +47,7 @@ Market participants can also receive rewards for their trading activity, liquidi
 Your reward earnings can grow if you have an activity streak and/or keep earned rewards in your rewards account.
 
 :::tip Try it out
-See what rewards are currently available on [vega.xyz ↗](https://vega.xyz/rewards).
+[See the available rewards ↗](https://vega.xyz/rewards)
 :::
 
 Rewards are independent from [fees](./fees.md), which are paid to validators, liquidity providers, and price makers on each trade.
@@ -97,8 +97,8 @@ Some rewards measure trader activity over a number of epochs (set per reward). T
 <img src="/img/concept-diagrams/reward-score-example.png" width="650"/>
 
 :::tip Try it out
-* [How to fund rewards](#how-to-fund-rewards): Get the high-level overview, below.
-* [Set up a reward transfer](../../tutorials/assets-tokens/transferring-assets.md): Choose an activity to reward and set up a one-off or recurring transfer to fund it.
+* [How to fund rewards](#how-to-fund-rewards)
+* [Set up a reward transfer](../../tutorials/assets-tokens/transferring-assets.md)
 :::
 
 ### How rewards are scaled
@@ -182,7 +182,7 @@ In a given epoch, 4 markets all reach $10,000 total trade value, which is the th
 The proposers of each of those markets qualify for 25% of the market creation reward for that epoch.
 
 :::note Go deeper
-[Rewards spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0056-REWA-rewards_overview.md#market-creation-reward-metrics): See the full set of calculations that go into the market creation reward.
+**[Rewards spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0056-REWA-rewards_overview.md#market-creation-reward-metrics)**: See the full set of calculations that go into the market creation reward.
 :::
 
 #### Reward examples

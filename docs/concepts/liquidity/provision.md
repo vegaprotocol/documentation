@@ -26,7 +26,7 @@ Providing liquidity can be done using:
 Anyone that supplies limit orders is eligible to receive maker fees when volume you place on the book is hit. However, a liquidity commitment also makes an LP eligible to receive a portion of the liquidity fee from every trade in the market, on top of the maker fee.
 
 :::info Read more
-[Rewards and penalties](rewards-penalties.md): LPs receive rewards (through fees paid by traders) when they meet their commitment. Fees are withheld, and they can be further penalised for not meeting their commitment.
+**[Concept: Rewards and penalties](rewards-penalties.md)**: LPs receive rewards (through fees paid by traders) when they meet their commitment. Fees are withheld, and they can be further penalised for not meeting their commitment.
 :::
 
 You need to have enough available assets to cover the margin for your orders and the positions that will be generated from trades.
@@ -66,7 +66,7 @@ By committing liquidity, a liquidity provider gets a share of the market's fees.
 A liquidity provider's equity-like share is then carried over to the market’s successor, if a successor market comes to exist. The LP will then need to provide liquidity on the successor market while it's [pending](../trading-on-vega/market-lifecycle.md#market-status-pending) to keep that equity-like share active. The equity-like share on a successor market is calculated using the difference between the physical stake present on the parent market and the stake committed to the successor market.
 
 :::tip Try it out
-[Tutorial for committing liquidity](../../tutorials/building-a-bot/adding-a-liquidity-commitment.md): See sample bot code for setting up and managing a liquidity commitment.
+**[Tutorial: Committing liquidity](../../tutorials/building-a-bot/adding-a-liquidity-commitment.md)**: See sample bot code for setting up and managing a liquidity commitment.
 :::
 
 ### Liquidity bond
@@ -91,7 +91,7 @@ Target stake is used by the protocol to:
  * This can depend on the value of the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.targetstake.triggering.ratio" hideValue={true} /> network parameter, which defines how sensitive the auction trigger is
 
 :::tip Query for data
-[Market data](./api/../../../api/rest/data-v2/trading-data-service-get-latest-market-data.api.mdx): Use the market data REST endpoint to see a market's target stake.
+[API: Target stake](./api/../../../api/rest/data-v2/trading-data-service-get-latest-market-data.api.mdx)
 :::
 
 #### Target stake calculation
@@ -104,8 +104,8 @@ The formula above uses these network parameters:
 * Scaling factor: <NetworkParameter frontMatter={frontMatter} param="market.stake.target.scalingFactor" />
 
 :::note Go deeper
-* [Target stake calculations spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0041-TSTK-target_stake.md): Read the spec for details on how target stake is calculated by the protocol.
-* [Liquidity mechanics spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0044-LIME-lp_mechanics.md) Explore liquidity calculations in more depth.
+* [Spec: How target stake is calculated ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0041-TSTK-target_stake.md)
+* [Spec: Liquidity mechanics ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0044-LIME-lp_mechanics.md)
 :::
 
 #### Amending and cancelling a liquidity commitment 

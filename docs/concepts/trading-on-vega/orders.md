@@ -10,7 +10,7 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 An order is an instruction to buy or sell on a specific market, and it can go long or short on the market's price. Placing an order does not guarantee it gets filled.
 
 :::info Try it out
-Place orders on markets using [Vega Console ↗](https://console.fairground.wtf), configured to the Fairground network, which only uses testnet assets.
+**[Vega Console ↗](https://console.fairground.wtf)**: Place orders on markets on the Fairground network, which only uses testnet assets.
 :::
 
 ## Order data
@@ -258,9 +258,7 @@ Good for Normal orders are cancelled if the market moves into an auction.
 
 ## Submitting, amending and cancelling orders
 This section is specific to market and limit orders. 
-:::tip Try it out
-[Tutorial for committing liquidity](../../tutorials/building-a-bot/adding-a-liquidity-commitment.md): See sample bot code for setting up and managing a liquidity commitment.
-:::
+
 See [pegged orders](#pegged-order) and [liquidity provision](../liquidity/provision.md) for information on how to manage those orders.
 
 ### Submit an order 

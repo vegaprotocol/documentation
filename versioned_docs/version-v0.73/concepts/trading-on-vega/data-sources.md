@@ -129,7 +129,7 @@ The data sourcing framework takes in these JSON messages and presents them simil
 ```
 
 :::note Read more
-For a more thorough example of how to produce, sign and submit data in this format, see [Tutorials: Using data sources](./../../tutorials/using-data-sources.md)
+**[Tutorials: Using data sources](./../../tutorials/using-data-sources.md)**: A more thorough example of how to produce, sign and submit data in this format.
 :::
 
 ## Internal data source
@@ -172,5 +172,5 @@ For other data source types, any Vega keypair can submit settlement and market t
 The data can be broadcast at any and all points, but if the market isn't looking for data, based on the filters, then the data doesn't make it to the chain and has no effect. The market is only listening when the filters signal that the data should be processed and used.
 
 :::tip Try it out
-The **[submitting data and configuring markets](./../../tutorials/using-data-sources.md)** guide describes how to encode oracle data and configure a market to use it. 
+[Tutorial: Submitting data and configuring markets](./../../tutorials/using-data-sources.md)**
 :::

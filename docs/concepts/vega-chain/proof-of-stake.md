@@ -14,7 +14,9 @@ Vega runs on a delegated proof of stake blockchain.
 
 Validator nodes run the Vega network, and they decide on the validity of the blocks containing the network's transactions and thus execute those transactions. The validators who run validator nodes are required to own a minimum amount of <NetworkParameter frontMatter={frontMatter} param="validators.delegation.minAmount" hideName={true} suffix="tokens" formatter="governanceToken" /> that they stake to themselves.
 
-Read more: [Validator nodes](./validator-nodes.md)
+:::note Read more
+[Concept: Validator nodes](./validator-nodes.md)
+:::
 
 **Participants who hold a balance of VEGA, the governance asset, can use their tokens to nominate validator nodes.** This is done by associating those tokens to a Vega key to use as stake, and then nominating one or more validators they trust to help secure the network. Nominating validators loans the consensus voting weight of the VEGA tokens to endorse a validator's trustworthiness.
 
@@ -22,7 +24,9 @@ Tokens, in addition to their use for nominating validators, also grant tokenhold
 
 Everyone participating in keeping the network secure, robust and reliable, including nominators, is **rewarded** for keeping the network running. Not meeting the requirements of running the network can lead to penalties, such as **rewards being withheld**.
 
-Read more: [Rewards](./validator-scores-and-rewards.md)
+:::note Read more
+[Concept: Rewards](./validator-scores-and-rewards.md)
+:::
 
 Vega is non-slashing -- there is no mechanism through which a tokenholder can lose a staked token through a validator being punished. Any measures to that end use different mechanisms that will affect a bad validator's and their nominators' rewards, but does not affect the delegated tokens themselves.
 
@@ -40,7 +44,7 @@ A VEGA token (or fraction) can be either dissociated or associated with a Vega k
 
 Read more: [Governance of Vega](../governance.md)
 
-:::tip
+:::tip Associate tokens first
 A user's VEGA tokens must first be associated with a Vega key before they can be used for governance and nominating validators.
 :::
 
@@ -49,7 +53,7 @@ Both associating and dissociating VEGA tokens to a Vega key are initiated on Eth
 
 All governance voting and validator nominations happen exclusively on the Vega chain.
 
-:::info
+:::info Ethereum gas fees
 Ethereum gas fees are only incurred in the process of associating tokens to a Vega key and transferring rewards from a Vega key to an Ethereum address. Nominating validators and changing nominations does not incur gas fees.
 :::
 

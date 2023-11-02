@@ -32,7 +32,7 @@ Most, but not all, order types and times in force are accepted during continuous
 🛑 - IOC/FOK PEGGED orders are not currently supported as they will always result in the cancelled/stopped state. This may change in the future if pegged orders are allowed to have negative offsets that can result in an immediate match.
 
 :::note Read more
-**[Orders](./orders.md)**: Explore the available order types and their possible times in force.
+[Concept: Order types and times in force](./orders.md)**
 :::
 
 ## Auctions
@@ -76,7 +76,7 @@ A price monitoring auction's exit depends on how large the price move was, and r
 If no one places orders in the price monitoring auction, the auction is exited and the original order is executed.  
 
 :::note Read more
-[Price monitoring](./market-protections#price-monitoring)
+[Concept: Price monitoring](./market-protections#price-monitoring)
 :::
 
 ### Auction type: Liquidity monitoring
@@ -96,7 +96,7 @@ Enough liquidity relative to the market's open interest, to get the market back 
 If a market enters into a liquidity auction and never again attracts enough liquidity to exit it, the market will stay in a liquidity auction until the market's settlement. Once the market's settlement price is emitted by the data source, then all market participants are settled based on their positions and account balances.
 
 :::note Read more
-[Liquidity monitoring](./market-protections#liquidity-monitoring)
+[Concept: Liquidity monitoring](./market-protections#liquidity-monitoring)
 :::
 
 ### Auction call period

@@ -25,8 +25,10 @@ Note: During an auction uncrossing, an LP’s orders will not need to provide li
 In addition to the income made from fees, anyone can fund reward pools that will pay out to liquidity providers at the end of each [epoch](../vega-chain/network.md#epochs), based on the proportion of fees the LPs have received.
 
 :::note Read more
-Learn more about this, and trading rewards in general on the [rewards](../trading-on-vega/discounts-rewards.md) page.
+**[Concept: Rewards](../trading-on-vega/discounts-rewards.md)**: Learn more about community funded LP rewards, and trading rewards in general.
 :::
+
+<hr class="subsection" />
 
 ## Earning liquidity fees
 Liquidity providers receive a cut of the fees paid by price takers on each trade.
@@ -100,8 +102,8 @@ Liquidity score: Your liquidity score is the average volume-weighted probability
 Generally speaking, an order's probability of trading decreases the further away from the mid-price it is placed, so all other things being constant, the provider who places orders closer to the mid-price will receive a higher fraction of the fees than someone who places orders further away. Furthermore, the probability of trading is set to 0 outside the narrowest price monitoring bounds, so any orders deployed there will decrease the liquidity score.
 
 :::note Go deeper
-* [LP equity-like share calculations ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#calculating-liquidity-provider-equity-like-share): See the variables that go into calculating a liquidity provider's share.
-* [Average volume-weighted probability of trading ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#calculating-the-liquidity-score): Learn more about how liquidity score is calculated and used.
+* [Spec: LP equity-like share calculations ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#calculating-liquidity-provider-equity-like-share)
+* [Spec: How liquidity score is calculated and used ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#calculating-the-liquidity-score)
 :::
 
 ### How liquidity fees are distributed
@@ -129,6 +131,8 @@ Thus, the following amounts are then transferred to each LP's margin account onc
 </p>
 </details>
 
+<hr class="subsection" />
+
 ## Penalties for not fulfilling liquidity commitment
 
 ### Penalties for not meeting SLA
@@ -153,7 +157,7 @@ The liquidity obligation will remain unchanged and the protocol will periodicall
 Should the funds in the bond account drop to 0, you will be marked for closeout and your orders will be cancelled. If this puts the market into a state where it isn’t meeting the target stake, the market will go into a liquidity monitoring auction. If this happens while the market is transitioning from auction mode to continuous trading, you will not be penalised.
 
 :::note Read more
-[Liquidity monitoring](./../trading-on-vega/market-protections#liquidity-monitoring)
+[Concept: Liquidity monitoring](./../trading-on-vega/market-protections#liquidity-monitoring)
 :::
 
 #### Calculation of penalty for not supporting orders

@@ -98,8 +98,8 @@ Some rewards measure trader activity over a number of epochs (set per reward). T
 <img src="/img/concept-diagrams/reward-score-example.png" width="650"/>
 
 :::tip Try it out
-* [How to fund rewards](#how-to-fund-rewards): Get the high-level overview, below.
-* [Set up a reward transfer](../../tutorials/assets-tokens/transferring-assets.md): Choose an activity to reward and set up a one-off or recurring transfer to fund it.
+* **[Concept: How to fund rewards](#how-to-fund-rewards)**: Get the high-level overview, below.
+* **[Tutorial: Set up a reward transfer](../../tutorials/assets-tokens/transferring-assets.md)**: Choose an activity to reward and set up a one-off or recurring transfer to fund it.
 :::
 
 ### How rewards are scaled
@@ -183,7 +183,7 @@ In a given epoch, 4 markets all reach $10,000 total trade value, which is the th
 The proposers of each of those markets qualify for 25% of the market creation reward for that epoch.
 
 :::note Go deeper
-[Rewards spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0056-REWA-rewards_overview.md#market-creation-reward-metrics): See the full set of calculations that go into the market creation reward.
+[Spec: Rewards ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0056-REWA-rewards_overview.md#market-creation-reward-metrics): See the full set of calculations that go into the market creation reward.
 :::
 
 #### Reward examples

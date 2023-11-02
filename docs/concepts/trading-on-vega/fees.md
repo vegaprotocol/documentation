@@ -12,7 +12,7 @@ Participants in the Vega network who place orders on the order book, provide liq
 You can offset some of those fees, or earn even more, by receiving discounts or getting rewards based on trading activity. Rewards can be funded by anyone, and can be in any asset. See the rewards that are currently available on [vega.xyz ↗](https://vega.xyz/rewards).
 
 :::note Read more
-[Discounts and rewards](./discounts-rewards.md)
+[Concept: Discounts and rewards](./discounts-rewards.md)
 :::
 
 ## Trading fees

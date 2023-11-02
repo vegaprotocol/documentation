@@ -16,7 +16,7 @@ Validators and nominators both receive revenue for securing the network. The amo
 **To be considered for staking rewards, a tokenholder must associate VEGA to a Vega key and nominate one or more validators.**
 
 :::info Try it out
-Use **[governance.vega.xyz](https://governance.vega.xyz)** to associate tokens and nominate validators. Staking rewards are paid after each epoch ends.
+**[Governance dApp](https://governance.vega.xyz)**: Associate tokens and nominate validators. Staking rewards are paid after each epoch ends.
 
 VEGA received as staking rewards must be withdrawn to an Ethereum wallet, and then associated to a Vega wallet, before they can be staked.
 :::
@@ -33,7 +33,7 @@ A validating node’s score is calculated based on three factors:
 These factors drive a number of individual scores which combine to form the overall score for each validator in the epoch. 
 
 :::tip Query for data
-See each validator's rewards scores by [querying the API](../../api/rest/data-v2/trading-data-service-list-nodes).
+**[API: List nodes](../../api/rest/data-v2/trading-data-service-list-nodes)**: See each validator's rewards scores.
 :::
 
 ## Raw validator score 
@@ -70,7 +70,7 @@ In other words, the network calculates an optimal stake set so that not all vali
 ¹ The network parameter <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.competitionLevel" /> influences how much stake is needed for all validators to reach optimal stake.
 
 :::note Go deeper
-[Proof of stake rewards spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0061-REWP-pos_rewards.md): Read the full details on how scores are calculated.
+[Spec: Proof of stake rewards ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0061-REWP-pos_rewards.md)
 :::
 
 ## Performance score

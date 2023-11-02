@@ -20,8 +20,8 @@ This is done by:
 The **binding** tells the market which field contains the value. The **spec** defines where this data will come from, and which values to pass through to the binding.
 
 :::note Read more: 
-[Market governance concepts:](../concepts/governance.md#market-governance)
-[Tutorial - proposing a market:](./proposals/new-market-proposal.md)
+[Concept: Market governance](../concepts/governance.md#market-governance)
+[Tutorial: Proposing a market](./proposals/new-market-proposal.md)
 :::
 
 ## Ethereum oracles
