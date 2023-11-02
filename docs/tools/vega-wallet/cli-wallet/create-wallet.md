@@ -160,7 +160,7 @@ Import the following network configurations:
 * **Fairground** network: <NetworkConfigAddress frontMatter={frontMatter} label="fairground.toml" network="fairground"/>
 
 :::info
-To update your networks list, see [manage networks](/testnet/tools/vega-wallet/cli-wallet/guides/manage-networks#update-networks) for instructions.
+To update your networks list, see [manage networks](../cli-wallet/guides/manage-networks.md) for instructions.
 ::: 
 
 #### Import networks from URL
@@ -318,4 +318,4 @@ vegawallet service run --network "NETWORK_NAME" --automatic-consent
 </Tabs>
 
 ## Wallet API
-See the [Wallet API documentation](../../../../category/api/wallet-api) if you're looking to use the Vega Wallet with a script or trading bot, or want to integrate with the wallet software.
+See the [Wallet API documentation](../../../api/vega-wallet/accessing-api.md) if you're looking to use the Vega Wallet with a script or trading bot, or want to integrate with the wallet software.
