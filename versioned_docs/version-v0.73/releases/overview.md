@@ -28,7 +28,7 @@ Check out the full details in the Vega core [0.73.2 ↗](https://github.com/vega
 
 ### Critical fixes
 
-A number of liquidity providers reported that they had been penalised incorrectly after the migration of LP orders from the old mechanism to the new SLA liquidity mechanism. It was found that the default parameter changes were not being published to the markets on restart, this was resolve in [commit ↗](https://github.com/vegaprotocol/vega/commit/53b2b19cbf462963532d115a4b4b4605125944da).
+A number of liquidity providers reported that they had been penalised incorrectly after the migration of LP orders from the old mechanism to the new SLA liquidity mechanism. It was found that the default parameter changes were not being published to the markets on restart, this was resolved in [commit ↗](https://github.com/vegaprotocol/vega/commit/53b2b19cbf462963532d115a4b4b4605125944da).
 
 Due to this issue a temporary disabling of the bond penalties has been introduced and will allow 7 epochs for LPs to adjust to the new SLA liquidity. This was introduced in this [commit ↗](https://github.com/vegaprotocol/vega/commit/8866cf289d7a99269a91caf16ee238db4a420414). This code will be removed in a future release.
 
