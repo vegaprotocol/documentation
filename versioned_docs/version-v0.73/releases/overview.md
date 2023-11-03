@@ -19,6 +19,21 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Release version 0.73.2 (patch) | 2023-11-01
+Version 0.73.2 was released by the validators to mainnet on 01 November, 2023.
+
+This release contains 3 fixes required as a result of testing feedback after the 0.73.1 deployment.
+
+Check out the full details in the Vega core [0.73.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.2) release page.
+
+### Critical fixes
+
+A number of liquidity providers reported that they had been penalised incorrectly after the migration of LP orders from the old mechanism to the new SLA liquidity mechanism. It was found that the default parameter changes were not being published to the markets on restart, this was resolved in [commit ↗](https://github.com/vegaprotocol/vega/commit/53b2b19cbf462963532d115a4b4b4605125944da).
+
+Due to this issue, bond penalties were temporarily disabled and will allow 7 epochs for LPs to adjust to the new SLA liquidity. This was introduced in this [commit ↗](https://github.com/vegaprotocol/vega/commit/8866cf289d7a99269a91caf16ee238db4a420414). This code will be removed in a future release.
+
+An issue with governance transfers was reported whereby the default parameter values were incorrect. This [commit ↗](https://github.com/vegaprotocol/vega/commit/3f344142c465b279345c9f1e8c9aef66dbd9f086) sets the default values correctly.
+
 ### Release version 0.73.1 | 2023-11-01
 Version 0.73.1 was released by the validators to mainnet on 01 November, 2023.
 
