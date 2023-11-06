@@ -93,6 +93,23 @@
         }
        }
       },
+      dataSourceSpecForSettlementSchedule: {
+       internal: {
+        timeTrigger: {
+         conditions: [
+          {
+           operator: "OPERATOR_GREATER_THAN_OR_EQUAL",
+           value: "0"
+          }
+         ],
+         triggers: [
+          {
+           every: 1800
+          }
+         ]
+        }
+       }
+      },
 
 
       /* Describes which property of the data source data is to be
@@ -108,8 +125,8 @@
 
      // Optional new futures market metadata, tags.
      metadata: [
-      "enactment:2023-11-21T10:31:15Z",
-      "settlement:2023-11-20T10:31:15Z",
+      "enactment:2023-11-26T17:53:59Z",
+      "settlement:2023-11-25T17:53:59Z",
       "source:docs.vega.xyz"
      ],
 
@@ -193,11 +210,11 @@
 
   // Timestamp as Unix time in seconds when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-  closingTimestamp: 1700476275,
+  closingTimestamp: 1700934839,
 
   // Timestamp as Unix time in seconds when proposal gets enacted if passed,
   // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-  enactmentTimestamp: 1700562675,
+  enactmentTimestamp: 1701021239,
  }
 }
 ```

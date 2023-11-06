@@ -156,7 +156,7 @@
         r: 0.016,
 
         // Sigma parameter, annualised volatility of the underlying asset, must be a strictly non-negative real number. (double as number)
-        sigma: 1.25,
+        sigma: 0.8,
        }
       },
 
@@ -180,11 +180,11 @@
 
     // Timestamp as Unix time in seconds when voting closes for this proposal,
     // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-    closingTimestamp: 1700476275,
+    closingTimestamp: 1700934839,
 
     // Timestamp as Unix time in seconds when proposal gets enacted if passed,
     // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-    enactmentTimestamp: 1700562675,
+    enactmentTimestamp: 1701021239,
    }
   }
 ```

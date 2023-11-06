@@ -18,7 +18,7 @@ The size of the discount, generally speaking, depends on the volume of your take
 All of the details for the volume discount program are proposed and accepted through governance. You can the current program by checking the [volume discount program API](../../api/rest/data-v2/trading-data-service-get-current-volume-discount-program.api.mdx).
 
 :::note Read more
-* [Tutorial: Propose enabling or changing the volume discount program][tutorial](../../tutorials/proposals/volume-discount-program-proposal.md)
+* [Tutorial: Propose enabling or changing the volume discount program](../../tutorials/proposals/volume-discount-program-proposal.md)
 * [Spec: Technical design of the volume discount program ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0084-VDPR-volume_discount_program.md).
 :::
 

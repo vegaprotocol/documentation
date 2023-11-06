@@ -163,7 +163,7 @@ function generatePerpetualInstrument(skeleton) {
       dataSourceSpecForSettlementData: generatePerpetualSettlementDataSourceSpec(
         skeleton.properties.perpetual.properties.dataSourceSpecForSettlementData
       ),
-      settlementScheduleProperty: generateSettlementSchedule(
+      dataSourceSpecForSettlementSchedule: generateSettlementSchedule(
         skeleton.properties.perpetual.properties.dataSourceSpecForSettlementSchedule
       ),
       dataSourceSpecBinding: generatePerpetualDataSourceSpecBinding(
@@ -182,6 +182,10 @@ function generatePerpetualInstrument(skeleton) {
 
           dataSourceSpecForSettlementData: ${inspect(
         instrument.perpetual.dataSourceSpecForSettlementData,
+        { depth: 5 }
+      )},
+      dataSourceSpecForSettlementSchedule: ${inspect(
+        instrument.perpetual.dataSourceSpecForSettlementSchedule,
         { depth: 5 }
       )},
           /* ${skeleton.properties.perpetual.properties.dataSourceSpecBinding.title} */
