@@ -71,14 +71,13 @@ An instrument contains the following properties:
 | `perpetual` | An object that provides details about the perpetual market to be proposed. |
 | `settlementAsset` | Settlement asset requires the ID of the asset that the market will be margined in and settle in. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID. |  |
 | `quoteName` | The quote name is the human-readable name/abbreviation of the settlement asset. Example: In BTCUSD, USD is the quote. | tEuro |
-| `marginFundingFactor`| Determines how much a funding payment liability contributes to a trader's margin. Must be in the range [0, 1]. | 0.1 |
+| `marginFundingFactor`| Determines how much a funding payment liability contributes to a trader's margin. Must be in the range [0, 1]. | 0.9 |
 | `interestRate`| Sets the continuously compounded interest rate used in funding rate calculation. Must be in the range [-1, 1].| 0.1 |
 | `clampLowerBound`| Lower bound for the clamp function used as part of the funding rate calculation. Must be in the range [-1, 1]. | 0 |
 | `clampUpperBound`| Upper bound for the clamp function used as part of the funding rate calculation. Must be in the range [-1, 1]. | 0 |
-| `dataSourceSpecForSettlementData` | This defines the Ethereum data source, the method, normalisers, required confirmations, etc, that will be used to identify the settlement price when the market expires. | |
-| `dataSourceSpecBinding` | The fields describe how specific information provided by the data source is used. For example, they are used to set the settlement data property and the settlement schedule property. |
-
-For easier reading, the data source filters are separated out - see [Data source bindings](#data-source-bindings) below to see the fields for specifying data.
+| [`dataSourceSpecForSettlementData`](#data-source-for-settlement-data) | This defines the Ethereum data source, the method, normalisers, required confirmations, etc, that will be used to identify the settlement price when the market expires. | |
+| [`dataSourceSpecForSettlementSchedule`](#data-source-for-settlement-schedule) | This defines how the market will source data for funding, and how often to source it. | |
+| [`dataSourceSpecBinding`](#data-source-bindings) | The fields describe how specific information provided by the data source is used. For example, they are used to set the settlement data property and the settlement schedule property. |
 
 ### Data source for settlement schedule
 The periodic settlements scheduled with the fields below determine how often the market's funding payments occur. It's recommended that funding payments are be less frequent than auction extensions for [price monitoring](#price-monitoring). Very frequent funding payments may lead to quick price changes in the market that participants may not have time to react to. Setting longer funding payment triggers allow for more time. 
@@ -96,16 +95,17 @@ The settlement schedule property contains the following fields:
 ### Data source for settlement data
 Data feeds from an oracle can be used to determine when to read price data from an Ethereum contract.
 
-Data source specs include the following properties: 
+Data source specs include the following properties under `ethOracle`: 
 
 | Field | Description | Sample value |
 | ----------- | ----------- | ----------- |
 | `address` | Ethereum address that can sign and submit values for this data source | Valid Ethereum address |
 | `abi` | The abi tells the settlement spec how to interact with the oracle. | |
 | `method` | Method is one field that describes what information to take from the oracle. | latestAnswer |
+| `args` | Any extra information that is required from the contract. Can be left as an empty array if there is none. | |
 | `normalisers`: `name`, `expression` | Normalisers are used to convert the data returned from the contract method into a standard format. The name identifies the specific piece of data. The value is where in the contract call result the required data is located. For example $[0] is the first result. |  |
 | `requiredConfirmations` | Number of network confirmations before data can be considered verified | 3 |
-| `timeTrigger` | Determines when the call should be repeated after the first call, in seconds. | 30 |
+| `timeTrigger`: `initial`; `every` | Determines the first call, and how often the call should be repeated, in seconds. | 1701193129, 3000 |
 | `filters` | Filters define what data is of importance for the purposes of this market |
 | `key` | Defines the specific type of information the data source provides that is relevant to the proposed market. Example: If a data source provides a list of prices for various markets, focus only on the specific relevant price for the market, and specifics on the data format. |
 | `name` | Specific name of the information that the filter provides. | btc.price |
@@ -116,7 +116,7 @@ Data source specs include the following properties:
 | `value` | A number that is constrained by the operator. If providing a timestamp, use the Unix time in seconds | 0 |
 | `dataSourceSpecBinding` | Describes which property of the data source data is to be used as settlement data and when. | |
 | `settlementDataProperty` | Name of the property in the source data to be used as settlement data. | `btc.price` |
-| `settlementScheduleProperty` | Describes when to  | `vegaprotocol.builtin.timetrigger` |
+| `settlementScheduleProperty` | Describes what to use to determine when to run a settlement. | `vegaprotocol.builtin.timetrigger` |
 
 :::info Submitting data
 Learn how to find and submit data in the [submitting data sources tutorial](../using-data-sources.md).
