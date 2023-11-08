@@ -40,7 +40,7 @@ For a derivatives market created on Vega, marking to market is carried out every
 Mark to market settlement instructions are generated based on the change in market value of the open positions of a party. When the mark price changes, the network calculates settlement cash flows for each party, and the process is repeated each time the mark price changes until the maturity date for the market is reached.
 
 :::note Read more
-[Mark to market settlement](./settlement.md#mark-to-market-settlement): How settlement works when the mark to market price is recalculated.
+**[Concept: Mark to market settlement](./settlement.md#mark-to-market-settlement)**: How settlement works when the mark to market price is recalculated.
 :::
 
 ## Margin
@@ -60,7 +60,7 @@ Vega's margining system provides automated cross margining. Cross margining, whi
 To more closely control how much is risked on a position, it's possible to replicate the effects of isolated margin by using one party (public key) per market.
 
 :::note Go deeper
-**[Automated cross margining ↗](https://vega.xyz/papers/vega-protocol-whitepaper.pdf#page21)** - Section 6 of the protocol whitepaper.
+**[Whitepaper: Automated cross margining ↗](https://vega.xyz/papers/vega-protocol-whitepaper.pdf#page21)** - Section 6 of the protocol whitepaper.
 :::
 
 ### Margin requirements
@@ -78,7 +78,7 @@ If the margin balance drops below the maintenance margin level, the position clo
 For [perpetual futures markets](./market-types.md#perpetual-futures), the margin calculations contain additional term to capture the exposure of a given position to an upcoming funding payment. The market proposal includes a margin funding factor that determines to what degree the funding payment amount impacts a trader's maintenance margin. This additional term can only increase the margin requirement if a given position is expected to make a payment at the end of the current funding period, but it will never decrease the margin requirement, even if party is expecting to receive a funding payment.
 
 :::note Go deeper
-**[Perpetual futures spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0053-PERP-product_builtin_perpetual_future.md#funding-payment-calculation)**: The spec on GitHub has details on the calculations.
+**[Spec: Perpetual futures ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0053-PERP-product_builtin_perpetual_future.md#funding-payment-calculation)**: The spec on GitHub has details on the calculations.
 :::
 
 #### Margin slippage
@@ -97,8 +97,8 @@ The `risk factor` will be different for short and long positions; the risk model
 Note that your party's limit orders are included as well and the maintenance margin is calculated for the riskiest long or short combination of orders and position.
 
 :::note Read more
-[Closeouts](./market-protections.md#closeouts): What triggers a closeout, and what happens in a closeout
-[Risk models](../governance.md#risk-models-and-parameters): Details on the risk model parameters for a market
+[Concept: Closeouts](./market-protections.md#closeouts): What triggers a closeout, and what happens in a closeout
+[Concept: Risk models](../governance.md#risk-models-and-parameters): Details on the risk model parameters for a market
 :::
 
 ### Margin level: Initial
@@ -126,7 +126,7 @@ The search level is scaled from the *maintenance margin* amount. It's calculated
 If there is not enough collateral to provide the required margin, then the position will be closed out.
 
 :::note Read more
-[Closeouts](./market-protections.md#closeouts): What triggers a closeout, and what happens in a closeout
+[Concept: Closeouts](./market-protections.md#closeouts): What triggers a closeout, and what happens in a closeout
 :::
 
 ### Margin level: Releasing collateral
@@ -143,7 +143,7 @@ The release level is scaled from the *maintenance margin* amount. It's calculate
 The network calculates the overall long / short position including the submitted order. Depending on which one is larger a long or short risk factor is used for margin calculation. The maintenance margin (for futures) is then a product of the largest position, the corresponding risk factor and the `mark price`. Risk factors capture the outcome of the probabilistic distribution of future market moves, and are market specific.
 
 :::note Go deeper
-**[Margins and credit risk ↗](https://vega.xyz/papers/margins-and-credit-risk.pdf)** - Section 6 of the protocol whitepaper.
+**[Whitepaper: Margins and credit risk ↗](https://vega.xyz/papers/margins-and-credit-risk.pdf)** - Section 6 of the protocol whitepaper.
 :::
 
 

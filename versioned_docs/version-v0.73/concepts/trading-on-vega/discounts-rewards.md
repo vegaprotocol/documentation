@@ -15,17 +15,17 @@ Traders can get discounts on their fees when there's an active volume discount p
 
 The size of the discount, generally speaking, depends on the volume of your taker trades over a set window of time. You can get access to different levels of discounts when your trading volume is higher.
 
-All of the details for the volume discount program are proposed and accepted through governance. You can see what the current program offers by checking the [volume discount program API](../../api/rest/data-v2/trading-data-service-get-current-volume-discount-program.api.mdx).
+All of the details for the volume discount program are proposed and accepted through governance. You can the current program by checking the [volume discount program API](../../api/rest/data-v2/trading-data-service-get-current-volume-discount-program.api.mdx).
 
 :::note Read more
-* [Tutorial: Propose enabling or changing the volume discount program][tutorial](../../tutorials/proposals/volume-discount-program-proposal.md)
+* [Tutorial: Propose enabling or changing the volume discount program](../../tutorials/proposals/volume-discount-program-proposal.md)
 * [Spec: Technical design of the volume discount program ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0084-VDPR-volume_discount_program.md).
 :::
 
 ## Referral program
 Traders can earn a commission for referring new users when a referral program is enabled. New users get a discount on their fees, while whoever refers them gets a cut of their referees’ trading fees. How much commission the referrer receives is increased if they have VEGA associated to their public key.
 
-The referral program only exists if it's been enabled through a governance proposal. Once it's enabled, both the requirements and benefits can also be replaced with a new program, also using a governance proposal.
+The referral program only exists if it's been proposed and voted through by the community using a [governance proposal](../../tutorials/proposals/referral-program-proposal.md). If it's enabled, both the requirements and benefits can also be replaced with a new program, also using a governance proposal.
 
 You can see what the current program offers by checking the [referral program API](../../api/rest/data-v2/trading-data-service-get-current-referral-program.api.mdx).
 
@@ -98,8 +98,8 @@ Some rewards measure trader activity over a number of epochs (set per reward). T
 <img src="/img/concept-diagrams/reward-score-example.png" width="650"/>
 
 :::tip Try it out
-* [How to fund rewards](#how-to-fund-rewards): Get the high-level overview, below.
-* [Set up a reward transfer](../../tutorials/assets-tokens/transferring-assets.md): Choose an activity to reward and set up a one-off or recurring transfer to fund it.
+* **[Concept: How to fund rewards](#how-to-fund-rewards)**: Get the high-level overview, below.
+* **[Tutorial: Set up a reward transfer](../../tutorials/assets-tokens/transferring-assets.md)**: Choose an activity to reward and set up a one-off or recurring transfer to fund it.
 :::
 
 ### How rewards are scaled
@@ -183,7 +183,7 @@ In a given epoch, 4 markets all reach $10,000 total trade value, which is the th
 The proposers of each of those markets qualify for 25% of the market creation reward for that epoch.
 
 :::note Go deeper
-[Rewards spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0056-REWA-rewards_overview.md#market-creation-reward-metrics): See the full set of calculations that go into the market creation reward.
+[Spec: Rewards ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0056-REWA-rewards_overview.md#market-creation-reward-metrics): See the full set of calculations that go into the market creation reward.
 :::
 
 #### Reward examples

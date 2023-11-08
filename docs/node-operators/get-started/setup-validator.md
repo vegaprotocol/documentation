@@ -191,9 +191,9 @@ To use your Vega Wallet for staking with the governance dApp (below), you will n
 a. use a browser running on your server to access the governance dApp, and Ethereum wallet, and connect locally to the wallet
 b. regenerate the wallet on your local machine using the recovery phrase. If you do regenerate the wallet locally, consider removing that wallet from your local machine once you've self-staked, to keep your keys as secure as possible.
 
-[Create a Vega Wallet](../../tools/vega-wallet/cli-wallet/latest/create-wallet.md) and public key, using the software version that matches the network's software version.
+[Create a Vega Wallet](../../tools/vega-wallet/cli-wallet/create-wallet.md) and public key, using the software version that matches the network's software version.
 
-We recommend you use an isolated key. Read the guide on how to isolate Vega wallet keys: [Isolate keys](../../tools/vega-wallet/cli-wallet/latest/guides/isolate-keys.md)
+We recommend you use an isolated key. Read the guide on how to isolate Vega wallet keys: [Isolate keys](../../tools/vega-wallet/cli-wallet/guides/isolate-keys.md)
 
 Give the node access to the key using the following command: 
 ```
@@ -331,7 +331,7 @@ Use the [Sepolia VEGA contract address on the governance dApp ↗](https://gover
 
 The tokens that you want to use for self-staking must be available on an Ethereum wallet, and then associated to the same Vega public key you used to set up the node. 
 
-You can do this by [importing the Vega Wallet](../../tools/vega-wallet/cli-wallet/latest/guides/restore-wallet) you created for your node wallet, onto your local computer using the Vega Wallet recovery phrase.
+You can do this by [importing the Vega Wallet](../../tools/vega-wallet/cli-wallet/guides/restore-wallet) you created for your node wallet, onto your local computer using the Vega Wallet recovery phrase.
 
 Once you have tokens, connect your Ethereum wallet and your Vega Wallet, and associate the tokens to your Vega public key using the [governance dApp ↗](https://governance.fairground.wtf/validators). 
 

@@ -39,11 +39,6 @@ Standby (also called ersatz) validators do not contribute to the chain, but are 
 Standby validators, and the tokenholders who stake them, receive a share of rewards. The rewards for standby validators are calculated and penalised in the same way as consensus validators, except scaled down based on the scaling factor <NetworkParameter frontMatter={frontMatter} param="network.validators.ersatz.rewardFactor" />.
 
 ### How standby can be promoted to consensus
-
-:::info 
-The network is set to not allow any standby validators before alpha mainnet, and the number of validators will be increased via governance as early alpha mainnet progresses.
-:::
-
 A standby validator can be promoted to take a consensus validator spot, if there is a standby validator with a better validator score than an existing consensus validator. 
 
 Consensus validators have their validator scores scaled to recognise their incumbent status: (1 + <NetworkParameter frontMatter={frontMatter} param="network.validators.incumbentBonus" hideName={true} />), therefore a standby validator must surpass this boosted score to become consensus. This bonus is applied to avoid cases where validators with very similar stake could flip back and forth in status each epoch. 

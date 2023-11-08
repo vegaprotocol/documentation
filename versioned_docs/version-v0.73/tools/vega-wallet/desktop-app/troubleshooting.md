@@ -22,7 +22,7 @@ If you have trouble connecting, especially after a software release to the netwo
 Once you remove the network and restart the app, the app will download the latest version of the config for you.
 
 ## Missing features
-To do any of the following, you will need to use the **[CLI wallet](../../cli-wallet)** app:
+To do any of the following, you will need to use the **[CLI wallet](../cli-wallet/index.md)** app:
 * Customise key details
 * Isolate keys
 * Build and send transactions 

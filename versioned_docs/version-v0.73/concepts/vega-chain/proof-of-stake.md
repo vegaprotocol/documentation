@@ -10,19 +10,23 @@ import Topic from '/docs/topics/_topic-staking.mdx'
 
 <Topic />
 
-Vega runs on a delegated proof of stake blockchain. 
+Vega runs on a delegated proof of stake blockchain.
 
 Validator nodes run the Vega network, and they decide on the validity of the blocks containing the network's transactions and thus execute those transactions. The validators who run validator nodes are required to own a minimum amount of <NetworkParameter frontMatter={frontMatter} param="validators.delegation.minAmount" hideName={true} suffix="tokens" formatter="governanceToken" /> that they stake to themselves.
 
-Read more: [Validator nodes](./validator-nodes.md)
+:::note Read more
+[Concept: Validator nodes](./validator-nodes.md)
+:::
 
-**Participants who hold a balance of VEGA, the governance asset, can use their tokens to nominate validator nodes.** This is done by associating those tokens to a Vega key to use as stake, and then nominating one or more validators they trust to help secure the network. Nominating validators loans the consensus voting weight of the VEGA tokens to endorse a validator's trustworthiness. 
+**Participants who hold a balance of VEGA, the governance asset, can use their tokens to nominate validator nodes.** This is done by associating those tokens to a Vega key to use as stake, and then nominating one or more validators they trust to help secure the network. Nominating validators loans the consensus voting weight of the VEGA tokens to endorse a validator's trustworthiness.
 
 Tokens, in addition to their use for nominating validators, also grant tokenholder voting rights on governance actions. If a token is delegated, its governance voting rights stay with the tokenholder and are not transferred to any validators that the tokenholder nominates.
 
 Everyone participating in keeping the network secure, robust and reliable, including nominators, is **rewarded** for keeping the network running. Not meeting the requirements of running the network can lead to penalties, such as **rewards being withheld**.
 
-Read more: [Rewards](./validator-scores-and-rewards.md)
+:::note Read more
+[Concept: Rewards](./validator-scores-and-rewards.md)
+:::
 
 Vega is non-slashing -- there is no mechanism through which a tokenholder can lose a staked token through a validator being punished. Any measures to that end use different mechanisms that will affect a bad validator's and their nominators' rewards, but does not affect the delegated tokens themselves.
 
@@ -40,16 +44,16 @@ A VEGA token (or fraction) can be either dissociated or associated with a Vega k
 
 Read more: [Governance of Vega](../governance.md)
 
-:::tip
+:::tip Associate tokens first
 A user's VEGA tokens must first be associated with a Vega key before they can be used for governance and nominating validators.
 :::
 
 ## Bridges used for staking
 Both associating and dissociating VEGA tokens to a Vega key are initiated on Ethereum, rather than on the Vega protocol. This allows VEGA to be staked with a Vega public key without any action on the Vega network, and without putting the tokens under the control of the Vega network.
 
-All governance voting and validator nominations happen exclusively on the Vega chain. 
+All governance voting and validator nominations happen exclusively on the Vega chain.
 
-:::info
+:::info Ethereum gas fees
 Ethereum gas fees are only incurred in the process of associating tokens to a Vega key and transferring rewards from a Vega key to an Ethereum address. Nominating validators and changing nominations does not incur gas fees.
 :::
 
@@ -78,7 +82,7 @@ Using tokens to nominate validators keeps the decentralised network functioning.
 
 Tokenholders can nominate validators to encourage a diverse set of reliable nodes running the network, and to give the community the opportunity to disincentivise and/or remove bad validators. Tokenholders who nominate validators are also eligible for rewards.
 
-When a tokenholder chooses a validator (or validators) to nominate with their tokens, the amount is immediately subtracted from their available balance, and is used at the start of the next [epoch](./network.md#epochs) to actively nominate those validator(s).
+When a tokenholder chooses a validator (or validators) to nominate with their tokens, the amount is immediately subtracted from their available balance, and is used at the start of the next epoch to actively nominate those validator(s).
 
 ### Spam protection: nominations
 There are two [spam pretection](./network#spam-protection) measures related to nominating validators.
@@ -89,11 +93,11 @@ There are two [spam pretection](./network#spam-protection) measures related to n
 Automatic nomination is triggered when an individual tokenholder has manually nominated 95%+ of their associated tokens. At that point, any newly associated tokens will automatically be nominated to the same validators, in the same proportion.
 
 Exceptions to automatic nomination: 
-* If, ahead of the next [epoch](./network.md#epochs) a participant uses their available tokens to nominate validators manually, that takes precedence over automatic nomination.
+* If, ahead of the next epoch a participant uses their available tokens to nominate validators manually, that takes precedence over automatic nomination.
 * For the epoch after un-nominating validators (see below), tokens are not auto-nominated, to provide time to change the delegation / remove tokens.
 
 ## Un-nominating validators
-Participants can remove their nomination at the end of an [epoch](./network.md#epochs), or immediately. The un-nominated tokens will be restored back to the participant's associated token balance.
+Participants can remove their nomination at the end of an epoch, or immediately. The un-nominated tokens will be restored back to the participant's associated token balance.
 
 If nominated tokens are moved to a different Ethereum address, they are un-nominated immediately, (equivalent to ['un-nominate now'](#un-nominate-now)) and rewards are forfeited for that epoch. In this case, or any case in which you dissociate tokens without first removing the nomination from a particular validator, the tokens are un-nominated from each validator you've nominated, in proportion to the nomination.
 

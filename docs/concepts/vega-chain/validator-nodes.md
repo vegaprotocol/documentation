@@ -20,7 +20,7 @@ Consensus validators are responsible for keeping the network and transactions ru
 Tokenholders keep the network fair by controlling the voting power of validators. The tokenholders use their tokens to choose the validators for the network, thus managing who validates the network (and its transactions). By nominating credible validators that are running reliable nodes, tokenholders improve the stability and robustness of the network. Tokenholders who nominate validators receive a share of the rewards and fee revenue that validators receive.
 
 :::note Read more
-[Rewards for validators and their nominators](validator-scores-and-rewards.md#reward-allocation): How validators, and their nominators, are compensated for keeping the network running.
+**[Concept: Rewards for validators and their nominators](validator-scores-and-rewards.md#reward-allocation)**: How validators, and their nominators, are compensated for keeping the network running.
 :::
 
 ## Consensus validator nodes
@@ -39,10 +39,6 @@ Standby (also called ersatz) validators do not contribute to the chain, but are 
 Standby validators, and the tokenholders who stake them, receive a share of rewards. The rewards for standby validators are calculated and penalised in the same way as consensus validators, except scaled down based on the scaling factor <NetworkParameter frontMatter={frontMatter} param="network.validators.ersatz.rewardFactor" />.
 
 ### How standby can be promoted to consensus
-
-:::info 
-The network is set to not allow any standby validators before alpha mainnet, and the number of validators will be increased via governance as early alpha mainnet progresses.
-:::
 
 A standby validator can be promoted to take a consensus validator spot, if there is a standby validator with a better validator score than an existing consensus validator. 
 

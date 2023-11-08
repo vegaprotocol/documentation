@@ -49,7 +49,7 @@ If a parent market is still in its proposed state, its successor market cannot b
 Two proposals that name the same parent can be submitted and pass a governance vote. Whichever market clears its [opening auction](./trading-on-vega/trading-modes.md#auction-type-opening) first gets the share of the insurance pool, and the liquidity providers' equity-like share is moved to that market. The second market will then be [rejected](./trading-on-vega/market-lifecycle.md#market-status-rejected).
 
 :::tip Try it out
-Vote on active proposals on the **[Vega governance dApp ↗](https://governance.fairground.wtf)**.
+**[Vega governance dApp ↗](https://governance.fairground.wtf)**: Vote on active proposals.
 :::
 
 ## Lifecycle of a governance proposal
@@ -81,7 +81,7 @@ A proposal cannot be changed once it's submitted to the network.
 After it's submitted and accepted, rally the community to vote on the proposal by announcing it on the [forum ↗](https://community.vega.xyz/), [Discord ↗](https://vega.xyz/discord), and through your own networks to vote on the proposal.
 
 :::tip Try it out 
-Read the **[proposals guides](../tutorials/proposals/index.md)** to see what information needs to be in a proposal, and how to submit them using the command line. 
+**[Proposals guides](../tutorials/proposals/index.md)**: How to build and then submit a proposal using the command line. 
 :::
 
 #### Validating a proposal
@@ -118,9 +118,9 @@ Each type of governance proposal can have different thresholds, though they fit 
 As these thresholds are network parameters, their values can be changed through governance.
 
 :::tip Query for data
-See the current values (in some cases, different per network) on the [block explorer ↗](https://explorer.fairground.wtf). 
+**[Block explorer ↗](https://explorer.fairground.wtf)**: See the current network parameter values (in some cases, different per network). 
 
-Otherwise, [use REST](../api/rest/state/core-state-service-list-network-parameters.api.mdx) to see the network parameters and their values.
+**[REST](../api/rest/state/core-state-service-list-network-parameters.api.mdx)** The API provides the network parameters and their values.
 :::
 
 ### Example
@@ -144,7 +144,7 @@ After a new asset vote passes, the change has to be submitted to the asset bridg
 Certain asset details can also be changed through a governance proposal. While the [contract-level details](./assets/asset-framework.md#contract-level-details) are immutable, the [protocol-level details](./assets/asset-framework.md#protocol-level-details) can be changed.
 
 :::note Learn more
-See the proposal tutorials to: 
+See the tutorials to: 
 * [Propose a new asset](../tutorials/proposals/new-asset-proposal.md)
 * [Propose an update to an asset](../tutorials/proposals/update-asset-proposal.md)
 :::
@@ -169,8 +169,8 @@ The transfers from those asset pools can be one-off or recurring. A recurring tr
 To see a full table of which types of transfers can only be initiated through governance, see the [transfers page](./assets/transfers.md#governance-initiated-transfers).
 
 :::info Read more
-* **[Transfers](./assets/transfers.md)**: See more about transferring assets.
-* **[Tutorial: Asset transfer proposal](../tutorials/proposals/asset-transfer-proposal.md)**: Learn how to propose a transfer and get a template.
+* [Transfers](./assets/transfers.md)
+* [Tutorial: Propose transferring assets](../tutorials/proposals/asset-transfer-proposal.md)
 :::
 
 ### Propose an asset transfer
@@ -275,7 +275,7 @@ Model-independent parameters used in margin calculation are:
 The remaining, model specific parameters are covered below.
 
 :::note Go deeper
-**[Margins and Credit Risk on Vega ↗](https://vega.xyz/papers/margins-and-credit-risk.pdf)** - Note, a position size of 1 is assumed throughout the research paper.
+**[Margins and Credit Risk on Vega ↗](https://vega.xyz/papers/margins-and-credit-risk.pdf)**: Note, a position size of 1 is assumed throughout the research paper.
 :::
 
 #### Log-normal risk model
@@ -332,7 +332,7 @@ There are certain parameters within Vega that influence the behaviour of the sys
 Network parameters can only be added and removed with Vega core software releases.
 
 :::note Go deeper
-* [Concepts: Network parameters](../concepts/vega-chain/network.md#parameters)
+* [Concept: Network parameters](../concepts/vega-chain/network.md#parameters)
 * [Network parameters: See full list on the block explorer ↗](https://explorer.fairground.wtf/network-parameters)
 * [Tutorial: Propose a network parameter change](../tutorials/proposals/network-parameter-proposal.md)
 :::

@@ -106,7 +106,7 @@ When a market is illiquid, it enters into a liquidity monitoring auction, and te
 If a market enters into a liquidity auction and never again attracts enough liquidity to exit it, the market will stay in a liquidity auction until the market's settlement. Once the market's settlement price is emitted by the data source, then all market participants are settled based on their positions and account balances.
 
 :::note Read more
-[Liquidity](../liquidity/index.md): Learn about the Vega liquidity mechanism, how commitments work and the fee revenue that providers can get.
+[Concept: Liquidity mechanism and earning fee revenue](../liquidity/index.md)
 :::
 
 ## Distressed traders
