@@ -71,7 +71,7 @@ An instrument contains the following properties:
 | `perpetual` | An object that provides details about the perpetual market to be proposed. |
 | `settlementAsset` | Settlement asset requires the ID of the asset that the market will be margined in and settle in. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID. |  |
 | `quoteName` | The quote name is the human-readable name/abbreviation of the settlement asset. Example: In BTCUSD, USD is the quote. | tEuro |
-| `marginFundingFactor`| Determines how much a funding payment liability contributes to a trader's margin. Must be in the range [0, 1]. | 0.1 |
+| `marginFundingFactor`| Determines how much a funding payment liability contributes to a trader's margin. Must be in the range [0, 1]. | 0.9 |
 | `interestRate`| Sets the continuously compounded interest rate used in funding rate calculation. Must be in the range [-1, 1].| 0.1 |
 | `clampLowerBound`| Lower bound for the clamp function used as part of the funding rate calculation. Must be in the range [-1, 1]. | 0 |
 | `clampUpperBound`| Upper bound for the clamp function used as part of the funding rate calculation. Must be in the range [-1, 1]. | 0 |
