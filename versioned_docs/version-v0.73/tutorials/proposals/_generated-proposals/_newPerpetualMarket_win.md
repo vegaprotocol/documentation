@@ -45,7 +45,7 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
          \"filters\": [^
           {^
            \"key\": {^
-            \"name\": \"prices.ORANGES.value\",^
+            \"name\": \"\",^
             \"type\": \"TYPE_INTEGER\",^
             \"numberDecimalPlaces\": 8^
            },^
@@ -71,7 +71,7 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
          ],^
          \"triggers\": [^
           {^
-           \"every\": 1800^
+           \"every\": 28800^
           }^
          ]^
         }^
@@ -84,8 +84,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      }^
     },^
     \"metadata\": [^
-     \"enactment:2023-11-28T17:38:49Z\",^
-     \"settlement:2023-11-27T17:38:49Z\",^
+     \"enactment:2023-11-28T17:54:58Z\",^
+     \"settlement:2023-11-27T17:54:58Z\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -122,8 +122,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
     }^
    }^
   },^
-  \"closingTimestamp\": 1701106729,^
-  \"enactmentTimestamp\": 1701193129^
+  \"closingTimestamp\": 1701107698,^
+  \"enactmentTimestamp\": 1701194098^
  }^
 }^
 }"

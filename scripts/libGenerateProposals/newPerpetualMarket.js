@@ -38,7 +38,7 @@ function generatePerpetualSettlementDataSourceSpec(skeleton) {
           "filters": [
               {
                   "key": {
-                      "name": "prices.ORANGES.value",
+                      "name": "",
                       "type": "TYPE_INTEGER",
                       "numberDecimalPlaces": 8
                   },
@@ -125,7 +125,7 @@ function generateSettlementSchedule(skeleton) {
           ],
           triggers: [
               {
-                  every: 1800
+                  every: 28800
               }
           ]
       }
