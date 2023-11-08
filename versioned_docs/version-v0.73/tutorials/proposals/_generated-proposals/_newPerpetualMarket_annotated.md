@@ -1,34 +1,52 @@
 
   ```javascript
- {
-  rationale: {
-   title: "Lorem Ipsum perpetual",
-   description: "An orange perpetual market"
-  },
-  terms: {
-   newMarket: {
-    changes: {
-     // Linear slippage factor is used to cap the slippage component of maintenance margin - it is applied to the slippage volume.
-     linearSlippageFactor: 0.001,
+{
+ rationale: {
+  title: "Lorem Ipsum perpetual",
+  description: "An orange perpetual market"
+ },
+ terms: {
+  newMarket: {
+   changes: {
+    // Linear slippage factor is used to cap the slippage component of maintenance margin - it is applied to the slippage volume.
+    linearSlippageFactor: 0.001,
 
-     // Quadratic slippage factor is used to cap the slippage component of maintenance margin - it is applied to the square of the slippage volume.
-     quadraticSlippageFactor: 0,
+    // Quadratic slippage factor is used to cap the slippage component of maintenance margin - it is applied to the square of the slippage volume.
+    quadraticSlippageFactor: 0,
 
-     // Decimal places used for the new futures market, sets the smallest price increment on the book. (uint64 as string)
-     decimalPlaces: "5",
+    // Decimal places used for the new futures market, sets the smallest price increment on the book. (uint64 as string)
+    decimalPlaces: "5",
 
-     // Decimal places for order sizes, sets what size the smallest order / position on the futures market can be. (int64 as string)
-     positionDecimalPlaces: "5",
+    // Decimal places for order sizes, sets what size the smallest order / position on the futures market can be. (int64 as string)
+    positionDecimalPlaces: "5",
 
-     // Instrument configuration
-     instrument: {
-      // Instrument name.
-      name: "Oranges Perpetual",
+    // Instrument configuration
+    instrument: {
+     // Instrument name.
+     name: "Oranges Perpetual",
 
-      // Instrument code, human-readable shortcode used to describe the instrument.
-      code: "ORANGES.PERP",
+     // Instrument code, human-readable shortcode used to describe the instrument.
+     code: "ORANGES.PERP",
 
-      // Perpetual product configuration
+     // Perpetual product configuration
+     perpetual: {
+      // Asset ID for the product's settlement asset.
+      settlementAsset: "c9fe6fc24fce121b2cc72680543a886055abb560043fda394ba5376203b7527d",
+
+      // Product quote name.
+      quoteName: "USD",
+
+      // Controls how much the upcoming funding payment liability contributes to party's margin, in the range [0, 1].
+      marginFundingFactor: "0.9",
+
+      // Continuously compounded interest rate used in funding rate calculation, in the range [-1, 1].
+      interestRate: "0",
+
+      // Lower bound for the clamp function used as part of the funding rate calculation, in the range [-1, 1].
+      clampLowerBound: "0",
+
+      // Upper bound for the clamp function used as part of the funding rate calculation, in the range [-1, 1].
+      clampUpperBound: "0",
       dataSourceSpecForSettlementData: {
        // DataSourceDefinitionExternal is the top level object used for all external 
        // data sources. It contains one of any of the defined `SourceType` variants. 
@@ -46,16 +64,16 @@
 
 
          /* Normalisers are used to convert the data returned from the contract method
-         * into a standard format. The key of the map is the name of the property,
-         * which identifies the specific piece of data to other parts of the data
-         * sourcing framework, for example filters. The value is a JSONPath expression
-         * for expressing where in the contract call result the required data is
-         * located, for example $[0] indicates the first result. $[1].price would look
-         * in the second result returned from the contract for a structure with a key
-         * called 'price' and use that if it exists. */
+          * into a standard format. The key of the map is the name of the property,
+          * which identifies the specific piece of data to other parts of the data
+          * sourcing framework, for example filters. The value is a JSONPath expression
+          * for expressing where in the contract call result the required data is
+          * located, for example $[0] indicates the first result. $[1].price would look
+          * in the second result returned from the contract for a structure with a key
+          * called 'price' and use that if it exists. */
          normalisers: [
           {
-           name: "btc.price",
+           name: "prices.ORANGES.value",
            expression: "$[0]"
           }
          ],
@@ -66,10 +84,10 @@
          // Conditions for determining when to call the contract method.
          trigger: {
           /* Trigger for an Ethereum call based on the Ethereum block timestamp. Can be
-          * one-off or repeating. */
+           * one-off or repeating. */
           timeTrigger: {
            /* Repeat the call every n seconds after the initial call. If no time for
-           * initial call was specified, begin repeating immediately. */
+            * initial call was specified, begin repeating immediately. */
            every: 30
           }
          },
@@ -78,7 +96,7 @@
          filters: [
           {
            key: {
-            name: "btc.price",
+            name: "prices.ORANGES.value",
             type: "TYPE_INTEGER",
             numberDecimalPlaces: 8
            },
@@ -93,14 +111,31 @@
         }
        }
       },
+      dataSourceSpecForSettlementSchedule: {
+       internal: {
+        timeTrigger: {
+         conditions: [
+          {
+           operator: "OPERATOR_GREATER_THAN_OR_EQUAL",
+           value: "0"
+          }
+         ],
+         triggers: [
+          {
+           every: 1800
+          }
+         ]
+        }
+       }
+      },
 
 
       /* Describes which property of the data source data is to be
-      * used as settlement data and which to use as the trading terminated trigger */
+       * used as settlement data and which to use as the trading terminated trigger */
       dataSourceSpecBinding: {
        /* Name of the property in the source data that should be used as settlement data.
-       * If it is set to "prices.BTC.value", then the perpetual market will use the value of
-       * this property as settlement data. */
+        * If it is set to "prices.BTC.value", then the perpetual market will use the value of
+        * this property as settlement data. */
        settlementDataProperty: "prices.ORANGES.value",
        settlementScheduleProperty: "vegaprotocol.builtin.timetrigger"
       }
@@ -108,8 +143,8 @@
 
      // Optional new futures market metadata, tags.
      metadata: [
-      "enactment:2023-11-20T17:59:33Z",
-      "settlement:2023-11-19T17:59:33Z",
+      "enactment:2023-11-28T17:38:49Z",
+      "settlement:2023-11-27T17:38:49Z",
       "source:docs.vega.xyz"
      ],
 
@@ -193,11 +228,11 @@
 
   // Timestamp as Unix time in seconds when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-  closingTimestamp: 1700416773,
+  closingTimestamp: 1701106729,
 
   // Timestamp as Unix time in seconds when proposal gets enacted if passed,
   // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-  enactmentTimestamp: 1700503173,
+  enactmentTimestamp: 1701193129,
  }
 }
 ```

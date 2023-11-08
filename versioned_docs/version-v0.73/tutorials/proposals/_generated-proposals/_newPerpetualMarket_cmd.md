@@ -19,6 +19,10 @@
       "perpetual": {
        "settlementAsset": "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
        "quoteName": "tEuro",
+       "marginFundingFactor": "0.9",
+       "interestRate": "0",
+       "clampLowerBound": "0",
+       "clampUpperBound": "0",
        "dataSourceSpecForSettlementData": {
         "external": {
          "ethOracle": {
@@ -27,7 +31,7 @@
           "method": "latestAnswer",
           "normalisers": [
            {
-            "name": "btc.price",
+            "name": "prices.ORANGES.value",
             "expression": "$[0]"
            }
           ],
@@ -40,7 +44,7 @@
           "filters": [
            {
             "key": {
-             "name": "btc.price",
+             "name": "prices.ORANGES.value",
              "type": "TYPE_INTEGER",
              "numberDecimalPlaces": 8
             },
@@ -55,7 +59,7 @@
          }
         }
        },
-       "settlementScheduleProperty": {
+       "dataSourceSpecForSettlementSchedule": {
         "internal": {
          "timeTrigger": {
           "conditions": [
@@ -79,8 +83,8 @@
       }
      },
      "metadata": [
-      "enactment:2023-11-20T17:59:33Z",
-      "settlement:2023-11-19T17:59:33Z",
+      "enactment:2023-11-28T17:38:49Z",
+      "settlement:2023-11-27T17:38:49Z",
       "source:docs.vega.xyz"
      ],
      "priceMonitoringParameters": {
@@ -117,8 +121,8 @@
      }
     }
    },
-   "closingTimestamp": 1700416773,
-   "enactmentTimestamp": 1700503173
+   "closingTimestamp": 1701106729,
+   "enactmentTimestamp": 1701193129
   }
  }
 }'

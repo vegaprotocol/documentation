@@ -20,6 +20,10 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      \"perpetual\": {^
       \"settlementAsset\": \"8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4\",^
       \"quoteName\": \"tEuro\",^
+      \"marginFundingFactor\": \"0.9\",^
+      \"interestRate\": \"0\",^
+      \"clampLowerBound\": \"0\",^
+      \"clampUpperBound\": \"0\",^
       \"dataSourceSpecForSettlementData\": {^
        \"external\": {^
         \"ethOracle\": {^
@@ -28,7 +32,7 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
          \"method\": \"latestAnswer\",^
          \"normalisers\": [^
           {^
-           \"name\": \"btc.price\",^
+           \"name\": \"prices.ORANGES.value\",^
            \"expression\": \"$[0]\"^
           }^
          ],^
@@ -41,7 +45,7 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
          \"filters\": [^
           {^
            \"key\": {^
-            \"name\": \"btc.price\",^
+            \"name\": \"prices.ORANGES.value\",^
             \"type\": \"TYPE_INTEGER\",^
             \"numberDecimalPlaces\": 8^
            },^
@@ -80,8 +84,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      }^
     },^
     \"metadata\": [^
-     \"enactment:2023-11-26T17:53:59Z\",^
-     \"settlement:2023-11-25T17:53:59Z\",^
+     \"enactment:2023-11-28T17:38:49Z\",^
+     \"settlement:2023-11-27T17:38:49Z\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -118,8 +122,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
     }^
    }^
   },^
-  \"closingTimestamp\": 1700934839,^
-  \"enactmentTimestamp\": 1701021239^
+  \"closingTimestamp\": 1701106729,^
+  \"enactmentTimestamp\": 1701193129^
  }^
 }^
 }"

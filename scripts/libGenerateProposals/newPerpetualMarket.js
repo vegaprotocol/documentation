@@ -25,7 +25,7 @@ function generatePerpetualSettlementDataSourceSpec(skeleton) {
           "method": "latestAnswer",
           "normalisers": [
               {
-                  "name": "btc.price",
+                  "name": "prices.ORANGES.value",
                   "expression": "$[0]"
               }
           ],
@@ -38,7 +38,7 @@ function generatePerpetualSettlementDataSourceSpec(skeleton) {
           "filters": [
               {
                   "key": {
-                      "name": "btc.price",
+                      "name": "prices.ORANGES.value",
                       "type": "TYPE_INTEGER",
                       "numberDecimalPlaces": 8
                   },
@@ -160,6 +160,10 @@ function generatePerpetualInstrument(skeleton) {
     perpetual: {
       settlementAsset: idForAnExistingVegaAsset,
       quoteName: "tEuro",
+      marginFundingFactor: "0.9",
+      interestRate: "0",
+      clampLowerBound: "0",
+      clampUpperBound: "0",
       dataSourceSpecForSettlementData: generatePerpetualSettlementDataSourceSpec(
         skeleton.properties.perpetual.properties.dataSourceSpecForSettlementData
       ),
@@ -179,6 +183,19 @@ function generatePerpetualInstrument(skeleton) {
         // ${skeleton.properties.code.description}
         code: "${instrument.code}",
         // ${skeleton.properties.perpetual.title}
+        perpetual: {
+          // ${skeleton.properties.perpetual.properties.settlementAsset.description}
+          settlementAsset: "c9fe6fc24fce121b2cc72680543a886055abb560043fda394ba5376203b7527d",
+          // ${skeleton.properties.perpetual.properties.quoteName.description}
+          quoteName: "USD",
+          // ${skeleton.properties.perpetual.properties.marginFundingFactor.description}
+          marginFundingFactor: "0.9",
+          // ${skeleton.properties.perpetual.properties.interestRate.description}
+          interestRate: "0",
+          // ${skeleton.properties.perpetual.properties.clampLowerBound.description}
+          clampLowerBound: "0",
+          // ${skeleton.properties.perpetual.properties.clampUpperBound.description}
+          clampUpperBound: "0",
 
           dataSourceSpecForSettlementData: ${inspect(
         instrument.perpetual.dataSourceSpecForSettlementData,
