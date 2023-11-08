@@ -38,7 +38,7 @@ function generatePerpetualSettlementDataSourceSpec(skeleton) {
           "filters": [
               {
                   "key": {
-                      "name": "",
+                      "name": "prices.ORANGES.value",
                       "type": "TYPE_INTEGER",
                       "numberDecimalPlaces": 8
                   },

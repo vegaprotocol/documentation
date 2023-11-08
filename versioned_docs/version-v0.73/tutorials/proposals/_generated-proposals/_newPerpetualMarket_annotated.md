@@ -96,7 +96,7 @@
          filters: [
           {
            key: {
-            name: "",
+            name: "prices.ORANGES.value",
             type: "TYPE_INTEGER",
             numberDecimalPlaces: 8
            },
@@ -143,8 +143,8 @@
 
      // Optional new futures market metadata, tags.
      metadata: [
-      "enactment:2023-11-28T17:54:58Z",
-      "settlement:2023-11-27T17:54:58Z",
+      "enactment:2023-11-28T18:16:03Z",
+      "settlement:2023-11-27T18:16:03Z",
       "source:docs.vega.xyz"
      ],
 
@@ -228,11 +228,11 @@
 
   // Timestamp as Unix time in seconds when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-  closingTimestamp: 1701107698,
+  closingTimestamp: 1701108963,
 
   // Timestamp as Unix time in seconds when proposal gets enacted if passed,
   // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-  enactmentTimestamp: 1701194098,
+  enactmentTimestamp: 1701195363,
  }
 }
 ```
