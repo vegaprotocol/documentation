@@ -58,7 +58,15 @@ Read more: How SLA performance is calculated (spec when out of CE branch)
 -->
 
 ### Determining the liquidity fee percentage
+The liquidity percentage that is charged to traders can be set to one of three methods: constant, marginal cost, or weighted each provider's supplied liquidity.
 
+#### Method: Constant fee
+The liquidity fee factor can be set in the market proposal to be constant, rather than variable as it is in the other two methods.
+
+#### Method: Weighted average fee
+Each liquidity provider submits their desired liquidity fee factor in the liquidity commitment transaction. It’s a number between 0 and 1. Each fee factor has a weight assigned to it based on the supplied liquidity from each provider. The highest weighted fee factor is then used as the liquidity fee factor. The final fee factor is converted into a percentage.
+
+#### Method: Marginal cost fee
 1. Each liquidity provider submits their desired liquidity fee factor in the liquidity commitment transaction. It’s a number between 0 and 1. The final fee factor is converted into a percentage. Every LP’s proposed fee factor goes into determining the actual fee each trader will pay on a trade in that market.
 2. The liquidity orders submitted are sorted into increasing fee order so that the lowest fee percentage bid is at the top, and the highest is at the bottom.
 3. The market's 'winning' fee depends on the liquidity required for the market (target stake) and the amount committed from each bidder. The protocol processes the LP commitments from top to bottom, adding up the commitment amounts until it reaches a level equal to, or greater than, the target stake. When that point is reached, the proposed fee that was provided with the last processed liquidity commitment is used. Initially, before a market opens for trading, the market's initial liquidity fee is the lowest proposed, because the market’s target stake is zero.
