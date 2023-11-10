@@ -33,7 +33,7 @@ An issue with the entry price value seen on the positions API was reported. The 
 The list ledger entries API failed when pagination was provided. The query had been updated to use `ledger entry time` instead of Vega time, but the cursor for filtering did not recognise `ledger entry time`. This was resolved in this [pull request ↗](https://github.com/vegaprotocol/vega/pull/10043).
 
 
-### Pre-release version 0.73.3 (patch) | 2023-11-01
+### Pre-release version 0.73.3 (patch) | 2023-11-09
 Version 0.73.3 was released to testnet on 09 November, 2023.
 
 Check out the full details in the Vega core [0.73.3 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.3) release page.
