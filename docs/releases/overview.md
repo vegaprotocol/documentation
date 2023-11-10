@@ -19,7 +19,7 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-### Release version 0.73.4 (patch) | 2023-11-10
+### Pre-release version 0.73.4 (patch) | 2023-11-10
 Version 0.73.4 was released to the Vega testnet on 01 November, 2023.
 
 This release contains 2 fixes required as a result of testing feedback after the 0.73.3 deployment.
@@ -33,7 +33,7 @@ An issue with the entry price value being read from the positions API was report
 A bug was filed where by the List ledger entries fails when pagination is provided. This was found to be beacuse the query updating to use the `ledger_entry_time` instead of vega_time. The cursor predicate used for constructing the filtering by cursor did not appear to recognise the `ledger_entry_time`. This was resolved in this [pull request ↗](https://github.com/vegaprotocol/vega/pull/10043).
 
 
-### Release version 0.73.3 (patch) | 2023-11-01
+### Pre-release version 0.73.3 (patch) | 2023-11-01
 Version 0.73.3 was released to the Vega testnet on 09 November, 2023.
 
 Check out the full details in the Vega core [0.73.3 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.3) release page.
@@ -43,7 +43,7 @@ Check out the full details in the Vega core [0.73.3 ↗](https://github.com/vega
 Shortly after the 0.73.1 release a user reported that immediately after trade the PnL shown in the console is flickering, affecting both realised and unrealised PNLs. This was resolved in [pull request ↗](https://github.com/vegaprotocol/vega/pull/9959).
 
 
-### Release version 0.73.2 (patch) | 2023-11-01
+### Pre-release version 0.73.2 (patch) | 2023-11-01
 Version 0.73.2 was released to the Vega testnet on 01 November, 2023.
 
 This release contains 3 fixes required as a result of testing feedback after the 0.73.1 deployment.
