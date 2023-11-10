@@ -168,6 +168,18 @@ The risk model uses the following properties:
 | `param: r` | Annualised growth rate of the risk-free asset, it's used for discounting of future cash flows. Use 0.0 unless otherwise required. <br/><br/> Accepted values: any real number | 0.0 |
 | `param: sigma` | Annualised historic volatility of the underlying asset. <br/><br/>Accepted values: any strictly non-negative real number; suggested value: asset dependent, should be derived from the historical time-series of prices. | 0.8 (converts to 80%) |
 
+### Liquidity SLA parameters 
+The liquidity parameters set the requirements that liquidity providers on the market must meet in order to avoid being penalised and to earn fee revenue. There is also an option to change how the liquidity fee is determined.
+
+| Field | Description | Sample value |
+| ----------- | ----------- | ----------- |
+| `liquiditySlaParameters` | Parameters for minimum requirements and measurements | |
+| `priceRange` | Sets the percentage move up and down from the mid price that LPs must be within to count towards their commitment | 0.1 | 
+| `commitmentMinTimeFraction` | The minimum fraction of time that LPs must spend on the book and within the price range | 0.1 | 
+| `performanceHysteresisEpochs` | Sets the number of epochs over which past performance will continue to affect rewards. | 10 | 
+| `slaCompetitionFactor` | Sets the maximum fraction of their accrued fees an LP that meets the SLA will lose to liquidity providers that achieved a higher SLA performance than them. | 0.2 |
+| `liquidityFeeSettings` | Optional setting for how the liquidity fee factor is determined. See [liquidity fees](../../concepts/liquidity/rewards-penalties.md#determining-the-liquidity-fee-percentage) for more. | `METHOD_MARGINAL_COST` (default) `METHOD_CONSTANT`, `METHOD_WEIGHTED_AVERAGE` |
+
 ## Templates and submitting
 In the tabs below you'll see:
 
