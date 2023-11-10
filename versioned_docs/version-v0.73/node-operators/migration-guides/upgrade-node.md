@@ -37,7 +37,7 @@ Make sure you have a backup for the original config in case you need them in the
 We do not recommend you do it too early in case you have to restart your node with the current version for some reason, for example if your node fails or your server restarts, etc.
 
 ### Config changes
-The following changes were introduced in v0.73.0. If you have not yet made the following changes, we recommend doing them for this release.
+The following changes were introduced in v0.73.0. If you have not yet made these changes, we recommend doing them for this release.
 
 The default locations for configuration files:
 
