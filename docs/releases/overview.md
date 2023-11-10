@@ -22,15 +22,15 @@ The Vega core software is public on a business-source licence, so you can both v
 ### Pre-release version 0.73.4 (patch) | 2023-11-10
 Version 0.73.4 was released to the Vega testnet on 01 November, 2023.
 
-This release contains 2 fixes required as a result of testing feedback after the 0.73.3 deployment.
+This release contains 2 fixes required as a result of testing feedback after the 0.73 deployment.
 
 Check out the full details in the Vega core [0.73.4 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.4) release page.
 
 ### Critical fixes
 
-An issue with the entry price value being read from the positions API was reported. The average entry price from the positions API is flickering (it is sometimes briefly changes to read an incorrect value) thus impacting users of the API. This was resolved in this [pull request ↗](https://github.com/vegaprotocol/vega/pull/10037).
+An issue with the entry price value seen on the positions API was reported. The average entry price from the positions API is flickering - it sometimes briefly changes to read an incorrect value - thus impacting users of the API. This was resolved in this [pull request ↗](https://github.com/vegaprotocol/vega/pull/10037).
 
-A bug was filed where by the List ledger entries fails when pagination is provided. This was found to be beacuse the query updating to use the `ledger_entry_time` instead of vega_time. The cursor predicate used for constructing the filtering by cursor did not appear to recognise the `ledger_entry_time`. This was resolved in this [pull request ↗](https://github.com/vegaprotocol/vega/pull/10043).
+The list ledger entries API failed when pagination was provided. The query had been updated to use `ledger entry time` instead of Vega time, but the cursor for filtering did not recognise `ledger entry time`. This was resolved in this [pull request ↗](https://github.com/vegaprotocol/vega/pull/10043).
 
 
 ### Pre-release version 0.73.3 (patch) | 2023-11-01
@@ -40,8 +40,7 @@ Check out the full details in the Vega core [0.73.3 ↗](https://github.com/vega
 
 ### Critical fixes
 
-Shortly after the 0.73.1 release a user reported that immediately after trade the PnL shown in the console is flickering, affecting both realised and unrealised PNLs. This was resolved in [pull request ↗](https://github.com/vegaprotocol/vega/pull/9959).
-
+Shortly after the 0.73.1 release a user reported that immediately after trade the PnL shown in Console would flicker, affecting both realised and unrealised PnL. This was resolved in [pull request ↗](https://github.com/vegaprotocol/vega/pull/9959).
 
 ### Pre-release version 0.73.2 (patch) | 2023-11-01
 Version 0.73.2 was released to the Vega testnet on 01 November, 2023.
