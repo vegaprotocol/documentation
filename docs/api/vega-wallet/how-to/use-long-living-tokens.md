@@ -36,4 +36,4 @@ If you have a running service (with the `--load-tokens` flags), you don't have t
 :::
 
 ## Get help with the CLI
-**If you need help using the Vega wallet CLI**, see the ["Get help with the CLI" guide](../../../tools/vega-wallet/cli-wallet/latest/guides/get-help.md).
+**If you need help using the Vega wallet CLI**, see the ["Get help with the CLI" guide](../../../tools/vega-wallet/cli-wallet/guides/get-help.md).

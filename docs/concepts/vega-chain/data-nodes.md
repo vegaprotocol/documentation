@@ -28,11 +28,9 @@ A data node can be run privately or publicly. Public data nodes help support the
 
 Setting up a data node requires configuring and using the Vega data node software. 
 
-<!--
-:::tip Try it out [WIP]
-Set up a data node: Read the instructions for setting up a data node.
+:::tip Try it out
+[Getting started: Set up a data node](../../node-operators/get-started/setup-datanode.md)
 :::
--->
 
 ## Wallet transactions
 The Vega Wallet is the conduit for approving and sending transactions from the user to the core. The data node exposes the exact same endpoints as the core node, and so it can act as a proxy for the core node.
@@ -182,5 +180,5 @@ When a new node joins the network and requests a history segment for a given IPF
 A network history segment is created every snapshot interval. It gets the interval's worth of data from the PostgreSQL database to create the history segment, without blocking event processing. The data node then publishes it to the network's IPFS swarm, thus making it available to all other current and future data nodes (per network).
 
 :::note Go deeper
-[Network history readme](https://github.com/vegaprotocol/vega/blob/develop/datanode/networkhistory/README.md): How to use network history
+[Readme: Network history](https://github.com/vegaprotocol/vega/blob/develop/datanode/networkhistory/README.md): How to use network history
 :::

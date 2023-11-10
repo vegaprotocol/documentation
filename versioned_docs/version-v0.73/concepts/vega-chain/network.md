@@ -63,7 +63,7 @@ The Vega Wallet software prevents you from sending in a transaction that will tr
 The values of all [spam protection network parameters](#spam-protection-parameters) can be changed through a governance vote. If a parameter change passes governance, it takes effect in the epoch after it passes.
 
 :::tip Query for data
-Use the [spam statistics API](../../api/rest/core/core-service-get-spam-statistics.api.mdx) to see a public key's spam count. This could be useful if you're building wallet software for use with Vega, to stop accidental spamming.
+[API: Spam statistics](../../api/rest/core/core-service-get-spam-statistics.api.mdx): See a public key's spam count. This could be useful if you're building wallet software for use with Vega, to stop accidental spamming.
 :::
 
 ### Spam limits: Governance
@@ -135,7 +135,7 @@ A transaction with a missing or incorrect proof is rejected, as is any transacti
 See a full list of the network parameters used for PoW in the [spam protection parameters table](#spam-protection-and-pow-parameters).
 
 :::note Go deeper
-[Spam protection PoW ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0072-SPPW-spam-protection-PoW.md): Read the spec for implementation details and how this mechanism works in particular circumstances.
+[Spec: Spam protection PoW ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0072-SPPW-spam-protection-PoW.md): Read the spec for implementation details and how this mechanism works in particular circumstances.
 :::
 
 ### Spam protection and PoW parameters
@@ -163,7 +163,7 @@ See a full list of the network parameters used for PoW in the [spam protection p
 To allow a Vega node to be restarted without the need to replay the whole blockchain, a Vega node can load an existing snapshot created by a different node, which will populate all the node state. The node then downloads and replays blocks from the height corresponding to the snapshot, until it gets to the live block height, at which point it will be able to contribute to the chain.
 
 :::note Try it out
-Node operators can refer to [how to use snapshots](../../node-operators/how-to/use-snapshots.md) for a step-by-step guide on loading state with snapshots. 
+**[How to use snapshots](../../node-operators/how-to/use-snapshots.md)**: A step-by-step guide for node operators on loading state with snapshots. 
 :::
 
 ## Network restarts: LNL checkpoints
@@ -195,7 +195,7 @@ LNL checkpoints happen at defined intervals, and on every deposit and withdrawal
 * **Stake**: Last block of confirmed stake deposits on the staking bridge and vesting contracts, along with the number of confirmations, plus all completed and pending staking events on both contracts
 
 :::note Try it out
-Node operators use the how-to guide to [restart a network using a checkpoint](../../node-operators/how-to/restart-network.md).
+**[Restart a network using a checkpoint](../../node-operators/how-to/restart-network.md)**: A step-by-step guide for node operators.
 :::
 
 <!-- ### ***Further reading*** 

@@ -94,16 +94,16 @@ If you don't already have a Vega wallet, create a new wallet.
 2. Click on "Create new wallet" 
 3. Enter a wallet name of your choice, and a passphrase. 
 4. Your first keypair will be created for you. You can create more keys for that wallet but you only need one to start interacting with Vega. 
-5. Choose a Vega network to connect to: Click on the arrow in the bottom bar of the app. If you do not have any network configuration, you can use the .toml URLs in the [manage networks guide](../../cli-wallet/latest/guides/manage-networks#network-urls) to import a network.
+5. Choose a Vega network to connect to: Click on the arrow in the bottom bar of the app. If you do not have any network configuration, you can use the .toml URLs in the [manage networks guide](../cli-wallet/guides/manage-networks#network-urls) to import a network.
 
 ## Restore wallet
-If your Vega wallet was created on a different device, or you lost access to it but have the recovery phrase, you can recover the wallet using that recovery phrase. 
+If your Vega wallet was created on a different device, or you lost access to it but have the recovery phrase, you can recover the wallet using that recovery phrase.
 
 1. Open the app. 
 2. Click on "Use recovery phrase"
 3. Enter your recovery phrase, exactly in the order that it was first presented to you. 
 4. Identify if your wallet was version 1 or 2 by choosing the version number. 
-5. Choose a Vega network to connect to: Click on the arrow in the bottom bar of the app. If you do not have any network configuration, you can use the .toml URLs in the [manage networks guide](../../cli-wallet/latest/guides/manage-networks#network-urls) to import a network.
+5. Choose a Vega network to connect to: Click on the arrow in the bottom bar of the app. If you do not have any network configuration, you can use the .toml URLs in the [manage networks guide](../cli-wallet/guides/manage-networks#network-urls) to import a network.
 
 ## Updating the app
 It's recommended that you keep the Vega Wallet app up-to-date, to take advantage of the latest features. 

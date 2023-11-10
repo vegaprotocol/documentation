@@ -25,7 +25,7 @@ Any assets that are in a general account can be withdrawn or transferred.
 You'll see references to your general account in various places, including under collateral in Console, the trading interface.
 
 :::tip Query for data
-You can see how much is allocated to the accounts for your public key in [Vega Console](https://console.vega.xyz), the trading interface.
+**[Vega Console ↗](https://console.vega.xyz)**: See how much is allocated to the accounts for your public key on the trading interface.
 
 Otherwise use [REST](../../api/rest/data-v2/trading-data-service-get-party.api.mdx) to check your public key for the accounts your assets are allocated to.
 :::
@@ -53,14 +53,14 @@ Each market has its own settlement account. Cashflows from mark-to-market settle
 Note that this happens instantaneously, so you will likely never observe a current balance in an account of this type. However, you may see transfers to and from this account and historic balances if you examine historic data. This can help you to understand how funds have moved between parties with active positions on a market.
 
 :::info Read more
-[Mark-to-market settlement](../trading-on-vega/settlement.md#mark-to-market-settlement) 
+[Concept: Mark-to-market settlement](../trading-on-vega/settlement.md#mark-to-market-settlement) 
 :::
 
 ### Liquidity bond accounts
 Every liquidity provider automatically transfers a certain amount of money to a bond account for each market that they're committed to. The liquidity provider chooses how much goes into the bond account, and that amount is locked up for the entire time that party commits liquidity to the market. It acts as a guarantee for the liquidity obligation, to assure that the commitment is firm and the protocol can rely on that liquidity in any market conditions.
 
 :::note Read more
-[How liquidity works on Vega](../liquidity/index.md) 
+[Concept: How liquidity works on Vega](../liquidity/index.md) 
 :::
 
 ### Insurance pool accounts
@@ -75,8 +75,8 @@ However, the behaviour is different when a market is defined as a parent to a su
 The assets in the asset insurance pools can only be moved if a [governance-initiated transfer](./transfers.md#governance-initiated-transfers) is enacted, meaning a governance proposal to move assets to another specified account has passed the vote.
 
 :::note Read more
-* [Market lifecycle](../trading-on-vega/market-lifecycle.md)
-* [Market protections](../trading-on-vega/market-protections.md)
+* [Concept: Market lifecycle](../trading-on-vega/market-lifecycle.md)
+* [Concept: Market protections](../trading-on-vega/market-protections.md)
 :::
 
 ### Accounts for fees
@@ -91,7 +91,7 @@ The revenue from other fees go into fee-specific accounts:
 * **Infrastructure fee pool**: per asset, to then be distributed to the consensus validators who run the network and thus provide the infrastructure
 
 :::note Read more
-[Fees](../trading-on-vega/fees.md)
+[Concept: Fees](../trading-on-vega/fees.md)
 :::
 
 ### Trading reward accounts 
@@ -114,14 +114,14 @@ There is also a global rewards account, which is used for validator rewards on t
 | Market proposers reward | Holds funds allocated to reward creating markets that attract good trading volume |
 
 :::note Read more
-[Trading rewards](../trading-on-vega/discounts-rewards.md#trading-rewards)
+[Concept: Trading rewards](../trading-on-vega/discounts-rewards.md#trading-rewards)
 :::
 
 ### Validator reward accounts
 Validator reward accounts are used to distribute rewards, if they're funded, to consensus and standby validators based on their ranking score. These accounts can be funded through [deposits](./deposits-withdrawals.md) or [transfers](./transfers.md).
 
 :::note Read more
-[Validator scores and rewards](../vega-chain/validator-scores-and-rewards.md): Learn about how validators are rewarded.
+[Concept: Validator scores and rewards](../vega-chain/validator-scores-and-rewards.md): Learn about how validators are rewarded.
 :::
 
 ### Network treasury accounts

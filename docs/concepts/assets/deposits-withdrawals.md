@@ -12,11 +12,11 @@ Assets used for trading, paying fees, funding rewards, and providing liquidity n
 Once an asset is deposited, it's available in your general account, from which it then may be held in other account types depending on what you use the assets for. 
 
 :::tip Tools you'll need
-To deposit or withdraw, you'll need a [Vega Wallet](../../tools/vega-wallet/index.md) and an Ethereum wallet, such as MetaMask. 
+To deposit or withdraw, you'll need a **[Vega Wallet](../../tools/vega-wallet/index.md)** and an Ethereum wallet, such as MetaMask. 
 :::
 
 :::note Read more 
-[Accounts](./accounts.md): Learn about different accounts that your assets can be held in. 
+[Accounts your assets move between](./accounts.md)
 :::
 
 ## Deposits
@@ -29,7 +29,7 @@ To use assets on the Vega network, for example to take part in markets, you'll n
 
 
 :::info Try it out
-Deposit assets using the [Vega Console trading interface ↗](https://console.fairground.wtf), in the Portfolio section.
+Deposit assets using the **[Console trading interface ↗](https://console.fairground.wtf)**, in the Portfolio section.
 :::
 
 The first assets that will be available for interacting with markets on Vega will be ERC-20 assets, the only bridge currently available. An asset's ERC-20 token contract needs to be available on the bridge before it can be used, which happens in the governance and enactment process for new assets.
@@ -53,7 +53,7 @@ Once deposited, the assets are held in the [asset pool smart contract](../../api
 :::note Go deeper
 Before running the deposit function, you must run the ERC20-standard approve function to authorise the bridge smart contract as a spender of the target token. This will only allow a specific amount of that token to be used by the bridge. This can be done directly or through a Vega app.
 
-Read about the ERC-20 token standard: [EIP-20: Token Standard proposal ↗](https://docs.openzeppelin.com/contracts/2.x/api/token/erc20#IERC20)
+Read about the ERC-20 token standard: **[EIP-20: Token Standard proposal ↗](https://docs.openzeppelin.com/contracts/2.x/api/token/erc20#IERC20)**
 :::
 
 After a successful deposit transaction, whether done directly or through Vega Console, the `Asset_Deposited` event will be emitted for use by the Vega event queue.
@@ -87,8 +87,8 @@ This request, if valid, will be put through consensus - the validators sign a mu
 If it's a successful withdrawal transaction, the ERC20 bridge will emit an `Asset_Withdrawn` event, and confirm to the Vega network that the withdrawal has been completed.
 
 :::note Read more
-* [Withdrawing assets using Etherscan](../../tutorials/assets-tokens/withdrawing-assets.md)
-* [ERC20 bridge logic API documentation](../../api/bridge/contracts/ERC20_Bridge_Logic.md#withdraw_asset)
+* [Tutorial: Withdrawing assets using Etherscan](../../tutorials/assets-tokens/withdrawing-assets.md)
+* [API: ERC20 bridge logic](../../api/bridge/contracts/ERC20_Bridge_Logic.md#withdraw_asset)
 :::
 
 ### Withdrawal limits
@@ -104,9 +104,9 @@ If you choose an amount to withdraw that is higher than the withdrawal threshold
 Once the delay time has passed, and the bundle is valid, **the withdrawal must be completed by submitting the bundle to Ethereum and paying the gas fee required. Usually this will be done by the party wishing to receive the funds**. This can be done using Vega Console or another user interface, or manually using the [smart contract](../../api/bridge/contracts/ERC20_Bridge_Logic.md) and an Ethereum RPC node.
 
 :::tip Query for data
-You can see the threshold and delay for withdrawals in [Vega Console ↗](https://console.fairground.wtf).
+See the threshold and delay for withdrawals in **[Vega Console ↗](https://console.fairground.wtf)**.
 
-Alternatively, see the withdrawal threshold using a [REST query for the asset](../../api/rest/data-v2/trading-data-service-get-asset.api.mdx).
+Otherwise, **[use the API](../../api/rest/data-v2/trading-data-service-get-asset.api.mdx)** to see the withdrawal threshold.
 :::
 
 ### Diagrams: Withdrawals
@@ -122,11 +122,11 @@ VEGA (an ERC20 token) used for staking is associated with a Vega key. To withdra
 Rewards accrued through staking are not associated automatically. To stake those tokens or transfer them, they need to be withdrawn from the Vega key that the rewards are credited to, and sent to an Ethereum wallet.
 
 :::tip Try it
-Track and withdraw testnet staking rewards on the [Vega token withdrawals page for testnet ↗](https://governance.fairground.wtf/token/withdraw).
+**[Vega token withdrawals page for testnet ↗](https://governance.fairground.wtf/token/withdraw)**: Track and withdraw testnet staking rewards.
 
-Alternatively, use the [smart contract](../../api/bridge/contracts/ERC20_Bridge_Logic#withdraw_asset) and an Ethereum RPC node to run the withdraw function.
+Alternatively, use the **[smart contract](../../api/bridge/contracts/ERC20_Bridge_Logic#withdraw_asset)** and an Ethereum RPC node to run the withdraw function.
 :::
 
 :::note Read more
-[VEGA token](../vega-chain/proof-of-stake.md#vega-token) for more details about the VEGA token
+[Concept: VEGA token](../vega-chain/proof-of-stake.md#vega-token)
 :::

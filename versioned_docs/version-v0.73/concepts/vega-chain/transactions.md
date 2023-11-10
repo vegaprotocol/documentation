@@ -23,7 +23,8 @@ The commands that non-validator users can submit to the network include placing,
 Validators can submit signatures, propose protocol upgrades, rotate their keys and more.
 
 :::tip Query for data
-See the gRPC docs for full lists of [user commands](../../api/grpc/vega/commands/v1/commands.proto) and [validator commands](../../api/grpc/vega/commands/v1/validator_commands.proto) supported by the protocol.
+* [API: User commands](../../api/grpc/vega/commands/v1/commands.proto) 
+* [API: Validator commands](../../api/grpc/vega/commands/v1/validator_commands.proto)
 :::
 
 
@@ -59,7 +60,7 @@ Most transactions will have a set gas value of <NetworkParameter frontMatter={fr
 The gas for order-related transactions is calculated based on current market factors, such as existing orders and positions already on the market.
 
 :::note Go deeper
-See the full list of gas cost calculations and exceptions in the [transaction gas and priority spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0079-TGAP-transaction_gas_and_priority.md#dynamic-transactions-costs).
+**[Spec: Transaction gas and priority ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0079-TGAP-transaction_gas_and_priority.md#dynamic-transactions-costs)**: See the full list of gas cost calculations and exceptions.
 :::
 
 ## Transaction ordering

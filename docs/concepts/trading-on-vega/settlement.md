@@ -30,7 +30,7 @@ The data sources defined, and the filters applied to them, must be able to provi
 For a futures market, when a market arrives at its specified expiry, trading terminates and then the data sources provide the final settlement value. The protocol settles all open positions on the market using the price provided by the data source.
 
 :::note Read more
-**[Data sources](./data-sources.md)**
+[Concept: Data sources](./data-sources.md)
 :::
  
 ## Settlement at market expiry
@@ -51,14 +51,14 @@ After all positions are closed when the market expires, they are ‘forgotten’
 A cash-settled futures market reaches its expiry date and time. If the last mark price before settlement is 100, but the oracle price feed emits data that the price is 115, then a trader with a position of 1 long is paid 15. Another trader that has a position of 1 short, pays 15.
 
 :::note Read more
-**[Data sources](./data-sources.md)**
+[Concept: Data sources](./data-sources.md)
 :::
 
 ## Mark to market settlement
 When the mark price on a market changes, the protocol calculates settlement cash flows for each party with an open position. This means that each time the mark price for a given market changes, all the open positions are marked to market. Interim partial payments are calculated by the protocol, and those payments go directly to the relevant trader's margin account. 
 
 :::note Read more
-[Mark to market](./positions-margin.md#mark-to-market)
+[Concept: Mark to market](./positions-margin.md#mark-to-market)
 :::
 
 ## Periodic settlement for perpetuals 
@@ -79,7 +79,7 @@ When executing the settlement for each funding period, first cashflows are colle
 If there's a shortfall, the market's [insurance pool](./market-protections.md#insurance-pools) is used to make up the difference. If that's not possible, the protocol will trigger [loss socialisation](./market-protections.md#loss-socialisation).
 
 :::note Read more
-[Perpetual futures markets](../trading-on-vega/market-types.md#perpetual-futures)
+[Concept: Perpetual futures markets](../trading-on-vega/market-types.md#perpetual-futures)
 :::
 
 ## Settlement execution
@@ -96,7 +96,7 @@ When collateral is collected, ledger entries that adhere to double-entry account
 If all the requested amounts are successfully transferred to the settlement account, then the amount collected will match the amount to be distributed. The participants whose moves were positive will have their margin accounts credit with what they're owed. 
 
 :::note Read more 
-* [Insurance pools](../trading-on-vega/market-protections.md#insurance-pools)
-* [Loss socialisation](../trading-on-vega/market-protections.md#loss-socialisation)
-* [Settlement account](../assets/accounts.md#settlement-accounts)
+* [Concept: Insurance pools](../trading-on-vega/market-protections.md#insurance-pools)
+* [Concept: Loss socialisation](../trading-on-vega/market-protections.md#loss-socialisation)
+* [Concept: Settlement account](../assets/accounts.md#settlement-accounts)
 :::

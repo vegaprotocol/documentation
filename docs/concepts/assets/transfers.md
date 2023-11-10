@@ -19,7 +19,8 @@ Anyone with a Vega public key and assets can set up a transfer. Those transfers 
 Transfers can be set up to happen [only once](#one-off-transfers), or can happen [repeatedly](#recurring-transfers).
 
 :::tip Try it out
-* **[Transfers tutorial](../../tutorials/assets-tokens/transferring-assets.md)**: Set up transfers with your Vega wallet using the command line.
+* [Tutorial: transfers](../../tutorials/assets-tokens/transferring-assets.md)
+* [Tutorial: transfer from network accounts](../../tutorials/proposals/asset-transfer-proposal.md)
 :::
 
 ### Transfer limits
@@ -82,6 +83,6 @@ The table below details which types of transfers need to be done using a governa
 | Any other account | Any | No |
 
 :::note Read more
-* **[Transfers initiated by governance](../governance.md#transferring-assets)**: Learn about the governance mechanics involved in transfers.
-* **[Tutorial: Asset transfer proposal](../../tutorials/proposals/asset-transfer-proposal.md)**: Learn how to propose transferring assets and get a template.
+* [Concept: Transfers initiated by governance](../governance.md#transferring-assets)
+* [Tutorial: Asset transfer proposal](../../tutorials/proposals/asset-transfer-proposal.md)
 :::
