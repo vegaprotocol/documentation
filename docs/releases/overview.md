@@ -19,6 +19,45 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Release version 0.73.4 (patch) | 2023-11-10
+Version 0.73.4 was released by the validators to mainnet on 01 November, 2023.
+
+This release contains 2 fixes required as a result of testing feedback after the 0.73 deployment.
+
+Check out the full details in the Vega core [0.73.4 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.4) release page.
+
+### Critical fixes
+
+An issue with the entry price value being read from the positions API was reported. The average entry price from the positions API is flickering (it is sometimes briefly changes to read an incorrect value) thus impacting users of the API. This was resolved in this [pull request ↗](https://github.com/vegaprotocol/vega/pull/10037).
+
+A bug was filed where by the List ledger entries fails when pagination is provided. This was found to be beacuse the query updating to use the `ledger_entry_time` instead of vega_time. The cursor predicate used for constructing the filtering by cursor did not appear to recognise the `ledger_entry_time`. This was resolved in this [pull request ↗](https://github.com/vegaprotocol/vega/pull/10043).
+
+
+### Release version 0.73.3 (patch) | 2023-11-01
+Version 0.73.3 was released by the validators to mainnet on 09 November, 2023.
+
+Check out the full details in the Vega core [0.73.3 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.3) release page.
+
+### Critical fixes
+
+Shortly after the 0.73.1 release a user reported that immediately after trade the PnL shown in the console is flickering, affecting both realised and unrealised PNLs. This was resolved in [pull request ↗](https://github.com/vegaprotocol/vega/pull/9959).
+
+
+### Release version 0.73.2 (patch) | 2023-11-01
+Version 0.73.2 was released by the validators to mainnet on 01 November, 2023.
+
+This release contains 3 fixes required as a result of testing feedback after the 0.73.1 deployment.
+
+Check out the full details in the Vega core [0.73.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.2) release page.
+
+### Critical fixes
+
+A number of liquidity providers reported that they had been penalised incorrectly after the migration of LP orders from the old mechanism to the new SLA liquidity mechanism. It was found that the default parameter changes were not being published to the markets on restart, this was resolved in [commit ↗](https://github.com/vegaprotocol/vega/commit/53b2b19cbf462963532d115a4b4b4605125944da).
+
+Due to this issue, bond penalties were temporarily disabled and will allow 7 epochs for LPs to adjust to the new SLA liquidity. This was introduced in this [commit ↗](https://github.com/vegaprotocol/vega/commit/8866cf289d7a99269a91caf16ee238db4a420414). This code will be removed in a future release.
+
+An issue with governance transfers was reported whereby the default parameter values were incorrect. This [commit ↗](https://github.com/vegaprotocol/vega/commit/3f344142c465b279345c9f1e8c9aef66dbd9f086) sets the default values correctly.
+
 ## Pre-release version 0.73 | 2023-09-20
 This version was released to the Vega testnet on 20 September 2023.
 
@@ -68,7 +107,7 @@ In the previous liquidity model, providers would make a commitment and define a 
 
 For full details on these network and market parameters and what they represent please read the [liquidity concepts pages](../concepts/liquidity/index.md).
 
-We advise any existing liquidity providers to use [Console on Fairground ↗](https://console.fairground.wtf/) or the APIs to experiment with the new liquidity protocol ahead of the release to ensure they are comfortable with the changes. 
+We advise any existing liquidity providers to use [Console on Fairground ↗](https://console.fairground.wtf/) or the APIs to experiment with the new liquidity protocol ahead of the release to ensure they are comfortable with the changes.
 
 To see lower level details of how the new SLA liquidity feature is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0044-LIME-lp_mechanics.md). The work items completed on this feature can be seen on issues and pull requests with the [`liquidity-sla` ↗](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Aliquidity-sla+) label.
 
