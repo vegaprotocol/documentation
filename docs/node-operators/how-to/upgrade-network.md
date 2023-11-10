@@ -92,15 +92,15 @@ You can skip this step if:
 
 If your node does **not** have internet access or the `autoInstall` is **disabled** and you are using Visor, do the following:
 
-1. Create the new version folder in the `<VEGA-VISOR-HOME>`, e.g., for version `v0.73.0`, run the following command: `mkdir -p <VEGA-VISOR-HOME>/v0.73.0`.
+1. Create the new version folder in the `<VEGA-VISOR-HOME>`, e.g., for version `v0.73.4`, run the following command: `mkdir -p <VEGA-VISOR-HOME>/v0.73.4`.
 2. Download the new version of the Vega binary from the [releases page ↗](https://github.com/vegaprotocol/vega/releases)
-3. Unzip the downloaded binary into the created directory, e.g. `<VEGA-VISOR-HOME>/v0.73.0/vega` binary
-4. Create the run configuration and put it in the created directory, e.g. `<VEGA-VISOR-HOME>/v0.73.0/run-config.toml` run config file (see example below)
+3. Unzip the downloaded binary into the created directory, e.g. `<VEGA-VISOR-HOME>/v0.73.4/vega` binary
+4. Create the run configuration and put it in the created directory, e.g. `<VEGA-VISOR-HOME>/v0.73.4/run-config.toml` run config file (see example below)
 
 Example config for the new version with Visor:
 
 ```toml
-name = "v0.73.0"
+name = "v0.73.4"
 
 [vega]
   [vega.binary]
@@ -133,7 +133,7 @@ Check the following parameters.
 - `vega.rpc.socketPath` - Make sure the path to the Vega Unix sock is correct and matches the one in the Vega config.
 
 :::tip Copy existing config
-It's good practice to copy config from the previous version, for example when you are upgrading the network from `v0.72.14` to `v0.73.0`, you can copy the run-config from `<VEGA-VISOR-HOME>/v0.72.4/run-config.toml` to `<VEGA-VISOR-HOME>/v0.73.0/run-config.toml`, then make sure you have the correct binary version in your new folder.
+It's good practice to copy config from the previous version, for example when you are upgrading the network from `v0.73.2` to `v0.73.4`, you can copy the run-config from `<VEGA-VISOR-HOME>/v0.73.2/run-config.toml` to `<VEGA-VISOR-HOME>/v0.73.4/run-config.toml`, then make sure you have the correct binary version in your new folder.
 :::
 
 Once you have performed steps `2.1 Prepare network configuration (all)` and `2.2 Prepare Visor configuration, if using Visor`, you don't have to do anything else. Visor will automatically restart the node once the core and data node (if you run one) report they are ready for the protocol upgrade.
