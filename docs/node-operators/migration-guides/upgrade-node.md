@@ -3,7 +3,7 @@ title: Upgrade to 0.73.4
 sidebar_label: Upgrade to 0.73.4
 ---
 
-This guide describes the steps to upgrade from v0.73.2 to v0.73.4 using the protocol upgrade mechanism. See the changelogs for [v0.73.4 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.4) for information about breaking changes and new features.
+This guide describes the steps to upgrade from v0.73.3 to v0.73.4 using the protocol upgrade mechanism. See the changelogs for [v0.73.4 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.4) for information about breaking changes and new features.
 
 ## Assumptions for the guide
 The instructions below are written for Debian-like Linux operating systems.
