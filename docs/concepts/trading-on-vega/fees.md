@@ -57,7 +57,11 @@ At a high level, the trading fee that someone pays is calculated using the follo
 Two of the three fee factors are set through network parameters: <NetworkParameter frontMatter={frontMatter} param="market.fee.factors.infrastructureFee" />, <NetworkParameter frontMatter={frontMatter} param="market.fee.factors.makerFee" />. The liquidity fee is set by the liquidity providers on the market.
 
 ## Transfer fees
-When transferring assets, whether from one Vega key to another, or from a Vega key to a reward pool to fund trading rewards, the party that initiates the transfer needs to pay a fee. The fee amount is taken when the transfer is executed, on top of the total amount to be transferred. It's charged in the same asset that is being transferred.
+You may need to pay a fee to transfer assets, whether from one Vega key to another, or from a Vega key to a reward pool to fund trading rewards. The fee amount is taken when the transfer is executed, on top of the total amount to be transferred. It's charged in the same asset that is being transferred.
+
+You only pay a fee if you haven't already paid or accrued enough trading fee revenue in past epochs to cover the calculated transfer fee. The trading fees you've paid or accrued act like a discount balance that's subtracted from with every transfer. You'd also pay a fee if you use up your fee discount balance.
+
+Transfers initiated by governance don't incur a fee.
 
 The fee goes to validators for providing the network infrastructure that supports transfers, and goes into the infrastructure fee pool.
 
