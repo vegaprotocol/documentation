@@ -21,7 +21,7 @@ The Vega core software is public on a business-source licence, so you can both v
 
 
 ### Release version 0.73.4 (patch) | 2023-11-??????
-Version 0.73.4 was released by the validators to mainnet on ????? November, 2023.
+Version 0.73.4 was released by the validators to mainnet on 14 November, 2023.
 
 This release contains 2 fixes required as a result of testing feedback after the 0.73 deployment.
 
