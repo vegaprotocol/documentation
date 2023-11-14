@@ -34,6 +34,7 @@ The list ledger entries API failed when pagination was provided. The query had b
 
 
 ### Pre-release version 0.73.3 (patch) | 2023-11-09
+
 Version 0.73.3 was released to the Vega testnet on 09 November, 2023.
 
 Check out the full details in the Vega core [0.73.3 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.3) release page.
@@ -43,6 +44,7 @@ Check out the full details in the Vega core [0.73.3 ↗](https://github.com/vega
 Shortly after the 0.73.1 release a user reported that immediately after trade the PnL shown in Console would flicker, affecting both realised and unrealised PnL. This was resolved in [pull request ↗](https://github.com/vegaprotocol/vega/pull/9959).
 
 ### Pre-release version 0.73.2 (patch) | 2023-11-01
+
 Version 0.73.2 was released to the Vega testnet on 01 November, 2023.
 
 This release contains 3 fixes required as a result of testing feedback after the 0.73.1 deployment.
