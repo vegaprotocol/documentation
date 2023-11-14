@@ -16,6 +16,9 @@ import NewPerpetualMarketAnnotated from './_generated-proposals/_newPerpetualMar
 import NewPerpetualMarketJSON from './_generated-proposals/_newPerpetualMarket_json.md';
 import NewPerpetualMarketCMD from './_generated-proposals/_newPerpetualMarket_cmd.md';
 import NewPerpetualMarketWin from './_generated-proposals/_newPerpetualMarket_win.md';
+import NewMarketJSONLiquidityMonitoring from './_generated-proposals/_newMarket_json_liqparams.md';
+import NewMarketJSONPriceMonitoring from './_generated-proposals/_newMarket_json_priceparams.md';
+import NewMarketJSONRisk from './_generated-proposals/_newMarket_json_risk.md';
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
