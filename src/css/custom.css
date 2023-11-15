@@ -21,6 +21,7 @@
   --ifm-link-color: var(--vega-pink);
   --search-local-highlight-color: var(--vega-pink);
   --ifm-code-font-size: 95%;
+  --ifm-avatar-photo-size: 5rem;
 }
 /* Github header link */
 .header-github-link::before {

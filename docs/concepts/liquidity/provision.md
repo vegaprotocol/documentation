@@ -5,6 +5,9 @@ hide_title: false
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
+import Topic from '/docs/topics/_topic-liquidity.mdx'
+
+<Topic />
 
 Each market has its own liquidity. Liquidity providers earn fee revenue from participants trading on the market they're providing liquidity to. LPs receive a cut of the liquidity fee paid by traders on the market. In addition, they can receive [rewards funded by members of the community](./rewards-penalties.md#community-funded-lp-rewards).
 
