@@ -168,6 +168,42 @@ The risk model uses the following properties:
 | `param: r` | Annualised growth rate of the risk-free asset, it's used for discounting of future cash flows. Use 0.0 unless otherwise required. <br/><br/> Accepted values: any real number | 0.0 |
 | `param: sigma` | Annualised historic volatility of the underlying asset. <br/><br/>Accepted values: any strictly non-negative real number; suggested value: asset dependent, should be derived from the historical time-series of prices. | 0.8 (converts to 80%) |
 
+## Submitting proposals in a batch
+If you want to submit this proposal as part of a larger batch of proposals, follow this sample structure:
+
+```
+{
+  "proposalSubmission": {
+    "rationale": {
+      "title": "High level title",
+      "description": "Description of all parts of this batch of proposals"
+      "closingTimestamp": 1697283340,
+    },
+    "terms": {
+      "enactmentTimestamp": timestamp,
+      "typeOfProposal": {
+        "changes": {
+      }
+          "terms": {
+      "enactmentTimestamp": timestamp,
+      "typeOfProposal": {
+        "changes": {
+      }
+          "terms": {
+      "enactmentTimestamp": timestamp,
+      "typeOfProposal": {
+        "changes": {
+      }
+            }
+          }
+        }
+      }
+    }
+  }
+ }
+}
+```
+
 ## Templates and submitting
 In the tabs below you'll see:
 

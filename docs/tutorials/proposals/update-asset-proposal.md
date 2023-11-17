@@ -51,6 +51,41 @@ In addition to the parameters you want to change, you must include the existing 
 | `withdrawThreshold` | The maximum you can withdraw instantly. All withdrawals over the threshold will be delayed by the withdrawal delay, which can be seen on the ERC-20 bridge per asset. Setting this to 1 means all withdrawals will be subject to the delay. It's measured in asset decimals, so 1 is the smallest increment of the market's asset. | 1 |
 | `lifetimeLimit` | The lifetime deposit limit per public key, in asset decimals. Users are able to opt out of this functionality using the `exempt_depositor` write function on the ERC20 contract if they wish to. Suggested value: equivalent of 10,000 USD | 10000000000000000000000 |
 
+## Submitting proposals in a batch
+If you want to submit this proposal as part of a larger batch of proposals, follow this sample structure:
+
+```
+{
+  "proposalSubmission": {
+    "rationale": {
+      "title": "High level title",
+      "description": "Description of all parts of this batch of proposals"
+      "closingTimestamp": 1697283340,
+    },
+    "terms": {
+      "enactmentTimestamp": timestamp,
+      "typeOfProposal": {
+        "changes": {
+      }
+          "terms": {
+      "enactmentTimestamp": timestamp,
+      "typeOfProposal": {
+        "changes": {
+      }
+          "terms": {
+      "enactmentTimestamp": timestamp,
+      "typeOfProposal": {
+        "changes": {
+      }
+            }
+          }
+        }
+      }
+    }
+  }
+ }
+}
+```
 
 ## Templates and submitting
 In the tabs below you'll see:

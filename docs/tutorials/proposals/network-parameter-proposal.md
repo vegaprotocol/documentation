@@ -44,6 +44,42 @@ The contents of a `changes` object specifies what will be different after the pr
 
 **Value** is the new value you're proposing that the network parameter should have.
 
+## Submitting proposals in a batch
+If you want to submit this proposal as part of a larger batch of proposals, follow this sample structure:
+
+```
+{
+  "proposalSubmission": {
+    "rationale": {
+      "title": "High level title",
+      "description": "Description of all parts of this batch of proposals"
+      "closingTimestamp": 1697283340,
+    },
+    "terms": {
+      "enactmentTimestamp": timestamp,
+      "typeOfProposal": {
+        "changes": {
+      }
+          "terms": {
+      "enactmentTimestamp": timestamp,
+      "typeOfProposal": {
+        "changes": {
+      }
+          "terms": {
+      "enactmentTimestamp": timestamp,
+      "typeOfProposal": {
+        "changes": {
+      }
+            }
+          }
+        }
+      }
+    }
+  }
+ }
+}
+```
+
 ## Templates and submitting
 In the tabs below you'll see:
 

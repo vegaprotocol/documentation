@@ -184,6 +184,42 @@ The liquidity parameters set the requirements that liquidity providers on the ma
 | `performanceHysteresisEpochs` | Sets the number of epochs over which past performance will continue to affect rewards. | 10 | 
 | `slaCompetitionFactor` | Sets the maximum fraction of their accrued fees an LP that meets the SLA will lose to liquidity providers that achieved a higher SLA performance than them. | 0.2 | 
 
+## Submitting proposals in a batch
+If you want to submit this proposal as part of a larger batch of proposals, follow this sample structure:
+
+```
+{
+  "proposalSubmission": {
+    "rationale": {
+      "title": "High level title",
+      "description": "Description of all parts of this batch of proposals"
+      "closingTimestamp": 1697283340,
+    },
+    "terms": {
+      "enactmentTimestamp": timestamp,
+      "typeOfProposal": {
+        "changes": {
+      }
+          "terms": {
+      "enactmentTimestamp": timestamp,
+      "typeOfProposal": {
+        "changes": {
+      }
+          "terms": {
+      "enactmentTimestamp": timestamp,
+      "typeOfProposal": {
+        "changes": {
+      }
+            }
+          }
+        }
+      }
+    }
+  }
+ }
+}
+```
+
 ## Templates and submitting
 In the tabs below you'll see:
 
