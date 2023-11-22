@@ -28,7 +28,7 @@ Check out the full details of what is contained in the patch release in the Vega
 
 ### Mainnet incident - protocol optimisation
 
-The mainnet incident was resolved without any code change, however, the Vega project team identified improvements to reduce the Ethereum RPC load and minimise the chance of future similar incidents given their impact. The improvements, of adding metrics and reducing the amount of requests sent to the Ethereum RPC, were done under the following [issue](https://github.com/vegaprotocol/vega/issues/10153).
+The mainnet incident was resolved without any code change, however, the Vega project team identified improvements to reduce the Ethereum RPC load and minimise the chance of future similar incidents; given their impact. The improvements, of adding metrics and reducing the amount of requests sent to the Ethereum RPC, was done under the following [issue](https://github.com/vegaprotocol/vega/issues/10153).
 
 ### Pre-release version 0.73.5 (patch) | 2023-11-20
 Version 0.73.5 was released to the Vega testnet on 20 November, 2023.
