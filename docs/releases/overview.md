@@ -20,7 +20,7 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
 ### Pre-release version 0.73.6 (patch) | 2023-11-22
-Version 0.73.6 was released to the Vega testnet on 20 November, 2023.
+Version 0.73.6 was released to the Vega testnet on 22 November, 2023.
 
 This release contains a protocol optimisation required as a result of  the following [mainnet incident ↗](https://medium.com/vegaprotocol/incident-report-forwarding-events-from-ethereum-a384fc35fbdf) raised on the 21st November 2023 regarding the forwarding of events from Ethereum.
 

@@ -19,6 +19,16 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Release version 0.73.6 (patch) | 2023-11-23
+Version 0.73.6 was released by the validators to mainnet on 23 November, 2023.
+
+This release contains a protocol optimisation required as a result of  the following [mainnet incident ↗](https://medium.com/vegaprotocol/incident-report-forwarding-events-from-ethereum-a384fc35fbdf) raised on the 21st November 2023 regarding the forwarding of events from Ethereum.
+
+Check out the full details of what is contained in the patch release in the Vega core [0.73.6 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.6) release page.
+
+### Mainnet incident - protocol optimisation
+
+The mainnet incident was resolved without any code change, however, the Vega project team identified improvements to reduce the Ethereum RPC load and minimise the chance of future similar incidents; given their impact. The improvements, of adding metrics and reducing the amount of requests sent to the Ethereum RPC, was done under the following [issue](https://github.com/vegaprotocol/vega/issues/10153).
 
 ### Release version 0.73.5 (patch) | 2023-11-20
 Version 0.73.5 was released by the validators to mainnet on 20 November, 2023.
