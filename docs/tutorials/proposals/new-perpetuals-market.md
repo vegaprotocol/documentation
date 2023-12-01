@@ -43,12 +43,12 @@ Instrument, liquidity monitoring parameters, price monitoring parameters, and da
 
 **Rationale** requires a title and description, which is are free-text fields that describe the purpose of the proposal.  Within the description, include links with more information about your proposal (such as to the IPFS content or forum post) that voters can reference to learn more about the market proposal. Formatting your rationale with markdown makes it easier to read when it's displayed.
 
-**Decimal places** need to be defined for both order sizes and the market. A market cannot specify more decimal places than its settlement asset supports.
+**Decimal places** need to be defined for both order sizes and the market. A market cannot specify more decimal places than its settlement asset supports. The values for these fields cannot be changed, even through governance.
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
 | `decimalPlaces` | Sets the smallest price increment on the book. | 18 |
-| `positionDecimalPlaces` | Sets how big the smallest order / position on the market can be. | 5 |
+| `positionDecimalPlaces` | Sets the size that the smallest order / position on the market can be. Set the position decimal places such that the margin on the smallest order ends up being about 1 USD. This ensures that the market will not accept orders with very small margin minimums, protecting the network from being spammed with lots of financially insignificant orders. To figure out the ideal decimal place: Calculate the risk factor. Find the current price the asset is trading for, such as from the oracle you're using. The smallest order margin is `price x 10^{-pdp} x (risk factor)`. Convert to USD. If this is less than 0.5, then decrease the position decimal places (pdp) accordingly. Position decimal places (pdp) can also be negative integers. | 3 |
 
 **Timestamps** are required for ending the voting period, as well as enacting the market. The time between closing and enactment also defines how long an [opening auction](../../concepts/trading-on-vega/trading-modes.md#auction-type-opening) will be, which must be smaller than/equal to the difference between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxClose" /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxEnact" />.
 
