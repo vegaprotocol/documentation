@@ -28,7 +28,7 @@ Check out the full details of what is contained in the patch release in the Vega
 
 ### Fixes
 
-An issue was found during testing whereby a consensus failure can happen when restaring from a snapshot. A fix has been introduced so that closed markets subscribed to data sources, when restored from a snapshot, do not cause a consensus failure. This was fixed in the following [issue](https://github.com/vegaprotocol/vega/issues/10166)
+An issue was found during testing whereby the network could experience a consensus failure when restaring from a snapshot. A fix has been introduced so that closed markets subscribed to data sources, when restored from a snapshot, do not cause a consensus failure. This was fixed in the following [issue ↗](https://github.com/vegaprotocol/vega/issues/10166)
 
 Additionally a validation has been introduced in order to stop an overflow if the order size registered with the position engine is very large. This was fixed in the following [issue](https://github.com/vegaprotocol/vega/issues/10177)
 
