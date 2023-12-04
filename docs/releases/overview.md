@@ -22,6 +22,19 @@ The Vega core software is public on a business-source licence, so you can both v
 ### Pre-release version 0.73.6 (patch) | 2023-11-22
 Version 0.73.6 was released to the Vega testnet on 22 November, 2023.
 
+This release contains a number of fixes required as a result of testing feedback after the 0.73 deployment.
+
+Check out the full details of what is contained in the patch release in the Vega core [0.73.7 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.7) release page.
+
+### Fixes
+
+An issue was found during testing whereby a consensus failure can happen when restaring from a snapshot. A fix has been introduced so that closed markets subscribed to data sources, when restored from a snapshot, do not cause a consensus failure. This was fixed in the following [issue](https://github.com/vegaprotocol/vega/issues/10166)
+
+Additionally a validation has been introduced in order to stop an overflow if the order size registered with the position engine is very large. This was fixed in the following [issue](https://github.com/vegaprotocol/vega/issues/10177)
+
+### Pre-release version 0.73.6 (patch) | 2023-11-22
+Version 0.73.6 was released to the Vega testnet on 22 November, 2023.
+
 This release contains a protocol optimisation required as a result of  the following [mainnet incident ↗](https://medium.com/vegaprotocol/incident-report-forwarding-events-from-ethereum-a384fc35fbdf) raised on the 21st November 2023 regarding the forwarding of events from Ethereum.
 
 Check out the full details of what is contained in the patch release in the Vega core [0.73.6 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.6) release page.
