@@ -75,6 +75,9 @@ An instrument contains the following properties:
 | `interestRate`| Sets the continuously compounded interest rate used in funding rate calculation. Must be in the range [-1, 1].| 0.1 |
 | `clampLowerBound`| Lower bound for the clamp function used as part of the funding rate calculation. Must be in the range [-1, 1]. | 0 |
 | `clampUpperBound`| Upper bound for the clamp function used as part of the funding rate calculation. Must be in the range [-1, 1]. | 0 |
+| `scalingFactor` | Scaling factor to apply to the funding payments, optional. This scales the impact that spot price deviations have on funding payments. Can be any positive real number. Adding in a 2, for example, will double the funding payments. | 2 | 
+| `rateLowerBound` | Lower bound that will be applied to funding payments such that the resulting funding rate will never be lower than the specified value, optional. The number submitted is converted to a percentage. For example, -0.005 will be -0.5%. Can be any real number. | -0.005 |
+| `rateUpperBound` | Upper bound that will be applied to the funding payments, such that the resulting funding rate will never be greater than than the specified value, optional. The number submitted is converted to a percentage. For example, 0.005 will be 0.5%. Can be any real number. | 0.005 | 
 | [`dataSourceSpecForSettlementData`](#data-source-for-settlement-data) | This defines the Ethereum data source, the method, normalisers, required confirmations, etc, that will be used to identify the settlement price when the market expires. | |
 | [`dataSourceSpecForSettlementSchedule`](#data-source-for-settlement-schedule) | This defines how the market will source data for funding, and how often to source it. | |
 | [`dataSourceSpecBinding`](#data-source-bindings) | The fields describe how specific information provided by the data source is used. For example, they are used to set the settlement data property and the settlement schedule property. |

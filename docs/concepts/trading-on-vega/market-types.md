@@ -48,6 +48,9 @@ They include:
 * Interest rate
 * Clamp lower bound
 * Clamp upper bound
+* Scaling factor (optional)
+* Rate lower bound (optional)
+* Rate upper bound (optional)
 
 :::note Go deeper
 **[Spec: Funding payment calculations ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0053-PERP-product_builtin_perpetual_future.md#funding-payment-calculation)**: See how all the parameters can impact a market's funding rate and margin requirements.
