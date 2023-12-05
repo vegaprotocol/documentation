@@ -24,13 +24,13 @@ Before reading through this it is strongly advisable to read through the full gu
 In brief, committing liquidity to a Vega Protocol market means that:
 - A party makes a commitment to always provide both a bid and ask order for a given market. As a guarantee of this they lock a portion of their funds in a bond account, which will remain there untouched so long as their commitments are met. The exact size of orders required is determined by the size of the bond and a further network controlled parameter. 
 - In return for this commitment, a party receives a portion of all fees paid on the market, whether they were the maker party in the trade or not. 
-- As part of their commitment message, a party must specify orders which should be placed onto the market should their manually placed orders not sufficiently meet their requirement at any time. These are defined in terms of offsets from either the mid price or the best bid/ask prices.
 - To count towards a commitment, orders must be within a certain percentage of the mid price on a market. If limit orders are outside these bounds they will not count towards the commitment. If the orders specified in the initial liquidity commitment message are offset such that they are outside these bounds they will be placed just inside the bounds instead.
 - The exact proportion of the fees received is based upon a combination of the commitment bond size relative to others', alongside how competitive the placed limit orders were across the epoch.
+- The amount of time during an epoch where the party must meet the commitment is defined by the SLA settings on the market. There will be a minimum percentage of time, below which the LP may have a penalty to their bond applied depending on the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltyMax" formatter="percent" hideName={false} />, but will never receive a portion of the paid liquidity fees within the epoch even if no penalty is applied. Above the SLA, the LP is eligible to receive fees, however there may be a reweighting of some portion of received fees within the set of LPs who met the target to reward those who are on the book a higher percentage of time. 
 
-Whilst a liquidity commitment can mean a trader receives fees they would not otherwise have received, they must be aware that it ties them into always offering to buy/sell the instrument whatever the market conditions. Whilst in general a liquidity provider can withdraw at any time, if withdrawing their commitment would bring the market below the currently required stake to stay out of auction then this will be impossible.
+Whilst a liquidity commitment can mean a trader receives fees they would not otherwise have received, they must be aware that it is a commitment to provide prices whenever possible, whatever the conditions. Whilst in general a liquidity provider can withdraw at the end of any epoch, if withdrawing their commitment would bring the market below the current target stake then a penalty may be applied to the withdrawn bond amount.
 
-That said, for the purposes of this tutorial we are comfortable taking on this commitment and will continue.
+With the awareness of these constraints, this tutorial will cover the basic steps required to submit the liquidity commitment.
 
 :::note Read more
 [Providing liquidity](../../concepts/liquidity/index.md)
@@ -85,25 +85,11 @@ def _liquidity_provision_base(
             convert_from_decimals(decimal_places=asset_decimals, number=amount)
         ),
         "fee": str(proposed_fee),
-        "buys": [
-            {
-                "offset": "0",
-                "proportion": "1",
-                "reference": "PEGGED_REFERENCE_BEST_BID",
-            },
-        ],
-        "sells": [
-            {
-                "offset": "0",
-                "proportion": "1",
-                "reference": "PEGGED_REFERENCE_BEST_ASK",
-            },
-        ],
     }
 
 ```
 
-Those will be the functions for generating a liquidity provision submission and amending. The structures for the submission and amendment are the same, other than the tag on the outer layer. An amendment will totally replace what was there previously, and only one liquidity provision can be active for any given market. Here we are hardcoding the offset to `0` which will mean a liquidity provision would always place its orders at best bid and ask. This could be risky if positions are not monitored, so one potential alternative solution is to set these offsets large enough that placed orders were always at the bounds of where they could be. These orders would be unlikely to attract much in the way of fees but would be less likely to trade. 
+Those will be the functions for generating a liquidity provision submission and amending. The structures for the submission and amendment are the same, other than the tag on the outer layer. An amendment will totally replace what was there previously, and only one liquidity provision can be active for any given market. The commitment amount covers the funds which will be transferred into the bond account for the specific market. This should be set to ensure, once scaled with the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.stakeToCcyVolume" formatter="percent" hideName={false} /> to an on-book volume, a desired volume commitment is set.
 
 ## Making the commitment live
 
