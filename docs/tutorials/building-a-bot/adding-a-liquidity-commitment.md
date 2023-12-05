@@ -92,6 +92,7 @@ def _liquidity_provision_base(
 Those will be the functions for generating a liquidity provision submission and amending. The structures for the submission and amendment are the same, other than the tag on the outer layer. An amendment will totally replace what was there previously, and only one liquidity provision can be active for any given market. 
 
 The commitment amount covers the funds which will be transferred into the bond account for the specific market.
+
 Keep in mind that your commitment amount will be scaled by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.stakeToCcyVolume" formatter="percent" hideName={false} /> to determine the on-book volume required for your commitment.
 
 ## Making the commitment live
