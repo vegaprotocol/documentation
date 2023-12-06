@@ -71,8 +71,8 @@ You will need to define the dispatch strategy, which includes the metric, the le
 | `notionalTimeWeightedAveragePositionRequirement` | Optional: Sets a minimum notional TWAP, measured for the asset metric, that's required for a party to be considered eligible to receive rewards | Defaults to 0 | 
 | `windowLength` | Number of epochs in which performance against the reward metric is measured | Any number between 1 and 100 |
 | `lockPeriod` | Number of epochs to keep earned rewards in the recipient's reward vesting account before moving to their vested account, at which point they can be redeemed |
-| `entityScope` | defines the entities within scope | Currently ENTITY_SCOPE_INDIVIDUALS is the only option |
-| `individualScope` | To be used if the eligible reward recipients should be individuals, and that can then be further focused to determine who is eligible | Currently INDIVIDUAL_SCOPE_ALL is the only option |
+| `entityScope` | Defines the entities within scope, i.e. whether they are in a team or not | ENTITY_SCOPE_INDIVIDUALS; ENTITY_SCOPE_TEAMS |
+| `individualScope` | To be used if the eligible reward recipients should be all participants, individuals, or within a team |  INDIVIDUAL_SCOPE_ALL; INDIVIDUAL_SCOPE_IN_TEAM; INDIVIDUAL_SCOPE_NOT_IN_TEAM |
 | `distributionStrategy` | Sets how the participants should be ranked, and what other factors to consider. Read [distribution method](../../concepts/trading-on-vega/discounts-rewards.md#how-rewards-are-scaled) for more info |  DISTRIBUTION_STRATEGY_PRO_RATA; DISTRIBUTION_STRATEGY_RANK |
 
 #### Example dispatch strategy snippet

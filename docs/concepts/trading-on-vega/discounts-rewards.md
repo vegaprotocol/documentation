@@ -28,11 +28,24 @@ The referral program only exists if it's been enabled through a governance propo
 
 You can see what the current program offers by checking the [referral program API](../../api/rest/data-v2/trading-data-service-get-current-referral-program.api.mdx).
 
-Create a referral code, or enter a referral code you've been given on the [referrals section of Console](https://vegafairground.eth.limo/#/referrals).
-
 :::note Read more
 * [Tutorial: Propose enabling or changing the referral program](../../tutorials/proposals/referral-program-proposal.md)
 * [Spec: Technical design of the referral program ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0083-RFPR-on_chain_referral_program.md).
+:::
+
+### Referral sets and teams
+To benefit from the referral program perks, you'll need to either create a referral set, or join one.
+
+A referral set is made up of the participant who created the set, known as the referrer, and all the referees who signed up using the referral code. Each referral set only has one referrer, but the number of referees is unlimited. 
+
+If you're a referee, you can switch to another referral set by using a different referral code.
+
+When creating a referral set, you can opt to turn the set into a team. Teams get access to rewards that are set to exclude individual participants. Teams can have names and avatars to differentiate themselves on leaderboards.
+
+The team leader, or referrer, can also choose when the team is open or closed to new members.
+
+:::tip Try it out
+Create a referral code, or enter a referral code you've been given on the [referrals section of Console](https://vegafairground.eth.limo/#/referrals).
 :::
 
 ## Trading rewards
@@ -49,6 +62,8 @@ Your reward earnings can grow if you have an activity streak and/or keep earned 
 :::tip Try it out
 [See the available rewards ↗](https://vega.xyz/rewards)
 :::
+
+A reward can be set to be available to individuals, or only to those who are in a team.
 
 Rewards are independent from [fees](./fees.md), which are paid to validators, liquidity providers, and price makers on each trade.
 
@@ -88,6 +103,7 @@ Trading rewards can be defined by the following things:
 * How long a reward is offered
 * How the reward is distributed to those eligible, pro-rata or by rank
 * How many epochs a trader's activity is evaluated
+* If the reward is available to individuals or those on a team
 
 Extra rewards for validators can also be set up. Learn more about them on the [validator scores and rewards page](../vega-chain/validator-scores-and-rewards.md#validator-metric-based-rewards).
 
