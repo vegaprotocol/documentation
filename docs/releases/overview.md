@@ -19,6 +19,13 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Pre-release version 0.73.8 (patch) | 2023-12-05
+Version 0.73.8 was released to the Vega testnet on 05 December, 2023.
+
+This release contains a fix required for the vesting balances API, which was erroneously showing infrastructure fees.
+
+Check out the code change contained in the patch release in the Vega core [0.73.8 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.8) release page.
+
 ### Pre-release version 0.73.7 (patch) | 2023-12-04
 Version 0.73.7 was released to the Vega testnet on 04 December, 2023.
 
