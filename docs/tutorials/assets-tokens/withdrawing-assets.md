@@ -12,15 +12,40 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 import EthAddresses from '@site/src/components/EthAddresses';
 
 :::caution Completing a withdrawal
-Before beginning a withdrawal, it is worth confirming that there's no scheduled network restart or upgrade in the following 48 hours.
+Before beginning a withdrawal, it is worth confirming that there's no scheduled network restart or upgrade in the next 48 hours.
 
 * Withdrawals may be subject to a delay once started.
 * Any withdrawals that are left 'in progress' during a network restart or upgrade will not be visible in any UI or API request. **Your assets will be safe** but you will need to get the details of your transaction. See the instructions below for how to do this.
 :::
 
-The easiest way to withdraw assets is to use the Console trading interface, which will walk you through the process and notify you of progress. However, if you'd like to interact directly with Etherscan instead, use the instructions below.
+## Withdraw your trading assets
+If you want to withdraw assets in your general account, you won't need to do any extra steps.
 
-## What you need
+To remove all assets from your public key, you'll need to close all your open positions, and cancel your liquidity commitments, if you have any.
+
+Console has a step-by-step process to move your assets out of Vega; this is the easiest way to withdraw them. If you want to use Etherscan instead, follow the instructions below.
+
+## Withdraw your rewards [WIP]
+1. Your rewards need to be vested before you can withdraw them. Check the status of the rewards you've earned on [Console - Rewards](https://vegafairground.eth.limo/#/rewards)
+2. Vested rewards need to be claimed. - how?
+transfer rewards to the general account
+
+Console has a step-by-step process to move your assets out of Vega; this is the easiest way to withdraw them. If you want to use Etherscan instead, follow the instructions below.
+
+## Withdrawal delays and thresholds
+Assets can have a withdrawal delay, as well as a withdrawal delay threshold. 
+
+**Withdrawal delay**: Set on the ERC-20 bridge for all assets. It is the time that a withdrawal is delayed once it's started, before it can be completed. You can see the delay by looking at the ERC-20 bridge contract. 
+
+**Withdrawal delay threshold**: Set per asset in its governance proposal. Requesting to withdraw that amount (and above) will trigger a withdrawal delay. If the threshold is 1, that denotes the smallest decimal position for the market's asset, and thus all withdrawals will have a delay. [Query for an asset's details](../../api/rest/data-v2/trading-data-service-get-asset.api.mdx) (under erc20) to see each asset's delay threshold.
+
+If your withdrawal amount is higher than the withdrawal threshold, the multi-signature bundle will only be usable *after* the withdrawal delay has passed, after which the assets can be moved into an Ethereum wallet.
+
+Once the delay time has passed, and if the bundle is valid, the withdrawal **must be completed by submitting the bundle** to Ethereum and paying the gas fee required. 
+
+## Withdraw using Etherscan
+
+### What you need 
 You'll need the following information available:
 * Vega public key you want to withdraw from
 * Vega Wallet connection details (wallet name, passphrase)
@@ -32,19 +57,6 @@ You'll need the following information available:
 The ERC-20 bridge address shown is for the Ethereum network that is compatible with the Vega network these docs are pointing to. 
 
 <EthAddresses frontMatter={frontMatter} show={["ERC20Bridge"]} />
-
-## Withdrawal delays and thresholds
-Assets can have a withdrawal delay, as well as a withdrawal delay threshold. 
-
-**Withdrawal delay**: Set on the ERC-20 bridge for all assets. It is the time that a withdrawal is delayed, once it's begun, before it can be completed. You can see the delay by looking at the ERC-20 bridge contract. 
-
-**Withdrawal delay threshold**: Set per asset in its governance proposal. Requesting to withdraw that amount (and above) will trigger a withdrawal delay. If the threshold is 1, that denotes the smallest decimal position for the market's asset, and thus all withdrawals will have a delay. [Query for an asset's details](../../api/rest/data-v2/trading-data-service-get-asset.api.mdx) (under erc20) to see each asset's delay threshold.
-
-If your withdrawal amount is higher than the withdrawal threshold, the multi-signature bundle will only be usable *after* the withdrawal delay has passed, after which the assets can be moved into an Ethereum wallet.
-
-Once the delay time has passed, and if the bundle is valid, the withdrawal **must be completed by submitting the bundle** to Ethereum and paying the gas fee required. 
-
-## Withdraw using Etherscan
 
 ### Prepare and send withdrawal transaction
 
