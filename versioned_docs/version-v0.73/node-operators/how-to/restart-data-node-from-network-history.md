@@ -85,6 +85,7 @@ AutoInitialiseFromNetworkHistory = true
 
   [NetworkHistory.Initialise]
     TimeOut = "4h"
+    MinimumBlockCount = 10000
 ```
 
 
@@ -132,8 +133,8 @@ Do not use the below block. Select a newer block!
 [statesync]
 enable = true
 rpc_servers = "api0.vega.community:26657,api1.vega.community:26657,api2.vega.community:26657"
-trust_height = 3040600
-trust_hash = "b4b500d8fc84cce3a42b141193db7ba23ff03cc80b70cc817f6536582ebd5eda"
+trust_height = 26530300
+trust_hash = "19d3510c1bda5d05a88429bb5a1f182f9b037c5b0975800cc18fe3bf8c75061b"
 ```
 
 ### 4. Start your node
