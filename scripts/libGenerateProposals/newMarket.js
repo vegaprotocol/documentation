@@ -9,7 +9,6 @@ const p = 'properties'
 
 // Seed data: Some inspirational instrument names and corresponding codes
 const instruments = [
-  { name: "Apples Yearly (2022)", code: "APPLES.22" },
   { name: "Oranges Daily", code: "ORANGES.24h" },
 ];
 
