@@ -8,6 +8,15 @@
  terms: {
   newMarket: {
    changes: {
+    // Successor configuration. If this proposal is meant to succeed a given market, then this should be set.
+    successor: {
+     // ID of the market that the successor should take over from.
+     parentMarketId: "marketid",
+
+     // A decimal value between or equal to 0 and 1, specifying the fraction of the insurance pool balance that is carried over from the parent market to the successor.
+     insurancePoolFraction: "1"
+    },
+
     // Linear slippage factor is used to cap the slippage component of maintenance margin - it is applied to the slippage volume.
     linearSlippageFactor: 0.001,
 
@@ -126,8 +135,8 @@
 
       // Optional new futures market metadata, tags.
       metadata: [
-       "enactment:2023-11-20T17:59:33Z",
-       "settlement:2023-11-19T17:59:33Z",
+       "enactment:2024-01-03T15:20:02Z",
+       "settlement:2024-01-02T15:20:02Z",
        "source:docs.vega.xyz"
       ],
 
@@ -211,11 +220,11 @@
 
    // Timestamp as Unix time in seconds when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-   closingTimestamp: 1700416773,
+   closingTimestamp: 1704208802,
 
    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-   enactmentTimestamp: 1700503173,
+   enactmentTimestamp: 1704295202,
   }
  }
 ```
