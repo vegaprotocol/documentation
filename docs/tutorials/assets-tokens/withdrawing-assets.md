@@ -19,18 +19,22 @@ Before beginning a withdrawal, it is worth confirming that there's no scheduled 
 :::
 
 ## Withdraw your trading assets
-If you want to withdraw assets in your general account, you won't need to do any extra steps.
+If you want to withdraw assets from your general account, you won't need to take any extra steps.
 
 To remove all assets from your public key, you'll need to close all your open positions, and cancel your liquidity commitments, if you have any.
 
 Console has a step-by-step process to move your assets out of Vega; this is the easiest way to withdraw them. If you want to use Etherscan instead, follow the instructions below.
 
-## Withdraw your rewards [WIP]
-1. Your rewards need to be vested before you can withdraw them. Check the status of the rewards you've earned on [Console - Rewards](https://vegafairground.eth.limo/#/rewards)
-2. Vested rewards need to be claimed. - how?
-transfer rewards to the general account
+## Withdraw your rewards
+Assets received as rewards may be locked for a time. Each epoch, a percentage of the locked amount begins vesting. Any amount that is vested is moved into a vested account. From there, you can redeem vested tokens by transferring them into your general account. Then, they can be withdrawn to an Ethereum address.
 
-Console has a step-by-step process to move your assets out of Vega; this is the easiest way to withdraw them. If you want to use Etherscan instead, follow the instructions below.
+1. You can check the status of all your assets using the [Explorer dApp](https://explorer.fairground.wtf) by providing your public key. 
+
+2. Any assets that are listed on Exlorer as in the "Vested account" need to be redeemed. Assets that are locked or vesting can't be moved *yet*. To redeem your vested rewards, go to the rewards page on [Console](https://vegafairground.eth.limo/#/rewards). From there you can transfer those tokens from your vested account into your general account. 
+
+  a. From the Governance dApp, you can click on Redeem on the wallet sidebar. This will take you to Console where you can transfer those tokens to your Vega general account.
+
+3. Assets in your general account on Vega can be withdrawn to your Ethereum address using Console's  step-by-step process. This is the easiest way to withdraw them. If you want to use Etherscan instead, follow the instructions below.
 
 ## Withdrawal delays and thresholds
 Assets can have a withdrawal delay, as well as a withdrawal delay threshold. 
