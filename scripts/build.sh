@@ -65,7 +65,7 @@ yarn run generate-grpc
 yarn run docusaurus clean-api-docs all
 yarn run generate-rest
 
-echo "Skipping automatic proposal generation. Run `yarn run generate-proposals` manually to update them
+echo "Skipping automatic proposal generation. Run `yarn run generate-proposals` manually to update them"
 # yarn run generate-proposals
 yarn run generate-openrpc
 
