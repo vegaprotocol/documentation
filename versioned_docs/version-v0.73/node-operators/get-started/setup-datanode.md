@@ -101,6 +101,22 @@ huge_pages = off
 
 The default value of the `huge_pages` config is `try`. Setting it to `off` usually reduces the RAM usage, however, it increases the CPU usage on the machine.
 
+
+#### Max locks per transaction
+
+New Value:
+
+```conf
+max_locks_per_transaction = 256
+```
+
+This value may change in future to bigger number. It depends on the traffic on the network. See [the official docs](https://postgresqlco.nf/doc/en/param/max_locks_per_transaction/) for reference.
+
+:::note
+When the value is too low, you may end with the following error: `ERROR: out of shared memory (SQLSTATE 53200)`.
+:::
+
+
 #### Work mem
 
 New value:
@@ -142,6 +158,8 @@ New value:
 ```conf
 shared_memory_type = sysv
 ```
+
+
 
 The two above parameters determine how your operating system manages the shared memory.
 
