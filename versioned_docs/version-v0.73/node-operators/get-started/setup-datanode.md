@@ -40,6 +40,7 @@ docker run -d \
     -v $POSTGRES_PATH/data:/var/lib/postgresql/data \
     timescale/timescaledb:2.8.0-pg14 \
         -c "max_connections=50" \
+        -c "max_locks_per_transaction=256" \
         -c "log_destination=stderr" \
         -c "work_mem=5MB" \
         -c "huge_pages=off" \
@@ -101,7 +102,6 @@ huge_pages = off
 
 The default value of the `huge_pages` config is `try`. Setting it to `off` usually reduces the RAM usage, however, it increases the CPU usage on the machine.
 
-
 #### Max locks per transaction
 
 New Value:
@@ -115,7 +115,6 @@ This value may change in future to bigger number. It depends on the traffic on t
 :::note
 When the value is too low, you may end with the following error: `ERROR: out of shared memory (SQLSTATE 53200)`.
 :::
-
 
 #### Work mem
 
