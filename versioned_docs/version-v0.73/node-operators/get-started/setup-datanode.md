@@ -248,6 +248,29 @@ vega datanode start --home=$YOUR_DATANODE_HOME_PATH
 ```
 4. Now start the non validator node and confirm that both apps are running and you can see the block height increasing on both. 
 
+:::warning
+
+We found a bug in the vega network that crashed the mainnet network at block `26439343`. This makes replaying chain from block 0 more complicated. 
+
+```
+cannot unregister order with potential sell + size changes < 0
+```
+
+When your node failed with the above error message the procedure is following:
+
+1. Rollback tendermint block: `vega tm rollback --home <tendermint_home>
+2. Download the [v0.73.6-patch.1](https://github.com/vegaprotocol/vega/releases/tag/v0.73.6-patch.1) binary
+3. Start your node with downloaded binary from block `26439116`, e.g: with the following flag: `--snapshot.load-from-block-height 26439116`
+4. The binary will apply some fixes to the broken transactions, but  the node will fail with the following error: `panic: cannot unregister order with potential sell + size change < 0`.
+5. Reply steps 1-3, but use the [v0.73.6-patch.2](https://github.com/vegaprotocol/vega/releases/tag/v0.73.6-patch.2) binary.
+
+**It is an important to let binary fail with the `v0.73.6-patch.1` binary, or you won't be able to move your node forward!.**
+
+After v0.73.6-patch.2 your node will normally continue replaying.
+:::
+
+
+
 
 ## Starting the data node from network history
 

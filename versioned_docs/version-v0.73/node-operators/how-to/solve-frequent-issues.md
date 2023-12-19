@@ -256,3 +256,14 @@ vega data node stopped with error: failed to flush subscriber:flushing ledger: f
 1. Update your PostgreSQL config file(usually the config is located at `cat /etc/postgresql/14/main/postgresql.conf`). Change the max_locks_per_transaction to a bigger number 256 or more.
 2. Restart your PostgreSQL server
 3. Start your data-node.
+
+## Problem: CONSENSUS FAILURE at block `26439343`
+
+Your node may fail with the following error: `panic: cannot unregister order with potential sell + size change < 0` at block `26439343`.
+If block is different, this is a different issue.
+
+There was a bug in the mainnet that crashed the network. 
+
+### Solution: Apply patches to the mainnet network
+
+See the following procedure: [Apply patches for the consensus failure at block 26439343](../get-started/setup-datanode.md##starting-the-data-node-from-block-0).
