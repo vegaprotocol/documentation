@@ -241,11 +241,11 @@ stopSignalTimeoutSeconds = 15
     binaryName = "vega"
 ```
 
-## Problem: Error in the data-node `ERROR: out of shared memory (SQLSTATE 53200)`
+## Problem: Data node `ERROR: out of shared memory (SQLSTATE 53200)`
 
-The error means a data node sent query to the data base that locks more items in single transaction than your PostgreSQL config allows.
+The error means a data node sent a query to the database that locks more items in single transaction than your PostgreSQL config allows.
 
-You can usually see the simillar error in the data node logs:
+You can usually see a similar error in the data node logs:
 
 ```
 vega data node stopped with error: failed to flush subscriber:flushing ledger: failed to copy "ledger" entries into database: ERROR: out of shared memory (SQLSTATE 53200)
@@ -253,16 +253,16 @@ vega data node stopped with error: failed to flush subscriber:flushing ledger: f
 
 ### Solution: Update the max_locks_per_transaction parameter in the PostgreSQL config
 
-1. Update your PostgreSQL config file(usually the config is located at `cat /etc/postgresql/14/main/postgresql.conf`). Change the max_locks_per_transaction to a bigger number 256 or more.
+1. Update your PostgreSQL config file, usually the config is located at `cat /etc/postgresql/14/main/postgresql.conf`. Change the `max_locks_per_transaction` to a bigger number, such as 256 or more.
 2. Restart your PostgreSQL server
-3. Start your data-node.
+3. Start your data node.
 
 ## Problem: CONSENSUS FAILURE at block `26439343`
 
 Your node may fail with the following error: `panic: cannot unregister order with potential sell + size change < 0` at block `26439343`.
-If block is different, this is a different issue.
+If the block is different, this is a different issue.
 
-There was a bug in the mainnet that crashed the network. 
+There was a mainnet bug that crashed the network. 
 
 ### Solution: Apply patches to the mainnet network
 

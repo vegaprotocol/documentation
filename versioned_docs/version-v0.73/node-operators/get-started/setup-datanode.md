@@ -110,10 +110,10 @@ New Value:
 max_locks_per_transaction = 256
 ```
 
-This value may change in future to bigger number. It depends on the traffic on the network. See [the official docs](https://postgresqlco.nf/doc/en/param/max_locks_per_transaction/) for reference.
+This value may change in the future to a bigger number, depending on the network traffic. See the [Postgres docs ↗](https://postgresqlco.nf/doc/en/param/max_locks_per_transaction/) for reference.
 
-:::note
-When the value is too low, you may end with the following error: `ERROR: out of shared memory (SQLSTATE 53200)`.
+:::note Error state
+When the value is too low, you may see the following error: `ERROR: out of shared memory (SQLSTATE 53200)`.
 :::
 
 #### Work mem
@@ -249,23 +249,19 @@ vega datanode start --home=$YOUR_DATANODE_HOME_PATH
 
 :::warning
 
-We found a bug in the vega network that crashed the mainnet network at block `26439343`. This makes replaying chain from block 0 more complicated. 
+A bug on the Vega network that crashed the mainnet network at block `26439343`. This makes replaying chain from block 0 more complicated. 
 
-```
-cannot unregister order with potential sell + size changes < 0
-```
+If your node fails with this error message, follow the procedure described below: `cannot unregister order with potential sell + size changes < 0`
 
-When your node failed with the above error message the procedure is following:
-
-1. Rollback tendermint block: `vega tm rollback --home <tendermint_home>
-2. Download the [v0.73.6-patch.1](https://github.com/vegaprotocol/vega/releases/tag/v0.73.6-patch.1) binary
+1. Roll back tendermint block: `vega tm rollback --home <tendermint_home>`
+2. Download the [v0.73.6-patch.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.6-patch.1) binary
 3. Start your node with downloaded binary from block `26439116`, e.g: with the following flag: `--snapshot.load-from-block-height 26439116`
-4. The binary will apply some fixes to the broken transactions, but  the node will fail with the following error: `panic: cannot unregister order with potential sell + size change < 0`.
-5. Reply steps 1-3, but use the [v0.73.6-patch.2](https://github.com/vegaprotocol/vega/releases/tag/v0.73.6-patch.2) binary.
+4. The binary will apply some fixes to the broken transactions, but the node will fail with the following error: `panic: cannot unregister order with potential sell + size change < 0`.
+5. Reply steps 1-3, but use the [v0.73.6-patch.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.6-patch.2) binary.
 
-**It is an important to let binary fail with the `v0.73.6-patch.1` binary, or you won't be able to move your node forward!.**
+**It is essential to let the binary fail with the `v0.73.6-patch.1` binary, or you won't be able to move your node forward!**
 
-After v0.73.6-patch.2 your node will normally continue replaying.
+After `v0.73.6-patch.2` your node will continue replaying normally.
 :::
 
 

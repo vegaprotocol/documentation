@@ -110,10 +110,10 @@ New Value:
 max_locks_per_transaction = 256
 ```
 
-This value may change in future to bigger number. It depends on the traffic on the network. See [the official docs](https://postgresqlco.nf/doc/en/param/max_locks_per_transaction/) for reference.
+This value may change in the future to a bigger number, depending on the network traffic. See the [Postgres docs ↗](https://postgresqlco.nf/doc/en/param/max_locks_per_transaction/) for reference.
 
-:::note
-When the value is too low, you may end with the following error: `ERROR: out of shared memory (SQLSTATE 53200)`.
+:::note Error state
+When the value is too low, you may see the following error: `ERROR: out of shared memory (SQLSTATE 53200)`.
 :::
 
 #### Work mem
