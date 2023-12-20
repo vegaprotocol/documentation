@@ -44,6 +44,33 @@ The contents of a `changes` object specifies what will be different after the pr
 
 **Value** is the new value you're proposing that the network parameter should have.
 
+Some network parameters include multiple pieces of information in one value. Changes to one of those network parameters needs to include the correct formatting. You can see how the existing value is formatted on [Explorer ↗](https://explorer.vega.xyz/network-parameters).
+
+For example, a proposal to change the `rewards.activityStreak.benefitTiers` network parameter would look like:
+
+```javascript title="Code sample for multiple values"
+value:
+"{
+  \"tiers\": [
+    {\
+      \"minimum_activity_streak\": 1,
+      \"reward_multiplier\": \"0.05\",
+      \"vesting_multiplier\": \"0.05\"
+    \},
+    {\
+      \"minimum_activity_streak\": 2,
+      \"reward_multiplier\": \"0.10\",
+      \"vesting_multiplier\": \"0.10\"
+    \},
+    {\
+      \"minimum_activity_streak\": 3,
+      \"reward_multiplier\": \"0.20\",
+      \"vesting_multiplier\": \"0.20\"
+    \}
+  ]
+}"
+```
+
 ## Templates and submitting
 In the tabs below you'll see:
 
