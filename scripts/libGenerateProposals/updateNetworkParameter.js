@@ -14,7 +14,7 @@ function updateNetworkParameter(skeleton, proposalSoFar) {
   const result = {
     rationale: {
       title: `Update ${keyToUpdate}`,
-      description: `Proposal to update ${keyToUpdate} to 300}`
+      description: `Proposal to update ${keyToUpdate} to 300`
     },
     terms: {
       updateNetworkParameter: {

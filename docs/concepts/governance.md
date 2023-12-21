@@ -346,3 +346,4 @@ Some network parameters have minimum/maximum boundaries to ensure they aren't su
 | `governance.proposal.(TYPE).minEnact`             | Must be greater than / equal to the corresponding `minClose`, proposal can't be enacted before voting on it has closed. |
 | `governance.proposal.(TYPE).requiredMajority`     | Minimum 0.0, maximum 1.0. Is multiplied by 100 to get percentage. |
 | `governance.proposal.(TYPE).requiredParticipation`| Minimum 0.0, maximum 1.0. Is multiplied by 100 to get percentage. |
+| `rewards.activityStreak.benefitTiers`: `reward_multiplier` | Minimum 1.0. |
