@@ -10,11 +10,11 @@ description: Withdraw staked or claimed VEGA tokens
 
 How to withdraw your VEGA tokens depends on the status of the tokens. You can withdraw any tokens that are *unlocked*, or that are already held by your Ethereum address.
 
-In a nutshell, tokens may be locked for a time.
+In a nutshell, tokens may be locked for a time. How they're locked depends on how you came to receive them.
 
-If your tokens are in the vesting contract, they will need to be unlocked before you can remove them from the Vega network. VEGA in tranches unlocks block by block until each tranche's tokens are fully available.
+If your tokens are in the *vesting contract*, they will need to be unlocked before you can remove them from the Vega network. VEGA in the vesting contract is broken up by tranches, which unlock block by block until each tranche's tokens are fully available.
 
-If you received them as trading rewards, each epoch, a percentage of locked tokens begin vesting. Once they're vested, they are moved into a vested account. From there, you can redeem vested tokens by transferring them into your general account, at which point they can be withdrawn.
+If you received them as *trading rewards*, each epoch, a percentage of locked tokens begin vesting. Once they're vested, they are moved into a vested account. From there, you can redeem vested tokens by transferring them into your general account, at which point they can be withdrawn.
 
 1. Search for your Ethereum address into the redeem page on the [governance dApp](https://governance.fairground.wtf/token/redeem). 
 
