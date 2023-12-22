@@ -3,7 +3,7 @@ title: Withdraw VEGA tokens
 sidebar_position: 5
 hide_title: false
 vega_network: TESTNET
-description: Withdraw staked or claimed VEGA tokens
+description: Withdraw staked, claimed or reward VEGA tokens
 ---
 
 ## Check the status of your VEGA
