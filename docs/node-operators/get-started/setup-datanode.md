@@ -329,9 +329,6 @@ For example:
   ChunkInterval = "2 hours"
 ```
 
-<<<<<<< HEAD
-## Resetting the data node
-=======
 ## Generate config
 To generate the configuration files you need for the data node, you can use the following command:
 
@@ -382,7 +379,6 @@ Data node database configuration is defined under the `[SQLStore.ConnectionConfi
 You should ensure the database configuration matches those of the database you created in the pre-requisite steps.
 
 ### Resetting the data node
->>>>>>> c7bbf785 (remove duplicate)
 :::warning
 Running the following command will remove all data from the data node and is not recoverable.
 :::
