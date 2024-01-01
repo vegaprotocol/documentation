@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
 
 ## What is network history?
 
-Network history is a mechanism in the data node software that allows for sharing chunks of information between other data nodes connected to the network. For example, when you are interested in a specific period of data from the Vega network, you can use network history to download this data from other nodes **if they have it**. Usually, you are interested in the last few blocks required to start a new data node or a data node after a crash - in those cases, you do not need the full network history.
+Network history is a mechanism in the data node software that allows for sharing chunks of information between other data nodes connected to the network. For example, when you are interested in a specific period of data from the Vega network, you can use network history to download this data from other nodes **if they have it**. Usually, you are interested in the last few blocks required to start a new data node or a data node after a crash - in those cases, you do not need the full-network history.
 
 ## Requirements
 
@@ -35,7 +35,7 @@ You must have a data node already configured and running. If you do not have one
 
 ### 1. Stop data node if it is running
 
-If you're using Visor, you must stop it to control your node. 
+If you're using Visor, you must stop it, and it will stop the data-node as well.
 
 Otherwise, you must stop the Vega and data node processes.
 
@@ -57,21 +57,28 @@ systemctl stop vega;
 rm -rf /home/vega/vega_home/state/data-node/
 
 # remove Vega state
-vega unsafe_reset_all --home <vega-home>
+vega unsafe_reset_all --home "YOUR_VEGA_HOME"
 
 # remove Tendermint state
-vega tm unsafe_reset_all --home <tendermint-home>
+vega tm unsafe_reset_all --home "YOUR_TENDERMINT_HOME"
 ```
 
-### 3. Update config
+### 3. Clear the PostgreSQL database
+
+```sql title="PostgreSQL console"
+DROP DATABASE <YOUR_DATANODE_DB_NAME>;
+CREATE DATABASE <YOUR_DATANODE_DB_NAME> WITH owner='<YOUR_DATANODE_SQL_OWNER>'
+```
+
+### 4. Update config
 
 #### a. Data node config
 
-Data node config is located in the `<vega_home>/config/data-node/config.toml` file. 
+Data node config is located in the `YOUR_VEGA_HOME/config/data-node/config.toml` file. 
 
 Update the following parameters in your `config.toml` file for the mainnet data node:
 
-```toml
+```toml title="YOUR_VEGA_HOME/config/data-node/config.toml"
 AutoInitialiseFromNetworkHistory = true
 
 [SQLStore]
@@ -84,22 +91,26 @@ AutoInitialiseFromNetworkHistory = true
 
 
   [NetworkHistory.Initialise]
-    TimeOut = "4h"
+    TimeOut = "96h"
     MinimumBlockCount = 10000
 ```
+
+:::note Number of blocks to sync
+The `NetworkHistory.Initialise.MinimumBlockCount` parameter tells how much blocks your node is going to download before it stats.
+:::
 
 
 #### b. Vega core node config
 
-The config is located in the `<vega_home>/config/node/config.toml`. Update the following parameters in your `config.toml` file for the Vega core for mainnet:
+The config is located in the `YOUR_VEGA_HOME/config/node/config.toml`. Update the following parameters in your `config.toml` file for the Vega core for mainnet:
 
-```toml
+```toml title="YOUR_VEGA_HOME/config/node/config.toml"
 [Snapshot]
   StartHeight = 0
 
 [Broker]
   [Broker.Socket]
-    DialTimeout = "4h"
+    DialTimeout = "96h"
 ```
 
 #### c. Tendermint config
@@ -113,7 +124,7 @@ To update Tendermint, you need to know the trust block and height. To collect th
 
 Then select one of the latest pairs for block height and hash.
 
-Once you have the trusted block, you can update the following parameters in the `<tendermint_home>/config/config.toml` file:
+Once you have the trusted block, you can update the following parameters in the `YOUR_TENDERMINT_HOME/config/config.toml` file:
 
 ```toml
 [statesync]
@@ -137,7 +148,16 @@ trust_height = 26530300
 trust_hash = "19d3510c1bda5d05a88429bb5a1f182f9b037c5b0975800cc18fe3bf8c75061b"
 ```
 
-### 4. Start your node
+#### d. Vegavisor config
+
+The config is located in `YOUR_VEGAVISOR_HOME/config.toml`
+
+```toml title="YOUR_VEGAVISOR_HOME/config.toml"
+maxNumberOfFirstConnectionRetries = 172800
+...
+```
+
+### 5. Start your node
 
 :::caution Start data node
 If you are not using Visor, you MUST start your data node before starting the Vega core.
@@ -152,7 +172,7 @@ systemctl start data-node;
 systemctl start vega;
 ```
 
-Your node should start in a several minutes.
+Your node should start in a several minutes depending on how much blocks you are going to sync.
 
 :::info
 If you use Visor, you may see the following messages in the logs; please ignore them. It is just Visor checking if node has already started:
@@ -172,7 +192,7 @@ This step is critical, otherwise you may end with a corrupted node after next re
 
 #### a. Disable statesync in Tendermint config
 
-Open the `<tendermint_home>/config/config.toml` file and update the following parameter:
+Open the `YOUR_TENDERMINT_HOME/config/config.toml` file and update the following parameter:
 
 ```toml
 [statesync]
@@ -181,7 +201,7 @@ enable = false
 
 #### b. Disable wiping the data node database
 
-Open the `<vega_home>/config/data-node/config.toml` file and update the following parmater:
+Open the `YOUR_VEGA_HOME/config/data-node/config.toml` file and update the following parmater:
 
 ```toml
 AutoInitialiseFromNetworkHistory = false

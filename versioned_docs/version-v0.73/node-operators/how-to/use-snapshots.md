@@ -81,6 +81,8 @@ The default action when starting a node is for it to load from the latest snapsh
 
 As an example, if the local snapshot list looks like the below:
 ```shell
+# vega tools snapshot --home="YOUR_VEGA_HOME"
+
 Snapshots available: 2
 	Height 901, version: 4, size 92, hash: 562414bb5be3ccc8403fbd030d06eebc799bfef5ca25b02ad360fec349cb4bc8
 	Height 601, version: 3, size 92, hash: 72a2edd960cf3340ae94bf092991f923850738144789959124590675798fefd9
