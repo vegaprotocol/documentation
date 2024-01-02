@@ -19,17 +19,29 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Release version 0.73.10 (patch) | 2023-12-10
+Version 0.73.10 was released by the validators to mainnet on 28 December, 2023.
+
+The version contained the following improvements:
+
+* Market update proposals will now apply the correct equity-like-share threshold when accounting for votes, [10257 ↗](https://github.com/vegaprotocol/vega/issues/10257).
+* The `aggregationEpochs` now does not count the start epoch to avoid a discrapancy between `totalRefereeNotionalTakerVolume` (aka `PeriodVolume`) and the sum of `epochNotionalTakerVolumes`, [10241 ↗](https://github.com/vegaprotocol/vega/issues/10241).
+
+Check out the full details of what is contained in the patch release in the Vega core [0.73.10 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.10) release page.
+
 ### Release version 0.73.9 (patch) | 2023-12-09
 Version 0.73.9 was released by the validators to mainnet on 09 December, 2023.
 
 This release contains several fixes and improvements, including one to resolve a [mainnet incident ↗](https://blog.vega.xyz/incident-report-network-outage-991097f8cf5c).
 
-The version contained the following improvements: 
+The version contained the following improvements:
 * Closed markets will not be subscribed to data sources when restored from a snapshot, [10166 ↗](https://github.com/vegaprotocol/vega/issues/10166).
 * Added validation so that order sizes are not unrealistically large, [10177 ↗](https://github.com/vegaprotocol/vega/issues/10177).
 * Ensured infra fees don't get counted for vesting, [10211 ↗](https://github.com/vegaprotocol/vega/issues/10211).
 Volume discount stats no longer show volumes when party doesn't qualify for a discount tier, [10218 ↗](https://github.com/vegaprotocol/vega/issues/10218).
 * Fixed expiring stop orders panic, [10233 ↗](https://github.com/vegaprotocol/vega/issues/10233).
+
+Check out the full details of what is contained in the patch release in the Vega core [0.73.9 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.9) release page.
 
 ### Release version 0.73.6 (patch) | 2023-11-23
 Version 0.73.6 was released by the validators to mainnet on 23 November, 2023.
