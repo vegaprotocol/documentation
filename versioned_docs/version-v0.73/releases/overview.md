@@ -24,7 +24,7 @@ Version 0.73.10 was released by the validators to mainnet on 28 December, 2023.
 
 The version contained the following improvements:
 
-* Market update proposlas will now apply the correct equity-like-share threshold when accounting for votes, [10257 ↗](https://github.com/vegaprotocol/vega/issues/10257).
+* Market update proposals will now apply the correct equity-like-share threshold when accounting for votes, [10257 ↗](https://github.com/vegaprotocol/vega/issues/10257).
 * The `aggregationEpochs` now does not count the start epoch to avoid a discrapancy between `totalRefereeNotionalTakerVolume` (aka `PeriodVolume`) and the sum of `epochNotionalTakerVolumes`, [10241 ↗](https://github.com/vegaprotocol/vega/issues/10241).
 
 Check out the full details of what is contained in the patch release in the Vega core [0.73.10 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.10) release page.
