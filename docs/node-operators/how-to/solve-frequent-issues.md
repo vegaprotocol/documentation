@@ -240,3 +240,19 @@ stopSignalTimeoutSeconds = 15
     name = "vega-linux-amd64.zip"
     binaryName = "vega"
 ```
+
+## Problem: Data node `ERROR: out of shared memory (SQLSTATE 53200)`
+
+The error means a data node sent a query to the database that locks more items in single transaction than your PostgreSQL config allows.
+
+You can usually see a similar error in the data node logs:
+
+```
+vega data node stopped with error: failed to flush subscriber:flushing ledger: failed to copy "ledger" entries into database: ERROR: out of shared memory (SQLSTATE 53200)
+```
+
+### Solution: Update the max_locks_per_transaction parameter in the PostgreSQL config
+
+1. Update your PostgreSQL config file. This is usually the config is located at `cat /etc/postgresql/14/main/postgresql.conf`). Change the max_locks_per_transaction to a bigger number, such as 256 or higher.
+2. Restart your PostgreSQL server
+3. Start your data node.
