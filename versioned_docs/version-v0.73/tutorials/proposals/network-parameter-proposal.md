@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-title: Update network parameter
+title: Change network parameter
 vega_network: MAINNET
 hide_title: true
 keywords:
@@ -46,7 +46,7 @@ The contents of a `changes` object specifies what will be different after the pr
 
 Some network parameters include multiple pieces of information in one value. Changes to one of those network parameters needs to include the correct formatting. You can see how the existing value is formatted on [Explorer ↗](https://explorer.vega.xyz/network-parameters).
 
-For example, a proposal to change the `rewards.activityStreak.benefitTiers` network parameter would look like:
+For example, a proposal to change the `rewards.activityStreak.benefitTiers` network parameter would include a value that looks like the following, using escaped JSON:
 
 ```json title="Code sample for multiple values"
 "value": 
