@@ -73,7 +73,7 @@ These tiers are set through network parameters, and thus can be changed through 
 :::tip Try it out
 [Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)
 
-Note: You'll need to format your proposal to include multiple data in the value field.
+Note: You'll need to format your proposal using JSON to include multiple tiers in the value field.
 :::
 
 ## Activity streak 
@@ -92,7 +92,7 @@ The details for activity streaks are set through network parameters, and thus ca
 :::tip Try it out
 [Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)
 
-Note: You'll need to format your proposal to include multiple data in the value field. 
+Note: You'll need to format your proposal using JSON to include multiple tiers in the value field.
 :::
 
 ## Setting rewards
