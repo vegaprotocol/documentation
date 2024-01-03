@@ -20,7 +20,9 @@ Before beginning a withdrawal, it is worth confirming that there's no scheduled 
 ## Withdraw your trading assets
 If you want to withdraw assets from your general account, you won't need to take any extra steps.
 
-To remove all assets from your public key, you'll need to close all your open positions, and cancel your liquidity commitments, if you have any.
+To remove all assets from your public key, you'll need to close all your open positions, cancel your liquidity commitments, if you have any, and redeem your vested staking and trading rewards.
+
+If you plan to stop using the key entirely, check if you have any [VEGA tokens](./withdrawing-vega-tokens.md#check-the-status-of-your-vega) connected to it.
 
 Console has a step-by-step process to move your assets out of Vega; this is the easiest way to withdraw them. If you want to use Etherscan instead, follow the instructions below.
 
