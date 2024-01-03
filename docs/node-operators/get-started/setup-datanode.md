@@ -344,7 +344,56 @@ For example:
   ChunkInterval = "2 hours"
 ```
 
-## Resetting the data node
+## Generate config
+To generate the configuration files you need for the data node, you can use the following command:
+
+```shell
+vega datanode init --home="YOUR_DATA_NODE_HOME_PATH" "CHAIN_ID"
+```
+
+Find the `CHAIN_ID` by going to the relevant network genesis file in the relevant networks repo.
+
+Visit [networks ↗](https://github.com/vegaprotocol/networks/) for mainnet and other validator-run networks, or [networks-internal ↗](https://github.com/vegaprotocol/networks-internal) for Vega-run testnet networks.
+
+To update your data node configuration, such as to set up ports for the APIs or database credentials, edit the config file:
+
+```shell
+"YOUR_DATA_NODE_HOME_PATH"/config/data-node/config.toml
+```
+
+## Configure nodes
+
+### Vega
+To configure your Vega node to work with a data node you need to update the `[Broker.Socket]` section of the Vega configuration file `YOUR_VEGA_HOME_PATH/config/node/config.toml` from false to:
+
+```toml
+  [Broker.Socket]
+    ...
+    Enabled = true
+    ...
+```
+
+:::note
+While it's possible to run the data node and Vega node on separate machines, it's not recommended given the volume of data that will be transferred between the two.
+:::
+
+### Data node database
+Data node database configuration is defined under the `[SQLStore.ConnectionConfig]` section of the data node configuration file `YOUR_DATA_NODE_HOME_PATH/config/data-node/config.toml`:
+
+```toml
+  [SQLStore.ConnectionConfig]
+    Host = "localhost"
+    Port = 5432
+    Username = "USERNAME"
+    Password = "PASSWORD"
+    Database = "DATABASE_NAME"
+    MaxConnLifetime = "30m0s"
+    MaxConnLifetimeJitter = "5m0s"
+```
+
+You should ensure the database configuration matches those of the database you created in the pre-requisite steps.
+
+### Resetting the data node
 :::warning
 Running the following command will remove all data from the data node and is not recoverable.
 :::
