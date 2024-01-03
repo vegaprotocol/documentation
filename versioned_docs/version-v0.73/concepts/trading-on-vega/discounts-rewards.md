@@ -14,7 +14,9 @@ You can offset some of the [fees](./fees.md) you pay, or earn even more, by rece
 You can earn a commission for referring new users when a referral program is enabled. New users get a discount on their fees, while whoever refers them gets a cut of their referees’ trading fees. How much commission the referrer receives is increased if they have VEGA associated to their public key.
 
 :::tip Refer a friend
-Get benefits for referring, or being referred. In the [referrals section of Console](https://vegaprotocol.eth.limo/#/referrals), you can:
+Get benefits for referring, or being referred. 
+
+In the [referrals section of Console](https://vegaprotocol.eth.limo/#/referrals), you can:
 * Create a code to refer others 
 * Enter a code you've been given
 :::
@@ -71,6 +73,12 @@ You can see the current reward hoarder bonus requirements and benefits on the [b
 
 These tiers are set through network parameters, and thus can be changed through [governance](../governance.md#network-parameter-governance).
 
+:::tip Try it out
+**[Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)**
+
+Note: You'll need to format your proposal to include multiple data in the value field.
+:::
+
 ## Activity streak 
 Traders that keep up an activity streak, either by placing trades or keeping a position open over several epochs, can receive a greater share of rewards and their locked reward proceeds will be available sooner.
 
@@ -83,6 +91,12 @@ If you go inactive for more than <NetworkParameter frontMatter={frontMatter} par
 You can see the current activity streak requirements and benefits on the [block explorer ↗](https://explorer.vega.xyz/network-parameters#rewards.activityStreak.benefitTiers), or querying the [network parameters API](../../api/rest/data-v2/trading-data-service-list-network-parameters.api.mdx) for the `rewards.activityStreak.benefitTiers` network parameter.
 
 The details for activity streaks are set through network parameters, and thus can be changed through [governance](../governance.md#network-parameter-governance).
+
+:::tip Try it out
+**[Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)**
+
+Note: You'll need to format your proposal to include multiple data in the value field.
+:::
 
 ## Setting rewards
 Rewards can be set up by anyone to incentivise certain trading behaviours they want to see on a market (or markets). 

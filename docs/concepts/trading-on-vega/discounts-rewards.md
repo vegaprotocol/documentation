@@ -70,6 +70,12 @@ You can see the current reward hoarder bonus requirements and benefits on the [b
 
 These tiers are set through network parameters, and thus can be changed through [governance](../governance.md#network-parameter-governance).
 
+:::tip Try it out
+[Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)
+
+Note: You'll need to format your proposal using JSON to include multiple tiers in the value field.
+:::
+
 ## Activity streak 
 Traders that keep up an activity streak, either by placing trades or keeping a position open over several epochs, can receive a greater share of rewards and their locked reward proceeds will be available sooner.
 
@@ -82,6 +88,12 @@ If you go inactive for more than <NetworkParameter frontMatter={frontMatter} par
 You can see the current activity streak requirements and benefits on the [block explorer ↗](https://explorer.fairground.wtf/network-parameters#rewards.activityStreak.benefitTiers), or querying the [network parameters API](../../api/rest/data-v2/trading-data-service-list-network-parameters.api.mdx) for the `rewards.activityStreak.benefitTiers` network parameter.
 
 The details for activity streaks are set through network parameters, and thus can be changed through [governance](../governance.md#network-parameter-governance).
+
+:::tip Try it out
+[Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)
+
+Note: You'll need to format your proposal using JSON to include multiple tiers in the value field.
+:::
 
 ## Setting rewards
 Rewards can be set up by anyone to incentivise certain trading behaviours they want to see on a market (or markets). 
@@ -102,7 +114,7 @@ Some rewards measure trader activity over a number of epochs (set per reward). T
 
 :::tip Try it out
 * [How to fund rewards](#how-to-fund-rewards)
-* [Set up a reward transfer](../../tutorials/assets-tokens/transferring-assets.md)
+* [Tutorial: Set up a reward transfer](../../tutorials/assets-tokens/transferring-assets.md)
 :::
 
 ### How rewards are scaled
