@@ -19,6 +19,14 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Pre-release version 0.73.10 (patch) | 2023-12-21
+Version 0.73.10 was released the Vega testnet on 21 December, 2023.
+
+The version contained the following improvements:
+
+* Fix the equity-like share votes count on update market proposals, [10257 ↗](https://github.com/vegaprotocol/vega/issues/10257).
+* Do not include start epoch on referees set statistics API, [10241 ↗](https://github.com/vegaprotocol/vega/issues/10241).
+
 ### Pre-release version 0.73.9 (patch) | 2023-12-08
 Version 0.73.9 was released the Vega testnet on 08 December, 2023.
 
