@@ -2,7 +2,7 @@
 title: Vega protocol
 sidebar_label: Welcome
 ---
-import {FeatureList, Column, Feature} from "@site/src/components/featurelist"
+import {FeatureList, Column, Feature} from "@site/src/components/FeatureList"
 
 Welcome! This site documents how the Vega protocol works.
 
