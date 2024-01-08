@@ -15,7 +15,7 @@ The market lifecycle begins when a proposal for a new market is accepted, and is
 | [Pending](#market-status-pending)            |   ✅          | Opening auction     | Governance vote passes                                     | Governance vote OR enactment date reached
 | [Cancelled](#market-status-cancelled)            |   ❌          | No trading     | Market trigger for a cancellation       | N/A
 | [Active](#market-status-active)             |   ✅          | Normal trading (such as continuous)     | Enactment date reached and usual auction exit checks pass       | Maturity of market      
-| [Suspended](#market-status-suspended)          |   ✅          | Exceptional auction | Price monitoring or liquidity monitoring trigger, or product lifecycle trigger                | Exit conditions met per monitoring spec. that triggered it, no other monitoring triggered or governance vote if allowed (see below)
+trigger, or product lifecycle trigger                | Exit conditions met per [monitoring requirements](./market-protections.md) that triggered it, no other monitoring triggered or governance vote if allowed (see below)
 | [Trading Terminated](#market-status-trading-terminated) |   ❌           | No trading          | Defined by the product (i.e. from a product parameter, specified in market definition, giving close date/time) | Settlement event commences                       
 | [Settled](#market-status-settled)            |   ❌           | No trading          | Settlement triggered and completed as defined by product                                      | N/A                                            
 
@@ -97,7 +97,7 @@ An active market status indicates it is in continuous trading.
 
 ### Enters active state
 - From `Pending`: enactment date reached and conditions to transition from pending to active are met
-- From `Suspended`: conditions specified in [price monitoring](../trading-on-vega/market-protections.md#price-monitoring), and [liquidity monitoring](../trading-on-vega/market-protections.md#liquidity-monitoring) are met for the market to exit the suspended status back to active
+- From `Suspended`: conditions specified in [price monitoring](../trading-on-vega/market-protections.md#price-monitoring) are met for the market to exit the suspended status back to active
 
 ### What is and isn't possible
 - Liquidity providers can submit, amend, or cancel commitments 
@@ -107,7 +107,7 @@ An active market status indicates it is in continuous trading.
 - Changes to a market configuration can be enacted through governance
 
 ### Exits active state
-- Price or liquidity monitoring triggers suspension → [Suspended](#market-status-suspended)
+- Price monitoring triggers suspension → [Suspended](#market-status-suspended)
 - Trading termination or settlement, triggered if the trading termination date or settlement price is reached → [Trading Terminated](#market-status-trading-terminated) | [Settled](#market-status-settled)
 
 ## Market status: Suspended
@@ -116,7 +116,7 @@ A market is `suspended` when an active market is temporarily stopped from tradin
 Suspended markets are in auction. Depending on the type of suspension, the auction call period may have a defined end (but can be extended) or may be indefinite until the required conditions are met. The auction is uncrossed as part of the transition back to the active state and normal trading.
 
 ### Enters suspended state
-- Price or liquidity monitoring triggers suspension
+- Price monitoring triggers suspension
 
 ### What is and isn't possible
 - Liquidity providers can submit, amend, or cancel commitments 
@@ -124,7 +124,7 @@ Suspended markets are in auction. Depending on the type of suspension, the aucti
 - Changes to a market configuration can be enacted through governance
 
 ### Exits suspended state
-- Conditions specified in price monitoring and liquidity monitoring and end of auction checks are met → [Active](#market-status-active) 
+- Conditions specified in price monitoring and end of auction checks are met → [Active](#market-status-active) 
 
 ## Market status: Trading Terminated
 A market may enter `trading terminated` if the instrument expires or the market is otherwise configured to have a finite lifetime. 
@@ -145,7 +145,7 @@ Perpetuals markets can only be terminated if a governance proposal to terminate 
 - Mark to market settlement happens once if required after termination is triggered, then never again
 - A single set of market data may be emitted for the final settlement data (e.g. settlement mark price), after which no market data are emitted
 - No trading occurs, no orders are accepted
-- No risk management or price/liquidity monitoring occurs
+- No risk management or price monitoring occurs
 
 ### Exits trading terminated state
 - During the transition out of this state:

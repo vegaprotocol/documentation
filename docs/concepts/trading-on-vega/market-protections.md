@@ -13,7 +13,7 @@ The Vega protocol has been designed with rules to detect dangerous market condit
 
 Margin calculations take into account the probability of the liquidation value of a position falling short of the available capital. The network is also designed to frequently re-evaluate each individual's risk, and preemptively close positions.
 
-Some of those measures include price monitoring, liquidity monitoring, and frequent mark to market calculations.
+Some of those measures include price monitoring and frequent mark to market calculations.
 <!--
 :::note Read more
 * [Margin on Vega](./positions-margin#margin)
@@ -89,25 +89,6 @@ The images below show how according to the risk model, 90%, 95%, or 99% of the p
 
 </p>
 </details>
-
-## Liquidity monitoring
-Besides the obvious appeal to traders, a liquid market also offers some risk management, particularly in a system that does not have a central counterparty. When a trader is distressed, their position can only be liquidated if there is enough volume on the order book to offload it. 
-
-In order to ensure there is enough liquidity to keep a market active and protect against insolvent parties, the network must be able to detect when the market's liquidity is too low.
-
-The liquidity mechanics of the Vega protocol mean there is an incentive (through fee-setting) to provide the necessary liquidity.
-
-Another risk mitigation is the use of liquidity monitoring auctions to seek more liquidity orders. This happens when the total supplied stake by all liquidity providers is below the target stake (a multiple of the maximum open interest over a period of time set by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.stake.target.timeWindow" />). 
-
-How likely a market is to enter into a liquidity monitoring auction is also dependent on the value of the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.targetstake.triggering.ratio" hideValue={true} /> network parameter, which defines how sensitive the auction trigger is.
-
-When a market is illiquid, it enters into a liquidity monitoring auction, and terminates that auction when the market liquidity level is back at a sufficiently high level.
-
-If a market enters into a liquidity auction and never again attracts enough liquidity to exit it, the market will stay in a liquidity auction until the market's settlement. Once the market's settlement price is emitted by the data source, then all market participants are settled based on their positions and account balances.
-
-:::note Read more
-[Concept: Liquidity mechanism and earning fee revenue](../liquidity/index.md)
-:::
 
 ## Distressed traders
 If a trader's available margin on a market is below the closeout level and cannot be replenished, that trader is considered to be distressed.

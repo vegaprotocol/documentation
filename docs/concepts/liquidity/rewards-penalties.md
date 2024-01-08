@@ -154,11 +154,7 @@ If the liquidity provider's margin account doesn't have enough funds to support 
 
 The liquidity obligation will remain unchanged and the protocol will periodically search the liquidity provider's general account and attempt to top up the bond account to the amount specified in your liquidity commitment.
 
-Should the funds in the bond account drop to 0, you will be marked for closeout and your orders will be cancelled. If this puts the market into a state where it isn’t meeting the target stake, the market will go into a liquidity monitoring auction. If this happens while the market is transitioning from auction mode to continuous trading, you will not be penalised.
-
-:::note Read more
-[Concept: Liquidity monitoring](./../trading-on-vega/market-protections#liquidity-monitoring)
-:::
+Should the funds in the bond account drop to 0, you will be marked for closeout and your orders will be cancelled. If this happens while the market is transitioning from auction mode to continuous trading, you will not be penalised.
 
 #### Calculation of penalty for not supporting orders
 The penalty formula defines how much will be removed from the bond account:
