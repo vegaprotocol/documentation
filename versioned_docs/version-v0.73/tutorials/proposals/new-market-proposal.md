@@ -127,6 +127,7 @@ After the market has terminated, update the price by:
 
 :::info Submitting data
 Learn how to find and submit data in the [using data sources tutorial](../using-data-sources.md).
+:::
 
 ### Liquidity monitoring
 The liquidity monitoring settings detect when the market's liquidity drops below the safe level, and as such when to launch a 'liquidity seeking' auction. See below for more details on each field.
