@@ -1,10 +1,30 @@
 #!/usr/bin/env bash
+hide_send_button() {
+    local file_path="$1"
+    local line_to_add="hide_send_button: true"
+
+    # Check if the line already exists in the file
+    if ! grep -qF -- "$line_to_add" "$file_path"; then
+        echo "Add $line_to_add to $file_path"
+        # If the line does not exist, insert it at the second line of the file
+        sed -i "-E" "2i\\
+$line_to_add
+        " "$file_path"
+    fi
+}
 
 find 'specs' -name '*_temp.json' -exec rm {} +
 
 echo "- REST: Hide submit buttons for observe endpoints"
-find "docs/api/rest/data-v2/" -name "trading-data-service-observe-*.mdx" -exec sed -i -E 's/hide_title: true/hide_title: true\r\nhide_send_button: true/g' {} +
-#find "versioned_docs" -name "trading-data-service-observe-*.mdx" -exec sed -i -E 's/hide_title: true/hide_title: true\r\nhide_send_button: true/g' {} +
+find "docs/api/rest/data-v2/" -name "trading-data-service-observe-*.mdx" | while read -r file; do hide_send_button "$file"; done
+find "versioned_docs" -name "trading-data-service-observe-*.mdx" | while read -r file; do hide_send_button "$file"; done
+
+echo "- REST: Hide submit buttons for export ledger entries endpoint"
+find "docs/api/rest/data-v2/" -name "trading-data-service-export-ledger-entries.api.mdx" | while read -r file; do hide_send_button "$file"; done 
+find "versioned_docs" -name "trading-data-service-export-ledger-entries.api.mdx" | while read -r file; do hide_send_button "$file"; done 
+
+echo "- REST: Hide submit buttons for mainnet core state api"
+find "versioned_docs" -name "core-state-service-*.mdx" | while read -r file; do hide_send_button "$file"; done 
 
 echo "- REST: Hide submit buttons for export ledger entries endpoint"
 find "docs/api/rest/data-v2/" -name "trading-data-service-export-ledger-entries.api.mdx" -exec sed -i -E 's/hide_title: true/hide_title: true\r\nhide_send_button: true/g' {} +
