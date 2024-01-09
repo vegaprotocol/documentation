@@ -48,7 +48,7 @@ echo ""
 
 # Inject more testnet servers for testnet
 ## Run vaguer and store the output
-./scripts/build-pre-vaguer.sh
+#./scripts/build-pre-vaguer.sh
 
 
 # Generate OpenAPI from swagger 
