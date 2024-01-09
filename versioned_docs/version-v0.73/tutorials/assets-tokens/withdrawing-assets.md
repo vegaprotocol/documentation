@@ -31,11 +31,11 @@ Assets received as rewards may be locked for a time. Each epoch, a percentage of
 
 1. You can check the status of all your assets using the [Explorer dApp](https://explorer.vega.xyz) by providing your public key. 
 
-2. Any assets that are listed on Exlorer as in the "Vested account" need to be redeemed. Assets that are locked or vesting can't be moved *yet*. To redeem your vested rewards, go to the rewards page on [Console](https://vegaprotocol.eth.limo/#/rewards). From there you can transfer those tokens from your vested account into your general account. 
+2. Any assets that are listed on Explorer as in the "Vested account" need to be redeemed. Assets that are locked or vesting can't be moved *yet*. To redeem your vested rewards, go to the rewards page on [Console](https://vegaprotocol.eth.limo/#/rewards). From there you can transfer those tokens from your vested account into your general account by clicking on "redeem rewards".
 
-  a. From the Governance dApp, you can click on Redeem on the wallet sidebar. This will take you to Console where you can transfer those tokens to your Vega general account.
+  a. From the Governance dApp, you can click on Redeem on the wallet sidebar. This will take you to Console where you can transfer those assets to your Vega general account.
 
-3. Assets in your general account on Vega can be withdrawn to your Ethereum address using Console's  step-by-step process. This is the easiest way to withdraw them. If you want to use Etherscan instead, follow the instructions below.
+3. Assets in your general account on Vega can be withdrawn to your Ethereum address using Console's step-by-step process. This is the easiest way to withdraw them. If you want to use Etherscan instead, follow the instructions below.
 
 ## Withdrawal delays and thresholds
 Assets can have a withdrawal delay, as well as a withdrawal delay threshold. 
