@@ -17,10 +17,40 @@ Before beginning a withdrawal, it is worth confirming that there's no scheduled 
 * Withdrawals may be subject to a delay once started.
 * Any withdrawals that are left 'in progress' during a network restart or upgrade will not be visible in any UI or API request. **Your assets will be safe** but you will need to get the details of your transaction. See the instructions below for how to do this.
 :::
+## Withdraw your trading assets
+If you want to withdraw assets from your general account, you won't need to take any extra steps.
 
-The easiest way to withdraw assets is to use the Console trading interface, which will walk you through the process and notify you of progress. However, if you'd like to interact directly with Etherscan instead, use the instructions below.
+To remove all assets from your public key, you'll need to close all your open positions, cancel your liquidity commitments, if you have any, and redeem your vested staking and trading rewards.
 
-## What you need
+If you plan to stop using the key entirely, check if you have any [VEGA tokens](./withdrawing-vega-tokens.md#check-the-status-of-your-vega) connected to it.
+
+Console has a step-by-step process to move your assets out of Vega; this is the easiest way to withdraw them. If you want to use Etherscan instead, follow the instructions below.
+
+## Withdraw your rewards
+Assets received as rewards may be locked for a time. Each epoch, a percentage of the locked amount begins vesting. Any amount that is vested is moved into a vested account. From there, you can redeem vested tokens by transferring them into your general account. Then, they can be withdrawn to an Ethereum address.
+
+1. You can check the status of all your assets using the [Explorer dApp](https://explorer.vega.xyz) by providing your public key. 
+
+2. Any assets that are listed on Explorer as in the "Vested account" need to be redeemed. Assets that are locked or vesting can't be moved *yet*. To redeem your vested rewards, go to the rewards page on [Console](https://vegaprotocol.eth.limo/#/rewards). From there you can transfer those tokens from your vested account into your general account by clicking on "redeem rewards".
+
+  a. From the Governance dApp, you can click on Redeem on the wallet sidebar. This will take you to Console where you can transfer those assets to your Vega general account.
+
+3. Assets in your general account on Vega can be withdrawn to your Ethereum address using Console's step-by-step process. This is the easiest way to withdraw them. If you want to use Etherscan instead, follow the instructions below.
+
+## Withdrawal delays and thresholds
+Assets can have a withdrawal delay, as well as a withdrawal delay threshold. 
+
+**Withdrawal delay**: Set on the ERC-20 bridge for all assets. It is the time that a withdrawal is delayed once it's started, before it can be completed. You can see the delay by looking at the ERC-20 bridge contract. 
+
+**Withdrawal delay threshold**: Set per asset in its governance proposal. Requesting to withdraw that amount (and above) will trigger a withdrawal delay. If the threshold is 1, that denotes the smallest decimal position for the market's asset, and thus all withdrawals will have a delay. [Query for an asset's details](../../api/rest/data-v2/trading-data-service-get-asset.api.mdx) (under erc20) to see each asset's delay threshold.
+
+If your withdrawal amount is higher than the withdrawal threshold, the multi-signature bundle will only be usable *after* the withdrawal delay has passed, after which the assets can be moved into an Ethereum wallet.
+
+Once the delay time has passed, and if the bundle is valid, the withdrawal **must be completed by submitting the bundle** to Ethereum and paying the gas fee required. 
+
+## Withdraw using Etherscan
+
+### What you need 
 You'll need the following information available:
 * Vega public key you want to withdraw from
 * Vega Wallet connection details (wallet name, passphrase)
@@ -32,19 +62,6 @@ You'll need the following information available:
 The ERC-20 bridge address shown is for the Ethereum network that is compatible with the Vega network these docs are pointing to. 
 
 <EthAddresses frontMatter={frontMatter} show={["ERC20Bridge"]} />
-
-## Withdrawal delays and thresholds
-Assets can have a withdrawal delay, as well as a withdrawal delay threshold. 
-
-**Withdrawal delay**: Set on the ERC-20 bridge for all assets. It is the time that a withdrawal is delayed, once it's begun, before it can be completed. You can see the delay by looking at the ERC-20 bridge contract. 
-
-**Withdrawal delay threshold**: Set per asset in its governance proposal. Requesting to withdraw that amount (and above) will trigger a withdrawal delay. If the threshold is 1, that denotes the smallest decimal position for the market's asset, and thus all withdrawals will have a delay. [Query for an asset's details](../../api/rest/data-v2/trading-data-service-get-asset.api.mdx) (under erc20) to see each asset's delay threshold.
-
-If your withdrawal amount is higher than the withdrawal threshold, the multi-signature bundle will only be usable *after* the withdrawal delay has passed, after which the assets can be moved into an Ethereum wallet.
-
-Once the delay time has passed, and if the bundle is valid, the withdrawal **must be completed by submitting the bundle** to Ethereum and paying the gas fee required. 
-
-## Withdraw using Etherscan
 
 ### Prepare and send withdrawal transaction
 

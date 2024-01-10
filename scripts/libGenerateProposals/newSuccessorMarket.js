@@ -34,6 +34,10 @@ function newSuccessorMarket(skeleton, proposalSoFar) {
     terms: {
       newMarket: {
         changes: {
+          successor: {
+            parentMarketId: "marketid",
+            insurancePoolFraction: "1"
+          },
           linearSlippageFactor: "0.001",
           quadraticSlippageFactor: "0",
           decimalPlaces: "5",
@@ -69,6 +73,13 @@ function newSuccessorMarket(skeleton, proposalSoFar) {
   result.terms.newMarket[inspect.custom] = () => {
     return `{
         changes: {
+          // ${skeleton.properties.changes.properties.successor.description}
+          successor: {
+            // ${skeleton.properties.changes.properties.successor.properties.parentMarketId.description}
+            parentMarketId: "${result.terms.newMarket.changes.successor.parentMarketId}",
+            // ${skeleton.properties.changes.properties.successor.properties.insurancePoolFraction.description}
+            insurancePoolFraction: "${result.terms.newMarket.changes.successor.insurancePoolFraction}"
+          },
           // ${skeleton.properties.changes.properties.linearSlippageFactor.description}
           linearSlippageFactor: ${result.terms.newMarket.changes.linearSlippageFactor},
           // ${skeleton.properties.changes.properties.quadraticSlippageFactor.description}

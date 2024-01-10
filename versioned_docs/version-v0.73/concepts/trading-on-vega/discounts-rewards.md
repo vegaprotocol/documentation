@@ -10,8 +10,28 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 
 You can offset some of the [fees](./fees.md) you pay, or earn even more, by receiving rewards based on trading activity. Rewards can be funded by anyone, and can be in any asset. You can see what rewards are currently available on [vega.xyz ↗](https://vega.xyz/rewards).
 
+## Referral program
+You can earn a commission for referring new users when a referral program is enabled. New users get a discount on their fees, while whoever refers them gets a cut of their referees’ trading fees. How much commission the referrer receives is increased if they have VEGA associated to their public key.
+
+:::tip Refer a friend
+Get benefits for referring, or being referred. 
+
+In the [referrals section of Console](https://vegaprotocol.eth.limo/#/referrals), you can:
+* Create a code to refer others 
+* Enter a code you've been given
+:::
+
+The referral program only exists if it's been enabled through a [governance proposal](../../tutorials/proposals/referral-program-proposal.md). Once it's enabled, both the requirements and benefits can also be replaced with a new program, also using a governance proposal.
+
+You can see what the current program offers by checking the [Referrals page on Console](https://vegaprotocol.eth.limo/#/referrals), or the [referral program API](../../api/rest/data-v2/trading-data-service-get-current-referral-program.api.mdx).
+
+:::note Read more
+* [Tutorial: Propose enabling or changing the referral program](../../tutorials/proposals/referral-program-proposal.md)
+* [Spec: Technical design of the referral program ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0083-RFPR-on_chain_referral_program.md).
+:::
+
 ## Fee discounts based on trading volume
-Traders can get discounts on their fees when there's an active volume discount program on the network. The higher your volume of aggressive trades on a market, the greater the discount you can receive.
+Traders can get discounts on their [fees](./fees.md) when there's an active volume discount program on the network. The higher your volume of aggressive trades on a market, the greater the discount you can receive.
 
 The size of the discount, generally speaking, depends on the volume of your taker trades over a set window of time. You can get access to different levels of discounts when your trading volume is higher.
 
@@ -20,20 +40,6 @@ All of the details for the volume discount program are proposed and accepted thr
 :::note Read more
 * [Tutorial: Propose enabling or changing the volume discount program](../../tutorials/proposals/volume-discount-program-proposal.md)
 * [Spec: Technical design of the volume discount program ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0084-VDPR-volume_discount_program.md).
-:::
-
-## Referral program
-Traders can earn a commission for referring new users when a referral program is enabled. New users get a discount on their fees, while whoever refers them gets a cut of their referees’ trading fees. How much commission the referrer receives is increased if they have VEGA associated to their public key.
-
-The referral program only exists if it's been proposed and voted through by the community using a [governance proposal](../../tutorials/proposals/referral-program-proposal.md). If it's enabled, both the requirements and benefits can also be replaced with a new program, also using a governance proposal.
-
-You can see what the current program offers by checking the [referral program API](../../api/rest/data-v2/trading-data-service-get-current-referral-program.api.mdx).
-
-<!--Create a referral code, or enter a referral code you've been given on the [referrals section of Console](https://vegafairground.eth.limo/#/referrals).-->
-
-:::note Read more
-* [Tutorial: Propose enabling or changing the referral program](../../tutorials/proposals/referral-program-proposal.md)
-* [Spec: Technical design of the referral program ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0083-RFPR-on_chain_referral_program.md).
 :::
 
 ## Trading rewards
@@ -67,6 +73,12 @@ You can see the current reward hoarder bonus requirements and benefits on the [b
 
 These tiers are set through network parameters, and thus can be changed through [governance](../governance.md#network-parameter-governance).
 
+:::tip Try it out
+**[Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)**
+
+Note: You'll need to format your proposal to include multiple data in the value field.
+:::
+
 ## Activity streak 
 Traders that keep up an activity streak, either by placing trades or keeping a position open over several epochs, can receive a greater share of rewards and their locked reward proceeds will be available sooner.
 
@@ -79,6 +91,12 @@ If you go inactive for more than <NetworkParameter frontMatter={frontMatter} par
 You can see the current activity streak requirements and benefits on the [block explorer ↗](https://explorer.vega.xyz/network-parameters#rewards.activityStreak.benefitTiers), or querying the [network parameters API](../../api/rest/data-v2/trading-data-service-list-network-parameters.api.mdx) for the `rewards.activityStreak.benefitTiers` network parameter.
 
 The details for activity streaks are set through network parameters, and thus can be changed through [governance](../governance.md#network-parameter-governance).
+
+:::tip Try it out
+**[Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)**
+
+Note: You'll need to format your proposal to include multiple data in the value field.
+:::
 
 ## Setting rewards
 Rewards can be set up by anyone to incentivise certain trading behaviours they want to see on a market (or markets). 

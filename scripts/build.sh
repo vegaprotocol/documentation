@@ -48,7 +48,7 @@ echo ""
 
 # Inject more testnet servers for testnet
 ## Run vaguer and store the output
-./scripts/build-pre-vaguer.sh
+#./scripts/build-pre-vaguer.sh
 
 
 # Generate OpenAPI from swagger 
@@ -65,7 +65,8 @@ yarn run generate-grpc
 yarn run docusaurus clean-api-docs all
 yarn run generate-rest
 
-yarn run generate-proposals
+echo "Skipping automatic proposal generation. Run `yarn run generate-proposals` manually to update them"
+# yarn run generate-proposals
 yarn run generate-openrpc
 
 echo ""
