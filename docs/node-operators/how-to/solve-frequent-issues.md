@@ -8,7 +8,7 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Below is a list of common issues with running validator and data nodes, and their solutions. 
+Below is a list of common issues with running validator and data nodes, and their solutions.
 
 If you come across an issue you don't see addressed here - share it in the validator Discord channel, or on the [feedback board](https://github.com/vegaprotocol/feedback).
 
@@ -16,7 +16,7 @@ Some of the issues below will be addressed in future software versions, while ot
 
 ## Problem: Data node fails to start because it times out when `fetching history for segment`
 
-You may see the following information in your error log. 
+You may see the following information in your error log.
 
 ```log
 INFO	datanode.start.persistentPre	start/node_pre.go:121	Auto Initialising Datanode From Network History
@@ -30,7 +30,6 @@ failed to initialize datanode from network history: failed to fetch history bloc
 ## Solution: Restart data node
 
 If the above issue happens, try to start the data node one more time.
-
 
 ## Problem: Data node fails to start up with the following panic
 
@@ -78,6 +77,7 @@ created by code.vegaprotocol.io/vega/cmd/vega/node.(*Command).Run
 ```
 
 ### Solution: Check permissions
+
 The above problem is caused by wrong file permissions for the `snapshot` database.
 
 To verify: List all files in `<vega-home>/state/node/snapshots/snapshot.db/` and check that all files are owned by the user that runs the data node service.
@@ -109,17 +109,18 @@ Did you reset CometBFT without resetting your application's data?
 1. List all of the local snapshots on your node: `vega tools snapshot --home <vega_home>`
 2. Get the snapshot height for snapshot before the protocol upgrade
 3. If you are using Visor, make sure that directories for a new release exist in the `<vegavisor-home>`
-3. Rollback a single tendermint block: `vega tm rollback --home <tendermint_home>`
-4. Start the previous binary version with additional flag `--snapshot.load-from-block-height=<selected-snapshot-height>`, e.g.: `./vega start --snapshot.load-from-block-height=7885400 --home <vega-home> --tendermint-home <tendermint-home`. If you are using Visor, you need to add the above flag to the `run-config.toml`(e.g: `<vegavisor-home>/v0.71.6/run-config.toml`).
-5. Wait for upgrade. New node may start automatically if you are using Visor, but it is not guaranteed.
-6. Remove the previously added flag (`--snapshot.load-from-block-height`).
-7. If your node did not restart automatically:
+4. Rollback a single tendermint block: `vega tm rollback --home <tendermint_home>`
+5. Start the previous binary version with additional flag `--snapshot.load-from-block-height=<selected-snapshot-height>`, e.g.: `./vega start --snapshot.load-from-block-height=7885400 --home <vega-home> --tendermint-home <tendermint-home`. If you are using Visor, you need to add the above flag to the `run-config.toml`(e.g: `<vegavisor-home>/v0.71.6/run-config.toml`).
+6. Wait for upgrade. New node may start automatically if you are using Visor, but it is not guaranteed.
+7. Remove the previously added flag (`--snapshot.load-from-block-height`).
+8. If your node did not restart automatically:
    a. For Visor: Stop Visor, link correct version to `<vegavisor-home>/current`, and restart your node, and start Visor
    b. For non-Visor setup: Stop the node, start the node with new binary
 
 ## Problem: Data Node is at block 0, while Core is processing blocks ok
 
 When you request `/statistics` from your Data Node REST API, you will get:
+
 - `blockHeight` and `vegaTime` from response body - this is the information about `core` and it looks ok
 - `X-Block-Height` and `X-Block-Timestamp` response headers - this is the information about `data node`, and you get `X-Block-Height: 0`
   - you might also get non-zero value, that is way behind `core` block height, and it is not increasing (if it increases, then it is a different issue)
@@ -129,6 +130,7 @@ It means your `core` process is working ok, but it is not sending any data to th
 ### Solution: Fix config and restart from remote network history
 
 1. Check your data node's broker IP and port `config.toml`
+
 ```toml
 [Broker]
   # ...
@@ -136,7 +138,9 @@ It means your `core` process is working ok, but it is not sending any data to th
     IP = "0.0.0.0"   # 0.0.0.0 will serve on all network interfaces
     Port = 3005  # make sure it matches core config
 ```
+
 2. Verify that core has the broker enabled, and pointed to the correct IP and port `config.toml`
+
 ```toml
 [Broker]
   # ...
@@ -146,10 +150,12 @@ It means your `core` process is working ok, but it is not sending any data to th
     Port = 3005  # your Data Node listening port
     Enabled = true  # send data to the Data Node
 ```
+
 3. If you didn't have to change your config, that means you have a different issue
-3a. If you changed your config (either fixed port, or set `Entabled` to `true`), then please continue
+   3a. If you changed your config (either fixed port, or set `Entabled` to `true`), then please continue
 4. Stop your `core` and `data node` (or just `vegavisor`)
 5. Configure `data node` to start from remote Network History. For this, modify data node `config.toml`
+
 ```toml
 AutoInitialiseFromNetworkHistory = true
 # ...
@@ -169,20 +175,24 @@ AutoInitialiseFromNetworkHistory = true
     # ...
     TimeOut = "1h"  # Make sure the timeout is not too small
 ```
+
 6. Make sure `core` timeout is not too small. For that modify core `config.toml`
+
 ```toml
 [Broker]
   # ...
   [Broker.Socket]
     DialTimeout = "1h"  # Make sure the timeout is not too small
 ```
+
 7. If you are using `vega visor` make sure the timeout is not too small. For that modify visor `config.toml`
+
 ```toml
 # Try every 2 seconds, 1800 retries is 1h
 maxNumberOfFirstConnectionRetries = 1800
 ```
-8. Start `vegavisor` or `core + date node` (order doesn't matter)
 
+8. Start `vegavisor` or `core + date node` (order doesn't matter)
 
 ## Problem: failed to copy data into hyper-table ...: ERROR: extra data after last expected column (SQLSTATE 22P04)
 
@@ -209,7 +219,7 @@ Oct 24 11:33:09 moonrock visor[260678]: Error: failed to prepare next upgrade fo
 
 ### Solution: Check the Visor config
 
-The most frequent issue when your auto-install procedure fails is the wrong Visor configuration. 
+The most frequent issue when your auto-install procedure fails is the wrong Visor configuration.
 
 Visor works the following way during auto-install:
 
@@ -256,3 +266,11 @@ vega data node stopped with error: failed to flush subscriber:flushing ledger: f
 1. Update your PostgreSQL config file. This is usually the config is located at `cat /etc/postgresql/14/main/postgresql.conf`). Change the max_locks_per_transaction to a bigger number, such as 256 or higher.
 2. Restart your PostgreSQL server
 3. Start your data node.
+
+## Problem: You encounter deadlocking issues with the Postgres database causing it to crash.
+
+We have found during testing that for some scenarios, such as snapshot restores, Postgres can encounter deadlocks when refreshing the continuous aggregates. This leads to Postgres panics and causes the data node to crash.
+
+### Solution: Ensure you have the `noatime` flag set for your mounted drives.
+
+Ubuntu defaults do not set the `noatime` flag for mounted drives, this can have a significant performance impact for the database and causes the deadlocking issues. While not a panacea for all deadlocking issues, it is a good first step to take.
