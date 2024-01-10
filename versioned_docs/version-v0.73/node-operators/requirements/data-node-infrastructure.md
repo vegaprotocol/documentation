@@ -7,7 +7,7 @@ hide_title: false
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
-import Topic from '/docs/topics/\_topic-data-nodes.mdx';
+import Topic from '/docs/topics/_topic-data-nodes.mdx';
 
 <Topic />
 
@@ -66,11 +66,10 @@ Below are results of replay tests showing how different amounts of available CPU
 
 For production use, we recommend using the Linux binary on Ubuntu as this is the platform used by nodes on Fairground, the Vega testnet, and is the most widely tested so far.
 
+We also recommend ensuring that the `noatime` flag is set for mounted drives, as not having it set can cause performance issues and deadlocking in the database leading to panics in Postgres and the data node.
 ### Golang
 
 You'll need 'go' version 1.19.1 or newer.
-
-We also recommend ensure that the `noatime` flag is set for mounted drives as this can cause performance issues and deadlocking in the database leading to panics in Postgres and the data node.
 
 ### Data node PostgreSQL
 
