@@ -271,6 +271,6 @@ vega data node stopped with error: failed to flush subscriber:flushing ledger: f
 
 We have found during testing that for some scenarios, such as snapshot restores, Postgres can encounter deadlocks when refreshing the continuous aggregates. This leads to Postgres panics and causes the data node to crash.
 
-### Solution: Ensure you have the noatime flag set for your mounted drives.
+### Solution: Ensure you have the `noatime` flag set for your mounted drives.
 
-Ubuntu defaults do not set the noatime flag for mounted drives, this can have a significant performance impact for the database and causes the deadlocking issues. While not a panacea for all deadlocking issues, it is a good first step to take.
+Ubuntu defaults do not set the `noatime` flag for mounted drives, this can have a significant performance impact for the database and causes the deadlocking issues. While not a panacea for all deadlocking issues, it is a good first step to take.

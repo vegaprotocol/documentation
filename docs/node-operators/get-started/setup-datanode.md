@@ -375,4 +375,4 @@ After this is done you can repopulate the data node by replaying the chain or by
 
 ## Performance tuning
 
-Depening on how your servers are configured, your drives may be mounted without noatime being set. This can have a significant impact on the database performance and can cause deadlocks and database panics under certain conditions. It is therefore recommended that when setting up your Linux server for running a data node, you ensure that the drives are mounted with the `noatime` option set.
+Depening on how your servers are configured, your drives may be mounted without `noatime` being set. This can have a significant impact on the database performance and can cause deadlocks and database panics under certain conditions. It is therefore recommended that when setting up your Linux server for running a data node, you ensure that the drives are mounted with the `noatime` option set.
