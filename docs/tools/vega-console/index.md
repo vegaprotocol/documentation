@@ -1,5 +1,6 @@
 ---
-title: Console
+sidebar_position: 1
+title: Vega Console
 vega_network: TESTNET
 hide_title: false
 description: Learn about the Console trading interface
@@ -11,6 +12,6 @@ import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
 
 To run Console locally, check out [the Community Guides section for instructions](../tutorials/community-created#self-hosting-console).
 
-Otherwise, see below.
+Otherwise, see below to learn more.
 
 <DocCardList items={useCurrentSidebarCategory().items}/>

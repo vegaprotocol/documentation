@@ -1,8 +1,9 @@
 ---
+sidebar_position: 3
 title: Host Console on IPFS
 vega_network: TESTNET
 hide_title: false
-description: Host the trading interface on IPFS
+description: Host the trading interface on IPFS.
 ---
 The following instructions will guide you to hosting [Vega Console ↗](https://console.vega.xyz) on IPFS.
 
