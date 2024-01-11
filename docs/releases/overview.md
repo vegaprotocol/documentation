@@ -31,7 +31,7 @@ Version 0.73.11 was released the Vega testnet on 05 January, 2024.
 
 The version contained the following fix:
 
-* An issue was identified whereby stop orders placed during an opening auction can cause a core panic, this has been resolved under the issue [10318 ↗](https://github.com/vegaprotocol/vega/issues/10318).
+* A situation was identified whereby stop orders placed during an opening auction can cause a core panic, this has been resolved under the issue [10318 ↗](https://github.com/vegaprotocol/vega/issues/10318).
 
 ### Pre-release version 0.73.10 (patch) | 2023-12-21
 Version 0.73.10 was released the Vega testnet on 21 December, 2023.
