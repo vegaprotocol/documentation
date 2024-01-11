@@ -39,11 +39,11 @@ To benefit from referral program perks, you'll need to either create a referral 
 A referral set is made up of the participant who created the set, known as the referrer, and all the referees who signed up using the referral code. Each referral set only has one referrer, but the number of referees is unlimited.
 
 :::tip Try it out
-Create a referral code, or enter a referral code you've been given on the [referrals section of Console](https://vegafairground.eth.limo/#/referrals).
+Create a referral code, or enter a referral code you've been given on the [referrals section of Console ↗](https://vegafairground.eth.limo/#/referrals).
 :::
 
 ### Teams and games
-When you create a referral set, you can opt to turn it into a team. Teams can get access to games, which are [trading rewards](#trading-rewards) set to target those in a team, if they are set up.
+When you create or update a referral set on [Console ↗](https://vegafairground.eth.limo/#/referrals), you can opt to turn it into a team. Teams can get access to games, which are [trading rewards](#trading-rewards) set to target those in a team, if they are set up.
 
 If you're part of a team, you can switch to a different team by using the team's referral code.
 
