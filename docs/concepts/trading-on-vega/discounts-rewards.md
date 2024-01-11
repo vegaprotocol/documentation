@@ -33,20 +33,28 @@ You can see what the current program offers by checking the [referral program AP
 * [Spec: Technical design of the referral program ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0083-RFPR-on_chain_referral_program.md).
 :::
 
-### Referral sets and teams
-To benefit from the referral program perks, you'll need to either create a referral set, or join one.
+### Referral sets
+To benefit from referral program perks, you'll need to either create a referral set, or join one. Referral sets can also be made into [teams](#teams-and-games), which get access to rewards targeted towards team members.
 
-A referral set is made up of the participant who created the set, known as the referrer, and all the referees who signed up using the referral code. Each referral set only has one referrer, but the number of referees is unlimited. 
-
-If you're a referee, you can switch to another referral set by using a different referral code.
-
-When creating a referral set, you can opt to turn the set into a team. Teams get access to rewards that are set to exclude individual participants. Teams can have names and avatars to differentiate themselves on leaderboards.
-
-The team leader, or referrer, can also choose when the team is open or closed to new members.
+A referral set is made up of the participant who created the set, known as the referrer, and all the referees who signed up using the referral code. Each referral set only has one referrer, but the number of referees is unlimited.
 
 :::tip Try it out
 Create a referral code, or enter a referral code you've been given on the [referrals section of Console](https://vegafairground.eth.limo/#/referrals).
 :::
+
+### Teams and games
+When you create a referral set, you can opt to turn it into a team. Teams can get access to games, which are [trading rewards](#trading-rewards) set to target those in a team, if they are set up.
+
+If you're part of a team, you can switch to a different team by using the team's referral code.
+
+Teams can have names and avatars to differentiate themselves on leaderboards. 
+
+The team leader, or referrer, can also choose when the team is open to all or to only certain participants.
+
+#### Game rewards
+Game rewards are assigned to a team based on the team's overall performance, and then rewards are distributed amongst the team members based on their multipliers. However, if you get a 0 score, then you won't get any rewards, even if your team was rewarded. 
+
+You'll need to be in a team for <NetworkParameter frontMatter={frontMatter} param="rewards.team.minEpochsInTeam" suffix="epochs" /> to be eligible for game rewards.
 
 ## Trading rewards
 Market participants can also receive rewards for their trading activity, liquidity provision, and for proposing actively traded markets.
@@ -63,7 +71,13 @@ Your reward earnings can grow if you have an activity streak and/or keep earned 
 [See the available rewards ↗](https://vega.xyz/rewards)
 :::
 
-A reward can be set to be available to individuals, or only to those who are in a team.
+A reward can be set to target participants with certain statuses:
+
+* Teams - Only those in teams are eligible, and rewards are divided based on team performance then distributed amongst the team members.
+* Individuals:
+    * All - Everyone is eligible.
+    * Not in a team - Only participants that are not in a team are eligible.
+    * In a team - Only participants in a team are eligible, but they are rewarded based on individual performance.
 
 Rewards are independent from [fees](./fees.md), which are paid to validators, liquidity providers, and price makers on each trade.
 
