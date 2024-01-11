@@ -19,6 +19,29 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Pre-release version 0.73.10 (patch) | 2023-12-21
+Version 0.73.10 was released the Vega testnet on 21 December, 2023.
+
+The version contained the following improvements:
+
+* Fix the equity-like share votes count on update market proposals, [10257 ↗](https://github.com/vegaprotocol/vega/issues/10257).
+* Do not include start epoch on referees set statistics API, [10241 ↗](https://github.com/vegaprotocol/vega/issues/10241).
+
+### Pre-release version 0.73.9 (patch) | 2023-12-08
+Version 0.73.9 was released the Vega testnet on 08 December, 2023.
+
+The version contained the following improvements:
+
+* Volume discount stats no longer show volumes when party didn't qualify for a discount tier, [10218 ↗](https://github.com/vegaprotocol/vega/issues/10218).
+* Fixed expiring stop orders panic, [10233 ↗](https://github.com/vegaprotocol/vega/issues/10233).
+
+### Pre-release version 0.73.8 (patch) | 2023-12-05
+Version 0.73.8 was released to the Vega testnet on 05 December, 2023.
+
+This release contains a fix required for the vesting balances API, which was erroneously showing infrastructure fees.
+
+Check out the code change contained in the patch release in the Vega core [0.73.8 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.8) release page.
+
 ### Pre-release version 0.73.7 (patch) | 2023-12-04
 Version 0.73.7 was released to the Vega testnet on 04 December, 2023.
 
