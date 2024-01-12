@@ -1,12 +1,11 @@
 ---
-title: Console
+sidebar_position: 3
+title: Host Console on IPFS
 vega_network: TESTNET
 hide_title: false
-description: Vega Console build instructions and IPFS hosting
+description: Host the trading interface on IPFS.
 ---
-[Vega Console ↗](https://console.vega.xyz) is a user interface designed for using the Vega protocol software to interact with markets. See existing markets, place trades and see your portfolio and positions.
-
-If you’re interested in running Console locally, check out [the Community Guides section for instructions](../tutorials/community-created#self-hosting-console). The following section will guide you to hosting Console on IPFS.
+The following instructions will guide you to hosting [Vega Console ↗](https://console.vega.xyz) on IPFS.
 
 ## Hosting Console on IPFS
 IPFS, the [Interplanetary File System ↗](https://ipfs.tech) is a decentralised file storage system. Hosting Vega Console on IPFS involves ‘pinning’ a JavaScript bundle that contains the dApp. Everyone who pins an identical version of the Console ensures the bundle is quick to retrieve for any user wherever they are. IPFS ensures the dApp has not been tampered with.
