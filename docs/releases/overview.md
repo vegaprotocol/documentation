@@ -19,6 +19,20 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Pre-release version 0.73.12 (patch) | 2024-01-10
+Version 0.73.12 was released the Vega testnet on 10 January, 2024.
+
+The version contained the following fix:
+
+* To address an issue whereby blocks may stop being produced, Vega now limits the number of blocks queried in a single `eth_getLogs` call to prevent large requests to Ethereum nodes. This limit is configurable so that it can match the requirements of Ethereum node providers being used by a Vega validator. This has been resolved under the issue [9992 ↗](https://github.com/vegaprotocol/vega/issues/9992).
+
+### Pre-release version 0.73.11 (patch) | 2024-01-05
+Version 0.73.11 was released the Vega testnet on 05 January, 2024.
+
+The version contained the following fix:
+
+* A situation was identified whereby stop orders placed during an opening auction can cause a core panic, this has been resolved under the issue [10318 ↗](https://github.com/vegaprotocol/vega/issues/10318).
+
 ### Pre-release version 0.73.10 (patch) | 2023-12-21
 Version 0.73.10 was released the Vega testnet on 21 December, 2023.
 
