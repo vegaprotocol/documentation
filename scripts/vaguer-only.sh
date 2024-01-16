@@ -9,20 +9,8 @@
 
 
 doc_version="v$(cat package.json | jq .version -r)"
-echo "Building: v${doc_version}"
+echo "Rebuuilding: v${doc_version}"
 
-
-echo " 🛠  Tidy up"
-echo "==========================="
-
-# Removing old versions
-rm proto.json 2> /dev/null
-rm -rf docs/api/grpc/data-node 2> /dev/null
-rm -rf docs/api/grpc/vega 2> /dev/null
-rm -rf docs/api/grpc/blockexplorer 2> /dev/null
-## Back compat: Remove former GRPC docs path
-rm -rf docs/grpc 2> /dev/null
- 
 echo ""
 echo " 🛠  Install deps"
 echo "==========================="
@@ -48,8 +36,6 @@ echo ""
 ./scripts/build-pre-vaguer.sh
 
 
-# Generate OpenAPI from swagger 
-./scripts/build-pre-openapi.sh
 # Now inject servers
 node --no-warnings --experimental-fetch scripts/build-pre-openapi-servers.js
 MAINNET=true node --no-warnings --experimental-fetch scripts/build-pre-openapi-servers.js
@@ -58,13 +44,8 @@ export NO_UPDATE_NOTIFIER="true"
 
 yarn run generate-netparams
 
-yarn run generate-grpc
 yarn run docusaurus clean-api-docs all
 yarn run generate-rest
-
-echo "Skipping automatic proposal generation. Run `yarn run generate-proposals` manually to update them"
-# yarn run generate-proposals
-yarn run generate-openrpc
 
 echo ""
 echo " 🛠  Fix ups"
