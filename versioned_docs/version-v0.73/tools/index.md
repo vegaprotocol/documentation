@@ -1,4 +1,5 @@
 ---
+sidebar_position: 1
 title: Apps and Tools
 hide_title: false
 ---
@@ -14,9 +15,10 @@ There are several ways to interact with a Vega Wallet:
 * **[Desktop wallet app](./vega-wallet/desktop-app/index.md)**
 
 ## Console
-Use **[Vega Console](https://console.vega.xyz)** to trade on markets created with Vega.
+Try **[Vega Console](https://console.vega.xyz)** if you want a trading UI for the Vega software.
 
-* **[Host Console on IPFS](./vega-console.md#hosting-console-on-ipfs)**
+* **[Charts on Console](./tools/vega-console/charts)**
+* **[Host Console on IPFS](./tools/vega-console/host-console-on-ipfs)**
 
 ## Governance dApp
 Use the **[Vega Governance dApp](https://governance.vega.xyz)** to stake your tokens to nominate the validators that run the network, participate in network goveranance, and earn and claim rewards.
