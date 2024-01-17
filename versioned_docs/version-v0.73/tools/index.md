@@ -15,7 +15,7 @@ There are several ways to interact with a Vega Wallet:
 * **[Desktop wallet app](./vega-wallet/desktop-app/index.md)**
 
 ## Console
-Try **[Vega Console](https://console.vega.xyz)** if you want a trading UI for the Vega software.
+Use **[Vega Console](https://console.vega.xyz)** to trade on markets created with Vega.
 
 * **[Charts on Console](./tools/vega-console/charts)**
 * **[Host Console on IPFS](./tools/vega-console/host-console-on-ipfs)**
