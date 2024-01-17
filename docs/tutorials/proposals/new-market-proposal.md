@@ -70,12 +70,11 @@ Instrument, liquidity monitoring parameters, price monitoring parameters, and da
 | `closingTimestamp` | Timestamp (Unix time in seconds) when voting closes for this proposal. If it passes the vote, liquidity can be committed from this time. The chosen time must be between <NetworkParameter frontMatter={frontMatter}param="governance.proposal.market.minClose" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxClose" hideName={true} /> after the proposal submission time. (int64 as string) | 1663517914 |
 | `enactmentTimestamp ` | Timestamp (Unix time in seconds) when the market will be enacted, ready for trading. The chosen time must be between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minEnact" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxEnact" hideName={true} /> after `closingTimestamp`. (int64 as string) | 1663604314 |
 
-**Slippage factors** are parameters that determine by how much the margin slippage is affected by the liquidity component of margin in a low-volume scenario. If there is enough volume on the book, the slippage comes directly from the book and the liquidity component is not used. The suggested values are in the example column below. Margin slippage in a low-volume scenario is calculated as `slippageFromFactors = linear x position  + quadratic x position^2) x price`. I
+**Slippage factors** are parameters that determine by how much the margin slippage is affected by the liquidity component of margin in a low-volume scenario. If there is enough volume on the book, the slippage comes directly from the book and the liquidity component is not used. The suggested values are in the example column below. Margin slippage in a low-volume scenario is calculated as `slippageFromFactors = linear x position x position^2) x price`. I
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
 | `linearSlippageFactor` | The linear slippage factor captures that for a bigger position there is proportionally bigger liquidity risk. | 0.001 |
-| `quadraticSlippageFactor` | The quadratic slippage factor determines by what factor especially large positions can be penalised. When closing those out, the system will 'walk the book' and potentially end up with an execution price notably worse that the last mark price. | 0.0 |
 
 ### Instrument
 The instrument shape is as follows, see below for a description of each property:
