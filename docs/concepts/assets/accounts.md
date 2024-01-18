@@ -33,11 +33,18 @@ You'll see references to your general account in various places, including under
 Assets that are held in any other type of account other than the general account can't be moved by you, though they may be used to support your trades or liquidity commitments. Your assets are still tied to your Vega public key, even if they are in an account you can't actively manage.
 
 ### Margin accounts
-Margin accounts temporarily hold assets that support a participant's trades on a market.
+Margin accounts temporarily hold assets that support a participant's trades on a market. Depending on the margin mode you're using: isolated or cross margin, assets are held in diffferent accounts.
 
-There are two account types to support margin: margin accounts and order margin accounts. Margin accounts are used when a trader is using cross margin mode. Order margin accounts are used when a trader is using isolated margin mode. 
+When you trade on a market, the required initial margin is moved from your general account to be used to support your order/position, and thus it can't be withdrawn.
 
-Any trader using cross margin mode with open orders or positions on a market has a margin account. When you trade on a market, the required initial margin is allocated to that market from your general account, meaning that it can't be withdrawn or used as margin on another market while it is allocated to the first market. Money may be periodically transferred into or out of your margin account from your general account if the balance becomes too low to support your trading, or if the gains on your position mean the account contains more collateral than needed.
+Isolated margin mode:
+* Margin account: Used to hold margin for supporting open positions 
+* Order margin account: Used to hold margin for supporting open orders
+
+Cross margin mode:
+* Margin account is used for both positions and orders
+
+If you're using *cross margin mode*, collateral may be periodically transferred between your margin account and your general account if the balance becomes too low to support your trading, or if the gains on your position mean the account contains more collateral than needed.
 
 To move some or all of the money in your margin or order margin account back into your general account, you can try reducing the size of your position on the market, or closing it entirely. If your position size is zero and you have no active orders, your margin accounts will be empty and all the funds will be returned to your general account and you can access them again.
 

@@ -1,8 +1,8 @@
 ---
 sidebar_position: 3
-title: Positions and margin
+title: Margin and positions
 hide_title: false
-description: How positions and margins work
+description: How margin is calculated and used.
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
@@ -11,19 +11,14 @@ Trading margined derivatives (such as futures) allows you to create leveraged po
 
 Margin is the amount of the market's settlement asset that's required to keep your positions open and orders funded. You can think of margin as the 'down payment' to open a position. Leverage, meanwhile, describes how many times larger is the notional value of that position compared to the margin you have dedicated to it. For example, if you need 20 DAI to open a position worth 100 DAI: your leverage is 5x and your initial margin is 20% of the full value.
 
-## Positions
-A trader's margin requirements in a given market are driven by their open volume and orders. They are recalculated based on market movements and changes to the open volume and/or orders. Orders that then increase your risk level of your position will require more margin, orders that reduce the exposure can be placed without any additional capital.
+Hypothetical changes in a position's value are called unrealised profit and loss.
 
-When a party on Vega opens a position, the minimum amount of assets required to open that position is put into a margin account for that party in that market. 
-
-Over the course of the position's lifetime, the margin requirements will likely change - the margin account may be topped up, and/or some margin is released back to collateral. If that party is trading on more than one market that uses the same asset, the collective positions on those markets will inform how much is set aside for margin. Margin balances are also affected by the price movements in the market where the position is being held. These hypothetical changes in a position's value are called unrealised profit and loss. 
-
-`[margin account balance] = [initial margin requirement] + [unrealised profit] OR - [unrealised losses]`
-
-## Automated market mechanisms 
+## Automated market processes
 As markets and collateral are not managed through human intervention, markets must have certain automated processes that allow them to function well and assure that the collateral required to manage positions is available when it's needed.
 
-There are a few mechanisms that work differently to how they would on a centralised exchange, in order to keep the markets solvent. They include:
+There are a few mechanisms that work differently to how they would on a centralised exchange, in order to keep the markets solvent. 
+
+They include:
 - [**Cross margining**](#cross-margining): When a participant places an order using cross margin mode, the *initial margin* requirement is calculated automatically depending on the market's risk model. If the market moves against the participant, and the margin towards the *maintenance level*, Vega will *search* for more collateral in the general account, to avoid liquidating the position. Margin can also be *released* if the position is in sufficient profit. Other positions in markets with the same settlement asset may also interact with the same general account. 
 - [**Margin isolated per position**](#isolated-margin): When a participant places an order using isolated margin mode, the expected margin required for the life of the order, if it's filled, is set aside. The network continually tracks the requirements for open orders and positions to ensure there is enough margin to keep them open.
 - [**Mark to market**](#mark-to-market): Mark to market on Vega happens much more frequently than typical exchanges. Every time a trade happens and moves the last traded price, positions are marked to market. Marking to market is used to move assets into your margin account (from someone else's) if you are in profit, or out of your margin account if not.
@@ -42,7 +37,7 @@ Mark to market settlement instructions are generated based on the change in mark
 :::
 
 ## Margin
-Margin is the amount of collateral required to keep your position open. 
+Margin is the amount of collateral required to keep your position open. When a party on Vega opens a position, the minimum amount of assets required to open that position is put into a margin account for that party in that market.
 
 There are two ways the protocol lets you manage your leverage: cross-market margin or isolated margin. You can switch between the margin modes as long as you have enough to support the margin requirement for your potential position in the new mode.
 
@@ -54,6 +49,14 @@ Cross margining is the default mode, so to use isolated margin you'll need to sw
 Overall, the margin tolerance of open orders and positions is determined by the market's risk model and market conditions. The larger the position and the more volatile the market, the greater the amount of margin that will need to be set aside. The volatility tolerance of the market is driven by the risk model.
 
 When placing order on a market, you can set your margin factor when using isolated margin, or the protocol will calculate the initial margin required, when using cross margining. The required funds will be moved into a margin account for that market. If your key's general account doesn't have enough in it to fund this, the order will be rejected.
+
+:::tip Try it out
+[Use Console ↗](https://console.fairground.wtf) to trade using isolated margin or cross margin.
+
+Or [use the update margin mode command](../../api/grpc/vega/commands/v1/commands.proto.mdx) to submit the transaction yourself.
+
+Switching between modes may change your margin requirements.
+:::
 
 ### Isolated margin
 To set the amount of leverage you want for an order, use isolated margin. Margin can be isolated per order and position with isolated margin mode. You choose how much to set aside for the lifetime of each order and position, per market, depending on how much leverage you want. That fraction of your order's notional size is moved to an order margin account.
@@ -68,9 +71,11 @@ If that margin is depleted, your open position is closed. Any other positions th
 ### Cross margining
 Cross-market margin allows you to trade in a capital-efficient way. Cross margining means gains on one market can be released and used as margin on another. It's supported between all markets that use the same settlement asset.
 
-The margin levels try to ensure that a trader does not enter a trade that will immediately need to be closed out.
+The amount of margin set aside can change depending on how your position is impacted by your own actions and price movements in the market. Orders that increase your open volume will increase the required margin. Orders that decrease it should not increase your margin requirements - unless you end up opening a position in the opposite direction.
 
-The amount of margin set aside can change depending on how your position is impacted by your own actions and market movement. Orders that increase your open volume will increase the required margin. Orders that decrease it should not increase your margin requirements - unless you end up opening a position in the opposite direction.
+Over the course of the position's lifetime, the margin requirements will likely change - the margin account may be topped up, and/or some margin is released back to collateral. If you are trading on more than one market that uses the same asset, the collective positions on those markets will inform how much is set aside for margin.
+
+`[margin account balance] = [initial margin requirement] + [unrealised profit] OR - [unrealised losses]`
 
 The margin amount required for cross margining is recalculated every time marking to market is done. The protocol takes the current market price and recalculates every trader's margin requirements based on how their position is affected by price moves.
 
@@ -79,7 +84,9 @@ The margin amount required for cross margining is recalculated every time markin
 :::
 
 ### Margin requirements
-The Vega protocol calculates margin levels, which are used to determine when a trader has the right amount, too much, or not enough margin set aside to support their position(s). 
+The Vega protocol calculates margin levels, which are used to determine when a trader has the right amount, too much, or not enough margin set aside to support their position(s).
+
+The margin levels try to ensure that a trader does not enter a trade that will immediately need to be closed out.
 
 Not all levels are relevant to both margin methods. 
 
