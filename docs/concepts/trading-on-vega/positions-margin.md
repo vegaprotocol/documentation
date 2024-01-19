@@ -68,6 +68,15 @@ The margin needs to fall between the following bounds:
 
 If that margin is depleted, your open position is closed. Any other positions that aren't distressed will remain open, and any open orders also stay open.
 
+When switching to isolated margin mode, the network will calculate how much needs to be moved from, or returned to, your general account. 
+
+For *active positions* the calculation is: 
+`average entry price * abs(position) * margin factor`
+
+For *active orders* the calculation is: 
+`limit price * remaining size * margin factor`, added to the difference calculated for active positions.
+* For example, if you have an open long position size 5, and you place a short order size 8, then the remaining size is 8-5=3.
+
 ### Cross margining
 Cross-market margin allows you to trade in a capital-efficient way. Cross margining means gains on one market can be released and used as margin on another. It's supported between all markets that use the same settlement asset.
 
