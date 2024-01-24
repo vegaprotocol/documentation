@@ -21,14 +21,17 @@ There are a few mechanisms that work differently to how they would on a centrali
 They include:
 - [**Cross margining**](#cross-margining): When a participant places an order using cross margin mode, the *initial margin* requirement is calculated automatically depending on the market's risk model. If the market moves against the participant, and the margin towards the *maintenance level*, Vega will *search* for more collateral in the general account, to avoid liquidating the position. Margin can also be *released* if the position is in sufficient profit. Other positions in markets with the same settlement asset may also interact with the same general account. 
 - [**Margin isolated per position**](#isolated-margin): When a participant places an order using isolated margin mode, the expected margin required for the life of the order, if it's filled, is set aside. The network continually tracks the requirements for open orders and positions to ensure there is enough margin to keep them open.
-- [**Mark to market**](#mark-to-market): Mark to market on Vega happens much more frequently than typical exchanges. Every time a trade happens and moves the last traded price, positions are marked to market. Marking to market is used to move assets into your margin account (from someone else's) if you are in profit, or out of your margin account if not.
+- [**Mark to market**](#mark-to-market): Mark to market on Vega happens much more frequently than typical exchanges. Marking to market is used to move assets into your margin account (from someone else's) if you are in profit, or out of your margin account if not.
 
 ## Mark to market
 Marking to market refers to settling gains and losses due to changes in the market value. Marking to market aims to provide a realistic appraisal of a position based on the current market conditions.
 
 If the market price goes up, traders that hold long positions receive money into their margin account – equal to the change in the notional value of their positions – from traders that hold short positions, and conversely if the value goes down, the holders of short positions receive money from the holders of long positions.
 
-For a derivatives market created on Vega, marking to market is carried out every time the price moves, and is based on the last traded price. This is in contrast to traditional derivatives markets, for which marking to market may occur only once per day. One exception is when a futures market settles at expiry, at which point the mark to market price comes from the market data source's final settlement price.
+For a derivatives market created on Vega, the mark to market frequency is controlled by a network parameter: 
+<NetworkParameter frontMatter={frontMatter} param="network.markPriceUpdateMaximumFrequency" />. 
+
+The mark to market price based on the last traded price. This is in contrast to traditional derivatives markets, for which marking to market may occur only once per day. One exception is when a futures market settles at expiry, at which point the mark to market price comes from the market data source's final settlement price.
 
 Mark to market settlement instructions are generated based on the change in market value of the open positions of a party. When the mark price changes, the network calculates settlement cash flows for each party, and the process is repeated each time the mark price changes until the maturity date for the market is reached.
 
@@ -44,7 +47,7 @@ There are two ways the protocol lets you manage your leverage: cross-market marg
 * **Cross margining** provides a capital-efficient use of margin, particularly when trading on multiple markets using the same settlement asset. You can't control the amount of margin (and thus leverage) that you use on your position but the market sets money aside and returns it if it's not required.
 * **Isolated margin** provides a way to control how much you set aside for margin and thus choose your leverage amount. The amount of margin set aside is static, unless you increase your position. If the market turns against your position, it could be closed out more quickly. 
 
-Cross margining is the default mode, so to use isolated margin you'll need to switch before submitting your order. Once you choose isolated margin on a market, your orders will use continue to use that mode unless you update it to cross margining.
+Cross margining is the default mode, so to use isolated margin you'll need to switch before submitting your order. Once you choose isolated margin on a market, your orders will continue to use that mode unless you update it to cross margining.
 
 Overall, the margin tolerance of open orders and positions is determined by the market's risk model and market conditions. The larger the position and the more volatile the market, the greater the amount of margin that will need to be set aside. The volatility tolerance of the market is driven by the risk model.
 
@@ -120,26 +123,28 @@ The amount required for your maintenance margin is derived from the market's ris
 
 If your margin balance drops below the maintenance margin level, your position may be [closed out](./market-protections.md#closeouts).
 
-For [perpetual futures markets](./market-types.md#perpetual-futures), the margin calculations contain additional term to capture the exposure of a given position to an upcoming funding payment. The market proposal includes a margin funding factor that determines to what degree the funding payment amount impacts a trader's maintenance margin. This can only increase the margin requirement if a given position is expected to make a payment at the end of the current funding period, but it will never decrease the margin requirement, even if you are expecting to receive a funding payment.
+For [perpetual futures markets](./market-types.md#perpetual-futures), the margin calculations contain an additional term to capture the exposure of a given position to an upcoming funding payment. The market proposal includes a margin funding factor that determines to what degree the funding payment amount impacts a trader's maintenance margin. This can only increase the margin requirement if a given position is expected to make a payment at the end of the current funding period, but it will never decrease the margin requirement, even if you are expecting to receive a funding payment.
 
 :::note Go deeper
 **[Spec: Perpetuals payment calculations ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0053-PERP-product_builtin_perpetual_future.md#funding-payment-calculation)**
 :::
 
-#### Margin slippage
 Maintenance margin is calculated as: 
 
 ```
-maintenance margin = price x (linear slippage factor x |position| x position^2) + price x |position| x size x risk factor
+min(SlippageVolume * SlippagePerUnit, MarkPrice * SlippageVolume * LinearSlippageFactor) + SlippageVol * RiskFactor * MarkPrice
+
+SlippagePerUnit = MarkPrice - ExitPrice
 ```
-
-Slippage factors are market parameters that specify by how much the liquidity component of the margin calculation is dependent on the position size in a low-volume market scenario.
-
-If there is enough volume on the book, the slippage comes directly from the book and the liquidity component is not used. Margin slippage in a low-volume scenario is calculated as `slippageFromFactors = linear x position x position^2) x price`. If there is a lot of liquidity on the book, the protocol calculates the closeout amount and provides the lower amount, i.e., the liquidity part of the margin `min(slippageFromFactors, slippageFromBook)`. Increasing the linear slippage factor increases the liquidity part of the margin calculation, but only if there is little volume on the book; if there is enough volume on the book the slippage comes directly from the book.
 
 The `risk factor` will be different for short and long positions; the risk model provides `risk factor long` for when `position > 0` and `risk factor short` for when `position < 0`.
 
-Note that your limit orders are included as well and the maintenance margin is calculated for the riskiest long or short combination of orders and position.
+Note that your limit orders are included as well, and the maintenance margin is calculated for the riskiest long or short combination of orders and position.
+
+#### Margin slippage
+Markets include a linear slippage factor to be used in low-volume market scenarios, where the standard slippage calculation isn't sufficient. In effect, it caps the margin level when the market wouldn't be able to support a position's margin increasing.
+
+If there is enough volume on the book, the slippage comes directly from the book and the linear slippage factor isn't used.
 
 :::note Read more
 [Concept: Closeouts](./market-protections.md#closeouts)
