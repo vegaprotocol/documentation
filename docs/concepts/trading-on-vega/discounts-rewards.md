@@ -50,7 +50,6 @@ Game rewards are assigned to a team based on the team's overall performance, and
 
 You'll need to be in a team for <NetworkParameter frontMatter={frontMatter} param="rewards.team.minEpochsInTeam" suffix="epochs" /> to be eligible for game rewards.
 
-
 ## Fee discounts based on trading volume
 Traders can get discounts on their [fees](./fees.md) when there's an active volume discount program on the network. The higher your volume of aggressive trades on a market, the greater the discount you can receive.
 
@@ -81,6 +80,7 @@ Your reward earnings can grow if you have an activity streak and/or keep earned 
 A reward can be set to target participants with certain statuses:
 
 * Teams - Only those in teams are eligible, and rewards are divided based on team performance then distributed amongst the team members.
+    * Team reward eligibility can be limited to a selected list of teams
 * Individuals:
     * All - Everyone is eligible.
     * Not in a team - Only participants that are not in a team are eligible.

@@ -163,8 +163,12 @@ You will need to define the dispatch strategy, which includes the  metric, the l
 | `notional_time_weighted_average_position_requirement` | Optional: Sets a minimum notional TWAP required for a party to be considered eligible to receive rewards | Defaults to 0 | 
 | `windowLength` | Number of epochs in which performance against the reward metric is measured | Any number between 1 and 100 |
 | `lock_period` | Number of epochs to keep earned rewards in the recipient's reward vesting account before moving to their vested account |
-| `entityScope` | defines the entities within scope | Currently ENTITY_SCOPE_INDIVIDUALS is the only option |
-| `individualScope` | To be used if the eligible reward recipients should be individuals, and that can then be further focused to determine who is eligible | Currently INDIVIDUAL_SCOPE_ALL is the only option |
+| `entityScope` | defines the entities within scope | ENTITY_SCOPE_INDIVIDUALS; ENTITY_SCOPE_TEAMS |
+| `individualScope` | To be used if the eligible reward recipients should be individuals, and that can then be further focused to determine who is eligible | INDIVIDUAL_SCOPE_ALL; INDIVIDUAL_SCOPE_IN_TEAM; INDIVIDUAL_SCOPE_NOT_IN_TEAM |
+| `teamScope` | To be used if the eligible reward recipients need to be in a team, and rewards are to be calculated based on team performance. Leave blank if allowing all teams, otherwise provide an array of team IDs | `[
+        "0fc06d09f0805f1da96dd171af4a6e38dc6d443e135c855c7990a1ebe395b26f",
+        "a33c89f67e0e8afda3165d34aeddba6082c674c3aa4ea17ece5213ef598c3558"
+      ],`
 | `distributionStrategy` | Sets how the participants should be ranked, and what other factors to consider. |  DISTRIBUTION_STRATEGY_PRO_RATA; DISTRIBUTION_STRATEGY_RANK |
 
 
