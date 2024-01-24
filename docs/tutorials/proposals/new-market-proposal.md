@@ -70,7 +70,11 @@ Instrument, liquidity monitoring parameters, price monitoring parameters, and da
 | `closingTimestamp` | Timestamp (Unix time in seconds) when voting closes for this proposal. If it passes the vote, liquidity can be committed from this time. The chosen time must be between <NetworkParameter frontMatter={frontMatter}param="governance.proposal.market.minClose" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxClose" hideName={true} /> after the proposal submission time. (int64 as string) | 1663517914 |
 | `enactmentTimestamp ` | Timestamp (Unix time in seconds) when the market will be enacted, ready for trading. The chosen time must be between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minEnact" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxEnact" hideName={true} /> after `closingTimestamp`. (int64 as string) | 1663604314 |
 
-The **lineage slippage factor** is a parameter that caps the margin level in low-volume situations for cross margin trades so that traders aren't closed out unnecessarily. If there is enough volume on the book, the slippage value comes directly from the book and the slippage factor is not used.
+The **lineage slippage factor** is a parameter that caps the margin level in low-volume situations for cross margin trades so that traders aren't closed out unnecessarily.
+
+Margin slippage in a low-volume scenario is calculated as `slippageFromFactors = linear factor x position x price`.
+
+If there is enough volume on the book, the slippage value comes directly from the book and the slippage factor is not used.
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |

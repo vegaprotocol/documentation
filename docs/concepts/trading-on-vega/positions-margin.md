@@ -85,7 +85,7 @@ Cross-market margin allows you to trade in a capital-efficient way. Cross margin
 
 The amount of margin set aside can change depending on how your position is impacted by your own actions and price movements in the market. Orders that increase your open volume will increase the required margin. Orders that decrease it should not increase your margin requirements - unless you end up opening a position in the opposite direction.
 
-Over the course of the position's lifetime, the margin requirements will likely change - the margin account may be topped up, and/or some margin is released back to collateral. If you are trading on more than one market that uses the same asset, the collective positions on those markets will inform how much is set aside for margin.
+Over the course of the position's lifetime, the margin requirements are likely to change - the margin account may be topped up, and/or some margin is released back to collateral. If you are trading on more than one market that uses the same asset, the collective positions on those markets will inform how much is to be set aside for margin.
 
 `[margin account balance] = [initial margin requirement] + [unrealised profit] OR - [unrealised losses]`
 
@@ -132,9 +132,7 @@ For [perpetual futures markets](./market-types.md#perpetual-futures), the margin
 Maintenance margin is calculated as: 
 
 ```
-min(SlippageVolume * SlippagePerUnit, MarkPrice * SlippageVolume * LinearSlippageFactor) + SlippageVol * RiskFactor * MarkPrice
-
-SlippagePerUnit = MarkPrice - ExitPrice
+maintenance margin = min(mark price x linear slippage factor x |position|, slippage per unit x |position|) + mark price x |position| x risk factor
 ```
 
 The `risk factor` will be different for short and long positions; the risk model provides `risk factor long` for when `position > 0` and `risk factor short` for when `position < 0`.
