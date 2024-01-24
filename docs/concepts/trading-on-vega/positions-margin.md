@@ -142,6 +142,8 @@ Note that your limit orders are included as well, and the maintenance margin is 
 #### Margin slippage
 Markets include a linear slippage factor to be used in low-volume market scenarios, where the standard slippage calculation isn't sufficient. In effect, it caps the margin level when the market wouldn't be able to support a position's margin increasing.
 
+Margin slippage in a low-volume scenario is calculated as `slippageFromFactor = linear factor x position x price`.
+
 If there is enough volume on the book, the slippage comes directly from the book and the linear slippage factor isn't used.
 
 :::note Read more
