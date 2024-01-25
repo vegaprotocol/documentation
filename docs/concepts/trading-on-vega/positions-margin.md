@@ -13,6 +13,16 @@ Margin is the amount of the market's settlement asset that's required to keep yo
 
 Hypothetical changes in a position's value are called unrealised profit and loss.
 
+Vega offers two ways to manage your margin, [isolated margin](#isolated-margin), which lets you choose how much leverage each position will have, and [cross margin](#cross-margining) which changes your leverage amount based on market movements, and how your other positions are doing.
+
+:::tip Try it out
+[Use Console ↗](https://console.fairground.wtf) to trade with cross margin or isolated margin. The leverage slider lets you set your isolated margin level.
+
+Or [use the update margin mode command](../../api/grpc/vega/commands/v1/commands.proto.mdx) to submit the transaction yourself.
+
+Switching between modes may change your margin requirements.
+:::
+
 ## Automated market processes
 As markets and collateral are not managed through human intervention, markets must have certain automated processes that allow them to function well and assure that the collateral required to manage positions is available when it's needed.
 
@@ -22,14 +32,6 @@ They include:
 - [**Cross margining**](#cross-margining): When a participant places an order using cross margin mode, the *initial margin* requirement is calculated automatically depending on the market's risk model. If the market moves against the participant, and the margin towards the *maintenance level*, Vega will *search* for more collateral in the general account, to avoid liquidating the position. Margin can also be *released* if the position is in sufficient profit. Other positions in markets with the same settlement asset may also interact with the same general account. 
 - [**Margin isolated per position**](#isolated-margin): When a participant places an order using isolated margin mode, the expected margin required for the life of the order, if it's filled, is set aside. The network continually tracks the requirements for open orders and positions to ensure there is enough margin to keep them open.
 - [**Mark to market**](#mark-to-market): Mark to market on Vega happens much more frequently than typical exchanges. Marking to market is used to move assets into your margin account (from someone else's) if you are in profit, or out of your margin account if not.
-
-:::tip Try it out
-[Use Console ↗](https://console.fairground.wtf) to trade with cross margin or isolated margin. The leverage slider lets you set your isolated margin level.
-
-Or [use the update margin mode command](../../api/grpc/vega/commands/v1/commands.proto.mdx) to submit the transaction yourself.
-
-Switching between modes may change your margin requirements.
-:::
 
 ## Mark to market
 Marking to market refers to settling gains and losses due to changes in the market value. Marking to market aims to provide a realistic appraisal of a position based on the current market conditions.
