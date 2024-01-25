@@ -23,6 +23,14 @@ They include:
 - [**Margin isolated per position**](#isolated-margin): When a participant places an order using isolated margin mode, the expected margin required for the life of the order, if it's filled, is set aside. The network continually tracks the requirements for open orders and positions to ensure there is enough margin to keep them open.
 - [**Mark to market**](#mark-to-market): Mark to market on Vega happens much more frequently than typical exchanges. Marking to market is used to move assets into your margin account (from someone else's) if you are in profit, or out of your margin account if not.
 
+:::tip Try it out
+[Use Console ↗](https://console.fairground.wtf) to trade with cross margin or isolated margin. The leverage slider lets you set your isolated margin level.
+
+Or [use the update margin mode command](../../api/grpc/vega/commands/v1/commands.proto.mdx) to submit the transaction yourself.
+
+Switching between modes may change your margin requirements.
+:::
+
 ## Mark to market
 Marking to market refers to settling gains and losses due to changes in the market value. Marking to market aims to provide a realistic appraisal of a position based on the current market conditions.
 
@@ -52,14 +60,6 @@ Cross margining is the default mode, so to use isolated margin you'll need to sw
 Overall, the margin tolerance of open orders and positions is determined by the market's risk model and market conditions. The larger the position and the more volatile the market, the greater the amount of margin that will need to be set aside. The volatility tolerance of the market is driven by the risk model.
 
 When placing order on a market, you can set your margin factor when using isolated margin, or the protocol will calculate the initial margin required, when using cross margining. The required funds will be moved into a margin account for that market. If your key's general account doesn't have enough in it to fund this, the order will be rejected.
-
-:::tip Try it out
-[Use Console ↗](https://console.fairground.wtf) to trade using isolated margin or cross margin.
-
-Or [use the update margin mode command](../../api/grpc/vega/commands/v1/commands.proto.mdx) to submit the transaction yourself.
-
-Switching between modes may change your margin requirements.
-:::
 
 ### Isolated margin
 To set the amount of leverage you want for an order, use isolated margin. Margin can be isolated per order and position with isolated margin mode. You choose how much to set aside for the lifetime of each order and position, per market, depending on how much leverage you want. That fraction of your order's notional size is moved to an order margin account.
