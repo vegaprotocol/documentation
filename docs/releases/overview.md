@@ -26,7 +26,6 @@ This pre-release contains several new features for the Palazzo milestone, includ
 
 ### Breaking changes
 
-- A liquidation strategy has been added whereby a distressed party's position is liquidated immediately and moved to the network party. The market's insurance pool is the market's party margin account. A simple inventory management strategy for the network party has been introduced. This has been added in the following [issue ↗](https://github.com/vegaprotocol/vega/issues/9945)
 - Listing transactions on block explorer no longer supports the field `limit`. This has been added in the following [issue ↗](https://github.com/vegaprotocol/vega/issues/10215)
 - Getting a transfer by ID now returns a `TransferNode`. This has been added in the following [issue ↗](https://github.com/vegaprotocol/vega/issues/8056)
 
@@ -71,6 +70,15 @@ To see lower level details of how the new Ethereum RPC and EVM based data source
 For perpetual futures markets there should be a *mark price* configuration and a *market price for funding* configuration so that the market can potentially use different mark price for mark-to-market and price monitoring and completely different price for calculating funding.
 
 To see lower level details of how the new mark price and price for perps funding TWAP updates is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0009-MRKP-mark_price.md).
+
+#### Liquidation strategy improvements
+
+Improvemnets have been made to the way distressed parties are liquidated. Now new market proposals will need to include a liquidation strategy configuration.
+
+This configuration is used to allow the network to hold an active position on the market. Parties that are distressed, but previously couldn't be liquidated because there was insufficient volume on the book, will now be liquidated. In this process the partys position is moved to the network party and rather than dumping the distressed volume on the market, a simple inventory management strategy carries this out over time. 
+
+This improvement has been added in the following [issue ↗](https://github.com/vegaprotocol/vega/issues/9945)
+
 
 ### Pre-release version 0.73.12 (patch) | 2024-01-10
 Version 0.73.12 was released the Vega testnet on 10 January, 2024.
