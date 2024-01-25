@@ -19,6 +19,59 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+## Pre-release version 0.74 | 2024-01-24
+This version was released to the Vega testnet on 24 January 2024.
+
+This pre-release contains several new features for the Palazzo milestone, including isolated margin, batch proposals, Ethereum RPC and EVM based data sources and a new mark price and price for perps funding TWAP methodology.
+
+### Breaking changes
+
+- A liquidation strategy has been added whereby a distressed party's position is liquidated immediately and moved to the network party. The market's insurance pool is the market's party margin account. A simple inventory management strategy for the network party has been introduced. This has been added in the following [issue ↗](https://github.com/vegaprotocol/vega/issues/9945)
+- Listing transactions on block explorer no longer supports the field `limit`. This has been added in the following [issue ↗](https://github.com/vegaprotocol/vega/issues/10215)
+- Getting a transfer by ID now returns a `TransferNode`. This has been added in the following [issue ↗](https://github.com/vegaprotocol/vega/issues/8056)
+
+### Deprecations
+
+ - Commands `tm` and `tendermint` are deprecated in favour of `cometbft`. This has been added in the following [issue ↗](https://github.com/vegaprotocol/vega/issues/10000)
+
+### New Features
+
+#### Isolated margin
+
+The protocol can now operate in one of two margining modes for each position. The current mode will be stored alongside the party's position record.
+
+* Cross-margin mode (default): this is the mode used by all newly created positions. When in cross-margin mode, margin is dynamically acquired and released as a position is marked to market, allowing profitable positions to offset losing positions for higher capital efficiency (especially with e.g. pairs trades).
+
+* Isolated margin mode: this mode sacrifices capital efficiency for predictability and risk management by segregating positions. In this mode, the entire margin for any newly opened position volume is transferred to the margin account when the trade is executed. This includes completely new positions and increases to position size. Other than at time of future trades, the general account will then never be searched for additional funds (a position will be allowed to be closed out instead), nor will profits be moved into the general account from the margin account.
+
+To see lower level details of how the new isolated margin feature is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0019-MCAL-margin_calculator.md#isolated-margin-mode).
+
+#### Batch proposals
+
+A `BatchProposalSubmission` is a top-level proposal type  which allows grouping of several individual proposals into a single proposal. Grouping in this way ensures that all changes will pass or fail governance voting together.
+
+The batch proposal is a wrapper containing one rationale (i.e. title and description) field as a standard `ProposalSubmission`, one `closingTimestamp` field and a list of `ProposalSubmissions` which omit certain fields.
+
+Each individual `ProposalSubmission` does not have a rationale entry (i.e. no title and description) or `closingTimestamp` entry. Any governance proposal can be included in a batch except proposals to *add* new assets.
+
+To see lower level details of how the new batch proposals feature is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0028-GOVE-governance.md#batch-proposals).
+
+#### Ethereum RPC and EVM based data sources
+
+Updates in the Palazzo milestone (v0.74.0) introduce a new way of sourcing data from any chain or Ethereum Layer 2 blockchain (L2) that supports Ethereum RPC calls and runs an EVM.
+
+In addition to listening to Ethereum events and reading oracle data from Ethereum contracts, as implemented the Cosmic Elevator milestone (v0.73.0), it will now be possible for Vega nodes to listen to events from and read from other chains that implement Ethereum RPC and run EVM, in particular Ethereum L2s.
+
+The overarching principle is that the chain provides Ethereum RPC / EVMs and thus the contracts and ABIs are assumed to be functionally the same as on Ethereum itself.
+
+To see lower level details of how the new Ethereum RPC and EVM based data sources feature is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0087-EVMD-eth-rpc-and-evm-data-source.md).
+
+#### Mark price and price for perps funding TWAP updates
+
+For perpetual futures markets there should be a *mark price* configuration and a *market price for funding* configuration so that the market can potentially use different mark price for mark-to-market and price monitoring and completely different price for calculating funding.
+
+To see lower level details of how the new mark price and price for perps funding TWAP updates is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0009-MRKP-mark_price.md).
+
 ### Pre-release version 0.73.12 (patch) | 2024-01-10
 Version 0.73.12 was released the Vega testnet on 10 January, 2024.
 
