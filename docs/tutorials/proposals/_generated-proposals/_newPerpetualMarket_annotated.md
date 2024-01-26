@@ -130,12 +130,11 @@
       },
 
 
-      /* Describes which property of the data source data is to be
-       * used as settlement data and which to use as the trading terminated trigger */
+      /* undefined */
       dataSourceSpecBinding: {
-       /* Name of the property in the source data that should be used as settlement data.
-        * If it is set to "prices.BTC.value", then the perpetual market will use the value of
-        * this property as settlement data. */
+       /* Name of the property in the source data that should be used for settlement data.
+        * If it is set to "prices.BTC.value" for example, then the perpetual market will use the value of
+        * this property to get settlement data. */
        settlementDataProperty: "prices.ORANGES.value",
        settlementScheduleProperty: "vegaprotocol.builtin.timetrigger"
       }
@@ -143,8 +142,8 @@
 
      // Optional new futures market metadata, tags.
      metadata: [
-      "enactment:2023-11-28T18:16:03Z",
-      "settlement:2023-11-27T18:16:03Z",
+      "enactment:2024-02-15T14:43:40Z",
+      "settlement:2024-02-14T14:43:40Z",
       "source:docs.vega.xyz"
      ],
 
@@ -228,11 +227,11 @@
 
   // Timestamp as Unix time in seconds when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-  closingTimestamp: 1701108963,
+  closingTimestamp: 1707921820,
 
   // Timestamp as Unix time in seconds when proposal gets enacted if passed,
   // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-  enactmentTimestamp: 1701195363,
+  enactmentTimestamp: 1708008220,
  }
 }
 ```
