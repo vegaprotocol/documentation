@@ -78,8 +78,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      }^
     },^
     \"metadata\": [^
-     \"enactment:2024-02-15T16:20:13Z\",^
-     \"settlement:2024-02-14T16:20:13Z\",^
+     \"enactment:2024-02-15T17:28:36Z\",^
+     \"settlement:2024-02-14T17:28:36Z\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -105,11 +105,17 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      \"commitmentMinTimeFraction\": \"0.1\",^
      \"performanceHysteresisEpochs\": \"10\",^
      \"slaCompetitionFactor\": \"0.2\"^
+    },^
+    \"liquidationStrategy\": {^
+     \"disposalTimeStep\": \"500\",^
+     \"disposalFraction\": \"1\",^
+     \"fullDisposalSize\": \"18446744073709551615\",^
+     \"maxFractionConsumed\": \"1\"^
     }^
    }^
   },^
-  \"closingTimestamp\": 1707927613,^
-  \"enactmentTimestamp\": 1708014013^
+  \"closingTimestamp\": 1707931716,^
+  \"enactmentTimestamp\": 1708018116^
  }^
 }^
 }"

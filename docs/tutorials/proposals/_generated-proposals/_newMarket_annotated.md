@@ -123,8 +123,8 @@
 
       // Optional new futures market metadata, tags.
       metadata: [
-       "enactment:2024-02-15T16:20:13Z",
-       "settlement:2024-02-14T16:20:13Z",
+       "enactment:2024-02-15T17:28:36Z",
+       "settlement:2024-02-14T17:28:36Z",
        "source:docs.vega.xyz"
       ],
 
@@ -184,16 +184,31 @@
        // that achieved a higher SLA performance than them. (string)
        slaCompetitionFactor: "0.2",
       },
+
+      // undefined
+      liquidationStrategy: {
+       // Interval, in seconds, at which the network will attempt to close its position. (int64 as string)
+       disposalTimeStep: 500,
+
+       // Fraction of the open position the market will try to close in a single attempt; range 0 through 1. (string)
+       disposalFraction: "1",
+
+       // Size of the position that the network will try to close in a single attempt. (uint64 as string)
+       fullDisposalSize: "18446744073709551615",
+
+       // Max fraction of the total volume of the orderbook, within liquidity bounds, that the network can use to close its position; range 0 through 1. (string)
+       maxFractionConsumed: "1",
+      },
      }
     },
 
     // Timestamp as Unix time in seconds when voting closes for this proposal,
     // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-    closingTimestamp: 1707927613,
+    closingTimestamp: 1707931716,
 
     // Timestamp as Unix time in seconds when proposal gets enacted if passed,
     // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-    enactmentTimestamp: 1708014013,
+    enactmentTimestamp: 1708018116,
    }
   }
 ```

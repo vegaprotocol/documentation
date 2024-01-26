@@ -418,6 +418,54 @@ function generateLiquiditySlaParameters(skeleton) {
   return slaParams;
 }
 
+function generateLiquidationStrategy(skeleton) {
+  assert.equal(
+    skeleton.properties.disposalTimeStep.type,
+    "string",
+    "Liquidity Strategy: expected disposalTimeStep to be a string"
+  );
+  assert.equal(
+    skeleton.properties.disposalFraction.type,
+    "string",
+    "Liquidity Strategy: expected disposalFraction to be a string"
+  );
+  assert.equal(
+    skeleton.properties.fullDisposalSize.type,
+    "string",
+    "Liquidity Strategy: expected fullDisposalSize to be a string"
+  );
+
+  assert.equal(
+    skeleton.properties.maxFractionConsumed.type,
+    "string",
+    "Liquidity Strategy: expected maxFractionConsumed to be a string"
+  );
+
+  const liquidationStrategy = {
+    disposalTimeStep: "500",
+    disposalFraction: "1",
+    fullDisposalSize: "18446744073709551615",
+    maxFractionConsumed: "1"
+  };
+
+  liquidationStrategy[inspect.custom] = () => {
+    return `{
+        // ${skeleton.properties.disposalTimeStep.description} (${skeleton.properties.disposalTimeStep.format} as ${skeleton.properties.disposalTimeStep.type})
+        disposalTimeStep: ${liquidationStrategy.disposalTimeStep},
+        // ${skeleton.properties.disposalFraction.description} (${skeleton.properties.disposalFraction.type})
+        disposalFraction: "${liquidationStrategy.disposalFraction}",
+        // ${skeleton.properties.fullDisposalSize.description} (${skeleton.properties.fullDisposalSize.format} as ${skeleton.properties.fullDisposalSize.type})
+        fullDisposalSize: "${liquidationStrategy.fullDisposalSize}",
+        // ${skeleton.properties.maxFractionConsumed.description} (${skeleton.properties.maxFractionConsumed.type})
+        maxFractionConsumed: "${liquidationStrategy.maxFractionConsumed}",
+      }`;
+  };
+
+  return liquidationStrategy;
+}
+
+
+
 function generatePeggedOrder(skeleton, side, customInspect = false) {
   const order = {
     offset: random(1, 100).toString(),
@@ -734,6 +782,9 @@ function newMarket(skeleton, proposalSoFar) {
           liquiditySlaParameters: generateLiquiditySlaParameters(
             skeleton.properties.changes.properties.liquiditySlaParameters
           ),
+          liquidationStrategy: generateLiquidationStrategy(
+            skeleton.properties.changes.properties.liquidationStrategy
+          )
         },
       },
     },
@@ -773,8 +824,12 @@ function newMarket(skeleton, proposalSoFar) {
       })},
       // ${skeleton.properties.changes.properties.liquiditySlaParameters.title}
          liquiditySlaParameters: ${inspect(result.terms.newMarket.changes.liquiditySlaParameters, {
-      depth: 19,
-    })},
+        depth: 19,
+      })},
+      // ${skeleton.properties.changes.properties.liquidationStrategy.title}
+         liquidationStrategy: ${inspect(result.terms.newMarket.changes.liquidationStrategy, {
+        depth: 19,
+      })},
         }
     }`;
   };
