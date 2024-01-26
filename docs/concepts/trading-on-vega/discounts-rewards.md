@@ -27,6 +27,29 @@ You can see what the current program offers by checking the [Referrals page on C
 * [Spec: Technical design of the referral program ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0083-RFPR-on_chain_referral_program.md).
 :::
 
+### Referral sets
+To benefit from referral program perks, you'll need to either create a referral set, or join one. Referral sets can also be made into [teams](#teams-and-games), which get access to rewards targeted towards team members.
+
+A referral set is made up of the participant who created the set, known as the referrer, and all the referees who signed up using the referral code. Each referral set only has one referrer, but the number of referees is unlimited.
+
+:::tip Try it out
+Create a referral code, or enter a referral code you've been given on the [referrals section of Console ↗](https://vegafairground.eth.limo/#/referrals).
+:::
+
+### Teams and games
+When you create or update a referral set on [Console ↗](https://vegafairground.eth.limo/#/referrals), you can opt to turn it into a team. Teams can get access to games, which are [trading rewards](#trading-rewards) set to target those in a team, if they are set up.
+
+If you're part of a team, you can switch to a different team by using the team's referral code.
+
+Teams can have names and avatars to differentiate themselves on leaderboards. 
+
+The team leader, or referrer, can also choose when the team is open to all or to only certain participants.
+
+#### Game rewards
+Game rewards are assigned to a team based on the team's overall performance, and then rewards are distributed amongst the team members based on their multipliers. However, if you get a 0 score, then you won't get any rewards, even if your team was rewarded. 
+
+You'll need to be in a team for <NetworkParameter frontMatter={frontMatter} param="rewards.team.minEpochsInTeam" suffix="epochs" /> to be eligible for game rewards.
+
 ## Fee discounts based on trading volume
 Traders can get discounts on their [fees](./fees.md) when there's an active volume discount program on the network. The higher your volume of aggressive trades on a market, the greater the discount you can receive.
 
@@ -53,6 +76,15 @@ Your reward earnings can grow if you have an activity streak and/or keep earned 
 :::tip Try it out
 [See the available rewards ↗](https://vega.xyz/rewards)
 :::
+
+A reward can be set to target participants with certain statuses:
+
+* Teams - Only those in teams are eligible, and rewards are divided based on team performance then distributed amongst the team members.
+    * Team reward eligibility can be limited to a selected list of teams
+* Individuals:
+    * All - Everyone is eligible.
+    * Not in a team - Only participants that are not in a team are eligible.
+    * In a team - Only participants in a team are eligible, but they are rewarded based on individual performance.
 
 Rewards are independent from [fees](./fees.md), which are paid to validators, liquidity providers, and price makers on each trade.
 
@@ -104,6 +136,7 @@ Trading rewards can be defined by the following things:
 * How long a reward is offered
 * How the reward is distributed to those eligible, pro-rata or by rank
 * How many epochs a trader's activity is evaluated
+* If the reward is available to individuals or those on a team
 
 Extra rewards for validators can also be set up. Learn more about them on the [validator scores and rewards page](../vega-chain/validator-scores-and-rewards.md#validator-metric-based-rewards).
 
