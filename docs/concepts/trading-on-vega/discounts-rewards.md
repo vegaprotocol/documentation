@@ -55,7 +55,7 @@ Rewards are independent from [fees](./fees.md), which are paid to validators, li
 ### How rewards are paid
 Rewards that you earn are paid into a per-asset *vesting rewards account*.
 
-* **Rewards may be locked.** Each reward has its own lock period. Check the [rewards page on Console ↗](https://https://vegafairground.eth.limo/#/rewards) or the [transfers API](../../api/rest/data-v2/trading-data-service-list-transfers.api.mdx) to see how many epochs each reward is locked for.
+* **Rewards may be locked.** Each reward has its own lock period. Check the [rewards page on Console ↗](https://https://vegafairground.eth.limo/#/rewards) or the [transfers API](../../api/rest/data-v2/trading-data-service-list-transfers.api.mdx) to see how many [epochs](../vega-chain/network.md#epochs) each reward is locked for.
 * After rewards unlock, a proportion of the rewards move into your *vested account* each epoch: <NetworkParameter frontMatter={frontMatter} name="current rate" param="rewards.vesting.baseRate" formatter="percent" />. That percentage can be higher if you have an [activity streak](#activity-streak) going.
 * Redeem them from your vested account by transferring them into your general account. Then you can withdraw.
 
