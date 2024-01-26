@@ -60,6 +60,6 @@ The margin calculations for perpetual futures markets contain an additional para
 
 :::note Read more 
 * [Concept: Periodic settlement](./settlement.md#periodic-settlement-for-perpetuals)
-* [Concept: Positions and margin](./margin.md)
+* [Concept: Positions and margin](./positions-margin.md)
 * [Tutorial: Propose a perpetuals market](../../tutorials/proposals/new-perpetuals-market.md)
 :::

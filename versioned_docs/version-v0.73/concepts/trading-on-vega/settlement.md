@@ -59,7 +59,7 @@ A cash-settled futures market reaches its expiry date and time. If the last mark
 When the mark price on a market changes, the protocol calculates settlement cash flows for each party with an open position. This means that each time the mark price for a given market changes, all the open positions are marked to market. Interim partial payments are calculated by the protocol, and those payments go directly to the relevant trader's margin account. 
 
 :::note Read more
-[Concept: Mark to market](./margin.md#mark-to-market)
+[Concept: Mark to market](./positions-margin.md#mark-to-market)
 :::
 
 ## Periodic settlement for perpetuals 
