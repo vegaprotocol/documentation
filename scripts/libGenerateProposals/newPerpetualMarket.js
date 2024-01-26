@@ -4,7 +4,6 @@ const { inspect } = require("util");
 const {
   generateMetadata,
   generatePriceMonitoringParameters,
-  generateLiquidityMonitoringParameters,
   generateRiskModel,
   generateLiquiditySlaParameters
 } = require('./newMarket')
@@ -224,9 +223,6 @@ function newPerpetualMarket(skeleton, proposalSoFar) {
   assert.ok(skeleton[p].changes[p].instrument);
   assert.equal(skeleton[p].changes[p].metadata.type, "array");
   assert.ok(skeleton[p].changes[p].priceMonitoringParameters);
-  assert.ok(
-    skeleton[p].changes[p].liquidityMonitoringParameters
-  );
   assert.ok(skeleton[p].changes[p].logNormal);
 
   const result = {
@@ -251,9 +247,6 @@ function newPerpetualMarket(skeleton, proposalSoFar) {
           ),
           priceMonitoringParameters: generatePriceMonitoringParameters(
             skeleton.properties.changes.properties.priceMonitoringParameters
-          ),
-          liquidityMonitoringParameters: generateLiquidityMonitoringParameters(
-            skeleton.properties.changes.properties.liquidityMonitoringParameters
           ),
           logNormal: generateRiskModel(
             skeleton.properties.changes.properties.logNormal,
@@ -295,13 +288,6 @@ function newPerpetualMarket(skeleton, proposalSoFar) {
       }
           priceMonitoringParameters: ${inspect(
         result.terms.newMarket.changes.priceMonitoringParameters,
-        { depth: 19 }
-      )},
-          // ${skeleton.properties.changes.properties.liquidityMonitoringParameters
-        .title
-      }
-          liquidityMonitoringParameters: ${inspect(
-        result.terms.newMarket.changes.liquidityMonitoringParameters,
         { depth: 19 }
       )},
           // ${skeleton.properties.changes.properties.logNormal.title}

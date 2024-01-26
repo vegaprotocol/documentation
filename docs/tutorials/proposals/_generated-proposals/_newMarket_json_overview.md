@@ -21,8 +21,6 @@
     metadata: [],
     // PriceMonitoringParameters contains a collection of triggers to be used for a given market
     priceMonitoringParameters: [],
-    // LiquidityMonitoringParameters contains settings used for liquidity monitoring
-    liquidityMonitoringParameters: {},
     // Risk model for log normal
     logNormal: {},
     // Liquidity SLA parameters
@@ -41,10 +39,10 @@
   },
   // Timestamp as Unix time in seconds when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-  closingTimestamp: 1707921820,
+  closingTimestamp: 1707923647,
   // Timestamp as Unix time in seconds when proposal gets enacted if passed,
   // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-  enactmentTimestamp: 1708008220,
+  enactmentTimestamp: 1708010047,
  }
 }
 ```

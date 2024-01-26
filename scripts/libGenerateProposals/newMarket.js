@@ -622,48 +622,6 @@ function generatePriceMonitoringParameters(skeleton) {
   return params;
 }
 
-function generateLiquidityMonitoringParameters(skeleton) {
-  assert.ok(skeleton.properties.targetStakeParameters);
-  assert.equal(
-    skeleton.properties.targetStakeParameters.properties.timeWindow.type,
-    "string"
-  );
-  assert.equal(
-    skeleton.properties.targetStakeParameters.properties.scalingFactor.type,
-    "number"
-  );
-
-  assert.equal(skeleton.properties.triggeringRatio.type, "string");
-  assert.equal(skeleton.properties.auctionExtension.type, "string");
-
-  const params = {
-    targetStakeParameters: {
-      timeWindow: "3600",
-      scalingFactor: 10,
-    },
-    triggeringRatio: "0.7",
-    auctionExtension: "1",
-  };
-
-  params[inspect.custom] = () => {
-    return `{
-        // ${skeleton.properties.targetStakeParameters.title}
-        targetStakeParameters: {
-          // ${skeleton.properties.targetStakeParameters.properties.timeWindow.description} (${skeleton.properties.targetStakeParameters.properties.timeWindow.type})
-          timeWindow: "${params.targetStakeParameters.timeWindow}",
-          // ${skeleton.properties.targetStakeParameters.properties.scalingFactor.description} (${skeleton.properties.targetStakeParameters.properties.scalingFactor.type})
-          scalingFactor: ${params.targetStakeParameters.scalingFactor}
-        },
-        // ${skeleton.properties.triggeringRatio.description} (${skeleton.properties.triggeringRatio.type})
-        triggeringRatio: "${params.triggeringRatio}",
-        // ${skeleton.properties.auctionExtension.description} (${skeleton.properties.auctionExtension.format} as ${skeleton.properties.auctionExtension.type})
-        auctionExtension: "${params.auctionExtension}",
-      }}`;
-  };
-
-  return params;
-}
-
 function generateMetadata(skeleton, proposalSoFar) {
   const dateFormat = "yyyy-MM-dd\'T\'HH:mm:ss"
   const settlement = format(fromUnixTime(proposalSoFar.terms.closingTimestamp), dateFormat)
@@ -747,9 +705,6 @@ function newMarket(skeleton, proposalSoFar) {
   assert.ok(skeleton.properties.changes.properties.instrument);
   assert.equal(skeleton.properties.changes.properties.metadata.type, "array");
   assert.ok(skeleton.properties.changes.properties.priceMonitoringParameters);
-  assert.ok(
-    skeleton.properties.changes.properties.liquidityMonitoringParameters
-  );
   assert.ok(skeleton.properties.changes.properties.logNormal);
 
   const result = {
@@ -773,9 +728,6 @@ function newMarket(skeleton, proposalSoFar) {
           ),
           priceMonitoringParameters: generatePriceMonitoringParameters(
             skeleton.properties.changes.properties.priceMonitoringParameters
-          ),
-          liquidityMonitoringParameters: generateLiquidityMonitoringParameters(
-            skeleton.properties.changes.properties.liquidityMonitoringParameters
           ),
           logNormal: generateRiskModel(
             skeleton.properties.changes.properties.logNormal,
@@ -819,13 +771,6 @@ function newMarket(skeleton, proposalSoFar) {
         result.terms.newMarket.changes.priceMonitoringParameters,
         { depth: 19 }
       )},
-          // ${skeleton.properties.changes.properties.liquidityMonitoringParameters
-        .title
-      }
-          liquidityMonitoringParameters: ${inspect(
-        result.terms.newMarket.changes.liquidityMonitoringParameters,
-        { depth: 19 }
-      )},
           // ${skeleton.properties.changes.properties.logNormal.title}
           logNormal: ${inspect(result.terms.newMarket.changes.logNormal, {
         depth: 19,
@@ -847,7 +792,6 @@ function produceOverview(p) {
   proposal.terms.newMarket.changes.instrument = {};
   proposal.terms.newMarket.changes.metadata = [];
   proposal.terms.newMarket.changes.priceMonitoringParameters = [];
-  proposal.terms.newMarket.changes.liquidityMonitoringParameters = {};
   proposal.terms.newMarket.changes.logNormal = {};
   proposal.terms.newMarket.liquidityCommitment = {};
   return proposal;
@@ -871,7 +815,6 @@ module.exports = {
   generateFutureInstrument,
   generateMetadata,
   generatePriceMonitoringParameters,
-  generateLiquidityMonitoringParameters,
   generateRiskModel,
   generateLiquiditySlaParameters
 };

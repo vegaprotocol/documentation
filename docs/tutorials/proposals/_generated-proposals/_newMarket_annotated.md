@@ -126,8 +126,8 @@
 
       // Optional new futures market metadata, tags.
       metadata: [
-       "enactment:2024-02-15T14:43:40Z",
-       "settlement:2024-02-14T14:43:40Z",
+       "enactment:2024-02-15T15:14:07Z",
+       "settlement:2024-02-14T15:14:07Z",
        "source:docs.vega.xyz"
       ],
 
@@ -150,72 +150,53 @@
        ]
       },
 
-      // LiquidityMonitoringParameters contains settings used for liquidity monitoring
-      liquidityMonitoringParameters: {
-       // TargetStakeParameters contains parameters used in target stake calculation
-       targetStakeParameters: {
-        // Specifies length of time window expressed in seconds for target stake calculation. (string)
-        timeWindow: "3600",
+      // Risk model for log normal
+      logNormal: {
+       // Tau parameter of the risk model, projection horizon measured as a year fraction used in the expected shortfall
+       calculation to obtain the maintenance margin,
+       must be a strictly non - negative real number.(number) tau: 0.0001140771161,
 
-        // Specifies scaling factors used in target stake calculation. (number)
-        scalingFactor: 10
-       },
+       // Risk Aversion Parameter. (double as number)
+       riskAversionParameter: "0.01",
 
-       // Specifies the triggering ratio for entering liquidity auction. (string)
-       triggeringRatio: "0.7",
+       // Risk model parameters for log normal
+       params: {
+        // Mu parameter, annualised growth rate of the underlying asset. (double as number)
+        mu: 0,
 
-       // Specifies by how many seconds an auction should be extended if leaving the auction were to trigger a liquidity auction. (int64 as string)
-       auctionExtension: "1",
-      }
-     },
+        // R parameter, annualised growth rate of the risk-free asset, used for discounting of future cash flows, can be any real number. (double as number)
+        r: 0.016,
 
-     // Risk model for log normal
-     logNormal: {
-      // Tau parameter of the risk model, projection horizon measured as a year fraction used in the expected shortfall
-      calculation to obtain the maintenance margin,
-      must be a strictly non - negative real number.(number) tau: 0.0001140771161,
+        // Sigma parameter, annualised volatility of the underlying asset, must be a strictly non-negative real number. (double as number)
+        sigma: 0.15,
+       }
+      },
 
-      // Risk Aversion Parameter. (double as number)
-      riskAversionParameter: "0.01",
+      // Liquidity SLA parameters
+      liquiditySlaParameters: {
+       // (string)
+       priceRange: 0.1,
 
-      // Risk model parameters for log normal
-      params: {
-       // Mu parameter, annualised growth rate of the underlying asset. (double as number)
-       mu: 0,
+       // Specifies the minimum fraction of time LPs must spend "on the book" providing their committed liquidity. (string)
+       commitmentMinTimeFraction: "0.1",
 
-       // R parameter, annualised growth rate of the risk-free asset, used for discounting of future cash flows, can be any real number. (double as number)
-       r: 0.016,
+       // Specifies the number of liquidity epochs over which past performance will continue to affect rewards. (uint64 as string)
+       performanceHysteresisEpochs: "10",
 
-       // Sigma parameter, annualised volatility of the underlying asset, must be a strictly non-negative real number. (double as number)
-       sigma: 0.15,
-      }
-     },
+       // Specifies the maximum fraction of their accrued fees an LP that meets the SLA implied by market.liquidity.commitmentMinTimeFraction will lose to liquidity providers
+       // that achieved a higher SLA performance than them. (string)
+       slaCompetitionFactor: "0.2",
+      },
+     }
+    },
 
-     // Liquidity SLA parameters
-     liquiditySlaParameters: {
-      // (string)
-      priceRange: 0.1,
+    // Timestamp as Unix time in seconds when voting closes for this proposal,
+    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
+    closingTimestamp: 1707923647,
 
-      // Specifies the minimum fraction of time LPs must spend "on the book" providing their committed liquidity. (string)
-      commitmentMinTimeFraction: "0.1",
-
-      // Specifies the number of liquidity epochs over which past performance will continue to affect rewards. (uint64 as string)
-      performanceHysteresisEpochs: "10",
-
-      // Specifies the maximum fraction of their accrued fees an LP that meets the SLA implied by market.liquidity.commitmentMinTimeFraction will lose to liquidity providers
-      // that achieved a higher SLA performance than them. (string)
-      slaCompetitionFactor: "0.2",
-     },
-    }
-   },
-
-   // Timestamp as Unix time in seconds when voting closes for this proposal,
-   // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-   closingTimestamp: 1707921820,
-
-   // Timestamp as Unix time in seconds when proposal gets enacted if passed,
-   // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-   enactmentTimestamp: 1708008220,
+    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
+    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
+    enactmentTimestamp: 1708010047,
+   }
   }
- }
 ```
