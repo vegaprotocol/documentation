@@ -150,7 +150,7 @@ There's a limit to how many stop orders any one public key can have active at on
 ### Batch order
 Order instructions, such as submit, cancel, and/or amend orders, as well as stop order instructions, can be batched together in a single transaction, which allows traders to regularly place and maintain the price and size of multiple orders without needing to wait for each order instruction to be processed by the network individually.
 
-Batches are processed in the following order: all cancellations, then all amendments, then [margin](./positions-margin.md#margin) mode updates, then all submissions. Stop order instructions are processed after standard order instructions.
+Batches are processed in the following order: all cancellations, then all amendments, then [margin](./margin.md#margin) mode updates, then all submissions. Stop order instructions are processed after standard order instructions.
 
 They are also processed as if they were standalone order instructions in terms of market behaviour. For example, if an instruction, had it been submitted individually, would trigger entry into or exit from an auction, then the order instruction would set off the auction trigger before the rest of the batch is processed.
 

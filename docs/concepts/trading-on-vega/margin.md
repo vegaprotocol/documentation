@@ -1,19 +1,32 @@
 ---
 sidebar_position: 3
-title: Margin and positions
+title: Margin and leverage
 hide_title: false
 description: How margin is calculated and used.
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-Trading margined derivatives (such as futures) allows you to create leveraged positions, meaning you only need some of the notional value of an instrument to place orders. 
+Trading margined derivatives (such as futures) allows you to create leveraged positions, meaning you only need some of the notional value of an instrument to place orders.
 
-Margin is the amount of the market's settlement asset that's required to keep your positions open and orders funded. You can think of margin as the 'down payment' to open a position. Leverage, meanwhile, describes how many times larger is the notional value of that position compared to the margin you have dedicated to it. For example, if you need 20 DAI to open a position worth 100 DAI: your leverage is 5x and your initial margin is 20% of the full value.
+Margin is the amount of the market's settlement asset that's required to keep your positions open and orders funded. You can think of margin as the 'down payment' to open a position. Leverage, meanwhile, describes how many times larger is the notional value of that position compared to the margin you have dedicated to it. 
+
+For example, if you need 20 DAI to open a position worth 100 DAI: your leverage is 5x and your initial margin is 20% of the full value.
 
 Hypothetical changes in a position's value are called unrealised profit and loss.
 
-Vega offers two ways to manage your margin, [isolated margin](#isolated-margin), which lets you choose how much leverage each position will have, and [cross margin](#cross-margining) which changes your leverage amount based on market movements, and how your other positions are doing.
+## Margin modes
+
+There are two ways the protocol lets you manage your leverage: cross-market margin or isolated margin. You can switch between the margin modes as long as you have enough to support the margin requirement for your potential position in the new mode.
+
+* **Cross margining** provides a capital-efficient use of margin, particularly when trading on multiple markets using the same settlement asset. You can't control the amount of margin (and thus leverage) that you use on your position but the market sets money aside and returns it if it's not required.
+* **Isolated margin** provides a way to control how much you set aside for margin and thus choose your leverage amount. The amount of margin set aside is static, unless you increase your position. If the market turns against your position, it could be closed out more quickly.
+
+Cross margining is the default mode, so to use isolated margin you'll need to switch before submitting your order. Once you choose isolated margin on a market, your orders will continue to use that mode unless you update it to cross margining.
+
+Overall, the margin tolerance of open orders and positions is determined by the market's risk model and market conditions. The larger the position and the more volatile the market, the greater the amount of margin that will need to be set aside. The volatility tolerance of the market is driven by the risk model.
+
+When placing order on a market, you can set your margin factor when using isolated margin, or the protocol will calculate the initial margin required, when using cross margining. The required funds will be moved into a margin account for that market. If your key's general account doesn't have enough in it to fund this, the order will be rejected.
 
 :::tip Try it out
 [Use Console ↗](https://console.fairground.wtf) to trade with cross margin or isolated margin. The leverage slider lets you set your isolated margin level.
@@ -22,46 +35,6 @@ Or [use the update margin mode command](../../api/grpc/vega/commands/v1/commands
 
 Switching between modes may change your margin requirements.
 :::
-
-## Automated market processes
-As markets and collateral are not managed through human intervention, markets must have certain automated processes that allow them to function well and assure that the collateral required to manage positions is available when it's needed.
-
-There are a few mechanisms that work differently to how they would on a centralised exchange, in order to keep the markets solvent. 
-
-They include:
-- [**Cross margining**](#cross-margining): When a participant places an order using cross margin mode, the *initial margin* requirement is calculated automatically depending on the market's risk model. If the market moves against the participant, and the margin towards the *maintenance level*, Vega will *search* for more collateral in the general account, to avoid liquidating the position. Margin can also be *released* if the position is in sufficient profit. Other positions in markets with the same settlement asset may also interact with the same general account. 
-- [**Margin isolated per position**](#isolated-margin): When a participant places an order using isolated margin mode, the expected margin required for the life of the order, if it's filled, is set aside. The network continually tracks the requirements for open orders and positions to ensure there is enough margin to keep them open.
-- [**Mark to market**](#mark-to-market): Mark to market on Vega happens much more frequently than typical exchanges. Marking to market is used to move assets into your margin account (from someone else's) if you are in profit, or out of your margin account if not.
-
-## Mark to market
-Marking to market refers to settling gains and losses due to changes in the market value. Marking to market aims to provide a realistic appraisal of a position based on the current market conditions.
-
-If the market price goes up, traders that hold long positions receive money into their margin account – equal to the change in the notional value of their positions – from traders that hold short positions, and conversely if the value goes down, the holders of short positions receive money from the holders of long positions.
-
-For a derivatives market created on Vega, the mark to market frequency is controlled by a network parameter: 
-<NetworkParameter frontMatter={frontMatter} param="network.markPriceUpdateMaximumFrequency" />. 
-
-The mark to market price based on the last traded price. This is in contrast to traditional derivatives markets, for which marking to market may occur only once per day. One exception is when a futures market settles at expiry, at which point the mark to market price comes from the market data source's final settlement price.
-
-Mark to market settlement instructions are generated based on the change in market value of the open positions of a party. When the mark price changes, the network calculates settlement cash flows for each party, and the process is repeated each time the mark price changes until the maturity date for the market is reached.
-
-:::note Read more
-[Concept: Mark to market settlement](./settlement.md#mark-to-market-settlement)
-:::
-
-## Margin
-Margin is the amount of collateral required to keep your position open. When a party on Vega opens a position, the minimum amount of assets required to open that position is put into a margin account for that party in that market.
-
-There are two ways the protocol lets you manage your leverage: cross-market margin or isolated margin. You can switch between the margin modes as long as you have enough to support the margin requirement for your potential position in the new mode.
-
-* **Cross margining** provides a capital-efficient use of margin, particularly when trading on multiple markets using the same settlement asset. You can't control the amount of margin (and thus leverage) that you use on your position but the market sets money aside and returns it if it's not required.
-* **Isolated margin** provides a way to control how much you set aside for margin and thus choose your leverage amount. The amount of margin set aside is static, unless you increase your position. If the market turns against your position, it could be closed out more quickly. 
-
-Cross margining is the default mode, so to use isolated margin you'll need to switch before submitting your order. Once you choose isolated margin on a market, your orders will continue to use that mode unless you update it to cross margining.
-
-Overall, the margin tolerance of open orders and positions is determined by the market's risk model and market conditions. The larger the position and the more volatile the market, the greater the amount of margin that will need to be set aside. The volatility tolerance of the market is driven by the risk model.
-
-When placing order on a market, you can set your margin factor when using isolated margin, or the protocol will calculate the initial margin required, when using cross margining. The required funds will be moved into a margin account for that market. If your key's general account doesn't have enough in it to fund this, the order will be rejected.
 
 ### Isolated margin
 To set the amount of leverage you want for an order, use isolated margin. Margin can be isolated per order and position with isolated margin mode. You choose how much to set aside for the lifetime of each order and position, per market, depending on how much leverage you want. That fraction of your order's notional size is moved to an order margin account.
@@ -97,29 +70,32 @@ The margin amount required for cross margining is recalculated every time markin
 **[Whitepaper: Automated cross margining ↗](https://vega.xyz/papers/vega-protocol-whitepaper.pdf#page21)** - Section 6 of the protocol whitepaper.
 :::
 
-### Margin requirements
+## Margin requirements
 The Vega protocol calculates margin levels, which are used to determine when a trader has the right amount, too much, or not enough margin set aside to support their position(s).
 
-The margin levels try to ensure that a trader does not enter a trade that will immediately need to be closed out.
+The margin levels try to ensure that a trader does not enter a trade that will be closed out immediately.
 
 Not all levels are relevant to both margin methods. 
 
 The margin levels for active positions are:
 
-* maintenance margin - relevant for cross and isolated margin
-* initial margin - relevant for cross and isolated margin
-* search level - only for cross margin
-* collateral release level - only for cross margin
+* [maintenance margin](#margin-level-maintenance) - relevant for cross and isolated margin
+* [initial margin](#margin-level-initial) - relevant for cross and isolated margin
+* [search level](#margin-level-searching-for-collateral---cross-only) - only for cross margin
+* [collateral release level](#margin-level-releasing-collateral---cross-only) - only for cross margin
 
 Margin level for a potential position using isolated margin:
-* order margin - only for isolated margin
+
+* [order margin](#margin-level-order---isolated-only) - only for isolated margin
 
 The maintenance margin (minimum amount needed to keep a position open) is derived from the market's risk model and includes some slippage calculations. This is applicable to positions using either margin mode. 
 
 All other margin levels are based on the maintenance margin level.
 
 ### Margin level: Maintenance
-Throughout the life of an open position, there is a minimum required amount to keep a position open, even through probable adverse market conditions, called the maintenance margin. This minimum margin amount is calculated for positions using both cross margining and isolated margin.
+Throughout the life of an open position, there is a minimum required amount to keep a position open, even through probable adverse market conditions, called the maintenance margin. 
+
+This minimum margin amount is calculated for positions using both cross margining and isolated margin.
 
 The amount required for your maintenance margin is derived from the market's risk model. Specifically, it's based on a risk measure called the expected shortfall, used to evaluate the market risk of the position and any open orders.
 
@@ -167,14 +143,14 @@ The initial margin is scaled from the *maintenance margin* amount. It's calculat
 
 The initial margin level being higher than the *margin search level* (which itself is higher than the *maintenance margin level*) ensures that a small negative price move won't lead to a situation where the network has to attempt to allocate more collateral immediately after a trade has been entered into.
 
-### Margin level: Order
+### Margin level: Order - isolated only
 When using isolated margin mode, you can choose the leverage you're comfortable with, and the amount of margin required to support that is transferred to your margin account. If you place additional orders that increase your position, the margin required also increases. The amount above what's in your margin account that is needed to support your orders is the order margin. 
 
 This extra margin is moved into an order margin account. If your order turns into a position, the extra margin for that position moves into your margin account.
 
 For open orders, if the required order margin is higher than the balance in your order margin account, your orders will be cancelled and that margin collateral will be returned to your general account. If you have a position open on the market, it will stay open. 
 
-### Margin level: Searching for collateral
+### Margin level: Searching for collateral - cross only
 For a trader using cross margining, if the balance available in your margin account is less than the position's *margin search level*, but is still above the maintenance level -- the network will try to allocate more money, up to the current initial margin level, from your general account to be used for margin.
 
 If the margin account can be topped up, then the position stays open. If that's not possible because there are insufficient funds in the general account, and the market keeps moving against you so that the margin account balance drops below the current maintenance level, your position may be closed out. The first step is to cancel all of the trader's open orders and reevaluate the margin requirements. If the margin account balance is then higher than the maintenance margin level, the trader's position remains open, otherwise the protocol will attempt a liquidation.
@@ -192,7 +168,7 @@ If there is not enough collateral to provide the required margin, then the posit
 [Concept: Closeouts](./market-protections.md#closeouts)
 :::
 
-### Margin level: Releasing collateral
+### Margin level: Releasing collateral - cross only
 When using cross margin mode, if your margin balance exceeds the *collateral release level*, the position is considered overcollateralised. The excess money is released to your general account, to get your margin back to the *initial margin level*.
 
 Those gains can then be withdrawn or used as collateral for other trades.
@@ -202,7 +178,7 @@ The release level is scaled from the *maintenance margin* amount. It's calculate
 
 `[release level] = [maintenance margin] x [collateral_release scaling factor]`
 
-### Example: Calculating margin on open orders
+### Example: Calculations for cross margin open orders
 
 For those using cross margining, the network calculates the overall long / short position including the submitted order. Depending on which one is larger a long or short risk factor is used for margin calculation. The maintenance margin (for futures) is then a product of the largest position, the corresponding risk factor and the `mark price`. Risk factors capture the outcome of the probabilistic distribution of future market moves, and are market specific.
 
@@ -224,8 +200,8 @@ The initial margin scaling factor for the market (α<sup>initial</sup>) is 1.2 s
 #### Queried using GraphQL
 ![Calculating margin on open orders - GraphQL](/img/concept-diagrams/calculate-margin-open-orders-graphQL.png "Calculating margin on open orders - GraphQL")
 
-### Example: Calculating margin on open positions
-The following calculation takes into account 'slippage', as seen on an order book.
+### Example: Calculations for cross margin open position
+The following calculation takes into account slippage, as seen on an order book.
 
 * In the following scenario, the trader has an open short position of size 1, and no open orders, using the cross margining mode
 * Short risk factor is 0.05421518
@@ -242,3 +218,27 @@ Since the amount charged to trader's margin account upon order submission (6.505
 
 #### Queried using GraphQL
 ![Calculating margin on open positions - GraphQL](/img/concept-diagrams/calculate-margin-open-positions-graphQL.png "Calculating margin on open orders - GraphQL")
+
+## Mark to market
+Marking to market refers to settling gains and losses due to changes in the market value. Marking to market aims to provide a realistic appraisal of a position based on the current market conditions.
+
+If the market price goes up, traders that hold long positions receive money into their margin account – equal to the change in the notional value of their positions – from traders that hold short positions, and conversely if the value goes down, the holders of short positions receive money from the holders of long positions.
+
+The mark to market frequency is controlled by a network parameter: <NetworkParameter frontMatter={frontMatter} param="network.markPriceUpdateMaximumFrequency" />. 
+
+Mark to market settlement instructions are generated based on the change in market value of the open positions of a party. When the mark price changes, the network calculates settlement cash flows for each party, and the process is repeated each time the mark price changes until the maturity date for the market is reached.
+
+When a dated futures market settles at expiry, the mark price comes from the market data source's final settlement price.
+
+:::note Read more
+[Concept: Mark to market settlement](./settlement.md#mark-to-market-settlement)
+:::
+
+### Mark price
+The mark price represents the current market value, and is used to determine the value of a trader's open position against the prices the trades were executed at, to determine the cash flows for mark to market settlement and funding payments.
+
+The default mark price is the last traded price. Mark price calculations can also use additional price synthesis methods that can take into account trades, the order book, oracle inputs and update recency and can be combined via medians or weighted means.
+
+For perpetual futures markets, there’s also the market price for funding payments, the calculations can also use additional price synthesis methods the same way as the mark price.
+
+How mark price is calculated is configured per market, and can be changed with a governance proposal to update a market.

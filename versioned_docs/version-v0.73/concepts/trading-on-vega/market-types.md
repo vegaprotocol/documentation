@@ -26,7 +26,7 @@ Settlement, or the process of moving collateral between accounts, happens on a f
 :::note Read more 
 * [Concept: Settlement](./settlement.md)
 * [Concept: Market lifecycle](./market-lifecycle.md)
-* [Concept: Positions and margin](./positions-margin.md)
+* [Concept: Positions and margin](./margin.md)
 * [Tutorial: Propose a futures market](../../tutorials/proposals/new-market-proposal.md)
 :::
 
@@ -60,6 +60,6 @@ The margin calculations for perpetual futures markets contain an additional para
 
 :::note Read more 
 * [Concept: Periodic settlement](./settlement.md#periodic-settlement-for-perpetuals)
-* [Concept: Positions and margin](./positions-margin.md)
+* [Concept: Positions and margin](./margin.md)
 * [Tutorial: Propose a perpetuals market](../../tutorials/proposals/new-perpetuals-market.md)
 :::

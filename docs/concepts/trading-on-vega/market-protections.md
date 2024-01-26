@@ -14,12 +14,7 @@ The Vega protocol has been designed with rules to detect dangerous market condit
 Margin calculations take into account the probability of the liquidation value of a position falling short of the available capital. The network is also designed to frequently re-evaluate each individual's risk, and preemptively close positions.
 
 Some of those measures include price monitoring, liquidity monitoring, and frequent mark to market calculations.
-<!--
-:::note Read more
-* [Margin on Vega](./positions-margin#margin)
-* [Mark to market](./positions-margin#mark-to-market)
-:::
--->
+
 :::warning A note on risk
 
 Derivatives markets are financially risky, by design. If a market has no liquidity, it won't be possible to get out of a position.
@@ -114,9 +109,9 @@ If a trader's available margin on a market is below the closeout level and canno
 
 How a distressed trader's positions and orders are treated depends on if they're using isolated or cross margining. 
 
-[Isolated margin](./positions-margin.md#isolated-margin): An open position that drops below the maintenance margin level will be closed out. Any open orders will remain active, as the margin for each is calculated and funded separately.
+[Isolated margin](./margin.md#isolated-margin): An open position that drops below the maintenance margin level will be closed out. Any open orders will remain active, as the margin for each is calculated and funded separately.
 
-[Cross margin](./positions-margin.md#cross-margining): A distressed trader has all their open orders on that market cancelled. The network will then recalculate the margin requirement on the trader's remaining open position. If they then have sufficient collateral, they are no longer considered a distressed trader. However, if the trader doesn't have enough collateral, they are added to a list of traders that will then undergo position resolution to close out the position.
+[Cross margin](./margin.md#cross-margining): A distressed trader has all their open orders on that market cancelled. The network will then recalculate the margin requirement on the trader's remaining open position. If they then have sufficient collateral, they are no longer considered a distressed trader. However, if the trader doesn't have enough collateral, they are added to a list of traders that will then undergo position resolution to close out the position.
 
 ### Closeouts
 When a participant does not have enough collateral to hold their open positions, the protocol will automatically trigger a closeout.
@@ -140,7 +135,7 @@ This is called a [network order](./orders.md#network-order). The network generat
 
 For those in **cross margin mode**, all of the remaining collateral in each distressed trader's margin account for that market is confiscated to the market's insurance pool.
 
-For those in **isolated margin mode**, a distressed position is closed out, but open orders will stay open as long as you have enough margin set aside to meet the [order margin](./positions-margin.md#margin-order) requirement.
+For those in **isolated margin mode**, a distressed position is closed out, but open orders will stay open as long as you have enough margin set aside to meet the [order margin](./margin.md#margin-order) requirement.
 
 ### Loss socialisation 
 Loss socialisation occurs when there are traders that don't have sufficient collateral to handle the price moves of their open position(s), and the market's insurance pool cannot cover their shortfall. 
