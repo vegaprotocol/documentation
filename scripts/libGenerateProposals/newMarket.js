@@ -464,6 +464,32 @@ function generateLiquidationStrategy(skeleton) {
   return liquidationStrategy;
 }
 
+function generateLiquidityFeeSettings(skeleton) {
+  assert.ok(
+    skeleton.properties.method.description,
+  );
+  assert.equal(
+    skeleton.properties.feeConstant.type,
+    "string",
+    "Liquidity Strategy: expected disposalFraction to be a string"
+  );
+
+  const liquidityFeeSettings = {
+    method: "METHOD_CONSTANT",
+    feeConstant: "0.00005"
+  };
+
+  liquidityFeeSettings[inspect.custom] = () => {
+    return `{
+        // ${skeleton.properties.method.description}
+        method: "${liquidityFeeSettings.method}",
+        // ${skeleton.properties.feeConstant.description} (${skeleton.properties.feeConstant.type})
+        feeConstant: "${liquidityFeeSettings.feeConstant}",
+      }`;
+  };
+
+  return liquidityFeeSettings;
+}
 
 
 function generatePeggedOrder(skeleton, side, customInspect = false) {
@@ -784,7 +810,10 @@ function newMarket(skeleton, proposalSoFar) {
           ),
           liquidationStrategy: generateLiquidationStrategy(
             skeleton.properties.changes.properties.liquidationStrategy
-          )
+          ),
+          liquidityFeeSettings: generateLiquidityFeeSettings(
+            skeleton.properties.changes.properties.liquidityFeeSettings
+          ),
         },
       },
     },
@@ -826,8 +855,12 @@ function newMarket(skeleton, proposalSoFar) {
          liquiditySlaParameters: ${inspect(result.terms.newMarket.changes.liquiditySlaParameters, {
         depth: 19,
       })},
-      // ${skeleton.properties.changes.properties.liquidationStrategy.title}
+      // ${skeleton.properties.changes.properties.liquidationStrategy.description}
          liquidationStrategy: ${inspect(result.terms.newMarket.changes.liquidationStrategy, {
+        depth: 19,
+      })},
+      // ${skeleton.properties.changes.properties.liquidityFeeSettings.description}
+         liquidityFeeSettings: ${inspect(result.terms.newMarket.changes.liquidityFeeSettings, {
         depth: 19,
       })},
         }
@@ -867,5 +900,7 @@ module.exports = {
   generateMetadata,
   generatePriceMonitoringParameters,
   generateRiskModel,
-  generateLiquiditySlaParameters
+  generateLiquiditySlaParameters,
+  generateLiquidationStrategy,
+  generateLiquidityFeeSettings
 };

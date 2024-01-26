@@ -33,7 +33,7 @@
      // that achieved a higher SLA performance than them. (string)
      slaCompetitionFactor: "0.2",
     },
-    // undefined
+    // Liquidation strategy for this market.
     liquidationStrategy: {
      // Interval, in seconds, at which the network will attempt to close its position. (int64 as string)
      disposalTimeStep: 500,
@@ -44,14 +44,21 @@
      // Max fraction of the total volume of the orderbook, within liquidity bounds, that the network can use to close its position; range 0 through 1. (string)
      maxFractionConsumed: "1",
     },
+    // Specifies how the liquidity fee for the market will be calculated.
+    liquidityFeeSettings: {
+     // Method used to calculate the market's liquidity fee.
+     method: "METHOD_CONSTANT",
+     // Constant liquidity fee used when using the constant fee method. (string)
+     feeConstant: "0.00005",
+    },
    }
   },
   // Timestamp as Unix time in seconds when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-  closingTimestamp: 1707931716,
+  closingTimestamp: 1707933535,
   // Timestamp as Unix time in seconds when proposal gets enacted if passed,
   // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-  enactmentTimestamp: 1708018116,
+  enactmentTimestamp: 1708019935,
  }
 }
 ```
