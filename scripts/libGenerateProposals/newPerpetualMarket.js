@@ -19,6 +19,7 @@ function generatePerpetualSettlementDataSourceSpec(skeleton) {
   const spec = {
     "external": {
       "ethOracle": {
+          "sourceChainId": "1",
           "address": "0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43",
           "abi": "[{\"inputs\":[],\"name\":\"latestAnswer\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
           "method": "latestAnswer",
@@ -63,6 +64,10 @@ function generatePerpetualSettlementDataSourceSpec(skeleton) {
 
             // ${skeleton[p].external[p].ethOracle.description}
             "ethOracle": {
+               // ${skeleton[p].external[p].ethOracle[p].sourceChainId.description} (${skeleton[p].external[p].ethOracle[p].sourceChainId.format
+      } as ${skeleton[p].external[p].ethOracle[p].sourceChainId.type})
+               // ${skeleton[p].external[p].ethOracle[p].sourceChainId.description} 
+               "sourceChainId": "${spec.external.ethOracle.sourceChainId}",
                // ${skeleton[p].external[p].ethOracle[p].address.description}
                "address": "${spec.external.ethOracle.address}",
                // ${skeleton[p].external[p].ethOracle[p].abi.description}

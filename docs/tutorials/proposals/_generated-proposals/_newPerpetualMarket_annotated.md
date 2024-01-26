@@ -50,6 +50,10 @@
        external: {
         // Contains the data specification that is received from Ethereum sources.
         ethOracle: {
+         // The ID of the EVM based chain which is to be used to source the oracle data. (uint64 as string)
+         // The ID of the EVM based chain which is to be used to source the oracle data. 
+         sourceChainId: "1",
+
          // Ethereum address of the contract to call.
          address: "0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43",
 
@@ -139,8 +143,8 @@
 
      // Optional new futures market metadata, tags.
      metadata: [
-      "enactment:2024-02-15T15:17:06Z",
-      "settlement:2024-02-14T15:17:06Z",
+      "enactment:2024-02-15T16:20:13Z",
+      "settlement:2024-02-14T16:20:13Z",
       "source:docs.vega.xyz"
      ],
 
@@ -205,11 +209,11 @@
 
    // Timestamp as Unix time in seconds when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-   closingTimestamp: 1707923826,
+   closingTimestamp: 1707927613,
 
    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-   enactmentTimestamp: 1708010226,
+   enactmentTimestamp: 1708014013,
   }
  }
 ```

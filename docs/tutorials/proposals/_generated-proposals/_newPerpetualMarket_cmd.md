@@ -25,6 +25,7 @@
        "dataSourceSpecForSettlementData": {
         "external": {
          "ethOracle": {
+          "sourceChainId": "1",
           "address": "0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43",
           "abi": "[{\"inputs\":[],\"name\":\"latestAnswer\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
           "method": "latestAnswer",
@@ -82,8 +83,8 @@
       }
      },
      "metadata": [
-      "enactment:2024-02-15T15:17:06Z",
-      "settlement:2024-02-14T15:17:06Z",
+      "enactment:2024-02-15T16:20:13Z",
+      "settlement:2024-02-14T16:20:13Z",
       "source:docs.vega.xyz"
      ],
      "priceMonitoringParameters": {
@@ -112,8 +113,8 @@
      }
     }
    },
-   "closingTimestamp": 1707923826,
-   "enactmentTimestamp": 1708010226
+   "closingTimestamp": 1707927613,
+   "enactmentTimestamp": 1708014013
   }
  }
 }'
