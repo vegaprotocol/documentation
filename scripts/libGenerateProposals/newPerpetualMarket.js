@@ -217,7 +217,6 @@ function generatePerpetualInstrument(skeleton) {
 function newPerpetualMarket(skeleton, proposalSoFar) {
   assert.ok(skeleton[p].changes);
   assert.ok(skeleton[p].changes[p].decimalPlaces);
-  assert.ok(skeleton[p].changes[p].quadraticSlippageFactor);
   assert.ok(skeleton[p].changes[p].linearSlippageFactor);
   assert.ok(skeleton[p].changes[p].positionDecimalPlaces);
   assert.ok(skeleton[p].changes[p].instrument);
@@ -234,7 +233,6 @@ function newPerpetualMarket(skeleton, proposalSoFar) {
       newMarket: {
         changes: {
           linearSlippageFactor: "0.001",
-          quadraticSlippageFactor: "0",
           decimalPlaces: "5",
           positionDecimalPlaces: "5",
 
@@ -266,8 +264,6 @@ function newPerpetualMarket(skeleton, proposalSoFar) {
         changes: {
           // ${skeleton.properties.changes.properties.linearSlippageFactor.description}
           linearSlippageFactor: ${result.terms.newMarket.changes.linearSlippageFactor},
-          // ${skeleton.properties.changes.properties.quadraticSlippageFactor.description}
-          quadraticSlippageFactor: ${result.terms.newMarket.changes.quadraticSlippageFactor},
 
           // ${skeleton.properties.changes.properties.decimalPlaces.description} (${skeleton.properties.changes.properties.decimalPlaces.format
       } as ${skeleton.properties.changes.properties.decimalPlaces.type})

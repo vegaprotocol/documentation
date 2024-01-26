@@ -9,7 +9,6 @@
     "newMarket": {
       "changes": {
         "linearSlippageFactor": "0.001",
-        "quadraticSlippageFactor": "0",
         "decimalPlaces": "5",
         "positionDecimalPlaces": "5",
         "instrument": {
@@ -82,8 +81,8 @@
           }
         },
         "metadata": [
-          "enactment:2024-02-15T15:14:07Z",
-          "settlement:2024-02-14T15:14:07Z",
+          "enactment:2024-02-15T15:17:06Z",
+          "settlement:2024-02-14T15:17:06Z",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -112,8 +111,8 @@
         }
       }
     },
-    "closingTimestamp": 1707923647,
-    "enactmentTimestamp": 1708010047
+    "closingTimestamp": 1707923826,
+    "enactmentTimestamp": 1708010226
   }
 }
 ```
