@@ -26,7 +26,7 @@ Settlement, or the process of moving collateral between accounts, happens on a f
 :::note Read more 
 * [Concept: Settlement](./settlement.md)
 * [Concept: Market lifecycle](./market-lifecycle.md)
-* [Concept: Positions and margin](./margin.md)
+* [Concept: Positions and margin](./positions-margin.md)
 * [Tutorial: Propose a futures market](../../tutorials/proposals/new-market-proposal.md)
 :::
 
