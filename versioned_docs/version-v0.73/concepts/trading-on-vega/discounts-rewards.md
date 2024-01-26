@@ -54,11 +54,11 @@ See what rewards are currently available on [vega.xyz ↗](https://vega.xyz/rewa
 Rewards are independent from [fees](./fees.md), which are paid to validators, liquidity providers, and price makers on each trade.
 
 ### How rewards are paid
-Rewards that you earn are paid into a per-asset *vesting rewards account*. They may be locked for a time, if there's a lock period set. Each epoch, a percentage of the locked rewards begin vesting. Once they're vested, they are moved into a *vested rewards account*. From there, they can be redeemed by transferring them into your general account and withdrawn.
+Rewards that you earn are paid into a per-asset *vesting rewards account*.
 
-The lock period is defined in the [transfer](../assets/transfers.md) that funded the reward. Use the [transfers API](../../api/rest/data-v2/trading-data-service-list-transfers.api.mdx) to see the lock periods.
-
-Once they unlock, a proportion of the rewards move into the vested account each epoch: <NetworkParameter frontMatter={frontMatter} name="current rate" param="rewards.vesting.baseRate" formatter="percent" />. That percentage can be higher if you have an [activity streak](#activity-streak) going.
+* **Rewards may be locked.** Each reward has its own lock period. Check the [rewards page on Console ↗](https://https://vegaprotocol.eth.limo/#/rewards) or the [transfers API](../../api/rest/data-v2/trading-data-service-list-transfers.api.mdx) to see how many epochs each reward is locked for.
+* After rewards unlock, a proportion of the rewards move into your *vested account* each epoch: <NetworkParameter frontMatter={frontMatter} name="current rate" param="rewards.vesting.baseRate" formatter="percent" />. That percentage can be higher if you have an [activity streak](#activity-streak) going.
+* Redeem rewards from your vested account by transferring them into your general account. Then you can withdraw.
 
 ### Reward hoarder bonus
 Leaving your reward earnings in your vested account will increase your share of the trading rewards you've accrued. How much extra you get depends on your total rewards balance, whether it's locked, vesting, or vested.
