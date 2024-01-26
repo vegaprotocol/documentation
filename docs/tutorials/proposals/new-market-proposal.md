@@ -179,6 +179,7 @@ The liquidity parameters set the requirements that liquidity providers on the ma
 | `performanceHysteresisEpochs` | Sets the number of epochs over which past performance will continue to affect rewards. | 10 | 
 | `slaCompetitionFactor` | Sets the maximum fraction of their accrued fees an LP that meets the SLA will lose to liquidity providers that achieved a higher SLA performance than them. | 0.2 |
 | `liquidityFeeSettings` | Optional setting for how the liquidity fee factor is determined. See [liquidity fees](../../concepts/liquidity/rewards-penalties.md#determining-the-liquidity-fee-percentage) for more. | `METHOD_MARGINAL_COST` (default) `METHOD_CONSTANT`, `METHOD_WEIGHTED_AVERAGE` |
+| `feeConstant` | For the fee setting `METHOD_CONSTANT`, a constant fee factor needs to be provided. | 0.00005 |
 
 ## Templates and submitting
 In the tabs below you'll see:
