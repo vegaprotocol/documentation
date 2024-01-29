@@ -21,6 +21,7 @@
   --ifm-link-color: var(--vega-pink);
   --search-local-highlight-color: var(--vega-pink);
   --ifm-code-font-size: 95%;
+
 }
 /* Github header link */
 .header-github-link::before {
@@ -378,4 +379,13 @@ a.external:after {
 
 .DataNodeList p {
   font-size: 0.8em;
+}
+
+.openapi-explorer__response-placeholder-message {
+  color: #fff
+}
+
+.openapi-explorer__response-placeholder-message code {
+  background-color: var(--vega-green);;
+  color: #fff;
 }
