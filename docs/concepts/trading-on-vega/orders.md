@@ -135,17 +135,35 @@ An iceberg order can be amended. The remaining amount can be increased or decrea
 Amending an iceberg does not affect the peak size's time priority.
 
 ### Stop order
-A stop order is an order to buy or sell once the price reaches a specified price, known as the trigger price. Stop orders can be used to help a trader limit losses (stop loss), or capitalise on a gain (take profit) automatically when they already have an open position.
+A stop order is a conditional order to buy or sell once the product reaches the  price or percentage move that you've specified, known as the trigger. Stop orders can be used to help limit loss (stop loss), or capitalise on a gain (take profit) automatically.
 
-Stop orders can only be used to bring a trader's position closer to zero, and thus make use of the [reduce only](#reduce-only) condition and will only be accepted if the trader already has an open position on the market.
+You can set a stop order's trigger to enact for a fixed order size, or for a size linked to your existing open position.
 
-A stop order must include a trigger price at a fixed level, or it can be a percentage for a trailing stop. It must also include whether to deploy the order once the last traded price "rises above" or "falls below" the given stop price/percentage. It can, but doesn't need to, have an expiry date and time, or an execution time at which point the order will be filled, if possible.
+The triggers for a stop order can be based on:
+* Specific trigger price; or
+* Percentage movement away from your entry price. This is known as a trailing stop
+* Optional time for cancellation or execution
 
-While a stop order can be a single instruction, it could alternatively be a pair of stop orders where one cancels the other (OCO). Using the OCO option allows a trader to have a stop loss and a take profit/trailing stop instruction for the same position. If one of the pair is triggered, cancelled, deleted, or rejected, the other one is automatically cancelled.
+A stop order can be set with a fixed size or have its size dictated by your an open position. A stop order must reduce your position, and will be rejected if it isn't. Your stop order is deployed once the last traded price "rises above" or "falls below" the given stop price/percentage move, depending on your instruction.
 
-If a trader's position size moves to zero and there are no open orders, the trader's stop orders for that market are cancelled.
+When submitting with a *fixed size*, you place an order to buy/sell a number of contracts at the price or percentage move that you provide. It will only offload the number you set, regardless of your position size at the time.
 
-There's a limit to how many stop orders any one public key can have active at one time, set by the 'spam.protection.max.stopOrdersPerMarket' network parameter.
+When submitting a stop order that *links to your existing position*, you place a stop order to close your whole position or a percentage. Your position size determines the size of the stop order when it's triggered. This guarantees your whole position can be closed if you want it to be. If your position changes sides such as from long to short, your stop order will be cancelled.
+
+If your position size moves to zero and there are no open orders, your stop orders for that market are cancelled.
+
+There's a limit to how many stop orders any one public key can have active at one time: <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.stopOrdersPerMarket" hideName={true} />.
+
+#### OCO stop orders
+While a stop order can be a single instruction, it could instead be a pair of stop orders where the execution of one side cancels the other (OCO).
+
+Using an OCO allows you to have a stop loss and a take profit/trailing stop instruction for the same position. If one of the pair is triggered, cancelled, deleted, or rejected, the other one is automatically cancelled.
+
+You can set it to do one of the following at expiry: 
+* Trigger either of the two sides - but not both
+* Expire with no action
+
+OCO stops can use fixed size or position-linked instructions.
 
 ### Batch order
 Order instructions, such as submit, cancel, and/or amend orders, as well as stop order instructions, can be batched together in a single transaction, which allows traders to regularly place and maintain the price and size of multiple orders without needing to wait for each order instruction to be processed by the network individually.
