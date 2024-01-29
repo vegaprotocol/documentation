@@ -137,18 +137,24 @@ Amending an iceberg does not affect the peak size's time priority.
 ### Stop order
 A stop order is a conditional order to buy or sell once the product reaches the  price or percentage move that you've specified, known as the trigger. Stop orders can be used to help limit loss (stop loss), or capitalise on a gain (take profit) automatically.
 
-You can set a stop order's trigger to enact for a fixed order size, or for a size linked to your existing open position.
+You can set a stop order's trigger to submit an order for a fixed size, or for a size linked to your existing open position.
 
 The triggers for a stop order can be based on:
 * Specific trigger price; or
 * Percentage movement away from your entry price. This is known as a trailing stop
 * Optional time for cancellation or execution
 
-A stop order can be set with a fixed size or have its size dictated by your an open position. A stop order must reduce your position, and will be rejected if it isn't. Your stop order is deployed once the last traded price "rises above" or "falls below" the given stop price/percentage move, depending on your instruction.
+Your stop order can be set to have a [time in force](#times-in-force), and it can be a [limit](#limit-order) or [market order](#market-order).
 
-When submitting with a *fixed size*, you place an order to buy/sell a number of contracts at the price or percentage move that you provide. It will only offload the number you set, regardless of your position size at the time.
+If the trigger is breached, an order is submitted with the parameters that you provided, and with your existing position's size if it's linked to the position. Your position isn't affected unless the order is filled.
 
-When submitting a stop order that *links to your existing position*, you place a stop order to close your whole position or a percentage. Your position size determines the size of the stop order when it's triggered. This guarantees your whole position can be closed if you want it to be. If your position changes sides such as from long to short, your stop order will be cancelled.
+A stop order can be set with a fixed size or have its size dictated by your open position. A stop order must reduce your position, and will be rejected otherwise.
+
+Once the last traded price "rises above" or "falls below" the given stop price/percentage move, depending on your instruction, your order is executed.
+
+When submitting with a *fixed size*, an order is executed with the given fixed size if your trigger is breached. It will only attempt to trade that amount, regardless of your position size at the time.
+
+When submitting a stop order that *links to your existing position*, an order is executed to close your whole position or a percentage if the trigger is breached. If your position changes sides, such as from long to short, while your stop order is open, it will be cancelled.
 
 If your position size moves to zero and there are no open orders, your stop orders for that market are cancelled.
 
