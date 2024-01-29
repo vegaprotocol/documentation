@@ -6,6 +6,9 @@ hide_title: false
 description: Governance allows for on-chain decision making by tokenholders.
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
+import Topic from '/docs/topics/_topic-governance.mdx'
+
+<Topic />
 
 Governance allows the Vega network to arrive at on-chain decisions, where tokenholders can create proposals that other tokenholders can vote to approve or reject. 
 

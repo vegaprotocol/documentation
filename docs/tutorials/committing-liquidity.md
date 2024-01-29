@@ -6,6 +6,9 @@ description: Commit liquidity onto a market and manage that commitment
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
+import Topic from '/docs/topics/_topic-liquidity.mdx'
+
+<Topic />
 
 In this tutorial, you'll find:
 * Resources about how liquidity works on Vega

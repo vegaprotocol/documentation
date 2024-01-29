@@ -6,6 +6,9 @@ hide_title: false
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
+import Topic from '/docs/topics/_topic-liquidity.mdx'
+
+<Topic />
 
 Liquidity providers earn [rewards](#rewarding-liquidity-providers) for providing enough liquidity. 
 
