@@ -12,3 +12,5 @@ An activity streak can grant several customisable benefits, which can be scaled 
 
 1. **Reward Multiplier:** This multiplier scales a party's reward share in all reward pools in which they are included. For example, in a maker fees paid reward pool, if the trader's reward multiplier was 1.5x and they had paid 10 USDT of fees during the epoch, when weighting their score vs others to define maker fee paid reward distributions they would have an effective 15 USDT of fees credited.
 2. **Vesting Multiplier:** This multiplier scales the proportion of vesting rewards which vest each epoch. For example, if by default 25% of the vesting rewards vest per epoch, and you have a 1.5x multiplier, instead 37.5% (25 * 1.5) of the rewards would vest.
+
+For a deeper dive, see the main [activity streak section](../trading-on-vega/discounts-rewards.md#activity-streak).
