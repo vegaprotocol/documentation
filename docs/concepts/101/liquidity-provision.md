@@ -99,7 +99,7 @@ LP fee distribution is calculated in several steps:
 - Under 100% time-on-book
     - If an LP meets the SLA criteria but is under 100% time on book they may have some portion of their fees redistributed. This is calculated with the equation below, where **t** is their fraction of time on the book, **s** is the minimum SLA fraction and **c** is the competition fraction discussed above. **p** then gives the fraction of fees redistributed.
         
-        ![Penalty calculation for missing time on book](/img/101/liquidity-provision-time-penalty.png)
+        ![Penalty calculation for missing time on book](/img/101/liquidity-provision/time-penalty.png)
         
 - Fee Redistribution
     - Any fees not immediately paid out to LPs as a result of under 100% time on book are redistributed according to a few steps. First each LP receives a weight according to their proportion of fees that epoch
