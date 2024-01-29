@@ -88,11 +88,11 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
     },^
     \"logNormal\": {^
      \"tau\": 0.0001140771161,^
-     \"riskAversionParameter\": 0.001,^
+     \"riskAversionParameter\": 0.0001,^
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
-      \"sigma\": 0.5^
+      \"sigma\": 0.3^
      }^
     },^
     \"liquiditySlaParameters\": {^
@@ -103,8 +103,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
     }^
    }^
   },^
-  \"closingTimestamp\": 1707927612,^
-  \"enactmentTimestamp\": 1708014012^
+  \"closingTimestamp\": 1708190318,^
+  \"enactmentTimestamp\": 1708276718^
  }^
 }^
 }"
