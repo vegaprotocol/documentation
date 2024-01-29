@@ -31,7 +31,9 @@
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
-    "write-heading-ids": "docusaurus write-heading-ids"
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "mem": "node -e \"console.log(new Date().toLocaleString(), 'run Node Heap:', (require('v8').getHeapStatistics().total_available_size / 1024**2).toFixed(1), 'MB')\""
+
   },
   "dependencies": {
     "@apidevtools/swagger-parser": "^10.1.0",
