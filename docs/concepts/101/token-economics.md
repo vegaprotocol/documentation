@@ -12,7 +12,8 @@ The VEGA token is an ERC-20 token used for staking and platform governance, allo
 
 # Token Details
 
-The token address is [0xcB84d72e61e383767C4DFEb2d8ff7f4FB89abc6e](https://etherscan.io/address/0xcB84d72e61e383767C4DFEb2d8ff7f4FB89abc6e), with 64,999,723 VEGA in existence.
+Ethereum Address: [0xcB84d72e61e383767C4DFEb2d8ff7f4FB89abc6e](https://etherscan.io/address/0xcB84d72e61e383767C4DFEb2d8ff7f4FB89abc6e)
+Issued: 64,999,723 VEGA
 
 # Staking
 
