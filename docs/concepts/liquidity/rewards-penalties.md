@@ -66,7 +66,7 @@ There are three options:
 
 1. **Constant fee**
 
-The market's liquidity fee is provided in the market proposal and this percentage doesn't vary. The fee percentage can be changed in an update market proposal. 
+The market's liquidity fee is provided in the market proposal and this percentage doesn't vary.
 
 
 2. **Stake-weighted-average of submitted fees**
