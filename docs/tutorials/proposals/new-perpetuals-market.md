@@ -62,7 +62,6 @@ Instrument, liquidity monitoring parameters, price monitoring parameters, and da
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
 | `linearSlippageFactor` | The linear slippage factor captures that for a bigger position there is proportionally bigger liquidity risk. | 0.001 |
-| `quadraticSlippageFactor` | The quadratic slippage factor determines by what factor especially large positions can be penalised. When closing those out, the system will 'walk the book' and potentially end up with an execution price notably worse that the last mark price. | 0.0 |
 
 ### Instrument
 An instrument contains the following properties:
