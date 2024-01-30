@@ -168,6 +168,16 @@ The risk model uses the following properties:
 | `param: r` | Annualised growth rate of the risk-free asset, it's used for discounting of future cash flows. Use 0.0 unless otherwise required. <br/><br/> Accepted values: any real number | 0.0 |
 | `param: sigma` | Annualised historic volatility of the underlying asset. <br/><br/>Accepted values: any strictly non-negative real number; suggested value: asset dependent, should be derived from the historical time-series of prices. | 0.8 (converts to 80%) |
 
+### Liquidation strategy
+Set up the liquidation strategy to minimise the impact of distressed traders on the market. These parameters can balance between minimising the market impact of disposing of distressed positions and not holding a large open volume for a long time.
+
+| Field | Description | Suggested value |
+| ----------- | ----------- | ----------- |
+| `disposalTimeStep` | Interval, in seconds, at which the network will attempt to close a position it's acquired from distressed traders. | 30 |
+| `disposalFraction` | Fraction of the open position the market will try to close in a single attempt. Range 0 through 1 | 0.1 |
+| `fullDisposalSize` | Size of the position that the network will try to close in a single attempt  | 0 |
+| `maxFractionConsumed` | Maximum fraction of the order book's total volume, within the liquidity bounds, that the network can use to close its position. Range 0 through 1 | 0.1 |
+
 ## Templates and submitting
 In the tabs below you'll see:
 
