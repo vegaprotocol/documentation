@@ -30,7 +30,7 @@ Once they unlock, a proportion of the rewards move into the vested account each 
 
 The currently active rewards can be explored within the [Console ↗](https://vegaprotocol.eth.limo/#/rewards)
 
-    ![Rewards](/img/101/rewards.png)
+![Rewards](/img/101/rewards.png)
 
 At the time of writing, there are three active rewards for each market trading on Vega:
 
