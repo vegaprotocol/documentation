@@ -15,7 +15,6 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      \"insurancePoolFraction\": \"1\"^
     },^
     \"linearSlippageFactor\": \"0.001\",^
-    \"quadraticSlippageFactor\": \"0\",^
     \"decimalPlaces\": \"5\",^
     \"positionDecimalPlaces\": \"5\",^
     \"instrument\": {^
@@ -83,8 +82,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      }^
     },^
     \"metadata\": [^
-     \"enactment:2024-01-03T15:20:02Z\",^
-     \"settlement:2024-01-02T15:20:02Z\",^
+     \"enactment:2024-02-18T17:18:38Z\",^
+     \"settlement:2024-02-17T17:18:38Z\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -95,14 +94,6 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
        \"auctionExtension\": \"600\"^
       }^
      ]^
-    },^
-    \"liquidityMonitoringParameters\": {^
-     \"targetStakeParameters\": {^
-      \"timeWindow\": \"3600\",^
-      \"scalingFactor\": 10^
-     },^
-     \"triggeringRatio\": \"0.7\",^
-     \"auctionExtension\": \"1\"^
     },^
     \"logNormal\": {^
      \"tau\": 0.0001140771161,^
@@ -121,8 +112,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
     }^
    }^
   },^
-  \"closingTimestamp\": 1704208802,^
-  \"enactmentTimestamp\": 1704295202^
+  \"closingTimestamp\": 1708190318,^
+  \"enactmentTimestamp\": 1708276718^
  }^
 }^
 }"
