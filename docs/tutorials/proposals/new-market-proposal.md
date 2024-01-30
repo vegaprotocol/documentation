@@ -178,8 +178,8 @@ Set up the liquidation strategy to minimise the impact of distressed traders on 
 | ----------- | ----------- | ----------- |
 | `disposalTimeStep` | Interval, in seconds, at which the network will attempt to close a position it's acquired from distressed traders. | 30 |
 | `disposalFraction` | Fraction of the open position the market will try to close in a single attempt. Range 0 through 1 | 0.1 |
-| `fullDisposalSize` | Size of the position that the network will try to close in a single attempt  | 0 |
-| `maxFractionConsumed` | Maximum fraction of the order book's total volume, within the liquidity bounds, that the network can use to close its position. Range 0 through 1 | 0.1 |
+| `fullDisposalSize` | Size of the position that the network will try to close in a single attempt  | 1 |
+| `maxFractionConsumed` | Maximum fraction of the order book's total volume, within the liquidity bounds, that the network can use to close its position. Range 0 through 1 | 0.05 |
 
 ## Templates and submitting
 In the tabs below you'll see:
