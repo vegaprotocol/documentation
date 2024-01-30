@@ -45,4 +45,3 @@ At the time of writing, there are three active rewards for each market trading o
 Leaving your reward earnings in your vested account will increase your share of the trading rewards you've accrued. How much extra you get depends on your total rewards balance, whether it's locked, vesting, or vested.
 
 You can see the current reward hoarder bonus requirements and benefits on the [block explorer ↗](https://explorer.vega.xyz/network-parameters#rewards.vesting.benefitTiers).
-
