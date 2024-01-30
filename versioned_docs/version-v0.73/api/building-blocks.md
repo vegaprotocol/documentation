@@ -67,7 +67,6 @@ An order is an instruction to buy or sell on a specific market, and it can go lo
 | Get a paginated list of all trades, optionally filtered by party, market, or order | [List trades](/api/rest/data-v2/trading-data-service-list-trades.api.mdx) | `GET /api/v2/trades`
 |||
 | Understand the concepts: orders | [Orders](../concepts/trading-on-vega/orders.md) |
-| Understand the concepts: positions | [Positions](../concepts/trading-on-vega/positions-margin.md)|
 
 ## Governance proposals and voting
 Governance proposals used to add new assets and markets, as well as to suggest changes to assets, markets, and network parameters, as well as off-chain suggestions. VEGA tokens need to be associated to the Vega public key that wants to take part in governance.
