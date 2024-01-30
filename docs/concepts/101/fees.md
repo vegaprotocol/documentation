@@ -18,7 +18,7 @@ At the time of writing the current fees for taker trades is 0.045% across all ma
 - 0.01% Liquidity Provider Fee
 - 0.005% Maker Fee
 
-The meaning of each is covered [here](../trading-on-vega/fees.md). The Infrastructure and Maker fees are set by governance at a network level and the Liquidity Provider Fee is set dynamically by the liquidity providers for a given market, however at time of writing all are at a 0.01% level. 
+The meaning of each is covered [here](../trading-on-vega/fees.md). The Infrastructure and Maker fees are set by governance at a network level and the Liquidity Provider Fee is set independently for each market, and may be either set dynamically or configured statically in the market configuration, however at time of writing all are at 0.01%. 
 
 ## Fee discounts based on trading volume
 Traders can get discounts on their [fees](./fees.md) when there's an active volume discount program on the network. The higher your volume of aggressive trades on a market, the greater the discount you can receive.
