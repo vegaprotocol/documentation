@@ -69,9 +69,19 @@ There are three options:
 The market's liquidity fee is provided in the market proposal and this percentage doesn't vary. The fee percentage can be changed in an update market proposal. 
 
 
-2. **Weighted by each provider's supplied liquidity**
+2. **Stake-weighted-average of submitted fees**
 
-Each liquidity provider submits their desired liquidity fee factor in the liquidity commitment transaction. It’s a number between 0 and 1. Each fee factor has a weight assigned to it based on the supplied liquidity from each provider. The highest weighted fee factor is then used as the liquidity fee factor. The final fee factor is converted into a percentage.
+Each liquidity provider submits their desired liquidity fee factor in the liquidity commitment transaction. It’s a number between 0 and 1. Each fee factor has a weight assigned to it based on the supplied liquidity from each provider. The fee factor that's used is the weighted average of all those submitted. The final fee factor is converted into a percentage.
+
+In the example below, three liquidity providers bid for their chosen fee factor. The final factor is the stake-weighted average of the three.
+
+[LP 1 stake = 120 ETH, LP 1 liquidity-fee-factor = 0.5%]
+[LP 2 stake = 20 ETH, LP 2 liquidity-fee-factor = 0.75%]
+[LP 3 stake = 60 ETH, LP 3 liquidity-fee-factor = 3.75%]
+
+then
+
+liquidity fee factor = ((120 * 0.5%) + (20 * 0.75%) + (60 * 3.75%)) / (120 + 20 + 60) = 1.5%
 
 3. **Marginal cost**
 
