@@ -40,81 +40,19 @@ The liquidity commitment transaction specifies the following:
 
 In the example used above, the LP committed a bond of 1,000 USDT for an obligation to post 20,000 USDT of notional on each side of the book. They quote this notional within a certain price range and for at least a certain amount of time per epoch in order to be considered as meeting their commitment and share the available fees and rewards.
 
-The liquidity SLA parameters below determine the percentage of the time that this obligation must be met on the order book, and the width of that price range, as well as the specifics of how LPs are rewarded and penalised for meeting, or failing to meet, their commitment. The following are set per market:
-
-**price range:** The allowed spread either side of the mid price for LP orders (for example, if this is set to 0.01, LPs must place orders within 1% of the mid price for them to count towards their liquidity commitment time on the book).
-
-- When in an auction, the price range is calculated slightly differently, instead of utilising the mid price for both sides:
-    - The maximum price is defined by max(last trade price, indicative auction uncrossing price) * (1 + price range).
-    - The minimum price is defined by min(last trade price, indicative auction uncrossing price) * (1 - price range).
-
-**minimum time fraction:** The % of the time during each epoch that an LP must spend with at least their committed volume of orders on the book. Below this they will be penalised, at least by loss of all received fees for the epoch.
-
-**hysteresis epochs:** The number of epochs for which an LP will continue to receive a penalty after failing to meet the SLA. At the end of any given epoch the penalty is defined as the maximum of either the penalty for the just completed epoch or the average penalty across other epochs in the hysteresis window.
-
-**competition factor:** Controls the extent to which an LP outperforming other LPs in time spent on the book will receive a larger share of rewards.
-
-And these network parameters, which also impact LP rewards, are set system wide:
-
-**market.liquidity.sla.nonPerformanceBondPenaltyMax:** Specifies the maximum fraction of an LP’s bond that may be slashed per epoch for failing to meet their SLA commitment. (NB: at the time of writing this has been set to zero by the community and LP bonds are not at risk of slashing.)
-
-**market.liquidity.sla.nonPerformanceBondPenaltySlope:** Specifies how aggressively the penalty is applied for underperformance (for example: a slope of 1.00 means that for every 1% underperformance 1% of the bond is slashed, up to the maximum above, whereas a slope of 0.1 would mean that for every 10% underperformance the bond would be slashed by 1%).
-
-**market.liquidity.earlyExitPenalty:** This defines the amount of an LPs bond that will be kept if they cancel their commitment while the market is below its target stake of committed liquidity. If the cancellation is partial or takes a market from above to below target stake, only the pro-rata portion of the bond related to the removal of liquidity below the target stake will be assessed for the penalty.
+The liquidity SLA parameters below determine the percentage of the time that this obligation must be met on the order book, and the width of that price range, as well as the specifics of how LPs are rewarded and penalised for meeting, or failing to meet, their commitment. 
 
 ## Calculating Fee Distribution
 
 LP fee distribution is calculated in several steps:
 
-**Intuitive Steps:**
-
 1. Primarily, a trade is eligible to pay fees the percentage currently defined by the LP fee on the market is taken from it and each LP is assigned some portion of it into their LP fee-per-market account. This distribution is made pro-rata according to their current score (a product of their equity-like share and their current on-book liquidity quality compared to other LPs (more in-depth calculation is below)).
 2. These LP fee-per-market accounts accumulate fees across an epoch (currently defined as 1 day). At the end of the epoch the SLA calculations occur:
-    1. Any LP underperforming the SLA minimum time fraction will lose the funds accumulated in their fee account on that market. If a non-zero **market.liquidity.sla.nonPerformanceBondPenaltyMax** has been set they may also lose some fraction of their bond, however at time-of-writing this value is 0 so no bond penalty applies.
+    1. Any LP underperforming the SLA minimum time fraction will lose the funds accumulated in their fee account on that market. If a non-zero <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltyMax" hideName={false} /> has been set they may also lose some fraction of their bond, however at time-of-writing this value is 0 so no bond penalty applies.
     2. Any LP meeting the SLA but with less than 100% time on the book may have up to **competition factor** percentage of the fees within the fee-per-market account redistributed.
     3. Any funds moved from LPs in steps a and b are then redistributed amongst all LPs according to the product of (1 - their penalty) and their proportion of total fees received across the epoch (so for a larger LP and a smaller LP with the same time on book, the larger LP will receive more from this pool, but if the larger LP were close to SLA and the smaller were close to 100% then the smaller could receive more)
 
-**Mathematical Steps:**
-
-- **Probability of Trading**: For each price level, the risk model implies a **Probability of Trading**, which is based on the cumulative distribution of a lognormal function between the tightest price monitoring bounds currently for the market and best bid/ask. The network parameter `minProbabilityOfTrading` defines a minimum value for the probability of trading at a given price level.
-    1. Parameters `mu`, `tau` and `sigma` are taken from the individual market's risk model, additionally `tau_scaling` is taken from the relevant network parameter.
-    2. For a price on the buy side, calculate the cdf between `min_valid_price` (the lowest price within the tightest price monitoring boundaries) and the `price`, normalising for a sum of `1` between `min_valid_price` and `best_bid`.
-    3. For a price on the buy side, calculate the cdf between the `price` and  `max_valid_price` (the highest price within the tightest price monitoring boundaries), normalising for a sum of `1` between `best_ask` and `max_valid_price`.
-    4. Define a lognormal distribution `D` with:
-        1. scale = `sigma` * `sqrt(tau * tau_scaling)`
-        2. loc = `exp(log(best_price) + (mu - 0.5 * sigma ^ 2) * tau * tau_scaling)` (where `best_price` is `best_bid/ask` depending on whether considering the buy or sell side.)
-    5. Calculate the CDF of distribution `D` at the `lower_bound` (`min_valid_price` for buy side and `best_ask` for sell side) and at the upper bound (`best_bid` for buy side and `max_valid_price` for sell side).
-    6. Define `z`, a scaler, to be `CDF(upper_bound) - CDF(lower_bound)`
-    7. Probability of trading is then:
-        1. For a buy order, `P(t) = 0.5 * (CDF(price) - CDF(lower_bound)) / z`
-        2. For a sell order, `P(t) = 0.5 * (CDF(upper_bound) - CDF(price)) / z`
-    8. If probability of trading < `minProbabilityOfTrading`, return the value `minProbabilityOfTrading`
-- **Initial fee distribution**:
-    - **Liquidity score** is used for initial fee distribution between LPs at trade time. It is recalculated frequently:
-        - For each LP, each of their orders within the SLA bound is assessed. For each price level, the **Probability of Trading** is calculated as above. For each order included, the LP's volume is multiplied by the probability of trading at that price. These are then summed up to generate a notional **Liquidity Score.**
-        - These are then normalised across all LPs. i.e. fractional instantaneous liquidity score = instantaneous liquidity score / total scores across all LPs
-        - LP liquidity score is then updated to be a weighted sum of the previous liquidity score and the new instantaneous one:
-            - liquidity score <- ((n-1)/n) x liquidity score + (1/n) x fractional instantaneous liquidity score
-- For fee distribution, each LP receives a portion equal to (LP Equity-like Share * LP Liquidity Score), normalised across all LPs.
-- Under 100% time-on-book
-    - If an LP meets the SLA criteria but is under 100% time on book they may have some portion of their fees redistributed. This is calculated with the equation below, where **t** is their fraction of time on the book, **s** is the minimum SLA fraction and **c** is the competition fraction discussed above. **p** then gives the fraction of fees redistributed.
-        
-        ![Penalty calculation for missing time on book](/img/101/liquidity-provision/time-penalty.png)
-        
-- Fee Redistribution
-    - Any fees not immediately paid out to LPs as a result of under 100% time on book are redistributed according to a few steps. First each LP receives a weight according to their proportion of fees that epoch
-        
-        ![Initial weighting for bonus distribution](/img/101/liquidity-provision/bonus-reweighting.png)
-
-    - Then that score is updated by multiplying by their SLA penalty as calculated above
-        
-        ![Adding SLA penalty](/img/101/liquidity-provision/bonus-sla-weighting.png)
-        
-    - Then these are finally re-weighted across all LPs
-        
-        ![Ensure bonuses sum to 1](/img/101/liquidity-provision/bonus-final-weighting.png)
-        
-    - Each LP then receives this fraction of the garnished SLA funds as a final bonus.
+For a full step-by step calculation and examples, see [here](../liquidity/rewards-penalties.md#dividing-liquidity-fees-between-lps).
 
 ## Estimating LP Income
 
