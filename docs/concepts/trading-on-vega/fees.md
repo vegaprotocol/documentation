@@ -32,15 +32,25 @@ The fee is divided between the maker for the trade, the infrastructure providers
 ### Maker fee
 The maker portion of the fee is paid by the aggressive party in a trade (the taker), and transferred to the non-aggressive, or passive party in the trade (the maker, as opposed to the taker). This is done as soon as the trade settles.
 
+The maker fee percentage is set through a network parameter: <NetworkParameter frontMatter={frontMatter} param="market.fee.factors.makerFee" />.
+
 ### Infrastructure fee
-The infrastructure portion of the fee is paid to validators as a reward for running the network infrastructure, and transferred to the infrastructure fee pool for the market's settlement asset. It is then distributed to the validators at the end of each epoch, in proportion to the number of tokens they represent. 
+The infrastructure portion of the fee is paid to validators as a reward for running the network infrastructure, and transferred to the infrastructure fee pool for the market's settlement asset. It is then distributed to the validators at the end of each epoch, in proportion to the number of tokens they represent.
 
 Some of the infrastructure fee paid to validators is then distributed to the validators' nominators.
+
+The infrastructure fee is set through a network parameter: <NetworkParameter frontMatter={frontMatter} param="market.fee.factors.infrastructureFee" />.
 
 ### Liquidity fee
 The liquidity portion of the fee is paid by a trader who hits an order on the order book, and is paid to those who [commit liquidity](../liquidity/provision.md#liquidity-commitments) to the market.
 
-It's transferred to a liquidity fee account, and distributed to each liquidity provider's margin account at a defined time (based on network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providers.fee.distributionTimeStep" />), and depending on how much liquidity they have contributed to the market.
+The liquidity fee percentage is set per market. There are several possible methods for how the fee is determined - a constant amount, a marginal cost rate depending on what liquidity providers submit, or the weighted average of what providers submit. 
+
+The fees paid are transferred to a liquidity fee account, and distributed to each liquidity provider's margin account at a defined time (based on network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providers.fee.distributionTimeStep" />), and depending on how much liquidity they have contributed to the market.
+
+:::note Read more
+[How the liquidity fee is set](../liquidity/rewards-penalties.md#determining-the-liquidity-fee-percentage)
+:::
 
 ### Fee calculations
 At a high level, the trading fee that someone pays is calculated using the following formulas:
