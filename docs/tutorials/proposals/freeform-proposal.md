@@ -20,6 +20,7 @@ import NewFreeformCMD from './_generated-proposals/_newFreeform_cmd.md';
 import NewFreeformWin from './_generated-proposals/_newFreeform_win.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Batch from './_batch-sample.md';
 
 # Create a freeform proposal
 Freeform proposals allow the community to propose and vote on matters which don't change any of the behaviour of the currently running Vega blockchain.
@@ -35,41 +36,7 @@ You will need:
 
 <!-- You should also share your proposal idea in the [_Freeform Proposals_ forum section ↗](https://community.vega.xyz/c/governance/free-form-proposals/31) before submitting it to the network.
 -->
-## Submitting proposals in a batch
-If you want to submit this proposal as part of a larger batch of proposals, follow this sample structure:
-
-```
-{
-  "proposalSubmission": {
-    "rationale": {
-      "title": "High level title",
-      "description": "Description of all parts of this batch of proposals"
-      "closingTimestamp": 1697283340,
-    },
-    "terms": {
-      "enactmentTimestamp": timestamp,
-      "typeOfProposal": {
-        "changes": {
-      }
-          "terms": {
-      "enactmentTimestamp": timestamp,
-      "typeOfProposal": {
-        "changes": {
-      }
-          "terms": {
-      "enactmentTimestamp": timestamp,
-      "typeOfProposal": {
-        "changes": {
-      }
-            }
-          }
-        }
-      }
-    }
-  }
- }
-}
-```
+<Batch />
 
 ## Templates and submitting
 

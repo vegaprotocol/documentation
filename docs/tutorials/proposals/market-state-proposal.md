@@ -15,6 +15,7 @@ import JSONInstructions from './_json-instructions.md';
 import TerminalInstructions from './_terminal-instructions.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Batch from './_batch-sample.md';
 
 # Propose changing the state of a market
 Below, learn how to submit a governance proposal to:
@@ -40,41 +41,7 @@ You will need:
 | `closingTimestamp`    | Timestamp (Unix time in seconds) when voting closes for this proposal. The chosen time must be between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minClose" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.maxClose" hideName={true} /> after the proposal submission time. (int64 as string) |
 | `enactmentTimestamp ` | Timestamp (Unix time in seconds) when proposal gets enacted (if passed). The chosen time must be between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minEnact" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.maxEnact" hideName={true} /> after `closingTimestamp`. (int64 as string)         |
 
-## Submitting proposals in a batch
-If you want to submit this proposal as part of a larger batch of proposals, follow this sample structure:
-
-```
-{
-  "proposalSubmission": {
-    "rationale": {
-      "title": "High level title",
-      "description": "Description of all parts of this batch of proposals"
-      "closingTimestamp": 1697283340,
-    },
-    "terms": {
-      "enactmentTimestamp": timestamp,
-      "typeOfProposal": {
-        "changes": {
-      }
-          "terms": {
-      "enactmentTimestamp": timestamp,
-      "typeOfProposal": {
-        "changes": {
-      }
-          "terms": {
-      "enactmentTimestamp": timestamp,
-      "typeOfProposal": {
-        "changes": {
-      }
-            }
-          }
-        }
-      }
-    }
-  }
- }
-}
-```
+<Batch />
 
 ## Suspend a market
 A market can be suspended for an indefinite amount of time, which puts the market into auction-only mode. Suspending a market allows for the possibility that it will be open to normal trading again in the future. A market that's suspended through governance can be resumed using the [resume a market](#resume-a-market) proposal.

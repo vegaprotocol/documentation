@@ -11,6 +11,7 @@ keywords:
 import NetworkParameter from '@site/src/components/NetworkParameter';
 import JSONInstructions from './_json-instructions.md';
 import TerminalInstructions from './_terminal-instructions.md';
+import Batch from './_batch-sample.md';
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -57,41 +58,7 @@ To end an existing program early, set your proposal up with the exact same param
 | `minimumStakedTokens` | Required number of VEGA tokens a referrer must have associated to their Vega key to receive the reward multiplier | Integer greater than 0 |
 | `referralRewardMultiplier` | Multiplier applied when calculating referral rewards due to the referrer, if they meet the criteria | Whole number, decimals allowed, greater than or equal to 1 |
 
-## Submitting proposals in a batch
-If you want to submit this proposal as part of a larger batch of proposals, follow this sample structure:
-
-```
-{
-  "proposalSubmission": {
-    "rationale": {
-      "title": "High level title",
-      "description": "Description of all parts of this batch of proposals"
-      "closingTimestamp": 1697283340,
-    },
-    "terms": {
-      "enactmentTimestamp": timestamp,
-      "typeOfProposal": {
-        "changes": {
-      }
-          "terms": {
-      "enactmentTimestamp": timestamp,
-      "typeOfProposal": {
-        "changes": {
-      }
-          "terms": {
-      "enactmentTimestamp": timestamp,
-      "typeOfProposal": {
-        "changes": {
-      }
-            }
-          }
-        }
-      }
-    }
-  }
- }
-}
-```
+<Batch />
 
 ## Templates and submitting
 

@@ -12,6 +12,7 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import TerminalInstructions from './_terminal-instructions.md';
+import Batch from './_batch-sample.md';
 
 # Propose tranferring assets
 
@@ -87,42 +88,7 @@ You will need to define the dispatch strategy, which includes the metric, the le
   "distributionStrategy": "DISTRIBUTION_STRATEGY_PRO_RATA"
 ```
 
-## Submitting proposals in a batch
-If you want to submit this proposal as part of a larger batch of proposals, follow this sample structure:
-
-```
-{
-  "proposalSubmission": {
-    "rationale": {
-      "title": "High level title",
-      "description": "Description of all parts of this batch of proposals"
-      "closingTimestamp": 1697283340,
-    },
-    "terms": {
-      "enactmentTimestamp": timestamp,
-      "typeOfProposal": {
-        "changes": {
-      }
-          "terms": {
-      "enactmentTimestamp": timestamp,
-      "typeOfProposal": {
-        "changes": {
-      }
-          "terms": {
-      "enactmentTimestamp": timestamp,
-      "typeOfProposal": {
-        "changes": {
-      }
-            }
-          }
-        }
-      }
-    }
-  }
- }
-}
-```
-
+<Batch />
 ## Templates and submitting
 
 ### Sample recurring transfer proposal to fund rewards

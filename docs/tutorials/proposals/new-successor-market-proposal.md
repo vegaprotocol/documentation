@@ -16,6 +16,7 @@ import NewSuccessorMarketAnnotated from './_generated-proposals/_newSuccessorMar
 import NewSuccessorMarketJSON from './_generated-proposals/_newSuccessorMarket_json.md';
 import NewSuccessorMarketCMD from './_generated-proposals/_newSuccessorMarket_cmd.md';
 import NewSuccessorMarketWin from './_generated-proposals/_newSuccessorMarket_win.md';
+import Batch from './_batch-sample.md';
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -45,41 +46,7 @@ The following `successor` parameters need to be used if you are proposing a mark
 * Parent market ID: Required to define the proposal as for a successor market
 * Insurance pool fraction: Required percentage of the parent market's insurance pool, up to 100%, can be earmarked for transfer to the successor market. It is submitted as a number between and including 0 and 1, which represents the factor for the percentage.
 
-## Submitting proposals in a batch
-If you want to submit this proposal as part of a larger batch of proposals, follow this sample structure:
-
-```
-{
-  "proposalSubmission": {
-    "rationale": {
-      "title": "High level title",
-      "description": "Description of all parts of this batch of proposals"
-      "closingTimestamp": 1697283340,
-    },
-    "terms": {
-      "enactmentTimestamp": timestamp,
-      "typeOfProposal": {
-        "changes": {
-      }
-          "terms": {
-      "enactmentTimestamp": timestamp,
-      "typeOfProposal": {
-        "changes": {
-      }
-          "terms": {
-      "enactmentTimestamp": timestamp,
-      "typeOfProposal": {
-        "changes": {
-      }
-            }
-          }
-        }
-      }
-    }
-  }
- }
-}
-```
+<Batch />
 
 ## Templates and submitting
 In the tabs below you'll see:
