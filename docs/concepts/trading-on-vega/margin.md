@@ -31,7 +31,7 @@ When placing order on a market, you can set your margin factor when using isolat
 :::tip Try it out
 [Use Console ↗](https://console.fairground.wtf) to trade with cross margin or isolated margin. The leverage slider lets you set your isolated margin level.
 
-Or [use the update margin mode command](../../api/grpc/vega/commands/v1/commands.proto.mdx) to submit the transaction yourself.
+Or [use the update margin mode command](../../api/grpc/vega/commands/v1/commands.proto.mdx#updatemarginmode) to submit the transaction yourself.
 
 Switching between modes may change your margin requirements.
 :::
