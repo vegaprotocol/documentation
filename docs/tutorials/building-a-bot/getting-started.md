@@ -300,7 +300,7 @@ def get_positions(
 ) -> list[dict]:
     filt = f"positions?filter.partyIds={party_id}"
     if market_id is not None:
-        filt += "&filter.marketIds={market_id}"
+        filt += f"&filter.marketIds={market_id}"
     return execute_unrollable_get_request(
         filt,
         "positions",

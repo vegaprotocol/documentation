@@ -12,7 +12,6 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
    \"marketId\": \"123\",^
    \"changes\": {^
     \"linearSlippageFactor\": \"0.001\",^
-    \"quadraticSlippageFactor\": \"0\",^
     \"instrument\": {^
      \"code\": \"APPLES.22\",^
      \"future\": {^
@@ -93,7 +92,7 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
-      \"sigma\": 0.8^
+      \"sigma\": 0.3^
      }^
     },^
     \"liquiditySlaParameters\": {^
@@ -104,8 +103,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
     }^
    }^
   },^
-  \"closingTimestamp\": 1700934839,^
-  \"enactmentTimestamp\": 1701021239^
+  \"closingTimestamp\": 1708190318,^
+  \"enactmentTimestamp\": 1708276718^
  }^
 }^
 }"

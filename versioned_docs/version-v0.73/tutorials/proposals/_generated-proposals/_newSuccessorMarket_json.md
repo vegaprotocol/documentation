@@ -8,6 +8,10 @@
   "terms": {
     "newMarket": {
       "changes": {
+        "successor": {
+          "parentMarketId": "marketid",
+          "insurancePoolFraction": "1"
+        },
         "linearSlippageFactor": "0.001",
         "quadraticSlippageFactor": "0",
         "decimalPlaces": "5",
@@ -77,8 +81,8 @@
           }
         },
         "metadata": [
-          "enactment:2023-11-20T17:59:33Z",
-          "settlement:2023-11-19T17:59:33Z",
+          "enactment:2024-01-03T15:20:02Z",
+          "settlement:2024-01-02T15:20:02Z",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -115,8 +119,8 @@
         }
       }
     },
-    "closingTimestamp": 1700416773,
-    "enactmentTimestamp": 1700503173
+    "closingTimestamp": 1704208802,
+    "enactmentTimestamp": 1704295202
   }
 }
 ```

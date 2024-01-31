@@ -40,11 +40,10 @@ Each party with open orders or positions on any market has a margin account. Whe
 
 To move some or all of the money in your margin account back into your general account, you can try reducing the size of your position on the market, or closing it entirely. If your position size is zero and you have no active orders, your margin account will be empty and all the funds will be returned to your general account and be accessible by you once more.
 
-<!--
 :::note Read more
-[Margin](./trading-on-vega/positions-margin)
+[Margin](../trading-on-vega/positions-margin.md)
 :::
--->
+
 ### Settlement accounts
 This account type temporarily holds assets to be distributed based on the outcomes of trades and market movements.
 

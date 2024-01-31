@@ -9,8 +9,49 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 
 You can offset some of the [fees](./fees.md) you pay, or earn even more, by receiving rewards based on trading activity. Rewards can be funded by anyone, and can be in any asset. You can see what rewards are currently available on [vega.xyz ↗](https://vega.xyz/rewards).
 
+## Referral program
+You can earn a commission for referring new users when a referral program is enabled. New users get a discount on their fees, while whoever refers them gets a cut of their referees’ trading fees. How much commission the referrer receives is increased if they have VEGA associated to their public key.
+
+:::tip Refer a friend
+Get benefits for referring, or being referred. In the [referrals section of Console](https://vegafairground.eth.limo/#/referrals), you can:
+* Create a code to refer others 
+* Enter a code you've been given
+:::
+
+The referral program only exists if it's been enabled through a [governance proposal](../../tutorials/proposals/referral-program-proposal.md). Once it's enabled, both the requirements and benefits can also be replaced with a new program, also using a governance proposal.
+
+You can see what the current program offers by checking the [Referrals page on Console](https://vegafairground.eth.limo/#/referrals), or the [referral program API](../../api/rest/data-v2/trading-data-service-get-current-referral-program.api.mdx).
+
+:::note Read more
+* [Tutorial: Propose enabling or changing the referral program](../../tutorials/proposals/referral-program-proposal.md)
+* [Spec: Technical design of the referral program ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0083-RFPR-on_chain_referral_program.md).
+:::
+
+### Referral sets
+To benefit from referral program perks, you'll need to either create a referral set, or join one. Referral sets can also be made into [teams](#teams-and-games), which get access to rewards targeted towards team members.
+
+A referral set is made up of the participant who created the set, known as the referrer, and all the referees who signed up using the referral code. Each referral set only has one referrer, but the number of referees is unlimited.
+
+:::tip Try it out
+Create a referral code, or enter a referral code you've been given on the [referrals section of Console ↗](https://vegafairground.eth.limo/#/referrals).
+:::
+
+### Teams and games
+When you create or update a referral set on [Console ↗](https://vegafairground.eth.limo/#/referrals), you can opt to turn it into a team. Teams can get access to games, which are [trading rewards](#trading-rewards) set to target those in a team, if they are set up.
+
+If you're part of a team, you can switch to a different team by using the team's referral code.
+
+Teams can have names and avatars to differentiate themselves on leaderboards. 
+
+The team leader, or referrer, can also choose when the team is open to all or to only certain participants.
+
+#### Game rewards
+Game rewards are assigned to a team based on the team's overall performance, and then rewards are distributed amongst the team members based on their multipliers. However, if you get a 0 score, then you won't get any rewards, even if your team was rewarded. 
+
+You'll need to be in a team for <NetworkParameter frontMatter={frontMatter} param="rewards.team.minEpochsInTeam" suffix="epochs" /> to be eligible for game rewards.
+
 ## Fee discounts based on trading volume
-Traders can get discounts on their fees when there's an active volume discount program on the network. The higher your volume of aggressive trades on a market, the greater the discount you can receive.
+Traders can get discounts on their [fees](./fees.md) when there's an active volume discount program on the network. The higher your volume of aggressive trades on a market, the greater the discount you can receive.
 
 The size of the discount, generally speaking, depends on the volume of your taker trades over a set window of time. You can get access to different levels of discounts when your trading volume is higher.
 
@@ -19,20 +60,6 @@ All of the details for the volume discount program are proposed and accepted thr
 :::note Read more
 * [Tutorial: Propose enabling or changing the volume discount program](../../tutorials/proposals/volume-discount-program-proposal.md)
 * [Spec: Technical design of the volume discount program ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0084-VDPR-volume_discount_program.md).
-:::
-
-## Referral program
-Traders can earn a commission for referring new users when a referral program is enabled. New users get a discount on their fees, while whoever refers them gets a cut of their referees’ trading fees. How much commission the referrer receives is increased if they have VEGA associated to their public key.
-
-The referral program only exists if it's been enabled through a governance proposal. Once it's enabled, both the requirements and benefits can also be replaced with a new program, also using a governance proposal.
-
-You can see what the current program offers by checking the [referral program API](../../api/rest/data-v2/trading-data-service-get-current-referral-program.api.mdx).
-
-Create a referral code, or enter a referral code you've been given on the [referrals section of Console](https://vegafairground.eth.limo/#/referrals).
-
-:::note Read more
-* [Tutorial: Propose enabling or changing the referral program](../../tutorials/proposals/referral-program-proposal.md)
-* [Spec: Technical design of the referral program ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0083-RFPR-on_chain_referral_program.md).
 :::
 
 ## Trading rewards
@@ -50,6 +77,15 @@ Your reward earnings can grow if you have an activity streak and/or keep earned 
 [See the available rewards ↗](https://vega.xyz/rewards)
 :::
 
+A reward can be set to target participants with certain statuses:
+
+* Teams - Only those in teams are eligible, and rewards are divided based on team performance then distributed amongst the team members.
+    * Team reward eligibility can be limited to a selected list of teams
+* Individuals:
+    * All - Everyone is eligible.
+    * Not in a team - Only participants that are not in a team are eligible.
+    * In a team - Only participants in a team are eligible, but they are rewarded based on individual performance.
+
 Rewards are independent from [fees](./fees.md), which are paid to validators, liquidity providers, and price makers on each trade.
 
 ### How rewards are paid
@@ -66,6 +102,12 @@ You can see the current reward hoarder bonus requirements and benefits on the [b
 
 These tiers are set through network parameters, and thus can be changed through [governance](../governance.md#network-parameter-governance).
 
+:::tip Try it out
+[Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)
+
+Note: You'll need to format your proposal using JSON to include multiple tiers in the value field.
+:::
+
 ## Activity streak 
 Traders that keep up an activity streak, either by placing trades or keeping a position open over several epochs, can receive a greater share of rewards and their locked reward proceeds will be available sooner.
 
@@ -79,6 +121,12 @@ You can see the current activity streak requirements and benefits on the [block 
 
 The details for activity streaks are set through network parameters, and thus can be changed through [governance](../governance.md#network-parameter-governance).
 
+:::tip Try it out
+[Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)
+
+Note: You'll need to format your proposal using JSON to include multiple tiers in the value field.
+:::
+
 ## Setting rewards
 Rewards can be set up by anyone to incentivise certain trading behaviours they want to see on a market (or markets). 
 
@@ -88,6 +136,7 @@ Trading rewards can be defined by the following things:
 * How long a reward is offered
 * How the reward is distributed to those eligible, pro-rata or by rank
 * How many epochs a trader's activity is evaluated
+* If the reward is available to individuals or those on a team
 
 Extra rewards for validators can also be set up. Learn more about them on the [validator scores and rewards page](../vega-chain/validator-scores-and-rewards.md#validator-metric-based-rewards).
 
@@ -98,7 +147,7 @@ Some rewards measure trader activity over a number of epochs (set per reward). T
 
 :::tip Try it out
 * [How to fund rewards](#how-to-fund-rewards)
-* [Set up a reward transfer](../../tutorials/assets-tokens/transferring-assets.md)
+* [Tutorial: Set up a reward transfer](../../tutorials/assets-tokens/transferring-assets.md)
 :::
 
 ### How rewards are scaled

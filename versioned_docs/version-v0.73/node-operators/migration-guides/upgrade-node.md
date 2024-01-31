@@ -1,24 +1,24 @@
 ---
-title: Upgrade to 0.73.0
-sidebar_label: Upgrade to 0.73.0
+title: Upgrade to 0.73.4
+sidebar_label: Upgrade to 0.73.4
 ---
 
-This guide describes the steps to upgrade from v0.72.14 to v0.73.0 using the protocol upgrade mechanism. See the changelogs for [v0.73.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.0) and [onwards ↗](https://github.com/vegaprotocol/vega/releases/), for information about breaking changes and new features.
+This guide describes the steps to upgrade from v0.73.3 to v0.73.4 using the protocol upgrade mechanism. See the changelogs for [v0.73.4 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.4) for information about breaking changes and new features.
 
 ## Assumptions for the guide
 The instructions below are written for Debian-like Linux operating systems.
 
 The guide assumes you are using systemd commands (`systemctl` and `journalctl`) to control binaries. If you are using something different, your system's commands may vary.
 
-This guide is specifically intended for those who are already running a validator node with version `v0.72.14`.
+This guide is specifically intended for those who are already running a validator node with version `v0.73.3`.
 
 ## Study the changes between versions
 
-Before upgrading your node software, **review the changelog** for [v0.73.0](https://github.com/vegaprotocol/vega/releases/tag/v0.73.0) for a list of breaking API changes compared to the previously released version.
+Before upgrading your node software, **review the changelog** for [v0.73.4](https://github.com/vegaprotocol/vega/releases/tag/v0.73.4) for a list of changes compared to the previously released version.
 
 ## Before you upgrade
 
-Please read the changelog to see all the changes. Below you can find a list of the changes you must perform before the upgrade to v0.73.0 in this document.
+Please read the changelog to see all the changes. Below you can find a list of the changes you must perform before the upgrade to v0.73.4 in this document.
 
 ### When should I upgrade config?
 
@@ -37,6 +37,7 @@ Make sure you have a backup for the original config in case you need them in the
 We do not recommend you do it too early in case you have to restart your node with the current version for some reason, for example if your node fails or your server restarts, etc.
 
 ### Config changes
+The following changes were introduced in v0.73.0. If you have not yet made these changes, we recommend doing them for this release.
 
 The default locations for configuration files:
 
@@ -47,7 +48,7 @@ Add the following new parameters to the configuration files.
 
 We recommend checking all of the changes on your own. Follow the below instructions to do it, and read through every description to understand the changes:
 
-1. Download vega `v0.73.0`
+1. Download vega `v0.73.4`
 2. Generate config files within the temp home directory
   - vega config
   -  tendermint config
@@ -91,6 +92,7 @@ We recommend checking all of the changes on your own. Follow the below instructi
 ```
 
 #### `Snapshot.StartHeight`
+The following parameter changes were introduced in v0.73.0. If you still have the old values, we recommend updating to the new ones.
 
 - `config file`: vega-core
 - `description`: The behaviour of the parameter `Snapshot.StartHeight` changed, and its default value has been updated from `-1` to `0`. **However, we DO NOT recommend changing this parameter before successfully migrating to version 0.73.0!** Prior 0.73, setting this parameter to `0` triggers the removal of the existing snapshots. If you start with the wrong binary or end up with a rollback, your node will use the old behaviour and remove existing snapshots. For the new logic to load a snapshot, see the below pseudocode block.

@@ -9,7 +9,6 @@ const p = 'properties'
 
 // Seed data: Some inspirational instrument names and corresponding codes
 const instruments = [
-  { name: "Apples Yearly (2022)", code: "APPLES.22" },
   { name: "Oranges Daily", code: "ORANGES.24h" },
 ];
 
@@ -419,6 +418,80 @@ function generateLiquiditySlaParameters(skeleton) {
   return slaParams;
 }
 
+function generateLiquidationStrategy(skeleton) {
+  assert.equal(
+    skeleton.properties.disposalTimeStep.type,
+    "string",
+    "Liquidity Strategy: expected disposalTimeStep to be a string"
+  );
+  assert.equal(
+    skeleton.properties.disposalFraction.type,
+    "string",
+    "Liquidity Strategy: expected disposalFraction to be a string"
+  );
+  assert.equal(
+    skeleton.properties.fullDisposalSize.type,
+    "string",
+    "Liquidity Strategy: expected fullDisposalSize to be a string"
+  );
+
+  assert.equal(
+    skeleton.properties.maxFractionConsumed.type,
+    "string",
+    "Liquidity Strategy: expected maxFractionConsumed to be a string"
+  );
+
+  const liquidationStrategy = {
+    disposalTimeStep: "500",
+    disposalFraction: "1",
+    fullDisposalSize: "18446744073709551615",
+    maxFractionConsumed: "1"
+  };
+
+  liquidationStrategy[inspect.custom] = () => {
+    return `{
+        // ${skeleton.properties.disposalTimeStep.description} (${skeleton.properties.disposalTimeStep.format} as ${skeleton.properties.disposalTimeStep.type})
+        disposalTimeStep: ${liquidationStrategy.disposalTimeStep},
+        // ${skeleton.properties.disposalFraction.description} (${skeleton.properties.disposalFraction.type})
+        disposalFraction: "${liquidationStrategy.disposalFraction}",
+        // ${skeleton.properties.fullDisposalSize.description} (${skeleton.properties.fullDisposalSize.format} as ${skeleton.properties.fullDisposalSize.type})
+        fullDisposalSize: "${liquidationStrategy.fullDisposalSize}",
+        // ${skeleton.properties.maxFractionConsumed.description} (${skeleton.properties.maxFractionConsumed.type})
+        maxFractionConsumed: "${liquidationStrategy.maxFractionConsumed}",
+      }`;
+  };
+
+  return liquidationStrategy;
+}
+
+function generateLiquidityFeeSettings(skeleton) {
+  assert.ok(
+    skeleton.properties.method.description,
+  );
+  assert.equal(
+    skeleton.properties.feeConstant.type,
+    "string",
+    "Liquidity Strategy: expected disposalFraction to be a string"
+  );
+
+  const liquidityFeeSettings = {
+    method: "METHOD_CONSTANT",
+    feeConstant: "0.00005"
+  };
+
+  liquidityFeeSettings[inspect.custom] = () => {
+    return `{
+        // ${skeleton.properties.method.description}
+        method: "${liquidityFeeSettings.method}",
+        // ${skeleton.properties.feeConstant.description} (${skeleton.properties.feeConstant.type})
+        feeConstant: "${liquidityFeeSettings.feeConstant}",
+      }`;
+  };
+
+  return liquidityFeeSettings;
+}
+
+
 function generatePeggedOrder(skeleton, side, customInspect = false) {
   const order = {
     offset: random(1, 100).toString(),
@@ -623,48 +696,6 @@ function generatePriceMonitoringParameters(skeleton) {
   return params;
 }
 
-function generateLiquidityMonitoringParameters(skeleton) {
-  assert.ok(skeleton.properties.targetStakeParameters);
-  assert.equal(
-    skeleton.properties.targetStakeParameters.properties.timeWindow.type,
-    "string"
-  );
-  assert.equal(
-    skeleton.properties.targetStakeParameters.properties.scalingFactor.type,
-    "number"
-  );
-
-  assert.equal(skeleton.properties.triggeringRatio.type, "string");
-  assert.equal(skeleton.properties.auctionExtension.type, "string");
-
-  const params = {
-    targetStakeParameters: {
-      timeWindow: "3600",
-      scalingFactor: 10,
-    },
-    triggeringRatio: "0.7",
-    auctionExtension: "1",
-  };
-
-  params[inspect.custom] = () => {
-    return `{
-        // ${skeleton.properties.targetStakeParameters.title}
-        targetStakeParameters: {
-          // ${skeleton.properties.targetStakeParameters.properties.timeWindow.description} (${skeleton.properties.targetStakeParameters.properties.timeWindow.type})
-          timeWindow: "${params.targetStakeParameters.timeWindow}",
-          // ${skeleton.properties.targetStakeParameters.properties.scalingFactor.description} (${skeleton.properties.targetStakeParameters.properties.scalingFactor.type})
-          scalingFactor: ${params.targetStakeParameters.scalingFactor}
-        },
-        // ${skeleton.properties.triggeringRatio.description} (${skeleton.properties.triggeringRatio.type})
-        triggeringRatio: "${params.triggeringRatio}",
-        // ${skeleton.properties.auctionExtension.description} (${skeleton.properties.auctionExtension.format} as ${skeleton.properties.auctionExtension.type})
-        auctionExtension: "${params.auctionExtension}",
-      }}`;
-  };
-
-  return params;
-}
-
 function generateMetadata(skeleton, proposalSoFar) {
   const dateFormat = "yyyy-MM-dd\'T\'HH:mm:ss"
   const settlement = format(fromUnixTime(proposalSoFar.terms.closingTimestamp), dateFormat)
@@ -742,15 +773,11 @@ function newMarket(skeleton, proposalSoFar) {
   assert.ok(skeleton.properties.changes);
   assert.ok(skeleton.properties.changes.properties.liquiditySlaParameters);
   assert.ok(skeleton.properties.changes.properties.decimalPlaces);
-  assert.ok(skeleton.properties.changes.properties.quadraticSlippageFactor);
   assert.ok(skeleton.properties.changes.properties.linearSlippageFactor);
   assert.ok(skeleton.properties.changes.properties.positionDecimalPlaces);
   assert.ok(skeleton.properties.changes.properties.instrument);
   assert.equal(skeleton.properties.changes.properties.metadata.type, "array");
   assert.ok(skeleton.properties.changes.properties.priceMonitoringParameters);
-  assert.ok(
-    skeleton.properties.changes.properties.liquidityMonitoringParameters
-  );
   assert.ok(skeleton.properties.changes.properties.logNormal);
 
   const result = {
@@ -762,7 +789,6 @@ function newMarket(skeleton, proposalSoFar) {
       newMarket: {
         changes: {
           linearSlippageFactor: "0.001",
-          quadraticSlippageFactor: "0",
           decimalPlaces: "5",
           positionDecimalPlaces: "5",
           instrument: generateFutureInstrument(
@@ -775,15 +801,18 @@ function newMarket(skeleton, proposalSoFar) {
           priceMonitoringParameters: generatePriceMonitoringParameters(
             skeleton.properties.changes.properties.priceMonitoringParameters
           ),
-          liquidityMonitoringParameters: generateLiquidityMonitoringParameters(
-            skeleton.properties.changes.properties.liquidityMonitoringParameters
-          ),
           logNormal: generateRiskModel(
             skeleton.properties.changes.properties.logNormal,
             "logNormal"
           ),
           liquiditySlaParameters: generateLiquiditySlaParameters(
             skeleton.properties.changes.properties.liquiditySlaParameters
+          ),
+          liquidationStrategy: generateLiquidationStrategy(
+            skeleton.properties.changes.properties.liquidationStrategy
+          ),
+          liquidityFeeSettings: generateLiquidityFeeSettings(
+            skeleton.properties.changes.properties.liquidityFeeSettings
           ),
         },
       },
@@ -796,8 +825,6 @@ function newMarket(skeleton, proposalSoFar) {
         changes: {
           // ${skeleton.properties.changes.properties.linearSlippageFactor.description}
           linearSlippageFactor: ${result.terms.newMarket.changes.linearSlippageFactor},
-          // ${skeleton.properties.changes.properties.quadraticSlippageFactor.description}
-          quadraticSlippageFactor: ${result.terms.newMarket.changes.quadraticSlippageFactor},
 
           // ${skeleton.properties.changes.properties.decimalPlaces.description} (${skeleton.properties.changes.properties.decimalPlaces.format
       } as ${skeleton.properties.changes.properties.decimalPlaces.type})
@@ -820,21 +847,22 @@ function newMarket(skeleton, proposalSoFar) {
         result.terms.newMarket.changes.priceMonitoringParameters,
         { depth: 19 }
       )},
-          // ${skeleton.properties.changes.properties.liquidityMonitoringParameters
-        .title
-      }
-          liquidityMonitoringParameters: ${inspect(
-        result.terms.newMarket.changes.liquidityMonitoringParameters,
-        { depth: 19 }
-      )},
           // ${skeleton.properties.changes.properties.logNormal.title}
           logNormal: ${inspect(result.terms.newMarket.changes.logNormal, {
         depth: 19,
       })},
       // ${skeleton.properties.changes.properties.liquiditySlaParameters.title}
          liquiditySlaParameters: ${inspect(result.terms.newMarket.changes.liquiditySlaParameters, {
-      depth: 19,
-    })},
+        depth: 19,
+      })},
+      // ${skeleton.properties.changes.properties.liquidationStrategy.description}
+         liquidationStrategy: ${inspect(result.terms.newMarket.changes.liquidationStrategy, {
+        depth: 19,
+      })},
+      // ${skeleton.properties.changes.properties.liquidityFeeSettings.description}
+         liquidityFeeSettings: ${inspect(result.terms.newMarket.changes.liquidityFeeSettings, {
+        depth: 19,
+      })},
         }
     }`;
   };
@@ -848,7 +876,6 @@ function produceOverview(p) {
   proposal.terms.newMarket.changes.instrument = {};
   proposal.terms.newMarket.changes.metadata = [];
   proposal.terms.newMarket.changes.priceMonitoringParameters = [];
-  proposal.terms.newMarket.changes.liquidityMonitoringParameters = {};
   proposal.terms.newMarket.changes.logNormal = {};
   proposal.terms.newMarket.liquidityCommitment = {};
   return proposal;
@@ -872,7 +899,8 @@ module.exports = {
   generateFutureInstrument,
   generateMetadata,
   generatePriceMonitoringParameters,
-  generateLiquidityMonitoringParameters,
   generateRiskModel,
-  generateLiquiditySlaParameters
+  generateLiquiditySlaParameters,
+  generateLiquidationStrategy,
+  generateLiquidityFeeSettings
 };

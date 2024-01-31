@@ -11,7 +11,6 @@
     "marketId": "123",
     "changes": {
      "linearSlippageFactor": "0.001",
-     "quadraticSlippageFactor": "0",
      "instrument": {
       "code": "APPLES.22",
       "future": {
@@ -92,7 +91,7 @@
       "params": {
        "mu": 0,
        "r": 0.016,
-       "sigma": 0.8
+       "sigma": 0.3
       }
      },
      "liquiditySlaParameters": {
@@ -103,8 +102,8 @@
      }
     }
    },
-   "closingTimestamp": 1700934839,
-   "enactmentTimestamp": 1701021239
+   "closingTimestamp": 1708190318,
+   "enactmentTimestamp": 1708276718
   }
  }
 }'
