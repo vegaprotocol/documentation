@@ -7,30 +7,24 @@ If you want to submit this proposal as part of a larger batch of proposals, foll
     "batchProposalSubmission": {
         "rationale": {
             "title": "High level title",
-            "description": "Description of all parts of this batch of proposals",
+            "description": "Description of all parts of this batch of proposals"
         },
         "terms": {
-            changes: [{
+            "closingTimestamp": "123",
+            "changes": [
+                {
                     "enactmentTimestamp": 123,
-                    "typeOfProposal": {
+                    "cancelTransfer": {
                         "changes": {
-                            "d": true
+                            "transferId": "345"
                         }
                     }
                 },
                 {
                     "enactmentTimestamp": 123,
-                    "typeOfProposal": {
+                    "cancelTransfer": {
                         "changes": {
-                            "d": true
-                        }
-                    }
-                },
-                {
-                    "enactmentTimestamp": 123,
-                    "typeOfProposal": {
-                        "changes": {
-                            "d": true
+                            "transferId": "789"
                         }
                     }
                 }
