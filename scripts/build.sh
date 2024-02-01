@@ -21,10 +21,7 @@ rm -rf docs/api/grpc/data-node 2> /dev/null
 rm -rf docs/api/grpc/vega 2> /dev/null
 rm -rf docs/api/grpc/blockexplorer 2> /dev/null
 ## Back compat: Remove former GRPC docs path
-rm -rf versioned_docs/version-v0.53.0/graphql 2> /dev/null
-## Back compat: Remove former GRPC docs path
 rm -rf docs/grpc 2> /dev/null
-rm -rf versioned_docs/version-v0.53.0/grpc 2> /dev/null
  
 echo ""
 echo " 🛠  Install deps"
@@ -65,7 +62,8 @@ yarn run generate-grpc
 yarn run docusaurus clean-api-docs all
 yarn run generate-rest
 
-yarn run generate-proposals
+echo "Skipping automatic proposal generation. Run `yarn run generate-proposals` manually to update them"
+# yarn run generate-proposals
 yarn run generate-openrpc
 
 echo ""

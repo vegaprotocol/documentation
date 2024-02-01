@@ -14,12 +14,7 @@ The Vega protocol has been designed with rules to detect dangerous market condit
 Margin calculations take into account the probability of the liquidation value of a position falling short of the available capital. The network is also designed to frequently re-evaluate each individual's risk, and preemptively close positions.
 
 Some of those measures include price monitoring and frequent mark to market calculations.
-<!--
-:::note Read more
-* [Margin on Vega](./positions-margin#margin)
-* [Mark to market](./positions-margin#mark-to-market)
-:::
--->
+
 :::warning A note on risk
 
 Derivatives markets are financially risky, by design. If a market has no liquidity, it won't be possible to get out of a position.
@@ -91,36 +86,40 @@ The images below show how according to the risk model, 90%, 95%, or 99% of the p
 </details>
 
 ## Distressed traders
-If a trader's available margin on a market is below the closeout level and cannot be replenished, that trader is considered to be distressed.
+If a trader's available margin on a market is below the closeout level and cannot be replenished, that trader is considered distressed.
 
-A distressed trader has all their open orders on that market cancelled. The network will then recalculate the margin requirement on the trader's remaining open position. If they then have sufficient collateral, they are no longer considered a distressed trader. 
+How a distressed trader's positions and orders are treated depends on if they're using isolated or cross margining.
 
-However, if the trader does not have sufficient collateral, they are added to a list of traders that will then undergo position resolution to close out their positions.
+If a distressed trader is using **isolated margin**, an *open position* that drops below the maintenance margin level will be closed out. Any open orders will remain active, as long as there's enough margin set aside to meet the [order margin](./margin.md#margin-order) requirement. The margin for each is calculated and funded separately.
+
+If the margin set aside for *orders* isn't enough, all of the trader's open orders on the market are cancelled and margin is returned to the general account. An open position in that market stays open, as it's margined separately.
+
+A distressed trader using **cross margining** has all their open orders on that market cancelled. The network will then recalculate the margin requirement on the trader's remaining open position. If they then have enough collateral, they are no longer considered a distressed trader. If the trader still does not have sufficient collateral, their position is closed out.
 
 ### Closeouts
-When a participant does not have enough collateral to hold their open positions, the protocol will automatically trigger a closeout.
+When a participant does not have enough collateral to hold an open position, the protocol will automatically trigger a closeout. The closeout process is a last resort for a position.
 
-The closeout process is a last resort for a position. If a trader's deployed margin on the market is insufficient to cover a mark to market settlement liability, first Vega will search the trader's available balance of the settlement asset. If this search is unable to cover the full liability, the trader will be considered distressed and undergo position resolution. Any margin balance remaining after closeout is transferred to the market's insurance pool.
+A position that's been closed out is transferred to the network, which can become a market participant in order to unload closed out positions.
 
-The insurance pool is drawn from to make up the difference required to cover the mark to market loss amount. Should the funds in the insurance pool be insufficient for that, loss socialisation will be applied.
+Any margin balance remaining after a closeout is transferred to the market's insurance pool.
 
 ### Position resolution
-Position resolution is executed simultaneously, during a single event, for all traders on a market that have been determined to require it. Distressed trader(s) are ‘batched up’, and position resolution is run once the full set of traders is known for this event.
+Once a trader is closed out, the position is taken over by the network. The network's open volume for the market increases, and the market's insurance pool acts as the network's margin account. 
 
-The network calculates the overall net long or short positions in the batch that requires position resolution, which tells the network how much volume (either long or short) needs to be sourced from the order book. For example, if there are 3 distressed traders with +5, -4 and +2 positions respectively, then the net outstanding liability is +3. 
+The network party then submits an IOC limit order to unload the position - selling for a long position or buying for a short position. This is called a [network order](./orders.md#network-order). Network orders do not affect the market's mark price.
 
-The outstanding liability is sourced from the market's order book via a single market order executed by the network as a counterparty. In this example, a market order to sell 3 would be placed on the order book. This order is described as a 'network order'.
-
-The network generates a set of trades with all the distressed traders, all at the volume weighted average price of the network's (new) open position. At this point, neither the distressed traders nor the network will have any open positions. Note, network orders do not affect the market's mark price. 
-
-All of the remaining collateral in each distressed trader's margin account for that market is confiscated to the market's insurance pool.
+How much of the position the network party tries to offload depends on the liquidation parameters for disposal, set per market:
+* Disposal time step: How often the network attempts to unload its position, as long as the market isn't in auction
+* Disposal fraction: What fraction of network's current open volume it will try to reduce in one attempt
+* Full disposal size: The lowest position size before the network will attempt to dispose the remaining amount in one order
+* Max fraction of order book side that can be consumed: The max amount of the order book's total volume, within the liquidity bounds, that the network can use to close its position, as a fraction
 
 ### Loss socialisation 
 Loss socialisation occurs when there are traders that don't have sufficient collateral to handle the price moves of their open position(s), and the market's insurance pool cannot cover their shortfall. 
 
-This situation would mean collection transfers are not able to supply the full amount to the market settlement account, and not enough funds can be collected to distribute the full amount of mark to market gains made by traders on the other side. 
+This situation would mean collection funds are not able to supply the full amount to the market settlement account, and not enough funds can be collected to distribute the full amount of mark to market gains made by traders on the other side. 
 
-The funds that have been collected must be fairly distributed. Loss socialisation is implemented by reducing the amount that is distributed to each trader with a mark to market gain, based on their relative position size. 
+The funds that have been collected are then fairly distributed by reducing the amount distributed to each trader with a mark to market gain, based on their relative position size.
 
 ```
 distribute_amount[trader] = mtm_gain[trader] * ( actual_collected_amount / target_collect_amount )

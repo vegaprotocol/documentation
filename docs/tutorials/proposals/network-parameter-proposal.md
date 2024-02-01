@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-title: Update network parameter
+title: Change network parameter
 vega_network: TESTNET
 hide_title: true
 keywords:
@@ -17,6 +17,7 @@ import UpdateNetworkParameterCMD from './_generated-proposals/_updateNetworkPara
 import UpdateNetworkParameterWin from './_generated-proposals/_updateNetworkParameter_win.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Batch from './_batch-sample.md';
 
 # Propose a network parameter change
 
@@ -43,6 +44,29 @@ The contents of a `changes` object specifies what will be different after the pr
 **Key** is the name of the network parameter that you are proposing a change to.
 
 **Value** is the new value you're proposing that the network parameter should have.
+
+Some network parameters include multiple pieces of information in one value. Changes to one of those network parameters needs to include the correct formatting. You can see how the existing value is formatted on [Explorer ↗](https://explorer.vega.xyz/network-parameters).
+
+For example, a proposal to change the `rewards.activityStreak.benefitTiers` network parameter would include a value that looks like the following, using escaped JSON:
+
+```json title="Code sample for multiple values"
+"value": 
+" { \"tiers\": [ 
+    { \"minimum_activity_streak\": 1, 
+      \"reward_multiplier\": \"1.05\", 
+      \"vesting_multiplier\": \"1.05\" }, 
+    { \"minimum_activity_streak\": 2, 
+      \"reward_multiplier\": \"1.10\", 
+      \"vesting_multiplier\": \"1.10\" }, 
+    { \"minimum_activity_streak\": 3, 
+      \"reward_multiplier\": \"1.20\", 
+      \"vesting_multiplier\": \"1.20\" } 
+  ]
+}"
+```
+
+<Batch />
+
 
 ## Templates and submitting
 In the tabs below you'll see:

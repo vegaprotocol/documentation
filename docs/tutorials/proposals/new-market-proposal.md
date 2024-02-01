@@ -21,6 +21,7 @@ import NewMarketAnnotated from './_generated-proposals/_newMarket_annotated.md';
 import NewMarketJSON from './_generated-proposals/_newMarket_json.md';
 import NewMarketCMD from './_generated-proposals/_newMarket_cmd.md';
 import NewMarketWin from './_generated-proposals/_newMarket_win.md';
+import Batch from './_batch-sample.md';
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -54,14 +55,14 @@ The contents of a `changes` object specifies what will be different after the pr
 
 Instrument, liquidity monitoring parameters, price monitoring parameters, and data sources are all described in more detail below.
 
-**Rationale** requires a title and description, which is are free-text fields that describe the purpose of the proposal.  Within the description, include links with more information about your proposal (such as to the IPFS content or forum post) that voters can reference to learn more about the market proposal. Formatting your rationale with markdown makes it easier to read when it's displayed.
+**Rationale** requires a title and description, which are free-text fields that describe the purpose of the proposal.  Within the description, include links with more information about your proposal (such as to the IPFS content or forum post) that voters can reference to learn more about the market proposal. Formatting your rationale with markdown makes it easier to read when it's displayed.
 
-**Decimal places** need to be defined for both order sizes and the market. A market cannot specify more decimal places than its settlement asset supports.
+**Decimal places** need to be defined for both order sizes and the market. A market cannot specify more decimal places than its settlement asset supports. The values for these fields cannot be changed, even through governance.
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
 | `decimalPlaces` | Sets the smallest price increment on the book. | 18 |
-| `positionDecimalPlaces` | Sets how big the smallest order / position on the market can be. | 5 |
+| `positionDecimalPlaces` | Sets the size that the smallest order / position on the market can be. Set the position decimal places such that the margin on the smallest order ends up being about 1 USD. This ensures that the market will not accept orders with very small margin minimums, protecting the network from being spammed with lots of financially insignificant orders. To figure out the ideal decimal place: Calculate the risk factor. Find the current price the asset is trading for, such as from the oracle you're using. The smallest order margin is `price x 10^{-pdp} x (risk factor)`. Convert to USD. If this is less than 0.5, then decrease the position decimal places (pdp) accordingly. Position decimal places (pdp) can also be negative integers. | 3 |
 
 **Timestamps** are required for ending the voting period, as well as enacting the market. The time between closing and enactment also defines how long an [opening auction](../../concepts/trading-on-vega/trading-modes.md#auction-type-opening) will be, which must be smaller than/equal to the difference between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxClose" /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxEnact" />.
 
@@ -70,12 +71,15 @@ Instrument, liquidity monitoring parameters, price monitoring parameters, and da
 | `closingTimestamp` | Timestamp (Unix time in seconds) when voting closes for this proposal. If it passes the vote, liquidity can be committed from this time. The chosen time must be between <NetworkParameter frontMatter={frontMatter}param="governance.proposal.market.minClose" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxClose" hideName={true} /> after the proposal submission time. (int64 as string) | 1663517914 |
 | `enactmentTimestamp ` | Timestamp (Unix time in seconds) when the market will be enacted, ready for trading. The chosen time must be between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minEnact" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxEnact" hideName={true} /> after `closingTimestamp`. (int64 as string) | 1663604314 |
 
-**Slippage factors** are parameters that determine by how much the margin slippage is affected by the liquidity component of margin in a low-volume scenario. If there is enough volume on the book, the slippage comes directly from the book and the liquidity component is not used. The suggested values are in the example column below. Margin slippage in a low-volume scenario is calculated as `slippageFromFactors = linear x position  + quadratic x position^2) x price`. I
+The **lineage slippage factor** is a parameter that caps the margin level in low-volume situations for cross margin trades so that traders aren't closed out unnecessarily.
+
+Margin slippage in a low-volume scenario is calculated as `slippageFromFactors = linear factor x position x price`.
+
+If there is enough volume on the book, the slippage value comes directly from the book and the slippage factor is not used.
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
-| `linearSlippageFactor` | The linear slippage factor captures that for a bigger position there is proportionally bigger liquidity risk. | 0.001 |
-| `quadraticSlippageFactor` | The quadratic slippage factor determines by what factor especially large positions can be penalised. When closing those out, the system will 'walk the book' and potentially end up with an execution price notably worse that the last mark price. | 0.0 |
+| `linearSlippageFactor` | The linear slippage factor captures that for a bigger position there is proportionally bigger liquidity risk in a low-liquidity market. | 0.001 |
 
 ### Instrument
 The instrument shape is as follows, see below for a description of each property:
@@ -88,7 +92,7 @@ An instrument contains the following properties:
 | `name` | A string for the market name. Best practice is to include a full and fairly descriptive name for the instrument. | Oranges DEC18. |
 | `code`  (instrument) | This is a shortcode used to easily describe the instrument. The more information you add, the easier it is for people to know what the market offers. | FX:BTCUSD/DEC18 |
 | `future` | An object that provides details about the futures market to be proposed. |
-| `settlementAsset` | Settlement asset requires the ID of the asset that the market will be margined in and settle in. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID. |  |
+| `settlementAsset` | Settlement asset requires the ID of the asset that the market will be margined and settled in. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID. |  |
 | `quoteName` | The quote name is the human-readable name/abbreviation of the settlement asset. Example: In BTCUSD, USD is the quote. | tEuro |
 | `dataSourceSpecForSettlementData` | This defines the data source that will be used to identify the settlement price when the market expires. | prices.ORANGES.value |
 | `dataSourceSpecForTradingTermination` | The fields that define the data source used for terminating trading on the market. | vegaprotocol.builtin.timestamp |
@@ -112,7 +116,7 @@ Data source bindings include the following properties:
 | `name` | Specific name of the information that the filter provides. | prices.ETH.value |
 | `type` | Specifies the data type that is emitted. For example, for the `prices.ETH.value`, the type is an integer, as it is output as a non-fractional number | TYPE_INTEGER |
 | `numberDecimalPlaces` | Optional field to specify the precision in which numerical data is emitted. Use when data is numerical | 18 |
-| `conditions` | A filter for the data. The conditions that should to be matched by the data to be considered. This is an optional set of fields. For example you could use an operator and a value to denote that a price should be greater than zero |
+| `conditions` | A filter for the data. The conditions that need to be matched by the data to be considered. This is an optional set of fields. For example you could use an operator and a value to denote that a price should be greater than zero |
 | `operator` | This adds a constraint to the value, such as LESS_THAN, GREATER_THAN. For example if you wanted to ensure that the price would always be above zero, you would set the operator to ‘GREATER_THAN’ and the Value to be ‘0’ | GREATER_THAN |
 | `value` | A number that is constrained by the operator. If providing a timestamp, use the Unix time in seconds | 0 |
 
@@ -165,6 +169,31 @@ The risk model uses the following properties:
 | `param: mu` | Annualised growth rate of the underlying asset. <br/><br/>Accepted values: any real number | 0 |
 | `param: r` | Annualised growth rate of the risk-free asset, it's used for discounting of future cash flows. Use 0.0 unless otherwise required. <br/><br/> Accepted values: any real number | 0.0 |
 | `param: sigma` | Annualised historic volatility of the underlying asset. <br/><br/>Accepted values: any strictly non-negative real number; suggested value: asset dependent, should be derived from the historical time-series of prices. | 0.8 (converts to 80%) |
+
+### Liquidity SLA parameters 
+The liquidity parameters set the requirements that liquidity providers on the market must meet in order to avoid being penalised and to earn fee revenue. There is also an option to change how the liquidity fee is determined.
+
+| Field | Description | Sample value |
+| ----------- | ----------- | ----------- |
+| `liquiditySlaParameters` | Parameters for minimum requirements and measurements | |
+| `priceRange` | Sets the percentage move up and down from the mid price that LPs must be within to count towards their commitment | 0.1 | 
+| `commitmentMinTimeFraction` | The minimum fraction of time that LPs must spend on the book and within the price range | 0.1 | 
+| `performanceHysteresisEpochs` | Sets the number of epochs over which past performance will continue to affect rewards. | 10 | 
+| `slaCompetitionFactor` | Sets the maximum fraction of their accrued fees an LP that meets the SLA will lose to liquidity providers that achieved a higher SLA performance than them. | 0.2 |
+| `liquidityFeeSettings` | Optional setting for how the liquidity fee factor is determined. See [liquidity fees](../../concepts/liquidity/rewards-penalties.md#determining-the-liquidity-fee-percentage) for more. | `METHOD_MARGINAL_COST` (default) `METHOD_CONSTANT`, `METHOD_WEIGHTED_AVERAGE` |
+| `feeConstant` | For the fee setting `METHOD_CONSTANT`, a constant fee factor needs to be provided. | 0.00005 |
+
+### Liquidation strategy
+Set up the liquidation strategy to minimise the impact of distressed traders on the market. These parameters can balance between minimising the market impact of disposing of distressed positions and not holding a large open volume for a long time.
+
+| Field | Description | Suggested value |
+| ----------- | ----------- | ----------- |
+| `disposalTimeStep` | Interval, in seconds, at which the network will attempt to close a position it's acquired from distressed traders. | 30 |
+| `disposalFraction` | Fraction of the open position the market will try to close in a single attempt. Range 0 through 1 | 0.1 |
+| `fullDisposalSize` | Size of the position that the network will try to close in a single attempt  | 1 |
+| `maxFractionConsumed` | Maximum fraction of the order book's total volume, within the liquidity bounds, that the network can use to close its position. Range 0 through 1 | 0.05 |
+
+<Batch />
 
 ## Templates and submitting
 In the tabs below you'll see:

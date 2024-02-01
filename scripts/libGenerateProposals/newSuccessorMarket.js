@@ -5,7 +5,6 @@ const {
   generateFutureInstrument,
   generateMetadata,
   generatePriceMonitoringParameters,
-  generateLiquidityMonitoringParameters,
   generateRiskModel
 } = require('./newMarket')
 
@@ -15,15 +14,11 @@ const p = 'properties'
 function newSuccessorMarket(skeleton, proposalSoFar) {
   assert.ok(skeleton.properties.changes);
   assert.ok(skeleton.properties.changes.properties.decimalPlaces);
-  assert.ok(skeleton.properties.changes.properties.quadraticSlippageFactor);
   assert.ok(skeleton.properties.changes.properties.linearSlippageFactor);
   assert.ok(skeleton.properties.changes.properties.positionDecimalPlaces);
   assert.ok(skeleton.properties.changes.properties.instrument);
   assert.equal(skeleton.properties.changes.properties.metadata.type, "array");
   assert.ok(skeleton.properties.changes.properties.priceMonitoringParameters);
-  assert.ok(
-    skeleton.properties.changes.properties.liquidityMonitoringParameters
-  );
   assert.ok(skeleton.properties.changes.properties.logNormal);
 
   const result = {
@@ -34,8 +29,11 @@ function newSuccessorMarket(skeleton, proposalSoFar) {
     terms: {
       newMarket: {
         changes: {
+          successor: {
+            parentMarketId: "marketid",
+            insurancePoolFraction: "1"
+          },
           linearSlippageFactor: "0.001",
-          quadraticSlippageFactor: "0",
           decimalPlaces: "5",
           positionDecimalPlaces: "5",
 
@@ -48,9 +46,6 @@ function newSuccessorMarket(skeleton, proposalSoFar) {
           ),
           priceMonitoringParameters: generatePriceMonitoringParameters(
             skeleton.properties.changes.properties.priceMonitoringParameters
-          ),
-          liquidityMonitoringParameters: generateLiquidityMonitoringParameters(
-            skeleton.properties.changes.properties.liquidityMonitoringParameters
           ),
           logNormal: generateRiskModel(
             skeleton.properties.changes.properties.logNormal,
@@ -69,10 +64,15 @@ function newSuccessorMarket(skeleton, proposalSoFar) {
   result.terms.newMarket[inspect.custom] = () => {
     return `{
         changes: {
+          // ${skeleton.properties.changes.properties.successor.description}
+          successor: {
+            // ${skeleton.properties.changes.properties.successor.properties.parentMarketId.description}
+            parentMarketId: "${result.terms.newMarket.changes.successor.parentMarketId}",
+            // ${skeleton.properties.changes.properties.successor.properties.insurancePoolFraction.description}
+            insurancePoolFraction: "${result.terms.newMarket.changes.successor.insurancePoolFraction}"
+          },
           // ${skeleton.properties.changes.properties.linearSlippageFactor.description}
           linearSlippageFactor: ${result.terms.newMarket.changes.linearSlippageFactor},
-          // ${skeleton.properties.changes.properties.quadraticSlippageFactor.description}
-          quadraticSlippageFactor: ${result.terms.newMarket.changes.quadraticSlippageFactor},
 
           // ${skeleton.properties.changes.properties.decimalPlaces.description} (${skeleton.properties.changes.properties.decimalPlaces.format
       } as ${skeleton.properties.changes.properties.decimalPlaces.type})
@@ -93,13 +93,6 @@ function newSuccessorMarket(skeleton, proposalSoFar) {
       }
           priceMonitoringParameters: ${inspect(
         result.terms.newMarket.changes.priceMonitoringParameters,
-        { depth: 19 }
-      )},
-          // ${skeleton.properties.changes.properties.liquidityMonitoringParameters
-        .title
-      }
-          liquidityMonitoringParameters: ${inspect(
-        result.terms.newMarket.changes.liquidityMonitoringParameters,
         { depth: 19 }
       )},
           // ${skeleton.properties.changes.properties.logNormal.title}

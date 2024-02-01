@@ -153,7 +153,6 @@ function generateRiskModel(skeleton, riskModelType) {
 function updateMarket(skeleton, proposalSoFar) {
   assert.ok(skeleton.properties.changes);
   assert.ok(skeleton.properties.changes.properties.instrument);
-  assert.ok(skeleton.properties.changes.properties.quadraticSlippageFactor);
   assert.ok(skeleton.properties.changes.properties.linearSlippageFactor);
   assert.equal(skeleton.properties.changes.properties.metadata.type, 'array');
   assert.ok(skeleton.properties.changes.properties.priceMonitoringParameters);
@@ -170,7 +169,6 @@ function updateMarket(skeleton, proposalSoFar) {
         marketId: '123',
         changes: {
           linearSlippageFactor: "0.001",
-          quadraticSlippageFactor: "0",
           instrument: generateFutureInstrument(skeleton.properties.changes.properties.instrument),
           metadata: generateMetadata(skeleton.properties.changes.properties.metadata),
           priceMonitoringParameters: generatePriceMonitoringParameters(skeleton.properties.changes.properties.priceMonitoringParameters),
@@ -191,8 +189,6 @@ function updateMarket(skeleton, proposalSoFar) {
         changes: {
           // ${skeleton.properties.changes.properties.linearSlippageFactor.description}
           linearSlippageFactor: ${result.terms.updateMarket.changes.linearSlippageFactor},
-          // ${skeleton.properties.changes.properties.quadraticSlippageFactor.description}
-          quadraticSlippageFactor: ${result.terms.updateMarket.changes.quadraticSlippageFactor},
           // ${skeleton.properties.changes.properties.instrument.title}
           instrument: ${inspect(result.terms.updateMarket.changes.instrument, { depth: 19 })},
           // ${skeleton.properties.changes.properties.metadata.description}

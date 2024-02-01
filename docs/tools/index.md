@@ -1,4 +1,5 @@
 ---
+sidebar_position: 1
 title: Apps and Tools
 hide_title: false
 ---
@@ -16,7 +17,8 @@ There are several ways to interact with a Vega Wallet:
 ## Console
 Use **[Vega Console](https://console.fairground.wtf)** to try trading on a testnet trading interface. The Fairground network is set up to provide a fairly realistic experience where you can place orders, provide liquidity, and see how the market mechanics work.
 
-* **[Host Console on IPFS](./vega-console.md#hosting-console-on-ipfs)**
+* **[Charts on Console](./tools/vega-console/charts)**
+* **[Host Console on IPFS](./tools/vega-console/host-console-on-ipfs)**
 
 ## Governance dApp
 Use the **[Vega Governance dApp](https://governance.vega.xyz)** to stake your tokens to nominate the validators that run the network, participate in network goveranance, and earn and claim rewards.

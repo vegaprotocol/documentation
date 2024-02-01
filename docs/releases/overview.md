@@ -17,7 +17,145 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 [**Vega Capsule on GitHub** ↗](https://github.com/vegaprotocol/vegacapsule/releases) - Vega Capsule, which lets you create an instance of the Vega network on your computer to experiment with using the protocol, is public and you can read the contents of each release on GitHub.
 
 ## Vega core software
-The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
+The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
+
+## Pre-release version 0.74 | 2024-01-24
+This version was released to the Vega testnet on 24 January 2024.
+
+This pre-release contains several new features for the Palazzo milestone, including isolated margin, batch proposals, Ethereum RPC and EVM based data sources and a new mark price and price for perps funding TWAP methodology.
+
+### Breaking changes
+
+- Listing transactions on block explorer no longer supports the field `limit`. This has been removed in [issue 10215 ↗](https://github.com/vegaprotocol/vega/issues/10215)
+- Getting a transfer by ID now returns a `TransferNode`. This has been added in [issue 8056 ↗](https://github.com/vegaprotocol/vega/issues/8056)
+
+### Deprecations
+
+ - Commands `tm` and `tendermint` are deprecated in favour of `cometbft`. This has been completed in [issue 10000 ↗](https://github.com/vegaprotocol/vega/issues/10000)
+
+### New Features
+
+#### Isolated margin
+
+The protocol now allows users to choose between one of two margining modes for each position. The current mode will be stored alongside the party's position record.
+
+* Cross-margin mode (default): this is the mode used by all newly created orders, but it can be changed. When in cross-margin mode, margin is dynamically acquired and released as a position is marked to market, allowing profitable positions to offset losing positions for higher capital efficiency.
+* Isolated margin mode: this mode sacrifices capital efficiency for predictability and risk management by segregating positions. In this mode, the entire margin for any newly opened position's volume is transferred to the margin account when the trade is executed. This includes completely new positions and increases to position size. Other than at time of future trades, the general account will then never be searched for additional funds - a position will be allowed to be closed out instead - nor will profits be moved into the general account from the margin account while a position is open.
+
+To see lower level details of how the new isolated margin feature is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0019-MCAL-margin_calculator.md#isolated-margin-mode).
+
+#### Batch proposals
+
+A `BatchProposalSubmission` is a top-level proposal type that allows grouping several individual proposals into a single proposal. All changes will pass or fail governance voting together.
+
+The batch proposal is a wrapper containing one rationale (i.e. title and description) and one closing timestamp for the whole set, and a list of proposal submissions for each proposed change that omit certain fields. 
+
+Any governance proposal can be included in a batch except proposals to *add* new assets.
+
+To see lower level details of how the new batch proposals feature is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0028-GOVE-governance.md#batch-proposals).
+
+#### Ethereum RPC and EVM based data sources
+
+Updates in the Palazzo milestone (v0.74.0) introduce a new way of sourcing data from any chain or Ethereum Layer 2 blockchain (L2) that supports Ethereum RPC calls and runs an EVM.
+
+In addition to listening to Ethereum events and reading oracle data from Ethereum contracts, as implemented the Cosmic Elevator milestone (v0.73), it will now be possible for Vega nodes to listen to events from and read from other chains that implement Ethereum RPC and run EVM, in particular Ethereum L2s.
+
+The overarching principle is that the chain provides Ethereum RPC / EVMs and thus the contracts and ABIs are assumed to be functionally the same as on Ethereum itself.
+
+To see lower level details of how the new Ethereum RPC and EVM based data sources feature is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0087-EVMD-eth-rpc-and-evm-data-source.md).
+
+#### Mark price and price for perps funding TWAP updates
+
+For perpetual futures markets there is now a **mark price** configuration and a **mark price for funding** configuration so that the market can potentially use different mark price for mark-to-market and price monitoring and a completely different price for calculating funding.
+
+To see lower level details of how the new mark price and price for perps funding TWAP updates is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0009-MRKP-mark_price.md).
+
+#### Liquidation strategy improvements
+
+Improvements have been made to how distressed parties are liquidated. Now new market proposals will need to include a liquidation strategy configuration.
+
+This configuration is used to allow the network to hold an active position on the market. Parties that are distressed, but previously couldn't be liquidated because there was insufficient volume on the book, will now be liquidated. In this process the party's position is transferred to the network party, and rather than dumping the distressed volume on the market, an inventory management strategy carries this out over time. 
+
+This improvement has been added in [issue 9945 ↗](https://github.com/vegaprotocol/vega/issues/9945)
+
+
+### Pre-release version 0.73.12 (patch) | 2024-01-10
+Version 0.73.12 was released the Vega testnet on 10 January, 2024.
+
+The version contained the following fix:
+
+* To address an issue whereby blocks may stop being produced, Vega now limits the number of blocks queried in a single `eth_getLogs` call to prevent large requests to Ethereum nodes. This limit is configurable so that it can match the requirements of Ethereum node providers being used by a Vega validator. This has been resolved under the issue [9992 ↗](https://github.com/vegaprotocol/vega/issues/9992).
+
+### Pre-release version 0.73.11 (patch) | 2024-01-05
+Version 0.73.11 was released the Vega testnet on 05 January, 2024.
+
+The version contained the following fix:
+
+* A situation was identified whereby stop orders placed during an opening auction can cause a core panic, this has been resolved under the issue [10318 ↗](https://github.com/vegaprotocol/vega/issues/10318).
+
+### Pre-release version 0.73.10 (patch) | 2023-12-21
+Version 0.73.10 was released the Vega testnet on 21 December, 2023.
+
+The version contained the following improvements:
+
+* Fix the equity-like share votes count on update market proposals, [10257 ↗](https://github.com/vegaprotocol/vega/issues/10257).
+* Do not include start epoch on referees set statistics API, [10241 ↗](https://github.com/vegaprotocol/vega/issues/10241).
+
+### Pre-release version 0.73.9 (patch) | 2023-12-08
+Version 0.73.9 was released the Vega testnet on 08 December, 2023.
+
+The version contained the following improvements:
+
+* Volume discount stats no longer show volumes when party didn't qualify for a discount tier, [10218 ↗](https://github.com/vegaprotocol/vega/issues/10218).
+* Fixed expiring stop orders panic, [10233 ↗](https://github.com/vegaprotocol/vega/issues/10233).
+
+### Pre-release version 0.73.8 (patch) | 2023-12-05
+Version 0.73.8 was released to the Vega testnet on 05 December, 2023.
+
+This release contains a fix required for the vesting balances API, which was erroneously showing infrastructure fees.
+
+Check out the code change contained in the patch release in the Vega core [0.73.8 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.8) release page.
+
+### Pre-release version 0.73.7 (patch) | 2023-12-04
+Version 0.73.7 was released to the Vega testnet on 04 December, 2023.
+
+This release contains a number of fixes required as a result of testing feedback after the 0.73 deployment.
+
+Check out the full details of what is contained in the patch release in the Vega core [0.73.7 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.7) release page.
+
+### Fixes
+
+An issue was found during testing whereby the network could experience a consensus failure when restaring from a snapshot. A fix has been introduced so that closed markets subscribed to data sources, when restored from a snapshot, do not cause a consensus failure. This was fixed in the following [issue ↗](https://github.com/vegaprotocol/vega/issues/10166)
+
+Additionally validation has been introduced to stop an overflow if the order size registered with the position engine is very large. This was fixed in the following [issue ↗](https://github.com/vegaprotocol/vega/issues/10177)
+
+### Pre-release version 0.73.6 (patch) | 2023-11-22
+Version 0.73.6 was released to the Vega testnet on 22 November, 2023.
+
+This release contains a protocol optimisation required as a result of  the following [mainnet incident ↗](https://medium.com/vegaprotocol/incident-report-forwarding-events-from-ethereum-a384fc35fbdf) raised on the 21st November 2023 regarding the forwarding of events from Ethereum.
+
+Check out the full details of what is contained in the patch release in the Vega core [0.73.6 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.6) release page.
+
+### Mainnet incident - protocol optimisation
+
+The mainnet incident was resolved without any code change, however, the Vega project team identified improvements to reduce the Ethereum RPC load and minimise the chance of future similar incidents; given their impact. The improvements, of adding metrics and reducing the amount of requests sent to the Ethereum RPC, was done under the following [issue](https://github.com/vegaprotocol/vega/issues/10153).
+
+### Pre-release version 0.73.5 (patch) | 2023-11-20
+Version 0.73.5 was released to the Vega testnet on 20 November, 2023.
+
+This release contains a number of critical fixes required as a result of testing feedback after the 0.73 deployment.
+
+Check out the full details of what is contained in the patch release in the Vega core [0.73.5 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.5) release page.
+
+### Critical fixes
+
+An issue was noticed affecting perpetual markets when the market doesn't have at least 1 of each price observation (internal and external). When this occurs the funding payment doesn't get exchanged, however, the Margin Estimate assumes it has exchanged and thus provides and incorrect estimate for the side due to make the payment. This issue was resolved in 3 pull requests [10119 ↗](https://github.com/vegaprotocol/vega/pull/10119), [10121 ↗](https://github.com/vegaprotocol/vega/pull/10121) and [10124 ↗](https://github.com/vegaprotocol/vega/pull/10124).
+
+During a [Market Simulation ↗](https://github.com/vegaprotocol/vega-market-sim) fuzzing test, when sending a batch market transaction, a bug was identified where it crashed the network. This was found to be an invalid stop order without a rises-above or falls-below that causes the count of how many pre-generated IDs required to fall out of sync. This was resolved in the pull request [10070 ↗](https://github.com/vegaprotocol/vega/pull/10070)
+
+When carrying out some testing of `StopOrdersSubmission` in batch proposals it was found that sending this proposal without any values crashes the data node. The investigation found this to be a nill-pointer panic and this bug was fixed in the pull requests [10126 ↗](https://github.com/vegaprotocol/vega/pull/10126)
+
+An issue with the GraphQL `LedgerEntries` API was identified resulting in the query failing if `TransferType` filter is specified. On investigation the API worked as intended however, the error message was misinforming users. The error message has been improved and the API documentation made consistent between the gRPC and GraphQL APIs. This bug was fixed in the pull requests [10117 ↗](https://github.com/vegaprotocol/vega/pull/10117)
 
 ### Pre-release version 0.73.4 (patch) | 2023-11-10
 Version 0.73.4 was released to the Vega testnet on 10 November, 2023.
@@ -34,6 +172,7 @@ The list ledger entries API failed when pagination was provided. The query had b
 
 
 ### Pre-release version 0.73.3 (patch) | 2023-11-09
+
 Version 0.73.3 was released to the Vega testnet on 09 November, 2023.
 
 Check out the full details in the Vega core [0.73.3 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.3) release page.
@@ -43,6 +182,7 @@ Check out the full details in the Vega core [0.73.3 ↗](https://github.com/vega
 Shortly after the 0.73.1 release a user reported that immediately after trade the PnL shown in Console would flicker, affecting both realised and unrealised PnL. This was resolved in [pull request ↗](https://github.com/vegaprotocol/vega/pull/9959).
 
 ### Pre-release version 0.73.2 (patch) | 2023-11-01
+
 Version 0.73.2 was released to the Vega testnet on 01 November, 2023.
 
 This release contains 3 fixes required as a result of testing feedback after the 0.73.1 deployment.

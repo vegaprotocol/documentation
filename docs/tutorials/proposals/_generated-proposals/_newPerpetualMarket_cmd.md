@@ -10,7 +10,6 @@
    "newMarket": {
     "changes": {
      "linearSlippageFactor": "0.001",
-     "quadraticSlippageFactor": "0",
      "decimalPlaces": "5",
      "positionDecimalPlaces": "5",
      "instrument": {
@@ -26,6 +25,7 @@
        "dataSourceSpecForSettlementData": {
         "external": {
          "ethOracle": {
+          "sourceChainId": "1",
           "address": "0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43",
           "abi": "[{\"inputs\":[],\"name\":\"latestAnswer\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
           "method": "latestAnswer",
@@ -83,8 +83,8 @@
       }
      },
      "metadata": [
-      "enactment:2023-11-28T18:16:03Z",
-      "settlement:2023-11-27T18:16:03Z",
+      "enactment:2024-02-18T17:18:38Z",
+      "settlement:2024-02-17T17:18:38Z",
       "source:docs.vega.xyz"
      ],
      "priceMonitoringParameters": {
@@ -95,14 +95,6 @@
         "auctionExtension": "600"
        }
       ]
-     },
-     "liquidityMonitoringParameters": {
-      "targetStakeParameters": {
-       "timeWindow": "3600",
-       "scalingFactor": 10
-      },
-      "triggeringRatio": "0.7",
-      "auctionExtension": "1"
      },
      "logNormal": {
       "tau": 0.0001140771161,
@@ -121,8 +113,8 @@
      }
     }
    },
-   "closingTimestamp": 1701108963,
-   "enactmentTimestamp": 1701195363
+   "closingTimestamp": 1708190318,
+   "enactmentTimestamp": 1708276718
   }
  }
 }'
