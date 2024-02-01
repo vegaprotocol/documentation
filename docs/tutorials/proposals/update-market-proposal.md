@@ -19,6 +19,7 @@ import UpdateMarketCMD from './_generated-proposals/_updateMarket_cmd.md';
 import UpdateMarketWin from './_generated-proposals/_updateMarket_win.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Batch from './_batch-sample.md';
 
 # Propose changes to futures market
 Propose changes to an existing futures market.
@@ -55,41 +56,7 @@ Note that some network parameters may differ, such as the limits on how long the
 | `closingTimestamp`    | Timestamp (Unix time in seconds) when voting closes for this proposal. The chosen time must be between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minClose" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.maxClose" hideName={true} /> after the proposal submission time. (int64 as string) |
 | `enactmentTimestamp ` | Timestamp (Unix time in seconds) when proposal gets enacted (if passed). The chosen time must be between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minEnact" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.maxEnact" hideName={true} /> after `closingTimestamp`. (int64 as string)         |
 
-## Submitting proposals in a batch
-If you want to submit this proposal as part of a larger batch of proposals, follow this sample structure:
-
-```
-{
-  "proposalSubmission": {
-    "rationale": {
-      "title": "High level title",
-      "description": "Description of all parts of this batch of proposals"
-      "closingTimestamp": 1697283340,
-    },
-    "terms": {
-      "enactmentTimestamp": timestamp,
-      "typeOfProposal": {
-        "changes": {
-      }
-          "terms": {
-      "enactmentTimestamp": timestamp,
-      "typeOfProposal": {
-        "changes": {
-      }
-          "terms": {
-      "enactmentTimestamp": timestamp,
-      "typeOfProposal": {
-        "changes": {
-      }
-            }
-          }
-        }
-      }
-    }
-  }
- }
-}
-```
+<Batch />
 
 ## Templates and submitting
 In the tabs below you'll see:

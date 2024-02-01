@@ -11,9 +11,9 @@ keywords:
 import NetworkParameter from '@site/src/components/NetworkParameter';
 import JSONInstructions from './_json-instructions.md';
 import TerminalInstructions from './_terminal-instructions.md';
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Batch from './_batch-sample.md';
 
 When a volume discount program is enabled, traders can receive discounts on their fees. The higher their taker volume over the discount program's window length, the greater the discount traders can receive.
 
@@ -47,41 +47,7 @@ To end an existing program early, set your proposal up with the exact same param
 | `minimumRunningNotionalTakerVolume` | The notional volume of aggressive trades that a trader is required to have across the aggregation window, to access the discount in this tier | Integer greater than or equal to 1 |
 | `volumeDiscountFactor` | Proportion of each trader's fees to be discounted, will be converted to a percentage | Must be greater than or equal to 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxVolumeDiscountFactor" hideName={true}/> |
 
-## Submitting proposals in a batch
-If you want to submit this proposal as part of a larger batch of proposals, follow this sample structure:
-
-```
-{
-  "proposalSubmission": {
-    "rationale": {
-      "title": "High level title",
-      "description": "Description of all parts of this batch of proposals"
-      "closingTimestamp": 1697283340,
-    },
-    "terms": {
-      "enactmentTimestamp": timestamp,
-      "typeOfProposal": {
-        "changes": {
-      }
-          "terms": {
-      "enactmentTimestamp": timestamp,
-      "typeOfProposal": {
-        "changes": {
-      }
-          "terms": {
-      "enactmentTimestamp": timestamp,
-      "typeOfProposal": {
-        "changes": {
-      }
-            }
-          }
-        }
-      }
-    }
-  }
- }
-}
-```
+<Batch />
 
 ## Templates and submitting
 
