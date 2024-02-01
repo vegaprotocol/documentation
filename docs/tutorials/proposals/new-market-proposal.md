@@ -21,6 +21,7 @@ import NewMarketAnnotated from './_generated-proposals/_newMarket_annotated.md';
 import NewMarketJSON from './_generated-proposals/_newMarket_json.md';
 import NewMarketCMD from './_generated-proposals/_newMarket_cmd.md';
 import NewMarketWin from './_generated-proposals/_newMarket_win.md';
+import Batch from './_batch-sample.md';
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -193,6 +194,8 @@ Set up the liquidation strategy to minimise the impact of distressed traders on 
 | `disposalFraction` | Fraction of the open position the market will try to close in a single attempt. Range 0 through 1 | 0.1 |
 | `fullDisposalSize` | Size of the position that the network will try to close in a single attempt  | 1 |
 | `maxFractionConsumed` | Maximum fraction of the order book's total volume, within the liquidity bounds, that the network can use to close its position. Range 0 through 1 | 0.05 |
+
+<Batch />
 
 ## Templates and submitting
 In the tabs below you'll see:

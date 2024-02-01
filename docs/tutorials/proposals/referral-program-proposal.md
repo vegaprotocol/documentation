@@ -11,6 +11,7 @@ keywords:
 import NetworkParameter from '@site/src/components/NetworkParameter';
 import JSONInstructions from './_json-instructions.md';
 import TerminalInstructions from './_terminal-instructions.md';
+import Batch from './_batch-sample.md';
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -56,6 +57,8 @@ To end an existing program early, set your proposal up with the exact same param
 | `stakingTiers` | List of values defining the multipliers to be used for referrals | Holds the details for each benefit tier, listed below. Maximum of <NetworkParameter frontMatter={frontMatter} param="referralProgram.maxReferralTiers" hideName={true}/>|
 | `minimumStakedTokens` | Required number of VEGA tokens a referrer must have associated to their Vega key to receive the reward multiplier | Integer greater than 0 |
 | `referralRewardMultiplier` | Multiplier applied when calculating referral rewards due to the referrer, if they meet the criteria | Whole number, decimals allowed, greater than or equal to 1 |
+
+<Batch />
 
 ## Templates and submitting
 

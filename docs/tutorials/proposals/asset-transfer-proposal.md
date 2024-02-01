@@ -12,6 +12,7 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import TerminalInstructions from './_terminal-instructions.md';
+import Batch from './_batch-sample.md';
 
 # Propose tranferring assets
 
@@ -100,6 +101,7 @@ You will need to define the dispatch strategy, which includes the metric, the le
   "distributionStrategy": "DISTRIBUTION_STRATEGY_PRO_RATA"
 ```
 
+<Batch />
 ## Templates and submitting
 
 ### Sample recurring transfer proposal to fund rewards
