@@ -24,7 +24,7 @@ Version 0.73.13 was released by the validators to mainnet on XX February, 2024.
 
 The version contained the following critical bug fix:
 
-* During the governance voted termination of the LINK/USDT market on mainnet a particular edge case bug was identified. This is where the TWAP calculation for the internal data point, happening at the end of a funding period, can be incorrect. The lead to some balances being incorrect during the funding payments. The calculation error has been resolved in the issue [10520 ↗](https://github.com/vegaprotocol/vega/issues/10520).
+* During the governance voted termination of the LINK/USDT market on mainnet a particular edge case bug was identified. This is where the TWAP calculation for the internal data point, happening at the end of a funding period, can be incorrect. This led to some balances being incorrect during the funding payments. The calculation error has been resolved in the issue [10520 ↗](https://github.com/vegaprotocol/vega/issues/10520).
 
 ### Release versions 0.73.11 and 0.73.12 (patch) combined | 2024-01-12
 
