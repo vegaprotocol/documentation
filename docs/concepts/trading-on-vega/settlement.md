@@ -58,17 +58,17 @@ A cash-settled futures market reaches its expiry date and time. If the last mark
 When the mark price on a market changes, the protocol calculates settlement cash flows for each party with an open position. This means that each time the mark price for a given market changes, all the open positions are marked to market. Interim partial payments are calculated by the protocol, and those payments go directly to the relevant trader's margin account. 
 
 :::note Read more
-[Concept: Mark to market](./positions-margin.md#mark-to-market)
+[Concept: Mark to market](./margin.md#mark-to-market)
 :::
 
 ## Periodic settlement for perpetuals 
-Perpetual futures markets are settled periodically using spot prices from an external data source. This is in addition to mark to market settlement, which happens when the mark price changes. 
+Perpetual futures markets are settled periodically using spot prices from an external data source. This is in addition to mark to market settlement, which happens when the mark price for funding changes. 
 
 These periodic settlements are known as the funding periods.
 
 The data source for spot prices and how often the market is scheduled to use that data to settle positions are defined in the market's parameters.
 
-When a settlement schedule time is reached, the protocol calculates how much should be transferred between the parties for each open position. This is based on the provided price data for the underlying asset. The difference between the market's mark price and the spot price of the underlying asset is used to determine how much is moved between the two sides of each open position.
+When a settlement schedule time is reached, the protocol calculates how much should be transferred between the parties for each open position. This is based on the provided price data for the underlying asset. The difference between the mark price for funding and the spot price of the underlying asset is used to determine how much is moved between the two sides of each open position.
 
 If the perpetual price is above the spot price, the funding payment is positive and those with long positions "pay" those who are short in a position.  If the perpetual price is below the spot price, the funding payment is negative and traders with short positions lose money while those with long positions gain.
 

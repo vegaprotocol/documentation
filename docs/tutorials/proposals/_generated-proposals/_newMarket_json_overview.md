@@ -9,8 +9,6 @@
    changes: {
     // Linear slippage factor is used to cap the slippage component of maintenance margin - it is applied to the slippage volume.
     linearSlippageFactor: 0.001,
-    // Quadratic slippage factor is used to cap the slippage component of maintenance margin - it is applied to the square of the slippage volume.
-    quadraticSlippageFactor: 0,
     // Decimal places used for the new futures market, sets the smallest price increment on the book. (uint64 as string)
     decimalPlaces: "5",
     // Decimal places for order sizes, sets what size the smallest order / position on the futures market can be. (int64 as string)
@@ -21,8 +19,6 @@
     metadata: [],
     // PriceMonitoringParameters contains a collection of triggers to be used for a given market
     priceMonitoringParameters: [],
-    // LiquidityMonitoringParameters contains settings used for liquidity monitoring
-    liquidityMonitoringParameters: {},
     // Risk model for log normal
     logNormal: {},
     // Liquidity SLA parameters
@@ -37,14 +33,32 @@
      // that achieved a higher SLA performance than them. (string)
      slaCompetitionFactor: "0.2",
     },
+    // Liquidation strategy for this market.
+    liquidationStrategy: {
+     // Interval, in seconds, at which the network will attempt to close its position. (int64 as string)
+     disposalTimeStep: 500,
+     // Fraction of the open position the market will try to close in a single attempt; range 0 through 1. (string)
+     disposalFraction: "1",
+     // Size of the position that the network will try to close in a single attempt. (uint64 as string)
+     fullDisposalSize: "18446744073709551615",
+     // Max fraction of the total volume of the orderbook, within liquidity bounds, that the network can use to close its position; range 0 through 1. (string)
+     maxFractionConsumed: "1",
+    },
+    // Specifies how the liquidity fee for the market will be calculated.
+    liquidityFeeSettings: {
+     // Method used to calculate the market's liquidity fee.
+     method: "METHOD_CONSTANT",
+     // Constant liquidity fee used when using the constant fee method. (string)
+     feeConstant: "0.00005",
+    },
    }
   },
   // Timestamp as Unix time in seconds when voting closes for this proposal,
   // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-  closingTimestamp: 1700934839,
+  closingTimestamp: 1708190318,
   // Timestamp as Unix time in seconds when proposal gets enacted if passed,
   // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-  enactmentTimestamp: 1701021239,
+  enactmentTimestamp: 1708276718,
  }
 }
 ```

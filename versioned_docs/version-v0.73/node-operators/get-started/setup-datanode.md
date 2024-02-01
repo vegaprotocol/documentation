@@ -3,27 +3,32 @@ sidebar_position: 4
 title: Set up a data node
 hide_title: false
 ---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Before you set up a data node, you'll need to have a [non-validator node](./setup-non-validator.md) and confirmed it's running correctly. 
+Before you set up a data node, you'll need to have a [non-validator node](./setup-non-validator.md) and confirmed it's running correctly.
 
 ## What is a data node?
-A data node gives you and potentially other users a way to query the state of the network and historic information over the lifetime of the blockchain. 
+
+A data node gives you and potentially other users a way to query the state of the network and historic information over the lifetime of the blockchain.
 
 A data node connects to a non validator node and receives a stream of events as state is altered in the node. The data node stores these events and uses them to generate rich information that can be queried via APIs.
 
 ## Setting up a data node
-A data node can be started in 2 ways:
-- It can be connected to a node that is replaying the chain from block 0. 
-- It can use network history by connecting to a different node that is restarting from a specific snapshot in the chain's history. 
 
-The advantage of performing a full replay of the chain is that the data node can contain all historic information from the beginning of the chain. However, it takes a considerable amount of time to replay and process the chain. As a rough estimate it can take around 1 full day to replay the blocks generated over a 2 month period. 
+A data node can be started in 2 ways:
+
+- It can be connected to a node that is replaying the chain from block 0.
+- It can use network history by connecting to a different node that is restarting from a specific snapshot in the chain's history.
+
+The advantage of performing a full replay of the chain is that the data node can contain all historic information from the beginning of the chain. However, it takes a considerable amount of time to replay and process the chain. As a rough estimate it can take around 1 full day to replay the blocks generated over a 2 month period.
 
 The advantage of using network history is that the data node can be started up very quickly to allow clients to access the current live information within an hour. The drawback is that the historic information will not be available.
 
 ## Running the backend database
-The data node relies on the Postgres database with a TimescaleDB plugin to hold all its information. The easiest way to run this is using Docker. 
+
+The data node relies on the Postgres database with a TimescaleDB plugin to hold all its information. The easiest way to run this is using Docker.
 
 Data node software currently supports Postgres 14 and TimescaleDB 2.8.0.
 
@@ -64,6 +69,7 @@ vega=#
 The `POSTGRES_?` values set above need to match with the values specified in the data node configuration file (`$YOUR_DATANODE_HOME_PATH/config/data-node/config.toml`). If you want to change from the default values above, make sure you update the values in both places.
 
 ### PostgreSQL configuration tuning (optional)
+
 The default PostgreSQL configuration is not optimised for memory usage, and can be modified.
 
 Find the PostgreSQL parameters in the `postgresq.conf` file. The default file path for Linux and PostgreSQL 14 is: `/etc/postgresql/14/main/postgresql.conf`.
@@ -158,12 +164,9 @@ New value:
 shared_memory_type = sysv
 ```
 
-
-
 The two above parameters determine how your operating system manages the shared memory.
 
 If your operating system supports the POSIX standard, you may want to use the `map` value both for the `dynamic_shared_memory_type` and `shared_memory_type`. But the `sysv` value is more portable than `map`. There is no significant difference in [performance ↗](https://lists.dragonflybsd.org/pipermail/kernel/attachments/20120913/317c1aab/attachment-0001.pdf).
-
 
 ## Preparing a home directory for the data node
 
@@ -174,11 +177,13 @@ The below steps will walk through how to create a `ZFS` volume on an external dr
 ### Prerequisites
 
 A CLI tool is needed to create and configure `ZFS` volumes. It can be installed using the following command:
+
 ```
 apt-get update -y && apt-get install -y zfsutils-linux
 ```
 
 You'll also need a dedicated, external hard drive to store and compress all data written by the data node. Assuming this storage device is called `DEVICE_NAME` ensure that any exisiting data is removed from it:
+
 ```
 wipefs --all -force /dev/DEVICE_NAME
 ```
@@ -186,18 +191,20 @@ wipefs --all -force /dev/DEVICE_NAME
 ### Creating the ZFS volume
 
 With the `ZFS` utility installed and `DEVICE_NAME` clear and ready, an initial "pool" can be created and turned into a `ZFS` volume:
+
 ```
 # creates a pool containing DEVICE_NAME
 zpool create vega_pool /dev/DEVICE_NAME
 
 # shows the status of the newly created pool
-zpool status 
+zpool status
 
 # creates the zfs
 zfs create vega_pool/home
 ```
 
 You can then create a mount point to use as a home directory, and then set a compression algorithm:
+
 ```
 
 # creates a directory where the device with be mounted
@@ -214,6 +221,7 @@ zfs set compression=zstd vega_pool/home
 It is possible to further fine-tune the compression settings to your particular needs if you find this necessary. More information can be found in `ZFS`'s [documentation↗](https://openzfs.github.io/openzfs-docs/Performance%20and%20Tuning/index.html).
 
 Finally, the Postgres configuration should be updated so that its data directory is set to the `ZFS` volume. It is also important to ensure that the Postgres process will have permissions to write to the volume:
+
 ```
 sed -i /etc/postgresql/14/main/postgresql.conf "s/data_directory.*/data_directory = '/home/vega/postgresql'/g"
 
@@ -232,6 +240,7 @@ If you're starting your data node from block zero, the non validator node must a
   [Broker]
     [Broker.Socket]->Enabled = true
 ```
+
 2. Initialise the data node config files
 
 ```
@@ -245,11 +254,12 @@ By default the data node will retain all historic data generated by the chain. T
 ```
 vega datanode start --home=$YOUR_DATANODE_HOME_PATH
 ```
-4. Now start the non validator node and confirm that both apps are running and you can see the block height increasing on both. 
+
+4. Now start the non validator node and confirm that both apps are running and you can see the block height increasing on both.
 
 :::warning
 
-A bug on the Vega network that crashed the mainnet network at block `26439343`. This makes replaying chain from block 0 more complicated. 
+A bug on the Vega network that crashed the mainnet network at block `26439343`. This makes replaying chain from block 0 more complicated.
 
 If your node fails with this error message, follow the procedure described below: `cannot unregister order with potential sell + size changes < 0`
 
@@ -264,9 +274,6 @@ If your node fails with this error message, follow the procedure described below
 After `v0.73.6-patch.2` your node will continue replaying normally.
 :::
 
-
-
-
 ## Starting the data node from network history
 
 If you're using network history to get the current state to start up your data node, you'll first need to start the non validator node using a snapshot. Follow the instructions in the [non validator node set up guide](./setup-non-validator.md#start-a-node-using-a-remote-snapshot).
@@ -277,6 +284,7 @@ If you're using network history to get the current state to start up your data n
   [Broker]
     [Broker.Socket]->Enabled = true
 ```
+
 2. Initialise the data node config files
 
 ```
@@ -296,6 +304,7 @@ vega datanode init --home=$YOUR_DATANODE_HOME_PATH "vega-mainnet-0011"
 ```
 
 6. Start the data node
+
 ```
 vega datanode start --home=$YOUR_DATANODE_HOME_PATH
 ```
@@ -308,7 +317,7 @@ The data node will by default pull all the entire chain's history and is expecte
 
 ## Using Visor to control and upgrade your data node
 
-We strongly recommend using the tool `visor` to start up your data node as it will transparently take care of upgrading the node as new versions of the software are released and adopted by validators. 
+We strongly recommend using the tool `visor` to start up your data node as it will transparently take care of upgrading the node as new versions of the software are released and adopted by validators.
 
 Follow the instructions for Visor in the [non validator node setup guide](./setup-non-validator.md#upgrade-your-node-using-visor) to download and set up Visor.
 
@@ -332,15 +341,17 @@ visor --home=$YOUR_VISOR_HOME_PATH run
 See the [secure data node documentation page](../requirements/data-node-security.md)
 
 ## Data node retention profiles
+
 When initialising a data node, you can choose the data retention configuration for your data node, depending on the use case for the node. The retention policy details can all be fine-tuned manually, as well.
 
 There are 3 retention policy configurations:
-* **Archive (default)**: The node retains all data and is the expected, and only recommended, retention profile for a public data node.
-* **Minimal**: The node retains only data about a network's current state. This can be useful for private data nodes that will serve live data and stream changing states.
-* **Conservative**: The node does not retain all data and per-table rentention is set. This can be useful for private data nodes that need customised per-table data rentention based on a specific usecase.
 
+- **Archive (default)**: The node retains all data and is the expected, and only recommended, retention profile for a public data node.
+- **Minimal**: The node retains only data about a network's current state. This can be useful for private data nodes that will serve live data and stream changing states.
+- **Conservative**: The node does not retain all data and per-table rentention is set. This can be useful for private data nodes that need customised per-table data rentention based on a specific usecase.
 
 To choose a retention profile use the following flag when running the `datanode init` command:
+
 ```
 --retention-profile=[archive|minimal|conservative]
 ```
@@ -366,6 +377,7 @@ For example:
 ```
 
 ## Resetting the data node
+
 :::warning
 Running the following command will remove all data from the data node and is not recoverable.
 :::
@@ -377,3 +389,7 @@ vega datanode unsafe_reset_all -home=$YOUR_DATANODE_HOME_PATH
 ```
 
 After this is done you can repopulate the data node by replaying the chain or by initialising it from network history.
+
+## Performance tuning
+
+Depening on how your servers are configured, your drives may be mounted without `noatime` being set. This can have a significant impact on the database performance and can cause deadlocks and database panics under certain conditions. It is therefore recommended that when setting up your Linux server for running a data node, you ensure that the drives are mounted with the `noatime` option set.

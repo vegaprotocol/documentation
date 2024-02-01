@@ -171,6 +171,15 @@ Once you have an Ethereum archive node, insert the URL in `YOUR_VEGA_HOME_PATH/c
     RetryDelay = "15s"
 ```
 
+When a Vega validator node is watching for Ethereum events it will call the `eth_getLogs` endpoint over a set of Ethereum blocks for particular contracts. By default, the maximum block span Vega will use when making this call is 10,000 blocks. The maximum block span allowed by some Ethereum node providers can be less than this. The configuration option `MaxEthereumBlocks` can be used to reduce the block span used by Vega so that it does not exceed the maxmimum limit imposed by an Ethereum node provider:
+
+```
+[EvtForward.Ethereum]
+  Level = "Info"
+  MaxEthereumBlocks = 10000
+  PollEventRetryDuration = "20s"
+```
+
 ## Set up the node wallet
 Each validator node requires two cryptographic wallets to operate properly:
 * Ethereum wallet: Used to sign transactions going through the ERC20 bridge

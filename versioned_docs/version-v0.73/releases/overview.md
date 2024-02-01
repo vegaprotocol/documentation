@@ -17,7 +17,18 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 [**Vega Capsule on GitHub** ↗](https://github.com/vegaprotocol/vegacapsule/releases) - Vega Capsule, which lets you create an instance of the Vega network on your computer to experiment with using the protocol, is public and you can read the contents of each release on GitHub.
 
 ## Vega core software
-The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
+The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
+
+
+### Release versions 0.73.11 and 0.73.12 (patch) combined | 2024-01-12
+
+Version 0.73.12 was released by the validators to mainnet on 12 January, 2024.
+
+The version contained the following fixes:
+
+* To address an issue whereby blocks may stop being produced, Vega now limits the number of blocks queried in a single `eth_getLogs` call to prevent large requests to Ethereum nodes. This limit is configurable so that it can match the requirements of Ethereum node providers being used by a Vega validator. This has been resolved under the issue [9992 ↗](https://github.com/vegaprotocol/vega/issues/9992) and in [0.73.12](https://github.com/vegaprotocol/vega/releases/tag/v0.73.12).
+* A situation was identified whereby stop orders placed during an opening auction can cause a core panic, this has been resolved under the issue [10318 ↗](https://github.com/vegaprotocol/vega/issues/10318) and in [0.73.11](https://github.com/vegaprotocol/vega/releases/tag/v0.73.11).
+
 
 ### Release version 0.73.10 (patch) | 2023-12-10
 Version 0.73.10 was released by the validators to mainnet on 28 December, 2023.

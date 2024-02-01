@@ -250,6 +250,7 @@ Required fields include:
 * Decimal places for the market and positions. (Note: A market cannot specify more decimal places than its settlement asset supports)
 * Oracle details, including the oracle's public key, specifications for settlement price, and data filters
 * Liquidity monitoring parameters, including the target stake
+* Method for setting liquidity fees, such as constant, marginal cost or stake-weighted average
 
 Optional fields include: 
 * Metadata so that people can easily interpret the market's details - while this is optional, it's highly recommended that you include metadata for the market
