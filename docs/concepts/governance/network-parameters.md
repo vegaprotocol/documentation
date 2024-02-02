@@ -14,9 +14,9 @@ Vega tokenholders can define the optimal network configuration by creating and v
 Network parameters can only be added and removed with Vega core software releases.
 
 :::note Go deeper
-* [Concept: Network parameters](../concepts/vega-chain/network.md#parameters)
+* [Concept: Network parameters](../vega-chain/network.md#parameters)
 * [Network parameters: See full list on the block explorer ↗](https://explorer.fairground.wtf/network-parameters)
-* [Tutorial: Propose a network parameter change](../tutorials/proposals/network-parameter-proposal.md)
+* [Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)
 :::
 
 ### Suggested ranges for parameters

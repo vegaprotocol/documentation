@@ -14,12 +14,12 @@ The protocol currently supports adding ERC-20 assets. Those ERC-20 assets that a
 
 After a new asset vote passes, the change has to be submitted to the asset bridge on Ethereum. Until it has been submitted, no one can start depositing that asset. 
 
-Certain asset details can also be changed through a governance proposal. While the [contract-level details](./assets/asset-framework.md#contract-level-details) are immutable, the [protocol-level details](./assets/asset-framework.md#protocol-level-details) can be changed.
+Certain asset details can also be changed through a governance proposal. While the [contract-level details](../assets/asset-framework.md#contract-level-details) are immutable, the [protocol-level details](../assets/asset-framework.md#protocol-level-details) can be changed.
 
 :::note Learn more
 See the tutorials to: 
-* [Propose a new asset](../tutorials/proposals/new-asset-proposal.md)
-* [Propose an update to an asset](../tutorials/proposals/update-asset-proposal.md)
+* [Propose a new asset](../../tutorials/proposals/new-asset-proposal.md)
+* [Propose an update to an asset](../../tutorials/proposals/update-asset-proposal.md)
 :::
 
 ### ERC-20 asset validation
@@ -33,17 +33,17 @@ Specifically:
 ### Transferring assets
 For assets that are held in certain accounts - those with pooled assets, the community determines if the assets should be moved, and how they should be used. Generally speaking, those accounts have accumulated assets from settled markets, market protection movements, or are entirely funded by community members that transfer assets into them.
 
-These proposals give community members a chance to determine what they think the assets should be spent on, whether that's to fund [trading or validator rewards](./trading-on-vega/discounts-rewards.md#trading-rewards), to move money from [insurance pools](./assets/accounts.md#insurance-pool-accounts) into [network treasury accounts](./assets/accounts.md#network-treasury-accounts), or for other purposes.
+These proposals give community members a chance to determine what they think the assets should be spent on, whether that's to fund [trading or validator rewards](../trading-on-vega/discounts-rewards.md#trading-rewards), to move money from [insurance pools](../assets/accounts.md#insurance-pool-accounts) into [network treasury accounts](../assets/accounts.md#network-treasury-accounts), or for other purposes.
 
 Transferring assets from network-managed account types can only be initiated by on-chain governance proposals. 
 
 The transfers from those asset pools can be one-off or recurring. A recurring transfer that's initiated by governance can only be cancelled when a governance proposal to cancel it is submitted and passes the governance vote.
 
-To see a full table of which types of transfers can only be initiated through governance, see the [transfers page](./assets/transfers.md#governance-initiated-transfers).
+To see a full table of which types of transfers can only be initiated through governance, see the [transfers page](../assets/transfers.md#governance-initiated-transfers).
 
 :::info Read more
-* [Transfers](./assets/transfers.md)
-* [Tutorial: Propose transferring assets](../tutorials/proposals/asset-transfer-proposal.md)
+* [Transfers](../assets/transfers.md)
+* [Tutorial: Propose transferring assets](../../tutorials/proposals/asset-transfer-proposal.md)
 :::
 
 ### Propose an asset transfer

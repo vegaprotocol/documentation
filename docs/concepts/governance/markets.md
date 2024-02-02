@@ -15,10 +15,10 @@ When creating a market governance proposal, whether it is for a new dated future
 
 Read more:
 * [Vega community forum ↗](https://community.vega.xyz): Share your draft proposals for community discussion.
-* [New perpetual futures market proposal ↗](../tutorials/proposals/new-perpetuals-market.md): Guide to submitting a proposal for a new market
-* [New futures market proposal ↗](../tutorials/proposals/new-market-proposal.md): Guide to submitting a proposal for a new market
-* [New successor market proposal ↗](../tutorials/proposals/new-successor-market-proposal.md): Guide to submitting a proposal for a new successor market
-* [Update market proposal ↗](../tutorials/proposals/update-market-proposal.md): Guide to submitting a proposal to change a market using the command line
+* [New perpetual futures market proposal ↗](../../tutorials/proposals/new-perpetuals-market.md): Guide to submitting a proposal for a new market
+* [New futures market proposal ↗](../../tutorials/proposals/new-market-proposal.md): Guide to submitting a proposal for a new market
+* [New successor market proposal ↗](../../tutorials/proposals/new-successor-market-proposal.md): Guide to submitting a proposal for a new successor market
+* [Update market proposal ↗](../../tutorials/proposals/update-market-proposal.md): Guide to submitting a proposal to change a market using the command line
 
 ### Propose a new market
 Tokenholders can propose new markets, which then need to be voted on by other tokenholders. The proposer will need to have at least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the market, and staked to a validator. Note, this amount is set through the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true} />.
@@ -40,10 +40,10 @@ Optional fields include:
 * Price monitoring parameters, including the triggers covering the horizon, probability and auction extension time. If left blank these parameters will default to the values set in the network parameters
 
 :::note Read more
-* [New market proposal tutorial](../tutorials/proposals/new-market-proposal.md)
-* [Data sources](./trading-on-vega/data-sources.md)
-* [Liquidity monitoring parameters](./trading-on-vega/market-protections.md#liquidity-monitoring)
-* [Price monitoring parameters](./trading-on-vega/market-protections.md#price-monitoring)
+* [New market proposal tutorial](../../tutorials/proposals/new-market-proposal.md)
+* [Data sources](../trading-on-vega/data-sources.md)
+* [Liquidity monitoring parameters](../trading-on-vega/market-protections.md#liquidity-monitoring)
+* [Price monitoring parameters](../trading-on-vega/market-protections.md#price-monitoring)
 :::
 
 ### Risk models and parameters
@@ -85,7 +85,7 @@ Another parameter is
   * suggested value: in almost all situations `0` is the value to use
 
 ### Propose a successor market
-A successor market is a market that will carry on after the original market, or parent, that it is based on has settled - though a parent and successor market can be active simultaneously. Proposing a new successor market that follows from an existing market offers liquidity providers the option to keep their [equity-like share](./liquidity/rewards-penalties.md#how-liquidity-fees-are-split) on the new market, even when the original market expires. Creating an entirely new market with no parent doesn't offer the same benefit.
+A successor market is a market that will carry on after the original market, or parent, that it is based on has settled - though a parent and successor market can be active simultaneously. Proposing a new successor market that follows from an existing market offers liquidity providers the option to keep their [equity-like share](../liquidity/rewards-penalties.md#how-liquidity-fees-are-split) on the new market, even when the original market expires. Creating an entirely new market with no parent doesn't offer the same benefit.
 
 Each market can have only one active successor. A successor market can also be a parent market.
 
@@ -118,5 +118,5 @@ A suspended market can only open to normal trading again if a proposal to resume
 Markets that are terminated are closed to trading forever. When a proposal to terminate a market is enacted, it ends all trading on the market, settles all positions, and closes the market completely. The termination proposal includes a final price that's used to settle all open positions.
 
 :::tip Try it out
-[Tutorial: Propose a change to a market's state](../tutorials/proposals/market-state-proposal.md)
+[Tutorial: Propose a change to a market's state](../../tutorials/proposals/market-state-proposal.md)
 :::

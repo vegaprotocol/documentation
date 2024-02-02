@@ -48,7 +48,7 @@ Read more about how these work in the [teams and games](../trading-on-vega/disco
 **Grants** - raise as a freeform proposal? A transfer can send to any Vega key, even if it's an individual and not a reward account.
 
 ## How to allocate the treasury
-The most direct way to propose spending the assets is by submitting a **[proposal to transfer assets](./transfers.md#governance-initiated-transfers)**. 
+The most direct way to propose spending the assets is by submitting a **[proposal to transfer assets](../assets/transfers.md#governance-initiated-transfers)**. 
 
 The proposal includes details about the specific account(s) or key(s) that you want to send assets to, as well as when to send, and how often. The transfer can be set to happen once or repeatedly.
 
