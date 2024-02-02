@@ -13,8 +13,7 @@ Treasury assets can be used to fund trading rewards, team competitions, grants, 
 
 Anyone with VEGA tokens can vote on or raise proposals to use treasury assets.
 
-
-## Treasury basics [wip]
+## Treasury basics
 The network treasury is funded with VEGA tokens, to be used by community members to grow and support the Vega network. 
 
 ### Token details
@@ -48,7 +47,7 @@ Read more about how these work in the [teams and games](../trading-on-vega/disco
 
 **Grants** - raise as a freeform proposal? A transfer can send to any Vega key, even if it's an individual and not a reward account.
 
-## Governance
+## How to allocate the treasury
 The most direct way to propose spending the assets is by submitting a **[proposal to transfer assets](./transfers.md#governance-initiated-transfers)**. 
 
 The proposal includes details about the specific account(s) or key(s) that you want to send assets to, as well as when to send, and how often. The transfer can be set to happen once or repeatedly.
