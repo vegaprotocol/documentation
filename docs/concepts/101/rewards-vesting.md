@@ -6,10 +6,10 @@ hide_title: false
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-Vega Protocol contains a flexible system allowing for various behaviours on the network to be measured and rewarded, with the rewards able to be configured and funded permissionlessly by any network participant. These rewards broadly fall into three categories.
+Vega Protocol contains a flexible system allowing for various behaviours on the network to be measured and rewarded, with the rewards able to be configured and funded permissionlessly by any network participant.
 
 ## Trading rewards
-Market participants can also receive rewards for their trading activity, liquidity provision, and for proposing actively traded markets.
+Market participants can receive rewards for their trading activity, liquidity provision, and for proposing actively traded markets.
 
 **Traders** can receive bonuses for placing market and/or limit orders that are filled, and keeping positions open. 
 
@@ -26,22 +26,22 @@ Rewards that you earn are paid into a per-asset *vesting rewards account*. They 
 
 Once they unlock, a proportion of the rewards move into the vested account each epoch: <NetworkParameter frontMatter={frontMatter} name="current rate" param="rewards.vesting.baseRate" formatter="percent" />. That percentage can be higher if you have an [activity streak](#activity-streak) going.
 
-### Active Rewards
+### Active rewards
 
-The currently active rewards can be explored within the [Console ↗](https://vegaprotocol.eth.limo/#/rewards)
+The currently active rewards can be explored within the [Console ↗](https://console.vega.xyz/#/rewards)
 
 ![Rewards](/img/101/rewards.png)
 
-At the time of writing, there are three active rewards for each market trading on Vega:
+At the time of writing, there are three active rewards for each market on Vega:
 
- - **1200 VEGA per Epoch**: Liquidity Fees Received
-   - Distributed based on proportional amount of liquidity fees received by a trader. To be eligible for these, a party must submit a liquidity commitment and meet the time-on-book requirements. After this, fees are distributed based on size of on-book commitment and quality of prices. See [here](./liquidity-provision.md) for more.
- - **100 VEGA per Epoch**: Maker Fees Earned
+ - **1200 VEGA per epoch**: Liquidity Fees Received
+   - Distributed based on proportional amount of liquidity fees received by a trader. To be eligible for these, a party must submit a liquidity commitment and meet the time-on-book requirements. After this, fees are distributed based on the size of their on-book commitment and quality of prices. See [liquidity provision](./liquidity-provision.md) for more on how to supply liquidity.
+ - **100 VEGA per epoch**: Maker Fees Earned
    - Distributed based on proportional amount of maker fees received by a trader that epoch (Acting as maker on a trade).
- - **100 VEGA per Epoch**: Maker Fees Paid
+ - **100 VEGA per epoch**: Maker Fees Paid
    - Distributed based on proportional amount of maker fees paid by a trader that epoch (Acting as taker on a trade).
 
 ### Reward hoarder bonus
 Leaving your reward earnings in your vested account will increase your share of the trading rewards you've accrued. How much extra you get depends on your total rewards balance, whether it's locked, vesting, or vested.
 
-You can see the current reward hoarder bonus requirements and benefits on the [block explorer ↗](https://explorer.vega.xyz/network-parameters#rewards.vesting.benefitTiers).
+See the current reward hoarder bonus requirements and benefits on the [block explorer ↗](https://explorer.vega.xyz/network-parameters#rewards.vesting.benefitTiers).

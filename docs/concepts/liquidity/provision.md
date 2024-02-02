@@ -47,7 +47,10 @@ The commitment transaction needs to contain:
 The amount an LP will actually need to have available on the order book is called the **liquidity obligation**.
 
 That is calculated by:
+
 `Commitment * market.liquidity.stakeToCcyVolume`, measured in `price level x volume`, i.e. settlement currency of the market.
+
+Currently <NetworkParameter frontMatter={frontMatter} param="market.liquidity.stakeToCcyVolume" />
 
 Once you commit to a market, you need to meet the minimum set by the **[liquidity SLA](./rewards-penalties.md#liquidity-sla)**. The percentage of your commitment amount and minimum time are set for each individual market. Exceeding the minimum leads to more fee revenue. Not meeting the minimum means fee revenue is withheld, plus extra penalties.
 

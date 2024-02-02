@@ -1,14 +1,12 @@
 ---
 sidebar_position: 4
-title: Referral Program & Volume Discounts
+title: Referrals & volume discounts
 hide_title: false
 ---
 
-# Referral Program & Volume Discounts
+## Referral program
 
-## Referral Program
-
-Vega Protocol contains an integrated referral program, with commissions, discounts and duration controlled by the community. This program is currently enabled and details of the settings at time of writing are covered below. Latest details and any changes can be found in the [Console ↗](https://vegaprotocol.eth.limo/#/referrals)
+Vega Protocol contains an integrated referral program, with commissions, discounts and duration controlled by the community. This program is currently enabled and details of the settings at time of writing are covered below. Latest details and any changes can be found in [Console ↗](https://console.vega.xyz/#/referrals)
 
 The program is structured such that a **referrer** generates a referral code which they can then provide to **referees** to link to their trading key. Trading as a **referee** will grant fee discounts, whilst a **referrer** will receive some portion of all fees paid by their referees.
 
@@ -18,7 +16,7 @@ As a **referrer**, you can further boost your rewards by staking VEGA tokens, ap
 
 ![Available reward boost tiers](/img/101/referral/tiers.png)
 
-You can become a **referrer** by navigating to the [referral info page](https://vegaprotocol.eth.limo/#/referrals/create-code) where you can generate your referral code. Friends entering this code on the same page will become your **referees**. By becoming a referrer you will earn commission from the trading fees paid from your **referees**. Commission is received in the market settlement currency and paid directly into the **referrer**'s general account without any vesting. 
+You can become a **referrer** by navigating to the [referral info page](https://console.vega.xyz/#/referrals/create-code) where you can generate your referral code. Friends entering this code on the same page will become your **referees**. By becoming a referrer you will earn commission from the trading fees paid from your **referees**. Commission is received in the market settlement currency and paid directly into the **referrer**'s general account without any vesting. 
 
 ## Volume discounts
 
@@ -28,4 +26,4 @@ Your position in these tiers depends on your recent trading volume over the last
 
 ![Volume discount tiers](/img/101/referral/volume-discount.png)
 
-Up-to-date volume discount program details can be found on [Console ↗](https://vegaprotocol.eth.limo/#/fees).
+Up-to-date volume discount program details can be found on [Console ↗](https://console.vega.xyz/#/fees).

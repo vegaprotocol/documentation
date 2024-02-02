@@ -1,14 +1,12 @@
 ---
 sidebar_position: 7
-title: Teams & Competitions
+title: Teams & competitions
 hide_title: false
 ---
 
-# Teams & Competitions
-
 Beyond the immediate rewards contained within the referrals program, a **referrer** may also create a **team** from their referral set (their key plus the keys of all users who signed up with their referral code). These teams allow groups of users to compete in competitions based on various metrics, rank on leaderboards and receive rewards distributed to the group for their performance in them.
 
-## **Teams**
+## Teams
 
 - A referrer may create a team to be eligible to receive further rewards from the rewards page within Console
 - Team members participate together to compete for prizes against other teams.
