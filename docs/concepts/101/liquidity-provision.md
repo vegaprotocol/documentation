@@ -89,7 +89,7 @@ Pre-requisites:
 - Build an integration for your market making algorithm
     - [https://docs.vega.xyz/mainnet/tutorials/building-a-bot](../../tutorials/building-a-bot)
 - Fund your Vega keys(s)
-- Understand how to interact with Vega [data nodes]() and [APIs](../../api/overview.md)
+- Understand how to interact with Vega [data nodes](../vega-chain/data-nodes.md) and [APIs](../../api/overview.md)
 
 Optional further reading:
 - [Concept: Liquidity provision](../liquidity/provision)
