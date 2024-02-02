@@ -31,6 +31,6 @@ You will typically need:
 
 This section includes sample proposals that you can amend and submit via the command line.
 
-<DocCardList items={useCurrentSidebarCategory().items}/>
-
 Read more about the lifecycle of a governance proposal in [the Concepts section](../../concepts/governance.md).
+
+<DocCardList items={useCurrentSidebarCategory().items}/>

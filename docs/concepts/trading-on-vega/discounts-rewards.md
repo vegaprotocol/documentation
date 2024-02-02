@@ -218,7 +218,7 @@ The most consistently profitable traders category rewards traders with the least
 This is measured by taking the sum of each trader's mark to market gains and losses, both realised and unrealised, and includes funding gains and losses if trades are on a perpetuals market. It's also known as the "returns volatility metric".
 
 ### Market creation rewards 
-The market creation reward dispatch metric is designed to incentivise creating markets that attract good trading volume. Rewards are awarded to the proposers of any markets that meet a certain total trade value. 
+The market creation reward dispatch metric is designed to incentivise creating markets that attract high trading volumes. Rewards are awarded to the proposers of any markets that meet a certain total trade value. 
 
 The threshold for what counts as 'enough' trading volume is a formula that takes into account the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="rewards.marketCreationQuantumMultiple" />, as well as the settlement asset's quantum to assess the market's size.
 

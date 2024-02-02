@@ -33,6 +33,13 @@ Vega is non-slashing -- there is no mechanism through which a tokenholder can lo
 ## VEGA token
 Vega uses the VEGA ERC20 token for governance, which includes nominating validators to run nodes, and creating and voting on governance proposals.
 
+:::info VEGA token details
+Asset ID: `d1984e3d365faa05bcafbe41f50f90e3663ee7c0da22bb1e24b164e9532691b2`
+Contract address: `0xcB84d72e61e383767C4DFEb2d8ff7f4FB89abc6e`
+
+See more details on the [block explorer ↗](https://explorer.vega.xyz/assets/d1984e3d365faa05bcafbe41f50f90e3663ee7c0da22bb1e24b164e9532691b2).
+:::
+
 If a token is delegated, its governance voting rights stay with the tokenholder and are not transferred to any validators that the tokenholder nominates.
 
 A VEGA token (or fraction) can be either dissociated or associated with a Vega key:
@@ -68,7 +75,7 @@ Whether tokens are unlocked or locked, the bridge events let the Vega network kn
 All events (including the above, plus stake per validator and others) are only registered after a certain number of block confirmations, as defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="blockchains.ethereumConfig" hideValue={true} />.
 
 :::note Go deeper
-**[Staking Bridge contracts](https://github.com/vegaprotocol/Staking_Bridge)** - on Vega's staking bridge GitHub repository.
+**[Staking Bridge contracts ↗](https://github.com/vegaprotocol/Staking_Bridge)** - on Vega's staking bridge GitHub repository.
 :::
 
 ## Staking on Vega
