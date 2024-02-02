@@ -49,7 +49,7 @@ A VEGA token (or fraction) can be either dissociated or associated with a Vega k
 
 **All tokens can be used for staking and voting** on governance proposals. This includes tokens that are locked in the vesting contract. Tokens that are staked can be used to vote, and tokens used to vote can be staked.
 
-Read more: [Governance of Vega](../governance.md)
+Read more: [Governance of Vega](../governance/index.md)
 
 :::tip Associate tokens first
 A user's VEGA tokens must first be associated with a Vega key before they can be used for governance and nominating validators.
