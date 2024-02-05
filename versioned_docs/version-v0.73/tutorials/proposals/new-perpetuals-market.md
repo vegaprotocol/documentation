@@ -104,7 +104,7 @@ Data source specs include the following properties under `ethOracle`:
 | ----------- | ----------- | ----------- |
 | `address` | Ethereum address that can sign and submit values for this data source | Valid Ethereum address |
 | `abi` | The abi tells the settlement spec how to interact with the oracle. | |
-| `method` | Method is one field that describes what information to take from the oracle. | latestAnswer |
+| `method` | Method is one field that describes what information to take from the oracle. | latestRoundData |
 | `args` | Any extra information that is required from the contract. Can be left as an empty array if there is none. | |
 | `normalisers`: `name`, `expression` | Normalisers are used to convert the data returned from the contract method into a standard format. The name identifies the specific piece of data. The value is where in the contract call result the required data is located. For example $[0] is the first result. |  |
 | `requiredConfirmations` | Number of network confirmations before data can be considered verified | 3 |

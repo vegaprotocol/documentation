@@ -22,7 +22,7 @@ function generatePerpetualSettlementDataSourceSpec(skeleton) {
           "sourceChainId": "1",
           "address": "0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43",
           "abi": "[{\"inputs\":[],\"name\":\"latestAnswer\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-          "method": "latestAnswer",
+          "method": "latestRoundData",
           "normalisers": [
               {
                   "name": "prices.ORANGES.value",
