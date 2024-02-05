@@ -78,8 +78,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      }^
     },^
     \"metadata\": [^
-     \"enactment:2024-02-25T13:47:44Z\",^
-     \"settlement:2024-02-24T13:47:44Z\",^
+     \"enactment:2024-02-25T17:39:48Z\",^
+     \"settlement:2024-02-24T17:39:48Z\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -117,29 +117,27 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      \"feeConstant\": \"0.00005\"^
     },^
     \"markPriceConfiguration\": {^
-     \"decayWeight\": \"0.00005\",^
-     \"decayPower\": \"0.00005\",^
-     \"cashAmount\": \"0.00005\",^
+     \"decayWeight\": \"1\",^
+     \"decayPower\": \"1\",^
+     \"cashAmount\": \"5000000\",^
      \"sourceWeights\": [^
-      0.1,^
-      0.2,^
-      0.3,^
-      0.4^
+      0,^
+      1,^
+      0^
      ],^
      \"sourceStalenessTolerance\": [^
-      0.1,^
-      0.2,^
-      0.3,^
-      0.4^
+      \"1m0s\",^
+      \"1m0s\",^
+      \"1m0s\"^
      ],^
-     \"compositePriceType\": [],^
+     \"compositePriceType\": \"COMPOSITE_PRICE_TYPE_WEIGHTED\",^
      \"dataSourcesSpec\": [],^
      \"dataSourcesSpecBinding\": []^
     }^
    }^
   },^
-  \"closingTimestamp\": 1708782464,^
-  \"enactmentTimestamp\": 1708868864^
+  \"closingTimestamp\": 1708796388,^
+  \"enactmentTimestamp\": 1708882788^
  }^
 }^
 }"

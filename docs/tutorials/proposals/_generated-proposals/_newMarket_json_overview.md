@@ -54,25 +54,23 @@
     // Mark price configuration.
     markPriceConfiguration: {
      // Decay weight used for calculation of mark price.
-     decayWeight: "0.00005",
+     decayWeight: "1",
      // Decay power used for the calculation of mark price. (string)
-     decayPower: "0.00005",
+     decayPower: "1",
      // Cash amount, in asset decimals, used for the calculation of the mark price from the order book. (string)
-     cashAmount: "0.00005",
+     cashAmount: "5000000",
      // Weights for each composite price data source. (array)
-     sourceWeights: 0.1,
-     0.2,
-     0.3,
-     0.4,
+     sourceWeights: 0,
+     1,
+     0,
      // For how long a price source is considered valid. One entry for each data source
      such that the first is for the trade based mark price,
       the second is for the book based price the third is for the first oracle,
-      followed by more oracle data source staleness tolerance.(array) sourceStalenessTolerance: 0.1,
-      0.2,
-      0.3,
-      0.4,
+      followed by more oracle data source staleness tolerance.(array) sourceStalenessTolerance: 1 m0s,
+      1 m0s,
+      1 m0s,
      // Which method is used for the calculation of the composite price for the market. (string)
-     compositePriceType:,
+     compositePriceType: COMPOSITE_PRICE_TYPE_WEIGHTED,
      // Additional price sources to be used for index price calculation. (array)
      dataSourcesSpec:,
      // undefined (array)
@@ -81,10 +79,10 @@
    },
    // Timestamp as Unix time in seconds when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-   closingTimestamp: 1708782464,
+   closingTimestamp: 1708796388,
    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-   enactmentTimestamp: 1708868864,
+   enactmentTimestamp: 1708882788,
   }
  }
 ```

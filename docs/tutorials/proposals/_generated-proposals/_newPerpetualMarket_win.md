@@ -29,7 +29,7 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
          \"sourceChainId\": \"1\",^
          \"address\": \"0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43\",^
          \"abi\": \"[{\\"inputs\\":[],\\"name\\":\\"latestAnswer\\",\\"outputs\\":[{\\"internalType\\":\\"int256\\",\\"name\\":\\"\\",\\"type\\":\\"int256\\"}],\\"stateMutability\\":\\"view\\",\\"type\\":\\"function\\"}]\",^
-         \"method\": \"latestAnswer\",^
+         \"method\": \"latestRoundData\",^
          \"normalisers\": [^
           {^
            \"name\": \"prices.ORANGES.value\",^
@@ -84,8 +84,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      }^
     },^
     \"metadata\": [^
-     \"enactment:2024-02-25T13:47:44Z\",^
-     \"settlement:2024-02-24T13:47:44Z\",^
+     \"enactment:2024-02-25T17:39:48Z\",^
+     \"settlement:2024-02-24T17:39:48Z\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -114,8 +114,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
     }^
    }^
   },^
-  \"closingTimestamp\": 1708782464,^
-  \"enactmentTimestamp\": 1708868864^
+  \"closingTimestamp\": 1708796388,^
+  \"enactmentTimestamp\": 1708882788^
  }^
 }^
 }"

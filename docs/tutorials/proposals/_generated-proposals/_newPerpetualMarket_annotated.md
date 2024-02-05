@@ -61,7 +61,7 @@
          abi: "[{" inputs ":[]," name ":" latestAnswer "," outputs ":[{" internalType ":" int256 "," name ":" "," type ":" int256 "}]," stateMutability ":" view "," type ":" function "}]",
 
          // Name of the method on the contract to call.
-         method: "latestAnswer",
+         method: "latestRoundData",
 
 
          /* Normalisers are used to convert the data returned from the contract method
@@ -143,8 +143,8 @@
 
      // Optional new futures market metadata, tags.
      metadata: [
-      "enactment:2024-02-25T13:47:44Z",
-      "settlement:2024-02-24T13:47:44Z",
+      "enactment:2024-02-25T17:39:48Z",
+      "settlement:2024-02-24T17:39:48Z",
       "source:docs.vega.xyz"
      ],
 
@@ -209,11 +209,11 @@
 
    // Timestamp as Unix time in seconds when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-   closingTimestamp: 1708782464,
+   closingTimestamp: 1708796388,
 
    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-   enactmentTimestamp: 1708868864,
+   enactmentTimestamp: 1708882788,
   }
  }
 ```
