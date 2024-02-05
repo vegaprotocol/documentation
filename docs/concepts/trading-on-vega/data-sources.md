@@ -4,9 +4,11 @@ title: Data sourcing
 hide_title: false
 ---
 
+import NetworkParameter from '@site/src/components/NetworkParameter';
+
 Vega's data sourcing framework enables the Vega protocol to acquire and consume data, for example, to settle a market, or to terminate trading at a market's expiry. 
 
-It accepts data from several source types, including Ethereum, off-chain data signed by a known key, and data from Vega itself.
+It accepts data from several source types, including Ethereum mainnet, Ethereum L2s that support Ethereum RPC calls, off-chain data signed by a known key, and data from Vega itself.
 
 The data sourcing framework can also process data from specific, selected fields out of a larger data object, filtering out irrelevant or potentially erroneous data.
  
@@ -23,6 +25,7 @@ For a market proposer looking to choose which data source is best for their mark
 
 ## Sources of data
 Inputs to the data sourcing framework can come from:
+* Any chain or layer 2 chain that supports Ethereum RPC calls and runs an EVM
 * Ethereum smart contracts
 * Signed message data source, part of the [Open Oracle ↗](https://github.com/compound-finance/open-oracle) feed
 * Specially formatted and signed JSON messages
@@ -46,14 +49,17 @@ Data sources must be able to emit the following data types:
 * Date/Time - to compare against in filters
 * Structured data records - such as a set of key and value pairs (inputs to filters)
 
-## Ethereum data sources
-Ethereum oracles bridge Ethereum based data sources such as [Chainlink ↗](https://chain.link/) and [UMA ↗](https://uma.xyz/) in to Vega, enabling markets to be settled or priced using data that is verified on Ethereum. The interface is flexible enough that it allows for any Ethereum smart contract to be used as a data source.
+## Ethereum and EVM data sources
+Ethereum oracles bridge Ethereum based data sources in to Vega, enabling markets to be settled or priced using data that is verified on Ethereum or a layer 2 chain that supports Ethereum RPC calls.
+
+Each L2 chain needs to be supported in the network parameter:
+<NetworkParameter frontMatter={frontMatter} param="blockchains.ethereumRpcAndEvmCompatDataSourcesConfig" hideValue="true" />, and by the validators running the network.
 
 :::note
-Currently data can only be read from a smart contract based on a timed trigger. In future Vega will also support events emitted by contracts.
+Currently data can only be read from a smart contract based on a timed trigger.
 :::
 
-When the contract call is triggered by the data source, Vega validator nodes read the selected data from Ethereum and submit a transaction that includes the filtered data. When that data is verified by enough validators, the market's data source specification then acts on the submitted data.
+When the contract call is triggered by the data source, Vega validator nodes read the selected data from the chain and submit a transaction that includes the filtered data. When that data is verified by enough validators, the market's data source specification then acts on the submitted data.
 
 An Ethereum data source specification must include:
 

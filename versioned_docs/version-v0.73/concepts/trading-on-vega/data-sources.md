@@ -6,7 +6,7 @@ hide_title: false
 
 Vega's data sourcing framework enables the Vega protocol to acquire and consume data, for example, to settle a market, or to terminate trading at a market's expiry. 
 
-It accepts data from several source types, including Ethereum, off-chain data signed by a known key, and data from Vega itself.
+It accepts data from several source types, including Ethereum and EVM chains, off-chain data signed by a known key, and data from Vega itself.
 
 The data sourcing framework can also process data from specific, selected fields out of a larger data object, filtering out irrelevant or potentially erroneous data.
  

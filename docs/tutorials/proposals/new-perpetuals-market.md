@@ -81,6 +81,7 @@ An instrument contains the following properties:
 | [`dataSourceSpecForSettlementData`](#data-source-for-settlement-data) | This defines the Ethereum data source, the method, normalisers, required confirmations, etc, that will be used to identify the settlement price when the market expires. | |
 | [`dataSourceSpecForSettlementSchedule`](#data-source-for-settlement-schedule) | This defines how the market will source data for funding, and how often to source it. | |
 | [`dataSourceSpecBinding`](#data-source-bindings) | The fields describe how specific information provided by the data source is used. For example, they are used to set the settlement data property and the settlement schedule property. |
+| `sourceChainId` | Describes the chain ID of the data source. This chain must already be enabled in network parameters and supported by validators. |
 
 ### Data source for settlement schedule
 The periodic settlements scheduled with the fields below determine how often the market's funding payments occur. It's recommended that funding payments are be less frequent than auction extensions for [price monitoring](#price-monitoring). Very frequent funding payments may lead to quick price changes in the market that participants may not have time to react to. Setting longer funding payment triggers allow for more time. 
