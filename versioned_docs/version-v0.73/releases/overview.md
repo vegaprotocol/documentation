@@ -24,7 +24,7 @@ Version 0.73.14 was released by the validators to mainnet on 06 February, 2024.
 
 This release contained two bug fixes: 
 
-* In a situation where the mark-to-market calculation included data for a party with no position, the network would stop creating blocks.
+* In a situation where the mark-to-market calculation included data for a party with no position, the code would raise a panic, which would then cause a node to fail.
 * In some circumstances, PnL was incorrectly displayed by the API. This was resolved in issue [10568 ↗](https://github.com/vegaprotocol/vega/issues/10568)
 
 ### Release version 0.73.13 (patch) | 2024-02-06
