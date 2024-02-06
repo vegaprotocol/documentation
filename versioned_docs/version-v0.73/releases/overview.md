@@ -19,6 +19,12 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Release version 0.73.13 (patch) | 2024-02-06
+Version 0.73.13 was released by the validators to mainnet on 06 February, 2024.
+
+The version contained the following critical bug fix:
+
+* During the governance voted termination of the LINK/USDT market on mainnet a particular edge case bug was identified. This is where the TWAP calculation for the internal data point, happening at the end of a funding period, can be incorrect. This led to some balances being incorrect during the funding payments. The calculation error has been resolved in the issue [10520 ↗](https://github.com/vegaprotocol/vega/issues/10520).
 
 ### Release versions 0.73.11 and 0.73.12 (patch) combined | 2024-01-12
 
