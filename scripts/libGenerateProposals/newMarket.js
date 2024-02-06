@@ -533,6 +533,35 @@ function generateLiquidityFeeSettings(skeleton) {
   return liquidityFeeSettings;
 }
 
+function generateLiquidityMonitoringParameters(skeleton) {
+  assert.ok(skeleton.properties.targetStakeParameters.description);
+  assert.ok(
+    skeleton.properties.targetStakeParameters.type,
+  );
+
+  const liquidityMonitoringParameters = {
+    "targetStakeParameters": {
+      "timeWindow": "3600",
+      "scalingFactor": "10"
+     },
+     "triggeringRatio": "",
+     "auctionExtension": "0"
+  };
+
+  liquidityMonitoringParameters[inspect.custom] = () => {
+    return `{
+        // ${skeleton.properties.targetStakeParameters.description}
+        targetStakeParameters: ${JSON.stringify(liquidityMonitoringParameters.targetStakeParameters)},
+        // ${skeleton.properties.triggeringRatio.description} (${skeleton.properties.triggeringRatio.type})
+        triggeringRatio: "${liquidityMonitoringParameters.triggeringRatio}",
+        // ${skeleton.properties.auctionExtension.description} (${skeleton.properties.auctionExtension.type})
+        auctionExtension: "${liquidityMonitoringParameters.auctionExtension}"
+      }`;
+  };
+
+  return liquidityMonitoringParameters;
+}
+
 // Despite the confusing name, this is a Composite Price configuration in the swagger file
 function generateMarkPriceConfiguration(skeleton) {
   assert.equal(skeleton.properties.decayWeight.type, "string");
@@ -547,7 +576,7 @@ function generateMarkPriceConfiguration(skeleton) {
     decayWeight: "1",
     decayPower: "1",
     cashAmount: "5000000",
-    sourceWeights: [0, 1, 0],
+    sourceWeights: ["0", "1", "0"],
     sourceStalenessTolerance: ["1m0s", "1m0s", "1m0s"],
     compositePriceType: "COMPOSITE_PRICE_TYPE_WEIGHTED",
     dataSourcesSpec: [],
@@ -908,6 +937,9 @@ function newMarket(skeleton, proposalSoFar) {
           liquidityFeeSettings: generateLiquidityFeeSettings(
             skeleton.properties.changes.properties.liquidityFeeSettings
           ),
+          liquidityMonitoringParameters: generateLiquidityMonitoringParameters(
+            skeleton.properties.changes.properties.liquidityMonitoringParameters
+          ),
           markPriceConfiguration: generateMarkPriceConfiguration(
             skeleton.properties.changes.properties.markPriceConfiguration
           ),
@@ -986,6 +1018,14 @@ function newMarket(skeleton, proposalSoFar) {
              depth: 19,
            }
          )},
+
+      // ${ skeleton.properties.changes.properties.liquidityMonitoringParameters.description }
+          liquidityMonitoringParameters: ${inspect(
+            result.terms.newMarket.changes.liquidityMonitoringParameters,
+            {
+              depth: 19,
+            }
+          )},
          // ${
           skeleton.properties.changes.properties.markPriceConfiguration.description
         }

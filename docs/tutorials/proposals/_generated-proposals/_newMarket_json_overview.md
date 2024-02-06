@@ -51,6 +51,18 @@
      // Constant liquidity fee used when using the constant fee method. (string)
      feeConstant: "0.00005",
     },
+    // Liquidity monitoring parameters.
+    liquidityMonitoringParameters: {
+     // Specifies parameters related to target stake calculation.
+     targetStakeParameters: {
+      timeWindow: "3600",
+      scalingFactor: 10
+     },
+     // Specifies the triggering ratio for entering liquidity auction. (string)
+     triggeringRatio: "",
+     // Specifies by how many seconds an auction should be extended if leaving the auction were to trigger a liquidity auction. (string)
+     auctionExtension: "0"
+    },
     // Mark price configuration.
     markPriceConfiguration: {
      // Decay weight used for calculation of mark price.
@@ -79,10 +91,10 @@
    },
    // Timestamp as Unix time in seconds when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-   closingTimestamp: 1708796388,
+   closingTimestamp: 1708860860,
    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-   enactmentTimestamp: 1708882788,
+   enactmentTimestamp: 1708947260,
   }
  }
 ```
