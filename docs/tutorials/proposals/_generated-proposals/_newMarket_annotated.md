@@ -123,8 +123,8 @@
 
       // Optional new futures market metadata, tags.
       metadata: [
-       "enactment:2024-02-26T11:34:20Z",
-       "settlement:2024-02-25T11:34:20Z",
+       "enactment:2024-02-26T14:50:31Z",
+       "settlement:2024-02-25T14:50:31Z",
        "source:docs.vega.xyz"
       ],
 
@@ -214,7 +214,7 @@
        // Specifies parameters related to target stake calculation.
        targetStakeParameters: {
         timeWindow: "3600",
-        scalingFactor: 10
+        scalingFactor: "10"
        },
 
        // Specifies the triggering ratio for entering liquidity auction. (string)
@@ -236,35 +236,39 @@
        cashAmount: "5000000",
 
        // Weights for each composite price data source. (array)
-       sourceWeights: 0,
-       1,
-       0,
+       sourceWeights: [
+        "0",
+        "1",
+        "0"
+       ],
 
        // For how long a price source is considered valid. One entry for each data source
-       such that the first is for the trade based mark price,
-        the second is for the book based price the third is for the first oracle,
-        followed by more oracle data source staleness tolerance.(array) sourceStalenessTolerance: 1 m0s,
-        1 m0s,
-        1 m0s,
+       // such that the first is for the trade based mark price, the second is for the book based price
+       // the third is for the first oracle, followed by more oracle data source staleness tolerance. (array)
+       sourceStalenessTolerance: [
+        "1m0s",
+        "1m0s",
+        "1m0s"
+       ],
 
        // Which method is used for the calculation of the composite price for the market. (string)
-       compositePriceType: COMPOSITE_PRICE_TYPE_WEIGHTED,
+       compositePriceType: "COMPOSITE_PRICE_TYPE_WEIGHTED",
 
        // Additional price sources to be used for index price calculation. (array)
-       dataSourcesSpec:,
+       dataSourcesSpec: [],
 
-       // undefined (array)
-       dataSourcesSpecBinding:
+       // List of each price source and its corresponding binding (array)
+       dataSourcesSpecBinding: []
       }
      },
 
      // Timestamp as Unix time in seconds when voting closes for this proposal,
      // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-     closingTimestamp: 1708860860,
+     closingTimestamp: 1708872631,
 
      // Timestamp as Unix time in seconds when proposal gets enacted if passed,
      // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-     enactmentTimestamp: 1708947260,
+     enactmentTimestamp: 1708959031,
     }
    }
 ```

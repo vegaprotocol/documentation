@@ -3,7 +3,7 @@
  // Specifies parameters related to target stake calculation.
  targetStakeParameters: {
   timeWindow: "3600",
-  scalingFactor: 10
+  scalingFactor: "10"
  },
  // Specifies the triggering ratio for entering liquidity auction. (string)
  triggeringRatio: "",

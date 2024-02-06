@@ -541,11 +541,11 @@ function generateLiquidityMonitoringParameters(skeleton) {
 
   const liquidityMonitoringParameters = {
     "targetStakeParameters": {
-      "timeWindow": "3600",
-      "scalingFactor": "10"
+       "timeWindow": "3600",
+       "scalingFactor": "0.05"
      },
-     "triggeringRatio": "",
-     "auctionExtension": "0"
+     "triggeringRatio": "0.9",
+     "auctionExtension": "1"
   };
 
   liquidityMonitoringParameters[inspect.custom] = () => {
@@ -592,15 +592,15 @@ function generateMarkPriceConfiguration(skeleton) {
         // ${s.cashAmount.description} (${s.cashAmount.type})
         cashAmount: "${config.cashAmount}",
         // ${s.sourceWeights.description} (${s.sourceWeights.type})
-        sourceWeights: ${config.sourceWeights},
-        // ${s.sourceStalenessTolerance.description} (${s.sourceStalenessTolerance.type})
-        sourceStalenessTolerance: ${config.sourceStalenessTolerance},
+        sourceWeights: ${JSON.stringify(config.sourceWeight)},
+        // ${s.sourceStalenessTolerance.description.replaceAll('\n', '\n// ')} (${s.sourceStalenessTolerance.type})
+        sourceStalenessTolerance: ${JSON.stringify(config.sourceStalenessTolerance)},
         // ${s.compositePriceType.description} (${s.compositePriceType.type})
-        compositePriceType: ${config.compositePriceType},
+        compositePriceType: "${config.compositePriceType}",
         // ${s.dataSourcesSpec.description} (${s.dataSourcesSpec.type})
-        dataSourcesSpec: ${config.dataSourcesSpec},
-        // ${s.dataSourcesSpecBinding.description} (${s.dataSourcesSpecBinding.type})
-        dataSourcesSpecBinding: ${config.dataSourcesSpecBinding}
+        dataSourcesSpec: ${JSON.stringify(config.dataSourcesSpec)},
+        // ${s.dataSourcesSpecBinding.title} (${s.dataSourcesSpecBinding.type})
+        dataSourcesSpecBinding: ${JSON.stringify(config.dataSourcesSpecBinding)}
       }`;
   };
 

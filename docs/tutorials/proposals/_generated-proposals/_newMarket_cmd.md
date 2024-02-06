@@ -77,8 +77,8 @@
       }
      },
      "metadata": [
-      "enactment:2024-02-26T11:34:20Z",
-      "settlement:2024-02-25T11:34:20Z",
+      "enactment:2024-02-26T14:50:31Z",
+      "settlement:2024-02-25T14:50:31Z",
       "source:docs.vega.xyz"
      ],
      "priceMonitoringParameters": {
@@ -118,7 +118,7 @@
      "liquidityMonitoringParameters": {
       "targetStakeParameters": {
        "timeWindow": "3600",
-       "scalingFactor": 10
+       "scalingFactor": "10"
       },
       "triggeringRatio": "",
       "auctionExtension": "0"
@@ -128,9 +128,9 @@
       "decayPower": "1",
       "cashAmount": "5000000",
       "sourceWeights": [
-       0,
-       1,
-       0
+       "0",
+       "1",
+       "0"
       ],
       "sourceStalenessTolerance": [
        "1m0s",
@@ -143,8 +143,8 @@
      }
     }
    },
-   "closingTimestamp": 1708860860,
-   "enactmentTimestamp": 1708947260
+   "closingTimestamp": 1708872631,
+   "enactmentTimestamp": 1708959031
   }
  }
 }'
