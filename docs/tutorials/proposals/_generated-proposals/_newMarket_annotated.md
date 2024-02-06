@@ -123,8 +123,8 @@
 
       // Optional new futures market metadata, tags.
       metadata: [
-       "enactment:2024-02-26T14:50:31Z",
-       "settlement:2024-02-25T14:50:31Z",
+       "enactment:2024-02-26T15:31:54Z",
+       "settlement:2024-02-25T15:31:54Z",
        "source:docs.vega.xyz"
       ],
 
@@ -214,14 +214,14 @@
        // Specifies parameters related to target stake calculation.
        targetStakeParameters: {
         timeWindow: "3600",
-        scalingFactor: "10"
+        scalingFactor: "0.05"
        },
 
        // Specifies the triggering ratio for entering liquidity auction. (string)
-       triggeringRatio: "",
+       triggeringRatio: "0.9",
 
        // Specifies by how many seconds an auction should be extended if leaving the auction were to trigger a liquidity auction. (string)
-       auctionExtension: "0"
+       auctionExtension: "1"
       },
 
       // Mark price configuration.
@@ -236,11 +236,7 @@
        cashAmount: "5000000",
 
        // Weights for each composite price data source. (array)
-       sourceWeights: [
-        "0",
-        "1",
-        "0"
-       ],
+       sourceWeights: undefined,
 
        // For how long a price source is considered valid. One entry for each data source
        // such that the first is for the trade based mark price, the second is for the book based price
@@ -264,11 +260,11 @@
 
      // Timestamp as Unix time in seconds when voting closes for this proposal,
      // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-     closingTimestamp: 1708872631,
+     closingTimestamp: 1708875114,
 
      // Timestamp as Unix time in seconds when proposal gets enacted if passed,
      // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-     enactmentTimestamp: 1708959031,
+     enactmentTimestamp: 1708961514,
     }
    }
 ```

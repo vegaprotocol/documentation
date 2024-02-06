@@ -132,8 +132,8 @@
 
       // Optional new futures market metadata, tags.
       metadata: [
-       "enactment:2024-02-26T14:50:31Z",
-       "settlement:2024-02-25T14:50:31Z",
+       "enactment:2024-02-26T15:31:54Z",
+       "settlement:2024-02-25T15:31:54Z",
        "source:docs.vega.xyz"
       ],
 
@@ -193,16 +193,87 @@
        // that achieved a higher SLA performance than them. (string)
        slaCompetitionFactor: "0.2",
       },
-     }
-    },
 
-    // Timestamp as Unix time in seconds when voting closes for this proposal,
-    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-    closingTimestamp: 1708872631,
+      // Liquidation strategy for this market.
+      liquidationStrategy: {
+       // Interval, in seconds, at which the network will attempt to close its position. (int64 as string)
+       disposalTimeStep: 500,
 
-    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
-    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-    enactmentTimestamp: 1708959031,
+       // Fraction of the open position the market will try to close in a single attempt; range 0 through 1. (string)
+       disposalFraction: "1",
+
+       // Size of the position that the network will try to close in a single attempt. (uint64 as string)
+       fullDisposalSize: "18446744073709551615",
+
+       // Max fraction of the total volume of the orderbook, within liquidity bounds, that the network can use to close its position; range 0 through 1. (string)
+       maxFractionConsumed: "1",
+      },
+
+      // Specifies how the liquidity fee for the market will be calculated.
+      liquidityFeeSettings: {
+       // Method used to calculate the market's liquidity fee.
+       method: "METHOD_CONSTANT",
+
+       // Constant liquidity fee used when using the constant fee method. (string)
+       feeConstant: "0.00005",
+      },
+
+      // Liquidity monitoring parameters.
+      liquidityMonitoringParameters: {
+       // Specifies parameters related to target stake calculation.
+       targetStakeParameters: {
+        timeWindow: "3600",
+        scalingFactor: "0.05"
+       },
+
+       // Specifies the triggering ratio for entering liquidity auction. (string)
+       triggeringRatio: "0.9",
+
+       // Specifies by how many seconds an auction should be extended if leaving the auction were to trigger a liquidity auction. (string)
+       auctionExtension: "1"
+      },
+
+      // Mark price configuration.
+      markPriceConfiguration: {
+       // Decay weight used for calculation of mark price.
+       decayWeight: "1",
+
+       // Decay power used for the calculation of mark price. (string)
+       decayPower: "1",
+
+       // Cash amount, in asset decimals, used for the calculation of the mark price from the order book. (string)
+       cashAmount: "5000000",
+
+       // Weights for each composite price data source. (array)
+       sourceWeights: undefined,
+
+       // For how long a price source is considered valid. One entry for each data source
+       // such that the first is for the trade based mark price, the second is for the book based price
+       // the third is for the first oracle, followed by more oracle data source staleness tolerance. (array)
+       sourceStalenessTolerance: [
+        "1m0s",
+        "1m0s",
+        "1m0s"
+       ],
+
+       // Which method is used for the calculation of the composite price for the market. (string)
+       compositePriceType: "COMPOSITE_PRICE_TYPE_WEIGHTED",
+
+       // Additional price sources to be used for index price calculation. (array)
+       dataSourcesSpec: [],
+
+       // List of each price source and its corresponding binding (array)
+       dataSourcesSpecBinding: []
+      }
+     },
+
+     // Timestamp as Unix time in seconds when voting closes for this proposal,
+     // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
+     closingTimestamp: 1708875114,
+
+     // Timestamp as Unix time in seconds when proposal gets enacted if passed,
+     // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
+     enactmentTimestamp: 1708961514,
+    }
    }
-  }
 ```

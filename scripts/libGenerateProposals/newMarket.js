@@ -942,7 +942,7 @@ function newMarket(skeleton, proposalSoFar) {
           ),
           markPriceConfiguration: generateMarkPriceConfiguration(
             skeleton.properties.changes.properties.markPriceConfiguration
-          ),
+          )
         },
       },
     },
@@ -1074,4 +1074,6 @@ module.exports = {
   generateLiquiditySlaParameters,
   generateLiquidationStrategy,
   generateLiquidityFeeSettings,
+  generateLiquidityMonitoringParameters,
+  generateMarkPriceConfiguration
 };

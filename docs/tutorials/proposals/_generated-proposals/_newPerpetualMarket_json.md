@@ -82,8 +82,8 @@
           }
         },
         "metadata": [
-          "enactment:2024-02-26T14:50:31Z",
-          "settlement:2024-02-25T14:50:31Z",
+          "enactment:2024-02-26T15:31:54Z",
+          "settlement:2024-02-25T15:31:54Z",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -109,11 +109,47 @@
           "commitmentMinTimeFraction": "0.1",
           "performanceHysteresisEpochs": "10",
           "slaCompetitionFactor": "0.2"
+        },
+        "liquidationStrategy": {
+          "disposalTimeStep": "500",
+          "disposalFraction": "1",
+          "fullDisposalSize": "18446744073709551615",
+          "maxFractionConsumed": "1"
+        },
+        "liquidityFeeSettings": {
+          "method": "METHOD_CONSTANT",
+          "feeConstant": "0.00005"
+        },
+        "liquidityMonitoringParameters": {
+          "targetStakeParameters": {
+            "timeWindow": "3600",
+            "scalingFactor": "0.05"
+          },
+          "triggeringRatio": "0.9",
+          "auctionExtension": "1"
+        },
+        "markPriceConfiguration": {
+          "decayWeight": "1",
+          "decayPower": "1",
+          "cashAmount": "5000000",
+          "sourceWeights": [
+            "0",
+            "1",
+            "0"
+          ],
+          "sourceStalenessTolerance": [
+            "1m0s",
+            "1m0s",
+            "1m0s"
+          ],
+          "compositePriceType": "COMPOSITE_PRICE_TYPE_WEIGHTED",
+          "dataSourcesSpec": [],
+          "dataSourcesSpecBinding": []
         }
       }
     },
-    "closingTimestamp": 1708872631,
-    "enactmentTimestamp": 1708959031
+    "closingTimestamp": 1708875114,
+    "enactmentTimestamp": 1708961514
   }
 }
 ```

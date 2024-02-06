@@ -5,7 +5,11 @@ const {
   generateMetadata,
   generatePriceMonitoringParameters,
   generateRiskModel,
-  generateLiquiditySlaParameters
+  generateLiquiditySlaParameters,
+  generateLiquidationStrategy,
+  generateLiquidityFeeSettings,
+  generateMarkPriceConfiguration,
+  generateLiquidityMonitoringParameters,
 } = require('./newMarket')
 
 const instruments = [
@@ -21,7 +25,7 @@ function generatePerpetualSettlementDataSourceSpec(skeleton) {
       "ethOracle": {
           "sourceChainId": "1",
           "address": "0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43",
-          "abi": "[{\"inputs\":[],\"name\":\"latestAnswer\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+          "abi": "[{\"inputs\":[],\"name\":\"latestRoundData\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
           "method": "latestRoundData",
           "normalisers": [
               {
@@ -258,6 +262,18 @@ function newPerpetualMarket(skeleton, proposalSoFar) {
           liquiditySlaParameters: generateLiquiditySlaParameters(
             skeleton.properties.changes.properties.liquiditySlaParameters
           ),
+          liquidationStrategy: generateLiquidationStrategy(
+            skeleton.properties.changes.properties.liquidationStrategy
+          ),
+          liquidityFeeSettings: generateLiquidityFeeSettings(
+            skeleton.properties.changes.properties.liquidityFeeSettings
+          ),
+          liquidityMonitoringParameters: generateLiquidityMonitoringParameters(
+            skeleton.properties.changes.properties.liquidityMonitoringParameters
+          ),
+          markPriceConfiguration: generateMarkPriceConfiguration(
+            skeleton.properties.changes.properties.markPriceConfiguration
+          )
         },
       },
     },
@@ -295,15 +311,53 @@ function newPerpetualMarket(skeleton, proposalSoFar) {
           logNormal: ${inspect(result.terms.newMarket.changes.logNormal, {
         depth: 19,
       })},
-      // ${skeleton.properties.changes.properties.liquiditySlaParameters.title}
-         liquiditySlaParameters: ${inspect(result.terms.newMarket.changes.liquiditySlaParameters, {
-      depth: 19,
-    })},
-        }
-    }`;
-  };
 
-  return result;
+    // ${skeleton.properties.changes.properties.liquiditySlaParameters.title}
+    liquiditySlaParameters: ${inspect(
+      result.terms.newMarket.changes.liquiditySlaParameters,
+      {
+        depth: 19,
+      }
+    )},
+ // ${
+   skeleton.properties.changes.properties.liquidationStrategy.description
+ }
+    liquidationStrategy: ${inspect(
+      result.terms.newMarket.changes.liquidationStrategy,
+      {
+        depth: 19,
+      }
+    )},
+ // ${
+   skeleton.properties.changes.properties.liquidityFeeSettings.description
+ }
+    liquidityFeeSettings: ${inspect(
+      result.terms.newMarket.changes.liquidityFeeSettings,
+      {
+        depth: 19,
+      }
+    )},
+
+ // ${ skeleton.properties.changes.properties.liquidityMonitoringParameters.description }
+     liquidityMonitoringParameters: ${inspect(
+       result.terms.newMarket.changes.liquidityMonitoringParameters,
+       {
+         depth: 19,
+       }
+     )},
+    // ${
+     skeleton.properties.changes.properties.markPriceConfiguration.description
+   }
+      markPriceConfiguration: ${inspect(
+     result.terms.newMarket.changes.markPriceConfiguration,
+     {
+       depth: 19,
+     }
+   )}
+}`;
+};
+
+return result;
 }
 
 module.exports = {
