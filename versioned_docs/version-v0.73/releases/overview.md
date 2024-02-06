@@ -19,6 +19,14 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Release version 0.73.14 (patch) | 2024-02-06
+Version 0.73.14 was released by the validators to mainnet on 06 February, 2024.
+
+This release contained two bug fixes: 
+
+* In a situation where the mark-to-market calculation included data for a party with no position, the network would stop creating blocks.
+* In some circumstances, PnL was incorrectly displayed by the API. This was resolved in issue [10568 ↗](https://github.com/vegaprotocol/vega/issues/10568)
+
 ### Release version 0.73.13 (patch) | 2024-02-06
 Version 0.73.13 was released by the validators to mainnet on 06 February, 2024.
 
