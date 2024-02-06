@@ -249,7 +249,7 @@ Required fields include:
 * Product specifics including the settlement asset and quote name
 * Decimal places for the market and positions. (Note: A market cannot specify more decimal places than its settlement asset supports)
 * Oracle details, including the oracle's public key, specifications for settlement price, and data filters
-* Liquidity monitoring parameters, including the target stake
+* Liquidity parameters, including the target stake
 * Method for setting liquidity fees, such as constant, marginal cost or stake-weighted average
 
 Optional fields include: 
@@ -259,7 +259,6 @@ Optional fields include:
 :::note Read more
 * [New market proposal tutorial](../tutorials/proposals/new-market-proposal.md)
 * [Data sources](./trading-on-vega/data-sources.md)
-* [Liquidity monitoring parameters](./trading-on-vega/market-protections.md#liquidity-monitoring)
 * [Price monitoring parameters](./trading-on-vega/market-protections.md#price-monitoring)
 :::
 

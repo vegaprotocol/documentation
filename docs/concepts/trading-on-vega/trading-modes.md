@@ -79,26 +79,6 @@ If no one places orders in the price monitoring auction, the auction is exited a
 [Concept: Price monitoring](./market-protections#price-monitoring)
 :::
 
-### Auction type: Liquidity monitoring
-In order to ensure there is enough liquidity to keep a market active and protect against insolvent parties, the network will detect when the market's liquidity is too low, and if it is too low, will stop continuous trading and put the market into a liquidity monitoring auction.
-
-#### Entry into liquidity monitoring auction 
-A market will go into a liquidity monitoring auction if the total commitment from liquidity providers (total stake) drops too low relative to the estimate of the market's liquidity demand (target stake).
-
-The trigger for entering a liquidity monitoring auction is: 
-`sum of LPs commitment amounts < target stake x triggering ratio`
-
-The triggering ratio above is set by the <NetworkParameter frontMatter={frontMatter} param="network parameter market.liquidity.targetstake.triggering.ratio" hideName={false} />.
-
-#### Exit from liquidity monitoring auction 
-Enough liquidity relative to the market's open interest, to get the market back above the target stake and best static bid and best static ask which will stay on the book *after* the auction uncrossing (i.e. there is some volume on either side of the book which will not trade in the auction).
-
-If a market enters into a liquidity auction and never again attracts enough liquidity to exit it, the market will stay in a liquidity auction until the market's settlement. Once the market's settlement price is emitted by the data source, then all market participants are settled based on their positions and account balances.
-
-:::note Read more
-[Concept: Liquidity monitoring](./market-protections#liquidity-monitoring)
-:::
-
 ### Auction call period
 During the auction call period, no trades are created, but all orders are queued.
 

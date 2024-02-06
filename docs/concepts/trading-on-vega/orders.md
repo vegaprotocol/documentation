@@ -93,7 +93,7 @@ Rather than being set for a specific limit price, a pegged order is a defined di
 The reference price is based on the live market, and the final price is calculated and used to insert the new order. The distance is also known as the offset value, which is an absolute value that must be cleanly divisible by the tick size, and must be positive.
 
 #### Amend pegged orders
-Pegged orders can be amended like standard limit orders - their reference, offset and time in force values can all be amended. Amends must be done to the pegged order itself, not any limit orders derived from pegged orders. 
+Pegged orders can be amended like standard limit orders. Their reference, offset and time in force values can all be amended. Amends must be done to the pegged order itself, not any limit orders derived from pegged orders. 
 
 If the price or size are changed in an amendment, the order will lose time priority in the order book, but will keep its priority in the list of pegged orders. 
 
@@ -301,7 +301,11 @@ Pegged orders can also be placed, but will be parked until the market is out of 
 :::
 
 ### Amend an order
-Orders that have not been fully filled can be amended.
+Orders that have not been fully filled can be amended. 
+
+You can change your order size by:
+* Supplying the new order size
+* Setting the amount you want to increase or decrease your order size by, known as the delta
 
 If your amendment will change the price you're seeking or increase the order size, it will cancel the existing order and replace it with a new one. The time priority will be lost, because, in effect, the original order was cancelled and removed from the book and a new order was submitted with the modified values.
 
