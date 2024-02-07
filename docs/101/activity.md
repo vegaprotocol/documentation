@@ -1,6 +1,6 @@
 ---
 sidebar_position: 6
-title: Activity Streaks
+title: Activity streaks
 hide_title: false
 ---
 

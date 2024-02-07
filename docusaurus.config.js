@@ -39,6 +39,12 @@ module.exports = {
         },
         {
           type: "doc",
+          docId: "101/index",
+          label: "Vega 101",
+          position: "left",
+        },
+        {
+          type: "doc",
           docId: "concepts/new-to-vega",
           label: "Concepts",
           position: "left",

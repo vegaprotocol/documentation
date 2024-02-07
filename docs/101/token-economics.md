@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Token Economics
+title: Token economics
 hide_title: false
 ---
 
@@ -16,7 +16,7 @@ Issued: 64,999,723 VEGA
 
 ## Staking
 
-Held tokens can be staked to validators once associated to a key on the Vega network. Stakers receive a portion of infrastructure fee revenue. This can be completed using the [governance dApp] ↗(https://token.vega.xyz/validators). Learn more on the [proof of stake](https://docs.vega.xyz/mainnet/concepts/vega-chain/proof-of-stake) page.
+Held tokens can be staked to validators once associated to a key on the Vega network. Stakers receive a portion of infrastructure fee revenue. This can be completed using the [governance dApp ↗](https://token.vega.xyz/validators). Learn more on the [proof of stake](https://docs.vega.xyz/mainnet/concepts/vega-chain/proof-of-stake) page.
  
 In return for helping support the protocol, stakers receive a proportion of the fees their staked validator receives. Stakers receive a fraction of the fees their validator receives, which is defined by a network parameter: <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.delegatorShare" />. Validators receive a proportion of the collected [infrastructure fee](../trading-on-vega/fees.md#infrastructure-fee) according to their [voting power](../vega-chain/validator-scores-and-rewards.md).
 

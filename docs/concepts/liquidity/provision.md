@@ -84,10 +84,9 @@ The bond committed during the liquidity commitment transaction is stored in a bo
 ### Price range for liquidity orders
 A market’s governance proposal includes a liquidity provision price range. That range determines which orders count towards the LP meeting their commitment to the market. The range determines the furthest away from the mid-price the orders can be. Anything outside of that range won’t count towards an LP’s commitment, and thus doesn’t count towards meeting the SLA.
 
-- When in an auction, the price range is calculated slightly differently, instead of utilising the mid price for both sides:
-    - The maximum price is defined by max(last trade price, indicative auction uncrossing price) * (1 + price range).
-    - The minimum price is defined by min(last trade price, indicative auction uncrossing price) * (1 - price range).
-
+When in an auction, the price range is calculated slightly differently, instead of utilising the mid price for both sides:
+- The maximum price is defined by max(last trade price, indicative auction uncrossing price) * (1 + price range).
+- The minimum price is defined by min(last trade price, indicative auction uncrossing price) * (1 - price range).
 
 ### Target stake for a market
 How much a market aims to have in liquidity is called the target stake. It depends on market conditions and how much is already committed.

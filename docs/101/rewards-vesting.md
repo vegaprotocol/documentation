@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-title: Rewards & Vesting
+title: Rewards & vesting
 hide_title: false
 ---
 
