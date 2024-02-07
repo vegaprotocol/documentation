@@ -16,7 +16,7 @@ As a **referrer**, you can further boost your rewards by staking VEGA tokens, ap
 
 ![Available reward boost tiers](/img/101/referral/tiers.png)
 
-You can become a **referrer** by navigating to the [referral info page](https://console.vega.xyz/#/referrals/create-code) where you can generate your referral code. Friends entering this code on the same page will become your **referees**. By becoming a referrer you will earn commission from the trading fees paid from your **referees**. Commission is received in the market settlement currency and paid directly into the **referrer**'s general account without any vesting. 
+You can become a **referrer** by navigating to the [referral info page ↗](https://console.vega.xyz/#/referrals/create-code) where you can generate your referral code. Friends entering this code on the same page will become your **referees**. By becoming a referrer you will earn commission from the trading fees paid from your **referees**. Commission is received in the market settlement currency and paid directly into the **referrer**'s general account without any vesting. 
 
 ## Volume discounts
 

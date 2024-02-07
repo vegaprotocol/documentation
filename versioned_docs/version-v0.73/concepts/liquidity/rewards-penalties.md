@@ -94,8 +94,6 @@ In the example below, there are 3 liquidity providers all bidding for their chos
 </p>
 </details>
 
-
-### Dividing liquidity fees among LPs
 ### Dividing liquidity fees between LPs
 
 Distribution of fees between LPs is performed in several steps, first at the time of a trade and then with a final rebalancing at the end of each epoch.

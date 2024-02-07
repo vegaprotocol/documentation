@@ -16,9 +16,9 @@ Issued: 64,999,723 VEGA
 
 ## Staking
 
-Held tokens can be staked to validators once associated to a key on the Vega network. Stakers receive a portion of infrastructure fee revenue. This can be completed using the [governance dApp ↗](https://token.vega.xyz/validators). Learn more on the [proof of stake](https://docs.vega.xyz/mainnet/concepts/vega-chain/proof-of-stake) page.
+Held tokens can be staked to validators once associated to a key on the Vega network. Stakers receive a portion of infrastructure fee revenue. This can be completed using the [governance dApp ↗](https://token.vega.xyz/validators). Learn more on the [proof of stake](../concepts/vega-chain/proof-of-stake.md) page.
  
-In return for helping support the protocol, stakers receive a proportion of the fees their staked validator receives. Stakers receive a fraction of the fees their validator receives, which is defined by a network parameter: <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.delegatorShare" />. Validators receive a proportion of the collected [infrastructure fee](../trading-on-vega/fees.md#infrastructure-fee) according to their [voting power](../vega-chain/validator-scores-and-rewards.md).
+In return for helping support the protocol, stakers receive a proportion of the fees their staked validator receives. Stakers receive a fraction of the fees their validator receives, which is defined by a network parameter: <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.delegatorShare" />. Validators receive a proportion of the collected [infrastructure fee](../concepts/trading-on-vega/fees.md#infrastructure-fee) according to their [voting power](../concepts/vega-chain/validator-scores-and-rewards.md).
 
 Check active validators and their respective stakes and performances using the [governance dApp ↗](https://token.vega.xyz/validators). 
 
@@ -26,4 +26,4 @@ Check active validators and their respective stakes and performances using the [
 
 Once staked, VEGA tokens also allow holders to vote on governance proposals, along with proposing their own changes. These proposals range from changing network parameter values to proposing entirely new markets. 
 
-Active proposals can be found on the [governance dApp proposals page ↗](https://token.vega.xyz/proposals) whilst a more in-depth guide to the various governance options can be found on the [governance](../governance.md) concepts page.
+Active proposals can be found on the [governance dApp proposals page ↗](https://token.vega.xyz/proposals) whilst a more in-depth guide to the various governance options can be found on the [governance](../concepts/governance.md) concepts page.

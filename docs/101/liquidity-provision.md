@@ -31,7 +31,7 @@ The liquidity commitment transaction specifies the following:
 * **Market ID:** the Vega ID of the market to commit liquidity to
 * **Commitment size:** specified in terms of the bond amount to be locked
     - The notional amount of liquidity required for a given bond amount is defined by the bond amount multiplied by <NetworkParameter frontMatter={frontMatter} param="market.liquidity.stakeToCcyVolume" />. For example, for a value of 20, a bond of 1,000 USDT implies a commitment of 20,000 USDT of notional order volume on each side of the book.
-* **Proposed liquidity fee:** the LP’s proposal for the liquidity fee that should be charged on the market, e.g. 0.005 implies a 50 basis point liquidity fee in addition to the network-wide infrastructure and maker fee components. See more info on [fees](../trading-on-vega/fees.md).
+* **Proposed liquidity fee:** the LP’s proposal for the liquidity fee that should be charged on the market, e.g. 0.005 implies a 50 basis point liquidity fee in addition to the network-wide infrastructure and maker fee components. See more info on [fees](../concepts/trading-on-vega/fees.md).
     - Note that this value is used to calculate the liquidity fee only if the liquidity fee mode of the market supports it.
 
 ## Liquidity SLA
@@ -50,7 +50,7 @@ Liquidity fee distribution is calculated in several steps:
     b. Any LP meeting the SLA but with less than 100% time on the book may have a percentage of the fees within the liquidity fee account redistributed. This percentage is determined by the market's *competition factor*.
     c. Any funds moved from LPs in steps a. and b. are then redistributed amongst all LPs on the market according to the product of (1 - their penalty) and their proportion of total fees received across the epoch. For example, for a larger LP and a smaller LP with the same time on book, the larger LP will receive more from this pool, but if the larger LP was close to SLA and the smaller was close to 100%, then the smaller LP could receive more.
 
-For a full step-by step calculation and examples, see [liquidity rewards and penalties](../liquidity/rewards-penalties.md#dividing-liquidity-fees-between-lps).
+For a full step-by step calculation and examples, see [liquidity rewards and penalties](../concepts/liquidity/rewards-penalties.md#dividing-liquidity-fees-between-lps).
 
 ## Estimating income
 
@@ -72,7 +72,7 @@ In order to estimate an approximate range for *received liquidity fees* for a gi
     
     ![Commitment ELS](/img/101/liquidity-provision/els.png)
     
-3. **LP relative liquidity score.** This metric is trickier to calculate in advance, as it is heavily reliant on competition with other LPs. It can be estimated in a static fashion with formulae such as those used in this example [visualisation tool](https://github.com/cdummett/vegavis/blob/main/vegavis/tau_scaling/calculator.ipynb), or using the API or the “View As Party” feature in Console to check the active quotes for existing LPs on the market and choose one similar to the anticipated quotes for the new LP for comparison. For the sake of estimation, as it is a relative score, comparison to existing LPs is likely to yield the cleanest answer.
+3. **LP relative liquidity score.** This metric is trickier to calculate in advance, as it is heavily reliant on competition with other LPs. It can be estimated in a static fashion with formulae such as those used in this example [visualisation tool ↗](https://github.com/cdummett/vegavis/blob/main/vegavis/tau_scaling/calculator.ipynb), or using the API or the “View As Party” feature in Console to check the active quotes for existing LPs on the market and choose one similar to the anticipated quotes for the new LP for comparison. For the sake of estimation, as it is a relative score, comparison to existing LPs is likely to yield the cleanest answer.
     a. The LP liquidity score is non-linear, i.e. quoting incrementally tighter spreads can yield increasingly larger benefits.
     b. At time of writing the probability of trading at various price levels on the BTC-USD perp market is illustrated below. The tau scaling parameter can be used by network governance to control how quickly the probability of trading drops off with price. The current network value is 1.
         
@@ -87,14 +87,14 @@ Pre-requisites:
 
 - Read and understand this content
 - Build an integration for your market making algorithm
-    - See the [building a bot tutorial](../../tutorials/building-a-bot) for a basic example
+    - See the [building a bot tutorial](../tutorials/building-a-bot/adding-a-liquidity-commitment.md) for a basic example
 - Fund your Vega keys(s)
-- Understand how to interact with Vega [data nodes](../vega-chain/data-nodes.md) and [APIs](../../api/overview.md)
+- Understand how to interact with Vega [data nodes](../concepts/vega-chain/data-nodes.md) and [APIs](../api/overview.md)
 
 Optional further reading:
 
-- [Concept: Liquidity provision](../liquidity/provision)
-- [Concept: Liquidity rewards and penalties](../liquidity/rewards-penalties)
+- [Concept: Liquidity provision](../concepts/liquidity/provision.md)
+- [Concept: Liquidity rewards and penalties](../concepts/liquidity/rewards-penalties.md)
 - [Spec: Setting fees and rewarding LPs ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md)
 - [Spec: LP mechanics ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0044-LIME-lp_mechanics.md)
 
@@ -111,7 +111,7 @@ Once you are ready to begin market making as an LP, you will need to take the fo
     - The current equity-like share also translates to a voting power in market update proposals, allowing LPs some say over the maintenance of markets they are supporting.
     - Additional liquidity supplied above the SLA requirement still yields benefits as it is included when calculating the LP's instantaneous liquidity score, so a strategy of committing to some base level then providing increased liquidity when possible can also be beneficial.
 2. **Submit your commitment transaction on-chain.**
-    - The exact steps for constructing and sending a liquidity commitment will depend on the individual LP's choice of programming language/systems, however the steps and a template for the submission can be found in the [committing liquidity](../../tutorials/committing-liquidity.md) tutorial.
+    - The exact steps for constructing and sending a liquidity commitment will depend on the individual LP's choice of programming language/systems, however the steps and a template for the submission can be found in the [committing liquidity](../tutorials/committing-liquidity.md) tutorial.
 3. **Start running and monitoring your market making algorithms.**
     - When monitoring an active liquidity provision, beyond what is required of monitoring any trading strategies, refer to the Liquidity tab on [Console ↗](https://console.vega.xyz/) when viewing a market for more useful information. In particular, the columns labeled below:
     1. **Adjusted Stake** shows the current staked volume plus any equity-like share growth which has occurred to it. The **Share** column next to it shows this value as a percentage of the sum across LPs.
