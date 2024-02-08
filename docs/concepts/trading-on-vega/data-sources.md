@@ -8,7 +8,7 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 
 Vega's data sourcing framework enables the Vega protocol to acquire and consume data, for example, to settle a market, or to terminate trading at a market's expiry. 
 
-It accepts data from several source types, including Ethereum mainnet, Ethereum L2s that support Ethereum RPC calls, off-chain data signed by a known key, and data from Vega itself.
+It accepts data from several source types, including Ethereum mainnet, EVM chains that support Ethereum RPC calls, off-chain data signed by a known key, and data from Vega itself.
 
 The data sourcing framework can also process data from specific, selected fields out of a larger data object, filtering out irrelevant or potentially erroneous data.
  
@@ -52,7 +52,7 @@ Data sources must be able to emit the following data types:
 ## EVM data sources
 EVM oracles bridge Ethereum- or any EVM-based data sources in to Vega, enabling markets to be settled or priced using data that is verified on a chain that supports Ethereum RPC calls.
 
-Each L2 chain needs to be supported in the network parameter:
+Each chain needs to be supported in the network parameter:
 <NetworkParameter frontMatter={frontMatter} param="blockchains.ethereumRpcAndEvmCompatDataSourcesConfig" hideValue="true" />, and by the validators running the network. Use a [network parameter proposal](../../tutorials/proposals/network-parameter-proposal.md) to get a new data source chain added to the network.
 
 :::note

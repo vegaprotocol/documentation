@@ -25,7 +25,7 @@ The **binding** tells the market which field contains the value. The **spec** de
 :::
 
 ## EVM data sources
-Settlement data can be sourced from smart contracts and L2 chains that support Ethereum RPC calls.
+Settlement data can be sourced from smart contracts and EVM chains that support Ethereum RPC calls.
 
 The following spec would read from the Ethereum contract at `0x1b4...e43` every 30 seconds, and fetch the Bitcoin price value from the returned object:
 
