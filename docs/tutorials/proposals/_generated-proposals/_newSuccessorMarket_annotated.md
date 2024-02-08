@@ -132,8 +132,8 @@
 
       // Optional new futures market metadata, tags.
       metadata: [
-       "enactment:2024-02-26T15:31:54Z",
-       "settlement:2024-02-25T15:31:54Z",
+       "enactment:2024-02-28T18:25:09Z",
+       "settlement:2024-02-27T18:25:09Z",
        "source:docs.vega.xyz"
       ],
 
@@ -147,11 +147,6 @@
 
          // Price monitoring probability level p. (string)
          probability: "0.9999999",
-
-         // Price monitoring auction extension duration in seconds should the price
-         // breach its theoretical level over the specified horizon at the specified
-         // probability level. (int64 as string)
-         auctionExtension: "600",
         }
        ]
       },
@@ -163,7 +158,7 @@
        must be a strictly non - negative real number.(number) tau: 0.0001140771161,
 
        // Risk Aversion Parameter. (double as number)
-       riskAversionParameter: "0.01",
+       riskAversionParameter: "0.00001",
 
        // Risk model parameters for log normal
        params: {
@@ -225,12 +220,6 @@
         timeWindow: "3600",
         scalingFactor: "0.05"
        },
-
-       // Specifies the triggering ratio for entering liquidity auction. (string)
-       triggeringRatio: "0.9",
-
-       // Specifies by how many seconds an auction should be extended if leaving the auction were to trigger a liquidity auction. (string)
-       auctionExtension: "1"
       },
 
       // Mark price configuration.
@@ -269,11 +258,11 @@
 
      // Timestamp as Unix time in seconds when voting closes for this proposal,
      // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-     closingTimestamp: 1708875114,
+     closingTimestamp: 1709058309,
 
      // Timestamp as Unix time in seconds when proposal gets enacted if passed,
      // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-     enactmentTimestamp: 1708961514,
+     enactmentTimestamp: 1709144709,
     }
    }
 ```

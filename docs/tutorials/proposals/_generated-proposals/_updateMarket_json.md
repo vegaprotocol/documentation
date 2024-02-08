@@ -79,18 +79,17 @@
           "triggers": [
             {
               "horizon": "43200",
-              "probability": "0.9999999",
-              "auctionExtension": "600"
+              "probability": "0.9999999"
             }
           ]
         },
         "logNormal": {
           "tau": 0.0001140771161,
-          "riskAversionParameter": 0.001,
+          "riskAversionParameter": 0.00001,
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 1.25
+            "sigma": 0.5
           }
         },
         "liquiditySlaParameters": {
@@ -101,8 +100,8 @@
         }
       }
     },
-    "closingTimestamp": 1708875114,
-    "enactmentTimestamp": 1708961514
+    "closingTimestamp": 1709058309,
+    "enactmentTimestamp": 1709144709
   }
 }
 ```

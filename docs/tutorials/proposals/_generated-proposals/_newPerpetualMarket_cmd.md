@@ -27,7 +27,7 @@
          "ethOracle": {
           "sourceChainId": "1",
           "address": "0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43",
-          "abi": "[{\"inputs\":[],\"name\":\"latestAnswer\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+          "abi": "[{\"inputs\":[],\"name\":\"latestRoundData\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
           "method": "latestRoundData",
           "normalisers": [
            {
@@ -83,22 +83,21 @@
       }
      },
      "metadata": [
-      "enactment:2024-02-26T15:31:54Z",
-      "settlement:2024-02-25T15:31:54Z",
+      "enactment:2024-02-28T18:25:09Z",
+      "settlement:2024-02-27T18:25:09Z",
       "source:docs.vega.xyz"
      ],
      "priceMonitoringParameters": {
       "triggers": [
        {
         "horizon": "43200",
-        "probability": "0.9999999",
-        "auctionExtension": "600"
+        "probability": "0.9999999"
        }
       ]
      },
      "logNormal": {
       "tau": 0.0001140771161,
-      "riskAversionParameter": 0.01,
+      "riskAversionParameter": 0.00001,
       "params": {
        "mu": 0,
        "r": 0.016,
@@ -125,9 +124,7 @@
       "targetStakeParameters": {
        "timeWindow": "3600",
        "scalingFactor": "0.05"
-      },
-      "triggeringRatio": "0.9",
-      "auctionExtension": "1"
+      }
      },
      "markPriceConfiguration": {
       "decayWeight": "1",
@@ -149,8 +146,8 @@
      }
     }
    },
-   "closingTimestamp": 1708875114,
-   "enactmentTimestamp": 1708961514
+   "closingTimestamp": 1709058309,
+   "enactmentTimestamp": 1709144709
   }
  }
 }'

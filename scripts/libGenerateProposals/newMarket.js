@@ -544,18 +544,12 @@ function generateLiquidityMonitoringParameters(skeleton) {
        "timeWindow": "3600",
        "scalingFactor": "0.05"
      },
-     "triggeringRatio": "0.9",
-     "auctionExtension": "1"
   };
 
   liquidityMonitoringParameters[inspect.custom] = () => {
     return `{
         // ${skeleton.properties.targetStakeParameters.description}
         targetStakeParameters: ${JSON.stringify(liquidityMonitoringParameters.targetStakeParameters)},
-        // ${skeleton.properties.triggeringRatio.description} (${skeleton.properties.triggeringRatio.type})
-        triggeringRatio: "${liquidityMonitoringParameters.triggeringRatio}",
-        // ${skeleton.properties.auctionExtension.description} (${skeleton.properties.auctionExtension.type})
-        auctionExtension: "${liquidityMonitoringParameters.auctionExtension}"
       }`;
   };
 
@@ -773,26 +767,17 @@ function generatePriceMonitoringParameters(skeleton) {
     skeleton.properties.triggers.items.properties.probability.type,
     "string"
   );
-  assert.equal(
-    skeleton.properties.triggers.items.properties.auctionExtension.format,
-    "int64"
-  );
 
   const params = {
     triggers: [
       {
         horizon: "43200",
-        probability: "0.9999999",
-        auctionExtension: "600",
+        probability: "0.9999999"      
       },
     ],
   };
 
   params[inspect.custom] = () => {
-    const splitTitle =
-      skeleton.properties.triggers.items.properties.auctionExtension.description.split(
-        "\n"
-      );
     return `{
           // ${skeleton.properties.triggers.items.title}
           triggers: [
@@ -801,11 +786,7 @@ function generatePriceMonitoringParameters(skeleton) {
               horizon: "${params.triggers[0].horizon}",
               // ${skeleton.properties.triggers.items.properties.probability.description} (${skeleton.properties.triggers.items.properties.probability.type})
               probability: "${params.triggers[0].probability}",
-              // ${splitTitle[0]}
-              // ${splitTitle[1]}
-              // ${splitTitle[2]} (${skeleton.properties.triggers.items.properties.auctionExtension.format} as ${skeleton.properties.triggers.items.properties.auctionExtension.type})
-              auctionExtension: "${params.triggers[0].auctionExtension}",
-              }
+                          }
           ]
       }`;
   };
@@ -860,7 +841,7 @@ function generateRiskModel(skeleton, riskModelType) {
     // This was what all the markets on fairground were set to
     tau: 0.0001140771161,
     // This is a random array based on what was live on Fairground at the time
-    riskAversionParameter: 0.01,
+    riskAversionParameter: 0.00001,
     params: {
       // This was what all the markets on fairground were set to
       mu: 0,

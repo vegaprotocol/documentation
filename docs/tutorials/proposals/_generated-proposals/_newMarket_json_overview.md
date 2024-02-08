@@ -58,10 +58,6 @@
       timeWindow: "3600",
       scalingFactor: "0.05"
      },
-     // Specifies the triggering ratio for entering liquidity auction. (string)
-     triggeringRatio: "0.9",
-     // Specifies by how many seconds an auction should be extended if leaving the auction were to trigger a liquidity auction. (string)
-     auctionExtension: "1"
     },
     // Mark price configuration.
     markPriceConfiguration: {
@@ -91,10 +87,10 @@
    },
    // Timestamp as Unix time in seconds when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-   closingTimestamp: 1708875114,
+   closingTimestamp: 1709058309,
    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-   enactmentTimestamp: 1708961514,
+   enactmentTimestamp: 1709144709,
   }
  }
 ```
