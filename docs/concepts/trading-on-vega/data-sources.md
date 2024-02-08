@@ -49,11 +49,11 @@ Data sources must be able to emit the following data types:
 * Date/Time - to compare against in filters
 * Structured data records - such as a set of key and value pairs (inputs to filters)
 
-## Ethereum and EVM data sources
-Ethereum oracles bridge Ethereum based data sources in to Vega, enabling markets to be settled or priced using data that is verified on Ethereum or a layer 2 chain that supports Ethereum RPC calls.
+## EVM data sources
+EVM oracles bridge Ethereum- or any EVM-based data sources in to Vega, enabling markets to be settled or priced using data that is verified on a chain that supports Ethereum RPC calls.
 
 Each L2 chain needs to be supported in the network parameter:
-<NetworkParameter frontMatter={frontMatter} param="blockchains.ethereumRpcAndEvmCompatDataSourcesConfig" hideValue="true" />, and by the validators running the network.
+<NetworkParameter frontMatter={frontMatter} param="blockchains.ethereumRpcAndEvmCompatDataSourcesConfig" hideValue="true" />, and by the validators running the network. Use a [network parameter proposal](../../tutorials/proposals/network-parameter-proposal.md) to get a new data source chain added to the network.
 
 :::note
 Currently data can only be read from a smart contract based on a timed trigger.
@@ -61,18 +61,18 @@ Currently data can only be read from a smart contract based on a timed trigger.
 
 When the contract call is triggered by the data source, Vega validator nodes read the selected data from the chain and submit a transaction that includes the filtered data. When that data is verified by enough validators, the market's data source specification then acts on the submitted data.
 
-An Ethereum data source specification must include:
+An EVM data source specification must include:
 
-- Ethereum contract address
+- Contract address
 - ABI in JSON format for the contract (or a subset, covering the parts relevant to fetching data)
 - Name of the function call, along with any parameters that must be passed through
 
 This data can be used for filters, or used as the oracle data itself.
 
-All data sourced from Ethereum is structured as an object containing both a payload and Ethereum chain metadata. Specifically:
+All data sourced from Ethereum and EVM chains is structured as an object containing both a payload and chain metadata. Specifically:
 
-- Ethereum block height at which the data was observed/event occurred
-- Ethereum block timestamp when the data was observed/event occurred
+- Block height at which the data was observed/event occurred
+- Block timestamp when the data was observed/event occurred
 
 ## Signed message data sources
 Signed message data sources are a source of off-chain data. They introduce a Vega transaction that represents a data result that is validated by ensuring the signed message is provided by the Vega or Ethereum public key provided in the market’s proposal.
@@ -166,12 +166,12 @@ Data source filters allow the market proposer to specify, for a given "root" dat
 
 Products on Vega use data to drive actions like settlement and to progress through the market lifecycle. The two key transitions controlled by data sources for cash settled futures are the termination of trading, and settlement of the market. For cash settled perpetuals markets, the data source provides prices for the settlement schedule. These are configured when the market is proposed by providing a data source specification that covers the root source and any filters required to select the specific data or trigger event.
 
-As an Ethereum contract or a public key may provide many messages, a filter is used to extract the required message - for example trading on a futures market could terminate at a specific date and time, and so the filters would ensure that only data provided on or after the specified date and time would trigger termination.
+As a smart contract or a public key may provide many messages, a filter is used to extract the required message - for example trading on a futures market could terminate at a specific date and time, and so the filters would ensure that only data provided on or after the specified date and time would trigger termination.
 
 When a market is proposed, the market proposal must include details for filters to be applied to the chosen data source(s). Those filters are applied to the source of structured data records that are used as input and determine how data is emitted: such as the specific value for a named field, to return `BTCUSD_PRICE` from a record containing many prices, for example; or price data on/after a certain time.
 
 ## Submitting data for a market
-When using an Ethereum oracle, there is no need to submit data once the Ethereum oracle is specified in the market proposal.
+When using an EVM oracle, there is no need to submit data once the EVM oracle is specified in the market proposal.
 
 For other data source types, any Vega keypair can submit settlement and market termination data to the chain. The creator of an instrument for a market has chosen in advance a price source, which data fields the market requires to settle and terminate, and filters that determine when the data is used.
 
