@@ -58,10 +58,10 @@
          address: "0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43",
 
          // The ABI of that contract.
-         abi: "[{" inputs ":[]," name ":" latestAnswer "," outputs ":[{" internalType ":" int256 "," name ":" "," type ":" int256 "}]," stateMutability ":" view "," type ":" function "}]",
+         abi: "[{" inputs ":[]," name ":" latestRoundData "," outputs ":[{" internalType ":" int256 "," name ":" "," type ":" int256 "}]," stateMutability ":" view "," type ":" function "}]",
 
          // Name of the method on the contract to call.
-         method: "latestAnswer",
+         method: "latestRoundData",
 
 
          /* Normalisers are used to convert the data returned from the contract method
@@ -143,8 +143,8 @@
 
      // Optional new futures market metadata, tags.
      metadata: [
-      "enactment:2024-02-18T17:18:38Z",
-      "settlement:2024-02-17T17:18:38Z",
+      "enactment:2024-02-28T18:25:09Z",
+      "settlement:2024-02-27T18:25:09Z",
       "source:docs.vega.xyz"
      ],
 
@@ -158,11 +158,6 @@
 
         // Price monitoring probability level p. (string)
         probability: "0.9999999",
-
-        // Price monitoring auction extension duration in seconds should the price
-        // breach its theoretical level over the specified horizon at the specified
-        // probability level. (int64 as string)
-        auctionExtension: "600",
        }
       ]
      },
@@ -174,7 +169,7 @@
       must be a strictly non - negative real number.(number) tau: 0.0001140771161,
 
       // Risk Aversion Parameter. (double as number)
-      riskAversionParameter: "0.01",
+      riskAversionParameter: "0.00001",
 
       // Risk model parameters for log normal
       params: {
@@ -204,16 +199,81 @@
       // that achieved a higher SLA performance than them. (string)
       slaCompetitionFactor: "0.2",
      },
-    }
-   },
 
-   // Timestamp as Unix time in seconds when voting closes for this proposal,
-   // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-   closingTimestamp: 1708190318,
+     // Liquidation strategy for this market.
+     liquidationStrategy: {
+      // Interval, in seconds, at which the network will attempt to close its position. (int64 as string)
+      disposalTimeStep: 500,
 
-   // Timestamp as Unix time in seconds when proposal gets enacted if passed,
-   // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-   enactmentTimestamp: 1708276718,
+      // Fraction of the open position the market will try to close in a single attempt; range 0 through 1. (string)
+      disposalFraction: "1",
+
+      // Size of the position that the network will try to close in a single attempt. (uint64 as string)
+      fullDisposalSize: "18446744073709551615",
+
+      // Max fraction of the total volume of the orderbook, within liquidity bounds, that the network can use to close its position; range 0 through 1. (string)
+      maxFractionConsumed: "1",
+     },
+
+     // Specifies how the liquidity fee for the market will be calculated.
+     liquidityFeeSettings: {
+      // Method used to calculate the market's liquidity fee.
+      method: "METHOD_CONSTANT",
+
+      // Constant liquidity fee used when using the constant fee method. (string)
+      feeConstant: "0.00005",
+     },
+
+     // Liquidity monitoring parameters.
+     liquidityMonitoringParameters: {
+      // Specifies parameters related to target stake calculation.
+      targetStakeParameters: {
+       timeWindow: "3600",
+       scalingFactor: "0.05"
+      },
+     },
+
+     // Mark price configuration.
+     markPriceConfiguration: {
+      // Decay weight used for calculation of mark price.
+      decayWeight: "1",
+
+      // Decay power used for the calculation of mark price. (string)
+      decayPower: "1",
+
+      // Cash amount, in asset decimals, used for the calculation of the mark price from the order book. (string)
+      cashAmount: "5000000",
+
+      // Weights for each composite price data source. (array)
+      sourceWeights: undefined,
+
+      // For how long a price source is considered valid. One entry for each data source
+      // such that the first is for the trade based mark price, the second is for the book based price
+      // the third is for the first oracle, followed by more oracle data source staleness tolerance. (array)
+      sourceStalenessTolerance: [
+       "1m0s",
+       "1m0s",
+       "1m0s"
+      ],
+
+      // Which method is used for the calculation of the composite price for the market. (string)
+      compositePriceType: "COMPOSITE_PRICE_TYPE_WEIGHTED",
+
+      // Additional price sources to be used for index price calculation. (array)
+      dataSourcesSpec: [],
+
+      // List of each price source and its corresponding binding (array)
+      dataSourcesSpecBinding: []
+     }
+    },
+
+    // Timestamp as Unix time in seconds when voting closes for this proposal,
+    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
+    closingTimestamp: 1709058309,
+
+    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
+    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
+    enactmentTimestamp: 1709144709,
+   }
   }
- }
 ```

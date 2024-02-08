@@ -5,7 +5,11 @@ const {
   generateFutureInstrument,
   generateMetadata,
   generatePriceMonitoringParameters,
-  generateRiskModel
+  generateRiskModel,
+  generateLiquidationStrategy,
+  generateLiquidityFeeSettings,
+  generateMarkPriceConfiguration,
+  generateLiquidityMonitoringParameters
 } = require('./newMarket')
 
 // Shortcut for deeply nested stuff
@@ -54,6 +58,18 @@ function newSuccessorMarket(skeleton, proposalSoFar) {
           liquiditySlaParameters: generateLiquiditySlaParameters(
             skeleton.properties.changes.properties.liquiditySlaParameters
           ),
+          liquidationStrategy: generateLiquidationStrategy(
+            skeleton.properties.changes.properties.liquidationStrategy
+          ),
+          liquidityFeeSettings: generateLiquidityFeeSettings(
+            skeleton.properties.changes.properties.liquidityFeeSettings
+          ),
+          liquidityMonitoringParameters: generateLiquidityMonitoringParameters(
+            skeleton.properties.changes.properties.liquidityMonitoringParameters
+          ),
+          markPriceConfiguration: generateMarkPriceConfiguration(
+            skeleton.properties.changes.properties.markPriceConfiguration
+          )
         },
       },
     },
@@ -100,10 +116,47 @@ function newSuccessorMarket(skeleton, proposalSoFar) {
         depth: 19,
       })},
       // ${skeleton.properties.changes.properties.liquiditySlaParameters.title}
-      liquiditySlaParameters: ${inspect(result.terms.newMarket.changes.liquiditySlaParameters, {
-   depth: 19,
- })},
+         liquiditySlaParameters: ${inspect(
+           result.terms.newMarket.changes.liquiditySlaParameters,
+           {
+             depth: 19,
+           }
+         )},
+      // ${
+        skeleton.properties.changes.properties.liquidationStrategy.description
+      }
+         liquidationStrategy: ${inspect(
+           result.terms.newMarket.changes.liquidationStrategy,
+           {
+             depth: 19,
+           }
+         )},
+      // ${
+        skeleton.properties.changes.properties.liquidityFeeSettings.description
+      }
+         liquidityFeeSettings: ${inspect(
+           result.terms.newMarket.changes.liquidityFeeSettings,
+           {
+             depth: 19,
+           }
+         )},
+
+      // ${ skeleton.properties.changes.properties.liquidityMonitoringParameters.description }
+          liquidityMonitoringParameters: ${inspect(
+            result.terms.newMarket.changes.liquidityMonitoringParameters,
+            {
+              depth: 19,
+            }
+          )},
+         // ${
+          skeleton.properties.changes.properties.markPriceConfiguration.description
         }
+           markPriceConfiguration: ${inspect(
+          result.terms.newMarket.changes.markPriceConfiguration,
+          {
+            depth: 19,
+          }
+        )}
     }`;
   };
 

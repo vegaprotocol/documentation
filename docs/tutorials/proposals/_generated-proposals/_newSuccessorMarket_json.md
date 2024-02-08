@@ -80,22 +80,21 @@
           }
         },
         "metadata": [
-          "enactment:2024-02-18T17:18:38Z",
-          "settlement:2024-02-17T17:18:38Z",
+          "enactment:2024-02-28T18:25:09Z",
+          "settlement:2024-02-27T18:25:09Z",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
           "triggers": [
             {
               "horizon": "43200",
-              "probability": "0.9999999",
-              "auctionExtension": "600"
+              "probability": "0.9999999"
             }
           ]
         },
         "logNormal": {
           "tau": 0.0001140771161,
-          "riskAversionParameter": 0.01,
+          "riskAversionParameter": 0.00001,
           "params": {
             "mu": 0,
             "r": 0.016,
@@ -107,11 +106,45 @@
           "commitmentMinTimeFraction": "0.1",
           "performanceHysteresisEpochs": "10",
           "slaCompetitionFactor": "0.2"
+        },
+        "liquidationStrategy": {
+          "disposalTimeStep": "500",
+          "disposalFraction": "1",
+          "fullDisposalSize": "18446744073709551615",
+          "maxFractionConsumed": "1"
+        },
+        "liquidityFeeSettings": {
+          "method": "METHOD_CONSTANT",
+          "feeConstant": "0.00005"
+        },
+        "liquidityMonitoringParameters": {
+          "targetStakeParameters": {
+            "timeWindow": "3600",
+            "scalingFactor": "0.05"
+          }
+        },
+        "markPriceConfiguration": {
+          "decayWeight": "1",
+          "decayPower": "1",
+          "cashAmount": "5000000",
+          "sourceWeights": [
+            "0",
+            "1",
+            "0"
+          ],
+          "sourceStalenessTolerance": [
+            "1m0s",
+            "1m0s",
+            "1m0s"
+          ],
+          "compositePriceType": "COMPOSITE_PRICE_TYPE_WEIGHTED",
+          "dataSourcesSpec": [],
+          "dataSourcesSpecBinding": []
         }
       }
     },
-    "closingTimestamp": 1708190318,
-    "enactmentTimestamp": 1708276718
+    "closingTimestamp": 1709058309,
+    "enactmentTimestamp": 1709144709
   }
 }
 ```
