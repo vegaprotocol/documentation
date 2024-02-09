@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Vega core APIs",
-    "version": "v0.74.0-preview.6"
+    "version": "v0.74.0"
   },
   "tags": [
     {
@@ -133,7 +133,7 @@
         "parameters": [
           {
             "name": "type",
-            "description": "One or more types of event, required field.\n\n - BUS_EVENT_TYPE_UNSPECIFIED: Default value, always invalid\n - BUS_EVENT_TYPE_ALL: Events of ALL event types, used when filtering stream from event bus\n - BUS_EVENT_TYPE_TIME_UPDATE: Event for blockchain time updates\n - BUS_EVENT_TYPE_LEDGER_MOVEMENTS: Event for when a transfer happens internally, contains the transfer information\n - BUS_EVENT_TYPE_POSITION_RESOLUTION: Event indicating position resolution has occurred\n - BUS_EVENT_TYPE_ORDER: Event for order updates, both new and existing orders\n - BUS_EVENT_TYPE_ACCOUNT: Event for account updates\n - BUS_EVENT_TYPE_PARTY: Event for party updates\n - BUS_EVENT_TYPE_TRADE: Event indicating a new trade has occurred\n - BUS_EVENT_TYPE_MARGIN_LEVELS: Event indicating margin levels have changed for a party\n - BUS_EVENT_TYPE_PROPOSAL: Event for proposal updates (for governance)\n - BUS_EVENT_TYPE_VOTE: Event indicating a new vote has occurred (for governance)\n - BUS_EVENT_TYPE_MARKET_DATA: Event for market data updates\n - BUS_EVENT_TYPE_NODE_SIGNATURE: Event for a new signature for a Vega node\n - BUS_EVENT_TYPE_LOSS_SOCIALIZATION: Event indicating loss socialisation occurred for a party\n - BUS_EVENT_TYPE_SETTLE_POSITION: Event for when a position is being settled\n - BUS_EVENT_TYPE_SETTLE_DISTRESSED: Event for when a position is distressed\n - BUS_EVENT_TYPE_MARKET_CREATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ASSET: Event for when an asset is added to Vega\n - BUS_EVENT_TYPE_MARKET_TICK: Event indicating a market tick event\n - BUS_EVENT_TYPE_WITHDRAWAL: Event for when a withdrawal occurs\n - BUS_EVENT_TYPE_DEPOSIT: Event for when a deposit occurs\n - BUS_EVENT_TYPE_AUCTION: Event indicating a change in auction state, for example starting or ending an auction\n - BUS_EVENT_TYPE_RISK_FACTOR: Event indicating a risk factor has been updated\n - BUS_EVENT_TYPE_NETWORK_PARAMETER: Event indicating a network parameter has been added or updated\n - BUS_EVENT_TYPE_LIQUIDITY_PROVISION: Event indicating a liquidity provision has been created or updated\n - BUS_EVENT_TYPE_MARKET_UPDATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ORACLE_SPEC: Event indicating an oracle spec has been created or updated\n - BUS_EVENT_TYPE_ORACLE_DATA: Event indicating that an oracle data has been broadcast\n - BUS_EVENT_TYPE_DELEGATION_BALANCE: Event indicating that an delegation balance of a party to a node for current epoch has changed\n - BUS_EVENT_TYPE_VALIDATOR_SCORE: Event indicating the validator score for the given epoch\n - BUS_EVENT_TYPE_EPOCH_UPDATE: Event indicating the start or end of an epoch\n - BUS_EVENT_TYPE_VALIDATOR_UPDATE: Event indicating that validator node has been updated\n - BUS_EVENT_TYPE_STAKE_LINKING: Event indicating a new staking event have been processed by the network\n - BUS_EVENT_TYPE_REWARD_PAYOUT_EVENT: Event indicating the payout of a reward has been initiated\n - BUS_EVENT_TYPE_CHECKPOINT: Event indicating a new checkpoint was created\n - BUS_EVENT_TYPE_STREAM_START: Event indicating stream is starting\n - BUS_EVENT_TYPE_KEY_ROTATION: Event indicating key rotation took place\n - BUS_EVENT_TYPE_STATE_VAR: Event indicating state transitions in state variable consensus\n - BUS_EVENT_TYPE_NETWORK_LIMITS: Event indicating network limits set or updated\n - BUS_EVENT_TYPE_TRANSFER: Event indicating a update for a transfer\n - BUS_EVENT_TYPE_VALIDATOR_RANKING: Event indicating the ranking of validator and their status in Vega\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_EVENT: Event indicating a new multi sig signer event have been processed\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SET_THRESHOLD: Event indicating the erc20 multi sig threshold have been updated\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_ADDED: Event indicating a new signer has been added to the ERC-20 multisig\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_REMOVED: Event indicating a signer has been removed from the ERC-20 multisig\n - BUS_EVENT_TYPE_POSITION_STATE: Event indicating that a party's position has changed\n - BUS_EVENT_TYPE_ETHEREUM_KEY_ROTATION: Event indicating Ethereum key rotation took place\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_PROPOSAL: Event indicating protocol upgrade proposal updates\n - BUS_EVENT_TYPE_BEGIN_BLOCK: Event indicating the core is starting to process a new block\n - BUS_EVENT_TYPE_END_BLOCK: Event indicating the core finished to process a block\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_STARTED: Event indicating the core is starting a protocol upgrade\n - BUS_EVENT_TYPE_SETTLE_MARKET: Event indicating the market has stopped and settled\n - BUS_EVENT_TYPE_TRANSACTION_RESULT: Event indicating the result of a transaction processed by the network\n - BUS_EVENT_TYPE_SNAPSHOT_TAKEN: Event indicating a snapshot was taken at this block height\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_DATA_NODE_READY: Event data node uses to notify that it is ready to upgrade\n - BUS_EVENT_TYPE_DISTRESSED_ORDERS_CLOSED: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_EXPIRED_ORDERS: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_DISTRESSED_POSITIONS: Event indicating parties have become, or were, distressed but still have an active position.\n - BUS_EVENT_TYPE_SPOT_LIQUIDITY_PROVISION: Event indicating a spot liquidity provision has been created or updated.\n - BUS_EVENT_TYPE_STOP_ORDER: Event indicating a stop order has been submitted or updated.\n - BUS_EVENT_TYPE_FUNDING_PERIOD: Event indicating the start or end of a funding period.\n - BUS_EVENT_TYPE_FUNDING_PERIOD_DATA_POINT: Event indicating a data point for a funding period has been received.\n - BUS_EVENT_TYPE_TEAM_CREATED: Event indicating a team has been created.\n - BUS_EVENT_TYPE_TEAM_UPDATED: Event indicating a team has been updated.\n - BUS_EVENT_TYPE_REFEREE_SWITCHED_TEAM: Event indicating a referee switched team.\n - BUS_EVENT_TYPE_REFEREE_JOINED_TEAM: Event indicating a referee joined a team.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_STARTED: Event indicating a referral program started.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_UPDATED: Event indicating a referral program has been updated.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_ENDED: Event indicating a referral program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_CREATED: Event indicating a set has been created.\n - BUS_EVENT_TYPE_REFEREE_JOINED_REFERRAL_SET: Event indicating a referee joined a set.\n - BUS_EVENT_TYPE_PARTY_ACTIVITY_STREAK: Event indicating the updated activity streak for a party\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_STARTED: Event indicating a volume discount program started.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_UPDATED: Event indicating a volume discount program has been updated.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_ENDED: Event indicating a volume discount program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_STATS_UPDATED: Event indicating the updated statistics for a referral set.\n - BUS_EVENT_TYPE_VESTING_STATS_UPDATED: Event indicating the updated statistics for the vesting program.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_STATS_UPDATED: Event indicating the updated statistics for the volume discount.\n - BUS_EVENT_TYPE_FEES_STATS_UPDATED: Event indicating the fees statistics per market at end of epoch\n - BUS_EVENT_TYPE_FUNDING_PAYMENTS: Event indicating a funding period has ended and resulted in funding payment transfers.\n - BUS_EVENT_TYPE_PAID_LIQUIDITY_FEES_STATS_UPDATED: Event used to report the updated paid liquidity fee statistics for the market at the end of the epoch\n - BUS_EVENT_TYPE_VESTING_SUMMARY: Event used to report the summary of vesting and locked balances at the end of the epoch\n - BUS_EVENT_TYPE_TRANSFER_FEES_PAID: Event used to link ledger entries to the transfer that triggered the fees being collected.\n - BUS_EVENT_TYPE_TRANSFER_FEES_DISCOUNT_UPDATED: Event indicating that a party's available transfer fee discount has changed, per asset.\n - BUS_EVENT_TYPE_PARTY_MARGIN_MODE_UPDATED: Event indicating that a party updated their margin mode on a market.\n - BUS_EVENT_TYPE_PARTY_PROFILE_UPDATED: Event indicating that a party updated their profile.\n - BUS_EVENT_TYPE_MARKET: Event indicating a market related event, for example when a market opens\n - BUS_EVENT_TYPE_TX_ERROR: Event used to report failed transactions back to a user, this is excluded from the ALL type",
+            "description": "One or more types of event, required field.\n\n - BUS_EVENT_TYPE_UNSPECIFIED: Default value, always invalid\n - BUS_EVENT_TYPE_ALL: Events of ALL event types, used when filtering stream from event bus\n - BUS_EVENT_TYPE_TIME_UPDATE: Event for blockchain time updates\n - BUS_EVENT_TYPE_LEDGER_MOVEMENTS: Event for when a transfer happens internally, contains the transfer information\n - BUS_EVENT_TYPE_POSITION_RESOLUTION: Event indicating position resolution has occurred\n - BUS_EVENT_TYPE_ORDER: Event for order updates, both new and existing orders\n - BUS_EVENT_TYPE_ACCOUNT: Event for account updates\n - BUS_EVENT_TYPE_PARTY: Event for party updates\n - BUS_EVENT_TYPE_TRADE: Event indicating a new trade has occurred\n - BUS_EVENT_TYPE_MARGIN_LEVELS: Event indicating margin levels have changed for a party\n - BUS_EVENT_TYPE_PROPOSAL: Event for proposal updates (for governance)\n - BUS_EVENT_TYPE_VOTE: Event indicating a new vote has occurred (for governance)\n - BUS_EVENT_TYPE_MARKET_DATA: Event for market data updates\n - BUS_EVENT_TYPE_NODE_SIGNATURE: Event for a new signature for a Vega node\n - BUS_EVENT_TYPE_LOSS_SOCIALIZATION: Event indicating loss socialisation occurred for a party\n - BUS_EVENT_TYPE_SETTLE_POSITION: Event for when a position is being settled\n - BUS_EVENT_TYPE_SETTLE_DISTRESSED: Event for when a position is distressed\n - BUS_EVENT_TYPE_MARKET_CREATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ASSET: Event for when an asset is added to Vega\n - BUS_EVENT_TYPE_MARKET_TICK: Event indicating a market tick event\n - BUS_EVENT_TYPE_WITHDRAWAL: Event for when a withdrawal occurs\n - BUS_EVENT_TYPE_DEPOSIT: Event for when a deposit occurs\n - BUS_EVENT_TYPE_AUCTION: Event indicating a change in auction state, for example starting or ending an auction\n - BUS_EVENT_TYPE_RISK_FACTOR: Event indicating a risk factor has been updated\n - BUS_EVENT_TYPE_NETWORK_PARAMETER: Event indicating a network parameter has been added or updated\n - BUS_EVENT_TYPE_LIQUIDITY_PROVISION: Event indicating a liquidity provision has been created or updated\n - BUS_EVENT_TYPE_MARKET_UPDATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ORACLE_SPEC: Event indicating an oracle spec has been created or updated\n - BUS_EVENT_TYPE_ORACLE_DATA: Event indicating that an oracle data has been broadcast\n - BUS_EVENT_TYPE_DELEGATION_BALANCE: Event indicating that an delegation balance of a party to a node for current epoch has changed\n - BUS_EVENT_TYPE_VALIDATOR_SCORE: Event indicating the validator score for the given epoch\n - BUS_EVENT_TYPE_EPOCH_UPDATE: Event indicating the start or end of an epoch\n - BUS_EVENT_TYPE_VALIDATOR_UPDATE: Event indicating that validator node has been updated\n - BUS_EVENT_TYPE_STAKE_LINKING: Event indicating a new staking event have been processed by the network\n - BUS_EVENT_TYPE_REWARD_PAYOUT_EVENT: Event indicating the payout of a reward has been initiated\n - BUS_EVENT_TYPE_CHECKPOINT: Event indicating a new checkpoint was created\n - BUS_EVENT_TYPE_STREAM_START: Event indicating stream is starting\n - BUS_EVENT_TYPE_KEY_ROTATION: Event indicating key rotation took place\n - BUS_EVENT_TYPE_STATE_VAR: Event indicating state transitions in state variable consensus\n - BUS_EVENT_TYPE_NETWORK_LIMITS: Event indicating network limits set or updated\n - BUS_EVENT_TYPE_TRANSFER: Event indicating a update for a transfer\n - BUS_EVENT_TYPE_VALIDATOR_RANKING: Event indicating the ranking of validator and their status in Vega\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_EVENT: Event indicating a new multi sig signer event have been processed\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SET_THRESHOLD: Event indicating the erc20 multi sig threshold have been updated\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_ADDED: Event indicating a new signer has been added to the ERC-20 multisig\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_REMOVED: Event indicating a signer has been removed from the ERC-20 multisig\n - BUS_EVENT_TYPE_POSITION_STATE: Event indicating that a party's position has changed\n - BUS_EVENT_TYPE_ETHEREUM_KEY_ROTATION: Event indicating Ethereum key rotation took place\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_PROPOSAL: Event indicating protocol upgrade proposal updates\n - BUS_EVENT_TYPE_BEGIN_BLOCK: Event indicating the core is starting to process a new block\n - BUS_EVENT_TYPE_END_BLOCK: Event indicating the core finished to process a block\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_STARTED: Event indicating the core is starting a protocol upgrade\n - BUS_EVENT_TYPE_SETTLE_MARKET: Event indicating the market has stopped and settled\n - BUS_EVENT_TYPE_TRANSACTION_RESULT: Event indicating the result of a transaction processed by the network\n - BUS_EVENT_TYPE_SNAPSHOT_TAKEN: Event indicating a snapshot was taken at this block height\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_DATA_NODE_READY: Event data node uses to notify that it is ready to upgrade\n - BUS_EVENT_TYPE_DISTRESSED_ORDERS_CLOSED: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_EXPIRED_ORDERS: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_DISTRESSED_POSITIONS: Event indicating parties have become, or were, distressed but still have an active position.\n - BUS_EVENT_TYPE_SPOT_LIQUIDITY_PROVISION: Event indicating a spot liquidity provision has been created or updated.\n - BUS_EVENT_TYPE_STOP_ORDER: Event indicating a stop order has been submitted or updated.\n - BUS_EVENT_TYPE_FUNDING_PERIOD: Event indicating the start or end of a funding period.\n - BUS_EVENT_TYPE_FUNDING_PERIOD_DATA_POINT: Event indicating a data point for a funding period has been received.\n - BUS_EVENT_TYPE_TEAM_CREATED: Event indicating a team has been created.\n - BUS_EVENT_TYPE_TEAM_UPDATED: Event indicating a team has been updated.\n - BUS_EVENT_TYPE_REFEREE_SWITCHED_TEAM: Event indicating a referee switched team.\n - BUS_EVENT_TYPE_REFEREE_JOINED_TEAM: Event indicating a referee joined a team.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_STARTED: Event indicating a referral program started.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_UPDATED: Event indicating a referral program has been updated.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_ENDED: Event indicating a referral program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_CREATED: Event indicating a set has been created.\n - BUS_EVENT_TYPE_REFEREE_JOINED_REFERRAL_SET: Event indicating a referee joined a set.\n - BUS_EVENT_TYPE_PARTY_ACTIVITY_STREAK: Event indicating the updated activity streak for a party\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_STARTED: Event indicating a volume discount program started.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_UPDATED: Event indicating a volume discount program has been updated.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_ENDED: Event indicating a volume discount program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_STATS_UPDATED: Event indicating the updated statistics for a referral set.\n - BUS_EVENT_TYPE_VESTING_STATS_UPDATED: Event indicating the updated statistics for the vesting program.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_STATS_UPDATED: Event indicating the updated statistics for the volume discount.\n - BUS_EVENT_TYPE_FEES_STATS_UPDATED: Event indicating the fees statistics per market at end of epoch\n - BUS_EVENT_TYPE_FUNDING_PAYMENTS: Event indicating a funding period has ended and resulted in funding payment transfers.\n - BUS_EVENT_TYPE_PAID_LIQUIDITY_FEES_STATS_UPDATED: Event used to report the updated paid liquidity fee statistics for the market at the end of the epoch\n - BUS_EVENT_TYPE_VESTING_SUMMARY: Event used to report the summary of vesting and locked balances at the end of the epoch\n - BUS_EVENT_TYPE_TRANSFER_FEES_PAID: Event used to link ledger entries to the transfer that triggered the fees being collected.\n - BUS_EVENT_TYPE_TRANSFER_FEES_DISCOUNT_UPDATED: Event indicating that a party's available transfer fee discount has changed, per asset.\n - BUS_EVENT_TYPE_PARTY_MARGIN_MODE_UPDATED: Event indicating that a party updated their margin mode on a market.\n - BUS_EVENT_TYPE_PARTY_PROFILE_UPDATED: Event indicating that a party updated their profile.\n - BUS_EVENT_TYPE_TEAMS_STATS_UPDATED: Event indicating that teams' statistics have been updated.\n - BUS_EVENT_TYPE_MARKET: Event indicating a market related event, for example when a market opens\n - BUS_EVENT_TYPE_TX_ERROR: Event used to report failed transactions back to a user, this is excluded from the ALL type",
             "in": "query",
             "required": false,
             "type": "array",
@@ -227,6 +227,7 @@
                 "BUS_EVENT_TYPE_TRANSFER_FEES_DISCOUNT_UPDATED",
                 "BUS_EVENT_TYPE_PARTY_MARGIN_MODE_UPDATED",
                 "BUS_EVENT_TYPE_PARTY_PROFILE_UPDATED",
+                "BUS_EVENT_TYPE_TEAMS_STATS_UPDATED",
                 "BUS_EVENT_TYPE_MARKET",
                 "BUS_EVENT_TYPE_TX_ERROR"
               ]
@@ -1165,6 +1166,10 @@
           "$ref": "#/definitions/v1PartyProfileUpdated",
           "description": "Event notifying of a party's profile update."
         },
+        "teamsStatsUpdated": {
+          "$ref": "#/definitions/v1TeamsStatsUpdated",
+          "description": "Event notifying of an update of teams' statistics."
+        },
         "market": {
           "$ref": "#/definitions/v1MarketEvent",
           "title": "Market tick events"
@@ -1277,11 +1282,12 @@
         "BUS_EVENT_TYPE_TRANSFER_FEES_DISCOUNT_UPDATED",
         "BUS_EVENT_TYPE_PARTY_MARGIN_MODE_UPDATED",
         "BUS_EVENT_TYPE_PARTY_PROFILE_UPDATED",
+        "BUS_EVENT_TYPE_TEAMS_STATS_UPDATED",
         "BUS_EVENT_TYPE_MARKET",
         "BUS_EVENT_TYPE_TX_ERROR"
       ],
       "default": "BUS_EVENT_TYPE_UNSPECIFIED",
-      "description": "- BUS_EVENT_TYPE_UNSPECIFIED: Default value, always invalid\n - BUS_EVENT_TYPE_ALL: Events of ALL event types, used when filtering stream from event bus\n - BUS_EVENT_TYPE_TIME_UPDATE: Event for blockchain time updates\n - BUS_EVENT_TYPE_LEDGER_MOVEMENTS: Event for when a transfer happens internally, contains the transfer information\n - BUS_EVENT_TYPE_POSITION_RESOLUTION: Event indicating position resolution has occurred\n - BUS_EVENT_TYPE_ORDER: Event for order updates, both new and existing orders\n - BUS_EVENT_TYPE_ACCOUNT: Event for account updates\n - BUS_EVENT_TYPE_PARTY: Event for party updates\n - BUS_EVENT_TYPE_TRADE: Event indicating a new trade has occurred\n - BUS_EVENT_TYPE_MARGIN_LEVELS: Event indicating margin levels have changed for a party\n - BUS_EVENT_TYPE_PROPOSAL: Event for proposal updates (for governance)\n - BUS_EVENT_TYPE_VOTE: Event indicating a new vote has occurred (for governance)\n - BUS_EVENT_TYPE_MARKET_DATA: Event for market data updates\n - BUS_EVENT_TYPE_NODE_SIGNATURE: Event for a new signature for a Vega node\n - BUS_EVENT_TYPE_LOSS_SOCIALIZATION: Event indicating loss socialisation occurred for a party\n - BUS_EVENT_TYPE_SETTLE_POSITION: Event for when a position is being settled\n - BUS_EVENT_TYPE_SETTLE_DISTRESSED: Event for when a position is distressed\n - BUS_EVENT_TYPE_MARKET_CREATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ASSET: Event for when an asset is added to Vega\n - BUS_EVENT_TYPE_MARKET_TICK: Event indicating a market tick event\n - BUS_EVENT_TYPE_WITHDRAWAL: Event for when a withdrawal occurs\n - BUS_EVENT_TYPE_DEPOSIT: Event for when a deposit occurs\n - BUS_EVENT_TYPE_AUCTION: Event indicating a change in auction state, for example starting or ending an auction\n - BUS_EVENT_TYPE_RISK_FACTOR: Event indicating a risk factor has been updated\n - BUS_EVENT_TYPE_NETWORK_PARAMETER: Event indicating a network parameter has been added or updated\n - BUS_EVENT_TYPE_LIQUIDITY_PROVISION: Event indicating a liquidity provision has been created or updated\n - BUS_EVENT_TYPE_MARKET_UPDATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ORACLE_SPEC: Event indicating an oracle spec has been created or updated\n - BUS_EVENT_TYPE_ORACLE_DATA: Event indicating that an oracle data has been broadcast\n - BUS_EVENT_TYPE_DELEGATION_BALANCE: Event indicating that an delegation balance of a party to a node for current epoch has changed\n - BUS_EVENT_TYPE_VALIDATOR_SCORE: Event indicating the validator score for the given epoch\n - BUS_EVENT_TYPE_EPOCH_UPDATE: Event indicating the start or end of an epoch\n - BUS_EVENT_TYPE_VALIDATOR_UPDATE: Event indicating that validator node has been updated\n - BUS_EVENT_TYPE_STAKE_LINKING: Event indicating a new staking event have been processed by the network\n - BUS_EVENT_TYPE_REWARD_PAYOUT_EVENT: Event indicating the payout of a reward has been initiated\n - BUS_EVENT_TYPE_CHECKPOINT: Event indicating a new checkpoint was created\n - BUS_EVENT_TYPE_STREAM_START: Event indicating stream is starting\n - BUS_EVENT_TYPE_KEY_ROTATION: Event indicating key rotation took place\n - BUS_EVENT_TYPE_STATE_VAR: Event indicating state transitions in state variable consensus\n - BUS_EVENT_TYPE_NETWORK_LIMITS: Event indicating network limits set or updated\n - BUS_EVENT_TYPE_TRANSFER: Event indicating a update for a transfer\n - BUS_EVENT_TYPE_VALIDATOR_RANKING: Event indicating the ranking of validator and their status in Vega\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_EVENT: Event indicating a new multi sig signer event have been processed\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SET_THRESHOLD: Event indicating the erc20 multi sig threshold have been updated\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_ADDED: Event indicating a new signer has been added to the ERC-20 multisig\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_REMOVED: Event indicating a signer has been removed from the ERC-20 multisig\n - BUS_EVENT_TYPE_POSITION_STATE: Event indicating that a party's position has changed\n - BUS_EVENT_TYPE_ETHEREUM_KEY_ROTATION: Event indicating Ethereum key rotation took place\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_PROPOSAL: Event indicating protocol upgrade proposal updates\n - BUS_EVENT_TYPE_BEGIN_BLOCK: Event indicating the core is starting to process a new block\n - BUS_EVENT_TYPE_END_BLOCK: Event indicating the core finished to process a block\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_STARTED: Event indicating the core is starting a protocol upgrade\n - BUS_EVENT_TYPE_SETTLE_MARKET: Event indicating the market has stopped and settled\n - BUS_EVENT_TYPE_TRANSACTION_RESULT: Event indicating the result of a transaction processed by the network\n - BUS_EVENT_TYPE_SNAPSHOT_TAKEN: Event indicating a snapshot was taken at this block height\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_DATA_NODE_READY: Event data node uses to notify that it is ready to upgrade\n - BUS_EVENT_TYPE_DISTRESSED_ORDERS_CLOSED: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_EXPIRED_ORDERS: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_DISTRESSED_POSITIONS: Event indicating parties have become, or were, distressed but still have an active position.\n - BUS_EVENT_TYPE_SPOT_LIQUIDITY_PROVISION: Event indicating a spot liquidity provision has been created or updated.\n - BUS_EVENT_TYPE_STOP_ORDER: Event indicating a stop order has been submitted or updated.\n - BUS_EVENT_TYPE_FUNDING_PERIOD: Event indicating the start or end of a funding period.\n - BUS_EVENT_TYPE_FUNDING_PERIOD_DATA_POINT: Event indicating a data point for a funding period has been received.\n - BUS_EVENT_TYPE_TEAM_CREATED: Event indicating a team has been created.\n - BUS_EVENT_TYPE_TEAM_UPDATED: Event indicating a team has been updated.\n - BUS_EVENT_TYPE_REFEREE_SWITCHED_TEAM: Event indicating a referee switched team.\n - BUS_EVENT_TYPE_REFEREE_JOINED_TEAM: Event indicating a referee joined a team.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_STARTED: Event indicating a referral program started.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_UPDATED: Event indicating a referral program has been updated.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_ENDED: Event indicating a referral program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_CREATED: Event indicating a set has been created.\n - BUS_EVENT_TYPE_REFEREE_JOINED_REFERRAL_SET: Event indicating a referee joined a set.\n - BUS_EVENT_TYPE_PARTY_ACTIVITY_STREAK: Event indicating the updated activity streak for a party\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_STARTED: Event indicating a volume discount program started.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_UPDATED: Event indicating a volume discount program has been updated.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_ENDED: Event indicating a volume discount program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_STATS_UPDATED: Event indicating the updated statistics for a referral set.\n - BUS_EVENT_TYPE_VESTING_STATS_UPDATED: Event indicating the updated statistics for the vesting program.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_STATS_UPDATED: Event indicating the updated statistics for the volume discount.\n - BUS_EVENT_TYPE_FEES_STATS_UPDATED: Event indicating the fees statistics per market at end of epoch\n - BUS_EVENT_TYPE_FUNDING_PAYMENTS: Event indicating a funding period has ended and resulted in funding payment transfers.\n - BUS_EVENT_TYPE_PAID_LIQUIDITY_FEES_STATS_UPDATED: Event used to report the updated paid liquidity fee statistics for the market at the end of the epoch\n - BUS_EVENT_TYPE_VESTING_SUMMARY: Event used to report the summary of vesting and locked balances at the end of the epoch\n - BUS_EVENT_TYPE_TRANSFER_FEES_PAID: Event used to link ledger entries to the transfer that triggered the fees being collected.\n - BUS_EVENT_TYPE_TRANSFER_FEES_DISCOUNT_UPDATED: Event indicating that a party's available transfer fee discount has changed, per asset.\n - BUS_EVENT_TYPE_PARTY_MARGIN_MODE_UPDATED: Event indicating that a party updated their margin mode on a market.\n - BUS_EVENT_TYPE_PARTY_PROFILE_UPDATED: Event indicating that a party updated their profile.\n - BUS_EVENT_TYPE_MARKET: Event indicating a market related event, for example when a market opens\n - BUS_EVENT_TYPE_TX_ERROR: Event used to report failed transactions back to a user, this is excluded from the ALL type",
+      "description": "- BUS_EVENT_TYPE_UNSPECIFIED: Default value, always invalid\n - BUS_EVENT_TYPE_ALL: Events of ALL event types, used when filtering stream from event bus\n - BUS_EVENT_TYPE_TIME_UPDATE: Event for blockchain time updates\n - BUS_EVENT_TYPE_LEDGER_MOVEMENTS: Event for when a transfer happens internally, contains the transfer information\n - BUS_EVENT_TYPE_POSITION_RESOLUTION: Event indicating position resolution has occurred\n - BUS_EVENT_TYPE_ORDER: Event for order updates, both new and existing orders\n - BUS_EVENT_TYPE_ACCOUNT: Event for account updates\n - BUS_EVENT_TYPE_PARTY: Event for party updates\n - BUS_EVENT_TYPE_TRADE: Event indicating a new trade has occurred\n - BUS_EVENT_TYPE_MARGIN_LEVELS: Event indicating margin levels have changed for a party\n - BUS_EVENT_TYPE_PROPOSAL: Event for proposal updates (for governance)\n - BUS_EVENT_TYPE_VOTE: Event indicating a new vote has occurred (for governance)\n - BUS_EVENT_TYPE_MARKET_DATA: Event for market data updates\n - BUS_EVENT_TYPE_NODE_SIGNATURE: Event for a new signature for a Vega node\n - BUS_EVENT_TYPE_LOSS_SOCIALIZATION: Event indicating loss socialisation occurred for a party\n - BUS_EVENT_TYPE_SETTLE_POSITION: Event for when a position is being settled\n - BUS_EVENT_TYPE_SETTLE_DISTRESSED: Event for when a position is distressed\n - BUS_EVENT_TYPE_MARKET_CREATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ASSET: Event for when an asset is added to Vega\n - BUS_EVENT_TYPE_MARKET_TICK: Event indicating a market tick event\n - BUS_EVENT_TYPE_WITHDRAWAL: Event for when a withdrawal occurs\n - BUS_EVENT_TYPE_DEPOSIT: Event for when a deposit occurs\n - BUS_EVENT_TYPE_AUCTION: Event indicating a change in auction state, for example starting or ending an auction\n - BUS_EVENT_TYPE_RISK_FACTOR: Event indicating a risk factor has been updated\n - BUS_EVENT_TYPE_NETWORK_PARAMETER: Event indicating a network parameter has been added or updated\n - BUS_EVENT_TYPE_LIQUIDITY_PROVISION: Event indicating a liquidity provision has been created or updated\n - BUS_EVENT_TYPE_MARKET_UPDATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ORACLE_SPEC: Event indicating an oracle spec has been created or updated\n - BUS_EVENT_TYPE_ORACLE_DATA: Event indicating that an oracle data has been broadcast\n - BUS_EVENT_TYPE_DELEGATION_BALANCE: Event indicating that an delegation balance of a party to a node for current epoch has changed\n - BUS_EVENT_TYPE_VALIDATOR_SCORE: Event indicating the validator score for the given epoch\n - BUS_EVENT_TYPE_EPOCH_UPDATE: Event indicating the start or end of an epoch\n - BUS_EVENT_TYPE_VALIDATOR_UPDATE: Event indicating that validator node has been updated\n - BUS_EVENT_TYPE_STAKE_LINKING: Event indicating a new staking event have been processed by the network\n - BUS_EVENT_TYPE_REWARD_PAYOUT_EVENT: Event indicating the payout of a reward has been initiated\n - BUS_EVENT_TYPE_CHECKPOINT: Event indicating a new checkpoint was created\n - BUS_EVENT_TYPE_STREAM_START: Event indicating stream is starting\n - BUS_EVENT_TYPE_KEY_ROTATION: Event indicating key rotation took place\n - BUS_EVENT_TYPE_STATE_VAR: Event indicating state transitions in state variable consensus\n - BUS_EVENT_TYPE_NETWORK_LIMITS: Event indicating network limits set or updated\n - BUS_EVENT_TYPE_TRANSFER: Event indicating a update for a transfer\n - BUS_EVENT_TYPE_VALIDATOR_RANKING: Event indicating the ranking of validator and their status in Vega\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_EVENT: Event indicating a new multi sig signer event have been processed\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SET_THRESHOLD: Event indicating the erc20 multi sig threshold have been updated\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_ADDED: Event indicating a new signer has been added to the ERC-20 multisig\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_REMOVED: Event indicating a signer has been removed from the ERC-20 multisig\n - BUS_EVENT_TYPE_POSITION_STATE: Event indicating that a party's position has changed\n - BUS_EVENT_TYPE_ETHEREUM_KEY_ROTATION: Event indicating Ethereum key rotation took place\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_PROPOSAL: Event indicating protocol upgrade proposal updates\n - BUS_EVENT_TYPE_BEGIN_BLOCK: Event indicating the core is starting to process a new block\n - BUS_EVENT_TYPE_END_BLOCK: Event indicating the core finished to process a block\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_STARTED: Event indicating the core is starting a protocol upgrade\n - BUS_EVENT_TYPE_SETTLE_MARKET: Event indicating the market has stopped and settled\n - BUS_EVENT_TYPE_TRANSACTION_RESULT: Event indicating the result of a transaction processed by the network\n - BUS_EVENT_TYPE_SNAPSHOT_TAKEN: Event indicating a snapshot was taken at this block height\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_DATA_NODE_READY: Event data node uses to notify that it is ready to upgrade\n - BUS_EVENT_TYPE_DISTRESSED_ORDERS_CLOSED: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_EXPIRED_ORDERS: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_DISTRESSED_POSITIONS: Event indicating parties have become, or were, distressed but still have an active position.\n - BUS_EVENT_TYPE_SPOT_LIQUIDITY_PROVISION: Event indicating a spot liquidity provision has been created or updated.\n - BUS_EVENT_TYPE_STOP_ORDER: Event indicating a stop order has been submitted or updated.\n - BUS_EVENT_TYPE_FUNDING_PERIOD: Event indicating the start or end of a funding period.\n - BUS_EVENT_TYPE_FUNDING_PERIOD_DATA_POINT: Event indicating a data point for a funding period has been received.\n - BUS_EVENT_TYPE_TEAM_CREATED: Event indicating a team has been created.\n - BUS_EVENT_TYPE_TEAM_UPDATED: Event indicating a team has been updated.\n - BUS_EVENT_TYPE_REFEREE_SWITCHED_TEAM: Event indicating a referee switched team.\n - BUS_EVENT_TYPE_REFEREE_JOINED_TEAM: Event indicating a referee joined a team.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_STARTED: Event indicating a referral program started.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_UPDATED: Event indicating a referral program has been updated.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_ENDED: Event indicating a referral program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_CREATED: Event indicating a set has been created.\n - BUS_EVENT_TYPE_REFEREE_JOINED_REFERRAL_SET: Event indicating a referee joined a set.\n - BUS_EVENT_TYPE_PARTY_ACTIVITY_STREAK: Event indicating the updated activity streak for a party\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_STARTED: Event indicating a volume discount program started.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_UPDATED: Event indicating a volume discount program has been updated.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_ENDED: Event indicating a volume discount program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_STATS_UPDATED: Event indicating the updated statistics for a referral set.\n - BUS_EVENT_TYPE_VESTING_STATS_UPDATED: Event indicating the updated statistics for the vesting program.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_STATS_UPDATED: Event indicating the updated statistics for the volume discount.\n - BUS_EVENT_TYPE_FEES_STATS_UPDATED: Event indicating the fees statistics per market at end of epoch\n - BUS_EVENT_TYPE_FUNDING_PAYMENTS: Event indicating a funding period has ended and resulted in funding payment transfers.\n - BUS_EVENT_TYPE_PAID_LIQUIDITY_FEES_STATS_UPDATED: Event used to report the updated paid liquidity fee statistics for the market at the end of the epoch\n - BUS_EVENT_TYPE_VESTING_SUMMARY: Event used to report the summary of vesting and locked balances at the end of the epoch\n - BUS_EVENT_TYPE_TRANSFER_FEES_PAID: Event used to link ledger entries to the transfer that triggered the fees being collected.\n - BUS_EVENT_TYPE_TRANSFER_FEES_DISCOUNT_UPDATED: Event indicating that a party's available transfer fee discount has changed, per asset.\n - BUS_EVENT_TYPE_PARTY_MARGIN_MODE_UPDATED: Event indicating that a party updated their margin mode on a market.\n - BUS_EVENT_TYPE_PARTY_PROFILE_UPDATED: Event indicating that a party updated their profile.\n - BUS_EVENT_TYPE_TEAMS_STATS_UPDATED: Event indicating that teams' statistics have been updated.\n - BUS_EVENT_TYPE_MARKET: Event indicating a market related event, for example when a market opens\n - BUS_EVENT_TYPE_TX_ERROR: Event used to report failed transactions back to a user, this is excluded from the ALL type",
       "title": "Bus event type is used to specify a type of event\nIt has 2 styles of event:\nSingle values (e.g. BUS_EVENT_TYPE_ORDER) where they represent one data item\nGroup values (e.g. BUS_EVENT_TYPE_AUCTION) where they represent a group of data items"
     },
     "v1CheckRawTransactionRequest": {
@@ -4067,6 +4073,35 @@
         }
       }
     },
+    "v1TeamMemberStats": {
+      "type": "object",
+      "properties": {
+        "partyId": {
+          "type": "string",
+          "description": "The party ID of the team member."
+        },
+        "notionalVolume": {
+          "type": "string",
+          "description": "Team members' notional volume for the epoch."
+        }
+      }
+    },
+    "v1TeamStats": {
+      "type": "object",
+      "properties": {
+        "teamId": {
+          "type": "string",
+          "description": "The unique identifier of the team."
+        },
+        "membersStats": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1TeamMemberStats"
+          },
+          "description": "Statistics for each team member."
+        }
+      }
+    },
     "v1TeamUpdated": {
       "type": "object",
       "properties": {
@@ -4098,6 +4133,24 @@
           "description": "List of public keys that are allowed to join the team."
         }
       }
+    },
+    "v1TeamsStatsUpdated": {
+      "type": "object",
+      "properties": {
+        "atEpoch": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Epoch at which the statistics are updated."
+        },
+        "stats": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1TeamStats"
+          },
+          "description": "All teams' stats."
+        }
+      },
+      "description": "Stats for all teams."
     },
     "v1TimeUpdate": {
       "type": "object",
@@ -5206,7 +5259,7 @@
           "items": {
             "$ref": "#/definitions/vegaDataSourceDefinition"
           },
-          "description": "Additional price sources to be used for index price calculation."
+          "description": "Additional price sources to be used for internal composite price calculation."
         },
         "dataSourcesSpecBinding": {
           "type": "array",
@@ -5217,6 +5270,36 @@
         }
       },
       "description": "Mark price configuration parameters."
+    },
+    "vegaCompositePriceSource": {
+      "type": "object",
+      "properties": {
+        "priceSource": {
+          "type": "string",
+          "description": "Source of the price."
+        },
+        "price": {
+          "type": "string",
+          "description": "Current value of the composite source price."
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "int64",
+          "description": "Timestamp in Unix nanoseconds when the price source was last updated."
+        }
+      }
+    },
+    "vegaCompositePriceState": {
+      "type": "object",
+      "properties": {
+        "priceSources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/vegaCompositePriceSource"
+          }
+        }
+      },
+      "description": "Underlying state of the composite price.."
     },
     "vegaCompositePriceType": {
       "type": "string",
@@ -6610,6 +6693,10 @@
         "markPriceType": {
           "$ref": "#/definitions/vegaCompositePriceType",
           "description": "The method used for calculating the mark price."
+        },
+        "markPriceState": {
+          "$ref": "#/definitions/vegaCompositePriceState",
+          "description": "State of the internal composite price."
         }
       },
       "title": "Represents data generated by a market when open"
@@ -7302,9 +7389,9 @@
           "type": "string",
           "description": "Upper bound for the funding-rate such that the funding-rate will never be higher than this value."
         },
-        "indexPriceConfig": {
+        "internalCompositePriceConfig": {
           "$ref": "#/definitions/vegaCompositePriceConfiguration",
-          "description": "Optional configuration for the index price used in funding payment calculation."
+          "description": "Optional configuration for the internal composite price used in funding payment calculation."
         }
       },
       "title": "Perpetual product definition"
@@ -7338,18 +7425,26 @@
           "format": "int64",
           "title": "Funding period start time"
         },
-        "indexPrice": {
+        "internalCompositePrice": {
           "type": "string",
-          "description": "The index price used for perps."
+          "description": "The internal composite price used for perpetual markets."
         },
-        "nextIndexPriceCalc": {
+        "nextInternalCompositePriceCalc": {
           "type": "string",
           "format": "int64",
-          "description": "The next time the index price is calculated for perps."
+          "description": "The next time the internal composite price is calculated for the perpetual market, in Unix nanoseconds."
         },
-        "indexPriceType": {
+        "internalCompositePriceType": {
           "$ref": "#/definitions/vegaCompositePriceType",
-          "description": "The method used for calculating the index price (perps only)."
+          "description": "The method used for calculating the internal composite price, for perpetual markets only."
+        },
+        "underlyingIndexPrice": {
+          "type": "string",
+          "description": "Last seen value of the settlement oracle."
+        },
+        "internalCompositePriceState": {
+          "$ref": "#/definitions/vegaCompositePriceState",
+          "description": "State of the internal composite price."
         }
       },
       "description": "Represents market data specific to a perpetual market."
@@ -7405,9 +7500,9 @@
           "type": "string",
           "description": "Upper bound for the funding-rate such that the funding-rate will never be higher than this value."
         },
-        "indexPriceConfiguration": {
+        "internalCompositePriceConfiguration": {
           "$ref": "#/definitions/vegaCompositePriceConfiguration",
-          "description": "Composite price configuration to drive the calculation of the index price used for funding payments. If undefined the default mark price of the market is used."
+          "description": "Composite price configuration to drive the calculation of the internal composite price used for funding payments. If undefined the default mark price of the market is used."
         }
       },
       "title": "Perpetual product configuration"
@@ -8524,9 +8619,9 @@
           "type": "string",
           "description": "Upper bound for the funding-rate such that the funding-rate will never be higher than this value."
         },
-        "indexPriceConfiguration": {
+        "internalCompositePriceConfiguration": {
           "$ref": "#/definitions/vegaCompositePriceConfiguration",
-          "description": "Configuration for the index price used in funding payment calculation."
+          "description": "Configuration for the internal composite price used in funding payment calculation."
         }
       },
       "title": "Perpetual product configuration"

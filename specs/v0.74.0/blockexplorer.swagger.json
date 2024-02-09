@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Vega block explorer APIs",
-    "version": "v0.74.0-preview.6"
+    "version": "v0.74.0"
   },
   "tags": [
     {
@@ -876,6 +876,14 @@
           "$ref": "#/definitions/v1JoinTeam",
           "description": "Command to join a team."
         },
+        "batchProposalSubmission": {
+          "$ref": "#/definitions/v1BatchProposalSubmission",
+          "description": "Command to submit a batch governance proposal."
+        },
+        "updatePartyProfile": {
+          "$ref": "#/definitions/v1UpdatePartyProfile",
+          "description": "Command to update a party's profile."
+        },
         "nodeVote": {
           "$ref": "#/definitions/v1NodeVote",
           "description": "Validator command sent automatically to vote on that validity of an external resource."
@@ -915,14 +923,6 @@
         "oracleDataSubmission": {
           "$ref": "#/definitions/v1OracleDataSubmission",
           "description": "Command to submit external oracle data."
-        },
-        "batchProposalSubmission": {
-          "$ref": "#/definitions/v1BatchProposalSubmission",
-          "description": "Command to submit a batch governance proposal."
-        },
-        "updatePartyProfile": {
-          "$ref": "#/definitions/v1UpdatePartyProfile",
-          "description": "Command to update a party's profile."
         }
       },
       "description": "Input data for a transaction containing a network command for the Vega network to execute.\nOnce populated the protobuf message should be marshalled into a byte array and included in a transaction message."
@@ -1905,7 +1905,7 @@
           "items": {
             "$ref": "#/definitions/vegaDataSourceDefinition"
           },
-          "description": "Additional price sources to be used for index price calculation."
+          "description": "Additional price sources to be used for internal composite price calculation."
         },
         "dataSourcesSpecBinding": {
           "type": "array",
@@ -3113,9 +3113,9 @@
           "type": "string",
           "description": "Upper bound for the funding-rate such that the funding-rate will never be higher than this value."
         },
-        "indexPriceConfiguration": {
+        "internalCompositePriceConfiguration": {
           "$ref": "#/definitions/vegaCompositePriceConfiguration",
-          "description": "Composite price configuration to drive the calculation of the index price used for funding payments. If undefined the default mark price of the market is used."
+          "description": "Composite price configuration to drive the calculation of the internal composite price used for funding payments. If undefined the default mark price of the market is used."
         }
       },
       "title": "Perpetual product configuration"
@@ -3753,9 +3753,9 @@
           "type": "string",
           "description": "Upper bound for the funding-rate such that the funding-rate will never be higher than this value."
         },
-        "indexPriceConfiguration": {
+        "internalCompositePriceConfiguration": {
           "$ref": "#/definitions/vegaCompositePriceConfiguration",
-          "description": "Configuration for the index price used in funding payment calculation."
+          "description": "Configuration for the internal composite price used in funding payment calculation."
         }
       },
       "title": "Perpetual product configuration"
