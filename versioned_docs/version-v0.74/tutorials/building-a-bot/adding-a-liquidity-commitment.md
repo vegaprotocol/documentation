@@ -4,6 +4,7 @@ sidebar_position: 3
 hide_title: false
 description: Add a liquidity commitment to the bot
 ---
+import NetworkParameter from '@site/src/components/NetworkParameter';
 
 This tutorial builds upon the basis of the codebase in [streaming data](streaming-data.md), so ensure you have run through that tutorial first if you want to build a working bot.
 

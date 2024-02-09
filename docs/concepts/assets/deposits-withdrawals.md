@@ -5,8 +5,6 @@ hide_title: false
 description: Deposits and withdrawals go through a bridge contract.
 ---
 
-import NetworkParameter from '@site/src/components/NetworkParameter';
-
 Assets used for trading, paying fees, funding rewards, and providing liquidity need to be deposited using a bridge contract, and can be withdrawn back into an Ethereum wallet if they are not being used for margin or liquidity bond.
 
 Once an asset is deposited, it's available in your general account, from which it then may be held in other account types depending on what you use the assets for. 

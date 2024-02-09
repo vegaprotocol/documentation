@@ -8,7 +8,6 @@ vega_network: MAINNET
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import NetworkParameter from '@site/src/components/NetworkParameter';
 import EthAddresses from '@site/src/components/EthAddresses';
 
 :::caution Completing a withdrawal
