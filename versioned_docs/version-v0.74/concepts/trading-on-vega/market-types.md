@@ -5,8 +5,6 @@ hide_title: false
 description: Understand the products supported by the network.
 ---
 
-import NetworkParameter from '@site/src/components/NetworkParameter';
-
 Markets supported by the Vega network are cash-settled. When a market expires or a position is closed, the seller does not deliver the underlying asset, but rather transfers the associated cash amount in market's settlement asset.
 
 All markets created using Vega software are proposed through governance, by community members. Market proposals that pass a governance vote are then enacted and can be traded on.

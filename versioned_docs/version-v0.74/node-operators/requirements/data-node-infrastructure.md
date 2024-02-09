@@ -6,7 +6,6 @@ vega_network: MAINNET
 hide_title: false
 ---
 
-import NetworkParameter from '@site/src/components/NetworkParameter';
 import Topic from '/docs/topics/\_topic-data-nodes.mdx';
 
 <Topic />

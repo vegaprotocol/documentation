@@ -13,7 +13,6 @@ tags:
   - asset
 ---
 
-import NetworkParameter from '@site/src/components/NetworkParameter';
 import EthAddresses from '@site/src/components/EthAddresses';
 
 # Update the asset bridge
