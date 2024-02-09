@@ -132,8 +132,8 @@
 
       // Optional new futures market metadata, tags.
       metadata: [
-       "enactment:2024-02-28T18:25:09Z",
-       "settlement:2024-02-27T18:25:09Z",
+       "enactment:2024-02-29T17:20:46Z",
+       "settlement:2024-02-28T17:20:46Z",
        "source:docs.vega.xyz"
       ],
 
@@ -248,7 +248,7 @@
        // Which method is used for the calculation of the composite price for the market. (string)
        compositePriceType: "COMPOSITE_PRICE_TYPE_WEIGHTED",
 
-       // Additional price sources to be used for index price calculation. (array)
+       // Additional price sources to be used for internal composite price calculation. (array)
        dataSourcesSpec: [],
 
        // List of each price source and its corresponding binding (array)
@@ -258,11 +258,11 @@
 
      // Timestamp as Unix time in seconds when voting closes for this proposal,
      // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-     closingTimestamp: 1709058309,
+     closingTimestamp: 1709140846,
 
      // Timestamp as Unix time in seconds when proposal gets enacted if passed,
      // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-     enactmentTimestamp: 1709144709,
+     enactmentTimestamp: 1709227246,
     }
    }
 ```
