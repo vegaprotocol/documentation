@@ -55,6 +55,36 @@ We recommend checking all of the changes on your own. Follow the below instructi
   - data-node config
 3. Compare the new generated file in the temp location and the old file to see the differences.
 
+
+#### `Ethereum.EVMChainConfigs` - VALIDATORS ONLY
+
+- `config file`: vega-config
+- `description`: Vega got support for pulling the prices from the L2 ethereum-like chain like Gnosis, Optimis, Arbitrum, etc... [Vega enforce you to setup the Gnoisis and the Arbitrum One by default](https://github.com/vegaprotocol/vega/pull/10552/files). Each validator must specify RPC credentials in their vega config for the following chains: Gnosis, Arbitrum One.
+- `kind`: new parameter
+
+You may considering to use one of the following RPC providers:
+
+- https://blastapi.io/ - 40 calls/sec(12 000 000 calls/month)
+- https://onfinality.io/ - 500 000 calls/day (15 000 000 calls/month)
+- https://ankr.com/ - 30 calls/sec
+- https://chainnodes.org/ - 25 calls/sec (12 500 000 calls/month)
+
+
+```diff title="YOUR_VEGA_CONFIG/config/node/config.toml"
+[Ethereum]
+  ...
+  ...
+  
+  [[Ethereum.EVMChainConfigs]]
+    ChainID = "100"
+    RPCEndpoint = "YOUR_RPC_ENDPOINT_FOR_GNOSIS"
+  [[Ethereum.EVMChainConfigs]]
+    ChainID = "42161"
+    RPCEndpoint = "YOUR_ENDPOINT_FOR_THE_ARBITRUM_ONE"
+...
+```
+
+
 #### `fast_sync`
 
 - `config file`: comet BFT
