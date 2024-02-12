@@ -59,7 +59,7 @@ We recommend checking all of the changes on your own. Follow the below instructi
 #### `Ethereum.EVMChainConfigs` - VALIDATORS ONLY
 
 - `config file`: vega-config
-- `description`: Vega now supports receiving prices from EVM chain like Gnosis, Optimis, Arbitrum, etc. Your node is required to support [Gnosis and Arbitrum One by default ↗](https://github.com/vegaprotocol/vega/pull/10552/files). Each validator **must** specify RPC credentials in their Vega config for Gnosis and Arbitrum One chains.
+- `description`: Vega now supports receiving prices from EVM chains like Gnosis, Optimism, Arbitrum, etc. Your node is required to support [Gnosis and Arbitrum One by default ↗](https://github.com/vegaprotocol/vega/pull/10552/files). Each validator **must** specify RPC credentials in their Vega config for Gnosis and Arbitrum One chains.
 - `kind`: new parameter
 
 Some RPC providers include:
