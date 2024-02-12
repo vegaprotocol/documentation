@@ -1,9 +1,9 @@
 ---
-title: Upgrade to 0.74.0
-sidebar_label: Upgrade to 0.74.0
+title: Upgrade to 0.74
+sidebar_label: Upgrade to 0.74
 ---
 
-This guide describes the steps to upgrade from v0.73.13 to v0.74.1 using the protocol upgrade mechanism. See the changelogs for [v0.74.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.74.0) and [ ↗] for information about breaking changes and new features.
+This guide describes the steps to upgrade from v0.73.13 to v0.74.1 using the protocol upgrade mechanism. See the changelogs for [v0.74.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.74.0) and [v0.74.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.74.1) for information about breaking changes and new features.
 
 ## Assumptions for the guide
 The instructions below are written for Debian-like Linux operating systems.
@@ -14,7 +14,7 @@ This guide is specifically intended for those who are already running a validato
 
 ## Study the changes between versions
 
-Before upgrading your node software, **review the changelogs** for [v0.74.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.74.0) for a list of breaking API changes compared to the previously released version.
+Before upgrading your node software, **review the changelogs** for [v0.74.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.74.0) and [v0.74.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.74.1) for a list of breaking API changes compared to the previously released version.
 
 ## Before you upgrade
 
@@ -48,7 +48,7 @@ Add the following new parameters to the configuration files.
 
 We recommend checking all of the changes on your own. Follow the below instructions to do it, and read through every description to understand the changes:
 
-1. Download vega `v0.74.0`
+1. Download vega `v0.74.1`
 2. Generate config files within the temp home directory
   - vega config
   - comet BFT config
