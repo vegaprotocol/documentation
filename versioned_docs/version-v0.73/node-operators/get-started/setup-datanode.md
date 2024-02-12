@@ -274,6 +274,18 @@ If your node fails with this error message, follow the procedure described below
 After `v0.73.6-patch.2` your node will continue replaying normally.
 :::
 
+
+:::warning
+A bug on the Vega network that crashed the mainnet network at block `34669654`. This makes replaying chain from block 0 more complicated.
+
+If your node fails with this error message, follow the procedure described below: `runtime error: invalid memory address or nil pointer dereference`
+
+1. Download the [v0.73.13-patch.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.13-patch.1) binary
+2. Replace old vega binary with the one you downloaded
+3. Start your node with the latest local snapshot(just restart node with a new binary)
+:::
+
+
 ## Starting the data node from network history
 
 If you're using network history to get the current state to start up your data node, you'll first need to start the non validator node using a snapshot. Follow the instructions in the [non validator node set up guide](./setup-non-validator.md#start-a-node-using-a-remote-snapshot).
