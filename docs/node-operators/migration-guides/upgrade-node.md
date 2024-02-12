@@ -3,7 +3,7 @@ title: Upgrade to 0.74.0
 sidebar_label: Upgrade to 0.74.0
 ---
 
-This guide describes the steps to upgrade from v0.73.13 to v0.74.0 using the protocol upgrade mechanism. See the changelogs for [v0.74.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.74.0) for information about breaking changes and new features.
+This guide describes the steps to upgrade from v0.73.13 to v0.74.1 using the protocol upgrade mechanism. See the changelogs for [v0.74.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.74.0) and [ ↗] for information about breaking changes and new features.
 
 ## Assumptions for the guide
 The instructions below are written for Debian-like Linux operating systems.
@@ -14,7 +14,7 @@ This guide is specifically intended for those who are already running a validato
 
 ## Study the changes between versions
 
-Before upgrading your node software, **review the changelog** for [v0.74.0](https://github.com/vegaprotocol/vega/releases/tag/v0.74.0) for a list of breaking API changes compared to the previously released version.
+Before upgrading your node software, **review the changelogs** for [v0.74.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.74.0) for a list of breaking API changes compared to the previously released version.
 
 ## Before you upgrade
 
@@ -59,16 +59,15 @@ We recommend checking all of the changes on your own. Follow the below instructi
 #### `Ethereum.EVMChainConfigs` - VALIDATORS ONLY
 
 - `config file`: vega-config
-- `description`: Vega got support for pulling the prices from the L2 ethereum-like chain like Gnosis, Optimis, Arbitrum, etc... [Vega enforce you to setup the Gnoisis and the Arbitrum One by default](https://github.com/vegaprotocol/vega/pull/10552/files). Each validator must specify RPC credentials in their vega config for the following chains: Gnosis, Arbitrum One.
+- `description`: Vega now supports receiving prices from EVM chain like Gnosis, Optimis, Arbitrum, etc. Your node is required to support [Gnosis and Arbitrum One by default ↗](https://github.com/vegaprotocol/vega/pull/10552/files). Each validator **must** specify RPC credentials in their Vega config for Gnosis and Arbitrum One chains.
 - `kind`: new parameter
 
-You may considering to use one of the following RPC providers:
+Some RPC providers include:
 
-- https://blastapi.io/ - 40 calls/sec(12 000 000 calls/month)
-- https://onfinality.io/ - 500 000 calls/day (15 000 000 calls/month)
-- https://ankr.com/ - 30 calls/sec
-- https://chainnodes.org/ - 25 calls/sec (12 500 000 calls/month)
-
+- [Blast ↗](https://blastapi.io/) - 40 calls/sec(12 000 000 calls/month)
+- [OnFinality ↗](https://onfinality.io/) - 500 000 calls/day (15 000 000 calls/month)
+- [Ankr ↗](https://ankr.com/) - 30 calls/sec
+- [Chainnodes ↗](https://chainnodes.org/) - 25 calls/sec (12 500 000 calls/month)
 
 ```diff title="YOUR_VEGA_CONFIG/config/node/config.toml"
 [Ethereum]
@@ -80,10 +79,9 @@ You may considering to use one of the following RPC providers:
     RPCEndpoint = "YOUR_RPC_ENDPOINT_FOR_GNOSIS"
   [[Ethereum.EVMChainConfigs]]
     ChainID = "42161"
-    RPCEndpoint = "YOUR_ENDPOINT_FOR_THE_ARBITRUM_ONE"
+    RPCEndpoint = "YOUR_RPC_ENDPOINT_FOR_ARBITRUM_ONE"
 ...
 ```
-
 
 #### `fast_sync`
 
