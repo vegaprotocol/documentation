@@ -257,9 +257,8 @@ vega datanode start --home=$YOUR_DATANODE_HOME_PATH
 
 4. Now start the non validator node and confirm that both apps are running and you can see the block height increasing on both.
 
-:::warning
-
-A bug on the Vega network that crashed the mainnet network at block `26439343`. This makes replaying chain from block 0 more complicated.
+### Potential error: Cannot unregister order
+A bug crashed the mainnet network at block `26439343`. This makes replaying the chain from block 0 more complicated.
 
 If your node fails with this error message, follow the procedure described below: `cannot unregister order with potential sell + size changes < 0`
 
@@ -272,19 +271,17 @@ If your node fails with this error message, follow the procedure described below
 **It is essential to let the binary fail with the `v0.73.6-patch.1` binary, or you won't be able to move your node forward!**
 
 After `v0.73.6-patch.2` your node will continue replaying normally.
-:::
 
+### Potential error: Invalid memory address
+A bug crashed the mainnet network at block `34669654`.
 
-:::warning
-A bug on the Vega network that crashed the mainnet network at block `34669654`. This makes replaying chain from block 0 more complicated.
+This makes replaying chain from block 0 more complicated.
 
 If your node fails with this error message, follow the procedure described below: `runtime error: invalid memory address or nil pointer dereference`
 
 1. Download the [v0.73.13-patch.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.13-patch.1) binary
-2. Replace old vega binary with the one you downloaded
-3. Start your node with the latest local snapshot(just restart node with a new binary)
-:::
-
+2. Replace the old vega binary with the one you downloaded
+3. Start your node with the latest local snapshot - just restart node with a new binary
 
 ## Starting the data node from network history
 

@@ -276,8 +276,7 @@ There was a mainnet bug that crashed the network.
 
 ### Solution: Apply patches to the mainnet network
 
-See the following procedure: [Apply patches for the consensus failure at block 26439343](../get-started/setup-datanode.md##starting-the-data-node-from-block-0).
-
+See the following procedure: [Apply patches for the consensus failure at block 26439343](../get-started/setup-datanode.md#potential-error-cannot-unregister-order).
 
 ## Problem: CONSENSUS FAILURE at block `34669654`
 
@@ -286,11 +285,9 @@ If the block is different, this is a different issue.
 
 There was a mainnet bug that crashed the network.
 
-
 ### Solution: Apply patches to the mainnet network
 
-See the following procedure: [Apply patches for the consensus failure at block 26439343](../get-started/setup-datanode.md##starting-the-data-node-from-block-0).
-
+See the following procedure: [Apply patches for the consensus failure at block 26439343](../get-started/setup-datanode.md#potential-error-invalid-memory-address).
 
 ## Problem: You encounter deadlocking issues with the Postgres database causing it to crash.
 
