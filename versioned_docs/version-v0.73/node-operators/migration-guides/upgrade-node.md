@@ -164,6 +164,8 @@ Some RPC providers include:
 - [fastsync]
 + [blocksync]
 ```
+### Data node breaking changes
+
 #### IPFS storage migration
 
 The data node keeps segments in IPFS. The IPFS golang module has been updated in the v0.74 release - the IPFS file system also requires a migration. 
