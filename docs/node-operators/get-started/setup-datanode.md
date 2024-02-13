@@ -257,6 +257,32 @@ vega datanode start --home=$YOUR_DATANODE_HOME_PATH
 
 4. Now start the non validator node and confirm that both apps are running and you can see the block height increasing on both.
 
+### Potential error: Cannot unregister order
+A bug crashed the mainnet network at block `26439343`. This makes replaying the chain from block 0 more complicated.
+
+If your node fails with this error message, follow the procedure described below: `cannot unregister order with potential sell + size changes < 0`
+
+1. Roll back tendermint block: `vega tm rollback --home <tendermint_home>`
+2. Download the [v0.73.6-patch.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.6-patch.1) binary
+3. Start your node with downloaded binary from block `26439116`, e.g: with the following flag: `--snapshot.load-from-block-height 26439116`
+4. The binary will apply some fixes to the broken transactions, but the node will fail with the following error: `panic: cannot unregister order with potential sell + size change < 0`.
+5. Reply steps 1-3, but use the [v0.73.6-patch.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.6-patch.2) binary.
+
+**It is essential to let the binary fail with the `v0.73.6-patch.1` binary, or you won't be able to move your node forward!**
+
+After `v0.73.6-patch.2` your node will continue replaying normally.
+
+### Potential error: Invalid memory address
+A bug crashed the mainnet network at block `34669654`.
+
+This makes replaying chain from block 0 more complicated.
+
+If your node fails with this error message, follow the procedure described below: `runtime error: invalid memory address or nil pointer dereference`
+
+1. Download the [v0.73.13-patch.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.13-patch.1) binary
+2. Replace the old vega binary with the one you downloaded
+3. Start your node with the latest local snapshot - just restart node with a new binary
+
 ## Starting the data node from network history
 
 If you're using network history to get the current state to start up your data node, you'll first need to start the non validator node using a snapshot. Follow the instructions in the [non validator node set up guide](./setup-non-validator.md#start-a-node-using-a-remote-snapshot).
