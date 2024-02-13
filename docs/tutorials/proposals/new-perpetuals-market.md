@@ -19,6 +19,7 @@ import NewPerpetualMarketWin from './_generated-proposals/_newPerpetualMarket_wi
 import NewMarketJSONLiquidityMonitoring from './_generated-proposals/_newMarket_json_liqparams.md';
 import NewMarketJSONPriceMonitoring from './_generated-proposals/_newMarket_json_priceparams.md';
 import NewMarketJSONRisk from './_generated-proposals/_newMarket_json_risk.md';
+import Batch from './_batch-sample.md';
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -62,7 +63,6 @@ Instrument, liquidity monitoring parameters, price monitoring parameters, and da
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
 | `linearSlippageFactor` | The linear slippage factor captures that for a bigger position there is proportionally bigger liquidity risk. | 0.001 |
-| `quadraticSlippageFactor` | The quadratic slippage factor determines by what factor especially large positions can be penalised. When closing those out, the system will 'walk the book' and potentially end up with an execution price notably worse that the last mark price. | 0.0 |
 
 ### Instrument
 An instrument contains the following properties:
@@ -78,6 +78,9 @@ An instrument contains the following properties:
 | `interestRate`| Sets the continuously compounded interest rate used in funding rate calculation. Must be in the range [-1, 1].| 0.1 |
 | `clampLowerBound`| Lower bound for the clamp function used as part of the funding rate calculation. Must be in the range [-1, 1]. | 0 |
 | `clampUpperBound`| Upper bound for the clamp function used as part of the funding rate calculation. Must be in the range [-1, 1]. | 0 |
+| `scalingFactor` | Scaling factor to apply to the funding payments, optional. This scales the impact that spot price deviations have on funding payments. Can be any positive real number. Adding in a 2, for example, will double the funding payments. | 2 | 
+| `rateLowerBound` | Lower bound that will be applied to funding payments such that the resulting funding rate will never be lower than the specified value, optional. The number submitted is converted to a percentage. For example, -0.005 will be -0.5%. Can be any real number. | -0.005 |
+| `rateUpperBound` | Upper bound that will be applied to the funding payments, such that the resulting funding rate will never be greater than than the specified value, optional. The number submitted is converted to a percentage. For example, 0.005 will be 0.5%. Can be any real number. | 0.005 | 
 | [`dataSourceSpecForSettlementData`](#data-source-for-settlement-data) | This defines the Ethereum data source, the method, normalisers, required confirmations, etc, that will be used to identify the settlement price when the market expires. | |
 | [`dataSourceSpecForSettlementSchedule`](#data-source-for-settlement-schedule) | This defines how the market will source data for funding, and how often to source it. | |
 | [`dataSourceSpecBinding`](#data-source-bindings) | The fields describe how specific information provided by the data source is used. For example, they are used to set the settlement data property and the settlement schedule property. |
@@ -105,7 +108,7 @@ Data source specs include the following properties under `ethOracle`:
 | ----------- | ----------- | ----------- |
 | `address` | Ethereum address that can sign and submit values for this data source | Valid Ethereum address |
 | `abi` | The abi tells the settlement spec how to interact with the oracle. | |
-| `method` | Method is one field that describes what information to take from the oracle. | latestAnswer |
+| `method` | Method is one field that describes what information to take from the oracle. | latestRoundData |
 | `args` | Any extra information that is required from the contract. Can be left as an empty array if there is none. | |
 | `normalisers`: `name`, `expression` | Normalisers are used to convert the data returned from the contract method into a standard format. The name identifies the specific piece of data. The value is where in the contract call result the required data is located. For example $[0] is the first result. |  |
 | `requiredConfirmations` | Number of network confirmations before data can be considered verified | 3 |
@@ -127,7 +130,7 @@ Learn how to find and submit data in the [submitting data sources tutorial](../u
 :::
 
 ### Liquidity monitoring
-The liquidity monitoring settings detect when the market's liquidity drops below the safe level, and as such when to launch a 'liquidity seeking' auction. See below for more details on each field.
+The liquidity monitoring settings detect when the market's liquidity drops below the ideal level. See below for more details on each field.
 
 <NewMarketJSONLiquidityMonitoring />
 
@@ -136,13 +139,11 @@ Liquidity monitoring uses the following properties:
 | Field | Description | Sample value |
 | ----------- | ----------- | ----------- |
 | `targetStakeParameters` | Target stake parameters are derived from open interest history over a time window to calculate the maximum open interest. |
-| `timeWindow` | Defines the length of time (in seconds) over which open interest is measured. If empty, this field defaults to <NetworkParameter frontMatter={frontMatter} param="market.stake.target.timeWindow" hideName={true} />. | 3600 |
-| `scalingFactor` | The target stake scaling factor scales the estimated required liquidity (based on the market's risk model and current market data) to yield the market's target stake. If not included, it defaults to the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.stake.target.scalingFactor" hideValue={true} />. The scaling factor must be a number greater than zero and finite | 10 |
-| `triggeringRatio` | Specifies the triggering ratio for entering liquidity auction. If empty, the network will default to <NetworkParameter frontMatter={frontMatter} param="market.liquidity.targetstake.triggering.ratio" hideName={true} /> | 0.7 |
-| `auctionExtension` | Specifies by how many seconds an auction should be extended if leaving the auction were to trigger a liquidity auction. If empty, the network will default to the network parameter <NetworkParameter frontMatter={frontMatter} param="market.monitor.price.defaultParameters" hideValue={true} /> | 1 |
+| `timeWindow` | Defines the length of time (in seconds) over which open interest is measured. | 3600 |
+| `scalingFactor` | The target stake scaling factor scales the estimated required liquidity (based on the market's risk model and current market data) to yield the market's target stake. The scaling factor must be a number greater than zero and finite | 10 |
 
 ### Price monitoring
-Price monitoring parameters are optional, and configure the acceptable price movement bounds for price monitoring. If you leave these blank, they will default to the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.monitor.price.defaultParameters" hideValue={true} />). See below for more details on each field.
+Price monitoring parameters are optional, and configure the acceptable price movement bounds for price monitoring. See below for more details on each field.
 
 <NewMarketJSONPriceMonitoring />
 
@@ -184,6 +185,10 @@ The liquidity parameters set the requirements that liquidity providers on the ma
 | `commitmentMinTimeFraction` | The minimum fraction of time that LPs must spend on the book and within the price range | 0.1 | 
 | `performanceHysteresisEpochs` | Sets the number of epochs over which past performance will continue to affect rewards. | 10 | 
 | `slaCompetitionFactor` | Sets the maximum fraction of their accrued fees an LP that meets the SLA will lose to liquidity providers that achieved a higher SLA performance than them. | 0.2 | 
+| `liquidityFeeSettings` | Optional setting for how the liquidity fee factor is determined. See [liquidity fees](../../concepts/liquidity/rewards-penalties.md#determining-the-liquidity-fee-percentage) for more. | `METHOD_MARGINAL_COST` (default) `METHOD_CONSTANT`, `METHOD_WEIGHTED_AVERAGE` |
+| `feeConstant` | For the fee setting `METHOD_CONSTANT`, a constant fee factor needs to be provided. | 0.00005 |
+
+<Batch />
 
 ## Templates and submitting
 In the tabs below you'll see:

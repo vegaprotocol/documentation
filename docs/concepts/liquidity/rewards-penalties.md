@@ -60,12 +60,40 @@ Read more: How SLA performance is calculated (spec when out of CE branch)
 -->
 
 ### Determining the liquidity fee percentage
+Market proposers can set how the liquidity fee charged to traders is calculated. 
 
-1. Each liquidity provider submits their desired liquidity fee factor in the liquidity commitment transaction. It’s a number between 0 and 1. The final fee factor is converted into a percentage. Every LP’s proposed fee factor goes into determining the actual fee each trader will pay on a trade in that market.
-2. The liquidity orders submitted are sorted into increasing fee order so that the lowest fee percentage bid is at the top, and the highest is at the bottom.
-3. The market's 'winning' fee depends on the liquidity required for the market (target stake) and the amount committed from each bidder. The protocol processes the LP commitments from top to bottom, adding up the commitment amounts until it reaches a level equal to, or greater than, the target stake. When that point is reached, the proposed fee that was provided with the last processed liquidity commitment is used. Initially, before a market opens for trading, the market's initial liquidity fee is the lowest proposed, because the market’s target stake is zero.
-4. Once the fee for the market is set, all liquidity orders charge that fee, regardless of whether the provider's submitted fee was higher or lower, and whatever the proposed fee factor.
-5. This fee percentage can change. Once the market passes governance and its opening auction begins, a clock starts ticking. The protocol calculates the target stake, and the fee is continuously re-evaluated. Liquidity providers amending or cancelling their commitments will also lead to the fee factor changing.
+There are three options: 
+
+1. **Constant fee**
+
+The market's liquidity fee is provided in the market proposal and this percentage doesn't vary.
+
+
+2. **Stake-weighted-average of submitted fees**
+
+Each liquidity provider submits their desired liquidity fee factor in the liquidity commitment transaction. It’s a number between 0 and 1. Each fee factor has a weight assigned to it based on the supplied liquidity from each provider. The fee factor that's used is the weighted average of all those submitted. The final fee factor is converted into a percentage.
+
+In the example below, three liquidity providers bid for their chosen fee factor. The final factor is the stake-weighted average of the three.
+
+[LP 1 stake = 120 ETH, LP 1 liquidity-fee-factor = 0.5%]
+[LP 2 stake = 20 ETH, LP 2 liquidity-fee-factor = 0.75%]
+[LP 3 stake = 60 ETH, LP 3 liquidity-fee-factor = 3.75%]
+
+then
+
+liquidity fee factor = ((120 * 0.5%) + (20 * 0.75%) + (60 * 3.75%)) / (120 + 20 + 60) = 1.5%
+
+3. **Marginal cost**
+
+ a. Each liquidity provider submits their desired liquidity fee factor in the liquidity commitment transaction. It’s a number between 0 and 1. The final fee factor is converted into a percentage. Every LP’s proposed fee factor goes into determining the actual fee each trader will pay on a trade in that market.
+
+ b. The liquidity orders submitted are sorted into increasing fee order so that the lowest fee percentage bid is at the top, and the highest is at the bottom.
+ 
+ c. The market's 'winning' fee depends on the liquidity required for the market (target stake) and the amount committed from each bidder. The protocol processes the LP commitments from top to bottom, adding up the commitment amounts until it reaches a level equal to, or greater than, the target stake. When that point is reached, the proposed fee that was provided with the last processed liquidity commitment is used. Initially, before a market opens for trading, the market's initial liquidity fee is the lowest proposed, because the market’s target stake is zero.
+ 
+ d. Once the fee for the market is set, all liquidity orders charge that fee, regardless of whether the provider's submitted fee was higher or lower, and whatever the proposed fee factor.
+ 
+ e. This fee percentage can change. Once the market passes governance and its opening auction begins, a clock starts ticking. The protocol calculates the target stake, and the fee is continuously re-evaluated. Liquidity providers amending or cancelling their commitments will also lead to the fee factor changing.
 
 
 <details><summary>Liquidity fee example</summary>
@@ -154,11 +182,7 @@ If the liquidity provider's margin account doesn't have enough funds to support 
 
 The liquidity obligation will remain unchanged and the protocol will periodically search the liquidity provider's general account and attempt to top up the bond account to the amount specified in your liquidity commitment.
 
-Should the funds in the bond account drop to 0, you will be marked for closeout and your orders will be cancelled. If this puts the market into a state where it isn’t meeting the target stake, the market will go into a liquidity monitoring auction. If this happens while the market is transitioning from auction mode to continuous trading, you will not be penalised.
-
-:::note Read more
-[Concept: Liquidity monitoring](./../trading-on-vega/market-protections#liquidity-monitoring)
-:::
+Should the funds in the bond account drop to 0, you will be marked for closeout and your orders will be cancelled. If this happens while the market is transitioning from auction mode to continuous trading, you will not be penalised.
 
 #### Calculation of penalty for not supporting orders
 The penalty formula defines how much will be removed from the bond account:

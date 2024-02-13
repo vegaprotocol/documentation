@@ -17,6 +17,7 @@ import UpdateNetworkParameterCMD from './_generated-proposals/_updateNetworkPara
 import UpdateNetworkParameterWin from './_generated-proposals/_updateNetworkParameter_win.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Batch from './_batch-sample.md';
 
 # Propose a network parameter change
 
@@ -63,6 +64,9 @@ For example, a proposal to change the `rewards.activityStreak.benefitTiers` netw
   ]
 }"
 ```
+
+<Batch />
+
 
 ## Templates and submitting
 In the tabs below you'll see:

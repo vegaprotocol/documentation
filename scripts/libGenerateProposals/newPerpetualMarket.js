@@ -4,9 +4,12 @@ const { inspect } = require("util");
 const {
   generateMetadata,
   generatePriceMonitoringParameters,
-  generateLiquidityMonitoringParameters,
   generateRiskModel,
-  generateLiquiditySlaParameters
+  generateLiquiditySlaParameters,
+  generateLiquidationStrategy,
+  generateLiquidityFeeSettings,
+  generateMarkPriceConfiguration,
+  generateLiquidityMonitoringParameters,
 } = require('./newMarket')
 
 const instruments = [
@@ -20,9 +23,10 @@ function generatePerpetualSettlementDataSourceSpec(skeleton) {
   const spec = {
     "external": {
       "ethOracle": {
+          "sourceChainId": "1",
           "address": "0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43",
-          "abi": "[{\"inputs\":[],\"name\":\"latestAnswer\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-          "method": "latestAnswer",
+          "abi": "[{\"inputs\":[],\"name\":\"latestRoundData\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+          "method": "latestRoundData",
           "normalisers": [
               {
                   "name": "prices.ORANGES.value",
@@ -64,6 +68,10 @@ function generatePerpetualSettlementDataSourceSpec(skeleton) {
 
             // ${skeleton[p].external[p].ethOracle.description}
             "ethOracle": {
+               // ${skeleton[p].external[p].ethOracle[p].sourceChainId.description} (${skeleton[p].external[p].ethOracle[p].sourceChainId.format
+      } as ${skeleton[p].external[p].ethOracle[p].sourceChainId.type})
+               // ${skeleton[p].external[p].ethOracle[p].sourceChainId.description} 
+               "sourceChainId": "${spec.external.ethOracle.sourceChainId}",
                // ${skeleton[p].external[p].ethOracle[p].address.description}
                "address": "${spec.external.ethOracle.address}",
                // ${skeleton[p].external[p].ethOracle[p].abi.description}
@@ -218,15 +226,11 @@ function generatePerpetualInstrument(skeleton) {
 function newPerpetualMarket(skeleton, proposalSoFar) {
   assert.ok(skeleton[p].changes);
   assert.ok(skeleton[p].changes[p].decimalPlaces);
-  assert.ok(skeleton[p].changes[p].quadraticSlippageFactor);
   assert.ok(skeleton[p].changes[p].linearSlippageFactor);
   assert.ok(skeleton[p].changes[p].positionDecimalPlaces);
   assert.ok(skeleton[p].changes[p].instrument);
   assert.equal(skeleton[p].changes[p].metadata.type, "array");
   assert.ok(skeleton[p].changes[p].priceMonitoringParameters);
-  assert.ok(
-    skeleton[p].changes[p].liquidityMonitoringParameters
-  );
   assert.ok(skeleton[p].changes[p].logNormal);
 
   const result = {
@@ -238,7 +242,6 @@ function newPerpetualMarket(skeleton, proposalSoFar) {
       newMarket: {
         changes: {
           linearSlippageFactor: "0.001",
-          quadraticSlippageFactor: "0",
           decimalPlaces: "5",
           positionDecimalPlaces: "5",
 
@@ -252,9 +255,6 @@ function newPerpetualMarket(skeleton, proposalSoFar) {
           priceMonitoringParameters: generatePriceMonitoringParameters(
             skeleton.properties.changes.properties.priceMonitoringParameters
           ),
-          liquidityMonitoringParameters: generateLiquidityMonitoringParameters(
-            skeleton.properties.changes.properties.liquidityMonitoringParameters
-          ),
           logNormal: generateRiskModel(
             skeleton.properties.changes.properties.logNormal,
             "logNormal"
@@ -262,6 +262,18 @@ function newPerpetualMarket(skeleton, proposalSoFar) {
           liquiditySlaParameters: generateLiquiditySlaParameters(
             skeleton.properties.changes.properties.liquiditySlaParameters
           ),
+          liquidationStrategy: generateLiquidationStrategy(
+            skeleton.properties.changes.properties.liquidationStrategy
+          ),
+          liquidityFeeSettings: generateLiquidityFeeSettings(
+            skeleton.properties.changes.properties.liquidityFeeSettings
+          ),
+          liquidityMonitoringParameters: generateLiquidityMonitoringParameters(
+            skeleton.properties.changes.properties.liquidityMonitoringParameters
+          ),
+          markPriceConfiguration: generateMarkPriceConfiguration(
+            skeleton.properties.changes.properties.markPriceConfiguration
+          )
         },
       },
     },
@@ -273,8 +285,6 @@ function newPerpetualMarket(skeleton, proposalSoFar) {
         changes: {
           // ${skeleton.properties.changes.properties.linearSlippageFactor.description}
           linearSlippageFactor: ${result.terms.newMarket.changes.linearSlippageFactor},
-          // ${skeleton.properties.changes.properties.quadraticSlippageFactor.description}
-          quadraticSlippageFactor: ${result.terms.newMarket.changes.quadraticSlippageFactor},
 
           // ${skeleton.properties.changes.properties.decimalPlaces.description} (${skeleton.properties.changes.properties.decimalPlaces.format
       } as ${skeleton.properties.changes.properties.decimalPlaces.type})
@@ -297,26 +307,57 @@ function newPerpetualMarket(skeleton, proposalSoFar) {
         result.terms.newMarket.changes.priceMonitoringParameters,
         { depth: 19 }
       )},
-          // ${skeleton.properties.changes.properties.liquidityMonitoringParameters
-        .title
-      }
-          liquidityMonitoringParameters: ${inspect(
-        result.terms.newMarket.changes.liquidityMonitoringParameters,
-        { depth: 19 }
-      )},
           // ${skeleton.properties.changes.properties.logNormal.title}
           logNormal: ${inspect(result.terms.newMarket.changes.logNormal, {
         depth: 19,
       })},
-      // ${skeleton.properties.changes.properties.liquiditySlaParameters.title}
-         liquiditySlaParameters: ${inspect(result.terms.newMarket.changes.liquiditySlaParameters, {
-      depth: 19,
-    })},
-        }
-    }`;
-  };
 
-  return result;
+    // ${skeleton.properties.changes.properties.liquiditySlaParameters.title}
+    liquiditySlaParameters: ${inspect(
+      result.terms.newMarket.changes.liquiditySlaParameters,
+      {
+        depth: 19,
+      }
+    )},
+ // ${
+   skeleton.properties.changes.properties.liquidationStrategy.description
+ }
+    liquidationStrategy: ${inspect(
+      result.terms.newMarket.changes.liquidationStrategy,
+      {
+        depth: 19,
+      }
+    )},
+ // ${
+   skeleton.properties.changes.properties.liquidityFeeSettings.description
+ }
+    liquidityFeeSettings: ${inspect(
+      result.terms.newMarket.changes.liquidityFeeSettings,
+      {
+        depth: 19,
+      }
+    )},
+
+ // ${ skeleton.properties.changes.properties.liquidityMonitoringParameters.description }
+     liquidityMonitoringParameters: ${inspect(
+       result.terms.newMarket.changes.liquidityMonitoringParameters,
+       {
+         depth: 19,
+       }
+     )},
+    // ${
+     skeleton.properties.changes.properties.markPriceConfiguration.description
+   }
+      markPriceConfiguration: ${inspect(
+     result.terms.newMarket.changes.markPriceConfiguration,
+     {
+       depth: 19,
+     }
+   )}
+}`;
+};
+
+return result;
 }
 
 module.exports = {

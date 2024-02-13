@@ -21,6 +21,7 @@ import UpdateAssetCMD from './_generated-proposals/_updateAsset_cmd.md';
 import UpdateAssetWin from './_generated-proposals/_updateAsset_win.md';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Batch from './_batch-sample.md';
 
 # Propose an update to an asset
 
@@ -51,6 +52,7 @@ In addition to the parameters you want to change, you must include the existing 
 | `withdrawThreshold` | The maximum you can withdraw instantly. All withdrawals over the threshold will be delayed by the withdrawal delay, which can be seen on the ERC-20 bridge per asset. Setting this to 1 means all withdrawals will be subject to the delay. It's measured in asset decimals, so 1 is the smallest increment of the market's asset. | 1 |
 | `lifetimeLimit` | The lifetime deposit limit per public key, in asset decimals. Users are able to opt out of this functionality using the `exempt_depositor` write function on the ERC20 contract if they wish to. Suggested value: equivalent of 10,000 USD | 10000000000000000000000 |
 
+<Batch />
 
 ## Templates and submitting
 In the tabs below you'll see:

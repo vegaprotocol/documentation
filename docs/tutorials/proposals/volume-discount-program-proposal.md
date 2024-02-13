@@ -11,9 +11,9 @@ keywords:
 import NetworkParameter from '@site/src/components/NetworkParameter';
 import JSONInstructions from './_json-instructions.md';
 import TerminalInstructions from './_terminal-instructions.md';
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Batch from './_batch-sample.md';
 
 When a volume discount program is enabled, traders can receive discounts on their fees. The higher their taker volume over the discount program's window length, the greater the discount traders can receive.
 
@@ -46,6 +46,8 @@ To end an existing program early, set your proposal up with the exact same param
 | `benefitTiers` | List of values defining the discount factors for the program | Holds the details of each tier of discounts, listed below. Maximum of <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxBenefitTiers" hideName={true}/> tiers |
 | `minimumRunningNotionalTakerVolume` | The notional volume of aggressive trades that a trader is required to have across the aggregation window, to access the discount in this tier | Integer greater than or equal to 1 |
 | `volumeDiscountFactor` | Proportion of each trader's fees to be discounted, will be converted to a percentage | Must be greater than or equal to 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxVolumeDiscountFactor" hideName={true}/> |
+
+<Batch />
 
 ## Templates and submitting
 

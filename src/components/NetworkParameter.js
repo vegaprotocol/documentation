@@ -44,10 +44,13 @@ export default function NetworkParameter (props) {
     data = dataForNetwork[vega_network].buildTime
   }
 
-  useEffect(async () => {
-    // This is only triggered on client side render, and will be blocked
-    // from fetching multiple times
-    await fetchData(vega_network)
+  useEffect(() => {
+    const asyncFetch = async () => {
+      // This is only triggered on client side render, and will be blocked
+      // from fetching multiple times
+      await fetchData(vega_network)
+    }
+    asyncFetch()
   }, [vega_network])
 
   if (data) {

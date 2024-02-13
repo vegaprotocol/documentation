@@ -10,12 +10,11 @@
    "newMarket": {
     "changes": {
      "linearSlippageFactor": "0.001",
-     "quadraticSlippageFactor": "0",
      "decimalPlaces": "5",
      "positionDecimalPlaces": "5",
      "instrument": {
-      "name": "Apples Yearly (2022)",
-      "code": "APPLES.22",
+      "name": "Oranges Daily",
+      "code": "ORANGES.24h",
       "future": {
        "settlementAsset": "8b52d4a3a4b0ffe733cddbc2b67be273816cfeb6ca4c8b339bac03ffba08e4e4",
        "quoteName": "tEuro",
@@ -78,30 +77,21 @@
       }
      },
      "metadata": [
-      "enactment:2023-11-26T17:53:59Z",
-      "settlement:2023-11-25T17:53:59Z",
+      "enactment:2024-02-29T17:20:46Z",
+      "settlement:2024-02-28T17:20:46Z",
       "source:docs.vega.xyz"
      ],
      "priceMonitoringParameters": {
       "triggers": [
        {
         "horizon": "43200",
-        "probability": "0.9999999",
-        "auctionExtension": "600"
+        "probability": "0.9999999"
        }
       ]
      },
-     "liquidityMonitoringParameters": {
-      "targetStakeParameters": {
-       "timeWindow": "3600",
-       "scalingFactor": 10
-      },
-      "triggeringRatio": "0.7",
-      "auctionExtension": "1"
-     },
      "logNormal": {
       "tau": 0.0001140771161,
-      "riskAversionParameter": 0.01,
+      "riskAversionParameter": 0.00001,
       "params": {
        "mu": 0,
        "r": 0.016,
@@ -113,11 +103,45 @@
       "commitmentMinTimeFraction": "0.1",
       "performanceHysteresisEpochs": "10",
       "slaCompetitionFactor": "0.2"
+     },
+     "liquidationStrategy": {
+      "disposalTimeStep": "500",
+      "disposalFraction": "1",
+      "fullDisposalSize": "18446744073709551615",
+      "maxFractionConsumed": "1"
+     },
+     "liquidityFeeSettings": {
+      "method": "METHOD_CONSTANT",
+      "feeConstant": "0.00005"
+     },
+     "liquidityMonitoringParameters": {
+      "targetStakeParameters": {
+       "timeWindow": "3600",
+       "scalingFactor": "0.05"
+      }
+     },
+     "markPriceConfiguration": {
+      "decayWeight": "1",
+      "decayPower": "1",
+      "cashAmount": "5000000",
+      "sourceWeights": [
+       "0",
+       "1",
+       "0"
+      ],
+      "sourceStalenessTolerance": [
+       "1m0s",
+       "1m0s",
+       "1m0s"
+      ],
+      "compositePriceType": "COMPOSITE_PRICE_TYPE_WEIGHTED",
+      "dataSourcesSpec": [],
+      "dataSourcesSpecBinding": []
      }
     }
    },
-   "closingTimestamp": 1700934839,
-   "enactmentTimestamp": 1701021239
+   "closingTimestamp": 1709140846,
+   "enactmentTimestamp": 1709227246
   }
  }
 }'

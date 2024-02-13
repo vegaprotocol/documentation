@@ -17,8 +17,16 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 [**Vega Capsule on GitHub** ↗](https://github.com/vegaprotocol/vegacapsule/releases) - Vega Capsule, which lets you create an instance of the Vega network on your computer to experiment with using the protocol, is public and you can read the contents of each release on GitHub.
 
 ## Vega core software
-The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
+The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+### Release version 0.73.14 (patch) | 2024-02-06
+Version 0.73.14 was released by the validators to mainnet on 06 February, 2024.
+
+The version contained the following critical bug fixes:
+
+* In a situation where the mark-to-market calculation included data for a party with no position, the code would raise a panic, which would then cause a node to fail. This issue was a patch fix in responce to the following network outage [mainnet incdent ↗](https://medium.com/vegaprotocol/incident-report-network-outage-e60376912790)
+* In some circumstances, PnL was incorrectly displayed by the API. This was resolved in issue [10568 ↗](https://github.com/vegaprotocol/vega/issues/10568)
+* During the governance voted termination of the LINK/USDT market on mainnet a particular edge case bug was identified. This is where the TWAP calculation for the internal data point, happening at the end of a funding period, can be incorrect. This led to some balances being incorrect during the funding payments. The calculation error has been resolved in the issue [10520 ↗](https://github.com/vegaprotocol/vega/issues/10520).
 
 ### Release versions 0.73.11 and 0.73.12 (patch) combined | 2024-01-12
 

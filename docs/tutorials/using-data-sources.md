@@ -35,8 +35,8 @@ The following spec would read from the Ethereum contract at `0x1b4...e43` every 
         "ethOracle": {
             "sourceChainId": "1",
             "address": "0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43",
-            "abi": "[{\"inputs\":[],\"name\":\"latestAnswer\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-            "method": "latestAnswer",
+            "abi": "[{\"inputs\":[],\"name\":\"latestRoundData\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+            "method": "latestRoundData",
             "normalisers": [{
                   "name": "btc.price",
                   "expression": "$[0]"
@@ -73,10 +73,10 @@ This is unlike the other two Oracle types ([Open Oracle signed messages](#open-o
 ### ABI
 The `address` field in the specification tells the spec above which address to interact with on the chain. The `abi` ([Application Binary Interface](https://docs.soliditylang.org/en/develop/abi-spec.html#json) & `method` field on the spec above tells the settlement spec **how** to interact with it. EVM oracle settlement specifications use the JSON ABI of the smart contract to describe the method on the contract that will be called to fetch the data. The ABI will contain the function name, details of any paramters required, and the format of the response. 
 
-For example, the [Chainlink BTC/USD oracle](https://data.chain.link/ethereum/mainnet/crypto-usd/btc-usd) has its JSON ABI [published on Etherscan](https://etherscan.io/address/0xf4030086522a5beea4988f8ca5b36dbc97bee88c#code). When defining the data source spec, you can populate the `abi` field with the full ABI, and then set the `method` to `latestAnswer`.
+For example, the [Chainlink BTC/USD oracle](https://data.chain.link/ethereum/mainnet/crypto-usd/btc-usd) has its JSON ABI [published on Etherscan](https://etherscan.io/address/0xf4030086522a5beea4988f8ca5b36dbc97bee88c#code). When defining the data source spec, you can populate the `abi` field with the full ABI, and then set the `method` to `latestRoundData`.
 
 :::note Shrinking the ABI
-When populating the `abi` field on your data source spec, you can remove the methods and other fields that are not required by the oracle. We've done that in the sample data source above - only the `latestAnswer` method and its inputs and outputs are in the `abi` field.
+When populating the `abi` field on your data source spec, you can remove the methods and other fields that are not required by the oracle. We've done that in the sample data source above - only the `latestRoundData` method and its inputs and outputs are in the `abi` field.
 :::
 
 ### Time trigger

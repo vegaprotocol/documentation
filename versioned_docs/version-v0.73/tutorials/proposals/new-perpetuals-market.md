@@ -104,7 +104,7 @@ Data source specs include the following properties under `ethOracle`:
 | ----------- | ----------- | ----------- |
 | `address` | Ethereum address that can sign and submit values for this data source | Valid Ethereum address |
 | `abi` | The abi tells the settlement spec how to interact with the oracle. | |
-| `method` | Method is one field that describes what information to take from the oracle. | latestAnswer |
+| `method` | Method is one field that describes what information to take from the oracle. | latestRoundData |
 | `args` | Any extra information that is required from the contract. Can be left as an empty array if there is none. | |
 | `normalisers`: `name`, `expression` | Normalisers are used to convert the data returned from the contract method into a standard format. The name identifies the specific piece of data. The value is where in the contract call result the required data is located. For example $[0] is the first result. |  |
 | `requiredConfirmations` | Number of network confirmations before data can be considered verified | 3 |
@@ -136,12 +136,12 @@ Liquidity monitoring uses the following properties:
 | ----------- | ----------- | ----------- |
 | `targetStakeParameters` | Target stake parameters are derived from open interest history over a time window to calculate the maximum open interest. |
 | `timeWindow` | Defines the length of time (in seconds) over which open interest is measured. If empty, this field defaults to <NetworkParameter frontMatter={frontMatter} param="market.stake.target.timeWindow" hideName={true} />. | 3600 |
-| `scalingFactor` | The target stake scaling factor scales the estimated required liquidity (based on the market's risk model and current market data) to yield the market's target stake. If not included, it defaults to the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.stake.target.scalingFactor" hideValue={true} />. The scaling factor must be a number greater than zero and finite | 10 |
-| `triggeringRatio` | Specifies the triggering ratio for entering liquidity auction. If empty, the network will default to <NetworkParameter frontMatter={frontMatter} param="market.liquidity.targetstake.triggering.ratio" hideName={true} /> | 0.7 |
-| `auctionExtension` | Specifies by how many seconds an auction should be extended if leaving the auction were to trigger a liquidity auction. If empty, the network will default to the network parameter <NetworkParameter frontMatter={frontMatter} param="market.monitor.price.defaultParameters" hideValue={true} /> | 1 |
+| `scalingFactor` | The target stake scaling factor scales the estimated required liquidity (based on the market's risk model and current market data) to yield the market's target stake. The scaling factor must be a number greater than zero and finite | 10 |
+| `triggeringRatio` | Specifies the triggering ratio for entering liquidity auction. | 0.7 |
+| `auctionExtension` | Specifies by how many seconds an auction should be extended if leaving the auction were to trigger a liquidity auction. | 1 |
 
 ### Price monitoring
-Price monitoring parameters are optional, and configure the acceptable price movement bounds for price monitoring. If you leave these blank, they will default to the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.monitor.price.defaultParameters" hideValue={true} />). See below for more details on each field.
+Price monitoring parameters are optional, and configure the acceptable price movement bounds for price monitoring. See below for more details on each field.
 
 <NewMarketJSONPriceMonitoring />
 
