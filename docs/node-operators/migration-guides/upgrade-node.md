@@ -165,6 +165,20 @@ Some RPC providers include:
 + [blocksync]
 ```
 
+### Data-node breaking changes
+
+#### IPFS storage migration
+
+The data node keeps segments in the IPFS. We upgraded the IPFS golang module in the v0.74 release - the ipfs file system also requires the migration. 
+
+Migration process should automatically happen when the data-node starts. The vega introduced command to trigger the IPFS filesystem migration manually. You do not need to use the dedicated commands manually in most of cases. 
+
+If you really need to migrate your file system manually, you have two options:
+
+1. Execute the `vega datanode migrate-ipfs --home YOUR_VEGA_HOME` command,
+2. Use the [IPFS Repo migration tool ↗](https://github.com/ipfs/fs-repo-migrations) - this is what vega uses underlying.
+
+
 ## Upgrade your node
 To upgrade the network follow the [protocol upgrade documentation](../how-to/upgrade-network.md).
 
