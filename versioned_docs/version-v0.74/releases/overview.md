@@ -44,6 +44,7 @@ This release brings in a number of new network parameters. The below table detai
 | network.internalCompositePriceUpdateFrequency | 5s | Mark price | [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0009-MRKP-mark_price.md) |
 | spam.protection.max.updatePartyProfile | 10 | Teams and games | [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0062-SPAM-spam_protection.md) |
 | spam.protection.updatePartyProfile.min.funds | 10 | Teams and games |[spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0062-SPAM-spam_protection.md) |
+| spam.protection.referralSet.min.funds | 10 | Teams and games |[spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0062-SPAM-spam_protection.md) |
 | transfer.fee.maxQuantumAmount | 1 | Transfer fee improvements | [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0057-TRAN-transfers.md) |
 | transfer.feeDiscountDecayFraction | 0.8 | Transfer fee improvements | [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0057-TRAN-transfers.md) |
 | transfer.feeDiscountMinimumTrackedAmount | 0.01 | Transfer fee improvements | [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0057-TRAN-transfers.md) |
