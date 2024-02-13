@@ -50,14 +50,14 @@ Data sources must be able to emit the following data types:
 * Structured data records - such as a set of key and value pairs (inputs to filters)
 
 ## EVM data sources
-EVM oracles bridge Ethereum- or any EVM-based data sources in to Vega, enabling markets to be settled or priced using data that is verified on a chain that supports Ethereum RPC calls.
+EVM oracles bridge Ethereum- or any EVM-based data sources in to Vega, enabling markets to be settled or priced using data that is verified on a chain that supports Ethereum RPC calls. Data can only be read from a smart contract based on a timed trigger.
 
 Each chain needs to be supported in the network parameter:
-<NetworkParameter frontMatter={frontMatter} param="blockchains.ethereumRpcAndEvmCompatDataSourcesConfig" hideValue="true" />, and by the validators running the network. Use a [network parameter proposal](../../tutorials/proposals/network-parameter-proposal.md) to get a new data source chain added to the network.
+<NetworkParameter frontMatter={frontMatter} param="blockchains.ethereumRpcAndEvmCompatDataSourcesConfig" hideValue="true" />, and by the validators running the network. 
 
-:::note
-Currently data can only be read from a smart contract based on a timed trigger.
-:::
+Use a [network parameter proposal](../../tutorials/proposals/network-parameter-proposal.md) to get a new data source chain added to the network.
+
+Validators can set up their nodes to support the chains by following the [config instructions](../../node-operators/get-started/setup-validator.md#support-evm-chains-for-oracle-data).
 
 When the contract call is triggered by the data source, Vega validator nodes read the selected data from the chain and submit a transaction that includes the filtered data. When that data is verified by enough validators, the market's data source specification then acts on the submitted data.
 
