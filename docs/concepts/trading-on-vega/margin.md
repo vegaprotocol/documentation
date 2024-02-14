@@ -266,10 +266,10 @@ The mark price methodology can also be fine-tuned per market:
 
 * Decay weight is a parameter controlling to what extent observation time impacts the weight in the mark price calculation. 0 implies uniform weights.
 * Decay power is a parameter controlling how quickly the weight assigned to older observations should drop. The higher the value, the more weight is assigned to recent observations.
-* Cash amount, in asset decimals, used in calculating of the mark price from the order book.
+* Cash amount, in asset decimals, used in calculating the mark price from the order book.
 * Weights determine how much weight goes to each composite price component. The order of sources used is as follows: price by trades, price by book, oracle_1, ... oracle_n, median price.
 * Staleness tolerance for data source. How long a price source is considered valid. This uses one entry for each data source, such that the first is for the trade-based mark price, the second is for the order book-based price, and the third is for the first oracle, followed by any other data source staleness tolerance.
-* Type of composite price, weighted or median or last trade. 
+* Type of composite price, weighted, median or last trade. 
     * Weighted: Composite price is calculated as a weighted average of the underlying mark prices.
     * Median: Composite price is calculated as a median of the underlying mark prices.
     * Last trade: Composite price is calculated as the last trade price.
