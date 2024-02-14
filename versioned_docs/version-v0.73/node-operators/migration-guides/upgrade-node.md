@@ -1,20 +1,20 @@
 ---
-title: Upgrade to 0.73.4
-sidebar_label: Upgrade to 0.73.4
+title: Upgrade to 0.74
+sidebar_label: Upgrade to 0.74
 ---
 
-This guide describes the steps to upgrade from v0.73.3 to v0.73.4 using the protocol upgrade mechanism. See the changelogs for [v0.73.4 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.4) for information about breaking changes and new features.
+This guide describes the steps to upgrade from v0.73.13 to v0.74.1 using the protocol upgrade mechanism. See the changelogs for [v0.74.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.74.0) and [v0.74.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.74.1) for information about breaking changes and new features.
 
 ## Assumptions for the guide
 The instructions below are written for Debian-like Linux operating systems.
 
 The guide assumes you are using systemd commands (`systemctl` and `journalctl`) to control binaries. If you are using something different, your system's commands may vary.
 
-This guide is specifically intended for those who are already running a validator node with version `v0.73.3`.
+This guide is specifically intended for those who are already running a validator node with version `v0.73.13`.
 
 ## Study the changes between versions
 
-Before upgrading your node software, **review the changelog** for [v0.73.4](https://github.com/vegaprotocol/vega/releases/tag/v0.73.4) for a list of changes compared to the previously released version.
+Before upgrading your node software, **review the changelogs** for [v0.74.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.74.0) and [v0.74.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.74.1) for a list of breaking API changes compared to the previously released version.
 
 ## Before you upgrade
 
@@ -37,162 +37,147 @@ Make sure you have a backup for the original config in case you need them in the
 We do not recommend you do it too early in case you have to restart your node with the current version for some reason, for example if your node fails or your server restarts, etc.
 
 ### Config changes
-The following changes were introduced in v0.73.0. If you have not yet made these changes, we recommend doing them for this release.
 
 The default locations for configuration files:
 
 - data-node: `YOUR_VEGA_HOME/config/data-node/config.toml`
 - vega-core: `YOUR_VEGA_HOME/config/node/config.toml`
+- comet BFT: `YOUR_COMET_BFT_HOME/config/config.toml`
 
 Add the following new parameters to the configuration files.
 
 We recommend checking all of the changes on your own. Follow the below instructions to do it, and read through every description to understand the changes:
 
-1. Download vega `v0.73.4`
+1. Download vega `v0.74.1`
 2. Generate config files within the temp home directory
   - vega config
-  -  tendermint config
+  - comet BFT config
   - data-node config
 3. Compare the new generated file in the temp location and the old file to see the differences.
 
-#### `EvtForward.EthCall`
 
-- `config file`: vega-core
-- `description`: The parameter allows you to define basic configurations like the call period to ethereum node.
+#### `Ethereum.EVMChainConfigs` - VALIDATORS ONLY
+
+- `config file`: vega-config
+- `description`: Vega now supports receiving prices from EVM chains like Gnosis, Optimism, Arbitrum, etc. Your node is required to support [Gnosis and Arbitrum One by default ↗](https://github.com/vegaprotocol/vega/pull/10552/files). Each validator **must** specify RPC credentials in their Vega config for Gnosis and Arbitrum One chains.
 - `kind`: new parameter
 
-```toml title="YOUR_VEGA_HOME/config/node/config.toml"
-[EvtForward]
-  [EvtForward.EthCall]
-    Level = "Info"
-    PollEvery = "20s"
+Some RPC providers include:
+
+- [Blast ↗](https://blastapi.io/) - 40 calls/sec(12 000 000 calls/month)
+- [OnFinality ↗](https://onfinality.io/) - 500 000 calls/day (15 000 000 calls/month)
+- [Ankr ↗](https://ankr.com/) - 30 calls/sec
+- [Chainnodes ↗](https://chainnodes.org/) - 25 calls/sec (12 500 000 calls/month)
+
+```diff title="YOUR_VEGA_CONFIG/config/node/config.toml"
+[Ethereum]
+  ...
+  ...
+  
+  [[Ethereum.EVMChainConfigs]]
+    ChainID = "100"
+    RPCEndpoint = "YOUR_RPC_ENDPOINT_FOR_GNOSIS"
+  [[Ethereum.EVMChainConfigs]]
+    ChainID = "42161"
+    RPCEndpoint = "YOUR_RPC_ENDPOINT_FOR_ARBITRUM_ONE"
+...
 ```
 
-#### `Vesting`
+#### `fast_sync`
 
-- `config file`: vega-core
-- `description`: Manipulate the vesting engine configuration
+- `config file`: comet BFT
+- `description`: The parameter has been removed
+- `kind`: removed parameter
+
+```diff title="YOUR_COMET_BFT_HOME/config/config.toml"
+- fast_sync = true
+...
+```
+
+#### `p2p.upnp`
+
+- `config file`: comet BFT
+- `description`: The parameter has been removed
+- `kind`: removed parameter
+
+```diff title="YOUR_COMET_BFT_HOME/config/config.toml"
+[p2p]
+  ...
+-   upnp = false
+```
+
+#### `mempool.version`
+
+- `config file`: comet BFT
+- `description`: The parameter has been removed
+- `kind`: removed parameter
+
+```diff title="YOUR_COMET_BFT_HOME/config/config.toml"
+[mempool]
+  ...
+-   version = "v0"
+```
+
+#### `mempool.ttl-duration`
+
+- `config file`: comet BFT
+- `description`: The parameter has been removed
+- `kind`: removed parameter
+
+```diff title="YOUR_COMET_BFT_HOME/config/config.toml"
+[mempool]
+  ...
+-   ttl-duration = "0s"
+```
+
+#### `mempool.ttl-num-blocks`
+
+- `config file`: comet BFT
+- `description`: The parameter has been removed
+- `kind`: removed parameter
+
+```diff title="YOUR_COMET_BFT_HOME/config/config.toml"
+[mempool]
+  ...
+-   ttl-num-blocks = 0
+```
+
+#### `mempool.type`
+
+- `config file`: comet BFT
+- `description`: The type of mempool to use.
 - `kind`: new parameter
 
-```toml title="YOUR_VEGA_HOME/config/node/config.toml"
-[Vesting]
-  Level = "Info"
+```diff title="YOUR_COMET_BFT_HOME/config/config.toml"
+[mempool]
+  ...
++  type = "flood"
 ```
 
-#### `Broker.Socket.DialTimeout`
+#### `blocksync`
 
-- `config file`: vega-core
-- `description`: The below change(`Broker.Socket.DialTimeout`) is fundamental when you run the data node, but it also needs to be updated for a validator node. We recommend you update it to `96 hours` due to changes in the data node initialization mechanism. It now downloads and loads all the segments into the database by default. This process may take a day or more.
-- `kind`: parameter change
+- `config file`: comet BFT
+- `description`: The `fastsync` section was renamed to the `blocksync`
+- `kind`: section rename
 
-```toml title="YOUR_VEGA_HOME/config/node/config.toml"
-[Broker]
-  [Broker.Socket]
-    DialTimeout = "96h0m0s"
+```diff title="YOUR_COMET_BFT_HOME/config/config.toml"
+- [fastsync]
++ [blocksync]
 ```
+### Data node breaking changes
 
-#### `Snapshot.StartHeight`
-The following parameter changes were introduced in v0.73.0. If you still have the old values, we recommend updating to the new ones.
+#### IPFS storage migration
 
-- `config file`: vega-core
-- `description`: The behaviour of the parameter `Snapshot.StartHeight` changed, and its default value has been updated from `-1` to `0`. **However, we DO NOT recommend changing this parameter before successfully migrating to version 0.73.0!** Prior 0.73, setting this parameter to `0` triggers the removal of the existing snapshots. If you start with the wrong binary or end up with a rollback, your node will use the old behaviour and remove existing snapshots. For the new logic to load a snapshot, see the below pseudocode block.
-- `kind`: parameter change
+The data node keeps segments in IPFS. The IPFS golang module has been updated in the v0.74 release - the IPFS file system also requires a migration. 
 
-```toml title="YOUR_VEGA_HOME/config/node/config.toml"
-[Snapshot]
-  StartHeight = -1
-```
+The migration process should automatically happen when the data node starts. 
 
-```go title="Load snapshot pseudocode"
-if localSnapshots { // so ignoring state-sync even if it's enabled
+The Vega binary also introduces a command to trigger the IPFS filesystem migration manually. You do not need to use the dedicated commands manually in most cases. 
 
-    if startHeight == 0 {
-        // Loading from latest local snapshot,
-    } else {
-	    // Try reloading snapshot from specified height.
-	    // Error -> No snapshot for version XXX
-    }
-} else {
-    if startHeight == 0 || startHeight == -1 {
-         // Replay the chain or state-sync if enabled. Up to tendermint to decide.
-    } else {
-	    // Wait for state-sync to offer expected snapshot for height
-    }
-}
-```
+If you really need to migrate your file system manually, you have two options:
 
-#### `TrustedProxies`
-
-- `config file`: data-node
-- `description`: The parameter defines trusted proxies which can override the real user IP address with`X-Real-IP` or `X-Forward-For` headers. If the proxy address IP is not in the list of `TrustedProxies`, Vega ignores the above headers. You must repeat this parameter for the `gRPC API server` and the `Gateway server`.
-- `kind`: new parameter
-
-```toml title="YOUR_VEGA_HOME/config/data-node/config.toml"
-[API]
-  [API.RateLimit]
-    TrustedProxies = ["127.0.0.1"]
-
-[Gateway]
-  [Gateway.RateLimit]
-    TrustedProxies = ["127.0.0.1"]
-```
-
-#### `NetworkHistory.GarbageCollectionInterval`
-
-- `config file`: data-node
-- `description`: The interval at which garbage collection should be run.
-- `kind`: new parameter
-
-```toml title="YOUR_VEGA_HOME/config/data-node/config.toml"
-[NetworkHistory]
-    GarbageCollectionInterval = "24h0m0s"
-```
-
-#### `SQLStore.VerboseMigration`
-
-- `config file`: data-node
-- `description`: Enable verbose logging of SQL migrations. Logs shows only once when Vega executes the migration. We recommend enabling it in case of any issues.
-- `kind`: new parameter
-
-```toml title="YOUR_VEGA_HOME/config/data-node/config.toml"
-[SQLStore]
-  VerboseMigration = true
-```
-
-#### `NetworkHistory.Initialise.TimeOut`
-
-- `config file`: data-node
-- `description`: We recommend you update it to `96 hours` due to changes in the data node initialization mechanism. It now downloads and loads all the segments into the database by default. This process may take a day or more.
-- `kind`: parameter change
-
-```toml title="YOUR_VEGA_HOME/config/data-node/config.toml"
-[NetworkHistory]
-  [NetworkHistory.Initialise]
-    TimeOut = "96h0m0s"
-```
-
-#### `NetworkHistory.Initialise.MinimumBlockCount`
-
-- `config file`: data-node
-- `description`: The network history initialization process has been improved. Now the process is automated. The datanode should download all the history segments and put it into the database by default now.
-- `kind`: parameter change
-
-```toml title="YOUR_VEGA_HOME/config/data-node/config.toml"
-[NetworkHistory]
-  [NetworkHistory.Initialise]
-    MinimumBlockCount = -1
-```
-
-#### `maxNumberOfFirstConnectionRetries`
-
-- `config file`: vegavisor config
-- `description`: You need to leave more time to wait on the data node for Visor. Increase it to a higher number. This is especially crucial for data nodes.
-- `kind`: parameter change
-
-```toml title="YOUR_VEGAVISOR_HOME/config.toml"
-# Try every 2 seconds, 172800 retries is 96h
-maxNumberOfFirstConnectionRetries = 172800
-```
+1. Execute the `vega datanode migrate-ipfs --home YOUR_VEGA_HOME` command,
+2. Use the [IPFS repo migration tool ↗](https://github.com/ipfs/fs-repo-migrations) - this is what underlies the Vega update.
 
 ## Upgrade your node
 To upgrade the network follow the [protocol upgrade documentation](../how-to/upgrade-network.md).
