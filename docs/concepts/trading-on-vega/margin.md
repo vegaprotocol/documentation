@@ -246,7 +246,7 @@ How mark price is calculated is configured per market, and can be changed with a
 ### Mark price algorithms 
 The current mark price algorithms that can be used in a market configuration are described below.
 
-1. Last traded price
+### Last traded price
 When the mark price is set to be the last traded price, this means it is set after each order transaction is processed from a sequence of transactions with the same timestamp, provided that at least <NetworkParameter frontMatter={frontMatter} param="network.markPriceUpdateMaximumFrequency" hideName="true" /> has elapsed since the last mark price update.
 
 For example, say the maximum frequency is set to 10 seconds.
@@ -261,12 +261,17 @@ Now 8 seconds has elapsed since the last update. There is a market sell order fo
 
 Then 10.1 seconds has elapsed since the last update and there is a market buy order for 5 that executes against book volume as 1 @ 1220, 2 @ 1250 and 2 @ 1500. The mark price is then updated to 1500.
 
-2. Flexible mark price methodology
+### Flexible mark price methodology
 The mark price methodology can also be fine-tuned per market:
 
 * Decay weight is a parameter controlling to what extent observation time impacts the weight in the mark price calculation. 0 implies uniform weights.
 * Decay power is a parameter controlling how quickly the weight assigned to older observations should drop. The higher the value, the more weight is assigned to recent observations.
-* Cash amount, in asset decimals, used in calculating the mark price from the order book.
+* Cash amount, in asset decimals, used in calculating the mark price from the order book. The cash amount is a sample value to be set depending on the market's expected liquidity/volume.
+    How it's used: 
+    a. Chosen cash amount is scaled by the market's leverage
+    b. The execution price of a theoretical buy market order of the notional in a. is used alongside
+    c. The execution price of a theoretical sell market order of the notional in a.
+    d. mark price = 0.5 x (b. + c.)
 * Weights determine how much weight goes to each composite price component. The order of sources used is as follows: price by trades, price by book, oracle_1, ... oracle_n, median price.
 * Staleness tolerance for data source. How long a price source is considered valid. This uses one entry for each data source, such that the first is for the trade-based mark price, the second is for the order book-based price, and the third is for the first oracle, followed by any other data source staleness tolerance.
 * Type of composite price, weighted, median or last trade. 
