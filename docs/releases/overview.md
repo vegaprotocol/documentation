@@ -50,7 +50,7 @@ This release brings in a number of new network parameters. The below table detai
 | transfer.feeDiscountMinimumTrackedAmount | 0.001 | Transfer fee improvements [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0057-TRAN-transfers.md) |
 
 > [!IMPORTANT]
-> These default values are subject to be different in mainnet, therefore, anyone building on top of these values should reference the mainnet release notes when published.
+> These default values are subject to be different in mainnet, therefore, anyone building on top of these values should reference the mainnet release notes when published. These values can be found in [this PR](https://github.com/vegaprotocol/vega/pull/10552)
 
 
 #### Isolated margin
