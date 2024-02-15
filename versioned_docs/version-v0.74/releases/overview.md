@@ -22,7 +22,7 @@ The Vega core software is public and open source under the [AGPL ↗](https://ww
 ## Release version 0.74 | 2024-02-20
 This version was released by the validators to mainnet on 20 February 2024.
 
-This release contains several new features for the Palazzo milestone, including isolated margin, batch proposals, Ethereum RPC and EVM based data sources and a new mark price and price for perps funding TWAP methodology.
+This release contains several new features for the Palazzo milestone, including isolated margin, batch proposals, Ethereum RPC and EVM based data sources, new mark price and perps funding TWAP methodology, LP fee setting improvements and teams games and party profile updates.
 
 ### Breaking changes
 
@@ -93,11 +93,28 @@ This configuration is used to allow the network to hold an active position on th
 
 This improvement has been added in [issue 9945 ↗](https://github.com/vegaprotocol/vega/issues/9945)
 
+#### Liquidity provider fee setting improvements
+
+There are three methods for setting the liquidity fee factor, with the default method being the current 'Marginal Cost method.' The liquidity fee setting mechanism is configured per market as part of the market proposal. Th two new methods are:
+
+**Stake-weighted-average method for setting the liquidity fee factor**
+
+The liquidity fee factor is set as the weighted average of the liquidity fee factors, with weights assigned based on the supplied stake from each liquidity provider, which can also account for the impact of one supplier's actions on others.
+
+**"Constant Liquidity Fee" Method**
+
+The liquidity fee factor is set to a constant directly as part of the market proposal.
+
+This has been implemented as per the [LP fee and rewards setting specification ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md)
+
+
 #### Teams games and party profiles
 
 A number of changes have been introduced to incentivise the use of Vega through rewards. Along with the referral program users will be able to create teams and incentivse use via reward structures. The team reward metrics and accounts have been implemented as per the [rewards specification ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0056-REWA-rewards_overview.md#team-reward-metrics).
 
-Changes have also been implemented to allow users to have an on-chain party profile allowing the creation of an alia and metadata for a given party. This has been implemented as pe the [party profile specification ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0088-PPRF-party_profile.md)
+Changes have also been implemented to allow users to have an on-chain party profile allowing the creation of an alia and metadata for a given party.
+
+This has been implemented as per the [party profile specification ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0088-PPRF-party_profile.md)
 
 
 ### Release version 0.73.13 (patch) | 2024-02-06
