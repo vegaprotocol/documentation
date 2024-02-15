@@ -22,7 +22,7 @@ The Vega core software is public and open source under the [AGPL ↗](https://ww
 ## Release version 0.74 | 2024-02-20
 This version was released by the validators to mainnet on 20 February 2024.
 
-This release contains several new features for the Palazzo milestone, including isolated margin, batch proposals, Ethereum RPC and EVM based data sources, new mark price and perps funding TWAP methodology, LP fee setting improvements and teams games and party profile updates.
+This release contains several new features for the Palazzo milestone, including isolated margin, batch proposals, Ethereum RPC and EVM based data sources, new mark price and perps funding TWAP methodology, LP fee setting improvements and team games and party profile updates.
 
 ### Breaking changes
 
