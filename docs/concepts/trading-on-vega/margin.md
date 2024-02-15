@@ -244,7 +244,7 @@ For perpetual futures markets, there’s also the market price for funding payme
 How mark price is calculated is configured per market, and can be changed with a governance proposal to update a market.
 
 ### Mark price algorithms 
-The current mark price algorithms that can be used in a market configuration are described below.
+The current mark price algorithms that can be used in a market configuration are described below. The configuration can apply to mark price, and for perpetual futures markets, the internal price.
 
 ### Last traded price
 When the mark price is set to be the last traded price, this means it is set after each order transaction is processed from a sequence of transactions with the same timestamp, provided that at least <NetworkParameter frontMatter={frontMatter} param="network.markPriceUpdateMaximumFrequency" hideName="true" /> has elapsed since the last mark price update.
@@ -266,12 +266,12 @@ The mark price methodology can also be fine-tuned per market:
 
 * Decay weight is a parameter controlling to what extent observation time impacts the weight in the mark price calculation. 0 implies uniform weights.
 * Decay power is a parameter controlling how quickly the weight assigned to older observations should drop. The higher the value, the more weight is assigned to recent observations.
-* Cash amount, in asset decimals, used in calculating the mark price from the order book. The cash amount is a sample value to be set depending on the market's expected liquidity/volume.
-    How it's used: 
-    a. Chosen cash amount is scaled by the market's leverage
-    b. The execution price of a theoretical buy market order of the notional in a. is used alongside
-    c. The execution price of a theoretical sell market order of the notional in a.
-    d. mark price = 0.5 x (b. + c.)
+* Cash amount, in asset decimals, used in calculating the mark price from the order book. The cash amount is a sample value to be set depending on the market's expected liquidity/volume. This value should be the margin amount of the expected typical trade size, at maximum leverage. For example, take a BTC/USDT market. If the traders would typically use 10 USDT for margin at maximum leverage (on a 100x market this would mean trade notional of 1000 or about 0.02 BTC if BTCUSD is 50000) with a typical trade of 0.02 BTC, then it should be set to 10 USDT.
+    * How it's used: 
+        a. Chosen cash amount is scaled by the market's leverage
+        b. The execution price of a theoretical buy market order of the notional in a. is used alongside
+        c. The execution price of a theoretical sell market order of the notional in a.
+        d. mark price = 0.5 x (b. + c.)
 * Weights determine how much weight goes to each composite price component. The order of sources used is as follows: price by trades, price by book, oracle_1, ... oracle_n, median price.
 * Staleness tolerance for data source. How long a price source is considered valid. This uses one entry for each data source, such that the first is for the trade-based mark price, the second is for the order book-based price, and the third is for the first oracle, followed by any other data source staleness tolerance.
 * Type of composite price, weighted, median or last trade. 
