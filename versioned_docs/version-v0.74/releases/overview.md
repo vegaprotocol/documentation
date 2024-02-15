@@ -101,7 +101,7 @@ There are three methods for setting the liquidity fee factor, with the default m
 
 The liquidity fee factor is set as the weighted average of the liquidity fee factors, with weights assigned based on the supplied stake from each liquidity provider, which can also account for the impact of one supplier's actions on others.
 
-**"Constant Liquidity Fee" Method**
+**"Constant liquidity fee" fethod**
 
 The liquidity fee factor is set to a constant directly as part of the market proposal.
 
@@ -112,7 +112,7 @@ This has been implemented as per the [LP fee and rewards setting specification �
 
 A number of changes have been introduced to incentivise the use of Vega through rewards. Along with the referral program users will be able to create teams and incentivse use via reward structures. The team reward metrics and accounts have been implemented as per the [rewards specification ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0056-REWA-rewards_overview.md#team-reward-metrics).
 
-Changes have also been implemented to allow users to have an on-chain party profile allowing the creation of an alia and metadata for a given party.
+Now, participants can also have an on-chain party profile allowing them to add an alias and metadata to a given party.
 
 This has been implemented as per the [party profile specification ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0088-PPRF-party_profile.md)
 
