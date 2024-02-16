@@ -145,7 +145,7 @@ Liquidity monitoring uses the following properties:
 
 The mark price methodology can be fine-tuned per market. If left blank, the market will default to the [last price method](../../concepts/trading-on-vega/margin.md#last-traded-price). You can read further details about the flexible mark price fields in [concepts](../../concepts/trading-on-vega/margin.md#flexible-mark-price-methodology).
 
-| Field | Description | Value |
+| Field | Description | Examples |
 | ----------- | ----------- | --------- |
 | `decayWeight` | Controls to what extent observation time impacts the weight in the mark price calculation. 0 implies uniform weights. | 1 |
 | `decayPower` | Controls how quickly the weight assigned to older observations should drop. The higher the value, the more weight is assigned to recent observations. | 1 |
@@ -172,6 +172,10 @@ The mark price methodology can be fine-tuned per market. If left blank, the mark
           ],
           "compositePriceType": "COMPOSITE_PRICE_TYPE_WEIGHTED",
 ```
+
+:::tip See an example for live markets
+[Update market proposal template ↗](https://github.com/vegaprotocol/governance-templates/blob/main/mainnet/0.74-proposal-templates/update_markets.json): This template includes suggested values for updating two active perpetuals markets to use mark price configurations designed for them. 
+:::
 
 ### Price monitoring
 Price monitoring parameters are optional, and configure the acceptable price movement bounds for price monitoring. See below for more details on each field.
