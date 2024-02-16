@@ -70,13 +70,13 @@ In order to estimate an approximate range for *received liquidity fees* for a gi
 
     In the below example, a new LP would have to provide 113,751 USDT to have equal ELS with the first LP who provided 100,000 USDT at an earlier point in the market's growth.
     
-    ![Commitment ELS](/img/101/liquidity-provision/els.png)
+    ![Commitment ELS](/img/intro/liquidity-provision/els.png)
     
 3. **LP relative liquidity score.** This metric is trickier to calculate in advance, as it is heavily reliant on competition with other LPs. It can be estimated in a static fashion with formulae such as those used in this example [visualisation tool](https://github.com/cdummett/vegavis/blob/main/vegavis/tau_scaling/calculator.ipynb), or using the API or the “View As Party” feature in Console to check the active quotes for existing LPs on the market and choose one similar to the anticipated quotes for the new LP for comparison. For the sake of estimation, as it is a relative score, comparison to existing LPs is likely to yield the cleanest answer.
     a. The LP liquidity score is non-linear, i.e. quoting incrementally tighter spreads can yield increasingly larger benefits.
     b. At time of writing the probability of trading at various price levels on the BTC-USD perp market is illustrated below. The tau scaling parameter can be used by network governance to control how quickly the probability of trading drops off with price. The current network value is 1.
         
-![Probability of Trading Dropoff](/img/101/liquidity-provision/pot-drop.png)
+![Probability of Trading Dropoff](/img/intro/liquidity-provision/pot-drop.png)
         
 
 Once these three metrics have been calculated, multiply 2 and 3 together, compared with multiplying together the equity-like shares and renormalised liquidity scores of the existing LPs, and use that as an estimate.
@@ -119,5 +119,5 @@ Once you are ready to begin market making as an LP, you will need to take the fo
     3. **Live time on book this epoch** shows the percentage of the so-far-elapsed epoch for which the LP has met their SLA requirement.
     4. **Live liquidity score** displays the score as a percentage of the total across all LPs. This is the score derived from volume on the book and its associated probability of trading. The product of this and the LP's ELS decides LP fee distributions. This value is responsive to changes of the liquidity intra-epoch so any improvements in pricing can be observed here to see how they improve the score.
     
-    ![Liquidity Tab Columns](/img/101/liquidity-provision/liq-columns.png)
+    ![Liquidity Tab Columns](/img/intro/liquidity-provision/liq-columns.png)
     

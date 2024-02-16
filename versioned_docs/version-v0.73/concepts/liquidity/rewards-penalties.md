@@ -121,20 +121,20 @@ Distribution of fees between LPs is performed in several steps, first at the tim
 - Under 100% time-on-book
     - If an LP meets the SLA criteria but is under 100% time on book, they may have some portion of their fees redistributed. This is calculated with the equation below, where 't' is their fraction of time on the book, 's' is the minimum SLA fraction and 'c' is the competition fraction discussed above. 'p' then gives the fraction of fees redistributed.
         
-        ![Penalty calculation for missing time on book](/img/101/liquidity-provision/time-penalty.png)
+        ![Penalty calculation for missing time on book](/img/intro/liquidity-provision/time-penalty.png)
         
 - Fee redistribution
     - Any fees not immediately paid out to LPs as a result of under 100% time on book are redistributed in a few steps. First each LP receives a weight according to their proportion of fees that epoch.
         
-        ![Initial weighting for bonus distribution](/img/101/liquidity-provision/bonus-reweighting.png)
+        ![Initial weighting for bonus distribution](/img/intro/liquidity-provision/bonus-reweighting.png)
 
     - Then that score is updated by multiplying by their SLA penalty as calculated above.
         
-        ![Adding SLA penalty](/img/101/liquidity-provision/bonus-sla-weighting.png)
+        ![Adding SLA penalty](/img/intro/liquidity-provision/bonus-sla-weighting.png)
         
     - Then these are finally re-weighted across all LPs.
         
-        ![Ensure bonuses sum to 1](/img/101/liquidity-provision/bonus-final-weighting.png)
+        ![Ensure bonuses sum to 1](/img/intro/liquidity-provision/bonus-final-weighting.png)
         
     - Each LP then receives this fraction of the garnished SLA funds as a final bonus.
 
