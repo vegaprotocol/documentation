@@ -247,7 +247,7 @@ How mark price is calculated is configured per market, and can be changed with a
 The current mark price algorithms that can be used in a market configuration are described below. The configuration can apply to mark price, and for perpetual futures markets, the internal price.
 
 ### Last traded price
-When the mark price is set to be the last traded price, this means it is set after each order transaction is processed from a sequence of transactions with the same timestamp, provided that at least <NetworkParameter frontMatter={frontMatter} param="network.markPriceUpdateMaximumFrequency" hideName="true" /> has elapsed since the last mark price update.
+When the mark price is set to be the last traded price, this means it is set after each order transaction is processed from a sequence of transactions with the same timestamp, provided that at least <NetworkParameter frontMatter={frontMatter} param="network.markPriceUpdateMaximumFrequency" hideName="true" /> have elapsed since the last mark price update.
 
 For example, say the maximum frequency is set to 10 seconds.
 
@@ -257,9 +257,9 @@ The sell order results in two trades: 15 @ 920 and 5 @ 910. The buy order result
 
 The mark price changes once to a new value of $1200.
 
-Now 8 seconds has elapsed since the last update. There is a market sell order for 3 that executes against book volume as 1 @ 1190 and 2 @ 1100. The mark price isn't updated because the 10 second maximum frequency has not elapsed yet.
+Now 8 seconds have elapsed since the last update. There is a market sell order for 3 that executes against book volume as 1 @ 1190 and 2 @ 1100. The mark price isn't updated because the 10 second maximum frequency has not elapsed yet.
 
-Then 10.1 seconds has elapsed since the last update and there is a market buy order for 5 that executes against book volume as 1 @ 1220, 2 @ 1250 and 2 @ 1500. The mark price is then updated to 1500.
+Then 10.1 seconds have elapsed since the last update and there is a market buy order for 5 that executes against book volume as 1 @ 1220, 2 @ 1250 and 2 @ 1500. The mark price is then updated to 1500.
 
 ### Flexible mark price methodology
 The mark price methodology can also be fine-tuned per market:
