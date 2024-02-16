@@ -138,9 +138,10 @@ Liquidity monitoring uses the following properties:
 | `scalingFactor` | The target stake scaling factor scales the estimated required liquidity (based on the market's risk model and current market data) to yield the market's target stake. The scaling factor must be a number greater than zero and finite | 10 |
 
 ### Mark price configuration
+
 The mark price methodology can be fine-tuned per market. If left blank, the market will default to the [last price method](../../concepts/trading-on-vega/margin.md#last-traded-price). You can read further details about the flexible mark price fields in [concepts](../../concepts/trading-on-vega/margin.md#flexible-mark-price-methodology).
 
-| Field | Description | Value |
+| Field | Description | Examples |
 | ----------- | ----------- | --------- |
 | `decayWeight` | Controls to what extent observation time impacts the weight in the mark price calculation. 0 implies uniform weights. | 1 |
 | `decayPower` | Controls how quickly the weight assigned to older observations should drop. The higher the value, the more weight is assigned to recent observations. | 1 |

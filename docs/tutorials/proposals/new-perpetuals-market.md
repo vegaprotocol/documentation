@@ -142,6 +142,42 @@ Liquidity monitoring uses the following properties:
 | `timeWindow` | Defines the length of time (in seconds) over which open interest is measured. | 3600 |
 | `scalingFactor` | The target stake scaling factor scales the estimated required liquidity (based on the market's risk model and current market data) to yield the market's target stake. The scaling factor must be a number greater than zero and finite | 10 |
 
+### Mark price configuration
+
+The mark price methodology can be fine-tuned per market. If left blank, the market will default to the [last price method](../../concepts/trading-on-vega/margin.md#last-traded-price). You can read further details about the flexible mark price fields in [concepts](../../concepts/trading-on-vega/margin.md#flexible-mark-price-methodology).
+
+| Field | Description | Examples |
+| ----------- | ----------- | --------- |
+| `decayWeight` | Controls to what extent observation time impacts the weight in the mark price calculation. 0 implies uniform weights. | 1 |
+| `decayPower` | Controls how quickly the weight assigned to older observations should drop. The higher the value, the more weight is assigned to recent observations. | 1 |
+| `cashAmount` | Used in calculating the mark price from the order book, in asset decimals. Use the margin amount of the expected typical trade size, at maximum leverage. | A well-known highly liquid exchange uses 200 USDT on their most popular market. If you expect your market will be equally liquid, use the equivalent amount in the market's settlement asset. If you think it's likely to be 10x less liquid, use 10x less. |
+| `sourceWeights` | Determines how much weight goes to each composite price component. The order of sources used is as follows: price by trades, price by book, oracle_1, ... oracle_n, median price. 0 means the input is always ignored.| 0.5, 0.5, 0 uses an average of trades as defined via the TWAP and decay, and book as defined by the cash amount.|
+| `sourceStalenessTolerance` | How long a price source is considered valid. This uses one entry for each data source, such that the first is for the trade-based mark price, the second is for the order book-based price, and the third is for the first oracle, followed by any other data source staleness tolerance. | 1m0s |
+| `compositePriceType` | Weighted, median or last trade. | Weighted: Composite price is calculated as a weighted average of the underlying mark prices. Median: Composite price is calculated as a median of the underlying mark prices. Last trade: Composite price is calculated as the last trade price. |
+
+
+```
+"markPriceConfiguration": {
+          "decayWeight": "1",
+          "decayPower": "1",
+          "cashAmount": "2000000",
+          "sourceWeights": [
+            "0.5",
+            "0.5",
+            "0"
+          ],
+          "sourceStalenessTolerance": [
+            "1m0s",
+            "1m0s",
+            "1m0s"
+          ],
+          "compositePriceType": "COMPOSITE_PRICE_TYPE_WEIGHTED",
+```
+
+:::tip See an example for live markets
+[Update market proposal template ↗](https://github.com/vegaprotocol/governance-templates/blob/main/mainnet/0.74-proposal-templates/update_markets.json): This template includes suggested values for updating two active perpetuals markets to use mark price configurations designed for them. 
+:::
+
 ### Price monitoring
 Price monitoring parameters are optional, and configure the acceptable price movement bounds for price monitoring. See below for more details on each field.
 
