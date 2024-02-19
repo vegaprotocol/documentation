@@ -66,6 +66,7 @@ export default function Home() {
 
   return (
     <Layout description={`${siteConfig.tagline}`}>
+    <HomepageHeader />
       <main>
         <section style={{ marginTop: "20px"}}>
         <FeatureList>
