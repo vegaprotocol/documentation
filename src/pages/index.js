@@ -18,7 +18,7 @@ function HomepageHeader() {
       <div className="container">
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <Link className="cta" href={`${base}/concepts/new-to-vega`}>New to Vega?</Link>
+        <Link className="cta" href={`${base}/intro`}>New to Vega?</Link>
       </div>
     </header>
   );
@@ -68,16 +68,16 @@ export default function Home() {
         <section id="topics">
           <article>
             <h2>Getting started</h2>
-            <p>Learn about the Vega framework and how you can take part.</p>
+            <p>Get to know the Vega framework and what's coming up next.</p>
             <ul>
-              <li><Link href={`${base}/concepts/new-to-vega`}>Introduction to Vega</Link></li>
-              <li>Get a <Link to={`${base}/tools/vega-wallet`}>Vega wallet</Link>, on <Link to={`${base}/tools/vega-wallet/desktop-app`}>desktop</Link> or for <Link to={`${base}/tools/vega-wallet/cli-wallet`}>command line</Link></li>
+              <li><Link href={`${base}/intro/index`}>Vega basics</Link></li>
+              <li><Link href={`${base}/concepts/new-to-vega`}>About the protocol</Link></li>
               <li><Link className="external" href="https://github.com/orgs/vegaprotocol/projects/114/views/4" target="_blank">Roadmap</Link></li>
             </ul>
           </article>
           <article>
             <h2>Trading</h2>
-            <p>See the live cash-settled futures markets and place orders using a trading dApp for Vega software. You'll need a Vega Wallet.</p>
+            <p>See the live cash-settled derivatives markets and place orders using a trading dApp for Vega software. You'll need a Vega Wallet.</p>
             <ul>
               <li><Link className="external" href="https://console.vega.xyz/" target="_blank">Mainnet trading dApp</Link></li>
               <li><Link className="external" href="https://console.fairground.wtf/" target="_blank">Testnet trading dApp</Link></li>
@@ -88,8 +88,8 @@ export default function Home() {
             <h2>Governance</h2>
             <p>The network is governed by the community. Use your tokens to vote on proposals and propose changes.</p>
             <ul>
-              <li><Link to={`${base}/concepts/governance`}>Introduction to governance</Link></li>
-              <li><Link to={`${base}/tutorials/proposals`}>Tutorials: Governance proposals</Link></li>
+              <li><Link to={`${base}/concepts/governance`}>Intro to governance</Link></li>
+              <li><Link to={`${base}/tutorials/proposals`}>Tutorials: How to propose</Link></li>
               <li><Link className="external" href="https://governance.vega.xyz" target="_blank">Governance dApp</Link></li>
             </ul>
           </article>
@@ -99,15 +99,15 @@ export default function Home() {
           <h2>Spotlight</h2>
           <Link to={`${base}/node-operators`} className="card cardContainer">
             <h3 className="cardTitle">Node operators: Overview</h3>
-            <p className="cardDescription">Get guidance on how to maintain and upgrade a node.</p>
+            <p className="cardDescription">Read the guides to maintain and upgrade a node.</p>
           </Link>
           <Link to={`${base}/releases/overview`} className="card cardContainer">
             <h3 className="cardTitle">Release summaries</h3>
             <p className="cardDescription">See the latest features and get ahead of breaking changes.</p>
           </Link>
-          <Link to={`${base}/tools/vega-wallet/desktop-app`} className="card cardContainer">
-            <h3 className="cardTitle">Vega Wallet</h3>
-            <p className="cardDescription">Step-by-step instructions to set up your Vega Wallet using the desktop app.</p>
+          <Link to={`${base}/api/overview`} className="card cardContainer">
+            <h3 className="cardTitle">Developing & APIs</h3>
+            <p className="cardDescription">What you need to know before you start developing on Vega.</p>
           </Link>
         </section>
       </main>
