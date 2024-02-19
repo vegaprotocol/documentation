@@ -267,6 +267,28 @@ vega data node stopped with error: failed to flush subscriber:flushing ledger: f
 2. Restart your PostgreSQL server
 3. Start your data node.
 
+## Problem: CONSENSUS FAILURE at block `26439343`
+
+Your node may fail with the following error: `panic: cannot unregister order with potential sell + size change < 0` at block `26439343`.
+If the block is different, this is a different issue.
+
+There was a mainnet bug that crashed the network.
+
+### Solution: Apply patches to the mainnet network
+
+See the following procedure: [Apply patches for the consensus failure at block 26439343](../get-started/setup-datanode.md#potential-error-cannot-unregister-order).
+
+## Problem: CONSENSUS FAILURE at block `34669654`
+
+Your node may fail with the following error: `runtime error: invalid memory address or nil pointer dereference` at block `34669654`.
+If the block is different, this is a different issue.
+
+There was a mainnet bug that crashed the network.
+
+### Solution: Apply patches to the mainnet network
+
+See the following procedure: [Apply patches for the consensus failure at block 26439343](../get-started/setup-datanode.md#potential-error-invalid-memory-address).
+
 ## Problem: You encounter deadlocking issues with the Postgres database causing it to crash.
 
 We have found during testing that for some scenarios, such as snapshot restores, Postgres can encounter deadlocks when refreshing the continuous aggregates. This leads to Postgres panics and causes the data node to crash.

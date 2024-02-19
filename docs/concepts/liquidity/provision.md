@@ -94,8 +94,6 @@ How much a market aims to have in liquidity is called the target stake. It depen
 Target stake is used by the protocol to:
 * Calculate the market's liquidity fee level from the liquidity commitments
 * Determine the maximum amount an LP can reduce their commitment before being penalised for providing too little liquidity
-* Potentially trigger a [liquidity monitoring auction](../trading-on-vega/market-protections#liquidity-monitoring) if there's an imbalance between target stake and total stake
- * This can depend on the value of the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.targetstake.triggering.ratio" hideValue={true} /> network parameter, which defines how sensitive the auction trigger is
 
 :::tip Query for data
 [API: Target stake](./api/../../../api/rest/data-v2/trading-data-service-get-latest-market-data.api.mdx)

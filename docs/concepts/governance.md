@@ -134,6 +134,17 @@ Consider a network parameter that specifies the proportion of fees that goes to 
 * <NetworkParameter frontMatter={frontMatter} name="Required majority" param="governance.proposal.updateNetParam.requiredMajority" formatter="percent" />
 * <NetworkParameter frontMatter={frontMatter} name="Proposer must have" param="governance.proposal.updateNetParam.minProposerBalance" formatter="governanceToken" suffix='tokens' />
 
+## Submitting proposals in a batch
+You can submit governance proposals individually, or batch up the proposed changes into one proposal.
+
+The only thing that can't be proposed in a batch is adding a new asset - that needs to be a proposal on its own.
+
+When a batch proposal goes up for the vote, each proposed change within the batch needs to pass based on its own voting requirements. For example, if the batch includes a market change, the equity-like share voting rules apply to that specific change.
+
+Every proposed change in the batch needs to pass its voting requirements, or the whole batch fails.
+
+The batch proposal only has one rationale field, as well as one closing timestamp, for the whole set of proposals, so the description should describe why each change is being proposed. Each enactment timestamp needs to work with the single closing timestamp chosen for the batch.
+
 ## Asset governance
 Assets need to be proposed and pass a governance vote before they can be used on the Vega network.
 
@@ -238,7 +249,8 @@ Required fields include:
 * Product specifics including the settlement asset and quote name
 * Decimal places for the market and positions. (Note: A market cannot specify more decimal places than its settlement asset supports)
 * Oracle details, including the oracle's public key, specifications for settlement price, and data filters
-* Liquidity monitoring parameters, including the target stake
+* Liquidity parameters, including the target stake
+* Method for setting liquidity fees, such as constant, marginal cost or stake-weighted average
 
 Optional fields include: 
 * Metadata so that people can easily interpret the market's details - while this is optional, it's highly recommended that you include metadata for the market
@@ -247,7 +259,6 @@ Optional fields include:
 :::note Read more
 * [New market proposal tutorial](../tutorials/proposals/new-market-proposal.md)
 * [Data sources](./trading-on-vega/data-sources.md)
-* [Liquidity monitoring parameters](./trading-on-vega/market-protections.md#liquidity-monitoring)
 * [Price monitoring parameters](./trading-on-vega/market-protections.md#price-monitoring)
 :::
 

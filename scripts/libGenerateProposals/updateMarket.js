@@ -57,20 +57,17 @@ function generatePriceMonitoringParameters(skeleton) {
   assert.equal(skeleton.properties.triggers.type, 'array')
   assert.equal(skeleton.properties.triggers.items.properties.horizon.format, 'int64')
   assert.equal(skeleton.properties.triggers.items.properties.probability.type, 'string')
-  assert.equal(skeleton.properties.triggers.items.properties.auctionExtension.format, 'int64')
 
   const params = {
     triggers: [
       {
         horizon: "43200",
         probability: "0.9999999",
-        auctionExtension: "600"
       }
     ]
   }
 
   params[inspect.custom] = () => {
-    const splitTitle = skeleton.properties.triggers.items.properties.auctionExtension.description.split('\n')
     return `{
           // ${skeleton.properties.triggers.items.title}
           triggers: [
@@ -79,10 +76,6 @@ function generatePriceMonitoringParameters(skeleton) {
               horizon: "${params.triggers[0].horizon}",
               // ${skeleton.properties.triggers.items.properties.probability.description} (${skeleton.properties.triggers.items.properties.probability.type})
               probability: "${params.triggers[0].probability}",
-              // ${splitTitle[0]}
-              // ${splitTitle[1]}
-              // ${splitTitle[2]} (${skeleton.properties.triggers.items.properties.auctionExtension.format} as ${skeleton.properties.triggers.items.properties.auctionExtension.type})
-              auctionExtension: "${params.triggers[0].auctionExtension}",
               }
           ]
       }`
@@ -117,7 +110,7 @@ function generateRiskModel(skeleton, riskModelType) {
     // This was what all the markets on fairground were set to
     tau: 0.0001140771161,
     // This is a random array based on what was live on Fairground at the time
-    riskAversionParameter: sample([0.001, 0.01, 0.0001]),
+    riskAversionParameter: 0.00001,
     params: {
       // This was what all the markets on fairground were set to
       mu: 0,
@@ -153,7 +146,6 @@ function generateRiskModel(skeleton, riskModelType) {
 function updateMarket(skeleton, proposalSoFar) {
   assert.ok(skeleton.properties.changes);
   assert.ok(skeleton.properties.changes.properties.instrument);
-  assert.ok(skeleton.properties.changes.properties.quadraticSlippageFactor);
   assert.ok(skeleton.properties.changes.properties.linearSlippageFactor);
   assert.equal(skeleton.properties.changes.properties.metadata.type, 'array');
   assert.ok(skeleton.properties.changes.properties.priceMonitoringParameters);
@@ -170,7 +162,6 @@ function updateMarket(skeleton, proposalSoFar) {
         marketId: '123',
         changes: {
           linearSlippageFactor: "0.001",
-          quadraticSlippageFactor: "0",
           instrument: generateFutureInstrument(skeleton.properties.changes.properties.instrument),
           metadata: generateMetadata(skeleton.properties.changes.properties.metadata),
           priceMonitoringParameters: generatePriceMonitoringParameters(skeleton.properties.changes.properties.priceMonitoringParameters),
@@ -191,8 +182,6 @@ function updateMarket(skeleton, proposalSoFar) {
         changes: {
           // ${skeleton.properties.changes.properties.linearSlippageFactor.description}
           linearSlippageFactor: ${result.terms.updateMarket.changes.linearSlippageFactor},
-          // ${skeleton.properties.changes.properties.quadraticSlippageFactor.description}
-          quadraticSlippageFactor: ${result.terms.updateMarket.changes.quadraticSlippageFactor},
           // ${skeleton.properties.changes.properties.instrument.title}
           instrument: ${inspect(result.terms.updateMarket.changes.instrument, { depth: 19 })},
           // ${skeleton.properties.changes.properties.metadata.description}

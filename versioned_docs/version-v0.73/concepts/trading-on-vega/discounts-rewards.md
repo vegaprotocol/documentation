@@ -11,7 +11,7 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 You can offset some of the [fees](./fees.md) you pay, or earn even more, by receiving rewards based on trading activity. Rewards can be funded by anyone, and can be in any asset. You can see what rewards are currently available on [vega.xyz ↗](https://vega.xyz/rewards).
 
 ## Referral program
-You can earn a commission for referring new users when a referral program is enabled. New users get a discount on their fees, while whoever refers them gets a cut of their referees’ trading fees. How much commission the referrer receives is increased if they have VEGA associated to their public key.
+You can earn a commission for referring new users when a referral program is enabled. New users get a discount on their fees, while whoever refers them gets a cut of their referees’ trading fees. How much commission the referrer receives is increased if they have VEGA associated to their public key. 
 
 :::tip Refer a friend
 Get benefits for referring, or being referred. 
@@ -35,7 +35,7 @@ Traders can get discounts on their [fees](./fees.md) when there's an active volu
 
 The size of the discount, generally speaking, depends on the volume of your taker trades over a set window of time. You can get access to different levels of discounts when your trading volume is higher.
 
-All of the details for the volume discount program are proposed and accepted through governance. You can the current program by checking the [volume discount program API](../../api/rest/data-v2/trading-data-service-get-current-volume-discount-program.api.mdx).
+All of the details for the volume discount program are proposed and accepted through governance. You can see the current program by checking the [volume discount program API](../../api/rest/data-v2/trading-data-service-get-current-volume-discount-program.api.mdx).
 
 :::note Read more
 * [Tutorial: Propose enabling or changing the volume discount program](../../tutorials/proposals/volume-discount-program-proposal.md)
@@ -60,11 +60,11 @@ See what rewards are currently available on [vega.xyz ↗](https://vega.xyz/rewa
 Rewards are independent from [fees](./fees.md), which are paid to validators, liquidity providers, and price makers on each trade.
 
 ### How rewards are paid
-Rewards that you earn are paid into a per-asset *vesting rewards account*. They may be locked for a time, if there's a lock period set. Each epoch, a percentage of the locked rewards begin vesting. Once they're vested, they are moved into a *vested rewards account*. From there, they can be redeemed by transferring them into your general account and withdrawn.
+Rewards that you earn are paid into a per-asset *vesting rewards account*.
 
-The lock period is defined in the [transfer](../assets/transfers.md) that funded the reward. Use the [transfers API](../../api/rest/data-v2/trading-data-service-list-transfers.api.mdx) to see the lock periods.
-
-Once they unlock, a proportion of the rewards move into the vested account each epoch: <NetworkParameter frontMatter={frontMatter} name="current rate" param="rewards.vesting.baseRate" formatter="percent" />. That percentage can be higher if you have an [activity streak](#activity-streak) going.
+* **Rewards may be locked.** Each reward has its own lock period. Check the [rewards page on Console ↗](https://https://vegaprotocol.eth.limo/#/rewards) or the [transfers API](../../api/rest/data-v2/trading-data-service-list-transfers.api.mdx) to see how many [epochs](../vega-chain/network.md#epochs) each reward is locked for.
+* After rewards unlock, a proportion of the rewards move into your *vested account* each epoch: <NetworkParameter frontMatter={frontMatter} name="current rate" param="rewards.vesting.baseRate" formatter="percent" />. That percentage can be higher if you have an [activity streak](#activity-streak) going.
+* Redeem rewards from your vested account by transferring them into your general account. Then you can withdraw.
 
 ### Reward hoarder bonus
 Leaving your reward earnings in your vested account will increase your share of the trading rewards you've accrued. How much extra you get depends on your total rewards balance, whether it's locked, vesting, or vested.

@@ -17,7 +17,107 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 [**Vega Capsule on GitHub** ↗](https://github.com/vegaprotocol/vegacapsule/releases) - Vega Capsule, which lets you create an instance of the Vega network on your computer to experiment with using the protocol, is public and you can read the contents of each release on GitHub.
 
 ## Vega core software
-The Vega core software is public on a business-source licence, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
+The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
+
+## Pre-release version 0.74 | 2024-01-24
+This version was released to the Vega testnet on 24 January 2024.
+
+This pre-release contains several new features for the Palazzo milestone, including isolated margin, batch proposals, Ethereum RPC and EVM based data sources, new mark price and perps funding TWAP methodology, LP fee setting improvements and team games and party profile updates.
+
+### Breaking changes
+
+- Listing transactions on block explorer no longer supports the field `limit`. This has been removed in [issue 10215 ↗](https://github.com/vegaprotocol/vega/issues/10215)
+- Getting a transfer by ID now returns a `TransferNode`. This has been added in [issue 8056 ↗](https://github.com/vegaprotocol/vega/issues/8056)
+
+### Deprecations
+
+ - Commands `tm` and `tendermint` are deprecated in favour of `cometbft`. This has been completed in [issue 10000 ↗](https://github.com/vegaprotocol/vega/issues/10000)
+
+### New Features
+
+This release brings in a number of new network parameters. The below table details the parameters, default values and the associated specs should the community wish to change these post deployment.
+
+
+| Network parameter    | Default value | Feature |
+| -------------------- | ----- | ------------- |
+| blockchains.ethereumRpcAndEvmCompatDataSourcesConfig | {"configs":[{"network_id":"100","chain_id":"100","confirmations":3,"name":"Gnosis Chain"}]} | EVM RPC data sourcing [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0087-EVMD-eth-rpc-and-evm-data-source.md) |
+| network.internalCompositePriceUpdateFrequency | 5s | Mark price [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0009-MRKP-mark_price.md) |
+| spam.protection.max.updatePartyProfile | 5 | Teams and games [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0062-SPAM-spam_protection.md) |
+| spam.protection.updatePartyProfile.min.funds | 10 | Teams and games [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0062-SPAM-spam_protection.md) |
+| spam.protection.referralSet.min.funds | 10 | Teams and games [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0062-SPAM-spam_protection.md) |
+| transfer.fee.maxQuantumAmount | 1 | Transfer fee improvements [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0057-TRAN-transfers.md) |
+| transfer.feeDiscountDecayFraction | 0.5 | Transfer fee improvements [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0057-TRAN-transfers.md) |
+| transfer.feeDiscountMinimumTrackedAmount | 0.001 | Transfer fee improvements [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0057-TRAN-transfers.md) |
+
+> [!IMPORTANT]
+> These default values are subject to be different in mainnet, therefore, anyone building on top of these values should reference the mainnet release notes when published. These values can be found in [this PR](https://github.com/vegaprotocol/vega/pull/10552)
+
+
+#### Isolated margin
+
+The protocol now allows users to choose between one of two margining modes for each position. The current mode will be stored alongside the party's position record.
+
+* Cross-margin mode (default): this is the mode used by all newly created orders, but it can be changed. When in cross-margin mode, margin is dynamically acquired and released as a position is marked to market, allowing profitable positions to offset losing positions for higher capital efficiency.
+* Isolated margin mode: this mode sacrifices capital efficiency for predictability and risk management by segregating positions. In this mode, the entire margin for any newly opened position's volume is transferred to the margin account when the trade is executed. This includes completely new positions and increases to position size. Other than at time of future trades, the general account will then never be searched for additional funds - a position will be allowed to be closed out instead - nor will profits be moved into the general account from the margin account while a position is open.
+
+To see lower level details of how the new isolated margin feature is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0019-MCAL-margin_calculator.md#isolated-margin-mode).
+
+#### Batch proposals
+
+A `BatchProposalSubmission` is a top-level proposal type that allows grouping several individual proposals into a single proposal. All changes will pass or fail governance voting together.
+
+The batch proposal is a wrapper containing one rationale (i.e. title and description) and one closing timestamp for the whole set, and a list of proposal submissions for each proposed change that omit certain fields.
+
+Any governance proposal can be included in a batch except proposals to *add* new assets.
+
+To see lower level details of how the new batch proposals feature is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0028-GOVE-governance.md#batch-proposals).
+
+#### Ethereum RPC and EVM based data sources
+
+Updates in the Palazzo milestone (v0.74.0) introduce a new way of sourcing data from any chain or Ethereum Layer 2 blockchain (L2) that supports Ethereum RPC calls and runs an EVM.
+
+In addition to listening to Ethereum events and reading oracle data from Ethereum contracts, as implemented the Cosmic Elevator milestone (v0.73), it will now be possible for Vega nodes to listen to events from and read from other chains that implement Ethereum RPC and run EVM, in particular Ethereum L2s.
+
+The overarching principle is that the chain provides Ethereum RPC / EVMs and thus the contracts and ABIs are assumed to be functionally the same as on Ethereum itself.
+
+To see lower level details of how the new Ethereum RPC and EVM based data sources feature is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0087-EVMD-eth-rpc-and-evm-data-source.md).
+
+#### Mark price and price for perps funding TWAP updates
+
+For perpetual futures markets there is now a **mark price** configuration and a **mark price for funding** configuration so that the market can potentially use different mark price for mark-to-market and price monitoring and a completely different price for calculating funding.
+
+To see lower level details of how the new mark price and price for perps funding TWAP updates is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0009-MRKP-mark_price.md).
+
+#### Liquidation strategy improvements
+
+Improvements have been made to how distressed parties are liquidated. Now new market proposals will need to include a liquidation strategy configuration.
+
+This configuration is used to allow the network to hold an active position on the market. Parties that are distressed, but previously couldn't be liquidated because there was insufficient volume on the book, will now be liquidated. In this process the party's position is transferred to the network party, and rather than dumping the distressed volume on the market, an inventory management strategy carries this out over time.
+
+This improvement has been added in [issue 9945 ↗](https://github.com/vegaprotocol/vega/issues/9945)
+
+#### Liquidity provider fee setting improvements
+
+There are three methods for setting the liquidity fee factor, with the default method being the current 'Marginal Cost method.' The liquidity fee setting mechanism is configured per market as part of the market proposal. Th two new methods are:
+
+**Stake-weighted-average method for setting the liquidity fee factor**
+
+The liquidity fee factor is set as the weighted average of the liquidity fee factors, with weights assigned based on the supplied stake from each liquidity provider, which can also account for the impact of one supplier's actions on others.
+
+**"Constant liquidity fee" method**
+
+The liquidity fee factor is set to a constant directly as part of the market proposal.
+
+This has been implemented as per the [LP fee and rewards setting specification ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md)
+
+
+#### Teams games and party profiles
+
+A number of changes have been introduced to incentivise the use of Vega through rewards. Along with the referral program users will be able to create teams and incentivise use via reward structures. The team reward metrics and accounts have been implemented as per the [rewards specification ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0056-REWA-rewards_overview.md#team-reward-metrics).
+
+Now, participants can also have an on-chain party profile allowing them to add an alias and metadata to a given party.
+
+This has been implemented as per the [party profile specification ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0088-PPRF-party_profile.md)
 
 ### Pre-release version 0.73.12 (patch) | 2024-01-10
 Version 0.73.12 was released the Vega testnet on 10 January, 2024.

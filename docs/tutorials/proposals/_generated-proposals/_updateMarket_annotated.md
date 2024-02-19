@@ -13,9 +13,6 @@
     // Linear slippage factor is used to cap the slippage component of maintenance margin - it is applied to the slippage volume.
     linearSlippageFactor: 0.001,
 
-    // Quadratic slippage factor is used to cap the slippage component of maintenance margin - it is applied to the square of the slippage volume.
-    quadraticSlippageFactor: 0,
-
     // Instrument configuration
     instrument: {
      // Instrument code, human-readable shortcode used to describe the instrument.
@@ -129,11 +126,6 @@
 
          // Price monitoring probability level p. (string)
          probability: "0.9999999",
-
-         // Price monitoring auction extension duration in seconds should the price
-         // breach its theoretical level over the specified horizon at the specified
-         // probability level. (int64 as string)
-         auctionExtension: "600",
         }
        ]
       },
@@ -145,7 +137,7 @@
        must be a strictly non - negative real number.(number) tau: 0.0001140771161,
 
        // Risk Aversion Parameter. (double as number)
-       riskAversionParameter: "0.0001",
+       riskAversionParameter: "0.00001",
 
        // Risk model parameters for log normal
        params: {
@@ -180,11 +172,11 @@
 
     // Timestamp as Unix time in seconds when voting closes for this proposal,
     // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-    closingTimestamp: 1700934839,
+    closingTimestamp: 1709140846,
 
     // Timestamp as Unix time in seconds when proposal gets enacted if passed,
     // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-    enactmentTimestamp: 1701021239,
+    enactmentTimestamp: 1709227246,
    }
   }
 ```

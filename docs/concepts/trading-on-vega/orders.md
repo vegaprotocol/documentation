@@ -93,7 +93,7 @@ Rather than being set for a specific limit price, a pegged order is a defined di
 The reference price is based on the live market, and the final price is calculated and used to insert the new order. The distance is also known as the offset value, which is an absolute value that must be cleanly divisible by the tick size, and must be positive.
 
 #### Amend pegged orders
-Pegged orders can be amended like standard limit orders - their reference, offset and time in force values can all be amended. Amends must be done to the pegged order itself, not any limit orders derived from pegged orders. 
+Pegged orders can be amended like standard limit orders. Their reference, offset and time in force values can all be amended. Amends must be done to the pegged order itself, not any limit orders derived from pegged orders. 
 
 If the price or size are changed in an amendment, the order will lose time priority in the order book, but will keep its priority in the list of pegged orders. 
 
@@ -135,22 +135,46 @@ An iceberg order can be amended. The remaining amount can be increased or decrea
 Amending an iceberg does not affect the peak size's time priority.
 
 ### Stop order
-A stop order is an order to buy or sell once the price reaches a specified price, known as the trigger price. Stop orders can be used to help a trader limit losses (stop loss), or capitalise on a gain (take profit) automatically when they already have an open position.
+A stop order is a conditional order to buy or sell once the product reaches the  price or percentage move that you've specified, known as the trigger. Stop orders can be used to help limit loss (stop loss), or capitalise on a gain (take profit) automatically.
 
-Stop orders can only be used to bring a trader's position closer to zero, and thus make use of the [reduce only](#reduce-only) condition and will only be accepted if the trader already has an open position on the market.
+You can set a stop order's trigger to submit an order for a fixed size, or for a size linked to your existing open position.
 
-A stop order must include a trigger price at a fixed level, or it can be a percentage for a trailing stop. It must also include whether to deploy the order once the last traded price "rises above" or "falls below" the given stop price/percentage. It can, but doesn't need to, have an expiry date and time, or an execution time at which point the order will be filled, if possible.
+The triggers for a stop order can be based on:
+* Specific trigger price; or
+* Percentage movement away from your entry price. This is known as a trailing stop
+* Optional time for cancellation or execution
 
-While a stop order can be a single instruction, it could alternatively be a pair of stop orders where one cancels the other (OCO). Using the OCO option allows a trader to have a stop loss and a take profit/trailing stop instruction for the same position. If one of the pair is triggered, cancelled, deleted, or rejected, the other one is automatically cancelled.
+Your stop order can be set to have a [time in force](#times-in-force), and it can be a [limit](#limit-order) or [market order](#market-order).
 
-If a trader's position size moves to zero and there are no open orders, the trader's stop orders for that market are cancelled.
+If the trigger is breached, an order is submitted with the parameters that you provided, and with your existing position's size if it's linked to the position. Your position isn't affected unless the order is filled.
 
-There's a limit to how many stop orders any one public key can have active at one time, set by the 'spam.protection.max.stopOrdersPerMarket' network parameter.
+A stop order can be set with a fixed size or have its size dictated by your open position. A stop order must reduce your position, and will be rejected otherwise.
+
+Once the last traded price "rises above" or "falls below" the given stop price/percentage move, depending on your instruction, your order is executed.
+
+When submitting with a *fixed size*, an order is executed with the given fixed size if your trigger is breached. It will only attempt to trade that amount, regardless of your position size at the time.
+
+When submitting a stop order that *links to your existing position*, an order is executed to close your whole position or a percentage if the trigger is breached. If your position changes sides, such as from long to short, while your stop order is open, it will be cancelled.
+
+If your position size moves to zero and there are no open orders, your stop orders for that market are cancelled.
+
+There's a limit to how many stop orders any one public key can have active at one time: <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.stopOrdersPerMarket" hideName={true} />.
+
+#### OCO stop orders
+While a stop order can be a single instruction, it could instead be a pair of stop orders where the execution of one side cancels the other (OCO).
+
+Using an OCO allows you to have a stop loss and a take profit/trailing stop instruction for the same position. If one of the pair is triggered, cancelled, deleted, or rejected, the other one is automatically cancelled.
+
+You can set it to do one of the following at expiry: 
+* Trigger either of the two sides - but not both
+* Expire with no action
+
+OCO stops can use fixed size or position-linked instructions.
 
 ### Batch order
 Order instructions, such as submit, cancel, and/or amend orders, as well as stop order instructions, can be batched together in a single transaction, which allows traders to regularly place and maintain the price and size of multiple orders without needing to wait for each order instruction to be processed by the network individually.
 
-Batches are processed in the following order: all cancellations, then all amendments, then all submissions. Stop order instructions are processed after standard order instructions.
+Batches are processed in the following order: all cancellations, then all amendments, then [margin](./margin.md#margin) mode updates, then all submissions. Stop order instructions are processed after standard order instructions.
 
 They are also processed as if they were standalone order instructions in terms of market behaviour. For example, if an instruction, had it been submitted individually, would trigger entry into or exit from an auction, then the order instruction would set off the auction trigger before the rest of the batch is processed.
 
@@ -277,7 +301,11 @@ Pegged orders can also be placed, but will be parked until the market is out of 
 :::
 
 ### Amend an order
-Orders that have not been fully filled can be amended.
+Orders that have not been fully filled can be amended. 
+
+You can change your order size by:
+* Supplying the new order size
+* Setting the amount you want to increase or decrease your order size by, known as the delta
 
 If your amendment will change the price you're seeking or increase the order size, it will cancel the existing order and replace it with a new one. The time priority will be lost, because, in effect, the original order was cancelled and removed from the book and a new order was submitted with the modified values.
 

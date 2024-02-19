@@ -11,7 +11,6 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
   \"newMarket\": {^
    \"changes\": {^
     \"linearSlippageFactor\": \"0.001\",^
-    \"quadraticSlippageFactor\": \"0\",^
     \"decimalPlaces\": \"5\",^
     \"positionDecimalPlaces\": \"5\",^
     \"instrument\": {^
@@ -27,9 +26,10 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
       \"dataSourceSpecForSettlementData\": {^
        \"external\": {^
         \"ethOracle\": {^
+         \"sourceChainId\": \"1\",^
          \"address\": \"0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43\",^
-         \"abi\": \"[{\\"inputs\\":[],\\"name\\":\\"latestAnswer\\",\\"outputs\\":[{\\"internalType\\":\\"int256\\",\\"name\\":\\"\\",\\"type\\":\\"int256\\"}],\\"stateMutability\\":\\"view\\",\\"type\\":\\"function\\"}]\",^
-         \"method\": \"latestAnswer\",^
+         \"abi\": \"[{\\"inputs\\":[],\\"name\\":\\"latestRoundData\\",\\"outputs\\":[{\\"internalType\\":\\"int256\\",\\"name\\":\\"\\",\\"type\\":\\"int256\\"}],\\"stateMutability\\":\\"view\\",\\"type\\":\\"function\\"}]\",^
+         \"method\": \"latestRoundData\",^
          \"normalisers\": [^
           {^
            \"name\": \"prices.ORANGES.value\",^
@@ -84,30 +84,21 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      }^
     },^
     \"metadata\": [^
-     \"enactment:2023-11-28T18:16:03Z\",^
-     \"settlement:2023-11-27T18:16:03Z\",^
+     \"enactment:2024-03-05T12:14:06Z\",^
+     \"settlement:2024-03-04T12:14:06Z\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
      \"triggers\": [^
       {^
        \"horizon\": \"43200\",^
-       \"probability\": \"0.9999999\",^
-       \"auctionExtension\": \"600\"^
+       \"probability\": \"0.9999999\"^
       }^
      ]^
     },^
-    \"liquidityMonitoringParameters\": {^
-     \"targetStakeParameters\": {^
-      \"timeWindow\": \"3600\",^
-      \"scalingFactor\": 10^
-     },^
-     \"triggeringRatio\": \"0.7\",^
-     \"auctionExtension\": \"1\"^
-    },^
     \"logNormal\": {^
      \"tau\": 0.0001140771161,^
-     \"riskAversionParameter\": 0.01,^
+     \"riskAversionParameter\": 0.00001,^
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
@@ -119,11 +110,45 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      \"commitmentMinTimeFraction\": \"0.1\",^
      \"performanceHysteresisEpochs\": \"10\",^
      \"slaCompetitionFactor\": \"0.2\"^
+    },^
+    \"liquidationStrategy\": {^
+     \"disposalTimeStep\": \"500\",^
+     \"disposalFraction\": \"1\",^
+     \"fullDisposalSize\": \"18446744073709551615\",^
+     \"maxFractionConsumed\": \"1\"^
+    },^
+    \"liquidityFeeSettings\": {^
+     \"method\": \"METHOD_CONSTANT\",^
+     \"feeConstant\": \"0.00005\"^
+    },^
+    \"liquidityMonitoringParameters\": {^
+     \"targetStakeParameters\": {^
+      \"timeWindow\": \"3600\",^
+      \"scalingFactor\": \"0.05\"^
+     }^
+    },^
+    \"markPriceConfiguration\": {^
+     \"decayWeight\": \"1\",^
+     \"decayPower\": \"1\",^
+     \"cashAmount\": \"5000000\",^
+     \"sourceWeights\": [^
+      \"0\",^
+      \"1\",^
+      \"0\"^
+     ],^
+     \"sourceStalenessTolerance\": [^
+      \"1m0s\",^
+      \"1m0s\",^
+      \"1m0s\"^
+     ],^
+     \"compositePriceType\": \"COMPOSITE_PRICE_TYPE_WEIGHTED\",^
+     \"dataSourcesSpec\": [],^
+     \"dataSourcesSpecBinding\": []^
     }^
    }^
   },^
-  \"closingTimestamp\": 1701108963,^
-  \"enactmentTimestamp\": 1701195363^
+  \"closingTimestamp\": 1709554446,^
+  \"enactmentTimestamp\": 1709640846^
  }^
 }^
 }"
