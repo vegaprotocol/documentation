@@ -24,8 +24,8 @@ Version 0.73.14 was released by the validators to mainnet on 19 February, 2024.
 
 This version:
 
-* Contains changes that will suspend all market at the time of the protocol upgrade and set the funding rate scaling facotor to `0` as per the [0.73.14](https://github.com/vegaprotocol/vega/releases/tag/v0.73.14) release notes.
-* Is in response to reports from the community of a potential intentional exploit and/or manipulation of markets as detailed in this [mainnet incdent ↗](https://medium.com/vegaprotocol/incident-report-network-outage-e60376912790) and is to protect the current mainnet markets.
+* Contains changes that will suspend all markets at the time of the protocol upgrade and set the funding rate scaling factor to `0` as per the [0.73.14](https://github.com/vegaprotocol/vega/releases/tag/v0.73.14) release notes.
+* This is in response to reports from the community of a potential intentional exploit and/or manipulation of markets as detailed in this [mainnet incident report ↗](https://medium.com/vegaprotocol/incident-report-network-outage-e60376912790) and is to protect the current markets.
 
 
 ### Release version 0.73.13 (patch) | 2024-02-06
