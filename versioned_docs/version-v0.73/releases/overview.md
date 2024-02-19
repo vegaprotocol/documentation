@@ -19,8 +19,17 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-### Release version 0.73.14 (patch) | 2024-02-06
-Version 0.73.14 was released by the validators to mainnet on 06 February, 2024.
+### Release version 0.73.14 (patch) | 2024-02-19
+Version 0.73.14 was released by the validators to mainnet on 19 February, 2024.
+
+This version:
+
+* Contains changes that will suspend all market at the time of the protocol upgrade and set the funding rate scaling facotor to `0` as per the [0.73.14](https://github.com/vegaprotocol/vega/releases/tag/v0.73.14) release notes.
+* Is in response to reports from the community of a potential intentional exploit and/or manipulation of markets as detailed in this [mainnet incdent ↗](https://medium.com/vegaprotocol/incident-report-network-outage-e60376912790) and is to protect the current mainnet markets.
+
+
+### Release version 0.73.13 (patch) | 2024-02-06
+Version 0.73.13 was released by the validators to mainnet on 06 February, 2024.
 
 The version contained the following critical bug fixes:
 
