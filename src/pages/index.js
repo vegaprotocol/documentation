@@ -70,14 +70,14 @@ export default function Home() {
             <h2>Getting started</h2>
             <p>Get to know the Vega framework and what's coming up next.</p>
             <ul>
-              <li><Link href={`${base}/intro/index`}>Vega basics</Link></li>
+              <li><Link href={`${base}/intro`}>Vega basics</Link></li>
               <li><Link href={`${base}/concepts/new-to-vega`}>About the protocol</Link></li>
               <li><Link className="external" href="https://github.com/orgs/vegaprotocol/projects/114/views/4" target="_blank">Roadmap</Link></li>
             </ul>
           </article>
           <article>
             <h2>Trading</h2>
-            <p>See the live cash-settled derivatives markets and place orders using a trading dApp for Vega software. You'll need a Vega Wallet.</p>
+            <p>Place orders on derivatives markets with a trading dApp for Vega software. You'll need a Vega Wallet.</p>
             <ul>
               <li><Link className="external" href="https://console.vega.xyz/" target="_blank">Mainnet trading dApp</Link></li>
               <li><Link className="external" href="https://console.fairground.wtf/" target="_blank">Testnet trading dApp</Link></li>
@@ -86,7 +86,7 @@ export default function Home() {
           </article>
           <article>
             <h2>Governance</h2>
-            <p>The network is governed by the community. Use your tokens to vote on proposals and propose changes.</p>
+            <p>The network is governed by the community. Use your tokens to propose and vote on changes.</p>
             <ul>
               <li><Link to={`${base}/concepts/governance`}>Intro to governance</Link></li>
               <li><Link to={`${base}/tutorials/proposals`}>Tutorials: How to propose</Link></li>
@@ -103,11 +103,11 @@ export default function Home() {
           </Link>
           <Link to={`${base}/releases/overview`} className="card cardContainer">
             <h3 className="cardTitle">Release summaries</h3>
-            <p className="cardDescription">See the latest features and get ahead of breaking changes.</p>
+            <p className="cardDescription">See the new features, get ahead of breaking changes.</p>
           </Link>
           <Link to={`${base}/api/overview`} className="card cardContainer">
             <h3 className="cardTitle">Developing & APIs</h3>
-            <p className="cardDescription">What you need to know before you start developing on Vega.</p>
+            <p className="cardDescription">What you need to know to start developing on Vega.</p>
           </Link>
         </section>
       </main>
