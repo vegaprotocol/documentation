@@ -40,14 +40,14 @@ This release brings in a number of new network parameters. The below table detai
 
 | Network parameter    | Default value | Feature |
 | -------------------- | ----- | ------------- |
-| blockchains.ethereumRpcAndEvmCompatDataSourcesConfig | {"network_id":"1","chain_id":"1","collateral_bridge_contract":{"address":"0x23872549cE10B40e31D6577e0A920088B0E0666a"},"confirmations":64,"staking_bridge_contract":{"address":"0x195064D33f09e0c42cF98E665D9506e0dC17de68","deployment_block_height":13146644},"token_vesting_contract":{"address":"0x23d1bFE8fA50a167816fBD79D7932577c06011f4","deployment_block_height":12834524},"multisig_control_contract":{"address":"0xDD2df0E7583ff2acfed5e49Df4a424129cA9B58F","deployment_block_height":15263593}} | EVM RPC data sourcing [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0087-EVMD-eth-rpc-and-evm-data-source.md) |
-| network.internalCompositePriceUpdateFrequency | 5s | Mark price [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0009-MRKP-mark_price.md) |
-| spam.protection.max.updatePartyProfile | 10 | Teams and games [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0062-SPAM-spam_protection.md) |
-| spam.protection.updatePartyProfile.min.funds | 10 | Teams and games [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0062-SPAM-spam_protection.md) |
-| spam.protection.referralSet.min.funds | 10 | Teams and games [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0062-SPAM-spam_protection.md) |
-| transfer.fee.maxQuantumAmount | 1 | Transfer fee improvements [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0057-TRAN-transfers.md) |
-| transfer.feeDiscountDecayFraction | 0.8 | Transfer fee improvements [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0057-TRAN-transfers.md) |
-| transfer.feeDiscountMinimumTrackedAmount | 0.01 | Transfer fee improvements [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0057-TRAN-transfers.md) |
+| `blockchains.ethereumRpcAndEvmCompatDataSourcesConfig` | `{"network_id":"1","chain_id":"1","collateral_bridge_contract":{"address":"0x23872549cE10B40e31D6577e0A920088B0E0666a"},"confirmations":64,"staking_bridge_contract":{"address":"0x195064D33f09e0c42cF98E665D9506e0dC17de68","deployment_block_height":13146644},"token_vesting_contract":{"address":"0x23d1bFE8fA50a167816fBD79D7932577c06011f4","deployment_block_height":12834524},"multisig_control_contract":{"address":"0xDD2df0E7583ff2acfed5e49Df4a424129cA9B58F","deployment_block_height":15263593}}` | EVM RPC data sourcing [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0087-EVMD-eth-rpc-and-evm-data-source.md) |
+| `network.internalCompositePriceUpdateFrequency` | 5s | Mark price [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0009-MRKP-mark_price.md) |
+| `spam.protection.max.updatePartyProfile` | 10 | Teams and games [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0062-SPAM-spam_protection.md) |
+| `spam.protection.updatePartyProfile.min.funds` | 10 | Teams and games [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0062-SPAM-spam_protection.md) |
+| `spam.protection.referralSet.min.funds` | 10 | Teams and games [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0062-SPAM-spam_protection.md) |
+| `transfer.fee.maxQuantumAmount` | 1 | Transfer fee improvements [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0057-TRAN-transfers.md) |
+| `transfer.feeDiscountDecayFraction` | 0.8 | Transfer fee improvements [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0057-TRAN-transfers.md) |
+| `transfer.feeDiscountMinimumTrackedAmount` | 0.01 | Transfer fee improvements [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0057-TRAN-transfers.md) |
 
 
 #### Batch proposals
