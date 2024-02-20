@@ -19,10 +19,10 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-## Release version 0.74 | 2024-02-20
+## Release version 0.74.3 | 2024-02-20
 This version was released by the validators to mainnet on 20 February 2024.
 
-This release contains several new features for the Palazzo milestone, including isolated margin, batch proposals, Ethereum RPC and EVM based data sources, new mark price and perps funding TWAP methodology, LP fee setting improvements and team games and party profile updates.
+This release contains several new features for the Palazzo milestone, including batch proposals, Ethereum RPC and EVM based data sources, new mark price and perps funding TWAP methodology, LP fee setting improvements and team games and party profile updates.
 
 ### Breaking changes
 
@@ -49,15 +49,6 @@ This release brings in a number of new network parameters. The below table detai
 | transfer.feeDiscountDecayFraction | 0.8 | Transfer fee improvements [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0057-TRAN-transfers.md) |
 | transfer.feeDiscountMinimumTrackedAmount | 0.01 | Transfer fee improvements [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0057-TRAN-transfers.md) |
 
-
-#### Isolated margin
-
-The protocol now allows users to choose between one of two margining modes for each position. The current mode will be stored alongside the party's position record.
-
-* Cross-margin mode (default): this is the mode used by all newly created orders, but it can be changed. When in cross-margin mode, margin is dynamically acquired and released as a position is marked to market, allowing profitable positions to offset losing positions for higher capital efficiency.
-* Isolated margin mode: this mode sacrifices capital efficiency for predictability and risk management by segregating positions. In this mode, the entire margin for any newly opened position's volume is transferred to the margin account when the trade is executed. This includes completely new positions and increases to position size. Other than at time of future trades, the general account will then never be searched for additional funds - a position will be allowed to be closed out instead - nor will profits be moved into the general account from the margin account while a position is open.
-
-To see lower level details of how the new isolated margin feature is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0019-MCAL-margin_calculator.md#isolated-margin-mode).
 
 #### Batch proposals
 
@@ -117,6 +108,15 @@ Now, participants can also have an on-chain party profile allowing them to add a
 This has been implemented as per the [party profile specification ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0088-PPRF-party_profile.md)
 
 
+### Release version 0.73.14 (patch) | 2024-02-19
+Version 0.73.14 was released by the validators to mainnet on 19 February, 2024.
+
+This version:
+
+* Contains changes that will suspend all markets at the time of the protocol upgrade and set the funding rate scaling factor to `0` as per the [0.73.14](https://github.com/vegaprotocol/vega/releases/tag/v0.73.14) release notes.
+* This is in response to reports from the community of a potential intentional exploit and/or manipulation of markets as detailed in this [mainnet incident report ↗](https://medium.com/vegaprotocol/incident-report-network-outage-e60376912790) and is to protect the current markets.
+
+
 ### Release version 0.73.13 (patch) | 2024-02-06
 Version 0.73.13 was released by the validators to mainnet on 06 February, 2024.
 
@@ -125,6 +125,7 @@ The version contained the following critical bug fixes:
 * In a situation where the mark-to-market calculation included data for a party with no position, the code would raise a panic, which would then cause a node to fail. This issue was a patch fix in responce to the following network outage [mainnet incdent ↗](https://medium.com/vegaprotocol/incident-report-network-outage-e60376912790)
 * In some circumstances, PnL was incorrectly displayed by the API. This was resolved in issue [10568 ↗](https://github.com/vegaprotocol/vega/issues/10568)
 * During the governance voted termination of the LINK/USDT market on mainnet a particular edge case bug was identified. This is where the TWAP calculation for the internal data point, happening at the end of a funding period, can be incorrect. This led to some balances being incorrect during the funding payments. The calculation error has been resolved in the issue [10520 ↗](https://github.com/vegaprotocol/vega/issues/10520).
+
 
 ### Release versions 0.73.11 and 0.73.12 (patch) combined | 2024-01-12
 
