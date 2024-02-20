@@ -35,58 +35,71 @@
 
       // Data source spec describing the data source for settlement. (object)
       dataSourceSpecForSettlementData: {
+       // DataSourceDefinitionExternal is the top level object used for all external 
+       // data sources. It contains one of any of the defined `SourceType` variants. 
        external: {
-        oracle: {
-         // Signers is the list of authorized signatures that signed the data for this
-         // source. All the signatures in the data source data should be contained in (array of objects)
-         signers: [
+        // Contains the data specification that is received from Ethereum sources.
+        ethOracle: {
+         // The ID of the EVM based chain which is to be used to source the oracle data. (uint64 as string)
+         // The ID of the EVM based chain which is to be used to source the oracle data. 
+         sourceChainId: "1",
+
+         // Ethereum address of the contract to call.
+         address: "0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43",
+
+         // The ABI of that contract.
+         abi: "[{" inputs ":[]," name ":" latestRoundData "," outputs ":[{" internalType ":" int256 "," name ":" "," type ":" int256 "}]," stateMutability ":" view "," type ":" function "}]",
+
+         // Name of the method on the contract to call.
+         method: "latestRoundData",
+
+
+         /* Normalisers are used to convert the data returned from the contract method
+          * into a standard format. The key of the map is the name of the property,
+          * which identifies the specific piece of data to other parts of the data
+          * sourcing framework, for example filters. The value is a JSONPath expression
+          * for expressing where in the contract call result the required data is
+          * located, for example $[0] indicates the first result. $[1].price would look
+          * in the second result returned from the contract for a structure with a key
+          * called 'price' and use that if it exists. */
+         normalisers: [
           {
-           ethAddress: {
-            address: "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
-           }
+           name: "prices.ORANGES.value",
+           expression: "$[0]"
           }
          ],
 
-         // Filters describes which source data are considered of interest or not for
-         // the product (or the risk model).
-         filters: [
-          key: {
-           // Name of the property. (string)
-           name: "prices.ORANGES.value",
+         // Number of confirmations required before the query is considered verified
+         requiredConfirmations: 3,
 
-           // Data type of the property. (string)
-           type: "TYPE_INTEGER",
-
-           // Optional decimal place to be be applied on the provided value
-           // valid only for PropertyType of type DECIMAL and INTEGER
-           numberDecimalPlaces: "5",
-          },
-
-          // Conditions that should be matched by the data to be
-          // considered of interest.
-          conditions: [
-           {
-            // Type of comparison to make on the value. (string)
-            operator: "OPERATOR_GREATER_THAN",
-
-            // Value to be compared with by the operator. (string)
-            value: "0",
-           }
-          ]
+         // Conditions for determining when to call the contract method.
+         trigger: {
+          /* Trigger for an Ethereum call based on the Ethereum block timestamp. Can be
+           * one-off or repeating. */
+          timeTrigger: {
+           /* Repeat the call every n seconds after the initial call. If no time for
+            * initial call was specified, begin repeating immediately. */
+           every: 30
+          }
          },
-         {
-          key: {
-           name: "prices.ORANGES.timestamp",
-           type: "TYPE_INTEGER",
-          },
-          conditions: [
-           {
-            operator: "OPERATOR_GREATER_THAN",
-            value: "1648684800",
-           }
-          ]
-         }
-        ]
+
+         // Filters the data returned from the contract method
+         filters: [
+          {
+           key: {
+            name: "prices.ORANGES.value",
+            type: "TYPE_INTEGER",
+            numberDecimalPlaces: 8
+           },
+           conditions: [
+            {
+             operator: "OPERATOR_GREATER_THAN_OR_EQUAL",
+             value: "0"
+            }
+           ]
+          }
+         ]
+        }
        }
       },
 
@@ -123,8 +136,8 @@
 
       // Optional new futures market metadata, tags.
       metadata: [
-       "enactment:2024-02-29T17:20:46Z",
-       "settlement:2024-02-28T17:20:46Z",
+       "enactment:2024-03-11T17:17:04Z",
+       "settlement:2024-03-10T17:17:04Z",
        "source:docs.vega.xyz"
       ],
 
@@ -249,11 +262,11 @@
 
      // Timestamp as Unix time in seconds when voting closes for this proposal,
      // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-     closingTimestamp: 1709140846,
+     closingTimestamp: 1710091024,
 
      // Timestamp as Unix time in seconds when proposal gets enacted if passed,
      // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-     enactmentTimestamp: 1709227246,
+     enactmentTimestamp: 1710177424,
     }
    }
 ```
