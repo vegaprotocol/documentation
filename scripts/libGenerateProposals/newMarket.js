@@ -12,182 +12,84 @@ const instruments = [{ name: "Oranges Daily", code: "ORANGES.24h" }];
 
 // TODO more type assertions
 function generateSettlementDataSourceSpec(skeleton) {
-  assert.equal(
-    skeleton.type,
-    "object",
-    "This is an object with some properties"
-  );
-  assert.equal(
-    skeleton[p].external.type,
-    "object",
-    "External is an object containing data sources"
-  );
-  assert.equal(
-    skeleton[p].internal.type,
-    "object",
-    "Internal is an object containing data sources"
-  );
-  assert.equal(
-    skeleton[p].internal[p].time.type,
-    "object",
-    "Time is a valid internal data source"
-  );
-  assert.equal(
-    skeleton[p].external[p].oracle.type,
-    "object",
-    "Oracle is a valid external data source"
-  );
-  assert.equal(
-    skeleton[p].external[p].oracle[p].filters.type,
-    "array",
-    "Data Source spec filters"
-  );
-  assert.equal(
-    skeleton[p].external[p].oracle[p].filters.items.properties.key.properties
-      .numberDecimalPlaces.format,
-    "uint64",
-    "numberDecimalPlaces is a uint"
-  );
-
   const spec = {
-    external: {
-      oracle: {
-        signers: [
-          {
-            ethAddress: {
-              address: "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC",
-            },
-          },
-        ],
-        filters: [
-          {
-            key: {
-              name: "prices.ORANGES.value",
-              type: "TYPE_INTEGER",
-              numberDecimalPlaces: "5",
-            },
-            conditions: [
+    "external": {
+      "ethOracle": {
+          "sourceChainId": "1",
+          "address": "0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43",
+          "abi": "[{\"inputs\":[],\"name\":\"latestRoundData\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+          "method": "latestRoundData",
+          "normalisers": [
               {
-                operator: "OPERATOR_GREATER_THAN",
-                value: "0",
-              },
-            ],
+                  "name": "prices.ORANGES.value",
+                  "expression": "$[0]"
+              }
+          ],
+          "requiredConfirmations": 3,
+          "trigger": {
+              "timeTrigger": {
+                  "every": 30
+              }
           },
-          {
-            key: {
-              name: "prices.ORANGES.timestamp",
-              type: "TYPE_INTEGER",
-            },
-            conditions: [
+          "filters": [
               {
-                operator: "OPERATOR_GREATER_THAN",
-                value: "1648684800",
-              },
-            ],
-          },
-        ],
-      },
-    },
-  };
-
-  spec[inspect.custom] = () => {
-    const splitFilters =
-      skeleton[p].external[p].oracle[p].filters.description.split("\n");
-    const splitDescription =
-      skeleton[p].external[p].oracle[p].filters.items[
-        p
-      ].conditions.description.split("\n");
-    const splitPubkeys =
-      skeleton[p].external[p].oracle[p].signers.description.split("\n");
-    const splitDP =
-      skeleton.properties.external.properties.oracle.properties.filters.items.properties.key.properties.numberDecimalPlaces.title.split(
-        "\n"
-      );
-    return `{
-      external: {
-        oracle: {
-            // ${splitPubkeys[0]}
-            // ${splitPubkeys[1]} (${
-      skeleton[p].external[p].oracle[p].signers.type
-    } of ${
-      skeleton.properties.external.properties.oracle.properties.signers.items
-        .type
-    }s)
-            signers: ${JSON.stringify(spec.external.oracle.signers)},
-
-            // ${splitFilters[0]}
-            // ${splitFilters[1]}
-            filters: [
-                key: {
-                  // ${
-                    skeleton.properties.external.properties.oracle.properties
-                      .filters.items.properties.key.properties.name.description
-                  } (${
-      skeleton.properties.external.properties.oracle.properties.filters.items
-        .properties.key.properties.name.type
-    })
-                  name: "${spec.external.oracle.filters[0].key.name}",
-                  // ${
-                    skeleton.properties.external.properties.oracle.properties
-                      .filters.items.properties.key.properties.type.description
-                  } (${
-      skeleton.properties.external.properties.oracle.properties.filters.items
-        .properties.key.properties.type.type
-    })
-                  type: "${spec.external.oracle.filters[0].key.type}",
-
-                  // ${splitDP[0]}
-                  // ${splitDP[1]}
-                  numberDecimalPlaces: "${
-                    spec.external.oracle.filters[0].key.numberDecimalPlaces
-                  }",
-                },
-                // ${splitDescription[0]}
-                // ${splitDescription[1]}
-                conditions: [
-                  {
-                    // ${
-                      skeleton[p].external[p].oracle[p].filters.items[p]
-                        .conditions.items.properties.operator.description
-                    } (${
-      skeleton[p].external[p].oracle[p].filters.items[p].conditions.items[p]
-        .operator.type
-    })
-                    operator: "${
-                      spec.external.oracle.filters[0].conditions[0].operator
-                    }",
-                    // ${
-                      skeleton[p].external[p].oracle[p].filters.items[p]
-                        .conditions.items[p].value.description
-                    } (${
-      skeleton[p].external[p].oracle[p].filters.items[p].conditions.items[p]
-        .value.type
-    })
-                    value: "${
-                      spec.external.oracle.filters[0].conditions[0].value
-                    }",
-                  }
-                ]
-              },
-              {
-                  key: {
-                    name: "${spec.external.oracle.filters[1].key.name}",
-                    type: "${spec.external.oracle.filters[1].key.type}",
+                  "key": {
+                      "name": "prices.ORANGES.value",
+                      "type": "TYPE_INTEGER",
+                      "numberDecimalPlaces": 8
                   },
-                  conditions: [
-                    {
-                      operator: "${
-                        spec.external.oracle.filters[1].conditions[0].operator
-                      }",
-                      value: "${
-                        spec.external.oracle.filters[1].conditions[0].value
-                      }",
-                    }
+                  "conditions": [
+                      {
+                          "operator": "OPERATOR_GREATER_THAN_OR_EQUAL",
+                          "value": "0"
+                      }
                   ]
               }
           ]
-        }
-    }`;
+      }
+    }
+  }
+
+  const ex = skeleton[p].external.description.split('\n')
+
+  spec[inspect.custom] = () => {
+    return `{
+          // ${ex[0]} 
+          // ${ex[1]} 
+          "external": {
+
+            // ${skeleton[p].external[p].ethOracle.description}
+            "ethOracle": {
+               // ${skeleton[p].external[p].ethOracle[p].sourceChainId.description} (${skeleton[p].external[p].ethOracle[p].sourceChainId.format
+      } as ${skeleton[p].external[p].ethOracle[p].sourceChainId.type})
+               // ${skeleton[p].external[p].ethOracle[p].sourceChainId.description} 
+               "sourceChainId": "${spec.external.ethOracle.sourceChainId}",
+               // ${skeleton[p].external[p].ethOracle[p].address.description}
+               "address": "${spec.external.ethOracle.address}",
+               // ${skeleton[p].external[p].ethOracle[p].abi.description}
+               "abi": "${spec.external.ethOracle.abi}",
+               // ${skeleton[p].external[p].ethOracle[p].method.description}
+               "method": "${spec.external.ethOracle.method}",
+               /* ${skeleton[p].external[p].ethOracle[p].normalisers.description} */
+               "normalisers": ${JSON.stringify(spec.external.ethOracle.normalisers)},
+
+               // ${skeleton[p].external[p].ethOracle[p].requiredConfirmations.title}
+               "requiredConfirmations": ${spec.external.ethOracle.requiredConfirmations},
+
+               // ${skeleton[p].external[p].ethOracle[p].trigger.description}
+               "trigger": {
+                  /* ${skeleton[p].external[p].ethOracle[p].trigger[p].timeTrigger.description} */
+                  "timeTrigger": {
+                    /* ${skeleton[p].external[p].ethOracle[p].trigger[p].timeTrigger[p].every.description} */
+                    "every": ${spec.external.ethOracle.trigger.timeTrigger.every}
+                  }
+               },
+
+                // ${skeleton[p].external[p].ethOracle[p].filters.title}
+                "filters": ${JSON.stringify(spec.external.ethOracle.filters)}
+            }
+          }
+        }`;
   };
 
   return spec;
