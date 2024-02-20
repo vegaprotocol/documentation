@@ -138,7 +138,7 @@ Liquidity monitoring uses the following properties:
 | `scalingFactor` | The target stake scaling factor scales the estimated required liquidity (based on the market's risk model and current market data) to yield the market's target stake. The scaling factor must be a number greater than zero and finite | 10 |
 
 ### Price monitoring
-Price monitoring parameters are optional, and configure the acceptable price movement bounds for price monitoring. If you leave these blank, they will default to the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.monitor.price.defaultParameters" hideValue={true} />). See below for more details on each field.
+Price monitoring parameters are optional, and configure the acceptable price movement bounds for price monitoring. See below for more details on each field.
 
 <NewMarketJSONPriceMonitoring />
 

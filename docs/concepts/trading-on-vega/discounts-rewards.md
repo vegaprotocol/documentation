@@ -146,7 +146,7 @@ Some rewards measure trader activity over a number of epochs (set per reward). T
 <img src="/img/concept-diagrams/reward-score-example.png" width="650"/>
 
 :::tip Try it out
-* [How to fund rewards](#how-to-fund-rewards)
+* [Concept: How to fund rewards](#how-to-fund-rewards)
 * [Tutorial: Set up a reward transfer](../../tutorials/assets-tokens/transferring-assets.md)
 :::
 

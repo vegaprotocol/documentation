@@ -31,7 +31,7 @@ You will need:
 
 After a new asset vote passes, the change has to be submitted to the asset bridge on Ethereum. Until it has been submitted, no one can start depositing that asset. See the [tutorial](./update-asset-bridge.md) for how to do that.
 
-<!--You should also share your proposal idea in the [_Governance_ forum section ↗](https://community.vega.xyz/c/governance) before submitting it to the network.-->
+You should also share your proposal idea in the [_Governance_ forum section ↗](https://community.vega.xyz/c/governance) before submitting it to the network.
 
 ## Overview
 Vega currently supports adding [ERC-20 assets ↗](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/#top). ERC-20 assets that pass a governance vote can be enabled [via the Vega bridge](../../api/bridge/index.md) - which is to say that they are deposited from and withdrawn to Ethereum. More token standards and chains are on the roadmap.
@@ -72,7 +72,7 @@ Validation happens according to the `validationTimestamp` parameter.  The valida
 In the tabs below you'll see:
 
 * Annotated example describing what each field is for
-* JSON example that can be submitted with the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw)
+* JSON example that can be submitted with the [governance dApp ↗](https://governance.vega.xyz/proposals/propose/raw)
 * Command line examples for different operating systems
 
 **Replace the example data with the relevant details before submitting.**
@@ -98,9 +98,7 @@ In the tabs below you'll see:
 ## Voting
 All proposals are voted on by the community. 
 
-<!--
 Building support is down to you. Share your proposal in the [_Governance_ section ↗](https://community.vega.xyz/c/governance) on the Vega community forum. You may also wish to share on [Discord ↗](https://vega.xyz/discord).
--->
 
 To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minVoterBalance" suffix="tokens" hideName={true} /> or <NetworkParameter frontMatter={frontMatter} formatter="governanceToken" param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated with their Vega key. 
 

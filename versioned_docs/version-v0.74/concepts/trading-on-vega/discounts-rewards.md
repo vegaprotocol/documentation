@@ -2,6 +2,7 @@
 sidebar_position: 5
 title: Discounts and rewards
 hide_title: false
+vega_network: MAINNET
 description: Traders can get discounts on fees and rewards.
 ---
 
@@ -13,7 +14,9 @@ You can offset some of the [fees](./fees.md) you pay, or earn even more, by rece
 You can earn a commission for referring new users when a referral program is enabled. New users get a discount on their fees, while whoever refers them gets a cut of their referees’ trading fees. How much commission the referrer receives is increased if they have VEGA associated to their public key.
 
 :::tip Refer a friend
-Get benefits for referring, or being referred. In the [referrals section of Console](https://vegafairground.eth.limo/#/referrals), you can:
+Get benefits for referring, or being referred. 
+
+In the [referrals section of Console](https://console.vega.xyz/#/referrals), you can:
 * Create a code to refer others 
 * Enter a code you've been given
 :::
@@ -22,7 +25,7 @@ To create a code or join a referral set, you'll need at least the equivalent of 
 
 The referral program only exists if it's been enabled through a [governance proposal](../../tutorials/proposals/referral-program-proposal.md). Once it's enabled, both the requirements and benefits can also be replaced with a new program, also using a governance proposal.
 
-You can see what the current program offers by checking the [Referrals page on Console](https://vegafairground.eth.limo/#/referrals), or the [referral program API](../../api/rest/data-v2/trading-data-service-get-current-referral-program.api.mdx).
+You can see what the current program offers by checking the [Referrals page on Console](https://console.vega.xyz/#/referrals), or the [referral program API](../../api/rest/data-v2/trading-data-service-get-current-referral-program.api.mdx).
 
 :::note Read more
 * [Tutorial: Propose enabling or changing the referral program](../../tutorials/proposals/referral-program-proposal.md)
@@ -35,11 +38,11 @@ To benefit from referral program perks, you'll need to either create a referral 
 A referral set is made up of the participant who created the set, known as the referrer, and all the referees who signed up using the referral code. Each referral set only has one referrer, but the number of referees is unlimited.
 
 :::tip Try it out
-Create a referral code, or enter a referral code you've been given on the [referrals section of Console ↗](https://vegafairground.eth.limo/#/referrals).
+Create a referral code, or enter a referral code you've been given on the [referrals section of Console ↗](https://console.vega.xyz/#/referrals).
 :::
 
 ### Teams and games
-When you create or update a referral set on [Console ↗](https://vegafairground.eth.limo/#/referrals), you can opt to turn it into a team. Teams can get access to games, which are [trading rewards](#trading-rewards) set to target those in a team, if they are set up.
+When you create or update a referral set on [Console ↗](https://console.vega.xyz/#/referrals), you can opt to turn it into a team. Teams can get access to games, which are [trading rewards](#trading-rewards) set to target those in a team, if they are set up.
 
 If you're part of a team, you can switch to a different team by using the team's referral code.
 
@@ -93,7 +96,7 @@ Rewards are independent from [fees](./fees.md), which are paid to validators, li
 ### How rewards are paid
 Rewards that you earn are paid into a per-asset *vesting rewards account*.
 
-* **Rewards may be locked.** Each reward has its own lock period. Check the [rewards page on Console ↗](https://https://vegafairground.eth.limo/#/rewards) or the [transfers API](../../api/rest/data-v2/trading-data-service-list-transfers.api.mdx) to see how many [epochs](../vega-chain/network.md#epochs) each reward is locked for.
+* **Rewards may be locked.** Each reward has its own lock period. Check the [rewards page on Console ↗](https://https://console.vega.xyz/#/rewards) or the [transfers API](../../api/rest/data-v2/trading-data-service-list-transfers.api.mdx) to see how many [epochs](../vega-chain/network.md#epochs) each reward is locked for.
 * After rewards unlock, a proportion of the rewards move into your *vested account* each epoch: <NetworkParameter frontMatter={frontMatter} name="current rate" param="rewards.vesting.baseRate" formatter="percent" />. That percentage can be higher if you have an [activity streak](#activity-streak) going.
 * Redeem them from your vested account by transferring them into your general account. Then you can withdraw.
 
@@ -148,7 +151,7 @@ Some rewards measure trader activity over a number of epochs (set per reward). T
 <img src="/img/concept-diagrams/reward-score-example.png" width="650"/>
 
 :::tip Try it out
-* [How to fund rewards](#how-to-fund-rewards)
+* [Concept: How to fund rewards](#how-to-fund-rewards)
 * [Tutorial: Set up a reward transfer](../../tutorials/assets-tokens/transferring-assets.md)
 :::
 

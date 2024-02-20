@@ -61,7 +61,7 @@ The transaction is recognised by the Vega event queue and packaged as an event, 
 Once the transaction is verified, the Vega public key submitted in the transaction will be credited with the deposited asset.
 
 :::note Read more
-[ERC20 bridge logic API documentation](../../api/bridge/contracts/ERC20_Bridge_Logic.md#deposit_asset) 
+[API: ERC20 bridge logic](../../api/bridge/contracts/ERC20_Bridge_Logic.md#deposit_asset) 
 :::
 
 ### Diagram: Deposits
