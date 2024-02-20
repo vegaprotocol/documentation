@@ -18,6 +18,8 @@ Get benefits for referring, or being referred. In the [referrals section of Cons
 * Enter a code you've been given
 :::
 
+To create a code or join a referral set, you'll need at least the equivalent of  <NetworkParameter frontMatter={frontMatter} param="spam.protection.applyReferral.min.funds" suffix="qUSD" hideName="true" /> in any asset on your key.
+
 The referral program only exists if it's been enabled through a [governance proposal](../../tutorials/proposals/referral-program-proposal.md). Once it's enabled, both the requirements and benefits can also be replaced with a new program, also using a governance proposal.
 
 You can see what the current program offers by checking the [Referrals page on Console](https://vegafairground.eth.limo/#/referrals), or the [referral program API](../../api/rest/data-v2/trading-data-service-get-current-referral-program.api.mdx).
