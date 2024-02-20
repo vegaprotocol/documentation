@@ -22,7 +22,7 @@ The Vega core software is public and open source under the [AGPL ↗](https://ww
 ## Pre-release version 0.74 | 2024-01-24
 This version was released to the Vega testnet on 24 January 2024.
 
-This pre-release contains several new features for the Palazzo milestone, including isolated margin, batch proposals, Ethereum RPC and EVM based data sources and a new mark price and price for perps funding TWAP methodology.
+This pre-release contains several new features for the Palazzo milestone, including batch proposals, Ethereum RPC and EVM based data sources and a new mark price and price for perps funding TWAP methodology.
 
 ### Breaking changes
 
@@ -35,14 +35,18 @@ This pre-release contains several new features for the Palazzo milestone, includ
 
 ### New Features
 
-#### Isolated margin
+This release brings in a number of new network parameters. The below table details the parameters, default values and the associated specs should the community wish to change these post deployment.
 
-The protocol now allows users to choose between one of two margining modes for each position. The current mode will be stored alongside the party's position record.
-
-* Cross-margin mode (default): this is the mode used by all newly created orders, but it can be changed. When in cross-margin mode, margin is dynamically acquired and released as a position is marked to market, allowing profitable positions to offset losing positions for higher capital efficiency.
-* Isolated margin mode: this mode sacrifices capital efficiency for predictability and risk management by segregating positions. In this mode, the entire margin for any newly opened position's volume is transferred to the margin account when the trade is executed. This includes completely new positions and increases to position size. Other than at time of future trades, the general account will then never be searched for additional funds - a position will be allowed to be closed out instead - nor will profits be moved into the general account from the margin account while a position is open.
-
-To see lower level details of how the new isolated margin feature is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0019-MCAL-margin_calculator.md#isolated-margin-mode).
+| Network parameter    | Default value | Feature |
+| -------------------- | ----- | ------------- |
+| `blockchains.ethereumRpcAndEvmCompatDataSourcesConfig` | `{"network_id":"1","chain_id":"1","collateral_bridge_contract":{"address":"0x23872549cE10B40e31D6577e0A920088B0E0666a"},"confirmations":64,"staking_bridge_contract":{"address":"0x195064D33f09e0c42cF98E665D9506e0dC17de68","deployment_block_height":13146644},"token_vesting_contract":{"address":"0x23d1bFE8fA50a167816fBD79D7932577c06011f4","deployment_block_height":12834524},"multisig_control_contract":{"address":"0xDD2df0E7583ff2acfed5e49Df4a424129cA9B58F","deployment_block_height":15263593}}` | EVM RPC data sourcing [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0087-EVMD-eth-rpc-and-evm-data-source.md) |
+| `network.internalCompositePriceUpdateFrequency` | 5s | Mark price [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0009-MRKP-mark_price.md) |
+| `spam.protection.max.updatePartyProfile` | 10 | Teams and games [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0062-SPAM-spam_protection.md) |
+| `spam.protection.updatePartyProfile.min.funds` | 10 | Teams and games [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0062-SPAM-spam_protection.md) |
+| `spam.protection.referralSet.min.funds` | 10 | Teams and games [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0062-SPAM-spam_protection.md) |
+| `transfer.fee.maxQuantumAmount` | 1 | Transfer fee improvements [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0057-TRAN-transfers.md) |
+| `transfer.feeDiscountDecayFraction` | 0.8 | Transfer fee improvements [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0057-TRAN-transfers.md) |
+| `transfer.feeDiscountMinimumTrackedAmount` | 0.01 | Transfer fee improvements [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0057-TRAN-transfers.md) |
 
 #### Batch proposals
 
