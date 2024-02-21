@@ -7,9 +7,7 @@ hide_title: false
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
 import NetworkParameter from '@site/src/components/NetworkParameter';
-
 
 Snapshots are a mechanism that allow a node be restarted, or join the network from an empty state, without having to replay the whole chain from genesis. A snapshot is taken by the network periodically after every <NetworkParameter frontMatter={frontMatter} param="snapshot.interval.length" hideName={true} /> blocks and contains all of a node's active state for that particular block. Every node participating in the network will produce identical snapshots and they will be stored locally on each node's machines.
 

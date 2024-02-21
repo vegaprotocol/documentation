@@ -55,9 +55,9 @@ These include:
 
 Doing less than the minimum means liquidity fee payments will be withheld for that epoch, it will have an impact on [future fee revenue earnings](#penalties-for-not-meeting-sla), and a sliding penalty will be applied to your bond. Everything at, or above, the minimum means some amount of your accrued fee amount will be paid. The better you do against the SLA, the more fee revenue you'll receive.
 
-<!--
-Read more: How SLA performance is calculated (spec when out of CE branch)
--->
+:::note Go deeper
+[Spec: How SLA performance is calculated ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#calculating-sla-performance)
+:::
 
 ### Determining the liquidity fee percentage
 Market proposers can set how the liquidity fee charged to traders is calculated. 

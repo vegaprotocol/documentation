@@ -169,7 +169,7 @@ The mark price methodology can be fine-tuned per market. If left blank, the mark
 ```
 
 ### Price monitoring
-Price monitoring parameters are optional, and configure the acceptable price movement bounds for price monitoring. If you leave these blank, they will default to the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.monitor.price.defaultParameters" hideValue={true} />). See below for more details on each field.
+Price monitoring parameters are optional, and configure the acceptable price movement bounds for price monitoring. See below for more details on each field.
 
 <NewMarketJSONPriceMonitoring />
 

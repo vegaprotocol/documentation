@@ -17,16 +17,17 @@ Hypothetical changes in a position's value are called unrealised profit and loss
 
 ## Margin modes
 
-There are two ways the protocol lets you manage your leverage: cross-market margin or isolated margin. You can switch between the margin modes as long as you have enough to support the margin requirement for your potential position in the new mode.
+<!--There are two ways the protocol lets you manage your leverage: cross-market margin or isolated margin. You can switch between the margin modes as long as you have enough to support the margin requirement for your potential position in the new mode.-->
 
-* **Cross margining** provides a capital-efficient use of margin, particularly when trading on multiple markets using the same settlement asset. You can't control the amount of margin (and thus leverage) that you use on your position but the market sets money aside and returns it if it's not required.
-* **Isolated margin** provides a way to control how much you set aside for margin and thus choose your leverage amount. The amount of margin set aside is static, unless you increase your position. If the market turns against your position, it could be closed out more quickly.
+**Cross margining** provides a capital-efficient use of margin, particularly when trading on multiple markets using the same settlement asset. You can't control the amount of margin (and thus leverage) that you use on your position but the market sets money aside and returns it if it's not required.
 
-Cross margining is the default mode, so to use isolated margin you'll need to switch before submitting your order. Once you choose isolated margin on a market, your orders will continue to use that mode unless you update it to cross margining.
+<!-- **Isolated margin** provides a way to control how much you set aside for margin and thus choose your leverage amount. The amount of margin set aside is static, unless you increase your position. If the market turns against your position, it could be closed out more quickly.
+
+Cross margining is the default mode, so to use isolated margin you'll need to switch before submitting your order. Once you choose isolated margin on a market, your orders will continue to use that mode unless you update it to cross margining.-->
 
 Overall, the margin tolerance of open orders and positions is determined by the market's risk model and market conditions. The larger the position and the more volatile the market, the greater the amount of margin that will need to be set aside. The volatility tolerance of the market is driven by the risk model.
 
-When placing order on a market, you can set your margin factor when using isolated margin, or the protocol will calculate the initial margin required, when using cross margining. The required funds will be moved into a margin account for that market. If your key's general account doesn't have enough in it to fund this, the order will be rejected.
+<!--When placing order on a market, you can set your margin factor when using isolated margin, or the protocol will calculate the initial margin required, when using cross margining. The required funds will be moved into a margin account for that market. If your key's general account doesn't have enough in it to fund this, the order will be rejected.
 
 :::tip Try it out
 [Use Console ↗](https://console.fairground.wtf) to trade with cross margin or isolated margin. The leverage slider lets you set your isolated margin level.
@@ -53,7 +54,7 @@ For *active positions* the calculation is:
 
 For *active orders* the calculation is: 
 `limit price * remaining size * margin factor`, added to the difference calculated for active positions.
-* For example, if you have an open long position size 5, and you place a short order size 8, then the remaining size is 8-5=3.
+* For example, if you have an open long position size 5, and you place a short order size 8, then the remaining size is 8-5=3. -->
 
 ### Cross margining
 Cross-market margin allows you to trade in a capital-efficient way. Cross margining means gains on one market can be released and used as margin on another. It's supported between all markets that use the same settlement asset.
@@ -79,14 +80,14 @@ Not all levels are relevant to both margin methods.
 
 The margin levels for active positions are:
 
-* [maintenance margin](#margin-level-maintenance) - relevant for cross and isolated margin
-* [initial margin](#margin-level-initial) - relevant for cross and isolated margin
+* [maintenance margin](#margin-level-maintenance) - relevant for cross <!--and isolated--> margin
+* [initial margin](#margin-level-initial) - relevant for cross <!--and isolated--> margin
 * [search level](#margin-level-searching-for-collateral---cross-only) - only for cross margin
 * [collateral release level](#margin-level-releasing-collateral---cross-only) - only for cross margin
 
-Margin level for a potential position using isolated margin:
+<!--Margin level for a potential position using isolated margin:
 
-* [order margin](#margin-level-order---isolated-only) - only for isolated margin
+* [order margin](#margin-level-order---isolated-only) - only for isolated margin-->
 
 The maintenance margin (minimum amount needed to keep a position open) is derived from the market's risk model and includes some slippage calculations. This is applicable to positions using either margin mode. 
 
@@ -95,7 +96,7 @@ All other margin levels are based on the maintenance margin level.
 ### Margin level: Maintenance
 Throughout the life of an open position, there is a minimum required amount to keep a position open, even through probable adverse market conditions, called the maintenance margin. 
 
-This minimum margin amount is calculated for positions using both cross margining and isolated margin.
+<!--This minimum margin amount is calculated for positions using both cross margining and isolated margin.-->
 
 The amount required for your maintenance margin is derived from the market's risk model. Specifically, it's based on a risk measure called the expected shortfall, used to evaluate the market risk of the position and any open orders.
 
@@ -134,7 +135,7 @@ The *initial margin level* has two different functions, depending on which margi
 
 For *cross margin mode*, it sets the amount that will be transferred from a trader's general account to be used as margin when an order is placed or a trade is executed. The initial margin is more than the absolute minimum needed to support a position, as it offers a cushion to keep a position open as the mark price changes.
 
-In *isolated margin mode*, it determines the minimum margin amount you can set for the given order size on the market. This provides your potential position with more than the bare minimum needed to keep it open at the current market price.
+<!--In *isolated margin mode*, it determines the minimum margin amount you can set for the given order size on the market. This provides your potential position with more than the bare minimum needed to keep it open at the current market price.-->
 
 The initial margin is scaled from the *maintenance margin* amount. It's calculated by multiplying the maintenance margin amount by the `initial_margin` scaling factor, which is set by a network parameter: 
 <NetworkParameter frontMatter={frontMatter} param="market.margin.scalingFactors" />.
@@ -143,7 +144,7 @@ The initial margin is scaled from the *maintenance margin* amount. It's calculat
 
 The initial margin level being higher than the *margin search level* (which itself is higher than the *maintenance margin level*) ensures that a small negative price move won't lead to a situation where the network has to attempt to allocate more collateral immediately after a trade has been entered into.
 
-### Margin level: Order - isolated only
+<!--### Margin level: Order - isolated only
 When using isolated margin mode, you can choose the leverage you're comfortable with, and the amount of margin required to support that is transferred to your margin account. If you place additional orders that increase your position, the margin required also increases. The amount above what's in your margin account that is needed to support your orders is the order margin. 
 
 This extra margin is moved into an order margin account. If your order turns into a position, the extra margin for that position moves into your margin account.
@@ -166,7 +167,7 @@ If there is not enough collateral to provide the required margin, then the posit
 
 :::note Read more
 [Concept: Closeouts](./market-protections.md#closeouts)
-:::
+:::-->
 
 ### Margin level: Releasing collateral - cross only
 When using cross margin mode, if your margin balance exceeds the *collateral release level*, the position is considered overcollateralised. The excess money is released to your general account, to get your margin back to the *initial margin level*.
@@ -234,6 +235,7 @@ When a dated futures market settles at expiry, the mark price comes from the mar
 [Concept: Mark to market settlement](./settlement.md#mark-to-market-settlement)
 :::
 
+## Mark price
 ## Mark price
 The mark price represents the current market value, and is used to determine the value of a trader's open position against the prices the trades were executed at, to determine the cash flows for mark to market settlement and funding payments.
 
