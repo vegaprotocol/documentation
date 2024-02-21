@@ -32,7 +32,7 @@ You can see how much is in the network treasury at any point with the `list acco
     * Account type: `ACCOUNT_TYPE_NETWORK_TREASURY`
 * Don't forget to account for the token's 18 decimal places
 
-## What the treasury can fund [WIP]
+## What the treasury can fund
 
 **Rewards**: Rewards can incentivise trading, liquidity provision, and proposing successful markets.
 - Recognise *active traders* by targeting those who pay maker fees, or have large or profitable positions
@@ -45,7 +45,7 @@ Read in detail on the [rewards page](../trading-on-vega/discounts-rewards.md#tra
 
 Read more about how these work in the [teams and games](../trading-on-vega/discounts-rewards.md#teams-and-games) section.
 
-**Grants** - raise as a freeform proposal? A transfer can send to any Vega key, even if it's an individual and not a reward account.
+**Grants and other initiatives**: A transfer can send to any Vega key, even if it's an individual and not a reward account. You can use a freeform proposal to gauge the community's interest and hone the plan before setting up the proposal for transferring assets.
 
 ## How to allocate the treasury
 The most direct way to propose spending the assets is by submitting a **[proposal to transfer assets](../assets/transfers.md#governance-initiated-transfers)**. 
@@ -56,7 +56,7 @@ Include a description of what you're intending to do with the treasury funds in 
 
 See the [tutorial](../../tutorials/proposals/asset-transfer-proposal.md) for a template and description of each field.
 
-Another option is to submit a [freeform proposal](../../tutorials/proposals/freeform-proposal.md) to suggest a non-binding idea to the community and gauge their sentiment.
+Another option is to submit a [freeform proposal](../../tutorials/proposals/freeform-proposal.md) to suggest a non-binding idea to the community and gauge their sentiment. This would be a good option for grants or other initiatives. Raise a freeform proposal with your plan, with clear details about what you think the money should be spent on, and if there's an organisation or provider you'd like to suggest working with, details about who they are and why they, and the initiative, are a good choice. Based on feedback and voting for your freeform proposal, you can then decide to raise a proposal to transfer assets accordingly.
 
 <!--
 Wondering what the experience is for someone who wants to spend Vega on-chain, what tools to have, what kinds of competitions can they make?
