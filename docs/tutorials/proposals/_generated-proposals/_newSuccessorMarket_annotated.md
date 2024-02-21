@@ -44,58 +44,71 @@
 
       // Data source spec describing the data source for settlement. (object)
       dataSourceSpecForSettlementData: {
+       // DataSourceDefinitionExternal is the top level object used for all external 
+       // data sources. It contains one of any of the defined `SourceType` variants. 
        external: {
-        oracle: {
-         // Signers is the list of authorized signatures that signed the data for this
-         // source. All the signatures in the data source data should be contained in (array of objects)
-         signers: [
+        // Contains the data specification that is received from Ethereum sources.
+        ethOracle: {
+         // The ID of the EVM based chain which is to be used to source the oracle data. (uint64 as string)
+         // The ID of the EVM based chain which is to be used to source the oracle data. 
+         sourceChainId: "1",
+
+         // Ethereum address of the contract to call.
+         address: "0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43",
+
+         // The ABI of that contract.
+         abi: "[{" inputs ":[]," name ":" latestRoundData "," outputs ":[{" internalType ":" int256 "," name ":" "," type ":" int256 "}]," stateMutability ":" view "," type ":" function "}]",
+
+         // Name of the method on the contract to call.
+         method: "latestRoundData",
+
+
+         /* Normalisers are used to convert the data returned from the contract method
+          * into a standard format. The key of the map is the name of the property,
+          * which identifies the specific piece of data to other parts of the data
+          * sourcing framework, for example filters. The value is a JSONPath expression
+          * for expressing where in the contract call result the required data is
+          * located, for example $[0] indicates the first result. $[1].price would look
+          * in the second result returned from the contract for a structure with a key
+          * called 'price' and use that if it exists. */
+         normalisers: [
           {
-           ethAddress: {
-            address: "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
-           }
+           name: "prices.ORANGES.value",
+           expression: "$[0]"
           }
          ],
 
-         // Filters describes which source data are considered of interest or not for
-         // the product (or the risk model).
-         filters: [
-          key: {
-           // Name of the property. (string)
-           name: "prices.ORANGES.value",
+         // Number of confirmations required before the query is considered verified
+         requiredConfirmations: 3,
 
-           // Data type of the property. (string)
-           type: "TYPE_INTEGER",
-
-           // Optional decimal place to be be applied on the provided value
-           // valid only for PropertyType of type DECIMAL and INTEGER
-           numberDecimalPlaces: "5",
-          },
-
-          // Conditions that should be matched by the data to be
-          // considered of interest.
-          conditions: [
-           {
-            // Type of comparison to make on the value. (string)
-            operator: "OPERATOR_GREATER_THAN",
-
-            // Value to be compared with by the operator. (string)
-            value: "0",
-           }
-          ]
+         // Conditions for determining when to call the contract method.
+         trigger: {
+          /* Trigger for an Ethereum call based on the Ethereum block timestamp. Can be
+           * one-off or repeating. */
+          timeTrigger: {
+           /* Repeat the call every n seconds after the initial call. If no time for
+            * initial call was specified, begin repeating immediately. */
+           every: 30
+          }
          },
-         {
-          key: {
-           name: "prices.ORANGES.timestamp",
-           type: "TYPE_INTEGER",
-          },
-          conditions: [
-           {
-            operator: "OPERATOR_GREATER_THAN",
-            value: "1648684800",
-           }
-          ]
-         }
-        ]
+
+         // Filters the data returned from the contract method
+         filters: [
+          {
+           key: {
+            name: "prices.ORANGES.value",
+            type: "TYPE_INTEGER",
+            numberDecimalPlaces: 8
+           },
+           conditions: [
+            {
+             operator: "OPERATOR_GREATER_THAN_OR_EQUAL",
+             value: "0"
+            }
+           ]
+          }
+         ]
+        }
        }
       },
 
@@ -132,8 +145,8 @@
 
       // Optional new futures market metadata, tags.
       metadata: [
-       "enactment:2024-02-18T17:18:38Z",
-       "settlement:2024-02-17T17:18:38Z",
+       "enactment:2024-03-12T12:17:41Z",
+       "settlement:2024-03-11T12:17:41Z",
        "source:docs.vega.xyz"
       ],
 
@@ -147,11 +160,6 @@
 
          // Price monitoring probability level p. (string)
          probability: "0.9999999",
-
-         // Price monitoring auction extension duration in seconds should the price
-         // breach its theoretical level over the specified horizon at the specified
-         // probability level. (int64 as string)
-         auctionExtension: "600",
         }
        ]
       },
@@ -163,7 +171,7 @@
        must be a strictly non - negative real number.(number) tau: 0.0001140771161,
 
        // Risk Aversion Parameter. (double as number)
-       riskAversionParameter: "0.01",
+       riskAversionParameter: "0.00001",
 
        // Risk model parameters for log normal
        params: {
@@ -193,16 +201,81 @@
        // that achieved a higher SLA performance than them. (string)
        slaCompetitionFactor: "0.2",
       },
-     }
-    },
 
-    // Timestamp as Unix time in seconds when voting closes for this proposal,
-    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-    closingTimestamp: 1708190318,
+      // Liquidation strategy for this market.
+      liquidationStrategy: {
+       // Interval, in seconds, at which the network will attempt to close its position. (int64 as string)
+       disposalTimeStep: 500,
 
-    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
-    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-    enactmentTimestamp: 1708276718,
+       // Fraction of the open position the market will try to close in a single attempt; range 0 through 1. (string)
+       disposalFraction: "1",
+
+       // Size of the position that the network will try to close in a single attempt. (uint64 as string)
+       fullDisposalSize: "18446744073709551615",
+
+       // Max fraction of the total volume of the orderbook, within liquidity bounds, that the network can use to close its position; range 0 through 1. (string)
+       maxFractionConsumed: "1",
+      },
+
+      // Specifies how the liquidity fee for the market will be calculated.
+      liquidityFeeSettings: {
+       // Method used to calculate the market's liquidity fee.
+       method: "METHOD_CONSTANT",
+
+       // Constant liquidity fee used when using the constant fee method. (string)
+       feeConstant: "0.00005",
+      },
+
+      // Liquidity monitoring parameters.
+      liquidityMonitoringParameters: {
+       // Specifies parameters related to target stake calculation.
+       targetStakeParameters: {
+        timeWindow: "3600",
+        scalingFactor: "0.05"
+       },
+      },
+
+      // Mark price configuration.
+      markPriceConfiguration: {
+       // Decay weight used for calculation of mark price.
+       decayWeight: "1",
+
+       // Decay power used for the calculation of mark price. (string)
+       decayPower: "1",
+
+       // Cash amount, in asset decimals, used for the calculation of the mark price from the order book. (string)
+       cashAmount: "5000000",
+
+       // Weights for each composite price data source. (array)
+       sourceWeights: undefined,
+
+       // For how long a price source is considered valid. One entry for each data source
+       // such that the first is for the trade based mark price, the second is for the book based price
+       // the third is for the first oracle, followed by more oracle data source staleness tolerance. (array)
+       sourceStalenessTolerance: [
+        "1m0s",
+        "1m0s",
+        "1m0s"
+       ],
+
+       // Which method is used for the calculation of the composite price for the market. (string)
+       compositePriceType: "COMPOSITE_PRICE_TYPE_WEIGHTED",
+
+       // Additional price sources to be used for internal composite price calculation. (array)
+       dataSourcesSpec: [],
+
+       // List of each price source and its corresponding binding (array)
+       dataSourcesSpecBinding: []
+      }
+     },
+
+     // Timestamp as Unix time in seconds when voting closes for this proposal,
+     // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
+     closingTimestamp: 1710159461,
+
+     // Timestamp as Unix time in seconds when proposal gets enacted if passed,
+     // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
+     enactmentTimestamp: 1710245861,
+    }
    }
-  }
 ```

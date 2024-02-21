@@ -1,0 +1,47 @@
+---
+id: block-explorer-info
+title: "Info"
+description: "Get information about the block explorer.
+Response contains a semver formatted version of the data node and the commit hash, from which the block explorer was built"
+sidebar_label: "Info"
+hide_title: true
+hide_table_of_contents: true
+api: eJzVVMFu2zAM/RVB58LJugEDelo3FF1vxbrt0hUDbTO2WlnSJDpNZuTfR8pOG2c7rNhpJ0sU+R75SHrQEVPwLmHSZ4M+XS7lU3lH6EiOEII1FZDxbnGfvBNbqlrsQE4h+oCRzBhd+a4z9BFSKzcyZFGf6Q/Zqlo2q1X0nXpsTdUqalHVQKCcr1E9QlJlbyzpE03bIHGJonGN3p3oNcZkRuo96A12bFUrHzsgwlpNPsqv5si/4+2eLL68xyozTqjrV1du5T9NirAr+9aYqmgC5QT0uUp9VWFKq96qvXSFzn4r6C39k3ycLn/HopjMOHp9+lwAX7HBOJIRGJujDGGXD1DXRnjAXh/Csvec5t0IN7xAFwYgX/arc7fVz24QI+R7x3pA80LMxvvGYgzVDQH16Y9iO9U73AQO5A5jjD4eai7g0HBNt/q99dXDxSZYH1mgu2OgSyRl3KirDAmUvqc8J6UEKpwii29u33wlTQTjkgKV/nbYFLg6W6rnmT85Hvo55WzypU05w6uas54V9V0mU4vW1Hp5bVAiAhAvm16Y8TVhlNxYkkH30fJLSxTS2WJRYkGYyCEVa2yg2Gx/LlhLwZhrlVnVk5Y7FjODHyzfVwY4LuP8+irpg1XV62Xx9k2xlPkIPlEHefYddIIwFTNjPtib/6Zh03ATbmgRLLNLuVn4YWrN7ageq9iyCnIfhhISfol2txPzjx7jlu18XEM0UIrEt3eM0yLU3AHp5QNuZR/4zxOEdg22zxt4/HeRbj1NyOXFZ16SX7izEWE=
+sidebar_class_name: "get api-method"
+info_path: version-v0.74/api/rest/explorer/vega-block-explorer-apis
+custom_edit_url: "https://github.com/vegaprotocol/documentation/issues/new?labels=documentation&title=[Documentation] Requesting changes to 'Info' (block-explorer-info)"
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Info</h1>
+
+<MethodEndpoint method={"get"} path={"/info"}></MethodEndpoint>
+
+
+
+Get information about the block explorer.
+Response contains a semver formatted version of the data node and the commit hash, from which the block explorer was built
+
+## Request
+
+<div><div><ApiTabs label={undefined} id={undefined}><TabItem label={"200"} value={"200"}><div>
+
+A successful response.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"commitHash"} required={false} schemaName={"Commit hash from which the data node was built"} qualifierMessage={undefined} schema={{"title":"Commit hash from which the data node was built","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"version"} required={false} schemaName={"Semver formatted version of the data node"} qualifierMessage={undefined} schema={{"title":"Semver formatted version of the data node","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"commitHash\": \"string\",\n  \"version\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"default"} value={"default"}><div>
+
+An unexpected error response.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"code"} required={false} schemaName={"int32"} qualifierMessage={undefined} schema={{"format":"int32","type":"integer"}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>details</strong><span className={"openapi-schema__name"}> object[]</span></span></summary><div style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"@type"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={false} name={"message"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"code\": 0,\n  \"details\": [\n    {\n      \"@type\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>

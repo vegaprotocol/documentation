@@ -2,6 +2,7 @@
 sidebar_position: 5
 title: Transfer assets
 hide_title: false
+vega_network: MAINNET
 description: Use transfers to move assets between keys and/or accounts.
 ---
 
@@ -14,7 +15,13 @@ Transfers from certain accounts need to be proposed through [governance](#govern
 
 Anyone with a Vega public key and assets can set up a transfer. Those transfers can only be done from a general account the party has control of, using their own funds. Anyone with a Vega public key and enough VEGA tokens can propose assets be transferred from those specific network accounts.
 
-**Each transfer incurs a fee.** The fee is paid to the validators who run the network infrastructure. The amount of the fee is set with the network parameter <NetworkParameter frontMatter={frontMatter} param="transfer.fee.factor" />. The fee amount is a proportion of the total transfer amount. The fee's subtracted immediately on execution, and is taken on top of the transfer amount. The exception is governance-initiated transfers, which don't incur a fee.
+**Transfers can incur a fee.** How much you pay depends on if you've already paid or accrued trading fee revenue in past epochs. The trading fees you've paid or accrued act like a discount balance that's subtracted from with every transfer. If you use up your fee discount balance, you'll pay the full transfer fee amount.
+
+The un-discounted amount is set by the network parameter <NetworkParameter frontMatter={frontMatter} param="transfer.fee.factor" />. The fee amount is a proportion of the total transfer amount. The fee's subtracted immediately on execution, and is taken on top of the transfer amount. 
+
+The fee is paid to the validators who run the network infrastructure.
+
+Governance-initiated transfers don't incur a fee.
 
 Transfers can be set up to happen [only once](#one-off-transfers), or can happen [repeatedly](#recurring-transfers).
 

@@ -93,7 +93,7 @@ Rather than being set for a specific limit price, a pegged order is a defined di
 The reference price is based on the live market, and the final price is calculated and used to insert the new order. The distance is also known as the offset value, which is an absolute value that must be cleanly divisible by the tick size, and must be positive.
 
 #### Amend pegged orders
-Pegged orders can be amended like standard limit orders - their reference, offset and time in force values can all be amended. Amends must be done to the pegged order itself, not any limit orders derived from pegged orders. 
+Pegged orders can be amended like standard limit orders. Their reference, offset and time in force values can all be amended. Amends must be done to the pegged order itself, not any limit orders derived from pegged orders. 
 
 If the price or size are changed in an amendment, the order will lose time priority in the order book, but will keep its priority in the list of pegged orders. 
 
@@ -183,15 +183,15 @@ Batch order instructions can be used in a liquidity provision strategy to help p
 To prevent spamming, the total number of instructions in a batch order transaction can be no more than the number set with the network parameter: <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.batchSize" />. A batch order transaction with more instructions than allowed will fail.
 
 :::note Read more
-* [Auctions](trading-modes.md#auctions)
-* [Providing liquidity](../liquidity/provision.md)
+* [Concept: Auctions](trading-modes.md#auctions)
+* [Concept: Providing liquidity](../liquidity/provision.md)
 :::
 
 ### Network order
 A network order is triggered by the Vega network to close out a distressed trader, as part of position resolution. Network orders cannot be submitted by a party.
 
 :::note Read more
-[Position resolution](#position-resolution)
+[Concept: Position resolution](#position-resolution)
 :::
 
 ### Conditional order parameters
@@ -296,12 +296,16 @@ Orders to sustain a liquidity commitment, and [Good For Auction](#good-for-aucti
 Pegged orders can also be placed, but will be parked until the market is out of auction. 
 
 :::note Read more
-**[Market status: pending](./market-lifecycle#market-status-pending)**
-**[Opening auctions](./trading-modes#auction-type-opening)**
+**[Concept: Market status pending](./market-lifecycle#market-status-pending)**
+**[Concept: Opening auctions](./trading-modes#auction-type-opening)**
 :::
 
 ### Amend an order
-Orders that have not been fully filled can be amended.
+Orders that have not been fully filled can be amended. 
+
+You can change your order size by:
+* Supplying the new order size
+* Setting the amount you want to increase or decrease your order size by, known as the delta
 
 If your amendment will change the price you're seeking or increase the order size, it will cancel the existing order and replace it with a new one. The time priority will be lost, because, in effect, the original order was cancelled and removed from the book and a new order was submitted with the modified values.
 

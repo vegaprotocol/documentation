@@ -9,13 +9,13 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## Choosing a data source when proposing a market
-A market proposal must specify details about the data it requires in the market creation governance proposal. When configuring a market's instrument, you will need to select the data sourcefor two events: settlement and trading termination. 
+A market proposal must specify details about the data it requires. When configuring a market's instrument, you will need to select the data source for the following events: settlement and, if applicable, trading termination. 
 
 This is done by:
 1. Defining a data source spec binding for settlement price
 2. Configuring a data source spec for settlement price values
-3. Defining a data source spec binding for trading termination
-4. Configuring a data source spec for trading termination values
+3. Defining a data source spec binding for trading termination, for dated futures markets
+4. Configuring a data source spec for trading termination values, for dated futures markets
 
 The **binding** tells the market which field contains the value. The **spec** defines where this data will come from, and which values to pass through to the binding.
 
@@ -24,16 +24,19 @@ The **binding** tells the market which field contains the value. The **spec** de
 * [Tutorial: Proposing a market](./proposals/new-market-proposal.md)
 :::
 
-## Ethereum oracles
-Since version 0.73.0, settlement data can be sourced from Ethereum smart contracts. The following spec would read from the Ethereum contract at `0x1b4...e43` every 30 seconds, and fetch the Bitcoin price value from the returned object:
+## EVM data sources
+Settlement data can be sourced from smart contracts and EVM chains that support Ethereum RPC calls.
+
+The following spec would read from the Ethereum contract at `0x1b4...e43` every 30 seconds, and fetch the Bitcoin price value from the returned object:
 
 ```javascript
 "dataSourceSpecForSettlementData": {
     "external": {
         "ethOracle": {
+            "sourceChainId": "1",
             "address": "0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43",
-            "abi": "[{\"inputs\":[],\"name\":\"latestAnswer\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-            "method": "latestAnswer",
+            "abi": "[{\"inputs\":[],\"name\":\"latestRoundData\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+            "method": "latestRoundData",
             "normalisers": [{
                   "name": "btc.price",
                   "expression": "$[0]"
@@ -63,27 +66,29 @@ Since version 0.73.0, settlement data can be sourced from Ethereum smart contrac
 }
 ```
 
-This will cause the network validators to read the result from the specified smart contract and submit the result to Vega. When the data is verified by enough validators, this price is accepted on to the network. This is unlike the other two Oracle types ([Open Oracle signed messages](#open-oracle-signed-messages) & [JSON signed message data](#json-signed-message-data)),which both rely on a third party submitting data to the network.
+This will cause the network validators to read the result from the specified smart contract and submit the result to Vega. When the data is verified by enough validators, this price is accepted on to the network.
+
+This is unlike the other two Oracle types ([Open Oracle signed messages](#open-oracle-signed-messages) & [JSON signed message data](#json-signed-message-data)),which both rely on a third party submitting data to the network.
 
 ### ABI
-The `address` field in the specification tells the spec above which address to interact with on Ethereum. The `abi` ([Application Binary Interface](https://docs.soliditylang.org/en/develop/abi-spec.html#json) & `method` field on the spec above tells the settlement spec **how** to interact with it. Ethereum Oracle settlement specifications use the JSON ABI of the smart contract to describe the method on the contract that will be called to fetch the data. The ABI will contain the function name, details of any paramters required, and the format of the response. 
+The `address` field in the specification tells the spec above which address to interact with on the chain. The `abi` ([Application Binary Interface](https://docs.soliditylang.org/en/develop/abi-spec.html#json) & `method` field on the spec above tells the settlement spec **how** to interact with it. EVM oracle settlement specifications use the JSON ABI of the smart contract to describe the method on the contract that will be called to fetch the data. The ABI will contain the function name, details of any paramters required, and the format of the response. 
 
-For example, the [Chainlink BTC/USD oracle](https://data.chain.link/ethereum/mainnet/crypto-usd/btc-usd) has its JSON ABI [published on Etherscan](https://etherscan.io/address/0xf4030086522a5beea4988f8ca5b36dbc97bee88c#code). When defining the data source spec, you can populate the `abi` field with the full ABI, and then set the `method` to `latestAnswer`.
+For example, the [Chainlink BTC/USD oracle](https://data.chain.link/ethereum/mainnet/crypto-usd/btc-usd) has its JSON ABI [published on Etherscan](https://etherscan.io/address/0xf4030086522a5beea4988f8ca5b36dbc97bee88c#code). When defining the data source spec, you can populate the `abi` field with the full ABI, and then set the `method` to `latestRoundData`.
 
 :::note Shrinking the ABI
-When populating the `abi` field on your data source spec, you can remove the methods and other fields that are not required by the oracle. We've done that in the sample data source above - only the `latestAnswer` method and its inputs and outputs are in the `abi` field.
+When populating the `abi` field on your data source spec, you can remove the methods and other fields that are not required by the oracle. We've done that in the sample data source above - only the `latestRoundData` method and its inputs and outputs are in the `abi` field.
 :::
 
 ### Time trigger
-As it says above, with Ethereum data source specs the validators will read the specified smart contract and method detailed in the ABI. The `trigger` instructs the validators when to do this. In the smple above, it will be called every 30 seconds.
+As it says above, with EVM data source specs the validators will read the specified smart contract and method detailed in the ABI. The `trigger` instructs the validators when to do this. In the smple above, it will be called every 30 seconds.
 
 ### Normaliser
 A [JSONPath](https://datatracker.ietf.org/wg/jsonpath/about/) expression use to extract data from the JSON returned from the method call. In the spec above, `expression` is set to `$[0]`, which returns the first item in an array. `$` would return the complete result.
 
 ## Open Oracle signed messages
-Vega's Data Sourcing framework supports signed ABI-encoded [Open Oracle ↗](https://github.com/compound-finance/open-oracle) or JSON messages. ABI-encoded signed messages can be verified to have come from the public key that signed them, which allows markets on Vega to use pricing data sourced from Ethereum.
+Vega's data sourcing framework supports signed ABI-encoded [Open Oracle ↗](https://github.com/compound-finance/open-oracle) or JSON messages. ABI-encoded signed messages can be verified to have come from the public key that signed them, which allows markets on Vega to use pricing data sourced from Ethereum.
 
-When it's time for a market to settle, someone needs to submit the data that matches the data source spec defined in the market. Any Vega keypair can submit the data. In the configuration for a market, a data source specification field dictates which data feeds it is interested in. In effect, it works as a filter. This specification means that the creator of an instrument for a market will choose in advance a price source, and which data fields the market requires to settle and terminate.
+When it's time for a market to settle, someone needs to submit the data that matches the data source spec defined in the market. Any Vega keypair can submit the data. In the configuration for a market, a data source specification field dictates which data feeds it is interested in. In effect, it works as a filter. This specification means that the creator of an instrument for a market will choose in advance a price source, and which data fields the market requires to settle and optionally terminate.
 
 ### Using Open Oracle signed messages in a market proposal
 For the binding, use the `name` field of the data. In the case of Open Oracle messages, the price data will be availableas 'prices.currency-code.value', for example:`"prices.BTC.value"`.
@@ -208,7 +213,7 @@ The [Oracle Data list REST endpoint](../api/rest/data-v2/trading-data-service-li
 ## JSON signed message data
 [JSON ↗](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON) messages are a simpler, more configurable alternative to Open Oracle data. They can be totally custom objects, as long as they are valid JSON. As they are not attested by any off-chain source in the way that Open Oracle messages are, and so it's generally advisable to check for an Open Oracle price source before choosing JSON data. The Vega key that signs the message will be referred to as the source for the data. 
 
-When it's time for a market to settle, someone needs to submit the data that matches the data source spec defined in the market. Any Vega keypair can submit the data. In the configuration for a market, a data source specification field dictates which data feeds it is interested in. In effect, it works as a filter. This specification means that the creator of an instrument for a market will choose in advance a price source, and which data fields the market requires to settle and terminate.
+When it's time for a market to settle, someone needs to submit the data that matches the data source spec defined in the market. Any Vega keypair can submit the data. In the configuration for a market, a data source specification field dictates which data feeds it is interested in. In effect, it works as a filter. This specification means that the creator of an instrument for a market will choose in advance a price source, and which data fields the market requires to settle and optionally terminate.
 
 ### Using JSON signed message data in a market proposal
 For the binding, use the `name` field of the data. In the following example, the market is settled based on the number of people who have walked on the moon.

@@ -22,7 +22,7 @@ The Vega core software is public and open source under the [AGPL ↗](https://ww
 ## Pre-release version 0.74 | 2024-01-24
 This version was released to the Vega testnet on 24 January 2024.
 
-This pre-release contains several new features for the Palazzo milestone, including isolated margin, batch proposals, Ethereum RPC and EVM based data sources and a new mark price and price for perps funding TWAP methodology.
+This pre-release contains several new features for the Palazzo milestone, including batch proposals, Ethereum RPC and EVM based data sources and a new mark price and price for perps funding TWAP methodology.
 
 ### Breaking changes
 
@@ -35,20 +35,24 @@ This pre-release contains several new features for the Palazzo milestone, includ
 
 ### New Features
 
-#### Isolated margin
+This release brings in a number of new network parameters. The below table details the parameters, default values and the associated specs should the community wish to change these post deployment.
 
-The protocol now allows users to choose between one of two margining modes for each position. The current mode will be stored alongside the party's position record.
-
-* Cross-margin mode (default): this is the mode used by all newly created orders, but it can be changed. When in cross-margin mode, margin is dynamically acquired and released as a position is marked to market, allowing profitable positions to offset losing positions for higher capital efficiency.
-* Isolated margin mode: this mode sacrifices capital efficiency for predictability and risk management by segregating positions. In this mode, the entire margin for any newly opened position's volume is transferred to the margin account when the trade is executed. This includes completely new positions and increases to position size. Other than at time of future trades, the general account will then never be searched for additional funds - a position will be allowed to be closed out instead - nor will profits be moved into the general account from the margin account while a position is open.
-
-To see lower level details of how the new isolated margin feature is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0019-MCAL-margin_calculator.md#isolated-margin-mode).
+| Network parameter    | Default value | Feature |
+| -------------------- | ----- | ------------- |
+| `blockchains.ethereumRpcAndEvmCompatDataSourcesConfig` | `{"network_id":"1","chain_id":"1","collateral_bridge_contract":{"address":"0x23872549cE10B40e31D6577e0A920088B0E0666a"},"confirmations":64,"staking_bridge_contract":{"address":"0x195064D33f09e0c42cF98E665D9506e0dC17de68","deployment_block_height":13146644},"token_vesting_contract":{"address":"0x23d1bFE8fA50a167816fBD79D7932577c06011f4","deployment_block_height":12834524},"multisig_control_contract":{"address":"0xDD2df0E7583ff2acfed5e49Df4a424129cA9B58F","deployment_block_height":15263593}}` | EVM RPC data sourcing [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0087-EVMD-eth-rpc-and-evm-data-source.md) |
+| `network.internalCompositePriceUpdateFrequency` | 5s | Mark price [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0009-MRKP-mark_price.md) |
+| `spam.protection.max.updatePartyProfile` | 10 | Teams and games [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0062-SPAM-spam_protection.md) |
+| `spam.protection.updatePartyProfile.min.funds` | 10 | Teams and games [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0062-SPAM-spam_protection.md) |
+| `spam.protection.referralSet.min.funds` | 10 | Teams and games [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0062-SPAM-spam_protection.md) |
+| `transfer.fee.maxQuantumAmount` | 1 | Transfer fee improvements [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0057-TRAN-transfers.md) |
+| `transfer.feeDiscountDecayFraction` | 0.8 | Transfer fee improvements [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0057-TRAN-transfers.md) |
+| `transfer.feeDiscountMinimumTrackedAmount` | 0.01 | Transfer fee improvements [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0057-TRAN-transfers.md) |
 
 #### Batch proposals
 
 A `BatchProposalSubmission` is a top-level proposal type that allows grouping several individual proposals into a single proposal. All changes will pass or fail governance voting together.
 
-The batch proposal is a wrapper containing one rationale (i.e. title and description) and one closing timestamp for the whole set, and a list of proposal submissions for each proposed change that omit certain fields. 
+The batch proposal is a wrapper containing one rationale (i.e. title and description) and one closing timestamp for the whole set, and a list of proposal submissions for each proposed change that omit certain fields.
 
 Any governance proposal can be included in a batch except proposals to *add* new assets.
 
@@ -74,10 +78,32 @@ To see lower level details of how the new mark price and price for perps funding
 
 Improvements have been made to how distressed parties are liquidated. Now new market proposals will need to include a liquidation strategy configuration.
 
-This configuration is used to allow the network to hold an active position on the market. Parties that are distressed, but previously couldn't be liquidated because there was insufficient volume on the book, will now be liquidated. In this process the party's position is transferred to the network party, and rather than dumping the distressed volume on the market, an inventory management strategy carries this out over time. 
+This configuration is used to allow the network to hold an active position on the market. Parties that are distressed, but previously couldn't be liquidated because there was insufficient volume on the book, will now be liquidated. In this process the party's position is transferred to the network party, and rather than dumping the distressed volume on the market, an inventory management strategy carries this out over time.
 
 This improvement has been added in [issue 9945 ↗](https://github.com/vegaprotocol/vega/issues/9945)
 
+#### Liquidity provider fee setting improvements
+
+There are three methods for setting the liquidity fee factor, with the default method being the current 'Marginal Cost method.' The liquidity fee setting mechanism is configured per market as part of the market proposal. Th two new methods are:
+
+**Stake-weighted-average method for setting the liquidity fee factor**
+
+The liquidity fee factor is set as the weighted average of the liquidity fee factors, with weights assigned based on the supplied stake from each liquidity provider, which can also account for the impact of one supplier's actions on others.
+
+**"Constant liquidity fee" method**
+
+The liquidity fee factor is set to a constant directly as part of the market proposal.
+
+This has been implemented as per the [LP fee and rewards setting specification ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md)
+
+
+#### Teams games and party profiles
+
+A number of changes have been introduced to incentivise the use of Vega through rewards. Along with the referral program users will be able to create teams and incentivise use via reward structures. The team reward metrics and accounts have been implemented as per the [rewards specification ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0056-REWA-rewards_overview.md#team-reward-metrics).
+
+Now, participants can also have an on-chain party profile allowing them to add an alias and metadata to a given party.
+
+This has been implemented as per the [party profile specification ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0088-PPRF-party_profile.md)
 
 ### Pre-release version 0.73.12 (patch) | 2024-01-10
 Version 0.73.12 was released the Vega testnet on 10 January, 2024.

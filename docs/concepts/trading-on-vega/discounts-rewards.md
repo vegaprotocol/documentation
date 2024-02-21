@@ -18,6 +18,8 @@ Get benefits for referring, or being referred. In the [referrals section of Cons
 * Enter a code you've been given
 :::
 
+To create a code or join a referral set, you'll need at least the equivalent of  <NetworkParameter frontMatter={frontMatter} param="spam.protection.applyReferral.min.funds" suffix="qUSD" hideName="true" /> in any asset on your key.
+
 The referral program only exists if it's been enabled through a [governance proposal](../../tutorials/proposals/referral-program-proposal.md). Once it's enabled, both the requirements and benefits can also be replaced with a new program, also using a governance proposal.
 
 You can see what the current program offers by checking the [Referrals page on Console](https://vegafairground.eth.limo/#/referrals), or the [referral program API](../../api/rest/data-v2/trading-data-service-get-current-referral-program.api.mdx).
@@ -89,11 +91,11 @@ A reward can be set to target participants with certain statuses:
 Rewards are independent from [fees](./fees.md), which are paid to validators, liquidity providers, and price makers on each trade.
 
 ### How rewards are paid
-Rewards that you earn are paid into a per-asset *vesting rewards account*. They may be locked for a time, if there's a lock period set. Each epoch, a percentage of the locked rewards begin vesting. Once they're vested, they are moved into a *vested rewards account*. From there, they can be redeemed by transferring them into your general account and withdrawn.
+Rewards that you earn are paid into a per-asset *vesting rewards account*.
 
-The lock period is defined in the [transfer](../assets/transfers.md) that funded the reward. Use the [transfers API](../../api/rest/data-v2/trading-data-service-list-transfers.api.mdx) to see the lock periods.
-
-Once they unlock, a proportion of the rewards move into the vested account each epoch: <NetworkParameter frontMatter={frontMatter} name="current rate" param="rewards.vesting.baseRate" formatter="percent" />. That percentage can be higher if you have an [activity streak](#activity-streak) going.
+* **Rewards may be locked.** Each reward has its own lock period. Check the [rewards page on Console ↗](https://https://vegafairground.eth.limo/#/rewards) or the [transfers API](../../api/rest/data-v2/trading-data-service-list-transfers.api.mdx) to see how many [epochs](../vega-chain/network.md#epochs) each reward is locked for.
+* After rewards unlock, a proportion of the rewards move into your *vested account* each epoch: <NetworkParameter frontMatter={frontMatter} name="current rate" param="rewards.vesting.baseRate" formatter="percent" />. That percentage can be higher if you have an [activity streak](#activity-streak) going.
+* Redeem them from your vested account by transferring them into your general account. Then you can withdraw.
 
 ### Reward hoarder bonus
 Leaving your reward earnings in your vested account will increase your share of the trading rewards you've accrued. How much extra you get depends on your total rewards balance, whether it's locked, vesting, or vested.
@@ -146,7 +148,7 @@ Some rewards measure trader activity over a number of epochs (set per reward). T
 <img src="/img/concept-diagrams/reward-score-example.png" width="650"/>
 
 :::tip Try it out
-* [How to fund rewards](#how-to-fund-rewards)
+* [Concept: How to fund rewards](#how-to-fund-rewards)
 * [Tutorial: Set up a reward transfer](../../tutorials/assets-tokens/transferring-assets.md)
 :::
 

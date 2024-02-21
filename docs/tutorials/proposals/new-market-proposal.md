@@ -98,7 +98,6 @@ An instrument contains the following properties:
 | `dataSourceSpecForTradingTermination` | The fields that define the data source used for terminating trading on the market. | vegaprotocol.builtin.timestamp |
 | `dataSourceSpecBinding` | The fields describe how specific information provided by the data source is used. For example, they can identify the specific name of the settlement price output, or the specific name of the trading termination property. |
 
-
 For easy reading, the data source filters are separated out - see [Data source bindings](#data-source-bindings) below to see the fields for specifying data.
 
 ### Data source bindings
@@ -119,13 +118,14 @@ Data source bindings include the following properties:
 | `conditions` | A filter for the data. The conditions that need to be matched by the data to be considered. This is an optional set of fields. For example you could use an operator and a value to denote that a price should be greater than zero |
 | `operator` | This adds a constraint to the value, such as LESS_THAN, GREATER_THAN. For example if you wanted to ensure that the price would always be above zero, you would set the operator to ‘GREATER_THAN’ and the Value to be ‘0’ | GREATER_THAN |
 | `value` | A number that is constrained by the operator. If providing a timestamp, use the Unix time in seconds | 0 |
+| `sourceChainId` | Describes the chain ID of the data source. This chain must already be enabled in network parameters and supported by validators. |
 
 :::info Submitting data
 Learn how to find and submit data in the [submitting data sources tutorial](../using-data-sources.md).
 :::
 
 ### Liquidity monitoring
-The liquidity monitoring settings detect when the market's liquidity drops below the safe level, and as such when to launch a 'liquidity seeking' auction. See below for more details on each field.
+The liquidity monitoring settings detect when the market's liquidity drops below the ideal level. See below for more details on each field.
 
 <NewMarketJSONLiquidityMonitoring />
 
@@ -134,13 +134,42 @@ Liquidity monitoring uses the following properties:
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
 | `targetStakeParameters` | Target stake parameters are derived from open interest history over a time window to calculate the maximum open interest. |
-| `timeWindow` | Defines the length of time (in seconds) over which open interest is measured. If empty, this field defaults to <NetworkParameter frontMatter={frontMatter} param="market.stake.target.timeWindow" hideName={true} />. | 3600 |
-| `scalingFactor` | The target stake scaling factor scales the estimated required liquidity (based on the market's risk model and current market data) to yield the market's target stake. If not included, it defaults to the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.stake.target.scalingFactor" hideValue={true} />. The scaling factor must be a number greater than zero and finite | 10 |
-| `triggeringRatio` | Specifies the triggering ratio for entering liquidity auction. If empty, the network will default to <NetworkParameter frontMatter={frontMatter} param="market.liquidity.targetstake.triggering.ratio" hideName={true} /> | 0.7 |
-| `auctionExtension` | Specifies by how many seconds an auction should be extended if leaving the auction were to trigger a liquidity auction. If empty, the network will default to the network parameter <NetworkParameter frontMatter={frontMatter} param="market.monitor.price.defaultParameters" hideValue={true} /> | 1 |
+| `timeWindow` | Defines the length of time (in seconds) over which open interest is measured. | 3600 |
+| `scalingFactor` | The target stake scaling factor scales the estimated required liquidity (based on the market's risk model and current market data) to yield the market's target stake. The scaling factor must be a number greater than zero and finite | 10 |
+
+### Mark price configuration
+
+The mark price methodology can be fine-tuned per market. If left blank, the market will default to the [last price method](../../concepts/trading-on-vega/margin.md#last-traded-price). You can read further details about the flexible mark price fields in [concepts](../../concepts/trading-on-vega/margin.md#flexible-mark-price-methodology).
+
+| Field | Description | Examples |
+| ----------- | ----------- | --------- |
+| `decayWeight` | Controls to what extent observation time impacts the weight in the mark price calculation. 0 implies uniform weights. | 1 |
+| `decayPower` | Controls how quickly the weight assigned to older observations should drop. The higher the value, the more weight is assigned to recent observations. | 1 |
+| `cashAmount` | Used in calculating the mark price from the order book, in asset decimals. Use the margin amount of the expected typical trade size, at maximum leverage. | A well-known highly liquid exchange uses 200 USDT on their most popular market. If you expect your market will be equally liquid, use the equivalent amount in the market's settlement asset. If you think it's likely to be 10x less liquid, use 10x less. |
+| `sourceWeights` | Determines how much weight goes to each composite price component. The order of sources used is as follows: price by trades, price by book, oracle_1, ... oracle_n, median price. 0 means the input is always ignored.| 0.5, 0.5, 0 uses an average of trades as defined via the TWAP and decay, and book as defined by the cash amount.|
+| `sourceStalenessTolerance` | How long a price source is considered valid. This uses one entry for each data source, such that the first is for the trade-based mark price, the second is for the order book-based price, and the third is for the first oracle, followed by any other data source staleness tolerance. | 1m0s |
+| `compositePriceType` | Weighted, median or last trade. | Weighted: Composite price is calculated as a weighted average of the underlying mark prices. Median: Composite price is calculated as a median of the underlying mark prices. Last trade: Composite price is calculated as the last trade price. |
+
+```
+"markPriceConfiguration": {
+          "decayWeight": "1",
+          "decayPower": "1",
+          "cashAmount": "2000000",
+          "sourceWeights": [
+            "0.5",
+            "0.5",
+            "0"
+          ],
+          "sourceStalenessTolerance": [
+            "1m0s",
+            "1m0s",
+            "1m0s"
+          ],
+          "compositePriceType": "COMPOSITE_PRICE_TYPE_WEIGHTED",
+```
 
 ### Price monitoring
-Price monitoring parameters are optional, and configure the acceptable price movement bounds for price monitoring. If you leave these blank, they will default to the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.monitor.price.defaultParameters" hideValue={true} />). See below for more details on each field.
+Price monitoring parameters are optional, and configure the acceptable price movement bounds for price monitoring. See below for more details on each field.
 
 <NewMarketJSONPriceMonitoring />
 

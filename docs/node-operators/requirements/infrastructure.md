@@ -5,7 +5,6 @@ sidebar_label: Validator infrastructure
 vega_network: TESTNET
 hide_title: false
 ---
-import NetworkParameter from '@site/src/components/NetworkParameter';
 
 This page covers the minimum and recommended hardware requirements, and the software requirements for running a Vega node to be a validator candidate.
 
