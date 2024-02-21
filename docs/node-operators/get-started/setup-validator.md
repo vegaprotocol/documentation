@@ -180,6 +180,30 @@ When a Vega validator node is watching for Ethereum events it will call the `eth
   PollEventRetryDuration = "20s"
 ```
 
+## Support EVM chains for oracle data
+To support markets receiving oracle data from EVM chains, your node **must** specify RPC credentials in the Vega config for *Gnosis* and *Arbitrum One* chains.
+
+Some RPC providers include:
+
+- [Blast ↗](https://blastapi.io/) - 40 calls/sec(12,000,000 calls/month)
+- [OnFinality ↗](https://onfinality.io/) - 500,000 calls/day (15,000,000 calls/month)
+- [Ankr ↗](https://ankr.com/) - 30 calls/sec
+- [Chainnodes ↗](https://chainnodes.org/) - 25 calls/sec (12,500,000 calls/month)
+
+```title="YOUR_VEGA_CONFIG/config/node/config.toml"
+[Ethereum]
+  ...
+  ...
+  
+  [[Ethereum.EVMChainConfigs]]
+    ChainID = "100"
+    RPCEndpoint = "YOUR_RPC_ENDPOINT_FOR_GNOSIS"
+  [[Ethereum.EVMChainConfigs]]
+    ChainID = "42161"
+    RPCEndpoint = "YOUR_RPC_ENDPOINT_FOR_ARBITRUM_ONE"
+...
+```
+
 ## Set up the node wallet
 Each validator node requires two cryptographic wallets to operate properly:
 * Ethereum wallet: Used to sign transactions going through the ERC20 bridge

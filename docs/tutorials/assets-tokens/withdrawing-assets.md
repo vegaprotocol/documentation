@@ -8,7 +8,6 @@ vega_network: TESTNET
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import NetworkParameter from '@site/src/components/NetworkParameter';
 import EthAddresses from '@site/src/components/EthAddresses';
 
 :::caution Completing a withdrawal
@@ -85,7 +84,7 @@ You can use the following transaction template (formatted for Linux/MacOS):
 
 ### Query for withdrawal ID
 
-1. Query for your withdrawal ID, using the [list withdrawals API](../../api/rest/data-v2/trading-data-service-list-withdrawals.api.mdx). 
+1. Query for your withdrawal ID, using the [list withdrawals API](../../api/rest/data-v2/trading-data-service-list-withdrawals.api.mdx).
 
 You could, instead, calculate it from the transaction signature by generating a sha3 hash in the format:
 
@@ -97,7 +96,7 @@ Once the withdrawal delay has passed, you can carry on with the following steps.
 
 ### Retrieve signature bundle
 
-2. Retrieve the signature bundle using the [get withdrawal API](../../api/rest/data-v2/trading-data-service-get-withdrawal.api.mdx). You'll need the withdrawal ID from the step above to do this.
+2. Retrieve the signature bundle using the [get withdrawal API](../../api/rest/data-v2/trading-data-service-get-erc-20-withdrawal-approval.api.mdx). You'll need the withdrawal ID from the step above to do this.
 
 ### Run asset withdrawal 
 

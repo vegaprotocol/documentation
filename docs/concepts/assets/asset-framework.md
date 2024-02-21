@@ -5,8 +5,6 @@ vega_network: TESTNET
 hide_title: false
 description: Vega supports ERC-20 assets that are added through governance.
 ---
-import NetworkParameter from '@site/src/components/NetworkParameter';
-
 Vega currently supports exclusively using ERC-20 tokens for markets on Vega. Those assets must be [proposed through governance](../governance.md#asset-governance) and pass the voting threshold, and be enabled on the Vega bridge. ERC-20 tokens originate on the Ethereum chain, not the Vega chain. Inter-chain asset interactions between Vega and Ethereum are facilitated through the Ethereum bridges. 
 
 The assets on Vega are used for margining and settling positions, paying fees, and supplying liquidity on markets. Assets can also be transferred between keys and accounts.

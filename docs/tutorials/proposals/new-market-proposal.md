@@ -98,7 +98,6 @@ An instrument contains the following properties:
 | `dataSourceSpecForTradingTermination` | The fields that define the data source used for terminating trading on the market. | vegaprotocol.builtin.timestamp |
 | `dataSourceSpecBinding` | The fields describe how specific information provided by the data source is used. For example, they can identify the specific name of the settlement price output, or the specific name of the trading termination property. |
 
-
 For easy reading, the data source filters are separated out - see [Data source bindings](#data-source-bindings) below to see the fields for specifying data.
 
 ### Data source bindings
@@ -119,6 +118,7 @@ Data source bindings include the following properties:
 | `conditions` | A filter for the data. The conditions that need to be matched by the data to be considered. This is an optional set of fields. For example you could use an operator and a value to denote that a price should be greater than zero |
 | `operator` | This adds a constraint to the value, such as LESS_THAN, GREATER_THAN. For example if you wanted to ensure that the price would always be above zero, you would set the operator to ‘GREATER_THAN’ and the Value to be ‘0’ | GREATER_THAN |
 | `value` | A number that is constrained by the operator. If providing a timestamp, use the Unix time in seconds | 0 |
+| `sourceChainId` | Describes the chain ID of the data source. This chain must already be enabled in network parameters and supported by validators. |
 
 :::info Submitting data
 Learn how to find and submit data in the [submitting data sources tutorial](../using-data-sources.md).
@@ -150,7 +150,6 @@ The mark price methodology can be fine-tuned per market. If left blank, the mark
 | `sourceStalenessTolerance` | How long a price source is considered valid. This uses one entry for each data source, such that the first is for the trade-based mark price, the second is for the order book-based price, and the third is for the first oracle, followed by any other data source staleness tolerance. | 1m0s |
 | `compositePriceType` | Weighted, median or last trade. | Weighted: Composite price is calculated as a weighted average of the underlying mark prices. Median: Composite price is calculated as a median of the underlying mark prices. Last trade: Composite price is calculated as the last trade price. |
 
-
 ```
 "markPriceConfiguration": {
           "decayWeight": "1",
@@ -170,7 +169,7 @@ The mark price methodology can be fine-tuned per market. If left blank, the mark
 ```
 
 ### Price monitoring
-Price monitoring parameters are optional, and configure the acceptable price movement bounds for price monitoring. If you leave these blank, they will default to the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.monitor.price.defaultParameters" hideValue={true} />). See below for more details on each field.
+Price monitoring parameters are optional, and configure the acceptable price movement bounds for price monitoring. See below for more details on each field.
 
 <NewMarketJSONPriceMonitoring />
 

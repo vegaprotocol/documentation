@@ -123,6 +123,7 @@ Data source specs include the following properties under `ethOracle`:
 | `dataSourceSpecBinding` | Describes which property of the data source data is to be used as settlement data and when. | |
 | `settlementDataProperty` | Name of the property in the source data to be used as settlement data. | `btc.price` |
 | `settlementScheduleProperty` | Describes what to use to determine when to run a settlement. | `vegaprotocol.builtin.timetrigger` |
+| `sourceChainId` | Describes the chain ID of the data source. This chain must already be enabled in network parameters and supported by validators. |
 
 :::info Submitting data
 Learn how to find and submit data in the [submitting data sources tutorial](../using-data-sources.md).

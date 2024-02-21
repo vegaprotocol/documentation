@@ -1,0 +1,45 @@
+---
+id: core-service-last-block-height
+title: "Blockchain height"
+description: "Get the height of the last tendermint block"
+sidebar_label: "Blockchain height"
+hide_title: true
+hide_table_of_contents: true
+api: eJylVm1v2zYQ/isEPyey0RbdkE9Lt7UNUHTG0u5LWrgn6iSxkUiOL3Fcw/99R0qyZEcOUAwwYJq8e/jccy/0jlt0RiuHjl/t+IvlMn4JrTwqH5dgTCMFeKnV4rvTKu45UWMLcWWsNmi97LxFDVLdFHHppW+QX/GP6Dfa3rN0xGTBSqtbtqmlqJmvkeWNFnSqW3TpiF9wvzXR03krVcX3F7wGV08xP4DzvWM6mnNBWdWJf6ltC7TiQSr/+lU0noHpzGeAnIF2pTd/yLKUIjR+e4R5CjmaMV2m+EggWtEnqnDBZIZZ2vdgK/RMhTZHG89/oNVuZEDIWKGdUHhPob4NSsRMTNW4DcZo67E4vitJw8rB4XxoN0pYBEebx0EO+G+0bhAod6pIdaAqSh9SDJa2BldWjJFLx6Bp9IYYkVAspHOy/6IctNhrnY5abUmJmsC/RTJrozfrTpG1LteG8rNO+XHfmLdA7imWiUp5x20Szcfk/le5Iuc3yffZhJ0Tb8xLR4DlWJMATARrqTGGIPo4n0vbQOjT4wptYvQsoeteuZHANHJGzdYxmrlyP6L83fc020jf9VlPuK/KZix9ilugc3Rlvv0Su75A2xLmeIHOv6PwhE8XFOiElaarQX7NXBDRuwwNG+ZIxpNdCVQM/2eW6AJPlXr5YlbpAj3IJnlJj21aQFHIeA80qyksWR9f81sHtzttj/1p+KO4BOB1HsprteWjGVgL6TdNMgfVT2JWWlcNWiNuPfjgZsVWLCh8NORIyUJrqYEmmkdwqCimO/47tdUt2gcpkH89hXlHU+dMQYzJP9RYlCrlK071KfD6w9Bg74fZ2dJQ0NGMBhv9NOBpavNFgkrjf3EYs45A0EayOx5sQ2a198ZdLRYPWMFlAR4yRQXgsirYcPVyufyVnwYyZ0n6zwFmEEgtuMSiwkykR+Yp1hOjp1gF2IYymanuUXsCc3o+z+ayJS3IJAO1fYBGFmcpzVueiXGwdR7uiYSAXKpof169sy58T2UjVamn78A/5EEPNU3s69VNnMExgz3YMvvlVbaM1W+08y2kzlY07eP7ccj/+MwecZmMiJ+szr6bPD76hWnohsggSbPry++Oj+XHD38LKLqaeMbj3S4Hh59ts9/H7X8DWnr97mj5AFZCHkO/+5r+UQBdnyr2HrexH2nymRgMZSakCXA63aKKh6Z49+cnatL/AGUYUXw=
+sidebar_class_name: "get api-method"
+info_path: version-v0.74/api/rest/core/vega-core-apis
+custom_edit_url: "https://github.com/vegaprotocol/documentation/issues/new?labels=documentation&title=[Documentation] Requesting changes to 'Blockchain height' (core-service-last-block-height)"
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Blockchain height</h1>
+
+<MethodEndpoint method={"get"} path={"/blockchain/height"}></MethodEndpoint>
+
+
+
+Get the height of the last tendermint block
+
+## Request
+
+<div><div><ApiTabs label={undefined} id={undefined}><TabItem label={"200"} value={"200"}><div>
+
+A successful response.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"chainId"} required={false} schemaName={"Network chain id from which the block comes from"} qualifierMessage={undefined} schema={{"title":"Network chain id from which the block comes from","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"hash"} required={false} schemaName={"Last block hash"} qualifierMessage={undefined} schema={{"title":"Last block hash","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"height"} required={false} schemaName={"uint64"} qualifierMessage={undefined} schema={{"format":"uint64","title":"Last block height","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"spamPowDifficulty"} required={false} schemaName={"int64"} qualifierMessage={undefined} schema={{"format":"int64","title":"Difficulty of the proof of work, i.e. the target number of zeros","type":"integer"}}></SchemaItem><SchemaItem collapsible={false} name={"spamPowHashFunction"} required={false} schemaName={"Supported proof of work hash function"} qualifierMessage={undefined} schema={{"title":"Supported proof of work hash function","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"spamPowIncreasingDifficulty"} required={false} schemaName={"Boolean indicating whether increasing difficulty is allowed for using the\nsame height for more than `spam_pow_number_of_past_blocks` transactions"} qualifierMessage={undefined} schema={{"title":"Boolean indicating whether increasing difficulty is allowed for using the\nsame height for more than `spam_pow_number_of_past_blocks` transactions","type":"boolean"}}></SchemaItem><SchemaItem collapsible={false} name={"spamPowNumberOfPastBlocks"} required={false} schemaName={"int64"} qualifierMessage={undefined} schema={{"format":"int64","title":"Supported proof of work number of blocks behind current height allowed","type":"integer"}}></SchemaItem><SchemaItem collapsible={false} name={"spamPowNumberOfTxPerBlock"} required={false} schemaName={"int64"} qualifierMessage={undefined} schema={{"format":"int64","title":"Allowed number of transactions per block","type":"integer"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"chainId\": \"string\",\n  \"hash\": \"string\",\n  \"height\": \"string\",\n  \"spamPowDifficulty\": 0,\n  \"spamPowHashFunction\": \"string\",\n  \"spamPowIncreasingDifficulty\": true,\n  \"spamPowNumberOfPastBlocks\": 0,\n  \"spamPowNumberOfTxPerBlock\": 0\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"default"} value={"default"}><div>
+
+An unexpected error response.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"code"} required={false} schemaName={"int32"} qualifierMessage={undefined} schema={{"format":"int32","type":"integer"}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>details</strong><span className={"openapi-schema__name"}> object[]</span></span></summary><div style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"@type"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={false} name={"message"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"code\": 0,\n  \"details\": [\n    {\n      \"@type\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>

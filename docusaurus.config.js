@@ -274,7 +274,7 @@ module.exports = {
               // Hacky: Classname used for full version number, v prefix. Used for OpenrpcPlayground
               className: `v${version}`
             },
-            "v0.73": {
+            "v0.74": {
               banner: "none",
               label: `mainnet (v${shortenVersion(mainnetVersion)})`,
               path: "mainnet",

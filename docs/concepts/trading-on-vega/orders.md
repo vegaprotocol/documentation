@@ -183,15 +183,15 @@ Batch order instructions can be used in a liquidity provision strategy to help p
 To prevent spamming, the total number of instructions in a batch order transaction can be no more than the number set with the network parameter: <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.batchSize" />. A batch order transaction with more instructions than allowed will fail.
 
 :::note Read more
-* [Auctions](trading-modes.md#auctions)
-* [Providing liquidity](../liquidity/provision.md)
+* [Concept: Auctions](trading-modes.md#auctions)
+* [Concept: Providing liquidity](../liquidity/provision.md)
 :::
 
 ### Network order
 A network order is triggered by the Vega network to close out a distressed trader, as part of position resolution. Network orders cannot be submitted by a party.
 
 :::note Read more
-[Position resolution](#position-resolution)
+[Concept: Position resolution](#position-resolution)
 :::
 
 ### Conditional order parameters
@@ -296,8 +296,8 @@ Orders to sustain a liquidity commitment, and [Good For Auction](#good-for-aucti
 Pegged orders can also be placed, but will be parked until the market is out of auction. 
 
 :::note Read more
-**[Market status: pending](./market-lifecycle#market-status-pending)**
-**[Opening auctions](./trading-modes#auction-type-opening)**
+**[Concept: Market status pending](./market-lifecycle#market-status-pending)**
+**[Concept: Opening auctions](./trading-modes#auction-type-opening)**
 :::
 
 ### Amend an order

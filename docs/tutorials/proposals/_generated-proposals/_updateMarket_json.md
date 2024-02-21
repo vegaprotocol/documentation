@@ -16,37 +16,34 @@
             "quoteName": "tEuro",
             "dataSourceSpecForSettlementData": {
               "external": {
-                "oracle": {
-                  "signers": [
+                "ethOracle": {
+                  "sourceChainId": "1",
+                  "address": "0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43",
+                  "abi": "[{\"inputs\":[],\"name\":\"latestRoundData\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+                  "method": "latestRoundData",
+                  "normalisers": [
                     {
-                      "ethAddress": {
-                        "address": "0xfCEAdAFab14d46e20144F48824d0C09B1a03F2BC"
-                      }
+                      "name": "prices.ORANGES.value",
+                      "expression": "$[0]"
                     }
                   ],
+                  "requiredConfirmations": 3,
+                  "trigger": {
+                    "timeTrigger": {
+                      "every": 30
+                    }
+                  },
                   "filters": [
                     {
                       "key": {
                         "name": "prices.ORANGES.value",
                         "type": "TYPE_INTEGER",
-                        "numberDecimalPlaces": "5"
+                        "numberDecimalPlaces": 8
                       },
                       "conditions": [
                         {
-                          "operator": "OPERATOR_GREATER_THAN",
+                          "operator": "OPERATOR_GREATER_THAN_OR_EQUAL",
                           "value": "0"
-                        }
-                      ]
-                    },
-                    {
-                      "key": {
-                        "name": "prices.ORANGES.timestamp",
-                        "type": "TYPE_INTEGER"
-                      },
-                      "conditions": [
-                        {
-                          "operator": "OPERATOR_GREATER_THAN",
-                          "value": "1648684800"
                         }
                       ]
                     }
@@ -89,7 +86,7 @@
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 0.8
+            "sigma": 0.3
           }
         },
         "liquiditySlaParameters": {
@@ -100,8 +97,8 @@
         }
       }
     },
-    "closingTimestamp": 1709140846,
-    "enactmentTimestamp": 1709227246
+    "closingTimestamp": 1710159461,
+    "enactmentTimestamp": 1710245861
   }
 }
 ```
