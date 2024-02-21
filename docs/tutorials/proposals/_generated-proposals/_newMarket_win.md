@@ -30,23 +30,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
           {^
            \"name\": \"prices.ORANGES.value\",^
            \"expression\": \"$[0]\"^
-        \"ethOracle\": {^
-         \"sourceChainId\": \"1\",^
-         \"address\": \"0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43\",^
-         \"abi\": \"[{\\"inputs\\":[],\\"name\\":\\"latestRoundData\\",\\"outputs\\":[{\\"internalType\\":\\"int256\\",\\"name\\":\\"\\",\\"type\\":\\"int256\\"}],\\"stateMutability\\":\\"view\\",\\"type\\":\\"function\\"}]\",^
-         \"method\": \"latestRoundData\",^
-         \"normalisers\": [^
-          {^
-           \"name\": \"prices.ORANGES.value\",^
-           \"expression\": \"$[0]\"^
           }^
          ],^
-         \"requiredConfirmations\": 3,^
-         \"trigger\": {^
-          \"timeTrigger\": {^
-           \"every\": 30^
-          }^
-         },^
          \"requiredConfirmations\": 3,^
          \"trigger\": {^
           \"timeTrigger\": {^
@@ -59,11 +44,9 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
             \"name\": \"prices.ORANGES.value\",^
             \"type\": \"TYPE_INTEGER\",^
             \"numberDecimalPlaces\": 8^
-            \"numberDecimalPlaces\": 8^
            },^
            \"conditions\": [^
             {^
-             \"operator\": \"OPERATOR_GREATER_THAN_OR_EQUAL\",^
              \"operator\": \"OPERATOR_GREATER_THAN_OR_EQUAL\",^
              \"value\": \"0\"^
             }^
@@ -92,8 +75,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      }^
     },^
     \"metadata\": [^
-     \"enactment:2024-03-11T17:17:04Z\",^
-     \"settlement:2024-03-10T17:17:04Z\",^
+     \"enactment:2024-03-12T12:17:41Z\",^
+     \"settlement:2024-03-11T12:17:41Z\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -155,8 +138,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
     }^
    }^
   },^
-  \"closingTimestamp\": 1710149930,^
-  \"enactmentTimestamp\": 1710236330^
+  \"closingTimestamp\": 1710159461,^
+  \"enactmentTimestamp\": 1710245861^
  }^
 }^
 }"
