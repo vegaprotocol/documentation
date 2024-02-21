@@ -236,6 +236,7 @@ When a dated futures market settles at expiry, the mark price comes from the mar
 :::
 
 ## Mark price
+## Mark price
 The mark price represents the current market value, and is used to determine the value of a trader's open position against the prices the trades were executed at, to determine the cash flows for mark to market settlement and funding payments.
 
 The default mark price is the last traded price. Mark price calculations can also use additional price synthesis methods that can take into account trades, the order book, oracle inputs and update recency and can be combined via medians or weighted means.

@@ -52,7 +52,7 @@ This release brings in a number of new network parameters. The below table detai
 
 A `BatchProposalSubmission` is a top-level proposal type that allows grouping several individual proposals into a single proposal. All changes will pass or fail governance voting together.
 
-The batch proposal is a wrapper containing one rationale (i.e. title and description) and one closing timestamp for the whole set, and a list of proposal submissions for each proposed change that omit certain fields. 
+The batch proposal is a wrapper containing one rationale (i.e. title and description) and one closing timestamp for the whole set, and a list of proposal submissions for each proposed change that omit certain fields.
 
 Any governance proposal can be included in a batch except proposals to *add* new assets.
 
@@ -78,10 +78,32 @@ To see lower level details of how the new mark price and price for perps funding
 
 Improvements have been made to how distressed parties are liquidated. Now new market proposals will need to include a liquidation strategy configuration.
 
-This configuration is used to allow the network to hold an active position on the market. Parties that are distressed, but previously couldn't be liquidated because there was insufficient volume on the book, will now be liquidated. In this process the party's position is transferred to the network party, and rather than dumping the distressed volume on the market, an inventory management strategy carries this out over time. 
+This configuration is used to allow the network to hold an active position on the market. Parties that are distressed, but previously couldn't be liquidated because there was insufficient volume on the book, will now be liquidated. In this process the party's position is transferred to the network party, and rather than dumping the distressed volume on the market, an inventory management strategy carries this out over time.
 
 This improvement has been added in [issue 9945 ↗](https://github.com/vegaprotocol/vega/issues/9945)
 
+#### Liquidity provider fee setting improvements
+
+There are three methods for setting the liquidity fee factor, with the default method being the current 'Marginal Cost method.' The liquidity fee setting mechanism is configured per market as part of the market proposal. Th two new methods are:
+
+**Stake-weighted-average method for setting the liquidity fee factor**
+
+The liquidity fee factor is set as the weighted average of the liquidity fee factors, with weights assigned based on the supplied stake from each liquidity provider, which can also account for the impact of one supplier's actions on others.
+
+**"Constant liquidity fee" method**
+
+The liquidity fee factor is set to a constant directly as part of the market proposal.
+
+This has been implemented as per the [LP fee and rewards setting specification ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md)
+
+
+#### Teams games and party profiles
+
+A number of changes have been introduced to incentivise the use of Vega through rewards. Along with the referral program users will be able to create teams and incentivise use via reward structures. The team reward metrics and accounts have been implemented as per the [rewards specification ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0056-REWA-rewards_overview.md#team-reward-metrics).
+
+Now, participants can also have an on-chain party profile allowing them to add an alias and metadata to a given party.
+
+This has been implemented as per the [party profile specification ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0088-PPRF-party_profile.md)
 
 ### Pre-release version 0.73.12 (patch) | 2024-01-10
 Version 0.73.12 was released the Vega testnet on 10 January, 2024.
