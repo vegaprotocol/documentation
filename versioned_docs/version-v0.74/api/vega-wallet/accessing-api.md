@@ -31,13 +31,6 @@ First, you will have to run the Vega wallet using one of the following wallet so
 
 Then, to connect the local service, see ["Connect to local service" guide](./how-to/connect-to-local-service.md).
 
-<!--## Communicating with the browser extension
-
-To communicate with the browser extension, you need to install it first.
-
-Then, to interact with the browser extension, see ["Connect to browser extension" guide](./how-to/_connect-to-browser-extension.md).
--->
-
 ## Why use JSON-RPC?
 
 To send transactions to a network, third-party applications need to interact with a wallet. However, wallet softwares come in all shape and flavours, such as browser extensions, or an HTTP server. They are all managed in specific ways, and thus it's essential for third-party application developers to account for each implementation. They _will need_ to implement custom adapters for browser extensions, for an HTTP server, etc.
