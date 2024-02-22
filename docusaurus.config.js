@@ -9,7 +9,7 @@ module.exports = {
   baseUrl: "/",
   trailingSlash: false,
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "warn",
+  onBrokenMarkdownLinks: "throw",
   favicon: "img/favicon.ico",
   organizationName: "vegaprotocol",
   projectName: "documentation",
@@ -36,6 +36,12 @@ module.exports = {
           position: 'right',
           className: 'header-github-link',
           'aria-label': 'GitHub repository',
+        },
+        {
+          type: "doc",
+          docId: "intro/index",
+          label: "Intro",
+          position: "left",
         },
         {
           type: "doc",
@@ -202,6 +208,10 @@ module.exports = {
     }),
   },
   plugins: [
+    [
+      require.resolve("./src/plugins/webpack-docusaurus-plugin.config.js"),
+      {}
+    ],
     [
       // An alternative to algolia
       require.resolve("@easyops-cn/docusaurus-search-local"),

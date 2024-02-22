@@ -34,3 +34,4 @@ yarn-error.log*
 *.mdx-E
 
 .vercel
+.idea/
