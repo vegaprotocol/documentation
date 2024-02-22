@@ -1,6 +1,5 @@
 const webpackbar = require('webpackbar');
 const webpack = require('webpack');
-const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 
 // Derived from https://github.com/facebook/docusaurus/issues/4765#issuecomment-1679863984
