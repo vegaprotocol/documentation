@@ -1,6 +1,5 @@
 const webpackbar = require('webpackbar');
 const webpack = require('webpack');
-const rimraf = require('rimraf');
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 
@@ -18,14 +17,18 @@ async function webpackDocusaurusPlugin(context, options) {
       if (isCI) {
         if (isServer) {
           // Only logs on server, purely so it only shows up once rather than twice
-          console.log(`ℹ️  Disabling webpack cache because Vercel sigkills (${ isServer ? 'server' : 'client' })`);
+          console.log(`🚤  Allowing brotli ${ isServer ? 'server' : 'client'} webpack cache`);
+          cacheOptions = isCI ? { cache: false } : { cache: { profile: true, type: 'filesystem', compression: 'brotli' }};
+        } else {
+          console.log(`ℹ️  Disabling ${ isServer ? 'server' : 'client'} webpack cache because Vercel sigkills`);
+          cacheOptions = { cache: false }
         }
 
         cacheOptions = { cache: false }
       } else {
         if (isServer) {
           // Only logs on server, purely so it only shows up once rather than twice
-          console.log(`ℹ️  Enabling filesystem cache 🚤🚤  (${ isServer ? 'server' : 'client' })`);
+          console.log(`🚤  Enabling filesystem cache 🚤🚤  (${ isServer ? 'server' : 'client' })`);
         }
         cacheOptions = isCI ? { cache: false } : { cache: { profile: true, type: 'filesystem' }};
       }
@@ -68,13 +71,6 @@ async function webpackDocusaurusPlugin(context, options) {
     },
     postBuild({ routesPaths, outDir }) {
       console.log(`✅  webpack-docusaurus-plugin: Built ${routesPaths.length} routes to ${outDir}`);
-
-      // Note that if the options are changed above to be client/server specific, this logic needs to change
-      const isCI = process.env.CI;
-      if (isCI) {
-        rimraf.sync(path.join('node_modules/.cache'));
-        console.log(`❤️‍🔥  Ensuring no cache is left behind`);
-      }
     }
   }
 }
