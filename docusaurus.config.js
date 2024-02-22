@@ -209,6 +209,10 @@ module.exports = {
   },
   plugins: [
     [
+      require.resolve("./src/plugins/webpack-docusaurus-plugin.config.js"),
+      {}
+    ],
+    [
       // An alternative to algolia
       require.resolve("@easyops-cn/docusaurus-search-local"),
       {
