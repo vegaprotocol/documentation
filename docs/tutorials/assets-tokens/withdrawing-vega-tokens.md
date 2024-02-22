@@ -61,6 +61,6 @@ Rewards also go through a vesting process, which is different from tokens in the
 
     a. On the [Governance dApp](https://governance.fairground.wtf), you can click on Redeem on the wallet sidebar, which will take you to Console where you can transfer those tokens to your general account.
 
-    b. On [Console](https://vegafairground.eth.limo/#/rewards) under Rewards, you can see any tokens or assets that are available to redeem. From there you can transfer those tokens from your vested account into your general account.
+    b. On [Console](https://console.fairground.wtf/#/rewards) under Rewards, you can see any tokens or assets that are available to redeem. From there you can transfer those tokens from your vested account into your general account.
 
 3. Withdraw tokens from Vega to your Ethereum wallet. In Console, you can use the Withdraw icon in the right sidebar to initiate your withdrawal into your Ethereum address. To use Etherscan, follow the [withdrawing assets tutorial](./withdrawing-assets.md).
