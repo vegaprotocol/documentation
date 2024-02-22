@@ -7,7 +7,7 @@ description: Traders can get discounts on fees and rewards.
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-You can offset some of the [fees](./fees.md) you pay, or earn even more, by receiving rewards based on trading activity. Rewards can be funded by anyone, and can be in any asset. You can see what rewards are currently available on [Console ↗](https://https://console.fairground.wtf/#/rewards).
+You can offset some of the [fees](./fees.md) you pay, or earn even more, by receiving rewards based on trading activity. Rewards can be funded by anyone, and can be in any asset. You can see what rewards are currently available on [Console ↗](https://console.fairground.wtf/#/rewards).
 
 ## Referral program
 You can earn a commission for referring new users when a referral program is enabled. New users get a discount on their fees, while whoever refers them gets a cut of their referees’ trading fees. How much commission the referrer receives is increased if they have VEGA associated to their public key.

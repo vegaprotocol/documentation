@@ -79,7 +79,7 @@ Market participants can also receive rewards for their trading activity, liquidi
 Your reward earnings can grow if you have an activity streak and/or keep earned rewards in your rewards account.
 
 :::tip Try it out
-[See the available rewards ↗](https://console.xyz/#/rewards)
+[See the available rewards ↗](https://console.vega.xyz/#/rewards)
 :::
 
 A reward can be set to target participants with certain statuses:
