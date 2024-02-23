@@ -102,7 +102,7 @@ Leaving your reward earnings in your vested account will increase your share of 
 
 You can see the current reward hoarder bonus requirements and benefits on the [block explorer ↗](https://explorer.fairground.wtf/network-parameters#rewards.vesting.benefitTiers), or querying the [network parameters API](../../api/rest/data-v2/trading-data-service-list-network-parameters.api.mdx) for the `rewards.vesting.benefitTiers` network parameter.
 
-These tiers are set through network parameters, and thus can be changed through [governance](../governance.md#network-parameter-governance).
+These tiers are set through network parameters, and thus can be changed through [governance](../governance/network-parameters.md).
 
 :::tip Try it out
 [Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)
@@ -121,7 +121,7 @@ If you go inactive for more than <NetworkParameter frontMatter={frontMatter} par
 
 You can see the current activity streak requirements and benefits on the [block explorer ↗](https://explorer.fairground.wtf/network-parameters#rewards.activityStreak.benefitTiers), or querying the [network parameters API](../../api/rest/data-v2/trading-data-service-list-network-parameters.api.mdx) for the `rewards.activityStreak.benefitTiers` network parameter.
 
-The details for activity streaks are set through network parameters, and thus can be changed through [governance](../governance.md#network-parameter-governance).
+The details for activity streaks are set through network parameters, and thus can be changed through [governance](../governance/network-parameters.md).
 
 :::tip Try it out
 [Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)
@@ -220,7 +220,7 @@ The most consistently profitable traders category rewards traders with the least
 This is measured by taking the sum of each trader's mark to market gains and losses, both realised and unrealised, and includes funding gains and losses if trades are on a perpetuals market. It's also known as the "returns volatility metric".
 
 ### Market creation rewards 
-The market creation reward dispatch metric is designed to incentivise creating markets that attract good trading volume. Rewards are awarded to the proposers of any markets that meet a certain total trade value. 
+The market creation reward dispatch metric is designed to incentivise creating markets that attract high trading volumes. Rewards are awarded to the proposers of any markets that meet a certain total trade value. 
 
 The threshold for what counts as 'enough' trading volume is a formula that takes into account the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="rewards.marketCreationQuantumMultiple" />, as well as the settlement asset's quantum to assess the market's size.
 
