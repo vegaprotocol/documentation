@@ -90,6 +90,6 @@ The table below details which types of transfers need to be done using a governa
 | Any other account | Any | No |
 
 :::note Read more
-* [Concept: Transfers initiated by governance](../governance.md#transferring-assets)
+* [Concept: Transfers initiated by governance](../governance/asset.md#propose-an-asset-transfer)
 * [Tutorial: Asset transfer proposal](../../tutorials/proposals/asset-transfer-proposal.md)
 :::

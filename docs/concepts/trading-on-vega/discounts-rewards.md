@@ -121,7 +121,7 @@ If you go inactive for more than <NetworkParameter frontMatter={frontMatter} par
 
 You can see the current activity streak requirements and benefits on the [block explorer ↗](https://explorer.fairground.wtf/network-parameters#rewards.activityStreak.benefitTiers), or querying the [network parameters API](../../api/rest/data-v2/trading-data-service-list-network-parameters.api.mdx) for the `rewards.activityStreak.benefitTiers` network parameter.
 
-The details for activity streaks are set through network parameters, and thus can be changed through [governance](../governance/network-parameters.md).
+The details for activity streaks are set through network parameters, and thus can be changed through [governance](../governance/network-parameter.md).
 
 :::tip Try it out
 [Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)
