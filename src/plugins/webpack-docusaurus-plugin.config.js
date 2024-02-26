@@ -8,6 +8,22 @@ async function webpackDocusaurusPlugin(context, options) {
     name: 'webpack-docusaurus-plugin',
     configureWebpack(config, isServer, utils) {
       const isCI = process.env.CI;
+      const enableVerboseBuild = process.env.VERBOSE_BUILD === "true";
+      const enableEsbuild = process.env.ESBUILD === "true";
+
+      if (isServer) {
+        if (enableVerboseBuild) {
+          console.log(`🏗️   Enabling verbose, error obscuring output for webpack`);
+        } else {
+          console.log(`🏗️  Set VERBOSE_BUILD=true to see more output from webpack`);
+        }
+        if (enableEsbuild) {
+          console.log(`📦️  Enabling ESBuild minifier`);
+        } else {
+          console.log(`📦️️  Set ESBUILD=true to use alternative minification`);
+        }
+      }
+
       let cacheOptions
 
       // Right now, isServer is only used to avoid logging the cache disablement twice.
@@ -17,7 +33,7 @@ async function webpackDocusaurusPlugin(context, options) {
         if (isServer) {
           // Only logs on server, purely so it only shows up once rather than twice
           console.log(`🚤  Allowing brotli ${ isServer ? 'server' : 'client'} webpack cache`);
-          cacheOptions = isCI ? { cache: false } : { cache: { profile: true, type: 'filesystem', compression: 'brotli' }};
+          cacheOptions = { cache: { type: 'filesystem', compression: 'brotli' }};
         } else {
           console.log(`ℹ️  Disabling ${ isServer ? 'server' : 'client'} webpack cache because Vercel sigkills`);
           cacheOptions = { cache: false }
@@ -27,32 +43,43 @@ async function webpackDocusaurusPlugin(context, options) {
       } else {
         if (isServer) {
           // Only logs on server, purely so it only shows up once rather than twice
-          console.log(`🚤  Enabling filesystem cache 🚤🚤  (${ isServer ? 'server' : 'client' })`);
+          console.log(`🚤  Enabling filesystem cache 🚤🚤`);
         }
-        cacheOptions = isCI ? { cache: false } : { cache: { profile: true, type: 'filesystem' }};
+        cacheOptions = { cache: { type: 'filesystem' }};
       }
 
-      const plugins = config.plugins.filter(p => {
-        return !(p instanceof webpackbar);
-      });
+      // Replace webpackbar with a more informative progress reporter (if DEBUG=true is passed in)
+      let plugins 
+      if (enableVerboseBuild) {
+        plugins = config.plugins.filter(p => {
+          return !(p instanceof webpackbar);
+        });
 
-      // A more informative progress reporter than webpackbar
-      plugins.push(new webpack.ProgressPlugin(),)
+        // A more informative progress reporter than webpackbar
+        plugins.push(new webpack.ProgressPlugin(),)
+      } else {
+        plugins = config.plugins
+      }
 
-      const minimizer = new TerserPlugin({
-        minify: TerserPlugin.esbuildMinify,
-      });
-
-      const minimizers = config.optimization.minimizer?.map((m) =>
-          m instanceof TerserPlugin ? minimizer : m
-      );
+      // Replace TerserPlugin with esbuild for faster, more efficient minification (if ESBUILD=true is passed in)
+      let minimizers
+      if (enableEsbuild) {
+        const minimizer = new TerserPlugin({
+          minify: TerserPlugin.esbuildMinify,
+        });
+        minimizers = config.optimization.minimizer?.map((m) =>
+            m instanceof TerserPlugin ? minimizer : m
+        );
+      } else {
+        minimizers = config.optimization.minimizer
+      }
 
       return {
         // Ensure these new options get used
         mergeStrategy: {
           'cache': 'replace',
           'cache.type': 'replace',
-          'cache.profile': 'replace',
+          'cache.compression': 'replace',
           'infrastructureLogging.level': 'replace',
           'stats.all': 'replace',
           'optimization.minimizer': 'replace',
