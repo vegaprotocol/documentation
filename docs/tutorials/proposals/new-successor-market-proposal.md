@@ -30,7 +30,7 @@ Propose a cash-settled futures market to succeed an existing market, taking alon
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
 * A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true}/>   (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
-* Familiarity with [successor market governance](../../concepts/governance.md#propose-a-successor-market) on Vega
+* Familiarity with [successor market governance](../../concepts/governance/market.md#propose-a-successor-market) on Vega
 
 ## Anatomy of a new successor market proposal
 The new successor market proposal requires the same fields as a new market proposal, with the addition of two fields described below. 
@@ -84,9 +84,9 @@ Building support is down to you. Share your proposal in the [_Governance_ sectio
 
 To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minVoterBalance" formatter="governanceToken" suffix="tokens" hideName={true} /> or <NetworkParameter frontMatter={frontMatter} formatter="governanceToken" param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated to their Vega key.
 
-Your proposal will need [participation](../../concepts/governance.md#how-a-proposals-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential.
+Your proposal will need [participation](../../concepts/governance/lifecycle.md#how-a-proposals-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential.
 
 Proposers who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.
 
 ## Enactment
-If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field, depending on the [status of other successor market proposals](../../concepts/governance.md#proposal-outcome-successor-market).
+If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field, depending on the [status of other successor market proposals](../../concepts/governance/lifecycle.md#proposal-outcome-successor-market).

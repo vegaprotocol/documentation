@@ -102,7 +102,7 @@ Leaving your reward earnings in your vested account will increase your share of 
 
 You can see the current reward hoarder bonus requirements and benefits on the [block explorer ↗](https://explorer.fairground.wtf/network-parameters#rewards.vesting.benefitTiers), or querying the [network parameters API](../../api/rest/data-v2/trading-data-service-list-network-parameters.api.mdx) for the `rewards.vesting.benefitTiers` network parameter.
 
-These tiers are set through network parameters, and thus can be changed through [governance](../governance/network-parameters.md).
+These tiers are set through network parameters, and thus can be changed through [governance](../governance/network-parameter.md).
 
 :::tip Try it out
 [Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)
