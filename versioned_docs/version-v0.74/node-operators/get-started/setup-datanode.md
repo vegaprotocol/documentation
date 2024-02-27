@@ -262,7 +262,7 @@ A bug crashed the mainnet network at block `26439343`. This makes replaying the 
 
 If your node fails with this error message, follow the procedure described below: `cannot unregister order with potential sell + size changes < 0`
 
-1. Roll back tendermint block: `vega tm rollback --home <tendermint_home>`
+1. Roll back one block: `vega tm rollback --home <tendermint_home>`. Your node will reprocess the problem block with the correct version.
 2. Download the [v0.73.6-patch.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.73.6-patch.1) binary
 3. Start your node with downloaded binary from block `26439116`, e.g: with the following flag: `--snapshot.load-from-block-height 26439116`
 4. The binary will apply some fixes to the broken transactions, but the node will fail with the following error: `panic: cannot unregister order with potential sell + size change < 0`.
