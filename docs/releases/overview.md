@@ -19,6 +19,21 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+## Pre-release version 0.74.5 | 2024-02-25
+This version was released to the Vega testnet on 25 February 2024.
+
+### Bug fixes
+
+- The `aggregationEpochs` API was returning the last 30 epochs that had results rather than the last 30 epochs overall. This has been fixed such that the response always starts from the current epoch and counts back the number of epochs given in the filter. This fix was implemented in the [issue 10722 ↗](https://github.com/vegaprotocol/vega/issues/10722).
+- A snapshot bug was found when changing the SLA hysteresis network parameter in a batch proposal. This fix was implemented in the [issue 10743 ↗](https://github.com/vegaprotocol/vega/issues/10743).
+- When LPs were voting on batch proposals they were not showing up in the API response. Batch proposal votes have been fixed to contain ELS per market and this now shows on the API. This fix was implemented in the [issue 10725 ↗](https://github.com/vegaprotocol/vega/issues/10725).
+- It was possible to suspend a market via governance that was already in governance suspension. A fix has been implemented to prevent governance suspension of a market already suspended. This fix was implemented in the [issue 10744 ↗](https://github.com/vegaprotocol/vega/issues/10744).
+
+### Improvements
+
+- An improvement has been made to allow the transfers API to filter by from and to account type. This allows for building a network treasury view for the Block Explorer. This improvement to the API was made in the [issue 10686 ↗](https://github.com/vegaprotocol/vega/issues/10686).
+
+
 ## Pre-release version 0.74 | 2024-01-24
 This version was released to the Vega testnet on 24 January 2024.
 
