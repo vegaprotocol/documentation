@@ -26,7 +26,7 @@ This version was released to the Vega testnet on 28 February 2024.
 
 ### Bug fixes
 
--  After a recent change to the ledger entries API it did not return data when filtering by transfer id. This bug has been fixed in [issue 10374](https://github.com/vegaprotocol/vega/issues/10374).
+-  After a recent change to the ledger entries API it did not return data when filtering by transfer id. The `Transfer ID` is now associated with the ledger entry. This bug has been fixed in [issue 10374](https://github.com/vegaprotocol/vega/issues/10374).
 - The network parameter has been updated to support a block interval at which to call for new blocks. This was required to reduce the amount of EVM RPC data sourcing calls, and thus, the event forwarder snapshot size. This fix has been carried out in [issue 10698](https://github.com/vegaprotocol/vega/issues/10698).
 
 ### Improvements
