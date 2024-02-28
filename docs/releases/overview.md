@@ -19,24 +19,24 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-
-
 ## Pre-release version 0.74.6 and 0.74.7 combined | 2024-02-28
 This version was released to the Vega testnet on 28 February 2024.
 
 ### Bug fixes
 
--  After a recent change to the ledger entries API it did not return data when filtering by transfer id. The `Transfer ID` is now associated with the ledger entry. This bug has been fixed in [issue 10374](https://github.com/vegaprotocol/vega/issues/10374).
-- The network parameter has been updated to support a block interval at which to call for new blocks. This was required to reduce the amount of EVM RPC data sourcing calls, and thus, the event forwarder snapshot size. This fix has been carried out in [issue 10698](https://github.com/vegaprotocol/vega/issues/10698).
+-  After a recent change to the ledger entries API it did not return data when filtering by transfer ID. The `transfer ID` is now associated with the ledger entry. This bug has been fixed in [issue 10374 ↗](https://github.com/vegaprotocol/vega/issues/10374).
+- The network parameter has been updated to support a block interval at which to call for new blocks. This was required to reduce the amount of EVM RPC data sourcing calls, and thus, the event forwarder snapshot size. This fix has been carried out in [issue 10698 ↗](https://github.com/vegaprotocol/vega/issues/10698).
 
 ### Improvements
 
-- In order to further resolve issues seen with liquidations, a network disposal order will not cross with orders outside price monitoring bounds. Hence a network disposal cannot trade at a price outside the tightest price monitoring and it won't ever trigger a price monitoring auction. This improvement was made in the [issue 10764](https://github.com/vegaprotocol/vega/issues/10764).
-- It is now possible to make a market update proposal to set the `fundingRateScalingFactor` to a value of `0`. This improvement was made in the [issue 10727](https://github.com/vegaprotocol/vega/issues/10727).
-- The price monitoring bounds limits have been raised from a value of `5` to now be `100`.  This improvement was made in the [issue 10770](https://github.com/vegaprotocol/vega/issues/10770).
+- In order to further resolve issues seen with liquidations, a network disposal order will not cross with orders outside price monitoring bounds. Hence a network disposal cannot trade at a price outside the tightest price monitoring and it won't ever trigger a price monitoring auction. This improvement was made in [issue 10764 ↗](https://github.com/vegaprotocol/vega/issues/10764).
+- It is now possible to make a market update proposal to set the `fundingRateScalingFactor` to a value of `0`. This improvement was made in [issue 10727 ↗](https://github.com/vegaprotocol/vega/issues/10727).
+- The price monitoring bounds limits have been raised from a value of `5` to now be `100`.  This improvement was made in [issue 10770 ↗](https://github.com/vegaprotocol/vega/issues/10770).
 
-To review the file changes between the last released version please see [here](https://github.com/vegaprotocol/vega/compare/v0.74.5...v0.74.7).
+To review the changes in the last released version, see [here](https://github.com/vegaprotocol/vega/compare/v0.74.5...v0.74.7).
 
+### API change
+- `aggregated ledger entry` endpoint has a new optional field for filtering by `transfer ID`
 
 ## Pre-release version 0.74.5 | 2024-02-25
 This version was released to the Vega testnet on 25 February 2024.
