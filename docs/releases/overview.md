@@ -35,6 +35,8 @@ This version was released to the Vega testnet on 28 February 2024.
 - It is now possible to make a market update proposal to set the `fundingRateScalingFactor` to a value of `0`. This improvement was made in the [issue 10727](https://github.com/vegaprotocol/vega/issues/10727).
 - The price monitoring bounds limits have been raised from a value of `5` to now be `100`.  This improvement was made in the [issue 10770](https://github.com/vegaprotocol/vega/issues/10770).
 
+To review the file changes between the last released version please see [here](https://github.com/vegaprotocol/vega/compare/v0.74.5...v0.74.7)
+
 
 ## Pre-release version 0.74.5 | 2024-02-25
 This version was released to the Vega testnet on 25 February 2024.
