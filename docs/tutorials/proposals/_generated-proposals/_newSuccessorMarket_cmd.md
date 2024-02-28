@@ -78,15 +78,16 @@
       }
      },
      "metadata": [
-      "enactment:2024-03-12T12:17:41Z",
-      "settlement:2024-03-11T12:17:41Z",
+      "enactment:2024-03-19T17:54:04Z",
+      "settlement:2024-03-18T17:54:04Z",
       "source:docs.vega.xyz"
      ],
      "priceMonitoringParameters": {
       "triggers": [
        {
         "horizon": "43200",
-        "probability": "0.9999999"
+        "probability": "0.9999999",
+        "auctionExtension": "3600"
        }
       ]
      },
@@ -141,8 +142,8 @@
      }
     }
    },
-   "closingTimestamp": 1710159461,
-   "enactmentTimestamp": 1710245861
+   "closingTimestamp": 1710784444,
+   "enactmentTimestamp": 1710870844
   }
  }
 }'

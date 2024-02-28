@@ -136,8 +136,8 @@
 
       // Optional new futures market metadata, tags.
       metadata: [
-       "enactment:2024-03-12T12:17:41Z",
-       "settlement:2024-03-11T12:17:41Z",
+       "enactment:2024-03-19T17:54:04Z",
+       "settlement:2024-03-18T17:54:04Z",
        "source:docs.vega.xyz"
       ],
 
@@ -151,6 +151,9 @@
 
          // Price monitoring probability level p. (string)
          probability: "0.9999999",
+
+         // Price monitoring auction extension duration in seconds should the price
+         breach its theoretical level over the specified horizon at the specified probability level.(string) auctionExtension: "3600",
         }
        ]
       },
@@ -262,11 +265,11 @@
 
      // Timestamp as Unix time in seconds when voting closes for this proposal,
      // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-     closingTimestamp: 1710159461,
+     closingTimestamp: 1710784444,
 
      // Timestamp as Unix time in seconds when proposal gets enacted if passed,
      // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-     enactmentTimestamp: 1710245861,
+     enactmentTimestamp: 1710870844,
     }
    }
 ```
