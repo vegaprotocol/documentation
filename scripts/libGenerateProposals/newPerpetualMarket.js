@@ -170,6 +170,9 @@ function generatePerpetualInstrument(skeleton) {
       quoteName: "tEuro",
       marginFundingFactor: "0.9",
       interestRate: "0",
+      fundingRateScalingFactor: "1",
+      fundingRateLowerBound: "-0.001",
+      fundingRateUpperBound: "0.001",
       clampLowerBound: "0",
       clampUpperBound: "0",
       dataSourceSpecForSettlementData: generatePerpetualSettlementDataSourceSpec(
@@ -200,6 +203,12 @@ function generatePerpetualInstrument(skeleton) {
           marginFundingFactor: "0.9",
           // ${skeleton.properties.perpetual.properties.interestRate.description}
           interestRate: "0",
+          // ${skeleton.properties.perpetual.properties.fundingRateScalingFactor.description}
+          fundingRateScalingFactor: "1",
+          // ${skeleton.properties.perpetual.properties.fundingRateLowerBound.description}
+          fundingRateLowerBound: "-0.001",
+          // ${skeleton.properties.perpetual.properties.fundingRateUpperBound.description}
+          fundingRateUpperBound: "0.001",
           // ${skeleton.properties.perpetual.properties.clampLowerBound.description}
           clampLowerBound: "0",
           // ${skeleton.properties.perpetual.properties.clampUpperBound.description}

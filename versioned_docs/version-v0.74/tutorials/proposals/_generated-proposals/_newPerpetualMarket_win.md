@@ -21,6 +21,9 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
       \"quoteName\": \"tEuro\",^
       \"marginFundingFactor\": \"0.9\",^
       \"interestRate\": \"0\",^
+      \"fundingRateScalingFactor\": \"1\",^
+      \"fundingRateLowerBound\": \"-0.001\",^
+      \"fundingRateUpperBound\": \"0.001\",^
       \"clampLowerBound\": \"0\",^
       \"clampUpperBound\": \"0\",^
       \"dataSourceSpecForSettlementData\": {^
@@ -84,8 +87,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      }^
     },^
     \"metadata\": [^
-     \"enactment:2024-03-11T17:17:04Z\",^
-     \"settlement:2024-03-10T17:17:04Z\",^
+     \"enactment:2024-03-18T18:45:56Z\",^
+     \"settlement:2024-03-17T18:45:56Z\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -147,8 +150,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
     }^
    }^
   },^
-  \"closingTimestamp\": 1710091024,^
-  \"enactmentTimestamp\": 1710177424^
+  \"closingTimestamp\": 1710701156,^
+  \"enactmentTimestamp\": 1710787556^
  }^
 }^
 }"

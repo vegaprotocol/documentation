@@ -19,6 +19,9 @@
             "quoteName": "tEuro",
             "marginFundingFactor": "0.9",
             "interestRate": "0",
+            "fundingRateScalingFactor": "1",
+            "fundingRateLowerBound": "-0.001",
+            "fundingRateUpperBound": "0.001",
             "clampLowerBound": "0",
             "clampUpperBound": "0",
             "dataSourceSpecForSettlementData": {
@@ -82,8 +85,8 @@
           }
         },
         "metadata": [
-          "enactment:2024-03-12T12:17:41Z",
-          "settlement:2024-03-11T12:17:41Z",
+          "enactment:2024-03-18T18:45:56Z",
+          "settlement:2024-03-17T18:45:56Z",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -145,8 +148,8 @@
         }
       }
     },
-    "closingTimestamp": 1710159461,
-    "enactmentTimestamp": 1710245861
+    "closingTimestamp": 1710701156,
+    "enactmentTimestamp": 1710787556
   }
 }
 ```
