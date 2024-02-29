@@ -79,16 +79,15 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      }^
     },^
     \"metadata\": [^
-     \"enactment:2024-03-19T17:54:04Z\",^
-     \"settlement:2024-03-18T17:54:04Z\",^
+     \"enactment:2024-03-20T15:10:26Z\",^
+     \"settlement:2024-03-19T15:10:26Z\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
      \"triggers\": [^
       {^
        \"horizon\": \"43200\",^
-       \"probability\": \"0.9999999\",^
-       \"auctionExtension\": \"3600\"^
+       \"probability\": \"0.9999999\"^
       }^
      ]^
     },^
@@ -143,8 +142,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
     }^
    }^
   },^
-  \"closingTimestamp\": 1710784444,^
-  \"enactmentTimestamp\": 1710870844^
+  \"closingTimestamp\": 1710861026,^
+  \"enactmentTimestamp\": 1710947426^
  }^
 }^
 }"
