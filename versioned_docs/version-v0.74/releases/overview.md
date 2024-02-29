@@ -19,6 +19,33 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+
+## Release versions 0.74.5, 0.74.6 and 0.74.7 (combined) | 2024-02-29
+This version was released by the validators to mainnet on 29 February 2024.
+
+### Bug fixes
+
+-  After a recent change to the ledger entries API it did not return data when filtering by transfer ID. The `transfer ID` is now associated with the ledger entry. This bug has been fixed in [issue 10374 ↗](https://github.com/vegaprotocol/vega/issues/10374).
+- The network parameter has been updated to support a block interval at which to call for new blocks. This was required to reduce the amount of EVM RPC data sourcing calls, and thus, the event forwarder snapshot size. This fix has been carried out in [issue 10698 ↗](https://github.com/vegaprotocol/vega/issues/10698).
+- The `aggregationEpochs` API was returning the last 30 epochs that had results rather than the last 30 epochs overall. This has been fixed such that the response always starts from the current epoch and counts back the number of epochs given in the filter. This fix was implemented in the [issue 10722 ↗](https://github.com/vegaprotocol/vega/issues/10722).
+- A snapshot bug was found when changing the SLA hysteresis network parameter in a batch proposal. This fix was implemented in the [issue 10743 ↗](https://github.com/vegaprotocol/vega/issues/10743).
+- When LPs were voting on batch proposals they were not showing up in the API response. Batch proposal votes have been fixed to contain ELS per market and this now shows on the API. This fix was implemented in the [issue 10725 ↗](https://github.com/vegaprotocol/vega/issues/10725).
+- It was possible to suspend a market via governance that was already in governance suspension. A fix has been implemented to prevent governance suspension of a market already suspended. This fix was implemented in the [issue 10744 ↗](https://github.com/vegaprotocol/vega/issues/10744).
+
+### Improvements
+
+- In order to further resolve issues seen with liquidations, a network disposal order will not cross with orders outside price monitoring bounds. Hence a network disposal cannot trade at a price outside the tightest price monitoring and it won't ever trigger a price monitoring auction. This improvement was made in [issue 10764 ↗](https://github.com/vegaprotocol/vega/issues/10764).
+- It is now possible to make a market update proposal to set the `fundingRateScalingFactor` to a value of `0`. This improvement was made in [issue 10727 ↗](https://github.com/vegaprotocol/vega/issues/10727).
+- The price monitoring bounds limits have been raised from a value of `5` to now be `100`.  This improvement was made in [issue 10770 ↗](https://github.com/vegaprotocol/vega/issues/10770).
+- An improvement has been made to allow the transfers API to filter by from and to account type. This allows for building a network treasury view for the Block Explorer. This improvement to the API was made in the [issue 10686 ↗](https://github.com/vegaprotocol/vega/issues/10686).
+
+To review the changes in the last released version, see [here](https://github.com/vegaprotocol/vega/compare/v0.74.4...v0.74.7).
+
+### API change
+- `aggregated ledger entry` endpoint has a new optional field for filtering by `transfer ID`
+- `ListTransfersRequest` allows for optional `from_account_type` and `to_account_type` filtering
+
+
 ## Release version 0.74.4 | 2024-02-23
 This version was released by the validators to mainnet on 23 February 2024.
 
