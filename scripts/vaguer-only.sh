@@ -61,4 +61,3 @@ if [ -z ${SKIP_BUILD+x} ]; then yarn run build; else echo "Docusaurus build skip
 
 echo "Done! Now check if you need to run the versioning script (./scripts/version.sh)"
 
-

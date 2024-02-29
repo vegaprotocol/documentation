@@ -39,15 +39,6 @@
       // Continuously compounded interest rate used in funding rate calculation, in the range [-1, 1].
       interestRate: "0",
 
-      // Factor applied to funding-rates. This scales the impact that spot price deviations have on funding payments.
-      fundingRateScalingFactor: "1",
-
-      // Lower bound for the funding-rate such that the funding-rate will never be lower than this value.
-      fundingRateLowerBound: "-0.001",
-
-      // Upper bound for the funding-rate such that the funding-rate will never be higher than this value.
-      fundingRateUpperBound: "0.001",
-
       // Lower bound for the clamp function used as part of the funding rate calculation, in the range [-1, 1].
       clampLowerBound: "0",
 
@@ -152,8 +143,8 @@
 
      // Optional new futures market metadata, tags.
      metadata: [
-      "enactment:2024-03-19T17:54:04Z",
-      "settlement:2024-03-18T17:54:04Z",
+      "enactment:2024-03-20T15:10:26Z",
+      "settlement:2024-03-19T15:10:26Z",
       "source:docs.vega.xyz"
      ],
 
@@ -167,9 +158,6 @@
 
         // Price monitoring probability level p. (string)
         probability: "0.9999999",
-
-        // Price monitoring auction extension duration in seconds should the price
-        breach its theoretical level over the specified horizon at the specified probability level.(string) auctionExtension: "3600",
        }
       ]
      },
@@ -281,11 +269,11 @@
 
     // Timestamp as Unix time in seconds when voting closes for this proposal,
     // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-    closingTimestamp: 1710784444,
+    closingTimestamp: 1710861026,
 
     // Timestamp as Unix time in seconds when proposal gets enacted if passed,
     // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-    enactmentTimestamp: 1710870844,
+    enactmentTimestamp: 1710947426,
    }
   }
 ```
