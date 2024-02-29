@@ -39,12 +39,12 @@ This version was released by the validators to mainnet on 29 February 2024.
 - The price monitoring bounds limits have been raised from a value of `5` to now be `100`.  This improvement was made in [issue 10770 ↗](https://github.com/vegaprotocol/vega/issues/10770).
 - An improvement has been made to allow the transfers API to filter by from and to account type. This allows for building a network treasury view for the Block Explorer. This improvement to the API was made in the [issue 10686 ↗](https://github.com/vegaprotocol/vega/issues/10686).
 
-To review the changes in the last released version, see [here](https://github.com/vegaprotocol/vega/compare/v0.74.4...v0.74.7).
+To review the changes in the last released version, see the [comparison file ↗](https://github.com/vegaprotocol/vega/compare/v0.74.4...v0.74.7).
 
 ### API change
 - `aggregated ledger entry` endpoint has a new optional field for filtering by `transfer ID`
 - `list transfers request` allows for optional `from account type` and `to account type` filtering
-- `list votes` has a new shape for equity-like share, 'ELS per market`, which provides `market ID` and `els`
+- `list votes` has a new shape for equity-like share, `ELS per market`, which provides `market ID` and `els`
 
 ## Release version 0.74.4 | 2024-02-23
 This version was released by the validators to mainnet on 23 February 2024.
