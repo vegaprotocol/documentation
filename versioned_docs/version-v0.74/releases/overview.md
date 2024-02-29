@@ -43,8 +43,8 @@ To review the changes in the last released version, see [here](https://github.co
 
 ### API change
 - `aggregated ledger entry` endpoint has a new optional field for filtering by `transfer ID`
-- `ListTransfersRequest` allows for optional `from_account_type` and `to_account_type` filtering
-
+- `list transfers request` allows for optional `from account type` and `to account type` filtering
+- `list votes` has a new shape for equity-like share, 'ELS per market`, which provides `market ID` and `els`
 
 ## Release version 0.74.4 | 2024-02-23
 This version was released by the validators to mainnet on 23 February 2024.
