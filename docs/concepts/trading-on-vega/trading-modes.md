@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 title: Trading modes
+vega_network: TESTNET
 hide_title: false
 description: Find out what trading modes the protocol supports.
 ---

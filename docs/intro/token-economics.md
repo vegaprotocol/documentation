@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 title: Token economics
+vega_network: TESTNET
 hide_title: false
 ---
 

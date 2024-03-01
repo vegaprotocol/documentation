@@ -1,6 +1,7 @@
 ---
 sidebar_position: 5
 title: Providing liquidity
+vega_network: MAINNET
 hide_title: false
 ---
 

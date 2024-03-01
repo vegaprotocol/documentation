@@ -1,6 +1,7 @@
 ---
 sidebar_position: 5
 title: Rewards & vesting
+vega_network: TESTNET
 hide_title: false
 ---
 
