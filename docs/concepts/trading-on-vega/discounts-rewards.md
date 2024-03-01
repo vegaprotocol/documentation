@@ -139,7 +139,7 @@ Trading rewards can be defined by the following things:
 * How the reward is distributed to those eligible, pro-rata or by rank
 * How many epochs a trader's activity is evaluated
 * If the reward is available to individuals or those on a team
-* If a reward's payout is capped
+* If a reward's payout is capped - which takes into account a trader's paid fees
 
 Extra rewards for validators can also be set up. Learn more about them on the [validator scores and rewards page](../vega-chain/validator-scores-and-rewards.md#validator-metric-based-rewards).
 
@@ -161,6 +161,26 @@ Since rewards can only be provided if they're funded, the [recurring transfer](.
 **Rank**: A participant's reward is scaled based on where their score lands on the rank table. The rank table determines a rank group, for example 1-8, and what ratio of the reward amount that group would receive.
 
 If you have multipliers from the activity streak and/or the reward hoarder bonus, your share of the reward grows in proportion to those multipliers.
+
+### How rewards are capped
+If a reward is given an upper limit, each participant's actual reward amount received will be whichever is smaller of: full earned reward amount, or the reward cap number multiplied by the participant's fees paid in the epoch. The reward cap is included in the transfer that set up the reward. If any of the reward amount is unpaid, it stays in the pool.
+
+Example:
+3 market participants are eligible for the 200 USDC reward pool per epoch. The cap is set to 1 (100%).
+
+Party A: Trades enough to get 20% of reward
+Party B: Trades enough to get 30% of reward
+Party C: Trades enough to get 50% of reward
+
+Party A: Paid 500 in fees
+Party B: Paid 1000 in fees
+Party C: Paid 50 in fees
+
+Party A: Receives 40 (20% of 200) - the full amount
+Party B: Receives 60 (30% of 200) - the full amount
+Party C: Receives 50 (50% of 200 is 100, but reward is capped by 100% of fees paid)
+
+The last 50 is distributed between party A and party B, with the process repeated until all parties rewards reach cap or the reward pool is empty.
 
 ## Available trading rewards
 As rewards are distributed based on certain criteria, they need to be defined and measured. Each reward dispatch metric is calculated per party, once at the end of each epoch.
