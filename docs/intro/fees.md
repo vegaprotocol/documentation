@@ -1,6 +1,7 @@
 ---
 sidebar_position: 3
 title: Fees
+vega_network: TESTNET
 hide_title: false
 ---
 

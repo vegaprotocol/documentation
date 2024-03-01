@@ -1,6 +1,7 @@
 ---
 sidebar_position: 4
 title: Referrals & volume discounts
+vega_network: TESTNET
 hide_title: false
 ---
 

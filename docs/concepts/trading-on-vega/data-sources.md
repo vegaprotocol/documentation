@@ -1,6 +1,7 @@
 ---
 sidebar_position: 9
 title: Data sourcing
+vega_network: TESTNET
 hide_title: false
 ---
 

@@ -1,6 +1,7 @@
 ---
 sidebar_position: 5
 title: Discounts and rewards
+vega_network: TESTNET
 hide_title: false
 description: Traders can get discounts on fees and rewards.
 ---

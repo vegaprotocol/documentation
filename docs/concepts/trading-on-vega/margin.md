@@ -1,6 +1,7 @@
 ---
 sidebar_position: 3
 title: Margin and leverage
+vega_network: TESTNET
 hide_title: false
 description: How margin is calculated and used.
 ---

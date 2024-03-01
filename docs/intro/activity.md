@@ -1,6 +1,7 @@
 ---
 sidebar_position: 6
 title: Activity streaks
+vega_network: TESTNET
 hide_title: false
 ---
 

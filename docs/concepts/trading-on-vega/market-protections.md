@@ -1,6 +1,7 @@
 ---
 sidebar_position: 5
 title: Market protections
+vega_network: TESTNET
 hide_title: false
 description: Read about how markets can trade safely, pseudonymously.
 ---
