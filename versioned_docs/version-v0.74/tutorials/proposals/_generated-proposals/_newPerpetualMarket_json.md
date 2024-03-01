@@ -24,6 +24,71 @@
             "fundingRateUpperBound": "0.001",
             "clampLowerBound": "0",
             "clampUpperBound": "0",
+            "internalCompositePriceConfiguration": {
+              "decayWeight": "1",
+              "decayPower": "1",
+              "cashAmount": "5000000",
+              "sourceWeights": [
+                "0",
+                "1",
+                "0",
+                "1"
+              ],
+              "sourceStalenessTolerance": [
+                "1m0s",
+                "1m0s",
+                "1m0s",
+                "1m0s"
+              ],
+              "compositePriceType": "COMPOSITE_PRICE_TYPE_WEIGHTED",
+              "dataSourcesSpec": [
+                {
+                  "external": {
+                    "ethOracle": {
+                      "address": "0x719abd606155442c21b7d561426d42bd0e40a776",
+                      "abi": "[{\"inputs\": [{\"internalType\": \"bytes32\", \"name\": \"id\", \"type\": \"bytes32\"}], \"name\": \"getPrice\", \"outputs\": [{\"internalType\": \"int256\", \"name\": \"\", \"type\": \"int256\" }], \"stateMutability\": \"view\", \"type\": \"function\"}]",
+                      "method": "getPrice",
+                      "args": [
+                        "elvB0rVq0CkEjNY5ZLOtJ3bq34Eu3BpDoxQGy1S/9ZI="
+                      ],
+                      "trigger": {
+                        "timeTrigger": {
+                          "every": "60"
+                        }
+                      },
+                      "requiredConfirmations": "3",
+                      "filters": [
+                        {
+                          "key": {
+                            "name": "inj.price",
+                            "type": "TYPE_INTEGER",
+                            "numberDecimalPlaces": "18"
+                          },
+                          "conditions": [
+                            {
+                              "operator": "OPERATOR_GREATER_THAN",
+                              "value": "0"
+                            }
+                          ]
+                        }
+                      ],
+                      "normalisers": [
+                        {
+                          "name": "inj.price",
+                          "expression": "$[0]"
+                        }
+                      ],
+                      "sourceChainId": "100"
+                    }
+                  }
+                }
+              ],
+              "dataSourcesSpecBinding": [
+                {
+                  "priceSourceProperty": "inj.price"
+                }
+              ]
+            },
             "dataSourceSpecForSettlementData": {
               "external": {
                 "ethOracle": {
@@ -85,15 +150,16 @@
           }
         },
         "metadata": [
-          "enactment:2024-03-18T18:45:56Z",
-          "settlement:2024-03-17T18:45:56Z",
+          "enactment:2024-03-20T19:04:25Z",
+          "settlement:2024-03-19T19:04:25Z",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
           "triggers": [
             {
               "horizon": "43200",
-              "probability": "0.9999999"
+              "probability": "0.9999999",
+              "auctionExtension": "3600"
             }
           ]
         },
@@ -148,8 +214,8 @@
         }
       }
     },
-    "closingTimestamp": 1710701156,
-    "enactmentTimestamp": 1710787556
+    "closingTimestamp": 1710875065,
+    "enactmentTimestamp": 1710961465
   }
 }
 ```
