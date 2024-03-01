@@ -76,6 +76,7 @@ You will need to define the dispatch strategy, which includes the metric, the le
 | `individualScope` | To be used if the eligible reward recipients should be all participants, individuals, or within a team |  INDIVIDUAL_SCOPE_ALL; INDIVIDUAL_SCOPE_IN_TEAM; INDIVIDUAL_SCOPE_NOT_IN_TEAM |
 | `teamScope` | To be used if the eligible reward recipients need to be in a team, and rewards are to be calculated based on team performance. | Leave blank if allowing all teams, otherwise provide an array of team IDs. See example below |
 | `distributionStrategy` | Sets how the participants should be ranked, and what other factors to consider. Read [distribution method](../../concepts/trading-on-vega/discounts-rewards.md#how-rewards-are-scaled) for more info |  DISTRIBUTION_STRATEGY_PRO_RATA; DISTRIBUTION_STRATEGY_RANK |
+| `capRewardFeeMultiple` | Optional value that sets by how much the reward payout amount is to be capped. It will set each participant's actual reward amount received to be whichever is smaller of: full earned reward amount, or the `capRewardFeeMultiple` × participant's fees paid this epoch. | Numbers greater than zero, decimals accepted |
 
 #### Example dispatch strategy snippet
 
@@ -141,7 +142,8 @@ These templates show an example of how to fund rewards with a governance transfe
           "windowLength": "1",
           "entityScope": "ENTITY_SCOPE_INDIVIDUALS",
           "individualScope": "INDIVIDUAL_SCOPE_ALL",
-          "distributionStrategy": "DISTRIBUTION_STRATEGY_PRO_RATA"
+          "distributionStrategy": "DISTRIBUTION_STRATEGY_PRO_RATA",
+          "capRewardFeeMultiple": "0.2"
       }
             }
           }
@@ -183,7 +185,9 @@ These templates show an example of how to fund rewards with a governance transfe
           "lockPeriod": "0",
           "entityScope": "ENTITY_SCOPE_INDIVIDUALS",
           "individualScope": "INDIVIDUAL_SCOPE_ALL",
-          "distributionStrategy": "DISTRIBUTION_STRATEGY_PRO_RATA"
+          "distributionStrategy": "DISTRIBUTION_STRATEGY_PRO_RATA",
+          "capRewardFeeMultiple": "0.2"
+
       }
 
      }
@@ -200,37 +204,39 @@ These templates show an example of how to fund rewards with a governance transfe
 
 ```
 vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KEY --network NETWORK_NAME ^
-"{^
-\"proposalSubmission\": {^
- \"rationale\": {^
-  \"title\": \"Propose moving assets\",^
-  \"description\": \"Here is a description about why I want to transfer\"^
- },^
- \"terms\": {^
-  \"closingTimestamp\": \"10000000\",^
-  \"enactmentTimestamp\": \"10000100\",^
-  \"newTransfer\": {^
-   \"changes\": {^
-    \"sourceType\": \"ACCOUNT_TYPE_NETWORK_TREASURY\",^
-    \"transferType\": \"GOVERNANCE_TRANSFER_TYPE_BEST_EFFORT\",^
+"{ ^
+\"proposalSubmission\": { ^
+ \"rationale\": { ^
+  \"title\": \"Propose moving assets\", ^
+  \"description\": \"Here is a description about why I want to transfer\" ^
+ }, ^
+ \"terms\": { ^
+  \"closingTimestamp\": \"10000000\", ^
+  \"enactmentTimestamp\": \"10000100\", ^
+  \"newTransfer\": { ^
+   \"changes\": { ^
+    \"sourceType\": \"ACCOUNT_TYPE_NETWORK_TREASURY\", ^
+    \"transferType\": \"GOVERNANCE_TRANSFER_TYPE_BEST_EFFORT\", ^
     \"amount\": \"10000000\",^
         \"asset\": \"ASSET_ID\",^
-        \"fractionOfBalance\": `\"0.1\",^
-        \"destinationType\": \"ACCOUNT_TYPE_REWARD_AVERAGE_POSITION\",^
+        \"fractionOfBalance\": `\"0.1\", ^
+        \"destinationType\": \"ACCOUNT_TYPE_REWARD_AVERAGE_POSITION\", ^
         \"recurring\": {^
-           \"startEpoch\": \"1111110\"^
-          \"endEpoch\": \"1111111\"^
-          \"dispatchStrategy\": {^
-          \"assetForMetric\": \"b340c130096819428a62e5df407fd6abe66e444b89ad64f670beb98621c9c663\",^
-          \"metric\": \"DISPATCH_METRIC_MAKER_FEES_PAID\",^
+           \"startEpoch\": \"1111110\" ^
+          \"endEpoch\": \"1111111\" ^
+          \"dispatchStrategy\": { ^
+          \"assetForMetric\": \"b340c130096819428a62e5df407fd6abe66e444b89ad64f670beb98621c9c663\", ^
+          \"metric\": \"DISPATCH_METRIC_MAKER_FEES_PAID\", ^
           \"windowLength\": \"1\",^
           \"lockPeriod\": \"0\",^
-          \"entityScope\": \"ENTITY_SCOPE_INDIVIDUALS\",^
-          \"individualScope\": \"INDIVIDUAL_SCOPE_ALL\",^
-          \"distributionStrategy\": \"DISTRIBUTION_STRATEGY_PRO_RATA\"^
-      }^
+          \"entityScope\": \"ENTITY_SCOPE_INDIVIDUALS\", ^
+          \"individualScope\": \"INDIVIDUAL_SCOPE_ALL\", ^
+          \"distributionStrategy\": \"DISTRIBUTION_STRATEGY_PRO_RATA\", ^
+          \"capRewardFeeMultiple\": \"0.2\"^
 
-    }^
+      } ^
+
+    } ^
    }^
   },^
  }^
@@ -317,31 +323,31 @@ These templates show an example transfer from an asset's insurance pool to the i
 
 ```
 vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KEY --network NETWORK_NAME ^
-"{^
-\"proposalSubmission\": {^
- \"rationale\": {^
-  \"title\": \"Propose moving assets\",^
-  \"description\": \"Here is a description about why I want to transfer\"^
- },^
- \"terms\": {^
-  \"closingTimestamp\": \"1234567890\",^
-  \"enactmentTimestamp\": \"1334567890\",^
-  \"newTransfer\": {^
-   \"changes\": {^
-    \"sourceType\": \"ACCOUNT_TYPE_GLOBAL_INSURANCE\",^
-    \"transferType\": \"GOVERNANCE_TRANSFER_TYPE_BEST_EFFORT\",^
-    \"amount\": \"10000000\",^
-        \"asset\": \"RELEVANT_ASSET_ID\",^
-        \"fractionOfBalance\": `\"0.1\",^
-        \"destinationType\": \"ACCOUNT_TYPE_INSURANCE\",^
-        \"destination\": \"MARKET_ID_FOR_INSURANCE_ACCOUNT\",^
-        \"oneOff\": {^
-        \"deliverOn\": \"0\"^
-    }^
-   }^
-  },^
- }^
-}^
+"{ ^
+\"proposalSubmission\": { ^
+ \"rationale\": { ^
+  \"title\": \"Propose moving assets\", ^
+  \"description\": \"Here is a description about why I want to transfer\" ^
+ }, ^
+ \"terms\": { ^
+  \"closingTimestamp\": \"1234567890\", ^
+  \"enactmentTimestamp\": \"1334567890\", ^
+  \"newTransfer\": { ^
+   \"changes\": { ^
+    \"sourceType\": \"ACCOUNT_TYPE_GLOBAL_INSURANCE\", ^
+    \"transferType\": \"GOVERNANCE_TRANSFER_TYPE_BEST_EFFORT\", ^
+    \"amount\": \"10000000\", ^
+        \"asset\": \"RELEVANT_ASSET_ID\", ^
+        \"fractionOfBalance\": `\"0.1\", ^
+        \"destinationType\": \"ACCOUNT_TYPE_INSURANCE\", ^
+        \"destination\": \"MARKET_ID_FOR_INSURANCE_ACCOUNT\", ^
+        \"oneOff\": { ^
+        \"deliverOn\": \"0\" ^
+    } ^
+   } ^
+  }, ^
+ } ^
+} ^
 }"
 ```
 
