@@ -35,10 +35,10 @@ Market proposals now require the minimum `tick size` field. This allows for chan
 - A snapshot bug was found when changing the SLA hysteresis network parameter in a batch proposal. This fix was implemented in the [issue 10743 ↗](https://github.com/vegaprotocol/vega/issues/10743).
 - When LPs were voting on batch proposals they were not showing up in the API response. Batch proposal votes have been fixed to contain ELS per market and this now shows on the API. This fix was implemented in the [issue 10725 ↗](https://github.com/vegaprotocol/vega/issues/10725).
 - It was possible to suspend a market via governance that was already in governance suspension. A fix has been implemented to prevent governance suspension of a market already suspended. This fix was implemented in the [issue 10744 ↗](https://github.com/vegaprotocol/vega/issues/10744).
--  After a recent change to the ledger entries API it did not return data when filtering by transfer ID. The `transfer ID` is now associated with the ledger entry. This bug has been fixed in [issue 10374 ↗](https://github.com/vegaprotocol/vega/issues/10374).
+- After a recent change to the ledger entries API it did not return data when filtering by transfer ID. The `transfer ID` is now associated with the ledger entry. This bug has been fixed in [issue 10374 ↗](https://github.com/vegaprotocol/vega/issues/10374).
 - Several bugs in isolated margin were resolved: 
-    - Cancelling order on entering auction [10750 ↗](https://github.com/vegaprotocol/vega/issues/10750)
-    -  - Fix position updates to undo positions changes on isolated margin failure. [10696 ↗](https://github.com/vegaprotocol/vega/issues/10696)
+    - Cancelling an order for party with multiple orders while in isolated margin, when entering an auction, would cause a panic. [10750 ↗](https://github.com/vegaprotocol/vega/issues/10750)
+    - Order margin was not being updated after an order was cancelled. [10696 ↗](https://github.com/vegaprotocol/vega/issues/10696)
     -  Amending an order would cause a failure when doing the isolated margin check. [10752 ↗](https://github.com/vegaprotocol/vega/issues/10752)
     - A submitted and not-matched FoK order in isolated margin would cause an order to become unregistered from its position. [10753 ↗](https://github.com/vegaprotocol/vega/issues/10753)
 - Testing scenarios determined that the market depths API was reporting a crossed order book while a market was in continuous trading. This bug has been fixed in [issue 10748 ↗](https://github.com/vegaprotocol/vega/issues/10748).
