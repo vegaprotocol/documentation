@@ -206,7 +206,7 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network f
                 "entityScope": "ENTITY_SCOPE_INDIVIDUALS",
                 "individualScope": "INDIVIDUAL_SCOPE_ALL",
                 "distributionStrategy": "DISTRIBUTION_STRATEGY_YOU_WANT",
-            "capRewardFeeMultiple" " "0.2"
+            "capRewardFeeMultiple": "0.2"
 
 
             }
