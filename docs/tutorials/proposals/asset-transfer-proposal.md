@@ -323,31 +323,31 @@ These templates show an example transfer from an asset's insurance pool to the i
 
 ```
 vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KEY --network NETWORK_NAME ^
-"{^
-\"proposalSubmission\": {^
- \"rationale\": {^
-  \"title\": \"Propose moving assets\",^
-  \"description\": \"Here is a description about why I want to transfer\"^
- },^
- \"terms\": {^
-  \"closingTimestamp\": \"1234567890\",^
-  \"enactmentTimestamp\": \"1334567890\",^
-  \"newTransfer\": {^
-   \"changes\": {^
-    \"sourceType\": \"ACCOUNT_TYPE_GLOBAL_INSURANCE\",^
-    \"transferType\": \"GOVERNANCE_TRANSFER_TYPE_BEST_EFFORT\",^
-    \"amount\": \"10000000\",^
-        \"asset\": \"RELEVANT_ASSET_ID\",^
-        \"fractionOfBalance\": `\"0.1\",^
-        \"destinationType\": \"ACCOUNT_TYPE_INSURANCE\",^
-        \"destination\": \"MARKET_ID_FOR_INSURANCE_ACCOUNT\",^
-        \"oneOff\": {^
-        \"deliverOn\": \"0\"^
-    }^
-   }^
-  },^
- }^
-}^
+"{ ^
+\"proposalSubmission\": { ^
+ \"rationale\": { ^
+  \"title\": \"Propose moving assets\", ^
+  \"description\": \"Here is a description about why I want to transfer\" ^
+ }, ^
+ \"terms\": { ^
+  \"closingTimestamp\": \"1234567890\", ^
+  \"enactmentTimestamp\": \"1334567890\", ^
+  \"newTransfer\": { ^
+   \"changes\": { ^
+    \"sourceType\": \"ACCOUNT_TYPE_GLOBAL_INSURANCE\", ^
+    \"transferType\": \"GOVERNANCE_TRANSFER_TYPE_BEST_EFFORT\", ^
+    \"amount\": \"10000000\", ^
+        \"asset\": \"RELEVANT_ASSET_ID\", ^
+        \"fractionOfBalance\": `\"0.1\", ^
+        \"destinationType\": \"ACCOUNT_TYPE_INSURANCE\", ^
+        \"destination\": \"MARKET_ID_FOR_INSURANCE_ACCOUNT\", ^
+        \"oneOff\": { ^
+        \"deliverOn\": \"0\" ^
+    } ^
+   } ^
+  }, ^
+ } ^
+} ^
 }"
 ```
 
