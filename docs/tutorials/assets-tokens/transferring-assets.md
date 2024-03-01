@@ -167,7 +167,7 @@ You will need to define the dispatch strategy, which includes the  metric, the l
 | `individualScope` | To be used if the eligible reward recipients should be individuals, and that can then be further focused to determine who is eligible | INDIVIDUAL_SCOPE_ALL; INDIVIDUAL_SCOPE_IN_TEAM; INDIVIDUAL_SCOPE_NOT_IN_TEAM |
 | `teamScope` | To be used if the eligible reward recipients need to be in a team, and rewards are to be calculated based on team performance. | Leave blank if allowing all teams, otherwise provide an array of team IDs. See example below |
 | `distributionStrategy` | Sets how the participants should be ranked, and what other factors to consider. |  DISTRIBUTION_STRATEGY_PRO_RATA; DISTRIBUTION_STRATEGY_RANK |
-| `capRewardFeeMultiple` | Optional value that sets by how much the reward payout amount is to be capped. It will set each participant's actual reward amount received to be whichever is smaller of: full earned reward amount, or the `capRewardFeeMultiple` × participant's fees paid this epoch. | |
+| `capRewardFeeMultiple` | Optional value that sets by how much the reward payout amount is to be capped in relation to fees paid and rewards accrued. It will set each participant's actual reward amount received to be whichever is smaller of: full earned reward amount, or the `capRewardFeeMultiple` × participant's fees paid this epoch. | |
 
 #### Example dispatch strategy snippet
 
