@@ -234,9 +234,9 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
           \"distributionStrategy\": \"DISTRIBUTION_STRATEGY_PRO_RATA\", ^
           \"capRewardFeeMultiple\": \"0.2\"^
 
-      }^
+      } ^
 
-    }^
+    } ^
    }^
   },^
  }^
