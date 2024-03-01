@@ -53,16 +53,6 @@ Market proposals now require the minimum `tick size` field. This allows for chan
 - `list votes` query has a new shape for equity-like share, `ELS per market`, which provides `market ID` and `els`
 
 To review the changes in the last released version, see [here](https://github.com/vegaprotocol/vega/compare/v0.74.7...v0.75.0-preview.2).
-
-
-
-
-
-
-
-
-
-
 ## Pre-release version 0.74.6 and 0.74.7 combined | 2024-02-28
 This version was released to the Vega testnet on 28 February 2024.
 
