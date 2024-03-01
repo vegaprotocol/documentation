@@ -143,7 +143,7 @@ These templates show an example of how to fund rewards with a governance transfe
           "entityScope": "ENTITY_SCOPE_INDIVIDUALS",
           "individualScope": "INDIVIDUAL_SCOPE_ALL",
           "distributionStrategy": "DISTRIBUTION_STRATEGY_PRO_RATA",
-          "capRewardFeeMultiple": “0.2"
+          "capRewardFeeMultiple": "0.2"
       }
             }
           }
@@ -186,7 +186,7 @@ These templates show an example of how to fund rewards with a governance transfe
           "entityScope": "ENTITY_SCOPE_INDIVIDUALS",
           "individualScope": "INDIVIDUAL_SCOPE_ALL",
           "distributionStrategy": "DISTRIBUTION_STRATEGY_PRO_RATA",
-          "capRewardFeeMultiple": “0.2"
+          "capRewardFeeMultiple": "0.2"
 
       }
 
@@ -204,35 +204,35 @@ These templates show an example of how to fund rewards with a governance transfe
 
 ```
 vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KEY --network NETWORK_NAME ^
-"{^
-\"proposalSubmission\": {^
- \"rationale\": {^
-  \"title\": \"Propose moving assets\",^
-  \"description\": \"Here is a description about why I want to transfer\"^
- },^
- \"terms\": {^
-  \"closingTimestamp\": \"10000000\",^
-  \"enactmentTimestamp\": \"10000100\",^
-  \"newTransfer\": {^
-   \"changes\": {^
-    \"sourceType\": \"ACCOUNT_TYPE_NETWORK_TREASURY\",^
-    \"transferType\": \"GOVERNANCE_TRANSFER_TYPE_BEST_EFFORT\",^
+"{ ^
+\"proposalSubmission\": { ^
+ \"rationale\": { ^
+  \"title\": \"Propose moving assets\", ^
+  \"description\": \"Here is a description about why I want to transfer\" ^
+ }, ^
+ \"terms\": { ^
+  \"closingTimestamp\": \"10000000\", ^
+  \"enactmentTimestamp\": \"10000100\", ^
+  \"newTransfer\": { ^
+   \"changes\": { ^
+    \"sourceType\": \"ACCOUNT_TYPE_NETWORK_TREASURY\", ^
+    \"transferType\": \"GOVERNANCE_TRANSFER_TYPE_BEST_EFFORT\", ^
     \"amount\": \"10000000\",^
         \"asset\": \"ASSET_ID\",^
-        \"fractionOfBalance\": `\"0.1\",^
-        \"destinationType\": \"ACCOUNT_TYPE_REWARD_AVERAGE_POSITION\",^
+        \"fractionOfBalance\": `\"0.1\", ^
+        \"destinationType\": \"ACCOUNT_TYPE_REWARD_AVERAGE_POSITION\", ^
         \"recurring\": {^
-           \"startEpoch\": \"1111110\"^
-          \"endEpoch\": \"1111111\"^
-          \"dispatchStrategy\": {^
-          \"assetForMetric\": \"b340c130096819428a62e5df407fd6abe66e444b89ad64f670beb98621c9c663\",^
-          \"metric\": \"DISPATCH_METRIC_MAKER_FEES_PAID\",^
+           \"startEpoch\": \"1111110\" ^
+          \"endEpoch\": \"1111111\" ^
+          \"dispatchStrategy\": { ^
+          \"assetForMetric\": \"b340c130096819428a62e5df407fd6abe66e444b89ad64f670beb98621c9c663\", ^
+          \"metric\": \"DISPATCH_METRIC_MAKER_FEES_PAID\", ^
           \"windowLength\": \"1\",^
           \"lockPeriod\": \"0\",^
-          \"entityScope\": \"ENTITY_SCOPE_INDIVIDUALS\",^
-          \"individualScope\": \"INDIVIDUAL_SCOPE_ALL\",^
-          \"distributionStrategy\": \"DISTRIBUTION_STRATEGY_PRO_RATA\",^
-          \"capRewardFeeMultiple\": \“0.2\"^
+          \"entityScope\": \"ENTITY_SCOPE_INDIVIDUALS\", ^
+          \"individualScope\": \"INDIVIDUAL_SCOPE_ALL\", ^
+          \"distributionStrategy\": \"DISTRIBUTION_STRATEGY_PRO_RATA\", ^
+          \"capRewardFeeMultiple\": \"0.2\"^
 
       }^
 
