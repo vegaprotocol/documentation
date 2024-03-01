@@ -14,30 +14,43 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 
 <!--[**Governance dApp on GitHub** ↗](https://github.com/vegaprotocol/frontend-monorepo/releases) - The Governance dApp, which provides an interface for interacting with governance proposals, VEGA tokens, and staking to validators; Console, a trading interface; and the Vega Block Explorer are open-source and you see more about them in the frontend monorepo.-->
 
-[**Vega Capsule on GitHub** ↗](https://github.com/vegaprotocol/vegacapsule/releases) - Vega Capsule, which lets you create an instance of the Vega network on your computer to experiment with using the protocol, is public and you can read the contents of each release on GitHub.
-
 ## Vega core software
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-## Pre-release version v0.75.0 preview.2  | 2024-03-28
+## Pre-release version v0.75.0 preview.2  | 2024-03-01
 This version was released to the Vega testnet on 01 March 2024.
 
 ### Breaking changes
-
-
+Market proposals now require the minimum `tick size` field. This allows for changeable tick sizes to support market flexibility if an asset's value changes dramatically. This breaking change was made in [issue 10635 ↗](https://github.com/vegaprotocol/vega/issues/10635).
 
 ### Improvements
-
-
+- An improvement has been made to allow the transfers API to filter by from and to account type. This allows for building a network treasury view for the Block Explorer. This improvement to the API was made in the [issue 10686 ↗](https://github.com/vegaprotocol/vega/issues/10686).
+- The price monitoring bounds limits have been raised from a value of `5` to now be `100`.  This improvement was made in [issue 10770 ↗](https://github.com/vegaprotocol/vega/issues/10770).
+- In order to further resolve issues seen with liquidations, a network disposal order will not cross with orders outside price monitoring bounds. Hence a network disposal cannot trade at a price outside the tightest price monitoring and it won't ever trigger a price monitoring auction. This improvement was made in [issue 10764 ↗](https://github.com/vegaprotocol/vega/issues/10764).
+- The value of 0 is now allowed for the funding rate scaling factor. This has been resolved in [issue 10727 ↗](https://github.com/vegaprotocol/vega/issues/10727).
+- The number of possible price monitoring triggers allowed has been increased to 100 (missed validation). This was done in [issue 10795 ↗](https://github.com/vegaprotocol/vega/issues/10795).
 
 ### Bug fixes
-
-
+- The `aggregationEpochs` API was returning the last 30 epochs that had results rather than the last 30 epochs overall. This has been fixed such that the response always starts from the current epoch and counts back the number of epochs given in the filter. This fix was implemented in the [issue 10722 ↗](https://github.com/vegaprotocol/vega/issues/10722).
+- A snapshot bug was found when changing the SLA hysteresis network parameter in a batch proposal. This fix was implemented in the [issue 10743 ↗](https://github.com/vegaprotocol/vega/issues/10743).
+- When LPs were voting on batch proposals they were not showing up in the API response. Batch proposal votes have been fixed to contain ELS per market and this now shows on the API. This fix was implemented in the [issue 10725 ↗](https://github.com/vegaprotocol/vega/issues/10725).
+- It was possible to suspend a market via governance that was already in governance suspension. A fix has been implemented to prevent governance suspension of a market already suspended. This fix was implemented in the [issue 10744 ↗](https://github.com/vegaprotocol/vega/issues/10744).
+-  After a recent change to the ledger entries API it did not return data when filtering by transfer ID. The `transfer ID` is now associated with the ledger entry. This bug has been fixed in [issue 10374 ↗](https://github.com/vegaprotocol/vega/issues/10374).
+- Several bugs in isolated margin were resolved: 
+    - Cancelling order on entering auction [10750 ↗](https://github.com/vegaprotocol/vega/issues/10750)
+    -  - Fix position updates to undo positions changes on isolated margin failure. [10696 ↗](https://github.com/vegaprotocol/vega/issues/10696)
+    -  Amending an order would cause a failure when doing the isolated margin check. [10752 ↗](https://github.com/vegaprotocol/vega/issues/10752)
+    - A submitted and not-matched FoK order in isolated margin would cause an order to become unregistered from its position. [10753 ↗](https://github.com/vegaprotocol/vega/issues/10753)
+- Testing scenarios determined that the market depths API was reporting a crossed order book while a market was in continuous trading. This bug has been fixed in [issue 10748 ↗](https://github.com/vegaprotocol/vega/issues/10748).
+- The opening auction uncrossing price was not being registered by the perpetual markets engine. This bug has been fixed in [issue 10136 ↗](https://github.com/vegaprotocol/vega/issues/10136).
+- Querying for oracle data was loading so slowly as to become unusable. This issue was resolved by adding a date constraint is added to the to the API query when the first page of results is requested. This bug has been fixed in [issue 10785 ↗](https://github.com/vegaprotocol/vega/issues/10785).
+- When requesting multiple party IDs using REST, the API reported one or more invalid parties, however when requesting them individually, the given party IDs are valid and results are returned. The API was refactored to support this use case. This bug has been fixed in [issue 10780 ↗](https://github.com/vegaprotocol/vega/issues/10780).
 
 ### API changes
-
-
-
+- `list transfers request` query allows for optional `from account type` and `to account type` filtering
+- `submit transfer`/`submit transfer proposal` commands and `list transfers` query now include optional `capRewardFeeMultiple`
+- `new market proposal` and `update market proposal` commands and `list market` query now includes `tickSize` field
+- `list votes` query has a new shape for equity-like share, `ELS per market`, which provides `market ID` and `els`
 
 To review the changes in the last released version, see [here](https://github.com/vegaprotocol/vega/compare/v0.74.7...v0.75.0-preview.2).
 
