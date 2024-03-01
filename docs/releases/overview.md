@@ -19,12 +19,35 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-## Pre-release version 0.74.8| 2024-03-28
+## Pre-release version v0.75.0 preview.2  | 2024-03-28
 This version was released to the Vega testnet on 01 March 2024.
+
+### Breaking changes
+
+
+
+### Improvements
+
+
 
 ### Bug fixes
 
-During testing it was spotted that some the price monitoring bounds validation had been missed. Additional validation of the price monitoring bounds limits have been fixed to allow values up to `100`. This was fixed in [issue 10795 ↗](https://github.com/vegaprotocol/vega/issues/10795).
+
+
+### API changes
+
+
+
+
+To review the changes in the last released version, see [here](https://github.com/vegaprotocol/vega/compare/v0.74.7...v0.75.0-preview.2).
+
+
+
+
+
+
+
+
 
 
 ## Pre-release version 0.74.6 and 0.74.7 combined | 2024-02-28
