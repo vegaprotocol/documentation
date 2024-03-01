@@ -88,11 +88,11 @@ The images below show how according to the risk model, 90%, 95%, or 99% of the p
 ## Distressed traders
 If a trader's available margin on a market is below the closeout level and cannot be replenished, that trader is considered distressed.
 
-<!--How a distressed trader's positions and orders are treated depends on if they're using isolated or cross margining.
+How a distressed trader's positions and orders are treated depends on if they're using isolated or cross margining.
 
 If a distressed trader is using **isolated margin**, an *open position* that drops below the maintenance margin level will be closed out. Any open orders will remain active, as long as there's enough margin set aside to meet the [order margin](./margin.md#margin-order) requirement. The margin for each is calculated and funded separately.
 
-If the margin set aside for *orders* isn't enough, all of the trader's open orders on the market are cancelled and margin is returned to the general account. An open position in that market stays open, as it's margined separately.-->
+If the margin set aside for *orders* isn't enough, all of the trader's open orders on the market are cancelled and margin is returned to the general account. An open position in that market stays open, as it's margined separately.
 
 A distressed trader using **cross margining** has all their open orders on that market cancelled. The network will then recalculate the margin requirement on the trader's remaining open position. If they then have enough collateral, they are no longer considered a distressed trader. If the trader still does not have sufficient collateral, their position is closed out.
 

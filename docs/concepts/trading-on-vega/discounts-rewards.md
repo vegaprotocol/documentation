@@ -139,6 +139,7 @@ Trading rewards can be defined by the following things:
 * How the reward is distributed to those eligible, pro-rata or by rank
 * How many epochs a trader's activity is evaluated
 * If the reward is available to individuals or those on a team
+* If a reward's payout is capped
 
 Extra rewards for validators can also be set up. Learn more about them on the [validator scores and rewards page](../vega-chain/validator-scores-and-rewards.md#validator-metric-based-rewards).
 
