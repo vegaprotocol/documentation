@@ -23,6 +23,15 @@ This version was released to the Vega testnet on 01 March 2024.
 ### Breaking changes
 Market proposals now require the minimum `tick size` field. This allows for changeable tick sizes to support market flexibility if an asset's value changes dramatically. This breaking change was made in [issue 10635 ↗](https://github.com/vegaprotocol/vega/issues/10635).
 
+#### Isolated margin
+
+The protocol now allows users to choose between one of two margining modes for each position. The current mode will be stored alongside the party's position record.
+
+* Cross-margin mode (default): this is the mode used by all newly created orders, but it can be changed. When in cross-margin mode, margin is dynamically acquired and released as a position is marked to market, allowing profitable positions to offset losing positions for higher capital efficiency.
+* Isolated margin mode: this mode sacrifices capital efficiency for predictability and risk management by segregating positions. In this mode, the entire margin for any newly opened position's volume is transferred to the margin account when the trade is executed. This includes completely new positions and increases to position size. Other than at time of future trades, the general account will then never be searched for additional funds - a position will be allowed to be closed out instead - nor will profits be moved into the general account from the margin account while a position is open.
+
+To see lower level details of how the new isolated margin feature is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0019-MCAL-margin_calculator.md#isolated-margin-mode).
+
 ### Improvements
 - An improvement has been made to allow the transfers API to filter by from and to account type. This allows for building a network treasury view for the Block Explorer. This improvement to the API was made in the [issue 10686 ↗](https://github.com/vegaprotocol/vega/issues/10686).
 - The price monitoring bounds limits have been raised from a value of `5` to now be `100`.  This improvement was made in [issue 10770 ↗](https://github.com/vegaprotocol/vega/issues/10770).
@@ -36,7 +45,7 @@ Market proposals now require the minimum `tick size` field. This allows for chan
 - When LPs were voting on batch proposals they were not showing up in the API response. Batch proposal votes have been fixed to contain ELS per market and this now shows on the API. This fix was implemented in the [issue 10725 ↗](https://github.com/vegaprotocol/vega/issues/10725).
 - It was possible to suspend a market via governance that was already in governance suspension. A fix has been implemented to prevent governance suspension of a market already suspended. This fix was implemented in the [issue 10744 ↗](https://github.com/vegaprotocol/vega/issues/10744).
 - After a recent change to the ledger entries API it did not return data when filtering by transfer ID. The `transfer ID` is now associated with the ledger entry. This bug has been fixed in [issue 10374 ↗](https://github.com/vegaprotocol/vega/issues/10374).
-- Several bugs in isolated margin were resolved: 
+- Several bugs in isolated margin were resolved:
     - Cancelling an order for party with multiple orders while in isolated margin, when entering an auction, would cause a panic. [10750 ↗](https://github.com/vegaprotocol/vega/issues/10750)
     - Order margin was not being updated after an order was cancelled. [10696 ↗](https://github.com/vegaprotocol/vega/issues/10696)
     -  Amending an order would cause a failure when doing the isolated margin check. [10752 ↗](https://github.com/vegaprotocol/vega/issues/10752)
@@ -53,6 +62,8 @@ Market proposals now require the minimum `tick size` field. This allows for chan
 - `list votes` query has a new shape for equity-like share, `ELS per market`, which provides `market ID` and `els`
 
 To review the changes in the last released version, see [here](https://github.com/vegaprotocol/vega/compare/v0.74.7...v0.75.0-preview.2).
+
+
 ## Pre-release version 0.74.6 and 0.74.7 combined | 2024-02-28
 This version was released to the Vega testnet on 28 February 2024.
 
