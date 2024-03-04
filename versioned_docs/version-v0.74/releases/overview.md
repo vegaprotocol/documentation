@@ -14,8 +14,6 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 
 <!--[**Governance dApp on GitHub** ↗](https://github.com/vegaprotocol/frontend-monorepo/releases) - The Governance dApp, which provides an interface for interacting with governance proposals, VEGA tokens, and staking to validators; Console, a trading interface; and the Vega Block Explorer are open-source and you see more about them in the frontend monorepo.-->
 
-[**Vega Capsule on GitHub** ↗](https://github.com/vegaprotocol/vegacapsule/releases) - Vega Capsule, which lets you create an instance of the Vega network on your computer to experiment with using the protocol, is public and you can read the contents of each release on GitHub.
-
 ## Vega core software
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
@@ -41,7 +39,7 @@ This version was released by the validators to mainnet on 29 February 2024.
 
 To review the changes in the last released version, see the [comparison file ↗](https://github.com/vegaprotocol/vega/compare/v0.74.4...v0.74.7).
 
-### API change
+### API changes
 - `aggregated ledger entry` endpoint has a new optional field for filtering by `transfer ID`
 - `list transfers request` allows for optional `from account type` and `to account type` filtering
 - `list votes` has a new shape for equity-like share, `ELS per market`, which provides `market ID` and `els`
