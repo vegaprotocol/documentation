@@ -97,6 +97,7 @@ An instrument contains the following properties:
 | `dataSourceSpecForSettlementData` | This defines the data source that will be used to identify the settlement price when the market expires. | prices.ORANGES.value |
 | `dataSourceSpecForTradingTermination` | The fields that define the data source used for terminating trading on the market. | vegaprotocol.builtin.timestamp |
 | `dataSourceSpecBinding` | The fields describe how specific information provided by the data source is used. For example, they can identify the specific name of the settlement price output, or the specific name of the trading termination property. |
+| `tickSize` | Sets the minimal change in the price in the market. Must be an integer multiple of 10^mdp (market decimal places). | If the BTCUSDT market is configured with mdp=5, the smallest tick size would be 0.00001. To deal with having too many decimal places, you can set the tick size to 0.1. Should an asset's value drop dramatically, the tick size can then be changed. |
 
 For easy reading, the data source filters are separated out - see [Data source bindings](#data-source-bindings) below to see the fields for specifying data.
 

@@ -255,6 +255,7 @@ Required fields include:
 Optional fields include: 
 * Metadata so that people can easily interpret the market's details - while this is optional, it's highly recommended that you include metadata for the market
 * Price monitoring parameters, including the triggers covering the horizon, probability and auction extension time. If left blank these parameters will default to the values set in the network parameters
+* Tick size, to set the minimal change in a price. If not set, it will default to 1 (or 10^{-market decimal places})
 
 :::note Read more
 * [New market proposal tutorial](../tutorials/proposals/new-market-proposal.md)
