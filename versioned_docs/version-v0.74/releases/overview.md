@@ -26,6 +26,8 @@ This version was released by the validators to mainnet on 05 March 2024.
 - The number of possible price monitoring triggers allowed has been increased to 100 (missed validation). This was done in [issue 10795 ↗](https://github.com/vegaprotocol/vega/issues/10795).
 - During a snapshot test is was noticed that some of the state in the staking engine and ETH verifier engine used to deduplicate events (from ethereum or L2s) was not being saved in the snapshot as they should. This has been fixed in [issue 10811 ↗](https://github.com/vegaprotocol/vega/issues/10811).
 
+To review the changes in the last released version, see the [comparison file ↗](https://github.com/vegaprotocol/vega/compare/v0.74.7...v0.74.9).
+
 
 ## Release versions 0.74.5, 0.74.6 and 0.74.7 (combined) | 2024-02-29
 This version was released by the validators to mainnet on 29 February 2024.
