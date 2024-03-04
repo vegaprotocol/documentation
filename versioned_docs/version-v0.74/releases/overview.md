@@ -18,6 +18,15 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
 
+## Release versions 0.74.8 and 0.74.9 (combined) | 2024-03-05
+This version was released by the validators to mainnet on 05 March 2024.
+
+
+### Bug fixes
+- The number of possible price monitoring triggers allowed has been increased to 100 (missed validation). This was done in [issue 10795 ↗](https://github.com/vegaprotocol/vega/issues/10795).
+- During a snapshot test is was noticed that some of the state in the staking engine and ETH verifier engine used to deduplicate events (from ethereum or L2s) was not being saved in the snapshot as they should. This has been fixed in [issue 10811 ↗](https://github.com/vegaprotocol/vega/issues/10811).
+
+
 ## Release versions 0.74.5, 0.74.6 and 0.74.7 (combined) | 2024-02-29
 This version was released by the validators to mainnet on 29 February 2024.
 
