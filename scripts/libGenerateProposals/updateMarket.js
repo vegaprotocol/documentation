@@ -77,8 +77,8 @@ function generatePriceMonitoringParameters(skeleton) {
               horizon: "${params.triggers[0].horizon}",
               // ${skeleton.properties.triggers.items.properties.probability.description} (${skeleton.properties.triggers.items.properties.probability.type})
               probability: "${params.triggers[0].probability}",
-              // ${skeleton.properties.triggers.items.properties.auctionExtension.description} (${skeleton.properties.triggers.items.properties.auctionExtension.type})
-              probability: "${params.triggers[0].auctionExtension}",
+              /* ${skeleton.properties.triggers.items.properties.auctionExtension.description} (${skeleton.properties.triggers.items.properties.auctionExtension.type}) */
+              probability: "${params.triggers[0].auctionExtension}"
               }
           ]
       }`

@@ -488,7 +488,7 @@ function generateMarkPriceConfiguration(skeleton) {
         // ${s.cashAmount.description} (${s.cashAmount.type})
         cashAmount: "${config.cashAmount}",
         // ${s.sourceWeights.description} (${s.sourceWeights.type})
-        sourceWeights: ${JSON.stringify(config.sourceWeight)},
+        sourceWeights: ${JSON.stringify(config.sourceWeights)},
         // ${s.sourceStalenessTolerance.description.replaceAll('\n', '\n// ')} (${s.sourceStalenessTolerance.type})
         sourceStalenessTolerance: ${JSON.stringify(config.sourceStalenessTolerance)},
         // ${s.compositePriceType.description} (${s.compositePriceType.type})
@@ -689,7 +689,7 @@ function generatePriceMonitoringParameters(skeleton) {
               horizon: "${params.triggers[0].horizon}",
               // ${skeleton.properties.triggers.items.properties.probability.description} (${skeleton.properties.triggers.items.properties.probability.type})
               probability: "${params.triggers[0].probability}",
-              // ${skeleton.properties.triggers.items.properties.auctionExtension.description} (${skeleton.properties.triggers.items.properties.auctionExtension.type})
+              /* ${skeleton.properties.triggers.items.properties.auctionExtension.description} (${skeleton.properties.triggers.items.properties.auctionExtension.type}) */
               auctionExtension: "${params.triggers[0].auctionExtension}",
 
                           }
