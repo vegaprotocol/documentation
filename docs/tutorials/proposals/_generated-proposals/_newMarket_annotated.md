@@ -136,8 +136,8 @@
 
       // Optional new futures market metadata, tags.
       metadata: [
-       "enactment:2024-03-20T15:10:26Z",
-       "settlement:2024-03-19T15:10:26Z",
+       "enactment:2024-03-26T13:04:24Z",
+       "settlement:2024-03-25T13:04:24Z",
        "source:docs.vega.xyz"
       ],
 
@@ -151,6 +151,12 @@
 
          // Price monitoring probability level p. (string)
          probability: "0.9999999",
+
+
+         /* Price monitoring auction extension duration in seconds should the price
+          * breach its theoretical level over the specified horizon at the specified
+          * probability level. (string) */
+         auctionExtension: "3600",
         }
        ]
       },
@@ -238,7 +244,11 @@
        cashAmount: "5000000",
 
        // Weights for each composite price data source. (array)
-       sourceWeights: undefined,
+       sourceWeights: [
+        "0",
+        "1",
+        "0"
+       ],
 
        // For how long a price source is considered valid. One entry for each data source
        // such that the first is for the trade based mark price, the second is for the book based price
@@ -257,16 +267,19 @@
 
        // List of each price source and its corresponding binding (array)
        dataSourcesSpecBinding: []
-      }
+      },
+
+      // The market tick size defines the minimum change in quote price for the market
+      tickSize: "1"
      },
 
      // Timestamp as Unix time in seconds when voting closes for this proposal,
      // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-     closingTimestamp: 1710861026,
+     closingTimestamp: 1711371864,
 
      // Timestamp as Unix time in seconds when proposal gets enacted if passed,
      // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-     enactmentTimestamp: 1710947426,
+     enactmentTimestamp: 1711458264,
     }
    }
 ```

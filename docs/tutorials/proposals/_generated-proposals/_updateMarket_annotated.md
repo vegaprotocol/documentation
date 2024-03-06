@@ -139,6 +139,12 @@
 
          // Price monitoring probability level p. (string)
          probability: "0.9999999",
+
+
+         /* Price monitoring auction extension duration in seconds should the price
+          * breach its theoretical level over the specified horizon at the specified
+          * probability level. (string) */
+         probability: "3600"
         }
        ]
       },
@@ -185,11 +191,11 @@
 
     // Timestamp as Unix time in seconds when voting closes for this proposal,
     // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-    closingTimestamp: 1710861026,
+    closingTimestamp: 1711371864,
 
     // Timestamp as Unix time in seconds when proposal gets enacted if passed,
     // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-    enactmentTimestamp: 1710947426,
+    enactmentTimestamp: 1711458264,
    }
   }
 ```

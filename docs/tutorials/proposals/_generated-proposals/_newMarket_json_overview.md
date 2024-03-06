@@ -68,7 +68,11 @@
      // Cash amount, in asset decimals, used for the calculation of the mark price from the order book. (string)
      cashAmount: "5000000",
      // Weights for each composite price data source. (array)
-     sourceWeights: undefined,
+     sourceWeights: [
+      "0",
+      "1",
+      "0"
+     ],
      // For how long a price source is considered valid. One entry for each data source
      // such that the first is for the trade based mark price, the second is for the book based price
      // the third is for the first oracle, followed by more oracle data source staleness tolerance. (array)
@@ -83,14 +87,16 @@
      dataSourcesSpec: [],
      // List of each price source and its corresponding binding (array)
      dataSourcesSpecBinding: []
-    }
+    },
+    // The market tick size defines the minimum change in quote price for the market
+    tickSize: "1"
    },
    // Timestamp as Unix time in seconds when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-   closingTimestamp: 1710861026,
+   closingTimestamp: 1711371864,
    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-   enactmentTimestamp: 1710947426,
+   enactmentTimestamp: 1711458264,
   }
  }
 ```

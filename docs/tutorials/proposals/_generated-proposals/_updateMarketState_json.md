@@ -13,8 +13,8 @@
         "price": "123456"
       }
     },
-    "closingTimestamp": 1710861026,
-    "enactmentTimestamp": 1710947426
+    "closingTimestamp": 1711371864,
+    "enactmentTimestamp": 1711458264
   }
 }
 ```

@@ -76,7 +76,8 @@
           "triggers": [
             {
               "horizon": "43200",
-              "probability": "0.9999999"
+              "probability": "0.9999999",
+              "auctionExtension": "3600"
             }
           ]
         },
@@ -97,8 +98,8 @@
         }
       }
     },
-    "closingTimestamp": 1710861026,
-    "enactmentTimestamp": 1710947426
+    "closingTimestamp": 1711371864,
+    "enactmentTimestamp": 1711458264
   }
 }
 ```

@@ -829,7 +829,8 @@ function newMarket(skeleton, proposalSoFar) {
           ),
           markPriceConfiguration: generateMarkPriceConfiguration(
             skeleton.properties.changes.properties.markPriceConfiguration
-          )
+          ),
+          tickSize: "1"
         },
       },
     },
@@ -920,8 +921,12 @@ function newMarket(skeleton, proposalSoFar) {
           result.terms.newMarket.changes.markPriceConfiguration,
           {
             depth: 19,
-          }
-        )}
+          },
+        )},
+         // ${
+          skeleton.properties.changes.properties.tickSize.title
+        }
+        "tickSize": "1"
     }`;
   };
 
