@@ -235,8 +235,8 @@
 
      // Optional new futures market metadata, tags.
      metadata: [
-      "enactment:2024-03-26T14:54:31Z",
-      "settlement:2024-03-25T14:54:31Z",
+      "enactment:2024-03-26T15:21:44Z",
+      "settlement:2024-03-25T15:21:44Z",
       "source:docs.vega.xyz"
      ],
 
@@ -331,18 +331,56 @@
       },
      },
 
-     // Mark price configuration.
-     markPriceConfiguration: The market tick size defines the minimum change in quote price for the market tickSize: "1"
+
+     /* Mark price configuration. */
+     markPriceConfiguration: {
+      // Decay weight used for calculation of mark price.
+      decayWeight: "1",
+
+      // Decay power used for the calculation of mark price. (string)
+      decayPower: "1",
+
+      // Cash amount, in asset decimals, used for the calculation of the mark price from the order book. (string)
+      cashAmount: "5000000",
+
+      // Weights for each composite price data source. (array)
+      sourceWeights: [
+       "0",
+       "1",
+       "0"
+      ],
+
+      // For how long a price source is considered valid. One entry for each data source
+      // such that the first is for the trade based mark price, the second is for the book based price
+      // the third is for the first oracle, followed by more oracle data source staleness tolerance. (array)
+      sourceStalenessTolerance: [
+       "1m0s",
+       "1m0s",
+       "1m0s"
+      ],
+
+      // Which method is used for the calculation of the composite price for the market. (string)
+      compositePriceType: "COMPOSITE_PRICE_TYPE_WEIGHTED",
+
+      // Additional price sources to be used for internal composite price calculation. (array)
+      dataSourcesSpec: [],
+
+      // List of each price source and its corresponding binding (array)
+      dataSourcesSpecBinding: []
+     },
+
+     // The market tick size defines the minimum change in quote price for the market
+     tickSize: "1"
     }
    },
 
    // Timestamp as Unix time in seconds when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-   closingTimestamp: 1711378471,
+   closingTimestamp: 1711380104,
 
    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-   enactmentTimestamp: 1711464871,
+   enactmentTimestamp: 1711466504,
   }
  }
 ```

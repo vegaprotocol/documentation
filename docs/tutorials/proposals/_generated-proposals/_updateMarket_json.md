@@ -87,7 +87,7 @@
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 0.5
+            "sigma": 0.3
           }
         },
         "liquiditySlaParameters": {
@@ -95,11 +95,12 @@
           "commitmentMinTimeFraction": "0.1",
           "performanceHysteresisEpochs": "10",
           "slaCompetitionFactor": "0.2"
-        }
+        },
+        "tickSize": "1"
       }
     },
-    "closingTimestamp": 1711378471,
-    "enactmentTimestamp": 1711464871
+    "closingTimestamp": 1711380104,
+    "enactmentTimestamp": 1711466504
   }
 }
 ```

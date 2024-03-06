@@ -136,8 +136,8 @@
 
       // Optional new futures market metadata, tags.
       metadata: [
-       "enactment:2024-03-26T14:54:31Z",
-       "settlement:2024-03-25T14:54:31Z",
+       "enactment:2024-03-26T15:21:44Z",
+       "settlement:2024-03-25T15:21:44Z",
        "source:docs.vega.xyz"
       ],
 
@@ -232,7 +232,8 @@
        },
       },
 
-      // Mark price configuration.
+
+      /* Mark price configuration. */
       markPriceConfiguration: {
        // Decay weight used for calculation of mark price.
        decayWeight: "1",
@@ -275,11 +276,11 @@
 
      // Timestamp as Unix time in seconds when voting closes for this proposal,
      // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-     closingTimestamp: 1711378471,
+     closingTimestamp: 1711380104,
 
      // Timestamp as Unix time in seconds when proposal gets enacted if passed,
      // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-     enactmentTimestamp: 1711464871,
+     enactmentTimestamp: 1711466504,
     }
    }
 ```

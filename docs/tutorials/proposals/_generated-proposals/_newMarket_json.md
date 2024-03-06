@@ -1,4 +1,5 @@
 
+  ```json
 {
   "rationale": {
     "title": "Add Lorem Ipsum market",
@@ -72,8 +73,8 @@
           }
         },
         "metadata": [
-          "enactment:2024-03-26T13:04:24Z",
-          "settlement:2024-03-25T13:04:24Z",
+          "enactment:2024-03-26T15:21:44Z",
+          "settlement:2024-03-25T15:21:44Z",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -137,7 +138,9 @@
         "tickSize": "1"
       }
     },
-    "closingTimestamp": 1711371864,
-    "enactmentTimestamp": 1711458264
+    "closingTimestamp": 1711380104,
+    "enactmentTimestamp": 1711466504
   }
 }
+```
+  

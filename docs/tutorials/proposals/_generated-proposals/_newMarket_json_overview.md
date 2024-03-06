@@ -59,7 +59,7 @@
       scalingFactor: "0.05"
      },
     },
-    // Mark price configuration.
+    /* Mark price configuration. */
     markPriceConfiguration: {
      // Decay weight used for calculation of mark price.
      decayWeight: "1",
@@ -93,10 +93,10 @@
    },
    // Timestamp as Unix time in seconds when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-   closingTimestamp: 1711378471,
+   closingTimestamp: 1711380104,
    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-   enactmentTimestamp: 1711464871,
+   enactmentTimestamp: 1711466504,
   }
  }
 ```

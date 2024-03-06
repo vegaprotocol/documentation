@@ -914,9 +914,9 @@ function newMarket(skeleton, proposalSoFar) {
               depth: 19,
             }
           )},
-         // ${
+         /* ${
           skeleton.properties.changes.properties.markPriceConfiguration.description
-        }
+        } */
            markPriceConfiguration: ${inspect(
           result.terms.newMarket.changes.markPriceConfiguration,
           {
