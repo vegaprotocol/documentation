@@ -76,7 +76,8 @@
           "triggers": [
             {
               "horizon": "43200",
-              "probability": "0.9999999"
+              "probability": "0.9999999",
+              "auctionExtension": "3600"
             }
           ]
         },
@@ -86,7 +87,7 @@
           "params": {
             "mu": 0,
             "r": 0.016,
-            "sigma": 0.8
+            "sigma": 0.3
           }
         },
         "liquiditySlaParameters": {
@@ -94,11 +95,12 @@
           "commitmentMinTimeFraction": "0.1",
           "performanceHysteresisEpochs": "10",
           "slaCompetitionFactor": "0.2"
-        }
+        },
+        "tickSize": "1"
       }
     },
-    "closingTimestamp": 1710861026,
-    "enactmentTimestamp": 1710947426
+    "closingTimestamp": 1711380104,
+    "enactmentTimestamp": 1711466504
   }
 }
 ```

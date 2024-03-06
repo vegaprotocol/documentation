@@ -172,6 +172,7 @@ function updateMarket(skeleton, proposalSoFar) {
           liquiditySlaParameters: generateLiquiditySlaParameters(
             skeleton.properties.changes.properties.liquiditySlaParameters
           ),
+          tickSize: "1"
         },
       }
     }
@@ -197,6 +198,10 @@ function updateMarket(skeleton, proposalSoFar) {
           liquiditySlaParameters: ${inspect(result.terms.updateMarket.changes.liquiditySlaParameters, {
        depth: 19,
      })},
+     // ${
+      skeleton.properties.changes.properties.tickSize.title
+    }
+    "tickSize": "1"
         },
     }`
   }

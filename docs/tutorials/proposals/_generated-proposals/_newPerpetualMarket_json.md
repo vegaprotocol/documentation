@@ -150,8 +150,8 @@
           }
         },
         "metadata": [
-          "enactment:2024-03-20T19:04:25Z",
-          "settlement:2024-03-19T19:04:25Z",
+          "enactment:2024-03-26T15:21:44Z",
+          "settlement:2024-03-25T15:21:44Z",
           "source:docs.vega.xyz"
         ],
         "priceMonitoringParameters": {
@@ -211,11 +211,12 @@
           "compositePriceType": "COMPOSITE_PRICE_TYPE_WEIGHTED",
           "dataSourcesSpec": [],
           "dataSourcesSpecBinding": []
-        }
+        },
+        "tickSize": "1"
       }
     },
-    "closingTimestamp": 1710875065,
-    "enactmentTimestamp": 1710961465
+    "closingTimestamp": 1711380104,
+    "enactmentTimestamp": 1711466504
   }
 }
 ```
