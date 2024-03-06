@@ -1,5 +1,4 @@
 
-  ```json
 {
   "rationale": {
     "title": "Add Lorem Ipsum market",
@@ -142,5 +141,3 @@
     "enactmentTimestamp": 1711458264
   }
 }
-```
-  
