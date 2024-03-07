@@ -17,6 +17,22 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+
+## Pre-release version v0.75.0 preview.3  | 2024-03-06
+This version was released to the Vega testnet on 06 March 2024.
+
+### Bug fixes
+
+- During a market-sim fuzz test a core panic was observed when amending an order in place. This has been resolved in [issue 10804 ↗](https://github.com/vegaprotocol/vega/issues/10804).
+- During a snapshot test it was noticed that some of the state in the staking engine and ETH verifier engine used to deduplicate events (from ethereum or L2s) was not being saved in the snapshot as they should. This has been fixed in [issue 10811 ↗](https://github.com/vegaprotocol/vega/issues/10811).
+- During performance testing of loading oracle data in the block explorer (carried out in [issue 10785 ↗](https://github.com/vegaprotocol/vega/issues/10785)) it was found that a further fix was required. This has been updated such that if there is a first `N` cursor traversing newest first data, without an after cursor, the query is also restricted by date to ensure performant loading of the data. This was resolved in [issue 10820 ↗](https://github.com/vegaprotocol/vega/issues/10820).
+
+### Improvements
+
+- A change has been implemented to cancel pegged orders when updating the tick size as implemented in [issue 10635 ↗](https://github.com/vegaprotocol/vega/issues/10635). When the tick size is updated, all existing pegged orders are checked. If the offset of an order is no longer an integer multiple of the tick size, the order is cancelled. This has been carried out in [issue 10778 ↗](https://github.com/vegaprotocol/vega/issues/10778).
+
+To review the changes in the last released version, see [here](https://github.com/vegaprotocol/vega/compare/v0.75.0-preview.2...v0.75.0-preview.3).
+
 ## Pre-release version v0.75.0 preview.2  | 2024-03-01
 This version was released to the Vega testnet on 01 March 2024.
 
@@ -33,6 +49,7 @@ The protocol now allows users to choose between one of two margining modes for e
 To see lower level details of how the new isolated margin feature is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0019-MCAL-margin_calculator.md#isolated-margin-mode).
 
 ### Improvements
+
 - An improvement has been made to allow the transfers API to filter by from and to account type. This allows for building a network treasury view for the Block Explorer. This improvement to the API was made in the [issue 10686 ↗](https://github.com/vegaprotocol/vega/issues/10686).
 - The price monitoring bounds limits have been raised from a value of `5` to now be `100`.  This improvement was made in [issue 10770 ↗](https://github.com/vegaprotocol/vega/issues/10770).
 - In order to further resolve issues seen with liquidations, a network disposal order will not cross with orders outside price monitoring bounds. Hence a network disposal cannot trade at a price outside the tightest price monitoring and it won't ever trigger a price monitoring auction. This improvement was made in [issue 10764 ↗](https://github.com/vegaprotocol/vega/issues/10764).
