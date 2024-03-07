@@ -25,7 +25,7 @@ This version was released to the Vega testnet on 06 March 2024.
 
 - During a market-sim fuzz test a core panic was observed when amending an order in place. This has been resolved in [issue 10804 ↗](https://github.com/vegaprotocol/vega/issues/10804).
 - During a snapshot test it was noticed that some of the state in the staking engine and ETH verifier engine used to deduplicate events (from ethereum or L2s) was not being saved in the snapshot as they should. This has been fixed in [issue 10811 ↗](https://github.com/vegaprotocol/vega/issues/10811).
-- During performance testing of loading oracle data in the block explorer (carried out in [issue 10785 ↗](https://github.com/vegaprotocol/vega/issues/10785)) it was found that a further fix was required. This has been updated such that if there is a first `N` cursor traversing newest first data, without an after cursor, the query is also restricted by date to ensure performant loading of the data. This was resolved in [pull request 10820 ↗](https://github.com/vegaprotocol/vega/issues/10820).
+- During performance testing of loading oracle data in the block explorer (carried out in [issue 10785 ↗](https://github.com/vegaprotocol/vega/issues/10785)) it was found that a further fix was required. This has been updated such that if there is a first `N` cursor traversing newest first data, without an after cursor, the query is also restricted by date to ensure performant loading of the data. This was resolved in [issue 10820 ↗](https://github.com/vegaprotocol/vega/issues/10820).
 
 ### Improvements
 
