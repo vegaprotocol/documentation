@@ -18,8 +18,8 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
 
-## Release versions 0.74.8 and 0.74.9 (combined) | 2024-03-05
-This version was released by the validators to mainnet on 05 March 2024.
+## Release versions 0.74.8 and 0.74.9 (combined) | 2024-03-07
+This version was released by the validators to mainnet on 07 March 2024.
 
 
 ### Bug fixes
