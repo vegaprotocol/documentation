@@ -18,11 +18,22 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
 
+## Release versions 0.74.10 | 2024-03-07
+This version was released by the validators to mainnet on 07 March 2024.
+
+### Bug fixes
+
+- After the release of 0.74.9 validators reported an unusually high number of Ethereum RPC calls. As the markets were recently updated to source data from other EVM RPC compatible sources no events were received from Ethereum for a number of weeks. When a protocol upgrade happens the snapshot has a "last Ethereum block height" specified, in order for the network not to miss any events all blocks from this specified height are being checked thus causing a high number of RPC calls. As the deposits and withdrawals use the same client to monitor events these are affected. A temporary patch fix has been made in the following [issue 10842 ↗](https://github.com/vegaprotocol/vega/pull/10842). A further full fix will be included in the next published release.
+
+To review the changes in the last released version, see the [comparison file ↗](https://github.com/vegaprotocol/vega/compare/v0.74.9...v0.74.10).
+
+
 ## Release versions 0.74.8 and 0.74.9 (combined) | 2024-03-07
 This version was released by the validators to mainnet on 07 March 2024.
 
 
 ### Bug fixes
+
 - The number of possible price monitoring triggers allowed has been increased to 100, this was missed validation from [issue 10770 ↗](https://github.com/vegaprotocol/vega/issues/10770) deployed in 0.74.7. This was rectified in [issue 10795 ↗](https://github.com/vegaprotocol/vega/issues/10795).
 - During a snapshot test, some of the state in the staking engine and ETH verifier engine used to deduplicate events (from Ethereum or EVM chains) was not being saved in the snapshot as they should. This has been fixed in [issue 10811 ↗](https://github.com/vegaprotocol/vega/issues/10811).
 
