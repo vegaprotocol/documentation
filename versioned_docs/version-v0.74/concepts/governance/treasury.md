@@ -65,9 +65,10 @@ Include a description of what you're intending to do with the treasury funds in 
 See the [tutorial](../../tutorials/proposals/asset-transfer-proposal.md) for a template and description of each field.
 
 ### Suggest ideas with freeform proposals
+
 Another option is to submit a [freeform proposal](../../tutorials/proposals/freeform-proposal.md) to suggest a non-binding idea to the community and gauge their sentiment. This would be a good option for grants or other initiatives, especially where opinions may be split on what to do.
 
-Raise a freeform proposal with your plan. Include clear details about what you think the money should be spent on, and if there's an organisation or provider you'd like to suggest working with, details about who they are and why they -- and the initiative -- are a good choice. You could even raise two or three freeform proposals to help decide which of several competing ideas to take through to a final proposal. 
+Raise a freeform proposal with your plan. Include clear details about what you think the money should be spent on, and if there's an organisation or provider you'd like to suggest working with, details about who they are and why they -- and the initiative -- are a good choice. You could even raise two or three freeform proposals to help decide which of several competing ideas to take through to a final proposal.
 
 Based on feedback and voting for your freeform proposal, you can then decide to raise a proposal to transfer assets accordingly.
 
