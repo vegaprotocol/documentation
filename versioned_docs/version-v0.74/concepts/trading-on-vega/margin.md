@@ -143,12 +143,14 @@ The initial margin is scaled from the *maintenance margin* amount. It's calculat
 
 The initial margin level being higher than the *margin search level* (which itself is higher than the *maintenance margin level*) ensures that a small negative price move won't lead to a situation where the network has to attempt to allocate more collateral immediately after a trade has been entered into.
 
-<!--### Margin level: Order - isolated only
+<!--
+### Margin level: Order - isolated only
 When using isolated margin mode, you can choose the leverage you're comfortable with, and the amount of margin required to support that is transferred to your margin account. If you place additional orders that increase your position, the margin required also increases. The amount above what's in your margin account that is needed to support your orders is the order margin. 
 
 This extra margin is moved into an order margin account. If your order turns into a position, the extra margin for that position moves into your margin account.
 
 For open orders, if the required order margin is higher than the balance in your order margin account, your orders will be cancelled and that margin collateral will be returned to your general account. If you have a position open on the market, it will stay open. 
+-->
 
 ### Margin level: Searching for collateral - cross only
 For a trader using cross margining, if the balance available in your margin account is less than the position's *margin search level*, but is still above the maintenance level -- the network will try to allocate more money, up to the current initial margin level, from your general account to be used for margin.
@@ -166,7 +168,7 @@ If there is not enough collateral to provide the required margin, then the posit
 
 :::note Read more
 [Concept: Closeouts](./market-protections.md#closeouts)
-:::-->
+:::
 
 ### Margin level: Releasing collateral - cross only
 When using cross margin mode, if your margin balance exceeds the *collateral release level*, the position is considered overcollateralised. The excess money is released to your general account, to get your margin back to the *initial margin level*.
