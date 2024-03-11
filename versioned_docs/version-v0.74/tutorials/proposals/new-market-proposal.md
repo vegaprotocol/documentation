@@ -39,7 +39,7 @@ Looking to propose a perpetuals market? See the [perpetual futures tutorial](./n
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
 * A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true}/>, (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
-* Familiarity with [market governance](../../concepts/governance.md#market-governance) on Vega
+* Familiarity with [market governance](../../concepts/governance/market.md) on Vega
 
 You should also share your proposal idea in the [_Governance_ forum section ↗](https://community.vega.xyz/c/governance) before submitting it to the network.
 
@@ -195,11 +195,11 @@ Price monitoring uses the following properties:
 You can use a maximum of 5 sets of price monitoring parameters for a market.
 
 ### Risk model
-Choose the individual parameters for the [log-normal risk model](../../concepts/governance.md#log-normal-risk-model). You should ensure the risk model parameters represent the dynamics of the underlying instrument, and that the resulting margins strike the right balance between prudence and capital efficiency. 
+Choose the individual parameters for the [log-normal risk model](../../concepts/governance/market.md#log-normal-risk-model). You should ensure the risk model parameters represent the dynamics of the underlying instrument, and that the resulting margins strike the right balance between prudence and capital efficiency. 
 
 While you cannot define exactly how much margin (or leverage) is possible, you can influence the acceptable levels of market volatility.
 
-Read about the [risk models and parameters](../../concepts/governance.md#risk-models-and-parameters) before choosing your values.
+Read about the [risk models and parameters](../../concepts/governance/market.md#risk-models-and-parameters) before choosing your values.
 
 <NewMarketJSONRisk />
 The risk model uses the following properties: 
@@ -273,11 +273,11 @@ A vote can be submitted with a [transaction](../../api/grpc/vega/commands/v1/com
 
 To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minVoterBalance" suffix="tokens" hideName={true} formatter="governanceToken" />, or <NetworkParameter formatter="governanceToken" frontMatter={frontMatter} param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated with their Vega key.
 
-Your proposal will need [participation](../../concepts/governance.md#how-a-proposals-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential.
+Your proposal will need [participation](../../concepts/governance/lifecycle.md#how-a-proposals-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential.
 
 Proposers who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.
 
-Learn more about voting on the [governance concepts](../../concepts/governance.md#voting-on-proposals) page.
+Learn more about voting on the [governance concepts](../../concepts/governance/lifecycle.md#voting-on-proposals) page.
 
 ## Enactment 
 If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field, or as soon as the [opening auction](../../concepts/trading-on-vega/trading-modes.md#auction-type-opening) has successfully concluded, whichever is later.
