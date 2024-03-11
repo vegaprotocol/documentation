@@ -9,26 +9,26 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 
 The network treasury holds assets that can be used by the community to fund initiatives. You can take part in decision-making around building and growing Vega.
 
-Treasury assets can be used to fund trading rewards, team competitions, grants, or other opportunities.
+Treasury assets can be used to fund trading rewards, team competitions, grants, Vega protocol software and/or product development, teams building on Vega, or other opportunities.
 
 Anyone with VEGA tokens can vote on or raise proposals to use treasury assets.
 
 ## Treasury basics
-The network treasury is funded with VEGA tokens, to be used by community members to grow and support the Vega network. 
+The network treasury can hold VEGA tokens and other assets, which can be used by the community via on-chain governance to grow and support the development of the Vega software and network. 
 
-### Token details
-Contract address: `0xcB84d72e61e383767C4DFEb2d8ff7f4FB89abc6e`
+### VEGA token details
+VEGA token contract address (Ethereum mainnet): `0xcB84d72e61e383767C4DFEb2d8ff7f4FB89abc6e` ([view on Etherscan ↗](https://etherscan.io/token/0xcB84d72e61e383767C4DFEb2d8ff7f4FB89abc6e))
 
 Vega asset ID: `d1984e3d365faa05bcafbe41f50f90e3663ee7c0da22bb1e24b164e9532691b2`
 
 See more details on the [block explorer ↗](https://explorer.vega.xyz/assets/d1984e3d365faa05bcafbe41f50f90e3663ee7c0da22bb1e24b164e9532691b2).
 
 ### Treasury value
-You can see how much is in the network treasury at any point with the `list accounts API`.
+You can see how much is in the network treasury, along with recent transactions using the on-chain treasury page on [Block Explorer ↗](https://explorer.vega.xyz/treasury).
 
-* Use the [REST endpoint](../../api/rest/data-v2/trading-data-service-list-accounts.api.mdx)
+You can also see the balance programmatically with the `list accounts API`. For example, using the [REST endpoint](../../api/rest/data-v2/trading-data-service-list-accounts.api.mdx):
 * Filter by:
-    * Asset ID for the VEGA token, and 
+    * Asset ID for VEGA: `d1984e3d365faa05bcafbe41f50f90e3663ee7c0da22bb1e24b164e9532691b2`, and 
     * Account type: `ACCOUNT_TYPE_NETWORK_TREASURY`
 * Don't forget to account for the token's 18 decimal places
 
@@ -48,7 +48,12 @@ Read more about how these work in the [teams and games](../trading-on-vega/disco
 **Grants and other initiatives**: A transfer can send to any Vega key, even if it's an individual and not a reward account. You can use a freeform proposal to gauge the community's interest and hone the plan before setting up the proposal for transferring assets.
 
 ## How to allocate the treasury
-The most direct way to propose spending the assets is by submitting a **[proposal to transfer assets](../assets/transfers.md#governance-initiated-transfers)**. 
+
+### Using governance to spend assets
+
+Assets can only be spend from the on-chain treasury by governance, when a **[proposal to transfer assets](../assets/transfers.md#governance-initiated-transfers)** is enacted. 
+
+The most direct way to propose spending the assets is by submitting one of these proposals. In practice, community members almost always discuss proposals on the **[Vega community forums ↗](https://community.vega.xyz/) before submitting**, in order to incorporate community feedback into the proposal and ensure there's broad support before going through the effort of putting it on-chain.
 
 The proposal includes details about the specific account(s) or key(s) that you want to send assets to, as well as when to send, and how often. The transfer can be set to happen once or repeatedly.
 
@@ -56,11 +61,30 @@ Include a description of what you're intending to do with the treasury funds in 
 
 See the [tutorial](../../tutorials/proposals/asset-transfer-proposal.md) for a template and description of each field.
 
-Another option is to submit a [freeform proposal](../../tutorials/proposals/freeform-proposal.md) to suggest a non-binding idea to the community and gauge their sentiment. This would be a good option for grants or other initiatives. Raise a freeform proposal with your plan, with clear details about what you think the money should be spent on, and if there's an organisation or provider you'd like to suggest working with, details about who they are and why they, and the initiative, are a good choice. Based on feedback and voting for your freeform proposal, you can then decide to raise a proposal to transfer assets accordingly.
 
-<!--
-Wondering what the experience is for someone who wants to spend Vega on-chain, what tools to have, what kinds of competitions can they make?
--->
+### Freeform proposals
+
+Another option is to submit a [freeform proposal](../../tutorials/proposals/freeform-proposal.md) to suggest a non-binding idea to the community and gauge their sentiment. This would be a good option for grants or other initiatives, especially where opinions may be split on what to do.
+
+Raise a freeform proposal with your plan. Include clear details about what you think the money should be spent on, and if there's an organisation or provider you'd like to suggest working with, details about who they are and why they -- and the initiative -- are a good choice. You could even raise a few freeform proposals to help decide which of several competing ideas to take through to a final proposal. 
+
+Based on feedback and voting for your freeform proposal, you can then decide to raise a proposal to transfer assets accordingly.
+
+### Batch proposals
+
+For more complex sets of actions, you can use a batch proposal to submit several actions to be coordinated to happen as the result of a single vote. These can be spread across time, and can even be used to make temporary changes by including both the changes and a later reversal in the same batch. 
+
+Examples of actions that can be coordinated together in a batch include:
+- Funding multiple reward pools
+- Paying for a service or action over a period of time
+- Creating markets
+- Changing fee rates
+- Setting up or changing programmes like referral schemes, or activity streak or volume discount parameters
+
+:::note Read more
+[Batch proposals](./lifecycle.md/#submitting-proposals-in-a-batch)
+:::
+
 
 
 
