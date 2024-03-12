@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-title: Market governance
+title: Markets
 vega_network: MAINNET
 hide_title: false
 description: Add new markets or change existing ones.

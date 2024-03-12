@@ -1,6 +1,6 @@
 ---
 sidebar_position: 6
-title: Network parameter
+title: Network parameters
 vega_network: TESTNET
 hide_title: false
 description: Change network configuration parameters.

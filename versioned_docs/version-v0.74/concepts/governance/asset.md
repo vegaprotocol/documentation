@@ -1,6 +1,6 @@
 ---
 sidebar_position: 4
-title: Asset governance
+title: Assets
 vega_network: MAINNET
 hide_title: false
 description: Add assets or move network-held funds.
