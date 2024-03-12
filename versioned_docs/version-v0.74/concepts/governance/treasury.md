@@ -11,10 +11,10 @@ The network treasury holds assets that can be used by the community to fund init
 
 Treasury assets can be used to fund trading rewards, team competitions, grants, Vega protocol software and/or product development, teams building on Vega, or other opportunities.
 
-Anyone with enough VEGA tokens can vote and raise proposals to use treasury assets based on discussions in the community. 
+Anyone with enough VEGA tokens can vote on and submit proposals to [allocate treasury assets](#how-to-allocate-the-treasury) based on discussions in the community.
 
-* To vote a proposal, you usually need at least 1 VEGA, but the amount may vary per proposal type. Check the [block explorer](https://explorer.fairground.wtf/network-parameters) for each `minVoterBalance`.
-* How many VEGA you need to submit a proposal depends on the proposal type. Check the [block explorer](https://explorer.fairground.wtf/network-parameters) for each `minProposerBalance`.
+* To vote a proposal, you need at least 1 VEGA, but the minimum amount can vary per proposal type. Check the [block explorer ↗](https://explorer.fairground.wtf/network-parameters) for each `minVoterBalance`.
+* How many VEGA you need to submit a proposal depends on the type. Check the [block explorer ↗](https://explorer.fairground.wtf/network-parameters) for each `minProposerBalance`.
 
 ## Treasury basics
 The network treasury can hold VEGA tokens and other assets, which can be used by the community via on-chain governance to grow and support the development of the Vega software and network. 
@@ -51,12 +51,15 @@ Read more about how these work in the [teams and games](../trading-on-vega/disco
 **Grants and other initiatives**: A transfer can send to any Vega key, even if it's an individual and not a reward account. You can use a freeform proposal to gauge the community's interest and hone the plan before setting up the proposal for transferring assets.
 
 ## How to allocate the treasury
+Allocating assets in the treasury requires using governance. There are a few options for moving those assets. 
+
+Before submitting a proposal, make sure you understand the full [governance lifecycle](./lifecycle.md).
 
 ### Use governance to spend assets
 
-Assets can only be spend from the on-chain treasury by governance, when a **[proposal to transfer assets](../assets/transfers.md#governance-initiated-transfers)** is enacted. 
+Assets can only be spend from the on-chain treasury by governance, when a [proposal to transfer assets](../assets/transfers.md#governance-initiated-transfers) is enacted. 
 
-The most direct way to propose spending the assets is by submitting one of these proposals. In practice, community members almost always discuss proposals on the **[Vega community forums ↗](https://community.vega.xyz/) before submitting**, in order to incorporate community feedback into the proposal and ensure there's broad support before going through the effort of putting it on-chain.
+The most direct way to propose spending the assets is by submitting one of these proposals. In practice, community members almost always **discuss proposals on the[Vega community forums ↗](https://community.vega.xyz/) before submitting**, in order to incorporate community feedback into the proposal and ensure there's broad support before going through the effort of putting it on-chain.
 
 The proposal includes details about the specific account(s) or key(s) that you want to send assets to, as well as when to send, and how often. The transfer can be set to happen once or repeatedly.
 
@@ -72,9 +75,9 @@ Raise a freeform proposal with your plan. Include clear details about what you t
 
 Based on feedback and voting for your freeform proposal, you can then decide to raise a proposal to transfer assets accordingly.
 
-### Batch proposals
+### Batch up your proposals
 
-For more complex sets of actions, you can use a batch proposal to submit several actions to be coordinated to happen as the result of a single vote. These can be spread across time, and can even be used to make temporary changes by including both the changes and a later reversal in the same batch. 
+For more complex sets of actions, you can use a [batch proposal](./lifecycle.md/#submitting-proposals-in-a-batch) to submit several actions to be coordinated to happen as the result of a single vote. These can be spread across time, and can even be used to make temporary changes by including both the changes and a later reversal in the same batch. 
 
 Examples of actions that can be coordinated together in a batch include:
 - Funding multiple reward pools
@@ -82,12 +85,5 @@ Examples of actions that can be coordinated together in a batch include:
 - Creating markets
 - Changing fee rates
 - Setting up or changing programmes like referral schemes, or activity streak or volume discount parameters
-
-:::note Read more
-[Batch proposals](./lifecycle.md/#submitting-proposals-in-a-batch)
-:::
-
-
-
 
 
