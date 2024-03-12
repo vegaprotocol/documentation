@@ -2,7 +2,7 @@
 sidebar_position: 5
 title: Transfer assets
 hide_title: false
-vega_network: MAINNET
+vega_network: TESTNET
 description: Use transfers to move assets between keys and/or accounts.
 ---
 

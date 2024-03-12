@@ -22,13 +22,17 @@ To prevent abuse of the APIs provided by data nodes, there are limitations to th
 Read about the rate limits on the [API overview page](../../api/using-the-apis.md#rate-limiting). For the specifics on WebSocket connections, see [WebSocket streams](../websocket.md) page.
 
 ## Pagination
-Pagination in REST is cursor-based. To query data, you can make a GET request to an endpoint. As an example, this section will use the `/transactions` endpoint. Use the query with the desired query parameters. If the query response contains more objects than the specified limit, you can use the `before` or `after` parameter to paginate through the results.
+Pagination in REST is cursor-based. To query data, you can make a GET request to an endpoint. As an example, this section will use the `/transactions` endpoint. Use the query with the desired query parameters.
 
-For example, to use `transactions` to retrieve the first 10 transactions, make a GET request to `/transactions?limit=10`. 
+The pagination parameter should be used in the following combination allowing you to navigate forward or backward through the result set:
+- `first`, and `first`/`after` - will return the *first* N results, and the first N results *after* the given `after` cursor
+- `last`, and `last`/`before` - will return the *last* N results, and the last N results *before* the given `before` cursor
 
-You can specify the `after` to be equal to the `endCursor` value (see below) of an item to retrieve the page of **older** objects occurring immediately **after** the named object in the reverse chronological stream. Similarly, if it has a previous page, you can specify the `before` to be equal to the `startCursor` value of an item to retrieve the page of **newer** objects occurring immediately **before** the named object in the reverse chronological stream.
+For example:
 
-If your query above receives a response containing 10 transactions, and you want to retrieve the next 10 transactions, you can make a GET request to `/transactions?limit=10&after=<cursor-of-the-last-transaction>`. If you want to paginate backward through the results, you can use the `before` parameter in a similar way.
+To use `transactions` to retrieve the first 5 transactions, make a GET request to `/api/v2/transactions?pagination.first=5`. 
+
+For the next 5, the request should look like `/api/v2/transactions?pagination.first=5&pagination.after=CURSOR_OF_LAST_TRANSACTION`.
 
 Example of the cursor part of a query response:
 ```
@@ -39,6 +43,7 @@ Example of the cursor part of a query response:
       "endCursor": "eyJzeW50aGV0aWNfdGltZSI6IjIwMjMtMDItMjhUMTI6NTg6NTUuMTA1NzIzWiJ9"
     }
 ```
+
 What data you're looking for will determine the type of endpoints you use.
 
 ## Served by data nodes

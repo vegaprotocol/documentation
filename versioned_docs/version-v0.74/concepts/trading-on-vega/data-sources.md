@@ -1,6 +1,7 @@
 ---
 sidebar_position: 9
 title: Data sourcing
+vega_network: MAINNET
 hide_title: false
 ---
 

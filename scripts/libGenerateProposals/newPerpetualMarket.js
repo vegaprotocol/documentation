@@ -76,7 +76,7 @@ function generatePerpetualSettlementDataSourceSpec(skeleton) {
                "address": "${spec.external.ethOracle.address}",
                // ${skeleton[p].external[p].ethOracle[p].abi.description}
                "abi": "${spec.external.ethOracle.abi}",
-               // ${skeleton[p].external[p].ethOracle[p].method.description}
+               /* ${skeleton[p].external[p].ethOracle[p].method.description} */
                "method": "${spec.external.ethOracle.method}",
                /* ${skeleton[p].external[p].ethOracle[p].normalisers.description} */
                "normalisers": ${JSON.stringify(spec.external.ethOracle.normalisers)},
@@ -142,7 +142,91 @@ function generateSettlementSchedule(skeleton) {
 
   return schedule;
 }
+function generateInternalCompositePriceConfiguration(skeleton) {
+    assert.equal(skeleton.properties.decayWeight.type, "string");
+    assert.equal(skeleton.properties.decayPower.type, "string");
+    assert.equal(skeleton.properties.cashAmount.type, "string");
+    assert.equal(skeleton.properties.sourceWeights.type, "array");
+    assert.equal(skeleton.properties.sourceStalenessTolerance.type, "array");
 
+    const s = skeleton.properties;
+
+    const config = {
+        decayWeight: "1",
+        decayPower: "1",
+        cashAmount: "5000000",
+        sourceWeights: ["0", "1", "0", "1"],
+        sourceStalenessTolerance: ["1m0s", "1m0s", "1m0s", "1m0s"],
+        compositePriceType: "COMPOSITE_PRICE_TYPE_WEIGHTED",
+        dataSourcesSpec: [
+            {
+                "external": {
+                    "ethOracle": {
+                        "address": "0x719abd606155442c21b7d561426d42bd0e40a776",
+                        "abi": "[{\"inputs\": [{\"internalType\": \"bytes32\", \"name\": \"id\", \"type\": \"bytes32\"}], \"name\": \"getPrice\", \"outputs\": [{\"internalType\": \"int256\", \"name\": \"\", \"type\": \"int256\" }], \"stateMutability\": \"view\", \"type\": \"function\"}]",
+                        "method": "getPrice",
+                        "args": [
+                            "elvB0rVq0CkEjNY5ZLOtJ3bq34Eu3BpDoxQGy1S/9ZI="
+                        ],
+                        "trigger": {
+                            "timeTrigger": {
+                                "every": "60"
+                            }
+                        },
+                        "requiredConfirmations": "3",
+                        "filters": [
+                            {
+                                "key": {
+                                    "name": "inj.price",
+                                    "type": "TYPE_INTEGER",
+                                    "numberDecimalPlaces": "18"
+                                },
+                                "conditions": [
+                                    {
+                                        "operator": "OPERATOR_GREATER_THAN",
+                                        "value": "0"
+                                    }
+                                ]
+                            }
+                        ],
+                        "normalisers": [
+                            {
+                                "name": "inj.price",
+                                "expression": "$[0]"
+                            }
+                        ],
+                        "sourceChainId": "100"
+                    }
+                }
+            }],
+        dataSourcesSpecBinding: [{
+            priceSourceProperty: "inj.price"
+        }],
+    };
+
+    config[inspect.custom] = () => {
+        return `{
+        // ${s.decayWeight.description}
+        decayWeight: "${config.decayWeight}",
+        // ${s.decayPower.description} (${s.decayPower.type})
+        decayPower: "${config.decayPower}",
+        // ${s.cashAmount.description} (${s.cashAmount.type})
+        cashAmount: "${config.cashAmount}",
+        // ${s.sourceWeights.description} (${s.sourceWeights.type})
+        sourceWeights: ${JSON.stringify(config.sourceWeights)},
+        // ${s.sourceStalenessTolerance.description.replaceAll('\n', '\n// ')} (${s.sourceStalenessTolerance.type})
+        sourceStalenessTolerance: ${JSON.stringify(config.sourceStalenessTolerance)},
+        // ${s.compositePriceType.description} (${s.compositePriceType.type})
+        compositePriceType: "${config.compositePriceType}",
+        // ${s.dataSourcesSpec.description} (${s.dataSourcesSpec.type})
+        dataSourcesSpec: ${JSON.stringify(config.dataSourcesSpec)},
+        // ${s.dataSourcesSpecBinding.title} (${s.dataSourcesSpecBinding.type})
+        dataSourcesSpecBinding: ${JSON.stringify(config.dataSourcesSpecBinding)}
+      }`;
+    };
+
+    return config;
+}
 function generatePerpetualInstrument(skeleton) {
   const randomInstrument = sample(instruments);
   // This is tEuro
@@ -161,7 +245,6 @@ function generatePerpetualInstrument(skeleton) {
     "DataSourceSpecBinding used to exist on a future"
   );
 
-
   const instrument = {
     name: randomInstrument.name,
     code: randomInstrument.code,
@@ -170,8 +253,15 @@ function generatePerpetualInstrument(skeleton) {
       quoteName: "tEuro",
       marginFundingFactor: "0.9",
       interestRate: "0",
+      fundingRateScalingFactor: "1",
+      fundingRateLowerBound: "-0.001",
+      fundingRateUpperBound: "0.001",
       clampLowerBound: "0",
       clampUpperBound: "0",
+
+      internalCompositePriceConfiguration: generateInternalCompositePriceConfiguration(
+        skeleton.properties.perpetual.properties.internalCompositePriceConfiguration
+      ),
       dataSourceSpecForSettlementData: generatePerpetualSettlementDataSourceSpec(
         skeleton.properties.perpetual.properties.dataSourceSpecForSettlementData
       ),
@@ -200,11 +290,21 @@ function generatePerpetualInstrument(skeleton) {
           marginFundingFactor: "0.9",
           // ${skeleton.properties.perpetual.properties.interestRate.description}
           interestRate: "0",
+          // ${skeleton.properties.perpetual.properties.fundingRateScalingFactor.description}
+          fundingRateScalingFactor: "1",
+          // ${skeleton.properties.perpetual.properties.fundingRateLowerBound.description}
+          fundingRateLowerBound: "-0.001",
+          // ${skeleton.properties.perpetual.properties.fundingRateUpperBound.description}
+          fundingRateUpperBound: "0.001",
           // ${skeleton.properties.perpetual.properties.clampLowerBound.description}
           clampLowerBound: "0",
           // ${skeleton.properties.perpetual.properties.clampUpperBound.description}
           clampUpperBound: "0",
 
+          internalCompositePriceConfiguration: ${inspect(
+        instrument.perpetual.internalCompositePriceConfiguration,
+        { depth: 9 }
+    )},
           dataSourceSpecForSettlementData: ${inspect(
         instrument.perpetual.dataSourceSpecForSettlementData,
         { depth: 5 }
@@ -213,7 +313,7 @@ function generatePerpetualInstrument(skeleton) {
         instrument.perpetual.dataSourceSpecForSettlementSchedule,
         { depth: 5 }
       )},
-          /* ${skeleton.properties.perpetual.properties.dataSourceSpecBinding.title} */
+          /* ${skeleton.properties.perpetual.properties.dataSourceSpecBinding.description} */
           dataSourceSpecBinding: ${inspect(instrument.perpetual.dataSourceSpecBinding, {
         depth: 10,
       })}
@@ -273,7 +373,8 @@ function newPerpetualMarket(skeleton, proposalSoFar) {
           ),
           markPriceConfiguration: generateMarkPriceConfiguration(
             skeleton.properties.changes.properties.markPriceConfiguration
-          )
+          ),
+          tickSize: "1"
         },
       },
     },
@@ -345,15 +446,19 @@ function newPerpetualMarket(skeleton, proposalSoFar) {
          depth: 19,
        }
      )},
-    // ${
-     skeleton.properties.changes.properties.markPriceConfiguration.description
-   }
-      markPriceConfiguration: ${inspect(
-     result.terms.newMarket.changes.markPriceConfiguration,
-     {
-       depth: 19,
-     }
-   )}
+     /* ${
+      skeleton.properties.changes.properties.markPriceConfiguration.description
+    } */
+       markPriceConfiguration: ${inspect(
+      result.terms.newMarket.changes.markPriceConfiguration,
+      {
+        depth: 19,
+      })},
+      // ${
+      skeleton.properties.changes.properties.tickSize.title
+    }
+    "tickSize": "1"
+    }
 }`;
 };
 

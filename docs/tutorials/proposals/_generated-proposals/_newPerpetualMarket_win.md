@@ -21,8 +21,76 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
       \"quoteName\": \"tEuro\",^
       \"marginFundingFactor\": \"0.9\",^
       \"interestRate\": \"0\",^
+      \"fundingRateScalingFactor\": \"1\",^
+      \"fundingRateLowerBound\": \"-0.001\",^
+      \"fundingRateUpperBound\": \"0.001\",^
       \"clampLowerBound\": \"0\",^
       \"clampUpperBound\": \"0\",^
+      \"internalCompositePriceConfiguration\": {^
+       \"decayWeight\": \"1\",^
+       \"decayPower\": \"1\",^
+       \"cashAmount\": \"5000000\",^
+       \"sourceWeights\": [^
+        \"0\",^
+        \"1\",^
+        \"0\",^
+        \"1\"^
+       ],^
+       \"sourceStalenessTolerance\": [^
+        \"1m0s\",^
+        \"1m0s\",^
+        \"1m0s\",^
+        \"1m0s\"^
+       ],^
+       \"compositePriceType\": \"COMPOSITE_PRICE_TYPE_WEIGHTED\",^
+       \"dataSourcesSpec\": [^
+        {^
+         \"external\": {^
+          \"ethOracle\": {^
+           \"address\": \"0x719abd606155442c21b7d561426d42bd0e40a776\",^
+           \"abi\": \"[{\\"inputs\\": [{\\"internalType\\": \\"bytes32\\", \\"name\\": \\"id\\", \\"type\\": \\"bytes32\\"}], \\"name\\": \\"getPrice\\", \\"outputs\\": [{\\"internalType\\": \\"int256\\", \\"name\\": \\"\\", \\"type\\": \\"int256\\" }], \\"stateMutability\\": \\"view\\", \\"type\\": \\"function\\"}]\",^
+           \"method\": \"getPrice\",^
+           \"args\": [^
+            \"elvB0rVq0CkEjNY5ZLOtJ3bq34Eu3BpDoxQGy1S/9ZI=\"^
+           ],^
+           \"trigger\": {^
+            \"timeTrigger\": {^
+             \"every\": \"60\"^
+            }^
+           },^
+           \"requiredConfirmations\": \"3\",^
+           \"filters\": [^
+            {^
+             \"key\": {^
+              \"name\": \"inj.price\",^
+              \"type\": \"TYPE_INTEGER\",^
+              \"numberDecimalPlaces\": \"18\"^
+             },^
+             \"conditions\": [^
+              {^
+               \"operator\": \"OPERATOR_GREATER_THAN\",^
+               \"value\": \"0\"^
+              }^
+             ]^
+            }^
+           ],^
+           \"normalisers\": [^
+            {^
+             \"name\": \"inj.price\",^
+             \"expression\": \"$[0]\"^
+            }^
+           ],^
+           \"sourceChainId\": \"100\"^
+          }^
+         }^
+        }^
+       ],^
+       \"dataSourcesSpecBinding\": [^
+        {^
+         \"priceSourceProperty\": \"inj.price\"^
+        }^
+       ]^
+      },^
       \"dataSourceSpecForSettlementData\": {^
        \"external\": {^
         \"ethOracle\": {^
@@ -84,15 +152,16 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      }^
     },^
     \"metadata\": [^
-     \"enactment:2024-03-12T12:17:41Z\",^
-     \"settlement:2024-03-11T12:17:41Z\",^
+     \"enactment:2024-03-26T15:21:44Z\",^
+     \"settlement:2024-03-25T15:21:44Z\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
      \"triggers\": [^
       {^
        \"horizon\": \"43200\",^
-       \"probability\": \"0.9999999\"^
+       \"probability\": \"0.9999999\",^
+       \"auctionExtension\": \"3600\"^
       }^
      ]^
     },^
@@ -144,11 +213,12 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      \"compositePriceType\": \"COMPOSITE_PRICE_TYPE_WEIGHTED\",^
      \"dataSourcesSpec\": [],^
      \"dataSourcesSpecBinding\": []^
-    }^
+    },^
+    \"tickSize\": \"1\"^
    }^
   },^
-  \"closingTimestamp\": 1710159461,^
-  \"enactmentTimestamp\": 1710245861^
+  \"closingTimestamp\": 1711380104,^
+  \"enactmentTimestamp\": 1711466504^
  }^
 }^
 }"

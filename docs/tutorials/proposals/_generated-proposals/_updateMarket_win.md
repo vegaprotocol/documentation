@@ -78,7 +78,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      \"triggers\": [^
       {^
        \"horizon\": \"43200\",^
-       \"probability\": \"0.9999999\"^
+       \"probability\": \"0.9999999\",^
+       \"auctionExtension\": \"3600\"^
       }^
      ]^
     },^
@@ -96,11 +97,12 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      \"commitmentMinTimeFraction\": \"0.1\",^
      \"performanceHysteresisEpochs\": \"10\",^
      \"slaCompetitionFactor\": \"0.2\"^
-    }^
+    },^
+    \"tickSize\": \"1\"^
    }^
   },^
-  \"closingTimestamp\": 1710159461,^
-  \"enactmentTimestamp\": 1710245861^
+  \"closingTimestamp\": 1711380104,^
+  \"enactmentTimestamp\": 1711466504^
  }^
 }^
 }"

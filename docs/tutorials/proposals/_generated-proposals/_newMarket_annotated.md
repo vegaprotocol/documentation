@@ -136,8 +136,8 @@
 
       // Optional new futures market metadata, tags.
       metadata: [
-       "enactment:2024-03-12T12:17:41Z",
-       "settlement:2024-03-11T12:17:41Z",
+       "enactment:2024-03-26T15:21:44Z",
+       "settlement:2024-03-25T15:21:44Z",
        "source:docs.vega.xyz"
       ],
 
@@ -151,6 +151,12 @@
 
          // Price monitoring probability level p. (string)
          probability: "0.9999999",
+
+
+         /* Price monitoring auction extension duration in seconds should the price
+          * breach its theoretical level over the specified horizon at the specified
+          * probability level. (string) */
+         auctionExtension: "3600",
         }
        ]
       },
@@ -226,7 +232,8 @@
        },
       },
 
-      // Mark price configuration.
+
+      /* Mark price configuration. */
       markPriceConfiguration: {
        // Decay weight used for calculation of mark price.
        decayWeight: "1",
@@ -238,7 +245,11 @@
        cashAmount: "5000000",
 
        // Weights for each composite price data source. (array)
-       sourceWeights: undefined,
+       sourceWeights: [
+        "0",
+        "1",
+        "0"
+       ],
 
        // For how long a price source is considered valid. One entry for each data source
        // such that the first is for the trade based mark price, the second is for the book based price
@@ -257,16 +268,19 @@
 
        // List of each price source and its corresponding binding (array)
        dataSourcesSpecBinding: []
-      }
+      },
+
+      // The market tick size defines the minimum change in quote price for the market
+      tickSize: "1"
      },
 
      // Timestamp as Unix time in seconds when voting closes for this proposal,
      // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-     closingTimestamp: 1710159461,
+     closingTimestamp: 1711380104,
 
      // Timestamp as Unix time in seconds when proposal gets enacted if passed,
      // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-     enactmentTimestamp: 1710245861,
+     enactmentTimestamp: 1711466504,
     }
    }
 ```

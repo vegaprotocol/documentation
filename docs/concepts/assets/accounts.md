@@ -31,13 +31,13 @@ You'll see references to your general account in various places, including under
 Assets that are held in any other type of account other than the general account can't be moved by you, though they may be used to support your trades or liquidity commitments. Your assets are still tied to your Vega public key, even if they are in an account you can't actively manage.
 
 ### Margin accounts
-Margin accounts temporarily hold assets that support a participant's trades on a market. <!--Depending on the margin mode you're using: isolated or cross margin, assets are held in diffferent accounts.-->
+Margin accounts temporarily hold assets that support a participant's trades on a market. Depending on the margin mode you're using: isolated or cross margin, assets are held in diffferent accounts.
 
 When you trade on a market, the required initial margin is moved from your general account to be used to support your order/position, and thus it can't be withdrawn.
-<!--
+
 Isolated margin mode:
 * Margin account: Used to hold margin for supporting open positions 
-* Order margin account: Used to hold margin for supporting open orders-->
+* Order margin account: Used to hold margin for supporting open orders
 
 Cross margin mode:
 * Margin account is used for both positions and orders

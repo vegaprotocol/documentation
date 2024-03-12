@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 title: Market types
+vega_network: MAINNET
 hide_title: false
 description: Understand the products supported by the network.
 ---

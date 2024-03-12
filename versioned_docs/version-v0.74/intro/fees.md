@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 title: Fees
+vega_network: MAINNET
 hide_title: false
 ---
 

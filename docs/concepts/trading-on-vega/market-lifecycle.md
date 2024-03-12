@@ -1,6 +1,7 @@
 ---
 sidebar_position: 8
 title: Market lifecycle
+vega_network: TESTNET
 hide_title: false
 description: See every stage possible for a proposed or live market.
 ---

@@ -488,7 +488,7 @@ function generateMarkPriceConfiguration(skeleton) {
         // ${s.cashAmount.description} (${s.cashAmount.type})
         cashAmount: "${config.cashAmount}",
         // ${s.sourceWeights.description} (${s.sourceWeights.type})
-        sourceWeights: ${JSON.stringify(config.sourceWeight)},
+        sourceWeights: ${JSON.stringify(config.sourceWeights)},
         // ${s.sourceStalenessTolerance.description.replaceAll('\n', '\n// ')} (${s.sourceStalenessTolerance.type})
         sourceStalenessTolerance: ${JSON.stringify(config.sourceStalenessTolerance)},
         // ${s.compositePriceType.description} (${s.compositePriceType.type})
@@ -674,7 +674,8 @@ function generatePriceMonitoringParameters(skeleton) {
     triggers: [
       {
         horizon: "43200",
-        probability: "0.9999999"      
+        probability: "0.9999999",
+        auctionExtension: "3600"
       },
     ],
   };
@@ -688,6 +689,9 @@ function generatePriceMonitoringParameters(skeleton) {
               horizon: "${params.triggers[0].horizon}",
               // ${skeleton.properties.triggers.items.properties.probability.description} (${skeleton.properties.triggers.items.properties.probability.type})
               probability: "${params.triggers[0].probability}",
+              /* ${skeleton.properties.triggers.items.properties.auctionExtension.description} (${skeleton.properties.triggers.items.properties.auctionExtension.type}) */
+              auctionExtension: "${params.triggers[0].auctionExtension}",
+
                           }
           ]
       }`;
@@ -825,7 +829,8 @@ function newMarket(skeleton, proposalSoFar) {
           ),
           markPriceConfiguration: generateMarkPriceConfiguration(
             skeleton.properties.changes.properties.markPriceConfiguration
-          )
+          ),
+          tickSize: "1"
         },
       },
     },
@@ -909,15 +914,19 @@ function newMarket(skeleton, proposalSoFar) {
               depth: 19,
             }
           )},
-         // ${
+         /* ${
           skeleton.properties.changes.properties.markPriceConfiguration.description
-        }
+        } */
            markPriceConfiguration: ${inspect(
           result.terms.newMarket.changes.markPriceConfiguration,
           {
             depth: 19,
-          }
-        )}
+          },
+        )},
+         // ${
+          skeleton.properties.changes.properties.tickSize.title
+        }
+        "tickSize": "1"
     }`;
   };
 

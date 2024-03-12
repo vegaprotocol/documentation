@@ -139,6 +139,12 @@
 
          // Price monitoring probability level p. (string)
          probability: "0.9999999",
+
+
+         /* Price monitoring auction extension duration in seconds should the price
+          * breach its theoretical level over the specified horizon at the specified
+          * probability level. (string) */
+         probability: "3600"
         }
        ]
       },
@@ -180,16 +186,19 @@
        // that achieved a higher SLA performance than them. (string)
        slaCompetitionFactor: "0.2",
       },
+
+      // The market tick size defines the minimum change in quote price for the market
+      tickSize: "1"
      },
     },
 
     // Timestamp as Unix time in seconds when voting closes for this proposal,
     // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-    closingTimestamp: 1710159461,
+    closingTimestamp: 1711380104,
 
     // Timestamp as Unix time in seconds when proposal gets enacted if passed,
     // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-    enactmentTimestamp: 1710245861,
+    enactmentTimestamp: 1711466504,
    }
   }
 ```

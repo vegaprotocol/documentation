@@ -7,6 +7,7 @@
 #
 # Additionally, a script is called to generate proposal documentation. It's not a docusaurus plugin.
 
+export NO_UPDATE_NOTIFIER="true"
 
 doc_version="v$(cat package.json | jq .version -r)"
 echo "Building: v${doc_version}"
@@ -53,8 +54,6 @@ echo ""
 # Now inject servers
 node --no-warnings --experimental-fetch scripts/build-pre-openapi-servers.js
 MAINNET=true node --no-warnings --experimental-fetch scripts/build-pre-openapi-servers.js
-
-export NO_UPDATE_NOTIFIER="true"
 
 yarn run generate-netparams
 

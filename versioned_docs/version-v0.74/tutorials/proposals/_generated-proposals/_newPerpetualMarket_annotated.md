@@ -39,11 +39,102 @@
       // Continuously compounded interest rate used in funding rate calculation, in the range [-1, 1].
       interestRate: "0",
 
+      // Factor applied to funding-rates. This scales the impact that spot price deviations have on funding payments.
+      fundingRateScalingFactor: "1",
+
+      // Lower bound for the funding-rate such that the funding-rate will never be lower than this value.
+      fundingRateLowerBound: "-0.001",
+
+      // Upper bound for the funding-rate such that the funding-rate will never be higher than this value.
+      fundingRateUpperBound: "0.001",
+
       // Lower bound for the clamp function used as part of the funding rate calculation, in the range [-1, 1].
       clampLowerBound: "0",
 
       // Upper bound for the clamp function used as part of the funding rate calculation, in the range [-1, 1].
       clampUpperBound: "0",
+      internalCompositePriceConfiguration: {
+       // Decay weight used for calculation of mark price.
+       decayWeight: "1",
+
+       // Decay power used for the calculation of mark price. (string)
+       decayPower: "1",
+
+       // Cash amount, in asset decimals, used for the calculation of the mark price from the order book. (string)
+       cashAmount: "5000000",
+
+       // Weights for each composite price data source. (array)
+       sourceWeights: [
+        "0",
+        "1",
+        "0",
+        "1"
+       ],
+
+       // For how long a price source is considered valid. One entry for each data source
+       // such that the first is for the trade based mark price, the second is for the book based price
+       // the third is for the first oracle, followed by more oracle data source staleness tolerance. (array)
+       sourceStalenessTolerance: [
+        "1m0s",
+        "1m0s",
+        "1m0s",
+        "1m0s"
+       ],
+
+       // Which method is used for the calculation of the composite price for the market. (string)
+       compositePriceType: "COMPOSITE_PRICE_TYPE_WEIGHTED",
+
+       // Additional price sources to be used for internal composite price calculation. (array)
+       dataSourcesSpec: [
+        {
+         external: {
+          ethOracle: {
+           address: "0x719abd606155442c21b7d561426d42bd0e40a776",
+           abi: "[{\"inputs\": [{\"internalType\": \"bytes32\", \"name\": \"id\", \"type\": \"bytes32\"}], \"name\": \"getPrice\", \"outputs\": [{\"internalType\": \"int256\", \"name\": \"\", \"type\": \"int256\" }], \"stateMutability\": \"view\", \"type\": \"function\"}]",
+           method: "getPrice",
+           args: [
+            "elvB0rVq0CkEjNY5ZLOtJ3bq34Eu3BpDoxQGy1S/9ZI="
+           ],
+           trigger: {
+            timeTrigger: {
+             every: "60"
+            }
+           },
+           requiredConfirmations: "3",
+           filters: [
+            {
+             key: {
+              name: "inj.price",
+              type: "TYPE_INTEGER",
+              numberDecimalPlaces: "18"
+             },
+             conditions: [
+              {
+               operator: "OPERATOR_GREATER_THAN",
+               value: "0"
+              }
+             ]
+            }
+           ],
+           normalisers: [
+            {
+             name: "inj.price",
+             expression: "$[0]"
+            }
+           ],
+           sourceChainId: "100"
+          }
+         }
+        }
+       ],
+
+       // List of each price source and its corresponding binding (array)
+       dataSourcesSpecBinding: [
+        {
+         priceSourceProperty: "inj.price"
+        }
+       ]
+      },
       dataSourceSpecForSettlementData: {
        // DataSourceDefinitionExternal is the top level object used for all external 
        // data sources. It contains one of any of the defined `SourceType` variants. 
@@ -60,7 +151,8 @@
          // The ABI of that contract.
          abi: "[{" inputs ":[]," name ":" latestRoundData "," outputs ":[{" internalType ":" int256 "," name ":" "," type ":" int256 "}]," stateMutability ":" view "," type ":" function "}]",
 
-         // Name of the method on the contract to call.
+
+         /* Name of the method on the contract to call. */
          method: "latestRoundData",
 
 
@@ -131,7 +223,7 @@
       },
 
 
-      /* undefined */
+      /* Binding between the data source spec and the settlement data. */
       dataSourceSpecBinding: {
        /* Name of the property in the source data that should be used for settlement data.
         * If it is set to "prices.BTC.value" for example, then the perpetual market will use the value of
@@ -143,8 +235,8 @@
 
      // Optional new futures market metadata, tags.
      metadata: [
-      "enactment:2024-03-11T17:17:04Z",
-      "settlement:2024-03-10T17:17:04Z",
+      "enactment:2024-03-20T19:04:25Z",
+      "settlement:2024-03-19T19:04:25Z",
       "source:docs.vega.xyz"
      ],
 
@@ -158,6 +250,12 @@
 
         // Price monitoring probability level p. (string)
         probability: "0.9999999",
+
+
+        /* Price monitoring auction extension duration in seconds should the price
+         * breach its theoretical level over the specified horizon at the specified
+         * probability level. (string) */
+        auctionExtension: "3600",
        }
       ]
      },
@@ -245,7 +343,11 @@
       cashAmount: "5000000",
 
       // Weights for each composite price data source. (array)
-      sourceWeights: undefined,
+      sourceWeights: [
+       "0",
+       "1",
+       "0"
+      ],
 
       // For how long a price source is considered valid. One entry for each data source
       // such that the first is for the trade based mark price, the second is for the book based price
@@ -269,11 +371,11 @@
 
     // Timestamp as Unix time in seconds when voting closes for this proposal,
     // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-    closingTimestamp: 1710091024,
+    closingTimestamp: 1710875065,
 
     // Timestamp as Unix time in seconds when proposal gets enacted if passed,
     // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-    enactmentTimestamp: 1710177424,
+    enactmentTimestamp: 1710961465,
    }
   }
 ```
