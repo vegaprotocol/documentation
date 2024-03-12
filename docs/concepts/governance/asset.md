@@ -7,7 +7,6 @@ description: Add assets or move network-held funds.
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-## Asset governance
 Assets need to be proposed and pass a governance vote before they can be used on the Vega network.
 
 The protocol currently supports adding ERC-20 assets. Those ERC-20 assets that are successfully validated and pass a governance vote are can be enabled via the Vega bridge. In practice, that means that assets on Vega are deposited from and withdrawn to Ethereum.
