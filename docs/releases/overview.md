@@ -18,7 +18,7 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
 
-## Pre-release versions v0.75.0-preview.4 and v0.75.0-preview.5 (combined)  | 2024-03-13
+## Pre-release versions v0.75.0-preview.4, v0.75.0-preview.5 and v0.75.0-preview.6 (combined)  | 2024-03-13
 This version was released to the Vega testnet on 13 March 2024.
 
 ### Bug fixes
@@ -29,6 +29,8 @@ This version was released to the Vega testnet on 13 March 2024.
 - When preparing for the 0.75 incentive on testnet it was found that the addition of the check so that the mark price calculation can trigger a price auction was causing the book-keeping of enter/leaving auctions for perpetuals to become out of sync. The protocol now tells the perpetual that it is leaving when we call `as.Left()`. It is then updated again to enter an auction if the price-monitoring is triggered. The perpetual then just handles this zero length interval. This was fixed in [issue 10858 ↗](https://github.com/vegaprotocol/vega/issues/10858).
 - After the deployment of 0.74.9 validators that use Sentry nodes were reporting a high RAM usage. It was found that in some cases nodes were submitted in many duplicate `NodeVoteCommand` commands. The window during which the node is expecting to see its own vote is currently a hard-coded to `v.lastSentVote.Add(10 * time.Second)`. This has been resolved by adding a config value and setting it to a higher value than the current hard-coded value. As a result the number of failed transactions (node votes) due to duplicate votes or invalid resource ID should decrease, along with RAM usage. This has been addressed in [issue 10862 ↗](https://github.com/vegaprotocol/vega/issues/10862).
 - A bug was found in the `EstimatePosition` collateral increase estimate API. It was found that the estimate returned from API and the actual difference between the general account balance is significantly different. This has now been addressed and the API estimate and actual difference is now the same. This was fixed in [issue 10852 ↗](https://github.com/vegaprotocol/vega/issues/10852).
+- During testing a snapshot restore was observed to have failed when pegged orders and iceberg pegged orders had been submitted. This bug has been fixed in [issue 10864 ↗](https://github.com/vegaprotocol/vega/issues/10864).
+- In a market sim fuzzing test a bug was found to cause a panic when converting an "unknown" event to a proto. The event binding for time weight event has now been fixed. This was resolved in [issue 10877 ↗](https://github.com/vegaprotocol/vega/issues/10877).
 
 
 ### Improvements
@@ -39,6 +41,8 @@ This version was released to the Vega testnet on 13 March 2024.
 - The validation for lower bound for margin factor has been updated. The protocol now allows, when switching to isolated margin mode, a valid value of the margin factor to be greater than `0`, but also greater than `max(risk factor long, risk factor short) + linear slippage factor`. This has been updated in [issue 10846 ↗](https://github.com/vegaprotocol/vega/issues/10846).
 - A new API has been created to expose the `notionalTimeWeightedAveragePosition` of a party. This is so that front end dApps can compare to the `notionalTimeWeightedAveragePositionRequirement` on the transfers API to see if they are eligible for rewards. THis has been added in [issue 10831 ↗](https://github.com/vegaprotocol/vega/issues/10831).
 - The `ethcall` engine will now send to core a dummy chain event if it hasn't sent anything to core in the past hour. It will contain just the last `eth-block-height` checked. This allows core to store in the snapshot a more up to date `last-seen` block height meaning that a node will "re-check" fewer ethereum blocks after a protocol upgrade. This will reduce RPC calls to Ethereum after periods of inactivity sourcing data if there are no markets sourcing data from Ethereum data sources. This improvement has bee made in [issue 10841 ↗](https://github.com/vegaprotocol/vega/issues/10841).
+- CometBFT has been updated to the [latest patch version](https://github.com/cometbft/cometbft/blob/v0.38.6/CHANGELOG.md#v0386), this has been carried out in [issue 10879 ↗](https://github.com/vegaprotocol/vega/issues/10879).
+
 
 ### API changes
 
@@ -47,7 +51,7 @@ This version was released to the Vega testnet on 13 March 2024.
 - `GetTimeWeightedNotionalPositionResponse` can now be queried for a `party_id` and `asset_id`.
 
 
-To review the changes in the last released version, see [here](https://github.com/vegaprotocol/vega/compare/v0.75.0-preview.3...v0.75.0-preview.5).
+To review the changes in the last released version, see [here](https://github.com/vegaprotocol/vega/compare/v0.75.0-preview.3...v0.75.0-preview.6).
 
 
 ## Pre-release version v0.75.0-preview.3  | 2024-03-06
