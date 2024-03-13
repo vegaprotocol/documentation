@@ -25,7 +25,7 @@ trigger, or product lifecycle trigger                | Exit conditions met per [
 <!--![Life cycle flow diagram](./0043-market-lifecycle-flow-diagram.svg)-->
 
 ## Market status: Proposed
-All markets must first be proposed by tokenholders by following the [governance process](../governance.md). Once a valid market proposal is accepted, the market can accept [liquidity commitments](../liquidity/provision.md). 
+All markets must first be proposed by tokenholders by following the [governance process](../governance/lifecycle.md). Once a valid market proposal is accepted, the market can accept [liquidity commitments](../liquidity/provision.md). 
 
 Voting begins and its state is `proposed`. Not every market that is proposed (and accepts liquidity) is guaranteed to exist, as it must get enough votes in favour from tokenholders.
 

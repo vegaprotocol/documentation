@@ -20,7 +20,7 @@ This is done by:
 The **binding** tells the market which field contains the value. The **spec** defines where this data will come from, and which values to pass through to the binding.
 
 :::note Read more: 
-* [Concept: Market governance](../concepts/governance.md#market-governance)
+* [Concept: Market governance](../concepts/governance/market.md)
 * [Tutorial: Proposing a market](./proposals/new-market-proposal.md)
 :::
 

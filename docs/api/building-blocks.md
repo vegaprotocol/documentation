@@ -77,7 +77,7 @@ Governance proposals used to add new assets and markets, as well as to suggest c
 | Get detailed information about a specific governance proposal using its ID | [Proposal](../api/rest/data-v2/trading-data-service-get-governance-data.api.mdx) | `GET /api/v2/governance`
 |||
 |How to submit proposals using command line | [Submitting proposals](../tutorials/proposals/index.md) | |
-| Understanding the concepts: Governance | [Vega governance](../concepts/governance.md) | 
+| Understanding the concepts: Governance | [Vega governance](../concepts/governance/index.md) | 
 
 ### Governance token
 VEGA token are used for taking part in network, market, asset and freeform governance, and to secure the network by nominating validators that run the network.
@@ -87,4 +87,4 @@ VEGA token are used for taking part in network, market, asset and freeform gover
 | See a list of votes | [List votes](../api/rest/data-v2/trading-data-service-list-votes.api.mdx) | `GET /api/v2/votes` |
 |||
 | How to nominate validators using the smart contracts | [Stake tokens](../tutorials/assets-tokens/staking-tokens.md) | 
-| Understand the concepts: Governance | [Vega governance](../concepts/governance.md) | 
+| Understand the concepts: Governance | [Vega governance](../concepts/governance/index.md) | 

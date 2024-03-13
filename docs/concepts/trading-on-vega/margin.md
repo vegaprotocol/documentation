@@ -128,7 +128,7 @@ If there is enough volume on the book, the slippage comes directly from the book
 
 :::note Read more
 [Concept: Closeouts](./market-protections.md#closeouts)
-[Concept: Risk model parameters](../governance.md#risk-models-and-parameters)
+[Concept: Risk model parameters](../governance/market.md#risk-models-and-parameters)
 :::
 
 ### Margin level: Initial

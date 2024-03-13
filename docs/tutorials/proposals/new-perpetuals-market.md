@@ -31,7 +31,7 @@ import TabItem from '@theme/TabItem';
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
 * A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true}/>   (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
-* Familiarity with [governance](../../concepts/governance.md) on Vega
+* Familiarity with [governance](../../concepts/governance/market.md) on Vega
 * Familiarity with using [Ethereum to provide data](../using-data-sources.md#ethereum-oracles)
 
 <!--You should also share your proposal idea in the [_Governance_ forum section ↗](https://community.vega.xyz/c/governance) before submitting it to the network.-->
@@ -195,11 +195,11 @@ Price monitoring uses the following properties:
 You can use a maximum of 5 sets of price monitoring parameters for a market.
 
 ### Risk model
-Choose the individual parameters for the [log-normal risk model](../../concepts/governance.md#log-normal-risk-model). You should ensure the risk model parameters represent the dynamics of the underlying instrument, and that the resulting margins strike the right balance between prudence and capital efficiency.
+Choose the individual parameters for the [log-normal risk model](../../concepts/governance/market.md#log-normal-risk-model). You should ensure the risk model parameters represent the dynamics of the underlying instrument, and that the resulting margins strike the right balance between prudence and capital efficiency.
 
 While you cannot define exactly how much margin (or leverage) is possible, you can influence the acceptable levels of market volatility.
 
-Read about the [risk models and parameters](../../concepts/governance.md#risk-models-and-parameters) before choosing your values.
+Read about the [risk models and parameters](../../concepts/governance/market.md#risk-models-and-parameters) before choosing your values.
 
 <NewMarketJSONRisk />
 The risk model uses the following properties: 

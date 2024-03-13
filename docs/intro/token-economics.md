@@ -27,4 +27,4 @@ Check active validators and their respective stakes and performances using the [
 
 Once staked, VEGA tokens also allow holders to vote on governance proposals, along with proposing their own changes. These proposals range from changing network parameter values to proposing entirely new markets. 
 
-Active proposals can be found on the [governance dApp proposals page ↗](https://token.vega.xyz/proposals) whilst a more in-depth guide to the various governance options can be found on the [governance](../concepts/governance.md) concepts page.
+Active proposals can be found on the [governance dApp proposals page ↗](https://token.vega.xyz/proposals) whilst a more in-depth guide to the various governance options can be found on the [governance](../concepts/governance/index.md) concepts page.

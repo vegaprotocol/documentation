@@ -25,12 +25,12 @@ You will typically need:
 
 - A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
 - A minimum amount of Vega tokens associated with that public key
-- Familiarity with [governance on Vega](../../concepts/governance.md)
+- Familiarity with [governance on Vega](../../concepts/governance/index.md)
 
 ## Proposal types
 
 This section includes sample proposals that you can amend and submit via the command line.
 
-<DocCardList items={useCurrentSidebarCategory().items}/>
+Read more about the lifecycle of a governance proposal in [the Concepts section](../../concepts/governance/lifecycle.md).
 
-Read more about the lifecycle of a governance proposal in [the Concepts section](../../concepts/governance.md).
+<DocCardList items={useCurrentSidebarCategory().items}/>
