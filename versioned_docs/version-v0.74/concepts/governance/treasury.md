@@ -13,7 +13,7 @@ Treasury assets can be used to fund trading rewards, team competitions, grants, 
 
 Anyone with enough VEGA tokens can vote on and submit proposals to [allocate treasury assets](#how-to-allocate-the-treasury) based on discussions in the community.
 
-* To vote a proposal, you need at least 1 VEGA, but the minimum amount can vary per proposal type. Check the [block explorer ↗](https://explorer.fairground.wtf/network-parameters) for each `minVoterBalance`.
+* To vote on a proposal, you need at least 1 VEGA, but the minimum amount can vary per proposal type. Check the [block explorer ↗](https://explorer.fairground.wtf/network-parameters) for each `minVoterBalance`.
 * How many VEGA you need to submit a proposal depends on the type. Check the [block explorer ↗](https://explorer.fairground.wtf/network-parameters) for each `minProposerBalance`.
 
 ## Treasury basics
@@ -57,9 +57,9 @@ Before submitting a proposal, make sure you understand the full [governance life
 
 ### Use governance to spend assets
 
-Assets can only be spend from the on-chain treasury by governance, when a [proposal to transfer assets](../assets/transfers.md#governance-initiated-transfers) is enacted. 
+Assets can only be spent from the on-chain treasury by governance, when a [proposal to transfer assets](../assets/transfers.md#governance-initiated-transfers) is enacted. 
 
-The most direct way to propose spending the assets is by submitting one of these proposals. In practice, community members almost always **discuss proposals on the[Vega community forums ↗](https://community.vega.xyz/) before submitting**, in order to incorporate community feedback into the proposal and ensure there's broad support before going through the effort of putting it on-chain.
+The most direct way to propose spending the assets is by submitting one of these proposals. In practice, community members almost always **discuss proposals on the [Vega community forums ↗](https://community.vega.xyz/) before submitting**, in order to incorporate community feedback into the proposal and ensure there's broad support before going through the effort of putting it on-chain.
 
 The proposal includes details about the specific account(s) or key(s) that you want to send assets to, as well as when to send, and how often. The transfer can be set to happen once or repeatedly.
 

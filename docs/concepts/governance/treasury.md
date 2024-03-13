@@ -13,7 +13,7 @@ Treasury assets can be used to fund trading rewards, team competitions, grants, 
 
 Anyone with enough VEGA tokens can vote and raise proposals to use treasury assets based on discussions in the community. 
 
-* To vote a proposal, you usually need at least 1 VEGA, but the amount may vary per proposal type. Check the [block explorer](https://explorer.fairground.wtf/network-parameters) for each `minVoterBalance`.
+* To vote on a proposal, you usually need at least 1 VEGA, but the amount may vary per proposal type. Check the [block explorer](https://explorer.fairground.wtf/network-parameters) for each `minVoterBalance`.
 * How many VEGA you need to submit a proposal depends on the proposal type. Check the [block explorer](https://explorer.fairground.wtf/network-parameters) for each `minProposerBalance`.
 
 ## Treasury basics
@@ -54,7 +54,7 @@ Read more about how these work in the [teams and games](../trading-on-vega/disco
 
 ### Use governance to spend assets
 
-Assets can only be spend from the on-chain treasury by governance, when a **[proposal to transfer assets](../assets/transfers.md#governance-initiated-transfers)** is enacted. 
+Assets can only be spent from the on-chain treasury by governance, when a **[proposal to transfer assets](../assets/transfers.md#governance-initiated-transfers)** is enacted. 
 
 The most direct way to propose spending the assets is by submitting one of these proposals. In practice, community members almost always discuss proposals on the **[Vega community forums ↗](https://community.vega.xyz/) before submitting**, in order to incorporate community feedback into the proposal and ensure there's broad support before going through the effort of putting it on-chain.
 
