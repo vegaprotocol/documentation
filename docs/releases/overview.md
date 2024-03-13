@@ -18,7 +18,39 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
 
-## Pre-release version v0.75.0 preview.3  | 2024-03-06
+## Pre-release versions v0.75.0-preview.4 and v0.75.0-preview.5 (combined)  | 2024-03-13
+This version was released to the Vega testnet on 13 March 2024.
+
+### Bug fixes
+
+- The `ListTransfers` API fails when given a cursor resulting in the API not always constructing valid queries and returns an internal error. This has been resolved in [issue 10837 ↗](https://github.com/vegaprotocol/vega/issues/10837).
+- During testing points markets in market-sim using numerous auction triggers, markets were entering auctions for the correct duration but being extended for incorrect durations. A fix has been introduced to only break single bound on auction exit. this was resolved in [issue 10823 ↗](https://github.com/vegaprotocol/vega/issues/10823).
+- It was identified that the command line wallet leaves terminal input invisible upon Ctrl-C at the wrong time. This has now been fixed in [issue 10055 ↗](https://github.com/vegaprotocol/vega/issues/10055).
+- When preparing for the 0.75 incentive on testnet it was found that the addition of the check so that the mark price calculation can trigger a price auction was causing the book-keeping of enter/leaving auctions for perpetuals to become out of sync. The protocol now tells the perpetual that it is leaving when we call `as.Left()`. It is then updated again to enter an auction if the price-monitoring is triggered. The perpetual then just handles this zero length interval. This was fixed in [issue 10858 ↗](https://github.com/vegaprotocol/vega/issues/10858).
+- After the deployment of 0.74.9 validators that use Sentry nodes were reporting a high RAM usage. It was found that in some cases nodes were submitted in many duplicate `NodeVoteCommand` commands. The window during which the node is expecting to see its own vote is currently a hard-coded to `v.lastSentVote.Add(10 * time.Second)`. This has been resolved by adding a config value and setting it to a higher value than the current hard-coded value. As a result the number of failed transactions (node votes) due to duplicate votes or invalid resource ID should decrease, along with RAM usage. This has been addressed in [issue 10862 ↗](https://github.com/vegaprotocol/vega/issues/10862).
+- A bug was found in the `EstimatePosition` collateral increase estimate API. It was found that the estimate returned from API and the actual difference between the general account balance is significantly different. This has now been addressed and the API estimate and actual difference is now the same. This was fixed in [issue 10852 ↗](https://github.com/vegaprotocol/vega/issues/10852).
+
+
+### Improvements
+
+- A spec update has been made to not update the book price during an auction. The new functionality now mean that when a futures, or perpetual, market is in a monitoring auction, book price is undefined with staleness increasing with time, the book price at auction uncrossing should be set to the price of the uncrossing trade, the mark price should only be recalculated when the auction exits, starting from only the last period indicated by `network.markPriceUpdateMaximumFrequency`. This was introduced in [issue 10810 ↗](https://github.com/vegaprotocol/vega/issues/10810).
+- The price monitoring engine has now been updated to be in-line with new mark-price-methodology. The price monitoring engine now tracks mark price evolution within the market. It is used to monitor trades as well as mark price update candidates. If any of these violates the bounds the market should go into auction and the transaction should get rejected. This was introduced in the following issues: [issue 10845 ↗](https://github.com/vegaprotocol/vega/issues/10845) and [issue 10392 ↗](https://github.com/vegaprotocol/vega/issues/10392).
+- The margin calculations have now been simplified. This has been done by removing the orderbook-based exit price calculation from margin calculation. This was carried out in [issue 10754 ↗](https://github.com/vegaprotocol/vega/issues/10754).
+- The validation for lower bound for margin factor has been updated. The protocol now allows, when switching to isolated margin mode, a valid value of the margin factor to be greater than `0`, but also greater than `max(risk factor long, risk factor short) + linear slippage factor`. This has been updated in [issue 10846 ↗](https://github.com/vegaprotocol/vega/issues/10846).
+- A new API has been created to expose the `notionalTimeWeightedAveragePosition` of a party. This is so that front end dApps can compare to the `notionalTimeWeightedAveragePositionRequirement` on the transfers API to see if they are eligible for rewards. THis has been added in [issue 10831 ↗](https://github.com/vegaprotocol/vega/issues/10831).
+- The `ethcall` engine will now send to core a dummy chain event if it hasn't sent anything to core in the past hour. It will contain just the last `eth-block-height` checked. This allows core to store in the snapshot a more up to date `last-seen` block height meaning that a node will "re-check" fewer ethereum blocks after a protocol upgrade. This will reduce RPC calls to Ethereum after periods of inactivity sourcing data if there are no markets sourcing data from Ethereum data sources. This improvement has bee made in [issue 10841 ↗](https://github.com/vegaprotocol/vega/issues/10841).
+
+### API changes
+
+- `TimeWeightedNotionalPosition` can now be queried for a `party_id` and `asset_id` at a given `at_epoch`.
+- `GetTimeWeightedNotionalPositionRequest` can now be queried for a `party_id` and `asset_id`.
+- `GetTimeWeightedNotionalPositionResponse` can now be queried for a `party_id` and `asset_id`.
+
+
+To review the changes in the last released version, see [here](https://github.com/vegaprotocol/vega/compare/v0.75.0-preview.3...v0.75.0-preview.5).
+
+
+## Pre-release version v0.75.0-preview.3  | 2024-03-06
 This version was released to the Vega testnet on 06 March 2024.
 
 ### Bug fixes
@@ -74,6 +106,7 @@ To see lower level details of how the new isolated margin feature is designed ch
 - When requesting multiple party IDs using REST, the API reported one or more invalid parties, however when requesting them individually, the given party IDs are valid and results are returned. The API was refactored to support this use case. This bug has been fixed in [issue 10780 ↗](https://github.com/vegaprotocol/vega/issues/10780).
 
 ### API changes
+
 - `list transfers request` query allows for optional `from account type` and `to account type` filtering
 - `submit transfer`/`submit transfer proposal` commands and `list transfers` query now include optional `capRewardFeeMultiple`
 - `new market proposal` and `update market proposal` commands and `list market` query now includes `tickSize` field
