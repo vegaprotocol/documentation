@@ -18,6 +18,13 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
 
+## Pre-release versions v0.75.0-preview.8  | 2024-03-13
+This version was released to the Vega testnet on 15 March 2024.
+
+### Bug fixes
+
+- Since the introduction of the notional time weighted average position of a party API, it was found that when calling this API endpoint it would result in a data node panic. It was found that the initialise `timeWeightedNotionalPositionService` and the `timeWeightedNotionalPositionStore` had not been initialised in the data node. The issues were fixed in [issue 10895 ↗](https://github.com/vegaprotocol/vega/issues/10895) and [issue 10897 ↗](https://github.com/vegaprotocol/vega/issues/10897) respectively.
+
 ## Pre-release versions v0.75.0-preview.4, v0.75.0-preview.5 and v0.75.0-preview.6 (combined)  | 2024-03-13
 This version was released to the Vega testnet on 13 March 2024.
 
