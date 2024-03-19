@@ -2,7 +2,7 @@
 sidebar_position: 2
 title: Change market state
 hide_title: true
-vega_network: TESTNET
+vega_network: MAINNET
 toc: true
 keywords:
   - proposal
@@ -117,7 +117,7 @@ In the tabs below you'll see:
   <TerminalInstructions />
 
  ```bash
-vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{
+vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 '{
  "rationale": {
   "title": "Suspend futures market LINK/USDT-230930",
   "description": "Proposal to suspend futures market"
@@ -140,7 +140,7 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network f
     <TerminalInstructions />
 
 ```bash
-vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --network fairground ^
+vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 ^
 "{ ^
  \"rationale\": { ^
   \"title\": \"Suspend futures market LINK/USDT-230930\", ^
@@ -234,7 +234,7 @@ In the tabs below you'll see:
   <TerminalInstructions />
 
 ```bash
-vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{
+vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 '{
   "rationale": {
   "title": "Resume suspended market ORANGES2023",
   "description": "Proposal to resume market"
@@ -257,7 +257,7 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network f
   <TerminalInstructions />
 
 ```bash
-vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --network fairground ^
+vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 ^
 "{ ^
  \"rationale\": { ^
   \"title\": \"Resume suspended futures market LINK/USDT-230930\", ^
@@ -354,7 +354,7 @@ In the tabs below you'll see:
   <TerminalInstructions />
 
 ```bash
-vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{
+vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 '{
  "rationale": {
   "title": "Terminate market ORANGES2023",
   "description": "Proposal to terminate market"
@@ -378,7 +378,7 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network f
   <TerminalInstructions />
 
 ```bash
-vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --network fairground ^
+vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 ^
 "{ ^
  \"rationale\": {^
   \"title\": \"Close futures market LINK/USDT-230930\", ^

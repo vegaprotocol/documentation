@@ -2,7 +2,7 @@
 sidebar_position: 2
 title: Data node infrastructure
 sidebar_label: Data node infrastructure
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 ---
 

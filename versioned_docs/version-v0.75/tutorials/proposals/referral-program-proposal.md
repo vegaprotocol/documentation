@@ -2,7 +2,7 @@
 sidebar_position: 10
 title: Enable or replace referral program
 hide_title: false
-vega_network: TESTNET
+vega_network: MAINNET
 keywords:
 - proposal
 - governance

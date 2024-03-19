@@ -1,7 +1,7 @@
 ---
 sidebar_position: 9
 title: Wallets and keys
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 ---
 import Topic from '/docs/topics/_topic-wallet.mdx'

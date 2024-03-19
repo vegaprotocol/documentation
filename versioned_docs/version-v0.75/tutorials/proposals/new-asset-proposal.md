@@ -2,7 +2,7 @@
 sidebar_position: 4
 title: New asset
 hide_title: true
-vega_network: TESTNET
+vega_network: MAINNET
 keywords:
 - proposal
 - governance

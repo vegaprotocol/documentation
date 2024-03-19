@@ -3,7 +3,7 @@ sidebar_position: 3
 title: Manage networks
 hide_title: false
 description: Set up network details to connect your wallet, update network details, and list the available networks
-vega_network: TESTNET
+vega_network: MAINNET
 ---
 
 import Tabs from '@theme/Tabs';

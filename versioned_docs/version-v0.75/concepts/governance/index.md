@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 title: Governance
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 description: Governance allows tokenholders to make on-chain decision.
 ---

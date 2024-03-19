@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 title: Taking part
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 description: Understanding the governance lifecycle.
 ---
@@ -57,7 +57,7 @@ Once the proposal details are refined, share the detailed proposal in the same t
 
 Including as much detail as possible gives other community members the opportunity to fully understand your proposal. Include the rationale for the proposal (and IPFS hash for more details), the specifics of the proposed addition/change, and the data (JSON or similar) that would be submitted on-chain. Invite debate and discussion to amend the proposal until it reaches a final state, ready to submit.
 
-When formalising the proposal, it is worth ensuring that any fields that are dependent on a range set by network parameters are correctly defined. See the network parameters and their values on the [Vega block explorer ↗](https://explorer.fairground.wtf/network-parameters).
+When formalising the proposal, it is worth ensuring that any fields that are dependent on a range set by network parameters are correctly defined. See the network parameters and their values on the [Vega block explorer ↗](https://explorer.vega.xyz/network-parameters).
 
 ### 3. Submitting proposal and telling the community (on-chain and off-chain)
 You can submit a governance proposal to the network using the command line, a script, or the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw).
@@ -76,8 +76,8 @@ After it's submitted and accepted, rally the community to vote on the proposal b
 
 #### Validating a proposal
 * The governance proposal is checked and then accepted by the wallet as a transaction.
-* The validator nodes then check and validate the proposal. This is when the proposal data that defines the minimum duration, minimum time to enactment, minimum participation rate, and required majority are evaluated against the network's requirements, defined by [network parameters ↗](https://explorer.fairground.wtf/network-parameters), which are different depending the type of proposal.
-* If not specified on the proposal, the required participation rate and majority for success are defined and copied to the proposal. You can find them under the [network parameters ↗](https://explorer.fairground.wtf/network-parameters), and they are specific to each proposal type.
+* The validator nodes then check and validate the proposal. This is when the proposal data that defines the minimum duration, minimum time to enactment, minimum participation rate, and required majority are evaluated against the network's requirements, defined by [network parameters ↗](https://explorer.vega.xyz/network-parameters), which are different depending the type of proposal.
+* If not specified on the proposal, the required participation rate and majority for success are defined and copied to the proposal. You can find them under the [network parameters ↗](https://explorer.vega.xyz/network-parameters), and they are specific to each proposal type.
 * If the above conditions are not met, the proposal will be rejected and will not be available for a vote. **You'll need to fix and re-submit the proposal.**
 
 ### 4. Voting (on-chain)
@@ -88,7 +88,7 @@ Read more about [voting](#voting-on-proposals).
 ### 5. Enacting changes (on-chain)
 If a proposal receives enough token weight in favour within the enactment period, the change/addition is accepted (except for a freeform proposal), and will be enacted on the enactment date defined in the proposal.
 
-Note the enactment date must be at least the minimum enactment period for the proposal type/subtype (specified by a network parameter for each proposal type) after voting closes. See the network parameters and their values on the [Vega block explorer ↗](https://explorer.fairground.wtf/network-parameters).
+Note the enactment date must be at least the minimum enactment period for the proposal type/subtype (specified by a network parameter for each proposal type) after voting closes. See the network parameters and their values on the [Vega block explorer ↗](https://explorer.vega.xyz/network-parameters).
 
 ## Submitting proposals in a batch
 You can submit governance proposals individually, or batch up the proposed changes into one proposal.
@@ -119,7 +119,7 @@ Each type of governance proposal can have different thresholds, though they fit 
 As these thresholds are network parameters, their values can be changed through governance.
 
 :::tip Query for data
-**[Block explorer ↗](https://explorer.fairground.wtf)**: See the current network parameter values (in some cases, different per network). 
+**[Block explorer ↗](https://explorer.vega.xyz)**: See the current network parameter values (in some cases, different per network). 
 
 **[REST](../../api/rest/state/core-state-service-list-network-parameters.api.mdx)** The API provides the network parameters and their values.
 :::

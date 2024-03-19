@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
 title: Host Console on IPFS
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 description: Host the trading interface on IPFS.
 ---

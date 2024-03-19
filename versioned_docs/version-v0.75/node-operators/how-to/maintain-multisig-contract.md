@@ -3,7 +3,7 @@ sidebar_position: 10
 title: Maintain the multisig contract
 sidebar_label: Maintain multisig contract
 hide_title: false
-vega_network: TESTNET
+vega_network: MAINNET
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

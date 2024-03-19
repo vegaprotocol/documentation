@@ -2,7 +2,7 @@
 sidebar_position: 12
 title: Request a freeform change
 hide_title: true
-vega_network: TESTNET
+vega_network: MAINNET
 keywords:
 - proposal
 - governance

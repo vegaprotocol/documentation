@@ -1,7 +1,7 @@
 ---
 sidebar_position: 6
 title: Network parameters
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 description: Change network configuration parameters.
 ---
@@ -15,7 +15,7 @@ Network parameters can only be added and removed with Vega core software release
 
 :::note Go deeper
 * [Concept: Network parameters](../vega-chain/network.md#parameters)
-* [Network parameters: See full list on the block explorer ↗](https://explorer.fairground.wtf/network-parameters)
+* [Network parameters: See full list on the block explorer ↗](https://explorer.vega.xyz/network-parameters)
 * [Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)
 :::
 

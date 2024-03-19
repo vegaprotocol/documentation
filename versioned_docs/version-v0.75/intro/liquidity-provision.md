@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
 title: Liquidity provision
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: true
 ---
 

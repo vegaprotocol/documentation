@@ -2,7 +2,7 @@
 title: Stake tokens
 sidebar_position: 1
 hide_title: false
-vega_network: TESTNET
+vega_network: MAINNET
 description: Stake unlocked tokens with Vega Wallet and smart contracts
 ---
 
@@ -51,7 +51,7 @@ Nominate a validator by sending a transaction with the Vega Wallet:
   <TabItem value="cmd" label="Command line (Linux / OSX)">
 
 ```bash
-vegawallet transaction send --wallet "WALLET_NAME" --pubkey "VEGA_PUBKEY" --network fairground '{
+vegawallet transaction send --wallet "WALLET_NAME" --pubkey "VEGA_PUBKEY" --network mainnet1 '{
   "delegateSubmission": {
     "nodeId":"INSERT_NODE_ID_FOR_NOMINATION",
     "amount":"1000000000000000000"
@@ -63,7 +63,7 @@ vegawallet transaction send --wallet "WALLET_NAME" --pubkey "VEGA_PUBKEY" --netw
   <TabItem value="win" label="Command line (Windows)">
 
 ```bash
-vegawallet.exe transaction send --wallet "WALLET_NAME" --pubkey "VEGA_PUBKEY" --network fairground ^
+vegawallet.exe transaction send --wallet "WALLET_NAME" --pubkey "VEGA_PUBKEY" --network mainnet1 ^
 "{\"delegateSubmission\": ^
     { ^
         \"nodeId\":\"INSERT_NODE_ID_FOR_NOMINATION", ^

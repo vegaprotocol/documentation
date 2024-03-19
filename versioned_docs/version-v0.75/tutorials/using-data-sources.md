@@ -186,7 +186,7 @@ When submitting the `OracleDataSubmission`, make sure to specify the `source` fi
 vegawallet transaction send \
     --wallet oracle-wallet \
     --pubkey 123abc \
-    --network fairground \
+    --network mainnet1 \
     '{"oracleDataSubmission": { "source": "ORACLE_SOURCE_OPEN_ORACLE", "payload":"INSERT_PAYLOAD_STRING" }}'
 ```
 
@@ -197,7 +197,7 @@ vegawallet transaction send \
 vegawallet.exe transaction send \
     --wallet oracle-wallet \
     --pubkey 123abc \
-    --network fairground \
+    --network mainnet1 \
     '{"oracleDataSubmission": { "source": "ORACLE_SOURCE_OPEN_ORACLE", "payload":"INSERT_PAYLOAD_STRING" }}'
 ```
 
@@ -304,7 +304,7 @@ When submitting the `OracleDataSubmission`, make sure to specify the `source` fi
 vegawallet transaction send \
     --wallet oracle-wallet \
     --pubkey 123abc \
-    --network fairground \
+    --network mainnet1 \
     '{"oracleDataSubmission": { "source": "ORACLE_SOURCE_JSON", "payload":"RESPONSE_PAYLOAD" }}'
 ```
 
@@ -315,7 +315,7 @@ vegawallet transaction send \
 vegawallet.exe transaction send \
     --wallet oracle-wallet \
     --pubkey 123abc \
-    --network fairground \
+    --network mainnet1 \
     '{"oracleDataSubmission": { "source": "ORACLE_SOURCE_JSON", "payload":"RESPONSE_PAYLOAD" }}'
 ```
 

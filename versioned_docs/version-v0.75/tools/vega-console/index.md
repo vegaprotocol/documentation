@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 title: Vega Console
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 description: Learn about the Console trading interface
 ---

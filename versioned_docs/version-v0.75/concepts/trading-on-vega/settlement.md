@@ -1,7 +1,7 @@
 ---
 sidebar_position: 7
 title: Settlement
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 description: The automated settlement process is facilitated by the protocol.
 ---

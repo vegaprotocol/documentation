@@ -1,7 +1,7 @@
 ---
 sidebar_position: 6
 title: Orders
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 description: See the order types and when they're applicable for a market.
 ---

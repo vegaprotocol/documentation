@@ -1,6 +1,6 @@
 ---
 title: Governance proposals
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 keywords:
 - proposal

@@ -1,7 +1,7 @@
 ---
 sidebar_position: 9
 title: Transferring assets
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: true
 keywords:
 - proposal
