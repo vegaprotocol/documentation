@@ -1,0 +1,45 @@
+---
+id: core-state-service-list-network-limits
+title: "Network limits list"
+description: "Get a list of network limits. This endpoint may not be exposed by mainnet nodes."
+sidebar_label: "Network limits list"
+hide_title: true
+hide_table_of_contents: true
+api: eJy1Vt9P2zAQ/lesPG0SSzu2AeJpaNoQEpvQgL2gabom18Tg2J59aakq/vfdOYWWpiAQ7CmJfd/9+O67a+dZwOidjRiz/Xm2PRzKo3CW0JK8gvdGF0Da2cFldFbOYlFjA/Lmg/MYSHdoizR14epYN5pi/7oAe8IHLuJBjJi8lxiLoL14z/azg4AK5Er5ZAcmKjDGTbFUQIpqHZV32pLSVpFuMM+2Mpp5ZOzIOYNgs5utlTjfIVw9FKhJd68V6QSDR2rBPBbS3xq9cvBT7+ixuNxgepWQFVqMOh47KLHsxzoLLSpnC2SHqBbGaqwNKn6ahNrs2K/o4quFkdnkfpM8sDPmqF0RRQ3aPjnGt+CaDWVw/ZGg8ULGudXXyoJlJE9FGYWuaa2LupfKVBujRniX0psh40uZHYzKcgfY/K2kNnahAW5VxnzvfFzmGiloW62k2vX0UT56XX0+IfeivIiRXjKvRglnS5qMHP3olowyactsqRLH2rJvEe6a6pZ+3OgSC+r83DtZ+p28P9aRfqyusJ+L1cg4Bq6Rr2JbFBjjuDXqdofmWbIbQ2voBXu0cCXKc5WVD9vLavgTKwxdMAJtEkoTNukFylJLHDAnq24XHV+G+dy5m28i+wGS2AG5UTs+sLNsaQYhQPpmlUSonumzcq4yvBmLUwJq40ayrWotXnsGcqcxBBdWORfnUHFNF9kXF1D84CmGiS4w+73u65AVCqyeSMqNlb2nplydycygLbtl2MAsyVQkfC2zUqrRjE+1ZRzfsGdRr5CaOnvEU9pL4U9PV5kwRbUT6wqFCw9U88dgkc7A3NpF9oFBSptnbTBsUxP5uD8Y2OEw5zEihuQTrCAPrrgSyP1y2Yw70wfvPA28sxG8+zTw7kbw3tPAe9kN907bsUtyWojlF0NU4eRHTShWBydHAhaOOuBkmO9+yofvfMCJxmn+fphWnYvUQBo6C01/jSQ9rCexMr//QzWLeSC8poE3fCuJJrLmCz1c3P6jYuuFIpiSmmuRu/l8BBHPg7m5keO/LYYZn/PrBIKWhStf7LNG/uENSUJXOJNx4sXlpdwJmDYN8PpyEurvJHr49Yxn7B9KzpOz
+sidebar_class_name: "get api-method"
+info_path: api/rest/state/vega-core-state-apis
+custom_edit_url: "https://github.com/vegaprotocol/documentation/issues/new?labels=documentation&title=[Documentation] Requesting changes to 'Network limits list' (core-state-service-list-network-limits)"
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Network limits list</h1>
+
+<MethodEndpoint method={"get"} path={"/network/limits"}></MethodEndpoint>
+
+
+
+Get a list of network limits. This endpoint may not be exposed by mainnet nodes.
+
+## Request
+
+<div><div><ApiTabs label={undefined} id={undefined}><TabItem label={"200"} value={"200"}><div>
+
+A successful response.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>networkLimits</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"canProposeAsset"} required={false} schemaName={"boolean"} qualifierMessage={undefined} schema={{"description":"Are asset proposals allowed at this point in time.","type":"boolean"}}></SchemaItem><SchemaItem collapsible={false} name={"canProposeMarket"} required={false} schemaName={"boolean"} qualifierMessage={undefined} schema={{"description":"Are market proposals allowed at this point in time.","type":"boolean"}}></SchemaItem><SchemaItem collapsible={false} name={"canProposePerpetualMarket"} required={false} schemaName={"boolean"} qualifierMessage={undefined} schema={{"description":"Are perpetual market proposals allowed at this point in time.","type":"boolean"}}></SchemaItem><SchemaItem collapsible={false} name={"canProposeSpotMarket"} required={false} schemaName={"boolean"} qualifierMessage={undefined} schema={{"description":"Are spot market proposals allowed at this point in time.","type":"boolean"}}></SchemaItem><SchemaItem collapsible={false} name={"genesisLoaded"} required={false} schemaName={"boolean"} qualifierMessage={undefined} schema={{"description":"True once the genesis file is loaded.","type":"boolean"}}></SchemaItem><SchemaItem collapsible={false} name={"proposeAssetEnabled"} required={false} schemaName={"boolean"} qualifierMessage={undefined} schema={{"description":"Are asset proposals enabled on this chain.","type":"boolean"}}></SchemaItem><SchemaItem collapsible={false} name={"proposeAssetEnabledFrom"} required={false} schemaName={"int64"} qualifierMessage={undefined} schema={{"description":"Timestamp in Unix nanoseconds at which asset proposals will be enabled (0 indicates not set).","format":"int64","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"proposeMarketEnabled"} required={false} schemaName={"boolean"} qualifierMessage={undefined} schema={{"description":"Are market proposals enabled on this chain.","type":"boolean"}}></SchemaItem><SchemaItem collapsible={false} name={"proposeMarketEnabledFrom"} required={false} schemaName={"int64"} qualifierMessage={undefined} schema={{"description":"Timestamp in Unix nanoseconds at which market proposals will be enabled (0 indicates not set).","format":"int64","type":"string"}}></SchemaItem></div></details></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"networkLimits\": {\n    \"canProposeAsset\": true,\n    \"canProposeMarket\": true,\n    \"canProposePerpetualMarket\": true,\n    \"canProposeSpotMarket\": true,\n    \"genesisLoaded\": true,\n    \"proposeAssetEnabled\": true,\n    \"proposeAssetEnabledFrom\": \"string\",\n    \"proposeMarketEnabled\": true,\n    \"proposeMarketEnabledFrom\": \"string\"\n  }\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"default"} value={"default"}><div>
+
+An unexpected error response.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"code"} required={false} schemaName={"int32"} qualifierMessage={undefined} schema={{"format":"int32","type":"integer"}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>details</strong><span className={"openapi-schema__name"}> object[]</span></span></summary><div style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"@type"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={false} name={"message"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"code\": 0,\n  \"details\": [\n    {\n      \"@type\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
