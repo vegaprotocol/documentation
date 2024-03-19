@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Vega block explorer APIs",
-    "version": "v0.75.0-preview.2"
+    "version": "v0.75.0"
   },
   "tags": [
     {
@@ -2355,6 +2355,10 @@
           "type": "string",
           "format": "uint64",
           "description": "Source chain for this chain event."
+        },
+        "heartbeat": {
+          "type": "boolean",
+          "description": "If true the event does not correspond to a contract call and is only a notification to core of the last checked block height."
         }
       },
       "title": "Result of calling an arbitrary Ethereum contract method"

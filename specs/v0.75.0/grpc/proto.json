@@ -850,6 +850,18 @@
               "isoneof": true,
               "oneofdecl": "_source_chain_id",
               "defaultValue": ""
+            },
+            {
+              "name": "heartbeat",
+              "description": "If true the event does not correspond to a contract call and is only a notification to core of the last checked block height.",
+              "label": "",
+              "type": "bool",
+              "longType": "bool",
+              "fullType": "bool",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
@@ -4297,12 +4309,17 @@
             {
               "name": "STATUS_CANCELLED",
               "number": "2",
-              "description": "Deposit has been cancelled by the network"
+              "description": "Deposit has been cancelled or failed to be verified by the network"
             },
             {
               "name": "STATUS_FINALIZED",
               "number": "3",
               "description": "Deposit has been finalised and accounts have been updated"
+            },
+            {
+              "name": "STATUS_DUPLICATE_REJECTED",
+              "number": "4",
+              "description": "Deposit has been rejected as a duplicate transaction."
             }
           ]
         },
@@ -19879,6 +19896,11 @@
               "description": "Event indicating that teams' statistics have been updated."
             },
             {
+              "name": "BUS_EVENT_TYPE_TIME_WEIGHTED_NOTIONAL_POSITION_UPDATED",
+              "number": "88",
+              "description": "Event indicating time weighted notional position has been updated."
+            },
+            {
               "name": "BUS_EVENT_TYPE_MARKET",
               "number": "101",
               "description": "Event indicating a market related event, for example when a market opens"
@@ -21249,6 +21271,18 @@
               "type": "TeamsStatsUpdated",
               "longType": "TeamsStatsUpdated",
               "fullType": "vega.events.v1.TeamsStatsUpdated",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "event",
+              "defaultValue": ""
+            },
+            {
+              "name": "time_weighted_notional_position_updated",
+              "description": "Event notifying an update of the time weighted notional position for a party in an asset",
+              "label": "",
+              "type": "TimeWeightedNotionalPositionUpdated",
+              "longType": "TimeWeightedNotionalPositionUpdated",
+              "fullType": "vega.events.v1.TimeWeightedNotionalPositionUpdated",
               "ismap": false,
               "isoneof": true,
               "oneofdecl": "event",
@@ -25353,6 +25387,78 @@
               "type": "int64",
               "longType": "int64",
               "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "TimeWeightedNotionalPositionUpdated",
+          "longName": "TimeWeightedNotionalPositionUpdated",
+          "fullName": "vega.events.v1.TimeWeightedNotionalPositionUpdated",
+          "description": "Time weighted notional position update for the current epoch.\nThe time weighted notional position is used to determine whether\na party is eligible for receiving rewards at the end of an epoch.\nThese updates are provided to facilitate knowing whether or not a party\nis on track to qualify.",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "epoch_seq",
+              "description": "Epoch the time weighted notional position is relevant for",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "asset",
+              "description": "Asset ID for the position's settlement asset.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "party",
+              "description": "Party holding the position",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "game_id",
+              "description": "Game ID the time weighted notional position is calculated for.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "time_weighted_notional_position",
+              "description": "Time weighted notional position from the end of the most recently completed epoch.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -32452,6 +32558,90 @@
           ]
         },
         {
+          "name": "GetTimeWeightedNotionalPositionRequest",
+          "longName": "GetTimeWeightedNotionalPositionRequest",
+          "fullName": "datanode.api.v2.GetTimeWeightedNotionalPositionRequest",
+          "description": "Request to retrieve the time weighted notional position for a party and asset.\nIf no epoch is given, the time weighted notional position at the end of the most recently completed epoch will be returned.\nIf an epoch is given, the time weighted notional position achieved by the end of the given epoch will be returned.",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": true,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "asset_id",
+              "description": "Asset ID to filter for.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "party_id",
+              "description": "Party ID to filter for.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "game_id",
+              "description": "Game ID to filter for.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "at_epoch",
+              "description": "Epoch to filter for.",
+              "label": "optional",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "_at_epoch",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "GetTimeWeightedNotionalPositionResponse",
+          "longName": "GetTimeWeightedNotionalPositionResponse",
+          "fullName": "datanode.api.v2.GetTimeWeightedNotionalPositionResponse",
+          "description": "Response containing the time weighted notional position for a party and asset.",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "time_weighted_notional_position",
+              "description": "Time weighted notional position for the party and asset.",
+              "label": "",
+              "type": "TimeWeightedNotionalPosition",
+              "longType": "TimeWeightedNotionalPosition",
+              "fullType": "datanode.api.v2.TimeWeightedNotionalPosition",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "GetTotalTransferFeeDiscountRequest",
           "longName": "GetTotalTransferFeeDiscountRequest",
           "fullName": "datanode.api.v2.GetTotalTransferFeeDiscountRequest",
@@ -34068,7 +34258,7 @@
             },
             {
               "name": "date_range",
-              "description": "Date range over which to query.",
+              "description": "Date range over which to query. If a cursor is not provided in the pagination controls,\nthe date range must be provided with a start or end date, or both.\nThe date range is inclusive of the start date and exclusive of the end date.\nThe date range must be no more than 1 year in duration.\nDates before 2020-01-01 will not be accepted.",
               "label": "optional",
               "type": "DateRange",
               "longType": "DateRange",
@@ -43131,6 +43321,90 @@
           ]
         },
         {
+          "name": "TimeWeightedNotionalPosition",
+          "longName": "TimeWeightedNotionalPosition",
+          "fullName": "datanode.api.v2.TimeWeightedNotionalPosition",
+          "description": "Time weighted notional position for a party and asset at a given epoch. It is used as a metric to calculate whether\nthe party is eligible for receiving a reward.",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "asset_id",
+              "description": "Asset ID for the settlement asset associated with the position.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "party_id",
+              "description": "Party ID for the party associated with the position.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "game_id",
+              "description": "Game ID for the game associated with the position.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "at_epoch",
+              "description": "Epoch at which the time weighted notional position is calculated.",
+              "label": "",
+              "type": "uint64",
+              "longType": "uint64",
+              "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "time_weighted_notional_position",
+              "description": "Time weighted notional position for the party and asset.",
+              "label": "",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "last_updated",
+              "description": "Vega time of the block in which the last position update occurred.",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
           "name": "TradeConnection",
           "longName": "TradeConnection",
           "fullName": "datanode.api.v2.TradeConnection",
@@ -45101,6 +45375,18 @@
               "responseType": "ListPartyMarginModesResponse",
               "responseLongType": "ListPartyMarginModesResponse",
               "responseFullType": "datanode.api.v2.ListPartyMarginModesResponse",
+              "responseStreaming": false
+            },
+            {
+              "name": "GetTimeWeightedNotionalPosition",
+              "description": "Get time weighted notional position\n\nGet the time weighted notional position for a given party and asset. The time weighted notional position\nis used to check if a party qualifies for a reward.\nIf no epoch is specified, the final time weighted notional position from the end of the most recently completed epoch is returned.\nIf an epoch is specified, the final time weighted notional position at that epoch is returned.",
+              "requestType": "GetTimeWeightedNotionalPositionRequest",
+              "requestLongType": "GetTimeWeightedNotionalPositionRequest",
+              "requestFullType": "datanode.api.v2.GetTimeWeightedNotionalPositionRequest",
+              "requestStreaming": false,
+              "responseType": "GetTimeWeightedNotionalPositionResponse",
+              "responseLongType": "GetTimeWeightedNotionalPositionResponse",
+              "responseFullType": "datanode.api.v2.GetTimeWeightedNotionalPositionResponse",
               "responseStreaming": false
             },
             {
@@ -51399,6 +51685,18 @@
               "isoneof": false,
               "oneofdecl": "",
               "defaultValue": ""
+            },
+            {
+              "name": "misc",
+              "description": "",
+              "label": "",
+              "type": "EthOracleVerifierMisc",
+              "longType": "EthOracleVerifierMisc",
+              "fullType": "vega.snapshot.v1.EthOracleVerifierMisc",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
             }
           ]
         },
@@ -52403,6 +52701,78 @@
               "type": "uint64",
               "longType": "uint64",
               "fullType": "uint64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "EthOracleVerifierMisc",
+          "longName": "EthOracleVerifierMisc",
+          "fullName": "vega.snapshot.v1.EthOracleVerifierMisc",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "buckets",
+              "description": "",
+              "label": "repeated",
+              "type": "EthVerifierBucket",
+              "longType": "EthVerifierBucket",
+              "fullType": "vega.snapshot.v1.EthVerifierBucket",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "patch_block",
+              "description": "",
+              "label": "",
+              "type": "EthOracleVerifierLastBlock",
+              "longType": "EthOracleVerifierLastBlock",
+              "fullType": "vega.snapshot.v1.EthOracleVerifierLastBlock",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            }
+          ]
+        },
+        {
+          "name": "EthVerifierBucket",
+          "longName": "EthVerifierBucket",
+          "fullName": "vega.snapshot.v1.EthVerifierBucket",
+          "description": "",
+          "hasExtensions": false,
+          "hasFields": true,
+          "hasOneofs": false,
+          "extensions": [],
+          "fields": [
+            {
+              "name": "ts",
+              "description": "",
+              "label": "",
+              "type": "int64",
+              "longType": "int64",
+              "fullType": "int64",
+              "ismap": false,
+              "isoneof": false,
+              "oneofdecl": "",
+              "defaultValue": ""
+            },
+            {
+              "name": "hashes",
+              "description": "",
+              "label": "repeated",
+              "type": "string",
+              "longType": "string",
+              "fullType": "string",
               "ismap": false,
               "isoneof": false,
               "oneofdecl": "",
@@ -56999,6 +57369,18 @@
               "type": "L2EthOracles",
               "longType": "L2EthOracles",
               "fullType": "vega.snapshot.v1.L2EthOracles",
+              "ismap": false,
+              "isoneof": true,
+              "oneofdecl": "data",
+              "defaultValue": ""
+            },
+            {
+              "name": "eth_oracle_verifier_misc",
+              "description": "",
+              "label": "",
+              "type": "EthOracleVerifierMisc",
+              "longType": "EthOracleVerifierMisc",
+              "fullType": "vega.snapshot.v1.EthOracleVerifierMisc",
               "ismap": false,
               "isoneof": true,
               "oneofdecl": "data",
