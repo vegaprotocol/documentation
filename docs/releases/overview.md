@@ -18,6 +18,21 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
 
+## Pre-release versions v0.75.0-preview.9 and v0.75.0-preview.10 (combined)  | 2024-03-18
+This version was released to the Vega testnet on 18 March 2024.
+
+### Bug fixes
+
+- In a previous release, [issue 10852 ↗](https://github.com/vegaprotocol/vega/issues/10852) was introduced to handle an auction leaving and starting in the same block. However, it did not undo the cached value of the total time spent in complete auction periods, resulting in a core panic. This was resolved in [issue 10916 ↗](https://github.com/vegaprotocol/vega/issues/10916).
+- A mainnet alert raised a suspected duplicate deposit. While the duplicate event was caught and rejected by the validation, and thus would never finalise, the status in the API was still showing as `OPEN`. The API will now correctly update with the introduction of the fix in [issue 10915 ↗](https://github.com/vegaprotocol/vega/issues/10915).
+- A user submitted feedback regarding the `balances` API taking a very long time to return any values. It was found that when a `from` and `to` date range was not specified, the query performed a full table scan, posing a risk to data node stability. This has been resolved by requiring a date range be provided with a 'from' or 'to' date, and the period must not be greater than 1 year. This has been fixed in [issue 10910 ↗](https://github.com/vegaprotocol/vega/issues/10910).
+
+### API change
+- The `Get deposit`/ deposit status API now has a field for `STATUS_DUPLICATE_REJECTED`.
+
+To review the changes in the last released version, see [here](https://github.com/vegaprotocol/vega/compare/v0.75.0-preview.8...v0.75.0-preview.10).
+
+
 ## Pre-release versions v0.75.0-preview.8  | 2024-03-15
 This version was released to the Vega testnet on 15 March 2024.
 
