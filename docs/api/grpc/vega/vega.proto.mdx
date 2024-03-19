@@ -361,7 +361,7 @@ _**package** vega_
 
 
 ### `Deposit.Status`
-<ProtoEnum key={3} enumb={{"name":"Status","longName":"Deposit.Status","fullName":"vega.Deposit.Status","description":"Status of the deposit","values":[{"name":"STATUS_UNSPECIFIED","number":"0","description":"Default value, always invalid"},{"name":"STATUS_OPEN","number":"1","description":"Deposit is being processed by the network"},{"name":"STATUS_CANCELLED","number":"2","description":"Deposit has been cancelled by the network"},{"name":"STATUS_FINALIZED","number":"3","description":"Deposit has been finalised and accounts have been updated"}]}} />
+<ProtoEnum key={3} enumb={{"name":"Status","longName":"Deposit.Status","fullName":"vega.Deposit.Status","description":"Status of the deposit","values":[{"name":"STATUS_UNSPECIFIED","number":"0","description":"Default value, always invalid"},{"name":"STATUS_OPEN","number":"1","description":"Deposit is being processed by the network"},{"name":"STATUS_CANCELLED","number":"2","description":"Deposit has been cancelled or failed to be verified by the network"},{"name":"STATUS_FINALIZED","number":"3","description":"Deposit has been finalised and accounts have been updated"},{"name":"STATUS_DUPLICATE_REJECTED","number":"4","description":"Deposit has been rejected as a duplicate transaction."}]}} />
 
 
 ### `DispatchMetric`
