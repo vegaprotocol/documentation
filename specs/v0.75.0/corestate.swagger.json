@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Vega core state APIs",
-    "version": "v0.75.0-preview.2"
+    "version": "v0.75.0"
   },
   "tags": [
     {
