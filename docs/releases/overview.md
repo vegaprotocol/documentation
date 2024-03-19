@@ -27,6 +27,8 @@ This version was released to the Vega testnet on 18 March 2024.
 - A mainnet alert raised a suspected duplicate deposit. While the duplicate event was caught and rejected by the validation, and thus would never finalise, the status in the API was still showing as `OPEN`. The API will now correctly update with the introduction of the fix in [issue 10915 ↗](https://github.com/vegaprotocol/vega/issues/10915).
 - A user submitted feedback regarding the `balances` API taking a very long time to return any values. It was found that when a `from` and `to` date range was not specified, the query performed a full table scan, posing a risk to data node stability. This has been resolved by requiring a date range be provided with a 'from' or 'to' date, and the period must not be greater than 1 year. This has been fixed in [issue 10910 ↗](https://github.com/vegaprotocol/vega/issues/10910).
 
+### API change
+- The `Get deposit`/ deposit status API now has a field for `STATUS_DUPLICATE_REJECTED`.
 
 To review the changes in the last released version, see [here](https://github.com/vegaprotocol/vega/compare/v0.75.0-preview.8...v0.75.0-preview.10).
 
