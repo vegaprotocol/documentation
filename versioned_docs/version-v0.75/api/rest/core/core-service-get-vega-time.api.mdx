@@ -1,0 +1,45 @@
+---
+id: core-service-get-vega-time
+title: "Vega time"
+description: "Get current Vega time"
+sidebar_label: "Vega time"
+hide_title: true
+hide_table_of_contents: true
+api: eJylVMlu2zAQ/RWC50TWEseOTw2KIsgtaJIemgQxLY0kJhLJkpRjQ/C/d0byXhdI0ZM41Lw3bza23IIzWjlwfNLyOAzpk2rlQXk6CmMqmQovtRq8Oa3ozqUl1IJOxmoD1sse7WUNzovakJFrWwuk4FL5ywt+hn99BWg/bLyYBYPRMVBHz3TO0sZatNkPKAT5MeF2XpAxqZ7Vo5ILpoTSDlBn5s4YhmKwQMYK2DQajsOLUTIeXkVRFMdxkiRTlmrb55k55jWbxmEcnofReRI9RPEkCSfDq2Dr/nNKapeGxDpvpSr4arXT/31dsC6sL2ErOqVb5RqHJ20zqQRJpqIwzI48KS2mwH9o+36GieWAyIwUYZ7PfJP1M98J0LM3SD0KQAUZuNRKQ8XCP9fMNWkKzuVNxTZdDHjnl4um8v/RyVRncNzEJN6pQhMKsH0wL2TVoaSHujuILJMUR1R3+7TofRjmS0/Xnqr2Qfq76iOB17Mmv1ZLvnMT1orOxtFyovhHzkLrogJr0nucxMadLLZijYKFQSA2DNuGvd+rOZGLAnN64l+1hXuwc5kCfzmmuQF/MOPddKASKkrXmdsMvfYoXhGxGQtO6flSk0sBlIARvkRjsGZxiAFLKlre2Ar/lN4bNxkMVBgGHrcOZy+YI11gdfru+LE8dMMi/gm+/Bz48iR49Dnw6CR4/DnwmK+w1lLlun+H+r52FcbVB3Z9d0swqk4PmYfBaBiE5/i0zCV8BBElzo12vhbdZihRbynW5T0Iurdaf+3qet48LPzAVEIqitFl2K5b99S9mTQnJYYmu21nwsGjrVYruv7VgF3iPR7nwkoxo8SeXpCnBJHhBlKv32FJI4qPgaGpmIuq6ZbieOGpRtsJuvn2gHP7G46uDSI=
+sidebar_class_name: "get api-method"
+info_path: api/rest/core/vega-core-apis
+custom_edit_url: "https://github.com/vegaprotocol/documentation/issues/new?labels=documentation&title=[Documentation] Requesting changes to 'Vega time' (core-service-get-vega-time)"
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Vega time</h1>
+
+<MethodEndpoint method={"get"} path={"/time"}></MethodEndpoint>
+
+
+
+Get current Vega time
+
+## Request
+
+<div><div><ApiTabs label={undefined} id={undefined}><TabItem label={"200"} value={"200"}><div>
+
+A successful response.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"timestamp"} required={false} schemaName={"int64"} qualifierMessage={undefined} schema={{"format":"int64","title":"Timestamp representation of current VegaTime as represented in\nUnix nanoseconds, for example `1580473859111222333` corresponds to `2020-01-31T12:30:59.111222333Z`","type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"timestamp\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"default"} value={"default"}><div>
+
+An unexpected error response.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"code"} required={false} schemaName={"int32"} qualifierMessage={undefined} schema={{"format":"int32","type":"integer"}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>details</strong><span className={"openapi-schema__name"}> object[]</span></span></summary><div style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"@type"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={false} name={"message"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"code\": 0,\n  \"details\": [\n    {\n      \"@type\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
