@@ -3,7 +3,7 @@ title: Upgrade to 0.75
 sidebar_label: Upgrade to 0.75
 ---
 
-This guide describes the steps to upgrade from v0.74.10 to v0.75.0 using the protocol upgrade mechanism. See the changelogs for [v0.75.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.0) for information about breaking changes and new features.
+This guide describes the steps to upgrade from v0.74.10 to v0.75.1 using the protocol upgrade mechanism. See the changelogs for [v0.75.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.0) (and 0.75.1 coming soon) for information about breaking changes and new features.
 
 ## Assumptions for the guide
 The instructions below are written for Debian-like Linux operating systems.
@@ -54,6 +54,8 @@ We recommend checking all of the changes on your own. Follow the below instructi
   - comet BFT config
   - data-node config
 3. Compare the new generated file in the temp location and the old file to see the differences.
+
+Note: For the mainnet release, you'll need to download vega `v0.75.1` when it's available.
 
 ## Upgrade your node
 To upgrade the network follow the [protocol upgrade documentation](../how-to/upgrade-network.md).
