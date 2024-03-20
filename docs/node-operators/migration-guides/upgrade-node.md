@@ -3,7 +3,7 @@ title: Upgrade to 0.75
 sidebar_label: Upgrade to 0.75
 ---
 
-This guide describes the steps to upgrade from v0.74.10 to v0.75.1 using the protocol upgrade mechanism. See the changelogs for [v0.75.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.0) (and 0.75.1 coming soon) for information about breaking changes and new features.
+This guide describes the steps to upgrade from v0.74.10 to v0.75.1 using the protocol upgrade mechanism. See the changelogs for [v0.75.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.0), [v0.75.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.1) (and 0.75.2 coming soon) for information about breaking changes and new features.
 
 ## Assumptions for the guide
 The instructions below are written for Debian-like Linux operating systems.
@@ -14,11 +14,11 @@ This guide is specifically intended for those who are already running a validato
 
 ## Study the changes between versions
 
-Before upgrading your node software, **review the changelogs** for [v0.75.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.0) for a list of breaking API changes compared to the previously released version.
+Before upgrading your node software, **review the changelog** for [v0.75.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.0) for a list of breaking API changes compared to the previously released version.
 
 ## Before you upgrade
 
-Please read the changelog to see all the changes. Below you can find a list of the changes you must perform before the upgrade to v0.75.0 in this document.
+Please read the changelog to see all the changes. Below you can find a list of the changes you must perform before the upgrade to v0.75.1 in this document.
 
 ### When should I upgrade config?
 
@@ -48,14 +48,14 @@ Add the following new parameters to the configuration files.
 
 We recommend checking all of the changes on your own. Follow the below instructions to do it, and read through every description to understand the changes:
 
-1. Download vega `v0.75.0`
+1. Download vega `v0.75.1`
 2. Generate config files within the temp home directory
   - vega config
   - comet BFT config
   - data-node config
 3. Compare the new generated file in the temp location and the old file to see the differences.
 
-Note: For the mainnet release, you'll need to download vega `v0.75.1` when it's available.
+Note: For the mainnet release, you'll need to download vega `v0.75.2` when it's available.
 
 ## Upgrade your node
 To upgrade the network follow the [protocol upgrade documentation](../how-to/upgrade-network.md).
