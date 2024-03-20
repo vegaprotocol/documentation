@@ -17,6 +17,14 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+## Pre-release version v0.75.1  | 2024-03-20
+This version was released to the Vega testnet on 20 March 2024.
+
+### Bug fix
+
+Queries for governance-initiated transfers were not providing the dispatch strategy that was set when the transfers were proposed. This was resolved in [issue 10945 ↗](https://github.com/vegaprotocol/vega/issues/10945).
+
+To review the change in the last released version, see [GitHub](https://github.com/vegaprotocol/vega/compare/v0.75.0...v0.75.1).
 
 ## Pre-release versions v0.75.0-preview.9 and v0.75.0-preview.10 (combined)  | 2024-03-18
 This version was released to the Vega testnet on 18 March 2024.
