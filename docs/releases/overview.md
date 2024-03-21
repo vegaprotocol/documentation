@@ -27,6 +27,8 @@ This version was released to the Vega testnet on 21 March 2024.
 - An issue was identified where an LP that joins a market and leaves before the opening auction ends receives all of the LP fees. This issue was fixed in [issue 10950 ↗](https://github.com/vegaprotocol/vega/issues/10950).
 - A bug was found whereby a user that is not the owner could update a referral set and create an associated team. This bug has been resolved in [issue 10960 ↗](https://github.com/vegaprotocol/vega/issues/10960).
 
+To review these changes in the last released version, see [GitHub](https://github.com/vegaprotocol/vega/compare/v0.75.1...v0.75.2).
+
 
 ## Pre-release version v0.75.1  | 2024-03-20
 This version was released to the Vega testnet on 20 March 2024.
