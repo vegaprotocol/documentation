@@ -15,7 +15,20 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 <!--[**Governance dApp on GitHub** ↗](https://github.com/vegaprotocol/frontend-monorepo/releases) - The Governance dApp, which provides an interface for interacting with governance proposals, VEGA tokens, and staking to validators; Console, a trading interface; and the Vega Block Explorer are open-source and you see more about them in the frontend monorepo.-->
 
 ## Vega core software
+
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
+
+
+## Pre-release version v0.75.2  | 2024-03-21
+This version was released to the Vega testnet on 21 March 2024.
+
+### Bug fixes
+
+- An issue was identified where an LP that joins a market and leaves before the opening auction ends receives all of the LP fees. This issue was fixed in [issue 10950 ↗](https://github.com/vegaprotocol/vega/issues/10950).
+- A bug was found whereby a user that is not the owner could update a referral set and create an associated team. This bug has been resolved in [issue 10960 ↗](https://github.com/vegaprotocol/vega/issues/10960).
+
+To review these changes in the last released version, see [GitHub](https://github.com/vegaprotocol/vega/compare/v0.75.1...v0.75.2).
+
 
 ## Pre-release version v0.75.1  | 2024-03-20
 This version was released to the Vega testnet on 20 March 2024.
@@ -25,6 +38,7 @@ This version was released to the Vega testnet on 20 March 2024.
 Queries for governance-initiated transfers were not providing the dispatch strategy that was set when the transfers were proposed. This was resolved in [issue 10945 ↗](https://github.com/vegaprotocol/vega/issues/10945).
 
 To review the change in the last released version, see [GitHub](https://github.com/vegaprotocol/vega/compare/v0.75.0...v0.75.1).
+
 
 ## Pre-release versions v0.75.0-preview.9 and v0.75.0-preview.10 (combined)  | 2024-03-18
 This version was released to the Vega testnet on 18 March 2024.
