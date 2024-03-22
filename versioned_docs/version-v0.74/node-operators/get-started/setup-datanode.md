@@ -283,6 +283,24 @@ If your node fails with this error message, follow the procedure described below
 2. Replace the old vega binary with the one you downloaded
 3. Start your node with the latest local snapshot - just restart node with a new binary
 
+### Potential error: wrong Block.Header.LastResultsHash
+
+A bug crashed the miannet network at block `38535816`.
+
+The error you should expect is:
+
+```
+wrong Block.Header.LastResultsHash.  Expected 3A736D1F6EAC1219BB9B2A38F7778707A14B837A9723DC72C8B40DE8F26E9EC0, got A939F9452FB4C17D926C8853B65F4629FF2EB00E188E1970872D688DEEF33AC2
+```
+
+To fix the issue follow below steps:
+
+1. Stop your node if it is still running
+2. Swap your vega binary with [the v0.74.7-patch-mainnet-affected-nodes release ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.74.7-patch-mainnet-affected-nodes)
+3. Rollback the last comet bft block with the `vega tm rollback --home <tendermint_home>` command
+4. Start your node
+
+
 ## Starting the data node from network history
 
 If you're using network history to get the current state to start up your data node, you'll first need to start the non validator node using a snapshot. Follow the instructions in the [non validator node set up guide](./setup-non-validator.md#start-a-node-using-a-remote-snapshot).
