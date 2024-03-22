@@ -19,6 +19,17 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
 
+## Pre-release version v0.75.3  | 2024-03-22
+This version was released to the Vega testnet on 22 March 2024.
+
+### Bug fixes
+
+- An issue was identified whereby incorrect rewards were showing in the `teamStats` API. It was found that the query behind the API was not filtering correctly on the `entityScope` thus not filtering out non-team rewards. This has been fixed in [issue 10969 ↗](https://github.com/vegaprotocol/vega/issues/10969).
+- A bug was found where suspending a market in a proposed state, before it gets enacted, will result in the market not being able to leave the opening auction. This has been fixed in [issue 10973 ↗](https://github.com/vegaprotocol/vega/issues/10973).
+
+To review these changes in the last released version, see [GitHub](https://github.com/vegaprotocol/vega/compare/v0.75.2...v0.75.3).
+
+
 ## Pre-release version v0.75.2  | 2024-03-21
 This version was released to the Vega testnet on 21 March 2024.
 
