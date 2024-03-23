@@ -285,7 +285,7 @@ If your node fails with this error message, follow the procedure described below
 
 ### Potential error: wrong Block.Header.LastResultsHash
 
-A bug crashed the miannet network at block `38535816`.
+A bug crashed the mainnet network at block `38535816`.
 
 The error you should expect is:
 
