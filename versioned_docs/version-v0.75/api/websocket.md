@@ -12,6 +12,10 @@ Vega's API contains WebSocket endpoints that offer real-time updates to changes 
 
 As Vega relies on a blockchain, time moves in discrete blocks and so updates will appear as blocks are executed.
 
+:::note Network endpoints
+The examples below use Vega testnet endpoints. If you want to try any of the examples below on mainnet, you will need to connect to a mainnet endpoint that provides WebSocket.
+:::
+
 ## Authentication and rate limiting
 
 API tokens are not required to access the API as they are all public. TLS is supported on all WebSocket endpoints but note that whether it is enabled on a particular data node is a choice made by the data node's operator.
@@ -22,7 +26,7 @@ Subscription to a WebSocket endpoint happens when the connection is opened and u
 
 ## Subscribing using the WebSocket API
 
-The tabs below show how to stream all ledger movements that occur on the Vega Fairground network using Bash, Python, and NodeJS.
+The tabs below show how to stream all ledger movements that occur on the Vega Fairground network using Bash, Python, and NodeJS. If you want to try this on mainnet, you'll need to connect to a mainnet endpoint that provides WebSocket.
 
 <Tabs>
 <TabItem value="bash" label="Bash">

@@ -15,7 +15,7 @@ There are several ways to interact with a Vega Wallet:
 * **[Desktop wallet app](./vega-wallet/desktop-app/index.md)**
 
 ## Console
-Use **[Vega Console](https://console.fairground.wtf)** to try trading on a testnet trading interface. The Fairground network is set up to provide a fairly realistic experience where you can place orders, provide liquidity, and see how the market mechanics work.
+Use **[Vega Console](https://console.vega.xyz)** to trade on markets created with Vega.
 
 * **[Charts on Console](./tools/vega-console/charts)**
 * **[Host Console on IPFS](./tools/vega-console/host-console-on-ipfs)**
@@ -41,4 +41,4 @@ Use **[Vega Capsule](https://github.com/vegaprotocol/vegacapsule)** to create an
 * Simulate market conditions or price scenarios without being concerned about unexpected user behaviour
 
 ## Vega Tools repo
-The **[Vega Tools repo](https://github.com/vegaprotocol/vegatools)** provides a set of utilities for inspecting and interacting with a Vega network through the APIs. 
+The **[Vega Tools repo](https://github.com/vegaprotocol/vegatools)** provides a set of utilities for inspecting and interacting with a Vega network through the APIs.

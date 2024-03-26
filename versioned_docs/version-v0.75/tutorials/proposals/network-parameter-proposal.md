@@ -25,7 +25,7 @@ Network parameters are a constant (or an array of constants) in the system, the 
 
 This page describes what you need to propose a change to a network parameter, and provides proposal templates that you will need to edit before submitting.
 
-<!--You should also share your proposal idea in the [_Governance_ forum section ↗](https://community.vega.xyz/c/governance) before submitting it to the network.-->
+You should also share your proposal idea in the [_Governance_ forum section ↗](https://community.vega.xyz/c/governance) before submitting it to the network.
 
 ## Requirements
 
@@ -72,10 +72,10 @@ For example, a proposal to change the `rewards.activityStreak.benefitTiers` netw
 In the tabs below you'll see:
 
 * Annotated example describing what each field is for
-* JSON example that can be submitted with the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw)
+* JSON example that can be submitted with the [governance dApp ↗](https://governance.vega.xyz/proposals/propose/raw)
 * Command line examples for different operating systems
 
-The governance dApp has a [tool ↗](https://governance.fairground.wtf/proposals/propose/network-parameter) to help you build a network parameter proposal. 
+The governance dApp has a [tool ↗](https://governance.vega.xyz/proposals/propose/network-parameter) to help you build a network parameter proposal. 
 
 **Replace the example data with the relevant details before submitting.**
 
@@ -100,9 +100,7 @@ The governance dApp has a [tool ↗](https://governance.fairground.wtf/proposals
 ## Voting
 All proposals are voted on by the community. 
 
-<!--
 Building support is down to you. Share your proposal in the [_Governance_ section ↗](https://community.vega.xyz/c/governance) on the Vega community forum. You may also wish to share on [Discord ↗](https://vega.xyz/discord).
--->
 
 To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minVoterBalance" suffix="tokens" hideName={true} formatter="governanceToken" />, or <NetworkParameter formatter="governanceToken" frontMatter={frontMatter} param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated with their Vega key. 
 

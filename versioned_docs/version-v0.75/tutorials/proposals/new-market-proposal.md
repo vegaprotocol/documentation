@@ -125,6 +125,7 @@ Data source bindings include the following properties:
 Learn how to find and submit data in the [submitting data sources tutorial](../using-data-sources.md).
 :::
 
+
 ### Liquidity monitoring
 The liquidity monitoring settings detect when the market's liquidity drops below the ideal level. See below for more details on each field.
 
@@ -225,13 +226,22 @@ Set up the liquidation strategy to minimise the impact of distressed traders on 
 | `fullDisposalSize` | Size of the position that the network will try to close in a single attempt  | 1 |
 | `maxFractionConsumed` | Maximum fraction of the order book's total volume, within the liquidity bounds, that the network can use to close its position. Range 0 through 1 | 0.05 |
 
+### Submitting a verified settlement price
+If you want the community to vote on the verified price used to settle the market:
+* Supply your own Vega public key as the oracle signer under `pubkeys`
+* Set the `conditions` to `OPERATOR_GREATER_THAN` 0 **and** `OPERATOR_LESS_THAN` 0 so no price will be accepted
+
+After the market has terminated, update the price by: 
+1. Submitting an [update market proposal](./update-market-proposal.md#submitting-a-verified-settlement-price) with the verified price 
+2. Sending the [settlement transaction](../using-data-sources.md#1-define-your-json-structure).
+
 <Batch />
 
 ## Templates and submitting
 In the tabs below you'll see:
 
 * Annotated example describing what each field is for
-* JSON example that can be submitted with the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw)
+* JSON example that can be submitted with the [governance dApp ↗](https://governance.vega.xyz/proposals/propose/raw)
 * Command line examples for different operating systems that can be submitted with a Vega Wallet app.
 
 **Replace the example data with the relevant details before submitting.**
@@ -257,11 +267,9 @@ In the tabs below you'll see:
 ## Voting
 All proposals are voted on by the community. 
 
-<!--
 Building support is down to you. Share your proposal in the [_Governance_ section ↗](https://community.vega.xyz/c/governance) on the Vega community forum. You may also wish to share on [Discord ↗](https://vega.xyz/discord).
--->
 
-A vote can be submitted with a [transaction](../../api/grpc/vega/commands/v1/commands.proto.mdx#votesubmission) on the command line, or by using the [governance dApp](https://governance.fairground.wtf/proposals).
+A vote can be submitted with a [transaction](../../api/grpc/vega/commands/v1/commands.proto.mdx#votesubmission) on the command line, or by using the [governance dApp](https://governance.vega.xyz/proposals).
 
 To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minVoterBalance" suffix="tokens" hideName={true} formatter="governanceToken" />, or <NetworkParameter formatter="governanceToken" frontMatter={frontMatter} param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated with their Vega key.
 

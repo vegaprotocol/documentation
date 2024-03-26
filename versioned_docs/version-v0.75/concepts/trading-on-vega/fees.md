@@ -10,7 +10,7 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 
 Participants in the Vega network who place orders on the order book, provide liquidity and run the network infrastructure receive the fees that traders pay on filled trades and transfers. The protocol does not charge gas fees for interacting with the network.
 
-You can offset some of those fees, or earn even more, by receiving discounts or getting rewards based on trading activity. Rewards can be funded by anyone, and can be in any asset. See the rewards that are currently available on [Console ↗](https://console.fairground.wtf/#/rewards).
+You can offset some of those fees, or earn even more, by receiving discounts or getting rewards based on trading activity. Rewards can be funded by anyone, and can be in any asset. See the rewards that are currently available on [vega.xyz ↗](https://console.vega.xyz/#/rewards).
 
 :::note Read more
 [Concept: Discounts and rewards](./discounts-rewards.md)

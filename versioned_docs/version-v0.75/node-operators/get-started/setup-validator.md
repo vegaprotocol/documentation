@@ -360,20 +360,20 @@ Once your node is synchronised, you'll need to self-stake, and then announce the
 ## Associate tokens to your Vega key
 Before you announce your node, you will need to have <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={true} formatter="governanceToken" suffix="tokens"/> Vega associated to your Vega key to self-stake (below).
 
-Use the [Sepolia VEGA contract address on the governance dApp ↗](https://governance.fairground.wtf/) to call the contract and faucet tokens to your Ethereum key. 
+Use the [Sepolia VEGA contract address on the governance dApp ↗](https://governance.vega.xyz/) to call the contract and faucet tokens to your Ethereum key. 
 
 The tokens that you want to use for self-staking must be available on an Ethereum wallet, and then associated to the same Vega public key you used to set up the node. 
 
 You can do this by [importing the Vega Wallet](../../tools/vega-wallet/cli-wallet/guides/restore-wallet) you created for your node wallet, onto your local computer using the Vega Wallet recovery phrase.
 
-Once you have tokens, connect your Ethereum wallet and your Vega Wallet, and associate the tokens to your Vega public key using the [governance dApp ↗](https://governance.fairground.wtf/validators). 
+Once you have tokens, connect your Ethereum wallet and your Vega Wallet, and associate the tokens to your Vega public key using the [governance dApp ↗](https://governance.vega.xyz/validators). 
 
 The association will need to be confirmed by both the Ethereum and Vega blockchains, and may take some time.
 
 Below are the instructions to self-nominate (self-stake) to your node.
 
 ## Announce node on-chain
-You'll need to know the [current epoch ↗](https://governance.fairground.wtf/validators), and have the following data to hand: the URL for your validator website, and the URL for the avatar that will show up on the governance dApp next to your node name.
+You'll need to know the [current epoch ↗](https://governance.vega.xyz/validators), and have the following data to hand: the URL for your validator website, and the URL for the avatar that will show up on the governance dApp next to your node name.
 
 ```shell
 vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" --avatar-url="YOUR_AVATAR_URL" --country="UK" --name="YOUR_NODE_NAME" --from-epoch="CURRENT_EPOCH"
@@ -384,7 +384,7 @@ Setting the optional argument `--submitter-address` triggers the Vega network to
 ## Nominate your node
 To move on to self-staking, wait until you see your node on the validator list by [querying the API](../../api/rest/data-v2/trading-data-service-list-nodes.api.mdx).
 
-Then, associate your tokens and nominate your node using the governance dApp: `https://governance.fairground.wtf/validators/<NODE'S_VEGA_PUBKEY>`. Alternatively you can interact directly with the smart contract.
+Then, associate your tokens and nominate your node using the governance dApp: `https://governance.vega.xyz/validators/<NODE'S_VEGA_PUBKEY>`. Alternatively you can interact directly with the smart contract.
 
 Your node will be visible on the governance dApp in the epoch after you self-stake.
 

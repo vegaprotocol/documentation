@@ -6,7 +6,7 @@ hide_title: false
 description: Console's charts in a nutshell.
 ---
 
-The [Console ↗](https://console.fairground.wtf) trading interface has a variety of tools to enhance your market analysis. This includes [TradingView ↗](https://www.tradingview.com/chart/) and Vega charts.
+The [Console ↗](https://console.vega.xyz) trading interface has a variety of tools to enhance your market analysis. This includes [TradingView ↗](https://www.tradingview.com/chart/) and Vega charts.
 
 You can switch between Vega charts and TradingView in Console's chart area.
 

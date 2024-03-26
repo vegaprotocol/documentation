@@ -7,7 +7,7 @@ hide_title: false
 # Welcome! 
 Welcome to Vega! 
 
-You are currently on the documenation for Vega's testnet network, called Fairground. Documentation you see will be for the Vega software version that Fairground is currently running. If you want to see info for mainnet, switch network in the top bar of this page.
+You are currently on the documenation for Vega's mainnet network. Documentation you see will be for the Vega software version that mainnet is currently running. If you want to see info for Fairground, the Vega-run testnet, switch network in the top bar of this page.
 
 If you have questions, join our community on [Discord](https://vega.xyz/discord)! We're keen to help.
 
