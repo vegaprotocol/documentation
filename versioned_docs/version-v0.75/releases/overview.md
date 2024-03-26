@@ -18,7 +18,7 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
 
-## Release versions 0.75.1 | 2024-03-27
+## Release versions 0.75.4 | 2024-03-27
 This version was released by the validators to mainnet on 27 March 2024.
 
 ### Breaking change
@@ -61,6 +61,10 @@ To see lower level details of how the new isolated margin feature is designed ch
 - The opening auction uncrossing price was not being registered by the perpetual markets engine. This bug has been fixed in [issue 10136 ↗](https://github.com/vegaprotocol/vega/issues/10136).
 - Querying for oracle data was loading so slowly as to become unusable. This issue was resolved by adding a date constraint is added to the to the API query when the first page of results is requested. This bug has been fixed in [issue 10785 ↗](https://github.com/vegaprotocol/vega/issues/10785).
 - When requesting multiple party IDs using REST, the API reported one or more invalid parties, however when requesting them individually, the given party IDs are valid and results are returned. The API was refactored to support this use case. This bug has been fixed in [issue 10780 ↗](https://github.com/vegaprotocol/vega/issues/10780).
+- An issue was identified where an LP that joins a market and leaves before the opening auction ends receives all of the LP fees. This issue was fixed in [issue 10950 ↗](https://github.com/vegaprotocol/vega/issues/10950).
+- A bug was found whereby a user that is not the owner could update a referral set and create an associated team. This bug has been resolved in [issue 10960 ↗](https://github.com/vegaprotocol/vega/issues/10960).
+- An issue was identified whereby incorrect rewards were showing in the `teamStats` API. It was found that the query behind the API was not filtering correctly on the `entityScope` thus not filtering out non-team rewards. This has been fixed in [issue 10969 ↗](https://github.com/vegaprotocol/vega/issues/10969).
+- A bug was found where suspending a market in a proposed state, before it gets enacted, will result in the market not being able to leave the opening auction. This has been fixed in [issue 10973 ↗](https://github.com/vegaprotocol/vega/issues/10973).
 
 
 ### Improvements
@@ -87,7 +91,7 @@ To see lower level details of how the new isolated margin feature is designed ch
 - `new market proposal` and `update market proposal` commands and `list market` query now includes `tickSize` field.
 - `list votes` query has a new shape for equity-like share, `ELS per market`, which provides `market ID` and `els`.
 
-To review the changes in the last released version, see [here](https://github.com/vegaprotocol/vega/compare/v0.75.0-preview.8...v0.75.0-preview.10).
+To review the changes in the last released version, see [here](https://github.com/vegaprotocol/vega/compare/0.74.10...v0.75.4).
 
 
 ## Release versions 0.74.10 | 2024-03-07
