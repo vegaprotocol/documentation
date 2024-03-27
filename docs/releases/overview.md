@@ -19,6 +19,19 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
 
+## Pre-release version v0.75.4  | 2024-03-26
+This version was released to the Vega testnet on 26 March 2024.
+
+### Bug fixes
+
+- It was found that events being sent to the data node were not always being sent deterministically. This issue has been fixed by correctly sorting the vesting summary events before sending to the data node. This was resolved in [issue 11000 ↗](https://github.com/vegaprotocol/vega/issues/11000).
+- During market simulation fuzz testing a panic was observed when leaving an opening auction triggered a monitoring auction. This has been fixed by defaulting to the last trade price if the opening auction breaches the price monitoring boundary. This was resolved in [issue 10997 ↗](https://github.com/vegaprotocol/vega/issues/10997).
+
+
+
+To review these changes in the last released version, see [GitHub](https://github.com/vegaprotocol/vega/compare/v0.75.3...v0.75.4).
+
+
 ## Pre-release version v0.75.3  | 2024-03-22
 This version was released to the Vega testnet on 22 March 2024.
 
