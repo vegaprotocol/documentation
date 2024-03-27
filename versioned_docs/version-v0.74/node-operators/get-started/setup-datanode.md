@@ -314,7 +314,7 @@ To fix the issue follow the below steps:
 
 1. Stop your node.
 2. Run tm rollback for a single block: `vega tm rollback --home <tendermint_home>`
-3. Replace the vega binary with [0.74.10](https://github.com/vegaprotocol/vega/releases/tag/v0.74.10)
+3. Replace the vega binary with [0.74.10-fix.1](https://github.com/vegaprotocol/vega/releases/tag/v0.74.10-fix.1)
 4. Update the config/flag to your node from the one before the last snapshot.
     a. If you use Visor you can add the following path to the run-config.toml(`<vegavisor_home>/current/run-config.toml`) file: `"--snapshot.load-from-block-height", "41090047"` 
     b. If you do not use Visor, you can add the following flag to your start command: `--snapshot.load-from-block-height 41090047`

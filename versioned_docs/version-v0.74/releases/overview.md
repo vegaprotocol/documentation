@@ -22,7 +22,7 @@ This version was shared with the validators on 27 March 2024.
 
 ### Bug fixes
 
-- At 11:40 UTC on 27 March 2024, the Vega mainnet stopped producing blocks as detailed in [this incident report ↗](https://blog.vega.xyz/incident-report-network-outage-dd83e48072c8). Nodes had differing `appHash` values. The issue is related to how price monitoring bounds were sorted, and has been fixed in the following [patch ↗](https://github.com/vegaprotocol/vega/pull/11018).
+- At 11:40 UTC on 27 March 2024, the Vega mainnet stopped producing blocks as detailed in [this incident report ↗](https://blog.vega.xyz/incident-report-network-outage-dd83e48072c8). Nodes had differing `appHash` values. The issue is related to how price monitoring bounds were sorted, and has been fixed in the following [patch release ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.74.10-fix.1).
 
 To see deployment instructions for this patch please see the [migration guide](../node-operators/migration-guides/upgrade-node.md)
 
