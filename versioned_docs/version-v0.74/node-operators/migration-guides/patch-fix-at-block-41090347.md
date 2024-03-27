@@ -17,3 +17,33 @@ Steps to fix the issue are:
     c. You can also update core config(`<vega_home>/config/node/config.toml`): Snapshot.StartHeight = 41090047
 5. Start node
 6. When your node is stable, and it is running revert change applied in the step 4.
+
+:::note Examples
+You can find example configs below:
+
+```toml title="vegavisor_home/current/run-config.toml
+name = "v0.74.10"
+
+[vega]
+  [vega.binary]
+    path = "vega"
+    args = ["start", "--home", ".../vega_home", "--tendermint-home", "...tendermint_home", "--nodewallet-passphrase-file", ".../vega_home/all-wallet-passphrase.txt", "--snapshot.load-from-block-height", "41090047"]
+  [vega.rpc]
+    socketPath = "/home/vega/run/vega.sock"
+    httpPath = "/rpc"
+
+[data_node]
+  [data_node.binary]
+    path = "vega"
+    args = ["datanode", "start", "--home", "/home/vega/vega_home"]
+```
+
+```toml title="vega_home/config/node/config.toml
+...
+[Snapshot]
+  ...
+  StartHeight = 41090047
+
+```
+
+:::
