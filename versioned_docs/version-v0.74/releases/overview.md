@@ -18,6 +18,19 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
 
+
+## Release versions 0.74.10-fix.1 | 2024-03-27
+This version was released by the validators to mainnet on 27 March 2024.
+
+### Bug fixes
+
+- At 11:40 UTC, on the 27 March 2024, the Vega mainnet stopped producing blocks as detaled in [this incident ↗](https://blog.vega.xyz/incident-report-network-outage-dd83e48072c8). An issue was identified whereby nodes had differing `appHash` values. The issue is related to the sorting of the price monitoring bounds and has been fixed in the following [patch ↗](https://github.com/vegaprotocol/vega/pull/11018).
+
+To see deployment instructions for this patch please see [here](../migration-guides/upgrade-node.md)
+
+To review the changes in the last released version, see the [comparison file ↗](https://github.com/vegaprotocol/vega/compare/v0.74.10...v0.74.10-fix.1).
+
+
 ## Release versions 0.74.10 | 2024-03-07
 This version was released by the validators to mainnet on 07 March 2024.
 
