@@ -18,8 +18,8 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
 
-## Release versions 0.75.5 | 2024-03-27
-This version was released by the validators to mainnet on 27 March 2024.
+## Release versions 0.75.6 | 2024-03-28
+This version was released by the validators to mainnet on 28 March 2024.
 
 ### Breaking change
 
@@ -67,6 +67,7 @@ To see lower level details of how the new isolated margin feature is designed ch
 - A bug was found where suspending a market in a proposed state, before it gets enacted, will result in the market not being able to leave the opening auction. This has been fixed in [issue 10973 ↗](https://github.com/vegaprotocol/vega/issues/10973).
 - It was found that events being sent to the data node were not always being sent deterministically. This issue has been fixed by correctly sorting the vesting summary events before sending to the data node. This was resolved in [issue 11000 ↗](https://github.com/vegaprotocol/vega/issues/11000).
 - During market simulation fuzz testing a panic was observed when leaving an opening auction triggered a monitoring auction. This has been fixed by defaulting to the last trade price if the opening auction breaches the price monitoring boundary. This was resolved in [issue 10997 ↗](https://github.com/vegaprotocol/vega/issues/10997).
+- On the 27th March 2024 the netword was halted due to a consensus failure. Full details of this issue can be seen in the [incident blog](https://blog.vega.xyz/incident-report-network-outage-dd83e48072c8). The team found this to be related to ordering of price monitoring data in the snapshot files and was resolved in [this patch](https://github.com/vegaprotocol/vega/releases/tag/v0.74.10-fix.1).
 
 
 ### Improvements
