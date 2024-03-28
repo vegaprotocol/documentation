@@ -19,6 +19,14 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
 
+## Pre-release version v0.75.5  | 2024-03-28
+This version was released to the Vega testnet on 28 March 2024.
+
+### Bug fixes
+
+- On the 27th March 2024 the mainnet network was halted due to a consensus failure. Full details of this issue can be seen in the [incident blog](https://blog.vega.xyz/incident-report-network-outage-dd83e48072c8). The team found this to be related to ordering of price monitoring data in the snapshot files, which was resolved in [this patch](https://github.com/vegaprotocol/vega/releases/tag/v0.74.10-fix.1).
+
+
 ## Pre-release version v0.75.4  | 2024-03-26
 This version was released to the Vega testnet on 26 March 2024.
 
