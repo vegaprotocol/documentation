@@ -3,7 +3,7 @@ title: Upgrade to 0.75
 sidebar_label: Upgrade to 0.75
 ---
 
-This guide describes the steps to upgrade from v0.74.10 to v0.75.1 using the protocol upgrade mechanism. See the changelogs for [v0.75.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.0), [v0.75.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.1), [v0.75.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.2), [v0.75.3 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.3), [v0.75.4 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.4) and [v0.75.5 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.5) for information about breaking changes and new features.
+This guide describes the steps to upgrade from v0.74.10 to v0.75.6 using the protocol upgrade mechanism. See the changelogs for [v0.75.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.0), [v0.75.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.1), [v0.75.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.2), [v0.75.3 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.3), [v0.75.4 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.4) and [v0.75.5 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.5) for information about breaking changes and new features.
 
 ## Assumptions for the guide
 The instructions below are written for Debian-like Linux operating systems.
@@ -14,11 +14,11 @@ This guide is specifically intended for those who are already running a validato
 
 ## Study the changes between versions
 
-Before upgrading your node software, **review the changelog** for [v0.75.6 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.0) for a list of breaking API changes compared to the previously released version.
+Before upgrading your node software, **review the changelogs** for [v0.75.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.0), [v0.75.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.1), [v0.75.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.2), [v0.75.3 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.3), [v0.75.4 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.4) and [v0.75.5 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.5) for a list of breaking API changes compared to the previously released version.
 
 ## Before you upgrade
 
-Please read the changelog to see all the changes. Below you can find a list of the changes you must perform before the upgrade to v0.75.6 in this document.
+Please read the changelog to see all the changes. Below you can find a list of the changes you must perform before the upgrade to [v0.75.6 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.6) in this document.
 
 ### When should I upgrade config?
 
@@ -55,7 +55,6 @@ We recommend checking all of the changes on your own. Follow the below instructi
   - data-node config
 3. Compare the new generated file in the temp location and the old file to see the differences.
 
-Note: For the mainnet release, you'll need to download vega `v0.75.6` when it's available.
 
 ## Upgrade your node
 To upgrade the network follow the [protocol upgrade documentation](../how-to/upgrade-network.md).

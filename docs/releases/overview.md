@@ -24,7 +24,7 @@ This version was released to the Vega testnet on 28 March 2024.
 
 ### Bug fixes
 
-- On the 27th March 2024 the netword was halted due to a consensus failure. Full details of this issue can be seen in the [incident blog](https://blog.vega.xyz/incident-report-network-outage-dd83e48072c8). The team found this to be related to ordering of price monitoring data in the snapshot files and was resolved in [this patch](https://github.com/vegaprotocol/vega/releases/tag/v0.74.10-fix.1).
+- On the 27th March 2024 the mainnet network was halted due to a consensus failure. Full details of this issue can be seen in the [incident blog](https://blog.vega.xyz/incident-report-network-outage-dd83e48072c8). The team found this to be related to ordering of price monitoring data in the snapshot files, which was resolved in [this patch](https://github.com/vegaprotocol/vega/releases/tag/v0.74.10-fix.1).
 
 
 ## Pre-release version v0.75.4  | 2024-03-26
