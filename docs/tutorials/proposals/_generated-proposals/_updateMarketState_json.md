@@ -1,20 +1,22 @@
 
   ```json
 {
-  "rationale": {
-    "title": "Terminate market X",
-    "description": "Market X should be terminated as it is no longer relevant. Termination price set in proposal."
-  },
-  "terms": {
-    "updateMarketState": {
-      "changes": {
-        "marketId": "0f2f8d077a53835ca802808d1eaae090de06328e5a0fb21e55de2f8ea8faa389",
-        "updateType": "MARKET_STATE_UPDATE_TYPE_TERMINATE",
-        "price": "123456"
-      }
+  "proposalSubmission": {
+    "rationale": {
+      "title": "Terminate market X",
+      "description": "Market X should be terminated as it is no longer relevant. Termination price set in proposal."
     },
-    "closingTimestamp": 1711378471,
-    "enactmentTimestamp": 1711464871
+    "terms": {
+      "updateMarketState": {
+        "changes": {
+          "marketId": "0f2f8d077a53835ca802808d1eaae090de06328e5a0fb21e55de2f8ea8faa389",
+          "updateType": "MARKET_STATE_UPDATE_TYPE_TERMINATE",
+          "price": "123456"
+        }
+      },
+      "closingTimestamp": 1713795243,
+      "enactmentTimestamp": 1713881643
+    }
   }
 }
 ```
