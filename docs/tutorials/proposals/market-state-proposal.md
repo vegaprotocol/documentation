@@ -59,7 +59,6 @@ In the tabs below you'll see:
 
 **Replace the example data with the relevant details before submitting.**
 
-
 <Tabs groupId="suspendMarket">
 <TabItem value="annotated-suspend" label="Annotated example">
 
