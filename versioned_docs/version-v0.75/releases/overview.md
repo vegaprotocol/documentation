@@ -91,7 +91,7 @@ To see lower level details of how the new isolated margin feature is designed ch
 - `new market proposal` and `update market proposal` commands and `list market` query now includes `tickSize` field.
 - `list votes` query has a new shape for equity-like share, `ELS per market`, which provides `market ID` and `els`.
 
-To review the changes in the last released version, see the [comparison file ↗](https://github.com/vegaprotocol/vega/compare/0.74.10...v0.75.8).
+To review the changes in the last released version, see the [comparison file ↗](https://github.com/vegaprotocol/vega/compare/patch/v0.74.10...v0.75.8).
 
 ## Release versions 0.74.10-fix.1 | 2024-03-27
 This version was shared with the validators on 27 March 2024.
