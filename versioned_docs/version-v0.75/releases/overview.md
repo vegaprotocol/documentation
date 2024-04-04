@@ -17,20 +17,8 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-## Release versions 0.74.10-fix.1 | 2024-03-27
-This version was shared with the validators on 27 March 2024.
-
-### Bug fixes
-
-- At 11:40 UTC on 27 March 2024, the Vega mainnet stopped producing blocks as detailed in [this incident report ↗](https://blog.vega.xyz/incident-report-network-outage-dd83e48072c8). Nodes had differing `appHash` values. The issue is related to how price monitoring bounds were sorted, and has been fixed in the following [patch release ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.74.10-fix.1).
-
-To see deployment instructions for this patch please see the [migration guide](../node-operators/migration-guides/upgrade-node.md)
-
-To review the changes in the last released version, see the [comparison file ↗](https://github.com/vegaprotocol/vega/compare/v0.74.10...v0.74.10-fix.1).
-
-
-## Release versions 0.75.6 | 2024-03-28
-This version was released by the validators to mainnet on 28 March 2024.
+## Release version 0.75.8 | 2024-04-04
+This version was released by the validators to mainnet on 04 April 2024.
 
 ### Breaking change
 
@@ -45,7 +33,6 @@ The protocol now allows users to choose between one of two margining modes for e
 * Isolated margin mode: this mode sacrifices capital efficiency for predictability and risk management by segregating positions. In this mode, the entire margin for any newly opened position's volume is transferred to the margin account when the trade is executed. This includes completely new positions and increases to position size. Other than at time of future trades, the general account will then never be searched for additional funds - a position will be allowed to be closed out instead - nor will profits be moved into the general account from the margin account while a position is open.
 
 To see lower level details of how the new isolated margin feature is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/palazzo/protocol/0019-MCAL-margin_calculator.md#isolated-margin-mode).
-
 
 ### Bug fixes
 
@@ -78,8 +65,8 @@ To see lower level details of how the new isolated margin feature is designed ch
 - A bug was found where suspending a market in a proposed state, before it gets enacted, will result in the market not being able to leave the opening auction. This has been fixed in [issue 10973 ↗](https://github.com/vegaprotocol/vega/issues/10973).
 - It was found that events being sent to the data node were not always being sent deterministically. This issue has been fixed by correctly sorting the vesting summary events before sending to the data node. This was resolved in [issue 11000 ↗](https://github.com/vegaprotocol/vega/issues/11000).
 - During market simulation fuzz testing a panic was observed when leaving an opening auction triggered a monitoring auction. This has been fixed by defaulting to the last trade price if the opening auction breaches the price monitoring boundary. This was resolved in [issue 10997 ↗](https://github.com/vegaprotocol/vega/issues/10997).
-- On the 27th March 2024 the netword was halted due to a consensus failure. Full details of this issue can be seen in the [incident blog](https://blog.vega.xyz/incident-report-network-outage-dd83e48072c8). The team found this to be related to ordering of price monitoring data in the snapshot files and was resolved in [this patch](https://github.com/vegaprotocol/vega/releases/tag/v0.74.10-fix.1).
-
+- On the 27th March 2024 the netword was halted due to a consensus failure. Full details of this issue can be seen in the [incident blog ↗](https://blog.vega.xyz/incident-report-network-outage-dd83e48072c8). The team found this to be related to ordering of price monitoring data in the snapshot files and was resolved in [this patch ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.74.10-fix.1).
+- The `collateralIncreaseEstimate` for limit orders in isolated margin was producing incorrect values via the API. This has been fixed in [issue 10928 ↗](https://github.com/vegaprotocol/vega/issues/10928).
 
 ### Improvements
 
@@ -92,7 +79,6 @@ To see lower level details of how the new isolated margin feature is designed ch
 - CometBFT has been updated to the [latest patch version](https://github.com/cometbft/cometbft/blob/v0.38.6/CHANGELOG.md#v0386), this has been carried out in [issue 10879 ↗](https://github.com/vegaprotocol/vega/issues/10879).
 - A change has been implemented to cancel pegged orders when updating the tick size as implemented in [issue 10635 ↗](https://github.com/vegaprotocol/vega/issues/10635). When the tick size is updated, all existing pegged orders are checked. If the offset of an order is no longer an integer multiple of the tick size, the order is cancelled. This has been carried out in [issue 10778 ↗](https://github.com/vegaprotocol/vega/issues/10778).
 - Changes have been implemented to allow an optional taker fee cap to a market. If set, the actual amount of reward transferred to each public key during distribution for the transfer will be `min(calculated_reward_in_quantum, cap_reward_fee_multiple × fees_paid_this_epoch_in_quantum)`.  This was done in [issue 10517 ↗](https://github.com/vegaprotocol/vega/issues/10517).
-
 
 ### API changes
 
@@ -107,6 +93,16 @@ To see lower level details of how the new isolated margin feature is designed ch
 
 To review the changes in the last released version, see [here](https://github.com/vegaprotocol/vega/compare/0.74.10...v0.75.5).
 
+## Release versions 0.74.10-fix.1 | 2024-03-27
+This version was shared with the validators on 27 March 2024.
+
+### Bug fixes
+
+- At 11:40 UTC on 27 March 2024, the Vega mainnet stopped producing blocks as detailed in [this incident report ↗](https://blog.vega.xyz/incident-report-network-outage-dd83e48072c8). Nodes had differing `appHash` values. The issue is related to how price monitoring bounds were sorted, and has been fixed in the following [patch release ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.74.10-fix.1).
+
+To see deployment instructions for this patch please see the [migration guide](../node-operators/migration-guides/upgrade-node.md)
+
+To review the changes in the last released version, see the [comparison file ↗](https://github.com/vegaprotocol/vega/compare/v0.74.10...v0.74.10-fix.1).
 
 ## Release versions 0.74.10 | 2024-03-07
 This version was released by the validators to mainnet on 07 March 2024.
