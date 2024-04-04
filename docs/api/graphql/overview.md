@@ -231,7 +231,7 @@ For a more approachable interface, GraphQL playground provides an interactive en
 
 For many users this will be the best way to get to grips with the schema.
 
-Try visiting the GraphQL endpoint of a server. For example, you can try the [GraphQL Playground](https://api.n07.testnet.vega.xyz/graphql/) for Fairground, the Vega operated testnet.
+Try visiting the GraphQL endpoint of a server. For example, you can use the [GraphQL Playground](https://api.n07.testnet.vega.xyz/graphql/) for Fairground, the Vega operated testnet.
 
 Note: A GraphQL playground may not be available on mainnet data nodes. It's recommended that you test queries on Fairground or by running [your own data node](../../node-operators/get-started/setup-datanode.md) with a GraphQL playground enabled.
 
