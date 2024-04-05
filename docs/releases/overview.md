@@ -18,13 +18,24 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+## Pre-release version v0.75.7  | 2024-03-28
+This version was released to the Vega testnet on 28 March 2024.
+
+### Bug fixes
+
+- A missing enum value for the transaction type `REJECTION_REASON_STOP_ORDER_LINKED_PERCENTAGE_INVALID` has been fixed in [issue 11042 ↗](https://github.com/vegaprotocol/vega/issues/11042).
+- The `collateralIncreaseEstimate` for limit orders in isolated margin was producing incorrect values via the API. This has been fixed in [issue 10928 ↗](https://github.com/vegaprotocol/vega/issues/10928).
+
+To review these changes in the last released version, see [GitHub](https://github.com/vegaprotocol/vega/compare/v0.75.5...v0.75.7).
 
 ## Pre-release version v0.75.5  | 2024-03-28
 This version was released to the Vega testnet on 28 March 2024.
 
 ### Bug fixes
 
-- On the 27th March 2024 the mainnet network was halted due to a consensus failure. Full details of this issue can be seen in the [incident blog](https://blog.vega.xyz/incident-report-network-outage-dd83e48072c8). The team found this to be related to ordering of price monitoring data in the snapshot files, which was resolved in [this patch](https://github.com/vegaprotocol/vega/releases/tag/v0.74.10-fix.1).
+- On the 27th March 2024 the mainnet network was halted due to a consensus failure. Full details of this issue can be seen in the [incident blog ↗](https://blog.vega.xyz/incident-report-network-outage-dd83e48072c8). The team found this to be related to ordering of price monitoring data in the snapshot files, which was resolved in [this patch ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.74.10-fix.1).
+
+To review these changes in the last released version, see [GitHub](https://github.com/vegaprotocol/vega/compare/v0.75.4...v0.75.5).
 
 
 ## Pre-release version v0.75.4  | 2024-03-26
