@@ -96,7 +96,7 @@ proposalSubmission: {
 
 ```json
 {
-  "proposalSubmission": {
+"proposalSubmission": {
  "rationale": {
   "title": "Suspend futures market LINK/USDT-230931",
   "description": "Proposal to suspend futures market"
@@ -122,7 +122,7 @@ proposalSubmission: {
  ```bash
 vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 '
 {
-  "proposalSubmission": {
+"proposalSubmission": {
  "rationale": {
   "title": "Suspend futures market LINK/USDT-230930",
   "description": "Proposal to suspend futures market"
