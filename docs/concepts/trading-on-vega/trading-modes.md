@@ -115,5 +115,6 @@ Auctions end, orders are uncrossed and resulting trades are created when:
 Auctions **do not end** if the resulting state would immediately cause another auction to begin. Instead, the current auction gets extended.
 
 ### Auction uncrossing 
-When an auction has been exited, the orders are uncrossed. During an auction uncrossing, orders that were collected during the auction generate trades. Those trades are processed in price-time priority. First, the protocol determines the range where the highest total quantity of trades can occur, or the 
-volume maximising price range. Then, the trades at the mid-price within that range are filled. For example, if the volume maximising range is 98-102, the protocol prices all trades in the uncrossing at 100, i.e. `(minimum price of range + maximum price of range)/2`.
+When an auction has been exited, the orders are uncrossed. During an auction uncrossing, orders that were collected during the auction generate trades. Those trades are processed in price-time priority. 
+
+First, the protocol determines the range where the highest total quantity of trades can occur, in other words, the volume-maximising price range. Then, the trades at the mid-price within that range are filled. For example, if the volume-maximising price range is 98-102, the protocol prices all trades in the uncrossing at 100, i.e. `(minimum price of range + maximum price of range)/2`.
