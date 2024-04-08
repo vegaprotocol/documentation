@@ -141,12 +141,12 @@ function newProposal(p, skeleton, type, partialProposal, actualType) {
 
   const annotated = `
   ${'```javascript'}
-${prettyJs(annotator(proposal), formatOptions)}
+${prettyJs(annotator({ proposalSubmission: proposal }), formatOptions)}
 ${'```'}`
 
   const json = `
   ${'```json'}
-${JSON.stringify(proposal, null, '  ')}
+${JSON.stringify({ proposalSubmission: proposal }, null, '  ')}
 ${'```'}
   `
   const cmd = `

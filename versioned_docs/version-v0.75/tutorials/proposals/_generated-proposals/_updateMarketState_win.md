@@ -15,8 +15,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
     \"price\": \"123456\"^
    }^
   },^
-  \"closingTimestamp\": 1711378471,^
-  \"enactmentTimestamp\": 1711464871^
+  \"closingTimestamp\": 1713795243,^
+  \"enactmentTimestamp\": 1713881643^
  }^
 }^
 }"

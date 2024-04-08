@@ -1,6 +1,6 @@
 ---
 sidebar_position: 9
-title: Transferring assets
+title: Transfer assets
 vega_network: MAINNET
 hide_title: true
 keywords:
@@ -103,6 +103,7 @@ You will need to define the dispatch strategy, which includes the metric, the le
 ```
 
 <Batch />
+
 ## Templates and submitting
 
 ### Sample recurring transfer proposal to fund rewards

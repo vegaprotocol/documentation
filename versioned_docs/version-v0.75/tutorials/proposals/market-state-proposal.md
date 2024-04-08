@@ -59,12 +59,12 @@ In the tabs below you'll see:
 
 **Replace the example data with the relevant details before submitting.**
 
-
 <Tabs groupId="suspendMarket">
 <TabItem value="annotated-suspend" label="Annotated example">
 
 ```javascript
 {
+proposalSubmission: {
  rationale: {
   title: "Suspend futures market ORANGES2023",
   description: "Proposal to suspend Oranges 2023 market"
@@ -86,6 +86,7 @@ In the tabs below you'll see:
   enactmentTimestamp: 1685639447
  }
 }
+}
 ```
 
 </TabItem>
@@ -95,6 +96,7 @@ In the tabs below you'll see:
 
 ```json
 {
+"proposalSubmission": {
  "rationale": {
   "title": "Suspend futures market LINK/USDT-230931",
   "description": "Proposal to suspend futures market"
@@ -110,6 +112,7 @@ In the tabs below you'll see:
   "enactmentTimestamp": 1685639447
  }
 }
+}
 ```  
 
 </TabItem>
@@ -117,7 +120,9 @@ In the tabs below you'll see:
   <TerminalInstructions />
 
  ```bash
-vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 '{
+vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 '
+{
+"proposalSubmission": {
  "rationale": {
   "title": "Suspend futures market LINK/USDT-230930",
   "description": "Proposal to suspend futures market"
@@ -132,6 +137,7 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network m
   "closingTimestamp": "1685553047",
   "enactmentTimestamp": "1685639447"
  }
+}
 }'
 ```
 
@@ -142,6 +148,7 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network m
 ```bash
 vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 ^
 "{ ^
+ \"proposalSubmission\": { ^
  \"rationale\": { ^
   \"title\": \"Suspend futures market LINK/USDT-230930\", ^
   \"description\": \"Proposal to suspend futures market\" ^
@@ -156,6 +163,7 @@ vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --netwo
   \"closingTimestamp\": \"1685553047\", ^
   \"enactmentTimestamp\": \"1685639447\" ^
  } ^
+} ^
 }" ^
 ```
 
@@ -183,6 +191,7 @@ In the tabs below you'll see:
 
 ```javascript
 {
+proposalSubmission: {
  rationale: {
   title: "Resume suspended futures market LINK/USDT-230930",
   description: "Proposal to resume futures market"
@@ -204,6 +213,7 @@ In the tabs below you'll see:
   enactmentTimestamp: 1685639447
  }
 }
+}
 ```
 
 </TabItem>
@@ -212,6 +222,7 @@ In the tabs below you'll see:
 
 ```json
 {
+"proposalSubmission": {
  "rationale": {
   "title": "Resume suspended futures market LINK/USDT-230930",
   "description": "Proposal to resume futures market"
@@ -227,6 +238,7 @@ In the tabs below you'll see:
   "enactmentTimestamp": 1685639447
  }
 }
+}
 ```
 
 </TabItem>
@@ -235,6 +247,7 @@ In the tabs below you'll see:
 
 ```bash
 vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 '{
+"proposalSubmission": {
   "rationale": {
   "title": "Resume suspended market ORANGES2023",
   "description": "Proposal to resume market"
@@ -249,6 +262,7 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network m
   "closingTimestamp": 1685553047,
   "enactmentTimestamp": 1685639447
  }
+}
 }'
 ```
 
@@ -259,6 +273,7 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network m
 ```bash
 vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 ^
 "{ ^
+ \"proposalSubmission\": { ^
  \"rationale\": { ^
   \"title\": \"Resume suspended futures market LINK/USDT-230930\", ^
   \"description\": \"Proposal to resume futures market\" ^
@@ -272,6 +287,7 @@ vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --netwo
   }, ^
   \"closingTimestamp\": \"1685553047\", ^
   \"enactmentTimestamp\": \"1685639447\" ^
+ } ^
  } ^
 }"
 ```
@@ -300,6 +316,7 @@ In the tabs below you'll see:
 
 ```javascript
 {
+proposalSubmission: {
  rationale: {
   title: "Terminate futures market LINK/USDT-230930",
   description: "Proposal to terminate futures market"
@@ -323,6 +340,7 @@ In the tabs below you'll see:
   enactmentTimestamp: 1685639447
  }
 }
+}
 ```  
 
 </TabItem>
@@ -331,6 +349,7 @@ In the tabs below you'll see:
 
 ```json
 {
+"proposalSubmission": {
  "rationale": {
   "title": "Terminate market ORANGES2023",
   "description": "Proposal to terminate market"
@@ -347,6 +366,7 @@ In the tabs below you'll see:
   "enactmentTimestamp": 1685639447
  }
 }
+}
 ```
 
 </TabItem>
@@ -355,6 +375,7 @@ In the tabs below you'll see:
 
 ```bash
 vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 '{
+ "proposalSubmission": {
  "rationale": {
   "title": "Terminate market ORANGES2023",
   "description": "Proposal to terminate market"
@@ -370,6 +391,7 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network m
   "closingTimestamp": 1685553047,
   "enactmentTimestamp": 1685639447
  }
+}
 }'
 ```
 
@@ -377,16 +399,17 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network m
 <TabItem value="win-terminate" label="Command line (Windows)">
   <TerminalInstructions />
 
-```bash
+```
 vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 ^
 "{ ^
- \"rationale\": {^
+ \"proposalSubmission\": { ^
+ \"rationale\": { ^
   \"title\": \"Close futures market LINK/USDT-230930\", ^
-  \"description\": \"Proposal to close futures market\"^
+  \"description\": \"Proposal to close futures market\" ^
  },^
- \"terms\": {^
-  \"updateMarketState\": {^
-   \"changes\": {^
+ \"terms\": { ^
+  \"updateMarketState\": { ^
+   \"changes\": { ^
     \"marketId\": \"d2157929132456dbc66eecbd478307156066243cd8769306e71f31882c22344f\", ^
     \"updateType\": \"MARKET_STATE_UPDATE_TYPE_TERMINATE\", ^
     \"price\": \"100\" ^
@@ -394,6 +417,7 @@ vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --netwo
   }, ^
   \"closingTimestamp\": \"1685553047\", ^
   \"enactmentTimestamp\": \"1685639447\" ^
+ } ^
  } ^
 }"
 ```
