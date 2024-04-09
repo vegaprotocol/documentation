@@ -41,4 +41,4 @@ Use **[Vega Capsule](https://github.com/vegaprotocol/vegacapsule)** to create an
 * Simulate market conditions or price scenarios without being concerned about unexpected user behaviour
 
 ## Vega Tools repo
-The **[Vega Tools repo](https://github.com/vegaprotocol/vegatools)** provides a set of utilities for inspecting and interacting with a Vega network through the APIs. 
+The **[Vega Tools repo](https://github.com/vegaprotocol/vegatools)** provides a set of utilities for inspecting and interacting with a Vega network through the APIs.

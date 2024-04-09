@@ -15,7 +15,72 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 <!--[**Governance dApp on GitHub** ↗](https://github.com/vegaprotocol/frontend-monorepo/releases) - The Governance dApp, which provides an interface for interacting with governance proposals, VEGA tokens, and staking to validators; Console, a trading interface; and the Vega Block Explorer are open-source and you see more about them in the frontend monorepo.-->
 
 ## Vega core software
+
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
+
+## Pre-release version v0.75.7  | 2024-03-28
+This version was released to the Vega testnet on 28 March 2024.
+
+### Bug fixes
+
+- A missing enum value for the transaction type `REJECTION_REASON_STOP_ORDER_LINKED_PERCENTAGE_INVALID` has been fixed in [issue 11042 ↗](https://github.com/vegaprotocol/vega/issues/11042).
+- The `collateralIncreaseEstimate` for limit orders in isolated margin was producing incorrect values via the API. This has been fixed in [issue 10928 ↗](https://github.com/vegaprotocol/vega/issues/10928).
+
+To review these changes in the last released version, see [GitHub](https://github.com/vegaprotocol/vega/compare/v0.75.5...v0.75.7).
+
+## Pre-release version v0.75.5  | 2024-03-28
+This version was released to the Vega testnet on 28 March 2024.
+
+### Bug fixes
+
+- On the 27th March 2024 the mainnet network was halted due to a consensus failure. Full details of this issue can be seen in the [incident blog ↗](https://blog.vega.xyz/incident-report-network-outage-dd83e48072c8). The team found this to be related to ordering of price monitoring data in the snapshot files, which was resolved in [this patch ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.74.10-fix.1).
+
+To review these changes in the last released version, see [GitHub](https://github.com/vegaprotocol/vega/compare/v0.75.4...v0.75.5).
+
+
+## Pre-release version v0.75.4  | 2024-03-26
+This version was released to the Vega testnet on 26 March 2024.
+
+### Bug fixes
+
+- It was found that events being sent to the data node were not always being sent deterministically. This issue has been fixed by correctly sorting the vesting summary events before sending to the data node. This was resolved in [issue 11000 ↗](https://github.com/vegaprotocol/vega/issues/11000).
+- During market simulation fuzz testing a panic was observed when leaving an opening auction triggered a monitoring auction. This has been fixed by defaulting to the last trade price if the opening auction breaches the price monitoring boundary. This was resolved in [issue 10997 ↗](https://github.com/vegaprotocol/vega/issues/10997).
+
+
+
+To review these changes in the last released version, see [GitHub](https://github.com/vegaprotocol/vega/compare/v0.75.3...v0.75.4).
+
+
+## Pre-release version v0.75.3  | 2024-03-22
+This version was released to the Vega testnet on 22 March 2024.
+
+### Bug fixes
+
+- An issue was identified whereby incorrect rewards were showing in the `teamStats` API. It was found that the query behind the API was not filtering correctly on the `entityScope` thus not filtering out non-team rewards. This has been fixed in [issue 10969 ↗](https://github.com/vegaprotocol/vega/issues/10969).
+- A bug was found where suspending a market in a proposed state, before it gets enacted, will result in the market not being able to leave the opening auction. This has been fixed in [issue 10973 ↗](https://github.com/vegaprotocol/vega/issues/10973).
+
+To review these changes in the last released version, see [GitHub](https://github.com/vegaprotocol/vega/compare/v0.75.2...v0.75.3).
+
+
+## Pre-release version v0.75.2  | 2024-03-21
+This version was released to the Vega testnet on 21 March 2024.
+
+### Bug fixes
+
+- An issue was identified where an LP that joins a market and leaves before the opening auction ends receives all of the LP fees. This issue was fixed in [issue 10950 ↗](https://github.com/vegaprotocol/vega/issues/10950).
+- A bug was found whereby a user that is not the owner could update a referral set and create an associated team. This bug has been resolved in [issue 10960 ↗](https://github.com/vegaprotocol/vega/issues/10960).
+
+To review these changes in the last released version, see [GitHub](https://github.com/vegaprotocol/vega/compare/v0.75.1...v0.75.2).
+
+
+## Pre-release version v0.75.1  | 2024-03-20
+This version was released to the Vega testnet on 20 March 2024.
+
+### Bug fix
+
+Queries for governance-initiated transfers were not providing the dispatch strategy that was set when the transfers were proposed. This was resolved in [issue 10945 ↗](https://github.com/vegaprotocol/vega/issues/10945).
+
+To review the change in the last released version, see [GitHub](https://github.com/vegaprotocol/vega/compare/v0.75.0...v0.75.1).
 
 
 ## Pre-release versions v0.75.0-preview.9 and v0.75.0-preview.10 (combined)  | 2024-03-18
